@@ -663,41 +663,96 @@
       "opening": {
         "duration": 8,
         "activity": "Property exploration setup (5 min): Place metal, wood, plastic, and fabric samples in sunlight or under lamp. Have students predict which will feel different after a few minutes.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Échantillons des 4 matériaux (métal, bois, plastique, tissu) - 6 sets",
+          "Lampe ou source de lumière pour réchauffer",
+          "Cartes de prédiction pour les élèves"
+        ],
+        "visualSupports": "Cartes de température avec images 'chaud', 'froid', 'tiède', affiches de prédiction",
+        "decisionPoints": [
+          "Si la lumière n'est pas suffisante, utiliser les mains pour réchauffer certains matériaux"
+        ],
+        "movementBreaks": [
+          "Gestes pour 'chaud' (s'éventer) et 'froid' (frissonner)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Metal property stations (30 min): Station 1: Temperature - compare metal objects to other materials, notice metal feels cooler. Station 2: Hardness - gently try to bend/press different materials, notice metal's strength. Station 3: Shine - use flashlights to see how metal reflects light differently. Station 4: Shape variety - examine different metal shapes (spoons, coins, paper clips) to see how metal can be formed. Record observations on comparison charts.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets métalliques variés (cuillères, règles, pièces de monnaie) - 6 sets",
+          "Lampes de poche ou petites lampes (6)",
+          "Matériaux de comparaison (bois, plastique, tissu) - 6 sets",
+          "Tableaux de comparaison des propriétés (25)",
+          "Crayons pour enregistrer les observations"
+        ],
+        "visualSupports": "Affiches des 4 stations avec instructions visuelles, cartes de propriétés du métal, exemples de tableaux complétés",
+        "decisionPoints": [
+          "Si les objets métalliques sont trop froids, les laisser à température ambiante 30 minutes avant l'activité"
+        ],
+        "movementBreaks": [
+          "Imiter la brillance du métal en bougeant les bras pour refléter la lumière"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Shaping discussion (10 min): Show pictures of people making metal objects (blacksmith, factory). Explain that when metal gets very hot, people can shape it. Demonstrate with play dough analogy for shaping concept.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images de forgerons et d'usines",
+          "Pâte à modeler pour démonstration",
+          "Objets métalliques de formes diverses"
+        ],
+        "visualSupports": "Images séquentielles : métal chaud → façonnage → objet fini, comparaison avec pâte à modeler",
+        "decisionPoints": [
+          "Si le concept de chaleur inquiète, insister sur le fait que seuls les adultes experts travaillent avec le métal chaud"
+        ],
+        "movementBreaks": [
+          "Gestes de façonnage avec les mains comme si on sculptait"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension des propriétés multiples du métal",
+        "then": "se concentrer sur les propriétés les plus évidentes (brillant et froid) et faire des comparaisons directes avec objets familiers"
       },
       "realWorldConnection": "Students understand why metal is chosen for tools and objects that need to be strong and shiny",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à 2 propriétés principales : brillant et dur",
+          "Utiliser des objets métalliques très familiers (pièces, cuillères)",
+          "Permettre l'observation sans manipulation extensive",
+          "Jumeler avec un partenaire pour les stations"
+        ],
+        "forAdvanced": [
+          "Explorer différents types de métaux et leurs propriétés",
+          "Faire des prédictions sur le façonnage des métaux",
+          "Devenir 'expert en métaux' pour guider les autres",
+          "Créer un guide des utilisations innovantes du métal"
+        ],
+        "forELL": [
+          "Cartes visuelles des propriétés avec gestes et mots",
+          "Permettre description avec langue maternelle + traduction",
+          "Utiliser beaucoup de démonstrations tactiles",
+          "Support d'un francophone patient"
+        ],
+        "forIEP": [
+          "Adapter selon sensibilité au froid ou aux textures",
+          "Permettre exploration visuelle si toucher difficile",
+          "Utiliser supports personnalisés",
+          "Offrir pauses sensorielles si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie les propriétés spécifiques du métal (brillant, dur, froid)",
+          "L'élève fait des comparaisons précises entre le métal et autres matériaux",
+          "L'élève comprend que les humains peuvent façonner le métal",
+          "L'élève utilise le vocabulaire approprié ('forme', 'façonner', 'chaud')"
+        ],
+        "checkpoints": [
+          "Aux stations : observe capacité à identifier propriétés métalliques",
+          "Pendant comparaisons : vérifie précision des observations",
+          "Discussion façonnage : écoute compréhension du processus"
+        ]
       }
     },
     {
@@ -714,41 +769,98 @@
       "opening": {
         "duration": 8,
         "activity": "Fabric introduction (5 min): Hold up piece of fabric and metal spoon. Let students feel both. Ask 'Quelle est la différence?' Introduce 'tissu' and 'doux' vocabulary. Show how fabric bends and flows.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Morceaux de tissu variés (coton, feutre, soie)",
+          "Cuillère métallique pour comparaison",
+          "Cartes de vocabulaire 'tissu', 'doux', 'souple'"
+        ],
+        "visualSupports": "Cartes visuelles montrant 'doux' vs 'dur', gestes pour 'souple' et 'flexible'",
+        "decisionPoints": [
+          "Si certains élèves sont sensibles aux textures, commencer avec les tissus les plus doux",
+          "Si la différence n'est pas évidente, utiliser des contrastes plus marqués (velours vs métal)"
+        ],
+        "movementBreaks": [
+          "Imiter le mouvement fluide du tissu en bougeant les bras comme des vagues"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Fabric exploration (30 min): Students examine different fabric samples: cotton, denim, silk-like, fleece, burlap. Feel softness, flexibility by gently stretching. Notice that fabric can be thick or thin, smooth or bumpy. Look at weave patterns with magnifying glasses. Sort fabrics by texture: 'très doux' vs 'un peu rugueux.' Practice folding and unfolding to show flexibility.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Échantillons de tissus variés (coton, denim, feutre, toile) - 6 sets complets",
+          "Loupes pour voir les motifs de tissage (6)",
+          "Bacs de tri 'très doux' vs 'un peu rugueux' (3)",
+          "Feuilles d'observation des tissus (25)",
+          "Crayons pour dessiner les textures"
+        ],
+        "visualSupports": "Tableau de classification des tissus par texture, cartes de motifs de tissage, exemples d'observation complétés",
+        "decisionPoints": [
+          "Si le tri devient difficile, commencer avec seulement 3 types de tissus très différents",
+          "Si certains élèves étirent trop fort, montrer comment manipuler délicatement"
+        ],
+        "movementBreaks": [
+          "Défilé de mode : marcher en montrant comment le tissu bouge avec le corps"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Fabric fashion show (10 min): Students choose favorite fabric sample and describe why they like it: 'Ce tissu est doux' or 'Ce tissu est coloré.' Discuss how fabric is perfect for clothes because it's soft and moves with our bodies.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Échantillons de tissus pour chaque élève",
+          "Miroir pour le défilé (optionnel)",
+          "Cartes de descriptions 'doux', 'coloré', 'souple'"
+        ],
+        "visualSupports": "Images de vêtements confortables, connections tissu-mouvement du corps, expressions de préférence",
+        "decisionPoints": [
+          "Si certains sont timides pour le défilé, permettre de montrer leur tissu depuis leur place"
+        ],
+        "movementBreaks": [
+          "Danse libre pour montrer comment le tissu bouge avec nos mouvements"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la distinction entre différents types de tissus",
+        "then": "utiliser des contrastes plus marqués (velours très doux vs toile très rugueuse) et se concentrer sur le toucher"
       },
       "realWorldConnection": "Students connect fabric properties to comfortable clothing and soft home items",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à 3 types de tissus très différents",
+          "Se concentrer uniquement sur 'doux' vs 'rugueux'",
+          "Permettre l'exploration sans obligation d'écriture",
+          "Jumeler avec un partenaire bienveillant"
+        ],
+        "forAdvanced": [
+          "Explorer l'origine des tissus (coton des plantes, laine des animaux)",
+          "Examiner les motifs de tissage plus en détail",
+          "Devenir 'expert en tissus' pour expliquer aux autres",
+          "Créer un catalogue des utilisations des différents tissus"
+        ],
+        "forELL": [
+          "Cartes visuelles des types de tissus avec mots et images",
+          "Permettre description avec gestes et langue maternelle",
+          "Utiliser beaucoup d'exemples tactiles",
+          "Support d'un francophone patient"
+        ],
+        "forIEP": [
+          "Adapter selon sensibilités tactiles (certains tissus peuvent déplaire)",
+          "Permettre observation visuelle si toucher difficile",
+          "Utiliser supports personnalisés",
+          "Offrir pauses sensorielles régulières"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie le tissu comme matériau doux et flexible",
+          "L'élève fait des distinctions entre différents types de tissus",
+          "L'élève utilise vocabulaire 'tissu', 'doux', 'souple' appropriément",
+          "L'élève fait des connections tissu-vêtements-confort"
+        ],
+        "checkpoints": [
+          "Pendant exploration : observe utilisation des sens pour examiner tissus",
+          "Lors du tri : vérifie capacité à distinguer textures",
+          "Défilé : écoute descriptions et connexions appropriées"
+        ]
       }
     },
     {
@@ -765,41 +877,98 @@
       "opening": {
         "duration": 8,
         "activity": "Flexibility demonstration (5 min): Compare trying to bend metal ruler vs fabric. Show how fabric folds, twists, and moves. Introduce 'flexible' and 'souple' vocabulary with body movements.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Règle métallique rigide",
+          "Morceau de tissu souple",
+          "Cartes de vocabulaire 'flexible', 'épais', 'mince'"
+        ],
+        "visualSupports": "Démonstration visuelle rigidité vs flexibilité, cartes avec gestes pour chaque propriété",
+        "decisionPoints": [
+          "Si les élèves ne voient pas la différence, faire une démonstration plus dramatique avec des matériaux très contrastants",
+          "Si certains ont peur de manipuler la règle, utiliser un objet rigide plus sécuritaire"
+        ],
+        "movementBreaks": [
+          "Imiter la rigidité (se tenir droit comme un robot) puis la flexibilité (bouger comme une danse fluide)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Fabric property investigation (30 min): Station 1: Flexibility - safely fold, twist, and scrunch different fabrics. Station 2: Thickness - layer fabrics to see thick vs thin, hold up to light. Station 3: Origin exploration - look at cotton balls and discuss how some fabric comes from plants, show sheep picture for wool. Station 4: Texture variety - feel rough burlap vs smooth cotton, arrange from softest to roughest.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Variété de tissus de différentes épaisseurs - 6 sets",
+          "Boules de coton pour montrer l'origine",
+          "Images de moutons et de plantes de coton",
+          "Lampe pour transparence des tissus minces",
+          "Plateaux pour organiser du plus doux au plus rugueux"
+        ],
+        "visualSupports": "Affiches des 4 stations, images séquentielles plante/animal → tissu, échelle de douceur visuelle",
+        "decisionPoints": [
+          "Si la station 'origine' est trop abstraite, se concentrer sur les exemples tactiles",
+          "Si le classement de douceur crée des désaccords, faire des paires de comparaison plutôt qu'un classement"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux qui donnent des tissus (moutons qui sautent, vers à soie qui bougent)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Fabric origins appreciation (10 min): Simple discussion about how plants like cotton and animals like sheep help give us fabric. Practice saying 'Merci les plantes! Merci les animaux!' Thank nature for providing materials.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Boules de coton et images de plantes",
+          "Images de moutons avec laine",
+          "Affiche 'Merci la nature!' avec dessins"
+        ],
+        "visualSupports": "Images de remerciements à la nature, connections visuelles plante/animal → vêtements",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour dire merci, permettre des gestes de remerciement"
+        ],
+        "movementBreaks": [
+          "Gestes de remerciement à la nature (mains jointes, incliner vers la terre et le ciel)"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension de l'origine naturelle des tissus",
+        "then": "utiliser des objets concrets (vraies boules de coton, laine de mouton) et faire des connections simples avec leurs vêtements"
       },
       "realWorldConnection": "Students understand that fabric connects us to plants and animals, and appreciate comfortable clothing",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 2 propriétés : doux et flexible",
+          "Utiliser des exemples très concrets (leurs propres vêtements)",
+          "Permettre l'exploration sans classification complexe",
+          "Jumeler avec un partenaire bienveillant"
+        ],
+        "forAdvanced": [
+          "Explorer plus d'origines de tissus (soie des vers, lin des plantes)",
+          "Faire des connections avec la transformation (plante → fibre → tissu)",
+          "Devenir 'expert en origines' pour expliquer aux autres",
+          "Créer un guide des tissus naturels vs synthétiques"
+        ],
+        "forELL": [
+          "Cartes visuelles des propriétés avec gestes",
+          "Permettre comparaisons avec tissus de leur culture",
+          "Utiliser beaucoup d'exemples tactiles et visuels",
+          "Support d'un francophone patient"
+        ],
+        "forIEP": [
+          "Adapter selon sensibilités aux textures",
+          "Permettre observation visuelle des propriétés",
+          "Utiliser supports personnalisés",
+          "Offrir pauses sensorielles fréquentes"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie les propriétés des tissus (flexible, épais/mince)",
+          "L'élève fait des connections entre tissus et origine naturelle",
+          "L'élève utilise vocabulaire 'flexible', 'épais', 'mince' appropriément",
+          "L'élève montre appréciation pour les ressources naturelles"
+        ],
+        "checkpoints": [
+          "Aux stations : observe identification précise des propriétés",
+          "Discussion origine : vérifie compréhension plantes/animaux → tissus",
+          "Remerciements : écoute connexions avec la nature"
+        ]
       }
     },
     {
@@ -922,41 +1091,97 @@
       "opening": {
         "duration": 8,
         "activity": "Strength demonstration (5 min): Show students paper and cardboard. Gently try to bend both. Ask 'Lequel est plus fort?' Introduce that we can test how strong materials are.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Feuille de papier mince",
+          "Morceau de carton épais",
+          "Cartes de vocabulaire 'tester', 'fort', 'casser'"
+        ],
+        "visualSupports": "Démonstration visuelle de pliage, cartes 'fort' vs 'fragile' avec images",
+        "decisionPoints": [
+          "Si les élèves veulent tous essayer immédiatement, donner à chacun un petit échantillon pour tester"
+        ],
+        "movementBreaks": [
+          "Poser comme des matériaux forts (muscles fléchis) puis fragiles (trembler doucement)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Material strength lab (30 min): Station 1: Gentle bending test - try to carefully bend thin wood, plastic strips, fabric. Station 2: Pressure test - gently press materials and see which keep their shape. Station 3: Gentle tearing - test if thin fabric or paper tears easily (thick fabric doesn't). Station 4: Prediction station - predict material strength before testing. Record observations: 'Le métal est très fort' vs 'Le tissu se déchire facilement.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Bâtonnets de bois minces sécuritaires - 6 sets",
+          "Bandes de plastique souple - 6 sets",
+          "Morceaux de tissu et papier pour test de déchirement",
+          "Objets métalliques sécuritaires (cuillères)",
+          "Feuilles de prédiction et observation (25)"
+        ],
+        "visualSupports": "Affiches des 4 stations avec instructions de sécurité, échelle de force visuelle, exemples de tests",
+        "decisionPoints": [
+          "Si certains matériaux sont trop difficiles à plier, fournir des alternatives plus souples",
+          "Si les élèves appliquent trop de force, rappeler les règles de manipulation douce"
+        ],
+        "movementBreaks": [
+          "Exercices de force douce : pousser contre un mur imaginaire, étirer comme un élastique"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Strength ranking (10 min): As class, rank materials from strongest to least strong. Discuss why strong materials are used for buildings and tools, softer materials for clothes and comfort.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Grande affiche pour classement de force",
+          "Images de bâtiments, outils, vêtements",
+          "Échantillons des matériaux testés"
+        ],
+        "visualSupports": "Graphique de force des matériaux, connections usage-force, images d'applications réelles",
+        "decisionPoints": [
+          "Si le classement crée des désaccords, faire des comparaisons par paires plutôt qu'un classement complet"
+        ],
+        "movementBreaks": [
+          "Célébrer la découverte avec des applaudissements de force variée (fort pour métal, doux pour tissu)"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "les tests de résistance sans casser les matériaux",
+        "then": "démontrer la technique de pression douce et fournir des matériaux de pratique supplémentaires"
       },
       "realWorldConnection": "Students understand why engineers choose strong materials for structures and softer ones for comfort",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à 2 matériaux très différents (papier vs métal)",
+          "Fournir aide pour manipulation sécuritaire",
+          "Permettre observation des tests plutôt que manipulation directe",
+          "Jumeler avec élève expérimenté"
+        ],
+        "forAdvanced": [
+          "Tester des matériaux plus variés (différents plastiques, bois)",
+          "Prédire et expliquer pourquoi certains matériaux sont plus forts",
+          "Devenir 'ingénieur consultant' pour autres équipes",
+          "Créer un guide de sélection matériaux pour différents usages"
+        ],
+        "forELL": [
+          "Cartes visuelles des tests avec instructions par images",
+          "Permettre description avec gestes et langue maternelle",
+          "Utiliser beaucoup de démonstrations visuelles",
+          "Support d'un francophone patient pour vocabulaire technique"
+        ],
+        "forIEP": [
+          "Adapter tests selon capacités motrices",
+          "Permettre observation et description plutôt que manipulation",
+          "Utiliser supports visuels adaptés",
+          "Offrir pauses fréquentes pendant les tests"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève conduit des tests de résistance de manière sécuritaire",
+          "L'élève compare et classe matériaux par force",
+          "L'élève utilise vocabulaire 'tester', 'fort', 'casser' appropriément",
+          "L'élève fait connections force-usage des matériaux"
+        ],
+        "checkpoints": [
+          "Pendant tests : observe techniques sécuritaires et précision",
+          "Lors classement : vérifie compréhension des différences de force",
+          "Discussion usage : écoute connections logiques matériau-application"
+        ]
       }
     },
     {
@@ -973,41 +1198,97 @@
       "opening": {
         "duration": 8,
         "activity": "Water prediction (5 min): Show samples of each material and cup of water. Ask students to predict what will happen when water touches each material. Introduce 'mouiller' vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Échantillons des 4 matériaux (bois, plastique, métal, tissu)",
+          "Verre d'eau transparent",
+          "Cartes de prédiction 'mouiller' vs 'rester sec'"
+        ],
+        "visualSupports": "Cartes visuelles 'mouillé' vs 'sec', images de gouttes d'eau, tableau de prédictions",
+        "decisionPoints": [
+          "Si les prédictions sont toutes identiques, poser des questions pour stimuler la réflexion"
+        ],
+        "movementBreaks": [
+          "Imiter la pluie qui tombe avec les doigts, puis s'essuyer comme si on était mouillé"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Water resistance laboratory (30 min): Station 1: Drop test - place small drops of water on each material, observe what happens. Station 2: Dip test - briefly dip material edges in water, see which absorb. Station 3: Time observation - watch how water behaves on different materials over time. Station 4: Recording - draw and write observations about which materials water 'likes' and which it 'slides off.' Use vocabulary: 'L'eau reste sur le plastique' vs 'Le tissu absorbe l'eau.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Compte-gouttes ou petites cuillères (6)",
+          "Bols d'eau peu profonds (6)",
+          "Échantillons de matériaux pour tests - 6 sets complets",
+          "Feuilles d'observation des tests d'eau (25)",
+          "Serviettes pour nettoyer les dégâts"
+        ],
+        "visualSupports": "Affiches des 4 stations avec instructions, cartes 'absorbe' vs 'repousse', chronomètre visuel",
+        "decisionPoints": [
+          "Si les tests créent trop de dégâts, limiter la quantité d'eau et utiliser des plateaux",
+          "Si les résultats ne sont pas clairs, utiliser plus d'eau ou attendre plus longtemps"
+        ],
+        "movementBreaks": [
+          "Danser comme des gouttes d'eau qui glissent (plastique) ou qui s'enfoncent (tissu)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Waterproof discussion (10 min): Discuss why raincoats are plastic or special fabric, why umbrellas repel water, why towels absorb water. Connect material properties to their uses in wet conditions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images d'imperméables, parapluies, serviettes",
+          "Objets réels si disponibles (manteau de pluie, serviette)",
+          "Tableau des usages par temps pluvieux"
+        ],
+        "visualSupports": "Connections visuelles matériau-usage-météo, images de jour de pluie avec équipement approprié",
+        "decisionPoints": [
+          "Si les connections ne sont pas évidentes, montrer des exemples concrets de leurs propres vêtements"
+        ],
+        "movementBreaks": [
+          "Mimer s'habiller pour la pluie (enfiler imperméable, ouvrir parapluie)"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension des propriétés d'absorption vs répulsion de l'eau",
+        "then": "utiliser des démonstrations plus dramatiques avec plus d'eau et des matériaux aux propriétés très contrastées"
       },
       "realWorldConnection": "Students understand why different materials are chosen for rainy day items vs items meant to dry things",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à 2 matériaux avec propriétés très différentes (plastique vs tissu)",
+          "Fournir aide pour manipulation de l'eau",
+          "Utiliser plus de démonstrations visuelles",
+          "Jumeler avec partenaire expérimenté"
+        ],
+        "forAdvanced": [
+          "Tester différents types de tissus (imperméable vs coton)",
+          "Explorer le concept de traitement imperméable",
+          "Prédire et expliquer les résultats avant les tests",
+          "Créer un guide de sélection matériaux pour activités aquatiques"
+        ],
+        "forELL": [
+          "Cartes visuelles des tests avec vocabulaire illustré",
+          "Permettre description avec gestes (eau qui coule, qui reste)",
+          "Utiliser exemples familiers de leur expérience",
+          "Support d'un francophone pour vocabulaire de l'eau"
+        ],
+        "forIEP": [
+          "Adapter manipulation de l'eau selon capacités motrices",
+          "Permettre observation des tests plutôt que manipulation directe",
+          "Utiliser supports visuels adaptés",
+          "Prévoir pauses si sensibilité à l'humidité"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève conduit tests d'eau de manière sécuritaire et précise",
+          "L'élève identifie quels matériaux absorbent vs repoussent l'eau",
+          "L'élève utilise vocabulaire 'eau', 'mouiller', 'sec' appropriément",
+          "L'élève fait connections propriétés-usages par temps humide"
+        ],
+        "checkpoints": [
+          "Pendant tests : observe techniques et précision des observations",
+          "Stations : vérifie compréhension absorption vs répulsion",
+          "Discussion usage : écoute connections logiques matériau-fonction"
+        ]
       }
     },
     {
@@ -1024,41 +1305,97 @@
       "opening": {
         "duration": 8,
         "activity": "Usage thinking (5 min): Hold up metal spoon and ask 'Pourquoi est-ce fait de métal?' Guide discussion to metal being hard, easy to clean. Introduce that people choose materials for specific reasons.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cuillère métallique",
+          "Alternatives pour comparaison (cuillère en bois, plastique si disponible)",
+          "Cartes 'pourquoi' avec points d'interrogation"
+        ],
+        "visualSupports": "Cartes de questions 'Pourquoi ce matériau?', connections propriété-usage avec flèches",
+        "decisionPoints": [
+          "Si les élèves donnent des réponses vagues, poser des questions plus spécifiques sur la durée, le nettoyage"
+        ],
+        "movementBreaks": [
+          "Mimer l'utilisation de différents ustensiles (remuer, couper, servir)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Material-use matching (30 min): Station 1: Kitchen items - match materials to kitchen tools (metal spoons, plastic containers, fabric towels). Station 2: Clothing - discuss why clothes are fabric (soft, flexible). Station 3: Building items - why wood for furniture (strong, from nature). Station 4: School supplies - analyze pencils (wood, metal, plastic parts), books (paper from trees). Create 'Perfect Match' charts showing material + property + use.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets de cuisine variés (cuillères, contenants, torchons) - 6 sets",
+          "Vêtements et échantillons de tissus",
+          "Petits objets en bois (blocs, règles)",
+          "Fournitures scolaires pour analyse (crayons, livres, ciseaux)",
+          "Cartes 'Perfect Match' matériau-propriété-usage (25)"
+        ],
+        "visualSupports": "Affiches des 4 stations, diagrammes matériau → propriété → usage, exemples de correspondances",
+        "decisionPoints": [
+          "Si certaines stations sont trop populaires, établir une rotation avec minuterie",
+          "Si les connections sont difficiles, commencer par des exemples très évidents"
+        ],
+        "movementBreaks": [
+          "Jeu 'Je suis un matériau' - imiter les propriétés et les autres devinent l'usage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Smart choices discussion (10 min): Students share one 'smart material choice' they discovered. Praise people for being clever about choosing the right material for each job. Practice: 'On utilise le métal pour... parce que...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Tableau pour noter les découvertes intelligentes",
+          "Images d'inventeurs et designers",
+          "Phrases modèles 'On utilise... pour... parce que...'"
+        ],
+        "visualSupports": "Célébration de l'ingéniosité humaine, phrases structures pour expliquer les choix",
+        "decisionPoints": [
+          "Si les élèves répètent les mêmes exemples, encourager des découvertes différentes de chaque station"
+        ],
+        "movementBreaks": [
+          "Applaudissements pour célébrer l'intelligence humaine dans le choix des matériaux"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la connexion entre propriétés des matériaux et leurs usages",
+        "then": "utiliser des exemples très concrets et familiers, comparer des alternatives pour montrer pourquoi un matériau est préférable"
       },
       "realWorldConnection": "Students appreciate human cleverness in choosing appropriate materials for different purposes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 1 station avec objets très familiers",
+          "Utiliser des connections très évidentes (métal dur pour outils)",
+          "Permettre pointage et gestes au lieu de verbalisation complète",
+          "Jumeler avec partenaire bienveillant"
+        ],
+        "forAdvanced": [
+          "Explorer des usages moins évidents et plus créatifs",
+          "Prédire quels matériaux seraient mauvais pour certains usages",
+          "Devenir 'consultant en matériaux' pour autres équipes",
+          "Imaginer des améliorations aux objets existants"
+        ],
+        "forELL": [
+          "Cartes visuelles des objets avec matériaux et usages",
+          "Permettre démonstrations plutôt qu'explications verbales",
+          "Utiliser objets familiers de leur culture",
+          "Support d'un francophone pour structures de phrases"
+        ],
+        "forIEP": [
+          "Adapter manipulation selon capacités motrices",
+          "Permettre observation et pointage plutôt que manipulation",
+          "Utiliser supports visuels personnalisés",
+          "Offrir pauses fréquentes entre stations"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève fait des connections logiques matériau-propriété-usage",
+          "L'élève explique pourquoi certains matériaux sont choisis",
+          "L'élève utilise vocabulaire 'usage', 'utiliser', 'pourquoi' appropriément",
+          "L'élève apprécie l'ingéniosité humaine dans le design"
+        ],
+        "checkpoints": [
+          "Aux stations : observe précision des correspondances matériau-usage",
+          "Création cartes : vérifie compréhension des connections",
+          "Discussion finale : écoute capacité à expliquer les choix intelligents"
+        ]
       }
     },
     {
@@ -1075,41 +1412,97 @@
       "opening": {
         "duration": 8,
         "activity": "Museum introduction (5 min): Show picture of real museum. Explain that museums help people learn by organizing and showing interesting things. Announce that students will create a material museum.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos ou images de musées réels",
+          "Panneau 'Musée des Matériaux de la Classe'",
+          "Cartes de vocabulaire 'musée', 'collection', 'étiquette'"
+        ],
+        "visualSupports": "Images de musées avec expositions organisées, exemple d'étiquettes de musée",
+        "decisionPoints": [
+          "Si certains élèves n'ont jamais visité de musée, utiliser des comparaisons avec des magasins organisés"
+        ],
+        "movementBreaks": [
+          "Marcher comme des visiteurs curieux de musée (regarder, pointer, chuchoter)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Museum creation (35 min): Students work in material teams (wood, plastic, metal, fabric). Collect and arrange objects from their material. Create labels with material name and properties. Design attractive displays with objects and information. Practice being 'museum guides' - explaining their material to visitors. Add 'Did you know?' facts about each material. Set up museum with clear pathways for viewing.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets variés de chaque matériau collectés précédemment",
+          "Cartons ou napperons pour créer les présentoirs (6-8)",
+          "Modèles d'étiquettes de musée (25)",
+          "Marqueurs et crayons colorés",
+          "Banderoles 'Bois', 'Plastique', 'Métal', 'Tissu'"
+        ],
+        "visualSupports": "Exemples d'expositions de musée, modèles d'étiquettes, guide du musée parfait",
+        "decisionPoints": [
+          "Si les équipes manquent d'objets, permettre le partage entre les groupes",
+          "Si les étiquettes sont difficiles à écrire, offrir des modèles à compléter"
+        ],
+        "movementBreaks": [
+          "Pause 'curateur de musée' - étirer et regarder l'espace, planifier l'aménagement"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Museum opening (5 min): Brief 'grand opening' where students walk through and appreciate all materials. Discuss how organizing helps us understand and compare materials better.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Ruban de cérémonie d'ouverture (optionnel)",
+          "Livre d'or du musée pour signatures",
+          "Certificats de 'Curateur de Musée' pour chaque élève"
+        ],
+        "visualSupports": "Pancarte 'Grand Opening', parcours de visite fléché, affiche de félicitations",
+        "decisionPoints": [
+          "Si la visite crée de l'encombrement, organiser en petits groupes avec rotation"
+        ],
+        "movementBreaks": [
+          "Défilé d'ouverture du musée avec applaudissements pour chaque section"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "l'organisation et la présentation des objets de manière attrayante",
+        "then": "fournir des modèles visuels d'expositions simples et aider à grouper les objets par couleur ou taille"
       },
       "realWorldConnection": "Students experience how museums organize information to help people learn",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Assigner des rôles spécifiques (organisateur, étiqueteur, décorateur)",
+          "Fournir modèles d'étiquettes pre-rédigés à compléter",
+          "Permettre présentation par pointage plutôt que verbalisation",
+          "Jumeler avec équipier plus expérimenté"
+        ],
+        "forAdvanced": [
+          "Créer des faits surprenants sur les matériaux",
+          "Organiser des expositions thématiques créatives",
+          "Devenir guide principal du musée",
+          "Créer une brochure du musée avec plan et descriptions"
+        ],
+        "forELL": [
+          "Utiliser plus d'images et moins de texte sur les étiquettes",
+          "Permettre étiquettes bilingues",
+          "Rôle de guide avec soutien visuel",
+          "Encourager partage de connaissances de leur culture"
+        ],
+        "forIEP": [
+          "Adapter rôles selon capacités (placement d'objets vs écriture)",
+          "Utiliser supports visuels adaptés",
+          "Permettre participation à leur rythme",
+          "Offrir zone calme pour pauses si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève organise objets par matériau de manière logique",
+          "L'élève crée étiquettes informatives avec matériau et propriétés",
+          "L'élève utilise vocabulaire 'musée', 'collection', 'étiquette'",
+          "L'élève explique efficacement son exposition aux visiteurs"
+        ],
+        "checkpoints": [
+          "Pendant création : observe organisation logique et travail d'équipe",
+          "Étiquettes : vérifie exactitude des informations sur matériaux",
+          "Ouverture : écoute qualité des explications de guide"
+        ]
       }
     },
     {
@@ -1126,41 +1519,92 @@
       "opening": {
         "duration": 8,
         "activity": "Recycling discovery (5 min): Show plastic bottle, ask 'What happens when we're done with this?' Introduce that some materials can be made into new things instead of being thrown away.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Bouteille en plastique vide",
+          "Poubelle et bac de recyclage pour démonstration",
+          "Cartes visuelles du cycle de recyclage"
+        ],
+        "visualSupports": "Images du voyage d'une bouteille : utilisation → recyclage → nouveau produit",
+        "decisionPoints": [
+          "Si le concept de transformation est trop abstrait, utiliser des exemples plus concrets comme papier déchiré devenant pâte à papier"
+        ],
+        "movementBreaks": [
+          "Imiter le voyage du recyclage : être utilisé, jeté, transformé, redevenir utile"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Recycling exploration (30 min): Station 1: Sorting practice - separate materials that can be recycled. Station 2: Reuse ideas - brainstorm new uses for containers, fabric scraps. Station 3: Recycling journey - follow pictures showing how plastic bottles become new products. Station 4: Environmental helpers - discuss how recycling helps protect trees and animals. Create 'Recycling Heroes' badges for students.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Mélange d'objets recyclables et non-recyclables - 6 sets",
+          "Contenants vides et morceaux de tissu pour réutilisation",
+          "Séquences d'images du recyclage (bouteille → tapis, papier → nouveau papier)",
+          "Images d'animaux et forêts à protéger",
+          "Matériel pour badges 'Héros du Recyclage' (25)"
+        ],
+        "visualSupports": "Affiches des stations, symboles de recyclage, images avant/après transformation",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Danse du recyclage : mouvements de tri, transformation, renaissance"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Earth helpers (10 min): Students share one way they can help by reusing or recycling materials. Practice: 'Je peux réutiliser...' Make commitment to be material recycling helpers.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Affiche d'engagement environnemental",
+          "Autocollants ou tampons pour célébrer les engagements",
+          "Cartes de phrases 'Je peux réutiliser...'"
+        ],
+        "visualSupports": "Images d'actions environnementales positives, célébration des petits gestes",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébration des héros environnementaux avec applaudissements spéciaux"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension du concept de recyclage et transformation",
+        "then": "utiliser des démonstrations plus concrètes comme déchirer du papier pour faire de la 'nouvelle' pâte, ou montrer des produits recyclés réels"
       },
       "realWorldConnection": "Students connect to family recycling practices and understand their role in environmental care",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur le tri simple (recyclable vs non-recyclable)",
+          "Utiliser objets très familiers pour la réutilisation",
+          "Permettre participation par gestes et pointage",
+          "Jumeler avec partenaire environnementalement conscient"
+        ],
+        "forAdvanced": [
+          "Explorer différents types de recyclage (plastiques, papiers, métaux)",
+          "Réfléchir à l'impact environnemental des choix",
+          "Devenir ambassadeur du recyclage pour la classe",
+          "Créer un plan d'action recyclage pour l'école"
+        ],
+        "forELL": [
+          "Cartes visuelles des actions de recyclage",
+          "Permettre partage d'exemples de leur culture/pays",
+          "Utiliser beaucoup de gestes et démonstrations",
+          "Support pour vocabulaire environnemental"
+        ],
+        "forIEP": [
+          "Adapter manipulation selon capacités motrices",
+          "Utiliser supports visuels personnalisés",
+          "Permettre participation à leur niveau de confort",
+          "Célébrer toute participation environnementale"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève trie correctement les matériaux recyclables",
+          "L'élève propose des idées de réutilisation créatives",
+          "L'élève utilise vocabulaire 'recycler', 'réutiliser', 'protéger'",
+          "L'élève montre engagement envers la protection environnementale"
+        ],
+        "checkpoints": [
+          "Station tri : observe précision du tri recyclable/non-recyclable",
+          "Idées réutilisation : vérifie créativité et faisabilité",
+          "Engagements finaux : écoute sincérité et spécificité des actions proposées"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1217,41 +1661,93 @@
       "opening": {
         "duration": 8,
         "activity": "Inventor introduction (5 min): Discuss how inventors use different materials to create new things. Challenge: 'Today you are inventors! What will you create?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images d'inventeurs célèbres et leurs inventions",
+          "Exemples d'objets simples inventés (trombone, crayon avec gomme)",
+          "Cartes de défi 'Jeune Inventeur'"
+        ],
+        "visualSupports": "Images d'inventions simples, processus d'invention en étapes, motivation créative",
+        "decisionPoints": [
+          "Si les élèves sont intimidés par le concept d'invention, commencer par des améliorations d'objets existants"
+        ],
+        "movementBreaks": [
+          "Poser comme des inventeurs pensifs, puis eureka! avec bras levés"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Materials invention lab (30 min): Students receive variety of safe materials (cardboard, fabric scraps, safe plastic containers, craft sticks). Design and create useful objects: containers, toys, art pieces. Consider which materials work best for their purpose. Explain choices: 'I used fabric because...' or 'I chose plastic because...' Test their inventions and make improvements.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Carton découpé en formes variées (25 pièces)",
+          "Morceaux de tissu colorés (25 pièces)",
+          "Contenants plastique sécuritaires (yogourt, etc.) (25)",
+          "Bâtonnets d'artisanat (paquets de 25)",
+          "Ruban adhésif, colle bâton",
+          "Crayons et marqueurs pour décoration"
+        ],
+        "visualSupports": "Exemples d'inventions simples, guide des propriétés utiles par matériau, étapes de création",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause créative : étirer les doigts et regarder son invention sous tous les angles"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Inventor showcase (10 min): Students present their inventions, explaining material choices. Celebrate creative thinking and problem-solving. Award 'Young Inventor' certificates.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Podium ou zone de présentation",
+          "Certificats 'Jeune Inventeur' (25)",
+          "Applaudimètre pour célébrer les créations"
+        ],
+        "visualSupports": "Célébration de l'innovation, phrases pour expliquer les choix de matériaux",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Défilé des inventeurs avec leurs créations"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la créativité ou l'assemblage des matériaux",
+        "then": "fournir des modèles simples à adapter et aider avec les techniques d'assemblage de base"
       },
       "realWorldConnection": "Students experience the design process and understand how inventors choose materials",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir modèles simples à personnaliser",
+          "Limiter le choix de matériaux pour éviter la surcharge",
+          "Jumeler avec partenaire créatif",
+          "Célébrer toute tentative créative"
+        ],
+        "forAdvanced": [
+          "Défi de créer avec contraintes (seulement 2 matériaux)",
+          "Inventer pour résoudre un problème spécifique",
+          "Aider à inspirer et guider autres inventeurs",
+          "Créer des instructions pour reproduire leur invention"
+        ],
+        "forELL": [
+          "Permettre explication par démonstration plutôt que mots",
+          "Cartes visuelles des matériaux et leurs usages",
+          "Support pour vocabulaire technique d'assemblage",
+          "Célébrer créativité indépendamment du niveau verbal"
+        ],
+        "forIEP": [
+          "Adapter outils selon capacités motrices",
+          "Permettre collaboration avec assistance si nécessaire",
+          "Utiliser supports visuels pour étapes",
+          "Célébrer toute participation créative"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève crée un objet en utilisant plusieurs matériaux",
+          "L'élève fait des choix de matériaux justifiés",
+          "L'élève utilise vocabulaire 'inventer', 'créer', 'but'",
+          "L'élève fait preuve de créativité et résolution de problèmes"
+        ],
+        "checkpoints": [
+          "Pendant création : observe choix réfléchis des matériaux",
+          "Assemblage : vérifie techniques et persévérance",
+          "Présentation : écoute capacité à expliquer décisions créatives"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1308,41 +1804,92 @@
       "opening": {
         "duration": 8,
         "activity": "Nature materials hunt (5 min): Show natural materials (stone, stick, leaf) next to human-made (plastic, metal). Discuss how nature provides materials too.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux naturels collectés (pierres, bâtons, feuilles)",
+          "Matériaux artificiels pour comparaison (plastique, métal)",
+          "Panier ou bac pour collection 'trésors de la nature'"
+        ],
+        "visualSupports": "Images nature vs usine, comparaisons visuelles matériaux naturels/artificiels",
+        "decisionPoints": [
+          "Si les matériaux collectés ne sont pas disponibles, utiliser des photos et des vidéos de la nature"
+        ],
+        "movementBreaks": [
+          "Marcher comme des explorateurs de la nature avec yeux attentifs"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Natural materials exploration (30 min): Outdoor collection (if possible) or examination of pre-collected natural materials. Students explore: stones (hard like metal), wood pieces (from trees), leaves (flexible like some fabric), shells (hard and smooth). Compare natural materials to manufactured ones. Create 'Nature's Materials' collection with observations about properties.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Matériaux naturels variés (pierres, bois, feuilles, coquillages) - 6 sets",
+          "Loupes pour examiner les détails naturels (6)",
+          "Plateaux pour organiser les collections",
+          "Feuilles d'observation 'Trésors de la Nature' (25)",
+          "Gants de jardinage légers si sortie extérieure"
+        ],
+        "visualSupports": "Guide d'identification des matériaux naturels, comparaisons propriétés nature/artificiel",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Imiter les matériaux naturels : être dur comme pierre, flexible comme feuille"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Nature appreciation (10 min): Discuss how people learned from nature to create materials. Thank nature for providing materials. Share favorite natural material discoveries.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Affiche 'Merci la Nature!'",
+          "Collections des élèves pour partage",
+          "Images d'innovations inspirées par la nature"
+        ],
+        "visualSupports": "Exemples bio-inspiration (velcro/bardane, nageoires/palmes), célébration de la nature",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Gestes de remerciement à la nature (mains au cœur, regard vers le ciel)"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "les comparaisons entre matériaux naturels et artificiels",
+        "then": "utiliser des paires très évidentes (pierre lisse vs plastique lisse, feuille souple vs tissu souple)"
       },
       "realWorldConnection": "Students appreciate that nature provides many materials that inspire human-made versions",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 3 matériaux naturels très différents",
+          "Utiliser comparaisons tactiles simples",
+          "Permettre collection par pointage et tri simple",
+          "Célébrer toute découverte naturelle"
+        ],
+        "forAdvanced": [
+          "Explorer origines spécifiques (roches, types d'arbres)",
+          "Chercher connections avec innovations humaines",
+          "Devenir 'guide naturaliste' pour les autres",
+          "Créer un musée de matériaux naturels classés"
+        ],
+        "forELL": [
+          "Cartes visuelles des matériaux avec noms nature/artificiel",
+          "Permettre partage de connaissances de leur environnement naturel",
+          "Utiliser beaucoup de gestes et démonstrations",
+          "Support pour vocabulaire de description naturelle"
+        ],
+        "forIEP": [
+          "Adapter collection selon sensibilités tactiles",
+          "Permettre observation à distance si nécessaire",
+          "Utiliser supports visuels adaptés",
+          "Respecter besoin de calme dans la nature"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie et collecte matériaux naturels variés",
+          "L'élève fait des comparaisons naturel vs artificiel",
+          "L'élève utilise vocabulaire 'nature', 'trouver', 'extérieur'",
+          "L'élève montre appréciation pour les ressources naturelles"
+        ],
+        "checkpoints": [
+          "Collection : observe diversité et soin dans la sélection",
+          "Comparaisons : vérifie précision des observations",
+          "Appréciation finale : écoute connexions significatives avec la nature"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1399,41 +1946,92 @@
       "opening": {
         "duration": 8,
         "activity": "Seasonal materials thinking (5 min): Ask students what materials they see more in winter (fabric coats) vs summer (plastic sunglasses). Introduce how seasons affect our material choices.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images de vêtements d'hiver (manteau, mitaines, bottes)",
+          "Images de vêtements d'été (t-shirt, shorts, sandales)",
+          "Cartes des 4 saisons avec activités typiques"
+        ],
+        "visualSupports": "Comparaison visuelle matériaux hiver vs été, roue des saisons avec matériaux appropriés",
+        "decisionPoints": [
+          "Si les élèves ne voient pas les différences saisonnières, utiliser des exemples plus extrêmes (parka vs maillot)"
+        ],
+        "movementBreaks": [
+          "Imiter s'habiller pour l'hiver (plusieurs couches) puis pour l'été (léger)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Seasonal materials investigation (30 min): Station 1: Temperature effects - examine how materials feel different in cold vs warm conditions. Station 2: Moisture effects - observe how materials react to rain/snow simulation. Station 3: Sunlight effects - see how some materials fade or warm in sunlight. Station 4: Seasonal clothing - explore why different materials are worn in different seasons.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Échantillons de matériaux pour tests de température - 6 sets",
+          "Glaçons dans contenants pour simuler le froid",
+          "Vaporisateurs d'eau pour simuler la pluie",
+          "Lampe forte pour simuler le soleil d'été",
+          "Vêtements saisonniers pour démonstration"
+        ],
+        "visualSupports": "Affiches des 4 stations, images des effets météo sur matériaux, thermomètre visuel",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Danse des saisons : mouvements lents (hiver) vs rapides (été)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Smart seasonal choices (10 min): Discuss how people choose different materials for different seasons. Students share seasonal material preferences and why.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Roue des saisons pour récapitulatif",
+          "Images de choix intelligents par saison",
+          "Tableau 'Choix Intelligents' pour noter les découvertes"
+        ],
+        "visualSupports": "Célébration de l'adaptabilité humaine, connections saison-matériau-confort",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Applaudissements pour l'intelligence saisonnière des humains"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "les connections entre saisons et choix de matériaux",
+        "then": "utiliser leurs propres vêtements comme exemples et montrer des oppositions évidentes (bottes d'hiver vs sandalettes)"
       },
       "realWorldConnection": "Students understand why clothing and equipment change with seasons",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 2 saisons contrastantes (hiver vs été)",
+          "Utiliser leurs propres vêtements comme exemples",
+          "Permettre montrer plutôt qu'expliquer verbalement",
+          "Célébrer toute observation saisonnière"
+        ],
+        "forAdvanced": [
+          "Explorer matériaux spécialisés (imperméables, isolants)",
+          "Faire des prédictions sur nouveaux matériaux saisonniers",
+          "Devenir conseiller en vêtements saisonniers",
+          "Créer un guide des matériaux par saison et activité"
+        ],
+        "forELL": [
+          "Cartes visuelles des saisons avec vocabulaire météo",
+          "Permettre partage d'expériences de leur climat d'origine",
+          "Utiliser beaucoup de gestes et démonstrations",
+          "Support pour vocabulaire des saisons et météo"
+        ],
+        "forIEP": [
+          "Adapter tests selon sensibilités (froid, humidité, lumière)",
+          "Permettre observation plutôt que manipulation directe",
+          "Utiliser supports visuels adaptés",
+          "Respecter préférences sensorielles pour matériaux"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève fait des connections entre saisons et choix de matériaux",
+          "L'élève explique pourquoi certains matériaux conviennent à certaines saisons",
+          "L'élève utilise vocabulaire 'saison', 'temps', 'affecter'",
+          "L'élève apprécie l'adaptation humaine aux saisons"
+        ],
+        "checkpoints": [
+          "Stations : observe compréhension des effets saisonniers sur matériaux",
+          "Discussion : vérifie logique des choix saisonniers",
+          "Partage final : écoute connections personnelles avec expériences saisonnières"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1490,41 +2088,90 @@
       "opening": {
         "duration": 8,
         "activity": "Expert preparation (5 min): Remind students they are now material experts! They will share their knowledge with others. Practice expert vocabulary and confident presentation voices.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Badges ou chapeaux 'Expert en Matériaux'",
+          "Miroir pour pratiquer les présentations",
+          "Cartes de vocabulaire d'expert (étudier, découvrir, expliquer)"
+        ],
+        "visualSupports": "Images de scientifiques présentant leurs recherches, phrases d'expert confiant",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Posture d'expert confiant : épaules droites, voix claire, sourire"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Materials expert presentations (35 min): Students present their material expertise using visual aids (objects, charts, drawings). Include: favorite material and why, most interesting discovery, material properties demonstration, practical use examples. Audience (classmates) can ask questions and give compliments. Award 'Materials Expert' certificates.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tous les matériaux collectés pendant l'unité",
+          "Tableaux et dessins créés par les élèves",
+          "Podium ou zone de présentation spéciale",
+          "Certificats 'Expert en Matériaux' (25)",
+          "Cartes de questions pour l'audience"
+        ],
+        "visualSupports": "Guide de présentation avec structure, exemples de compliments positifs, étapes de démonstration",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Applaudissements spéciaux pour chaque présentation d'expert"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Expert celebration (5 min): Celebrate all presentations and scientific learning. Reflect on how much they've learned about materials since the first lesson.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Affiche récapitulative du voyage d'apprentissage",
+          "Photos ou dessins de la première leçon pour comparaison",
+          "Livre de classe 'Nos Découvertes sur les Matériaux'"
+        ],
+        "visualSupports": "Célébration du parcours scientifique, avant/après connaissances, fierté d'apprentissage",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ovation debout pour tous les experts en matériaux"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la nervosité ou la timidité lors des présentations",
+        "then": "permettre présentations en paires, utiliser supports visuels comme béquilles, célébrer toute tentative de partage"
       },
       "realWorldConnection": "Students experience how scientists share knowledge and feel pride in their expertise",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Permettre présentations très courtes avec 1 découverte",
+          "Utiliser plus de montrer que de parler",
+          "Jumeler avec partenaire bienveillant pour support",
+          "Célébrer courage et effort plutôt que perfection"
+        ],
+        "forAdvanced": [
+          "Présentations plus détaillées avec démonstrations complexes",
+          "Poser des questions défi aux autres experts",
+          "Aider à animer et encourager les autres présentateurs",
+          "Créer un résumé des apprentissages de classe"
+        ],
+        "forELL": [
+          "Permettre présentations avec plus de démonstrations visuelles",
+          "Support de phrases simples pré-préparées",
+          "Encourager utilisation de langue maternelle si nécessaire",
+          "Célébrer communication créative indépendamment de fluidité"
+        ],
+        "forIEP": [
+          "Adapter format de présentation selon capacités",
+          "Permettre utilisation d'aides technologiques si nécessaire",
+          "Offrir choix d'audience (petite vs grande groupe)",
+          "Célébrer toute forme de partage d'expertise"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève partage connaissances sur matériaux avec confiance",
+          "L'élève utilise vocabulaire scientifique approprié",
+          "L'élève utilise mots 'présenter', 'expert', 'expliquer'",
+          "L'élève fait preuve de fierté dans son expertise"
+        ],
+        "checkpoints": [
+          "Préparation : observe organisation et confiance croissante",
+          "Présentations : vérifie usage de connaissances acquises",
+          "Réflexion finale : écoute reconnaissance de son propre apprentissage"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1581,41 +2228,92 @@
       "opening": {
         "duration": 8,
         "activity": "Celebration setup (10 min): Students arrange their materials museum, demonstration stations, and prepare to be tour guides for families.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tout le musée des matériaux créé précédemment",
+          "Stations de démonstration préparées",
+          "Pancartes 'Bienvenue à notre Fête des Matériaux!'",
+          "Parcours fléché pour les familles"
+        ],
+        "visualSupports": "Plan de la fête, instructions pour guides-étudiants, affiches de bienvenue festives",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Préparation festive : arranger l'espace comme des organisateurs d'événements"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Materials science celebration (30 min): Student-led family tours through materials stations. Students demonstrate: material property tests, strength and water resistance experiments, material sorting and identification, invention showcase, recycling knowledge. Families participate in simple activities guided by student experts.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Toutes les expériences et tests développés pendant l'unité",
+          "Inventions créées par les élèves",
+          "Matériaux pour activités interactives famille",
+          "Appareils photo pour capturer les moments (optionnel)",
+          "Collations simples pour l'ambiance festive"
+        ],
+        "visualSupports": "Stations clairement étiquetées, démonstrations visuelles, guide pour parents participants",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Circulation joyeuse entre stations avec familles"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Celebration reflection (5 min): Thank families for coming. Students share what they're most proud of learning. Award final 'Materials Science Explorer' certificates and celebrate the learning journey.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Certificats finaux 'Explorateur des Matériaux' (25)",
+          "Livre de signatures des familles",
+          "Photos du voyage d'apprentissage depuis la leçon 1",
+          "Petits cadeaux souvenirs (optionnel)"
+        ],
+        "visualSupports": "Mur de fierté avec réalisations, avant/après apprentissage, célébration du chemin parcouru",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébration finale avec applaudissements et félicitations familiales"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "l'organisation ou la gestion des familles nombreuses",
+        "then": "créer des groupes plus petits avec rotations, assigner des rôles spécifiques aux élèves pour réduire le chaos"
       },
       "realWorldConnection": "Students share their scientific learning with families, building community connections and confidence",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Assigner rôles confortables (accueil, distribution de matériaux)",
+          "Jumeler avec élève confiant pour co-présentation",
+          "Permettre démonstration silencieuse avec support verbal d'autres",
+          "Célébrer toute participation dans l'événement"
+        ],
+        "forAdvanced": [
+          "Devenir coordinateurs principaux de stations",
+          "Aider à animer et faciliter l'interaction famille-science",
+          "Présenter synthèse des apprentissages de classe",
+          "Encadrer autres élèves pendant leurs présentations"
+        ],
+        "forELL": [
+          "Utiliser démonstrations visuelles comme communication principale",
+          "Permettre familles de traduire si nécessaire",
+          "Célébrer communication créative et scientifique",
+          "Utiliser matériaux comme langue universelle"
+        ],
+        "forIEP": [
+          "Adapter rôles selon capacités et niveau de confort social",
+          "Prévoir zones plus calmes si besoin",
+          "Permettre participation à leur rythme préféré",
+          "Célébrer achievements personnels dans contexte communautaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève partage apprentissages avec familles avec confiance",
+          "L'élève démontre maîtrise des concepts de matériaux",
+          "L'élève utilise vocabulaire 'fête', 'partager', 'famille'",
+          "L'élève montre fierté de son parcours d'apprentissage scientifique"
+        ],
+        "checkpoints": [
+          "Préparation : observe leadership et organisation",
+          "Interactions familles : vérifie capacité à enseigner et expliquer",
+          "Réflexion finale : écoute reconnaissance de croissance personnelle"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",

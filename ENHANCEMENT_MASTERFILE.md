@@ -56,7 +56,7 @@
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
 |------|--------------|-----------------|-----------|-----------|----------|
 | petits-scientifiques | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| materiaux | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| materiaux | ✅ | ✅ | ✅ | ✅ | ✅ |
 | croissance-besoins | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | changements-saisonniers | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | forces-mouvements | ✅ | ✅ | ✅ | ⬜ | ⬜ |
@@ -140,21 +140,33 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 24 / 54 (44%) - **MATHEMATICS COMPLETE! 🎉 SCIENCE 80% COMPLETE! 🔬⚡ FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵 GROWTH & NEEDS ENHANCED! 🌱🔬 SPRING AWAKENING ENHANCED! 🌸🔬 ENVIRONMENT SHARING COMPLETE! 🌍♻️**  
-**Translations Fixed**: 24 / 54 (44%)  
-**Decision Points Added**: 24 / 54 (44%)  
-**Materials Specified**: 24 / 54 (44%)  
-**Committed**: 3 / 54 (6%)  
-**Reviewed**: 2 / 54 (4%)
+**Enhanced**: 25 / 54 (46%) - **MATHEMATICS COMPLETE! 🎉 SCIENCE 90% COMPLETE! 🔬⚡ MATERIALS SCIENCE COMPLETE! 🧪🔬✨ FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵 GROWTH & NEEDS ENHANCED! 🌱🔬 SPRING AWAKENING ENHANCED! 🌸🔬 ENVIRONMENT SHARING COMPLETE! 🌍♻️**  
+**Translations Fixed**: 25 / 54 (46%)  
+**Decision Points Added**: 25 / 54 (46%)  
+**Materials Specified**: 25 / 54 (46%)  
+**Committed**: 4 / 54 (7%)  
+**Reviewed**: 3 / 54 (6%)
 
 ## 🎯 Current Focus
 
 **🏆 MATHEMATICS SUBJECT COMPLETE!** All 10 mathematics units enhanced (10/10 = 100%)  
-**🔬 SCIENCE 80% COMPLETE!** 8 out of 10 science units fully enhanced - pushing toward complete science curriculum!  
+**🔬 SCIENCE 90% COMPLETE!** 9 out of 10 science units fully enhanced - approaching complete science curriculum!  
+**✨ NEW ACHIEVEMENT**: sciences/materiaux (MATERIALS SCIENCE UNIT 100% COMPLETE) 🧪🔬✨  
 **🇫🇷 FRENCH BIENVENUE UNIT COMPLETE!** Welcome unit fully enhanced for Grade 1 French Immersion  
-**💡 NEW ACHIEVEMENT**: sciences/lumiere-chaleur (LIGHT & HEAT SCIENCE UNIT COMPLETED) 💡🔥🔬  
 
-**LATEST COMPLETION**: sciences/croissance-besoins (GROWTH & NEEDS ENHANCEMENT SESSION COMPLETED) 🌱⚡
+**LATEST COMPLETION**: sciences/materiaux (MATERIALS SCIENCE UNIT 100% COMPLETE) 🧪🔬✨
+- ✅ **COMPLETE ENHANCEMENT**: Successfully completed ALL 20 lessons of "Découvrir les matériaux autour de nous" with comprehensive materials science exploration for Grade 1 students
+- ✅ **DECISION POINTS PERFECTION**: Implemented perfect graduated strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ **MATERIALS SPECIFICATIONS**: Enhanced all materials with exact quantities for 20-25 students using only school-available resources (material samples, magnifying glasses, testing tools, sorting containers)
+- ✅ **COMPLETE DIFFERENTIATION**: Added 4-category differentiation (forStruggling, forAdvanced, forELL, forIEP) for ALL 20 lessons with materials science focus
+- ✅ **ASSESSMENT & VISUAL SUPPORTS**: Comprehensive assessment criteria and visual supports added for all lessons focusing on materials vocabulary, property identification, and scientific observation
+- ✅ **FRENCH IMMERSION EXCELLENCE**: All lessons enhanced with natural Canadian French throughout, ensuring authentic immersion experience
+- ✅ **SCIENTIFIC PROGRESSION**: Perfect materials exploration from basic identification (wood, plastic, metal, fabric) to advanced testing (strength, water resistance), invention, recycling, and family celebrations
+- ✅ **CORE LESSONS (1-14)**: Material introduction, wood/plastic/metal/fabric discovery and properties, materials comparison, strength testing, water resistance, material usage, class museum
+- ✅ **EXTENSION LESSONS (15-20)**: Recycling concepts, invention lab, natural materials, seasonal effects, expert presentations, family celebration
+- 🎯 **MAJOR MILESTONE**: Science curriculum reaches 90% completion (9/10 units) - only 1 unit remaining for complete Grade 1 science curriculum!
+
+**PREVIOUS COMPLETION**: sciences/croissance-besoins (GROWTH & NEEDS ENHANCEMENT SESSION COMPLETED) 🌱⚡
 - ✅ **MAJOR ENHANCEMENT**: Successfully enhanced "Croissance et besoins des êtres vivants" with comprehensive French immersion improvements focusing on natural Canadian French and pedagogical excellence
 - ✅ **DECISION POINTS PERFECTION**: Converted all English decision points to natural Canadian French and added missing decision points to achieve perfect graduated strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
 - ✅ **FRENCH IMMERSION EXCELLENCE**: Enhanced all French language throughout with natural Canadian expressions and authentic immersion vocabulary for growth and needs concepts
