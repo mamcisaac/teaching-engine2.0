@@ -10,7 +10,7 @@
       "lessonNumber": 1,
       "lessonType": "core",
       "title": "Découvrir les sons autour de nous",
-      "oneGoal": "Students will identify and distinguish between different sounds in their environment using their sense of hearing",
+      "oneGoal": "Nous apprenons à identifier et distinguer différents sons dans notre environnement en utilisant notre sens de l'ouïe",
       "duration": 45,
       "keyVocabulary": [
         "son",
@@ -25,7 +25,18 @@
           "quiet background music (class set of 25-30)"
         ],
         "visualSupports": "ear symbol poster, 'listening detective' badge for each student",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils à l'aise de fermer les yeux?",
+            "ifYes": "Continuer avec l'exploration sonore les yeux fermés",
+            "ifNo": "Permettre les yeux ouverts et utiliser des supports visuels"
+          },
+          {
+            "question": "Y a-t-il trop de bruit ambiant pour distinguer les sons?",
+            "ifYes": "Déplacer vers un espace plus calme ou utiliser des sons plus forts",
+            "ifNo": "Continuer avec l'activité telle que planifiée"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -61,7 +72,13 @@
         "activity": "Sound scavenger hunt - students share one new sound they discovered and demonstrate how to make it safely",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à décrire leurs sons découverts?",
+            "ifYes": "Encourager des descriptions plus détaillées avec le vocabulaire scientifique",
+            "ifNo": "Permettre les démonstrations physiques et fournir le vocabulaire nécessaire"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -113,7 +130,7 @@
       "lessonNumber": 2,
       "lessonType": "core",
       "title": "Sons forts et sons doux",
-      "oneGoal": "Students will compare and contrast loud sounds and soft sounds using descriptive vocabulary",
+      "oneGoal": "Nous apprenons à comparer les sons forts et les sons doux en utilisant des mots descriptifs",
       "duration": 45,
       "keyVocabulary": [
         "fort",
@@ -128,7 +145,18 @@
           "volume control poster"
         ],
         "visualSupports": "volume meter drawing with big and small sections, hand gesture reference chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves distinguent-ils facilement entre les sons forts et doux?",
+            "ifYes": "Introduire des nuances de volume intermédiaires",
+            "ifNo": "Utiliser des contrastes de volume plus extrêmes et des supports visuels"
+          },
+          {
+            "question": "Les élèves imitent-ils les gestes correctement?",
+            "ifYes": "Ajouter des variations de gestes plus créatives",
+            "ifNo": "Modéliser les gestes plus lentement et individuellement"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -144,17 +172,17 @@
         "visualSupports": "loud/soft comparison chart with pictures, volume gesture reminders",
         "decisionPoints": [
           {
-            "question": "Are students engaged and comfortable with the sound activities?",
+            "question": "Les élèves sont-ils engagés et à l'aise avec les activités sonores?",
             "ifYes": "Add more complex sound exploration challenges",
             "ifNo": "Simplify activities and provide more visual/tactile supports"
           },
           {
-            "question": "Can students successfully use French sound vocabulary?",
+            "question": "Les élèves utilisent-ils avec succès le vocabulaire sonore en français?",
             "ifYes": "Introduce more advanced sound descriptors",
             "ifNo": "Focus on basic vocabulary with picture supports"
           },
           {
-            "question": "Are students demonstrating understanding of sound concepts?",
+            "question": "Les élèves démontrent-ils leur compréhension des concepts sonores?",
             "ifYes": "Extend with creative sound-making challenges",
             "ifNo": "Provide more concrete examples and hands-on experiences"
           }
@@ -166,7 +194,18 @@
         "activity": "Volume matching game - students listen to sounds and show with body movements whether sounds are loud or soft",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves correspondent-ils correctement les mouvements aux volumes?",
+            "ifYes": "Défier avec des sons de volume variable ou des mélanges",
+            "ifNo": "Simplifier avec seulement deux choix clairs (fort ou doux) et modéliser"
+          },
+          {
+            "question": "Les élèves utilisent-ils le vocabulaire 'fort' et 'doux' correctement?",
+            "ifYes": "Introduire des mots descriptifs additionnels pour les sons",
+            "ifNo": "Renforcer le vocabulaire de base avec des répétitions et des images"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -218,7 +257,7 @@
       "lessonNumber": 3,
       "lessonType": "core",
       "title": "Sons aigus et sons graves",
-      "oneGoal": "Students will distinguish between high-pitched and low-pitched sounds through listening activities",
+      "oneGoal": "Nous apprenons à distinguer entre les sons aigus et les sons graves par des activités d'écoute",
       "duration": 45,
       "keyVocabulary": [
         "aigu",
@@ -233,7 +272,18 @@
           "pitch gesture demonstration"
         ],
         "visualSupports": "high/low animal poster, pitch hand signals chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à produire des sons aigus et graves avec leur voix?",
+            "ifYes": "Introduire des variations plus subtiles de hauteur",
+            "ifNo": "Modéliser avec des contrastes plus extrêmes (souris vs ours) et des supports gestuels"
+          },
+          {
+            "question": "Les élèves associent-ils correctement les gestes aux hauteurs de son?",
+            "ifYes": "Ajouter des défis gestuels plus complexes avec différentes hauteurs",
+            "ifNo": "Pratiquer les gestes de base lentement avec beaucoup de répétitions"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -247,17 +297,17 @@
         "visualSupports": "high/low pitch chart with visual height differences, musical note representations",
         "decisionPoints": [
           {
-            "question": "Are students engaged and comfortable with the sound activities?",
+            "question": "Les élèves sont-ils engagés et à l'aise avec les activités sonores?",
             "ifYes": "Add more complex sound exploration challenges",
             "ifNo": "Simplify activities and provide more visual/tactile supports"
           },
           {
-            "question": "Can students successfully use French sound vocabulary?",
+            "question": "Les élèves utilisent-ils avec succès le vocabulaire sonore en français?",
             "ifYes": "Introduce more advanced sound descriptors",
             "ifNo": "Focus on basic vocabulary with picture supports"
           },
           {
-            "question": "Are students demonstrating understanding of sound concepts?",
+            "question": "Les élèves démontrent-ils leur compréhension des concepts sonores?",
             "ifYes": "Extend with creative sound-making challenges",
             "ifNo": "Provide more concrete examples and hands-on experiences"
           }
@@ -269,7 +319,13 @@
         "activity": "High-low sound sorting - students categorize picture cards of things that make high sounds vs. low sounds",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves classifient-ils correctement les images selon aigu/grave?",
+            "ifYes": "Ajouter des défis avec des sons moins évidents (violon vs tuba)",
+            "ifNo": "Utiliser seulement les exemples les plus contrastés (oiseau vs éléphant) avec modélisation"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -321,7 +377,7 @@
       "lessonNumber": 4,
       "lessonType": "core",
       "title": "D'où viennent les sons?",
-      "oneGoal": "Students will identify that sounds come from vibrating objects and sources around them",
+      "oneGoal": "Nous découvrons que les sons viennent d'objets qui vibrent autour de nous",
       "duration": 45,
       "keyVocabulary": [
         "source",
@@ -337,7 +393,18 @@
           "detective props (class set of 25-30)"
         ],
         "visualSupports": "sound source matching cards, detective badge for each student",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à deviner les sources sonores cachées?",
+            "ifYes": "Utiliser des sons plus subtils et moins évidents",
+            "ifNo": "Commencer avec des sons très familiers et donner des indices visuels"
+          },
+          {
+            "question": "Les élèves font-ils le lien entre objet et son produit?",
+            "ifYes": "Introduire le concept que les objets doivent bouger pour faire du son",
+            "ifNo": "Démontrer clairement la connexion objet-son avec répétitions"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -352,17 +419,17 @@
         "visualSupports": "vibration demonstration setup, before/during/after pictures of vibrating objects",
         "decisionPoints": [
           {
-            "question": "Are students engaged and comfortable with the sound activities?",
+            "question": "Les élèves sont-ils engagés et à l'aise avec les activités sonores?",
             "ifYes": "Add more complex sound exploration challenges",
             "ifNo": "Simplify activities and provide more visual/tactile supports"
           },
           {
-            "question": "Can students successfully use French sound vocabulary?",
+            "question": "Les élèves utilisent-ils avec succès le vocabulaire sonore en français?",
             "ifYes": "Introduce more advanced sound descriptors",
             "ifNo": "Focus on basic vocabulary with picture supports"
           },
           {
-            "question": "Are students demonstrating understanding of sound concepts?",
+            "question": "Les élèves démontrent-ils leur compréhension des concepts sonores?",
             "ifYes": "Extend with creative sound-making challenges",
             "ifNo": "Provide more concrete examples and hands-on experiences"
           }
@@ -374,7 +441,13 @@
         "activity": "Vibration hunt - students find three objects in the classroom that vibrate when they make sounds",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves trouvent-ils des objets qui vibrent quand ils font du son?",
+            "ifYes": "Défier avec la recherche d'objets moins évidents qui vibrent",
+            "ifNo": "Guider vers des objets évidents (tambour, élastique) et démontrer la vibration"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -426,7 +499,7 @@
       "lessonNumber": 5,
       "lessonType": "core",
       "title": "Sentir les vibrations",
-      "oneGoal": "Students will safely feel vibrations while sounds are being produced using hands-on exploration",
+      "oneGoal": "Nous explorons les vibrations de façon sécuritaire pendant que les sons sont produits",
       "duration": 45,
       "keyVocabulary": [
         "sentir",
@@ -441,7 +514,18 @@
           "comfortable seating (class set of 25-30)"
         ],
         "visualSupports": "body vibration diagram showing throat, chest, and head",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sentent-ils les vibrations dans leur corps quand ils produisent des sons?",
+            "ifYes": "Explorer des vibrations plus subtiles dans différentes parties du corps",
+            "ifNo": "Commencer avec des sons plus forts (chant fort) et guider leurs mains vers les bonnes zones"
+          },
+          {
+            "question": "Les élèves comprennent-ils que leur corps vibre pour créer les sons?",
+            "ifYes": "Introduire l'idée que tous les sons viennent de vibrations",
+            "ifNo": "Démontrer avec des miroirs pour qu'ils voient et sentent en même temps"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -456,17 +540,17 @@
         "visualSupports": "safety reminder chart for touching, vibration exploration recording sheet",
         "decisionPoints": [
           {
-            "question": "Are students engaged and comfortable with the sound activities?",
+            "question": "Les élèves sont-ils engagés et à l'aise avec les activités sonores?",
             "ifYes": "Add more complex sound exploration challenges",
             "ifNo": "Simplify activities and provide more visual/tactile supports"
           },
           {
-            "question": "Can students successfully use French sound vocabulary?",
+            "question": "Les élèves utilisent-ils avec succès le vocabulaire sonore en français?",
             "ifYes": "Introduce more advanced sound descriptors",
             "ifNo": "Focus on basic vocabulary with picture supports"
           },
           {
-            "question": "Are students demonstrating understanding of sound concepts?",
+            "question": "Les élèves démontrent-ils leur compréhension des concepts sonores?",
             "ifYes": "Extend with creative sound-making challenges",
             "ifNo": "Provide more concrete examples and hands-on experiences"
           }
@@ -478,7 +562,13 @@
         "activity": "Vibration sharing circle - students demonstrate their favorite vibration discovery and explain what they felt",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à démontrer et expliquer leurs découvertes sur les vibrations?",
+            "ifYes": "Encourager des connexions entre différents types de vibrations",
+            "ifNo": "Permettre seulement les démonstrations physiques avec aide verbale minimale"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -530,7 +620,7 @@
       "lessonNumber": 6,
       "lessonType": "core",
       "title": "Fabriquer un téléphone à ficelle",
-      "oneGoal": "Students will construct and test a simple string telephone to explore how sound travels",
+      "oneGoal": "Nous construisons et testons un téléphone à ficelle simple pour explorer comment le son voyage",
       "duration": 45,
       "keyVocabulary": [
         "téléphone",
@@ -545,7 +635,13 @@
           "communication challenge cards (class set of 25-30)"
         ],
         "visualSupports": "communication problem poster, telephone invention story pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils le défi de communication à distance?",
+            "ifYes": "Passer directement à la construction du téléphone",
+            "ifNo": "Démontrer plus clairement pourquoi chuchoter ne fonctionne pas à distance"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -562,14 +658,14 @@
         "visualSupports": "step-by-step construction visual guide, troubleshooting tips poster",
         "decisionPoints": [
           {
-            "question": "Can students successfully construct their telephones with minimal help?",
-            "ifYes": "Let them experiment with different string lengths and cup sizes",
-            "ifNo": "Provide pre-punched cups and cut strings, focus on testing and using"
+            "question": "Les élèves construisent-ils avec succès leurs téléphones avec un minimum d'aide?",
+            "ifYes": "Les laisser expérimenter avec différentes longueurs de ficelle et tailles de gobelets",
+            "ifNo": "Fournir des gobelets pré-perforés et ficelles coupées, se concentrer sur les tests et l'utilisation"
           },
           {
-            "question": "Do the string telephones work for clear communication?",
-            "ifYes": "Challenge students to send secret messages and test maximum distance",
-            "ifNo": "Troubleshoot together: check string tension, cup contact, and speaking technique"
+            "question": "Les téléphones à ficelle fonctionnent-ils pour une communication claire?",
+            "ifYes": "Défier les élèves à envoyer des messages secrets et tester la distance maximale",
+            "ifNo": "Dépanner ensemble: vérifier la tension de ficelle, contact des gobelets, et technique de parole"
           }
         ],
         "movementBreaks": []
@@ -579,7 +675,13 @@
         "activity": "Telephone testing celebration - pairs demonstrate their telephones and share the coolest message they sent",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les téléphones des élèves fonctionnent-ils pour la communication?",
+            "ifYes": "Défier avec des messages plus complexes ou des distances plus longues",
+            "ifNo": "Aider avec le dépannage: tension de ficelle, contact des gobelets, technique de parole"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -631,7 +733,7 @@
       "lessonNumber": 7,
       "lessonType": "core",
       "title": "Explorer les tambours",
-      "oneGoal": "Students will investigate how different sizes and materials affect drum sounds through experimentation",
+      "oneGoal": "Nous étudions comment différentes tailles et matériaux affectent les sons de tambour par l'expérimentation",
       "duration": 45,
       "keyVocabulary": [
         "tambour",
@@ -663,12 +765,12 @@
         "visualSupports": "drum construction steps poster, size and sound comparison chart",
         "decisionPoints": [
           {
-            "question": "Can students hear clear differences between drums of different sizes?",
+            "question": "Les élèves entendent-ils clairement les différences entre les tambours de différentes tailles?",
             "ifYes": "Introduce rhythm creation and pattern making with their drums",
             "ifNo": "Use very different sized containers and help them focus on one sound at a time"
           },
           {
-            "question": "Are students successful at constructing their own drums?",
+            "question": "Les élèves réussissent-ils à construire leurs propres tambours?",
             "ifYes": "Let them experiment with different covering materials and decorating",
             "ifNo": "Provide pre-made drums and focus on sound exploration and rhythm"
           }
@@ -732,7 +834,7 @@
       "lessonNumber": 8,
       "lessonType": "core",
       "title": "Construire un kazoo",
-      "oneGoal": "Students will create a kazoo instrument and explore how their voice creates vibrations and sound",
+      "oneGoal": "Nous créons un instrument kazoo et explorons comment notre voix crée des vibrations et du son",
       "duration": 45,
       "keyVocabulary": [
         "kazoo",
@@ -763,12 +865,12 @@
         "visualSupports": "kazoo construction step-by-step guide, voice modification explanation pictures",
         "decisionPoints": [
           {
-            "question": "Can students successfully make sounds through their completed kazoos?",
+            "question": "Les élèves produisent-ils avec succès des sons avec leurs kazoos terminés?",
             "ifYes": "Encourage them to try different songs and voice pitches with the kazoo",
             "ifNo": "Check wax paper tension and demonstrate proper humming technique"
           },
           {
-            "question": "Do students understand how their voice vibrations create the kazoo sound?",
+            "question": "Les élèves comprennent-ils comment leurs vibrations vocales créent le son du kazoo?",
             "ifYes": "Have them experiment with different vocal techniques and observe changes",
             "ifNo": "Focus on feeling throat vibrations while using kazoo and making direct connections"
           }
@@ -832,7 +934,7 @@
       "lessonNumber": 9,
       "lessonType": "core",
       "title": "Bouteilles musicales",
-      "oneGoal": "Students will create musical bottles with different water levels to produce different pitches",
+      "oneGoal": "Nous créons des bouteilles musicales avec différents niveaux d'eau pour produire différentes hauteurs de son",
       "duration": 45,
       "keyVocabulary": [
         "bouteille",
@@ -864,12 +966,12 @@
         "visualSupports": "step-by-step bottle filling guide, pitch progression visual chart",
         "decisionPoints": [
           {
-            "question": "Can students hear clear pitch differences between bottles with different water levels?",
+            "question": "Les élèves entendent-ils clairement les différences de hauteur entre les bouteilles avec différents niveaux d'eau?",
             "ifYes": "Challenge them to create simple melodies or arrange bottles from low to high pitch",
             "ifNo": "Use more dramatic water level differences and help them focus on one bottle at a time"
           },
           {
-            "question": "Are students successful with water filling and measurement?",
+            "question": "Les élèves réussissent-ils à remplir et mesurer l'eau?"
             "ifYes": "Let them experiment with precise measurements and create specific pitches",
             "ifNo": "Pre-fill bottles to different levels and focus on sound exploration"
           }
@@ -933,7 +1035,7 @@
       "lessonNumber": 10,
       "lessonType": "core",
       "title": "Maracas et shakers",
-      "oneGoal": "Students will construct shaker instruments using various materials to explore how contents affect sound quality",
+      "oneGoal": "Nous construisons des instruments secoueurs avec divers matériaux pour explorer comment le contenu affecte la qualité du son"
       "duration": 45,
       "keyVocabulary": [
         "maracas",
@@ -966,12 +1068,12 @@
         "visualSupports": "shaker construction steps, material and sound quality comparison chart",
         "decisionPoints": [
           {
-            "question": "Can students identify how different materials create different shaker sounds?",
+            "question": "Les élèves identifient-ils comment différents matériaux créent différents sons de secoueur?",
             "ifYes": "Let them experiment with mixing materials or varying amounts",
             "ifNo": "Focus on very different materials (rice vs. pebbles) and clear sound demonstrations"
           },
           {
-            "question": "Are students ready for independent construction and decoration?",
+            "question": "Les élèves sont-ils prêts pour la construction et décoration indépendante?",
             "ifYes": "Encourage creative decoration and personalization of their shakers",
             "ifNo": "Provide assembly assistance and focus on sound exploration activities"
           }
@@ -1035,7 +1137,7 @@
       "lessonNumber": 11,
       "lessonType": "core",
       "title": "Guitare en boîte",
-      "oneGoal": "Students will build a simple box guitar with rubber bands to explore string vibrations and pitch",
+      "oneGoal": "Nous construisons une guitare en boîte simple avec des élastiques pour explorer les vibrations des cordes et la hauteur du son",
       "duration": 45,
       "keyVocabulary": [
         "guitare",
@@ -1066,12 +1168,12 @@
         "visualSupports": "guitar construction step-by-step guide, string tension and pitch relationship diagram",
         "decisionPoints": [
           {
-            "question": "Can students successfully stretch rubber bands and create different pitches?",
+            "question": "Les élèves étirent-ils avec succès les élastiques et créent différentes hauteurs?",
             "ifYes": "Teach them simple fingering techniques to create different notes",
             "ifNo": "Focus on strumming all strings together and feeling vibrations"
           },
           {
-            "question": "Do students understand how tightness affects the pitch of their guitar strings?",
+            "question": "Les élèves comprennent-ils comment la tension affecte la hauteur de leurs cordes de guitare?",
             "ifYes": "Let them experiment with tuning their guitars and creating melodies",
             "ifNo": "Demonstrate with one string at a time, showing loose vs. tight comparisons"
           }
@@ -1135,7 +1237,7 @@
       "lessonNumber": 12,
       "lessonType": "core",
       "title": "Flûte de Pan avec pailles",
-      "oneGoal": "Students will create a panpipe instrument using straws to demonstrate how length affects pitch",
+      "oneGoal": "Nous créons un instrument flûte de Pan avec des pailles pour démontrer comment la longueur affecte la hauteur du son",
       "duration": 45,
       "keyVocabulary": [
         "flûte",
@@ -1168,12 +1270,12 @@
         "visualSupports": "pan flute construction guide, length arrangement patterns, simple melody visual guides",
         "decisionPoints": [
           {
-            "question": "Can students create clear pitch differences with their straw lengths?",
+            "question": "Les élèves créent-ils des différences claires de hauteur avec leurs longueurs de pailles?",
             "ifYes": "Teach them to play simple tunes and create musical conversations",
             "ifNo": "Focus on making sounds and use pre-cut straws with very obvious length differences"
           },
           {
-            "question": "Are students able to successfully blow across straws to create sounds?",
+            "question": "Les élèves arrivent-ils à souffler avec succès sur les pailles pour créer des sons?",
             "ifYes": "Encourage experimentation with breath control and different playing techniques",
             "ifNo": "Demonstrate proper blowing technique and provide individual support"
           }
@@ -1237,7 +1339,7 @@
       "lessonNumber": 13,
       "lessonType": "core",
       "title": "Orchestre de la classe",
-      "oneGoal": "Students will combine all their handmade instruments to create a class orchestra and perform together",
+      "oneGoal": "Nous combinons tous nos instruments faits à la main pour créer un orchestre de classe et jouer ensemble",
       "duration": 45,
       "keyVocabulary": [
         "orchestre",
@@ -1253,7 +1355,13 @@
           "instrument showcase areas (class set of 25-30)"
         ],
         "visualSupports": "instrument family classification chart, orchestra setup diagram",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils démontrer et expliquer comment leurs instruments fonctionnent?",
+            "ifYes": "Encourager les comparaisons entre instruments et les explications scientifiques",
+            "ifNo": "Permettre seulement les démonstrations avec aide pour les explications"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1268,14 +1376,14 @@
         "visualSupports": "orchestra seating chart, simple rhythm and melody notation, conductor signal guide",
         "decisionPoints": [
           {
-            "question": "Can students coordinate their instruments to play together as a group?",
-            "ifYes": "Introduce simple conducting signals and try performing different musical styles",
-            "ifNo": "Focus on taking turns by instrument groups and keeping steady rhythms together"
+            "question": "Les élèves coordonnent-ils leurs instruments pour jouer ensemble en groupe?",
+            "ifYes": "Introduire des signaux de direction simples et essayer différents styles musicaux",
+            "ifNo": "Se concentrer sur les tours par groupes d'instruments et maintenir des rythmes réguliers ensemble"
           },
           {
-            "question": "Are students engaged and excited about their orchestra experience?",
-            "ifYes": "Let them compose their own group songs and take turns conducting",
-            "ifNo": "Focus on fun, familiar songs and ensure every student feels successful with their contribution"
+            "question": "Les élèves sont-ils engagés et excités par leur expérience d'orchestre?",
+            "ifYes": "Les laisser composer leurs propres chansons de groupe et diriger à tour de rôle",
+            "ifNo": "Se concentrer sur des chansons amusantes et familières, s'assurer que chaque élève se sent réussi"
           }
         ],
         "movementBreaks": []
@@ -1285,7 +1393,13 @@
         "activity": "Orchestra reflection circle - students share their favorite moment from playing in the orchestra and what they learned about teamwork in music",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à réfléchir sur leur expérience d'orchestre?",
+            "ifYes": "Encourager des connexions avec la science des sons et vibrations",
+            "ifNo": "Poser des questions guidées spécifiques sur ce qu'ils ont aimé"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1337,7 +1451,7 @@
       "lessonNumber": 14,
       "lessonType": "core",
       "title": "Concert de démonstration",
-      "oneGoal": "Students will demonstrate their understanding of sound and vibration by performing and explaining their instruments",
+      "oneGoal": "Nous démontrons notre compréhension du son et des vibrations en jouant et expliquant nos instruments",
       "duration": 45,
       "keyVocabulary": [
         "concert",
@@ -1368,12 +1482,12 @@
         "visualSupports": "performance order chart, scientific vocabulary reminder posters, applause and encouragement signs",
         "decisionPoints": [
           {
-            "question": "Are students confident and ready to perform for an audience?",
+            "question": "Les élèves sont-ils confiants et prêts à jouer devant un public?",
             "ifYes": "Invite other classes or family members to attend the concert",
             "ifNo": "Keep the audience small and supportive, focus on celebrating effort rather than performance"
           },
           {
-            "question": "Can students explain the science concepts behind their instruments?",
+            "question": "Les élèves peuvent-ils expliquer les concepts scientifiques derrière leurs instruments?"
             "ifYes": "Encourage detailed explanations about vibration, pitch, and volume",
             "ifNo": "Use simple prompts like 'This makes sound when...' and support with gestures"
           }
@@ -1437,7 +1551,7 @@
       "lessonNumber": 15,
       "lessonType": "extension",
       "title": "Sons dans la nature",
-      "oneGoal": "Students will apply their sound knowledge to identify and classify natural sounds during outdoor exploration",
+      "oneGoal": "Nous appliquons nos connaissances sur les sons pour identifier et classifier les sons naturels lors d'exploration extérieure",
       "duration": 45,
       "keyVocabulary": [
         "nature",
@@ -1468,12 +1582,12 @@
         "visualSupports": "sound classification categories (animal, weather, plant, water), observation recording templates",
         "decisionPoints": [
           {
-            "question": "Can students identify and classify different categories of natural sounds?",
+            "question": "Les élèves identifient-ils et classifient différentes catégories de sons naturels?",
             "ifYes": "Challenge them to find the sources of mysterious sounds and investigate how natural sounds are made",
             "ifNo": "Focus on obvious sounds like birds chirping and wind in trees, using clear categories"
           },
           {
-            "question": "Are students engaged and focused during the outdoor exploration?",
+            "question": "Les élèves sont-ils engagés et concentrés pendant l'exploration extérieure?",
             "ifYes": "Extend the exploration time and let them discover unexpected sound sources",
             "ifNo": "Structure with specific sound-finding missions and shorter exploration periods"
           }
@@ -1577,7 +1691,7 @@
       "lessonNumber": 16,
       "lessonType": "extension",
       "title": "Échos et réflexion du son",
-      "oneGoal": "Students will explore how sounds bounce back to create echoes in different environments",
+      "oneGoal": "Nous explorons comment les sons rebondissent pour créer des échos dans différents environnements",
       "duration": 45,
       "keyVocabulary": [
         "écho",
@@ -1607,12 +1721,12 @@
         "visualSupports": "echo timing chart, sound reflection explanation pictures",
         "decisionPoints": [
           {
-            "question": "Can students clearly hear and identify echoes in different environments?",
+            "question": "Les élèves entendent-ils et identifient clairement les échos dans différents environnements?",
             "ifYes": "Investigate how distance and surface materials affect echo quality",
             "ifNo": "Start with very obvious echo locations and use sharp, clear sounds like hand claps"
           },
           {
-            "question": "Do students understand that echoes are sounds bouncing back?",
+            "question": "Les élèves comprennent-ils que les échos sont des sons qui rebondissent?",
             "ifYes": "Explore how animals like bats use echoes for navigation",
             "ifNo": "Use physical demonstrations with bouncing balls to show sound bouncing concept"
           }
@@ -1716,7 +1830,7 @@
       "lessonNumber": 17,
       "lessonType": "extension",
       "title": "Musique du monde",
-      "oneGoal": "Students will explore instruments and musical sounds from different cultures around the world",
+      "oneGoal": "Nous explorons les instruments et les sons musicaux de différentes cultures du monde",
       "duration": 45,
       "keyVocabulary": [
         "monde",
@@ -1746,12 +1860,12 @@
         "visualSupports": "cultural instrument classification chart, respectful cultural learning guidelines",
         "decisionPoints": [
           {
-            "question": "Are students respectful and curious about different cultural musical traditions?",
+            "question": "Les élèves sont-ils respectueux et curieux des différentes traditions musicales culturelles?",
             "ifYes": "Explore how different cultures use music for celebrations and storytelling",
             "ifNo": "Focus on the beauty and creativity of different musical sounds rather than cultural differences"
           },
           {
-            "question": "Can students identify similarities and differences between cultural instruments and their own creations?",
+            "question": "Les élèves identifient-ils les similitudes et différences entre les instruments culturels et leurs propres créations?",
             "ifYes": "Discuss how all cultures create music and express themselves through sound",
             "ifNo": "Focus on enjoying the different sounds and connecting to their own musical experiences"
           }
@@ -1855,7 +1969,7 @@
       "lessonNumber": 18,
       "lessonType": "extension",
       "title": "Inventions sonores créatives",
-      "oneGoal": "Students will design and create their own original sound-making device using recycled materials",
+      "oneGoal": "Nous concevons et créons notre propre instrument original qui produit du son avec des matériaux recyclés",
       "duration": 45,
       "keyVocabulary": [
         "inventer",
@@ -1885,12 +1999,12 @@
         "visualSupports": "invention planning template, troubleshooting guide for inventors",
         "decisionPoints": [
           {
-            "question": "Are students successfully creating original sounds with their inventions?",
+            "question": "Les élèves créent-ils avec succès des sons originaux avec leurs inventions?",
             "ifYes": "Encourage them to refine their designs and explore multiple sound possibilities",
             "ifNo": "Provide more structured guidance and suggest specific material combinations"
           },
           {
-            "question": "Do students show creative thinking and problem-solving in their inventions?",
+            "question": "Les élèves montrent-ils de la pensée créative et de la résolution de problèmes dans leurs inventions?",
             "ifYes": "Challenge them to solve specific sound problems or create instruments for specific purposes",
             "ifNo": "Provide more examples and support collaborative invention process"
           }
@@ -1994,7 +2108,7 @@
       "lessonNumber": 19,
       "lessonType": "extension",
       "title": "Enregistrer nos créations",
-      "oneGoal": "Students will record their musical creations and listen back to evaluate their sound productions",
+      "oneGoal": "Nous enregistrons nos créations musicales et écoutons pour évaluer nos productions sonores",
       "duration": 45,
       "keyVocabulary": [
         "enregistrer",
@@ -2025,12 +2139,12 @@
         "visualSupports": "recording quality checklist, listening and evaluation guides",
         "decisionPoints": [
           {
-            "question": "Are students successfully operating recording technology independently?",
+            "question": "Les élèves utilisent-ils avec succès la technologie d'enregistrement de façon indépendante?",
             "ifYes": "Let them experiment with different recording techniques and multiple takes",
             "ifNo": "Provide partner support and focus on simple recording and playback experiences"
           },
           {
-            "question": "Can students thoughtfully evaluate and improve their recorded performances?",
+            "question": "Les élèves évaluent-ils et améliorent de façon réfléchie leurs performances enregistrées?"
             "ifYes": "Encourage them to make multiple recordings and choose their best versions",
             "ifNo": "Focus on enjoying listening to themselves and identifying what they like about their music"
           }
@@ -2134,7 +2248,7 @@
       "lessonNumber": 20,
       "lessonType": "extension",
       "title": "Festival des sons et vibrations",
-      "oneGoal": "Students will organize and participate in a celebration showcasing all their sound and music learning",
+      "oneGoal": "Nous organisons et participons à une célébration qui présente tous nos apprentissages sur les sons et la musique"
       "duration": 45,
       "keyVocabulary": [
         "festival",
@@ -2165,7 +2279,7 @@
         "visualSupports": "festival program, station instruction cards, learning celebration banners",
         "decisionPoints": [
           {
-            "question": "Are students confident in teaching others about their sound learning?",
+            "question": "Les élèves sont-ils confiants d'enseigner aux autres leurs apprentissages sur le son?"
             "ifYes": "Let them lead interactive demonstrations and answer visitor questions independently",
             "ifNo": "Provide supportive adult partners and focus on demonstrating rather than explaining"
           },

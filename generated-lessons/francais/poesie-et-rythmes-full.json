@@ -26,7 +26,18 @@
           "variety of sound makers (bells, shakers, rain stick) (8-10 items)"
         ],
         "visualSupports": "TPR gestures for 'écouter' (cup ear with exaggerated cupping motion), large colorful pictures of sound sources (birds, wind, rain), exaggerated facial expressions showing surprise and wonder for different sounds, sound wave visual representations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils attentifs aux sons ou facilement distraits ?",
+            "ifYes": "Prolonger l'exploration sonore et ajouter des sons plus complexes",
+            "ifNo": "Réduire les stimuli auditifs et utiliser des sons plus simples et distincts"
+          },
+          {
+            "question": "Certains élèves semblent-ils intimidés par les nouveaux sons ?",
+            "ifYes": "Commencer par des sons familiers et rassurer avec des gestes doux",
+            "ifNo": "Continuer avec l'exploration libre et encourager la curiosité"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -41,14 +52,14 @@
         "visualSupports": "Large visual sound map posted on classroom wall with picture symbols, clear hand signals for loud (arms wide) and quiet (finger to lips), detailed mouth shape demonstrations with mirror for different French sounds, sound level meter visual",
         "decisionPoints": [
           {
-            "question": "Are students comfortable making sounds in French or still in silent period?",
-            "ifYes": "Encourage more complex sound combinations and introduce French sound words",
-            "ifNo": "Continue modeling and allow pointing/gesturing, celebrate any vocal attempts"
+            "question": "Les élèves se sentent-ils à l'aise de faire des sons en français ?",
+            "ifYes": "Encourager des combinaisons sonores plus complexes et introduire le vocabulaire français des sons",
+            "ifNo": "Continuer à modeler et permettre les gestes, célébrer toute tentative vocale"
           },
           {
-            "question": "Do students recognize the difference between loud and soft sounds?",
-            "ifYes": "Add volume variation games and introduce 'fort' and 'doucement'",
-            "ifNo": "Focus on clear modeling of volume differences with exaggerated gestures"
+            "question": "Les élèves reconnaissent-ils la différence entre les sons forts et doux ?",
+            "ifYes": "Ajouter des jeux de variation de volume et introduire 'fort' et 'doucement'",
+            "ifNo": "Se concentrer sur la modélisation claire avec des gestes exagérés"
           }
         ],
         "movementBreaks": []
@@ -61,7 +72,13 @@
           "appreciation gesture cards (25)"
         ],
         "visualSupports": "Circle seating arrangement with visual cues, turn-taking cards, celebration gestures for sharing, sound appreciation symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils eu l'occasion de partager ?",
+            "ifYes": "Faire un tour rapide d'appréciation des sons préférés",
+            "ifNo": "Permettre aux timides de montrer avec des gestes seulement"
+          }
+        ],
         "movementBreaks": [
           "Stand and stretch like tall trees listening to wind (2 minutes)"
         ]
@@ -132,7 +149,18 @@
           "classroom sound system (1)"
         ],
         "visualSupports": "Large body diagram poster, teacher modeling clear movements, rhythm pattern cards with pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils les parties du corps utilisées pour faire du rythme ?",
+            "ifYes": "Introduire le nom français des parties du corps en rythmant",
+            "ifNo": "Répéter avec des gestes plus lents et pointer chaque partie du corps"
+          },
+          {
+            "question": "Y a-t-il des élèves qui hésitent à bouger leur corps ?",
+            "ifYes": "Offrir des mouvements assis et commencer tout doucement",
+            "ifNo": "Encourager plus de mouvement et d'expression corporelle"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -238,7 +266,18 @@
           "animal movement props (scarves, ribbons) (10)"
         ],
         "visualSupports": "Large animal pictures, mouth shape demonstrations for each sound, animal movement gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils facilement les sons d'animaux ?",
+            "ifYes": "Ajouter des animaux moins familiers et encourager l'exploration",
+            "ifNo": "Se concentrer sur les animaux domestiques familiers seulement"
+          },
+          {
+            "question": "Y a-t-il des élèves qui hésitent à faire les sons d'animaux ?",
+            "ifYes": "Utiliser des marionnettes d'animaux pour faciliter l'expression",
+            "ifNo": "Encourager plus de créativité et d'expression"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -253,19 +292,19 @@
         "visualSupports": "Animal movement demonstrations, rhythm pattern charts for each animal, visual parade route map",
         "decisionPoints": [
           {
-            "question": "Are students connecting animal sounds to rhythm patterns?",
-            "ifYes": "Challenge them to create longer patterns or combine two animals",
-            "ifNo": "Focus on one animal sound at a time before adding rhythm element"
+            "question": "Les élèves connectent-ils les sons d'animaux aux motifs rythmiques ?",
+            "ifYes": "Les défier à créer des motifs plus longs ou combiner deux animaux",
+            "ifNo": "Se concentrer sur un son d'animal à la fois avant d'ajouter l'élément rythmique"
           },
           {
-            "question": "Should I focus on fewer animals for deeper exploration?",
-            "ifYes": "Choose 3-4 animals and develop complex rhythms and movements",
-            "ifNo": "Continue with variety to maintain engagement and choice"
+            "question": "Devrais-je me concentrer sur moins d'animaux pour une exploration plus approfondie ?",
+            "ifYes": "Choisir 3-4 animaux et développer des rythmes et mouvements complexes",
+            "ifNo": "Continuer avec la variété pour maintenir l'engagement et le choix"
           },
           {
-            "question": "Are students ready to create their own animal sound patterns?",
-            "ifYes": "Encourage original animal rhythm creation and sound combinations",
-            "ifNo": "Continue modeling and guided practice with familiar animals"
+            "question": "Les élèves sont-ils prêts à créer leurs propres motifs de sons d'animaux ?",
+            "ifYes": "Encourager la création rythmique originale et les combinaisons sonores",
+            "ifNo": "Continuer le modelage et la pratique guidée avec des animaux familiers"
           }
         ],
         "movementBreaks": []
@@ -278,7 +317,13 @@
           "orchestra seating markers (5)"
         ],
         "visualSupports": "Orchestra formation visual, conductor signals, group performance cues",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "L'orchestre d'animaux est-il trop bruyant ou bien équilibré ?",
+            "ifYes": "Ajouter des nuances douces et fortes, diriger les dynamiques",
+            "ifNo": "Réduire le nombre d'animaux qui jouent simultanément"
+          }
+        ],
         "movementBreaks": [
           "Animal stretches - reach like giraffe, curl like cat (2 minutes)"
         ]
@@ -349,7 +394,18 @@
           "sound wave visual cards (25)"
         ],
         "visualSupports": "Mountain landscape visual, hand gestures for sound traveling, echo ripple movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils le concept d'écho ?",
+            "ifYes": "Utiliser des exemples plus complexes et des échos multiples",
+            "ifNo": "Démontrer avec des exemples très simples et concrets"
+          },
+          {
+            "question": "Y a-t-il confusion entre écho et répétition simple ?",
+            "ifYes": "Expliquer la différence avec des gestes et des exemples clairs",
+            "ifNo": "Continuer avec l'exploration des échos"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -364,19 +420,19 @@
         "visualSupports": "Visual pattern representation, conductor gestures, turn-taking cards for student leaders",
         "decisionPoints": [
           {
-            "question": "Are students ready for 3-4 beat patterns or should I stick to 2 beats?",
-            "ifYes": "Gradually increase to 3-4 beat patterns with visual support",
-            "ifNo": "Master 2-beat patterns thoroughly before progression"
+            "question": "Les élèves sont-ils prêts pour des motifs de 3-4 temps ou dois-je rester à 2 temps ?",
+            "ifYes": "Augmenter graduellement vers des motifs de 3-4 temps avec support visuel",
+            "ifNo": "Maîtriser complètement les motifs à 2 temps avant de progresser"
           },
           {
-            "question": "Should I add visual cues to support the auditory patterns?",
-            "ifYes": "Use hand movements or visual cards to represent each beat",
-            "ifNo": "Continue with purely auditory challenge to develop listening skills"
+            "question": "Devrais-je ajouter des indices visuels pour soutenir les motifs auditifs ?",
+            "ifYes": "Utiliser des mouvements des mains ou des cartes visuelles pour représenter chaque temps",
+            "ifNo": "Continuer avec le défi purement auditif pour développer les habiletés d'écoute"
           },
           {
-            "question": "Are students understanding the echo concept clearly?",
-            "ifYes": "Move to more creative echo games and student-led patterns",
-            "ifNo": "Use more concrete echo demonstrations with visual supports"
+            "question": "Les élèves comprennent-ils clairement le concept d'écho ?",
+            "ifYes": "Passer à des jeux d'écho plus créatifs et des motifs menés par les élèves",
+            "ifNo": "Utiliser des démonstrations d'écho plus concrètes avec supports visuels"
           }
         ],
         "movementBreaks": []
@@ -389,7 +445,13 @@
           "circle seating markers (25)"
         ],
         "visualSupports": "Circle formation guide, turn-taking visual cues, pattern creation examples",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils réussi à créer un motif d'écho ?",
+            "ifYes": "Célébrer la créativité et encourager le partage",
+            "ifNo": "Offrir des exemples et plus de soutien pour la création"
+          }
+        ],
         "movementBreaks": [
           "Echo stretches - copy teacher's gentle movements (2 minutes)"
         ]
@@ -460,7 +522,18 @@
           "syllable counting mats (25)"
         ],
         "visualSupports": "Name cards with dots showing syllables, hand clapping demonstrations, syllable counting fingers",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves entendent-ils les syllabes dans leurs noms ?",
+            "ifYes": "Passer aux noms de famille et mots plus longs",
+            "ifNo": "Ralentir et utiliser plus de claquements pour chaque syllabe"
+          },
+          {
+            "question": "Certains élèves ont-ils besoin de plus de support visuel ?",
+            "ifYes": "Utiliser des blocs ou jetons pour représenter chaque syllabe",
+            "ifNo": "Continuer avec les gestes et claquements seulement"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -475,19 +548,19 @@
         "visualSupports": "Picture cards with syllable divisions marked, counting fingers for each syllable, rhythm chain visual map",
         "decisionPoints": [
           {
-            "question": "Can students hear the beats in their names clearly?",
-            "ifYes": "Move to more complex French vocabulary and compound words",
-            "ifNo": "Continue with names and very familiar words, add more physical movement"
+            "question": "Les élèves entendent-ils clairement les temps dans leurs noms ?",
+            "ifYes": "Passer à un vocabulaire français plus complexe et aux mots composés",
+            "ifNo": "Continuer avec les noms et mots très familiers, ajouter plus de mouvement physique"
           },
           {
-            "question": "Should I use visual syllable counting to support understanding?",
-            "ifYes": "Provide counting mats and visual syllable representations",
-            "ifNo": "Focus on auditory and kinesthetic learning through movement"
+            "question": "Devrais-je utiliser le comptage visuel des syllabes pour soutenir la compréhension ?",
+            "ifYes": "Fournir des tapis de comptage et des représentations visuelles des syllabes",
+            "ifNo": "Se concentrer sur l'apprentissage auditif et kinésthésique par le mouvement"
           },
           {
-            "question": "Are students ready to work with classroom object words?",
-            "ifYes": "Introduce French classroom vocabulary with syllable clapping",
-            "ifNo": "Continue with names and family words for familiarity and comfort"
+            "question": "Les élèves sont-ils prêts à travailler avec les mots d'objets de classe ?",
+            "ifYes": "Introduire le vocabulaire de classe français avec claquements de syllabes",
+            "ifNo": "Continuer avec les noms et mots familiaux pour la familiarité et le confort"
           }
         ],
         "movementBreaks": []
@@ -500,7 +573,13 @@
           "symphony program cards (25)"
         ],
         "visualSupports": "Orchestra formation guide, conductor signals, performance appreciation cues",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves participent-ils à l'orchestre de noms ?",
+            "ifYes": "Ajouter des variations de rythme et de dynamique",
+            "ifNo": "Encourager la participation graduelle sans pression"
+          }
+        ],
         "movementBreaks": [
           "Syllable marching - march to syllable beats (2 minutes)"
         ]
@@ -571,7 +650,18 @@
           "Frère Jacques recording (1)"
         ],
         "visualSupports": "Large illustrated comptine poster, clear action demonstrations, picture sequence cards",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves suivent-ils les mouvements de la comptine ?",
+            "ifYes": "Ajouter des gestes plus expressifs et créatifs",
+            "ifNo": "Simplifier les mouvements et permettre l'observation d'abord"
+          },
+          {
+            "question": "La comptine est-elle trop rapide pour certains élèves ?",
+            "ifYes": "Ralentir le tempo et répéter plus souvent",
+            "ifNo": "Maintenir le tempo et ajouter des défis rythmiques"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -677,7 +767,13 @@
           "cooperation signal cards (10)"
         ],
         "visualSupports": "Partner work visual rules, turn-taking signals, collaboration gesture demonstrations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les paires travaillent-elles bien ensemble ?",
+            "ifYes": "Encourager plus de créativité et d'expérimentation",
+            "ifNo": "Intervenir avec des stratégies de collaboration et reformer si nécessaire"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -692,14 +788,14 @@
         "visualSupports": "Creation process poster, collaboration roles chart, rhythm notation examples",
         "decisionPoints": [
           {
-            "question": "Are students comfortable taking creative risks in French?",
-            "ifYes": "Encourage more experimental sounds and complex pattern creation",
-            "ifNo": "Provide more structure and sentence starters for creative expression"
+            "question": "Les élèves se sentent-ils à l'aise de prendre des risques créatifs en français ?",
+            "ifYes": "Encourager des sons plus expérimentaux et des créations plus complexes",
+            "ifNo": "Fournir plus de structure et des amorces pour l'expression créative"
           },
           {
-            "question": "Should I guide the collaboration more directly or let them lead?",
-            "ifYes": "Step back and observe, intervene only when needed",
-            "ifNo": "Provide more structured roles and step-by-step collaboration process"
+            "question": "Devrais-je guider la collaboration plus directement ou les laisser mener ?",
+            "ifYes": "Reculer et observer, intervenir seulement si nécessaire",
+            "ifNo": "Fournir des rôles plus structurés et un processus de collaboration étape par étape"
           }
         ],
         "movementBreaks": []
@@ -783,7 +879,13 @@
           "emotion sound examples recording (1)"
         ],
         "visualSupports": "Large emotion face posters, facial expression demonstrations, voice pitch visual representations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils comment la voix change avec les émotions ?",
+            "ifYes": "Introduire plus d'émotions subtiles et variations",
+            "ifNo": "Démontrer avec des exemples très évidents content/triste"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -889,7 +991,13 @@
           "rhyme identification chart (1)"
         ],
         "visualSupports": "Rhyming word picture pairs, visual rhyme identification signals, word ending emphasis demonstrations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves entendent-ils les sons de fin similaires dans les rimes ?",
+            "ifYes": "Introduire des rimes plus complexes et des familles de mots",
+            "ifNo": "Utiliser des rimes très évidentes comme 'chat-rat' avec gestes"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -995,7 +1103,13 @@
           "tempo visual cards (25 sets)"
         ],
         "visualSupports": "Speed demonstration movements, tempo visual indicators, fast/slow comparison posters",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils contrôler leur vitesse vocale consciemment ?",
+            "ifYes": "Ajouter des défis de contrôle de tempo plus complexes",
+            "ifNo": "Pratiquer avec des comparaisons simples tortue/lapin"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1223,14 +1337,14 @@
         "visualSupports": "Word creation process chart, rhyme pattern guides, humor celebration indicators",
         "decisionPoints": [
           {
-            "question": "Are students comfortable being playful with French language?",
-            "ifYes": "Encourage more creative and experimental word combinations",
-            "ifNo": "Start with simple modifications of familiar words, celebrate any attempts"
+            "question": "Les élèves se sentent-ils à l'aise de jouer avec la langue française ?",
+            "ifYes": "Encourager plus de combinaisons créatives et expérimentales",
+            "ifNo": "Commencer par des modifications simples de mots familiers, célébrer toute tentative"
           },
           {
-            "question": "Do they need prompts for silly ideas or are they generating freely?",
-            "ifYes": "Let creativity flow with minimal guidance",
-            "ifNo": "Provide silly word stems and rhyming partners to spark ideas"
+            "question": "Ont-ils besoin d'encouragement pour les idées drôles ou génèrent-ils librement ?",
+            "ifYes": "Laisser la créativité couler avec un guidage minimal",
+            "ifNo": "Fournir des débuts de mots drôles et des partenaires de rime pour inspirer"
           }
         ],
         "movementBreaks": []
@@ -1314,7 +1428,13 @@
           "storytelling rhythm examples (recordings) (3)"
         ],
         "visualSupports": "Story sequence pictures, rhythm emphasis demonstrations, storytelling gesture guides",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à garder le fil de l'histoire avec le rythme ?",
+            "ifYes": "Encourager des histoires plus élaborées et créatives",
+            "ifNo": "Utiliser des histoires très simples avec supports visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1329,14 +1449,14 @@
         "visualSupports": "Story structure charts, rhythm pattern overlays, narrative flow indicators",
         "decisionPoints": [
           {
-            "question": "Can students maintain story coherence while focusing on rhythm?",
-            "ifYes": "Encourage longer stories and more complex rhythmic patterns",
-            "ifNo": "Focus on very simple stories with repetitive rhythmic elements"
+            "question": "Les élèves peuvent-ils maintenir la cohérence de l'histoire tout en se concentrant sur le rythme ?",
+            "ifYes": "Encourager des histoires plus longues et des motifs rythmiques plus complexes",
+            "ifNo": "Se concentrer sur des histoires très simples avec des éléments rythmiques répétitifs"
           },
           {
-            "question": "Should I emphasize rhythm or storytelling as the primary focus?",
-            "ifYes": "Balance both elements with equal emphasis",
-            "ifNo": "Choose primary focus based on student needs and comfort level"
+            "question": "Devrais-je mettre l'accent sur le rythme ou sur la narration comme focus principal ?",
+            "ifYes": "Équilibrer les deux éléments avec une importance égale",
+            "ifNo": "Choisir le focus principal selon les besoins et le niveau de confort des élèves"
           }
         ],
         "movementBreaks": []
@@ -1820,14 +1940,14 @@
         "visualSupports": "Poetry structure examples, nature rhythm patterns, seasonal vocabulary pictures",
         "decisionPoints": [
           {
-            "question": "Can students connect natural phenomena to rhythmic patterns?",
-            "ifYes": "Encourage more complex nature observations and poetic structures",
-            "ifNo": "Focus on simple nature sounds and basic rhythmic connections"
+            "question": "Les élèves peuvent-ils connecter les phénomènes naturels aux motifs rythmiques ?",
+            "ifYes": "Encourager des observations plus complexes et des structures poétiques",
+            "ifNo": "Se concentrer sur des sons naturels simples et des connections rythmiques de base"
           },
           {
-            "question": "Should we go outside for inspiration or use indoor imagination?",
-            "ifYes": "Take brief outdoor observation time if weather permits",
-            "ifNo": "Use classroom nature materials and imagination activities"
+            "question": "Devrions-nous sortir dehors pour l'inspiration ou utiliser l'imagination en classe ?",
+            "ifYes": "Prendre un bref temps d'observation extérieure si la météo le permet",
+            "ifNo": "Utiliser les matériaux nature en classe et les activités d'imagination"
           }
         ],
         "movementBreaks": []
@@ -1959,14 +2079,14 @@
         "visualSupports": "Coordination pattern guides, group work structure charts, conductor signal demonstrations",
         "decisionPoints": [
           {
-            "question": "Can students coordinate instrumental and vocal elements simultaneously?",
-            "ifYes": "Add more complex coordination patterns and independence",
-            "ifNo": "Focus on alternating voice and instrument rather than simultaneous coordination"
+            "question": "Les élèves peuvent-ils coordonner les éléments instrumentaux et vocaux simultanément ?",
+            "ifYes": "Ajouter des motifs de coordination plus complexes et d'indépendance",
+            "ifNo": "Se concentrer sur l'alternance voix-instrument plutôt que la coordination simultanée"
           },
           {
-            "question": "Should I limit instrument choices or offer full variety?",
-            "ifYes": "Provide full variety for exploration and choice",
-            "ifNo": "Limit to 2-3 instruments to focus coordination skills"
+            "question": "Devrais-je limiter les choix d'instruments ou offrir toute la variété ?",
+            "ifYes": "Fournir toute la variété pour l'exploration et le choix",
+            "ifNo": "Limiter à 2-3 instruments pour concentrer les habiletés de coordination"
           }
         ],
         "movementBreaks": []

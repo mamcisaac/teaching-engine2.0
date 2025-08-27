@@ -27,7 +27,13 @@
           "welcome poster in French (1)"
         ],
         "visualSupports": "Big wave gesture for 'bonjour', hand to heart for 'merci', wave goodbye for 'au revoir'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves semblent-ils prêts pour cette première expérience en français?",
+            "ifYes": "Continuer avec enthousiasme et gestes accueillants",
+            "ifNo": "Ralentir le rythme et utiliser plus de sourires rassurants"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -67,7 +73,13 @@
           "goodbye wave cards (25)"
         ],
         "visualSupports": "Large waving motion, 'Au revoir' lip formation, happy goodbye expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Comment les élèves se sentent-ils après leur première leçon de français?",
+            "ifYes": "Célébrer leur succès et encourager leur retour",
+            "ifNo": "Rassurer avec des gestes doux et de la patience"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -131,21 +143,27 @@
         "duration": 8,
         "activity": "Review 'Bonjour!' from Lesson 1 with puppet. Puppet introduces itself: 'Je m'appelle Pierre!'",
         "materials": [
-          "Pierre puppet",
-          "name tag for puppet",
-          "greeting cards from Lesson 1"
+          "Pierre puppet (1)",
+          "name tag for puppet (1)",
+          "greeting cards from Lesson 1 (25)"
         ],
         "visualSupports": "Point to self gesture for 'je', point to name tag for 'm'appelle', questioning gesture for 'comment'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves se rappellent-ils des salutations de la leçon 1?",
+            "ifYes": "Construire sur leurs connaissances existantes avec confiance",
+            "ifNo": "Réviser brièvement 'Bonjour' avant d'introduire les noms"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Name introduction circle. Puppet asks 'Comment tu t'appelles?' to each child. Use name cards with photos. Practice pointing to self and saying/showing names.",
         "materials": [
-          "photo name cards",
-          "puppet",
-          "mirror for self-recognition"
+          "photo name cards (25)",
+          "Pierre puppet (1)",
+          "mirror for self-recognition (1 large or 5 small)"
         ],
         "visualSupports": "Point to self clearly, hold up name cards, use questioning facial expressions and hand gestures",
         "decisionPoints": [
@@ -175,7 +193,13 @@
           "photo name cards (25)"
         ],
         "visualSupports": "Point to name card, wave goodbye, use child's name with clear pronunciation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves montrent-ils de la fierté à partager leurs noms en français?",
+            "ifYes": "Célébrer leur courage et leurs efforts d'apprentissage",
+            "ifNo": "Rassurer que tous les noms sont beaux en français"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -245,7 +269,13 @@
           "color surprise items"
         ],
         "visualSupports": "Hold up colors clearly, use magic gestures, exaggerated surprise expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils fascinés par la magie des couleurs?",
+            "ifYes": "Utiliser plus de magie et de surprise pour introduire chaque couleur",
+            "ifNo": "Se concentrer sur la manipulation simple des objets colorés"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -286,7 +316,13 @@
           "Pierre puppet (1)"
         ],
         "visualSupports": "Hold up chosen color clearly, exaggerated waving, color name pronunciation with lip reading support",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils choisir et nommer leur couleur préférée?",
+            "ifYes": "Encourager le choix personnel et célébrer leurs préférences",
+            "ifNo": "Aider à choisir une couleur et accepter les gestes seulement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -356,7 +392,13 @@
           "colored objects from previous lesson"
         ],
         "visualSupports": "Clear finger counting gestures, large number visuals, rhythmic counting movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves se souviennent-ils des couleurs pour les relier aux nombres?",
+            "ifYes": "Utiliser les objets colorés pour compter et connecter les apprentissages",
+            "ifNo": "Se concentrer uniquement sur les nombres avec les doigts"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -397,7 +439,13 @@
           "number cards 1-3 (25)"
         ],
         "visualSupports": "Clear finger counting for waves, visible number cards, rhythmic counting gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils compter avec leurs doigts et dire au revoir?",
+            "ifYes": "Célébrer leur capacité à compter en français",
+            "ifNo": "Aider à compter ensemble et accepter les gestes seulement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -467,7 +515,13 @@
           "inclusive family representation cards"
         ],
         "visualSupports": "Heart gesture for 'famille', pointing to family members, warm facial expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves semblent-ils à l'aise de parler de leur famille?",
+            "ifYes": "Encourager le partage chaleureux et les connexions familiales",
+            "ifNo": "Se concentrer sur la famille de la marionnette pour commencer doucement"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -508,7 +562,13 @@
           "Pierre puppet (1)"
         ],
         "visualSupports": "Heart gestures over heart, hugging motions, warm smiling expressions, gentle 'famille' pronunciation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils envoyer de l'amour à leurs familles en français?",
+            "ifYes": "Célébrer cette connexion émotionnelle et linguistique",
+            "ifNo": "Modéliser des gestes d'amour simples et accepter la participation silencieuse"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -830,14 +890,44 @@
       },
       "realWorldConnection": "Using French to navigate and organize our learning space",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus on one object at a time with clear visual support",
+          "Allow pointing instead of verbal identification",
+          "Use larger, more distinct classroom objects",
+          "Provide one-on-one guidance during scavenger hunt"
+        ],
+        "forAdvanced": [
+          "Add descriptive words 'gros livre, petit crayon'",
+          "Practice classroom object commands 'Apporte-moi le livre'",
+          "Count classroom objects 'deux crayons, trois livres'",
+          "Help organize classroom materials using French labels"
+        ],
+        "forELL": [
+          "Connect classroom objects to home/school language",
+          "Use cognates when available (table/table)",
+          "Allow bilingual labeling during learning phase",
+          "Focus on universal classroom item recognition"
+        ],
+        "forIEP": [
+          "Adapt object handling for fine motor needs",
+          "Use alternative pointing methods (head pointer, eye gaze)",
+          "Modify scavenger hunt for mobility considerations",
+          "Allow extended processing time for object identification"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student points to correct object when named in French",
+          "Student shows recognition of 'crayon', 'livre', 'table'",
+          "Student participates actively in classroom scavenger hunt",
+          "Student demonstrates understanding of object-related commands"
+        ],
+        "checkpoints": [
+          "Can identify at least 2 of 3 classroom objects when spoken",
+          "Shows appropriate response to simple object commands",
+          "Demonstrates understanding of object location in classroom",
+          "Participates confidently in classroom object activities"
+        ]
       }
     },
     {
@@ -902,14 +992,44 @@
       },
       "realWorldConnection": "Expressing what we like and don't like about food, activities, and things around us",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Start with clear like/dislike examples (ice cream vs vegetables)",
+          "Allow simple thumbs up/down instead of verbal responses",
+          "Focus on positive preferences first to build confidence",
+          "Use familiar objects and activities for preference choices"
+        ],
+        "forAdvanced": [
+          "Add intensity words 'J'aime beaucoup' or 'Je n'aime pas du tout'",
+          "Practice asking others 'Est-ce que tu aimes...?'",
+          "Create preference categories (food, animals, activities)",
+          "Express reasons 'J'aime les chats parce qu'ils sont doux'"
+        ],
+        "forELL": [
+          "Connect preferences to home culture (foods, activities)",
+          "Allow expressing likes/dislikes in home language first",
+          "Use universal preference concepts (happy/sad faces)",
+          "Focus on non-verbal preference expression initially"
+        ],
+        "forIEP": [
+          "Use alternative communication methods for preference expression",
+          "Adapt choice presentation (2 options vs many)",
+          "Allow extended time for preference decisions",
+          "Respect individual comfort levels with sharing preferences"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student shows clear like/dislike through facial expressions or gestures",
+          "Student responds appropriately to preference questions",
+          "Student uses 'j'aime' gesture with heart motion",
+          "Student demonstrates preference choices consistently"
+        ],
+        "checkpoints": [
+          "Can express at least one clear preference using gestures or words",
+          "Shows understanding of like/dislike concepts in French context",
+          "Participates actively in preference-sharing activities",
+          "Demonstrates comfort with expressing personal choices"
+        ]
       }
     },
     {
@@ -927,22 +1047,28 @@
         "duration": 8,
         "activity": "Review preferences with movement: 'J'aime marcher!' Pierre puppet demonstrates walking, jumping, dancing.",
         "materials": [
-          "Pierre puppet",
-          "action picture cards",
-          "space for movement"
+          "Pierre puppet (1)",
+          "action picture cards (25 sets)",
+          "open floor space for movement"
         ],
         "visualSupports": "Clear walking steps, jumping movements, dancing gestures with rhythm",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves semblent-ils prêts pour les actions physiques?",
+            "ifYes": "Encourager les mouvements créatifs avec la musique",
+            "ifNo": "Commencer par des gestes assis et des actions plus douces"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Action station rotation: practice 'marcher' around the room, 'sauter' on mats, 'danser' to music. Action Simon Says game. Mime and guess activities.",
         "materials": [
-          "movement mats",
-          "music for dancing",
-          "action cards",
-          "safe jumping area"
+          "movement mats (8-10)",
+          "music for dancing (CD player or speaker)",
+          "action cards (25 sets)",
+          "safe jumping area (marked floor space)"
         ],
         "visualSupports": "Demonstrate each action clearly, use music and rhythm, encourage creative interpretation",
         "decisionPoints": [
@@ -962,9 +1088,18 @@
       "closing": {
         "duration": 10,
         "activity": "Action goodbye sequence: everyone 'marche' to the door, 'saute' twice, 'danse' and says 'Au revoir!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Pierre puppet (1)",
+          "action picture cards for review (25)"
+        ],
+        "visualSupports": "Gentle movement demonstrations, calming gestures, appreciation expressions for effort",
+        "decisionPoints": [
+          {
+            "question": "Si l'énergie des élèves est très élevée après les mouvements?",
+            "ifYes": "Utiliser des activités plus calmes et des respirations profondes",
+            "ifNo": "Continuer avec les mouvements actifs et l'exploration physique"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -973,14 +1108,44 @@
       },
       "realWorldConnection": "Describing what we do every day at home and school",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Use seated or modified versions of actions",
+          "Allow observation before participation in movements",
+          "Focus on one action at a time with clear modeling",
+          "Provide alternative non-physical ways to show understanding"
+        ],
+        "forAdvanced": [
+          "Add action sequences 'Marche et saute'",
+          "Create action stories with multiple movements",
+          "Practice action commands 'Tout le monde, dansez!'",
+          "Lead action activities for classmates"
+        ],
+        "forELL": [
+          "Connect actions to home language movement games",
+          "Use universal movement concepts and demonstrations",
+          "Allow bilingual action descriptions initially",
+          "Focus on physical demonstration over verbal expression"
+        ],
+        "forIEP": [
+          "Adapt movements for physical abilities and comfort",
+          "Use alternative movement methods (arm movements vs jumping)",
+          "Allow choice in participation level and movement type",
+          "Modify space and safety requirements as needed"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student demonstrates understanding through appropriate movements",
+          "Student participates actively in action-based activities",
+          "Student shows recognition of 'marcher', 'sauter', 'danser'",
+          "Student follows action commands with physical response"
+        ],
+        "checkpoints": [
+          "Can demonstrate at least 2 of 3 action words through movement",
+          "Shows appropriate physical response to action commands",
+          "Participates confidently in movement-based learning",
+          "Demonstrates understanding of action vocabulary in context"
+        ]
       }
     },
     {
@@ -998,23 +1163,29 @@
         "duration": 8,
         "activity": "Review actions by 'marcher' to the window. Pierre puppet looks outside and comments on 'soleil' or 'pluie'.",
         "materials": [
-          "Pierre puppet",
-          "window access",
-          "weather picture cards",
-          "seasonal clothing props"
+          "Pierre puppet (1)",
+          "window access (classroom windows)",
+          "weather picture cards (25 sets)",
+          "seasonal clothing props (5-10 items)"
         ],
         "visualSupports": "Point to sun/rain outside, sun gesture (arms up in circle), rain gesture (fingers falling down)",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "La météo extérieure correspond-elle aux cartes d'apprentissage?",
+            "ifYes": "Utiliser la vraie météo comme outil d'enseignement principal",
+            "ifNo": "Comparer la vraie météo aux cartes pour enrichir l'apprentissage"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Weather observation at window. Dress-up activity with seasonal clothes. Weather dance: sun dance, rain dance. Create weather chart for classroom.",
         "materials": [
-          "seasonal clothing items",
-          "weather chart",
-          "weather symbols",
-          "music for weather dances"
+          "seasonal clothing items (5-10 pieces per season)",
+          "weather chart (1 large classroom chart)",
+          "weather symbols (25 sets of cards)",
+          "music for weather dances (CD player or speaker)"
         ],
         "visualSupports": "Look outside together, demonstrate weather gestures, show seasonal clothing clearly",
         "decisionPoints": [
@@ -1034,9 +1205,18 @@
       "closing": {
         "duration": 10,
         "activity": "Weather goodbye: check the weather, do appropriate weather gesture, and say goodbye to the sun or rain.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "weather picture cards (25)",
+          "Pierre puppet (1)"
+        ],
+        "visualSupports": "Weather gestures matching current conditions, gentle goodbye waves to sun/rain",
+        "decisionPoints": [
+          {
+            "question": "Si le temps actuel ne correspond pas aux gestes appris?",
+            "ifYes": "Adapter les gestes à la météo réelle ou utiliser l'imagination",
+            "ifNo": "Utiliser les gestes météo enseignés même si différents"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1045,14 +1225,44 @@
       },
       "realWorldConnection": "Talking about weather and seasons affects our daily choices and activities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus on one weather word at a time",
+          "Use simple weather gestures without complex movements",
+          "Allow observation from distance if window approach overwhelming",
+          "Connect weather to familiar experiences (staying inside when raining)"
+        ],
+        "forAdvanced": [
+          "Add weather descriptors 'gros nuages, petit soleil'",
+          "Connect weather to seasons 'En automne, il pleut souvent'",
+          "Practice weather predictions 'Demain, il fera soleil'",
+          "Help lead weather observations for classmates"
+        ],
+        "forELL": [
+          "Connect weather words to home language and climate",
+          "Discuss weather in home country compared to here",
+          "Use universal weather symbols and experiences",
+          "Allow bilingual weather descriptions initially"
+        ],
+        "forIEP": [
+          "Adapt weather observations for sensory needs",
+          "Use weather props instead of window if mobility challenging",
+          "Allow alternative weather expression methods",
+          "Modify dress-up activities for motor skills needs"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student recognizes 'soleil' with appropriate sun gesture",
+          "Student identifies 'pluie' through rain finger movements",
+          "Student connects weather words to actual conditions",
+          "Student participates actively in weather observations"
+        ],
+        "checkpoints": [
+          "Can make weather gesture for at least 2 of 3 weather words",
+          "Shows recognition of current weather conditions in French",
+          "Demonstrates understanding of weather-clothing connections",
+          "Participates confidently in weather-related activities"
+        ]
       }
     },
     {
@@ -1070,23 +1280,29 @@
         "duration": 8,
         "activity": "Review weather and connect to feelings: 'Soleil - heureux!' Pierre puppet shows big smile and happy dance.",
         "materials": [
-          "Pierre puppet",
-          "emotion face cards",
-          "mirror",
-          "emotion picture books"
+          "Pierre puppet (1)",
+          "emotion face cards (25 sets)",
+          "mirrors (5 large or 25 individual)",
+          "emotion picture books (3-5 books)"
         ],
         "visualSupports": "Exaggerated happy face for 'heureux', sad face for 'triste', yawning for 'fatigué'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves semblent-ils prêts à explorer les émotions?",
+            "ifYes": "Continuer avec les trois émotions et encourager l'exploration",
+            "ifNo": "Se concentrer sur 'heureux' seulement pour commencer positivement"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Emotion mirror exploration: practice faces in mirror. Emotion charades with puppet. Connect emotions to weather, colors, activities from previous lessons.",
         "materials": [
-          "handheld mirrors",
-          "emotion cards",
-          "emotion scenarios pictures",
-          "comfort items"
+          "handheld mirrors (25)",
+          "emotion cards (25 sets)",
+          "emotion scenarios pictures (20-30 cards)",
+          "comfort items (stuffed animals, soft blankets)"
         ],
         "visualSupports": "Model clear facial expressions, use whole body to show emotions, connect to familiar situations",
         "decisionPoints": [
@@ -1106,9 +1322,19 @@
       "closing": {
         "duration": 10,
         "activity": "Emotion check-in circle: each child shows how they feel and we validate with 'Tu es heureux!' or appropriate emotion.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "emotion face cards (25 sets)",
+          "Pierre puppet (1)",
+          "comfort items if needed"
+        ],
+        "visualSupports": "Gentle facial expressions matching emotions, validating gestures, comforting body language",
+        "decisionPoints": [
+          {
+            "question": "Si un élève exprime une émotion négative forte?",
+            "ifYes": "Valider l'émotion et offrir du réconfort sans forcer le changement",
+            "ifNo": "Célébrer les émotions positives et encourager le partage"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1117,14 +1343,44 @@
       },
       "realWorldConnection": "Understanding and expressing how we feel in different situations",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Start with just 'heureux' and build comfort slowly",
+          "Allow non-verbal emotion expression through gestures only",
+          "Use puppet to model emotions instead of personal sharing",
+          "Provide extra emotional support and validation"
+        ],
+        "forAdvanced": [
+          "Add more emotion vocabulary 'excité, calm, surpris'",
+          "Connect emotions to previous lesson topics 'Je suis heureux avec ma famille'",
+          "Practice asking about others' emotions 'Comment tu te sens?'",
+          "Create emotion stories with beginning, middle, end"
+        ],
+        "forELL": [
+          "Connect emotion words to home language equivalents",
+          "Use cultural emotion expressions if appropriate",
+          "Allow emotion expression in home language initially",
+          "Focus on universal facial expressions and body language"
+        ],
+        "forIEP": [
+          "Respect individual comfort levels with emotion sharing",
+          "Use alternative emotion expression methods (pictures, symbols)",
+          "Adapt mirror activities for sensory sensitivities",
+          "Provide emotional regulation support as needed"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student demonstrates understanding of 'heureux' through facial expression",
+          "Student recognizes emotions in puppet demonstrations",
+          "Student participates comfortably in emotion exploration activities",
+          "Student shows appropriate emotional responses to scenarios"
+        ],
+        "checkpoints": [
+          "Can show 'heureux' face when prompted",
+          "Shows recognition of basic emotion words in context",
+          "Demonstrates comfort with emotion expression in safe environment",
+          "Participates actively in emotion-based learning activities"
+        ]
       }
     },
     {
@@ -1142,23 +1398,29 @@
         "duration": 8,
         "activity": "Review emotions during different times. Pierre puppet shows 'heureux' in 'matin' with sunrise picture.",
         "materials": [
-          "Pierre puppet",
-          "time of day pictures",
-          "simple clock",
-          "routine picture cards"
+          "Pierre puppet (1)",
+          "time of day pictures (25 sets)",
+          "simple clock (1 large demonstration)",
+          "routine picture cards (25-30 cards)"
         ],
         "visualSupports": "Point to sun for 'matin', high sun for 'midi', moon for 'soir'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils les concepts de temps?",
+            "ifYes": "Continuer avec les trois moments et créer des séquences",
+            "ifNo": "Se concentrer sur 'maintenant' et un autre moment familier"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Daily routine picture sequencing: arrange morning, noon, evening activities. Role-play daily activities from previous lessons during different times. Create class routine chart.",
         "materials": [
-          "routine sequence cards",
-          "class schedule pictures",
-          "time symbols",
-          "role-play props"
+          "routine sequence cards (25 sets of 6-8 cards each)",
+          "class schedule pictures (1 large chart)",
+          "time symbols (25 sets)",
+          "role-play props (dress-up items, toy dishes, etc.)"
         ],
         "visualSupports": "Clear time gestures, sequence activities visually, connect to familiar daily experiences",
         "decisionPoints": [
@@ -1178,9 +1440,19 @@
       "closing": {
         "duration": 10,
         "activity": "Time of day goodbye: identify current time of day and do appropriate goodbye for 'matin', 'midi', or 'soir'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "time of day pictures (25)",
+          "Pierre puppet (1)",
+          "simple clock (1)"
+        ],
+        "visualSupports": "Time-appropriate gestures, sun position demonstrations, sleepy gestures for 'soir'",
+        "decisionPoints": [
+          {
+            "question": "Si l'heure réelle ne correspond pas à nos gestes d'apprentissage?",
+            "ifYes": "Enseigner l'heure réelle et comparer aux autres moments",
+            "ifNo": "Utiliser l'imagination pour pratiquer tous les moments de la journée"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1189,14 +1461,44 @@
       },
       "realWorldConnection": "How French-speaking children structure their days and talk about time",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus on just 'matin' and 'soir' (morning and bedtime)",
+          "Use pictures of very familiar activities only",
+          "Allow simple pointing to sequence pictures",
+          "Connect to their actual daily routine at home"
+        ],
+        "forAdvanced": [
+          "Add specific times 'huit heures du matin'",
+          "Create detailed routine sequences with more steps",
+          "Practice routine questions 'Que fais-tu le matin?'",
+          "Help create class routine chart in French"
+        ],
+        "forELL": [
+          "Connect routine words to home language daily activities",
+          "Compare daily routines from home culture",
+          "Use universal routine activities (eating, sleeping, playing)",
+          "Allow bilingual routine descriptions initially"
+        ],
+        "forIEP": [
+          "Adapt sequencing activities for processing needs",
+          "Use fewer, larger picture cards for easier manipulation",
+          "Allow extended time for routine understanding",
+          "Connect to individual daily schedule needs"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student identifies current time as 'matin', 'midi', or 'soir'",
+          "Student sequences familiar routine activities appropriately",
+          "Student participates actively in time-based role play",
+          "Student connects routine vocabulary to familiar daily activities"
+        ],
+        "checkpoints": [
+          "Can identify at least 2 of 3 time periods when shown pictures",
+          "Shows understanding of routine sequence (before/after concepts)",
+          "Demonstrates recognition of time vocabulary in daily context",
+          "Participates confidently in routine-based activities"
+        ]
       }
     },
     {
@@ -1214,22 +1516,28 @@
         "duration": 8,
         "activity": "Review learning journey with picture cards from all lessons. Pierre puppet says he wants to 'présenter' his friends!",
         "materials": [
-          "vocabulary cards from all lessons",
-          "Pierre puppet",
-          "presentation examples"
+          "vocabulary cards from all lessons (collection of 50+ cards)",
+          "Pierre puppet (1)",
+          "presentation examples (teacher demonstration cards)"
         ],
         "visualSupports": "Show and tell gestures, confident posture modeling, encouraging facial expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves semblent-ils prêts pour les présentations?",
+            "ifYes": "Encourager les présentations individuelles avec soutien du groupe",
+            "ifNo": "Commencer par des présentations en paires ou avec la marionnette"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Simple presentations: students choose 3-5 vocabulary cards to share. Can use gestures, pointing, or words. Partner sharing or small groups. Celebration of learning with applause and encouragement.",
         "materials": [
-          "vocabulary card collection",
-          "presentation supports",
-          "encouragement stickers",
-          "recording device (optional)"
+          "vocabulary card collection (organized by lessons)",
+          "presentation supports (display easel, pointing stick)",
+          "encouragement stickers (25 sheets)",
+          "recording device (optional tablet or phone)"
         ],
         "visualSupports": "Model simple presentation format, use supportive gestures, provide visual choices",
         "decisionPoints": [
@@ -1249,8 +1557,12 @@
       "closing": {
         "duration": 10,
         "activity": "Celebration circle: everyone shares one thing they learned and we celebrate with 'Bravo!' and applause.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "celebration certificates (25)",
+          "Pierre puppet (1)",
+          "'Bravo!' celebration cards"
+        ],
+        "visualSupports": "Enthusiastic clapping, celebratory facial expressions, thumbs up gestures",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1260,14 +1572,44 @@
       },
       "realWorldConnection": "Sharing ourselves with others builds community and confidence in language learning",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Allow presentation with puppet as partner",
+          "Use simple pointing to favorite vocabulary cards",
+          "Accept non-verbal presentations with gestures only",
+          "Provide option to whisper presentation to teacher"
+        ],
+        "forAdvanced": [
+          "Encourage complete sentences 'J'aime les animaux parce que...'",
+          "Create mini-stories connecting multiple vocabulary cards",
+          "Practice presentation skills like eye contact and clear voice",
+          "Help support and encourage other students' presentations"
+        ],
+        "forELL": [
+          "Allow code-switching between languages during presentations",
+          "Use visual supports and gestures to supplement verbal presentation",
+          "Connect presentations to home culture when appropriate",
+          "Focus on communication over perfect pronunciation"
+        ],
+        "forIEP": [
+          "Adapt presentation format to individual communication needs",
+          "Use assistive technology if available and needed",
+          "Allow alternative presentation methods (pictures, symbols, recordings)",
+          "Provide emotional support and encouragement throughout"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student demonstrates understanding by choosing appropriate vocabulary cards",
+          "Student communicates meaning through gesture, pointing, or words",
+          "Student participates willingly in presentation activity",
+          "Student shows connection to previously learned French vocabulary"
+        ],
+        "checkpoints": [
+          "Can select and share at least 3 meaningful vocabulary items",
+          "Shows comfort with classroom French learning environment",
+          "Demonstrates retained knowledge from previous lessons",
+          "Participates confidently in culminating learning experience"
+        ]
       }
     },
     {
@@ -1285,24 +1627,30 @@
         "duration": 8,
         "activity": "Warm-up with favorite songs from previous lessons. Pierre puppet invites everyone to 'jouer' and 'chanter'!",
         "materials": [
-          "Pierre puppet",
-          "song recordings",
-          "musical instruments (simple)",
-          "game props"
+          "Pierre puppet (1)",
+          "song recordings (CD player or speaker)",
+          "musical instruments - simple (25 rhythm sticks, maracas, or bells)",
+          "game props (dice, timers, prize stickers)"
         ],
         "visualSupports": "Playing gestures, singing actions, joyful expressions, rhythmic movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Quel niveau d'énergie les élèves apportent-ils aujourd'hui?",
+            "ifYes": "Utiliser des jeux plus actifs et de la musique entraînante",
+            "ifNo": "Commencer plus calmement avec des chansons assises"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Learning station games: color sorting races, number hopscotch, animal charades, family matching, emotion faces game. French song circle with instruments.",
         "materials": [
-          "game stations setup",
-          "timers",
-          "simple instruments",
-          "prize stickers",
-          "game cards"
+          "game stations setup (5-6 stations with clear boundaries)",
+          "timers (3-5 visual timers)",
+          "simple instruments (rhythm sticks, bells - 25 total)",
+          "prize stickers (100+ stickers for participation)",
+          "game cards (organized by vocabulary topic)"
         ],
         "visualSupports": "Clear game demonstrations, encouraging gestures, celebratory movements",
         "decisionPoints": [
@@ -1322,8 +1670,12 @@
       "closing": {
         "duration": 10,
         "activity": "Game appreciation circle: share favorite game and practice 'rire' together with joyful laughter.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Pierre puppet (1)",
+          "happy face cards (25)",
+          "celebration music (optional)"
+        ],
+        "visualSupports": "Joyful laughter demonstrations, happy clapping, celebratory gestures",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1333,14 +1685,44 @@
       },
       "realWorldConnection": "Playing and having fun are universal ways children learn and connect",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Modify games to ensure everyone can succeed",
+          "Allow observation before participation in active games",
+          "Use simpler versions of games with fewer rules",
+          "Provide extra support and encouragement during station rotations"
+        ],
+        "forAdvanced": [
+          "Add leadership roles in games (timer keeper, rule reminder)",
+          "Create more complex vocabulary challenges within games",
+          "Encourage helping and teaching other students during stations",
+          "Introduce simple French game instructions and vocabulary"
+        ],
+        "forELL": [
+          "Use games familiar from home culture when possible",
+          "Allow home language for game explanations initially",
+          "Focus on fun and participation over language perfection",
+          "Use universal game concepts (taking turns, sharing, celebrating)"
+        ],
+        "forIEP": [
+          "Adapt games for individual physical and cognitive needs",
+          "Modify station activities for sensory sensitivities",
+          "Allow alternative participation methods in musical activities",
+          "Provide calm spaces if overstimulated by game excitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student participates joyfully in game and song activities",
+          "Student demonstrates retained vocabulary from previous lessons during games",
+          "Student follows simple game rules and takes turns appropriately",
+          "Student engages positively with French learning through play"
+        ],
+        "checkpoints": [
+          "Can participate successfully in at least 3 different game stations",
+          "Shows retention of vocabulary through game-based activities",
+          "Demonstrates positive attitude toward French learning through play",
+          "Participates cooperatively in group games and songs"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1405,17 +1787,23 @@
           "story display easel (1)"
         ],
         "visualSupports": "Point to pictures clearly, use story gestures, create anticipation with expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils prêts pour une nouvelle histoire?",
+            "ifYes": "Introduire une histoire nouvelle avec enthousiasme",
+            "ifNo": "Revoir une histoire connue pour construire la confiance"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Interactive story time: simple French story with familiar vocabulary. Students help tell story through gestures and sounds. Create story pictures together. Story retelling with props.",
         "materials": [
-          "French picture books",
-          "story props",
-          "drawing materials",
-          "story sequence cards"
+          "French picture books (3-5 age-appropriate books)",
+          "story props (puppets, animals, simple costume pieces)",
+          "drawing materials (paper, crayons - 25 sets)",
+          "story sequence cards (25 sets of 4-6 cards each)"
         ],
         "visualSupports": "Act out story elements, use predictable story patterns, encourage participation gestures",
         "decisionPoints": [
@@ -1435,8 +1823,12 @@
       "closing": {
         "duration": 10,
         "activity": "Story appreciation: students share favorite 'image' from story and we create a class story memory.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "story picture cards (25)",
+          "Pierre puppet (1)",
+          "memory book or chart for class story"
+        ],
+        "visualSupports": "Gentle appreciation gestures, story memory demonstrations, encouraging expressions",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1446,14 +1838,44 @@
       },
       "realWorldConnection": "Stories help us understand different perspectives and connect across cultures",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Use very simple stories with repetitive patterns",
+          "Allow listening without participation pressure",
+          "Focus on picture observation rather than text comprehension",
+          "Provide story props for tactile engagement"
+        ],
+        "forAdvanced": [
+          "Encourage story predictions and connections to previous lessons",
+          "Add storytelling elements with more complex vocabulary",
+          "Practice retelling stories using picture sequence cards",
+          "Help lead story activities for classmates"
+        ],
+        "forELL": [
+          "Connect story themes to home culture stories when possible",
+          "Use visual storytelling with minimal text dependence",
+          "Allow story responses in home language initially",
+          "Focus on universal story elements (characters, emotions, actions)"
+        ],
+        "forIEP": [
+          "Adapt seating and positioning for story time comfort",
+          "Use shorter story segments with breaks as needed",
+          "Provide alternative ways to participate in story activities",
+          "Allow individual story exploration alongside group time"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student maintains attention during appropriate story segments",
+          "Student demonstrates story comprehension through gestures or responses",
+          "Student identifies favorite 'images' from French stories",
+          "Student participates comfortably in story-based activities"
+        ],
+        "checkpoints": [
+          "Can engage with French stories through visual and auditory elements",
+          "Shows understanding of story vocabulary within familiar context",
+          "Demonstrates comfort with French storytelling format",
+          "Participates actively in story extension activities"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1511,23 +1933,29 @@
         "duration": 8,
         "activity": "Review story images. Pierre puppet becomes an artist and wants to 'dessiner' and 'créer' beautiful things.",
         "materials": [
-          "Pierre puppet",
-          "art supplies",
-          "example artwork",
-          "smocks or protection"
+          "Pierre puppet (1)",
+          "art supplies (crayons, markers - 25 sets)",
+          "example artwork (teacher-made or printed examples)",
+          "smocks or protection (25 aprons or old shirts)"
         ],
         "visualSupports": "Drawing gestures, creating motions, appreciation expressions for 'beau'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils prêts pour des activités artistiques?",
+            "ifYes": "Encourager l'exploration artistique libre avec vocabulaire français",
+            "ifNo": "Commencer par des activités d'observation d'art avant la création"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Art creation stations: draw with 'rouge, bleu, jaune', create family portraits, design animal pictures. Art sharing circle with vocabulary practice. Make it 'beau' together!",
         "materials": [
-          "art supplies (crayons, paper, paint)",
-          "art examples",
-          "drying area",
-          "sharing space"
+          "art supplies (crayons, paper, washable paint - 25 sets)",
+          "art examples (displayed around room)",
+          "drying area (designated table or clothesline)",
+          "sharing space (circle area on carpet)"
         ],
         "visualSupports": "Demonstrate art techniques, use color vocabulary while creating, show appreciation gestures",
         "decisionPoints": [
@@ -1547,8 +1975,12 @@
       "closing": {
         "duration": 10,
         "activity": "Art gallery walk: admire everyone's 'beau' creations and practice appreciation in French.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "student artwork (displayed or held up)",
+          "Pierre puppet (1)",
+          "appreciation vocabulary cards"
+        ],
+        "visualSupports": "Admiring gestures, appreciation expressions, gentle art viewing movements",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1558,14 +1990,44 @@
       },
       "realWorldConnection": "Art is a universal language that complements verbal communication",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Provide simpler art materials (large crayons, thick paper)",
+          "Allow art appreciation without creation pressure",
+          "Focus on one color or shape at a time",
+          "Offer guided art activities with step-by-step support"
+        ],
+        "forAdvanced": [
+          "Add detailed art vocabulary 'triangle, cercle, couleurs mélangées'",
+          "Encourage art storytelling using French vocabulary",
+          "Create multi-step art projects connecting to previous lessons",
+          "Help lead art gallery discussions for classmates"
+        ],
+        "forELL": [
+          "Connect art vocabulary to home language color/shape words",
+          "Use art as expression when verbal communication challenging",
+          "Allow cultural art elements from home traditions",
+          "Focus on universal art appreciation and creation joy"
+        ],
+        "forIEP": [
+          "Adapt art materials for fine motor needs (larger brushes, adaptive grips)",
+          "Provide alternative art creation methods (finger painting, stamps)",
+          "Allow flexible positioning for art activities",
+          "Support individual art expression and timeline needs"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student uses French color vocabulary during art creation",
+          "Student demonstrates creative expression through art activities",
+          "Student participates positively in art sharing and appreciation",
+          "Student connects art vocabulary to previous learning"
+        ],
+        "checkpoints": [
+          "Can name at least 2 colors in French while creating art",
+          "Shows comfort with creative expression in French classroom environment",
+          "Demonstrates appreciation for own and others' artistic efforts",
+          "Participates confidently in French art vocabulary activities"
+        ]
       },
       "extensionGuidance": {
         "category": "Exploration créative",
@@ -1623,24 +2085,30 @@
         "duration": 8,
         "activity": "Review art and beauty. Pierre puppet is hungry and wants to 'manger' something 'délicieux'!",
         "materials": [
-          "Pierre puppet",
-          "safe food pictures",
-          "kitchen props",
-          "hygiene supplies"
+          "Pierre puppet (1)",
+          "safe food pictures (25 sets of common French foods)",
+          "kitchen props (toy utensils, mixing bowls)",
+          "hygiene supplies (hand sanitizer, wipes)"
         ],
         "visualSupports": "Eating gestures, delicious expressions, cooking motions, appreciation faces",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves peuvent-ils participer aux activités alimentaires?",
+            "ifYes": "Utiliser des aliments réels avec précautions pour les allergies",
+            "ifNo": "Se concentrer sur les images et le jeu de rôle culinaire"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Safe food exploration: look at French foods, simple food preparation (mixing, arranging), taste testing with vocabulary. Cultural food discussion with pictures. Kitchen role-play.",
         "materials": [
-          "safe food samples",
-          "mixing bowls",
-          "utensils",
-          "French food pictures",
-          "cultural food books"
+          "safe food samples (crackers, fruit pieces - allergy-conscious)",
+          "mixing bowls (5-8 plastic bowls)",
+          "utensils (plastic spoons, mixing spoons)",
+          "French food pictures (croissant, cheese, bread images)",
+          "cultural food books (2-3 picture books about French foods)"
         ],
         "visualSupports": "Safe food handling demonstration, tasting expressions, cultural food appreciation",
         "decisionPoints": [
@@ -1660,8 +2128,12 @@
       "closing": {
         "duration": 10,
         "activity": "Food appreciation circle: share something 'délicieux' we discovered and practice gratitude in French.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "food picture cards (25)",
+          "Pierre puppet (1)",
+          "gratitude expressions poster"
+        ],
+        "visualSupports": "Appreciation gestures, 'délicieux' facial expressions, gratitude movements",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1671,14 +2143,44 @@
       },
       "realWorldConnection": "Food brings families and communities together across all cultures",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Use familiar foods only and focus on food pictures",
+          "Allow observation without tasting pressure",
+          "Focus on one food vocabulary word at a time",
+          "Provide comfort and choice throughout food activities"
+        ],
+        "forAdvanced": [
+          "Add food description vocabulary 'sucré, salé, chaud, froid'",
+          "Create simple French recipes using picture sequences",
+          "Practice food-related commands 'Mélange, goûte, partage'",
+          "Help lead food appreciation discussions for classmates"
+        ],
+        "forELL": [
+          "Connect French foods to home culture foods when possible",
+          "Use food as cultural bridge between home and school languages",
+          "Allow sharing of home culture food traditions",
+          "Focus on universal food appreciation and sharing concepts"
+        ],
+        "forIEP": [
+          "Respect all dietary restrictions and food sensitivities completely",
+          "Adapt food activities for sensory processing needs",
+          "Allow alternative participation methods (pictures, pretend play)",
+          "Provide individual food comfort and safety support"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student uses French food vocabulary during activities",
+          "Student participates comfortably in food-related discussions",
+          "Student shows cultural appreciation for French food traditions",
+          "Student demonstrates positive engagement with food vocabulary learning"
+        ],
+        "checkpoints": [
+          "Can name at least 2 French foods or use 'délicieux' appropriately",
+          "Shows respect for cultural food traditions and diversity",
+          "Demonstrates comfort with food-related French vocabulary",
+          "Participates positively in inclusive food exploration activities"
+        ]
       },
       "extensionGuidance": {
         "category": "Exploration créative",
@@ -1736,24 +2238,30 @@
         "duration": 8,
         "activity": "Review delicious experiences. Pierre puppet hears 'musique' and wants everyone to 'bouger ensemble'!",
         "materials": [
-          "Pierre puppet",
-          "musical instruments",
-          "French music recordings",
-          "rhythm scarves"
+          "Pierre puppet (1)",
+          "musical instruments (rhythm sticks, bells, maracas - 25 total)",
+          "French music recordings (CD player or speaker)",
+          "rhythm scarves (25 colorful scarves)"
         ],
         "visualSupports": "Musical conducting gestures, moving together motions, rhythm demonstration",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Quel niveau d'énergie musicale convient le mieux au groupe aujourd'hui?",
+            "ifYes": "Utiliser une musique dynamique et des mouvements actifs",
+            "ifNo": "Commencer plus doucement avec des mouvements assis et musique calme"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Musical exploration stations: instruments with French vocabulary, movement to French songs, rhythm games with counting, partner dancing. Create class song with familiar vocabulary.",
         "materials": [
-          "simple instruments",
-          "music player",
-          "movement props",
-          "rhythm cards",
-          "recording device"
+          "simple instruments (distributed around stations)",
+          "music player (CD player or bluetooth speaker)",
+          "movement props (scarves, ribbons, shakers)",
+          "rhythm cards (visual rhythm patterns)",
+          "recording device (optional tablet for class song)"
         ],
         "visualSupports": "Demonstrate musical movements, encourage creative expression, model group coordination",
         "decisionPoints": [
@@ -1773,8 +2281,12 @@
       "closing": {
         "duration": 10,
         "activity": "Musical goodbye: create class rhythm with French vocabulary words and 'bouger ensemble' finale.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "rhythm instruments (available to all students)",
+          "Pierre puppet (1)",
+          "vocabulary cards for rhythm chant"
+        ],
+        "visualSupports": "Rhythmic conducting gestures, group coordination movements, celebratory musical expressions",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1784,14 +2296,44 @@
       },
       "realWorldConnection": "Music and movement are joyful ways people celebrate and communicate in every culture",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Provide simpler rhythm patterns and quieter participation options",
+          "Allow observation without movement pressure",
+          "Use one instrument at a time to reduce sensory overload",
+          "Offer seated movement alternatives to full body dancing"
+        ],
+        "forAdvanced": [
+          "Add complex rhythm patterns and French musical vocabulary",
+          "Encourage musical leadership roles and conducting",
+          "Create musical stories incorporating vocabulary from previous lessons",
+          "Help teach rhythm patterns and songs to classmates"
+        ],
+        "forELL": [
+          "Use music as universal language bridge between home and school",
+          "Allow sharing of home culture music and rhythms when appropriate",
+          "Focus on rhythm and movement over perfect French pronunciation",
+          "Use musical patterns to support French vocabulary memory"
+        ],
+        "forIEP": [
+          "Adapt musical instruments for individual motor and sensory needs",
+          "Provide alternative participation methods (conducting, quiet instruments)",
+          "Allow flexible movement options and personal space needs",
+          "Support individual comfort levels with noise and group participation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student participates joyfully in musical activities using French vocabulary",
+          "Student demonstrates rhythmic awareness and group coordination",
+          "Student uses 'ensemble' concept through group musical participation",
+          "Student engages positively with music as learning tool"
+        ],
+        "checkpoints": [
+          "Can participate in group rhythm activities using French vocabulary words",
+          "Shows understanding of 'bouger ensemble' through coordinated movement",
+          "Demonstrates comfort with musical expression in French learning environment",
+          "Participates cooperatively in musical group activities"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1849,10 +2391,10 @@
         "duration": 8,
         "activity": "Review musical joy. Pierre puppet announces it's time to 'célébrer' because everyone should feel 'fier' of their French learning!",
         "materials": [
-          "Pierre puppet",
-          "celebration decorations",
-          "learning portfolio pictures",
-          "certificate template"
+          "Pierre puppet (1)",
+          "celebration decorations (streamers, balloons - classroom set)",
+          "learning portfolio pictures (photos from all 20 lessons)",
+          "certificate template (25 personalized certificates)"
         ],
         "visualSupports": "Celebration gestures, proud expressions, achievement recognition motions",
         "decisionPoints": [],
@@ -1862,10 +2404,10 @@
         "duration": 27,
         "activity": "Learning celebration showcase: students choose favorite activities from 20 lessons to demonstrate. French learning portfolio sharing. Celebration activities with all vocabulary. Community appreciation circle.",
         "materials": [
-          "portfolio materials",
-          "showcase props from all lessons",
-          "celebration supplies",
-          "camera for memories"
+          "portfolio materials (student work samples from unit)",
+          "showcase props from all lessons (puppet, cards, instruments, etc.)",
+          "celebration supplies (stickers, special pencils, bookmarks)",
+          "camera for memories (tablet or phone for class photos)"
         ],
         "visualSupports": "Supportive celebration gestures, achievement recognition, community appreciation expressions",
         "decisionPoints": [
@@ -1885,8 +2427,12 @@
       "closing": {
         "duration": 10,
         "activity": "Final celebration circle: each student shares one French word they love and we 'réussir' together with a big group hug!",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "final certificates (25)",
+          "Pierre puppet (1)",
+          "celebration music (optional)"
+        ],
+        "visualSupports": "Proud celebration expressions, achievement recognition gestures, community appreciation movements",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1896,14 +2442,44 @@
       },
       "realWorldConnection": "Celebrating learning achievements builds confidence and motivation for continued language exploration",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Allow celebration participation without performance pressure",
+          "Focus on individual growth rather than comparison to others",
+          "Provide visual reminders of their personal learning journey",
+          "Celebrate effort and participation over perfect French production"
+        ],
+        "forAdvanced": [
+          "Encourage leadership in celebration activities and helping others",
+          "Create detailed reflection on learning journey using French vocabulary",
+          "Help plan and lead parts of the celebration showcase",
+          "Connect learning to future French exploration goals"
+        ],
+        "forELL": [
+          "Celebrate bilingual learning journey and language growth",
+          "Allow celebration sharing in both home language and French",
+          "Connect French learning to overall language development pride",
+          "Honor cultural diversity within French learning celebration"
+        ],
+        "forIEP": [
+          "Adapt celebration participation to individual comfort and communication needs",
+          "Provide alternative ways to demonstrate learning and growth",
+          "Allow flexible participation in celebration activities",
+          "Focus on individual achievements and progress at personal pace"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student demonstrates pride and confidence in French learning journey",
+          "Student can share at least one meaningful French learning experience",
+          "Student participates positively in celebration and reflection activities",
+          "Student shows enthusiasm for continued French language exploration"
+        ],
+        "checkpoints": [
+          "Can identify and share personal French learning growth and achievements",
+          "Shows positive attitude toward French language and continued learning",
+          "Demonstrates retained knowledge and skills from the bienvenue unit",
+          "Participates confidently in culminating celebration activities"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",

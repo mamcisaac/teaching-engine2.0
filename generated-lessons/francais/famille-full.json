@@ -59,11 +59,11 @@
               "alternatives": ["Chaises en cercle", "Marqueurs visuels au sol", "Couverture étendue"]
             },
             {
-              "item": "Photos de familles de l'école",
+              "item": "Photos de familles diversifiées",
               "quantity": "25-30 photos diversifiées",
-              "source": "Contribution des familles - lettre envoyée la semaine précédente",
-              "preparation": "Organiser par anonymat si nécessaire, plastifier",
-              "alternatives": ["Photos d'exemples respectueuses", "Dessins de familles par les élèves"]
+              "source": "Banque d'images pédagogiques - bibliothèque scolaire",
+              "preparation": "Sélectionner images respectueuses de structures familiales diverses, plastifier",
+              "alternatives": ["Photos d'exemples de magazines familiaux", "Dessins de familles par les élèves", "Images de livres pour enfants"]
             }
           ],
           "optional": [
@@ -96,7 +96,10 @@
           ]
         },
         "visualSupports": "Geste du cœur sur la poitrine, sourire bienveillant, hochement de tête approbateur",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si certains élèves sont trop fatigués pour chuchoter → permettre l'écoute silencieuse avec gestes doux",
+          "Si émotion forte à la mention de 'ma famille' → rassurer avec tendresse sur l'unicité de chaque famille"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -237,7 +240,10 @@
           "optional": []
         },
         "visualSupports": "Pointer clairement, gestes de rappel pour chaque membre, sourires d'encouragement",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves trop excités pour déambuler calmement → structurer avec arrêts obligatoires à chaque affiche",
+          "Si difficulté à pointer et nommer simultanément → permettre seulement pointer d'abord"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -346,11 +352,11 @@
               "alternatives": ["Colle liquide en petites bouteilles", "Bandes adhésives"]
             },
             {
-              "item": "Photos de famille élèves ou images alternatives",
-              "quantity": "Collection pour chaque élève",
-              "source": "Familles ou banque d'images classe",
-              "preparation": "Respecter intimité, avoir des alternatives pour tous",
-              "alternatives": ["Dessins par les élèves", "Images de magazines appropriées"]
+              "item": "Images de familles ou alternatives créatives",
+              "quantity": "Collection pour chaque élève (25 ensembles)",
+              "source": "Banque d'images pédagogiques et matériel de classe",
+              "preparation": "Prévoir options variées pour tous les élèves, respecter diversité familiale",
+              "alternatives": ["Dessins créés par les élèves", "Images de magazines familiaux", "Photos de familles diverses de la bibliothèque"]
             }
           ],
           "optional": [
@@ -391,7 +397,11 @@
           ]
         },
         "visualSupports": "Gestes d'applaudissement, expressions de fierté, pointer vers affiche avec amour",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves trop timides pour présenter → offrir option de montrer seulement sans parler",
+          "Si trop d'enthusiasm empêche l'écoute → utiliser signal visuel pour rappeler l'écoute respectueuse",
+          "Si affiche non terminée → célébrer les efforts et promesse de continuer demain"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -538,7 +548,10 @@
           ]
         },
         "visualSupports": "Gestes d'affirmation positive, sourires bienveillants, pointer vers affiche avec amour et fierté",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève hésite à dire 'Voici mon portrait' → permettre 'Voici moi' ou simplement pointer",
+          "Si émotions intenses en voyant leur portrait → valider leurs sentiments et souligner leur unicité"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -691,7 +704,10 @@
           ]
         },
         "visualSupports": "Gestes de référence bien établis, expressions de joie et satisfaction pour chaque activité",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves confondent les activités → ajouter gestes ou sons spécifiques pour chaque action",
+          "Si rythme trop rapide pour certains → permettre observation avant participation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -828,7 +844,10 @@
           "optional": []
         },
         "visualSupports": "Gestes de fierté et d'appartenance, pointer avec amour vers création",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève timide pour présenter son plan de maison → permettre description chuchotée ou à un ami",
+          "Si confusion entre les pièces → utiliser gestes spécifiques (manger=cuisine, dormir=chambre)"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -965,7 +984,9 @@
           "optional": []
         },
         "visualSupports": "Gestes joyeux de célébration, expressions de fierté culturelle",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves n'ont pas de traditions spéciales → souligner que chaque famille a ses petits rituels uniques"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1074,7 +1095,9 @@
           ]
         },
         "visualSupports": "Exemple de mini-livre complété, images séquentielles familiales, gestes narratifs encourageants",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté à organiser les images en séquence → commencer avec seulement 2-3 images"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1093,7 +1116,9 @@
           "optional": []
         },
         "visualSupports": "Expressions d'écoute attentive, gestes d'encouragement, validation des histoires partagées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève réticent à partager son histoire → offrir option de montrer les images seulement"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1223,7 +1248,9 @@
           "optional": []
         },
         "visualSupports": "Expressions d'admiration et respect pour chaque partage, gestes d'approbation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si questions trop personnelles des camarades → rediriger vers aspects positifs et amusants"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1360,7 +1387,9 @@
           "optional": []
         },
         "visualSupports": "Gestes d'auto-câlin bienveillant, expressions de tendresse et validation, sourires rassurants",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève mal à l'aise avec l'auto-câlin → permettre geste alternatif comme poser main sur cœur"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1497,7 +1526,9 @@
           "optional": []
         },
         "visualSupports": "Expressions de fierté d'auteur, gestes de présentation, validation de chaque création",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si poème inachevé ou très simple → célébrer l'effort créatif plutôt que la perfection"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1641,7 +1672,9 @@
           "optional": []
         },
         "visualSupports": "Gestes de fierté et appartenance, expressions d'admiration pour diversité des structures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève exprime tristesse sur structure familiale → rediriger vers aspects positifs et personnes aimantes"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1771,7 +1804,9 @@
           "optional": []
         },
         "visualSupports": "Gestes collectifs confiants, expressions de fierté, ambiance de soutien mutuel",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si nervosité de présentation en groupe → permettre présentation en paires d'abord"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1859,7 +1894,7 @@
           ]
         },
         "visualSupports": "Affichage de tous travaux familiaux, gestes de célébration joyeux, ambiance d'honneur et respect",
-        "decisionPoints": [],
+        "decisionPoints": []
         "movementBreaks": []
       },
       "main": {
@@ -1983,7 +2018,9 @@
           "optional": []
         },
         "visualSupports": "Vocabulaire familial affiché dans zone de jeu, gestes d'encouragement créatif",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si jeu devient trop bruyant → utiliser signal visuel pour rappeler le respect du théâtre"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2631,7 +2668,9 @@
           "optional": []
         },
         "visualSupports": "Paroles affichées, cartes gestuelles, modélage expressions musicales joyeuses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves oublient paroles → encourager à fredonner la mélodie avec gestes seulement"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2806,7 +2845,9 @@
           ]
         },
         "visualSupports": "Exposition complète travaux, documentation photographique respectueuse, ambiance musée",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si trop de visiteurs à la fois → organiser circulation en petits groupes avec guideé"
+        ],
         "movementBreaks": []
       },
       "closing": {

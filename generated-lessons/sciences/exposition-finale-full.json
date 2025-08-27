@@ -21,22 +21,28 @@
         "duration": 8,
         "activity": "Welcome circle and year overview introduction",
         "materials": [
-          "calendar",
-          "photo timeline",
-          "science journal covers"
+          "1 classroom calendar",
+          "1 large photo timeline display",
+          "25 science journal covers (student portfolios)"
         ],
         "visualSupports": "Timeline display of the school year with science unit photos",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent nerveux ou timides au début?",
+            "ifYes": "utiliser des jeux de brise-glace et rassurer sur l'aspect amusant de partager",
+            "ifNo": "procéder avec enthousiasme à l'introduction de la révision"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Interactive science year review using timeline and memory sharing",
         "materials": [
-          "science unit posters",
-          "student journals",
-          "sticky notes",
-          "markers"
+          "6-8 science unit posters for display",
+          "25 student science journals",
+          "100 sticky notes (assorted colors)",
+          "25 markers (1 per student)"
         ],
         "visualSupports": "Visual timeline with unit icons and key vocabulary cards",
         "decisionPoints": [
@@ -63,7 +69,18 @@
         "activity": "Share one favorite science memory with the class",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont de la difficulté à se rappeler leurs expériences scientifiques?",
+            "ifYes": "utiliser plus d'indices visuels et permettre de regarder dans leurs cahiers",
+            "ifNo": "encourager le partage plus détaillé et les connexions entre sujets"
+          },
+          {
+            "question": "Le temps est-il suffisant pour que tous partagent leur souvenir préféré?",
+            "ifYes": "permettre à chacun de partager brièvement",
+            "ifNo": "faire partager en paires puis quelques volontaires avec la classe"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -127,7 +144,13 @@
           "exciting moment cards"
         ],
         "visualSupports": "Images of famous scientific discoveries adapted for Grade 1",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves confondent découverte avec invention?",
+            "ifYes": "clarifier avec des exemples simples : découvrir = trouver ce qui existe déjà",
+            "ifNo": "approfondir leur compréhension des découvertes scientifiques"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -164,7 +187,18 @@
         "activity": "Gallery walk of discovery drawings with positive comments",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils identifié au moins une découverte à partager?",
+            "ifYes": "célébrer leurs choix et commencer la planification",
+            "ifNo": "offrir du soutien individuel pour identifier une découverte simple"
+          },
+          {
+            "question": "Le niveau d'excitation est-il approprié ou trop élevé?",
+            "ifYes": "canaliser l'énergie vers la planification de demain",
+            "ifNo": "utiliser des activités calmantes pour terminer positivement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -228,7 +262,13 @@
           "sharing circle props"
         ],
         "visualSupports": "Age-appropriate images of children at science fairs and exhibitions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves confondent exposition scientifique avec spectacle de talents?",
+            "ifYes": "clarifier qu'on montre ce qu'on a appris en sciences, pas un talent",
+            "ifNo": "approfondir leur compréhension du partage scientifique"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -265,7 +305,18 @@
         "activity": "Practice being a science audience for teacher demonstration",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils bien le concept d'exposition?",
+            "ifYes": "passer à pratiquer d'être un bon public",
+            "ifNo": "donner plus d'exemples concrets et familiers"
+          },
+          {
+            "question": "Certains élèves semblent-ils inquiets de présenter devant d'autres?",
+            "ifYes": "rassurer que c'est normal et qu'on va pratiquer beaucoup ensemble",
+            "ifNo": "célébrer leur confiance et les encourager à aider leurs pairs"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -330,7 +381,13 @@
           "thinking time music"
         ],
         "visualSupports": "Visual menu of science topics studied this year with pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont trop d'idées et n'arrivent pas à choisir?",
+            "ifYes": "les aider à identifier leurs 2-3 découvertes les plus importantes",
+            "ifNo": "les encourager à réfléchir plus profondément à leurs expériences"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -367,7 +424,18 @@
         "activity": "Share chosen project with a partner and explain why",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à expliquer leur choix de projet?",
+            "ifYes": "encourager des explications plus détaillées avec des raisons",
+            "ifNo": "fournir des phrases modèles : 'J'ai choisi... parce que...'"
+          },
+          {
+            "question": "Y a-t-il des élèves qui veulent changer leur choix après avoir écouté les autres?",
+            "ifYes": "permettre un changement final si c'est bien réfléchi",
+            "ifNo": "confirmer les choix et célébrer la diversité des projets"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -432,7 +500,13 @@
           "demonstration area"
         ],
         "visualSupports": "Simple planning template with pictures: What? How? What do I need?",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent dépassés par le concept de planification?",
+            "ifYes": "simplifier en se concentrant sur une seule étape à la fois",
+            "ifNo": "procéder avec l'introduction complète du processus de planification"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -470,7 +544,18 @@
         "activity": "Partner sharing of plans with feedback and suggestions",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves ont-ils créé des plans réalistes et réalisables?",
+            "ifYes": "célébrer leurs idées et encourager le partage constructif",
+            "ifNo": "aider à ajuster les plans pour qu'ils soient plus simples et faisables"
+          },
+          {
+            "question": "Le feedback entre partenaires est-il constructif et encourageant?",
+            "ifYes": "modéliser des commentaires encore plus spécifiques et utiles",
+            "ifNo": "enseigner des phrases pour donner des commentaires positifs"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -535,7 +620,13 @@
           "planning sheets from previous lesson"
         ],
         "visualSupports": "Safety symbol chart and material category pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves veulent des matériaux non sécuritaires pour leur démonstration?",
+            "ifYes": "explorer des alternatives sécuritaires qui donnent le même effet",
+            "ifNo": "célébrer leurs choix sécuritaires et procéder"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -572,7 +663,13 @@
         "activity": "Practice setup and cleanup procedures with materials",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à organiser leur matériel efficacement?",
+            "ifYes": "chronométrer pour ajouter un défi amusant de vitesse",
+            "ifNo": "réduire le nombre de matériaux et pratiquer plus lentement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -637,7 +734,13 @@
           "timer"
         ],
         "visualSupports": "Simple explanation framework: This is... It does... I like it because...",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves utilisent un vocabulaire trop complexe pour leur âge?",
+            "ifYes": "modéliser des mots plus simples et faire pratiquer ensemble",
+            "ifNo": "encourager leur vocabulaire tout en ajoutant des explications simples"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -674,7 +777,13 @@
         "activity": "One-minute explanation challenge with whole group audience",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils prêts pour une explication devant tout le groupe?",
+            "ifYes": "célébrer leur courage et donner des encouragements spécifiques",
+            "ifNo": "garder les groupes plus petits et augmenter graduellement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -739,20 +848,26 @@
           "observation sheets"
         ],
         "visualSupports": "Gallery of age-appropriate science displays with features highlighted",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves veulent copier exactement les exemples montrés?",
+            "ifYes": "encourager l'adaptation des idées plutôt que la copie directe",
+            "ifNo": "célébrer leur créativité et leurs idées originales"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Create individual visual displays with choice of format and materials",
         "materials": [
-          "poster paper",
-          "construction paper",
-          "markers",
-          "crayons",
-          "glue sticks",
-          "scissors",
-          "simple templates"
+          "25 sheets poster paper (11x17)",
+          "50 sheets construction paper (assorted colors)",
+          "25 sets markers",
+          "25 sets crayons",
+          "10 glue sticks (shared)",
+          "25 pairs safety scissors",
+          "25 simple display templates"
         ],
         "visualSupports": "Visual display planning template and design idea examples",
         "decisionPoints": [
@@ -779,7 +894,13 @@
         "activity": "Gallery walk with positive feedback on visual displays",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les affichages créés supportent-ils bien les démonstrations scientifiques?",
+            "ifYes": "encourager les élèves à expliquer comment ils vont les utiliser",
+            "ifNo": "aider à identifier un élément clé à ajouter ou modifier"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -844,7 +965,13 @@
           "demonstration props"
         ],
         "visualSupports": "Common question types poster with picture cues",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent anxieux à l'idée de répondre aux questions?",
+            "ifYes": "rassurer que les visiteurs posent des questions parce qu'ils sont intéressés",
+            "ifNo": "encourager leur enthousiasme et leur confiance naturelle"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -881,7 +1008,13 @@
         "activity": "Quick question-answer rounds with the whole class as visitors",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves répondent-ils avec confiance aux questions de leurs pairs?",
+            "ifYes": "ajouter quelques questions surprises pour développer leur flexibilité",
+            "ifNo": "revenir à des questions plus prévisibles et rassurantes"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -946,7 +1079,13 @@
           "safety props"
         ],
         "visualSupports": "Safety rules poster with pictures and symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves minimisent l'importance de la sécurité?",
+            "ifYes": "utiliser des exemples concrets et des scénarios réalistes",
+            "ifNo": "célébrer leur conscience de la sécurité et approfondir"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -983,7 +1122,13 @@
         "activity": "Safety scenario practice with problem-solving discussions",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves identifient-ils les situations qui nécessitent l'aide d'un adulte?",
+            "ifYes": "pratiquer comment demander de l'aide poliment et clairement",
+            "ifNo": "donner plus d'exemples concrets de quand appeler à l'aide"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1049,7 +1194,13 @@
           "encouragement props"
         ],
         "visualSupports": "Practice checklist and supportive audience behavior chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves semblent très nerveux pour leur première pratique complète?",
+            "ifYes": "offrir la possibilité de commencer avec un public très réduit",
+            "ifNo": "procéder avec confiance et beaucoup d'encouragements"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1087,7 +1238,13 @@
         "activity": "Celebration circle sharing what went well and how students felt",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils réussi à compléter leur démonstration?",
+            "ifYes": "célébrer tous les efforts et identifier les points forts",
+            "ifNo": "prévoir du temps supplémentaire de pratique avant l'exposition"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1152,7 +1309,13 @@
           "improvement examples"
         ],
         "visualSupports": "Growth mindset poster: Good → Better → Best!",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont trop critiques envers leur propre performance?",
+            "ifYes": "recentrer sur les aspects positifs avant de parler d'améliorations",
+            "ifNo": "encourager leur attitude positive et leur ouverture au changement"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1189,7 +1352,13 @@
         "activity": "Practice improved element with a partner for immediate feedback",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les améliorations choisies sont-elles réalistes et atteignables?",
+            "ifYes": "encourager la pratique répétée de ces petites améliorations",
+            "ifNo": "aider à décomposer en étapes plus petites et faisables"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1254,7 +1423,13 @@
           "helper badges"
         ],
         "visualSupports": "Helpful helper chart: Listen, Think, Say something kind and helpful",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves donnent des commentaires trop critiques ou blessants?",
+            "ifYes": "revoir les exemples de commentaires constructifs et bienveillants",
+            "ifNo": "célébrer leur nature encourageante et développer davantage"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1291,7 +1466,13 @@
         "activity": "Thank-you circle where students appreciate help received from others",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils reçu du soutien et des encouragements?",
+            "ifYes": "célébrer l'esprit d'entraide développé dans la classe",
+            "ifNo": "s'assurer que chaque élève reçoit au moins un commentaire positif"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1356,7 +1537,13 @@
           "celebration props"
         ],
         "visualSupports": "Family words chart and invitation template examples",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves sont inquiets que leur famille ne puisse pas venir?",
+            "ifYes": "rassurer qu'on peut inviter d'autres personnes spéciales ou célébrer autrement",
+            "ifNo": "célébrer leur enthousiasme à partager avec leur famille"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1394,7 +1581,13 @@
         "activity": "Share invitations with partners and practice explaining the event",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à expliquer ce que leur famille verra à l'exposition?",
+            "ifYes": "encourager des explications plus détaillées et enthousiastes",
+            "ifNo": "pratiquer des phrases simples pour décrire l'événement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1459,7 +1652,13 @@
           "label makers"
         ],
         "visualSupports": "Space organization examples and setup checklist",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent dépassés par l'organisation de l'espace?",
+            "ifYes": "simplifier en se concentrant sur leur zone personnelle seulement",
+            "ifNo": "inclure des réflexions sur l'organisation générale de la classe"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1498,7 +1697,13 @@
         "activity": "Space walk-through and final setup adjustments",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "L'organisation de l'espace permet-elle une circulation facile des visiteurs?",
+            "ifYes": "finaliser les ajustements et célébrer le travail accompli",
+            "ifNo": "faire les modifications nécessaires pour améliorer l'accès"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1603,7 +1808,13 @@
           "calming music"
         ],
         "visualSupports": "Final preparation checklist and confidence affirmation cards",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent très nerveux pour la répétition générale?",
+            "ifYes": "prendre plus de temps pour les activités calmantes et les encouragements",
+            "ifNo": "procéder avec confiance vers la pratique complète"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1741,13 +1952,19 @@
         "duration": 15,
         "activity": "Final setup, calm preparation, and welcome visitors",
         "materials": [
-          "all demonstration materials",
-          "welcome signs",
-          "visitor guides",
-          "calming music"
+          "25 sets individual demonstration materials (prepared by students)",
+          "2-3 welcome signs for classroom entrance",
+          "50 visitor guides/programs",
+          "background calming music system"
         ],
         "visualSupports": "Welcome display and student confidence reminders",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si l'installation prend plus de temps que prévu?",
+            "ifYes": "reporter l'ouverture aux visiteurs de quelques minutes",
+            "ifNo": "accueillir les visiteurs selon l'horaire prévu"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1889,7 +2106,13 @@
           "success certificates"
         ],
         "visualSupports": "Photo display from the exposition event",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves semblent fatigués après l'exposition?",
+            "ifYes": "garder le partage plus bref et se concentrer sur les aspects positifs",
+            "ifNo": "permettre un partage plus détaillé des expériences"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2031,7 +2254,13 @@
           "peer project documentation"
         ],
         "visualSupports": "Photo gallery of all student projects from the exposition",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont de la difficulté à se souvenir des projets des autres?",
+            "ifYes": "utiliser les photos pour stimuler les souvenirs",
+            "ifNo": "encourager le partage détaillé des observations"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2173,7 +2402,13 @@
           "exploration journals"
         ],
         "visualSupports": "Summer science opportunities poster with seasonal activities",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent fatigués en fin d'année?",
+            "ifYes": "garder l'activité courte et se concentrer sur l'enthousiasme",
+            "ifNo": "explorer plus d'idées pour les sciences d'été"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
