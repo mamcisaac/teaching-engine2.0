@@ -19,37 +19,67 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Cercle émotionnel avec marionnette Émile. Montrer la marionnette avec différentes expressions faciales et demander aux enfants de deviner comment Émile se sent. Chanter la chanson 'Comment je me sens aujourd'hui?' en faisant les gestes.",
+        "materials": [
+          "Marionnette Émile (1)",
+          "Cartes d'émotions de base - content, triste, fâché, peur (4 cartes)",
+          "Miroir à main pour chaque enfant (25)",
+          "Tapis de cercle ou coussins (25)"
+        ],
+        "visualSupports": "Affiche avec 4 visages d'émotions de base avec mots en français. Cartes d'émotions colorées avec expressions faciales claires. Gestes simples pour chaque émotion.",
         "decisionPoints": [
           "Si élève semble anxieux à l'idée de partager des émotions → commencer avec la marionnette seulement",
           "Si difficultés à identifier émotions de base → utiliser miroir et expressions exagérées"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Station rotation avec 4 centres: 1) Miroirs des émotions - faire des expressions faciales et nommer l'émotion 2) Cartes émotions - trier images de visages selon les 4 émotions de base 3) Théâtre avec marionnettes - jouer des scénarios simples 4) Art émotionnel - colorier des visages avec les couleurs qui représentent leurs sentiments. 7 minutes par station avec signal musical pour changer.",
+        "materials": [
+          "4 stations avec tapis colorés",
+          "Station 1: 6 miroirs à main, cartes d'instructions visuelles",
+          "Station 2: 40 cartes de visages, 4 boîtes de tri colorées",
+          "Station 3: 6 marionnettes à doigt, cartes de scénarios simples",
+          "Station 4: Feuilles de visages à colorier (30), crayons de couleur (6 boîtes)",
+          "Minuterie musicale",
+          "Cartes de rotation avec symboles (25)"
+        ],
+        "visualSupports": "Symboles visuels pour chaque station. Instructions illustrées étape par étape. Cartes de rappel des 4 émotions affichées à chaque station. Sablier visuel pour le temps.",
         "decisionPoints": [
           "Si élève montre des signes de détresse émotionnelle → offrir soutien immédiat et espace calme",
           "Si vocabulaire émotionnel trop complexe → simplifier à 'content/triste' avec gestes",
           "Si élève refuse de participer → respecter le besoin et offrir observation silencieuse"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Après 15 minutes: Étirements des bras et visage (2 minutes)",
+          "Transition entre stations: Marcher sur la pointe des pieds comme des souris heureuses"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de partage: Chaque enfant montre une émotion avec son visage et dit 'Je suis...' Les autres devinent. Finir avec la chanson 'Toutes mes émotions' et donner à chaque enfant un autocollant émotion pour leur carnet de réflexion. Rappel: demain nous découvrirons comment notre visage montre nos émotions.",
+        "materials": [
+          "Autocollants d'émotions (25)",
+          "Carnet de réflexion individuel (25)",
+          "Affiche de la chanson 'Toutes mes émotions'",
+          "Tapis de cercle"
+        ],
+        "visualSupports": "Affiche avec paroles illustrées de la chanson. Cartes de rappel des 4 émotions. Pointeur visuel pour le tour de parole.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Identifier et nommer les émotions de base",
         "then": {
           "ifTooAdvanced": "Focus only on 'content' and 'triste' with lots of visual support",
           "ifNotEngaged": "More movement, puppet interaction, and silly faces",
@@ -58,14 +88,48 @@
       },
       "realWorldConnection": "Knowing how we feel helps us tell parents, teachers, and friends what we need",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2 émotions: content et triste",
+          "Utiliser des gestes exagérés et répétition constante",
+          "Permettre l'expression en anglais si nécessaire",
+          "Offrir un partenaire pour le soutien",
+          "Utiliser des images très claires et contrastées"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances: très content, un peu triste",
+          "Encourager à aider les camarades lors des stations",
+          "Créer leurs propres expressions faciales uniques",
+          "Expliquer pourquoi ils choisissent certaines couleurs pour les émotions"
+        ],
+        "forELL": [
+          "Cartes avec mots en français ET anglais si nécessaire",
+          "Permettre les gestes et expressions avant les mots",
+          "Utiliser beaucoup de répétition et modelage",
+          "Jumeler avec un camarade francophone",
+          "Utiliser des images universelles sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels de communication",
+          "Offrir plus de temps pour les transitions",
+          "Utiliser des supports sensoriels si nécessaire (textures, sons)",
+          "Permettre les pauses émotionnelles au besoin",
+          "Modifier les attentes selon les capacités individuelles"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie au moins 2 émotions de base (content, triste) par expressions faciales",
+          "Utilise des gestes ou mots français pour nommer une émotion",
+          "Participe aux activités de groupe avec encouragement",
+          "Montre de l'intérêt pour la marionnette et les miroirs",
+          "Respecte le tour de parole lors du cercle"
+        ],
+        "checkpoints": [
+          "Station miroirs: Note si l'enfant fait des expressions spontanément",
+          "Station tri: Observe la capacité à associer image et émotion",
+          "Cercle final: Évalue la participation et le confort avec le partage",
+          "Auto-évaluation: Demande à l'enfant de montrer comment il se sent maintenant"
+        ]
       }
     },
     {
@@ -81,37 +145,60 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Jeu du miroir magique: Les enfants se placent par deux face à face. Un enfant fait une expression émotionnelle, l'autre doit la reproduire comme un miroir. Introduire le vocabulaire 'visage', 'fâché', 'peur' avec des expressions exagérées.",
+        "materials": [
+          "Grands miroirs à main (12)",
+          "Cartes d'expressions faciales - visage fâché, visage apeuré (8 cartes)",
+          "Marionnette Émile",
+          "Tapis pour partenaires (12)"
+        ],
+        "visualSupports": "Affiche 'Mon visage' avec flèches pointant vers yeux, bouche, sourcils. Cartes d'expressions avec mots clés. Démonstration visuelle de chaque expression.",
         "decisionPoints": [
           "Si élève inconfortable avec miroirs → utiliser photos et dessins d'émotions",
           "Si peur du vocabulaire 'fâché/peur' → commencer par 'content/pas content'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève devient bouleversé en voyant visages tristes/fâchés → passer aux visages souriants",
           "Si difficulté à faire expressions faciales → modeler avec exagération et encouragement",
           "Si élève partage expérience traumatisante → écouter avec compassion et diriger vers ressources"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on clear happy/sad faces only with simple pointing",
           "ifNotEngaged": "More mirror play, silly face games",
@@ -120,14 +207,49 @@
       },
       "realWorldConnection": "Reading faces helps us know when friends need help or want to play",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -143,37 +265,58 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève mal à l'aise avec exploration corporelle → utiliser marionnette/poupée seulement",
           "Si expériences corporelles négatives mentionnées → offrir réconfort et soutien professionnel"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève ressent anxiété physique pendant l'activité → techniques de respiration immédiates",
           "Si partage de sensations corporelles troublantes → écouter et diriger vers aide appropriée",
           "Si résistance au toucher auto-dirigé → respecter limites et utiliser supports visuels"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus only on heart and happy feelings",
           "ifNotEngaged": "More stethoscope time, silly body movements",
@@ -182,14 +325,49 @@
       },
       "realWorldConnection": "When our body tells us we're worried, we can ask for help or take deep breaths",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -205,37 +383,58 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève exprime honte concernant certaines émotions → validation immédiate et normalisation",
           "Si confusion sur concept 'normal' → utiliser exemples concrets et rassurants"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève révèle émotions réprimées à la maison → soutien empathique et conversation privée",
           "Si résistance à accepter émotions négatives → modeler acceptation avec marionnette",
           "Si élève devient émotionnel en parlant d'acceptation → espace pour pleurer et réconfort"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 'all feelings are OK' with simple examples",
           "ifNotEngaged": "More interactive activities with the emotion box",
@@ -244,14 +443,49 @@
       },
       "realWorldConnection": "When we accept our emotions, we feel better about ourselves and can get help easier",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -267,37 +501,58 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève timide pour exprimer émotions → commencer par chuchoter à marionnette",
           "Si anxiété de performance linguistique → accepter expression en anglais ou gestes"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève partage expérience émotionnelle difficile → écouter avec empathie et soutien",
           "Si débordement émotionnel pendant partage → pause pour respirer et réconfort",
           "Si difficulté à trouver mots pour émotions → offrir cartes visuelles et patience"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 'content' and 'triste' expressions only",
           "ifNotEngaged": "More telephone play and puppet conversations",
@@ -306,14 +561,49 @@
       },
       "realWorldConnection": "When we tell people how we feel, they can help us or celebrate with us",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -329,35 +619,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève trop excité et perturbateur → canaliser énergie avec mouvements structurés"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève partage tristesse pendant leçon sur la joie → valider émotion et rappeler que c'est normal",
           "Si difficulté à identifier moments de bonheur → donner exemples simples et concrets"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on simple 'content' vs 'très content'",
           "ifNotEngaged": "More bubbles, simpler activities",
@@ -366,14 +677,49 @@
       },
       "realWorldConnection": "Showing joy appropriately helps us share happiness with others without overwhelming them",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -389,35 +735,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève commence à pleurer pendant introduction → offrir réconfort immédiat"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève révèle perte ou chagrin profond → soutien individuel et ressources de counseling",
           "Si évitee de parler de tristesse → respecter et offrir alternatives non-verbales"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 'triste' and 'câlin' with comfort items",
           "ifNotEngaged": "More comfort box exploration",
@@ -426,14 +793,49 @@
       },
       "realWorldConnection": "When we're sad, asking for comfort helps us feel better and shows others how to help us",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -449,35 +851,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève déjà fâché en arrivant → commencer par techniques de calme"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si escalade de colère pendant activité → pause immédiate avec techniques de respiration",
           "Si partage de colère liée à violence → soutien confidentiel et protocole de sécurité"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 'fâché' and breathing only",
           "ifNotEngaged": "More hands-on with cushions and bottles",
@@ -486,14 +909,49 @@
       },
       "realWorldConnection": "Learning to handle anger safely keeps us and others safe and helps solve problems",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -509,35 +967,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève montre signes d'anxiété au mot 'peur' → commencer par héros courageux"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si peur liée à sécurité personnelle révélée → conversation privée et ressources protection",
           "Si peurs irrationnelles excessives → réassurance et techniques d'ancrage"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 'peur' and 'demander aide' with simple examples",
           "ifNotEngaged": "More courage props and superhero play",
@@ -546,14 +1025,49 @@
       },
       "realWorldConnection": "Being brave means we can try new things, and asking for help keeps us safe",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -569,35 +1083,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève agité dès le début → commencer immédiatement par respiration guidée"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si respiration provoque anxiété ou panique → arrêter et utiliser distraction apaisante",
           "Si difficultés respiratoires médicales → adapter techniques et consulter infirmière"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on simple 'in, out' breathing with counting",
           "ifNotEngaged": "More interactive props, less sitting still",
@@ -606,14 +1141,49 @@
       },
       "realWorldConnection": "Deep breathing helps us feel calmer anywhere - at home, school, or playing",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -629,35 +1199,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève montre difficultés sociales évidentes → soutien supplémentaire et modélisation"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si conflit entre élèves pendant activité d'empathie → pause pour médiation guidée",
           "Si élève incapable de reconnaître émotions chez autres → exemples exagérés et simples"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 'ami triste' and 'être gentil'",
           "ifNotEngaged": "More mirror play and heart giving",
@@ -666,14 +1257,49 @@
       },
       "realWorldConnection": "Understanding others helps us be better friends and makes everyone feel good",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -689,35 +1315,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève partage situation d'intimidation → protocole de sécurité et soutien immédiat"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève révèle aucun ami à l'école → plan d'intégration sociale et soutien",
           "Si trop d'empressement à 'réparer' tous les problèmes → enseigner limites saines"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 'ami triste' and 'dire à madame'",
           "ifNotEngaged": "More puppet demonstrations and hands-on practice",
@@ -726,14 +1373,49 @@
       },
       "realWorldConnection": "Helping sad friends makes them feel better and makes us good friends",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -749,35 +1431,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève overwhelmé par trop de choix → limiter à 2-3 stratégies de base"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si stratégies mentionnées potentiellement dangereuses → rediriger vers options sécuritaires",
           "Si aucune stratégie personnelle identifiée → guidée découverte avec exemples"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 2 simple strategies only",
           "ifNotEngaged": "More decoration time, peer sharing",
@@ -786,14 +1489,49 @@
       },
       "realWorldConnection": "Having our own emotion tools helps us handle feelings anywhere we go",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -809,35 +1547,56 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si anxiété de performance concernant création → réassurance que processus compte plus que perfection"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si émotion difficile émerge pendant création → pause pour discussion et soutien",
           "Si comparaison négative avec travaux des autres → recentrer sur voyage personnel"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 2 simple pages with lots of support",
           "ifNotEngaged": "More stickers and decoration, less content pressure",
@@ -846,14 +1605,49 @@
       },
       "realWorldConnection": "Our emotional journal reminds us of our skills and shows how much we've grown",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       }
     },
     {
@@ -865,35 +1659,56 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si élève sensible au bruit → offrir casque réducteur ou zone silencieuse"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si musique déclenche émotion forte inattendue → pause pour soutien et discussion",
           "Si résistance à participer musicalement → offrir rôle d'observateur ou d'aide"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Simple listening and basic movements only",
           "ifNotEngaged": "More instruments, more participation",
@@ -902,14 +1717,49 @@
       },
       "realWorldConnection": "Music helps us express feelings and feel better when we're upset",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -961,32 +1811,56 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si art éveille émotions difficiles inattendues → soutien immédiat et espace sécuritaire"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Simple coloring with emotion colors only",
           "ifNotEngaged": "More tactile materials, partner work",
@@ -995,14 +1869,49 @@
       },
       "realWorldConnection": "Art gives us ways to show feelings when words aren't enough",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1054,32 +1963,56 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si escalade émotionnelle pendant jeux compétitifs → pause calme et rappel des stratégies"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Simple matching games only",
           "ifNotEngaged": "More active games, shorter rounds",
@@ -1088,14 +2021,49 @@
       },
       "realWorldConnection": "Playing emotion games helps us practice skills in a fun, safe way",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1147,32 +2115,56 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si histoire déclenche souvenirs personnels difficiles → soutien individuel discret"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Simpler story, basic emotion identification only",
           "ifNotEngaged": "More interactive storytelling, puppet focus",
@@ -1181,14 +2173,49 @@
       },
       "realWorldConnection": "Stories help us understand how others handle emotions and learn new strategies",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1240,32 +2267,56 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
         "decisionPoints": [
           "Si révélations concernant dynamiques familiales troublantes → soutien confidentiel approprié"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Focus on 'famille aide' with simple drawings",
           "ifNotEngaged": "More visual family materials, less personal sharing",
@@ -1274,14 +2325,49 @@
       },
       "realWorldConnection": "Families help us learn about emotions and provide support when we need it",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1333,30 +2419,57 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "[FILLED] Activité adaptée à l'âge et au développement émotionnel des enfants de Grade 1",
+        "materials": [
+          "Matériaux adaptés pour 20-25 étudiants",
+          "Supports visuels et concrets pour apprentissage émotionnel"
+        ],
+        "visualSupports": "Supports visuels adaptés pour l'apprentissage des émotions en français, incluant cartes, affiches et gestes.",
+        "decisionPoints": [
+          "Adapter selon les réactions émotionnelles individuelles",
+          "Offrir soutien supplémentaire si nécessaire"
+        ],
+        "movementBreaks": [
+          "Pause émotionnelle: respiration profonde et étirements (2 minutes)",
+          "Mouvement expressif lié au thème de la leçon"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "Comprendre et appliquer les concepts émotionnels enseignés dans cette leçon",
         "then": {
           "ifTooAdvanced": "Simple celebration with certificates and one sharing activity",
           "ifNotEngaged": "More hands-on celebration activities, music, movement",
@@ -1365,14 +2478,49 @@
       },
       "realWorldConnection": "Celebrating our emotional learning helps us remember to use our skills every day",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier le vocabulaire émotionnel aux concepts de base",
+          "Utiliser plus de supports visuels et gestes",
+          "Permettre l'expression en anglais au besoin",
+          "Offrir plus de temps et de répétition",
+          "Jumeler avec un partenaire aidant"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances émotionnelles plus complexes",
+          "Encourager à aider les camarades",
+          "Créer des extensions créatives",
+          "Poser des questions de réflexion plus profondes",
+          "Offrir des rôles de leadership dans les activités"
+        ],
+        "forELL": [
+          "Cartes bilingues avec vocabulaire émotionnel",
+          "Permettre l'usage de la langue maternelle au besoin",
+          "Utiliser beaucoup de gestes et expressions faciales",
+          "Jumeler avec partenaire francophone",
+          "Supports visuels universels sans texte"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les matériaux selon les besoins sensoriels/moteurs",
+          "Offrir plus de temps et de flexibilité",
+          "Utiliser des supports alternatifs de communication",
+          "Permettre des pauses émotionnelles au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre une compréhension des concepts émotionnels enseignés",
+          "Participe aux activités avec engagement approprié à l'âge",
+          "Utilise le vocabulaire français émotionnel avec support",
+          "Montre des compétences socio-émotionnelles en développement",
+          "Respecte les limites émotionnelles des autres"
+        ],
+        "checkpoints": [
+          "Observation pendant les activités: engagement et compréhension",
+          "Conversations informelles: capacité à exprimer les apprentissages",
+          "Créations/productions: reflet des concepts émotionnels",
+          "Auto-évaluation simple: réflexion sur l'apprentissage personnel"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",
