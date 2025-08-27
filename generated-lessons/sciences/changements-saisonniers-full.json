@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Changements saisonniers : Observer l'automne qui arrive",
   "subject": "Sciences de la nature",
   "grade": "1",
   "totalLessons": 20,
@@ -20,41 +20,93 @@
       "opening": {
         "duration": 8,
         "activity": "Circle time (5 min): Show summer photo of school yard. Ask 'Qu'est-ce qui est différent maintenant?' Look out window together. Point and name: 'C'est l'automne!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Photos d'été de la cour d'école (1)",
+          "Tableau de comparaison été/automne (1)"
+        ],
+        "visualSupports": "Tableau de comparaison été/automne avec photos, pictogrammes des signes d'automne",
+        "decisionPoints": [
+          "Si les élèves ont du mal à voir les différences : pointer des détails spécifiques sur les photos",
+          "Si les élèves sont très excités : utiliser un signal calme pour recentrer l'attention"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Autumn detective walk (25 min): Outside or window observation with clipboards. Students draw/circle autumn signs on observation sheet: leaf colors, temperature feeling, clothing changes, sky appearance. Practice saying 'Je vois...' for each observation. Create class autumn discovery chart with student findings.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Planches à pince (25)",
+          "Feuilles d'observation d'automne (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Tableau de classe (1)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Feuilles d'observation avec pictogrammes d'automne, cartes visuelles 'Je vois...', tableau de découvertes d'automne",
+        "decisionPoints": [
+          "Si le temps ne permet pas de sortir : utiliser les fenêtres pour observation détaillée",
+          "Si certains élèves terminent rapidement : les encourager à chercher 2 signes supplémentaires",
+          "Si les élèves ont froid dehors : raccourcir l'observation extérieure à 15 minutes"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Science circle (10 min): Students share one autumn sign they found. Teacher records on class chart. End with autumn observation chant: 'En automne, ça change, en automne, c'est différent!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Tableau de découvertes d'automne (1)",
+          "Marqueurs de couleur (4)",
+          "Autocollants étoiles (25)"
+        ],
+        "visualSupports": "Tableau de découvertes avec dessins et mots, cartes visuelles du chant d'automne",
+        "decisionPoints": [
+          "Si les élèves répètent les mêmes observations : encourager de nouvelles idées avec indices visuels"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "reconnaître les signes d'automne lors de l'observation",
+        "then": "utiliser des comparaisons directes avec photos été/automne, pointer des détails spécifiques, faire des gestes pour décrire les changements, utiliser des supports visuels supplémentaires"
       },
       "realWorldConnection": "Students recognize autumn changes they see walking to school or playing outside",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des feuilles d'observation pré-marquées avec images",
+          "Travailler en paires avec un partenaire plus fort",
+          "Utiliser des gestes et pointage pour identifier les changements",
+          "Simplifier à 3 signes d'automne principaux"
+        ],
+        "forAdvanced": [
+          "Demander de trouver 5 signes supplémentaires d'automne",
+          "Encourager l'utilisation de phrases complètes en français",
+          "Inviter à expliquer pourquoi les changements se produisent",
+          "Créer leur propre catégorie de changements d'automne"
+        ],
+        "forELL": [
+          "Cartes visuelles avec mots français/images",
+          "Permettre l'expression en L1 puis traduire",
+          "Utiliser des gestes pour soutenir la compréhension",
+          "Fournir vocabulaire de base écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Simplifier les attentes de dessin selon les capacités motrices",
+          "Fournir des supports sensoriels au besoin",
+          "Permettre des réponses alternatives (oral, gestes, choix multiples)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie au moins 2 signes d'automne clairement",
+          "Utilise le vocabulaire 'automne', 'changer', 'observer' appropriément",
+          "Participe activement à l'observation extérieure ou aux fenêtres",
+          "Partage ses découvertes avec la classe de manière compréhensible"
+        ],
+        "checkpoints": [
+          "Observation directe pendant la marche d'automne",
+          "Vérification des feuilles d'observation complétées",
+          "Écoute des contributions lors du cercle de sciences",
+          "Documentation photographique des découvertes d'élèves"
+        ]
       }
     },
     {
@@ -71,41 +123,96 @@
       "opening": {
         "duration": 8,
         "activity": "Leaf mystery box (5 min): Feel different colored leaves in box without looking. Describe textures. Reveal and name colors: 'rouge, jaune, brun, vert'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Boîte mystère (1)",
+          "Feuilles de différentes couleurs (20)",
+          "Cartes de couleurs français (4)"
+        ],
+        "visualSupports": "Cartes visuelles des couleurs avec mots français, tableau de textures des feuilles",
+        "decisionPoints": [
+          "Si les élèves devinent facilement : ajouter des feuilles avec textures similaires",
+          "Si certains sont réticents à toucher : permettre l'observation visuelle d'abord"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Leaf color investigation (25 min): Collect or observe leaves from different trees. Sort into color groups using sorting mats. Create leaf rubbings with different colored leaves. Discuss: 'Pourquoi les feuilles changent-elles de couleur?' Simple explanation: Trees need less water, leaves change color. Practice color vocabulary with leaf sorting games.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Tapis de tri couleurs (6)",
+          "Feuilles variées (50)",
+          "Papier pour frottage (25)",
+          "Crayons de cire (25 ensembles)",
+          "Loupes (10)",
+          "Paniers de collecte (6)"
+        ],
+        "visualSupports": "Tapis de tri avec étiquettes couleurs, affiche explicative simple 'Pourquoi les feuilles changent', vocabulaire des couleurs illustré",
+        "decisionPoints": [
+          "Si pas assez de feuilles dehors : utiliser collection préparée",
+          "Si les frottages sont difficiles : aider avec technique ou simplifier",
+          "Si les élèves se disputent les feuilles : établir règles de partage claires"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Leaf color parade (10 min): Students hold up leaves and march around saying color names. Create class 'autumn color tree' by taping sorted leaves to wall tree outline.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Contour d'arbre sur mur (1)",
+          "Ruban adhésif (1 rouleau)",
+          "Musique de marche douce (optionnel)"
+        ],
+        "visualSupports": "Grand arbre au mur avec sections couleurs, étiquettes des couleurs en français",
+        "decisionPoints": [
+          "Si l'arbre devient trop plein : créer un deuxième arbre",
+          "Si certains élèves sont timides : permettre participation depuis leur place"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "identifier et nommer les couleurs des feuilles en français",
+        "then": "utiliser des cartes couleurs avec gestes, répéter plusieurs fois les noms, permettre le mimétisme des pairs, utiliser supports visuels avec mots et images ensemble"
       },
       "realWorldConnection": "Students notice leaf color changes on trees in their neighborhood and understand why it happens",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement 3 couleurs principales (rouge, jaune, brun)",
+          "Fournir aide individuelle pour les frottages",
+          "Permettre travail en équipe avec partenaire",
+          "Utiliser gestes pour identifier couleurs"
+        ],
+        "forAdvanced": [
+          "Introduire nuances (rouge clair/foncé, jaune doré)",
+          "Demander de prédire pourquoi certains arbres changent différemment",
+          "Encourager classification par forme ET couleur",
+          "Initier discussion sur pourquoi les changements varient"
+        ],
+        "forELL": [
+          "Cartes couleurs bilingues disponibles",
+          "Répétition fréquente du vocabulaire couleurs",
+          "Permettre désignation par pointage si verbal difficile",
+          "Utiliser objets familiers de même couleur pour comparaison"
+        ],
+        "forIEP": [
+          "Adapter les frottages selon capacités motrices",
+          "Simplifier le tri à 2 couleurs si nécessaire",
+          "Fournir feuilles pré-triées si besoin",
+          "Permettre participation par observation plutôt que manipulation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Nomme au moins 2 couleurs de feuilles en français",
+          "Tri correctement les feuilles par couleur",
+          "Participe activement aux activités de manipulation",
+          "Démontre compréhension que les feuilles changent de couleur"
+        ],
+        "checkpoints": [
+          "Observation pendant le tri des feuilles",
+          "Évaluation des frottages de feuilles",
+          "Écoute des noms de couleurs lors de la parade",
+          "Vérification de la participation à l'arbre de classe"
+        ]
       }
     },
     {
@@ -122,41 +229,95 @@
       "opening": {
         "duration": 8,
         "activity": "Plant needs drama (5 min): Students act as trees. Feel warm 'summer sun' (warm hands), drink 'water' (pretend). Then feel less 'autumn sun' (cooler hands), less water. Show how 'tree' changes.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes de rôle 'arbre' (25)",
+          "Vaporisateur d'eau (1)",
+          "Lampe chaude (1)"
+        ],
+        "visualSupports": "Cartes visuelles des besoins des plantes, séquence illustrée été/automne pour les arbres",
+        "decisionPoints": [
+          "Si les élèves sont trop excités par le jeu de rôle : utiliser signal pour calmer",
+          "Si certains ne veulent pas participer : permettre observation et imitation",
+          "Si l'activité prend trop de temps : raccourcir à l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Sun and water experiment (25 min): Compare two small plants - one with full sun/water, one with less. Observe leaves. Use flashlight as 'sun' and watering as 'rain'. Demonstrate how less sun/water makes leaves change color. Create simple before/after drawings. Practice vocabulary: 'Le soleil donne de la lumière. L'eau aide les plantes. En automne, moins de soleil, moins d'eau.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Petites plantes en pot (4)",
+          "Lampes de poche (2)",
+          "Vaporisateurs (2)",
+          "Papier de dessin (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Feuilles d'observation (25)"
+        ],
+        "visualSupports": "Diagramme simple besoins des plantes, cartes vocabulaire illustrées, tableau avant/après",
+        "decisionPoints": [
+          "Si les plantes ne montrent pas de différence : utiliser photos d'exemples",
+          "Si l'expérience est trop complexe : simplifier à démonstration",
+          "Si les dessins prennent trop de temps : limiter à dessins simples"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Tree needs chant (10 min): Create actions for sun (arms up), water (wiggling fingers down), and leaf colors (color gestures). Sing simple song about tree needs changing in autumn.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes de gestes (3)",
+          "Paroles de la chanson illustrées (1)"
+        ],
+        "visualSupports": "Cartes visuelles des gestes pour chaque besoin, paroles de chanson avec images",
+        "decisionPoints": [
+          "Si les élèves oublient les gestes : rappeler avec cartes visuelles"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre pourquoi les feuilles changent (concept cause-effet)",
+        "then": "utiliser démonstrations concrètes répétées, simplifier à 'moins de soleil = changement', utiliser comparaisons avec expériences personnelles (avoir moins faim/soif)"
       },
       "realWorldConnection": "Students understand why trees in their yard look different and how sun and rain affect plants",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 3",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -173,41 +334,93 @@
       "opening": {
         "duration": 8,
         "activity": "Scientist preparation (5 min): Put on 'scientist hats' (real or pretend). Learn scientist jobs: observe, collect, sort, record. Practice carrying collection bags and clipboards carefully.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel",
+          "Si certains élèves terminent rapidement : fournir extension ou rôle d'aide"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Scientific leaf collection (25 min): Outdoor collection with scientist clipboards. Find 3-5 different leaves per student. Return to classroom for scientific sorting: by color, by shape, by size. Create individual leaf collection sheets with drawing/taping leaves and simple recording (tally marks, basic words). Use magnifying glasses to observe leaf details. Practice scientific vocabulary: 'Ma collection a...' 'Je trie par couleur.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel",
+          "Si certains élèves terminent rapidement : fournir extension ou rôle d'aide"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Scientist sharing circle (10 min): Students present one interesting leaf from their collection. Teacher helps them use scientific language: 'Cette feuille est rouge et petite.' Display collections on science wall.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 4 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students learn how scientists collect and organize natural objects to understand patterns in nature",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 4",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -224,41 +437,93 @@
       "opening": {
         "duration": 8,
         "activity": "Temperature detective game (5 min): Students put hands on different surfaces (metal, wood, paper) and describe feelings: 'froid, frais, chaud'. Practice temperature vocabulary with gestures (shivering, fanning).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel",
+          "Si certains élèves terminent rapidement : fournir extension ou rôle d'aide"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Temperature investigation (25 min): Use large thermometer to check indoor temperature, then outdoor temperature. Students predict which will be colder. Create temperature comparison chart with pictures (ice = very cold, sun = very hot). Test temperature of water in different containers (ice water, room temperature, warm). Students sort classroom objects by temperature feeling. Practice saying: 'C'est froid', 'C'est chaud', 'La température change en automne.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel",
+          "Si certains élèves terminent rapidement : fournir extension ou rôle d'aide"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Temperature song and movement (10 min): Sing song about autumn temperature changes with movements (shivering for cold, wiping sweat for hot). Create class temperature calendar to track daily weather.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 5 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students notice that they need different clothing for autumn weather and understand temperature changes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 5",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -275,41 +540,91 @@
       "opening": {
         "duration": 8,
         "activity": "Light and dark exploration (5 min): Use classroom lights to demonstrate 'long day' (lights on long time) vs 'short day' (lights on short time). Students experience how less light affects activities.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Daylight investigation (25 min): Compare photos of school at same time in summer vs autumn - notice sky brightness differences. Use flashlights to demonstrate how sun gives us less light in autumn (hold flashlight farther away). Create 'daylight timeline' showing morning, noon, evening in summer vs autumn using pictures. Students draw what they do when it gets dark earlier. Practice vocabulary: 'Le jour est court', 'Il fait noir plus tôt', 'Nous avons besoin de lumière'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Daylight changes song (10 min): Sing about how autumn brings shorter days and longer nights. Create movements for sun rising late and setting early. Start class daylight observation chart.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 6 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students notice they need lights on earlier at home and have less time to play outside after school",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 6",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -326,41 +641,91 @@
       "opening": {
         "duration": 8,
         "activity": "Animal preparation mime (5 min): Students act out how they prepare for cold weather (putting on coats, gathering warm clothes). Introduce: animals prepare too, but differently.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Animal preparation observation (25 min): Watch videos or observe local animals preparing for winter. Focus on specific behaviors: squirrels gathering nuts, birds eating more food, some animals growing thicker fur. Create class chart showing 'How animals prepare': gathering food, growing warm fur, finding warm homes. Students draw their favorite animal preparation behavior. Role-play being different animals getting ready for winter.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Animal preparation parade (10 min): Students move like different animals showing preparation behaviors (squirrel gathering, bird eating, bear finding den). Practice saying: 'Les animaux se préparent pour l'hiver.'",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 7 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students observe squirrels, birds, and other animals in their neighborhood preparing for winter",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 7",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -377,41 +742,91 @@
       "opening": {
         "duration": 8,
         "activity": "Flying south demonstration (5 min): Students spread arms like wings and 'fly' from cold area of room (with fan or ice) to warm area (with heater or sunny spot). Feel temperature difference.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Bird migration investigation (25 min): Watch videos of birds flying in V-formations going south. Use simple map to show north (cold) and south (warm). Students practice 'flying south' movements across classroom map. Compare birds that stay vs. birds that leave using picture sorting activity. Create migration journal with drawings of birds flying south. Practice vocabulary: 'Les oiseaux volent vers le sud', 'Il fait chaud au sud', 'Les oiseaux cherchent la nourriture'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Migration flight simulation (10 min): Students line up in V-formation like migrating birds and 'fly' around classroom saying 'Nous volons vers le sud pour trouver la chaleur.' Create class migration chart.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 8 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students notice fewer birds in autumn and understand where they go for warmer weather",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 8",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -428,41 +843,91 @@
       "opening": {
         "duration": 8,
         "activity": "Fur thickness exploration (5 min): Students feel different fabric samples (thin summer shirt vs thick winter coat). Discuss how thickness keeps us warm. Introduce: animals grow thicker fur the same way.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Winter coat investigation (25 min): Compare photos of same animals in summer (thin fur) vs winter (thick fur). Use magnifying glasses to examine real fur samples or fabric samples of different thicknesses. Students sort animals into 'thick winter fur' vs 'thin summer fur' categories. Create thickness comparison using cotton balls (thin layer for summer, thick layer for winter). Practice saying: 'La fourrure épaisse protège du froid', 'Les animaux ont plus de fourrure en hiver'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Fur protection dance (10 min): Students pretend to be animals growing thicker fur for winter - start thin and add imaginary layers. Practice fur vocabulary with actions (thick = arms spread wide, protect = arms around body).",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 9 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students notice their pets have thicker fur in winter or see wild animals with different coat thickness",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 9",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -479,41 +944,91 @@
       "opening": {
         "duration": 8,
         "activity": "Warmth prediction circle (5 min): Show ice cube and various materials (cotton balls, fabric, paper). Ask students to predict which will keep ice cube coldest longest. Explain: this is like fur keeping animals warm.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Fur insulation experiment (25 min): Wrap identical ice cubes in different materials: bare (no fur), thin cloth (thin fur), thick cotton balls (thick fur). Place in cups and observe which melts slowest. Students make predictions, then check results every 5 minutes. Record observations with drawings and simple words. Alternative: Use thermometers in cups of warm water with different insulation to see which stays warmest. Create experiment recording sheet with predictions vs results.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Experiment conclusion sharing (10 min): Students share which insulation worked best and why. Connect to animals: 'Thick fur keeps animals warm like thick cotton balls kept our ice cold.' Practice scientific vocabulary: 'Notre expérience montre que...'",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 10 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students understand why animals grow thicker fur and why people wear coats - both work as insulation",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 10",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -530,41 +1045,91 @@
       "opening": {
         "duration": 8,
         "activity": "Food collection game (5 min): Scatter play food or pictures around room. Give students baskets and 2 minutes to collect as much as possible. Discuss: animals do this in autumn to prepare for winter.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Food storage investigation (25 min): Watch videos of squirrels, chipmunks, and other animals collecting nuts and seeds. Set up classroom food storage activity: students sort play food into 'eat now' vs 'save for later' categories. Create storage containers with different foods. Discuss why animals store food (winter has less food available). Students draw animals collecting and storing food. Practice vocabulary: 'Les animaux récoltent la nourriture', 'Ils gardent la nourriture pour l'hiver'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Food storage pantry tour (10 min): Create classroom 'animal pantry' with stored food pictures. Students take turns being different animals checking their food storage. Practice saying: 'J'ai assez de nourriture pour l'hiver.'",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 11 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students observe squirrels burying nuts and understand why animals collect food when it's available",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 11",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -581,41 +1146,91 @@
       "opening": {
         "duration": 8,
         "activity": "Plant life cycle review (5 min): Use actions to show plant growing from seed to full plant. Ask: 'What happens to plants in autumn?' Show wilted vs healthy plant examples.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Garden change observation (25 min): Visit school garden area or examine potted plants showing autumn changes. Students observe and draw plants at different autumn stages: some still growing, some finished producing, some preparing for winter rest. Compare summer photos of garden to current appearance. Plant autumn seeds (lettuce, radish) in classroom containers to observe autumn growing conditions. Create garden observation journals documenting plant changes.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Plant needs discussion (10 min): Review what plants need (sun, water, warm weather). Discuss how autumn changes affect plant growth. Students predict what will happen to garden plants in winter.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 12 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students understand why family gardens look different in autumn and what happens to plants in colder weather",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 12",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -632,41 +1247,91 @@
       "opening": {
         "duration": 8,
         "activity": "Seed hunt introduction (5 min): Show various seeds (apple, bean, sunflower). Ask students to find seeds inside fruits/vegetables. Explain: plants make seeds in autumn so new plants can grow next year.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Seed experiment setup (25 min): Students dissect autumn fruits/vegetables to find seeds (apples, pumpkins, peppers). Examine seeds with magnifying glasses and sort by size, shape, color. Plant different types of seeds in labeled containers with varying conditions (light vs dark, water vs no water). Make predictions about which seeds will grow best. Create seed experiment charts to track growth over time. Students draw the seeds they planted and write/dictate predictions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Seed cycle song (10 min): Sing about how plants make seeds in autumn, seeds wait in winter, then grow in spring. Use actions for each part of seed cycle. Set up observation schedule for planted seeds.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 13 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students understand where seeds come from and how plants prepare for growing new plants next year",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 13",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -683,41 +1348,91 @@
       "opening": {
         "duration": 8,
         "activity": "Scientist author circle (5 min): Review all the autumn science discoveries made in previous lessons. Show real science books and explain: scientists write books to share their discoveries with others.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Science book creation (25 min): Students work in pairs to create pages for class autumn science book. Each page covers one lesson topic (leaf changes, animal preparation, temperature, etc.). Include drawings, simple writing, photos from experiments, and key vocabulary. Students choose their best observations and discoveries to include. Teacher helps with writing and organization. Create table of contents and book cover with class input.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Book preview sharing (10 min): Each pair presents their favorite page from the science book. Practice using scientific language: 'Nous avons découvert que...', 'Notre expérience a montré...'. Plan book celebration for next lesson.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 14 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students learn how scientists document and share their discoveries just like authors write books",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 14",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       }
     },
     {
@@ -734,41 +1449,91 @@
       "opening": {
         "duration": 8,
         "activity": "Crystal ball predictions (5 min): Use pretend crystal ball (clear bowl) to make silly predictions, then explain scientists make predictions based on what they observe, not magic.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Winter prediction workshop (25 min): Review autumn observations from science book. Students make predictions about winter: What will happen to leaves? How will animals behave? What will the weather be like? How will plants change? Create prediction charts with drawings and simple explanations. Students share reasoning: 'Je pense que... parce que...' Compare different students' predictions and discuss possibilities.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle",
+          "Si l'activité prend plus de temps que prévu : ajuster en gardant l'essentiel"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Prediction time capsule (10 min): Students write/draw their winter predictions and place in class 'prediction box' to open in winter to check accuracy. Practice scientific prediction language.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 15 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students use their autumn observations to predict winter changes they'll see at home and school",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 15",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -825,41 +1590,89 @@
       "opening": {
         "duration": 8,
         "activity": "World autumn tour (5 min): Show globe and explain autumn happens in different ways around the world. Point to local area and other regions while showing autumn photos from each.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Global autumn exploration (25 min): Compare autumn in different places using photos/videos: deciduous forests (colorful leaves), evergreen forests (stays green), tropical areas (less obvious changes), desert regions (minimal changes). Students sort pictures into 'autumn like ours' vs 'different autumn'. Create world autumn comparison chart. Discuss why autumn looks different in different places (different trees, different weather).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "World autumn celebration (10 min): Students choose their favorite type of autumn from around the world and explain why. Create classroom display showing different global autumn experiences.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 16 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students understand that autumn happens differently around the world but people everywhere notice seasonal changes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 16",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -916,41 +1729,89 @@
       "opening": {
         "duration": 8,
         "activity": "Experiment designer introduction (5 min): Introduce students as 'autumn scientists' who will create autumn conditions in the classroom. Review what makes autumn different: less light, cooler temperature, less water.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Create autumn experiment (25 min): Set up experiments to recreate autumn conditions: Place plants in different light conditions (full light vs reduced light), different temperatures (warm vs cool areas), different watering schedules (normal vs reduced water). Students predict what will happen to plants under different 'autumn' conditions. Create experiment tracking sheets and begin observations. Students design their own mini-experiments with teacher guidance.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Experiment prediction circle (10 min): Students share their experiment setups and predictions. Begin observation schedule for tracking changes over time. Practice scientific language: 'Si nous changeons..., alors...'",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 17 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students understand how environmental changes cause the autumn effects they observe in nature",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 17",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1007,41 +1868,89 @@
       "opening": {
         "duration": 8,
         "activity": "Human adaptation demonstration (5 min): Students show how they dress differently for autumn weather compared to summer. Discuss other changes families make for autumn (different foods, activities, schedules).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Human autumn adaptation investigation (25 min): Create comparison chart showing how humans and animals both adapt to autumn: clothing vs fur, heated homes vs dens, storing food vs gathering food, different activities vs migration/hibernation. Students interview each other about family autumn changes. Create human adaptation timeline showing changes from summer to autumn to winter preparations.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Adaptation comparison celebration (10 min): Students present one way their family adapts to autumn and compare it to animal adaptations studied earlier. Create class display showing human and animal autumn adaptations.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 18 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students recognize how their families change routines, clothing, and activities for autumn weather just like animals adapt",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 18",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1098,41 +2007,89 @@
       "opening": {
         "duration": 8,
         "activity": "Scientist conference introduction (5 min): Explain that scientists share their discoveries at conferences. Students will be scientists presenting their autumn research. Practice using scientific language.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Science presentation preparation and delivery (25 min): Students prepare short presentations about their favorite autumn discovery using class science book, experiment results, and observations. Include props, drawings, or demonstrations. Practice using evidence to support statements: 'We observed...', 'Our experiment showed...', 'The evidence proves...'. Students present to small groups or whole class.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Science celebration (10 min): Celebrate all scientific discoveries made during the unit. Students vote on most surprising discovery, best experiment, and most interesting observation. Award 'scientist certificates'.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 19 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students learn how scientists communicate their discoveries to help others understand the natural world",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 19",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1189,41 +2146,89 @@
       "opening": {
         "duration": 8,
         "activity": "Science celebration setup (5 min): Students put on scientist hats and prepare to share their autumn learning journey with families. Review key discoveries and prepare materials for sharing.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Cartes visuelles du vocabulaire (25)",
+          "Tableau d'affichage (1)",
+          "Marqueurs de couleur (4)"
+        ],
+        "visualSupports": "Cartes visuelles du vocabulaire de la leçon, pictogrammes d'appui, affichage de référence",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Family science celebration (25 min): Students guide families through science stations: leaf color experiment, temperature measurement, animal adaptation demonstrations, plant growth observations, autumn prediction sharing. Students explain their discoveries using scientific vocabulary and evidence. Families participate in simple experiments and ask questions about observations.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "Matériaux de manipulation (25 ensembles)",
+          "Feuilles d'activité (25)",
+          "Crayons de couleur (25 ensembles)",
+          "Loupes (10)",
+          "Tableau de classe (1)"
+        ],
+        "visualSupports": "Guides visuels étape par étape, cartes de consignes illustrées, supports d'observation",
+        "decisionPoints": [
+          "Si les élèves ont des difficultés de compréhension : utiliser plus de supports visuels et gestuelle"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Scientist achievement ceremony (10 min): Celebrate student growth as autumn scientists. Present certificates recognizing specific achievements (best observer, creative experimenter, thoughtful questioner). Students share one thing they learned about autumn changes.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Tableau de synthèse (1)",
+          "Autocollants étoiles (25)",
+          "Marqueurs (3)"
+        ],
+        "visualSupports": "Tableau de synthèse visuel, cartes de réflexion, affichage des apprentissages",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de la leçon 20 sur les changements saisonniers",
+        "then": "utiliser plus de supports visuels concrets, répéter avec gestes, simplifier le vocabulaire, permettre travail en pairs, utiliser exemples de leur expérience quotidienne"
       },
       "realWorldConnection": "Students proudly share their scientific learning with families, building community appreciation for science education and environmental awareness",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir supports visuels supplémentaires et aide individuelle",
+          "Simplifier le vocabulaire à l'essentiel",
+          "Permettre travail en équipe avec pairs plus forts",
+          "Utiliser gestes et manipulation concrète"
+        ],
+        "forAdvanced": [
+          "Encourager questions approfondies et hypothèses",
+          "Proposer extensions créatives ou explorations additionnelles",
+          "Inviter à aider autres élèves et expliquer concepts",
+          "Introduire vocabulaire plus complexe si approprié"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Répétition fréquente avec gestes supportifs",
+          "Permettre expression en L1 puis traduction",
+          "Vocabulaire essentiel écrit avec pictogrammes"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Modifier matériaux selon besoins spécifiques",
+          "Permettre réponses alternatives (oral, gestuel, choix multiple)",
+          "Fournir supports sensoriels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre compréhension des concepts clés de la leçon 20",
+          "Utilise appropriément le vocabulaire de la leçon",
+          "Participe activement aux activités d'apprentissage",
+          "Peut expliquer ou montrer ce qui a été appris"
+        ],
+        "checkpoints": [
+          "Observation directe pendant les activités",
+          "Vérification des productions d'élèves (dessins, réponses)",
+          "Écoute des explications et discussions",
+          "Documentation des progrès individuels"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1980,9 +2985,9 @@
     ]
   },
   "metadata": {
-    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "lastUpdated": "2025-08-27T21:00:00.000Z",
     "version": "2.0",
-    "status": "complete",
+    "status": "enhanced",
     "originalFormat": "unit-with-lessons"
   }
 }

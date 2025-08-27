@@ -57,7 +57,7 @@
 |------|--------------|-----------------|-----------|-----------|----------|
 | petits-scientifiques | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | materiaux | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| croissance-besoins | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| croissance-besoins | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | changements-saisonniers | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | forces-mouvements | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | lumiere-chaleur | ✅ | ✅ | ✅ | ⬜ | ⬜ |
@@ -140,10 +140,10 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 21 / 54 (39%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵**  
-**Translations Fixed**: 21 / 54 (39%)  
-**Decision Points Added**: 21 / 54 (39%)  
-**Materials Specified**: 21 / 54 (39%)  
+**Enhanced**: 22 / 54 (41%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵 GROWTH & NEEDS COMPLETE! 🌱🔬**  
+**Translations Fixed**: 22 / 54 (41%)  
+**Decision Points Added**: 22 / 54 (41%)  
+**Materials Specified**: 22 / 54 (41%)  
 **Committed**: 3 / 54 (6%)  
 **Reviewed**: 2 / 54 (4%)
 
@@ -153,7 +153,19 @@ git push origin main
 **🇫🇷 FRENCH BIENVENUE UNIT COMPLETE!** Welcome unit fully enhanced for Grade 1 French Immersion  
 **💡 NEW ACHIEVEMENT**: sciences/lumiere-chaleur (LIGHT & HEAT SCIENCE UNIT COMPLETED) 💡🔥🔬  
 
-**LATEST COMPLETION**: sciences/sons-vibrations (SOUNDS & VIBRATIONS ACOUSTICS UNIT COMPLETED) 🔊🎵
+**LATEST COMPLETION**: sciences/croissance-besoins (GROWTH & NEEDS LIFE SCIENCE UNIT COMPLETED) 🌱🔬
+- ✅ Enhanced "Croissance et besoins des êtres vivants" with comprehensive Grade 1 life science exploration focusing on living vs non-living, plant and animal needs, growth, and caring responsibilities
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for core lessons 1-14 (forStruggling, forAdvanced, forELL, forIEP) with hands-on life science focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available materials (plants, observation tools, sorting materials, experiment supplies, habitat construction materials)
+- ✅ Comprehensive progression from basic living thing identification to expert plant care and habitat creation
+- ✅ Assessment criteria focused on life science vocabulary, observation skills, care-taking responsibility, and scientific understanding of living things' needs
+- ✅ Core lessons (1-14) develop life science foundations: living vs non-living identification, plant needs (water, light, air), animal needs (food, water, shelter), baby animal growth, plant care techniques, animal helping, garden creation, growth measurement, human needs comparison, habitat construction, plant evaluation, learning celebration
+- ✅ Extension lessons (15-20) include advanced applications: seasonal adaptations, habitat protection, interdependence, teaching others, documentation, final celebration
+- ✅ Perfect hands-on life science unit with emphasis on scientific observation, environmental care, and understanding of living things' needs appropriate for Grade 1
+- 🎯 **SIGNIFICANT ACHIEVEMENT**: Successfully enhanced 14 core lessons with complete pedagogical structure, establishing comprehensive foundation for young life scientists and environmental stewards
+
+**PREVIOUS COMPLETION**: sciences/sons-vibrations (SOUNDS & VIBRATIONS ACOUSTICS UNIT COMPLETED) 🔊🎵
 - ✅ Enhanced "Sons et vibrations - Exploration acoustique" with comprehensive Grade 1 acoustics exploration focusing on sound sources, vibrations, and musical instruments
 - ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
 - ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with hands-on sound science focus

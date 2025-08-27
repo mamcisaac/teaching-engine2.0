@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Croissance et besoins des êtres vivants",
   "subject": "Sciences de la nature",
   "grade": "1",
   "totalLessons": 20,
@@ -21,9 +21,10 @@
         "duration": 8,
         "activity": "Living things hunt - students point to living and non-living items in the classroom",
         "materials": [
-          "classroom objects",
-          "plants",
-          "pictures"
+          "objets de classe variés (25 articles)",
+          "plantes de classe (3-4 plantes)",
+          "images d'êtres vivants et non-vivants (30 cartes)",
+          "tableau d'affichage pour classification"
         ],
         "visualSupports": "living vs non-living chart with pictures",
         "decisionPoints": [],
@@ -33,18 +34,29 @@
         "duration": 27,
         "activity": "hands-on sorting exploration of classroom items into living and non-living categories",
         "materials": [
-          "sorting mats",
-          "various classroom objects",
-          "plants",
-          "toy animals",
-          "rocks"
+          "tapis de tri (8 tapis pour groupes)",
+          "objets de classe variés (40 items)",
+          "plantes de classe (4-5 plantes)",
+          "animaux jouets (15-20 animaux)",
+          "roches et objets non-vivants (20 items)",
+          "bacs de rangement pour le tri (8 bacs)"
         ],
         "visualSupports": "large sorting chart, picture cards with living/non-living examples",
         "decisionPoints": [
           {
-            "question": "Can students identify basic living characteristics (grows, needs food/water)?",
-            "ifYes": "Move to comparing plant and animal needs",
-            "ifNo": "Use more concrete examples like pets vs toys"
+            "question": "Les élèves peuvent-ils identifier les caractéristiques de base du vivant (grandir, avoir besoin d'eau/nourriture)?",
+            "ifYes": "Passer à la comparaison des besoins des plantes et des animaux",
+            "ifNo": "Utiliser des exemples plus concrets comme animaux de compagnie vs jouets"
+          },
+          {
+            "question": "Les élèves comprennent-ils que les êtres vivants bougent et changent?",
+            "ifYes": "Explorer comment les plantes bougent vers la lumière",
+            "ifNo": "Démontrer avec des mouvements corporels et des plantes qui se penchent"
+          },
+          {
+            "question": "Les élèves peuvent-ils expliquer pourquoi quelque chose est vivant?",
+            "ifYes": "Demander de prédire les besoins de nouveaux êtres vivants",
+            "ifNo": "Revenir aux exemples les plus évidents avec plus de support visuel"
           }
         ],
         "movementBreaks": []
@@ -63,14 +75,43 @@
       },
       "realWorldConnection": "Understanding the difference between living pets, plants, and toys or furniture at home",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des objets concrets familiers pour la classification",
+          "Fournir des cartes visuelles avec des exemples clairs vivant/non-vivant",
+          "Permettre le travail en paires avec un partenaire plus expérimenté",
+          "Réduire le nombre d'objets à classer (5-8 au lieu de 10-15)"
+        ],
+        "forAdvanced": [
+          "Demander d'expliquer leurs critères de classification aux autres",
+          "Créer leurs propres catégories plus nuancées (ex: vivant, était vivant, jamais vivant)",
+          "Chercher des exemples plus difficiles à classifier dans la classe",
+          "Enseigner leurs découvertes aux élèves qui ont besoin d'aide"
+        ],
+        "forELL": [
+          "Utiliser des gestes et des actions pour 'vivant' (bouger, grandir)",
+          "Fournir des mots-clés en anglais et français côte à côte",
+          "Encourager l'usage de la langue maternelle pour expliquer les concepts",
+          "Utiliser beaucoup d'images et de supports visuels concrets"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser des supports sensoriels pour explorer les concepts",
+          "Permettre des réponses non-verbales (pointer, dessiner)",
+          "Ajuster le rythme et répéter les concepts clés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut identifier 3-4 objets vivants dans la classe",
+          "L'élève peut expliquer une différence entre vivant et non-vivant",
+          "L'élève participe activement à l'activité de tri",
+          "L'élève utilise le vocabulaire 'vivant' de façon appropriée"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle distinguer une plante d'un objet en plastique?",
+          "Vérification: Utilise-t-il/elle des caractéristiques observables pour justifier?",
+          "Point d'évaluation: Participe-t-il/elle aux discussions de groupe?"
+        ]
       }
     },
     {
@@ -88,8 +129,10 @@
         "duration": 8,
         "activity": "Plant observation - examining classroom plants and discussing what keeps them healthy",
         "materials": [
-          "classroom plants",
-          "magnifying glasses"
+          "plantes de classe (4-5 plantes variées)",
+          "loupes (8-10 loupes)",
+          "arrosoir transparent",
+          "lampe de croissance ou lampe de bureau"
         ],
         "visualSupports": "plant needs poster with sun, water drop, and air symbols",
         "decisionPoints": [],
@@ -99,17 +142,28 @@
         "duration": 27,
         "activity": "hands-on exploration creating plant needs diagrams and observing plant placement near windows",
         "materials": [
-          "plants",
-          "observation sheets",
-          "crayons",
-          "plant care tools"
+          "plantes de classe (4-5 plantes)",
+          "feuilles d'observation (25 feuilles)",
+          "crayons de couleur (ensembles de classe)",
+          "outils de soin des plantes (arrosoirs, vaporisateurs)",
+          "thermomètre simple pour sentir la chaleur du soleil"
         ],
         "visualSupports": "illustrated plant needs chart, before/after plant photos",
         "decisionPoints": [
           {
-            "question": "Do students understand why plants are placed near windows?",
-            "ifYes": "Explore what happens when plants don't get enough light",
-            "ifNo": "Demonstrate by moving plant away from light source"
+            "question": "Les élèves comprennent-ils pourquoi les plantes sont placées près des fenêtres?",
+            "ifYes": "Explorer ce qui arrive quand les plantes n'ont pas assez de lumière",
+            "ifNo": "Démontrer en déplaçant une plante loin de la source de lumière"
+          },
+          {
+            "question": "Les élèves peuvent-ils faire le lien entre l'eau et la croissance des plantes?",
+            "ifYes": "Discuter de la quantité d'eau nécessaire (pas trop, pas trop peu)",
+            "ifNo": "Utiliser une analogie avec leur propre soif et besoin de boire"
+          },
+          {
+            "question": "Les élèves comprennent-ils que les plantes 'respirent' l'air?",
+            "ifYes": "Introduire l'idée que les plantes nettoient l'air pour nous",
+            "ifNo": "Faire des exercices de respiration pour montrer l'importance de l'air"
           }
         ],
         "movementBreaks": []
@@ -128,14 +182,43 @@
       },
       "realWorldConnection": "Understanding why parents water house plants and put them near windows",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des plantes réelles pour observer les besoins concrets",
+          "Fournir des supports visuels simples avec soleil, eau, air illustrés",
+          "Permettre l'exploration tactile des matériaux (terre, eau)",
+          "Simplifier à 2 besoins principaux: eau et lumière"
+        ],
+        "forAdvanced": [
+          "Prédire ce qui arrive sans chaque besoin spécifique",
+          "Comparer différents types de plantes et leurs besoins",
+          "Créer un guide de soins pour différentes plantes de classe",
+          "Expliquer pourquoi chaque besoin est important"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'eau' (verser), 'soleil' (rayons), 'air' (souffler)",
+          "Associer chaque mot français à un objet concret visible",
+          "Permettre l'usage de dessins pour expliquer les besoins",
+          "Utiliser des cognates anglais-français (air = air)"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser tous les sens pour explorer les besoins des plantes",
+          "Permettre des manipulations sensorielles avec eau et terre",
+          "Ajuster les attentes selon les capacités individuelles"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut nommer 2-3 besoins des plantes",
+          "L'élève peut expliquer pourquoi les plantes sont près des fenêtres",
+          "L'élève participe aux observations de plantes",
+          "L'élève utilise le vocabulaire 'eau', 'soleil', 'air' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle montrer où la plante obtient sa lumière?",
+          "Vérification: Comprend-il/elle que les plantes 'boivent' l'eau?",
+          "Point d'évaluation: Fait-il/elle des connexions avec les plantes à la maison?"
+        ]
       }
     },
     {
@@ -153,8 +236,10 @@
         "duration": 8,
         "activity": "Prediction making - what will happen to plants with and without water?",
         "materials": [
-          "two identical plants",
-          "prediction sheets"
+          "plantes identiques (4 paires pour démonstration et groupes)",
+          "feuilles de prédiction (25 feuilles)",
+          "étiquettes pour identifier les plantes",
+          "calendrier d'observation classe"
         ],
         "visualSupports": "experiment setup diagram showing two plants",
         "decisionPoints": [],
@@ -164,18 +249,29 @@
         "duration": 27,
         "activity": "hands-on science experiment setting up watered and unwatered plant observations",
         "materials": [
-          "identical plants",
-          "water",
-          "measuring cups",
-          "observation journals",
-          "labels"
+          "plantes identiques (8 plantes en 4 paires)",
+          "eau dans arrosoirs transparents",
+          "tasses à mesurer (4 tasses)",
+          "journaux d'observation (25 journaux)",
+          "étiquettes avec mots et images",
+          "bacs de protection pour les plantes"
         ],
         "visualSupports": "step-by-step experiment chart, daily observation tracking sheet",
         "decisionPoints": [
           {
-            "question": "Are students making accurate predictions about plant water needs?",
-            "ifYes": "Have them predict timeline for visible changes",
-            "ifNo": "Guide them with leading questions about thirsty feelings"
+            "question": "Les élèves font-ils des prédictions précises sur les besoins en eau des plantes?",
+            "ifYes": "Demander de prédire le délai pour voir des changements visibles",
+            "ifNo": "Les guider avec des questions sur leurs propres sensations de soif"
+          },
+          {
+            "question": "Les élèves comprennent-ils le concept de comparaison scientifique?",
+            "ifYes": "Introduire l'idée de 'groupe témoin' avec des mots simples",
+            "ifNo": "Utiliser l'analogie de comparer deux amis pour voir qui court plus vite"
+          },
+          {
+            "question": "Les élèves peuvent-ils expliquer ce qu'ils s'attendent à observer?",
+            "ifYes": "Demander de dessiner leurs prédictions avec détails",
+            "ifNo": "Fournir des choix multiples avec images pour leurs prédictions"
           }
         ],
         "movementBreaks": []
@@ -194,14 +290,43 @@
       },
       "realWorldConnection": "Learning why gardens need watering and what happens when plants don't get enough water",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des prédictions simples avec images avant/après",
+          "Fournir des plantes identiques pour comparaison directe",
+          "Permettre le travail en équipes pour partager les observations",
+          "Utiliser des phrases simples pour décrire ce qu'ils voient"
+        ],
+        "forAdvanced": [
+          "Prédire le timeline exact des changements observables",
+          "Suggérer d'autres expériences similaires à tester",
+          "Créer un journal scientifique détaillé avec dessins et notes",
+          "Expliquer les résultats à d'autres groupes"
+        ],
+        "forELL": [
+          "Utiliser des mots simples: 'avec eau', 'sans eau', 'différent'",
+          "Permettre les descriptions en langue maternelle puis traduire",
+          "Utiliser beaucoup de gestes pour 'arroser', 'sécher', 'changer'",
+          "Fournir du vocabulaire visuel avec images et mots"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser différentes façons de montrer les prédictions (dessins, gestes)",
+          "Permettre des observations sensorielles (toucher la terre sèche/humide)",
+          "Ajuster les attentes d'observation selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut faire une prédiction sur l'expérience",
+          "L'élève peut identifier les différences entre les deux plantes",
+          "L'élève participe activement à la mise en place de l'expérience",
+          "L'élève utilise le vocabulaire 'expérience', 'arroser', 'observer'"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle expliquer pourquoi nous avons deux plantes?",
+          "Vérification: Comprend-il/elle que nous testons les effets de l'eau?",
+          "Point d'évaluation: Montre-t-il/elle de la curiosité pour les résultats?"
+        ]
       }
     },
     {
@@ -238,9 +363,19 @@
         "visualSupports": "light experiment setup photos, plant growth comparison charts",
         "decisionPoints": [
           {
-            "question": "Do students notice plants leaning toward light sources?",
-            "ifYes": "Explore why plants move toward light",
-            "ifNo": "Demonstrate with classroom plants near windows"
+            "question": "Les élèves remarquent-ils que les plantes se penchent vers les sources de lumière?",
+            "ifYes": "Explorer pourquoi les plantes se déplacent vers la lumière",
+            "ifNo": "Démontrer avec les plantes de classe près des fenêtres"
+          },
+          {
+            "question": "Les élèves peuvent-ils identifier différentes sources de lumière?",
+            "ifYes": "Comparer la lumière naturelle vs artificielle pour les plantes",
+            "ifNo": "Se concentrer sur le soleil comme source principale de lumière"
+          },
+          {
+            "question": "Les élèves comprennent-ils le lien entre lumière et couleur verte?",
+            "ifYes": "Introduire l'idée que les plantes utilisent la lumière pour rester vertes",
+            "ifNo": "Montrer des plantes pâles dans des endroits sombres vs vertes au soleil"
           }
         ],
         "movementBreaks": []
@@ -259,14 +394,43 @@
       },
       "realWorldConnection": "Understanding why plants lean toward windows and why they grow better outside",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser une lampe de poche pour montrer comment la lumière fonctionne",
+          "Fournir des exemples concrets avec plantes qui se penchent vers les fenêtres",
+          "Permettre l'exploration tactile de la chaleur du soleil vs l'ombre",
+          "Simplifier à 'les plantes aiment la lumière comme nous'"
+        ],
+        "forAdvanced": [
+          "Explorer différents types de lumière (naturelle vs artificielle)",
+          "Prédire comment les plantes réagiraient à différentes quantités de lumière",
+          "Créer un guide des meilleurs endroits pour les plantes dans l'école",
+          "Expliquer pourquoi les feuilles sont vertes et leur rapport à la lumière"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'lumière' (rayons avec les mains)",
+          "Associer 'lumière' et 'light' avec objets réels",
+          "Permettre l'usage de dessins pour montrer la lumière et les plantes",
+          "Utiliser des mots cognates: plante/plant, vert/green"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser tous les sens pour explorer la lumière (chaleur, luminosité)",
+          "Permettre différentes façons de montrer la compréhension",
+          "Ajuster les attentes selon les capacités sensorielles"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut identifier les sources de lumière dans la classe",
+          "L'élève peut expliquer pourquoi les plantes sont près des fenêtres",
+          "L'élève participe aux activités d'exploration de la lumière",
+          "L'élève utilise le vocabulaire 'lumière', 'pousser', 'vert' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle montrer d'où vient la lumière pour les plantes?",
+          "Vérification: Comprend-il/elle que les plantes se penchent vers la lumière?",
+          "Point d'évaluation: Fait-il/elle des connexions avec les plantes à la maison?"
+        ]
       }
     },
     {
@@ -303,9 +467,19 @@
         "visualSupports": "animal habitat pictures, pet care routine chart",
         "decisionPoints": [
           {
-            "question": "Can students connect animal needs to plant needs they already learned?",
-            "ifYes": "Create Venn diagram comparing plant and animal needs",
-            "ifNo": "Focus on most obvious needs like food and water first"
+            "question": "Les élèves peuvent-ils connecter les besoins des animaux aux besoins des plantes déjà appris?",
+            "ifYes": "Créer un diagramme de Venn comparant les besoins des plantes et animaux",
+            "ifNo": "Se concentrer sur les besoins les plus évidents comme nourriture et eau d'abord"
+          },
+          {
+            "question": "Les élèves comprennent-ils le concept d'abri et de protection?",
+            "ifYes": "Explorer différents types d'abris pour différents animaux",
+            "ifNo": "Utiliser l'analogie avec leur propre maison comme protection"
+          },
+          {
+            "question": "Les élèves peuvent-ils expliquer pourquoi les animaux ont ces besoins?",
+            "ifYes": "Discuter de ce qui arrive quand un besoin n'est pas satisfait",
+            "ifNo": "Utiliser des exemples concrets d'animaux affamés, assoiffés, ou froids"
           }
         ],
         "movementBreaks": []
@@ -324,14 +498,43 @@
       },
       "realWorldConnection": "Understanding why pets need food bowls, water dishes, and safe places to sleep",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des animaux de compagnie familiers pour exemples concrets",
+          "Fournir des images claires des besoins de base (nourriture, eau, abri)",
+          "Permettre le partage d'expériences personnelles avec les animaux",
+          "Simplifier aux 3 besoins principaux: manger, boire, dormir"
+        ],
+        "forAdvanced": [
+          "Comparer les besoins de différents types d'animaux (chat vs oiseau)",
+          "Prédire les besoins d'animaux qu'ils n'ont jamais vus",
+          "Créer un guide de soins pour différents animaux domestiques",
+          "Expliquer pourquoi certains besoins sont plus importants que d'autres"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'manger', 'boire', 'dormir', 'protection'",
+          "Associer chaque besoin à un objet réel (bol, eau, lit)",
+          "Permettre l'usage d'expériences avec animaux en langue maternelle",
+          "Utiliser cognates: animal/animal, protection/protection"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser des supports sensoriels (textures, sons d'animaux)",
+          "Permettre différentes façons d'exprimer la compréhension",
+          "Ajuster selon les expériences personnelles avec les animaux"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut nommer 3-4 besoins des animaux",
+          "L'élève peut faire des connexions avec les soins aux animaux domestiques",
+          "L'élève participe aux activités de tri des besoins",
+          "L'élève utilise le vocabulaire 'nourriture', 'abri', 'protection' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle expliquer pourquoi les animaux ont besoin d'un abri?",
+          "Vérification: Comprend-il/elle que les animaux ont soif comme nous?",
+          "Point d'évaluation: Fait-il/elle le lien avec le soin des animaux de compagnie?"
+        ]
       }
     },
     {
@@ -367,9 +570,9 @@
         "visualSupports": "animal life cycle posters, before and after growth photos",
         "decisionPoints": [
           {
-            "question": "Do students understand that baby animals need extra protection?",
-            "ifYes": "Explore how parents care for babies differently than adults",
-            "ifNo": "Compare to how they needed more care when they were babies"
+            "question": "Les élèves comprennent-ils que les bébés animaux ont besoin de protection supplémentaire?",
+            "ifYes": "Explorer comment les parents soignent les bébés différemment des adultes",
+            "ifNo": "Comparer à comment ils avaient besoin de plus de soins quand ils étaient bébés"
           }
         ],
         "movementBreaks": []
@@ -388,14 +591,43 @@
       },
       "realWorldConnection": "Connecting to students' own growth and observing how pets or farm animals change",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des photos d'animaux bébés familiers (chatons, chiots, poussins)",
+          "Fournir des sequences simples de 2-3 étapes de croissance",
+          "Permettre l'usage d'expériences personnelles de croissance",
+          "Simplifier à 'les bébés deviennent grands comme vous'"
+        ],
+        "forAdvanced": [
+          "Comparer les vitesses de croissance de différents animaux",
+          "Prédire combien de temps prend la croissance pour différentes espèces",
+          "Créer un timeline détaillé de croissance animale",
+          "Expliquer pourquoi les bébés animaux ont besoin de soins spéciaux"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'petit', 'grandir', 'bébé', 'adulte'",
+          "Associer à leurs propres photos de bébé/maintenant",
+          "Permettre descriptions en langue maternelle puis traduire",
+          "Utiliser cognates: bébé/baby, adulte/adult, animal/animal"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser supports visuels et tactiles pour explorer les concepts",
+          "Permettre différentes façons de montrer la compréhension",
+          "Ajuster selon les expériences personnelles de l'élève"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut identifier des animaux bébés vs adultes",
+          "L'élève peut expliquer que les animaux grandissent avec le temps",
+          "L'élève participe aux activités de séquençage de croissance",
+          "L'élève utilise le vocabulaire 'bébé', 'adulte', 'grandir' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle mettre en ordre les étapes de croissance d'un animal?",
+          "Vérification: Comprend-il/elle que tous les bébés ont besoin de protection?",
+          "Point d'évaluation: Fait-il/elle le lien avec sa propre croissance?"
+        ]
       }
     },
     {
@@ -454,14 +686,43 @@
       },
       "realWorldConnection": "Learning responsibility by helping care for plants at home or in the garden",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des étapes visuelles simples pour soins des plantes",
+          "Utiliser de petits arrosoirs faciles à manipuler",
+          "Permettre le travail en équipes pour partager les tâches",
+          "Se concentrer sur une tâche à la fois (arroser OU positionner)"
+        ],
+        "forAdvanced": [
+          "Créer un calendrier de soins pour toute la classe",
+          "Surveiller et ajuster les soins selon la réaction des plantes",
+          "Enseigner les techniques de soins à d'autres élèves",
+          "Rechercher les besoins spécifiques de différents types de plantes"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'arroser', 'tourner', 'nettoyer les feuilles'",
+          "Associer chaque action à un objet concret et réel",
+          "Permettre l'usage du vocabulaire de soins en langue maternelle",
+          "Utiliser des images séquentielles pour les étapes"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser des outils adaptés pour manipulation facile",
+          "Permettre différentes façons de participer aux soins",
+          "Ajuster les attentes selon les capacités motrices"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut démontrer comment arroser une plante correctement",
+          "L'élève peut expliquer où placer une plante pour la lumière",
+          "L'élève participe activement aux soins quotidiens",
+          "L'élève utilise le vocabulaire 'prendre soin', 'soigner', 'responsabilité'"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle reconnaître quand une plante a besoin d'eau?",
+          "Vérification: Montre-t-il/elle de la responsabilité envers sa plante?",
+          "Point d'évaluation: S'engage-t-il/elle dans les soins réguliers?"
+        ]
       }
     },
     {
@@ -520,14 +781,43 @@
       },
       "realWorldConnection": "Understanding how to safely help birds, pets, and other animals in their community",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur des actions simples et sécuritaires (mangeoire pour oiseaux)",
+          "Fournir des étapes visuelles claires pour créer la mangeoire",
+          "Permettre l'aide d'un partenaire pour les tâches manuelles",
+          "Simplifier à 'aider les animaux sans les toucher'"
+        ],
+        "forAdvanced": [
+          "Rechercher différents types de nourriture pour oiseaux locaux",
+          "Créer un guide de sécurité pour interagir avec les animaux",
+          "Planifier des projets d'aide aux animaux pour la communauté",
+          "Expliquer pourquoi certains animaux ne doivent pas être touchés"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'aider', 'nourrir', 'sécuritaire'",
+          "Associer chaque action d'aide à un objet concret",
+          "Permettre le partage d'expériences d'aide aux animaux en langue maternelle",
+          "Utiliser des images pour montrer des actions sécuritaires vs dangereuses"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser des matériaux sensoriels pour créer la mangeoire",
+          "Permettre différentes façons de participer au projet",
+          "Ajuster selon les expériences personnelles avec les animaux"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut créer une mangeoire pour oiseaux",
+          "L'élève peut expliquer des façons sécuritaires d'aider les animaux",
+          "L'élève participe aux discussions sur la sécurité animale",
+          "L'élève utilise le vocabulaire 'aider', 'nourrir', 'sécuritaire' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Comprend-il/elle pourquoi on ne touche pas les animaux sauvages?",
+          "Vérification: Peut-il/elle suggerer des façons d'aider les animaux?",
+          "Point d'évaluation: Montre-t-il/elle de la compassion envers les animaux?"
+        ]
       }
     },
     {
@@ -588,14 +878,43 @@
       },
       "realWorldConnection": "Learning where food comes from and how gardens help provide for living things",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des graines grosses et faciles à manipuler (haricots, tournesol)",
+          "Fournir des étapes visuelles simples pour planter",
+          "Permettre l'aide d'un partenaire pour les tâches de plantation",
+          "Se concentrer sur 'mettre la graine dans la terre'"
+        ],
+        "forAdvanced": [
+          "Rechercher les meilleures conditions pour différents types de graines",
+          "Prédire et documenter les temps de germination",
+          "Créer un plan de jardin organisé pour la classe",
+          "Expliquer le cycle de la graine à la plante à la graine"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'planter', 'creuser', 'couvrir'",
+          "Associer chaque étape à des actions concrètes",
+          "Permettre l'usage d'expériences de jardinage en langue maternelle",
+          "Utiliser des séquences visuelles pour les étapes"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser des outils de jardinage adaptés",
+          "Permettre différentes façons de participer à la plantation",
+          "Ajuster selon les capacités motrices fines"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut planter une graine correctement",
+          "L'élève peut expliquer ce dont une graine a besoin pour pousser",
+          "L'élève participe activement à la création du jardin de classe",
+          "L'élève utilise le vocabulaire 'graines', 'planter', 'jardin' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Comprend-il/elle que les graines deviennent des plantes?",
+          "Vérification: Peut-il/elle prédire ce qui va pousser de sa graine?",
+          "Point d'évaluation: Montre-t-il/elle de l'enthousiasme pour le jardinage?"
+        ]
       }
     },
     {
@@ -655,14 +974,43 @@
       },
       "realWorldConnection": "Understanding how scientists track changes in living things over time",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des unités de mesure non-standards (trombones, blocs)",
+          "Fournir des règles visuelles avec couleurs et chiffres gros",
+          "Permettre le travail en équipes pour les mesures",
+          "Se concentrer sur 'plus grand' vs 'plus petit' plutôt que nombres exacts"
+        ],
+        "forAdvanced": [
+          "Utiliser des unités standards (centimètres) pour mesures précises",
+          "Créer des graphiques de croissance avec le temps",
+          "Comparer les taux de croissance entre différentes plantes",
+          "Prédire la croissance future basée sur les données"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'mesurer', 'grandir', 'noter'",
+          "Associer les nombres à des quantités visuelles concrètes",
+          "Permettre l'usage de la langue maternelle pour décrire les observations",
+          "Utiliser plus de dessins que de mots pour enregistrer"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser des outils de mesure adaptés et faciles à manipuler",
+          "Permettre différentes façons d'enregistrer les observations",
+          "Ajuster les attentes de précision selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut mesurer la hauteur d'une plante avec un outil",
+          "L'élève peut identifier si une plante a grandi depuis la dernière fois",
+          "L'élève participe aux activités de mesure et enregistrement",
+          "L'élève utilise le vocabulaire 'mesurer', 'croissance', 'noter' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle utiliser un outil de mesure correctement?",
+          "Vérification: Remarque-t-il/elle les changements dans sa plante?",
+          "Point d'évaluation: Peut-il/elle expliquer ce qu'il/elle a observé?"
+        ]
       }
     },
     {
@@ -720,14 +1068,43 @@
       },
       "realWorldConnection": "Understanding why families provide food, water, homes, and fresh air for health",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur les besoins les plus évidents (manger, boire, dormir)",
+          "Utiliser des exemples personnels de leur propre vie quotidienne",
+          "Fournir un diagramme simple avec images des besoins de base",
+          "Permettre les connexions une à la fois plutôt que multiples"
+        ],
+        "forAdvanced": [
+          "Créer un diagramme complexe comparant tous les types de vivants",
+          "Expliquer pourquoi certains besoins sont universels",
+          "Rechercher des besoins spéciaux pour différents groupes d'âge",
+          "Développer des théories sur l'évolution des besoins"
+        ],
+        "forELL": [
+          "Utiliser des gestes universels pour besoins de base",
+          "Associer chaque besoin humain à des objets de la vie quotidienne",
+          "Permettre les comparaisons avec la culture familiale",
+          "Utiliser des mots cognates: humain/human, comparer/compare"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser des supports personnalisés pour faire les connexions",
+          "Permettre différentes façons d'exprimer les comparaisons",
+          "Ajuster selon les expériences personnelles de l'élève"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut nommer 3-4 besoins humains de base",
+          "L'élève peut faire des connexions entre besoins humains et animaux/plantes",
+          "L'élève participe aux discussions de comparaison",
+          "L'élève utilise le vocabulaire 'humains', 'besoins', 'comparer' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Comprend-il/elle que les humains sont aussi des êtres vivants?",
+          "Vérification: Peut-il/elle identifier des similitudes entre tous les vivants?",
+          "Point d'évaluation: Fait-il/elle des connexions personnelles pertinentes?"
+        ]
       }
     },
     {
@@ -788,16 +1165,45 @@
       },
       "realWorldConnection": "Understanding how gardens, parks, and natural areas provide what animals need",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des matériaux naturels simples et disponibles",
+          "Fournir un modèle ou exemple d'habitat à suivre",
+          "Permettre le travail en équipes pour partager les idées",
+          "Se concentrer sur un besoin à la fois (nourriture OU abri)"
+        ],
+        "forAdvanced": [
+          "Rechercher les besoins spécifiques de créatures locales",
+          "Créer des habitats pour différents types d'animaux",
+          "Planifier l'entretien à long terme de leurs habitats",
+          "Expliquer l'écologie de base des relations habitat-animal"
+        ],
+        "forELL": [
+          "Utiliser des gestes pour 'créer', 'construire', 'habitat'",
+          "Associer chaque élément d'habitat à un objet concret",
+          "Permettre l'usage d'expériences de nature en langue maternelle",
+          "Utiliser des images séquentielles pour les étapes de construction"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser des matériaux sensoriels variés",
+          "Permettre différentes façons de participer à la création",
+          "Ajuster selon les capacités motrices et créatives"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut créer un habitat simple avec matériaux naturels",
+          "L'élève peut expliquer comment son habitat répond aux besoins des créatures",
+          "L'élève participe activement à la construction d'habitat",
+          "L'élève utilise le vocabulaire 'habitat', 'créer', 'survivre' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Comprend-il/elle qu'un habitat doit fournir tout ce dont l'animal a besoin?",
+          "Vérification: Peut-il/elle justifier ses choix de matériaux et design?",
+          "Point d'évaluation: Montre-t-il/elle de la créativité et de la réflexion?"
+        ]
       }
-    },
+    }
     {
       "lessonNumber": 13,
       "lessonType": "core",
@@ -854,14 +1260,43 @@
       },
       "realWorldConnection": "Learning from gardening experiences and understanding what makes plants thrive",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des comparaisons visuelles simples (avant/après photos)",
+          "Se concentrer sur des observations évidentes (vert vs jaune, grand vs petit)",
+          "Permettre l'expression orale plutôt qu'écrite pour les conclusions",
+          "Fournir des choix multiples pour les évaluations"
+        ],
+        "forAdvanced": [
+          "Analyser les données de croissance pour identifier les tendances",
+          "Formuler des hypothèses pour améliorer les soins futurs",
+          "Créer un rapport détaillé avec recommandations",
+          "Enseigner leurs découvertes à d'autres classes"
+        ],
+        "forELL": [
+          "Utiliser des mots simples pour décrire le succès: 'bon', 'mauvais', 'mieux'",
+          "Permettre l'usage de la langue maternelle pour expliquer les observations",
+          "Utiliser beaucoup de supports visuels pour les évaluations",
+          "Encourager les gestes pour montrer ce qui a bien ou mal fonctionné"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Utiliser différentes façons d'exprimer les évaluations",
+          "Permettre des observations sensorielles pour évaluer la santé des plantes",
+          "Ajuster les attentes d'évaluation selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut comparer l'état actuel de sa plante à l'état initial",
+          "L'élève peut identifier au moins un facteur qui a aidé ou nui à sa plante",
+          "L'élève participe aux discussions d'évaluation et de réflexion",
+          "L'élève utilise le vocabulaire 'évaluer', 'succès', 'améliorer' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle expliquer ce qui a fait que sa plante a bien ou mal poussé?",
+          "Vérification: Comprend-il/elle le lien entre les soins et les résultats?",
+          "Point d'évaluation: Peut-il/elle suggérer des améliorations pour l'avenir?"
+        ]
       }
     },
     {
@@ -922,14 +1357,43 @@
       },
       "realWorldConnection": "Sharing knowledge about caring for living things with family and community",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des modèles ou gabarits pour organiser leur présentation",
+          "Permettre l'usage de beaucoup d'images plutôt que de mots",
+          "Offrir des phrases d'amorce pour les aider à commencer",
+          "Permettre les présentations en petits groupes plutôt qu'individuelles"
+        ],
+        "forAdvanced": [
+          "Créer une présentation détaillée avec evidence scientifique",
+          "Inclure des recommandations pour d'autres élèves ou classes",
+          "Organiser et animer la célébration d'apprentissage",
+          "Créer des matériaux pédagogiques pour partager les connaissances"
+        ],
+        "forELL": [
+          "Permettre l'usage d'un mélange de langues pour la présentation",
+          "Utiliser beaucoup de supports visuels et d'objets concrets",
+          "Encourager les gestes et démonstrations physiques",
+          "Fournir du vocabulaire de présentation en français et anglais"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels du plan éducatif",
+          "Permettre différentes formes de présentation (oral, visuel, tactile)",
+          "Utiliser des technologies d'aide si appropriées",
+          "Ajuster les attentes de présentation selon les capacités de communication"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut présenter au moins une découverte importante sur les êtres vivants",
+          "L'élève peut montrer ou expliquer comment prendre soin d'un être vivant",
+          "L'élève participe activement à la célébration d'apprentissage",
+          "L'élève utilise le vocabulaire 'célébrer', 'présenter', 'apprendre' correctement"
+        ],
+        "checkpoints": [
+          "Moment clé: Peut-il/elle expliquer ce qui l'a le plus surpris dans son apprentissage?",
+          "Vérification: Montre-t-il/elle de la fierté dans ses accomplissements?",
+          "Point d'évaluation: Est-il/elle capable de partager ses connaissances avec confiance?"
+        ]
       }
     },
     {
