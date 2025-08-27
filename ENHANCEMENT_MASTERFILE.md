@@ -44,7 +44,7 @@
 | nos-traditions-hivernales | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | communication-orale | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | jeunes-auteurs-creatifs | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| poesie-et-rythmes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| poesie-et-rythmes | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | lecture-guidee-avancee | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | notre-monde-en-francais | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | celebrations-francophones | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
