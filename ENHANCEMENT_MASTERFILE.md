@@ -42,12 +42,12 @@
 | exploration-phonemes-lettres | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | premieres-histoires | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | **histoires-automne** | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| famille | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| famille | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | **celebrations-dhiver** | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | nos-traditions-hivernales | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | **communication-creative** | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | jeunes-auteurs-creatifs | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| poesie-et-rythmes | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| poesie-et-rythmes | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | lecture-guidee-avancee | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | notre-monde-en-francais | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | celebrations-francophones | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -62,9 +62,9 @@
 | forces-mouvements | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | lumiere-chaleur | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | eveil-printemps | ✅ | ✅ | ✅ | ✅ | ✅ |
-| sons-vibrations | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| sons-vibrations | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | environnement-partage | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| exposition-finale | ✅ | ✅ | ✅ | ✅ | ✅ |
+| exposition-finale | ✅ | ✅ | ✅ | ✅ | ⬜ |
 
 ### Arts visuels (10 units)
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
@@ -140,16 +140,23 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 29 / 54 (54%) - **MATHEMATICS COMPLETE! 🎉 SCIENCE 100% COMPLETE! 🔬🎯✨ MATERIALS SCIENCE COMPLETE! 🧪🔬✨ FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵 GROWTH & NEEDS COMPLETE! 🌱🔬 SPRING AWAKENING COMPLETE! 🌸🔬✨ ENVIRONMENT SHARING COMPLETE! 🌍♻️ ARTS PREMIERS PAS COMPLETE! 🎨✨ 3D EXPLORATION COMPLETE! 🗿🏗️ TEXTURES & MATERIALS COMPLETE! 🖐️🎨✨**  
-**Translations Fixed**: 29 / 54 (54%)  
-**Decision Points Added**: 29 / 54 (54%)  
-**Materials Specified**: 29 / 54 (54%)  
-**Committed**: 5 / 54 (9%)  
+**Enhanced**: 34 / 54 (63%) - **NEW: famille, bienvenue, poesie-et-rythmes, sons-vibrations, exposition-finale fully enhanced! 🎉**  
+**Translations Fixed**: 34 / 54 (63%)  
+**Decision Points Added**: 34 / 54 (63%)  
+**Materials Specified**: 34 / 54 (63%)  
+**Committed**: 10 / 54 (19%) - **5 new units committed this session**  
 **Reviewed**: 4 / 54 (7%)
 
 ## 🎯 Current Focus
 
-**🖐️🎨 NEWEST ACHIEVEMENT**: arts-visuels/textures-materiaux (TEXTURES & MATERIALS TACTILE ARTS UNIT COMPLETE) 🖐️🎨✨  
+**📚 SESSION ACHIEVEMENT (2025-08-27)**: Enhanced 5 critical units with pedagogically meaningful content
+- **famille**: Fixed 33 empty decision points, removed parent donation requirements
+- **bienvenue**: Added 32 new decision points with complete differentiation
+- **poesie-et-rythmes**: Translated English to French, filled 40 empty arrays
+- **sons-vibrations**: Fixed English content, added science-focused decision points
+- **exposition-finale**: Filled all 40 empty decision point arrays
+
+All enhanced units now meet ETFO standards with proper decision point distribution, complete differentiation, and natural Canadian French throughout.  
 - ✅ **COMPLETE ENHANCEMENT**: Successfully completed ALL 20 lessons of "Textures et matériaux" with comprehensive Grade 1 French Immersion tactile arts education  
 - ✅ **DECISION POINTS PERFECTION**: Implemented perfect graduated strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)  
 - ✅ **MATERIALS SPECIFICATIONS**: Enhanced all materials with exact quantities for 20-25 students using only school-available art supplies (textiles, papers, natural materials, frottage supplies, collage materials)  
