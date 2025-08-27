@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Exploration des formes géométriques 2D",
   "subject": "Mathématiques",
   "grade": "1",
   "totalLessons": 20,
@@ -20,43 +20,84 @@
       "opening": {
         "duration": 8,
         "activity": "Chantez ensemble la chanson 'Rondes, carrées, triangles' en montrant des formes avec les mains",
-        "materials": [
-          "tableau d'affichage",
-          "formes colorées en carton"
+        "materials": {
+          "required": [
+            {
+              "item": "Formes géométriques en carton coloré",
+              "quantity": "1 jeu de 12 formes (4 cercles, 4 carrés, 4 triangles) format 20x20 cm",
+              "source": "Matériel pédagogique - armoire mathématiques",
+              "preparation": "Plastifier si nécessaire, préparer pour affichage au tableau",
+              "alternatives": ["Découper dans carton coloré", "Formes magnétiques"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau d'affichage magnétique",
+              "quantity": "1 pour classe",
+              "purpose": "Support pour affichage des formes durant la démonstration"
+            }
+          ]
+        },
+        "visualSupports": "Grandes formes colorées affichées au tableau avec contrastes colorés pour faciliter la reconnaissance",
+        "decisionPoints": [
+          "Si les élèves confondent les noms des formes → utiliser des gestes spécifiques (cercle = mouvement rond, carré = tracer les angles)",
+          "Si manque d'engagement pendant la chanson → permettre aux élèves de tenir des petites formes pendant qu'ils chantent"
         ],
-        "visualSupports": "Grandes formes colorées affichées au tableau",
-        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Promenade dans la classe pour chercher et toucher des objets de formes différentes",
-        "materials": [
-          "blocs géométriques en bois",
-          "étiquettes autocollantes",
-          "panier de collecte"
-        ],
-        "visualSupports": "Objets réels de la classe (horloge, tableau, panneau)",
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs géométriques en bois",
+              "quantity": "1 jeu de 60 pièces (20 cercles, 20 carrés, 20 triangles)",
+              "source": "Kit manipulatifs mathématiques - armoire B",
+              "preparation": "Organiser par forme dans bacs étiquetés",
+              "alternatives": ["Formes en plastique", "Formes découpées en carton épais"]
+            },
+            {
+              "item": "Étiquettes autocollantes rondes",
+              "quantity": "30 étiquettes (10 par couleur - rouge, bleu, vert)",
+              "source": "Fournitures de bureau - tiroir étiquettes",
+              "preparation": "Préparer 1 couleur par forme pour système de tri",
+              "alternatives": ["Papier coloré et colle", "Marqueurs colorés"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Paniers de collecte en plastique",
+              "quantity": "3 paniers (1 par forme)",
+              "purpose": "Organisation des objets trouvés pendant l'exploration"
+            }
+          ]
+        },
+        "visualSupports": "Tableau de référence avec photos d'objets réels de la classe étiquetés par forme (horloge-cercle, tableau-carré, panneau-triangle)",
         "decisionPoints": [
-          {
-            "question": "Les élèves reconnaissent-ils facilement les formes?",
-            "ifYes": "Encouragez-les à trouver des formes plus petites ou cachées",
-            "ifNo": "Montrez clairement 2-3 exemples évidents avant de continuer"
-          },
-          {
-            "question": "Ont-ils besoin de plus d'exemples concrets?",
-            "ifYes": "Sortez plus de blocs géométriques pour comparaison",
-            "ifNo": "Passez à l'activité de tri par formes"
-          }
+          "Si les élèves ont de la difficulté à identifier les formes dans les objets réels → commencer par des formes parfaites en plastique, puis progresser vers les objets",
+          "Si trop d'excitation pendant la promenade → diviser la classe en groupes de 5 avec stations spécifiques",
+          "Si confusion entre les formes similaires → utiliser le vocabulaire tactile (le carré a des coins pointus, le cercle est tout rond)"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Cercle de partage : chaque élève montre un objet trouvé et nomme sa forme",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Tapis de rassemblement circulaire",
+              "quantity": "1 pour classe",
+              "purpose": "Créer l'espace de partage et modéliser la forme du cercle"
+            }
+          ]
+        },
+        "visualSupports": "Cercle marqué au sol ou tapis de rassemblement, affichage des formes trouvées par catégorie",
+        "decisionPoints": [
+          "Si les élèves sont timides pour partager → commencer par montrer l'objet seulement, puis encourager le nom de la forme"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -65,14 +106,43 @@
       },
       "realWorldConnection": "Identifier les formes sur les objets de la classe : horloge ronde, tableau carré, panneau triangulaire",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur seulement 2 formes (cercle et carré) au lieu de 3",
+          "Utiliser des formes très grandes et contrastantes pour faciliter la reconnaissance",
+          "Permettre l'utilisation d'objets personnels familiers (montre, boîte à lunch) comme références",
+          "Offrir plus de temps de manipulation avant la promenade de la classe"
+        ],
+        "forAdvanced": [
+          "Introduire le rectangle et l'ovale comme formes supplémentaires",
+          "Demander de compter combien d'objets de chaque forme ils trouvent",
+          "Encourager à créer des modèles ou agencements avec les formes trouvées",
+          "Demander d'expliquer pourquoi un objet appartient à une catégorie de forme"
+        ],
+        "forELL": [
+          "Associer chaque forme à un mot et une image constante (cercle-soleil, carré-boîte, triangle-chapeau)",
+          "Utiliser gestes et mouvements exagérés pour accompagner chaque nom de forme",
+          "Permettre l'usage de la langue première pour identifier initialement, puis répéter en français",
+          "Fournir des cartes visuelles avec le nom de la forme écrit clairement"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins sensoriels (volume de la chanson, éclairage, espace personnel)",
+          "Offrir des alternatives de participation (pointer au lieu de nommer, toucher au lieu de tenir)",
+          "Utiliser des supports tactiles pour les formes (textures différentes, relief)",
+          "Ajuster la durée de l'activité avec pauses fréquentes selon le besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève nomme correctement cercle, carré et triangle",
+          "Élève identifie les formes dans des objets réels de l'environnement",
+          "Élève participe activement à la promenade d'exploration",
+          "Élève utilise le vocabulaire géométrique en contexte (forme, rond, carré)"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : vérifier si l'élève suit les gestes et mouvements de la chanson",
+          "Pendant l'exploration : observer la capacité à associer objets et formes géométriques",
+          "Pendant la fermeture : noter la participation au cercle de partage et usage du vocabulaire"
+        ]
       }
     },
     {
@@ -89,43 +159,98 @@
       "opening": {
         "duration": 8,
         "activity": "Jeu de devinettes tactiles : toucher des formes cachées dans un sac",
-        "materials": [
-          "sac en tissu opaque",
-          "formes en bois texturées"
+        "materials": {
+          "required": [
+            {
+              "item": "Sac en tissu opaque (type taie d'oreiller)",
+              "quantity": "2-3 sacs pour permettre rotation par groupes",
+              "source": "Matériel de classe - boîtes sensorielles",
+              "preparation": "Vérifier que les sacs sont propres et assez grands pour manipulation",
+              "alternatives": ["Boîtes avec couvercles", "Sacs en papier brun épais"]
+            },
+            {
+              "item": "Formes géométriques en bois texturées",
+              "quantity": "12 formes (4 cercles, 4 carrés, 4 triangles) d'au moins 8 cm",
+              "source": "Kit manipulatifs sensoriels - armoire C",
+              "preparation": "Nettoyer et vérifier l'absence d'échards ou bords tranchants",
+              "alternatives": ["Formes en plastique épais", "Formes en mousse dense"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Formes géantes en mousse de démonstration",
+              "quantity": "1 jeu (3 formes de 30 cm)",
+              "purpose": "Modélisation visuelle avant l'exploration tactile"
+            }
+          ]
+        },
+        "visualSupports": "Formes géantes en mousse affichées au tableau pour référence, images des gestes tactiles (comment explorer avec les doigts)",
+        "decisionPoints": [
+          "Si les élèves sont anxieux de mettre la main dans le sac → démontrer d'abord avec des objets familiers et rassurer sur le contenu",
+          "Si les formes sont trop difficiles à distinguer au toucher → utiliser d'abord des formes très contrastées (cercle vs carré seulement)"
         ],
-        "visualSupports": "Formes géantes en mousse pour démonstration",
-        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Station de manipulation avec formes rugueuses, lisses, épaisses pour exploration sensorielle",
-        "materials": [
-          "formes en papier sablé",
-          "formes en velours",
-          "formes en plastique"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Formes en papier sablé (texture rugueuse)",
+              "quantity": "18 formes (6 cercles, 6 carrés, 6 triangles) de 15 cm",
+              "source": "Fournitures artistiques - papier texturé ou fabriquer avec papier sablé fin",
+              "preparation": "Découper et coller sur carton pour rigidité",
+              "alternatives": ["Papier crépon froissé et collé", "Formes recouvertes de sable collé"]
+            },
+            {
+              "item": "Formes en velours (texture douce)",
+              "quantity": "18 formes identiques aux papiers sablés",
+              "source": "Fournitures de couture ou tissu recyclé",
+              "preparation": "Découper et coller sur carton, vérifier que les bords ne s'effilochent pas",
+              "alternatives": ["Feutre épais", "Coton ouate collé"]
+            },
+            {
+              "item": "Formes en plastique lisse (texture standard)",
+              "quantity": "18 formes identiques pour comparaison",
+              "source": "Kit manipulatifs standard - armoire A",
+              "preparation": "Nettoyer et organiser par texture dans bacs séparés",
+              "alternatives": ["Formes en carton plastifié", "Formes en bois lisse"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Bacs de tri par texture",
+              "quantity": "3 bacs étiquetés (rugueux, doux, lisse)",
+              "purpose": "Organisation des formes par station tactile"
+            }
+          ]
+        },
         "visualSupports": "Formes tactiles de différentes textures et tailles",
         "decisionPoints": [
-          {
-            "question": "Les élèves peuvent-ils distinguer les formes les yeux fermés?",
-            "ifYes": "Ajoutez des formes plus similaires pour augmenter le défi",
-            "ifNo": "Permettez-leur de regarder d'abord, puis recommencez les yeux fermés"
-          },
-          {
-            "question": "Ont-ils besoin de formes plus grandes à manipuler?",
-            "ifYes": "Utilisez les formes géantes en mousse",
-            "ifNo": "Continuez avec les formes de taille standard"
-          }
+          "Si les élèves ont de la difficulté à distinguer les textures → exagérer les contrastes (papier très rugueux vs velours très doux)",
+          "Si surcharge sensorielle avec trop de textures → limiter à 2 textures (rugueux et doux) pour cette leçon",
+          "Si les élèves veulent seulement toucher et pas identifier → respecter le besoin d'exploration libre avant la catégorisation"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Partage des découvertes : les élèves décrivent ce qu'ils ont ressenti en touchant chaque forme",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Tableau des mots tactiles",
+              "quantity": "1 affichage avec vocabulaire (rugueux, doux, lisse, pointu, rond)",
+              "purpose": "Support visuel pour enrichir le vocabulaire descriptif"
+            }
+          ]
+        },
+        "visualSupports": "Exemples des trois textures affichés au tableau, mots de vocabulaire tactile avec images",
+        "decisionPoints": [
+          "Si les élèves manquent de vocabulaire pour décrire → modéliser avec des phrases simples ('C'est rugueux comme...')"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -134,14 +259,43 @@
       },
       "realWorldConnection": "Sentir les formes des objets dans un sac mystère, comme les blocs de construction",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement deux formes très différentes (cercle et carré)",
+          "Utiliser des formes très grandes pour faciliter la manipulation tactile",
+          "Permettre de regarder d'abord les formes avant l'exploration tactile",
+          "Offrir plus de temps de manipulation libre sans pression d'identification"
+        ],
+        "forAdvanced": [
+          "Ajouter le rectangle et l'ovale aux trois formes de base",
+          "Défier avec les yeux bandés pour intensifier l'expérience tactile",
+          "Demander de décrire les différences entre les textures avec vocabulaire précis",
+          "Encourager à créer des catégories (formes douces vs rugueuses)"
+        ],
+        "forELL": [
+          "Associer chaque texture à des objets familiers (rugueux comme l'écorce, doux comme un chat)",
+          "Utiliser des mots tactiles dans la langue première puis traduire en français",
+          "Fournir un tableau visuel avec les mots de texture et des images",
+          "Permettre l'expression avec gestes si les mots manquent"
+        ],
+        "forIEP": [
+          "Respecter les sensibilités tactiles (proposer des alternatives comme pointer au lieu de toucher)",
+          "Adapter les matériaux selon les besoins sensoriels (éviter certaines textures)",
+          "Modifier la durée d'exposition tactile selon la tolérance sensorielle",
+          "Offrir des pauses sensorielles si nécessaire pendant l'activité"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève explore les formes avec ses mains de manière appropriée",
+          "Élève distingue entre les différentes textures des formes",
+          "Élève identifie les formes géométriques par le toucher seulement",
+          "Élève utilise le vocabulaire tactile pour décrire ses découvertes"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : observer le confort avec l'exploration tactile dans le sac",
+          "Pendant l'exploration : vérifier la capacité à distinguer formes et textures",
+          "Pendant la fermeture : évaluer l'usage du vocabulaire descriptif lors du partage"
+        ]
       }
     },
     {
@@ -158,34 +312,63 @@
       "opening": {
         "duration": 8,
         "activity": "Démonstration de traçage de formes dans l'air avec de grands mouvements de bras",
-        "materials": [
-          "bacs à sable individuels",
-          "gabarits de formes"
+        "materials": {
+          "required": [
+            {
+              "item": "Espace libre pour mouvements",
+              "quantity": "Zone dégagée de 3x3 m devant le tableau",
+              "source": "Réorganiser l'espace classe temporairement",
+              "preparation": "Déplacer chaises et tables pour créer l'espace de démonstration",
+              "alternatives": ["Couloir ou gymnase si classe trop petite"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Rubans ou foulards colorés",
+              "quantity": "25 rubans (1 par élève)",
+              "purpose": "Visualiser les mouvements de traçage dans l'air"
+            }
+          ]
+        },
+        "visualSupports": "Démonstration de l'enseignant traçant les formes en grand dans l'air, flèches directionnelles au tableau pour montrer le sens de traçage",
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté avec les grands mouvements → commencer par tracer dans l'air avec tout le corps, puis diminuer l'amplitude"
         ],
-        "visualSupports": "Enseignant trace les formes dans l'air en grand format",
-        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Traçage libre de formes dans le sable avec les doigts, puis avec des outils",
-        "materials": [
-          "sable de jeu",
-          "bâtonnets de bois",
-          "pâte à modeler"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Sable de jeu fin",
+              "quantity": "5 kg (200g par bac pour 25 élèves)",
+              "source": "Sable de bac à sable ou sable d'aquarium (propre)",
+              "preparation": "Tamiser pour enlever gros débris, répartir dans bacs individuels",
+              "alternatives": ["Farine tout usage", "Sel fin de table", "Semoule fine"]
+            },
+            {
+              "item": "Bâtonnets de bois (type popsicle)",
+              "quantity": "50 bâtonnets (2 par élève)",
+              "source": "Fournitures artistiques - boîte de bricolage",
+              "preparation": "Vérifier l'absence d'échardes, nettoyer si nécessaire",
+              "alternatives": ["Crayons sans mine", "Doigts seulement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Pâte à modeler",
+              "quantity": "25 portions individuelles (50g chacune)",
+              "purpose": "Alternative pour élèves allergiques au sable ou pour extension d'activité"
+            }
+          ]
+        },
         "visualSupports": "Gabarits en carton pour guider le traçage",
         "decisionPoints": [
-          {
-            "question": "Les élèves maîtrisent-ils les mouvements de traçage?",
-            "ifYes": "Encouragez-les à tracer sans gabarit",
-            "ifNo": "Utilisez des gabarits et guidez leur main"
-          },
-          {
-            "question": "Le matériel sensoriel aide-t-il leur apprentissage?",
-            "ifYes": "Continuez avec le sable et ajoutez de la farine",
-            "ifNo": "Passez au traçage sur papier avec crayons gras"
-          }
+          "Si les élèves éparpillent le sable partout → démontrer comment garder les mains au-dessus du bac, utiliser moins de sable",
+          "Si difficulté à tracer des formes reconnaissables → commencer par des lignes droites et courbes simples avant les formes complètes",
+          "Si certains préfèrent utiliser les doigts aux bâtonnets → respecter la préférence sensorielle, les deux méthodes sont valides"
         ],
         "movementBreaks": []
       },
@@ -203,14 +386,43 @@
       },
       "realWorldConnection": "Tracer des formes avec le doigt dans le sable à la plage ou dans la farine",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des gabarits pour guider le traçage au lieu de traçage libre",
+          "Commencer par des formes très grandes (20 cm) avant de réduire la taille",
+          "Permettre l'aide de l'enseignant pour guider la main au début",
+          "Se concentrer sur une seule forme par session d'activité"
+        ],
+        "forAdvanced": [
+          "Défier avec le traçage de formes complexes (pentagone, losange)",
+          "Demander de tracer des formes imbriquées ou des motifs géométriques",
+          "Encourager le traçage de formes très petites avec précision",
+          "Proposer d'écrire les numéros ou lettres dans le sable aussi"
+        ],
+        "forELL": [
+          "Associer chaque mouvement de traçage à des mots d'action simples (rond, droit, coin)",
+          "Utiliser le modélage et l'imitation plutôt que les instructions verbales complexes",
+          "Permettre l'expression dans la langue première pour décrire ce qu'ils font",
+          "Fournir des cartes visuelles montrant la séquence de traçage"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les sensibilités tactiles (remplacer sable par farine si nécessaire)",
+          "Modifier les outils de traçage selon les capacités motrices (gros crayons, outils adaptés)",
+          "Ajuster la durée d'activité selon la capacité d'attention et de concentration",
+          "Offrir des alternatives au traçage (pointer les formes, coller des formes prédécoupées)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève trace des cercles, carrés et triangles reconnaissables dans le sable",
+          "Élève démontre le controle moteur fin pour les mouvements de traçage",
+          "Élève utilise les outils (bâtonnets) de manière appropriée",
+          "Élève nomme les formes qu'il trace avec vocabulaire approprié"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : observer la capacité à suivre les mouvements de traçage dans l'air",
+          "Pendant l'exploration : évaluer la précision du traçage et l'usage des outils",
+          "Pendant la fermeture : vérifier la reconnaissance des formes créées par les pairs"
+        ]
       }
     },
     {
@@ -227,35 +439,70 @@
       "opening": {
         "duration": 8,
         "activity": "Exploration libre des blocs géométriques : manipulation et empilement",
-        "materials": [
-          "blocs géométriques en bois",
-          "blocs en mousse",
-          "tapis de construction"
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs géométriques en bois",
+              "quantity": "150 blocs variés (carrés, triangles, cercles, rectangles) dans bacs organisés",
+              "source": "Kit manipulatifs construction - armoire principale",
+              "preparation": "Organiser par forme et taille dans bacs transparents",
+              "alternatives": ["Blocs en plastique dur", "Formes en carton épais"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tapis de construction individuels",
+              "quantity": "25 tapis antidérapants (50x40 cm)",
+              "purpose": "Définir l'espace de travail et éviter le glissement des blocs"
+            }
+          ]
+        },
+        "visualSupports": "Photos de constructions simples affichées (tour, pont, maison) avec noms des formes utilisées",
+        "decisionPoints": [
+          "Si les élèves se dispersent ou jouent sans objectif → fournir des défis simples comme 'Faites une tour de 5 blocs'"
         ],
-        "visualSupports": "Exemples de constructions simples affichées en photos",
-        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Construction guidée puis libre de tours, ponts et maisons avec des blocs de formes diverses",
-        "materials": [
-          "blocs triangulaires",
-          "blocs carrés",
-          "blocs cylindriques"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs triangulaires de construction",
+              "quantity": "50 blocs (variété de tailles : 20 petits, 20 moyens, 10 grands)",
+              "source": "Kit géométrique - section triangles",
+              "preparation": "Vérifier stabilité et absence de bords tranchants",
+              "alternatives": ["Triangles découpés dans mousse", "Blocs prismes triangulaires"]
+            },
+            {
+              "item": "Blocs carrés de construction",
+              "quantity": "60 blocs (20 petits, 25 moyens, 15 grands)",
+              "source": "Kit géométrique - section carrés",
+              "preparation": "Organiser par taille dans bacs séparés",
+              "alternatives": ["Cubes en bois", "Carrés en carton épais"]
+            },
+            {
+              "item": "Blocs cylindriques (cercles 3D)",
+              "quantity": "40 cylindres (20 petits, 15 moyens, 5 grands)",
+              "source": "Kit formes 3D - section cylindres",
+              "preparation": "Vérifier que les bases sont plates pour stabilité",
+              "alternatives": ["Rouleaux en carton décorés", "Contenants cylindriques vides"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cartes de défi construction",
+              "quantity": "10 cartes avec images de structures simples",
+              "purpose": "Guide visuel pour élèves ayant besoin d'inspiration"
+            }
+          ]
+        },
         "visualSupports": "Instructions visuelles étape par étape pour constructions de base",
         "decisionPoints": [
-          {
-            "question": "Les élèves comprennent-ils comment les formes s'assemblent?",
-            "ifYes": "Proposez des défis de construction plus complexes",
-            "ifNo": "Démontrez l'assemblage étape par étape avec eux"
-          },
-          {
-            "question": "Leurs constructions sont-elles stables?",
-            "ifYes": "Encouragez-les à construire plus haut ou plus large",
-            "ifNo": "Montrez comment choisir des bases solides et larges"
-          }
+          "Si les constructions s'effondrent répétivement → enseigner le principe des bases larges et des formes stables en démonstration",
+          "Si partage difficile des matériaux → instaurer des règles claires (chacun commence avec 10 blocs, puis échange)",
+          "Si manque de créativité ou blocage → proposer des défis progressifs ('tour la plus haute', 'pont le plus long')"
         ],
         "movementBreaks": []
       },
@@ -273,14 +520,43 @@
       },
       "realWorldConnection": "Construire des tours, des maisons et des ponts avec des blocs à la maison",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2 types de formes (carrés et triangles) pour réduire la complexité",
+          "Fournir des modèles visuels simples à reproduire (tour de 4 blocs, pont de 3 blocs)",
+          "Permettre la collaboration avec un partenaire pour le soutien",
+          "Utiliser des blocs plus gros et plus stables pour faciliter la manipulation"
+        ],
+        "forAdvanced": [
+          "Défier avec la construction de structures complexes (château, ville miniature)",
+          "Introduire des contraintes (utiliser exactement 15 blocs, construire sans utiliser de carrés)",
+          "Demander de dessiner leur plan avant de construire",
+          "Encourager à enseigner leurs techniques à d'autres élèves"
+        ],
+        "forELL": [
+          "Associer chaque forme à des objets de construction familiers (carré = boîte, triangle = toit)",
+          "Utiliser des gestes et démonstrations plutôt qu'explications verbales longues",
+          "Permettre la description dans la langue première puis répéter en français",
+          "Fournir cartes visuelles avec vocabulaire de construction (stable, haut, large)"
+        ],
+        "forIEP": [
+          "Adapter les blocs selon les capacités motrices (blocs plus gros, surfaces antidérapantes)",
+          "Ajuster les attentes de construction selon les capacités individuelles",
+          "Offrir des alternatives tactiles si sensibilité aux textures",
+          "Permettre des pauses fréquentes si fatigue ou surcharge sensorielle"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève manipule les blocs géométriques avec contrôle et intention",
+          "Élève crée des structures qui tiennent debout (stables)",
+          "Élève nomme les formes utilisées dans sa construction",
+          "Élève explique ou décrit ce qu'il a construit avec vocabulaire approprié"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : observer la familiarisation et manipulation des blocs",
+          "Pendant la construction : évaluer la capacité à créer des structures fonctionnelles",
+          "Pendant la présentation : vérifier l'usage du vocabulaire géométrique et descriptif"
+        ]
       }
     },
     {
