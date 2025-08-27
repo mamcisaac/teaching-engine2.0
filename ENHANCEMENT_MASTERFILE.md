@@ -43,7 +43,7 @@
 | famille | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | nos-traditions-hivernales | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | communication-orale | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| jeunes-auteurs-creatifs | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| jeunes-auteurs-creatifs | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | poesie-et-rythmes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | lecture-guidee-avancee | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | notre-monde-en-francais | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -137,10 +137,10 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 51 (50 + 1 introductory)  
-**Enhanced**: 11 / 51 (22%) - **MATHEMATICS COMPLETE! 🎉 FRENCH BIENVENUE COMPLETE! 🇫🇷**  
-**Translations Fixed**: 11 / 51 (22%)  
-**Decision Points Added**: 11 / 51 (22%)  
-**Materials Specified**: 11 / 51 (22%)  
+**Enhanced**: 12 / 51 (24%) - **MATHEMATICS COMPLETE! 🎉 FRENCH BIENVENUE + CREATIVE WRITING COMPLETE! 🇫🇷📝**  
+**Translations Fixed**: 12 / 51 (24%)  
+**Decision Points Added**: 12 / 51 (24%)  
+**Materials Specified**: 12 / 51 (24%)  
 **Committed**: 2 / 51 (4%)  
 **Reviewed**: 2 / 51 (4%)
 
@@ -169,6 +169,17 @@ git push origin main
 - ✅ Core lessons (1-14) focus on foundational French: greetings, names, colors, numbers, family, animals, body parts, classroom objects
 - ✅ Extension lessons (15-20) include creative applications: games, stories, art, cooking, music, celebration
 - ✅ Perfect progression for beginning-of-year French immersion with oral communication emphasis and gesture support
+
+**LATEST ACHIEVEMENT**: francais/jeunes-auteurs-creatifs (FRENCH CREATIVE WRITING UNIT COMPLETED)
+- ✅ Enhanced all 20 lessons of "Jeunes auteurs créatifs" focusing on developing beginning French writing skills for Grade 1 students
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with creative writing focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available creative materials, art supplies, publishing materials
+- ✅ Comprehensive progression from discovering authors to creating complete published books
+- ✅ Assessment criteria focused on creative expression over mechanics, appropriate for beginning Grade 1 writers
+- ✅ Core lessons (1-14) develop story elements: authors, ideas, drawing, words, characters, settings, actions, first pages, sharing, revision
+- ✅ Extension lessons (15-20) include advanced applications: illustration techniques, collaboration, class library, mentoring, celebration
+- ✅ Perfect balance of creativity and structure with emphasis on drawing + labels + simple sentences appropriate for Grade 1
 
 **Previous Completions**: 
 - mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
