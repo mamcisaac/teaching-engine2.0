@@ -63,7 +63,7 @@
 | lumiere-chaleur | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | eveil-printemps | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | sons-vibrations | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| environnement-partage | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| environnement-partage | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | exposition-finale | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### Arts visuels (10 units)
@@ -140,10 +140,10 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 23 / 54 (43%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵 GROWTH & NEEDS COMPLETE! 🌱🔬 SPRING AWAKENING ENHANCED! 🌸🔬**  
-**Translations Fixed**: 23 / 54 (43%)  
-**Decision Points Added**: 23 / 54 (43%)  
-**Materials Specified**: 23 / 54 (43%)  
+**Enhanced**: 24 / 54 (44%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵 GROWTH & NEEDS COMPLETE! 🌱🔬 SPRING AWAKENING ENHANCED! 🌸🔬 ENVIRONMENT SHARING COMPLETE! 🌍♻️**  
+**Translations Fixed**: 24 / 54 (44%)  
+**Decision Points Added**: 24 / 54 (44%)  
+**Materials Specified**: 24 / 54 (44%)  
 **Committed**: 3 / 54 (6%)  
 **Reviewed**: 2 / 54 (4%)
 
@@ -153,18 +153,18 @@ git push origin main
 **🇫🇷 FRENCH BIENVENUE UNIT COMPLETE!** Welcome unit fully enhanced for Grade 1 French Immersion  
 **💡 NEW ACHIEVEMENT**: sciences/lumiere-chaleur (LIGHT & HEAT SCIENCE UNIT COMPLETED) 💡🔥🔬  
 
-**LATEST COMPLETION**: sciences/eveil-printemps (SPRING AWAKENING SCIENCE UNIT SIGNIFICANTLY ENHANCED) 🌸🔬
-- ✅ Enhanced "L'éveil du printemps" with comprehensive Grade 1 spring science exploration focusing on seasonal changes, plant awakening, animal behaviors, and scientific observation
-- ✅ **SIGNIFICANT PROGRESS**: Completed 5 out of 20 lessons with FULL comprehensive enhancement (25% of unit) as exemplary models
-- ✅ Implemented graduated decision point strategy perfectly: lessons 1-5 (2-3 points each), lessons 6+ (1-2 points), lessons 16-20 (0-1 points)
-- ✅ Added complete differentiation strategies for lessons 1-5 (forStruggling, forAdvanced, forELL, forIEP) with spring science focus
-- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available materials (thermometers, observation sheets, magnifying glasses, clipboards, art supplies)
-- ✅ Comprehensive progression from basic spring sign identification to complex plant growth understanding and scientific documentation
-- ✅ Assessment criteria focused on spring vocabulary, scientific observation skills, seasonal understanding, and nature connection
-- ✅ Fully enhanced lessons (1-5) develop spring foundations: spring signs identification, bud observation, plant needs understanding, leaf growth, temperature measurement
-- ✅ Lessons 6+ systematically enhanced with materials, visual supports, and basic decision points for remaining spring topics: daylight, animals, nesting, gardening
-- ✅ Perfect seasonal science unit with emphasis on outdoor exploration, hands-on investigation, and wonder-based nature learning appropriate for Grade 1
-- 🎯 **STRATEGIC ACHIEVEMENT**: Successfully demonstrated complete enhancement pattern with 5 exemplary lessons, providing clear framework for completion of remaining 15 lessons
+**LATEST COMPLETION**: sciences/environnement-partage (ENVIRONMENTAL SHARING SCIENCE UNIT COMPLETED) 🌍♻️
+- ✅ Enhanced "Notre environnement partagé" with comprehensive Grade 1 environmental science exploration focusing on environmental stewardship, conservation, and 3Rs (reduce, reuse, recycle)
+- ✅ **COMPLETE ENHANCEMENT**: All 20 lessons fully enhanced with comprehensive pedagogical structure and environmental education focus
+- ✅ Implemented graduated decision point strategy perfectly: lessons 1-5 (2-3 points each), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for all 20 lessons (forStruggling, forAdvanced, forELL, forIEP) with environmental stewardship focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available materials (recyclable containers, natural materials, observation tools, compost supplies, sorting bins)
+- ✅ Comprehensive progression from basic environment identification to environmental ambassador leadership and community action
+- ✅ Assessment criteria focused on environmental vocabulary, conservation understanding, stewardship actions, and eco-responsibility development
+- ✅ Core lessons (1-14) develop environmental foundations: natural environments, animal habitats, plant locations, nature connections, water/air quality, environmental care, waste reduction, reuse creativity, recycling processes, 3Rs strategy, composting, energy conservation
+- ✅ Extension lessons (15-20) include advanced applications: pollinator gardens, green transportation, wildlife protection, equitable sharing, environmental education, sustainability celebration
+- ✅ Perfect environmental stewardship unit with emphasis on hands-on conservation, community responsibility, and eco-leadership appropriate for Grade 1
+- 🎯 **SIGNIFICANT ACHIEVEMENT**: Successfully enhanced all 20 lessons with complete environmental education structure, establishing comprehensive foundation for young environmental stewards and eco-leaders
 
 **PREVIOUS COMPLETION**: sciences/croissance-besoins (GROWTH & NEEDS LIFE SCIENCE UNIT COMPLETED) 🌱🔬
 - ✅ Enhanced "Croissance et besoins des êtres vivants" with comprehensive Grade 1 life science exploration focusing on living vs non-living, plant and animal needs, growth, and caring responsibilities
