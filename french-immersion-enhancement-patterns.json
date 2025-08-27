@@ -1,0 +1,82 @@
+{
+  "frenchImmersionEnhancements": {
+    "description": "Systematic patterns to enhance all French lessons for proper French Immersion pedagogy",
+    "coreRequirements": [
+      "Use ONLY French (no English translations)",
+      "Include oral language priority (speaking before reading/writing)", 
+      "Have phonological awareness activities",
+      "Use Total Physical Response (TPR) methods",
+      "Include authentic French cultural elements",
+      "Focus on communication over grammar for Grade 1"
+    ],
+    "enhancementPatterns": {
+      "opening": {
+        "addToActivity": {
+          "comptines": "Traditional French comptines and songs",
+          "tpr": "Authentic French TPR actions and gestures", 
+          "culturalContext": "Quebec/French/Acadian authentic practices",
+          "phonological": "French phoneme introduction and warm-up"
+        },
+        "addFields": [
+          "phonologicalAwareness",
+          "culturalAuthenticity"
+        ]
+      },
+      "main": {
+        "addToActivity": {
+          "oralPriority": "ORAL PRIORITY: extensive listening and speaking before written work",
+          "tprSequences": "Systematic TPR sequences supporting learning",
+          "authenticity": "Authentic French communication patterns",
+          "phonemePractice": "Specific French phoneme practice integrated throughout"
+        },
+        "enhanceDecisionPoints": "Replace with French Immersion-specific pedagogical decisions",
+        "addFields": [
+          "phonologicalAwareness",
+          "culturalAuthenticity"
+        ]
+      },
+      "closing": {
+        "addToActivity": {
+          "traditionalRituals": "Traditional French closing rituals and ceremonies",
+          "culturalBlessings": "Authentic French farewell customs",
+          "tprClosing": "TPR closure sequences"
+        },
+        "addFields": [
+          "phonologicalAwareness", 
+          "culturalAuthenticity"
+        ]
+      },
+      "troubleshooting": {
+        "enhance": "Honor silent period, focus on French phoneme acquisition, use traditional music and rhythm"
+      },
+      "realWorldConnection": {
+        "enhance": "Replace generic connections with specific Quebec/French/Acadian community practices"
+      },
+      "materials": {
+        "makeAuthentic": [
+          "Add 'authentique' to French materials",
+          "Include Quebec/French specific items",
+          "Add phonetic/articulatory tools",
+          "Include traditional cultural objects"
+        ]
+      }
+    },
+    "subjectSpecificEnhancements": {
+      "greetings": {
+        "comptines": ["Bonjour mes amis, bonjour!", "Comment allez-vous? Très bien merci!"],
+        "culturalPractices": ["Quebec morning greetings", "French handshake customs", "Acadian bonjour traditions"],
+        "phonemes": ["/ʒ/ in bonjour", "/ɔ̃/ nasalization", "liaison practice"]
+      },
+      "colors": {
+        "comptines": ["Rouge, rouge, rouge comme une pomme", "Arc-en-ciel magique"],
+        "culturalPractices": ["French flag colors", "Quebec cultural color meanings", "Traditional French textile colors"],
+        "phonemes": ["French /u/ vs /o/ distinction", "Liaison in color adjectives", "/ʒ/ in jaune"]
+      },
+      "family": {
+        "comptines": ["Papa, maman, c'est ma famille", "Dans ma famille française"],
+        "culturalPractices": ["Quebec family traditions", "French family dinner customs", "Acadian family celebrations"],
+        "phonemes": ["Nasal sounds in 'maman'", "/p/ vs /b/ in papa", "Family name pronunciations"]
+      }
+    }
+  }
+}

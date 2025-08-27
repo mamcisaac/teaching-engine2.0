@@ -1,0 +1,104 @@
+{
+  "plan": {
+    "lesson_files": {
+      "arts-visuels": [
+        "generated-lessons/arts-visuels/premiers-pas-artistiques-full.json",
+        "generated-lessons/arts-visuels/fetes-hivernales-full.json",
+        "generated-lessons/arts-visuels/techniques-artistiques-avancees-full.json",
+        "generated-lessons/arts-visuels/art-environnemental-printanier-full.json",
+        "generated-lessons/arts-visuels/textures-materiaux-full.json",
+        "generated-lessons/arts-visuels/notre-galerie-art-francaise-full.json",
+        "generated-lessons/arts-visuels/exploration-3d-full.json",
+        "generated-lessons/arts-visuels/magie-couleurs-full.json",
+        "generated-lessons/arts-visuels/aventure-lignes-formes-full.json",
+        "generated-lessons/arts-visuels/impression-motifs-full.json"
+      ],
+      "sciences-humaines": [
+        "generated-lessons/sciences-humaines/celebrations-traditions-hivernales-full.json",
+        "generated-lessons/sciences-humaines/moi-et-mon-ecole-full.json",
+        "generated-lessons/sciences-humaines/notre-communaute-automnale-full.json",
+        "generated-lessons/sciences-humaines/ma-famille-et-mon-foyer-full.json",
+        "generated-lessons/sciences-humaines/notre-quartier-et-voisinage-full.json"
+      ],
+      "francais": [
+        "generated-lessons/francais/communication-creative-full.json",
+        "generated-lessons/francais/poesie-et-rythmes-full.json",
+        "generated-lessons/francais/notre-annee-francaise-full.json",
+        "generated-lessons/francais/famille-full.json",
+        "generated-lessons/francais/histoires-automne-full.json",
+        "generated-lessons/francais/jeunes-auteurs-creatifs-full.json",
+        "generated-lessons/francais/bienvenue-full.json",
+        "generated-lessons/francais/explorateurs-de-mots-full.json",
+        "generated-lessons/francais/celebrations-dhiver-full.json",
+        "generated-lessons/francais/exploration-de-textes-full.json"
+      ],
+      "mathematiques": [
+        "generated-lessons/mathematiques/nombres-11-20-full.json",
+        "generated-lessons/mathematiques/nombres-0-10-full.json",
+        "generated-lessons/mathematiques/formes-2d-full.json",
+        "generated-lessons/mathematiques/addition-jusqua-10-full.json",
+        "generated-lessons/mathematiques/mesure-non-standard-full.json",
+        "generated-lessons/mathematiques/egalite-celebration-full.json",
+        "generated-lessons/mathematiques/soustraction-full.json",
+        "generated-lessons/mathematiques/comparaison-full.json",
+        "generated-lessons/mathematiques/strategies-calcul-full.json",
+        "generated-lessons/mathematiques/regularites-et-relations-full.json"
+      ],
+      "sciences": [
+        "generated-lessons/sciences/sons-vibrations-full.json",
+        "generated-lessons/sciences/petits-scientifiques-full.json",
+        "generated-lessons/sciences/exposition-finale-full.json",
+        "generated-lessons/sciences/forces-mouvements-full.json",
+        "generated-lessons/sciences/eveil-printemps-full.json",
+        "generated-lessons/sciences/changements-saisonniers-full.json",
+        "generated-lessons/sciences/environnement-partage-full.json",
+        "generated-lessons/sciences/lumiere-chaleur-full.json",
+        "generated-lessons/sciences/croissance-besoins-full.json",
+        "generated-lessons/sciences/materiaux-full.json"
+      ],
+      "formation-personnelle": [
+        "generated-lessons/formation-personnelle/grandir-full.json",
+        "generated-lessons/formation-personnelle/amities-full.json",
+        "generated-lessons/formation-personnelle/nutrition-et-mode-de-vie-sain-full.json",
+        "generated-lessons/formation-personnelle/emotions-sentiments-full.json",
+        "generated-lessons/formation-personnelle/corps-securite-full.json"
+      ]
+    },
+    "total_files": 50,
+    "estimated_time": 150,
+    "common_issues": {
+      "mixed_language": 4,
+      "unsafe_materials": 0,
+      "generic_materials": 0,
+      "attention_span_violations": 6,
+      "missing_safety_protocols": 4
+    }
+  },
+  "strategy": {
+    "priority_order": [
+      "francais",
+      "mathematiques",
+      "sciences",
+      "arts-visuels",
+      "sciences-humaines",
+      "formation-personnelle"
+    ],
+    "batch_configuration": {
+      "batch_size": 5,
+      "parallel_agents": 3,
+      "retry_attempts": 2,
+      "progress_checkpoints": 25
+    },
+    "quality_assurance": {
+      "sample_verification": true,
+      "automated_checks": [
+        "no_english_in_french_goals",
+        "materials_have_safety_specs",
+        "cost_under_20_dollars",
+        "materials_from_pei_sources"
+      ],
+      "failure_threshold": 15
+    }
+  },
+  "timestamp": "2025-08-26 16:04:17"
+}

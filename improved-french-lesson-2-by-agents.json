@@ -1,0 +1,180 @@
+{
+  "lessonNumber": 1,
+  "lessonType": "core", 
+  "title": "Ma voix spéciale",
+  "oneGoal": "Les élèves découvrent leur voix pour communiquer avec les autres",
+  "duration": 45,
+  "progression": "Leçon de base : Découverte de la voix comme outil de communication et établissement des fondements de l'expression orale",
+  "keyVocabulary": [
+    "voix",
+    "parler", 
+    "écouter"
+  ],
+  "opening": {
+    "duration": 8,
+    "activity": "Cercle des voix: Explorer différentes voix - chuchoter, fort, aigu, grave. Pointer vers gorge et dire 'voix'. Chacun pratique dire son prénom avec sa voix spéciale.",
+    "materials": {
+      "required": [
+        {
+          "item": "Petits miroirs incassables en plastique",
+          "quantity": "25 miroirs (un per élève)",
+          "source": "Fournitures éducation spécialisée école",
+          "preparation": "Nettoyer et inspecter pour fissures",
+          "cost": "$12.00 (si achat nécessaire)",
+          "safety": "✓ Plastique incassable ✓ Bords arrondis ✓ Taille appropriée petites mains",
+          "pedagogical_rationale": "Permet observation mouvements bouche pour production phonétique française"
+        },
+        {
+          "item": "Tubes carton récupérés (rouleaux essuie-tout)",
+          "quantity": "30 tubes (extras pour partage)",
+          "source": "Récupération cafétéria/bureau école",
+          "preparation": "Nettoyer, vérifier solidité, décorer si désiré",
+          "cost": "$0 (matériel récupéré)",
+          "safety": "✓ Carton non toxique ✓ Extrémités lisses ✓ Longueur sécuritaire",
+          "voice_rationale": "Amplifie voix pour exploration volume et résonance"
+        }
+      ]
+    },
+    "french_supports": {
+      "visual_cards": [
+        "Carte: voix (👄 bouche qui parle avec ondes sonores)",
+        "Carte: parler (🗣️ personne en conversation)", 
+        "Carte: écouter (👂 oreille avec main en cornet)"
+      ],
+      "tpr_gestures": [
+        "voix: main sur gorge, vibration",
+        "parler: bouche qui s'ouvre et se ferme",
+        "écouter: main derrière oreille"
+      ],
+      "sentence_frames": [
+        "Ma voix est ___",
+        "J'écoute avec mes ___",
+        "Quand je parle, ma voix ___"
+      ]
+    }
+  },
+  "main": {
+    "duration": 27,
+    "attention_span_restructure": {
+      "segment_1": {
+        "duration": 8,
+        "activity": "Exploration voix avec miroirs: Observer bouche en parlant, essayer différents sons français. Découvrir comment voix change.",
+        "focus": "Découverte physique production voix"
+      },
+      "pause_1": {
+        "duration": 2, 
+        "activity": "Respiration calmante: Inspirer doucement, expirer en faisant 'ahhhh' très doux"
+      },
+      "segment_2": {
+        "duration": 8,
+        "activity": "Téléphones carton: Parler dans tubes, écouter résonance. Pratiquer mots français avec amplification douce.",
+        "focus": "Exploration amplification voix sécuritaire"
+      },
+      "pause_2": {
+        "duration": 2,
+        "activity": "Étirement vocal: Masser doucement gorge, bâiller silencieux"
+      },
+      "segment_3": {
+        "duration": 7,
+        "activity": "Partage voix spéciales: Chacun utilise sa voix pour dire quelque chose de gentil à un ami. Célébrer chaque voix unique.",
+        "focus": "Communication positive avec voix"
+      }
+    },
+    "materials": {
+      "required": [
+        {
+          "item": "Foulards légers en tissu",
+          "quantity": "15 foulards colorés",
+          "source": "Fournitures théâtre/arts école ou tissu léger",
+          "preparation": "Laver et vérifier absence d'effilochage",
+          "cost": "$8.00 maximum",
+          "safety": "✓ Tissu léger non-étouffant ✓ Pas de cordons ✓ Taille appropriée",
+          "breath_visualization": "Permet voir mouvement air quand on parle, rend respiration visible"
+        },
+        {
+          "item": "Coussins moelleux cercle",
+          "quantity": "25 petits coussins ou tapis",
+          "source": "Matériel éducation physique ou bibliothèque",
+          "preparation": "Nettoyer selon protocoles sanitaires",
+          "cost": "$0 (matériel existant)",
+          "safety": "✓ Matériaux lavables ✓ Pas d'allergènes connus ✓ Antidérapants",
+          "comfort_rationale": "Assise confortable pour cercles discussion, réduit distractions"
+        }
+      ]
+    }
+  },
+  "closing": {
+    "duration": 10,
+    "activity": "Cercle de gratitude vocal: Chacun utilise sa voix spéciale pour dire 'Merci' d'une façon unique. Finir par chant doux ensemble: 'Ma voix est précieuse, elle me permet de parler français!'",
+    "materials": {
+      "required": [
+        {
+          "item": "Espace cercle confortable", 
+          "preparation": "Organisation pour clôture positive"
+        }
+      ]
+    }
+  },
+  "voice_safety_protocols": {
+    "volume_limits": [
+      "Aucun cri ou hurlement - 'voix douce toujours'",
+      "Test volume: si parents dans couloir peuvent entendre, c'est trop fort",
+      "Pauses régulières pour reposer voix",
+      "Eau disponible pour gorges sèches"
+    ],
+    "throat_care": [
+      "Respiration calme entre activités vocales",
+      "Arrêter si gorge fait mal",
+      "Pas de forçage voix - 'voix naturelle seulement'",
+      "Massage doux gorge si tension"
+    ],
+    "emotional_safety": [
+      "Accepter toutes voix comme spéciales",
+      "Pas de moquerie des voix différentes", 
+      "Encourager participation sans pression",
+      "Respecter élèves timides avec alternatives gestuelles"
+    ]
+  },
+  "differentiation": {
+    "pour_eleves_timides": [
+      "Permettre chuchotement ou gestes seulement",
+      "Participation par paires avec ami confiant",
+      "Utilisation marionnettes pour 'parler à travers'",
+      "Temps supplémentaire pour comfort vocal"
+    ],
+    "pour_eleves_avec_troubles_parole": [
+      "Célébrer tous efforts de communication",
+      "Supports visuels supplémentaires disponibles",
+      "Pas de correction phonétique forcée",
+      "Collaboration avec orthophoniste si disponible"
+    ],
+    "pour_apprenants_francais": [
+      "Modélisation constante des sons français",
+      "Accepter approximations avec encouragement",
+      "Connexions L1/L2 quand approprié",
+      "Support gestuel pour tous nouveaux mots"
+    ]
+  },
+  "assessment_criteria": {
+    "observable": [
+      "L'élève explore voix avec curiosité (volume, ton)",
+      "L'élève utilise vocabulary 'voix', 'parler', 'écouter' en contexte",
+      "L'élève écoute respectueusement voix des autres",
+      "L'élève participe aux activités vocales selon son comfort",
+      "L'élève comprend voix comme outil communication"
+    ]
+  },
+  "french_immersion_compliance": {
+    "language_purity": "100% instruction française avec modeling vocal constant",
+    "pronunciation_support": "Observation miroir pour phonèmes français spécifiques", 
+    "cultural_connections": "Chants et expressions authentiques franco-canadiens",
+    "comprehensible_input": "Gestes et démonstrations pour tout nouveau vocabulaire"
+  },
+  "agent_improvements_applied": {
+    "corrected_goal": "100% français - élèves découvrent leur voix pour communiquer",
+    "materials_specified": "PEI inventory sourcing, coût total $20.00",
+    "safety_protocols": "Protection voix Grade 1, limites volume, care gorge",
+    "french_supports": "Supports visuels complets, TPR pour vocabulaire",
+    "attention_restructure": "Segments 8 minutes avec pauses appropriées"
+  }
+}

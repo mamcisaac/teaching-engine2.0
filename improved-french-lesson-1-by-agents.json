@@ -1,0 +1,204 @@
+{
+  "lessonNumber": 1,
+  "lessonType": "core",
+  "title": "Premiers mots d'auteur",
+  "oneGoal": "Les élèves découvrent ce que fait un auteur en utilisant des mots français simples et des supports visuels",
+  "duration": 45,
+  "progression": "Leçon de base : Introduction au concept d'auteur et établissement de l'identité créatrice des élèves-écrivains",
+  "keyVocabulary": [
+    "auteur",
+    "livre", 
+    "histoire"
+  ],
+  "opening": {
+    "duration": 8,
+    "activity": "Cercle d'auteurs: Montrer photos d'auteurs en train d'écrire. Utiliser gestes TPR: pointer vers soi 'Je suis...', ouvrir livre 'livre', faire mouvement d'écriture 'auteur écrit'. Répéter avec enthousiasme: 'Un auteur écrit des histoires!'",
+    "materials": {
+      "required": [
+        {
+          "item": "Photos d'auteurs en action (cartes visuelles)",
+          "quantity": "10 cartes plastifiées grand format (8x10)",
+          "source": "Magazines de la bibliothèque + matériel de plastification",
+          "preparation": "Découper images, créer étiquettes françaises simples, plastifier",
+          "cost": "$3.00 (pochettes de plastification)",
+          "safety": "✓ Coins plastifiés scellés ✓ Pas de petites pièces détachées",
+          "pedagogical_rationale": "Support visuel pour rendre concept 'auteur' concret et compréhensible"
+        },
+        {
+          "item": "Livres familiers avec noms d'auteurs visibles",
+          "quantity": "15 livres divers genres",
+          "source": "Bibliothèque de classe existante",
+          "preparation": "Sélectionner livres avec noms d'auteurs clairs, marquer avec autocollants",
+          "cost": "$0 (ressources existantes)",
+          "safety": "✓ Livres en bon état ✓ Coins non endommagés",
+          "pedagogical_rationale": "Connexion concept-réalité, montrer que vrais auteurs écrivent vrais livres"
+        }
+      ]
+    },
+    "french_supports": {
+      "visual_cards": [
+        "Carte: auteur (👨‍💻 personne qui écrit)",
+        "Carte: livre (📖 objet ouvert)",
+        "Carte: histoire (📚 séquence d'images)"
+      ],
+      "tpr_gestures": [
+        "auteur: pointer vers soi, puis faire mouvement d'écriture",
+        "livre: mains qui s'ouvrent comme un livre",
+        "histoire: geste animé de raconter"
+      ],
+      "sentence_frames": [
+        "Un auteur fait ___",
+        "Dans mon livre, je vois ___",
+        "L'auteur écrit une ___"
+      ]
+    }
+  },
+  "main": {
+    "duration": 27,
+    "attention_span_restructure": {
+      "segment_1": {
+        "duration": 8,
+        "activity": "Exploration de livres: Chercher noms d'auteurs sur couvertures. Pratiquer dire 'auteur' en pointant nom. Chuchoter 'auteur' comme secret magique.",
+        "focus": "Reconnaissance visuelle concept auteur"
+      },
+      "pause_1": {
+        "duration": 2,
+        "activity": "Mouvement: Mimer actions d'auteur - écrire dans l'air, penser (main au menton), lire (yeux qui bougent)"
+      },
+      "segment_2": {
+        "duration": 8,
+        "activity": "Devenir auteur: Sur papier grand format, dessiner puis essayer écrire son histoire. Invention orthographique encouragée.",
+        "focus": "Expérience concrète d'être auteur"
+      },
+      "pause_2": {
+        "duration": 2,
+        "activity": "Étirement d'auteur: Lever bras comme tenir livre géant, tourner pages imaginaires"
+      },
+      "segment_3": {
+        "duration": 7,
+        "activity": "Galerie d'auteurs: Partager créations en paires. Dire 'Je suis auteur' avec fierté. Célébrer chaque création.",
+        "focus": "Identité d'auteur, partage créatif"
+      }
+    },
+    "materials": {
+      "required": [
+        {
+          "item": "Papier grand format (11x17) pour dessiner-écrire",
+          "quantity": "100 feuilles (4 par élève + extras)",
+          "source": "Papier graphique bureau ou grand format",
+          "preparation": "Découper en feuilles individuelles, ranger dans bacs accessibles",
+          "cost": "$8.00",
+          "safety": "✓ Coins arrondis ✓ Poids papier standard",
+          "emergent_writing_rationale": "Grand espace pour dessins-écriture, accommode mouvements larges bras Grade 1",
+          "differentiation": {
+            "struggling": "Encourager dessins avant mots, accepter gribouillis comme écriture",
+            "advanced": "Inviter phrases complètes, utilisation espaces entre mots",
+            "ELL": "Dessins avec étiquettes français, support visuel constant"
+          }
+        },
+        {
+          "item": "Crayons primaires avec prises ergonomiques",
+          "quantity": "28 crayons avec mousses d'aide",
+          "source": "Crayons triangulaires cabinet + prises éducation spécialisée",
+          "preparation": "Attacher prises aux crayons, préparer extras",
+          "cost": "$6.00 (prises seulement)",
+          "safety": "✓ Forme triangulaire empêche roulage ✓ Mousses réduisent pression",
+          "fine_motor_rationale": "Support développement moteur fin, réduit fatigue main Grade 1"
+        },
+        {
+          "item": "Tableaux blancs individuels effaçables",
+          "quantity": "28 tableaux (8x10 pouces)",
+          "source": "Carton fort + matériel plastification",
+          "preparation": "Découper carton, plastifier deux côtés pour surface lisse",
+          "cost": "$2.00 (pochettes plastification additionnelles)",
+          "safety": "✓ Coins arrondis après plastification ✓ Matériau léger",
+          "practice_rationale": "Espace pratique formation lettres avant engagement sur papier"
+        }
+      ],
+      "free_materials": [
+        {
+          "item": "Papier usagé (un côté vierge) pour brouillons",
+          "source": "Bureau école - papier recyclage",
+          "cost": "$0",
+          "purpose": "Pratique libre, expérimentation sans pression"
+        },
+        {
+          "item": "Petits contenants organisation matériel", 
+          "source": "Contenants yogourt cafétéria",
+          "cost": "$0",
+          "purpose": "Organisation crayons, prises, petits matériaux"
+        }
+      ]
+    }
+  },
+  "closing": {
+    "duration": 10,
+    "activity": "Célébration d'auteurs: Cercle de fierté. Chaque élève montre sa création et dit 'Je suis auteur!' Applaudir chaque partage. Chanter ensemble: 'Auteur, auteur, nous écrivons avec cœur!'",
+    "materials": {
+      "required": [
+        {
+          "item": "Espace cercle confortable",
+          "quantity": "Zone assise en cercle classe",
+          "preparation": "Organiser pour partage et célébration",
+          "cost": "$0"
+        }
+      ]
+    }
+  },
+  "differentiation": {
+    "pour_eleves_en_difficulte": [
+      "Accepter dessins comme écriture valide",
+      "Encourager gribouillis comme tentatives d'écriture",
+      "Support verbal: 'Tu es auteur quand tu dessines ton histoire'",
+      "Permettre utilisation tableau blanc pour pratique libre"
+    ],
+    "pour_eleves_avances": [
+      "Inviter écriture de phrases complètes",
+      "Encourager espacement entre mots",
+      "Défis: 'Combien de mots peux-tu écrire dans ton histoire?'",
+      "Introduction concept début-milieu-fin"
+    ],
+    "pour_apprenants_francais": [
+      "Cartes visuelles toujours disponibles",
+      "Gestes TPR constants pour nouveau vocabulaire",
+      "Temps attente 5 secondes pour réponses",
+      "Accepter combinaison dessins-mots anglais au début"
+    ]
+  },
+  "assessment_criteria": {
+    "observable": [
+      "L'élève comprend concept 'auteur' (pointe, geste, reconnaissance visuelle)",
+      "L'élève tente créer histoire (dessin et/ou écriture inventée)", 
+      "L'élève utilise vocabulaire 'auteur', 'livre', 'histoire'",
+      "L'élève montre fierté de création (partage, 'Je suis auteur')",
+      "L'élève manipule matériaux d'écriture avec contrôle approprié"
+    ]
+  },
+  "safety_protocols": {
+    "pre_activity": [
+      "Vérifier tous matériaux plastifiés pour coins scellés",
+      "Tester crayons et prises pour sécurité",
+      "Organiser matériaux pour accès sécuritaire",
+      "Préparer espace cercle sans obstacles"
+    ],
+    "during_activity": [
+      "Superviser utilisation crayons (pas dans bouches)",
+      "Ranger matériaux brisés immédiatement", 
+      "Maintenir espaces de travail dégagés",
+      "Encourager posture correcte pour écriture"
+    ]
+  },
+  "french_immersion_compliance": {
+    "language_purity": "100% instruction française avec supports visuels",
+    "comprehensible_input": "Nouveaux mots limités à 3 (auteur, livre, histoire)",
+    "visual_scaffolding": "Support visuel pour CHAQUE terme nouveau",
+    "canadian_french": "Terminologie authentique Quebec/PEI"
+  },
+  "agent_improvements_applied": {
+    "agent_1_pedagogy": "Attention span restructuré 8-minute segments, émergent writing supports",
+    "agent_2_materials": "Matériaux spécifiques PEI, coût $19.00, sécurité Grade 1",
+    "agent_3_french": "100% français, supports visuels complets, scaffolding approprié",
+    "total_cost": "$19.00 (sous limite $20)",
+    "pei_sourcing": "Tous matériaux disponibles écoles PEI ou gratuits"
+  }
+}

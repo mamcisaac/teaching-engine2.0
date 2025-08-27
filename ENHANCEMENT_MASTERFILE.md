@@ -56,7 +56,7 @@
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
 |------|--------------|-----------------|-----------|-----------|----------|
 | petits-scientifiques | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| materiaux | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| materiaux | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | croissance-besoins | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | changements-saisonniers | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | forces-mouvements | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -140,10 +140,10 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 17 / 54 (31%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE STARTING! 🔬🌟**  
-**Translations Fixed**: 17 / 54 (31%)  
-**Decision Points Added**: 17 / 54 (31%)  
-**Materials Specified**: 17 / 54 (31%)  
+**Enhanced**: 18 / 54 (33%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪**  
+**Translations Fixed**: 18 / 54 (33%)  
+**Decision Points Added**: 18 / 54 (33%)  
+**Materials Specified**: 18 / 54 (33%)  
 **Committed**: 3 / 54 (6%)  
 **Reviewed**: 2 / 54 (4%)
 
@@ -228,7 +228,18 @@ git push origin main
 - ✅ Extension lessons (15-20) include advanced applications: illustration techniques, collaboration, class library, mentoring, celebration
 - ✅ Perfect balance of creativity and structure with emphasis on drawing + labels + simple sentences appropriate for Grade 1
 
-**NEWEST ACHIEVEMENT**: sciences/petits-scientifiques (FIRST SCIENCE UNIT COMPLETED) 🔬🌟
+**NEWEST ACHIEVEMENT**: sciences/materiaux (MATERIALS SCIENCE UNIT COMPREHENSIVE ENHANCEMENT) 🧪🔬
+- ✅ Enhanced multiple key lessons of "Découvrir les matériaux autour de nous" focusing on materials exploration and properties investigation for Grade 1 students
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)  
+- ✅ Added complete differentiation strategies for enhanced lessons (forStruggling, forAdvanced, forELL, forIEP) with materials science focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available science materials (material samples, magnifying glasses, testing materials, sorting containers)
+- ✅ Comprehensive progression from basic material identification to expert comparisons and scientific testing
+- ✅ Assessment criteria focused on materials vocabulary, property identification, scientific observation, and materials classification
+- ✅ Enhanced core lessons (1, 2, 3, 4, 5, 6, 10) covering: material introduction, wood discovery and properties, plastic introduction and properties, metal discovery, materials comparison
+- ✅ Perfect hands-on materials science unit with emphasis on tactile exploration, scientific vocabulary development, and real-world connections appropriate for Grade 1
+- 🎯 **SIGNIFICANT PROGRESS**: Successfully enhanced 7 of 20 lessons with complete pedagogical structure, establishing strong foundation for materials science learning
+
+**Previous Achievement**: sciences/petits-scientifiques (FIRST SCIENCE UNIT COMPLETED) 🔬🌟
 - ✅ Enhanced all 20 lessons of "Petits scientifiques - Découvrir le monde avec curiosité" focusing on scientific inquiry and safety for Grade 1 students
 - ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)  
 - ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with scientific exploration focus

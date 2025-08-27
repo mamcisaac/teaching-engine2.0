@@ -1,0 +1,30 @@
+{
+  "status": "REVISION_REQUIRED",
+  "score": 17.0,
+  "maxScore": 20,
+  "breakdown": {
+    "pedagogical_alignment": {
+      "score": 5.0,
+      "maxScore": 5,
+      "percentage": 100.0
+    },
+    "developmental_appropriateness": {
+      "score": 5.0,
+      "maxScore": 5,
+      "percentage": 100.0
+    },
+    "language_culture": {
+      "score": 3.0,
+      "maxScore": 5,
+      "percentage": 60.0
+    },
+    "practicality": {
+      "score": 4.0,
+      "maxScore": 5,
+      "percentage": 80.0
+    }
+  },
+  "rejectionReasons": [],
+  "revisionRequests": [],
+  "approvalCertificate": null
+}

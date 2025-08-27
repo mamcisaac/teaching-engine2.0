@@ -1,0 +1,797 @@
+{
+  "phase": "Phase 2 - Math & Science",
+  "status": "COMPLETE",
+  "math_lessons": 10,
+  "science_lessons": 10,
+  "total_processed": 20,
+  "pedagogy_applied": {
+    "mathematics": {
+      "piaget_concrete": "Grade 1 needs 80% concrete manipulatives",
+      "subitizing": "Instant recognition quantities 1-4 essential",
+      "one_to_one": "One-to-one correspondence fundamental skill",
+      "attention_span": "Mathematical activities max 8 minutes"
+    },
+    "science": {
+      "inquiry_based": "Concrete exploration before abstract concepts",
+      "safety_first": "Grade 1 safety protocols for all materials",
+      "observation_skills": "Descriptive language over explanation",
+      "hands_on": "Manipulative materials essential for understanding"
+    }
+  },
+  "improvements": [
+    {
+      "subject": "Mathematics",
+      "file": "nombres-11-20-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          },
+          {
+            "item": "Ten frames plastifiés",
+            "quantity": "30 frames (extras disponibles)",
+            "source": "Kit math ou fabrication classe",
+            "cost": "$5.00 si fabrication",
+            "mathematical_rationale": "Structure visuelle pour quantités jusqu'à 10"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [
+            "Cartes nombres 0-10 avec points",
+            "Cartes \"plus\" et \"moins\" avec symboles",
+            "Cartes \"égal\" avec balance visuelle"
+          ],
+          "tpr_gestures": [
+            "compter: pointer chaque objet",
+            "addition: geste rassembler",
+            "égal: mains balance"
+          ],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "nombres-0-10-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          },
+          {
+            "item": "Ten frames plastifiés",
+            "quantity": "30 frames (extras disponibles)",
+            "source": "Kit math ou fabrication classe",
+            "cost": "$5.00 si fabrication",
+            "mathematical_rationale": "Structure visuelle pour quantités jusqu'à 10"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [
+            "Cartes nombres 0-10 avec points",
+            "Cartes \"plus\" et \"moins\" avec symboles",
+            "Cartes \"égal\" avec balance visuelle"
+          ],
+          "tpr_gestures": [
+            "compter: pointer chaque objet",
+            "addition: geste rassembler",
+            "égal: mains balance"
+          ],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "formes-2d-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          },
+          {
+            "item": "Pattern blocks géométriques",
+            "quantity": "6 jeux complets couleurs",
+            "source": "Kit mathématiques école",
+            "cost": "$0",
+            "mathematical_rationale": "Exploration concrète formes 2D"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "addition-jusqua-10-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          },
+          {
+            "item": "Ten frames plastifiés",
+            "quantity": "30 frames (extras disponibles)",
+            "source": "Kit math ou fabrication classe",
+            "cost": "$5.00 si fabrication",
+            "mathematical_rationale": "Structure visuelle pour quantités jusqu'à 10"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [
+            "Cartes nombres 0-10 avec points",
+            "Cartes \"plus\" et \"moins\" avec symboles",
+            "Cartes \"égal\" avec balance visuelle"
+          ],
+          "tpr_gestures": [
+            "compter: pointer chaque objet",
+            "addition: geste rassembler",
+            "égal: mains balance"
+          ],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "mesure-non-standard-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          },
+          {
+            "item": "Unités mesure non-standard",
+            "quantity": "Trombones, haricots, blocs unifix",
+            "source": "Bureau école + cafétéria + kit math",
+            "cost": "$0",
+            "mathematical_rationale": "Introduction concept mesure avec objets familiers"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "egalite-celebration-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "soustraction-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          },
+          {
+            "item": "Ten frames plastifiés",
+            "quantity": "30 frames (extras disponibles)",
+            "source": "Kit math ou fabrication classe",
+            "cost": "$5.00 si fabrication",
+            "mathematical_rationale": "Structure visuelle pour quantités jusqu'à 10"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [
+            "Cartes nombres 0-10 avec points",
+            "Cartes \"plus\" et \"moins\" avec symboles",
+            "Cartes \"égal\" avec balance visuelle"
+          ],
+          "tpr_gestures": [
+            "compter: pointer chaque objet",
+            "addition: geste rassembler",
+            "égal: mains balance"
+          ],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "comparaison-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "strategies-calcul-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Mathematics",
+      "file": "regularites-et-relations-full.json",
+      "improvements": {
+        "mathematical_materials": [
+          {
+            "item": "Counting bears multicolores (grands)",
+            "quantity": "100 bears (4 per élève)",
+            "source": "Kit mathématiques PEI",
+            "cost": "$0",
+            "safety": "✓ Taille >3cm ✓ Non-toxique",
+            "mathematical_rationale": "Support subitisation et correspondance un-à-un"
+          }
+        ],
+        "safety_protocols": [
+          "Tous objets comptage >3cm (prévention étouffement)",
+          "Supervision distribution/rangement matériel",
+          "Vérification intégrité manipulatifs avant usage",
+          "Espace travail dégagé pour manipulation",
+          "Protocole nettoyage entre utilisations"
+        ],
+        "french_math_vocabulary": {
+          "visual_cards": [],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "sons-vibrations-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "petits-scientifiques-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "exposition-finale-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "forces-mouvements-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "eveil-printemps-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "changements-saisonniers-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "environnement-partage-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "lumiere-chaleur-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Jamais regarder directement sources lumineuses",
+          "LED seulement, pas ampoules chaudes",
+          "Pauses régulières protection yeux"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Lampes LED modifiées sécuritaires",
+            "quantity": "6 lampes <50 lumens",
+            "source": "Kit sciences avec modifications",
+            "cost": "$3.00 (diffuseurs)",
+            "safety": "✓ LED froide ✓ Luminosité réduite ✓ Supervision",
+            "scientific_rationale": "Exploration sources lumière sans danger yeux"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: lumière (💡 avec rayons)",
+            "Carte: source (👉 origine)",
+            "Carte: voir (👁️ regarder)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "croissance-besoins-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    },
+    {
+      "subject": "Science",
+      "file": "materiaux-full.json",
+      "improvements": {
+        "safety_protocols": [
+          "Supervision adulte constante",
+          "Équipement sécurité disponible",
+          "Test matériaux avant distribution",
+          "Protocoles urgence affichés",
+          "Volume limité 60 décibels maximum",
+          "Pauses auditives régulières",
+          "Instruments hors bouche toujours"
+        ],
+        "inquiry_materials": [
+          {
+            "item": "Loupes sécuritaires enfants",
+            "quantity": "6 loupes plastique",
+            "source": "Kit sciences classe",
+            "cost": "$0",
+            "safety": "✓ Plastique incassable ✓ Grossissement limité",
+            "scientific_rationale": "Observation détaillée sécuritaire"
+          },
+          {
+            "item": "Instruments son volume contrôlé",
+            "quantity": "15 maracas, tambourins légers",
+            "source": "Éducation physique ou achat",
+            "cost": "$10.00",
+            "safety": "✓ Volume <60dB ✓ Pas dans bouche ✓ Supervision",
+            "scientific_rationale": "Exploration vibrations sonores sécuritaire"
+          }
+        ],
+        "scientific_vocabulary": {
+          "visual_cards": [
+            "Carte: son (🔊 ondes)",
+            "Carte: écouter (👂 attention)",
+            "Carte: vibration (📳 mouvement)"
+          ],
+          "tpr_gestures": [],
+          "sentence_frames": []
+        }
+      }
+    }
+  ]
+}

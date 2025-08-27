@@ -1,0 +1,255 @@
+{
+  "lessonNumber": 1,
+  "lessonType": "core",
+  "title": "Découverte tactile: Qu'est-ce qu'une texture?",
+  "oneGoal": "Les élèves explorent différentes textures par le toucher sécuritaire et apprennent à décrire ce qu'ils ressentent",
+  "duration": "45 minutes",
+  "progression": "Leçon de base : Introduction à la découverte sensorielle et à la description des textures",
+  "keyVocabulary": [
+    "texture",
+    "rugueux",
+    "lisse",
+    "doux",
+    "dur",
+    "bosselé",
+    "ondulé"
+  ],
+  "opening": {
+    "duration": 8,
+    "activity": "Texture Mystery Bags: Students feel different textured materials in cloth bags without looking. Start with very different textures (sandpaper vs silk fabric vs sponge). Use exaggerated facial expressions and sounds to model reactions: 'Ooh, c'est rugueux!' Make texture vocabulary come alive through dramatic touch reactions.",
+    "materials": {
+      "required": [
+        {
+          "item": "Sacs mystères en tissu robuste",
+          "quantity": "6 sacs opaques lavables",
+          "preparation": "Vérifier solidité coutures, laver avant usage",
+          "safety": "✓ Tissu non-toxique ✓ Ouvertures sécurisées"
+        },
+        {
+          "item": "Textures sécuritaires variées",
+          "quantity": "2 échantillons chaque texture (12 total)",
+          "specifics": "Laine feutrée, bois lisse, coton doux, toile de jute, mousse, carton ondulé",
+          "source": "Matériaux classe et fournitures art",
+          "preparation": "Découper taille sécuritaire (>5cm), nettoyer tous matériaux",
+          "cost": "$5 pour matériaux supplémentaires",
+          "safety": "✓ Pas d'échardes ✓ Pas d'allergènes ✓ Taille appropriée",
+          "removed_unsafe": [
+            "Papier sablé (trop abrasif pour peau Grade 1)",
+            "Papier bulle (risque étouffement si éclate)"
+          ]
+        }
+      ]
+    },
+    "visualSupports": "Échantillons de textures étiquetés (rugueux, lisse, doux, dur), tableaux de réaction de l'enseignant",
+    "decisionPoints": [],
+    "movementBreaks": [
+      "Dance to show how textures make you feel",
+      "Move paintbrush arms in big circles"
+    ]
+  },
+  "main": {
+    "duration": 27,
+    "activity": "Texture Exploration Stations: Set up 5 stations with different texture families. Station 1: Rough textures (sandpaper, bark, burlap). Station 2: Smooth textures (silk, plastic, metal spoon). Station 3: Soft textures (cotton balls, velvet, fur fabric). Station 4: Hard textures (wooden blocks, stones, ceramic tiles). Station 5: Bumpy textures (bubble wrap, corrugated cardboard, textured rollers). Students rotate every 5 minutes, practicing vocabulary and safe touching techniques.",
+    "materials": {
+      "required": [
+        {
+          "item": "Matériaux de stations de texture organisés",
+          "quantity": "5 bacs avec matériaux par famille (rugueux, lisse, doux, dur, bosselé)",
+          "preparation": "Organiser par catégorie, étiqueter clairement chaque bac",
+          "alternatives": [
+            "Matériaux mélangés pour découverte",
+            "Stations simpléfiées",
+            "Exploration libre"
+          ]
+        },
+        {
+          "item": "Station 1: Textures rugueuses",
+          "quantity": "Papier sablé, écorce, toile rugueuse, pierre ponce",
+          "preparation": "Vérifier sécurité - pas trop abrasif pour enfants",
+          "alternatives": [
+            "Surfaces rugueuses de la classe",
+            "Tapis texturés",
+            "Matériaux doux mais texturés"
+          ]
+        },
+        {
+          "item": "Station 2: Textures lisses",
+          "quantity": "Soie, plastique, métal poli, céramique",
+          "preparation": "Nettoyer, s'assurer pas de bords coupants",
+          "alternatives": [
+            "Papier glacé",
+            "Surfaces lisses disponibles",
+            "Galets polis"
+          ]
+        },
+        {
+          "item": "Station 3: Textures douces",
+          "quantity": "Boules de coton, velours, fourrure synthétique, peluche",
+          "preparation": "Matériaux propres et non allergisants",
+          "alternatives": [
+            "Tissus doux variés",
+            "Animaux en peluche",
+            "Vêtements doux"
+          ]
+        },
+        {
+          "item": "Station 4: Textures dures",
+          "quantity": "Blocs de bois, pierres, carreaux céramique, métal",
+          "preparation": "Vérifier absence d'arêtes vives, taille adaptée",
+          "alternatives": [
+            "Objets durs de la classe",
+            "Jouets rigides",
+            "Surfaces dures disponibles"
+          ]
+        },
+        {
+          "item": "Station 5: Textures bosselées",
+          "quantity": "Papier bulle, carton ondulé, rouleaux texturés",
+          "preparation": "Matériaux intéressants au toucher, sécuritaires",
+          "alternatives": [
+            "Objets à relief variés",
+            "Surfaces bombées",
+            "Textures naturelles"
+          ]
+        },
+        {
+          "item": "Minuterie pour rotations",
+          "quantity": "1 minuteur réglé sur 5 minutes par station",
+          "preparation": "Signal audible clair pour changement",
+          "alternatives": [
+            "Signal vocal",
+            "Musique par station",
+            "Rotation libre"
+          ]
+        }
+      ],
+      "safety": [
+        {
+          "item": "Désinfectant pour les mains",
+          "quantity": "1 distributeur par station + central",
+          "preparation": "Accessible et facile d'usage pour enfants"
+        }
+      ]
+    },
+    "visualSupports": "Station instruction cards with texture vocabulary, safe touching technique posters",
+    "decisionPoints": [
+      "Decision Point 1: Observe sensory exploration. If overwhelmed by textures, limit choices; if engaged, introduce contrasting materials.",
+      "Decision Point 2: Monitor vocabulary development. If struggling with texture words, use gestures and modeling; if confident, encourage descriptive language.",
+      "Decision Point 3: Check artistic application. If random texture use, guide purposeful choices; if thoughtful placement, ask them to explain their decisions."
+    ],
+    "movementBreaks": "Texture body movements at 12 and 22 minutes - act out rough (sharp movements), smooth (flowing movements), soft (gentle movements)"
+  },
+  "closing": {
+    "duration": 10,
+    "activity": "Texture Memory Circle: Students sit in circle and each chooses one favorite texture from today. Take turns showing the texture and describing it using new vocabulary: 'C'est doux comme...', 'C'est rugueux comme...'. Create class texture memory by having élèves suggest where they might find similar textures at home or in nature. End with appreciation: 'Merci, nos mains!' (Thank you, our hands!)",
+    "materials": {
+      "required": [
+        {
+          "item": "Tous les matériaux de texture des stations",
+          "quantity": "Sélection représentative de chaque station pour le partage",
+          "preparation": "Organiser au centre pour accès facile et sécuritaire",
+          "alternatives": [
+            "Échantillons favoris seulement",
+            "Matériaux dans les mains des élèves",
+            "Description sans manipulation"
+          ]
+        },
+        {
+          "item": "Aménagement en cercle",
+          "quantity": "Tapis ou sièges confortables en cercle pour 25 élèves",
+          "preparation": "Cercle permettant à tous de voir le centre et de partager",
+          "alternatives": [
+            "Demi-cercle",
+            "Petits groupes de partage",
+            "Formation en U"
+          ]
+        },
+        {
+          "item": "Cartes de vocabulaire de texture de référence",
+          "quantity": "Aide-mémoire visuel avec mots de texture étudiés",
+          "preparation": "Affichage visible pour soutenir l'expression orale",
+          "alternatives": [
+            "Répétition orale",
+            "Gestes associés",
+            "Modélisation continue"
+          ]
+        }
+      ],
+      "cleanup": [
+        {
+          "item": "Lingettes pour nettoyage final",
+          "quantity": "Lingettes pour nettoyer mains après exploration tactile",
+          "preparation": "Faciles d'accès pour nettoyage autonome"
+        }
+      ]
+    },
+    "visualSupports": "Texture vocabulary reference cards for sharing support",
+    "decisionPoints": [],
+    "movementBreaks": [
+      "Dance to show how textures make you feel",
+      "Move paintbrush arms in big circles"
+    ]
+  },
+  "troubleshooting": {
+    "ifStrugglingWith": "Students showing texture aversion or sensory overwhelm",
+    "then": "Respect individual comfort levels. Offer visual observation instead of touching. Use gentler textures like soft fabric or smooth stones. Allow élèves to wash hands immediately after exploration."
+  },
+  "realWorldConnection": "Explore textures at home - clothing, furniture, kitchen tools, outdoor surfaces. Families can help identify texture words in home language and French.",
+  "differentiation": {
+    "pourÉlèvesEnDifficulté": [
+      "Use larger texture samples that are easier for developing fine motor skills to manipulate",
+      "Focus on very different textures (avoid subtle differences) to ensure clear sensory input",
+      "Commencer avec des textures douces et familières avant d'introduire des matériaux plus rugueux ou nouveaux",
+      "Provide emotional support for any texture discomfort - normalize preferences and sensitivities"
+    ],
+    "pourÉlèvesAvancés": [
+      "Challenge with subtle texture differences (various paper grits, different fabric weaves)",
+      "Introduce texture comparison vocabulary: 'plus rugueux que', 'moins lisse que'",
+      "Help peers by demonstrating safe touching techniques and describing complex textures",
+      "Begin predicting what objects might feel like before touching them"
+    ],
+    "pourApprenantsFrançais": [
+      "Connect texture words to objects from their home culture and experiences",
+      "Use texture exploration as universal language - touching and feeling cross cultural barriers",
+      "Allow description of textures in home language first, then connect to French terms",
+      "Focus on sensory experience which doesn't require advanced language skills"
+    ],
+    "pourÉlèvesAvecPEI": [
+      "Adapt texture materials to individual sensory needs and tolerances",
+      "Provide alternative ways to explore textures (visual only, tools for touching)",
+      "Allow breaks from sensory input as needed for regulation and comfort",
+      "Celebrate any level of texture engagement as meaningful sensory learning"
+    ]
+  },
+  "assessmentCriteria": {
+    "observable": [
+      "Student demonstrates curiosity and willingness to explore different textures through safe touching",
+      "Student uses appropriate vocabulary or gestures to describe texture sensations (rough, smooth, soft, hard)",
+      "Student shows respect for materials and follows safe touching techniques during texture exploration"
+    ],
+    "checkpoints": [
+      "Opening: Student participates in mystery bag exploration with interest and attempts to describe what they feel",
+      "Main: Student rotates through texture stations, explores materials safely, practices texture vocabulary appropriately",
+      "Closing: Student shares texture discoveries and shows appreciation for their hands as exploration tools"
+    ]
+  },
+  "french_supports": {
+    "visual_cards": [
+      "Carte: rugueux (🤚 texture rugueuse visible)",
+      "Carte: lisse (✋ surface brillante)",
+      "Carte: doux (🧸 texture pelucheuse)",
+      "Carte: dur (🪨 matériau solide)"
+    ],
+    "tpr_gestures": [
+      "rugueux: frotter paumes ensemble rapidement",
+      "lisse: caresser surface imaginaire doucement",
+      "doux: câliner objet invisible",
+      "dur: tapoter surface avec poing fermé"
+    ],
+    "sentence_frames": [
+      "Je sens que c'est ___",
+      "Cette texture est ___",
+      "Mes mains touchent quelque chose de ___"
+    ]
+  }
+}

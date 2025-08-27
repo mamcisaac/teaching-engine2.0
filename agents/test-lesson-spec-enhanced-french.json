@@ -1,0 +1,194 @@
+{
+  "lessonTitle": "Explorer les nombres 4 et 5",
+  "specificObjective": "Les élèves découvrent et comptent les nombres 4 et 5 avec des manipulatives",
+  "uniqueAspects": "extending students' counting range",
+  "actualActivities": [
+    "Minds On: Montrer 4 doigts, puis 5 - demander aux élèves de compter",
+    "Action: Compter des collections de 4 objets",
+    "Action: Créer des groupes de 5 avec des cubes",
+    "Action: Dessiner 4 et 5 objets",
+    "Consolidation: Jeu de comptage rapide avec cartes de nombres"
+  ],
+  "cognitiveProcess": "general_learning",
+  "materialNeeds": {
+    "primary": [
+      "Mains des élèves (aucun matériel)",
+      "Jetons de comptage du kit de math",
+      "Papier et crayons"
+    ],
+    "quantities": {
+      "jetons": "30 par élève",
+      "papier": "1 feuille par élève",
+      "crayons": "Boîte de crayons de classe"
+    },
+    "rationale": {},
+    "preparation": []
+  },
+  "developmentalCheck": {
+    "ageAppropriate": true,
+    "concreteManipulatives": true,
+    "attentionSpanConsidered": true,
+    "fineMotorAppropriate": true,
+    "issues": []
+  },
+  "safetyVerification": {
+    "verified": true,
+    "hazards": [],
+    "modifications": []
+  },
+  "differentiationOptions": {
+    "forStruggling": [],
+    "onLevel": [],
+    "forAdvanced": [],
+    "forEAL": []
+  },
+  "multiSensorySupports": {
+    "visual": [
+      "Tableau d'ancrage avec images",
+      "Codes de couleur pour organisation",
+      "Démonstration visuelle étape par étape"
+    ],
+    "kinesthetic": [
+      "Manipulation directe des matériaux",
+      "Mouvements corporels intégrés",
+      "Stations de travail pratique"
+    ],
+    "auditory": [
+      "Comptines ou chansons liées au concept",
+      "Instructions verbales claires",
+      "Répétition chorale des mots-clés"
+    ]
+  },
+  "inclusionSupports": {
+    "mobilitySupports": [
+      "Matériaux accessibles à hauteur de fauteuil roulant",
+      "Espaces de circulation larges",
+      "Options pour travail assis ou debout"
+    ],
+    "visionSupports": [
+      "Objets avec textures distinctes",
+      "Matériaux de couleurs contrastées",
+      "Grosses polices pour étiquettes"
+    ],
+    "hearingSupports": [
+      "Instructions visuelles claires",
+      "Gestes et signaux visuels",
+      "Position face à la classe pour lecture labiale"
+    ],
+    "cognitiveSupports": [
+      "Instructions en petites étapes",
+      "Répétition et pratique supplémentaire",
+      "Supports visuels permanents"
+    ],
+    "sensorySupports": [
+      "Espace calme disponible",
+      "Options de matériaux non-texturés",
+      "Niveau sonore contrôlé"
+    ]
+  },
+  "socialLearning": {
+    "pairWork": [],
+    "smallGroup": [],
+    "wholeClass": []
+  },
+  "indigenousPerspectives": {
+    "relevant": false,
+    "connections": [],
+    "resources": []
+  },
+  "frenchVerification": {
+    "allTermsVerified": true,
+    "corrections": [],
+    "warnings": []
+  },
+  "visualVocabulary": [],
+  "languageScaffolding": {
+    "sentenceStarters": [],
+    "keyPhrases": [],
+    "questionFrames": [],
+    "responseFrames": []
+  },
+  "oralSupports": {
+    "songs": [
+      "Un, deux, trois, nous irons au bois",
+      "Violette à bicyclette (comptine pour compter)",
+      "Les chiffres de 1 à 10 (sur l'air de Frère Jacques)"
+    ],
+    "rhymes": [
+      "Un et un font deux, deux et deux font quatre...",
+      "Pomme de reinette et pomme d'api"
+    ],
+    "chants": [
+      "Comptons ensemble: un, deux, trois...",
+      "Qui peut compter jusqu'à dix?"
+    ],
+    "games": [
+      "Jean dit: montre-moi ___ doigts",
+      "Le téléphone des nombres (chuchoter un nombre)"
+    ]
+  },
+  "culturalConnections": {
+    "acadianConnections": [],
+    "quebecoisConnections": [],
+    "peiContext": [],
+    "culturalMaterials": []
+  },
+  "tprElements": [
+    {
+      "command": "Assieds-toi",
+      "action": "S'asseoir"
+    },
+    {
+      "command": "Lève-toi",
+      "action": "Se lever"
+    },
+    {
+      "command": "Viens ici",
+      "action": "Approcher"
+    },
+    {
+      "command": "Retourne à ta place",
+      "action": "Retourner"
+    },
+    {
+      "command": "Regarde-moi",
+      "action": "Contact visuel"
+    },
+    {
+      "command": "Écoute",
+      "action": "Main à l'oreille"
+    }
+  ],
+  "materialLabels": [
+    {
+      "item": "Counter container",
+      "label": "JETONS DE COMPTAGE",
+      "additionalInfo": "Image de jetons"
+    },
+    {
+      "item": "Pencil holder",
+      "label": "CRAYONS",
+      "additionalInfo": "Code couleur par type"
+    },
+    {
+      "item": "Clean-up station",
+      "label": "NETTOYAGE",
+      "additionalInfo": "Éponges et papier"
+    },
+    {
+      "item": "Finished work",
+      "label": "TRAVAIL TERMINÉ",
+      "additionalInfo": ""
+    },
+    {
+      "item": "Work in progress",
+      "label": "EN COURS",
+      "additionalInfo": "Ne pas toucher"
+    },
+    {
+      "item": "Recycling",
+      "label": "RECYCLAGE",
+      "additionalInfo": "Papier seulement"
+    }
+  ]
+}

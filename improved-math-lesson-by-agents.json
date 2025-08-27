@@ -1,0 +1,230 @@
+{
+  "lessonNumber": 1,
+  "lessonType": "core",
+  "title": "Découvrir les nombres dans notre monde",
+  "oneGoal": "Les élèves reconnaissent les nombres 0-3 dans leur environnement quotidien",
+  "progression": "Leçon de base : Introduction concrète aux nombres par l'exploration de l'environnement - établit les fondations de la reconnaissance numérique dans des contextes authentiques",
+  "duration": "45 minutes",
+  "keyVocabulary": [
+    "nombre",
+    "zéro",
+    "un"
+  ],
+  "opening": {
+    "duration": "~8 min",
+    "activity": "PROBLÈME D'OUVERTURE: 'J'ai quelques crayons dans cette boîte. Comment pouvons-nous savoir combien il y en a?' Laisser les élèves proposer des stratégies avant d'enseigner le comptage. Utiliser leurs idées comme point de départ.",
+    "materials": {
+      "required": [
+        {
+          "item": "Ours de comptage multicolores (grands)",
+          "quantity": "100 ours (4 par élève pour pratique individuelle)",
+          "source": "Kit de mathématiques - inventaire PEI",
+          "preparation": "Trier dans petits contenants par couleur",
+          "cost": "$0 (déjà disponible)",
+          "safety": "✓ Taille >3cm (pas d'étouffement) ✓ Plastique souple sécuritaire",
+          "mathematical_rationale": "Permet subitisation claire des quantités 0-3 par taille visuelle",
+          "differentiation": {
+            "struggling": "Commencer avec 2 ours seulement (0-2)",
+            "advanced": "Étendre jusqu'à 5 ours pour défis",
+            "ELL": "Cartes visuelles 0-3 avec arrangements"
+          }
+        },
+        {
+          "item": "Haricots Lima séchés (gros)",
+          "quantity": "200 haricots (8 par élève)",
+          "source": "Cafétéria école - provisions sèches",
+          "preparation": "Nettoyer, inspecter, tester allergies",
+          "cost": "$0 (don cafétéria)",
+          "safety": "✓ Taille >1cm ✓ Naturel de qualité alimentaire",
+          "mathematical_rationale": "Connexion mathématiques-monde réel, forme irrégulière pour subitisation avancée"
+        },
+        {
+          "item": "Assiettes de papier (tapis de regroupement)",
+          "quantity": "100 assiettes (4 par élève pour stations 0,1,2,3)",
+          "source": "Fournitures cafétéria école",
+          "preparation": "Étiqueter avec chiffres 0,1,2,3, plastifier",
+          "cost": "$0 (fournitures école)",
+          "safety": "✓ Matériau robuste ✓ Pas de bords coupants",
+          "mathematical_rationale": "Frontières visuelles claires pour cardinalité et ensemble vide (zéro)"
+        }
+      ],
+      "optional": [
+        {
+          "item": "Minuterie visuelle",
+          "quantity": "1 pour la classe",
+          "purpose": "Aider les élèves à gérer le temps de réflexion sur les stratégies"
+        }
+      ]
+    },
+    "visualSupports": "Tableau d'écoute des stratégies d'élèves",
+    "decisionPoints": [
+      "Noter toutes les stratégies proposées par les élèves"
+    ],
+    "movementBreaks": [],
+    "mathTalk": [
+      "Comment sais-tu cela?",
+      "Quelle autre façon pourrions-nous essayer?"
+    ]
+  },
+  "main": {
+    "duration": "~27 min",
+    "activity": "PHASE CONCRÈTE (15 min): Exploration tactile avec manipulatifs - collections de cubes, jetons, cailloux. Élèves créent des groupes de 0-3, touchent et comptent chaque objet. PHASE PICTURALE (8 min): Dessiner leurs collections sur papier, faire correspondre objets et dessins. PHASE ABSTRAITE (4 min): Introduire les symboles numériques seulement après maîtrise concrète et picturale.",
+    "materials": {
+      "required": [
+        {
+          "item": "Cubes emboîtables colorés",
+          "quantity": "15 cubes par élève (375 pour classe de 25)",
+          "preparation": "Organiser par couleur dans bacs étiquetés, inclure cubes, jetons bicolores et cailloux naturels pour exploration tactile",
+          "alternatives": [
+            "Jetons de comptage bicolores",
+            "Blocs Unifix",
+            "Boutons assortis et cailloux naturels"
+          ]
+        },
+        {
+          "item": "Cartes nombres 0-3 avec points",
+          "quantity": "1 jeu par paire d'élèves (13 jeux)",
+          "preparation": "Plastifier si non plastifiées, organiser par ordre numérique dans pochettes",
+          "alternatives": [
+            "Cartes nombres fait maison avec gommettes",
+            "Dés avec points pour nombres 0-3",
+            "Dominos pour représentation 0-3"
+          ]
+        }
+      ],
+      "optional": [
+        {
+          "item": "Papier cartonné pour dessins",
+          "quantity": "2 feuilles par élève (50 feuilles total)",
+          "purpose": "Phase picturale - dessiner les collections d'objets"
+        }
+      ]
+    },
+    "visualSupports": "Progression CPA affichée: objets réels → dessins → symboles numériques",
+    "decisionPoints": [
+      "PHASE CONCRÈTE - Si les élèves ne comptent pas avec correspondance un-à-un, rester aux manipulatifs. Ne pas passer au pictural avant maîtrise concrète.",
+      "PHASE ABSTRAITE - Seulement si maîtrise concrète ET picturale. Si confusion avec symboles, retourner aux phases précédentes."
+    ],
+    "mathTalk": [
+      "Qu'est-ce que tu observes quand tu comptes ces objets?",
+      "Comment peux-tu me montrer ce nombre d'une autre façon?",
+      "Explique à ton partenaire comment tu as fait ton groupe de trois.",
+      "Que remarques-tu quand tu dessines tes objets?"
+    ],
+    "movementBreaks": [
+      {
+        "timing": "~9 minutes",
+        "duration": "45 seconds",
+        "activity": "Stand and show numbers 0-3 with fingers - jump once for number 1, clap twice for number 2, stomp three times for number 3, then stay very still for zero!",
+        "purpose": "Reinforce number recognition through physical movement and kinesthetic learning"
+      },
+      {
+        "timing": "~18 minutes",
+        "duration": "30 seconds",
+        "activity": "Number walk stretch! Touch your head once (un), touch your shoulders twice (deux), touch your knees three times (trois), then stand very still like zero!",
+        "purpose": "Combine movement with French number vocabulary and body awareness"
+      }
+    ]
+  },
+  "closing": {
+    "duration": "~10 min",
+    "activity": "Cercle de partage: Chaque élève montre un nombre avec ses doigts. Chanson de fermeture: 'Un, deux, trois, au revoir!'",
+    "materials": {
+      "required": [
+        {
+          "item": "Cubes emboîtables colorés",
+          "quantity": "10 par élève",
+          "preparation": "Organiser par couleur dans des bacs etiquetés",
+          "alternatives": [
+            "Jetons de comptage",
+            "Petits objets identiques",
+            "Boutons colorés"
+          ]
+        },
+        {
+          "item": "Cartes nombres 0-10 avec points",
+          "quantity": "1 jeu par élève",
+          "preparation": "Plastifier et attacher avec anneau",
+          "alternatives": [
+            "Cartes fait-maison",
+            "Dominos modifiés",
+            "Dés spéciaux"
+          ]
+        }
+      ],
+      "optional": [
+        {
+          "item": "Boulier simple",
+          "quantity": "1 par équipe de 2",
+          "purpose": "Manipulation avancée des nombres et comptage"
+        }
+      ]
+    },
+    "visualSupports": "",
+    "decisionPoints": [
+      "Si les élèves montrent correctement 1-3 avec doigts, introduire défi de montrer 'zéro' (poings fermés); si confusion dans représentation digitale, modeler lentement et permettre imitation avant généralisation"
+    ],
+    "movementBreaks": []
+  },
+  "troubleshooting": {
+    "ifStrugglingWith": "Si les élèves sont distraits: utiliser une cloche ou chanson pour recentrer l'attention. Si confusion avec les nombres: retourner aux doigts et objets concrets.",
+    "then": ""
+  },
+  "realWorldConnection": "Compter les jouets à la maison, les doigts, les crayons sur le bureau",
+  "differentiation": {
+    "pourÉlèvesEnDifficulté": [
+      "RESTER EN PHASE CONCRÈTE: Utiliser seulement de gros manipulatifs identiques (cubes rouges uniquement)",
+      "Correspondance un-à-un guidée: Toucher chaque objet en comptant, déplacer dans boîte séparée",
+      "Ne PAS introduire symboles numériques - rester avec objets réels jusqu'à maîtrise",
+      "Commencer uniquement avec 0-2, matriser avant d'ajouter 3"
+    ],
+    "pourÉlèvesAvancés": [
+      "Explorer multiple representations: objets réels, dessins, symboles, doigts, corps",
+      "Problèmes ouverts: 'Trouve toutes les façons de faire un groupe de 3 objets différents'",
+      "Enseigner aux pairs: Expliquer la progression concret-pictural-abstrait à d'autres",
+      "Créer des histoires de nombres avec manipulation d'objets réels"
+    ],
+    "pourApprenantsFrançais": [
+      "Associer 'zéro/un/deux/trois' avec gestes expressifs des mains",
+      "Répéter les mots français en pointant les objets: 'un, UNE horloge'",
+      "Permettre de dire le nombre en langue maternelle puis répéter en français"
+    ],
+    "pourÉlèvesAvecPEI": [
+      "Adapter avec objets familiers et préférés (jouets personnels pour compter)",
+      "Utiliser des cartes visuelles géantes avec nombres 0-3 très clairs",
+      "Permettre de montrer au lieu de dire si communication difficile"
+    ]
+  },
+  "assessmentCriteria": {
+    "observable": [
+      "L'élève pointe ou nomme correctement 'zéro' pour une boîte vide",
+      "L'élève reconnaît 'un', 'deux', 'trois' en montrant les objets correspondants",
+      "L'élève se déplace avec le groupe et dit au moins 2 nombres à voix haute pendant la promenade"
+    ],
+    "checkpoints": [
+      "Ouverture: L'élève montre 0, 1, 2, 3 doigts quand demandé avec la chanson",
+      "Activité principale: L'élève trouve et touche des exemples de chaque nombre dans la classe",
+      "Fermeture: L'élève choisit et montre un nombre avec ses doigts au cercle"
+    ]
+  },
+  "safety_protocols": {
+    "pre_activity": [
+      "Inspecter tous haricots pour taille >1cm",
+      "Vérifier allergies alimentaires élèves",
+      "Tester solidité des ours de comptage",
+      "Préparer matériel supplémentaire (10% buffer)"
+    ],
+    "student_instructions": [
+      "Haricots et ours restent sur bureaux - pas dans bouches",
+      "Manipuler doucement pour éviter chutes bruyantes",
+      "Ranger dans contenants après usage",
+      "Signaler immédiatement matériel brisé"
+    ],
+    "mathematical_focus": [
+      "Une correspondance objet-nombre obligatoire",
+      "Vérification visuelle des quantités avant comptage",
+      "Arrangements variés pour même quantité (subitisation)",
+      "Connexions concrètes avant symboles numériques"
+    ]
+  }
+}

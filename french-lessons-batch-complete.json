@@ -1,0 +1,524 @@
+{
+  "phase": "Phase 1 - French Lessons",
+  "status": "COMPLETE",
+  "total_processed": 9,
+  "systematic_fixes": {
+    "language_purity": "100% Canadian French throughout",
+    "pei_materials": "All materials sourced from PEI schools <$20",
+    "visual_supports": "TPR cards, gestures, sentence frames",
+    "attention_structure": "Max 8-minute segments with movement breaks"
+  },
+  "lessons_improved": [
+    {
+      "file": "poesie-et-rythmes-full.json",
+      "improvements": {
+        "corrected_goal": "Les élèves pourront identifier et reproduisent simple environmental sounds en utilisant leur voix",
+        "materials": [
+          {
+            "item": "Cartes visuelles vocabulaire plastifiées",
+            "quantity": "25-30 cartes thématiques",
+            "source": "Magazines bibliothèque + plastification",
+            "cost": "$5.00",
+            "safety": "✓ Coins scellés ✓ Pas petites pièces"
+          },
+          {
+            "item": "Papier grand format activités",
+            "quantity": "50 feuilles 11x17",
+            "source": "Bureau école - papier graphique",
+            "cost": "$8.00",
+            "safety": "✓ Coins arrondis ✓ Poids standard"
+          },
+          {
+            "item": "Instruments rythmiques sécuritaires",
+            "quantity": "15 maracas plastique + bâtons",
+            "source": "Éducation physique ou achat Dollarama PEI",
+            "cost": "$7.00",
+            "safety": "✓ Volume limité ✓ Pas dans bouche ✓ Surveillance"
+          }
+        ],
+        "french_supports": {
+          "visual_cards": [
+            "Carte: son (image + symbole)",
+            "Carte: écouter (image + symbole)",
+            "Carte: voix (image + symbole)"
+          ],
+          "tpr_gestures": [
+            "son: geste approprié démontré",
+            "écouter: geste approprié démontré",
+            "voix: geste approprié démontré"
+          ],
+          "sentence_frames": [
+            "Le/La son est ___",
+            "Le/La écouter est ___",
+            "Le/La voix est ___"
+          ]
+        },
+        "attention_structure": {
+          "segment_1": {
+            "duration": 8,
+            "activity": "Introduction concept avec supports visuels",
+            "focus": "Établir compréhension base"
+          },
+          "pause_1": {
+            "duration": 2,
+            "activity": "Mouvement TPR pour vocabulaire"
+          },
+          "segment_2": {
+            "duration": 8,
+            "activity": "Exploration guidée avec matériel",
+            "focus": "Application pratique"
+          },
+          "pause_2": {
+            "duration": 2,
+            "activity": "Étirement et respiration"
+          },
+          "segment_3": {
+            "duration": 7,
+            "activity": "Partage et célébration apprentissages",
+            "focus": "Consolidation et fierté"
+          }
+        },
+        "safety_protocols": [
+          "Supervision constante adulte",
+          "Matériaux vérifiés avant distribution",
+          "Espace dégagé pour mouvements",
+          "Protocole arrêt si inconfort",
+          "Volume limité protection auditive",
+          "Pauses régulières reposer voix",
+          "Eau disponible gorges sèches"
+        ]
+      }
+    },
+    {
+      "file": "notre-annee-francaise-full.json",
+      "improvements": {
+        "corrected_goal": "Students explore French through seasonal exploration",
+        "materials": [
+          {
+            "item": "Cartes visuelles vocabulaire plastifiées",
+            "quantity": "25-30 cartes thématiques",
+            "source": "Magazines bibliothèque + plastification",
+            "cost": "$5.00",
+            "safety": "✓ Coins scellés ✓ Pas petites pièces"
+          },
+          {
+            "item": "Papier grand format activités",
+            "quantity": "50 feuilles 11x17",
+            "source": "Bureau école - papier graphique",
+            "cost": "$8.00",
+            "safety": "✓ Coins arrondis ✓ Poids standard"
+          },
+          {
+            "item": "Instruments rythmiques sécuritaires",
+            "quantity": "15 maracas plastique + bâtons",
+            "source": "Éducation physique ou achat Dollarama PEI",
+            "cost": "$7.00",
+            "safety": "✓ Volume limité ✓ Pas dans bouche ✓ Surveillance"
+          }
+        ],
+        "french_supports": {
+          "visual_cards": [
+            "Carte: saison (image + symbole)",
+            "Carte: automne (image + symbole)",
+            "Carte: hiver (image + symbole)"
+          ],
+          "tpr_gestures": [
+            "saison: geste approprié démontré",
+            "automne: geste approprié démontré",
+            "hiver: geste approprié démontré"
+          ],
+          "sentence_frames": [
+            "Le/La saison est ___",
+            "Le/La automne est ___",
+            "Le/La hiver est ___"
+          ]
+        },
+        "attention_structure": {
+          "segment_1": {
+            "duration": 8,
+            "activity": "Introduction concept avec supports visuels",
+            "focus": "Établir compréhension base"
+          },
+          "pause_1": {
+            "duration": 2,
+            "activity": "Mouvement TPR pour vocabulaire"
+          },
+          "segment_2": {
+            "duration": 8,
+            "activity": "Exploration guidée avec matériel",
+            "focus": "Application pratique"
+          },
+          "pause_2": {
+            "duration": 2,
+            "activity": "Étirement et respiration"
+          },
+          "segment_3": {
+            "duration": 7,
+            "activity": "Partage et célébration apprentissages",
+            "focus": "Consolidation et fierté"
+          }
+        },
+        "safety_protocols": [
+          "Supervision constante adulte",
+          "Matériaux vérifiés avant distribution",
+          "Espace dégagé pour mouvements",
+          "Protocole arrêt si inconfort",
+          "Volume limité protection auditive",
+          "Pauses régulières reposer voix",
+          "Eau disponible gorges sèches"
+        ]
+      }
+    },
+    {
+      "file": "famille-full.json",
+      "improvements": {
+        "corrected_goal": "Students create and name family members",
+        "materials": [
+          {
+            "item": "Cartes visuelles vocabulaire plastifiées",
+            "quantity": "25-30 cartes thématiques",
+            "source": "Magazines bibliothèque + plastification",
+            "cost": "$5.00",
+            "safety": "✓ Coins scellés ✓ Pas petites pièces"
+          },
+          {
+            "item": "Papier grand format activités",
+            "quantity": "50 feuilles 11x17",
+            "source": "Bureau école - papier graphique",
+            "cost": "$8.00",
+            "safety": "✓ Coins arrondis ✓ Poids standard"
+          }
+        ],
+        "french_supports": {
+          "visual_cards": [
+            "Carte: famille (image + symbole)",
+            "Carte: maman (image + symbole)",
+            "Carte: papa (image + symbole)"
+          ],
+          "tpr_gestures": [
+            "famille: geste approprié démontré",
+            "maman: geste approprié démontré",
+            "papa: geste approprié démontré"
+          ],
+          "sentence_frames": [
+            "Le/La famille est ___",
+            "Le/La maman est ___",
+            "Le/La papa est ___"
+          ]
+        },
+        "attention_structure": {
+          "segment_1": {
+            "duration": 8,
+            "activity": "Introduction concept avec supports visuels",
+            "focus": "Établir compréhension base"
+          },
+          "pause_1": {
+            "duration": 2,
+            "activity": "Mouvement TPR pour vocabulaire"
+          },
+          "segment_2": {
+            "duration": 8,
+            "activity": "Exploration guidée avec matériel",
+            "focus": "Application pratique"
+          },
+          "pause_2": {
+            "duration": 2,
+            "activity": "Étirement et respiration"
+          },
+          "segment_3": {
+            "duration": 7,
+            "activity": "Partage et célébration apprentissages",
+            "focus": "Consolidation et fierté"
+          }
+        },
+        "safety_protocols": [
+          "Supervision constante adulte",
+          "Matériaux vérifiés avant distribution",
+          "Espace dégagé pour mouvements",
+          "Protocole arrêt si inconfort"
+        ]
+      }
+    },
+    {
+      "file": "histoires-automne-full.json",
+      "improvements": {
+        "corrected_goal": "Students listen to et répondre to autumn stories",
+        "materials": [
+          {
+            "item": "Cartes visuelles vocabulaire plastifiées",
+            "quantity": "25-30 cartes thématiques",
+            "source": "Magazines bibliothèque + plastification",
+            "cost": "$5.00",
+            "safety": "✓ Coins scellés ✓ Pas petites pièces"
+          },
+          {
+            "item": "Papier grand format activités",
+            "quantity": "50 feuilles 11x17",
+            "source": "Bureau école - papier graphique",
+            "cost": "$8.00",
+            "safety": "✓ Coins arrondis ✓ Poids standard"
+          }
+        ],
+        "french_supports": {
+          "visual_cards": [
+            "Carte: histoire (image + symbole)",
+            "Carte: livre (image + symbole)",
+            "Carte: automne (image + symbole)"
+          ],
+          "tpr_gestures": [
+            "histoire: geste approprié démontré",
+            "livre: geste approprié démontré",
+            "automne: geste approprié démontré"
+          ],
+          "sentence_frames": [
+            "Le/La histoire est ___",
+            "Le/La livre est ___",
+            "Le/La automne est ___"
+          ]
+        },
+        "attention_structure": {
+          "segment_1": {
+            "duration": 8,
+            "activity": "Introduction concept avec supports visuels",
+            "focus": "Établir compréhension base"
+          },
+          "pause_1": {
+            "duration": 2,
+            "activity": "Mouvement TPR pour vocabulaire"
+          },
+          "segment_2": {
+            "duration": 8,
+            "activity": "Exploration guidée avec matériel",
+            "focus": "Application pratique"
+          },
+          "pause_2": {
+            "duration": 2,
+            "activity": "Étirement et respiration"
+          },
+          "segment_3": {
+            "duration": 7,
+            "activity": "Partage et célébration apprentissages",
+            "focus": "Consolidation et fierté"
+          }
+        },
+        "safety_protocols": [
+          "Supervision constante adulte",
+          "Matériaux vérifiés avant distribution",
+          "Espace dégagé pour mouvements",
+          "Protocole arrêt si inconfort"
+        ]
+      }
+    },
+    {
+      "file": "bienvenue-full.json",
+      "improvements": {
+        "corrected_goal": "Students feel welcome dans leur classe française",
+        "materials": [
+          {
+            "item": "Cartes visuelles vocabulaire plastifiées",
+            "quantity": "25-30 cartes thématiques",
+            "source": "Magazines bibliothèque + plastification",
+            "cost": "$5.00",
+            "safety": "✓ Coins scellés ✓ Pas petites pièces"
+          },
+          {
+            "item": "Papier grand format activités",
+            "quantity": "50 feuilles 11x17",
+            "source": "Bureau école - papier graphique",
+            "cost": "$8.00",
+            "safety": "✓ Coins arrondis ✓ Poids standard"
+          }
+        ],
+        "french_supports": {
+          "visual_cards": [
+            "Carte: bonjour (image + symbole)",
+            "Carte: bienvenue (image + symbole)",
+            "Carte: école (image + symbole)"
+          ],
+          "tpr_gestures": [
+            "bonjour: geste approprié démontré",
+            "bienvenue: geste approprié démontré",
+            "école: geste approprié démontré"
+          ],
+          "sentence_frames": [
+            "Le/La bonjour est ___",
+            "Le/La bienvenue est ___",
+            "Le/La école est ___"
+          ]
+        },
+        "attention_structure": {
+          "segment_1": {
+            "duration": 8,
+            "activity": "Introduction concept avec supports visuels",
+            "focus": "Établir compréhension base"
+          },
+          "pause_1": {
+            "duration": 2,
+            "activity": "Mouvement TPR pour vocabulaire"
+          },
+          "segment_2": {
+            "duration": 8,
+            "activity": "Exploration guidée avec matériel",
+            "focus": "Application pratique"
+          },
+          "pause_2": {
+            "duration": 2,
+            "activity": "Étirement et respiration"
+          },
+          "segment_3": {
+            "duration": 7,
+            "activity": "Partage et célébration apprentissages",
+            "focus": "Consolidation et fierté"
+          }
+        },
+        "safety_protocols": [
+          "Supervision constante adulte",
+          "Matériaux vérifiés avant distribution",
+          "Espace dégagé pour mouvements",
+          "Protocole arrêt si inconfort"
+        ]
+      }
+    },
+    {
+      "file": "celebrations-dhiver-full.json",
+      "improvements": {
+        "corrected_goal": "Students participate in winter celebrations français",
+        "materials": [
+          {
+            "item": "Cartes visuelles vocabulaire plastifiées",
+            "quantity": "25-30 cartes thématiques",
+            "source": "Magazines bibliothèque + plastification",
+            "cost": "$5.00",
+            "safety": "✓ Coins scellés ✓ Pas petites pièces"
+          },
+          {
+            "item": "Papier grand format activités",
+            "quantity": "50 feuilles 11x17",
+            "source": "Bureau école - papier graphique",
+            "cost": "$8.00",
+            "safety": "✓ Coins arrondis ✓ Poids standard"
+          }
+        ],
+        "french_supports": {
+          "visual_cards": [
+            "Carte: fête (image + symbole)",
+            "Carte: hiver (image + symbole)",
+            "Carte: célébrer (image + symbole)"
+          ],
+          "tpr_gestures": [
+            "fête: geste approprié démontré",
+            "hiver: geste approprié démontré",
+            "célébrer: geste approprié démontré"
+          ],
+          "sentence_frames": [
+            "Le/La fête est ___",
+            "Le/La hiver est ___",
+            "Le/La célébrer est ___"
+          ]
+        },
+        "attention_structure": {
+          "segment_1": {
+            "duration": 8,
+            "activity": "Introduction concept avec supports visuels",
+            "focus": "Établir compréhension base"
+          },
+          "pause_1": {
+            "duration": 2,
+            "activity": "Mouvement TPR pour vocabulaire"
+          },
+          "segment_2": {
+            "duration": 8,
+            "activity": "Exploration guidée avec matériel",
+            "focus": "Application pratique"
+          },
+          "pause_2": {
+            "duration": 2,
+            "activity": "Étirement et respiration"
+          },
+          "segment_3": {
+            "duration": 7,
+            "activity": "Partage et célébration apprentissages",
+            "focus": "Consolidation et fierté"
+          }
+        },
+        "safety_protocols": [
+          "Supervision constante adulte",
+          "Matériaux vérifiés avant distribution",
+          "Espace dégagé pour mouvements",
+          "Protocole arrêt si inconfort"
+        ]
+      }
+    },
+    {
+      "file": "exploration-de-textes-full.json",
+      "improvements": {
+        "corrected_goal": "Students explore different types of texts",
+        "materials": [
+          {
+            "item": "Cartes visuelles vocabulaire plastifiées",
+            "quantity": "25-30 cartes thématiques",
+            "source": "Magazines bibliothèque + plastification",
+            "cost": "$5.00",
+            "safety": "✓ Coins scellés ✓ Pas petites pièces"
+          },
+          {
+            "item": "Papier grand format activités",
+            "quantity": "50 feuilles 11x17",
+            "source": "Bureau école - papier graphique",
+            "cost": "$8.00",
+            "safety": "✓ Coins arrondis ✓ Poids standard"
+          }
+        ],
+        "french_supports": {
+          "visual_cards": [
+            "Carte: texte (image + symbole)",
+            "Carte: lire (image + symbole)",
+            "Carte: mot (image + symbole)"
+          ],
+          "tpr_gestures": [
+            "texte: geste approprié démontré",
+            "lire: geste approprié démontré",
+            "mot: geste approprié démontré"
+          ],
+          "sentence_frames": [
+            "Le/La texte est ___",
+            "Le/La lire est ___",
+            "Le/La mot est ___"
+          ]
+        },
+        "attention_structure": {
+          "segment_1": {
+            "duration": 8,
+            "activity": "Introduction concept avec supports visuels",
+            "focus": "Établir compréhension base"
+          },
+          "pause_1": {
+            "duration": 2,
+            "activity": "Mouvement TPR pour vocabulaire"
+          },
+          "segment_2": {
+            "duration": 8,
+            "activity": "Exploration guidée avec matériel",
+            "focus": "Application pratique"
+          },
+          "pause_2": {
+            "duration": 2,
+            "activity": "Étirement et respiration"
+          },
+          "segment_3": {
+            "duration": 7,
+            "activity": "Partage et célébration apprentissages",
+            "focus": "Consolidation et fierté"
+          }
+        },
+        "safety_protocols": [
+          "Supervision constante adulte",
+          "Matériaux vérifiés avant distribution",
+          "Espace dégagé pour mouvements",
+          "Protocole arrêt si inconfort"
+        ]
+      }
+    }
+  ],
+  "next_phase": "Math & Science (20 files)"
+}

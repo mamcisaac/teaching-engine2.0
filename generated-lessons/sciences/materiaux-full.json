@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Découvrir les matériaux autour de nous",
   "subject": "Sciences de la nature",
   "grade": "1",
   "totalLessons": 20,
@@ -20,41 +20,98 @@
       "opening": {
         "duration": 8,
         "activity": "Circle time (5 min): Hold up pencil, ask 'De quoi est fait ce crayon?' Touch different parts (wood, metal, rubber). Say 'Tout est fait de matériaux!' Introduce word 'matériau' with gestures.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Crayon en bois (1 par élève)",
+          "Tableau de classe",
+          "Cartes visuelles des 4 matériaux principaux"
+        ],
+        "visualSupports": "Cartes visuelles des matériaux avec mots et images, affiches avec gestes pour 'matériau'",
+        "decisionPoints": [
+          "Si les élèves ont du mal avec le concept de 'matériau', utiliser des objets très familiers et montrer les parties (crayon = bois + métal + caoutchouc)"
+        ],
+        "movementBreaks": [
+          "Gestes pour chaque matériau : tapoter (bois), étirer (plastique), briller (métal), caresser (tissu)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Material detective hunt (30 min): In pairs, students explore classroom with clipboards. Touch and examine desks, books, chairs, crayons. Draw objects and circle what they think each is made from (picture cards provided: wood, plastic, metal, cloth). Create class 'material map' of classroom discoveries. Practice vocabulary: 'Cet objet est fait de...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Presse-papiers avec feuilles d'observation (25)",
+          "Cartes d'images de matériaux (bois, plastique, métal, tissu) - 6 sets",
+          "Objets variés de la classe pour exploration",
+          "Grande feuille pour carte de classe des matériaux",
+          "Crayons de couleur (sets de 6)"
+        ],
+        "visualSupports": "Cartes de référence matériaux, exemple de feuille d'observation complétée, affiches de phrases modèles 'Cet objet est fait de...'",
+        "decisionPoints": [
+          "Si les élèves se dispersent pendant l'exploration, créer des équipes de 2 et donner des rôles spécifiques (un observe, un dessine)",
+          "Si certains élèves terminent rapidement, leur demander de devenir 'détectives experts' qui aident les autres équipes"
+        ],
+        "movementBreaks": [
+          "Marcher comme des détectives avec loupes imaginaires",
+          "Pause pour étirer et toucher différentes textures"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Science circle (10 min): Students share one interesting discovery. Teacher records on class chart. End with materials chant: 'Matériaux, matériaux, tout autour de nous!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Tableau de classe pour enregistrer les découvertes",
+          "Marqueurs colorés",
+          "Cartes des matériaux pour référence"
+        ],
+        "visualSupports": "Affiche de la comptine des matériaux avec gestes, tableau des découvertes avec images",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour partager, commencer par des questions dirigées : 'Qui a trouvé quelque chose en bois?'"
+        ],
+        "movementBreaks": [
+          "Comptine avec gestes et mouvements pour chaque matériau"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "l'identification des matériaux dans la classe",
+        "then": "commencer avec 3 objets très différents (crayon bois, bouteille plastique, cuillère métal) et faire toucher chacun avant d'explorer"
       },
       "realWorldConnection": "Students recognize that everything they use is made from materials",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir seulement 2-3 objets à examiner au lieu de plusieurs",
+          "Jumeler avec un partenaire plus fort pour l'exploration",
+          "Utiliser plus de gestes et d'images, moins de mots",
+          "Permettre de dessiner au lieu d'écrire"
+        ],
+        "forAdvanced": [
+          "Demander de trouver des objets faits de plusieurs matériaux",
+          "Devenir 'professeur assistant' pour expliquer aux autres",
+          "Créer leurs propres catégories de classification",
+          "Dessiner un plan de classe montrant tous les matériaux"
+        ],
+        "forELL": [
+          "Carte de référence avec images et mots des matériaux",
+          "Permettre l'utilisation de la langue maternelle avec traduction",
+          "Grouper avec un partenaire francophone bienveillant",
+          "Utiliser beaucoup de gestes et de démonstrations"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins sensoriels (éviter certaines textures si nécessaire)",
+          "Fournir des supports visuels personnalisés",
+          "Permettre des pauses sensorielles si nécessaire",
+          "Utiliser des objets familiers de la maison de l'élève"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève touche et examine différents objets avec curiosité",
+          "L'élève utilise le mot 'matériau' dans ses explications",
+          "L'élève peut identifier au moins 2 matériaux différents",
+          "L'élève partage ses découvertes avec enthousiasme"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration : observe comment l'élève examine les objets",
+          "Lors du partage : écoute l'usage du vocabulaire scientifique",
+          "À la fin : vérifie la compréhension avec des questions simples"
+        ]
       }
     },
     {
@@ -71,41 +128,99 @@
       "opening": {
         "duration": 8,
         "activity": "Story circle (5 min): Show picture of tree, then wooden chair. Ask 'Comment l'arbre devient une chaise?' Simple explanation that wood comes from trees. Touch classroom wooden items together.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images d'arbres et de chaises en bois",
+          "Objets en bois de la classe à toucher",
+          "Livre simple sur les arbres (optionnel)"
+        ],
+        "visualSupports": "Séquence d'images arbre → bois → meuble, cartes vocabulaire 'bois', 'arbre', 'dur' avec images",
+        "decisionPoints": [
+          "Si les élèves ne voient pas la connexion arbre-bois, utiliser des morceaux d'écorce et du bois poncé pour montrer la progression",
+          "Si certains élèves sont distraits par les objets, garder les échantillons cachés jusqu'au moment approprié"
+        ],
+        "movementBreaks": [
+          "Imiter les arbres qui poussent (se lever lentement, bras comme branches)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Wood investigation (30 min): Students receive wooden objects (rulers, blocks, spoons). Feel texture, smell, tap to hear sound. Use magnifying glasses to see wood grain. Compare different wood types if available. Create 'Wood Detective' sheets: draw what wood looks like, feels like, sounds like. Sort classroom objects: 'Made from wood' vs 'Not made from wood.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets en bois variés (règles, blocs, cuillères en bois, bâtonnets) - 6 sets",
+          "Loupes (6)",
+          "Feuilles 'Détective du bois' (25)",
+          "Bacs de tri 'Fait de bois' vs 'Pas fait de bois' (3)",
+          "Crayons pour dessiner les observations"
+        ],
+        "visualSupports": "Cartes de texture du bois, affiche avec vocabulaire 'bois', 'arbre', 'dur', exemple de feuille détective complétée",
+        "decisionPoints": [
+          "Si certains ont peur des échardes, utiliser du bois bien poncé et enseigner à toucher délicatement",
+          "Si le tri est difficile, commencer avec des objets évidents (clairement bois vs clairement plastique)"
+        ],
+        "movementBreaks": [
+          "Tapoter différentes surfaces pour entendre les sons du bois",
+          "Pause pour étirer les mains après avoir manipulé les objets"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Wood appreciation (10 min): Students share their favorite wooden object and why. Discuss how trees give us wood. Say thank you to trees for giving us materials.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets en bois préférés des élèves",
+          "Image d'arbre pour remerciements",
+          "Tableau pour noter les objets préférés"
+        ],
+        "visualSupports": "Affiche de remerciements aux arbres avec images, cartes d'objets en bois favoris",
+        "decisionPoints": [
+          "Si les élèves répètent les mêmes objets, encourager la diversité en posant des questions spécifiques sur différents objets en bois"
+        ],
+        "movementBreaks": [
+          "Gestes de remerciement aux arbres (mains jointes, incliner la tête)"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la connexion entre les arbres et les objets en bois",
+        "then": "montrer des photos séquentielles : arbre vivant → bois coupé → planche → meuble fini, utiliser des morceaux d'écorce comme pont visuel"
       },
       "realWorldConnection": "Students connect wooden furniture and toys to living trees",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2 objets en bois très différents",
+          "Utiliser plus d'images et moins de mots pour expliquer arbre→bois",
+          "Permettre de simplement toucher et sentir sans obligation de dessiner",
+          "Jumeler avec un élève plus fort pour le tri"
+        ],
+        "forAdvanced": [
+          "Demander d'identifier différents types de bois (chêne, pin)",
+          "Faire des connexions avec d'autres produits d'arbres (papier, fruits)",
+          "Devenir 'expert en bois' pour aider les autres",
+          "Créer une carte mentale des utilisations du bois"
+        ],
+        "forELL": [
+          "Cartes de vocabulaire bois/arbre avec images claires",
+          "Permettre description dans la langue maternelle puis traduire",
+          "Utiliser beaucoup de gestes pour 'dur', 'rugueux', 'lisse'",
+          "Grouper avec un partenaire francophone patient"
+        ],
+        "forIEP": [
+          "Adapter les objets selon la sensibilité tactile (bois très lisse)",
+          "Permettre l'exploration visuelle si toucher difficile",
+          "Fournir des objets familiers de la maison si possible",
+          "Utiliser des supports visuels personnalisés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève fait la connexion entre les arbres et le bois",
+          "L'élève explore les objets en bois avec ses sens (toucher, ouïe, odorat)",
+          "L'élève utilise le vocabulaire 'bois', 'arbre', 'dur' appropriément",
+          "L'élève peut trier les objets 'fait de bois' vs 'pas fait de bois'"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration : observe l'utilisation des sens pour examiner le bois",
+          "Lors du tri : vérifie la compréhension des objets en bois",
+          "Au partage : écoute l'utilisation du vocabulaire spécifique au bois"
+        ]
       }
     },
     {
@@ -122,41 +237,97 @@
       "opening": {
         "duration": 8,
         "activity": "Property investigation (5 min): Pass around wood sample. Everyone touches and says one word describing how it feels. Introduce 'propriétés' - special things about materials.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Échantillons de bois variés (écorce rugueuse, bois poncé lisse)",
+          "Cartes de propriétés avec images",
+          "Tableau pour noter les mots descriptifs"
+        ],
+        "visualSupports": "Cartes tactiles montrant 'rugueux' vs 'lisse', images de propriétés avec mots-clés",
+        "decisionPoints": [
+          "Si les élèves confondent 'propriétés' avec 'objets', utiliser l'analogie des 'pouvoirs spéciaux' de chaque matériau"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer 'rugueux' (frotter les mains) et 'lisse' (caresser doucement)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Wood property stations (30 min): Station 1: Feel different wood textures (rough bark, smooth sanded wood). Station 2: Compare wood hardness by gently pressing fingernails. Station 3: Examine wood colors and patterns. Station 4: Compare wood to other materials (foam, fabric, plastic). Students record observations with pictures and words. Create class 'Wood Properties' poster.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Échantillons de bois variés (écorce rugueuse, bois poncé lisse) - 6 sets",
+          "Plateau pour tester la dureté avec objets divers",
+          "Loupes pour examiner les motifs du bois",
+          "Feuilles d'observation des propriétés (25)",
+          "Grande affiche pour poster 'Propriétés du bois'"
+        ],
+        "visualSupports": "Tableau comparatif des matériaux, exemples de feuilles d'observation, cartes de propriétés avec vocabulaire",
+        "decisionPoints": [
+          "Si les stations sont trop bruyantes, établir un système de rotation avec minuterie",
+          "Si certains élèves ont de la difficulté avec les textures, offrir des gants fins ou permettre l'observation visuelle"
+        ],
+        "movementBreaks": [
+          "Marcher comme des arbres forts et durs, puis se pencher comme des branches souples"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Property sharing (10 min): Each student shares one wood property they discovered. Practice vocabulary: 'Le bois est...' Make connections to why wood is good for furniture (hard, strong).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Poster des propriétés du bois complété",
+          "Objets en bois pour référence",
+          "Cartes de propriétés pour support"
+        ],
+        "visualSupports": "Phrase modèle 'Le bois est...' avec images, connexions visuelles propriété→usage",
+        "decisionPoints": [
+          "Si les élèves répètent les mêmes propriétés, poser des questions pour explorer d'autres aspects"
+        ],
+        "movementBreaks": [
+          "Gestes pour chaque propriété découverte"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension du concept de 'propriétés'",
+        "then": "utiliser l'analogie des 'talents spéciaux' - chaque matériau a des talents comme être dur, lisse, ou rugueux"
       },
       "realWorldConnection": "Students understand why wood is chosen for making strong, lasting objects",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à 2 propriétés principales : dur et rugueux",
+          "Utiliser plus de démonstrations tactiles",
+          "Jumeler avec un élève plus fort pour les stations",
+          "Permettre de montrer au lieu de verbaliser"
+        ],
+        "forAdvanced": [
+          "Explorer des propriétés plus complexes (densité, grain)",
+          "Faire des prédictions sur les utilisations basées sur les propriétés",
+          "Devenir 'expert en propriétés' pour guider les autres",
+          "Créer un guide illustré des propriétés du bois"
+        ],
+        "forELL": [
+          "Cartes de vocabulaire des propriétés avec images et gestes",
+          "Permettre description dans la langue maternelle puis traduction",
+          "Utiliser beaucoup de comparaisons visuelles et tactiles",
+          "Grouper avec un partenaire francophone patient"
+        ],
+        "forIEP": [
+          "Adapter selon la sensibilité sensorielle",
+          "Fournir des alternatives visuelles pour l'exploration tactile",
+          "Utiliser des supports personnalisés",
+          "Permettre des pauses sensorielles si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève utilise le vocabulaire des propriétés (rugueux, lisse, dur)",
+          "L'élève explore les matériaux avec plusieurs sens",
+          "L'élève fait des connexions entre propriétés et usages",
+          "L'élève participe activement aux stations d'exploration"
+        ],
+        "checkpoints": [
+          "Aux stations : observe l'exploration sensorielle et les descriptions",
+          "Pendant le partage : écoute l'utilisation appropriée du vocabulaire",
+          "En fin d'activité : vérifie la compréhension des propriétés du bois"
+        ]
       }
     },
     {
@@ -173,41 +344,97 @@
       "opening": {
         "duration": 8,
         "activity": "Plastic discovery (5 min): Show water bottle and wooden block. Ask 'Quelle est la différence?' Pass both around. Introduce that plastic is 'fait par les humains' while wood comes from trees.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Bouteille d'eau en plastique",
+          "Bloc de bois",
+          "Cartes visuelles 'naturel' vs 'fait par les humains'"
+        ],
+        "visualSupports": "Images comparées : arbre/nature vs usine/humains, cartes vocabulaire 'plastique', 'fait', 'léger'",
+        "decisionPoints": [
+          "Si les élèves ne voient pas la différence, faire des comparaisons tactiles : poids, texture, température",
+          "Si le concept 'fait par les humains' est difficile, montrer des images d'usines vs forêts"
+        ],
+        "movementBreaks": [
+          "Gestes pour 'léger' (lever les mains vers le haut) vs 'lourd' (baisser vers le sol)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Plastic exploration (30 min): Students examine plastic items: bottles, containers, toys, rulers. Notice that plastic is lighter than wood, smoother, often colorful. Try bending flexible plastic items safely. Use plastic detective sheets to record: color, flexibility, weight, sound when tapped. Sort classroom objects: 'Made from plastic' vs 'Made from wood' vs 'Made from other materials.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets en plastique variés (bouteilles, contenants, jouets, règles) - 6 sets",
+          "Feuilles 'Détective du plastique' (25)",
+          "Bacs de tri 'Plastique', 'Bois', 'Autres matériaux' (3)",
+          "Balance simple ou objets pour comparaison de poids"
+        ],
+        "visualSupports": "Tableau comparatif plastique vs bois, cartes de couleurs du plastique, affiches de sécurité pour plier",
+        "decisionPoints": [
+          "Si certains objets sont difficiles à plier, choisir des objets plus souples et enseigner la sécurité",
+          "Si le tri est confus, commencer avec des objets très évidents de chaque catégorie"
+        ],
+        "movementBreaks": [
+          "Imiter la flexibilité du plastique en étirant et pliant les bras doucement"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Plastic vs Wood comparison (10 min): Create simple class chart comparing plastic and wood. Students contribute observations. Discuss how people invented plastic to make things lighter and colorful.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Grande feuille pour tableau comparatif",
+          "Marqueurs de couleur",
+          "Échantillons plastique et bois pour référence"
+        ],
+        "visualSupports": "Tableau à deux colonnes avec images, cartes de résumé des découvertes",
+        "decisionPoints": [
+          "Si les contributions se répètent, poser des questions spécifiques pour explorer d'autres aspects"
+        ],
+        "movementBreaks": [
+          "Applaudissements pour l'inventivité humaine"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la distinction entre matériaux naturels et faits par les humains",
+        "then": "utiliser des exemples très concrets : montrer des photos d'arbres vs usines, utiliser des objets famille vs artificiels"
       },
       "realWorldConnection": "Students recognize plastic items they use daily and understand these are made by people",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter la comparaison à 2 aspects : poids et couleur",
+          "Utiliser des objets très différents pour faciliter la distinction",
+          "Permettre l'exploration tactile sans obligation d'écrire",
+          "Jumeler avec un partenaire pour le tri"
+        ],
+        "forAdvanced": [
+          "Explorer différents types de plastique (rigide vs flexible)",
+          "Réfléchir aux avantages et inconvénients du plastique",
+          "Aider les autres à identifier des objets mixtes (bois et plastique)",
+          "Créer des catégories plus précises de plastique"
+        ],
+        "forELL": [
+          "Cartes visuelles plastique avec mots et images",
+          "Permettre l'utilisation de la langue maternelle pour décrire",
+          "Utiliser beaucoup de gestes pour 'léger', 'lisse', 'flexible'",
+          "Grouper avec un francophone bienveillant"
+        ],
+        "forIEP": [
+          "Adapter les objets selon les sensibilités",
+          "Permettre l'observation sans manipulation si nécessaire",
+          "Utiliser des supports visuels adaptés",
+          "Offrir des pauses sensorielles"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève distingue les objets en plastique des objets en bois",
+          "L'élève utilise le vocabulaire 'plastique', 'léger', 'fait'",
+          "L'élève comprend que le plastique est fait par les humains",
+          "L'élève participe au tri et à l'exploration"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration : observe la capacité à distinguer les matériaux",
+          "Lors du tri : vérifie la compréhension des catégories",
+          "Au partage : écoute l'usage du nouveau vocabulaire"
+        ]
       }
     },
     {
@@ -224,41 +451,97 @@
       "opening": {
         "duration": 8,
         "activity": "Property comparison (5 min): Give each pair one wood piece and one plastic piece. Have them compare weight, texture, and appearance. Introduce vocabulary: 'lisse' (smooth), 'coloré' (colorful).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Pièces de bois (1 par paire)",
+          "Pièces de plastique (1 par paire)",
+          "Cartes de vocabulaire avec gestes"
+        ],
+        "visualSupports": "Cartes visuelles 'lisse' vs 'rugueux' avec textures, palette de couleurs du plastique",
+        "decisionPoints": [
+          "Si les élèves mélangent les propriétés, se concentrer sur une à la fois : d'abord texture, puis poids, puis couleur"
+        ],
+        "movementBreaks": [
+          "Gestes pour 'lisse' (caresser doucement) et 'coloré' (montrer arc-en-ciel avec les bras)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Plastic property investigation (30 min): Station 1: Weight comparison using simple balance or lifting different materials. Station 2: Texture exploration - feel smooth plastic vs rough wood. Station 3: Color investigation - sort plastic items by color, notice bright options. Station 4: Flexibility test - carefully bend plastic items, compare to rigid wood. Record findings on property comparison charts.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Balance simple ou objets de poids variés",
+          "Objets plastique lisses et bois rugueux",
+          "Objets plastique de couleurs variées pour tri",
+          "Objets plastique flexibles (sécuritaires) et bois rigide",
+          "Tableaux de comparaison des propriétés (25)"
+        ],
+        "visualSupports": "Affiches des 4 stations avec instructions visuelles, cartes de propriétés plastique vs bois",
+        "decisionPoints": [
+          "Si la flexibilité est difficile à tester, utiliser des objets très souples comme des bouteilles vides",
+          "Si le tri par couleur crée des disputes, donner des couleurs spécifiques à chaque équipe"
+        ],
+        "movementBreaks": [
+          "Imiter la flexibilité du plastique en étirant tout le corps, puis la rigidité du bois en restant droit"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Human-made discussion (10 min): Talk about how people created plastic in factories to make things that wood couldn't do (waterproof, light, many colors). Show appreciation for human creativity.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images d'usines et de scientifiques",
+          "Exemples d'objets impossibles en bois (bouteilles d'eau, jouets souples)",
+          "Tableau des 'super pouvoirs' du plastique"
+        ],
+        "visualSupports": "Comparaison visuelle : ce que le bois peut/ne peut pas faire vs ce que le plastique peut faire",
+        "decisionPoints": [
+          "Si le concept d'usine est abstrait, utiliser des analogies simples comme une 'cuisine géante pour matériaux'"
+        ],
+        "movementBreaks": [
+          "Applaudissements pour célébrer la créativité humaine"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension des multiples propriétés du plastique",
+        "then": "se concentrer sur une propriété à la fois et utiliser des comparaisons directes avec des objets familiers"
       },
       "realWorldConnection": "Students appreciate human innovation in creating materials with specific properties",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à 2 propriétés principales : lisse et coloré",
+          "Fournir des objets avec des différences très marquées",
+          "Permettre l'exploration sans obligation d'écriture",
+          "Utiliser plus de démonstrations visuelles"
+        ],
+        "forAdvanced": [
+          "Explorer les différents types de plastique (dur, mou, transparent)",
+          "Réfléchir aux innovations futures avec le plastique",
+          "Aider à expliquer les propriétés aux autres élèves",
+          "Créer un 'guide des super pouvoirs du plastique'"
+        ],
+        "forELL": [
+          "Cartes de vocabulaire des propriétés avec images tactiles",
+          "Permettre description avec gestes et langue maternelle",
+          "Utiliser beaucoup d'exemples concrets et familiers",
+          "Jumeler avec un francophone patient"
+        ],
+        "forIEP": [
+          "Adapter selon les sensibilités tactiles et visuelles",
+          "Permettre l'observation à distance si nécessaire",
+          "Utiliser des supports personnalisés",
+          "Offrir des pauses sensorielles régulières"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie les propriétés du plastique (lisse, léger, coloré)",
+          "L'élève fait des comparaisons entre plastique et bois",
+          "L'élève comprend que les humains ont créé le plastique",
+          "L'élève utilise le vocabulaire approprié des propriétés"
+        ],
+        "checkpoints": [
+          "Aux stations : observe la capacité à identifier et comparer les propriétés",
+          "Pendant les discussions : écoute l'utilisation du vocabulaire scientifique",
+          "En fin de leçon : vérifie la compréhension des innovations humaines"
+        ]
       }
     },
     {
@@ -275,41 +558,95 @@
       "opening": {
         "duration": 8,
         "activity": "Metal introduction (5 min): Tap metal spoon against wooden block. Students notice different sounds. Look at spoon in light to see it's shiny ('brillant'). Pass spoon around to feel coolness.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cuillère en métal (sécuritaire)",
+          "Bloc de bois pour comparaison",
+          "Lampe ou lumière pour montrer l'éclat"
+        ],
+        "visualSupports": "Cartes vocabulaire 'métal', 'brillant', 'froid' avec images et gestes",
+        "decisionPoints": [
+          "Si certains élèves ont peur du métal, utiliser des objets très familiers et sécuritaires comme des pièces de monnaie"
+        ],
+        "movementBreaks": [
+          "Tapoter doucement sur différentes surfaces pour entendre les sons du métal"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Metal exploration (30 min): Students examine safe metal objects: spoons, safe scissors, metal rulers, coins. Notice shininess by reflecting light. Feel temperature difference from plastic and wood. Listen to sound when tapped. Use magnifying glasses to see smooth, shiny surface. Create 'Metal Detective' observations: What does metal look like? Sound like? Feel like?",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets métalliques sécuritaires (cuillères, règles, pièces de monnaie) - 6 sets",
+          "Loupes pour voir la surface",
+          "Lampes ou miroirs pour réfléchir la lumière",
+          "Feuilles 'Détective du métal' (25)"
+        ],
+        "visualSupports": "Cartes de propriétés du métal, exemples de réflexion de lumière, tableau sensoriel",
+        "decisionPoints": [
+          "Si les objets sont trop froids au toucher, les laisser à température ambiante avant l'activité"
+        ],
+        "movementBreaks": [
+          "Briller comme du métal en bougeant les mains pour refléter la lumière"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Metal sound orchestra (10 min): Each student gets metal object to gently tap. Create class rhythm. Discuss how metal's hardness makes clear, ringing sounds unlike wood or plastic.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets métalliques pour chaque élève",
+          "Bâtonnets pour taper doucement",
+          "Enregistreur pour capturer l'orchestre (optionnel)"
+        ],
+        "visualSupports": "Graphique des sons : métal (clair) vs bois (sourd) vs plastique (mat)",
+        "decisionPoints": [
+          "Si le bruit devient trop fort, établir des signaux pour commencer/arrêter ensemble"
+        ],
+        "movementBreaks": [
+          "Orchestre de métal avec mouvements rythmiques"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la distinction des propriétés uniques du métal",
+        "then": "faire des comparaisons directes côte à côte avec bois et plastique pour montrer brillant, froid, sonore"
       },
       "realWorldConnection": "Students connect metal's properties to its uses in kitchen tools and outdoor equipment",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 2 propriétés principales : brillant et froid",
+          "Utiliser des objets très familiers comme les pièces de monnaie",
+          "Permettre l'exploration sans obligation d'écriture détaillée",
+          "Jumeler avec un partenaire pour l'exploration"
+        ],
+        "forAdvanced": [
+          "Explorer différents types de métaux (aluminium, acier)",
+          "Faire des connexions avec des utilisations spécialisées",
+          "Aider à expliquer les propriétés aux autres",
+          "Créer un guide des 'super pouvoirs du métal'"
+        ],
+        "forELL": [
+          "Cartes visuelles des propriétés du métal avec gestes",
+          "Utiliser des comparaisons avec objets de la maison",
+          "Permettre description avec langue maternelle et gestes",
+          "Grouper avec francophone bienveillant"
+        ],
+        "forIEP": [
+          "Adapter selon sensibilité au froid ou aux textures",
+          "Permettre observation visuelle si toucher difficile",
+          "Utiliser supports visuels personnalisés",
+          "Offrir pauses sensorielles si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie les objets métalliques par leurs propriétés",
+          "L'élève utilise vocabulaire 'métal', 'brillant', 'froid'",
+          "L'élève reconnaît les sons distinctifs du métal",
+          "L'élève fait des connexions avec utilisations du métal"
+        ],
+        "checkpoints": [
+          "Pendant exploration : observe identification des propriétés métalliques",
+          "Lors de l'orchestre : vérifie compréhension des sons du métal",
+          "En discussion : écoute utilisation appropriée du vocabulaire"
+        ]
       }
     },
     {
@@ -479,41 +816,96 @@
       "opening": {
         "duration": 8,
         "activity": "Material review (5 min): Show samples of wood, plastic, metal, fabric. Students name each material and share one property they remember. Practice 'comparer' vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Échantillons des 4 matériaux (bois, plastique, métal, tissu)",
+          "Cartes récapitulatives des matériaux",
+          "Tableau pour noter les propriétés"
+        ],
+        "visualSupports": "Cartes résumé des 4 matériaux avec propriétés principales, vocabulaire 'comparer', 'différent', 'pareil'",
+        "decisionPoints": [
+          "Si les élèves mélangent les propriétés, faire des rappels tactiles en touchant chaque matériau"
+        ],
+        "movementBreaks": [
+          "Gestes distinctifs pour chaque matériau appris précédemment"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Great material comparison (30 min): Students receive one sample of each material. Create comparison chart with pictures and words: Which is hardest? Softest? Shiniest? Most flexible? Which comes from nature? Made by people? Use sorting activities: group by hardness, flexibility, origin. Play 'Material Mystery' - describe properties while others guess the material.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Sets complets des 4 matériaux (1 par élève)",
+          "Tableaux de comparaison grand format (6)",
+          "Cartes de tri par propriétés",
+          "Bacs de tri pour dur/mou, naturel/artificiel",
+          "Cartes mystère avec descriptions"
+        ],
+        "visualSupports": "Grand tableau comparatif des 4 matériaux, cartes de propriétés avec images, guides de tri",
+        "decisionPoints": [
+          "Si le tri devient confus, faire une propriété à la fois (d'abord dureté, puis origine, etc.)"
+        ],
+        "movementBreaks": [
+          "Jeu 'deviner le matériau' avec mouvements corporels représentant chaque propriété"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Material experts (10 min): Students present their comparison findings. Create class 'Material Expert' chart. Celebrate that they now know about four important materials and their special properties.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Grande affiche 'Experts en Matériaux'",
+          "Certificats d'expert pour chaque élève",
+          "Résultats des comparaisons des équipes"
+        ],
+        "visualSupports": "Affiche célébration des experts, résumé visuel des 4 matériaux maîtrisés",
+        "decisionPoints": [
+          "Si certains sont timides pour présenter, permettre de montrer leurs trouvailles au lieu de parler"
+        ],
+        "movementBreaks": [
+          "Célébration avec applaudissements pour chaque expert"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la comparaison de multiples propriétés simultanément",
+        "then": "simplifier à une propriété à la fois, utiliser plus de comparaisons directes côte à côte"
       },
       "realWorldConnection": "Students can now explain why different materials are chosen for different objects",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à 2 matériaux à comparer à la fois",
+          "Se concentrer sur les différences les plus évidentes",
+          "Utiliser plus de comparaisons tactiles",
+          "Jumeler avec un élève plus fort"
+        ],
+        "forAdvanced": [
+          "Ajouter des propriétés plus subtiles à comparer",
+          "Faire des prédictions sur de nouveaux matériaux",
+          "Devenir 'consultant expert' pour autres équipes",
+          "Créer un guide complet des matériaux"
+        ],
+        "forELL": [
+          "Cartes de comparaison avec images et gestes",
+          "Permettre description avec langue maternelle + français",
+          "Utiliser beaucoup de démonstrations visuelles",
+          "Support d'un francophone patient"
+        ],
+        "forIEP": [
+          "Adapter selon préférences sensorielles",
+          "Permettre comparaisons visuelles si toucher difficile",
+          "Utiliser supports personnalisés",
+          "Offrir pauses sensorielles régulières"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève compare les 4 matériaux avec précision",
+          "L'élève utilise vocabulaire comparatif approprié",
+          "L'élève classe les matériaux par propriétés",
+          "L'élève explique ses choix de classification"
+        ],
+        "checkpoints": [
+          "Pendant tri : observe précision des classifications",
+          "Jeu mystère : vérifie compréhension des propriétés",
+          "Présentations : écoute capacité à expliquer comparaisons"
+        ]
       }
     },
     {
