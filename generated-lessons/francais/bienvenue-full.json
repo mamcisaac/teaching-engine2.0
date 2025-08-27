@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Bienvenue dans notre classe française!",
   "subject": "Français (Immersion)",
   "grade": "1",
   "totalLessons": 20,
@@ -21,9 +21,10 @@
         "duration": 8,
         "activity": "Gentle introduction with puppet saying 'Bonjour!' and waving. Show friendly face pictures of children greeting each other.",
         "materials": [
-          "hand puppet",
-          "greeting picture cards",
-          "smile face icons"
+          "hand puppet (1)",
+          "greeting picture cards (25)",
+          "smile face icons (25)",
+          "welcome poster in French (1)"
         ],
         "visualSupports": "Big wave gesture for 'bonjour', hand to heart for 'merci', wave goodbye for 'au revoir'",
         "decisionPoints": [],
@@ -33,21 +34,27 @@
         "duration": 27,
         "activity": "Circle time with greeting song using gestures. Pass the puppet around for each child to hear 'Bonjour [name]!' Practice greeting responses with thumbs up, wave, or smile.",
         "materials": [
-          "puppet",
-          "name cards with pictures",
-          "greeting song recording"
+          "Pierre puppet (1)",
+          "name cards with pictures (25)",
+          "greeting song recording (1)",
+          "classroom sound system (1)"
         ],
         "visualSupports": "Exaggerated facial expressions, large gesture demonstrations, picture sequence cards showing greeting interactions",
         "decisionPoints": [
           {
-            "question": "How comfortable are students with new sounds?",
-            "ifYes": "Continue with puppet conversations and encourage verbal responses",
-            "ifNo": "Focus on gestures and visual responses, extend listening time"
+            "question": "How comfortable are students with new French sounds?",
+            "ifYes": "Continue with puppet conversations and encourage verbal responses with 'Bonjour' attempts",
+            "ifNo": "Focus on gestures and visual responses, extend listening time with more repetition"
           },
           {
             "question": "What level of gestures/TPR support is needed?",
-            "ifYes": "Use full body movements and exaggerated gestures",
-            "ifNo": "Use simple hand gestures and facial expressions"
+            "ifYes": "Use full body movements and exaggerated gestures for kinesthetic learners",
+            "ifNo": "Use simple hand gestures and facial expressions for focused attention"
+          },
+          {
+            "question": "Are students ready for individual greeting practice?",
+            "ifYes": "Have puppet greet each child individually with their name",
+            "ifNo": "Keep greetings as whole group activity with shared responses"
           }
         ],
         "movementBreaks": []
@@ -55,8 +62,11 @@
       "closing": {
         "duration": 10,
         "activity": "Goodbye circle with puppet saying 'Au revoir!' to each child. Practice waving and saying goodbye.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Pierre puppet (1)",
+          "goodbye wave cards (25)"
+        ],
+        "visualSupports": "Large waving motion, 'Au revoir' lip formation, happy goodbye expressions",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -66,14 +76,44 @@
       },
       "realWorldConnection": "How people greet each other in French-speaking communities around the world",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Use simple gestures only (wave, smile)",
+          "Allow non-verbal responses (pointing, nodding)",
+          "Provide extra visual cues and slower pace",
+          "Practice with puppet one-on-one if needed"
+        ],
+        "forAdvanced": [
+          "Encourage full French greetings 'Bonjour madame/monsieur'",
+          "Add time of day greetings 'Bon matin'",
+          "Practice greeting puppet in different voices",
+          "Help demonstrate for classmates"
+        ],
+        "forELL": [
+          "Connect to greetings in home language first",
+          "Use visual greeting sequence cards",
+          "Allow code-switching during learning phase",
+          "Focus on gesture recognition before speech"
+        ],
+        "forIEP": [
+          "Adapt to individual communication methods",
+          "Use assistive technology if needed",
+          "Allow extended processing time",
+          "Modify physical gestures as needed"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student responds to 'Bonjour' with gesture or smile",
+          "Student shows recognition of French greeting sounds",
+          "Student demonstrates appropriate social greeting behavior",
+          "Student engages with puppet interaction positively"
+        ],
+        "checkpoints": [
+          "Can recognize 'Bonjour' when spoken",
+          "Attempts to wave or gesture in response",
+          "Shows comfort with French classroom environment",
+          "Participates in group greeting activities"
+        ]
       }
     },
     {
@@ -110,14 +150,19 @@
         "visualSupports": "Point to self clearly, hold up name cards, use questioning facial expressions and hand gestures",
         "decisionPoints": [
           {
-            "question": "Are students ready to say their names or still observing?",
-            "ifYes": "Encourage verbal attempts with puppet support",
-            "ifNo": "Focus on pointing to name cards and self-recognition activities"
+            "question": "Are students ready to attempt saying their names in French?",
+            "ifYes": "Encourage verbal attempts with puppet support and pronunciation modeling",
+            "ifNo": "Focus on pointing to name cards and self-recognition activities with gestures"
           },
           {
-            "question": "How much repetition is needed for name patterns?",
-            "ifYes": "Repeat pattern with multiple examples and slow pace",
-            "ifNo": "Move to interactive name games and recognition activities"
+            "question": "How much repetition is needed for 'Je m'appelle' pattern?",
+            "ifYes": "Repeat pattern with multiple examples and slow pace, emphasize gestures",
+            "ifNo": "Move to interactive name games and recognition activities with varied practice"
+          },
+          {
+            "question": "Should we include family names or focus on first names only?",
+            "ifYes": "Include both first and family names for confident students",
+            "ifNo": "Focus on first names only to build confidence"
           }
         ],
         "movementBreaks": []
@@ -125,8 +170,11 @@
       "closing": {
         "duration": 10,
         "activity": "Goodbye circle where puppet says 'Au revoir [name]!' to each child while they hold their name card.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Pierre puppet (1)",
+          "photo name cards (25)"
+        ],
+        "visualSupports": "Point to name card, wave goodbye, use child's name with clear pronunciation",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -136,14 +184,44 @@
       },
       "realWorldConnection": "How introductions work in French families and communities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Use picture name cards with photos only",
+          "Allow pointing to self instead of verbal response",
+          "Practice 'Je m'appelle' with simple gestures first",
+          "Use mirror for self-recognition support"
+        ],
+        "forAdvanced": [
+          "Encourage full sentence 'Je m'appelle [first name] [last name]'",
+          "Practice asking 'Comment tu t'appelles?' to classmates",
+          "Help puppet introduce itself to other students",
+          "Add politeness words 's'il vous plaît'"
+        ],
+        "forELL": [
+          "Compare name introductions in home language",
+          "Use visual name sequence cards",
+          "Allow bilingual name explanations if needed",
+          "Focus on French pronunciation of their actual name"
+        ],
+        "forIEP": [
+          "Adapt communication method to individual needs",
+          "Use augmentative communication tools if available",
+          "Allow longer processing time for responses",
+          "Modify self-pointing gestures as needed"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student points to self when hearing 'Je m'appelle'",
+          "Student recognizes their name when spoken in French",
+          "Student shows understanding of question 'Comment tu t'appelles?'",
+          "Student attempts name introduction with support"
+        ],
+        "checkpoints": [
+          "Can point to self appropriately during name activities",
+          "Shows recognition of their own name card",
+          "Demonstrates understanding of name introduction pattern",
+          "Participates in name circle activities positively"
+        ]
       }
     },
     {
@@ -161,9 +239,10 @@
         "duration": 8,
         "activity": "Review greetings and names. Introduce color magic with colored scarves or fabric appearing from a box.",
         "materials": [
-          "colored scarves (red, blue, yellow)",
-          "magic box",
-          "Pierre puppet"
+          "colored scarves (8-10 of each color)",
+          "magic box (1)",
+          "Pierre puppet (1)",
+          "color surprise items"
         ],
         "visualSupports": "Hold up colors clearly, use magic gestures, exaggerated surprise expressions",
         "decisionPoints": [],
@@ -173,22 +252,28 @@
         "duration": 27,
         "activity": "Color exploration stations: touch red objects, find blue items, dance with yellow scarves. Color matching games with large visual cards.",
         "materials": [
-          "colored objects (blocks, balls, crayons)",
-          "color cards",
-          "colored scarves",
-          "sorting baskets"
+          "colored objects - blocks, balls, crayons (25+ of each color)",
+          "large color cards (25)",
+          "colored scarves (25)",
+          "sorting baskets (3)",
+          "color exploration stations setup"
         ],
         "visualSupports": "Point clearly to colors, use searching gestures for finding activities, dancing movements for each color",
         "decisionPoints": [
           {
             "question": "Which colors are students naturally drawn to?",
-            "ifYes": "Start with preferred colors and build confidence",
-            "ifNo": "Introduce all three colors equally with multiple exposures"
+            "ifYes": "Start with preferred colors and build confidence before introducing others",
+            "ifNo": "Introduce all three colors equally with multiple exposures and repetition"
           },
           {
             "question": "Should we use more movement games or quiet observation?",
-            "ifYes": "Focus on active color games and dancing with scarves",
-            "ifNo": "Use seated color sorting and matching activities"
+            "ifYes": "Focus on active color games and dancing with scarves for kinesthetic learners",
+            "ifNo": "Use seated color sorting and matching activities for focused attention"
+          },
+          {
+            "question": "Are students ready to attempt color names verbally?",
+            "ifYes": "Encourage color name attempts while handling colored objects",
+            "ifNo": "Focus on color recognition through pointing and sorting activities"
           }
         ],
         "movementBreaks": []
@@ -196,8 +281,11 @@
       "closing": {
         "duration": 10,
         "activity": "Color goodbye game: each child chooses a colored scarf and waves 'Au revoir rouge!' or their chosen color.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "colored scarves (25)",
+          "Pierre puppet (1)"
+        ],
+        "visualSupports": "Hold up chosen color clearly, exaggerated waving, color name pronunciation with lip reading support",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -207,14 +295,44 @@
       },
       "realWorldConnection": "Describing the colorful world around us - flowers, toys, clothes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Start with one color only (rouge - most distinct)",
+          "Use larger colored objects for easier handling",
+          "Allow color matching instead of naming",
+          "Provide hand-over-hand support for sorting"
+        ],
+        "forAdvanced": [
+          "Add color combinations 'rouge et bleu'",
+          "Encourage describing objects 'une balle rouge'",
+          "Practice color questions 'Quelle couleur?'",
+          "Help demonstrate color activities for peers"
+        ],
+        "forELL": [
+          "Connect colors to home language equivalents",
+          "Use cultural color significance discussions",
+          "Allow bilingual color descriptions initially",
+          "Focus on visual color recognition first"
+        ],
+        "forIEP": [
+          "Adapt color materials for sensory needs",
+          "Use high contrast colors if visual needs exist",
+          "Modify movement activities as needed",
+          "Provide alternative color identification methods"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student identifies rouge when shown red objects",
+          "Student responds to color words with appropriate pointing",
+          "Student participates in color movement activities",
+          "Student shows preference for certain colors and can indicate choice"
+        ],
+        "checkpoints": [
+          "Can match red objects to red objects",
+          "Shows recognition of 'rouge' when spoken",
+          "Participates actively in color exploration stations",
+          "Demonstrates understanding that colors have French names"
+        ]
       }
     },
     {
@@ -232,9 +350,10 @@
         "duration": 8,
         "activity": "Review colors with finger painting gesture. Introduce counting with Pierre puppet showing fingers for 'un, deux, trois'.",
         "materials": [
-          "Pierre puppet",
-          "large number cards 1-3",
-          "finger counting poster"
+          "Pierre puppet (1)",
+          "large number cards 1-3 (25 sets)",
+          "finger counting poster (1)",
+          "colored objects from previous lesson"
         ],
         "visualSupports": "Clear finger counting gestures, large number visuals, rhythmic counting movements",
         "decisionPoints": [],
@@ -244,22 +363,28 @@
         "duration": 27,
         "activity": "Counting song with finger actions. Count colored objects from previous lesson. Number hop: hop once for 'un', twice for 'deux', three times for 'trois'.",
         "materials": [
-          "colored counting objects",
-          "number cards",
-          "counting song recording",
-          "number path on floor"
+          "colored counting objects (75+ total - 25 each of red, blue, yellow)",
+          "number cards 1-3 (25 sets)",
+          "counting song recording (1)",
+          "number path on floor (1 large or 25 small)",
+          "classroom sound system (1)"
         ],
         "visualSupports": "Exaggerated finger counting, clear pointing to numbers, hopping movements with counting rhythm",
         "decisionPoints": [
           {
-            "question": "How are students responding to finger counting?",
-            "ifYes": "Extend to more complex counting games and activities",
-            "ifNo": "Focus on simple finger recognition and one-to-one correspondence"
+            "question": "How are students responding to finger counting with French numbers?",
+            "ifYes": "Extend to more complex counting games and add 'quatre, cinq'",
+            "ifNo": "Focus on simple finger recognition and one-to-one correspondence with objects"
           },
           {
             "question": "Should we focus on listening or include some speaking?",
-            "ifYes": "Encourage counting attempts with finger support",
-            "ifNo": "Focus on recognition and finger counting responses"
+            "ifYes": "Encourage counting attempts with finger support and puppet modeling",
+            "ifNo": "Focus on recognition and finger counting responses without pressure to speak"
+          },
+          {
+            "question": "Are students ready for movement-based counting activities?",
+            "ifYes": "Incorporate number hopping and counting while moving",
+            "ifNo": "Keep counting activities seated with manipulatives and finger work"
           }
         ],
         "movementBreaks": []
@@ -267,8 +392,11 @@
       "closing": {
         "duration": 10,
         "activity": "Counting goodbye: count three waves 'un, deux, trois' and say 'Au revoir!' Pierre puppet counts students.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Pierre puppet (1)",
+          "number cards 1-3 (25)"
+        ],
+        "visualSupports": "Clear finger counting for waves, visible number cards, rhythmic counting gestures",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -278,14 +406,44 @@
       },
       "realWorldConnection": "Counting everyday things - toys, books, fingers, age",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Start with just 'un' (one finger, one object)",
+          "Use large manipulatives for easier grasping",
+          "Allow pointing instead of finger counting",
+          "Provide one-on-one counting support"
+        ],
+        "forAdvanced": [
+          "Extend to 'quatre, cinq' (4-5)",
+          "Practice counting backwards 'trois, deux, un'",
+          "Count different object types 'un crayon, deux crayons'",
+          "Help lead counting songs for classmates"
+        ],
+        "forELL": [
+          "Connect to counting in home language",
+          "Use number cognates where available",
+          "Allow bilingual counting practice",
+          "Focus on finger patterns before French words"
+        ],
+        "forIEP": [
+          "Adapt counting materials for fine motor needs",
+          "Use larger number cards and objects",
+          "Modify finger counting as needed",
+          "Allow alternative counting methods"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student shows one finger for 'un'",
+          "Student recognizes numbers 1-3 when spoken in French",
+          "Student participates in counting activities with objects",
+          "Student demonstrates one-to-one correspondence with counting"
+        ],
+        "checkpoints": [
+          "Can show appropriate finger count for 'un, deux, trois'",
+          "Demonstrates understanding that numbers have French names",
+          "Participates actively in counting songs and games",
+          "Shows progression in number recognition over lesson"
+        ]
       }
     },
     {
@@ -303,9 +461,10 @@
         "duration": 8,
         "activity": "Review counting fingers and colors. Pierre puppet shows family photos and introduces 'Ma famille!'",
         "materials": [
-          "diverse family photos",
-          "Pierre puppet",
-          "heart cutouts for love"
+          "diverse family photos (25+)",
+          "Pierre puppet (1)",
+          "heart cutouts for love (25)",
+          "inclusive family representation cards"
         ],
         "visualSupports": "Heart gesture for 'famille', pointing to family members, warm facial expressions",
         "decisionPoints": [],
@@ -315,22 +474,28 @@
         "duration": 27,
         "activity": "Family photo sharing circle. Students can share photos or draw their families. Practice 'maman', 'papa', 'famille' with inclusive examples (two moms, single parent, grandparents, etc.).",
         "materials": [
-          "diverse family picture books",
-          "drawing paper",
-          "crayons",
-          "family photo examples"
+          "diverse family picture books (5-10)",
+          "drawing paper (25 sheets)",
+          "crayons (25 sets)",
+          "family photo examples (25+)",
+          "inclusive family representation posters"
         ],
         "visualSupports": "Hugging gesture for family love, pointing to family members, inclusive visual examples",
         "decisionPoints": [
           {
-            "question": "How do we honor diverse family structures?",
-            "ifYes": "Use inclusive examples and let children define their own families",
-            "ifNo": "Focus on traditional examples but remain open to student sharing"
+            "question": "How do we honor diverse family structures sensitively?",
+            "ifYes": "Use inclusive examples and let children define their own families confidently",
+            "ifNo": "Focus on traditional examples but remain open to student sharing when comfortable"
           },
           {
             "question": "Are students ready to share about their families?",
-            "ifYes": "Encourage sharing with puppet support and visual aids",
-            "ifNo": "Focus on listening and observing family examples"
+            "ifYes": "Encourage sharing with puppet support and visual aids for comfort",
+            "ifNo": "Focus on listening and observing family examples with optional participation"
+          },
+          {
+            "question": "Should we emphasize drawing or photo sharing for family representation?",
+            "ifYes": "Focus on drawing activities to include all students regardless of photo availability",
+            "ifNo": "Use photo sharing for those who have them, provide drawing alternative"
           }
         ],
         "movementBreaks": []
@@ -338,8 +503,11 @@
       "closing": {
         "duration": 10,
         "activity": "Family love circle: send hugs to our families and say 'Au revoir, famille!' with heart gestures.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "heart cutouts (25)",
+          "Pierre puppet (1)"
+        ],
+        "visualSupports": "Heart gestures over heart, hugging motions, warm smiling expressions, gentle 'famille' pronunciation",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -349,14 +517,44 @@
       },
       "realWorldConnection": "How French-speaking families talk about themselves and show love",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Allow non-verbal family representation (drawing, pointing)",
+          "Use simple family vocabulary 'maman, papa' only",
+          "Provide extra emotional support during family discussions",
+          "Focus on puppet family instead of personal sharing if sensitive"
+        ],
+        "forAdvanced": [
+          "Add extended family vocabulary 'grand-maman, grand-papa'",
+          "Encourage family descriptions 'Ma maman est gentille'",
+          "Practice asking about others' families 'Qui est dans ta famille?'",
+          "Help present family drawings to class"
+        ],
+        "forELL": [
+          "Connect family words to home language equivalents",
+          "Allow bilingual family descriptions initially",
+          "Use cultural family traditions in discussions",
+          "Focus on universal family love concepts"
+        ],
+        "forIEP": [
+          "Adapt family representation to individual comfort level",
+          "Use alternative communication methods for family sharing",
+          "Provide emotional regulation support as needed",
+          "Modify drawing activities for motor skill needs"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student recognizes 'famille' when spoken",
+          "Student shows understanding of family love through gestures",
+          "Student participates in family representation activity (drawing/sharing)",
+          "Student demonstrates comfort with diverse family examples"
+        ],
+        "checkpoints": [
+          "Can identify family members in photos or drawings",
+          "Shows recognition of 'maman' and 'papa' words",
+          "Participates positively in family love activities",
+          "Demonstrates understanding that all families are valued"
+        ]
       }
     },
     {
@@ -374,9 +572,10 @@
         "duration": 8,
         "activity": "Review family words with Pierre puppet. Introduce animal friends: puppet meets a 'chat' with meowing and paw gestures.",
         "materials": [
-          "animal puppets or toys (cat, dog, bird)",
-          "Pierre puppet",
-          "animal sound recordings"
+          "animal puppets or toys - cat, dog, bird (1 each)",
+          "Pierre puppet (1)",
+          "animal sound recordings (1)",
+          "classroom sound system (1)"
         ],
         "visualSupports": "Cat paw gestures, dog panting and tail wagging movements, bird flying motions",
         "decisionPoints": [],
@@ -386,10 +585,11 @@
         "duration": 27,
         "activity": "Animal movement game: crawl like 'chat', pant like 'chien', fly like 'oiseau'. Animal sound matching and movement imitation with visual cards.",
         "materials": [
-          "animal picture cards",
-          "animal toys",
-          "space for movement",
-          "animal sound recordings"
+          "animal picture cards (25+ of each animal)",
+          "animal toys (3+ of each type)",
+          "open space for movement",
+          "animal sound recordings (1)",
+          "classroom sound system (1)"
         ],
         "visualSupports": "Clear animal movements, animal sound mimicking, pointing to animal features",
         "decisionPoints": [
@@ -409,8 +609,11 @@
       "closing": {
         "duration": 10,
         "activity": "Animal goodbye parade: each child chooses an animal movement and sound to say goodbye.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "animal picture cards (25)",
+          "Pierre puppet (1)"
+        ],
+        "visualSupports": "Model animal movements clearly, encourage gentle movements, animal sound demonstrations",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -420,14 +623,44 @@
       },
       "realWorldConnection": "Animals in our neighborhoods, farms, and French-speaking countries",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Use gentle animal movements only (petting motions)",
+          "Allow observation without participation in movement",
+          "Focus on one animal at a time with repetition",
+          "Use stuffed animals for comfort and tactile support"
+        ],
+        "forAdvanced": [
+          "Add more animal vocabulary 'lapin, poisson'",
+          "Create animal families 'le papa chat, la maman chat'",
+          "Practice animal action words 'Le chat marche'",
+          "Lead animal movement games for classmates"
+        ],
+        "forELL": [
+          "Connect animal names to home language",
+          "Discuss animals from home country/culture",
+          "Allow bilingual animal descriptions",
+          "Focus on universal animal sounds first"
+        ],
+        "forIEP": [
+          "Modify movements for physical abilities",
+          "Use visual animal cards for non-verbal students",
+          "Adapt animal sounds for sensory sensitivities",
+          "Provide alternative participation methods"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student imitates animal movements when prompted",
+          "Student shows recognition of animal names through pointing",
+          "Student participates in animal sound activities",
+          "Student demonstrates understanding of different animals"
+        ],
+        "checkpoints": [
+          "Can make appropriate movement for at least one animal",
+          "Shows recognition of 'chat', 'chien', or 'oiseau' when spoken",
+          "Participates actively in animal movement games",
+          "Demonstrates connection between animal names and characteristics"
+        ]
       }
     },
     {
@@ -445,9 +678,10 @@
         "duration": 8,
         "activity": "Review animal movements using our bodies. Pierre puppet touches his 'tête' and asks students to touch theirs.",
         "materials": [
-          "Pierre puppet",
-          "body part picture cards",
-          "mirror"
+          "Pierre puppet (1)",
+          "body part picture cards (25)",
+          "mirror (1 large or 5 small)",
+          "body part poster for reference"
         ],
         "visualSupports": "Clear touching gestures, pointing to body parts, exaggerated movements",
         "decisionPoints": [],
@@ -457,10 +691,11 @@
         "duration": 27,
         "activity": "Body part song with actions: 'Tête, épaules, genoux et pieds' adapted for 'tête, main, pied'. Simon Says game with body parts. Mirror exploration touching named parts.",
         "materials": [
-          "body part song recording",
-          "large mirrors",
-          "body part posters",
-          "space for movement"
+          "body part song recording (1)",
+          "large mirrors (5) or individual mirrors (25)",
+          "body part posters (5)",
+          "open space for movement",
+          "classroom sound system (1)"
         ],
         "visualSupports": "Touch head for 'tête', wave hands for 'main', stomp feet for 'pied', mirror reflection activities",
         "decisionPoints": [
@@ -480,8 +715,11 @@
       "closing": {
         "duration": 10,
         "activity": "Body part goodbye: touch 'tête', wave 'main', stomp 'pied' and say 'Au revoir!'",
-        "materials": [],
-        "visualSupports": "",
+        "materials": [
+          "Pierre puppet (1)",
+          "body part poster (1)"
+        ],
+        "visualSupports": "Clear body part demonstrations, gentle touching motions, rhythmic goodbye sequence",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -491,14 +729,44 @@
       },
       "realWorldConnection": "Taking care of our bodies and describing ourselves to others",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Allow pointing instead of touching body parts",
+          "Use puppet for all demonstrations to avoid personal touch",
+          "Focus on one body part at a time with repetition",
+          "Provide seated alternatives to standing movements"
+        ],
+        "forAdvanced": [
+          "Add more body parts 'bras, jambe, nez'",
+          "Create body part sentences 'Je touche ma tête'",
+          "Practice body part commands 'Touchez votre pied'",
+          "Lead body part games for classmates"
+        ],
+        "forELL": [
+          "Connect body parts to home language equivalents",
+          "Use cultural body movement games if appropriate",
+          "Allow bilingual body part identification",
+          "Focus on universal body awareness concepts"
+        ],
+        "forIEP": [
+          "Adapt movements for physical abilities and comfort",
+          "Respect personal space and touch preferences",
+          "Use alternative identification methods (pointing, pictures)",
+          "Modify song pace for processing needs"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Student identifies 'tête' by touching or pointing to head",
+          "Student shows 'main' by waving or showing hands",
+          "Student demonstrates 'pied' through stomping or pointing",
+          "Student participates in body part songs with movements"
+        ],
+        "checkpoints": [
+          "Can touch or point to head when hearing 'tête'",
+          "Shows recognition of hand-related vocabulary 'main'",
+          "Demonstrates understanding of 'pied' through appropriate actions",
+          "Participates actively in body awareness activities"
+        ]
       }
     },
     {
@@ -1130,10 +1398,11 @@
         "duration": 8,
         "activity": "Review games and laughter. Pierre puppet opens a special 'livre' and invites students to 'regarder' the pictures.",
         "materials": [
-          "Pierre puppet",
-          "simple French picture book",
-          "story props",
-          "comfortable seating"
+          "Pierre puppet (1)",
+          "simple French picture book (1)",
+          "story props (variety)",
+          "comfortable seating area (25 spots)",
+          "story display easel (1)"
         ],
         "visualSupports": "Point to pictures clearly, use story gestures, create anticipation with expressions",
         "decisionPoints": [],
