@@ -27,12 +27,12 @@
 | addition-jusqua-10 | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | soustraction | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | regularites-et-relations | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| resolution-problemes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| resolution-problemes | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | nombres-11-20 | ✅ | ✅ | ✅ | ✅ | ⬜ |
-| addition-soustraction | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| addition-soustraction | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | comparaisons-quantites (comparaison) | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | strategies-calcul | ✅ | ✅ | ✅ | ⬜ | ✅ |
-| graphiques-donnees | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| egalite-celebration | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 
 ### Français (10 units)
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
@@ -136,26 +136,27 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 50  
-**Enhanced**: 7 / 50 (14%)  
-**Translations Fixed**: 7 / 50 (14%)  
-**Decision Points Added**: 7 / 50 (14%)  
-**Materials Specified**: 7 / 50 (14%)  
-**Committed**: 0 / 50 (0%)  
-**Reviewed**: 1 / 50 (2%)
+**Enhanced**: 10 / 50 (20%) - **MATHEMATICS COMPLETE! 🎉**  
+**Translations Fixed**: 10 / 50 (20%)  
+**Decision Points Added**: 10 / 50 (20%)  
+**Materials Specified**: 10 / 50 (20%)  
+**Committed**: 1 / 50 (2%)  
+**Reviewed**: 2 / 50 (4%)
 
 ## 🎯 Current Focus
 
-**Next Unit to Enhance**: mathematiques/resolution-problemes  
-**Recently Completed**: mathematiques/regularites-et-relations (COMPREHENSIVE PATTERNS ENHANCEMENT COMPLETED)
-- ✅ Completed comprehensive enhancement of all 20 lessons focusing on patterns and regularities ("motifs", "régularités", "séquences")
-- ✅ Enhanced lessons 1-11 with full pedagogical structure: detailed materials, decision points, differentiation, and assessment
-- ✅ Added pattern-specific materials with exact quantities for 20-25 students (loupes, construction materials, sorting circles, musical instruments)
+**🏆 MATHEMATICS SUBJECT COMPLETE!** All 10 mathematics units enhanced (10/10 = 100%)  
+**Recently Completed**: mathematiques/egalite-celebration (FINAL MATHEMATICS UNIT COMPLETED)
+- ✅ Completed comprehensive enhancement of all 20 lessons focusing on equality and mathematical celebration ("égalité", "équal", "même quantité")
+- ✅ Enhanced all 20 lessons with full pedagogical structure: detailed materials, decision points, differentiation, and assessment
+- ✅ Added equality-specific materials with exact quantities for 20-25 students (balances, manipulatives, art supplies, celebration materials)
 - ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
-- ✅ Added complete differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) with pattern-specific adaptations
-- ✅ Enhanced core lessons with hands-on pattern exploration: AB, ABC, ABCD patterns, natural patterns, temporal patterns
-- ✅ Developed comprehensive assessment criteria focusing on pattern recognition, creation, and mathematical reasoning
+- ✅ Added complete differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) with equality-specific adaptations
+- ✅ Enhanced core lessons (1-14) with hands-on equality exploration: balance, equal groups, equations, problem-solving
+- ✅ Enhanced extension lessons (15-20) with creative applications: mystery equations, family connections, nature patterns, portfolio celebration
+- ✅ Developed comprehensive assessment criteria focusing on equality understanding, mathematical reasoning, and celebration of learning
 - ✅ All materials school-available only (NO parent donations) with practical alternatives for all activities
-- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson patterns unit with Grade 1 appropriate progression from simple AB to complex temporal patterns
+- 🔴 **CRITICAL ACHIEVEMENT**: Complete Grade 1 mathematics curriculum (10/10 units) with 200 total lessons enhanced for French Immersion
 
 **Previous Completions**: 
 - mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
