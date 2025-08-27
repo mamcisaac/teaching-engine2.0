@@ -1,0 +1,298 @@
+{
+  "unitTitle": "Nombres 11-20 et base dix",
+  "grade": "1re année",
+  "subject": "Mathématiques",
+  "focus": "Compter au-delà de 10, grouper par dizaines, fondements de la valeur de position",
+  "totalLessons": 20,
+  "structure": {
+    "foundation": "Leçons 1-5: Fondements",
+    "development": "Leçons 6-10: Développement",
+    "application": "Leçons 11-15: Application",
+    "extension": "Leçons 16-20: Extension"
+  },
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "title": "Découverte des nombres 11 et 12",
+      "oneGoal": "Reconnaître et nommer les nombres 11 et 12 comme 'dix et un', 'dix et deux'",
+      "keyVocabulary": ["onze", "douze", "dix"],
+      "decisionPoints": [
+        "Si les élèves comprennent facilement 11-12, introduire 13",
+        "Si confusion avec 'onze/douze', utiliser plus de matériel concret",
+        "Si certains élèves maîtrisent déjà, les faire aider leurs pairs"
+      ],
+      "progression": "Commencer avec 10 objets groupés, ajouter 1 puis 2. Utiliser des blocs de base dix, des compteurs et des représentations visuelles. Pratiquer la correspondance entre le nombre écrit et la quantité.",
+      "realWorldConnection": "Compter les œufs dans une boîte (12), les mois de l'année, les heures sur une horloge"
+    },
+    {
+      "lessonNumber": 2,
+      "title": "Explorer 13, 14 et 15",
+      "oneGoal": "Comprendre que 13-15 suivent le même modèle: dix plus des unités supplémentaires",
+      "keyVocabulary": ["treize", "quatorze", "quinze"],
+      "decisionPoints": [
+        "Si les élèves saisissent le modèle rapidement, accélérer vers 16-17",
+        "Si difficulté avec la séquence, revenir aux nombres familiers 1-10",
+        "Si besoin de renforcement, utiliser des chansons de comptage"
+      ],
+      "progression": "Réviser 11-12, puis construire 13-15 avec des dizaines et unités. Utiliser des tableaux de 100, des abaques et des activités de manipulation. Pratiquer l'écriture des nombres.",
+      "realWorldConnection": "Compter les élèves dans la classe, les crayons dans une boîte, les livres sur une étagère"
+    },
+    {
+      "lessonNumber": 3,
+      "title": "Nombres 16, 17, 18, 19",
+      "oneGoal": "Maîtriser la séquence complète de 11 à 19 en reconnaissant le modèle consistant",
+      "keyVocabulary": ["seize", "dix-sept", "dix-huit"],
+      "decisionPoints": [
+        "Si confusion avec 'seize', renforcer avec des activités visuelles",
+        "Si les élèves excellent, introduire des comparaisons (plus grand/plus petit)",
+        "Si difficulté, se concentrer sur 16-17 seulement pour cette leçon"
+      ],
+      "progression": "Construire systématiquement chaque nombre avec des matériaux de manipulation. Utiliser des grilles de nombres, des cartes éclairs et des jeux de séquence. Pratiquer l'ordre croissant et décroissant.",
+      "realWorldConnection": "Compter les jours sur un calendrier, les élèves dans l'autobus scolaire, les articles dans un panier d'épicerie"
+    },
+    {
+      "lessonNumber": 4,
+      "title": "Le nombre 20 et la deuxième dizaine",
+      "oneGoal": "Comprendre que 20 représente 2 groupes de dix, introduisant le concept de dizaines",
+      "keyVocabulary": ["vingt", "dizaine", "deux dizaines"],
+      "decisionPoints": [
+        "Si les élèves comprennent facilement les dizaines, explorer 21-22",
+        "Si confusion avec le concept de groupement, utiliser plus d'activités concrètes",
+        "Si prêts pour un défi, introduire des problèmes simples d'addition avec 20"
+      ],
+      "progression": "Utiliser des objets groupables (haricots, cubes) pour montrer 2 groupes de 10. Comparer avec 10 et 19. Utiliser des billets de banque fictifs et des pièces pour représenter la valeur.",
+      "realWorldConnection": "Compter par groupes de 10 doigts, organiser 20 crayons en 2 boîtes de 10, compter 20 centimes"
+    },
+    {
+      "lessonNumber": 5,
+      "title": "Révision et consolidation 11-20",
+      "oneGoal": "Consolider la reconnaissance, l'écriture et l'ordre des nombres 11-20",
+      "keyVocabulary": ["séquence", "ordre", "avant/après"],
+      "decisionPoints": [
+        "Si tous maîtrisent, procéder aux applications plus complexes",
+        "Si certains ont encore des difficultés, fournir un soutien ciblé",
+        "Si excellence démontrée, introduire des défis de résolution de problèmes"
+      ],
+      "progression": "Activités de révision variées: jeux de cartes, séquences à compléter, exercices d'écriture. Évaluation formative pour identifier les besoins individuels.",
+      "realWorldConnection": "Utiliser les nombres 11-20 dans des contextes quotidiens: température, âge, numéros de maison"
+    },
+    {
+      "lessonNumber": 6,
+      "title": "Compter par bonds de 10",
+      "oneGoal": "Développer la compréhension que compter par 10 est efficace et révèle la structure des nombres",
+      "keyVocabulary": ["bonds", "dizaines", "compter par dix"],
+      "decisionPoints": [
+        "Si les élèves maîtrisent rapidement, étendre jusqu'à 50",
+        "Si difficulté avec le concept, utiliser plus de matériel de manipulation",
+        "Si certains excellent, les faire diriger des activités de groupe"
+      ],
+      "progression": "Commencer avec des objets physiques groupés par 10. Utiliser une droite numérique et des grilles de 100. Pratiquer 10, 20, 30... avec des mouvements et des chansons.",
+      "realWorldConnection": "Compter les doigts de 10 personnes, organiser des collections par groupes de 10, utiliser la monnaie"
+    },
+    {
+      "lessonNumber": 7,
+      "title": "Représenter les nombres avec dizaines et unités",
+      "oneGoal": "Utiliser des représentations visuelles pour montrer la décomposition des nombres 11-20",
+      "keyVocabulary": ["représenter", "dizaines", "unités"],
+      "decisionPoints": [
+        "Si compréhension rapide, introduire différents matériels de manipulation",
+        "Si confusion, se concentrer sur un seul type de matériel d'abord",
+        "Si excellence, demander aux élèves de créer leurs propres représentations"
+      ],
+      "progression": "Utiliser des blocs de base dix, des faisceaux de bâtonnets, des compteurs groupés. Créer des dessins et des diagrammes. Faire des liens entre différentes représentations.",
+      "realWorldConnection": "Organiser des objets de classe par groupes de 10, utiliser des emballages de 10 (œufs, crayons)"
+    },
+    {
+      "lessonNumber": 8,
+      "title": "Comparer les nombres 11-20",
+      "oneGoal": "Développer la capacité de comparer et ordonner les nombres entre 11 et 20",
+      "keyVocabulary": ["plus grand", "plus petit", "égal"],
+      "decisionPoints": [
+        "Si comparaisons faciles, introduire trois nombres à ordonner",
+        "Si difficulté, utiliser plus de représentations concrètes",
+        "Si maîtrise rapide, introduire les symboles >, <, ="
+      ],
+      "progression": "Utiliser des matériaux de manipulation pour comparer visuellement. Pratiquer avec des droites numériques et des jeux de comparaison. Introduire le vocabulaire de comparaison.",
+      "realWorldConnection": "Comparer les âges, les scores de jeux, les quantités d'objets dans différents contenants"
+    },
+    {
+      "lessonNumber": 9,
+      "title": "Patterns et régularités avec 11-20",
+      "oneGoal": "Identifier et créer des patterns en utilisant les nombres 11-20",
+      "keyVocabulary": ["pattern", "régularité", "prédire"],
+      "decisionPoints": [
+        "Si patterns simples sont maîtrisés, créer des patterns plus complexes",
+        "Si difficulté à voir les patterns, utiliser des couleurs et des formes",
+        "Si excellence, faire créer des patterns par les élèves"
+      ],
+      "progression": "Commencer avec des patterns simples (13, 14, 15...). Utiliser des objets colorés, des autocollants. Créer des patterns croissants et décroissants.",
+      "realWorldConnection": "Patterns dans les numéros de maison, les pages de livre, les dates sur un calendrier"
+    },
+    {
+      "lessonNumber": 10,
+      "title": "Introduction à l'addition simple avec des nombres teen",
+      "oneGoal": "Appliquer la compréhension des nombres 11-20 dans des situations d'addition simple",
+      "keyVocabulary": ["addition", "total", "ensemble"],
+      "decisionPoints": [
+        "Si addition facile, introduire des problèmes écrits simples",
+        "Si difficulté, se concentrer sur l'addition concrète seulement",
+        "Si maîtrise avancée, explorer différentes stratégies d'addition"
+      ],
+      "progression": "Utiliser des objets concrets pour additionner. Commencer avec 10 + nombres simples. Utiliser des histoires mathématiques et des problèmes contextuels.",
+      "realWorldConnection": "Additionner des objets dans des jeux, compter des collections combinées, résoudre des problèmes de partage"
+    },
+    {
+      "lessonNumber": 11,
+      "title": "Résolution de problèmes avec 11-20",
+      "oneGoal": "Appliquer les connaissances des nombres 11-20 pour résoudre des problèmes de la vie réelle",
+      "keyVocabulary": ["problème", "solution", "stratégie"],
+      "decisionPoints": [
+        "Si résolution facile, augmenter la complexité des problèmes",
+        "Si difficulté, fournir plus de scaffolding et de matériel",
+        "Si excellence, encourager différentes stratégies de résolution"
+      ],
+      "progression": "Présenter des problèmes contextuels simples. Encourager l'utilisation de matériel de manipulation. Discuter des différentes approches de résolution.",
+      "realWorldConnection": "Problèmes de partage d'objets, de comptage d'argent, d'organisation d'événements de classe"
+    },
+    {
+      "lessonNumber": 12,
+      "title": "Jeux mathématiques avec 11-20",
+      "oneGoal": "Renforcer la fluidité avec les nombres 11-20 à travers des jeux engageants",
+      "keyVocabulary": ["jeu", "règles", "stratégie"],
+      "decisionPoints": [
+        "Si jeux trop faciles, introduire des variantes plus complexes",
+        "Si difficulté avec les règles, simplifier ou fournir plus de soutien",
+        "Si engagement élevé, permettre aux élèves de créer leurs propres jeux"
+      ],
+      "progression": "Organiser différents centres de jeux: cartes, dés, plateaux de jeu. Varier les défis pour différents niveaux. Encourager la coopération et la stratégie.",
+      "realWorldConnection": "Jeux de société familiaux, jeux de cour de récréation, applications de nombres dans les sports"
+    },
+    {
+      "lessonNumber": 13,
+      "title": "Estimation avec les nombres 11-20",
+      "oneGoal": "Développer des compétences d'estimation raisonnable avec des quantités de 11-20",
+      "keyVocabulary": ["estimation", "environ", "raisonnable"],
+      "decisionPoints": [
+        "Si estimations précises, introduire des gammes plus larges",
+        "Si estimations très inexactes, fournir plus d'ancres de référence",
+        "Si compétence développée, explorer l'estimation dans différents contextes"
+      ],
+      "progression": "Utiliser des bocaux avec différentes quantités d'objets. Développer des stratégies d'estimation. Comparer les estimations avec les comptes réels.",
+      "realWorldConnection": "Estimer le nombre de livres sur une étagère, d'élèves dans une file, de bonbons dans un bocal"
+    },
+    {
+      "lessonNumber": 14,
+      "title": "Nombres ordinaux jusqu'à 20",
+      "oneGoal": "Comprendre et utiliser les nombres ordinaux de premier à vingtième",
+      "keyVocabulary": ["premier", "deuxième", "dernier"],
+      "decisionPoints": [
+        "Si concepts ordinaux clairs, pratiquer dans différents contextes",
+        "Si confusion, se concentrer sur les 5 premiers ordinaux",
+        "Si maîtrise avancée, introduire des défis de positionnement complexes"
+      ],
+      "progression": "Utiliser des files d'élèves, des courses, des livres sur une étagère. Pratiquer l'identification de positions. Créer des activités de classement.",
+      "realWorldConnection": "Position dans une file, classement dans une course, ordre des pages dans un livre"
+    },
+    {
+      "lessonNumber": 15,
+      "title": "Évaluation formative et consolidation",
+      "oneGoal": "Évaluer la compréhension et identifier les domaines nécessitant un renforcement",
+      "keyVocabulary": ["évaluation", "progrès", "amélioration"],
+      "decisionPoints": [
+        "Si maîtrise complète démontrée, procéder aux extensions",
+        "Si lacunes identifiées, planifier un soutien ciblé",
+        "Si résultats mitigés, ajuster l'approche pédagogique"
+      ],
+      "progression": "Utiliser diverses formes d'évaluation: observations, activités pratiques, discussions. Documenter les progrès individuels. Planifier les prochaines étapes.",
+      "realWorldConnection": "Application des nombres dans des tâches quotidiennes réelles de l'élève"
+    },
+    {
+      "lessonNumber": 16,
+      "title": "Introduction aux nombres 21-25",
+      "oneGoal": "Étendre la compréhension de la valeur de position aux nombres dans la troisième dizaine",
+      "keyVocabulary": ["vingt-et-un", "vingt-deux", "troisième dizaine"],
+      "decisionPoints": [
+        "Si extension facile, continuer jusqu'à 30",
+        "Si confusion avec le nouveau pattern, ralentir et renforcer",
+        "Si excellence, explorer les patterns dans les nombres plus grands"
+      ],
+      "progression": "Construire sur la compréhension de 20. Utiliser des matériaux de manipulation pour montrer 2 dizaines plus des unités. Explorer les patterns de nommage.",
+      "realWorldConnection": "Âges des adultes, numéros d'adresses, pages dans des livres plus longs"
+    },
+    {
+      "lessonNumber": 17,
+      "title": "Exploration libre: nombres jusqu'à 30",
+      "oneGoal": "Encourager l'exploration indépendante et la découverte de patterns dans les nombres jusqu'à 30",
+      "keyVocabulary": ["explorer", "découvrir", "indépendant"],
+      "decisionPoints": [
+        "Si exploration productive, encourager la documentation des découvertes",
+        "Si besoin de direction, fournir des activités plus structurées",
+        "Si niveau avancé, introduire des défis de nombres à 2 chiffres"
+      ],
+      "progression": "Fournir divers matériaux et laisser les élèves explorer. Encourager les questions et les hypothèses. Faciliter le partage des découvertes.",
+      "realWorldConnection": "Nombres rencontrés naturellement dans l'environnement de l'élève"
+    },
+    {
+      "lessonNumber": 18,
+      "title": "Projet: Collection et comptage",
+      "oneGoal": "Appliquer toutes les compétences acquises dans un projet de collection et de comptage personnel",
+      "keyVocabulary": ["projet", "collection", "présentation"],
+      "decisionPoints": [
+        "Si projets simples, encourager la créativité et l'extension",
+        "Si difficulté d'organisation, fournir plus de structure",
+        "Si excellence, encourager le mentorat entre pairs"
+      ],
+      "progression": "Les élèves choisissent une collection personnelle à compter et organiser. Ils créent des représentations et présentent leurs findings.",
+      "realWorldConnection": "Collections personnelles d'élèves: cartes, autocollants, livres, jouets"
+    },
+    {
+      "lessonNumber": 19,
+      "title": "Partage et célébration des apprentissages",
+      "oneGoal": "Célébrer les progrès et partager les apprentissages avec un public authentique",
+      "keyVocabulary": ["partager", "célébrer", "fier"],
+      "decisionPoints": [
+        "Si confiance élevée, encourager des présentations plus élaborées",
+        "Si timidité, créer des environnements de partage plus intimes",
+        "Si engagement élevé, planifier des extensions futures"
+      ],
+      "progression": "Organiser une séance de partage où les élèves présentent leurs projets. Inviter les parents ou autres classes. Documenter les apprentissages.",
+      "realWorldConnection": "Présentations authentiques comme dans le monde professionnel, partage familial"
+    },
+    {
+      "lessonNumber": 20,
+      "title": "Réflexion et planification future",
+      "oneGoal": "Réfléchir sur les apprentissages accomplis et anticiper les prochaines étapes mathématiques",
+      "keyVocabulary": ["réflexion", "apprentissage", "futur"],
+      "decisionPoints": [
+        "Si réflexions profondes, encourager la métacognition avancée",
+        "Si difficulté à articuler, utiliser des supports visuels",
+        "Si enthousiasme élevé, planifier des défis mathématiques continus"
+      ],
+      "progression": "Guider les élèves dans une réflexion sur leur parcours d'apprentissage. Créer des portfolios ou des journaux. Discuter des mathématiques futures.",
+      "realWorldConnection": "Développer des habitudes de réflexion et d'apprentissage continu applicables à tous les domaines de la vie"
+    }
+  ],
+  "assessmentNotes": "Évaluation continue à travers l'observation, les manipulations concrètes, les discussions et les productions des élèves. Accent sur la compréhension conceptuelle plutôt que la mémorisation.",
+  "materialsNeeded": [
+    "Blocs de base dix",
+    "Compteurs divers",
+    "Cartes numériques 11-20",
+    "Grilles de 100",
+    "Objets groupables",
+    "Tableau de nombres",
+    "Matériel d'art pour projets"
+  ],
+  "differentiationStrategies": [
+    "Ajuster la complexité des tâches selon les besoins",
+    "Fournir des supports visuels supplémentaires",
+    "Créer des groupes flexibles",
+    "Offrir des extensions pour les élèves avancés",
+    "Utiliser des approches multi-sensorielles"
+  ],
+  "crossCurricularConnections": [
+    "Sciences: Compter et classer des objets naturels",
+    "Arts: Créer des patterns visuels avec les nombres",
+    "Français: Vocabulaire numérique et description",
+    "Éducation physique: Jeux de comptage et de mouvement"
+  ]
+}

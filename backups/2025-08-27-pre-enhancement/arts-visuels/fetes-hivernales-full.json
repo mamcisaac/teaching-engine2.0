@@ -1,0 +1,1986 @@
+{
+  "unitTitle": "",
+  "subject": "Arts visuels",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Découvrons l'art des fêtes",
+      "oneGoal": "Students will recognize that art is used to celebrate special times",
+      "duration": 45,
+      "keyVocabulary": [
+        "fête",
+        "art",
+        "célébrer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Show holiday art images from different cultures. Use gestures to show 'celebration' (clapping, dancing). Say 'C'est l'art!' while pointing to decorative items. Connect to students' experiences: 'Avez-vous vu l'art pour les fêtes?'",
+        "materials": [],
+        "visualSupports": "Photo cards of holiday decorations, festive art from various traditions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Gallery walk around classroom with holiday art examples. Students draw one thing they see that celebrates. Practice saying 'fête', 'art', 'célébrer' with actions. Create a class list of where we see celebration art.",
+        "materials": [],
+        "visualSupports": "Picture cards, gesture cards for vocabulary, drawing templates if needed",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share one drawing with a partner. Practice saying 'C'est l'art pour célébrer.' Clean up materials together.",
+        "materials": [],
+        "visualSupports": "Sentence strip with French phrase, cleanup picture schedule",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If materials missing: Use classroom decorations as examples. If too complex: Just look at and name holiday colors in room."
+      },
+      "realWorldConnection": "Students see art in decorations at home and in community",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Les couleurs de l'hiver",
+      "oneGoal": "Students will identify winter colors in holiday art",
+      "duration": 45,
+      "keyVocabulary": [
+        "couleur",
+        "hiver",
+        "blanc"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review Lesson 1: 'Hier, nous avons vu l'art des fêtes.' Show winter scene photos. Point to colors and say 'couleur'. Demonstrate winter colors with paint swatches.",
+        "materials": [],
+        "visualSupports": "Color cards, winter photographs, paint swatches",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Color hunt around room for winter colors. Sort color cards into 'hiver' and 'pas hiver' groups. Paint or color with winter palette. Create simple winter color collage.",
+        "materials": [],
+        "visualSupports": "Color sorting mats, winter vs summer color comparison charts",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Show collages to class. Practice 'Voici les couleurs d'hiver.' Vote on favorite winter color as class.",
+        "materials": [],
+        "visualSupports": "Sentence strips, color voting board",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If art supplies unavailable: Use crayons to circle winter colors in magazines. If time short: Just sort pre-made color cards."
+      },
+      "realWorldConnection": "Winter colors appear in nature and holiday decorations around them",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Mes traditions familiales",
+      "oneGoal": "Students will share their family traditions through simple drawings",
+      "duration": 45,
+      "keyVocabulary": [
+        "famille",
+        "tradition",
+        "dessiner"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Connect to Lesson 2: 'Nous avons vu les couleurs d'hiver.' Show family celebration photos (diverse traditions). Use gesture for 'famille' (group hug motion). Say 'Chaque famille a des traditions.'",
+        "materials": [],
+        "visualSupports": "Diverse family celebration photos, gesture cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students draw their family's way of celebrating (any tradition). Walk around, ask 'Qu'est-ce que c'est?' Practice vocabulary while drawing. Share with table partners.",
+        "materials": [],
+        "visualSupports": "Tradition example cards, vocabulary picture cards, drawing step guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Gallery walk of family tradition drawings. Practice 'Ma famille...' sentence starter. Appreciate diversity with 'C'est beau!'",
+        "materials": [],
+        "visualSupports": "Sentence starter cards, appreciation phrase cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If drawing too complex: Just talk about traditions with picture cards. If sensitive family situations: Focus on classroom traditions instead."
+      },
+      "realWorldConnection": "Every family has special ways to celebrate that can be shown through art",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Créons ensemble",
+      "oneGoal": "Students will work together to create a class winter art piece",
+      "duration": 45,
+      "keyVocabulary": [
+        "ensemble",
+        "créer",
+        "classe"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review Lesson 3: 'Hier, vous avez dessiné vos traditions.' Demonstrate 'ensemble' by bringing hands together. Show large blank paper: 'Nous allons créer ensemble!'",
+        "materials": [],
+        "visualSupports": "Hand gesture cards, large collaborative space setup",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Class collaborates on large winter scene. Each student adds one element. Practice turn-taking and French phrases: 'À mon tour', 'Très beau', 'Ensemble c'est mieux.'",
+        "materials": [],
+        "visualSupports": "Turn-taking cards, collaborative work examples, phrase strips",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Step back and admire class creation. Practice 'Nous avons créé ensemble!' Take a class photo with the art.",
+        "materials": [],
+        "visualSupports": "Achievement celebration cards, photo props",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If collaboration too difficult: Work in pairs instead of whole class. If materials insufficient: Use drawing on shared paper."
+      },
+      "realWorldConnection": "Communities work together to create beautiful holiday displays",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Formes de l'hiver",
+      "oneGoal": "Students will create winter shapes using basic geometric forms",
+      "duration": 45,
+      "keyVocabulary": [
+        "forme",
+        "rond",
+        "triangle"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Connect to Lesson 4: 'Hier, nous avons créé ensemble.' Show winter objects (snowflake, tree, ornament). Trace shapes in air: 'Voici un rond, un triangle.' Use body to make shapes.",
+        "materials": [],
+        "visualSupports": "Large shape cards, winter object photos, shape tracing guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Shape hunt in winter pictures. Students trace and cut basic shapes. Combine shapes to make winter objects (triangle trees, round snowmen). Practice shape names while creating.",
+        "materials": [],
+        "visualSupports": "Shape sorting mats, winter object assembly guides, vocabulary cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Shape show-and-tell: 'J'ai fait un... avec des...' Display creations on shape sorting board.",
+        "materials": [],
+        "visualSupports": "Sentence starter cards, shape display board",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If scissors unavailable: Tear shapes from paper or use pre-cut shapes. If too complex: Just identify shapes in pictures."
+      },
+      "realWorldConnection": "Winter symbols like snowflakes, trees, and ornaments all use basic shapes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Décorations simples",
+      "oneGoal": "Students will make simple decorations using paper and basic materials",
+      "duration": 45,
+      "keyVocabulary": [
+        "décoration",
+        "papier",
+        "ciseaux"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review Lesson 5: 'Hier, nous avons fait des formes.' Show simple paper decorations. Demonstrate 'décoration' by hanging one up. Practice scissor safety: 'Attention avec les ciseaux!'",
+        "materials": [],
+        "visualSupports": "Decoration examples, safety poster for scissors, step-by-step photos",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students make paper chain decorations or simple snowflakes. Focus on safe scissor use and following steps. Practice vocabulary while creating: 'Je coupe le papier.'",
+        "materials": [],
+        "visualSupports": "Step-by-step instruction cards, safety reminders, finished examples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Hang decorations around classroom. Practice 'Voici ma décoration!' Admire everyone's work with 'C'est joli!'",
+        "materials": [],
+        "visualSupports": "Appreciation phrase cards, decoration display area",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If scissors concerns arise: Use tear-decorations or pre-cut pieces. If time short: Make simple paper chains only."
+      },
+      "realWorldConnection": "Families make decorations together to beautify their homes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Cartes de souhaits",
+      "oneGoal": "Students will create greeting cards with winter symbols",
+      "duration": 45,
+      "keyVocabulary": [
+        "carte",
+        "message",
+        "symbole"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Connect to Lesson 6: 'Hier, nous avons fait des décorations.' Show greeting cards from different cultures. Open and close cards: 'C'est une carte!' Point to winter symbols: 'Voici des symboles.'",
+        "materials": [],
+        "visualSupports": "Various greeting cards, winter symbol chart, gesture cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students create greeting cards with winter symbols. Add simple French messages like 'Bonne fête!' or draw pictures to communicate. Practice vocabulary while decorating.",
+        "materials": [],
+        "visualSupports": "French greeting examples, symbol reference sheet, card folding guide",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share cards with partners. Practice 'Voici ma carte!' Discuss who they might give cards to: 'Pour ma famille!'",
+        "materials": [],
+        "visualSupports": "Sharing sentence strips, family vocabulary cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If card-making too complex: Decorate pre-made cards. If writing difficult: Focus only on pictures and symbols."
+      },
+      "realWorldConnection": "People send cards to share love and good wishes during celebrations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Cadeaux faits main",
+      "oneGoal": "Students will create simple handmade gifts",
+      "duration": 45,
+      "keyVocabulary": [
+        "cadeau",
+        "main",
+        "donner"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review Lesson 7: 'Hier, nous avons fait des cartes.' Show handmade gifts. Use hands to demonstrate 'fait à la main.' Practice 'C'est un cadeau!' with giving gestures.",
+        "materials": [],
+        "visualSupports": "Handmade gift examples, hand gesture cards, giving motion pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students create simple gifts (decorated containers, bookmarks, painted stones). Focus on the care in making something for someone else. Practice 'Je donne un cadeau.'",
+        "materials": [],
+        "visualSupports": "Gift-making step guides, caring gesture cards, finished examples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Wrap gifts in simple materials. Practice 'C'est fait avec amour!' Discuss the joy of giving vs. receiving.",
+        "materials": [],
+        "visualSupports": "Emotion cards, giving vs. receiving pictures",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If craft supplies limited: Decorate paper bags as gifts. If too complex: Make simple drawings as gifts."
+      },
+      "realWorldConnection": "Handmade gifts show extra care and thoughtfulness",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Textures d'hiver",
+      "oneGoal": "Students will explore different textures in winter-themed art",
+      "duration": 45,
+      "keyVocabulary": [
+        "texture",
+        "doux",
+        "rugueux"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Connect to Lesson 8: 'Hier, nous avons fait des cadeaux.' Touch different materials: cotton (soft snow), sandpaper (rough bark). Practice 'doux' and 'rugueux' with facial expressions.",
+        "materials": [],
+        "visualSupports": "Texture sample board, expression cards for soft/rough, winter texture photos",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Texture exploration station. Students feel materials and sort into 'doux' and 'rugueux.' Create winter collages using different textures to represent snow, trees, ice.",
+        "materials": [],
+        "visualSupports": "Texture sorting mats, winter scene examples, texture vocabulary cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Touch and describe textures: 'C'est doux comme...' 'C'est rugueux comme...' Display texture art gallery-style.",
+        "materials": [],
+        "visualSupports": "Comparison sentence starters, texture description cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If texture materials unavailable: Use classroom objects for texture exploration. If sensory issues: Make texture exploration optional."
+      },
+      "realWorldConnection": "Winter brings different textures - soft snow, rough bark, smooth ice",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Lumières et ombres",
+      "oneGoal": "Students will create art showing light and shadow effects",
+      "duration": 45,
+      "keyVocabulary": [
+        "lumière",
+        "ombre",
+        "briller"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review Lesson 9: 'Hier, nous avons touché les textures.' Darken room, use flashlight to create shadows. Point to light: 'C'est la lumière!' Point to shadow: 'C'est l'ombre!'",
+        "materials": [],
+        "visualSupports": "Light/shadow demonstration setup, vocabulary cards with symbols",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Shadow play with objects and flashlights. Students trace shadows on paper. Create 'light' pictures with bright colors and 'shadow' pictures with dark colors.",
+        "materials": [],
+        "visualSupports": "Shadow tracing guides, light/dark color examples, holiday light photos",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Compare light and shadow artworks. Practice 'Voici la lumière, voici l'ombre.' Connect to holiday lights they've seen.",
+        "materials": [],
+        "visualSupports": "Light/shadow comparison charts, holiday light examples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If flashlights unavailable: Use window light for shadows. If too dark in room: Focus on bright/dark color concepts only."
+      },
+      "realWorldConnection": "Holiday celebrations often feature special lighting and candles",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Motifs répétés",
+      "oneGoal": "Students will create patterns using winter and holiday motifs",
+      "duration": 45,
+      "keyVocabulary": [
+        "motif",
+        "répéter",
+        "modèle"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Connect to Lesson 10: 'Hier, nous avons vu la lumière et l'ombre.' Show patterned holiday decorations. Demonstrate 'répéter' by repeating actions. Point to patterns: 'Voici un motif!'",
+        "materials": [],
+        "visualSupports": "Patterned decoration examples, repetition demonstration cards, motif identification sheets",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Pattern detective hunt in room. Students identify repeating motifs. Create their own patterns using winter stamps or drawings. Practice 'Je répète le motif.'",
+        "materials": [],
+        "visualSupports": "Pattern identification guides, winter motif reference sheets, pattern creation templates",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Pattern show and tell. Students describe their patterns: 'Mon motif répète...' Create class pattern book.",
+        "materials": [],
+        "visualSupports": "Pattern description sentence starters, class book template",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If stamps unavailable: Use finger painting for patterns. If too complex: Just identify existing patterns in room."
+      },
+      "realWorldConnection": "Traditional holiday decorations often feature repeating patterns",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Mon chef-d'œuvre",
+      "oneGoal": "Students will combine all learned techniques in a personal masterpiece",
+      "duration": 45,
+      "keyVocabulary": [
+        "chef-d'œuvre",
+        "combiner",
+        "personnel"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review all previous lessons with visual reminders. Explain 'chef-d'œuvre' as 'your best art.' Show how artists 'combiner' different techniques. Let students choose their focus.",
+        "materials": [],
+        "visualSupports": "Lesson review poster, technique choice board, masterpiece examples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students create their masterpiece using any combination of learned techniques (shapes, colors, textures, patterns, etc.). Circulate and practice vocabulary: 'J'ai combiné...'",
+        "materials": [],
+        "visualSupports": "Technique reminder cards, planning templates, step-by-step guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students place masterpieces in portfolios. Practice 'C'est mon chef-d'œuvre!' Plan for sharing in next lesson.",
+        "materials": [],
+        "visualSupports": "Portfolio labels, sharing preparation cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If choices overwhelming: Assign specific technique combinations. If time short: Focus on one favorite technique only."
+      },
+      "realWorldConnection": "Artists combine different skills to create meaningful works",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Galerie de classe",
+      "oneGoal": "Students will display and discuss their artwork like in a real gallery",
+      "duration": 45,
+      "keyVocabulary": [
+        "galerie",
+        "montrer",
+        "expliquer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Connect to Lesson 12: 'Hier, vous avez fini vos chef-d'œuvres!' Set up classroom like art gallery. Practice gallery manners: quiet walking, careful looking. Demonstrate 'montrer' and 'expliquer.'",
+        "materials": [],
+        "visualSupports": "Gallery setup photos, gallery behavior cards, presentation gesture guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Gallery walk where students present their masterpieces. Practice 'Voici mon art. J'ai utilisé...' Other students practice appreciation: 'C'est beau!' 'J'aime...'",
+        "materials": [],
+        "visualSupports": "Presentation sentence starters, appreciation phrase cards, gallery viewing guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Vote for favorite gallery experience (not artwork). Practice 'Notre galerie est magnifique!' Take photos for portfolios.",
+        "materials": [],
+        "visualSupports": "Gallery reflection cards, photo permission and props",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If gallery setup impossible: Do table-to-table sharing. If presentations too long: Limit to one technique per student."
+      },
+      "realWorldConnection": "Artists display their work for others to enjoy and appreciate",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Réflexion artistique",
+      "oneGoal": "Students will reflect on their learning and artistic growth",
+      "duration": 45,
+      "keyVocabulary": [
+        "réflexion",
+        "apprendre",
+        "grandir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review journey from Lesson 1 to 13 using visual timeline. Practice 'réflexion' by thinking gesture. Show growth from first drawings to masterpieces: 'Vous avez grandi!'",
+        "materials": [],
+        "visualSupports": "Learning journey timeline, growth comparison examples, thinking gesture cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students look through portfolios and identify learning. Complete simple reflection sheets with drawings/words. Practice 'J'ai appris...' 'Je peux maintenant...' Share growth with partners.",
+        "materials": [],
+        "visualSupports": "Reflection sheet templates, learning vocabulary cards, portfolio organization guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Class celebration of artistic growth. Practice 'Nous sommes des artistes!' Plan how to share learning with families.",
+        "materials": [],
+        "visualSupports": "Celebration materials, artist identity cards, family sharing planning sheets",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If reflection too abstract: Focus on favorite artworks only. If time limited: Do verbal reflection circle only."
+      },
+      "realWorldConnection": "Artists always reflect on their work to continue growing",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Art collaboratif",
+      "oneGoal": "Students will work together on a large collaborative winter mural",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "EXTENSION: Review collaborative work from Lesson 4. Show large mural space. Plan together what winter scene to create. Assign roles based on student strengths and interests.",
+        "materials": [],
+        "visualSupports": "Mural planning sheets, role cards, collaborative work examples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students work in assigned roles to create mural sections. Practice collaborative vocabulary and problem-solving. Combine individual sections into cohesive whole.",
+        "materials": [],
+        "visualSupports": "Section planning guides, collaborative vocabulary reminders, problem-solving strategy cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Step back and admire collaborative mural. Celebrate teamwork and individual contributions. Display prominently in school.",
+        "materials": [],
+        "visualSupports": "Teamwork celebration cards, display planning materials",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If mural too ambitious: Create smaller collaborative pieces. If collaboration breaking down: Return to individual work within group project."
+      },
+      "realWorldConnection": "Community art projects bring people together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Techniques avancées",
+      "oneGoal": "Students will experiment with more advanced art techniques",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "EXTENSION: Show advanced techniques (watercolor blending, printmaking, mixed media). Let students choose which techniques to explore. Set up exploration stations.",
+        "materials": [],
+        "visualSupports": "Technique demonstration cards, station setup guides, choice boards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Station rotation where students try advanced techniques. Focus on experimentation and discovery rather than perfection. Document techniques they enjoy most.",
+        "materials": [],
+        "visualSupports": "Station instruction cards, technique documentation sheets, discovery celebration materials",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share favorite new techniques discovered. Plan which ones to use in future projects. Celebrate willingness to try new things.",
+        "materials": [],
+        "visualSupports": "Technique sharing cards, future planning sheets, risk-taking celebration materials",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If advanced supplies unavailable: Modify familiar techniques in new ways. If techniques too challenging: Focus on perfecting basic techniques."
+      },
+      "realWorldConnection": "Artists continually learn new ways to express themselves",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Enrichissement",
+        "icon": "🌟",
+        "purpose": "Pour approfondir et enrichir les apprentissages",
+        "whenToUse": "Quand les élèves maîtrisent les concepts de base",
+        "teacherTips": {
+          "preparation": [
+            "Préparer du matériel supplémentaire pour les défis",
+            "Avoir des questions ouvertes prêtes",
+            "Prévoir des ressources pour approfondir"
+          ],
+          "implementation": [
+            "Commencer par réviser les concepts de base",
+            "Introduire progressivement les défis",
+            "Encourager la pensée critique et créative"
+          ],
+          "assessment": "Évaluer la profondeur de la compréhension et la créativité",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension enrichissement renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage autonome",
+          "Projet pour élèves avancés",
+          "Activité de mentorat par les pairs"
+        ]
+      },
+      "extensionCategory": "enrichment"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Art numérique simple",
+      "oneGoal": "Students will explore basic digital art tools for winter themes",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "EXTENSION: Show digital art examples alongside traditional art. Demonstrate simple digital tools. Connect to winter themes they've explored in previous lessons.",
+        "materials": [],
+        "visualSupports": "Digital vs traditional art comparison, simple tool demonstration, winter theme examples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students explore simple digital drawing tools to create winter scenes. Focus on how digital tools can create effects similar to traditional techniques. Save and share digital creations.",
+        "materials": [],
+        "visualSupports": "Digital tool guides, winter scene templates, sharing instruction cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Compare digital and traditional winter artworks. Discuss benefits of each medium. Display digital art alongside traditional pieces.",
+        "materials": [],
+        "visualSupports": "Medium comparison charts, display planning materials, reflection cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If technology issues: Use traditional tools to create 'digital-style' effects. If apps too complex: Use simpler drawing programs."
+      },
+      "realWorldConnection": "Modern artists use both traditional and digital tools",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Art recyclé",
+      "oneGoal": "Students will create winter art using recycled materials",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "EXTENSION: Show recycled art examples. Discuss how artists can help environment by reusing materials. Sort available recycled materials by type and potential use.",
+        "materials": [],
+        "visualSupports": "Recycled art examples, environmental care books, material sorting guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students create winter sculptures or collages using recycled materials. Focus on creative problem-solving and seeing new possibilities in discarded items.",
+        "materials": [],
+        "visualSupports": "Creative reuse idea cards, winter theme guides, problem-solving strategy reminders",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Recycled art showcase. Discuss how art can help care for our planet. Plan classroom recycling art collection.",
+        "materials": [],
+        "visualSupports": "Environmental care celebration materials, recycling collection planning sheets",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If recycled materials unavailable: Use classroom paper scraps for collage. If safety concerns: Pre-sort materials more carefully."
+      },
+      "realWorldConnection": "Artists can create beauty while caring for our planet",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Performance artistique",
+      "oneGoal": "Students will combine visual art with movement and music",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "EXTENSION: Show how art can be combined with music and movement. Demonstrate creating art while music plays. Practice winter movements (falling snow, growing trees).",
+        "materials": [],
+        "visualSupports": "Multi-art examples, movement demonstration cards, winter movement guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students create art while winter music plays, incorporating movement into creation process. Paint to music rhythms, dance while creating, use art tools as musical instruments.",
+        "materials": [],
+        "visualSupports": "Movement-art integration guides, rhythm visual aids, creative expression examples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Performance showcase where students present art with movement or music. Celebrate creative expression and multi-art connections.",
+        "materials": [],
+        "visualSupports": "Performance celebration materials, multi-art appreciation cards",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If performance too overwhelming: Focus on creating art while listening to music. If space limited: Do individual art-music connections at desks."
+      },
+      "realWorldConnection": "Many celebrations combine different art forms together",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration finale",
+      "oneGoal": "Students will share their complete winter art journey with families",
+      "duration": 45,
+      "keyVocabulary": [],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "EXTENSION: Prepare for family celebration. Organize portfolios and select pieces to display. Practice sharing their learning journey with simple French phrases.",
+        "materials": [],
+        "visualSupports": "Portfolio organization guides, presentation phrase cards, celebration planning materials",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Family celebration event. Students present portfolios, demonstrate techniques, and share favorite artworks. Families participate in simple art activity together.",
+        "materials": [],
+        "visualSupports": "Presentation guides, family activity instructions, celebration setup materials",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Celebration reflection. Students share favorite moments from art journey. Plan continued art exploration. Thank families for support.",
+        "materials": [],
+        "visualSupports": "Journey reflection materials, future planning cards, gratitude expression guides",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "If family event not possible: Celebrate with other classes or school community. If time limited: Focus on student reflection and pride in achievements."
+      },
+      "realWorldConnection": "Art brings families and communities together in celebration",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Créativité",
+        "items": [
+          "Démontre une compréhension de base en créativité",
+          "Participe activement aux activités de créativité",
+          "Montre du progrès dans créativité",
+          "Applique les apprentissages de créativité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Utilisation des matériaux",
+        "items": [
+          "Démontre une compréhension de base en utilisation des matériaux",
+          "Participe activement aux activités de utilisation des matériaux",
+          "Montre du progrès dans utilisation des matériaux",
+          "Applique les apprentissages de utilisation des matériaux dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Appréciation artistique",
+        "items": [
+          "Démontre une compréhension de base en appréciation artistique",
+          "Participe activement aux activités de appréciation artistique",
+          "Montre du progrès dans appréciation artistique",
+          "Applique les apprentissages de appréciation artistique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Créativité",
+        "Utilisation des matériaux",
+        "Expression personnelle",
+        "Appréciation artistique"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🎨",
+          "🖌️",
+          "✏️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en arts visuels\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nDécouvrons l'art des fêtes, Les couleurs de l'hiver, Mes traditions familiales, Créons ensemble, Formes de l'hiver\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nValorisez le processus créatif autant que le produit final.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Création artistique libre",
+        "description": "Créez de l'art ensemble en utilisant les techniques apprises",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux d'art disponibles",
+        "frenchSupport": "L'art transcende les langues!"
+      },
+      {
+        "title": "Galerie maison",
+        "description": "Créez un espace pour exposer les créations de votre enfant",
+        "timeRequired": "10 minutes",
+        "materials": "Espace mural ou table",
+        "frenchSupport": "Demandez à votre enfant d'expliquer ses œuvres"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "fête",
+        "lesson": 1,
+        "context": "Découvrons l'art des fêtes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"fête\"",
+          "Utilisez \"fête\" dans une phrase simple",
+          "Trouvez des images représentant \"fête\"",
+          "Faites des gestes pour \"fête\""
+        ]
+      },
+      {
+        "word": "art",
+        "lesson": 1,
+        "context": "Découvrons l'art des fêtes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"art\"",
+          "Utilisez \"art\" dans une phrase simple",
+          "Trouvez des images représentant \"art\"",
+          "Faites des gestes pour \"art\""
+        ]
+      },
+      {
+        "word": "célébrer",
+        "lesson": 1,
+        "context": "Découvrons l'art des fêtes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"célébrer\"",
+          "Utilisez \"célébrer\" dans une phrase simple",
+          "Trouvez des images représentant \"célébrer\"",
+          "Faites des gestes pour \"célébrer\""
+        ]
+      },
+      {
+        "word": "couleur",
+        "lesson": 2,
+        "context": "Les couleurs de l'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"couleur\"",
+          "Utilisez \"couleur\" dans une phrase simple",
+          "Trouvez des images représentant \"couleur\"",
+          "Faites des gestes pour \"couleur\""
+        ]
+      },
+      {
+        "word": "hiver",
+        "lesson": 2,
+        "context": "Les couleurs de l'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"hiver\"",
+          "Utilisez \"hiver\" dans une phrase simple",
+          "Trouvez des images représentant \"hiver\"",
+          "Faites des gestes pour \"hiver\""
+        ]
+      },
+      {
+        "word": "blanc",
+        "lesson": 2,
+        "context": "Les couleurs de l'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"blanc\"",
+          "Utilisez \"blanc\" dans une phrase simple",
+          "Trouvez des images représentant \"blanc\"",
+          "Faites des gestes pour \"blanc\""
+        ]
+      },
+      {
+        "word": "famille",
+        "lesson": 3,
+        "context": "Mes traditions familiales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"famille\"",
+          "Utilisez \"famille\" dans une phrase simple",
+          "Trouvez des images représentant \"famille\"",
+          "Faites des gestes pour \"famille\""
+        ]
+      },
+      {
+        "word": "tradition",
+        "lesson": 3,
+        "context": "Mes traditions familiales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tradition\"",
+          "Utilisez \"tradition\" dans une phrase simple",
+          "Trouvez des images représentant \"tradition\"",
+          "Faites des gestes pour \"tradition\""
+        ]
+      },
+      {
+        "word": "dessiner",
+        "lesson": 3,
+        "context": "Mes traditions familiales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dessiner\"",
+          "Utilisez \"dessiner\" dans une phrase simple",
+          "Trouvez des images représentant \"dessiner\"",
+          "Faites des gestes pour \"dessiner\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 4,
+        "context": "Créons ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 4,
+        "context": "Créons ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "classe",
+        "lesson": 4,
+        "context": "Créons ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"classe\"",
+          "Utilisez \"classe\" dans une phrase simple",
+          "Trouvez des images représentant \"classe\"",
+          "Faites des gestes pour \"classe\""
+        ]
+      },
+      {
+        "word": "forme",
+        "lesson": 5,
+        "context": "Formes de l'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"forme\"",
+          "Utilisez \"forme\" dans une phrase simple",
+          "Trouvez des images représentant \"forme\"",
+          "Faites des gestes pour \"forme\""
+        ]
+      },
+      {
+        "word": "rond",
+        "lesson": 5,
+        "context": "Formes de l'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rond\"",
+          "Utilisez \"rond\" dans une phrase simple",
+          "Trouvez des images représentant \"rond\"",
+          "Faites des gestes pour \"rond\""
+        ]
+      },
+      {
+        "word": "triangle",
+        "lesson": 5,
+        "context": "Formes de l'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"triangle\"",
+          "Utilisez \"triangle\" dans une phrase simple",
+          "Trouvez des images représentant \"triangle\"",
+          "Faites des gestes pour \"triangle\""
+        ]
+      },
+      {
+        "word": "décoration",
+        "lesson": 6,
+        "context": "Décorations simples",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"décoration\"",
+          "Utilisez \"décoration\" dans une phrase simple",
+          "Trouvez des images représentant \"décoration\"",
+          "Faites des gestes pour \"décoration\""
+        ]
+      },
+      {
+        "word": "papier",
+        "lesson": 6,
+        "context": "Décorations simples",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"papier\"",
+          "Utilisez \"papier\" dans une phrase simple",
+          "Trouvez des images représentant \"papier\"",
+          "Faites des gestes pour \"papier\""
+        ]
+      },
+      {
+        "word": "ciseaux",
+        "lesson": 6,
+        "context": "Décorations simples",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ciseaux\"",
+          "Utilisez \"ciseaux\" dans une phrase simple",
+          "Trouvez des images représentant \"ciseaux\"",
+          "Faites des gestes pour \"ciseaux\""
+        ]
+      },
+      {
+        "word": "carte",
+        "lesson": 7,
+        "context": "Cartes de souhaits",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"carte\"",
+          "Utilisez \"carte\" dans une phrase simple",
+          "Trouvez des images représentant \"carte\"",
+          "Faites des gestes pour \"carte\""
+        ]
+      },
+      {
+        "word": "message",
+        "lesson": 7,
+        "context": "Cartes de souhaits",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"message\"",
+          "Utilisez \"message\" dans une phrase simple",
+          "Trouvez des images représentant \"message\"",
+          "Faites des gestes pour \"message\""
+        ]
+      },
+      {
+        "word": "symbole",
+        "lesson": 7,
+        "context": "Cartes de souhaits",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"symbole\"",
+          "Utilisez \"symbole\" dans une phrase simple",
+          "Trouvez des images représentant \"symbole\"",
+          "Faites des gestes pour \"symbole\""
+        ]
+      },
+      {
+        "word": "cadeau",
+        "lesson": 8,
+        "context": "Cadeaux faits main",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cadeau\"",
+          "Utilisez \"cadeau\" dans une phrase simple",
+          "Trouvez des images représentant \"cadeau\"",
+          "Faites des gestes pour \"cadeau\""
+        ]
+      },
+      {
+        "word": "main",
+        "lesson": 8,
+        "context": "Cadeaux faits main",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"main\"",
+          "Utilisez \"main\" dans une phrase simple",
+          "Trouvez des images représentant \"main\"",
+          "Faites des gestes pour \"main\""
+        ]
+      },
+      {
+        "word": "donner",
+        "lesson": 8,
+        "context": "Cadeaux faits main",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"donner\"",
+          "Utilisez \"donner\" dans une phrase simple",
+          "Trouvez des images représentant \"donner\"",
+          "Faites des gestes pour \"donner\""
+        ]
+      },
+      {
+        "word": "texture",
+        "lesson": 9,
+        "context": "Textures d'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"texture\"",
+          "Utilisez \"texture\" dans une phrase simple",
+          "Trouvez des images représentant \"texture\"",
+          "Faites des gestes pour \"texture\""
+        ]
+      },
+      {
+        "word": "doux",
+        "lesson": 9,
+        "context": "Textures d'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"doux\"",
+          "Utilisez \"doux\" dans une phrase simple",
+          "Trouvez des images représentant \"doux\"",
+          "Faites des gestes pour \"doux\""
+        ]
+      },
+      {
+        "word": "rugueux",
+        "lesson": 9,
+        "context": "Textures d'hiver",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rugueux\"",
+          "Utilisez \"rugueux\" dans une phrase simple",
+          "Trouvez des images représentant \"rugueux\"",
+          "Faites des gestes pour \"rugueux\""
+        ]
+      },
+      {
+        "word": "lumière",
+        "lesson": 10,
+        "context": "Lumières et ombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"lumière\"",
+          "Utilisez \"lumière\" dans une phrase simple",
+          "Trouvez des images représentant \"lumière\"",
+          "Faites des gestes pour \"lumière\""
+        ]
+      },
+      {
+        "word": "ombre",
+        "lesson": 10,
+        "context": "Lumières et ombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ombre\"",
+          "Utilisez \"ombre\" dans une phrase simple",
+          "Trouvez des images représentant \"ombre\"",
+          "Faites des gestes pour \"ombre\""
+        ]
+      },
+      {
+        "word": "briller",
+        "lesson": 10,
+        "context": "Lumières et ombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"briller\"",
+          "Utilisez \"briller\" dans une phrase simple",
+          "Trouvez des images représentant \"briller\"",
+          "Faites des gestes pour \"briller\""
+        ]
+      },
+      {
+        "word": "motif",
+        "lesson": 11,
+        "context": "Motifs répétés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"motif\"",
+          "Utilisez \"motif\" dans une phrase simple",
+          "Trouvez des images représentant \"motif\"",
+          "Faites des gestes pour \"motif\""
+        ]
+      },
+      {
+        "word": "répéter",
+        "lesson": 11,
+        "context": "Motifs répétés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"répéter\"",
+          "Utilisez \"répéter\" dans une phrase simple",
+          "Trouvez des images représentant \"répéter\"",
+          "Faites des gestes pour \"répéter\""
+        ]
+      },
+      {
+        "word": "modèle",
+        "lesson": 11,
+        "context": "Motifs répétés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"modèle\"",
+          "Utilisez \"modèle\" dans une phrase simple",
+          "Trouvez des images représentant \"modèle\"",
+          "Faites des gestes pour \"modèle\""
+        ]
+      },
+      {
+        "word": "chef-d'œuvre",
+        "lesson": 12,
+        "context": "Mon chef-d'œuvre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chef-d'œuvre\"",
+          "Utilisez \"chef-d'œuvre\" dans une phrase simple",
+          "Trouvez des images représentant \"chef-d'œuvre\"",
+          "Faites des gestes pour \"chef-d'œuvre\""
+        ]
+      },
+      {
+        "word": "combiner",
+        "lesson": 12,
+        "context": "Mon chef-d'œuvre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"combiner\"",
+          "Utilisez \"combiner\" dans une phrase simple",
+          "Trouvez des images représentant \"combiner\"",
+          "Faites des gestes pour \"combiner\""
+        ]
+      },
+      {
+        "word": "personnel",
+        "lesson": 12,
+        "context": "Mon chef-d'œuvre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"personnel\"",
+          "Utilisez \"personnel\" dans une phrase simple",
+          "Trouvez des images représentant \"personnel\"",
+          "Faites des gestes pour \"personnel\""
+        ]
+      },
+      {
+        "word": "galerie",
+        "lesson": 13,
+        "context": "Galerie de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"galerie\"",
+          "Utilisez \"galerie\" dans une phrase simple",
+          "Trouvez des images représentant \"galerie\"",
+          "Faites des gestes pour \"galerie\""
+        ]
+      },
+      {
+        "word": "montrer",
+        "lesson": 13,
+        "context": "Galerie de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"montrer\"",
+          "Utilisez \"montrer\" dans une phrase simple",
+          "Trouvez des images représentant \"montrer\"",
+          "Faites des gestes pour \"montrer\""
+        ]
+      },
+      {
+        "word": "expliquer",
+        "lesson": 13,
+        "context": "Galerie de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expliquer\"",
+          "Utilisez \"expliquer\" dans une phrase simple",
+          "Trouvez des images représentant \"expliquer\"",
+          "Faites des gestes pour \"expliquer\""
+        ]
+      },
+      {
+        "word": "réflexion",
+        "lesson": 14,
+        "context": "Réflexion artistique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réflexion\"",
+          "Utilisez \"réflexion\" dans une phrase simple",
+          "Trouvez des images représentant \"réflexion\"",
+          "Faites des gestes pour \"réflexion\""
+        ]
+      },
+      {
+        "word": "apprendre",
+        "lesson": 14,
+        "context": "Réflexion artistique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"apprendre\"",
+          "Utilisez \"apprendre\" dans une phrase simple",
+          "Trouvez des images représentant \"apprendre\"",
+          "Faites des gestes pour \"apprendre\""
+        ]
+      },
+      {
+        "word": "grandir",
+        "lesson": 14,
+        "context": "Réflexion artistique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"grandir\"",
+          "Utilisez \"grandir\" dans une phrase simple",
+          "Trouvez des images représentant \"grandir\"",
+          "Faites des gestes pour \"grandir\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

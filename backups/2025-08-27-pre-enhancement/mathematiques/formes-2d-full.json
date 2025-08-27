@@ -1,0 +1,2390 @@
+{
+  "unitTitle": "",
+  "subject": "Mathématiques",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Les formes dans notre classe",
+      "oneGoal": "Les élèves découvrent et nomment les formes de base (cercle, carré, triangle) dans leur environnement immédiat",
+      "duration": 45,
+      "keyVocabulary": [
+        "forme",
+        "cercle",
+        "carré"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Chantez ensemble la chanson 'Rondes, carrées, triangles' en montrant des formes avec les mains",
+        "materials": [
+          "tableau d'affichage",
+          "formes colorées en carton"
+        ],
+        "visualSupports": "Grandes formes colorées affichées au tableau",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Promenade dans la classe pour chercher et toucher des objets de formes différentes",
+        "materials": [
+          "blocs géométriques en bois",
+          "étiquettes autocollantes",
+          "panier de collecte"
+        ],
+        "visualSupports": "Objets réels de la classe (horloge, tableau, panneau)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils facilement les formes?",
+            "ifYes": "Encouragez-les à trouver des formes plus petites ou cachées",
+            "ifNo": "Montrez clairement 2-3 exemples évidents avant de continuer"
+          },
+          {
+            "question": "Ont-ils besoin de plus d'exemples concrets?",
+            "ifYes": "Sortez plus de blocs géométriques pour comparaison",
+            "ifNo": "Passez à l'activité de tri par formes"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cercle de partage : chaque élève montre un objet trouvé et nomme sa forme",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Reconnaître les formes dans les objets réels",
+        "then": "Commencez par des formes parfaites en plastique avant les objets de la classe"
+      },
+      "realWorldConnection": "Identifier les formes sur les objets de la classe : horloge ronde, tableau carré, panneau triangulaire",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Toucher et sentir les formes",
+      "oneGoal": "Les élèves explorent les formes géométriques par le toucher et les manipulent avec leurs mains",
+      "duration": 45,
+      "keyVocabulary": [
+        "triangle",
+        "toucher",
+        "bord"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu de devinettes tactiles : toucher des formes cachées dans un sac",
+        "materials": [
+          "sac en tissu opaque",
+          "formes en bois texturées"
+        ],
+        "visualSupports": "Formes géantes en mousse pour démonstration",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Station de manipulation avec formes rugueuses, lisses, épaisses pour exploration sensorielle",
+        "materials": [
+          "formes en papier sablé",
+          "formes en velours",
+          "formes en plastique"
+        ],
+        "visualSupports": "Formes tactiles de différentes textures et tailles",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils distinguer les formes les yeux fermés?",
+            "ifYes": "Ajoutez des formes plus similaires pour augmenter le défi",
+            "ifNo": "Permettez-leur de regarder d'abord, puis recommencez les yeux fermés"
+          },
+          {
+            "question": "Ont-ils besoin de formes plus grandes à manipuler?",
+            "ifYes": "Utilisez les formes géantes en mousse",
+            "ifNo": "Continuez avec les formes de taille standard"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Partage des découvertes : les élèves décrivent ce qu'ils ont ressenti en touchant chaque forme",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Distinguer les formes par le toucher",
+        "then": "Commencez par des formes très différentes (cercle vs carré) avant d'ajouter le triangle"
+      },
+      "realWorldConnection": "Sentir les formes des objets dans un sac mystère, comme les blocs de construction",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Tracer des formes dans le sable",
+      "oneGoal": "Les élèves tracent des cercles, carrés et triangles dans du sable ou de la pâte à modeler",
+      "duration": 45,
+      "keyVocabulary": [
+        "tracer",
+        "dessiner",
+        "contour"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Démonstration de traçage de formes dans l'air avec de grands mouvements de bras",
+        "materials": [
+          "bacs à sable individuels",
+          "gabarits de formes"
+        ],
+        "visualSupports": "Enseignant trace les formes dans l'air en grand format",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Traçage libre de formes dans le sable avec les doigts, puis avec des outils",
+        "materials": [
+          "sable de jeu",
+          "bâtonnets de bois",
+          "pâte à modeler"
+        ],
+        "visualSupports": "Gabarits en carton pour guider le traçage",
+        "decisionPoints": [
+          {
+            "question": "Les élèves maîtrisent-ils les mouvements de traçage?",
+            "ifYes": "Encouragez-les à tracer sans gabarit",
+            "ifNo": "Utilisez des gabarits et guidez leur main"
+          },
+          {
+            "question": "Le matériel sensoriel aide-t-il leur apprentissage?",
+            "ifYes": "Continuez avec le sable et ajoutez de la farine",
+            "ifNo": "Passez au traçage sur papier avec crayons gras"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie d'observation : les élèves visitent les créations de leurs pairs dans le sable",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Contrôler les mouvements de traçage",
+        "then": "Utilisez des formes pointillées à suivre ou des rainures creusées dans le sable"
+      },
+      "realWorldConnection": "Tracer des formes avec le doigt dans le sable à la plage ou dans la farine",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Construire avec des formes",
+      "oneGoal": "Les élèves utilisent des blocs géométriques pour construire et créer des structures simples",
+      "duration": 45,
+      "keyVocabulary": [
+        "construire",
+        "blocs",
+        "stable"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration libre des blocs géométriques : manipulation et empilement",
+        "materials": [
+          "blocs géométriques en bois",
+          "blocs en mousse",
+          "tapis de construction"
+        ],
+        "visualSupports": "Exemples de constructions simples affichées en photos",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Construction guidée puis libre de tours, ponts et maisons avec des blocs de formes diverses",
+        "materials": [
+          "blocs triangulaires",
+          "blocs carrés",
+          "blocs cylindriques"
+        ],
+        "visualSupports": "Instructions visuelles étape par étape pour constructions de base",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils comment les formes s'assemblent?",
+            "ifYes": "Proposez des défis de construction plus complexes",
+            "ifNo": "Démontrez l'assemblage étape par étape avec eux"
+          },
+          {
+            "question": "Leurs constructions sont-elles stables?",
+            "ifYes": "Encouragez-les à construire plus haut ou plus large",
+            "ifNo": "Montrez comment choisir des bases solides et larges"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Présentation des constructions : chaque élève explique ce qu'il a construit",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des structures stables",
+        "then": "Commencez par des tours simples avec des blocs identiques avant de mélanger les formes"
+      },
+      "realWorldConnection": "Construire des tours, des maisons et des ponts avec des blocs à la maison",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Chasse aux formes dans l'école",
+      "oneGoal": "Les élèves partent à la recherche de formes géométriques dans différents endroits de l'école",
+      "duration": 45,
+      "keyVocabulary": [
+        "chercher",
+        "trouver",
+        "partout"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Préparation de l'expedition : révision des formes à chercher et règles de sécurité",
+        "materials": [
+          "carnet d'exploration",
+          "crayons",
+          "planchettes à pince"
+        ],
+        "visualSupports": "Carte simple de l'école avec pictogrammes des formes à trouver",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Exploration de l'école en petits groupes pour documenter les formes trouvées",
+        "materials": [
+          "appareil photo simple",
+          "autocollants de formes",
+          "sacs de collecte"
+        ],
+        "visualSupports": "Carnet avec images de formes à cocher quand trouvées",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils identifier les formes dans de nouveaux contextes?",
+            "ifYes": "Cherchez des formes moins évidentes ou partiellement cachées",
+            "ifNo": "Commencez par pointer des exemples évidents ensemble"
+          },
+          {
+            "question": "Peuvent-ils se déplacer en sécurité dans l'école?",
+            "ifYes": "Élargissez la zone d'exploration",
+            "ifNo": "Restez dans le corridor près de la classe"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Retour en classe pour partager les découvertes et créer une carte des formes de l'école",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Voir les formes dans l'environnement architectural",
+        "then": "Pointez les contours avec votre doigt et demandez aux élèves de répéter le geste"
+      },
+      "realWorldConnection": "Chercher des formes en se promenant dans le quartier avec la famille",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Créer des images avec des formes",
+      "oneGoal": "Les élèves combinent différentes formes pour créer des images et des dessins simples",
+      "duration": 45,
+      "keyVocabulary": [
+        "combiner",
+        "créer",
+        "image"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Observation d'images simples créées avec des formes géométriques de base",
+        "materials": [
+          "formes prédécoupées en papier",
+          "colle en bâton",
+          "papier de construction"
+        ],
+        "visualSupports": "Exemples d'images : maison (carré + triangle), robot (rectangles + cercles)",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création libre d'images en collant des formes colorées sur papier",
+        "materials": [
+          "formes de différentes tailles",
+          "ciseaux adaptés",
+          "feutres"
+        ],
+        "visualSupports": "Guide visuel montrant comment assembler des formes pour faire des objets",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils créatifs avec les formes?",
+            "ifYes": "Encouragez des créations plus complexes ou originales",
+            "ifNo": "Proposez des modèles simples à reproduire d'abord"
+          },
+          {
+            "question": "Comprennent-ils comment assembler les formes?",
+            "ifYes": "Laissez-les expérimenter librement",
+            "ifNo": "Démontrez étape par étape l'assemblage d'une image simple"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie d'art improvisée : affichage et description des créations par les artistes",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Visualiser comment assembler les formes",
+        "then": "Utilisez des formes magnétiques sur tableau pour démontrer avant qu'ils collent"
+      },
+      "realWorldConnection": "Faire des dessins de maisons, de robots, d'animaux en utilisant des formes géométriques",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Trier et classer les formes",
+      "oneGoal": "Les élèves trient des collections de formes selon leurs caractéristiques communes",
+      "duration": 45,
+      "keyVocabulary": [
+        "trier",
+        "groupe",
+        "semblable"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu de tri rapide : séparer les formes rondes des formes avec des coins",
+        "materials": [
+          "collection variée de formes",
+          "bacs de tri colorés",
+          "étiquettes visuelles"
+        ],
+        "visualSupports": "Panneaux avec pictogrammes montrant les critères de tri",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Activités de tri par forme, couleur, taille avec justification des choix",
+        "materials": [
+          "formes de différentes couleurs et tailles",
+          "cercles de tri",
+          "pinces géantes"
+        ],
+        "visualSupports": "Tableaux de tri avec colonnes clairement identifiées",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils les critères de tri?",
+            "ifYes": "Introduisez des critères multiples (forme ET couleur)",
+            "ifNo": "Commencez avec un seul critère très clair"
+          },
+          {
+            "question": "Peuvent-ils expliquer leurs regroupements?",
+            "ifYes": "Demandez-leur d'inventer leurs propres critères de tri",
+            "ifNo": "Utilisez des phrases modèles : 'Je mets ensemble parce que...'"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Présentation des tris : chaque groupe explique comment et pourquoi ils ont trié",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Comprendre les critères de regroupement",
+        "then": "Commencez par trier des objets familiers (jouets, vêtements) avant les formes abstraites"
+      },
+      "realWorldConnection": "Trier les jouets, les ustensiles de cuisine, ou les vêtements par forme",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Découvrir les côtés et les coins",
+      "oneGoal": "Les élèves explorent et comptent les côtés et les coins des formes géométriques",
+      "duration": 45,
+      "keyVocabulary": [
+        "côté",
+        "coin",
+        "compter"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Chanson des côtés et coins avec gestes : tracer les côtés et pointer les coins",
+        "materials": [
+          "formes géantes en carton",
+          "pointeurs colorés",
+          "tableau de comptage"
+        ],
+        "visualSupports": "Formes avec côtés et coins clairement marqués en couleurs différentes",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Exploration tactile et comptage systématique des côtés et coins de chaque forme",
+        "materials": [
+          "formes en relief",
+          "jetons de comptage",
+          "ficelle colorée"
+        ],
+        "visualSupports": "Tableaux de comptage avec cases pour noter les découvertes",
+        "decisionPoints": [
+          {
+            "question": "Les élèves distinguent-ils côtés et coins?",
+            "ifYes": "Passez au comptage et à la comparaison entre formes",
+            "ifNo": "Utilisez des ficelles pour suivre les côtés et des autocollants sur les coins"
+          },
+          {
+            "question": "Peuvent-ils compter avec précision?",
+            "ifYes": "Introduisez des formes plus complexes (pentagone, hexagone)",
+            "ifNo": "Utilisez la correspondance un-à-un avec des jetons ou autocollants"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Création d'un tableau collectif des découvertes : combien de côtés et coins par forme",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Distinguer les côtés des coins",
+        "then": "Utilisez des gestes corporels : bras tendus pour les côtés, doigts pointés pour les coins"
+      },
+      "realWorldConnection": "Compter les côtés d'une table, les coins d'un livre, les bords d'une fenêtre",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Jeux avec les formes",
+      "oneGoal": "Les élèves participent à des jeux interactifs pour renforcer la reconnaissance des formes",
+      "duration": 45,
+      "keyVocabulary": [
+        "jeu",
+        "deviner",
+        "rapide"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Échauffement avec le jeu 'Jacques a dit' utilisant des mouvements de formes",
+        "materials": [
+          "cartes de formes",
+          "sablier",
+          "boîte mystère"
+        ],
+        "visualSupports": "Cartes visuelles des règles de chaque jeu",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Rotation entre stations de jeux : loto des formes, mémoire, devine-qui géométrique",
+        "materials": [
+          "planches de loto",
+          "cartes mémoire",
+          "sacs tactiles"
+        ],
+        "visualSupports": "Instructions illustrées à chaque station de jeu",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans les jeux?",
+            "ifYes": "Augmentez la vitesse ou la complexité des jeux",
+            "ifNo": "Simplifiez les règles ou jouez tous ensemble d'abord"
+          },
+          {
+            "question": "Le niveau de difficulté est-il approprié?",
+            "ifYes": "Ajoutez des formes moins communes ou des variantes",
+            "ifNo": "Concentrez-vous sur les 3 formes de base seulement"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cercle de partage : quel a été leur jeu préféré et pourquoi",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Suivre les règles des jeux",
+        "then": "Commencez par des jeux très simples avec une seule règle avant d'en ajouter"
+      },
+      "realWorldConnection": "Jouer au 'devine la forme' en famille, identifier des formes sur des panneaux routiers",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Formes dans la nature",
+      "oneGoal": "Les élèves découvrent les formes géométriques présentes dans la nature et les objets naturels",
+      "duration": 45,
+      "keyVocabulary": [
+        "nature",
+        "naturel",
+        "observer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Observation de photos d'éléments naturels contenant des formes géométriques",
+        "materials": [
+          "collection d'objets naturels",
+          "loupes",
+          "carnets d'observation"
+        ],
+        "visualSupports": "Photos agrandies de formes dans la nature : nid d'abeille, coquillages, fleurs",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Exploration d'objets naturels apportés en classe et recherche de formes à l'extérieur",
+        "materials": [
+          "feuilles variées",
+          "coquillages",
+          "pierres",
+          "fleurs"
+        ],
+        "visualSupports": "Guide d'identification des formes dans les éléments naturels",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils voir les formes dans la nature?",
+            "ifYes": "Cherchez des formes plus subtiles ou des motifs répétitifs",
+            "ifNo": "Commencez par des exemples très évidents comme les cercles des tournesols"
+          },
+          {
+            "question": "Comprennent-ils que la géométrie existe naturellement?",
+            "ifYes": "Discutez pourquoi la nature utilise ces formes",
+            "ifNo": "Concentrez-vous sur la découverte et la reconnaissance simple"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Création d'un musée de formes naturelles avec les objets trouvés",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Voir les formes abstraites dans les objets naturels",
+        "then": "Utilisez un cadre de carton pour isoler les parties géométriques des objets naturels"
+      },
+      "realWorldConnection": "Observer les formes des feuilles, des fleurs, des roches, des coquillages",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Introduction aux solides 3D",
+      "oneGoal": "Les élèves découvrent les objets tridimensionnels : cube, sphère, cylindre",
+      "duration": 45,
+      "keyVocabulary": [
+        "solide",
+        "cube",
+        "sphère"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Comparaison directe entre formes plates (2D) et objets épais (3D)",
+        "materials": [
+          "solides géométriques en bois",
+          "formes plates correspondantes",
+          "boîte surprise"
+        ],
+        "visualSupports": "Paires d'objets 2D et 3D côte à côte pour comparaison",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Manipulation libre des solides 3D et découverte de leurs propriétés uniques",
+        "materials": [
+          "cubes en bois",
+          "balles de différentes tailles",
+          "cylindres en plastique"
+        ],
+        "visualSupports": "Objets du quotidien correspondant aux solides géométriques",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils la différence 2D/3D?",
+            "ifYes": "Explorez comment les solides occupent l'espace",
+            "ifNo": "Utilisez l'analogie de l'ombre : les formes plates sont comme des ombres"
+          },
+          {
+            "question": "Le concept de tridimensionnel est-il trop abstrait?",
+            "ifYes": "Concentrez-vous sur la manipulation et les noms seulement",
+            "ifNo": "Introduisez les termes longueur, largeur, hauteur"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Jeu de correspondance : associer chaque solide avec un objet familier de même forme",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Comprendre la tridimensionnalité",
+        "then": "Utilisez des objets très familiers (boîte de kleenex, balle, canette) avant les formes abstraites"
+      },
+      "realWorldConnection": "Identifier les boîtes (cubes), les balles (sphères), les canettes (cylindres)",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Rouler, glisser, empiler",
+      "oneGoal": "Les élèves explorent les propriétés de mouvement des différents solides géométriques",
+      "duration": 45,
+      "keyVocabulary": [
+        "rouler",
+        "glisser",
+        "empiler"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Prédictions : quel objet va rouler, glisser ou rester en place sur un plan incliné?",
+        "materials": [
+          "plan incliné",
+          "objets variés",
+          "feuille de prédictions"
+        ],
+        "visualSupports": "Tableau de prédictions avec pictogrammes de mouvements",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Expérimentation systématique du mouvement des solides sur différentes surfaces",
+        "materials": [
+          "rampes de différents angles",
+          "tapis rugueux",
+          "surfaces lisses"
+        ],
+        "visualSupports": "Instructions visuelles pour tester chaque type de mouvement",
+        "decisionPoints": [
+          {
+            "question": "Les élèves prédisent-ils correctement les mouvements?",
+            "ifYes": "Testez des objets moins évidents ou des formes combinées",
+            "ifNo": "Démontrez clairement pourquoi certaines formes roulent ou glissent"
+          },
+          {
+            "question": "Comprennent-ils pourquoi certains objets roulent?",
+            "ifYes": "Explorez l'effet de différents angles de rampe",
+            "ifNo": "Concentrez-vous sur l'observation et la description simple"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Discussion des découvertes et création d'un tableau de classification des mouvements",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Comprendre pourquoi les formes bougent différemment",
+        "then": "Utilisez des analogies corporelles : rouler comme une balle, glisser comme un pingouin"
+      },
+      "realWorldConnection": "Faire rouler une balle, empiler des boîtes, faire glisser un livre",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Constructions 3D créatives",
+      "oneGoal": "Les élèves utilisent divers solides pour créer des sculptures et des constructions originales",
+      "duration": 45,
+      "keyVocabulary": [
+        "sculpture",
+        "construction",
+        "équilibre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Inspiration créative : observation de sculptures simples et de constructions 3D",
+        "materials": [
+          "variety pack de solides",
+          "pâte adhésive",
+          "cure-dents"
+        ],
+        "visualSupports": "Photos de sculptures géométriques simples adaptées à l'âge",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Construction libre de sculptures et structures en utilisant les propriétés des solides",
+        "materials": [
+          "blocs 3D variés",
+          "cylindres en carton",
+          "sphères en polystyrène"
+        ],
+        "visualSupports": "Exemples de techniques d'assemblage et d'équilibrage",
+        "decisionPoints": [
+          {
+            "question": "Les élèves planifient-ils leurs constructions?",
+            "ifYes": "Encouragez des projets plus ambitieux ou collaboratifs",
+            "ifNo": "Commencez par des défis simples : tour la plus haute, pont le plus solide"
+          },
+          {
+            "question": "Comprennent-ils les concepts d'équilibre?",
+            "ifYes": "Explorez des constructions en porte-à-faux ou asymétriques",
+            "ifNo": "Concentrez-vous sur des empilements simples et symétriques"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Exposition de sculptures avec présentation par les artistes de leurs techniques",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des structures stables",
+        "then": "Enseignez le principe de la base large : commencer par les grosses pièces en bas"
+      },
+      "realWorldConnection": "Construire des châteaux de sable, des tours avec des boîtes de conserve",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Empreintes et traces de solides",
+      "oneGoal": "Les élèves découvrent les formes 2D créées par les faces des solides 3D",
+      "duration": 45,
+      "keyVocabulary": [
+        "empreinte",
+        "trace",
+        "face"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Mystère des empreintes : observer des traces dans la pâte et deviner quel objet les a faites",
+        "materials": [
+          "pâte à modeler",
+          "solides variés",
+          "encre lavable"
+        ],
+        "visualSupports": "Exemples d'empreintes déjà créées avec les objets correspondants",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création systématique d'empreintes de différentes faces des solides 3D",
+        "materials": [
+          "tampons encreurs",
+          "papier épais",
+          "pâte à modeler fraîche"
+        ],
+        "visualSupports": "Guide montrant comment positionner les solides pour créer des empreintes",
+        "decisionPoints": [
+          {
+            "question": "Les élèves voient-ils la connexion 2D/3D?",
+            "ifYes": "Explorez comment un solide peut créer plusieurs formes différentes",
+            "ifNo": "Commencez avec des objets évidents : boîte fait des carrés"
+          },
+          {
+            "question": "Peuvent-ils prédire la forme de l'empreinte?",
+            "ifYes": "Testez avec des solides plus complexes ou inhabituels",
+            "ifNo": "Faites d'abord l'empreinte, puis discutez de ce qui est apparu"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Jeu de correspondance : associer les empreintes avec les solides qui les ont créées",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Comprendre comment un solide peut faire plusieurs formes",
+        "then": "Démontrez avec une boîte : montrez chaque face avant de faire son empreinte"
+      },
+      "realWorldConnection": "Faire des empreintes dans la pâte, observer les traces de pas dans la neige",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Galerie d'art géométrique",
+      "oneGoal": "Les élèves créent et exposent leurs œuvres artistiques utilisant formes 2D et solides 3D",
+      "duration": 45,
+      "keyVocabulary": [
+        "galerie",
+        "exposer",
+        "artistique"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Planification artistique : choisir techniques et matériaux pour créer une œuvre finale",
+        "materials": [
+          "matériaux d'art variés",
+          "formes et solides",
+          "toiles ou papier grand format"
+        ],
+        "visualSupports": "Exemples d'art géométrique adapté à l'âge (Mondrian, Kandinsky simplifié)",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création libre d'œuvres artistiques intégrant tous les apprentissages géométriques",
+        "materials": [
+          "pinceaux",
+          "peinture",
+          "collage",
+          "matériaux de sculpture"
+        ],
+        "visualSupports": "Techniques artistiques illustrées : collage, peinture, sculpture",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils fiers de leurs créations?",
+            "ifYes": "Encouragez l'expérimentation et les détails artistiques",
+            "ifNo": "Aidez-les à voir les réussites dans leur travail et offrez du soutien"
+          },
+          {
+            "question": "Peuvent-ils expliquer leurs œuvres?",
+            "ifYes": "Préparez-les à présenter comme de vrais artistes",
+            "ifNo": "Aidez-les à identifier une chose qu'ils aiment dans leur création"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Vernissage de la galerie avec présentation des artistes et applaudissements",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Intégrer les formes dans une création artistique",
+        "then": "Proposez des projets dirigés : créer un paysage, un animal, ou un motif avec des formes"
+      },
+      "realWorldConnection": "Créer un coin art à la maison, montrer ses œuvres à la famille",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Formes et solides dans les métiers",
+      "oneGoal": "Les élèves découvrent comment différents métiers utilisent les formes et les solides",
+      "duration": 45,
+      "keyVocabulary": [
+        "métier",
+        "architecte",
+        "utiliser"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Présentation de photos de professionnels utilisant des formes dans leur travail",
+        "materials": [
+          "photos de métiers",
+          "outils de construction miniatures",
+          "déguisements"
+        ],
+        "visualSupports": "Images claires montrant architectes, chefs, mécaniciens au travail",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Jeu de rôle : les élèves 'travaillent' comme différents professionnels utilisant les formes",
+        "materials": [
+          "blocs de construction",
+          "emporte-pièces",
+          "outils de mesure jouets"
+        ],
+        "visualSupports": "Stations de métiers avec matériaux et instructions visuelles",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils les liens avec les métiers?",
+            "ifYes": "Explorez des métiers moins évidents utilisant la géométrie",
+            "ifNo": "Concentrez-vous sur des exemples très concrets et visuels"
+          },
+          {
+            "question": "Les métiers présentés sont-ils diversifiés?",
+            "ifYes": "Continuez avec la variété actuelle",
+            "ifNo": "Ajoutez des métiers représentant différents genres et cultures"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Discussion : quel métier les intéresse et comment ils utiliseraient les formes",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Voir comment les formes sont utilisées dans les métiers",
+        "then": "Utilisez des exemples très concrets : le boulanger découpe des formes, l'architecte dessine des maisons"
+      },
+      "realWorldConnection": "Observer le travail des architectes, des cuisiniers, des mécaniciens",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Danse et mouvement avec les formes",
+      "oneGoal": "Les élèves incarnent physiquement les formes et les solides par le mouvement et la danse",
+      "duration": 45,
+      "keyVocabulary": [
+        "danser",
+        "mouvement",
+        "incarner"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Échauffement corporel : imiter les formes avec tout le corps",
+        "materials": [
+          "musique rythmée",
+          "foulards",
+          "espace de mouvement"
+        ],
+        "visualSupports": "Démonstrations de postures corporelles représentant chaque forme",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Chorégraphie créative où les mouvements représentent les propriétés des formes",
+        "materials": [
+          "instruments de musique simples",
+          "accessoires de danse"
+        ],
+        "visualSupports": "Cartes de mouvements illustrant comment danser chaque forme",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils à l'aise avec le mouvement?",
+            "ifYes": "Créez des danses plus complexes ou des interactions entre formes",
+            "ifNo": "Commencez par des mouvements simples en position assise"
+          },
+          {
+            "question": "Comprennent-ils comment bouger comme une forme?",
+            "ifYes": "Encouragez l'improvisation et la créativité",
+            "ifNo": "Donnez des instructions spécifiques : rond = tourner, carré = mouvements saccadés"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Performance finale : présentation des danses de formes devant la classe",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Exprimer les formes par le mouvement",
+        "then": "Commencez par des gestes simples avec les mains avant d'utiliser tout le corps"
+      },
+      "realWorldConnection": "Faire des mouvements ronds, pointus, ou droits en jouant à la maison",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Cuisine géométrique",
+      "oneGoal": "Les élèves explorent les formes en préparant des collations avec des emporte-pièces géométriques",
+      "duration": 45,
+      "keyVocabulary": [
+        "cuisine",
+        "emporte-pièce",
+        "délicieux"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Préparation sécuritaire : lavage des mains et révision des règles de cuisine",
+        "materials": [
+          "emporte-pièces variés",
+          "pâte à biscuits",
+          "planches de travail"
+        ],
+        "visualSupports": "Instructions visuelles pour la sécurité alimentaire et l'hygiène",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de collations en forme géométrique avec emporte-pièces et décoration",
+        "materials": [
+          "pâte sablée",
+          "fruits à découper",
+          "fromage",
+          "décoration comestible"
+        ],
+        "visualSupports": "Guide de découpage et techniques de décoration sécuritaires",
+        "decisionPoints": [
+          {
+            "question": "L'activité culinaire est-elle sécuritaire?",
+            "ifYes": "Continuez avec supervision normale",
+            "ifNo": "Augmentez la supervision ou utilisez des alternatives sans cuisson"
+          },
+          {
+            "question": "Les élèves font-ils des liens avec les formes?",
+            "ifYes": "Discutez des formes pendant qu'ils cuisinent",
+            "ifNo": "Pointez activement les formes créées à chaque étape"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Dégustation géométrique : savourer les créations en nommant les formes",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Utiliser les emporte-pièces correctement",
+        "then": "Démontrez la technique : presser fermement et droit vers le bas"
+      },
+      "realWorldConnection": "Utiliser des emporte-pièces à la maison, couper des légumes en formes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Histoires de formes magiques",
+      "oneGoal": "Les élèves créent et racontent des histoires où les formes et solides sont les personnages principaux",
+      "duration": 45,
+      "keyVocabulary": [
+        "histoire",
+        "personnage",
+        "magique"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Lecture d'une histoire modèle avec des formes comme personnages",
+        "materials": [
+          "formes en feutrine",
+          "théâtre de marionnettes",
+          "livre d'histoire"
+        ],
+        "visualSupports": "Histoire illustrée avec des formes anthropomorphisées",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création collaborative d'histoires en petits groupes avec les formes comme héros",
+        "materials": [
+          "marionnettes de formes",
+          "décors simples",
+          "accessoires de théâtre"
+        ],
+        "visualSupports": "Structure d'histoire simple : début, milieu, fin avec pictogrammes",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils créatifs dans leurs histoires?",
+            "ifYes": "Encouragez des intrigues plus complexes ou des morales",
+            "ifNo": "Proposez des amorces simples : 'Un jour, Cercle rencontra Carré...'"
+          },
+          {
+            "question": "Intègrent-ils naturellement le vocabulaire géométrique?",
+            "ifYes": "Laissez-les développer leurs histoires librement",
+            "ifNo": "Suggérez des défis basés sur les propriétés des formes"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Théâtre de formes : représentation des histoires devant un public",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des histoires avec des formes",
+        "then": "Commencez par des histoires très simples basées sur les propriétés : Cercle roule partout"
+      },
+      "realWorldConnection": "Inventer des histoires avec des jouets de formes différentes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Festival des formes et célébration",
+      "oneGoal": "Les élèves organisent une célébration finale pour partager tous leurs apprentissages géométriques",
+      "duration": 45,
+      "keyVocabulary": [
+        "festival",
+        "célébrer",
+        "partager"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Préparation du festival : installation des stations et révision des apprentissages",
+        "materials": [
+          "décorations géométriques",
+          "stands d'exposition",
+          "carnets de souvenirs"
+        ],
+        "visualSupports": "Plan du festival avec stations clairement identifiées",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Festival interactif avec stations démontrant tous les apprentissages de l'unité",
+        "materials": [
+          "jeux créés par les élèves",
+          "œuvres d'art",
+          "démonstrations",
+          "prix symboliques"
+        ],
+        "visualSupports": "Panneaux explicatifs créés par les élèves pour chaque station",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils démontrer leurs apprentissages?",
+            "ifYes": "Encouragez-les à enseigner aux visiteurs",
+            "ifNo": "Aidez-les à identifier leurs réussites et forces"
+          },
+          {
+            "question": "La célébration inclut-elle tous les types d'apprenants?",
+            "ifYes": "Continuez avec la variété d'activités",
+            "ifNo": "Ajustez pour inclure plus d'options kinesthésiques ou visuelles"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cercle de fierté : chaque élève partage sa découverte préférée sur les formes",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Articuler leurs apprentissages",
+        "then": "Utilisez des phrases modèles : 'J'ai appris que...', 'Je peux maintenant...'"
+      },
+      "realWorldConnection": "Organiser une exposition de formes pour les parents et amis",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Résolution de problèmes",
+        "items": [
+          "Démontre une compréhension de base en résolution de problèmes",
+          "Participe activement aux activités de résolution de problèmes",
+          "Montre du progrès dans résolution de problèmes",
+          "Applique les apprentissages de résolution de problèmes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Manipulation",
+        "items": [
+          "Démontre une compréhension de base en manipulation",
+          "Participe activement aux activités de manipulation",
+          "Montre du progrès dans manipulation",
+          "Applique les apprentissages de manipulation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Vocabulaire mathématique",
+        "items": [
+          "Démontre une compréhension de base en vocabulaire mathématique",
+          "Participe activement aux activités de vocabulaire mathématique",
+          "Montre du progrès dans vocabulaire mathématique",
+          "Applique les apprentissages de vocabulaire mathématique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Représentation",
+        "items": [
+          "Démontre une compréhension de base en représentation",
+          "Participe activement aux activités de représentation",
+          "Montre du progrès dans représentation",
+          "Applique les apprentissages de représentation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Résolution de problèmes",
+        "Manipulation",
+        "Vocabulaire mathématique",
+        "Représentation"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "✓",
+          "~",
+          "?"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en mathématiques\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nLes formes dans notre classe, Toucher et sentir les formes, Tracer des formes dans le sable, Construire avec des formes, Chasse aux formes dans l'école\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nUtilisez les moments quotidiens pour pratiquer les mathématiques (compter, mesurer, etc.)\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLes mathématiques sont partout dans notre vie quotidienne!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Mathématiques en cuisine",
+        "description": "Comptez, mesurez et comparez en préparant des collations",
+        "timeRequired": "Pendant la préparation des repas",
+        "materials": "Ingrédients de cuisine",
+        "frenchSupport": "Utilisez les nombres en français si possible"
+      },
+      {
+        "title": "Jeux de société mathématiques",
+        "description": "Jouez à des jeux impliquant compter, additionner ou reconnaître des formes",
+        "timeRequired": "20 minutes",
+        "materials": "Jeux de société, dés, cartes",
+        "frenchSupport": "Comptez ensemble en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "forme",
+        "lesson": 1,
+        "context": "Les formes dans notre classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"forme\"",
+          "Utilisez \"forme\" dans une phrase simple",
+          "Trouvez des images représentant \"forme\"",
+          "Faites des gestes pour \"forme\""
+        ]
+      },
+      {
+        "word": "cercle",
+        "lesson": 1,
+        "context": "Les formes dans notre classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cercle\"",
+          "Utilisez \"cercle\" dans une phrase simple",
+          "Trouvez des images représentant \"cercle\"",
+          "Faites des gestes pour \"cercle\""
+        ]
+      },
+      {
+        "word": "carré",
+        "lesson": 1,
+        "context": "Les formes dans notre classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"carré\"",
+          "Utilisez \"carré\" dans une phrase simple",
+          "Trouvez des images représentant \"carré\"",
+          "Faites des gestes pour \"carré\""
+        ]
+      },
+      {
+        "word": "triangle",
+        "lesson": 2,
+        "context": "Toucher et sentir les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"triangle\"",
+          "Utilisez \"triangle\" dans une phrase simple",
+          "Trouvez des images représentant \"triangle\"",
+          "Faites des gestes pour \"triangle\""
+        ]
+      },
+      {
+        "word": "toucher",
+        "lesson": 2,
+        "context": "Toucher et sentir les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"toucher\"",
+          "Utilisez \"toucher\" dans une phrase simple",
+          "Trouvez des images représentant \"toucher\"",
+          "Faites des gestes pour \"toucher\""
+        ]
+      },
+      {
+        "word": "bord",
+        "lesson": 2,
+        "context": "Toucher et sentir les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bord\"",
+          "Utilisez \"bord\" dans une phrase simple",
+          "Trouvez des images représentant \"bord\"",
+          "Faites des gestes pour \"bord\""
+        ]
+      },
+      {
+        "word": "tracer",
+        "lesson": 3,
+        "context": "Tracer des formes dans le sable",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tracer\"",
+          "Utilisez \"tracer\" dans une phrase simple",
+          "Trouvez des images représentant \"tracer\"",
+          "Faites des gestes pour \"tracer\""
+        ]
+      },
+      {
+        "word": "dessiner",
+        "lesson": 3,
+        "context": "Tracer des formes dans le sable",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dessiner\"",
+          "Utilisez \"dessiner\" dans une phrase simple",
+          "Trouvez des images représentant \"dessiner\"",
+          "Faites des gestes pour \"dessiner\""
+        ]
+      },
+      {
+        "word": "contour",
+        "lesson": 3,
+        "context": "Tracer des formes dans le sable",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"contour\"",
+          "Utilisez \"contour\" dans une phrase simple",
+          "Trouvez des images représentant \"contour\"",
+          "Faites des gestes pour \"contour\""
+        ]
+      },
+      {
+        "word": "construire",
+        "lesson": 4,
+        "context": "Construire avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"construire\"",
+          "Utilisez \"construire\" dans une phrase simple",
+          "Trouvez des images représentant \"construire\"",
+          "Faites des gestes pour \"construire\""
+        ]
+      },
+      {
+        "word": "blocs",
+        "lesson": 4,
+        "context": "Construire avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"blocs\"",
+          "Utilisez \"blocs\" dans une phrase simple",
+          "Trouvez des images représentant \"blocs\"",
+          "Faites des gestes pour \"blocs\""
+        ]
+      },
+      {
+        "word": "stable",
+        "lesson": 4,
+        "context": "Construire avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"stable\"",
+          "Utilisez \"stable\" dans une phrase simple",
+          "Trouvez des images représentant \"stable\"",
+          "Faites des gestes pour \"stable\""
+        ]
+      },
+      {
+        "word": "chercher",
+        "lesson": 5,
+        "context": "Chasse aux formes dans l'école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chercher\"",
+          "Utilisez \"chercher\" dans une phrase simple",
+          "Trouvez des images représentant \"chercher\"",
+          "Faites des gestes pour \"chercher\""
+        ]
+      },
+      {
+        "word": "trouver",
+        "lesson": 5,
+        "context": "Chasse aux formes dans l'école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"trouver\"",
+          "Utilisez \"trouver\" dans une phrase simple",
+          "Trouvez des images représentant \"trouver\"",
+          "Faites des gestes pour \"trouver\""
+        ]
+      },
+      {
+        "word": "partout",
+        "lesson": 5,
+        "context": "Chasse aux formes dans l'école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"partout\"",
+          "Utilisez \"partout\" dans une phrase simple",
+          "Trouvez des images représentant \"partout\"",
+          "Faites des gestes pour \"partout\""
+        ]
+      },
+      {
+        "word": "combiner",
+        "lesson": 6,
+        "context": "Créer des images avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"combiner\"",
+          "Utilisez \"combiner\" dans une phrase simple",
+          "Trouvez des images représentant \"combiner\"",
+          "Faites des gestes pour \"combiner\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 6,
+        "context": "Créer des images avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "image",
+        "lesson": 6,
+        "context": "Créer des images avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"image\"",
+          "Utilisez \"image\" dans une phrase simple",
+          "Trouvez des images représentant \"image\"",
+          "Faites des gestes pour \"image\""
+        ]
+      },
+      {
+        "word": "trier",
+        "lesson": 7,
+        "context": "Trier et classer les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"trier\"",
+          "Utilisez \"trier\" dans une phrase simple",
+          "Trouvez des images représentant \"trier\"",
+          "Faites des gestes pour \"trier\""
+        ]
+      },
+      {
+        "word": "groupe",
+        "lesson": 7,
+        "context": "Trier et classer les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"groupe\"",
+          "Utilisez \"groupe\" dans une phrase simple",
+          "Trouvez des images représentant \"groupe\"",
+          "Faites des gestes pour \"groupe\""
+        ]
+      },
+      {
+        "word": "semblable",
+        "lesson": 7,
+        "context": "Trier et classer les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"semblable\"",
+          "Utilisez \"semblable\" dans une phrase simple",
+          "Trouvez des images représentant \"semblable\"",
+          "Faites des gestes pour \"semblable\""
+        ]
+      },
+      {
+        "word": "côté",
+        "lesson": 8,
+        "context": "Découvrir les côtés et les coins",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"côté\"",
+          "Utilisez \"côté\" dans une phrase simple",
+          "Trouvez des images représentant \"côté\"",
+          "Faites des gestes pour \"côté\""
+        ]
+      },
+      {
+        "word": "coin",
+        "lesson": 8,
+        "context": "Découvrir les côtés et les coins",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"coin\"",
+          "Utilisez \"coin\" dans une phrase simple",
+          "Trouvez des images représentant \"coin\"",
+          "Faites des gestes pour \"coin\""
+        ]
+      },
+      {
+        "word": "compter",
+        "lesson": 8,
+        "context": "Découvrir les côtés et les coins",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"compter\"",
+          "Utilisez \"compter\" dans une phrase simple",
+          "Trouvez des images représentant \"compter\"",
+          "Faites des gestes pour \"compter\""
+        ]
+      },
+      {
+        "word": "jeu",
+        "lesson": 9,
+        "context": "Jeux avec les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jeu\"",
+          "Utilisez \"jeu\" dans une phrase simple",
+          "Trouvez des images représentant \"jeu\"",
+          "Faites des gestes pour \"jeu\""
+        ]
+      },
+      {
+        "word": "deviner",
+        "lesson": 9,
+        "context": "Jeux avec les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"deviner\"",
+          "Utilisez \"deviner\" dans une phrase simple",
+          "Trouvez des images représentant \"deviner\"",
+          "Faites des gestes pour \"deviner\""
+        ]
+      },
+      {
+        "word": "rapide",
+        "lesson": 9,
+        "context": "Jeux avec les formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rapide\"",
+          "Utilisez \"rapide\" dans une phrase simple",
+          "Trouvez des images représentant \"rapide\"",
+          "Faites des gestes pour \"rapide\""
+        ]
+      },
+      {
+        "word": "nature",
+        "lesson": 10,
+        "context": "Formes dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nature\"",
+          "Utilisez \"nature\" dans une phrase simple",
+          "Trouvez des images représentant \"nature\"",
+          "Faites des gestes pour \"nature\""
+        ]
+      },
+      {
+        "word": "naturel",
+        "lesson": 10,
+        "context": "Formes dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"naturel\"",
+          "Utilisez \"naturel\" dans une phrase simple",
+          "Trouvez des images représentant \"naturel\"",
+          "Faites des gestes pour \"naturel\""
+        ]
+      },
+      {
+        "word": "observer",
+        "lesson": 10,
+        "context": "Formes dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"observer\"",
+          "Utilisez \"observer\" dans une phrase simple",
+          "Trouvez des images représentant \"observer\"",
+          "Faites des gestes pour \"observer\""
+        ]
+      },
+      {
+        "word": "solide",
+        "lesson": 11,
+        "context": "Introduction aux solides 3D",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"solide\"",
+          "Utilisez \"solide\" dans une phrase simple",
+          "Trouvez des images représentant \"solide\"",
+          "Faites des gestes pour \"solide\""
+        ]
+      },
+      {
+        "word": "cube",
+        "lesson": 11,
+        "context": "Introduction aux solides 3D",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cube\"",
+          "Utilisez \"cube\" dans une phrase simple",
+          "Trouvez des images représentant \"cube\"",
+          "Faites des gestes pour \"cube\""
+        ]
+      },
+      {
+        "word": "sphère",
+        "lesson": 11,
+        "context": "Introduction aux solides 3D",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sphère\"",
+          "Utilisez \"sphère\" dans une phrase simple",
+          "Trouvez des images représentant \"sphère\"",
+          "Faites des gestes pour \"sphère\""
+        ]
+      },
+      {
+        "word": "rouler",
+        "lesson": 12,
+        "context": "Rouler, glisser, empiler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rouler\"",
+          "Utilisez \"rouler\" dans une phrase simple",
+          "Trouvez des images représentant \"rouler\"",
+          "Faites des gestes pour \"rouler\""
+        ]
+      },
+      {
+        "word": "glisser",
+        "lesson": 12,
+        "context": "Rouler, glisser, empiler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"glisser\"",
+          "Utilisez \"glisser\" dans une phrase simple",
+          "Trouvez des images représentant \"glisser\"",
+          "Faites des gestes pour \"glisser\""
+        ]
+      },
+      {
+        "word": "empiler",
+        "lesson": 12,
+        "context": "Rouler, glisser, empiler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"empiler\"",
+          "Utilisez \"empiler\" dans une phrase simple",
+          "Trouvez des images représentant \"empiler\"",
+          "Faites des gestes pour \"empiler\""
+        ]
+      },
+      {
+        "word": "sculpture",
+        "lesson": 13,
+        "context": "Constructions 3D créatives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sculpture\"",
+          "Utilisez \"sculpture\" dans une phrase simple",
+          "Trouvez des images représentant \"sculpture\"",
+          "Faites des gestes pour \"sculpture\""
+        ]
+      },
+      {
+        "word": "construction",
+        "lesson": 13,
+        "context": "Constructions 3D créatives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"construction\"",
+          "Utilisez \"construction\" dans une phrase simple",
+          "Trouvez des images représentant \"construction\"",
+          "Faites des gestes pour \"construction\""
+        ]
+      },
+      {
+        "word": "équilibre",
+        "lesson": 13,
+        "context": "Constructions 3D créatives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"équilibre\"",
+          "Utilisez \"équilibre\" dans une phrase simple",
+          "Trouvez des images représentant \"équilibre\"",
+          "Faites des gestes pour \"équilibre\""
+        ]
+      },
+      {
+        "word": "empreinte",
+        "lesson": 14,
+        "context": "Empreintes et traces de solides",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"empreinte\"",
+          "Utilisez \"empreinte\" dans une phrase simple",
+          "Trouvez des images représentant \"empreinte\"",
+          "Faites des gestes pour \"empreinte\""
+        ]
+      },
+      {
+        "word": "trace",
+        "lesson": 14,
+        "context": "Empreintes et traces de solides",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"trace\"",
+          "Utilisez \"trace\" dans une phrase simple",
+          "Trouvez des images représentant \"trace\"",
+          "Faites des gestes pour \"trace\""
+        ]
+      },
+      {
+        "word": "face",
+        "lesson": 14,
+        "context": "Empreintes et traces de solides",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"face\"",
+          "Utilisez \"face\" dans une phrase simple",
+          "Trouvez des images représentant \"face\"",
+          "Faites des gestes pour \"face\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

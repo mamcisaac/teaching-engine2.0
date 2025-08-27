@@ -1,0 +1,2107 @@
+{
+  "unitTitle": "Addition jusqu'à 10",
+  "subject": "Mathématiques",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Assembler nos collections",
+      "oneGoal": "Les élèves comprennent l'addition comme l'action d'assembler deux groupes d'objets",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "assembler",
+        "ensemble",
+        "en tout",
+        "groupe"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Histoire d'assemblage: 'Regardez! J'ai 2 voitures rouges ici et 3 voitures bleues là. Si je les mets ensemble, combien ai-je en tout?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration d'assemblage: Stations avec différents objets (blocs, animaux, crayons). Élèves créent deux groupes, les assemblent et comptent le total. Narrent leurs actions: 'J'avais... et j'avais... maintenant j'ai...'",
+        "materials": [],
+        "visualSupports": "Cartes d'histoires visuelles, contenants étiquetés 'Groupe 1' et 'Groupe 2'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de partage: Élèves montrent leurs assemblages et expliquent: 'J'ai assemblé ___ et ___, maintenant j'ai ___'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion sur assemblage: utiliser objets très différents (animaux vs voitures). Si erreurs de comptage: revenir à nombres plus petits.",
+        "then": ""
+      },
+      "realWorldConnection": "Rassembler tous ses jouets, compter nourriture sur l'assiette",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Histoires de 'plus'",
+      "oneGoal": "Les élèves résolvent des problèmes d'addition simples racontés dans des histoires",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "plus",
+        "arrivent",
+        "maintenant",
+        "combien"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Théâtre mathématique: Présenter histoire avec marionnettes: '3 lapins mangent. 2 lapins de plus arrivent. Combien de lapins maintenant?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Ateliers d'histoires: Station 1 - Agir histoires avec objets. Station 2 - Dessiner histoires d'addition. Station 3 - Inventer histoires avec marionnettes. Rotation toutes les 8 minutes.",
+        "materials": [],
+        "visualSupports": "Images séquentielles d'histoires, cartes de personnages, décors simples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Spectacle d'histoires: Groupes présentent leurs histoires d'addition favorite.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion narrative: utiliser histoires très simples et répétitives. Si perte d'attention: varier rythme et interactivité.",
+        "then": ""
+      },
+      "realWorldConnection": "Histoires de famille, animaux qui arrivent, amis qui se joignent",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Compter pour additionner",
+      "oneGoal": "Les élèves développent des stratégies de comptage pour résoudre additions simples",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "compter",
+        "commencer",
+        "continuer",
+        "stratégie"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Échauffement de comptage: 'Montrez-moi 3 doigts... maintenant 2 de plus... comptez-les tous!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Stratégies de comptage: Enseigner 'tout compter' puis 'compter à partir de'. Pratiquer avec objets, doigts, ligne de nombres. Comparer efficacité des méthodes.",
+        "materials": [],
+        "visualSupports": "Cartes de stratégies illustrées, ligne de nombres colorée, tableaux de comparaison",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Championnat de comptage: Élèves montrent leur stratégie préférée et expliquent pourquoi.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si erreurs de comptage: ralentir et utiliser pointage. Si confusion de stratégie: une seule méthode à la fois.",
+        "then": ""
+      },
+      "realWorldConnection": "Compter argent de poche, marches d'escalier, jouets rangés",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Nos doigts calculateurs",
+      "oneGoal": "Les élèves utilisent leurs doigts comme outil de calcul pour l'addition",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "doigts",
+        "représenter",
+        "calculer",
+        "montrer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Danse des doigts: 'Nos doigts sont des calculateurs magiques! Montrez-moi 4... maintenant ajoutez 2...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Techniques de doigts: Apprendre à représenter nombres sur doigts. Pratiquer additions simples. Utiliser miroirs pour voir stratégies. Comparer méthodes avec partenaires.",
+        "materials": [],
+        "visualSupports": "Cartes de positions de doigts, affiches de techniques, modèles visuels",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Exhibition de doigts: Élèves démontrent leur technique favorite et enseignent aux autres.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion motrice: simplifier à une main d'abord. Si dépendance excessive: alterner avec autres outils.",
+        "then": ""
+      },
+      "realWorldConnection": "Compter âge, montrer quantités, jeux de doigts familiaux",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Dessiner nos additions",
+      "oneGoal": "Les élèves représentent visuellement des additions par des dessins et diagrammes",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "dessiner",
+        "représenter",
+        "montrer",
+        "voir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Artistes mathématiques: 'Aujourd'hui nous devenons artistes des mathématiques! Dessiner pour calculer!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Atelier de représentation: Dessiner additions avec points, traits, formes. Utiliser couleurs pour différencier groupes. Créer 'livre d'art mathématique' personnel. Partager techniques artistiques.",
+        "materials": [],
+        "visualSupports": "Exemples de représentations variées, palettes de couleurs, techniques illustrées",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie mathématique: Exposition des œuvres et discussion sur clarté des représentations.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si dessins confus: enseigner techniques plus structurées. Si perfectionnisme: valoriser communication claire sur beauté.",
+        "then": ""
+      },
+      "realWorldConnection": "Dessins familiaux, art personnel, documentation visuelle",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Cadres de dix magiques",
+      "oneGoal": "Les élèves utilisent des cadres de 10 pour visualiser et résoudre des additions",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "cadre",
+        "organiser",
+        "voir",
+        "remplir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Magie des cadres: 'Ces cadres magiques nous aident à voir les nombres! Regardez comme c'est facile!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration de cadres: Remplir cadres pour montrer additions. Utiliser jetons de couleurs différentes. Voir patterns et relations. Prédire résultats avant remplissage.",
+        "materials": [],
+        "visualSupports": "Cadres de 10 géants, jetons contrastés, cartes de défis progressifs",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Démonstrations magiques: Élèves montrent 'tours de magie' avec cadres et expliquent leurs découvertes.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si placement chaotique: enseigner organisation systématique. Si résistance à l'outil: montrer avantages concrets.",
+        "then": ""
+      },
+      "realWorldConnection": "Boîtes d'œufs, emballages organisés, rangement méthodique",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Stratégie des doubles",
+      "oneGoal": "Les élèves reconnaissent et utilisent les doubles comme stratégie d'addition efficace",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "double",
+        "même",
+        "identique",
+        "symétrie"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Monde des doubles: 'Regardez autour! Les doubles sont partout! Vos yeux, vos mains, vos pieds!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Chasse aux doubles: Identifier doubles dans l'environnement. Utiliser miroirs pour créer doubles. Mémoriser doubles jusqu'à 5+5. Appliquer aux problèmes d'addition.",
+        "materials": [],
+        "visualSupports": "Galerie de doubles naturels, cartes de doubles illustrées, tableaux de mémorisation",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Spectacle de doubles: Élèves présentent leurs doubles favoris et expliquent pourquoi ils sont spéciaux.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si difficulté de mémorisation: utiliser chansons et rythmes. Si confusion concept: clarifier 'identique'.",
+        "then": ""
+      },
+      "realWorldConnection": "Parties du corps, objets de la maison, architecture symétrique",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Compter en avant intelligemment",
+      "oneGoal": "Les élèves maîtrisent la stratégie de 'compter à partir du plus grand nombre'",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "efficace",
+        "rapide",
+        "intelligent",
+        "stratégie"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Course de stratégies: 'Quelle méthode est plus rapide? 2+7 ou 7+2? Découvrons le secret!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Comparaison de stratégies: Expérimenter 'tout compter' vs 'compter à partir du plus grand'. Chronométrer pour voir efficacité. Pratiquer jusqu'à automatisation. Enseigner à un partenaire.",
+        "materials": [],
+        "visualSupports": "Tableaux de comparaison, cartes de stratégies illustrées, chronomètres visuels",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Conseillers en stratégie: Élèves donnent conseils sur quand utiliser quelle stratégie.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si retour aux méthodes inefficaces: rappeler gentiment avantages. Si confusion: pratiquer un problème à la fois.",
+        "then": ""
+      },
+      "realWorldConnection": "Optimiser routes, économiser temps, méthodes efficaces",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Faire 10 - notre ancrage",
+      "oneGoal": "Les élèves découvrent et utilisent la stratégie 'faire 10' pour additions plus grandes",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "décomposer",
+        "faire dix",
+        "ancrage",
+        "transformer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Pouvoir de 10: 'Le nombre 10 est spécial! Il peut nous aider à calculer plus facilement! Regardez!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration de 'faire 10': Décomposer nombres pour utiliser 10. Exemple: 7+5 = 7+3+2 = 10+2. Utiliser cadres et jetons visuellement. Pratiquer avec différents nombres.",
+        "materials": [],
+        "visualSupports": "Cartes de décomposition, cadres de 10 doubles, flèches de transformation",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Magiciens de 10: Élèves démontrent 'tours de magie' en transformant additions difficiles avec 10.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si décomposition difficile: commencer avec 10 visible. Si surcharge cognitive: une étape à la fois.",
+        "then": ""
+      },
+      "realWorldConnection": "Utiliser billets de 10$, compter par dizaines, organisation décimale",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Vérifier nos réponses",
+      "oneGoal": "Les élèves développent des stratégies pour vérifier la justesse de leurs additions",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "vérifier",
+        "correct",
+        "erreur",
+        "contrôler"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Détectives mathématiques: 'Comment savoir si notre réponse est correcte? Devenons des détectives des mathématiques!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Méthodes de vérification: Recompter avec objets, utiliser stratégie différente, estimer avant calculer, vérifier avec calculatrice. Pratiquer détection d'erreurs intentionnelles.",
+        "materials": [],
+        "visualSupports": "Affiches de méthodes de vérification, listes de contrôle, exemples d'erreurs",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Bureau de vérification: Élèves 'certifient' le travail des autres en utilisant méthodes apprises.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si résistance à vérifier: montrer bénéfices concrets. Si dépendance à calculatrice: équilibrer avec méthodes mentales.",
+        "then": ""
+      },
+      "realWorldConnection": "Vérifier monnaie, contrôler devoirs, double-vérification importante",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Découvrir les symboles + et =",
+      "oneGoal": "Les élèves comprennent et utilisent les symboles + et = dans des équations simples",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "plus",
+        "égale",
+        "équation",
+        "symbole"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Mystère des symboles: 'Ces signes mystérieux racontent des histoires mathématiques! Découvrons leurs secrets!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Introduction symbolique: Connecter + avec 'assembler' et = avec 'fait'. Construire équations avec objets puis symboles. Lire équations à haute voix. Créer équations personnelles.",
+        "materials": [],
+        "visualSupports": "Symboles colorés géants, connexions visuelles objet-symbole, affiches de signification",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Lecteurs d'équations: Élèves lisent leurs équations créées et expliquent signification des symboles.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion de symboles: un symbole à la fois. Si placement incorrect: utiliser guides visuels.",
+        "then": ""
+      },
+      "realWorldConnection": "Signes dans l'environnement, codes et symboles familiaux",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Écrire nos équations",
+      "oneGoal": "Les élèves écrivent des équations d'addition simples de manière autonome",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "écrire",
+        "équation",
+        "organiser",
+        "clair"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Scribes mathématiques: 'Vous êtes maintenant des écrivains de mathématiques! Écrivons nos histoires en équations!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Atelier d'écriture: Transformer problèmes en équations. Utiliser papier quadrillé pour organisation. Créer carnet personnel d'équations. Illustrer équations avec dessins.",
+        "materials": [],
+        "visualSupports": "Modèles d'équations bien écrites, guides de formation des chiffres, exemples organisés",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Publication mathématique: Partager plus belles équations et discuter clarté d'écriture.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si écriture difficile: retourner à manipulation avant écriture. Si équations incorrectes: vérifier compréhension conceptuelle.",
+        "then": ""
+      },
+      "realWorldConnection": "Écriture de listes, notes personnelles, communication écrite",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Problèmes de la vraie vie",
+      "oneGoal": "Les élèves résolvent des problèmes d'addition tirés de situations réelles",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "problème",
+        "situation",
+        "solution",
+        "raisonnable"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Mathématiques partout: 'Les mathématiques ne sont pas seulement à l'école! Elles sont dans notre vraie vie!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Résolution authentique: Problèmes de cuisine (ingrédients), magasinage (articles), école (matériel), famille (personnes). Utiliser objets réels quand possible. Documenter solutions.",
+        "materials": [],
+        "visualSupports": "Photos de contextes réels, objets authentiques, tableaux de résolution",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Conseillers en résolution: Élèves donnent conseils sur comment aborder problèmes de vraie vie.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si dépassement par contexte: simplifier situation. Si réponses déraisonnables: retourner au contexte.",
+        "then": ""
+      },
+      "realWorldConnection": "Toutes les situations présentées sont de vraie vie par conception",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Portfolio d'addition - démonstration",
+      "oneGoal": "Les élèves démontrent leur maîtrise de l'addition dans un portfolio complet",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "portfolio",
+        "démontrer",
+        "expert",
+        "réfléchir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Experts en addition: 'Vous êtes maintenant experts! Montrez tout ce que vous savez sur l'addition!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Création de portfolio: Sélectionner meilleurs exemples de travail. Démontrer différentes stratégies. Inclure problèmes résolus. Réfléchir sur apprentissages. Auto-évaluer avec critères simples.",
+        "materials": [],
+        "visualSupports": "Critères visuels d'évaluation, exemples de portfolios excellents, guides de réflexion",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Célébration d'expertise: Reconnaissance des progrès de chacun et partage des fiertés.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si anxiété d'évaluation: rappeler que c'est célébration. Si portfolio incomplet: aider à compléter sans pression.",
+        "then": ""
+      },
+      "realWorldConnection": "Albums personnels, collections de réussites, documentation de progrès",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Art mathématique avec addition",
+      "oneGoal": "Les élèves créent des œuvres artistiques intégrant des concepts d'addition",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "art",
+        "créer",
+        "intégrer",
+        "exprimer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Artistes-mathématiciens: 'L'art et les maths peuvent danser ensemble! Créons des œuvres mathématiques!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Création artistique: Œuvres montrant additions visuellement. Collages de groupes assemblés. Peintures avec équations intégrées. Sculptures d'addition. Galerie interactive expliquée.",
+        "materials": [],
+        "visualSupports": "Exemples d'art mathématique, techniques artistiques démontrées, galerie d'inspiration",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Vernissage mathématique: Exposition des créations avec explications artistiques et mathématiques.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si blocage créatif: offrir techniques simples. Si séparation art/maths: modéliser intégration naturelle.",
+        "then": ""
+      },
+      "realWorldConnection": "Art décoratif familial, créations personnelles, expression artistique",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Jeux d'addition amusants",
+      "oneGoal": "Les élèves renforcent leurs compétences d'addition à travers des jeux motivants",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "jeu",
+        "stratégie",
+        "plaisir",
+        "améliorer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Festival de jeux: 'Apprendre en jouant! Choisissez vos jeux préférés et amusons-nous!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Centres de jeux: Jeux de dés d'addition, cartes d'addition, courses mathématiques, bingo d'addition. Rotation libre selon intérêts. Création de nouveaux jeux.",
+        "materials": [],
+        "visualSupports": "Instructions visuelles des jeux, tableaux de scores, minuteurs pour rotation",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Prix du fair-play: Célébration du plaisir de jouer et des stratégies découvertes.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration competitive: emphasiser apprentissage et plaisir. Si désengagement: changer de jeu ou règles.",
+        "then": ""
+      },
+      "realWorldConnection": "Jeux familiaux, activités récréatives, apprentissage ludique",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Histoires d'addition créatives",
+      "oneGoal": "Les élèves inventent et racontent des histoires originales mettant en vedette l'addition",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "histoire",
+        "inventer",
+        "raconter",
+        "créatif"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Conteurs mathématiques: 'Vous êtes des conteurs magiques! Vos histoires feront vivre les mathématiques!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Atelier de création narrative: Inventer histoires avec problèmes d'addition. Utiliser personnages, décors, conflits mathématiques. Pratiquer narration expressive. Enregistrer ou jouer histoires.",
+        "materials": [],
+        "visualSupports": "Amorces d'histoires, galerie de personnages, décors illustrés",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Festival de contes: Présentation des histoires créées avec applaudissements et appréciation.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si blocage créatif: offrir amorces et inspiration. Si timidité de présentation: respecter confort personnel.",
+        "then": ""
+      },
+      "realWorldConnection": "Histoires familiales, lectures personnelles, imagination créative",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Addition avec argent de jeu",
+      "oneGoal": "Les élèves appliquent l'addition à des situations d'achat avec argent fictif",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "argent",
+        "acheter",
+        "total",
+        "calculer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Magasin mathématique: 'Bienvenue dans notre magasin spécial! Ici on achète avec des additions!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Jeu de magasin: Roles de vendeurs et acheteurs. Calculer totaux d'achats multiples. Faire monnaie simple. Résoudre problèmes d'achat réalistes. Rotation des rôles.",
+        "materials": [],
+        "visualSupports": "Prix clairement étiquetés, tableaux de calcul, exemples de transactions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Bilan commercial: Discuter expériences d'achat et stratégies de calcul utilisées.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si calculs incorrects: revenir à stratégies apprises. Si confusion monétaire: clarifier valeurs de base.",
+        "then": ""
+      },
+      "realWorldConnection": "Achats familiaux, argent de poche, économie personnelle",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Enquête mathématique - collecte de données",
+      "oneGoal": "Les élèves mènent une enquête simple en utilisant l'addition pour analyser données",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "enquête",
+        "données",
+        "résultat",
+        "analyser"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Détectives de données: 'Menons une enquête! Combien d'élèves aiment... ? Utilisons l'addition pour découvrir!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Enquête de classe: Choisir question d'enquête (couleurs préférées, animaux, etc.). Collecter données de tous. Utiliser addition pour combiner résultats. Créer graphique simple avec résultats.",
+        "materials": [],
+        "visualSupports": "Tableaux de collecte organisés, graphiques avec images, outils de comptage",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Rapport d'enquête: Présenter découvertes et discuter ce que les données révèlent.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si organisation chaotique: fournir système plus simple. Si confusion d'interprétation: revenir aux faits de base.",
+        "then": ""
+      },
+      "realWorldConnection": "Sondages familiaux, préférences personnelles, observation du monde",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Grande célébration de l'addition",
+      "oneGoal": "Les élèves célèbrent leurs apprentissages d'addition en partageant avec la communauté",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "célébrer",
+        "partager",
+        "enseigner",
+        "fierté"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Ouverture du festival: 'Bienvenue au Festival de l'Addition! Célébrons tous nos apprentissages fantastiques!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Festival interactif: Stations démontrant différentes stratégies d'addition. Élèves enseignent visiteurs leurs techniques. Jeux d'addition pour tous. Exposition des portfolios et créations artistiques.",
+        "materials": [],
+        "visualSupports": "Exposition organisée professionnellement, démonstrations claires, matériel attrayant",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cérémonie de reconnaissance: Certificats personnalisés et célébration des progrès uniques de chacun.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si sur-stimulation: créer zones calmes. Si manque de confiance: célébrer chaque contribution unique.",
+        "then": ""
+      },
+      "realWorldConnection": "Célébrations familiales, partage de talents, reconnaissance de réussites",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Résolution de problèmes",
+        "items": [
+          "Démontre une compréhension de base en résolution de problèmes",
+          "Participe activement aux activités de résolution de problèmes",
+          "Montre du progrès dans résolution de problèmes",
+          "Applique les apprentissages de résolution de problèmes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Manipulation",
+        "items": [
+          "Démontre une compréhension de base en manipulation",
+          "Participe activement aux activités de manipulation",
+          "Montre du progrès dans manipulation",
+          "Applique les apprentissages de manipulation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Vocabulaire mathématique",
+        "items": [
+          "Démontre une compréhension de base en vocabulaire mathématique",
+          "Participe activement aux activités de vocabulaire mathématique",
+          "Montre du progrès dans vocabulaire mathématique",
+          "Applique les apprentissages de vocabulaire mathématique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Représentation",
+        "items": [
+          "Démontre une compréhension de base en représentation",
+          "Participe activement aux activités de représentation",
+          "Montre du progrès dans représentation",
+          "Applique les apprentissages de représentation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - Addition jusqu'à 10",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Résolution de problèmes",
+        "Manipulation",
+        "Vocabulaire mathématique",
+        "Représentation"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "✓",
+          "~",
+          "?"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Addition jusqu'à 10\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en mathématiques\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nAssembler nos collections, Histoires de 'plus', Compter pour additionner, Nos doigts calculateurs, Dessiner nos additions\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nUtilisez les moments quotidiens pour pratiquer les mathématiques (compter, mesurer, etc.)\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLes mathématiques sont partout dans notre vie quotidienne!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Mathématiques en cuisine",
+        "description": "Comptez, mesurez et comparez en préparant des collations",
+        "timeRequired": "Pendant la préparation des repas",
+        "materials": "Ingrédients de cuisine",
+        "frenchSupport": "Utilisez les nombres en français si possible"
+      },
+      {
+        "title": "Jeux de société mathématiques",
+        "description": "Jouez à des jeux impliquant compter, additionner ou reconnaître des formes",
+        "timeRequired": "20 minutes",
+        "materials": "Jeux de société, dés, cartes",
+        "frenchSupport": "Comptez ensemble en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "assembler",
+        "lesson": 1,
+        "context": "Assembler nos collections",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"assembler\"",
+          "Utilisez \"assembler\" dans une phrase simple",
+          "Trouvez des images représentant \"assembler\"",
+          "Faites des gestes pour \"assembler\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 1,
+        "context": "Assembler nos collections",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "en tout",
+        "lesson": 1,
+        "context": "Assembler nos collections",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"en tout\"",
+          "Utilisez \"en tout\" dans une phrase simple",
+          "Trouvez des images représentant \"en tout\"",
+          "Faites des gestes pour \"en tout\""
+        ]
+      },
+      {
+        "word": "groupe",
+        "lesson": 1,
+        "context": "Assembler nos collections",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"groupe\"",
+          "Utilisez \"groupe\" dans une phrase simple",
+          "Trouvez des images représentant \"groupe\"",
+          "Faites des gestes pour \"groupe\""
+        ]
+      },
+      {
+        "word": "plus",
+        "lesson": 2,
+        "context": "Histoires de 'plus'",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"plus\"",
+          "Utilisez \"plus\" dans une phrase simple",
+          "Trouvez des images représentant \"plus\"",
+          "Faites des gestes pour \"plus\""
+        ]
+      },
+      {
+        "word": "arrivent",
+        "lesson": 2,
+        "context": "Histoires de 'plus'",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"arrivent\"",
+          "Utilisez \"arrivent\" dans une phrase simple",
+          "Trouvez des images représentant \"arrivent\"",
+          "Faites des gestes pour \"arrivent\""
+        ]
+      },
+      {
+        "word": "maintenant",
+        "lesson": 2,
+        "context": "Histoires de 'plus'",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"maintenant\"",
+          "Utilisez \"maintenant\" dans une phrase simple",
+          "Trouvez des images représentant \"maintenant\"",
+          "Faites des gestes pour \"maintenant\""
+        ]
+      },
+      {
+        "word": "combien",
+        "lesson": 2,
+        "context": "Histoires de 'plus'",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"combien\"",
+          "Utilisez \"combien\" dans une phrase simple",
+          "Trouvez des images représentant \"combien\"",
+          "Faites des gestes pour \"combien\""
+        ]
+      },
+      {
+        "word": "compter",
+        "lesson": 3,
+        "context": "Compter pour additionner",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"compter\"",
+          "Utilisez \"compter\" dans une phrase simple",
+          "Trouvez des images représentant \"compter\"",
+          "Faites des gestes pour \"compter\""
+        ]
+      },
+      {
+        "word": "commencer",
+        "lesson": 3,
+        "context": "Compter pour additionner",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"commencer\"",
+          "Utilisez \"commencer\" dans une phrase simple",
+          "Trouvez des images représentant \"commencer\"",
+          "Faites des gestes pour \"commencer\""
+        ]
+      },
+      {
+        "word": "continuer",
+        "lesson": 3,
+        "context": "Compter pour additionner",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"continuer\"",
+          "Utilisez \"continuer\" dans une phrase simple",
+          "Trouvez des images représentant \"continuer\"",
+          "Faites des gestes pour \"continuer\""
+        ]
+      },
+      {
+        "word": "stratégie",
+        "lesson": 3,
+        "context": "Compter pour additionner",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"stratégie\"",
+          "Utilisez \"stratégie\" dans une phrase simple",
+          "Trouvez des images représentant \"stratégie\"",
+          "Faites des gestes pour \"stratégie\""
+        ]
+      },
+      {
+        "word": "doigts",
+        "lesson": 4,
+        "context": "Nos doigts calculateurs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"doigts\"",
+          "Utilisez \"doigts\" dans une phrase simple",
+          "Trouvez des images représentant \"doigts\"",
+          "Faites des gestes pour \"doigts\""
+        ]
+      },
+      {
+        "word": "représenter",
+        "lesson": 4,
+        "context": "Nos doigts calculateurs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"représenter\"",
+          "Utilisez \"représenter\" dans une phrase simple",
+          "Trouvez des images représentant \"représenter\"",
+          "Faites des gestes pour \"représenter\""
+        ]
+      },
+      {
+        "word": "calculer",
+        "lesson": 4,
+        "context": "Nos doigts calculateurs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"calculer\"",
+          "Utilisez \"calculer\" dans une phrase simple",
+          "Trouvez des images représentant \"calculer\"",
+          "Faites des gestes pour \"calculer\""
+        ]
+      },
+      {
+        "word": "montrer",
+        "lesson": 4,
+        "context": "Nos doigts calculateurs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"montrer\"",
+          "Utilisez \"montrer\" dans une phrase simple",
+          "Trouvez des images représentant \"montrer\"",
+          "Faites des gestes pour \"montrer\""
+        ]
+      },
+      {
+        "word": "dessiner",
+        "lesson": 5,
+        "context": "Dessiner nos additions",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dessiner\"",
+          "Utilisez \"dessiner\" dans une phrase simple",
+          "Trouvez des images représentant \"dessiner\"",
+          "Faites des gestes pour \"dessiner\""
+        ]
+      },
+      {
+        "word": "voir",
+        "lesson": 5,
+        "context": "Dessiner nos additions",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voir\"",
+          "Utilisez \"voir\" dans une phrase simple",
+          "Trouvez des images représentant \"voir\"",
+          "Faites des gestes pour \"voir\""
+        ]
+      },
+      {
+        "word": "cadre",
+        "lesson": 6,
+        "context": "Cadres de dix magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cadre\"",
+          "Utilisez \"cadre\" dans une phrase simple",
+          "Trouvez des images représentant \"cadre\"",
+          "Faites des gestes pour \"cadre\""
+        ]
+      },
+      {
+        "word": "organiser",
+        "lesson": 6,
+        "context": "Cadres de dix magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"organiser\"",
+          "Utilisez \"organiser\" dans une phrase simple",
+          "Trouvez des images représentant \"organiser\"",
+          "Faites des gestes pour \"organiser\""
+        ]
+      },
+      {
+        "word": "remplir",
+        "lesson": 6,
+        "context": "Cadres de dix magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"remplir\"",
+          "Utilisez \"remplir\" dans une phrase simple",
+          "Trouvez des images représentant \"remplir\"",
+          "Faites des gestes pour \"remplir\""
+        ]
+      },
+      {
+        "word": "double",
+        "lesson": 7,
+        "context": "Stratégie des doubles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"double\"",
+          "Utilisez \"double\" dans une phrase simple",
+          "Trouvez des images représentant \"double\"",
+          "Faites des gestes pour \"double\""
+        ]
+      },
+      {
+        "word": "même",
+        "lesson": 7,
+        "context": "Stratégie des doubles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"même\"",
+          "Utilisez \"même\" dans une phrase simple",
+          "Trouvez des images représentant \"même\"",
+          "Faites des gestes pour \"même\""
+        ]
+      },
+      {
+        "word": "identique",
+        "lesson": 7,
+        "context": "Stratégie des doubles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"identique\"",
+          "Utilisez \"identique\" dans une phrase simple",
+          "Trouvez des images représentant \"identique\"",
+          "Faites des gestes pour \"identique\""
+        ]
+      },
+      {
+        "word": "symétrie",
+        "lesson": 7,
+        "context": "Stratégie des doubles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"symétrie\"",
+          "Utilisez \"symétrie\" dans une phrase simple",
+          "Trouvez des images représentant \"symétrie\"",
+          "Faites des gestes pour \"symétrie\""
+        ]
+      },
+      {
+        "word": "efficace",
+        "lesson": 8,
+        "context": "Compter en avant intelligemment",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"efficace\"",
+          "Utilisez \"efficace\" dans une phrase simple",
+          "Trouvez des images représentant \"efficace\"",
+          "Faites des gestes pour \"efficace\""
+        ]
+      },
+      {
+        "word": "rapide",
+        "lesson": 8,
+        "context": "Compter en avant intelligemment",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rapide\"",
+          "Utilisez \"rapide\" dans une phrase simple",
+          "Trouvez des images représentant \"rapide\"",
+          "Faites des gestes pour \"rapide\""
+        ]
+      },
+      {
+        "word": "intelligent",
+        "lesson": 8,
+        "context": "Compter en avant intelligemment",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"intelligent\"",
+          "Utilisez \"intelligent\" dans une phrase simple",
+          "Trouvez des images représentant \"intelligent\"",
+          "Faites des gestes pour \"intelligent\""
+        ]
+      },
+      {
+        "word": "décomposer",
+        "lesson": 9,
+        "context": "Faire 10 - notre ancrage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"décomposer\"",
+          "Utilisez \"décomposer\" dans une phrase simple",
+          "Trouvez des images représentant \"décomposer\"",
+          "Faites des gestes pour \"décomposer\""
+        ]
+      },
+      {
+        "word": "faire dix",
+        "lesson": 9,
+        "context": "Faire 10 - notre ancrage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"faire dix\"",
+          "Utilisez \"faire dix\" dans une phrase simple",
+          "Trouvez des images représentant \"faire dix\"",
+          "Faites des gestes pour \"faire dix\""
+        ]
+      },
+      {
+        "word": "ancrage",
+        "lesson": 9,
+        "context": "Faire 10 - notre ancrage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ancrage\"",
+          "Utilisez \"ancrage\" dans une phrase simple",
+          "Trouvez des images représentant \"ancrage\"",
+          "Faites des gestes pour \"ancrage\""
+        ]
+      },
+      {
+        "word": "transformer",
+        "lesson": 9,
+        "context": "Faire 10 - notre ancrage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"transformer\"",
+          "Utilisez \"transformer\" dans une phrase simple",
+          "Trouvez des images représentant \"transformer\"",
+          "Faites des gestes pour \"transformer\""
+        ]
+      },
+      {
+        "word": "vérifier",
+        "lesson": 10,
+        "context": "Vérifier nos réponses",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vérifier\"",
+          "Utilisez \"vérifier\" dans une phrase simple",
+          "Trouvez des images représentant \"vérifier\"",
+          "Faites des gestes pour \"vérifier\""
+        ]
+      },
+      {
+        "word": "correct",
+        "lesson": 10,
+        "context": "Vérifier nos réponses",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"correct\"",
+          "Utilisez \"correct\" dans une phrase simple",
+          "Trouvez des images représentant \"correct\"",
+          "Faites des gestes pour \"correct\""
+        ]
+      },
+      {
+        "word": "erreur",
+        "lesson": 10,
+        "context": "Vérifier nos réponses",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"erreur\"",
+          "Utilisez \"erreur\" dans une phrase simple",
+          "Trouvez des images représentant \"erreur\"",
+          "Faites des gestes pour \"erreur\""
+        ]
+      },
+      {
+        "word": "contrôler",
+        "lesson": 10,
+        "context": "Vérifier nos réponses",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"contrôler\"",
+          "Utilisez \"contrôler\" dans une phrase simple",
+          "Trouvez des images représentant \"contrôler\"",
+          "Faites des gestes pour \"contrôler\""
+        ]
+      },
+      {
+        "word": "égale",
+        "lesson": 11,
+        "context": "Découvrir les symboles + et =",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"égale\"",
+          "Utilisez \"égale\" dans une phrase simple",
+          "Trouvez des images représentant \"égale\"",
+          "Faites des gestes pour \"égale\""
+        ]
+      },
+      {
+        "word": "équation",
+        "lesson": 11,
+        "context": "Découvrir les symboles + et =",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"équation\"",
+          "Utilisez \"équation\" dans une phrase simple",
+          "Trouvez des images représentant \"équation\"",
+          "Faites des gestes pour \"équation\""
+        ]
+      },
+      {
+        "word": "symbole",
+        "lesson": 11,
+        "context": "Découvrir les symboles + et =",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"symbole\"",
+          "Utilisez \"symbole\" dans une phrase simple",
+          "Trouvez des images représentant \"symbole\"",
+          "Faites des gestes pour \"symbole\""
+        ]
+      },
+      {
+        "word": "écrire",
+        "lesson": 12,
+        "context": "Écrire nos équations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écrire\"",
+          "Utilisez \"écrire\" dans une phrase simple",
+          "Trouvez des images représentant \"écrire\"",
+          "Faites des gestes pour \"écrire\""
+        ]
+      },
+      {
+        "word": "clair",
+        "lesson": 12,
+        "context": "Écrire nos équations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"clair\"",
+          "Utilisez \"clair\" dans une phrase simple",
+          "Trouvez des images représentant \"clair\"",
+          "Faites des gestes pour \"clair\""
+        ]
+      },
+      {
+        "word": "problème",
+        "lesson": 13,
+        "context": "Problèmes de la vraie vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"problème\"",
+          "Utilisez \"problème\" dans une phrase simple",
+          "Trouvez des images représentant \"problème\"",
+          "Faites des gestes pour \"problème\""
+        ]
+      },
+      {
+        "word": "situation",
+        "lesson": 13,
+        "context": "Problèmes de la vraie vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"situation\"",
+          "Utilisez \"situation\" dans une phrase simple",
+          "Trouvez des images représentant \"situation\"",
+          "Faites des gestes pour \"situation\""
+        ]
+      },
+      {
+        "word": "solution",
+        "lesson": 13,
+        "context": "Problèmes de la vraie vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"solution\"",
+          "Utilisez \"solution\" dans une phrase simple",
+          "Trouvez des images représentant \"solution\"",
+          "Faites des gestes pour \"solution\""
+        ]
+      },
+      {
+        "word": "raisonnable",
+        "lesson": 13,
+        "context": "Problèmes de la vraie vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"raisonnable\"",
+          "Utilisez \"raisonnable\" dans une phrase simple",
+          "Trouvez des images représentant \"raisonnable\"",
+          "Faites des gestes pour \"raisonnable\""
+        ]
+      },
+      {
+        "word": "portfolio",
+        "lesson": 14,
+        "context": "Portfolio d'addition - démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"portfolio\"",
+          "Utilisez \"portfolio\" dans une phrase simple",
+          "Trouvez des images représentant \"portfolio\"",
+          "Faites des gestes pour \"portfolio\""
+        ]
+      },
+      {
+        "word": "démontrer",
+        "lesson": 14,
+        "context": "Portfolio d'addition - démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"démontrer\"",
+          "Utilisez \"démontrer\" dans une phrase simple",
+          "Trouvez des images représentant \"démontrer\"",
+          "Faites des gestes pour \"démontrer\""
+        ]
+      },
+      {
+        "word": "expert",
+        "lesson": 14,
+        "context": "Portfolio d'addition - démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expert\"",
+          "Utilisez \"expert\" dans une phrase simple",
+          "Trouvez des images représentant \"expert\"",
+          "Faites des gestes pour \"expert\""
+        ]
+      },
+      {
+        "word": "réfléchir",
+        "lesson": 14,
+        "context": "Portfolio d'addition - démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réfléchir\"",
+          "Utilisez \"réfléchir\" dans une phrase simple",
+          "Trouvez des images représentant \"réfléchir\"",
+          "Faites des gestes pour \"réfléchir\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

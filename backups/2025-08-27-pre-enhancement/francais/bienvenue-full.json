@@ -1,0 +1,2421 @@
+{
+  "unitTitle": "",
+  "subject": "Français (Immersion)",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Bonjour, mes amis!",
+      "oneGoal": "Students will recognize and respond to basic French greetings through gestures and visual cues",
+      "duration": 45,
+      "keyVocabulary": [
+        "bonjour",
+        "au revoir",
+        "merci"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Gentle introduction with puppet saying 'Bonjour!' and waving. Show friendly face pictures of children greeting each other.",
+        "materials": [
+          "hand puppet",
+          "greeting picture cards",
+          "smile face icons"
+        ],
+        "visualSupports": "Big wave gesture for 'bonjour', hand to heart for 'merci', wave goodbye for 'au revoir'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Circle time with greeting song using gestures. Pass the puppet around for each child to hear 'Bonjour [name]!' Practice greeting responses with thumbs up, wave, or smile.",
+        "materials": [
+          "puppet",
+          "name cards with pictures",
+          "greeting song recording"
+        ],
+        "visualSupports": "Exaggerated facial expressions, large gesture demonstrations, picture sequence cards showing greeting interactions",
+        "decisionPoints": [
+          {
+            "question": "How comfortable are students with new sounds?",
+            "ifYes": "Continue with puppet conversations and encourage verbal responses",
+            "ifNo": "Focus on gestures and visual responses, extend listening time"
+          },
+          {
+            "question": "What level of gestures/TPR support is needed?",
+            "ifYes": "Use full body movements and exaggerated gestures",
+            "ifNo": "Use simple hand gestures and facial expressions"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Goodbye circle with puppet saying 'Au revoir!' to each child. Practice waving and saying goodbye.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students seem overwhelmed by new sounds",
+        "then": "Use more gestures, slower pace, and focus on just 'bonjour' with lots of repetition"
+      },
+      "realWorldConnection": "How people greet each other in French-speaking communities around the world",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Je m'appelle...",
+      "oneGoal": "Students will understand name introductions and begin to share their names using gestures and visual supports",
+      "duration": 45,
+      "keyVocabulary": [
+        "je",
+        "m'appelle",
+        "comment"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review 'Bonjour!' from Lesson 1 with puppet. Puppet introduces itself: 'Je m'appelle Pierre!'",
+        "materials": [
+          "Pierre puppet",
+          "name tag for puppet",
+          "greeting cards from Lesson 1"
+        ],
+        "visualSupports": "Point to self gesture for 'je', point to name tag for 'm'appelle', questioning gesture for 'comment'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Name introduction circle. Puppet asks 'Comment tu t'appelles?' to each child. Use name cards with photos. Practice pointing to self and saying/showing names.",
+        "materials": [
+          "photo name cards",
+          "puppet",
+          "mirror for self-recognition"
+        ],
+        "visualSupports": "Point to self clearly, hold up name cards, use questioning facial expressions and hand gestures",
+        "decisionPoints": [
+          {
+            "question": "Are students ready to say their names or still observing?",
+            "ifYes": "Encourage verbal attempts with puppet support",
+            "ifNo": "Focus on pointing to name cards and self-recognition activities"
+          },
+          {
+            "question": "How much repetition is needed for name patterns?",
+            "ifYes": "Repeat pattern with multiple examples and slow pace",
+            "ifNo": "Move to interactive name games and recognition activities"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Goodbye circle where puppet says 'Au revoir [name]!' to each child while they hold their name card.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students confused about name introduction pattern",
+        "then": "Use more visual name cards, practice with puppet first, focus on gestures before words"
+      },
+      "realWorldConnection": "How introductions work in French families and communities",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Les couleurs magiques",
+      "oneGoal": "Students will recognize and respond to basic color words through visual objects and movement",
+      "duration": 45,
+      "keyVocabulary": [
+        "rouge",
+        "bleu",
+        "jaune"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review greetings and names. Introduce color magic with colored scarves or fabric appearing from a box.",
+        "materials": [
+          "colored scarves (red, blue, yellow)",
+          "magic box",
+          "Pierre puppet"
+        ],
+        "visualSupports": "Hold up colors clearly, use magic gestures, exaggerated surprise expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Color exploration stations: touch red objects, find blue items, dance with yellow scarves. Color matching games with large visual cards.",
+        "materials": [
+          "colored objects (blocks, balls, crayons)",
+          "color cards",
+          "colored scarves",
+          "sorting baskets"
+        ],
+        "visualSupports": "Point clearly to colors, use searching gestures for finding activities, dancing movements for each color",
+        "decisionPoints": [
+          {
+            "question": "Which colors are students naturally drawn to?",
+            "ifYes": "Start with preferred colors and build confidence",
+            "ifNo": "Introduce all three colors equally with multiple exposures"
+          },
+          {
+            "question": "Should we use more movement games or quiet observation?",
+            "ifYes": "Focus on active color games and dancing with scarves",
+            "ifNo": "Use seated color sorting and matching activities"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Color goodbye game: each child chooses a colored scarf and waves 'Au revoir rouge!' or their chosen color.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty distinguishing color words",
+        "then": "Use more physical objects, slower repetition, focus on one color at a time with multiple examples"
+      },
+      "realWorldConnection": "Describing the colorful world around us - flowers, toys, clothes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Mes premiers nombres",
+      "oneGoal": "Students will recognize numbers 1-5 through finger counting, songs, and visual representations",
+      "duration": 45,
+      "keyVocabulary": [
+        "un",
+        "deux",
+        "trois"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review colors with finger painting gesture. Introduce counting with Pierre puppet showing fingers for 'un, deux, trois'.",
+        "materials": [
+          "Pierre puppet",
+          "large number cards 1-3",
+          "finger counting poster"
+        ],
+        "visualSupports": "Clear finger counting gestures, large number visuals, rhythmic counting movements",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Counting song with finger actions. Count colored objects from previous lesson. Number hop: hop once for 'un', twice for 'deux', three times for 'trois'.",
+        "materials": [
+          "colored counting objects",
+          "number cards",
+          "counting song recording",
+          "number path on floor"
+        ],
+        "visualSupports": "Exaggerated finger counting, clear pointing to numbers, hopping movements with counting rhythm",
+        "decisionPoints": [
+          {
+            "question": "How are students responding to finger counting?",
+            "ifYes": "Extend to more complex counting games and activities",
+            "ifNo": "Focus on simple finger recognition and one-to-one correspondence"
+          },
+          {
+            "question": "Should we focus on listening or include some speaking?",
+            "ifYes": "Encourage counting attempts with finger support",
+            "ifNo": "Focus on recognition and finger counting responses"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Counting goodbye: count three waves 'un, deux, trois' and say 'Au revoir!' Pierre puppet counts students.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students struggling with number-finger coordination",
+        "then": "Use larger visual number cards, practice finger counting slowly, focus on one number at a time"
+      },
+      "realWorldConnection": "Counting everyday things - toys, books, fingers, age",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Ma famille française",
+      "oneGoal": "Students will understand family words through photos, drawings, and inclusive family representations",
+      "duration": 45,
+      "keyVocabulary": [
+        "maman",
+        "papa",
+        "famille"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review counting fingers and colors. Pierre puppet shows family photos and introduces 'Ma famille!'",
+        "materials": [
+          "diverse family photos",
+          "Pierre puppet",
+          "heart cutouts for love"
+        ],
+        "visualSupports": "Heart gesture for 'famille', pointing to family members, warm facial expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family photo sharing circle. Students can share photos or draw their families. Practice 'maman', 'papa', 'famille' with inclusive examples (two moms, single parent, grandparents, etc.).",
+        "materials": [
+          "diverse family picture books",
+          "drawing paper",
+          "crayons",
+          "family photo examples"
+        ],
+        "visualSupports": "Hugging gesture for family love, pointing to family members, inclusive visual examples",
+        "decisionPoints": [
+          {
+            "question": "How do we honor diverse family structures?",
+            "ifYes": "Use inclusive examples and let children define their own families",
+            "ifNo": "Focus on traditional examples but remain open to student sharing"
+          },
+          {
+            "question": "Are students ready to share about their families?",
+            "ifYes": "Encourage sharing with puppet support and visual aids",
+            "ifNo": "Focus on listening and observing family examples"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Family love circle: send hugs to our families and say 'Au revoir, famille!' with heart gestures.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students emotional about family separation or differences",
+        "then": "Focus on love and connection, use puppet for comfort, validate all family structures"
+      },
+      "realWorldConnection": "How French-speaking families talk about themselves and show love",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Les animaux amusants",
+      "oneGoal": "Students will recognize animal names through sounds, movements, and visual supports",
+      "duration": 45,
+      "keyVocabulary": [
+        "chat",
+        "chien",
+        "oiseau"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review family words with Pierre puppet. Introduce animal friends: puppet meets a 'chat' with meowing and paw gestures.",
+        "materials": [
+          "animal puppets or toys (cat, dog, bird)",
+          "Pierre puppet",
+          "animal sound recordings"
+        ],
+        "visualSupports": "Cat paw gestures, dog panting and tail wagging movements, bird flying motions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Animal movement game: crawl like 'chat', pant like 'chien', fly like 'oiseau'. Animal sound matching and movement imitation with visual cards.",
+        "materials": [
+          "animal picture cards",
+          "animal toys",
+          "space for movement",
+          "animal sound recordings"
+        ],
+        "visualSupports": "Clear animal movements, animal sound mimicking, pointing to animal features",
+        "decisionPoints": [
+          {
+            "question": "Which animal movements engage students most?",
+            "ifYes": "Focus on preferred animals and extend movement activities",
+            "ifNo": "Try different animals or use more visual/auditory approaches"
+          },
+          {
+            "question": "Should we include animal sounds or focus on names?",
+            "ifYes": "Combine sounds with names for multi-sensory learning",
+            "ifNo": "Focus on visual recognition and movement only"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Animal goodbye parade: each child chooses an animal movement and sound to say goodbye.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students overwhelmed by animal movements or sounds",
+        "then": "Use quieter activities, focus on gentle animal gestures, use stuffed animals for comfort"
+      },
+      "realWorldConnection": "Animals in our neighborhoods, farms, and French-speaking countries",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Mes parties du corps",
+      "oneGoal": "Students will identify basic body parts through songs, movements, and touching exercises",
+      "duration": 45,
+      "keyVocabulary": [
+        "tête",
+        "main",
+        "pied"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review animal movements using our bodies. Pierre puppet touches his 'tête' and asks students to touch theirs.",
+        "materials": [
+          "Pierre puppet",
+          "body part picture cards",
+          "mirror"
+        ],
+        "visualSupports": "Clear touching gestures, pointing to body parts, exaggerated movements",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Body part song with actions: 'Tête, épaules, genoux et pieds' adapted for 'tête, main, pied'. Simon Says game with body parts. Mirror exploration touching named parts.",
+        "materials": [
+          "body part song recording",
+          "large mirrors",
+          "body part posters",
+          "space for movement"
+        ],
+        "visualSupports": "Touch head for 'tête', wave hands for 'main', stomp feet for 'pied', mirror reflection activities",
+        "decisionPoints": [
+          {
+            "question": "How comfortable are students with body part songs?",
+            "ifYes": "Extend to more complex body part games and sequences",
+            "ifNo": "Focus on simple touching and pointing activities"
+          },
+          {
+            "question": "Should we use mirrors or partner activities?",
+            "ifYes": "Use mirrors for self-discovery and awareness",
+            "ifNo": "Use partner activities for social interaction"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Body part goodbye: touch 'tête', wave 'main', stomp 'pied' and say 'Au revoir!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students uncomfortable with body part touching or movements",
+        "then": "Use puppet demonstrations, gentle pointing instead of touching, respect personal space"
+      },
+      "realWorldConnection": "Taking care of our bodies and describing ourselves to others",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Les objets de classe",
+      "oneGoal": "Students will recognize classroom objects through touch, pointing, and simple commands",
+      "duration": 45,
+      "keyVocabulary": [
+        "crayon",
+        "livre",
+        "table"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review body parts by using them to find classroom objects. Pierre puppet picks up a 'crayon' with his 'main'.",
+        "materials": [
+          "Pierre puppet",
+          "classroom objects (crayon, book, small table)",
+          "object basket"
+        ],
+        "visualSupports": "Clear pointing to objects, holding and touching gestures, searching movements",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Classroom scavenger hunt: find and touch 'crayon', 'livre', 'table'. Object sorting game. Practice giving and receiving classroom objects with simple commands.",
+        "materials": [
+          "classroom objects",
+          "sorting baskets",
+          "object picture cards",
+          "scavenger hunt pictures"
+        ],
+        "visualSupports": "Point clearly to objects, demonstrate searching, show giving and receiving gestures",
+        "decisionPoints": [
+          {
+            "question": "Which classroom objects are most meaningful to students?",
+            "ifYes": "Focus on familiar, frequently used objects",
+            "ifNo": "Introduce variety and let students explore preferences"
+          },
+          {
+            "question": "Should we use scavenger hunts or direct instruction?",
+            "ifYes": "Use active searching and discovery activities",
+            "ifNo": "Use seated demonstration and object manipulation"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Object appreciation circle: each child holds a classroom object and we say 'Merci, crayon!' or 'Au revoir, livre!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students confused by similar-looking objects or commands",
+        "then": "Use more distinct objects, clearer visual differences, simpler one-step instructions"
+      },
+      "realWorldConnection": "Using French to navigate and organize our learning space",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "J'aime et je n'aime pas",
+      "oneGoal": "Students will express simple preferences through gestures, facial expressions, and visual supports",
+      "duration": 45,
+      "keyVocabulary": [
+        "j'aime",
+        "non",
+        "oui"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review classroom objects. Pierre puppet shows strong love for a 'livre' saying 'J'aime!' with heart gesture.",
+        "materials": [
+          "Pierre puppet",
+          "variety of objects from previous lessons",
+          "heart and X symbols"
+        ],
+        "visualSupports": "Heart gesture for 'j'aime', X or shaking head for 'non', thumbs up for 'oui'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Preference exploration: show objects/pictures and let students show thumbs up/down. Practice 'J'aime' with heart gesture and 'Non' with gentle head shake. Choice-making activities.",
+        "materials": [
+          "object cards",
+          "food pictures",
+          "animal pictures",
+          "preference chart",
+          "heart and X cards"
+        ],
+        "visualSupports": "Exaggerated facial expressions, clear thumbs up/down gestures, heart hugging for likes",
+        "decisionPoints": [
+          {
+            "question": "How are students showing preferences non-verbally?",
+            "ifYes": "Build on their natural expressions and gestures",
+            "ifNo": "Model clear preference expressions and give time to practice"
+          },
+          {
+            "question": "Should we focus on positive expressions first?",
+            "ifYes": "Emphasize 'j'aime' and positive choices initially",
+            "ifNo": "Show both positive and negative equally"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Preference sharing circle: each child shows one thing they love with 'J'aime' gesture and heart.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students reluctant to express dislikes or make choices",
+        "then": "Focus on positive preferences first, use puppet to model, make choices less personal"
+      },
+      "realWorldConnection": "Expressing what we like and don't like about food, activities, and things around us",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Les actions quotidiennes",
+      "oneGoal": "Students will understand basic action words through demonstration, mime, and physical response",
+      "duration": 45,
+      "keyVocabulary": [
+        "marcher",
+        "sauter",
+        "danser"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review preferences with movement: 'J'aime marcher!' Pierre puppet demonstrates walking, jumping, dancing.",
+        "materials": [
+          "Pierre puppet",
+          "action picture cards",
+          "space for movement"
+        ],
+        "visualSupports": "Clear walking steps, jumping movements, dancing gestures with rhythm",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Action station rotation: practice 'marcher' around the room, 'sauter' on mats, 'danser' to music. Action Simon Says game. Mime and guess activities.",
+        "materials": [
+          "movement mats",
+          "music for dancing",
+          "action cards",
+          "safe jumping area"
+        ],
+        "visualSupports": "Demonstrate each action clearly, use music and rhythm, encourage creative interpretation",
+        "decisionPoints": [
+          {
+            "question": "Which actions naturally engage student energy levels?",
+            "ifYes": "Focus on preferred actions and extend practice time",
+            "ifNo": "Try gentler versions or seated adaptations of actions"
+          },
+          {
+            "question": "Should we use more demonstration or student participation?",
+            "ifYes": "Encourage active student participation and leadership",
+            "ifNo": "Use more teacher/puppet demonstration with gradual participation"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Action goodbye sequence: everyone 'marche' to the door, 'saute' twice, 'danse' and says 'Au revoir!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students too excited or overwhelmed by movement activities",
+        "then": "Use calmer versions, seated movements, or take movement breaks between actions"
+      },
+      "realWorldConnection": "Describing what we do every day at home and school",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Les saisons et météo",
+      "oneGoal": "Students will recognize weather and season words through window observations, clothing, and sensory experiences",
+      "duration": 45,
+      "keyVocabulary": [
+        "soleil",
+        "pluie",
+        "automne"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review actions by 'marcher' to the window. Pierre puppet looks outside and comments on 'soleil' or 'pluie'.",
+        "materials": [
+          "Pierre puppet",
+          "window access",
+          "weather picture cards",
+          "seasonal clothing props"
+        ],
+        "visualSupports": "Point to sun/rain outside, sun gesture (arms up in circle), rain gesture (fingers falling down)",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Weather observation at window. Dress-up activity with seasonal clothes. Weather dance: sun dance, rain dance. Create weather chart for classroom.",
+        "materials": [
+          "seasonal clothing items",
+          "weather chart",
+          "weather symbols",
+          "music for weather dances"
+        ],
+        "visualSupports": "Look outside together, demonstrate weather gestures, show seasonal clothing clearly",
+        "decisionPoints": [
+          {
+            "question": "How does current weather connect to lesson content?",
+            "ifYes": "Use actual weather as primary teaching tool",
+            "ifNo": "Use props and imagination to explore different weather"
+          },
+          {
+            "question": "Should we go outside or use window observations?",
+            "ifYes": "Take brief outdoor weather exploration if safe",
+            "ifNo": "Use window observations and weather simulation activities"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Weather goodbye: check the weather, do appropriate weather gesture, and say goodbye to the sun or rain.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students distracted by outdoor observations or weather anxiety",
+        "then": "Use calming weather discussions, focus on indoor comfort, use gentle weather imagery"
+      },
+      "realWorldConnection": "Talking about weather and seasons affects our daily choices and activities",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Mes émotions en français",
+      "oneGoal": "Students will identify basic emotion words through facial expressions, body language, and scenarios",
+      "duration": 45,
+      "keyVocabulary": [
+        "heureux",
+        "triste",
+        "fatigué"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review weather and connect to feelings: 'Soleil - heureux!' Pierre puppet shows big smile and happy dance.",
+        "materials": [
+          "Pierre puppet",
+          "emotion face cards",
+          "mirror",
+          "emotion picture books"
+        ],
+        "visualSupports": "Exaggerated happy face for 'heureux', sad face for 'triste', yawning for 'fatigué'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Emotion mirror exploration: practice faces in mirror. Emotion charades with puppet. Connect emotions to weather, colors, activities from previous lessons.",
+        "materials": [
+          "handheld mirrors",
+          "emotion cards",
+          "emotion scenarios pictures",
+          "comfort items"
+        ],
+        "visualSupports": "Model clear facial expressions, use whole body to show emotions, connect to familiar situations",
+        "decisionPoints": [
+          {
+            "question": "How are students expressing emotions non-verbally?",
+            "ifYes": "Build on natural expressions and validate feelings",
+            "ifNo": "Use puppet to model emotions safely and gradually"
+          },
+          {
+            "question": "Should we use mirrors, photos, or dramatic play?",
+            "ifYes": "Use approach that feels safest and most engaging for students",
+            "ifNo": "Try multiple approaches to find what works best"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Emotion check-in circle: each child shows how they feel and we validate with 'Tu es heureux!' or appropriate emotion.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students becoming emotional or upset during emotion exploration",
+        "then": "Focus on happy emotions, use puppet for safety, provide comfort and validation"
+      },
+      "realWorldConnection": "Understanding and expressing how we feel in different situations",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Notre routine française",
+      "oneGoal": "Students will understand daily routine vocabulary through sequencing, clocks, and role-play activities",
+      "duration": 45,
+      "keyVocabulary": [
+        "matin",
+        "midi",
+        "soir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review emotions during different times. Pierre puppet shows 'heureux' in 'matin' with sunrise picture.",
+        "materials": [
+          "Pierre puppet",
+          "time of day pictures",
+          "simple clock",
+          "routine picture cards"
+        ],
+        "visualSupports": "Point to sun for 'matin', high sun for 'midi', moon for 'soir'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Daily routine picture sequencing: arrange morning, noon, evening activities. Role-play daily activities from previous lessons during different times. Create class routine chart.",
+        "materials": [
+          "routine sequence cards",
+          "class schedule pictures",
+          "time symbols",
+          "role-play props"
+        ],
+        "visualSupports": "Clear time gestures, sequence activities visually, connect to familiar daily experiences",
+        "decisionPoints": [
+          {
+            "question": "How do student daily routines connect to lesson content?",
+            "ifYes": "Use their actual routines as examples and practice",
+            "ifNo": "Create simple, universal routine examples"
+          },
+          {
+            "question": "Should we use picture schedules or physical demonstrations?",
+            "ifYes": "Use approach that best matches student learning styles",
+            "ifNo": "Combine both for comprehensive understanding"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Time of day goodbye: identify current time of day and do appropriate goodbye for 'matin', 'midi', or 'soir'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students confused by time concepts or routine sequencing",
+        "then": "Use simpler sequences, focus on current time only, use very familiar activities"
+      },
+      "realWorldConnection": "How French-speaking children structure their days and talk about time",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Ma petite présentation",
+      "oneGoal": "Students will demonstrate understanding through simple presentation combining all learned vocabulary and concepts",
+      "duration": 45,
+      "keyVocabulary": [
+        "présenter",
+        "montrer",
+        "écouter"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review learning journey with picture cards from all lessons. Pierre puppet says he wants to 'présenter' his friends!",
+        "materials": [
+          "vocabulary cards from all lessons",
+          "Pierre puppet",
+          "presentation examples"
+        ],
+        "visualSupports": "Show and tell gestures, confident posture modeling, encouraging facial expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Simple presentations: students choose 3-5 vocabulary cards to share. Can use gestures, pointing, or words. Partner sharing or small groups. Celebration of learning with applause and encouragement.",
+        "materials": [
+          "vocabulary card collection",
+          "presentation supports",
+          "encouragement stickers",
+          "recording device (optional)"
+        ],
+        "visualSupports": "Model simple presentation format, use supportive gestures, provide visual choices",
+        "decisionPoints": [
+          {
+            "question": "What format best supports each student's comfort level?",
+            "ifYes": "Allow flexible presentation formats (individual, partner, group)",
+            "ifNo": "Use consistent format for all students"
+          },
+          {
+            "question": "Should presentations be individual, pairs, or small groups?",
+            "ifYes": "Use format that reduces anxiety and builds confidence",
+            "ifNo": "Try multiple formats to accommodate different comfort levels"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration circle: everyone shares one thing they learned and we celebrate with 'Bravo!' and applause.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students too shy or overwhelmed to present",
+        "then": "Use puppet presentations, partner support, or simple pointing to vocabulary cards"
+      },
+      "realWorldConnection": "Sharing ourselves with others builds community and confidence in language learning",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Jeux et chansons françaises",
+      "oneGoal": "Students will practice all vocabulary through games, songs, and playful activities (extension/enrichment)",
+      "duration": 45,
+      "keyVocabulary": [
+        "jouer",
+        "chanter",
+        "rire"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Warm-up with favorite songs from previous lessons. Pierre puppet invites everyone to 'jouer' and 'chanter'!",
+        "materials": [
+          "Pierre puppet",
+          "song recordings",
+          "musical instruments (simple)",
+          "game props"
+        ],
+        "visualSupports": "Playing gestures, singing actions, joyful expressions, rhythmic movements",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Learning station games: color sorting races, number hopscotch, animal charades, family matching, emotion faces game. French song circle with instruments.",
+        "materials": [
+          "game stations setup",
+          "timers",
+          "simple instruments",
+          "prize stickers",
+          "game cards"
+        ],
+        "visualSupports": "Clear game demonstrations, encouraging gestures, celebratory movements",
+        "decisionPoints": [
+          {
+            "question": "Which games best reinforce learning without pressure?",
+            "ifYes": "Focus on successful, engaging games with multiple opportunities",
+            "ifNo": "Adjust game difficulty or provide more support"
+          },
+          {
+            "question": "Should we focus on group or individual activities?",
+            "ifYes": "Use format that promotes most engagement and success",
+            "ifNo": "Balance both group cooperation and individual achievement"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Game appreciation circle: share favorite game and practice 'rire' together with joyful laughter.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students too competitive or frustrated with games",
+        "then": "Emphasize fun over winning, provide multiple success opportunities, use cooperative games"
+      },
+      "realWorldConnection": "Playing and having fun are universal ways children learn and connect",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Histoires et images",
+      "oneGoal": "Students will engage with simple French stories through pictures, gestures, and interactive storytelling (extension/enrichment)",
+      "duration": 45,
+      "keyVocabulary": [
+        "histoire",
+        "image",
+        "regarder"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review games and laughter. Pierre puppet opens a special 'livre' and invites students to 'regarder' the pictures.",
+        "materials": [
+          "Pierre puppet",
+          "simple French picture book",
+          "story props",
+          "comfortable seating"
+        ],
+        "visualSupports": "Point to pictures clearly, use story gestures, create anticipation with expressions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Interactive story time: simple French story with familiar vocabulary. Students help tell story through gestures and sounds. Create story pictures together. Story retelling with props.",
+        "materials": [
+          "French picture books",
+          "story props",
+          "drawing materials",
+          "story sequence cards"
+        ],
+        "visualSupports": "Act out story elements, use predictable story patterns, encourage participation gestures",
+        "decisionPoints": [
+          {
+            "question": "Which story elements capture student attention?",
+            "ifYes": "Emphasize engaging elements and extend those parts",
+            "ifNo": "Adjust story pace or use more interactive elements"
+          },
+          {
+            "question": "Should we use big books, digital stories, or props?",
+            "ifYes": "Use format that best engages students and supports comprehension",
+            "ifNo": "Try multiple formats to maintain interest"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Story appreciation: students share favorite 'image' from story and we create a class story memory.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students losing attention during story or overwhelmed by new format",
+        "then": "Use shorter stories, more interactive elements, familiar vocabulary focus"
+      },
+      "realWorldConnection": "Stories help us understand different perspectives and connect across cultures",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Art et créativité française",
+      "oneGoal": "Students will create visual art while using French vocabulary for colors, shapes, and creative expression (extension/enrichment)",
+      "duration": 45,
+      "keyVocabulary": [
+        "dessiner",
+        "créer",
+        "beau"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review story images. Pierre puppet becomes an artist and wants to 'dessiner' and 'créer' beautiful things.",
+        "materials": [
+          "Pierre puppet",
+          "art supplies",
+          "example artwork",
+          "smocks or protection"
+        ],
+        "visualSupports": "Drawing gestures, creating motions, appreciation expressions for 'beau'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Art creation stations: draw with 'rouge, bleu, jaune', create family portraits, design animal pictures. Art sharing circle with vocabulary practice. Make it 'beau' together!",
+        "materials": [
+          "art supplies (crayons, paper, paint)",
+          "art examples",
+          "drying area",
+          "sharing space"
+        ],
+        "visualSupports": "Demonstrate art techniques, use color vocabulary while creating, show appreciation gestures",
+        "decisionPoints": [
+          {
+            "question": "How do students best express creativity while using French?",
+            "ifYes": "Encourage natural integration of French into creative process",
+            "ifNo": "Focus on art creation with gentle French vocabulary integration"
+          },
+          {
+            "question": "Should we focus on process or product?",
+            "ifYes": "Emphasize creative process and French vocabulary use",
+            "ifNo": "Celebrate finished products and artistic expression"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Art gallery walk: admire everyone's 'beau' creations and practice appreciation in French.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students frustrated with art skills or materials",
+        "then": "Focus on effort and creativity, provide easier materials, emphasize personal expression"
+      },
+      "realWorldConnection": "Art is a universal language that complements verbal communication",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Cuisiner et goûter",
+      "oneGoal": "Students will explore French food vocabulary through safe tasting, cooking activities, and cultural exploration (extension/enrichment)",
+      "duration": 45,
+      "keyVocabulary": [
+        "manger",
+        "goûter",
+        "délicieux"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review art and beauty. Pierre puppet is hungry and wants to 'manger' something 'délicieux'!",
+        "materials": [
+          "Pierre puppet",
+          "safe food pictures",
+          "kitchen props",
+          "hygiene supplies"
+        ],
+        "visualSupports": "Eating gestures, delicious expressions, cooking motions, appreciation faces",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Safe food exploration: look at French foods, simple food preparation (mixing, arranging), taste testing with vocabulary. Cultural food discussion with pictures. Kitchen role-play.",
+        "materials": [
+          "safe food samples",
+          "mixing bowls",
+          "utensils",
+          "French food pictures",
+          "cultural food books"
+        ],
+        "visualSupports": "Safe food handling demonstration, tasting expressions, cultural food appreciation",
+        "decisionPoints": [
+          {
+            "question": "How do we accommodate dietary restrictions and preferences?",
+            "ifYes": "Provide multiple options and respect all dietary needs",
+            "ifNo": "Use pictures and pretend food for inclusive experience"
+          },
+          {
+            "question": "Should we prepare food or use pictures and props?",
+            "ifYes": "Use safest approach that maximizes engagement and learning",
+            "ifNo": "Balance real and pretend food experiences"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Food appreciation circle: share something 'délicieux' we discovered and practice gratitude in French.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students with food anxieties or dietary restrictions feeling excluded",
+        "then": "Use inclusive alternatives, focus on cultural appreciation, emphasize choice and comfort"
+      },
+      "realWorldConnection": "Food brings families and communities together across all cultures",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Musique et mouvement",
+      "oneGoal": "Students will explore French through music, rhythm, and coordinated movement activities (extension/enrichment)",
+      "duration": 45,
+      "keyVocabulary": [
+        "musique",
+        "bouger",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review delicious experiences. Pierre puppet hears 'musique' and wants everyone to 'bouger ensemble'!",
+        "materials": [
+          "Pierre puppet",
+          "musical instruments",
+          "French music recordings",
+          "rhythm scarves"
+        ],
+        "visualSupports": "Musical conducting gestures, moving together motions, rhythm demonstration",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Musical exploration stations: instruments with French vocabulary, movement to French songs, rhythm games with counting, partner dancing. Create class song with familiar vocabulary.",
+        "materials": [
+          "simple instruments",
+          "music player",
+          "movement props",
+          "rhythm cards",
+          "recording device"
+        ],
+        "visualSupports": "Demonstrate musical movements, encourage creative expression, model group coordination",
+        "decisionPoints": [
+          {
+            "question": "How does music enhance or challenge student attention?",
+            "ifYes": "Use music strategically to support focus and engagement",
+            "ifNo": "Adjust volume, tempo, or complexity to match student needs"
+          },
+          {
+            "question": "Should we use recorded music or create our own sounds?",
+            "ifYes": "Use approach that most engages students and supports learning",
+            "ifNo": "Balance both recorded and created music experiences"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Musical goodbye: create class rhythm with French vocabulary words and 'bouger ensemble' finale.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students overwhelmed by noise or unable to coordinate movements",
+        "then": "Use quieter music, simpler movements, provide quiet participation options"
+      },
+      "realWorldConnection": "Music and movement are joyful ways people celebrate and communicate in every culture",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Notre célébration française",
+      "oneGoal": "Students will celebrate their French learning journey through showcase activities, reflection, and community sharing (extension/enrichment)",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébrer",
+        "fier",
+        "réussir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review musical joy. Pierre puppet announces it's time to 'célébrer' because everyone should feel 'fier' of their French learning!",
+        "materials": [
+          "Pierre puppet",
+          "celebration decorations",
+          "learning portfolio pictures",
+          "certificate template"
+        ],
+        "visualSupports": "Celebration gestures, proud expressions, achievement recognition motions",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Learning celebration showcase: students choose favorite activities from 20 lessons to demonstrate. French learning portfolio sharing. Celebration activities with all vocabulary. Community appreciation circle.",
+        "materials": [
+          "portfolio materials",
+          "showcase props from all lessons",
+          "celebration supplies",
+          "camera for memories"
+        ],
+        "visualSupports": "Supportive celebration gestures, achievement recognition, community appreciation expressions",
+        "decisionPoints": [
+          {
+            "question": "How do we honor each student's unique learning journey?",
+            "ifYes": "Celebrate individual progress and different learning styles",
+            "ifNo": "Focus on group achievements and shared experiences"
+          },
+          {
+            "question": "Should celebration be classroom-focused or include families?",
+            "ifYes": "Include families if possible for broader community celebration",
+            "ifNo": "Keep celebration intimate and classroom-focused"
+          }
+        ],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Final celebration circle: each student shares one French word they love and we 'réussir' together with a big group hug!",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students sad about ending or feeling they didn't learn enough",
+        "then": "Focus on continuation, celebrate all growth, emphasize ongoing French journey"
+      },
+      "realWorldConnection": "Celebrating learning achievements builds confidence and motivation for continued language exploration",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Vocabulaire",
+        "items": [
+          "Démontre une compréhension de base en vocabulaire",
+          "Participe activement aux activités de vocabulaire",
+          "Montre du progrès dans vocabulaire",
+          "Applique les apprentissages de vocabulaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Communication orale",
+        "items": [
+          "Démontre une compréhension de base en communication orale",
+          "Participe activement aux activités de communication orale",
+          "Montre du progrès dans communication orale",
+          "Applique les apprentissages de communication orale dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Participation",
+        "items": [
+          "Démontre une compréhension de base en participation",
+          "Participe activement aux activités de participation",
+          "Montre du progrès dans participation",
+          "Applique les apprentissages de participation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Compréhension",
+        "items": [
+          "Démontre une compréhension de base en compréhension",
+          "Participe activement aux activités de compréhension",
+          "Montre du progrès dans compréhension",
+          "Applique les apprentissages de compréhension dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Vocabulaire",
+        "Communication orale",
+        "Participation",
+        "Compréhension"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "😊",
+          "😐",
+          "😟"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en français\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nBonjour, mes amis!, Je m'appelle..., Les couleurs magiques, Mes premiers nombres, Ma famille française\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nIl est normal et bénéfique que votre enfant mélange les langues à la maison.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nMerci pour votre soutien continu dans l'apprentissage du français!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Lecture ensemble",
+        "description": "Lisez des livres en français ou en anglais sur le thème de l'unité",
+        "timeRequired": "15 minutes",
+        "materials": "Livres de la bibliothèque",
+        "frenchSupport": "Les livres bilingues sont excellents!"
+      },
+      {
+        "title": "Jeu de mots",
+        "description": "Jouez à des jeux simples avec les nouveaux mots (mémoire, devinettes)",
+        "timeRequired": "10 minutes",
+        "materials": "Cartes de vocabulaire maison",
+        "frenchSupport": "Mélanger les langues est normal et utile"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "bonjour",
+        "lesson": 1,
+        "context": "Bonjour, mes amis!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bonjour\"",
+          "Utilisez \"bonjour\" dans une phrase simple",
+          "Trouvez des images représentant \"bonjour\"",
+          "Faites des gestes pour \"bonjour\""
+        ]
+      },
+      {
+        "word": "au revoir",
+        "lesson": 1,
+        "context": "Bonjour, mes amis!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"au revoir\"",
+          "Utilisez \"au revoir\" dans une phrase simple",
+          "Trouvez des images représentant \"au revoir\"",
+          "Faites des gestes pour \"au revoir\""
+        ]
+      },
+      {
+        "word": "merci",
+        "lesson": 1,
+        "context": "Bonjour, mes amis!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"merci\"",
+          "Utilisez \"merci\" dans une phrase simple",
+          "Trouvez des images représentant \"merci\"",
+          "Faites des gestes pour \"merci\""
+        ]
+      },
+      {
+        "word": "je",
+        "lesson": 2,
+        "context": "Je m'appelle...",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"je\"",
+          "Utilisez \"je\" dans une phrase simple",
+          "Trouvez des images représentant \"je\"",
+          "Faites des gestes pour \"je\""
+        ]
+      },
+      {
+        "word": "m'appelle",
+        "lesson": 2,
+        "context": "Je m'appelle...",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"m'appelle\"",
+          "Utilisez \"m'appelle\" dans une phrase simple",
+          "Trouvez des images représentant \"m'appelle\"",
+          "Faites des gestes pour \"m'appelle\""
+        ]
+      },
+      {
+        "word": "comment",
+        "lesson": 2,
+        "context": "Je m'appelle...",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"comment\"",
+          "Utilisez \"comment\" dans une phrase simple",
+          "Trouvez des images représentant \"comment\"",
+          "Faites des gestes pour \"comment\""
+        ]
+      },
+      {
+        "word": "rouge",
+        "lesson": 3,
+        "context": "Les couleurs magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rouge\"",
+          "Utilisez \"rouge\" dans une phrase simple",
+          "Trouvez des images représentant \"rouge\"",
+          "Faites des gestes pour \"rouge\""
+        ]
+      },
+      {
+        "word": "bleu",
+        "lesson": 3,
+        "context": "Les couleurs magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bleu\"",
+          "Utilisez \"bleu\" dans une phrase simple",
+          "Trouvez des images représentant \"bleu\"",
+          "Faites des gestes pour \"bleu\""
+        ]
+      },
+      {
+        "word": "jaune",
+        "lesson": 3,
+        "context": "Les couleurs magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jaune\"",
+          "Utilisez \"jaune\" dans une phrase simple",
+          "Trouvez des images représentant \"jaune\"",
+          "Faites des gestes pour \"jaune\""
+        ]
+      },
+      {
+        "word": "un",
+        "lesson": 4,
+        "context": "Mes premiers nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"un\"",
+          "Utilisez \"un\" dans une phrase simple",
+          "Trouvez des images représentant \"un\"",
+          "Faites des gestes pour \"un\""
+        ]
+      },
+      {
+        "word": "deux",
+        "lesson": 4,
+        "context": "Mes premiers nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"deux\"",
+          "Utilisez \"deux\" dans une phrase simple",
+          "Trouvez des images représentant \"deux\"",
+          "Faites des gestes pour \"deux\""
+        ]
+      },
+      {
+        "word": "trois",
+        "lesson": 4,
+        "context": "Mes premiers nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"trois\"",
+          "Utilisez \"trois\" dans une phrase simple",
+          "Trouvez des images représentant \"trois\"",
+          "Faites des gestes pour \"trois\""
+        ]
+      },
+      {
+        "word": "maman",
+        "lesson": 5,
+        "context": "Ma famille française",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"maman\"",
+          "Utilisez \"maman\" dans une phrase simple",
+          "Trouvez des images représentant \"maman\"",
+          "Faites des gestes pour \"maman\""
+        ]
+      },
+      {
+        "word": "papa",
+        "lesson": 5,
+        "context": "Ma famille française",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"papa\"",
+          "Utilisez \"papa\" dans une phrase simple",
+          "Trouvez des images représentant \"papa\"",
+          "Faites des gestes pour \"papa\""
+        ]
+      },
+      {
+        "word": "famille",
+        "lesson": 5,
+        "context": "Ma famille française",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"famille\"",
+          "Utilisez \"famille\" dans une phrase simple",
+          "Trouvez des images représentant \"famille\"",
+          "Faites des gestes pour \"famille\""
+        ]
+      },
+      {
+        "word": "chat",
+        "lesson": 6,
+        "context": "Les animaux amusants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chat\"",
+          "Utilisez \"chat\" dans une phrase simple",
+          "Trouvez des images représentant \"chat\"",
+          "Faites des gestes pour \"chat\""
+        ]
+      },
+      {
+        "word": "chien",
+        "lesson": 6,
+        "context": "Les animaux amusants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chien\"",
+          "Utilisez \"chien\" dans une phrase simple",
+          "Trouvez des images représentant \"chien\"",
+          "Faites des gestes pour \"chien\""
+        ]
+      },
+      {
+        "word": "oiseau",
+        "lesson": 6,
+        "context": "Les animaux amusants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"oiseau\"",
+          "Utilisez \"oiseau\" dans une phrase simple",
+          "Trouvez des images représentant \"oiseau\"",
+          "Faites des gestes pour \"oiseau\""
+        ]
+      },
+      {
+        "word": "tête",
+        "lesson": 7,
+        "context": "Mes parties du corps",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tête\"",
+          "Utilisez \"tête\" dans une phrase simple",
+          "Trouvez des images représentant \"tête\"",
+          "Faites des gestes pour \"tête\""
+        ]
+      },
+      {
+        "word": "main",
+        "lesson": 7,
+        "context": "Mes parties du corps",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"main\"",
+          "Utilisez \"main\" dans une phrase simple",
+          "Trouvez des images représentant \"main\"",
+          "Faites des gestes pour \"main\""
+        ]
+      },
+      {
+        "word": "pied",
+        "lesson": 7,
+        "context": "Mes parties du corps",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pied\"",
+          "Utilisez \"pied\" dans une phrase simple",
+          "Trouvez des images représentant \"pied\"",
+          "Faites des gestes pour \"pied\""
+        ]
+      },
+      {
+        "word": "crayon",
+        "lesson": 8,
+        "context": "Les objets de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"crayon\"",
+          "Utilisez \"crayon\" dans une phrase simple",
+          "Trouvez des images représentant \"crayon\"",
+          "Faites des gestes pour \"crayon\""
+        ]
+      },
+      {
+        "word": "livre",
+        "lesson": 8,
+        "context": "Les objets de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"livre\"",
+          "Utilisez \"livre\" dans une phrase simple",
+          "Trouvez des images représentant \"livre\"",
+          "Faites des gestes pour \"livre\""
+        ]
+      },
+      {
+        "word": "table",
+        "lesson": 8,
+        "context": "Les objets de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"table\"",
+          "Utilisez \"table\" dans une phrase simple",
+          "Trouvez des images représentant \"table\"",
+          "Faites des gestes pour \"table\""
+        ]
+      },
+      {
+        "word": "j'aime",
+        "lesson": 9,
+        "context": "J'aime et je n'aime pas",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"j'aime\"",
+          "Utilisez \"j'aime\" dans une phrase simple",
+          "Trouvez des images représentant \"j'aime\"",
+          "Faites des gestes pour \"j'aime\""
+        ]
+      },
+      {
+        "word": "non",
+        "lesson": 9,
+        "context": "J'aime et je n'aime pas",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"non\"",
+          "Utilisez \"non\" dans une phrase simple",
+          "Trouvez des images représentant \"non\"",
+          "Faites des gestes pour \"non\""
+        ]
+      },
+      {
+        "word": "oui",
+        "lesson": 9,
+        "context": "J'aime et je n'aime pas",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"oui\"",
+          "Utilisez \"oui\" dans une phrase simple",
+          "Trouvez des images représentant \"oui\"",
+          "Faites des gestes pour \"oui\""
+        ]
+      },
+      {
+        "word": "marcher",
+        "lesson": 10,
+        "context": "Les actions quotidiennes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"marcher\"",
+          "Utilisez \"marcher\" dans une phrase simple",
+          "Trouvez des images représentant \"marcher\"",
+          "Faites des gestes pour \"marcher\""
+        ]
+      },
+      {
+        "word": "sauter",
+        "lesson": 10,
+        "context": "Les actions quotidiennes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sauter\"",
+          "Utilisez \"sauter\" dans une phrase simple",
+          "Trouvez des images représentant \"sauter\"",
+          "Faites des gestes pour \"sauter\""
+        ]
+      },
+      {
+        "word": "danser",
+        "lesson": 10,
+        "context": "Les actions quotidiennes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"danser\"",
+          "Utilisez \"danser\" dans une phrase simple",
+          "Trouvez des images représentant \"danser\"",
+          "Faites des gestes pour \"danser\""
+        ]
+      },
+      {
+        "word": "soleil",
+        "lesson": 11,
+        "context": "Les saisons et météo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"soleil\"",
+          "Utilisez \"soleil\" dans une phrase simple",
+          "Trouvez des images représentant \"soleil\"",
+          "Faites des gestes pour \"soleil\""
+        ]
+      },
+      {
+        "word": "pluie",
+        "lesson": 11,
+        "context": "Les saisons et météo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pluie\"",
+          "Utilisez \"pluie\" dans une phrase simple",
+          "Trouvez des images représentant \"pluie\"",
+          "Faites des gestes pour \"pluie\""
+        ]
+      },
+      {
+        "word": "automne",
+        "lesson": 11,
+        "context": "Les saisons et météo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"automne\"",
+          "Utilisez \"automne\" dans une phrase simple",
+          "Trouvez des images représentant \"automne\"",
+          "Faites des gestes pour \"automne\""
+        ]
+      },
+      {
+        "word": "heureux",
+        "lesson": 12,
+        "context": "Mes émotions en français",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"heureux\"",
+          "Utilisez \"heureux\" dans une phrase simple",
+          "Trouvez des images représentant \"heureux\"",
+          "Faites des gestes pour \"heureux\""
+        ]
+      },
+      {
+        "word": "triste",
+        "lesson": 12,
+        "context": "Mes émotions en français",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"triste\"",
+          "Utilisez \"triste\" dans une phrase simple",
+          "Trouvez des images représentant \"triste\"",
+          "Faites des gestes pour \"triste\""
+        ]
+      },
+      {
+        "word": "fatigué",
+        "lesson": 12,
+        "context": "Mes émotions en français",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"fatigué\"",
+          "Utilisez \"fatigué\" dans une phrase simple",
+          "Trouvez des images représentant \"fatigué\"",
+          "Faites des gestes pour \"fatigué\""
+        ]
+      },
+      {
+        "word": "matin",
+        "lesson": 13,
+        "context": "Notre routine française",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"matin\"",
+          "Utilisez \"matin\" dans une phrase simple",
+          "Trouvez des images représentant \"matin\"",
+          "Faites des gestes pour \"matin\""
+        ]
+      },
+      {
+        "word": "midi",
+        "lesson": 13,
+        "context": "Notre routine française",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"midi\"",
+          "Utilisez \"midi\" dans une phrase simple",
+          "Trouvez des images représentant \"midi\"",
+          "Faites des gestes pour \"midi\""
+        ]
+      },
+      {
+        "word": "soir",
+        "lesson": 13,
+        "context": "Notre routine française",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"soir\"",
+          "Utilisez \"soir\" dans une phrase simple",
+          "Trouvez des images représentant \"soir\"",
+          "Faites des gestes pour \"soir\""
+        ]
+      },
+      {
+        "word": "présenter",
+        "lesson": 14,
+        "context": "Ma petite présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"présenter\"",
+          "Utilisez \"présenter\" dans une phrase simple",
+          "Trouvez des images représentant \"présenter\"",
+          "Faites des gestes pour \"présenter\""
+        ]
+      },
+      {
+        "word": "montrer",
+        "lesson": 14,
+        "context": "Ma petite présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"montrer\"",
+          "Utilisez \"montrer\" dans une phrase simple",
+          "Trouvez des images représentant \"montrer\"",
+          "Faites des gestes pour \"montrer\""
+        ]
+      },
+      {
+        "word": "écouter",
+        "lesson": 14,
+        "context": "Ma petite présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écouter\"",
+          "Utilisez \"écouter\" dans une phrase simple",
+          "Trouvez des images représentant \"écouter\"",
+          "Faites des gestes pour \"écouter\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

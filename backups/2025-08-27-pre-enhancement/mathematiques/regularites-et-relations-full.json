@@ -1,0 +1,2024 @@
+{
+  "unitTitle": "Régularités et relations",
+  "subject": "Mathématiques",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Découverte des motifs autour de nous",
+      "oneGoal": "Les élèves reconnaissent des motifs simples dans leur environnement immédiat",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "motif",
+        "répéter",
+        "même"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Promenade des motifs: Explorer la classe pour trouver des motifs (carreaux, rayures, points). 'Regardez partout! Les motifs sont cachés!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Chasse aux motifs: Équipes explorent avec loupes pour documenter motifs trouvés. Dessiner ou photographier découvertes. Créer galerie de motifs de classe.",
+        "materials": [],
+        "visualSupports": "Affiches de motifs simples, exemples visuels clairs",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Partage des trésors: Chaque équipe présente son motif préféré trouvé. 'Qu'est-ce qui se répète?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion: revenir à motifs très simples (AB). Si dispersion: recentrer avec objets fascinants.",
+        "then": ""
+      },
+      "realWorldConnection": "Motifs sur les vêtements, papier peint à la maison, carrelage",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Construire des motifs simples",
+      "oneGoal": "Les élèves créent des motifs AB avec des blocs et objets concrets",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "construire",
+        "alterner",
+        "suivant"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Révision énergique: 'Hier nous avons trouvé des motifs! Aujourd'hui nous en créons!' Montrer modèle rouge-bleu-rouge-bleu.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Ateliers de construction: Station 1 - Tours AB avec blocs. Station 2 - Colliers AB avec perles. Station 3 - Lignes AB avec jetons. Rotation toutes les 8 minutes.",
+        "materials": [],
+        "visualSupports": "Cartes modèles AB, code couleur pour chaque station",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie de motifs: Exposer créations et inviter commentaires. 'Quel motif continue le mieux?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si motifs incorrects: remodéliser ensemble. Si frustration: simplifier avec seulement deux objets.",
+        "then": ""
+      },
+      "realWorldConnection": "Ranger jouets en alternance, décorer avec motifs",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Motifs sonores et corporels",
+      "oneGoal": "Les élèves explorent des motifs à travers sons, rythmes et mouvements",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "rythme",
+        "son",
+        "mouvement"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Échauffement rythmique: 'Clap-clap-stomp, clap-clap-stomp' avec mouvements corporels expressifs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration multi-sensorielle: Créer motifs avec voix (fort-doux), corps (saut-marche), instruments (tambour-cloche). Enregistrer créations musicales.",
+        "materials": [],
+        "visualSupports": "Cartes de gestes, symboles pour sons forts/doux",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Concert de motifs: Chaque groupe présente son motif sonore. Audience devine le motif.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si cacophonie: établir règles de tour de rôle. Si timidité: commencer par groupes entiers.",
+        "then": ""
+      },
+      "realWorldConnection": "Chansons avec motifs, marcher en rythme, battement de cœur",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Trier et classer nos trésors",
+      "oneGoal": "Les élèves trient objets selon un attribut et expliquent leur règle de classification",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "trier",
+        "groupe",
+        "règle",
+        "attribut"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Mystère du tri: Présenter boîte mélangée d'objets. 'Comment pouvons-nous organiser tout cela?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Défis de tri: Trier par couleur, forme, taille, texture. Expliquer choix de tri. Deviner règle de tri d'un partenaire. Créer nouveau système de tri original.",
+        "materials": [],
+        "visualSupports": "Cercles de tri colorés, cartes d'attributs, exemples de classifications",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Jeu 'Devine ma règle': Un élève trie, les autres devinent la règle utilisée.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion: utiliser seulement deux groupes évidents. Si désaccords: valider différentes façons de trier.",
+        "then": ""
+      },
+      "realWorldConnection": "Ranger jouets par type, trier vêtements, organiser matériel scolaire",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Prédire la suite des motifs",
+      "oneGoal": "Les élèves prédisent l'élément suivant dans des séquences simples",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "prédire",
+        "suivant",
+        "après"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Jeu de devinette: Montrer début de motif 'rouge-bleu-rouge-?' Suspense: 'Qu'est-ce qui vient ensuite?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Détectives de motifs: Compléter motifs interrompus. Prédire suite avec confidence. Vérifier prédictions. Créer motifs pour défier camarades.",
+        "materials": [],
+        "visualSupports": "Cartes avec points d'interrogation, flèches de direction, tableau de réponses",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de prédiction: Chacun propose motif, classe prédit ensemble l'élément suivant.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si erreurs fréquentes: ralentir et remodéliser. Si manque de confiance: célébrer toutes les tentatives.",
+        "then": ""
+      },
+      "realWorldConnection": "Deviner la suite d'une chanson, prédire les activités quotidiennes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Motifs complexes ABC",
+      "oneGoal": "Les élèves créent et continuent des motifs à trois éléments",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "trois",
+        "cycle",
+        "recommencer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Évolution des motifs: Réviser AB, puis révéler 'Aujourd'hui: rouge-bleu-vert-rouge-bleu-vert!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Défis ABC: Construire motifs à trois éléments. Transformer motifs AB en ABC. Inventer motifs ABC originaux. Enseigner motif à un partenaire.",
+        "materials": [],
+        "visualSupports": "Cartes modèles ABC, code couleur pour séquences, lignes de construction",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Exposition ABC: Présenter créations et expliquer la 'règle de trois' de leur motif.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si surcharge cognitive: décomposer en étapes plus petites. Si erreurs: remodéliser patiemment.",
+        "then": ""
+      },
+      "realWorldConnection": "Feux de circulation (rouge-jaune-vert), motifs sur tissus complexes",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Motifs dans la nature",
+      "oneGoal": "Les élèves découvrent et documentent des motifs naturels",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nature",
+        "découvrir",
+        "observer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Préparation d'explorateurs: 'La nature est pleine de motifs secrets! Devenons des détectives nature!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Expédition nature: Explorer extérieur pour motifs (feuilles, fleurs, écorce, nuages). Dessiner découvertes. Créer collection de motifs naturels. Comparer avec motifs artificiels.",
+        "materials": [],
+        "visualSupports": "Guide de motifs naturels, carnet d'exploration structuré",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Musée nature: Exposer trouvailles et discuter 'Pourquoi la nature fait-elle des motifs?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si pas de trouvailles: pointer motifs évidents. Si distraction: recentrer sur mission d'exploration.",
+        "then": ""
+      },
+      "realWorldConnection": "Jardinage, promenades en famille, observation des saisons",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Réparer des motifs brisés",
+      "oneGoal": "Les élèves identifient et corrigent des erreurs dans des motifs",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "erreur",
+        "réparer",
+        "corriger"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Alerte motifs brisés: 'Oh non! Des motifs sont cassés! Nous sommes les réparateurs de motifs!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Clinique de réparation: Diagnostiquer erreurs dans motifs présentés. Expliquer où est le problème. Proposer corrections. Vérifier réparations avec partenaire.",
+        "materials": [],
+        "visualSupports": "Cartes diagnostiques, outils de réparation visuels, avant/après",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Certificat de réparateur: Célébrer succès et remettre 'diplômes de réparateurs de motifs'.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration avec détection: donner indices plus évidents. Si corrections incorrectes: modéliser ensemble.",
+        "then": ""
+      },
+      "realWorldConnection": "Corriger erreurs dans rangement, réparer objets cassés",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Comparer et contraster des motifs",
+      "oneGoal": "Les élèves comparent différents motifs et expliquent leurs similarités et différences",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "comparer",
+        "similaire",
+        "différent",
+        "famille"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Jeu des jumeaux: Présenter motifs similaires. 'Sont-ils identiques ou différents? Comment le savez-vous?'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Laboratoire de comparaison: Analyser paires de motifs. Identifier points communs et différences. Classer motifs par familles. Créer motifs 'cousins' (similaires mais pas identiques).",
+        "materials": [],
+        "visualSupports": "Tableaux Venn simples, cartes de comparaison, codes couleur",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie de familles: Exposer groupes de motifs similaires et expliquer liens de parenté.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion: revenir à comparaisons très simples. Si manque de vocabulaire: modéliser descriptions.",
+        "then": ""
+      },
+      "realWorldConnection": "Comparer vêtements similaires, différentes sortes de chiens",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Créer des motifs personnels",
+      "oneGoal": "Les élèves inventent leurs propres motifs uniques et les partagent",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "créer",
+        "unique",
+        "personnel"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Inspiration créative: 'Vous êtes maintenant des artistes de motifs! Créez quelque chose que personne n'a jamais vu!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Atelier création libre: Inventer motifs personnels uniques. Utiliser couleurs, formes, textures préférées. Documenter dans cahier personnel. Enseigner motif à quelqu'un d'autre.",
+        "materials": [],
+        "visualSupports": "Galerie d'inspiration, matériaux organisés par type, exemples de créativité",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Vernissage personnel: Chaque artiste présente sa création unique et explique son inspiration.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si blocage créatif: offrir inspiration ou commencer ensemble. Si perfectionnisme: célébrer processus créatif.",
+        "then": ""
+      },
+      "realWorldConnection": "Décorer sa chambre, créer cartes personnalisées, art familial",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Motifs cachés - résolution de mystères",
+      "oneGoal": "Les élèves résolvent des défis complexes de motifs partiellement cachés",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "mystère",
+        "révéler",
+        "déduire"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Mission secrète: 'Agents secrets, des motifs sont cachés dans des codes mystérieux! Mission: les décoder!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Enquêtes de motifs: Résoudre motifs avec parties couvertes. Utiliser indices pour prédire parties cachées. Créer cartes mystère pour défier camarades. Documenter méthodes de résolution.",
+        "materials": [],
+        "visualSupports": "Cartes avec révélations progressives, outils d'investigation, tableaux de déduction",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Rapport d'agents: Présenter résolutions et expliquer méthodes de déduction utilisées.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration: offrir révélations partielles. Si trop facile: masquer plus d'éléments.",
+        "then": ""
+      },
+      "realWorldConnection": "Jeux de devinettes, puzzles, résolution de problèmes quotidiens",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Motifs temporels et calendriers",
+      "oneGoal": "Les élèves explorent des motifs dans le temps: jours, semaines, saisons",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "temps",
+        "jour",
+        "semaine",
+        "cycle"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Voyage dans le temps: 'Les motifs ne sont pas que dans l'espace, ils sont aussi dans le TEMPS!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration temporelle: Identifier motifs dans semaine (lundi-mardi-...). Observer motifs météo. Créer calendrier personnel avec motifs d'activités. Prédire motifs futurs.",
+        "materials": [],
+        "visualSupports": "Calendriers colorés, cartes temporelles, graphiques de routine",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Prophètes du temps: Prédire motifs de demain, semaine prochaine, saison suivante.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion temporelle: ancrer dans expérience quotidienne. Si concepts abstraits: utiliser matériel concret.",
+        "then": ""
+      },
+      "realWorldConnection": "Routine quotidienne, emploi du temps scolaire, saisons de l'année",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Représenter des motifs de multiples façons",
+      "oneGoal": "Les élèves montrent le même motif avec différents matériaux et méthodes",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "représenter",
+        "transformer",
+        "équivalent"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Transformation magique: 'Un motif peut se transformer! Regardez ce rouge-bleu devenir fort-doux!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Métamorphoses créatives: Transformer motif visuel en sonore. Créer même motif avec corps, objets, couleurs. Photographier motifs dans différents contextes. Explorer équivalences créatives.",
+        "materials": [],
+        "visualSupports": "Tableaux de transformation, exemples de métamorphoses, guides de création",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Festival de métamorphoses: Présenter transformations et expliquer connexions entre versions.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si confusion conceptuelle: revenir au motif original. Si blocage créatif: offrir inspirations variées.",
+        "then": ""
+      },
+      "realWorldConnection": "Même chanson avec différents instruments, histoire racontée/dessinée",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Portfolio de régularités - évaluation",
+      "oneGoal": "Les élèves démontrent leur compréhension des motifs dans un portfolio complet",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "portfolio",
+        "démontrer",
+        "réfléchir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Célébration des experts: 'Vous êtes maintenant des experts en motifs! Montrez tous vos talents!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Création de portfolio: Documenter meilleurs exemples de motifs créés. Inclure découvertes naturelles, créations personnelles, résolutions de mystères. Auto-évaluation avec critères simples.",
+        "materials": [],
+        "visualSupports": "Critères d'évaluation visuels, exemples de portfolios excellents, guides de réflexion",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie des experts: Exposition des portfolios et partage des fiertés personnelles.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si anxiété évaluative: rassurer sur célébration des progrès. Si perfectionnisme: valoriser effort et créativité.",
+        "then": ""
+      },
+      "realWorldConnection": "Album photo familial, collection personnelle organisée",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Art et motifs décoratifs",
+      "oneGoal": "Les élèves créent des œuvres artistiques en utilisant des motifs décoratifs",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "art",
+        "décoratif",
+        "esthétique"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Inspiration artistique: Explorer œuvres d'art avec motifs. 'Les artistes utilisent les motifs pour rendre leurs œuvres belles!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Atelier d'art décoratif: Créer bordures à motifs, papiers peints personnalisés, tissus décorés. Expérimenter avec tampons, pochoirs, techniques d'impression. Combiner motifs multiples.",
+        "materials": [],
+        "visualSupports": "Galerie d'art avec motifs, techniques démontrées, palettes de couleurs",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Vernissage décoratif: Exposer créations artistiques et apprécier diversité esthétique.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si frustration technique: simplifier méthodes. Si résultats décevants: valoriser processus créatif.",
+        "then": ""
+      },
+      "realWorldConnection": "Décoration de la maison, cartes faites main, arts et artisanat",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Motifs musicaux et compositons rythmiques",
+      "oneGoal": "Les élèves composent musique simple basée sur motifs rythmiques",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "musique",
+        "rythme",
+        "composer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Concert d'ouverture: Écouter motifs dans musiques familières. 'La musique est pleine de motifs qui se répètent!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Compositeurs en herbe: Créer rythmes à motifs avec instruments. Enregistrer compositions personnelles. Diriger orchestre de classe. Inventer notations visuelles pour motifs.",
+        "materials": [],
+        "visualSupports": "Partitions avec symboles, cartes rythmiques, conducteur visuel",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Festival musical: Concert de compositions originales avec applaudissements rythmés.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si cacophonie: établir règles de tour de rôle. Si timidité musicale: commencer par accompagnement simple.",
+        "then": ""
+      },
+      "realWorldConnection": "Chansons familiales, instruments à la maison, concerts",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Motifs culturels du monde",
+      "oneGoal": "Les élèves explorent motifs traditionnels de différentes cultures",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "culture",
+        "tradition",
+        "monde"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Voyage culturel: 'Partons en voyage! Chaque culture du monde a ses motifs spéciaux!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration culturelle: Examiner motifs de différents continents. Reproduire motifs traditionnels simples. Discuter significations culturelles. Créer motif 'fusion' personnel.",
+        "materials": [],
+        "visualSupports": "Atlas de motifs culturels, exemples authentiques, carte du monde interactive",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Festival mondial: Partager motifs créés et apprécier diversité culturelle des motifs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si stéréotypes culturels: corriger avec respect. Si motifs trop complexes: adapter au niveau.",
+        "then": ""
+      },
+      "realWorldConnection": "Vêtements familiaux traditionnels, voyages, diversité communautaire",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Motifs architecturaux et constructions",
+      "oneGoal": "Les élèves découvrent motifs dans bâtiments et créent structures décoratives",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "architecture",
+        "bâtiment",
+        "structure"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Architectes en herbe: 'Les bâtiments aussi ont des motifs! Regardons notre école comme des architectes!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration architecturale: Observer motifs dans bâtiment scolaire. Construire structures avec motifs répétitifs. Dessiner plans avec motifs décoratifs. Créer maquettes de maisons à motifs.",
+        "materials": [],
+        "visualSupports": "Photos architecturales, plans simples, exemples de motifs structurels",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Exposition architecturale: Présenter créations et expliquer choix de motifs décoratifs.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si constructions s'effondrent: encourager persistance et aide mutuelle. Si manque d'inspiration: montrer plus d'exemples.",
+        "then": ""
+      },
+      "realWorldConnection": "Observer bâtiments en famille, LEGO à la maison, dessins de maisons",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Recherche de motifs dans les livres",
+      "oneGoal": "Les élèves identifient motifs narratifs et visuels dans littérature",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "histoire",
+        "répéter",
+        "prédire"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Détectives littéraires: 'Les histoires aussi ont des motifs cachés! Trouvons-les ensemble!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Investigation littéraire: Identifier phrases répétitives dans histoires. Reconnaître motifs visuels dans illustrations. Prédire répétitions narratives. Créer histoire simple avec motifs.",
+        "materials": [],
+        "visualSupports": "Histoires avec motifs évidents, tableaux de documentation, cartes narratives",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de conteurs: Partager histoires créées et souligner motifs inventés.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si attention difficile: choisir histoires plus courtes. Si création bloquée: offrir amorces narratives.",
+        "then": ""
+      },
+      "realWorldConnection": "Histoires familiales, comptines, lectures personnelles",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration des motifs - festival créatif",
+      "oneGoal": "Les élèves célèbrent apprentissages en présentant créations à la communauté",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "célébrer",
+        "partager",
+        "enseigner"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Ouverture festive: 'Bienvenue au Festival des Motifs! Célébrons tous nos apprentissages merveilleux!'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Festival multi-stations: Exposition de tous les portfolios et créations. Démonstrations interactives pour visiteurs. Performances musicales de motifs. Ateliers où élèves enseignent aux invités.",
+        "materials": [],
+        "visualSupports": "Exposition organisée, panneaux explicatifs, démonstrations visuelles",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de fierté finale: Remise de certificats et partage des plus grandes fiertés d'apprentissage.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Si sur-stimulation: créer zones calmes. Si manque de confiance: célébrer chaque contribution.",
+        "then": ""
+      },
+      "realWorldConnection": "Fêtes familiales, présentations à la famille, partage de talents",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Résolution de problèmes",
+        "items": [
+          "Démontre une compréhension de base en résolution de problèmes",
+          "Participe activement aux activités de résolution de problèmes",
+          "Montre du progrès dans résolution de problèmes",
+          "Applique les apprentissages de résolution de problèmes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Manipulation",
+        "items": [
+          "Démontre une compréhension de base en manipulation",
+          "Participe activement aux activités de manipulation",
+          "Montre du progrès dans manipulation",
+          "Applique les apprentissages de manipulation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Vocabulaire mathématique",
+        "items": [
+          "Démontre une compréhension de base en vocabulaire mathématique",
+          "Participe activement aux activités de vocabulaire mathématique",
+          "Montre du progrès dans vocabulaire mathématique",
+          "Applique les apprentissages de vocabulaire mathématique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Représentation",
+        "items": [
+          "Démontre une compréhension de base en représentation",
+          "Participe activement aux activités de représentation",
+          "Montre du progrès dans représentation",
+          "Applique les apprentissages de représentation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - Régularités et relations",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Résolution de problèmes",
+        "Manipulation",
+        "Vocabulaire mathématique",
+        "Représentation"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "✓",
+          "~",
+          "?"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Régularités et relations\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en mathématiques\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nDécouverte des motifs autour de nous, Construire des motifs simples, Motifs sonores et corporels, Trier et classer nos trésors, Prédire la suite des motifs\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nUtilisez les moments quotidiens pour pratiquer les mathématiques (compter, mesurer, etc.)\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLes mathématiques sont partout dans notre vie quotidienne!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Mathématiques en cuisine",
+        "description": "Comptez, mesurez et comparez en préparant des collations",
+        "timeRequired": "Pendant la préparation des repas",
+        "materials": "Ingrédients de cuisine",
+        "frenchSupport": "Utilisez les nombres en français si possible"
+      },
+      {
+        "title": "Jeux de société mathématiques",
+        "description": "Jouez à des jeux impliquant compter, additionner ou reconnaître des formes",
+        "timeRequired": "20 minutes",
+        "materials": "Jeux de société, dés, cartes",
+        "frenchSupport": "Comptez ensemble en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "motif",
+        "lesson": 1,
+        "context": "Découverte des motifs autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"motif\"",
+          "Utilisez \"motif\" dans une phrase simple",
+          "Trouvez des images représentant \"motif\"",
+          "Faites des gestes pour \"motif\""
+        ]
+      },
+      {
+        "word": "répéter",
+        "lesson": 1,
+        "context": "Découverte des motifs autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"répéter\"",
+          "Utilisez \"répéter\" dans une phrase simple",
+          "Trouvez des images représentant \"répéter\"",
+          "Faites des gestes pour \"répéter\""
+        ]
+      },
+      {
+        "word": "même",
+        "lesson": 1,
+        "context": "Découverte des motifs autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"même\"",
+          "Utilisez \"même\" dans une phrase simple",
+          "Trouvez des images représentant \"même\"",
+          "Faites des gestes pour \"même\""
+        ]
+      },
+      {
+        "word": "construire",
+        "lesson": 2,
+        "context": "Construire des motifs simples",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"construire\"",
+          "Utilisez \"construire\" dans une phrase simple",
+          "Trouvez des images représentant \"construire\"",
+          "Faites des gestes pour \"construire\""
+        ]
+      },
+      {
+        "word": "alterner",
+        "lesson": 2,
+        "context": "Construire des motifs simples",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"alterner\"",
+          "Utilisez \"alterner\" dans une phrase simple",
+          "Trouvez des images représentant \"alterner\"",
+          "Faites des gestes pour \"alterner\""
+        ]
+      },
+      {
+        "word": "suivant",
+        "lesson": 2,
+        "context": "Construire des motifs simples",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"suivant\"",
+          "Utilisez \"suivant\" dans une phrase simple",
+          "Trouvez des images représentant \"suivant\"",
+          "Faites des gestes pour \"suivant\""
+        ]
+      },
+      {
+        "word": "rythme",
+        "lesson": 3,
+        "context": "Motifs sonores et corporels",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rythme\"",
+          "Utilisez \"rythme\" dans une phrase simple",
+          "Trouvez des images représentant \"rythme\"",
+          "Faites des gestes pour \"rythme\""
+        ]
+      },
+      {
+        "word": "son",
+        "lesson": 3,
+        "context": "Motifs sonores et corporels",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"son\"",
+          "Utilisez \"son\" dans une phrase simple",
+          "Trouvez des images représentant \"son\"",
+          "Faites des gestes pour \"son\""
+        ]
+      },
+      {
+        "word": "mouvement",
+        "lesson": 3,
+        "context": "Motifs sonores et corporels",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mouvement\"",
+          "Utilisez \"mouvement\" dans une phrase simple",
+          "Trouvez des images représentant \"mouvement\"",
+          "Faites des gestes pour \"mouvement\""
+        ]
+      },
+      {
+        "word": "trier",
+        "lesson": 4,
+        "context": "Trier et classer nos trésors",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"trier\"",
+          "Utilisez \"trier\" dans une phrase simple",
+          "Trouvez des images représentant \"trier\"",
+          "Faites des gestes pour \"trier\""
+        ]
+      },
+      {
+        "word": "groupe",
+        "lesson": 4,
+        "context": "Trier et classer nos trésors",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"groupe\"",
+          "Utilisez \"groupe\" dans une phrase simple",
+          "Trouvez des images représentant \"groupe\"",
+          "Faites des gestes pour \"groupe\""
+        ]
+      },
+      {
+        "word": "règle",
+        "lesson": 4,
+        "context": "Trier et classer nos trésors",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"règle\"",
+          "Utilisez \"règle\" dans une phrase simple",
+          "Trouvez des images représentant \"règle\"",
+          "Faites des gestes pour \"règle\""
+        ]
+      },
+      {
+        "word": "attribut",
+        "lesson": 4,
+        "context": "Trier et classer nos trésors",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"attribut\"",
+          "Utilisez \"attribut\" dans une phrase simple",
+          "Trouvez des images représentant \"attribut\"",
+          "Faites des gestes pour \"attribut\""
+        ]
+      },
+      {
+        "word": "prédire",
+        "lesson": 5,
+        "context": "Prédire la suite des motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"prédire\"",
+          "Utilisez \"prédire\" dans une phrase simple",
+          "Trouvez des images représentant \"prédire\"",
+          "Faites des gestes pour \"prédire\""
+        ]
+      },
+      {
+        "word": "après",
+        "lesson": 5,
+        "context": "Prédire la suite des motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"après\"",
+          "Utilisez \"après\" dans une phrase simple",
+          "Trouvez des images représentant \"après\"",
+          "Faites des gestes pour \"après\""
+        ]
+      },
+      {
+        "word": "trois",
+        "lesson": 6,
+        "context": "Motifs complexes ABC",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"trois\"",
+          "Utilisez \"trois\" dans une phrase simple",
+          "Trouvez des images représentant \"trois\"",
+          "Faites des gestes pour \"trois\""
+        ]
+      },
+      {
+        "word": "cycle",
+        "lesson": 6,
+        "context": "Motifs complexes ABC",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cycle\"",
+          "Utilisez \"cycle\" dans une phrase simple",
+          "Trouvez des images représentant \"cycle\"",
+          "Faites des gestes pour \"cycle\""
+        ]
+      },
+      {
+        "word": "recommencer",
+        "lesson": 6,
+        "context": "Motifs complexes ABC",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"recommencer\"",
+          "Utilisez \"recommencer\" dans une phrase simple",
+          "Trouvez des images représentant \"recommencer\"",
+          "Faites des gestes pour \"recommencer\""
+        ]
+      },
+      {
+        "word": "nature",
+        "lesson": 7,
+        "context": "Motifs dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nature\"",
+          "Utilisez \"nature\" dans une phrase simple",
+          "Trouvez des images représentant \"nature\"",
+          "Faites des gestes pour \"nature\""
+        ]
+      },
+      {
+        "word": "découvrir",
+        "lesson": 7,
+        "context": "Motifs dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"découvrir\"",
+          "Utilisez \"découvrir\" dans une phrase simple",
+          "Trouvez des images représentant \"découvrir\"",
+          "Faites des gestes pour \"découvrir\""
+        ]
+      },
+      {
+        "word": "observer",
+        "lesson": 7,
+        "context": "Motifs dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"observer\"",
+          "Utilisez \"observer\" dans une phrase simple",
+          "Trouvez des images représentant \"observer\"",
+          "Faites des gestes pour \"observer\""
+        ]
+      },
+      {
+        "word": "erreur",
+        "lesson": 8,
+        "context": "Réparer des motifs brisés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"erreur\"",
+          "Utilisez \"erreur\" dans une phrase simple",
+          "Trouvez des images représentant \"erreur\"",
+          "Faites des gestes pour \"erreur\""
+        ]
+      },
+      {
+        "word": "réparer",
+        "lesson": 8,
+        "context": "Réparer des motifs brisés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réparer\"",
+          "Utilisez \"réparer\" dans une phrase simple",
+          "Trouvez des images représentant \"réparer\"",
+          "Faites des gestes pour \"réparer\""
+        ]
+      },
+      {
+        "word": "corriger",
+        "lesson": 8,
+        "context": "Réparer des motifs brisés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"corriger\"",
+          "Utilisez \"corriger\" dans une phrase simple",
+          "Trouvez des images représentant \"corriger\"",
+          "Faites des gestes pour \"corriger\""
+        ]
+      },
+      {
+        "word": "comparer",
+        "lesson": 9,
+        "context": "Comparer et contraster des motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"comparer\"",
+          "Utilisez \"comparer\" dans une phrase simple",
+          "Trouvez des images représentant \"comparer\"",
+          "Faites des gestes pour \"comparer\""
+        ]
+      },
+      {
+        "word": "similaire",
+        "lesson": 9,
+        "context": "Comparer et contraster des motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"similaire\"",
+          "Utilisez \"similaire\" dans une phrase simple",
+          "Trouvez des images représentant \"similaire\"",
+          "Faites des gestes pour \"similaire\""
+        ]
+      },
+      {
+        "word": "différent",
+        "lesson": 9,
+        "context": "Comparer et contraster des motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"différent\"",
+          "Utilisez \"différent\" dans une phrase simple",
+          "Trouvez des images représentant \"différent\"",
+          "Faites des gestes pour \"différent\""
+        ]
+      },
+      {
+        "word": "famille",
+        "lesson": 9,
+        "context": "Comparer et contraster des motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"famille\"",
+          "Utilisez \"famille\" dans une phrase simple",
+          "Trouvez des images représentant \"famille\"",
+          "Faites des gestes pour \"famille\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 10,
+        "context": "Créer des motifs personnels",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "unique",
+        "lesson": 10,
+        "context": "Créer des motifs personnels",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"unique\"",
+          "Utilisez \"unique\" dans une phrase simple",
+          "Trouvez des images représentant \"unique\"",
+          "Faites des gestes pour \"unique\""
+        ]
+      },
+      {
+        "word": "personnel",
+        "lesson": 10,
+        "context": "Créer des motifs personnels",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"personnel\"",
+          "Utilisez \"personnel\" dans une phrase simple",
+          "Trouvez des images représentant \"personnel\"",
+          "Faites des gestes pour \"personnel\""
+        ]
+      },
+      {
+        "word": "mystère",
+        "lesson": 11,
+        "context": "Motifs cachés - résolution de mystères",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mystère\"",
+          "Utilisez \"mystère\" dans une phrase simple",
+          "Trouvez des images représentant \"mystère\"",
+          "Faites des gestes pour \"mystère\""
+        ]
+      },
+      {
+        "word": "révéler",
+        "lesson": 11,
+        "context": "Motifs cachés - résolution de mystères",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"révéler\"",
+          "Utilisez \"révéler\" dans une phrase simple",
+          "Trouvez des images représentant \"révéler\"",
+          "Faites des gestes pour \"révéler\""
+        ]
+      },
+      {
+        "word": "déduire",
+        "lesson": 11,
+        "context": "Motifs cachés - résolution de mystères",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"déduire\"",
+          "Utilisez \"déduire\" dans une phrase simple",
+          "Trouvez des images représentant \"déduire\"",
+          "Faites des gestes pour \"déduire\""
+        ]
+      },
+      {
+        "word": "temps",
+        "lesson": 12,
+        "context": "Motifs temporels et calendriers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"temps\"",
+          "Utilisez \"temps\" dans une phrase simple",
+          "Trouvez des images représentant \"temps\"",
+          "Faites des gestes pour \"temps\""
+        ]
+      },
+      {
+        "word": "jour",
+        "lesson": 12,
+        "context": "Motifs temporels et calendriers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jour\"",
+          "Utilisez \"jour\" dans une phrase simple",
+          "Trouvez des images représentant \"jour\"",
+          "Faites des gestes pour \"jour\""
+        ]
+      },
+      {
+        "word": "semaine",
+        "lesson": 12,
+        "context": "Motifs temporels et calendriers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"semaine\"",
+          "Utilisez \"semaine\" dans une phrase simple",
+          "Trouvez des images représentant \"semaine\"",
+          "Faites des gestes pour \"semaine\""
+        ]
+      },
+      {
+        "word": "représenter",
+        "lesson": 13,
+        "context": "Représenter des motifs de multiples façons",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"représenter\"",
+          "Utilisez \"représenter\" dans une phrase simple",
+          "Trouvez des images représentant \"représenter\"",
+          "Faites des gestes pour \"représenter\""
+        ]
+      },
+      {
+        "word": "transformer",
+        "lesson": 13,
+        "context": "Représenter des motifs de multiples façons",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"transformer\"",
+          "Utilisez \"transformer\" dans une phrase simple",
+          "Trouvez des images représentant \"transformer\"",
+          "Faites des gestes pour \"transformer\""
+        ]
+      },
+      {
+        "word": "équivalent",
+        "lesson": 13,
+        "context": "Représenter des motifs de multiples façons",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"équivalent\"",
+          "Utilisez \"équivalent\" dans une phrase simple",
+          "Trouvez des images représentant \"équivalent\"",
+          "Faites des gestes pour \"équivalent\""
+        ]
+      },
+      {
+        "word": "portfolio",
+        "lesson": 14,
+        "context": "Portfolio de régularités - évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"portfolio\"",
+          "Utilisez \"portfolio\" dans une phrase simple",
+          "Trouvez des images représentant \"portfolio\"",
+          "Faites des gestes pour \"portfolio\""
+        ]
+      },
+      {
+        "word": "démontrer",
+        "lesson": 14,
+        "context": "Portfolio de régularités - évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"démontrer\"",
+          "Utilisez \"démontrer\" dans une phrase simple",
+          "Trouvez des images représentant \"démontrer\"",
+          "Faites des gestes pour \"démontrer\""
+        ]
+      },
+      {
+        "word": "réfléchir",
+        "lesson": 14,
+        "context": "Portfolio de régularités - évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réfléchir\"",
+          "Utilisez \"réfléchir\" dans une phrase simple",
+          "Trouvez des images représentant \"réfléchir\"",
+          "Faites des gestes pour \"réfléchir\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

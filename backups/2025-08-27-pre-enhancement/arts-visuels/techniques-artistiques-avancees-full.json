@@ -1,0 +1,1626 @@
+{
+  "unitTitle": "",
+  "subject": "Arts visuels",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Outils d'artiste professionnel",
+      "oneGoal": "Students will explore and safely use professional art tools",
+      "duration": 45,
+      "keyVocabulary": [
+        "outil",
+        "professionnel",
+        "sécurité"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Mystery tool exploration: Show professional art tools (palette knives, brayers, fine brushes, sculpting tools) in covered containers. Students guess what each tool does. Introduce vocabulary: OUTIL (show tool gesture), PROFESSIONNEL (formal, careful handling), SÉCURITÉ (safe handling demonstration).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Professional art tools (palette knives, brayers, detail brushes, sculpting tools)",
+          "Practice materials for each tool",
+          "Safety guidelines poster",
+          "Tool storage organization"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Professional Artist Role-Play. Students choose their favorite professional tool and demonstrate proper use to 'art students' (classmates). Practice vocabulary: 'Cet outil professionnel fait...' Emphasize safety and skill.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Tool study without handling: Use pictures and videos of professional artists using tools, practice vocabulary and safety concepts without physical tool use."
+      },
+      "realWorldConnection": "Understanding that artists use special tools, like how doctors, builders, or chefs have professional tools",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Mélange des médiums",
+      "oneGoal": "Students will combine different art materials in single artworks",
+      "duration": 45,
+      "keyVocabulary": [
+        "mélanger",
+        "médium",
+        "combinaison"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Show examples of mixed media artworks. Identify different materials used together: paint + collage, crayon + watercolor, etc. Introduce vocabulary: MÉLANGER (mixing gesture), MÉDIUM (hold up different materials), COMBINAISON (bringing hands together).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Variety of art materials (paints, crayons, markers, collage materials, pastels)",
+          "Planning sheets",
+          "Mixed media paper",
+          "Demonstration examples"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Mixed Media Gallery Walk. Display all mixed media works. Students identify different mediums used in each artwork. Practice vocabulary: 'Je vois une combinaison de...' Discuss which combinations were most effective.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Mixed media planning: Use magazines and art materials to plan mixed media combinations without creating full artworks, focusing on vocabulary and combination concepts."
+      },
+      "realWorldConnection": "Mixing different ingredients in cooking, combining different materials in building projects",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Techniques de peinture avancées",
+      "oneGoal": "Students will master advanced painting techniques beyond basic brushwork",
+      "duration": 45,
+      "keyVocabulary": [
+        "technique",
+        "éponge",
+        "pochoir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Compare basic brush painting to advanced techniques using demonstrations. Show sponge painting, stencil work, palette knife techniques. Introduce vocabulary: TECHNIQUE (skillful gesture), ÉPONGE (dabbing motion), POCHOIR (stencil demonstration).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Various sponges for painting",
+          "Stencils (commercial and handmade)",
+          "Palette knives",
+          "Paints suitable for advanced techniques",
+          "Practice papers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Technique Showcase. Students demonstrate their best advanced technique to classmates. Explain process: 'Ma technique avancée utilise...' Compare effects achieved with different techniques.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Technique analysis: Study photos and videos of advanced painting techniques, practice vocabulary and technique identification without hands-on painting."
+      },
+      "realWorldConnection": "Watching house painters use different techniques, seeing how artists create different effects",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Sculpture et modelage",
+      "oneGoal": "Students will create three-dimensional artworks using various sculpting materials",
+      "duration": 45,
+      "keyVocabulary": [
+        "sculpture",
+        "modelage",
+        "forme"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Explore 3D vs 2D concepts using simple objects and pictures. Handle sculptures vs looking at paintings. Introduce vocabulary: SCULPTURE (3D gesture with hands), MODELAGE (shaping clay motion), FORME (outline 3D shapes in air).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Various clay types",
+          "Sculpting tools from Lesson 1",
+          "Found objects for assemblage",
+          "Soft carving materials (soap, foam)",
+          "Workspace protection"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Sculpture Gallery. Display 3D works so they can be viewed from all angles. Students walk around sculptures, describing what they see from different viewpoints. Practice 3D vocabulary.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "3D construction with classroom materials: Use blocks, boxes, and other classroom items to explore 3D construction concepts and practice vocabulary."
+      },
+      "realWorldConnection": "Playing with playdough, building with blocks, shaping sand castles",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Gravure et impression",
+      "oneGoal": "Students will create multiple copies of artworks using printmaking techniques",
+      "duration": 45,
+      "keyVocabulary": [
+        "gravure",
+        "impression",
+        "multiples"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Demonstrate concept of making multiple copies: stamp a simple design multiple times. Compare to unique artworks vs prints. Introduce vocabulary: GRAVURE (carving motion), IMPRESSION (printing press motion), MULTIPLES (counting copies).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Printmaking materials (foam plates, cardboard, cutting tools)",
+          "Printing ink or paint",
+          "Printing paper",
+          "Brayers for ink application",
+          "Printing press or spoons"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Print Exhibition and Trading. Display print series. Students can trade prints with each other since multiple copies exist. Discuss how printmaking allows sharing artwork. Practice printmaking vocabulary.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Print analysis and planning: Study different types of prints, plan printmaking designs on paper, practice vocabulary without actual printing process."
+      },
+      "realWorldConnection": "Stamps, copying machines, printed books and newspapers",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Collage sophistiqué",
+      "oneGoal": "Students will create complex collages using advanced layering and composition",
+      "duration": 45,
+      "keyVocabulary": [
+        "collage",
+        "couche",
+        "composition"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Compare simple collages to sophisticated examples. Identify layers, composition principles, intentional material choices. Introduce vocabulary: COLLAGE (layering gesture), COUCHE (layer-building motion), COMPOSITION (arranging gesture).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Variety of sophisticated collage materials (textured papers, transparencies, fabrics)",
+          "Quality adhesives",
+          "Cutting tools",
+          "Large format papers",
+          "Planning sketches"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Collage Critique Session. Students present their sophisticated collages, explaining layering and compositional choices. Use advanced vocabulary: 'Ma composition utilise des couches pour...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Collage analysis and planning: Study sophisticated collages in art books or online, plan complex collages on paper using drawing and vocabulary practice."
+      },
+      "realWorldConnection": "Magazine layouts, scrapbooks, mood boards, advertising design",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Art textile",
+      "oneGoal": "Students will explore fiber arts including weaving, stitching, and fabric manipulation",
+      "duration": 45,
+      "keyVocabulary": [
+        "textile",
+        "tisser",
+        "coudre"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Explore different textiles: woven vs knitted vs sewn. Feel different fabric textures and structures. Introduce vocabulary: TEXTILE (fabric touching motion), TISSER (weaving motion with fingers), COUDRE (stitching motion).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Simple weaving looms or cardboard frames",
+          "Yarn and fabric strips",
+          "Large, safe needles",
+          "Felt and burlap for stitching",
+          "Variety of fabrics for manipulation"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Textile Arts Appreciation. Display textile creations and discuss how textile arts connect to clothing, decoration, and cultural traditions. Practice textile vocabulary in context.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Textile exploration without tools: Examine different fabrics and textiles, practice vocabulary, plan textile art projects using drawing and fabric samples."
+      },
+      "realWorldConnection": "Clothing construction, quilts, traditional crafts, home decoration",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Techniques mixtes",
+      "oneGoal": "Students will combine multiple advanced techniques in single complex artworks",
+      "duration": 45,
+      "keyVocabulary": [
+        "mixte",
+        "complexe",
+        "intégrer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review all advanced techniques learned in previous lessons. Show examples of artworks combining multiple techniques. Introduce vocabulary: MIXTE (combining gesture), COMPLEXE (layered complexity gesture), INTÉGRER (integration motion).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "All materials from previous advanced technique lessons",
+          "Large format paper or canvas",
+          "Planning sheets",
+          "Documentation cameras",
+          "Complex artwork examples"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Complex Artwork Presentation. Students present their multi-technique works, explaining how different techniques were integrated. Use sophisticated vocabulary to describe complex creative decisions.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Integration planning and analysis: Plan multi-technique artworks on paper, analyze complex artworks by other artists, practice integration vocabulary without full creation."
+      },
+      "realWorldConnection": "Professional artists combining many techniques, complex craft projects",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Style personnel avancé",
+      "oneGoal": "Students will develop and articulate their own advanced artistic style",
+      "duration": 45,
+      "keyVocabulary": [
+        "style",
+        "personnel",
+        "développer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look at students' artwork from throughout the unit. Identify patterns in their choices: favorite techniques, colors, subjects, approaches. Introduce vocabulary: STYLE (distinctive gesture), PERSONNEL (point to self), DÉVELOPPER (growth motion).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Student artwork portfolios from entire unit",
+          "Art creation materials matching individual preferences",
+          "Style documentation sheets",
+          "Recording equipment for style statements"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Personal Style Gallery. Display newest artworks that emphasize individual styles. Students present style statements and point out style elements in their work. Celebrate artistic individuality.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Style study without creation: Analyze famous artists' styles, identify style elements in artwork reproduction, practice style vocabulary through analysis activities."
+      },
+      "realWorldConnection": "Recognizing that everyone has their own way of creating and expressing",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Art conceptuel",
+      "oneGoal": "Students will create artworks that express specific ideas or concepts",
+      "duration": 45,
+      "keyVocabulary": [
+        "concept",
+        "idée",
+        "exprimer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss difference between decorative art and conceptual art. Show examples of art that expresses ideas vs art that's purely visual. Introduce vocabulary: CONCEPT (thinking gesture), IDÉE (lightbulb gesture), EXPRIMER (expression gestures).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "All advanced technique materials from previous lessons",
+          "Concept planning sheets",
+          "Idea development templates",
+          "Examples of concept-technique connections"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Conceptual Art Presentations. Students present artworks and explain concepts being expressed. Audience tries to 'read' concepts in artwork. Practice vocabulary: 'Cette œuvre exprime le concept de...'",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Conceptual planning without creation: Develop concept-to-technique plans on paper, analyze conceptual artworks, practice conceptual vocabulary through planning exercises."
+      },
+      "realWorldConnection": "Understanding that art can express feelings, ideas, and messages",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Critique d'art",
+      "oneGoal": "Students will analyze and critique artworks using advanced vocabulary",
+      "duration": 45,
+      "keyVocabulary": [
+        "critique",
+        "analyser",
+        "vocabulaire"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Introduce art criticism as learning tool, not just opinion sharing. Practice constructive criticism vs destructive criticism. Introduce vocabulary: CRITIQUE (analytical thinking gesture), ANALYSER (close examination motion), VOCABULAIRE (words/speaking gesture).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Advanced art vocabulary lists",
+          "Critique question templates",
+          "Student artworks for analysis",
+          "Professional artwork examples",
+          "Critique recording sheets"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Critique Reflection. Students reflect on criticism received and given. Discuss how critique helps artistic growth. Practice vocabulary: 'La critique m'aide à...' Plan how to use critique for improvement.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Critique practice with reproductions: Practice critique skills using famous artworks or art reproductions, focusing on vocabulary development and analytical thinking."
+      },
+      "realWorldConnection": "Discussing movies, books, music - expressing opinions about creative works",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Processus créatif",
+      "oneGoal": "Students will understand and document their own creative process",
+      "duration": 45,
+      "keyVocabulary": [
+        "processus",
+        "créatif",
+        "documenter"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss how they created their best artwork: what steps, what decisions, what changes. Introduce vocabulary: PROCESSUS (step-by-step motion), CRÉATIF (creative thinking gesture), DOCUMENTER (recording/writing motion).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Documentation tools (cameras, recording devices, notebooks)",
+          "Art materials for new creation",
+          "Process analysis templates",
+          "Process documentation examples"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Process Sharing. Students share insights about their creative processes. Compare different approaches. Discuss how understanding process helps improve art-making. Celebrate process diversity.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Process analysis without new creation: Analyze creative processes used in previous artworks, discuss creative decision-making, practice process vocabulary through reflection."
+      },
+      "realWorldConnection": "Understanding how they learn and create in all areas of life",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Collaboration artistique avancée",
+      "oneGoal": "Students will collaborate on complex artworks requiring advanced technical skills",
+      "duration": 45,
+      "keyVocabulary": [
+        "collaboration",
+        "avancé",
+        "technique"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss how professional artists collaborate: sharing expertise, dividing complex tasks, combining different strengths. Introduce vocabulary: COLLABORATION (working together gesture), AVANCÉ (sophisticated level gesture), TECHNIQUE (skillful demonstration).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "All advanced technique materials from unit",
+          "Large format collaborative workspace",
+          "Role assignment tools",
+          "Collaboration planning templates"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Collaborative Artwork Presentation. Groups present artworks and explain how different advanced techniques were contributed by different collaborators. Celebrate successful artistic teamwork.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Collaboration planning without creation: Plan complex collaborative artworks on paper, assign roles, practice collaboration vocabulary through planning exercises."
+      },
+      "realWorldConnection": "Professional artists working together, family projects requiring different skills",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Installation artistique",
+      "oneGoal": "Students will create large-scale installations using advanced techniques",
+      "duration": 45,
+      "keyVocabulary": [
+        "installation",
+        "échelle",
+        "espace"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Experience difference between small artworks and large installations. Walk through or around large classroom arrangement. Introduce vocabulary: INSTALLATION (environmental gesture), ÉCHELLE (scale comparison), ESPACE (space-defining gesture).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "Large installation space",
+          "Advanced technique materials scaled up",
+          "Installation planning tools",
+          "Spatial measurement tools"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Installation Experience. Walk through completed installation as viewers. Discuss how large scale and spatial relationships affect artistic experience. Practice installation vocabulary.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Installation planning and analysis: Plan installations on paper or in miniature, analyze famous installations, practice installation vocabulary through planning exercises."
+      },
+      "realWorldConnection": "Museum installations, public art, themed room decoration",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Maîtrise technique",
+      "oneGoal": "Students will demonstrate mastery of chosen advanced techniques",
+      "duration": 45,
+      "keyVocabulary": [
+        "maîtrise",
+        "démontrer",
+        "choisi"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review all advanced techniques learned in unit. Students identify which techniques they feel most confident using. Introduce vocabulary: MAÎTRISE (mastery demonstration), DÉMONTRER (showing/proving gesture), CHOISI (choice-making gesture).",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "",
+        "materials": [
+          "All advanced technique materials",
+          "High-quality art materials for mastery work",
+          "Documentation tools",
+          "Artist statement templates"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Mastery Exhibition. Present mastery artworks with formal artist statements. Celebrate individual technical growth and achievement. Practice mastery vocabulary in formal presentation context.",
+        "materials": [],
+        "visualSupports": "",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": "Mastery planning and analysis: Plan mastery demonstrations on paper, analyze technical mastery in professional artworks, practice mastery vocabulary through self-assessment."
+      },
+      "realWorldConnection": "Showing what they've learned, like performing a piano piece or demonstrating sports skills",
+      "differentiation": {
+        "forStruggling": [],
+        "forAdvanced": [],
+        "forELL": [],
+        "forIEP": []
+      },
+      "assessmentCriteria": {
+        "observable": [],
+        "checkpoints": []
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Créativité",
+        "items": [
+          "Démontre une compréhension de base en créativité",
+          "Participe activement aux activités de créativité",
+          "Montre du progrès dans créativité",
+          "Applique les apprentissages de créativité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Utilisation des matériaux",
+        "items": [
+          "Démontre une compréhension de base en utilisation des matériaux",
+          "Participe activement aux activités de utilisation des matériaux",
+          "Montre du progrès dans utilisation des matériaux",
+          "Applique les apprentissages de utilisation des matériaux dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Appréciation artistique",
+        "items": [
+          "Démontre une compréhension de base en appréciation artistique",
+          "Participe activement aux activités de appréciation artistique",
+          "Montre du progrès dans appréciation artistique",
+          "Applique les apprentissages de appréciation artistique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Créativité",
+        "Utilisation des matériaux",
+        "Expression personnelle",
+        "Appréciation artistique"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🎨",
+          "🖌️",
+          "✏️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en arts visuels\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nOutils d'artiste professionnel, Mélange des médiums, Techniques de peinture avancées, Sculpture et modelage, Gravure et impression\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nValorisez le processus créatif autant que le produit final.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Création artistique libre",
+        "description": "Créez de l'art ensemble en utilisant les techniques apprises",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux d'art disponibles",
+        "frenchSupport": "L'art transcende les langues!"
+      },
+      {
+        "title": "Galerie maison",
+        "description": "Créez un espace pour exposer les créations de votre enfant",
+        "timeRequired": "10 minutes",
+        "materials": "Espace mural ou table",
+        "frenchSupport": "Demandez à votre enfant d'expliquer ses œuvres"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "outil",
+        "lesson": 1,
+        "context": "Outils d'artiste professionnel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"outil\"",
+          "Utilisez \"outil\" dans une phrase simple",
+          "Trouvez des images représentant \"outil\"",
+          "Faites des gestes pour \"outil\""
+        ]
+      },
+      {
+        "word": "professionnel",
+        "lesson": 1,
+        "context": "Outils d'artiste professionnel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"professionnel\"",
+          "Utilisez \"professionnel\" dans une phrase simple",
+          "Trouvez des images représentant \"professionnel\"",
+          "Faites des gestes pour \"professionnel\""
+        ]
+      },
+      {
+        "word": "sécurité",
+        "lesson": 1,
+        "context": "Outils d'artiste professionnel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sécurité\"",
+          "Utilisez \"sécurité\" dans une phrase simple",
+          "Trouvez des images représentant \"sécurité\"",
+          "Faites des gestes pour \"sécurité\""
+        ]
+      },
+      {
+        "word": "mélanger",
+        "lesson": 2,
+        "context": "Mélange des médiums",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mélanger\"",
+          "Utilisez \"mélanger\" dans une phrase simple",
+          "Trouvez des images représentant \"mélanger\"",
+          "Faites des gestes pour \"mélanger\""
+        ]
+      },
+      {
+        "word": "médium",
+        "lesson": 2,
+        "context": "Mélange des médiums",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"médium\"",
+          "Utilisez \"médium\" dans une phrase simple",
+          "Trouvez des images représentant \"médium\"",
+          "Faites des gestes pour \"médium\""
+        ]
+      },
+      {
+        "word": "combinaison",
+        "lesson": 2,
+        "context": "Mélange des médiums",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"combinaison\"",
+          "Utilisez \"combinaison\" dans une phrase simple",
+          "Trouvez des images représentant \"combinaison\"",
+          "Faites des gestes pour \"combinaison\""
+        ]
+      },
+      {
+        "word": "technique",
+        "lesson": 3,
+        "context": "Techniques de peinture avancées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"technique\"",
+          "Utilisez \"technique\" dans une phrase simple",
+          "Trouvez des images représentant \"technique\"",
+          "Faites des gestes pour \"technique\""
+        ]
+      },
+      {
+        "word": "éponge",
+        "lesson": 3,
+        "context": "Techniques de peinture avancées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"éponge\"",
+          "Utilisez \"éponge\" dans une phrase simple",
+          "Trouvez des images représentant \"éponge\"",
+          "Faites des gestes pour \"éponge\""
+        ]
+      },
+      {
+        "word": "pochoir",
+        "lesson": 3,
+        "context": "Techniques de peinture avancées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pochoir\"",
+          "Utilisez \"pochoir\" dans une phrase simple",
+          "Trouvez des images représentant \"pochoir\"",
+          "Faites des gestes pour \"pochoir\""
+        ]
+      },
+      {
+        "word": "sculpture",
+        "lesson": 4,
+        "context": "Sculpture et modelage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sculpture\"",
+          "Utilisez \"sculpture\" dans une phrase simple",
+          "Trouvez des images représentant \"sculpture\"",
+          "Faites des gestes pour \"sculpture\""
+        ]
+      },
+      {
+        "word": "modelage",
+        "lesson": 4,
+        "context": "Sculpture et modelage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"modelage\"",
+          "Utilisez \"modelage\" dans une phrase simple",
+          "Trouvez des images représentant \"modelage\"",
+          "Faites des gestes pour \"modelage\""
+        ]
+      },
+      {
+        "word": "forme",
+        "lesson": 4,
+        "context": "Sculpture et modelage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"forme\"",
+          "Utilisez \"forme\" dans une phrase simple",
+          "Trouvez des images représentant \"forme\"",
+          "Faites des gestes pour \"forme\""
+        ]
+      },
+      {
+        "word": "gravure",
+        "lesson": 5,
+        "context": "Gravure et impression",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"gravure\"",
+          "Utilisez \"gravure\" dans une phrase simple",
+          "Trouvez des images représentant \"gravure\"",
+          "Faites des gestes pour \"gravure\""
+        ]
+      },
+      {
+        "word": "impression",
+        "lesson": 5,
+        "context": "Gravure et impression",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"impression\"",
+          "Utilisez \"impression\" dans une phrase simple",
+          "Trouvez des images représentant \"impression\"",
+          "Faites des gestes pour \"impression\""
+        ]
+      },
+      {
+        "word": "multiples",
+        "lesson": 5,
+        "context": "Gravure et impression",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"multiples\"",
+          "Utilisez \"multiples\" dans une phrase simple",
+          "Trouvez des images représentant \"multiples\"",
+          "Faites des gestes pour \"multiples\""
+        ]
+      },
+      {
+        "word": "collage",
+        "lesson": 6,
+        "context": "Collage sophistiqué",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"collage\"",
+          "Utilisez \"collage\" dans une phrase simple",
+          "Trouvez des images représentant \"collage\"",
+          "Faites des gestes pour \"collage\""
+        ]
+      },
+      {
+        "word": "couche",
+        "lesson": 6,
+        "context": "Collage sophistiqué",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"couche\"",
+          "Utilisez \"couche\" dans une phrase simple",
+          "Trouvez des images représentant \"couche\"",
+          "Faites des gestes pour \"couche\""
+        ]
+      },
+      {
+        "word": "composition",
+        "lesson": 6,
+        "context": "Collage sophistiqué",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"composition\"",
+          "Utilisez \"composition\" dans une phrase simple",
+          "Trouvez des images représentant \"composition\"",
+          "Faites des gestes pour \"composition\""
+        ]
+      },
+      {
+        "word": "textile",
+        "lesson": 7,
+        "context": "Art textile",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"textile\"",
+          "Utilisez \"textile\" dans une phrase simple",
+          "Trouvez des images représentant \"textile\"",
+          "Faites des gestes pour \"textile\""
+        ]
+      },
+      {
+        "word": "tisser",
+        "lesson": 7,
+        "context": "Art textile",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tisser\"",
+          "Utilisez \"tisser\" dans une phrase simple",
+          "Trouvez des images représentant \"tisser\"",
+          "Faites des gestes pour \"tisser\""
+        ]
+      },
+      {
+        "word": "coudre",
+        "lesson": 7,
+        "context": "Art textile",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"coudre\"",
+          "Utilisez \"coudre\" dans une phrase simple",
+          "Trouvez des images représentant \"coudre\"",
+          "Faites des gestes pour \"coudre\""
+        ]
+      },
+      {
+        "word": "mixte",
+        "lesson": 8,
+        "context": "Techniques mixtes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mixte\"",
+          "Utilisez \"mixte\" dans une phrase simple",
+          "Trouvez des images représentant \"mixte\"",
+          "Faites des gestes pour \"mixte\""
+        ]
+      },
+      {
+        "word": "complexe",
+        "lesson": 8,
+        "context": "Techniques mixtes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"complexe\"",
+          "Utilisez \"complexe\" dans une phrase simple",
+          "Trouvez des images représentant \"complexe\"",
+          "Faites des gestes pour \"complexe\""
+        ]
+      },
+      {
+        "word": "intégrer",
+        "lesson": 8,
+        "context": "Techniques mixtes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"intégrer\"",
+          "Utilisez \"intégrer\" dans une phrase simple",
+          "Trouvez des images représentant \"intégrer\"",
+          "Faites des gestes pour \"intégrer\""
+        ]
+      },
+      {
+        "word": "style",
+        "lesson": 9,
+        "context": "Style personnel avancé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"style\"",
+          "Utilisez \"style\" dans une phrase simple",
+          "Trouvez des images représentant \"style\"",
+          "Faites des gestes pour \"style\""
+        ]
+      },
+      {
+        "word": "personnel",
+        "lesson": 9,
+        "context": "Style personnel avancé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"personnel\"",
+          "Utilisez \"personnel\" dans une phrase simple",
+          "Trouvez des images représentant \"personnel\"",
+          "Faites des gestes pour \"personnel\""
+        ]
+      },
+      {
+        "word": "développer",
+        "lesson": 9,
+        "context": "Style personnel avancé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"développer\"",
+          "Utilisez \"développer\" dans une phrase simple",
+          "Trouvez des images représentant \"développer\"",
+          "Faites des gestes pour \"développer\""
+        ]
+      },
+      {
+        "word": "concept",
+        "lesson": 10,
+        "context": "Art conceptuel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"concept\"",
+          "Utilisez \"concept\" dans une phrase simple",
+          "Trouvez des images représentant \"concept\"",
+          "Faites des gestes pour \"concept\""
+        ]
+      },
+      {
+        "word": "idée",
+        "lesson": 10,
+        "context": "Art conceptuel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"idée\"",
+          "Utilisez \"idée\" dans une phrase simple",
+          "Trouvez des images représentant \"idée\"",
+          "Faites des gestes pour \"idée\""
+        ]
+      },
+      {
+        "word": "exprimer",
+        "lesson": 10,
+        "context": "Art conceptuel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"exprimer\"",
+          "Utilisez \"exprimer\" dans une phrase simple",
+          "Trouvez des images représentant \"exprimer\"",
+          "Faites des gestes pour \"exprimer\""
+        ]
+      },
+      {
+        "word": "critique",
+        "lesson": 11,
+        "context": "Critique d'art",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"critique\"",
+          "Utilisez \"critique\" dans une phrase simple",
+          "Trouvez des images représentant \"critique\"",
+          "Faites des gestes pour \"critique\""
+        ]
+      },
+      {
+        "word": "analyser",
+        "lesson": 11,
+        "context": "Critique d'art",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"analyser\"",
+          "Utilisez \"analyser\" dans une phrase simple",
+          "Trouvez des images représentant \"analyser\"",
+          "Faites des gestes pour \"analyser\""
+        ]
+      },
+      {
+        "word": "vocabulaire",
+        "lesson": 11,
+        "context": "Critique d'art",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vocabulaire\"",
+          "Utilisez \"vocabulaire\" dans une phrase simple",
+          "Trouvez des images représentant \"vocabulaire\"",
+          "Faites des gestes pour \"vocabulaire\""
+        ]
+      },
+      {
+        "word": "processus",
+        "lesson": 12,
+        "context": "Processus créatif",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"processus\"",
+          "Utilisez \"processus\" dans une phrase simple",
+          "Trouvez des images représentant \"processus\"",
+          "Faites des gestes pour \"processus\""
+        ]
+      },
+      {
+        "word": "créatif",
+        "lesson": 12,
+        "context": "Processus créatif",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créatif\"",
+          "Utilisez \"créatif\" dans une phrase simple",
+          "Trouvez des images représentant \"créatif\"",
+          "Faites des gestes pour \"créatif\""
+        ]
+      },
+      {
+        "word": "documenter",
+        "lesson": 12,
+        "context": "Processus créatif",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"documenter\"",
+          "Utilisez \"documenter\" dans une phrase simple",
+          "Trouvez des images représentant \"documenter\"",
+          "Faites des gestes pour \"documenter\""
+        ]
+      },
+      {
+        "word": "collaboration",
+        "lesson": 13,
+        "context": "Collaboration artistique avancée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"collaboration\"",
+          "Utilisez \"collaboration\" dans une phrase simple",
+          "Trouvez des images représentant \"collaboration\"",
+          "Faites des gestes pour \"collaboration\""
+        ]
+      },
+      {
+        "word": "avancé",
+        "lesson": 13,
+        "context": "Collaboration artistique avancée",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"avancé\"",
+          "Utilisez \"avancé\" dans une phrase simple",
+          "Trouvez des images représentant \"avancé\"",
+          "Faites des gestes pour \"avancé\""
+        ]
+      },
+      {
+        "word": "installation",
+        "lesson": 14,
+        "context": "Installation artistique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"installation\"",
+          "Utilisez \"installation\" dans une phrase simple",
+          "Trouvez des images représentant \"installation\"",
+          "Faites des gestes pour \"installation\""
+        ]
+      },
+      {
+        "word": "échelle",
+        "lesson": 14,
+        "context": "Installation artistique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"échelle\"",
+          "Utilisez \"échelle\" dans une phrase simple",
+          "Trouvez des images représentant \"échelle\"",
+          "Faites des gestes pour \"échelle\""
+        ]
+      },
+      {
+        "word": "espace",
+        "lesson": 14,
+        "context": "Installation artistique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"espace\"",
+          "Utilisez \"espace\" dans une phrase simple",
+          "Trouvez des images représentant \"espace\"",
+          "Faites des gestes pour \"espace\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}
