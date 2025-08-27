@@ -665,9 +665,14 @@
         "visualSupports": "step-by-step care instruction cards, plant health identification chart",
         "decisionPoints": [
           {
-            "question": "Are students watering appropriately without overwatering?",
-            "ifYes": "Introduce checking soil moisture before watering",
-            "ifNo": "Demonstrate proper water amounts using measuring tools"
+            "question": "Les élèves arrosent-ils correctement sans trop arroser?",
+            "ifYes": "Introduire la vérification de l'humidité du sol avant l'arrosage",
+            "ifNo": "Démontrer les bonnes quantités d'eau avec des outils de mesure"
+          },
+          {
+            "question": "Les élèves comprennent-ils les signes d'une plante en bonne santé?",
+            "ifYes": "Explorer comment identifier les problèmes de plantes précocement",
+            "ifNo": "Montrer des exemples visuels de plantes saines vs malades"
           }
         ],
         "movementBreaks": []
@@ -760,9 +765,14 @@
         "visualSupports": "safe animal interaction chart, local wildlife identification cards",
         "decisionPoints": [
           {
-            "question": "Do students understand safety boundaries with wild animals?",
-            "ifYes": "Explore specific ways to help different types of animals",
-            "ifNo": "Focus on observing animals from distance and asking adults for help"
+            "question": "Les élèves comprennent-ils les limites de sécurité avec les animaux sauvages?",
+            "ifYes": "Explorer des façons spécifiques d'aider différents types d'animaux",
+            "ifNo": "Se concentrer sur l'observation à distance et demander l'aide d'adultes"
+          },
+          {
+            "question": "Les élèves peuvent-ils identifier des moyens sécuritaires d'aider les animaux?",
+            "ifYes": "Discuter de la création d'habitats accueillants dans la cour d'école",
+            "ifNo": "Utiliser des exemples concrets comme laisser de l'eau propre pour les oiseaux"
           }
         ],
         "movementBreaks": []
@@ -857,9 +867,14 @@
         "visualSupports": "planting step-by-step guide, garden layout diagram",
         "decisionPoints": [
           {
-            "question": "Are students planting at appropriate depths for their seed types?",
-            "ifYes": "Have them predict and record expected growth timeline",
-            "ifNo": "Use seed packet instructions to guide proper planting depth"
+            "question": "Les élèves plantent-ils à la bonne profondeur selon le type de graines?",
+            "ifYes": "Leur faire prédire et noter la chronologie de croissance attendue",
+            "ifNo": "Utiliser les instructions des sachets de graines pour guider la profondeur"
+          },
+          {
+            "question": "Les élèves comprennent-ils pourquoi différentes graines ont des besoins différents?",
+            "ifYes": "Explorer comment la taille de la graine affecte la profondeur de plantation",
+            "ifNo": "Comparer visuellement des grosses et petites graines côte à côte"
           }
         ],
         "movementBreaks": []
@@ -953,9 +968,14 @@
         "visualSupports": "measurement technique posters, growth tracking templates",
         "decisionPoints": [
           {
-            "question": "Can students accurately measure plant height using simple tools?",
-            "ifYes": "Introduce comparing growth rates between different plants",
-            "ifNo": "Use non-standard units like paper clips or blocks for easier measurement"
+            "question": "Les élèves peuvent-ils mesurer la hauteur des plantes avec précision?",
+            "ifYes": "Introduire la comparaison des taux de croissance entre différentes plantes",
+            "ifNo": "Utiliser des unités non-standard comme des trombones pour faciliter la mesure"
+          },
+          {
+            "question": "Les élèves voient-ils les changements depuis la dernière observation?",
+            "ifYes": "Discuter des facteurs qui pourraient expliquer la croissance rapide ou lente",
+            "ifNo": "Utiliser des photos 'avant/après' pour rendre les changements plus évidents"
           }
         ],
         "movementBreaks": []
@@ -1047,9 +1067,14 @@
         "visualSupports": "Venn diagram showing overlapping needs, needs comparison posters",
         "decisionPoints": [
           {
-            "question": "Do students recognize similarities between human and animal/plant needs?",
-            "ifYes": "Explore why all living things need similar basic requirements",
-            "ifNo": "Use concrete examples like everyone needing water to drink"
+            "question": "Les élèves reconnaissent-ils les similitudes entre les besoins humains et ceux des animaux/plantes?",
+            "ifYes": "Explorer pourquoi tous les êtres vivants ont des besoins de base similaires",
+            "ifNo": "Utiliser des exemples concrets comme le fait que tout le monde a besoin d'eau"
+          },
+          {
+            "question": "Les élèves peuvent-ils placer correctement les besoins dans le diagramme de Venn?",
+            "ifYes": "Discuter des besoins uniques à chaque groupe (humains, animaux, plantes)",
+            "ifNo": "Se concentrer d'abord sur les besoins universels (eau, air)"
           }
         ],
         "movementBreaks": []
