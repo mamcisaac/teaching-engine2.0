@@ -24,13 +24,13 @@
 | nombres-0-10 | ✅ | ✅ | ✅ | ⬜ | ✅ |
 | formes-2d (formes-geometriques) | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | mesure-non-standard | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| addition-jusqua-10 | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | patterns-repetition | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | resolution-problemes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | nombres-11-20 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | addition-soustraction | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | comparaisons-quantites | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | graphiques-donnees | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| jeux-mathematiques | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### Français (10 units)
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
@@ -134,26 +134,29 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 50  
-**Enhanced**: 3 / 50 (6%)  
-**Translations Fixed**: 3 / 50 (6%)  
-**Decision Points Added**: 3 / 50 (6%)  
-**Materials Specified**: 3 / 50 (6%)  
+**Enhanced**: 4 / 50 (8%)  
+**Translations Fixed**: 4 / 50 (8%)  
+**Decision Points Added**: 4 / 50 (8%)  
+**Materials Specified**: 4 / 50 (8%)  
 **Committed**: 0 / 50 (0%)  
 **Reviewed**: 1 / 50 (2%)
 
 ## 🎯 Current Focus
 
 **Next Unit to Enhance**: mathematiques/patterns-repetition  
-**Recently Completed**: mathematiques/mesure-non-standard (COMPREHENSIVE ENHANCEMENT COMPLETED)
-- ✅ Enhanced ALL 20 lessons with detailed materials specifications (core lessons 1-14 + extension lessons 15-20)
+**Recently Completed**: mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
+- ✅ Enhanced ALL 20 lessons with complete pedagogical elements (core lessons 1-14 + extension lessons 15-20)
 - ✅ Added decision points: 2-3 for lessons 1-5, 1-2 for lessons 6-15, 0-1 for lessons 16-20
 - ✅ Added comprehensive differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) to ALL 20 lessons
 - ✅ Added detailed assessment criteria with observable behaviors and checkpoints for all lessons
 - ✅ Enhanced materials with specific quantities for 20-25 students, school-available only (NO parent donations)
-- ✅ Enhanced visual supports and decision points for measurement activities
-- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson mathematics unit with comprehensive enhancement covering non-standard measurement concepts
+- ✅ Enhanced visual supports and addition-specific pedagogical approaches
+- ✅ Integrated concrete-to-abstract learning progression with manipulatives, ten-frames, and real-world contexts
+- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson mathematics unit with comprehensive enhancement covering addition strategies up to 10
 
-**Previous Completion**: mathematiques/nombres-0-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
+**Previous Completions**: 
+- mathematiques/mesure-non-standard (COMPREHENSIVE ENHANCEMENT COMPLETED)
+- mathematiques/nombres-0-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
 
 ---
 
