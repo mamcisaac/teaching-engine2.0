@@ -29,7 +29,7 @@
 | resolution-problemes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | nombres-11-20 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | addition-soustraction | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| comparaisons-quantites | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| comparaisons-quantites (comparaison) | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | graphiques-donnees | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### Français (10 units)
@@ -134,27 +134,28 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 50  
-**Enhanced**: 4 / 50 (8%)  
-**Translations Fixed**: 4 / 50 (8%)  
-**Decision Points Added**: 4 / 50 (8%)  
-**Materials Specified**: 4 / 50 (8%)  
+**Enhanced**: 5 / 50 (10%)  
+**Translations Fixed**: 5 / 50 (10%)  
+**Decision Points Added**: 5 / 50 (10%)  
+**Materials Specified**: 5 / 50 (10%)  
 **Committed**: 0 / 50 (0%)  
 **Reviewed**: 1 / 50 (2%)
 
 ## 🎯 Current Focus
 
 **Next Unit to Enhance**: mathematiques/patterns-repetition  
-**Recently Completed**: mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
+**Recently Completed**: mathematiques/comparaison (COMPREHENSIVE ENHANCEMENT COMPLETED)
 - ✅ Enhanced ALL 20 lessons with complete pedagogical elements (core lessons 1-14 + extension lessons 15-20)
 - ✅ Added decision points: 2-3 for lessons 1-5, 1-2 for lessons 6-15, 0-1 for lessons 16-20
 - ✅ Added comprehensive differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) to ALL 20 lessons
 - ✅ Added detailed assessment criteria with observable behaviors and checkpoints for all lessons
 - ✅ Enhanced materials with specific quantities for 20-25 students, school-available only (NO parent donations)
-- ✅ Enhanced visual supports and addition-specific pedagogical approaches
-- ✅ Integrated concrete-to-abstract learning progression with manipulatives, ten-frames, and real-world contexts
-- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson mathematics unit with comprehensive enhancement covering addition strategies up to 10
+- ✅ Enhanced visual supports and comparison-specific pedagogical approaches (plus grand que, moins que, égal à)
+- ✅ Integrated comparison pedagogy with concrete manipulatives, balance scales, number lines, and visual comparison tools
+- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson mathematics unit with comprehensive enhancement covering comparison strategies and ordering concepts
 
 **Previous Completions**: 
+- mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
 - mathematiques/mesure-non-standard (COMPREHENSIVE ENHANCEMENT COMPLETED)
 - mathematiques/nombres-0-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
 
