@@ -34,9 +34,10 @@
 | strategies-calcul | ✅ | ✅ | ✅ | ⬜ | ✅ |
 | egalite-celebration | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 
-### Français (10 units)
+### Français (10 units + 1 introductory unit)
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
 |------|--------------|-----------------|-----------|-----------|----------|
+| **bienvenue** *(introductory)* | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | exploration-phonemes-lettres | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | premieres-histoires | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | famille | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -135,18 +136,19 @@ git push origin main
 
 ## 📊 Progress Statistics
 
-**Total Units**: 50  
-**Enhanced**: 10 / 50 (20%) - **MATHEMATICS COMPLETE! 🎉**  
-**Translations Fixed**: 10 / 50 (20%)  
-**Decision Points Added**: 10 / 50 (20%)  
-**Materials Specified**: 10 / 50 (20%)  
-**Committed**: 1 / 50 (2%)  
-**Reviewed**: 2 / 50 (4%)
+**Total Units**: 51 (50 + 1 introductory)  
+**Enhanced**: 11 / 51 (22%) - **MATHEMATICS COMPLETE! 🎉 FRENCH BIENVENUE COMPLETE! 🇫🇷**  
+**Translations Fixed**: 11 / 51 (22%)  
+**Decision Points Added**: 11 / 51 (22%)  
+**Materials Specified**: 11 / 51 (22%)  
+**Committed**: 2 / 51 (4%)  
+**Reviewed**: 2 / 51 (4%)
 
 ## 🎯 Current Focus
 
 **🏆 MATHEMATICS SUBJECT COMPLETE!** All 10 mathematics units enhanced (10/10 = 100%)  
-**Recently Completed**: mathematiques/egalite-celebration (FINAL MATHEMATICS UNIT COMPLETED)
+**🇫🇷 FRENCH BIENVENUE UNIT COMPLETE!** Welcome unit fully enhanced for Grade 1 French Immersion  
+**Recently Completed**: francais/bienvenue (INTRODUCTORY FRENCH UNIT COMPLETED)
 - ✅ Completed comprehensive enhancement of all 20 lessons focusing on equality and mathematical celebration ("égalité", "équal", "même quantité")
 - ✅ Enhanced all 20 lessons with full pedagogical structure: detailed materials, decision points, differentiation, and assessment
 - ✅ Added equality-specific materials with exact quantities for 20-25 students (balances, manipulatives, art supplies, celebration materials)
@@ -156,7 +158,17 @@ git push origin main
 - ✅ Enhanced extension lessons (15-20) with creative applications: mystery equations, family connections, nature patterns, portfolio celebration
 - ✅ Developed comprehensive assessment criteria focusing on equality understanding, mathematical reasoning, and celebration of learning
 - ✅ All materials school-available only (NO parent donations) with practical alternatives for all activities
-- 🔴 **CRITICAL ACHIEVEMENT**: Complete Grade 1 mathematics curriculum (10/10 units) with 200 total lessons enhanced for French Immersion
+- 🔴 **CRITICAL ACHIEVEMENT**: Complete Grade 1 mathematics curriculum (10/10 units) with 200 total lessons enhanced for French Immersion  
+**NEW ACHIEVEMENT**: francais/bienvenue (FRENCH WELCOME UNIT COMPLETED)
+- ✅ Enhanced all 20 lessons of "Bienvenue dans notre classe française!" with comprehensive Grade 1 French Immersion features
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)  
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with French immersion focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available resources only
+- ✅ Strengthened authentic Canadian French connections and cultural elements throughout all activities
+- ✅ Comprehensive assessment criteria added with observable behaviors and checkpoints for French language development
+- ✅ Core lessons (1-14) focus on foundational French: greetings, names, colors, numbers, family, animals, body parts, classroom objects
+- ✅ Extension lessons (15-20) include creative applications: games, stories, art, cooking, music, celebration
+- ✅ Perfect progression for beginning-of-year French immersion with oral communication emphasis and gesture support
 
 **Previous Completions**: 
 - mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
