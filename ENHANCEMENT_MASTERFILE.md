@@ -23,7 +23,7 @@
 |------|--------------|-----------------|-----------|-----------|----------|
 | nombres-0-10 | ✅ | ✅ | ✅ | ⬜ | ✅ |
 | formes-2d (formes-geometriques) | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| mesure-temps | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| mesure-non-standard | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | patterns-repetition | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | resolution-problemes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | nombres-11-20 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -134,24 +134,24 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 50  
-**Enhanced**: 2 / 50 (4%)  
-**Translations Fixed**: 2 / 50 (4%)  
-**Decision Points Added**: 2 / 50 (4%)  
-**Materials Specified**: 2 / 50 (4%)  
+**Enhanced**: 3 / 50 (6%)  
+**Translations Fixed**: 3 / 50 (6%)  
+**Decision Points Added**: 3 / 50 (6%)  
+**Materials Specified**: 3 / 50 (6%)  
 **Committed**: 0 / 50 (0%)  
 **Reviewed**: 1 / 50 (2%)
 
 ## 🎯 Current Focus
 
-**Next Unit to Enhance**: mathematiques/mesure-temps  
-**Recently Completed**: mathematiques/formes-2d (COMPREHENSIVE ENHANCEMENT COMPLETED)
-- ✅ Enhanced lessons 13-20 with detailed materials specifications
-- ✅ Added 1-2 decision points to lessons 13-15, 0-1 to lessons 16-20 (extension lessons)  
-- ✅ Added comprehensive differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) to all 8 lessons
-- ✅ Added detailed assessment criteria with observable behaviors and checkpoints
-- ✅ Enhanced materials with specific quantities for 20-25 students
-- ✅ Added proper visual supports descriptions
-- 🔴 **CRITICAL ACHIEVEMENT**: All 20 lessons now have complete enhanced format with quality template compliance
+**Next Unit to Enhance**: mathematiques/patterns-repetition  
+**Recently Completed**: mathematiques/mesure-non-standard (COMPREHENSIVE ENHANCEMENT COMPLETED)
+- ✅ Enhanced ALL 20 lessons with detailed materials specifications (core lessons 1-14 + extension lessons 15-20)
+- ✅ Added decision points: 2-3 for lessons 1-5, 1-2 for lessons 6-15, 0-1 for lessons 16-20
+- ✅ Added comprehensive differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) to ALL 20 lessons
+- ✅ Added detailed assessment criteria with observable behaviors and checkpoints for all lessons
+- ✅ Enhanced materials with specific quantities for 20-25 students, school-available only (NO parent donations)
+- ✅ Enhanced visual supports and decision points for measurement activities
+- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson mathematics unit with comprehensive enhancement covering non-standard measurement concepts
 
 **Previous Completion**: mathematiques/nombres-0-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
 
