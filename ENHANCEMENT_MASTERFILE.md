@@ -59,8 +59,8 @@
 | materiaux | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | croissance-besoins | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | changements-saisonniers | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| forces-mouvements | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| lumiere-chaleur | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| forces-mouvements | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| lumiere-chaleur | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | eveil-printemps | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | sons-vibrations | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | environnement-partage | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -140,10 +140,10 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 18 / 54 (33%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪**  
-**Translations Fixed**: 18 / 54 (33%)  
-**Decision Points Added**: 18 / 54 (33%)  
-**Materials Specified**: 18 / 54 (33%)  
+**Enhanced**: 20 / 54 (37%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥**  
+**Translations Fixed**: 20 / 54 (37%)  
+**Decision Points Added**: 20 / 54 (37%)  
+**Materials Specified**: 20 / 54 (37%)  
 **Committed**: 3 / 54 (6%)  
 **Reviewed**: 2 / 54 (4%)
 
@@ -151,7 +151,33 @@ git push origin main
 
 **🏆 MATHEMATICS SUBJECT COMPLETE!** All 10 mathematics units enhanced (10/10 = 100%)  
 **🇫🇷 FRENCH BIENVENUE UNIT COMPLETE!** Welcome unit fully enhanced for Grade 1 French Immersion  
-**Recently Completed**: francais/bienvenue (INTRODUCTORY FRENCH UNIT COMPLETED)
+**💡 NEW ACHIEVEMENT**: sciences/lumiere-chaleur (LIGHT & HEAT SCIENCE UNIT COMPLETED) 💡🔥🔬  
+
+**LATEST COMPLETION**: sciences/lumiere-chaleur (LIGHT & HEAT PHYSICS UNIT COMPLETED) 💡🔥
+- ✅ Enhanced "Lumière et chaleur: explorer notre monde lumineux" with comprehensive Grade 1 physics exploration focusing on light sources, shadows, heat sources, and insulation
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with hands-on light and heat science focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available science materials (flashlights, thermometers, insulation materials, mirrors, prisms)
+- ✅ Comprehensive progression from basic light identification to complex heat experiments and energy conservation understanding
+- ✅ Assessment criteria focused on light/heat vocabulary, scientific observation, energy understanding, and physics concept development
+- ✅ Core lessons (1-14) develop physics foundations: light sources, sun energy, shadow creation, shadow experiments, artificial lights, light timing, solar heat, heat sources, insulation, scientific testing, animal adaptations, reflections, color spectrum, science journals
+- ✅ Extension lessons (15-20) include practical applications: energy conservation, global climate comparisons, heating inventions, plant energy needs, science demonstrations, family celebration
+- ✅ Perfect hands-on physics unit with emphasis on energy concepts, scientific experimentation, and real-world energy applications appropriate for Grade 1
+- 🎯 **SIGNIFICANT ACHIEVEMENT**: Successfully enhanced all 20 lessons with complete pedagogical structure, creating comprehensive light and heat foundation for young scientists
+
+**PREVIOUS COMPLETION**: sciences/forces-mouvements (FORCES AND MOVEMENT PHYSICS UNIT COMPLETED) ⚡🏃‍♂️
+- ✅ Enhanced all 20 lessons of "Forces et mouvements" focusing on hands-on physics exploration and simple machines for Grade 1 students
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with hands-on science focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available science materials (toy cars, balls, ramps, levers, pulleys, construction materials)
+- ✅ Comprehensive progression from basic push/pull forces to complex simple machines and engineering projects
+- ✅ Assessment criteria focused on force understanding, scientific observation, engineering thinking, and physics vocabulary development
+- ✅ Core lessons (1-14) develop physics foundations: push/pull forces, strong/weak forces, rolling objects, experiments, surfaces, wheels, levers, ramps, pulleys, simple machine identification, construction projects
+- ✅ Extension lessons (15-20) include engineering applications: machine testing, improvements, forces in games, invention design, student exhibitions, family celebration
+- ✅ Perfect hands-on physics unit with emphasis on engineering design process, scientific experimentation, and real-world problem solving appropriate for Grade 1
+- 🎯 **SIGNIFICANT ACHIEVEMENT**: Successfully enhanced all 20 lessons with complete pedagogical structure, creating comprehensive physics foundation for young learners
+
+**Previously Completed**: francais/bienvenue (INTRODUCTORY FRENCH UNIT COMPLETED)
 - ✅ Completed comprehensive enhancement of all 20 lessons focusing on equality and mathematical celebration ("égalité", "équal", "même quantité")
 - ✅ Enhanced all 20 lessons with full pedagogical structure: detailed materials, decision points, differentiation, and assessment
 - ✅ Added equality-specific materials with exact quantities for 20-25 students (balances, manipulatives, art supplies, celebration materials)

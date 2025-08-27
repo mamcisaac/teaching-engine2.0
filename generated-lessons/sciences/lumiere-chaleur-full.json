@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Lumière et chaleur: explorer notre monde lumineux",
   "subject": "Sciences de la nature",
   "grade": "1",
   "totalLessons": 20,
@@ -20,41 +20,87 @@
       "opening": {
         "duration": 8,
         "activity": "Light detective game (5 min): Turn off all classroom lights. Ask 'Qu'est-ce qui se passe? Pourquoi ne pouvons-nous pas bien voir?' Turn lights back on. Introduce: 'Nous avons besoin de lumière pour voir!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["aucun matériel nécessaire"],
+        "visualSupports": "Pictogrammes de lumière et d'obscurité",
+        "decisionPoints": [
+          "Si les élèves ont peur dans l'obscurité: faire une démonstration plus courte et rassurer",
+          "Si certains élèves ne remarquent pas la différence: demander de comparer en pointant des objets spécifiques"
+        ],
+        "movementBreaks": ["Geste des mains qui s'ouvrent pour 'lumière'"]
       },
       "main": {
         "duration": 27,
         "activity": "Light source hunt (25 min): Students explore classroom and nearby areas to find light sources. Use clipboards to draw or check off: sun through windows, overhead lights, computer screens, flashlights. Create class chart categorizing light sources. Practice vocabulary: 'Cette lumière vient du...' Students test vision by looking at books in bright vs dim areas. Compare what happens when they cover/uncover light sources.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "25 planches à pince",
+          "25 fiches d'observation des sources de lumière",
+          "25 crayons",
+          "Lampes de poche (5-6 pour la classe)",
+          "Livres d'images simples (25)",
+          "Papier d'affichage pour graphique de classe",
+          "Marqueurs colorés"
+        ],
+        "visualSupports": "Pictogrammes des sources de lumière courantes, affiche de vocabulaire 'Cette lumière vient du...'",
+        "decisionPoints": [
+          "Si les élèves trouvent trop/pas assez de sources: ajuster la zone d'exploration ou donner des indices",
+          "Si certains élèves ont de la difficulté à dessiner: permettre l'utilisation d'autocollants ou de tampons",
+          "Si le graphique de classe devient trop complexe: simplifier en 3 catégories principales"
+        ],
+        "movementBreaks": ["Marche d'exploration toutes les 8-10 minutes", "Étirements debout entre les zones"]
       },
       "closing": {
         "duration": 10,
         "activity": "Light celebration circle (10 min): Students share their favorite light source and explain why we need it. Sing simple song about light helping us see: 'La lumière, la lumière, nous aide à tout voir!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Paroles de chanson affichées avec pictogrammes"],
+        "visualSupports": "Images des sources de lumière préférées, affiche des paroles avec gestes",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour partager: utiliser le 'partenaire de murmure' d'abord"
+        ],
+        "movementBreaks": ["Gestes pour accompagner la chanson", "Mouvements en cercle"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre que nous avons besoin de lumière pour voir",
+        "then": "Faire des comparaisons directes: demander aux élèves de regarder leur main dans la lumière vs l'ombre, utiliser des objets familiers, répéter l'expérience d'extinction des lumières avec des objets colorés"
       },
       "realWorldConnection": "Students recognize how they use different lights at home: lamps for reading, kitchen lights for cooking, flashlights when power goes out",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir une fiche avec des images pré-imprimées à cocher",
+          "Travailler en paires avec un partenaire plus fort",
+          "Limiter à 3-4 sources de lumière principales",
+          "Utiliser des gestes et pointage pour communiquer"
+        ],
+        "forAdvanced": [
+          "Dessiner et étiqueter les sources de lumière trouvées",
+          "Classer les sources par naturelles vs artificielles",
+          "Aider les autres élèves dans leur exploration",
+          "Prédire où d'autres sources pourraient se trouver dans l'école"
+        ],
+        "forELL": [
+          "Fournir des étiquettes bilingues pour les sources courantes",
+          "Utiliser des gestes et pointage pour le vocabulaire",
+          "Permettre de nommer en L1 puis répéter en français",
+          "Jumeler avec un élève francophone fort"
+        ],
+        "forIEP": [
+          "Adapter les outils d'enregistrement selon les besoins moteurs",
+          "Permettre les réponses orales au lieu d'écrites",
+          "Ajuster la durée d'exploration selon l'attention",
+          "Utiliser des supports visuels additionnels au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie au moins 3 sources de lumière différentes dans l'environnement",
+          "Démontre la compréhension que nous avons besoin de lumière pour voir",
+          "Utilise le vocabulaire clé: lumière, voir, source",
+          "Participe activement à l'exploration et au partage"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration: observer quelles sources l'élève identifie spontanément",
+          "Lors du graphique de classe: noter la contribution de l'élève",
+          "Au cercle de clôture: évaluer l'explication donnée par l'élève"
+        ]
       }
     },
     {
@@ -71,41 +117,90 @@
       "opening": {
         "duration": 8,
         "activity": "Sun safety demonstration (5 min): Show how we never look directly at the sun (use props, not real sun). Demonstrate safe ways to observe sunlight: shadows, feeling warmth, seeing brightness on surfaces.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Lunettes de soleil pour démonstration",
+          "Accessoires de soleil (chapeau, crème solaire factice)",
+          "Images du soleil"
+        ],
+        "visualSupports": "Pictogramme de sécurité solaire, affiche 'Ne jamais regarder le soleil directement'",
+        "decisionPoints": [
+          "Si les élèves veulent regarder le soleil: répéter fermement la règle de sécurité et expliquer pourquoi",
+          "Si la journée est nuageuse: utiliser des images et des comparaisons avec des jours ensoleillés précédents"
+        ],
+        "movementBreaks": ["Geste de protection des yeux avec les mains"]
       },
       "main": {
         "duration": 27,
         "activity": "Solar exploration (25 min): Students safely explore sun's effects: feel warmth of sunlight on hands vs shade, observe how sunlight makes objects visible vs shadowy areas, compare temperature of objects in sun vs shade. Use thermometers or hand tests to compare warm sunny spots to cool shady areas. Create sun observation journal with drawings of sun's light and heat effects. Practice saying: 'Le soleil nous donne la lumière et la chaleur.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "25 journaux d'observation du soleil (carnets)",
+          "25 crayons de couleur",
+          "Thermomètres simples (5-6 pour la classe)",
+          "Objets variés pour tester la température (blocs, métal, plastique)",
+          "Feuilles d'observation avec pictogrammes",
+          "Chrono/minuterie pour rotations"
+        ],
+        "visualSupports": "Phrase modèle affichée avec pictogrammes, images comparant zones ensoleillées vs ombragées",
+        "decisionPoints": [
+          "Si il n'y a pas assez de soleil: utiliser une lampe puissante pour démontrer l'effet de chaleur",
+          "Si les élèves ont de la difficulté à sentir la différence: utiliser des surfaces plus contrastantes (métal vs bois)",
+          "Si certains élèves ne veulent pas sortir: adapter l'activité près des fenêtres ensoleillées"
+        ],
+        "movementBreaks": ["Déplacements entre zones ensoleillées et ombragées", "Gestes pour 'chaud' et 'froid'"]
       },
       "closing": {
         "duration": 10,
         "activity": "Sun appreciation ceremony (10 min): Students share how the sun helps them (provides light to see, warmth to feel comfortable). Create movements for sun's light (arms spreading wide) and heat (hands warming together).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Musique douce pour cérémonie (optionnel)"],
+        "visualSupports": "Affiche des gestes pour 'lumière' et 'chaleur', images du soleil aidant les gens",
+        "decisionPoints": [
+          "Si les élèves sont agités: raccourcir la cérémonie et faire plus de mouvements"
+        ],
+        "movementBreaks": ["Gestes des bras qui s'étendent (lumière)", "Mains qui se réchauffent ensemble (chaleur)"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre que le soleil donne la lumière ET la chaleur",
+        "then": "Faire des comparaisons séparées d'abord: montrer la lumière du soleil (luminosité), puis faire sentir la chaleur du soleil (température). Utiliser des analogies simples comme 'le soleil est comme une grosse lampe chauffante'"
       },
       "realWorldConnection": "Students understand why sunny days feel warmer and brighter, and why we need the sun for daylight",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Concentrer sur une qualité du soleil à la fois (lumière OU chaleur)",
+          "Utiliser des comparaisons tactiles simples (main chaude vs froide)",
+          "Fournir des phrases modèles à compléter",
+          "Dessiner au lieu d'écrire dans le journal"
+        ],
+        "forAdvanced": [
+          "Explorer pourquoi le soleil donne les deux (lumière et chaleur)",
+          "Prédire ce qui arriverait sans le soleil",
+          "Aider à animer les comparaisons pour les autres",
+          "Dessiner des diagrammes simples montrant l'énergie solaire"
+        ],
+        "forELL": [
+          "Connecter aux mots pour 'soleil' dans leur L1",
+          "Utiliser des gestes expressifs pour 'chaud' et 'lumineux'",
+          "Permettre des descriptions simples dans les deux langues",
+          "Associer avec un partenaire francophone"
+        ],
+        "forIEP": [
+          "Adapter les outils d'observation selon les besoins sensoriels",
+          "Permettre l'exploration à son rythme",
+          "Utiliser des supports tactiles additionnels si nécessaire",
+          "Ajuster la durée d'exposition au soleil selon la sensibilité"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Reconnaît le soleil comme source de lumière",
+          "Identifie le soleil comme source de chaleur",
+          "Démontre la compréhension des effets du soleil par l'exploration",
+          "Utilise le vocabulaire: soleil, important, chaleur"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration: observer les comparaisons que l'élève fait spontanément",
+          "Lors du journal: vérifier si l'élève dessine/note les deux effets du soleil",
+          "À la cérémonie: écouter les explications sur comment le soleil nous aide"
+        ]
       }
     },
     {
@@ -122,41 +217,94 @@
       "opening": {
         "duration": 8,
         "activity": "Shadow puppet introduction (5 min): Teacher creates simple shadow puppet on wall using flashlight and hands. Ask students to guess what makes the shadow appear and disappear.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Lampe de poche puissante",
+          "Mur blanc ou écran",
+          "Rideau pour assombrir au besoin"
+        ],
+        "visualSupports": "Pictogrammes montrant lumière + objet = ombre",
+        "decisionPoints": [
+          "Si la pièce n'est pas assez sombre: utiliser des rideaux ou se déplacer dans un coin plus sombre",
+          "Si les élèves sont trop excités par la 'magie': expliquer que c'est de la science amusante"
+        ],
+        "movementBreaks": ["Bouger les mains pour créer différentes formes d'ombres"]
       },
       "main": {
         "duration": 27,
         "activity": "Shadow laboratory (25 min): Set up shadow stations with flashlights and various objects (toys, shapes, hands). Students experiment making shadows on wall or paper. Observe what happens when they move objects closer/farther from light source. Try making shadows with transparent vs opaque objects. Practice vocabulary: 'L'objet bloque la lumière', 'Voici mon ombre'. Create shadow art by tracing around shadows of interesting objects.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Lampes de poche (6-8 pour les stations)",
+          "Objets variés opaques (jouets, blocs, formes géométriques)",
+          "Objets transparents et translucides (plastique clair, papier de soie)",
+          "Papier blanc grand format (25 feuilles)",
+          "Crayons/marqueurs pour tracer",
+          "Tables ou murs pour projections",
+          "Chrono pour rotation des stations"
+        ],
+        "visualSupports": "Affiches de vocabulaire avec gestes, exemples d'ombres d'objets courants",
+        "decisionPoints": [
+          "Si les ombres ne sont pas assez nettes: ajuster la distance ou l'éclairage ambiant",
+          "Si les élèves se disputent les objets: établir un système de rotation clear",
+          "Si certains ont peur des ombres: commencer par des formes simples et rassurantes"
+        ],
+        "movementBreaks": ["Rotation entre les 4-5 stations d'ombres", "Gestes pour 'bloquer' et 'ombre'"]
       },
       "closing": {
         "duration": 10,
         "activity": "Shadow story circle (10 min): Students use their hands to create shadow animals and tell mini-stories. Discuss how shadows show that light travels in straight lines and can be blocked.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Lampe de poche pour le cercle",
+          "Guide simple des ombres d'animaux avec les mains"
+        ],
+        "visualSupports": "Images d'animaux en ombres chinoises, rappel que 'lumière voyage en ligne droite'",
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté à créer des animaux: leur montrer des formes plus simples d'abord"
+        ],
+        "movementBreaks": ["Mouvements des mains pour créer différents animaux", "Gestes en cercle"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre comment les ombres se forment",
+        "then": "Utiliser son propre corps d'abord: faire de l'ombre avec sa main sur la table, puis avec tout son corps dehors. Utiliser des objets très familiers (leur jouet préféré). Répéter: lumière → objet → ombre, en montrant chaque étape"
       },
       "realWorldConnection": "Students notice their own shadows when walking outside and understand shadow play games",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec leur propre ombre (plus facile à comprendre)",
+          "Utiliser seulement 2-3 objets familiers",
+          "Se concentrer sur faire apparaître/disparaître l'ombre",
+          "Permettre l'exploration libre sans pression de 'performance'"
+        ],
+        "forAdvanced": [
+          "Explorer différents types d'ombres (nettes vs floues)",
+          "Prédire la forme de l'ombre avant de tester",
+          "Expérimenter avec plusieurs sources de lumière",
+          "Créer des histoires complètes avec les ombres chinoises"
+        ],
+        "forELL": [
+          "Associer le mot 'ombre' avec des gestes clairs",
+          "Utiliser 'shadow' et 'ombre' ensemble au début",
+          "Se concentrer sur le vocabulaire de base: lumière, objet, ombre",
+          "Permettre l'expression créative même avec vocabulaire limité"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins moteurs (objets plus gros/légers)",
+          "Permettre différentes façons de 'tracer' les ombres",
+          "Ajuster l'intensité lumineuse selon la sensibilité sensorielle",
+          "Offrir du temps supplémentaire pour l'exploration"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Comprend que les objets bloquent la lumière pour créer des ombres",
+          "Peut créer intentionnellement des ombres différentes",
+          "Utilise le vocabulaire: ombre, bloquer, objet",
+          "Fait des liens entre la position de l'objet et la forme de l'ombre"
+        ],
+        "checkpoints": [
+          "Aux stations: observer comment l'élève manipule les objets pour créer des ombres",
+          "Pendant l'art d'ombres: noter si l'élève comprend le lien objet-ombre",
+          "Au cercle final: écouter les explications sur comment les ombres se forment"
+        ]
       }
     },
     {
@@ -173,41 +321,94 @@
       "opening": {
         "duration": 8,
         "activity": "Shadow prediction circle (5 min): Show object and flashlight. Ask students to predict what will happen to shadow size if object moves closer to light, then farther away.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Un objet simple et familier (blocs, jouet)",
+          "Lampe de poche puissante",
+          "Mur blanc pour projection"
+        ],
+        "visualSupports": "Images pré/post montrant 'petit objet = grande ombre' et 'loin = petite ombre'",
+        "decisionPoints": [
+          "Si les prédictions sont très variées: noter toutes les idées pour vérifier ensemble",
+          "Si les élèves ne voient pas bien la démonstration: se déplacer ou ajuster l'éclairage"
+        ],
+        "movementBreaks": ["Gestes avec les mains pour montrer 'proche/loin' et 'grand/petit'"]
       },
       "main": {
         "duration": 27,
         "activity": "Shadow size experiment (25 min): Students work in pairs with flashlights and identical objects. Move objects to different distances from light source and observe shadow changes. Use measuring tools (blocks, paper strips) to compare shadow sizes. Record observations with drawings showing small, medium, and large shadows. Practice vocabulary: 'Plus proche = ombre plus grande', 'Plus loin = ombre plus petite'. Create shadow size comparison charts.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Lampes de poche (12-13 pour les paires)",
+          "Objets identiques pour chaque paire (blocs simples)",
+          "Papier blanc grand format (25 feuilles)",
+          "Outils de mesure simples (blocs unitaires, languettes de papier)",
+          "Feuilles d'enregistrement avec 3 cases (petit/moyen/grand)",
+          "Crayons/marqueurs",
+          "Règles ou bandes de mesure adaptative"
+        ],
+        "visualSupports": "Phrases modèles affichées, diagramme simple montrant distance vs taille d'ombre",
+        "decisionPoints": [
+          "Si les ombres ne sont pas assez visibles: ajuster l'éclairage ou les surfaces de projection",
+          "Si certaines paires ont de la difficulté à mesurer: simplifier avec 'plus petit/plus grand' seulement",
+          "Si l'expérience va plus vite que prévu: ajouter d'autres objets de formes différentes"
+        ],
+        "movementBreaks": ["Déplacement des objets proche/loin", "Gestes pour montrer les tailles"]
       },
       "closing": {
         "duration": 10,
         "activity": "Experiment sharing (10 min): Students demonstrate their shadow discoveries to class. Discuss findings: objects closer to light make bigger shadows, objects farther make smaller shadows.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Une lampe de poche pour les démonstrations",
+          "Graphique de classe pour documenter les découvertes"
+        ],
+        "visualSupports": "Résumé visuel de la règle découverte: proche = grand, loin = petit",
+        "decisionPoints": [
+          "Si plusieurs paires veulent démontrer: donner 2 minutes chacune ou choisir les exemples les plus clairs"
+        ],
+        "movementBreaks": ["Les élèves viennent à l'avant pour démontrer", "Applaudissements entre les démonstrations"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre la relation distance-taille d'ombre",
+        "then": "Utiliser leur propre corps: faire de l'ombre avec leur main sur la table en la rapprochant/éloignant de la lampe. Utiliser des comparaisons: 'Quand tu es près de maman, tu parais plus grand sur la photo. Même chose pour les ombres!' Répéter avec des objets très simples"
       },
       "realWorldConnection": "Students understand why their shadows look different sizes at different times of day when sun is high or low",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur seulement 2 positions: proche et loin",
+          "Utiliser leur propre main d'abord (plus concret)",
+          "Simplifier l'enregistrement: dessiner juste 2 ombres (grande/petite)",
+          "Permettre de travailler en groupe de 3 avec plus de soutien"
+        ],
+        "forAdvanced": [
+          "Explorer avec différents objets et comparer les résultats",
+          "Essayer de prédire exactement où placer l'objet pour une taille d'ombre précise",
+          "Mesurer avec des unités non-standard et comparer numériquement",
+          "Expliquer pourquoi cela arrive en utilisant leurs mots"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de gestes pour 'proche/loin' et 'grand/petit'",
+          "Permettre l'utilisation de mots dans leur L1 combinés au français",
+          "Se concentrer sur les phrases clés répétitives",
+          "Jumeler avec un partenaire francophone patient"
+        ],
+        "forIEP": [
+          "Adapter les outils de mesure selon les capacités motrices",
+          "Permettre l'enregistrement par dictée à l'adulte",
+          "Offrir plus de temps pour l'exploration et la découverte",
+          "Utiliser des supports visuels additionnels pour les concepts spatiaux"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Comprend que la distance affecte la taille de l'ombre",
+          "Peut prédire la taille relative de l'ombre selon la position",
+          "Utilise le vocabulaire: expérience, changer, proche",
+          "Démontre la relation par manipulation intentionnelle"
+        ],
+        "checkpoints": [
+          "Pendant l'expérimentation: observer si l'élève fait le lien cause-effet",
+          "Lors de l'enregistrement: vérifier si les dessins reflètent les différences observées",
+          "Au partage final: écouter si l'élève peut expliquer la relation découverte"
+        ]
       }
     },
     {
@@ -224,41 +425,90 @@
       "opening": {
         "duration": 8,
         "activity": "Home light tour (5 min): Students close eyes and imagine walking through their house at night. What lights would they turn on in each room? Share responses.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Musique douce pour la visualisation (optionnel)"],
+        "visualSupports": "Images simples de différentes pièces de maison",
+        "decisionPoints": [
+          "Si certains élèves ont peur du noir à la maison: se concentrer sur les lumières rassurantes",
+          "Si les réponses sont très variées: accepter toutes les idées et grouper par pièces communes"
+        ],
+        "movementBreaks": ["Mimer marcher dans la maison", "Geste d'allumer des interrupteurs"]
       },
       "main": {
         "duration": 27,
         "activity": "Artificial light exploration (25 min): Examine various artificial lights in classroom and pictures of home lights: overhead lights, lamps, flashlights, computer screens, candles (safely). Sort lights by brightness, size, or purpose. Create home light map showing which lights are used in different rooms. Practice naming lights and their purposes: 'Cette lampe éclaire pour lire', 'Cette lumière éclaire toute la pièce'. Compare battery vs plug-in lights.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images plastifiées de diverses lumières artificielles",
+          "Exemples réels sécuritaires (petites lampes, lampe de poche)",
+          "Cartes représentant différentes pièces de maison",
+          "Papier grand format pour carte des lumières de maison (25)",
+          "Crayons, marqueurs, autocollants",
+          "Paniers pour tri des images",
+          "Tableau de comparaison piles vs électricité"
+        ],
+        "visualSupports": "Phrases modèles affichées, pictogrammes pour 'piles' vs 'prise électrique'",
+        "decisionPoints": [
+          "Si les élèves ne connaissent pas certains types de lumières: expliquer et donner des exemples concrets",
+          "Si le tri devient confus: simplifier en 2 catégories seulement (forte lumière vs douce lumière)",
+          "Si les cartes de maison sont trop complexes: permettre de dessiner seulement 3 pièces principales"
+        ],
+        "movementBreaks": ["Déplacement pour examiner les lumières de la classe", "Gestes pour différents types de lumières"]
       },
       "closing": {
         "duration": 10,
         "activity": "Light purpose game (10 min): Teacher shows picture of activity (reading, cooking, walking in dark) and students suggest which artificial light would be most helpful.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images d'activités quotidiennes (lire, cuisiner, marcher)",
+          "Images de lumières correspondantes"
+        ],
+        "visualSupports": "Tableau de correspondances activité-lumière pour référence",
+        "decisionPoints": [
+          "Si plusieurs réponses sont possibles: accepter et discuter pourquoi différentes lumières peuvent marcher"
+        ],
+        "movementBreaks": ["Mimer les activités montrées", "Geste d'allumer différents types de lumières"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Distinguer les lumières artificielles des naturelles",
+        "then": "Utiliser la règle simple: 'Est-ce que les humains ont fait cette lumière?' Montrer des exemples clairs: soleil = naturel, lampe = artificiel. Faire des comparaisons concrètes: 'Cette lumière a un interrupteur? C'est artificiel!'"
       },
       "realWorldConnection": "Students recognize and name lights they use daily: bedroom lamps, kitchen lights, bathroom lights, flashlights for camping",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur seulement 4-5 types de lumières très familières",
+          "Utiliser des images concrètes au lieu de mots abstraits",
+          "Permettre de coller des autocollants au lieu de dessiner",
+          "Associer chaque lumière à une action familière"
+        ],
+        "forAdvanced": [
+          "Classer aussi par source d'énergie (piles, électricité, gaz)",
+          "Expliquer pourquoi différentes lumières sont meilleures pour différentes tâches",
+          "Créer une carte plus détaillée incluant luminaires spéciaux",
+          "Faire des liens avec l'efficacité énergétique simple"
+        ],
+        "forELL": [
+          "Connecter aux noms de lumières dans leur L1",
+          "Utiliser des gestes spécifiques pour chaque type de lumière",
+          "Permettre l'étiquetage bilingue au début",
+          "Se concentrer sur les lumières universelles (lampe, flashlight)"
+        ],
+        "forIEP": [
+          "Adapter les matériaux de tri selon les besoins moteurs",
+          "Permettre la participation orale plutôt que écrite",
+          "Utiliser des supports visuels avec plus de détails si nécessaire",
+          "Offrir du choix dans la façon de créer la carte de maison"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie plusieurs types de lumières artificielles",
+          "Comprend que différentes lumières ont différents buts",
+          "Utilise le vocabulaire: artificiel, maison, différent",
+          "Fait des liens entre les lumières et leurs utilisations"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration: observer quelles connexions l'élève fait spontanément",
+          "Lors de la création de carte: noter la variété et l'exactitude des lumières placées",
+          "Au jeu final: évaluer la logique des choix de lumières pour chaque activité"
+        ]
       }
     },
     {
@@ -275,41 +525,81 @@
       "opening": {
         "duration": 8,
         "activity": "Light needs demonstration (5 min): Simulate different scenarios with room lights: bright sunny day (lights off), cloudy day (some lights), nighttime (all lights on), winter evening (extra lights).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Contrôle des lumières de classe", "Images des 4 scénarios"],
+        "visualSupports": "Pictogrammes jour/nuit/nuageux/hiver avec lumières appropriées",
+        "decisionPoints": [
+          "Si les lumières de classe ne peuvent pas être ajustées: utiliser des images et la description verbale"
+        ],
+        "movementBreaks": ["Gestes pour soleil, nuages, lune, neige"]
       },
       "main": {
         "duration": 27,
         "activity": "Light timing investigation (25 min): Create timeline showing when artificial lights are needed throughout day and seasons. Compare summer vs winter evening activities - when do we turn on lights? Use pictures showing same activities in different lighting conditions. Students draw themselves doing evening activities with and without artificial lights. Practice vocabulary: 'En hiver, nous avons besoin de plus de lumière', 'La nuit, nous allumons les lumières'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images d'activités été/hiver identiques avec différents éclairages",
+          "Bande chronologique géante pour la classe",
+          "25 feuilles pour dessins personnels",
+          "Crayons de couleur",
+          "Autocollants soleil/lune/ampoule",
+          "Phrases modèles plastifiées"
+        ],
+        "visualSupports": "Chronologie visuelle jour/saisons, affiches comparatives été/hiver",
+        "decisionPoints": [
+          "Si certains élèves n'ont pas vécu d'hiver complet: utiliser des comparaisons avec les journées nuageuses"
+        ],
+        "movementBreaks": ["Déplacement le long de la chronologie", "Mimer les activités montrées"]
       },
       "closing": {
         "duration": 10,
         "activity": "Light schedule creation (10 min): Create class schedule showing when artificial lights are most needed during school day. Plan to observe and record light usage over one day.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Horaire de classe sur grand papier", "Autocollants d'ampoules"],
+        "visualSupports": "Horaire visuel avec pictogrammes, tableau d'observation simple",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Applaudissements pour chaque moment identifié sur l'horaire"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre pourquoi nous avons besoin de plus de lumières artificielles en hiver",
+        "then": "Faire des comparaisons directes avec leur expérience: 'Quand rentres-tu de l'école en hiver? Est-ce qu'il fait noir dehors? Et en été?' Utiliser des photos de la même heure en été vs hiver pour montrer la différence de luminosité naturelle"
       },
       "realWorldConnection": "Students understand why lights are on when they get home from school in winter but not in summer",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur seulement 2 moments: jour vs nuit",
+          "Utiliser leurs expériences personnelles concrètes",
+          "Simplifier les dessins à des éléments de base",
+          "Fournir des phrases à compléter au lieu de création libre"
+        ],
+        "forAdvanced": [
+          "Explorer les fuseaux horaires et comment cela affecte les besoins de lumière",
+          "Investiguer pourquoi les jours sont plus courts en hiver",
+          "Créer un calendrier de l'éclairage artificiel sur une semaine",
+          "Faire des liens avec l'économie d'énergie"
+        ],
+        "forELL": [
+          "Utiliser des comparaisons avec leur pays d'origine si applicable",
+          "Associer avec vocabulaire temporel simple (matin, soir)",
+          "Utiliser beaucoup de supports visuels pour les saisons",
+          "Permettre l'expression en L1 puis traduire ensemble"
+        ],
+        "forIEP": [
+          "Utiliser des supports tactiles pour les concepts temporels",
+          "Permettre l'enregistrement par dessin ou collage",
+          "Adapter le rythme selon les capacités attentionnelles",
+          "Utiliser des rappels visuels pour les séquences"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Comprend que les besoins d'éclairage changent selon le moment et la saison",
+          "Fait des liens avec ses expériences personnelles",
+          "Utilise le vocabulaire: besoin, nuit, hiver",
+          "Peut prédire quand les lumières artificielles seront nécessaires"
+        ],
+        "checkpoints": [
+          "Pendant l'investigation: noter les connections personnelles que l'élève fait",
+          "Lors des dessins: observer si l'élève inclut les lumières appropriées",
+          "À la création d'horaire: vérifier la logique des moments identifiés"
+        ]
       }
     },
     {
@@ -326,41 +616,81 @@
       "opening": {
         "duration": 8,
         "activity": "Solar warming experiment (5 min): Place one hand in sunny area and one in shade. Students describe feelings: 'chaud, tiède, froid'. Introduce that sun gives us heat as well as light.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Accès à une zone ensoleillée (fenêtre ou extérieur)"],
+        "visualSupports": "Pictogrammes pour 'chaud/tiède/froid' avec expressions faciales",
+        "decisionPoints": [
+          "Si pas de soleil disponible: utiliser une lampe chauffante ou des objets préchauffés vs froids"
+        ],
+        "movementBreaks": ["Gestes expressifs pour chaque température"]
       },
       "main": {
         "duration": 27,
         "activity": "Heat detection investigation (25 min): Use thermometers or touch tests to compare temperatures: objects in sun vs shade, water in sunny vs shaded containers, different surfaces (metal, plastic, wood) after sun exposure. Students predict which will be warmer and test their predictions. Create heat detection journals recording observations. Practice vocabulary: 'Le soleil réchauffe', 'Cette surface est chaude', 'La température monte'. Explore how sun's heat helps us feel warm outside.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Thermomètres simples (6-8)",
+          "Contenants d'eau identiques (12)",
+          "Objets de différents matériaux (métal, plastique, bois)",
+          "25 journaux de détection thermique",
+          "Crayons, feuilles de prédiction",
+          "Chrono pour mesures régulières"
+        ],
+        "visualSupports": "Phrases modèles affichées, tableau de prédictions vs résultats",
+        "decisionPoints": [
+          "Si les différences de température sont minimes: utiliser des contrastes plus extrêmes (glace vs eau tiède au soleil)"
+        ],
+        "movementBreaks": ["Rotation entre les stations d'investigation", "Gestes pour 'température monte/descend'"]
       },
       "closing": {
         "duration": 10,
         "activity": "Solar heat demonstration (10 min): Students share discoveries about sun's heating power. Create movements showing how sun warms Earth (arms spreading warmth) and discuss why sunny days feel warmer than cloudy days.",
-        "materials": [],
-        "visualSupports": "",
+        "materials": ["Aucun matériel spécial nécessaire"],
+        "visualSupports": "Images comparatives: journée ensoleillée vs nuageuse",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Mouvements de réchauffement avec les bras", "Gestes pour nuages bloquant le soleil"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Faire le lien entre soleil et chaleur",
+        "then": "Utiliser l'expérience directe: faire toucher un objet qui a été au soleil vs à l'ombre. Utiliser des analogies familières: 'Comme quand tu sors de la piscine - tu as plus chaud au soleil qu'à l'ombre'"
       },
       "realWorldConnection": "Students understand why they feel warmer playing in sunny areas and why cars get hot in parking lots",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur les sensations tactiles simples (chaud vs froid)",
+          "Utiliser seulement 2-3 objets familiers pour tester",
+          "Permettre de dessiner des visages heureux/tristes au lieu d'écrire",
+          "Simplifier le vocabulaire aux mots de base"
+        ],
+        "forAdvanced": [
+          "Explorer différents matériaux et leur capacité à absorber la chaleur",
+          "Prédire et tester quels objets se réchaufferont le plus",
+          "Faire des mesures plus précises avec thermomètres",
+          "Expliquer pourquoi certaines surfaces deviennent plus chaudes"
+        ],
+        "forELL": [
+          "Associer les mots de température avec des gestes expressifs",
+          "Utiliser 'hot/chaud', 'warm/tiède' côte à côte",
+          "Permettre l'expression des sensations en L1 puis en français",
+          "Se concentrer sur le vocabulaire sensoriel concret"
+        ],
+        "forIEP": [
+          "Adapter selon la sensibilité tactile (éviter surfaces trop chaudes)",
+          "Permettre l'observation plutôt que manipulation directe",
+          "Utiliser des supports visuels pour documenter au lieu d'écrire",
+          "Ajuster la durée d'exposition selon les besoins sensoriels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Comprend que le soleil produit de la chaleur mesurable",
+          "Peut comparer et prédire les effets thermiques du soleil",
+          "Utilise le vocabulaire: chaleur, mesurer, température",
+          "Fait des liens entre exposition solaire et température"
+        ],
+        "checkpoints": [
+          "Pendant l'investigation: observer les prédictions et tests de l'élève",
+          "Dans le journal: vérifier si les observations reflètent les découvertes réelles",
+          "Lors du partage: écouter les explications sur le pouvoir chauffant du soleil"
+        ]
       }
     },
     {
@@ -377,18 +707,29 @@
       "opening": {
         "duration": 8,
         "activity": "Heat source mystery (5 min): Show pictures of various heat sources (fireplace, heater, stove, body heat). Students guess what makes each one warm.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images plastifiées de diverses sources de chaleur"],
+        "visualSupports": "Pictogrammes de différentes sources de chaleur",
+        "decisionPoints": [
+          "Si les élèves ne reconnaissent pas certaines sources: donner des indices ou des exemples familiers"
+        ],
+        "movementBreaks": ["Gestes imitant chaque source de chaleur"]
       },
       "main": {
         "duration": 27,
         "activity": "Heat source exploration (25 min): Identify heat sources in classroom and school: heaters, computers, lights, human bodies, friction (rubbing hands). Sort heat sources into categories: sun, electrical, human body, fire, friction. Students create heat source maps of classroom and home. Practice vocabulary: 'Cette source de chaleur est...', 'Nous utilisons cette chaleur pour...'. Safely feel warmth from appropriate sources like heater vents or warm computers.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Paniers de tri avec étiquettes",
+          "25 feuilles de cartes de sources de chaleur",
+          "Crayons de couleur",
+          "Images de sources à découper et coller",
+          "Phrases modèles sur bandes",
+          "Thermomètre sécuritaire pour détection"
+        ],
+        "visualSupports": "Affiches des 5 catégories avec pictogrammes, phrases de vocabulaire",
+        "decisionPoints": [
+          "Si certaines sources ne sont pas détectables dans l'école: utiliser des images et descriptions"
+        ],
+        "movementBreaks": ["Tour de la classe/école pour détection", "Frottement des mains pour friction"]
       },
       "closing": {
         "duration": 10,
@@ -399,19 +740,48 @@
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Distinguer les différents types de sources de chaleur",
+        "then": "Commencer par les sources qu'ils connaissent le mieux (leur corps, le chauffage). Utiliser le toucher sécuritaire pour sentir la différence. Grouper par 'fait du feu' vs 'utilise l'électricité' vs 'notre corps'"
       },
       "realWorldConnection": "Students recognize heaters at home, warm clothing from dryers, and heat from cooking, understanding multiple ways to stay warm",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 3 sources principales seulement",
+          "Utiliser beaucoup d'images plutôt que concepts abstraits",
+          "Permettre le tri par collage d'images",
+          "Associer chaque source à une action familiere"
+        ],
+        "forAdvanced": [
+          "Explorer l'efficacité énergétique des différentes sources",
+          "Investiguer les sources de chaleur dans d'autres cultures",
+          "Créer un plan d'urgence pour rester au chaud sans électricité",
+          "Comparer les coûts et bénéfices environnementaux"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de gestes pour chaque type de chaleur",
+          "Connecter avec les sources de chaleur de leur culture",
+          "Permettre le vocabulaire bilingue au début",
+          "Se concentrer sur les mots d'action concrets"
+        ],
+        "forIEP": [
+          "Adapter les activités de tri selon les besoins moteurs",
+          "Permettre l'exploration sécuritaire selon les sensibilités",
+          "Utiliser des supports visuels avec plus de détails",
+          "Offrir des choix dans les méthodes de documentation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie au moins 4 sources de chaleur différentes",
+          "Peut catégoriser les sources selon leur type",
+          "Utilise le vocabulaire: autres, sources, environnement",
+          "Fait des liens entre les sources et leurs utilisations"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration: noter quelles sources l'élève identifie spontanément",
+          "Lors du tri: observer la logique de classification utilisée",
+          "Sur les cartes: vérifier l'exactitude et la variété des sources placées"
+        ]
       }
     },
     {
@@ -428,10 +798,12 @@
       "opening": {
         "duration": 8,
         "activity": "Winter clothing investigation (5 min): Students feel different winter clothing items (coat, thin shirt, mittens) and predict which would keep them warmest outside.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Vêtements d'hiver variés (manteau, chemise mince, mitaines)"],
+        "visualSupports": "Images de personnes habillées pour différentes températures",
+        "decisionPoints": [
+          "Si certains vêtements ne sont pas disponibles: utiliser des images et laisser les élèves toucher des matériaux similaires"
+        ],
+        "movementBreaks": ["Mimer s'habiller pour l'hiver"]
       },
       "main": {
         "duration": 27,
@@ -450,19 +822,48 @@
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre le concept d'isolation thermique",
+        "then": "Utiliser l'analogie de la couverture: 'Comme ta couverture te garde au chaud la nuit, certains matériaux gardent la chaleur près de notre corps.' Faire des tests simples avec leurs mains enveloppées vs non-enveloppées"
       },
       "realWorldConnection": "Students understand why winter coats are thick, why houses have insulation, and how blankets keep them warm at night",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur épais vs mince seulement",
+          "Utiliser leurs propres vêtements comme exemples",
+          "Permettre de dessiner au lieu d'écrire",
+          "Associer avec des sensations familières (couvertures, pyjamas chauds)"
+        ],
+        "forAdvanced": [
+          "Explorer pourquoi l'air emprisonné aide à garder chaud",
+          "Tester différents matériaux pour leur efficacité isolante",
+          "Faire des liens avec l'isolation des maisons",
+          "Investiguer les vêtements techniques modernes"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de démonstrations tactiles",
+          "Connecter avec les vêtements d'hiver de leur culture",
+          "Permettre des comparaisons avec leur pays d'origine",
+          "Associer les mots nouveaux avec des gestes clairs"
+        ],
+        "forIEP": [
+          "Adapter selon la sensibilité tactile aux différents matériaux",
+          "Permettre l'observation plutôt que manipulation directe",
+          "Utiliser des supports visuels pour concepts abstraits",
+          "Offrir des alternatives pour les tests d'isolation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Comprend que certains matériaux gardent mieux la chaleur",
+          "Peut prédire quels matériaux seront les plus isolants",
+          "Utilise le vocabulaire: garder, isolation, matériel",
+          "Fait des liens avec l'habillement hivernal approprié"
+        ],
+        "checkpoints": [
+          "Pendant les tests: observer les prédictions et réactions de l'élève",
+          "Lors du défilé de mode: évaluer les explications données",
+          "Dans les discussions: noter les connections faites avec la vie réelle"
+        ]
       }
     },
     {
@@ -479,10 +880,12 @@
       "opening": {
         "duration": 8,
         "activity": "Insulation prediction ceremony (5 min): Show identical ice cubes and different wrapping materials. Students predict which wrapping will keep ice frozen longest and explain their thinking.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Glaçons identiques pour démonstration", "Échantillons de matériaux d'emballage", "Tableau de prédictions"],
+        "visualSupports": "Pictogrammes des différents matériaux, tableau de prédictions de classe",
+        "decisionPoints": [
+          "Si les élèves ont des prédictions très similaires: encourager la diversité en posant des questions 'Et si...?'"
+        ],
+        "movementBreaks": ["Gestes pour 'envelopper' et 'garder froid'"]
       },
       "main": {
         "duration": 27,
