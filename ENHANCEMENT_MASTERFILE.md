@@ -69,7 +69,7 @@
 ### Arts visuels (10 units)
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
 |------|--------------|-----------------|-----------|-----------|----------|
-| premiers-pas-artistiques | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| premiers-pas-artistiques | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | magie-couleurs | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | exploration-3d | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | impression-motifs | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -140,21 +140,34 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 26 / 54 (48%) - **MATHEMATICS COMPLETE! 🎉 SCIENCE 100% COMPLETE! 🔬🎯✨ MATERIALS SCIENCE COMPLETE! 🧪🔬✨ FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵 GROWTH & NEEDS COMPLETE! 🌱🔬 SPRING AWAKENING COMPLETE! 🌸🔬✨ ENVIRONMENT SHARING COMPLETE! 🌍♻️**  
-**Translations Fixed**: 26 / 54 (48%)  
-**Decision Points Added**: 26 / 54 (48%)  
-**Materials Specified**: 26 / 54 (48%)  
+**Enhanced**: 27 / 54 (50%) - **MATHEMATICS COMPLETE! 🎉 SCIENCE 100% COMPLETE! 🔬🎯✨ MATERIALS SCIENCE COMPLETE! 🧪🔬✨ FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵 GROWTH & NEEDS COMPLETE! 🌱🔬 SPRING AWAKENING COMPLETE! 🌸🔬✨ ENVIRONMENT SHARING COMPLETE! 🌍♻️ ARTS PREMIERS PAS COMPLETE! 🎨✨**  
+**Translations Fixed**: 27 / 54 (50%)  
+**Decision Points Added**: 27 / 54 (50%)  
+**Materials Specified**: 27 / 54 (50%)  
 **Committed**: 5 / 54 (9%)  
 **Reviewed**: 4 / 54 (7%)
 
 ## 🎯 Current Focus
 
+**🎨✨ NEWEST ACHIEVEMENT**: arts-visuels/premiers-pas-artistiques (FIRST ARTISTIC STEPS ARTS UNIT COMPLETE) 🎨🖌️✨  
 **🏆 MATHEMATICS SUBJECT COMPLETE!** All 10 mathematics units enhanced (10/10 = 100%)  
 **🔬🎯 SCIENCE 100% COMPLETE!** All 10 science units fully enhanced - COMPLETE science curriculum achieved! 🔬✨  
-**🌸 NEWEST ACHIEVEMENT**: sciences/eveil-printemps (SPRING AWAKENING SCIENCE UNIT 100% COMPLETE) 🌸🔬✨  
+**🌸 PREVIOUS ACHIEVEMENT**: sciences/eveil-printemps (SPRING AWAKENING SCIENCE UNIT 100% COMPLETE) 🌸🔬✨  
 **🇫🇷 FRENCH BIENVENUE UNIT COMPLETE!** Welcome unit fully enhanced for Grade 1 French Immersion  
 
-**🌸 LATEST COMPLETION**: sciences/eveil-printemps (SPRING AWAKENING SCIENCE UNIT 100% COMPLETE) 🌸🔬✨  
+**🎨✨ LATEST COMPLETION**: arts-visuels/premiers-pas-artistiques (FIRST ARTISTIC STEPS ARTS UNIT COMPLETE) 🎨🖌️✨  
+- ✅ **COMPLETE ENHANCEMENT**: Successfully completed ALL 20 lessons of "Premiers pas artistiques" with comprehensive Grade 1 French Immersion arts education  
+- ✅ **DECISION POINTS PERFECTION**: Implemented perfect graduated strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)  
+- ✅ **MATERIALS SPECIFICATIONS**: Enhanced all materials with exact quantities for 20-25 students using only school-available art supplies (crayons, paper, paints, brushes, natural materials, basic tools)  
+- ✅ **COMPLETE DIFFERENTIATION**: Added 4-category differentiation (forStruggling, forAdvanced, forELL, forIEP) for ALL 20 lessons with arts education focus  
+- ✅ **ASSESSMENT & VISUAL SUPPORTS**: Comprehensive assessment criteria and visual supports added for all lessons focusing on art vocabulary, creative expression, and artistic skill development  
+- ✅ **FRENCH IMMERSION EXCELLENCE**: All lessons enhanced with natural Canadian French throughout, ensuring authentic immersion experience with art terminology  
+- ✅ **ARTISTIC PROGRESSION**: Perfect introduction to art from basic art recognition to advanced creative techniques, gallery presentations, and artistic identity development  
+- ✅ **CORE LESSONS (1-14)**: Art discovery, observation skills, preferences, materials exploration, line creation, shapes, colors, textures, emotions, tools, techniques, personal style, communication, art-life connections  
+- ✅ **EXTENSION LESSONS (15-20)**: Free studio time, collaboration, large-scale work, gallery curation, nature art, celebration  
+- 🎯 **SIGNIFICANT MILESTONE**: First Arts unit completion launches comprehensive Grade 1 French Immersion visual arts curriculum foundation! 🎨  
+
+**🌸 PREVIOUS COMPLETION**: sciences/eveil-printemps (SPRING AWAKENING SCIENCE UNIT 100% COMPLETE) 🌸🔬✨  
 - ✅ **COMPLETE ENHANCEMENT**: Successfully completed ALL 20 lessons of "L'éveil du printemps" with comprehensive spring science exploration for Grade 1 students  
 - ✅ **DECISION POINTS PERFECTION**: Implemented perfect graduated strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)  
 - ✅ **MATERIALS SPECIFICATIONS**: Enhanced all materials with exact quantities for 20-25 students using only school-available resources (observation sheets, clipboards, natural materials, exploration tools, sorting containers)  
