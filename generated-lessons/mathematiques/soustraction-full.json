@@ -2872,41 +2872,133 @@
       "opening": {
         "duration": "8 minutes",
         "activity": "Révision galerie d'art de la leçon 16",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Travaux des élèves de la leçon 16",
+              "quantity": "1 création par élève (25 travaux)",
+              "preparation": "Disposer les créations de la galerie précédente",
+              "alternatives": ["Photos des travaux", "Dessins simples", "Exemples d'enseignant"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Certificat 'Jeune Enseignant'",
+              "quantity": "25 certificats vierges",
+              "purpose": "Préparer la reconnaissance finale"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Nous sommes des enseignants!', pictogrammes pour enseigner (montrer, expliquer, aider)",
+        "decisionPoints": [
+          "Si élèves timides pour enseigner → commencer par démonstration en duo avec enseignant"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "27 minutes",
         "activity": "École de formation des enseignants",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": {
+          "required": [
+            {
+              "item": "Matériel de manipulation pour enseignement",
+              "quantity": "100 objets variés (cubes, jetons, boutons)",
+              "preparation": "Organiser en kits d'enseignement pour chaque paire",
+              "alternatives": ["Objets de classe existants", "Matériel récupéré", "Dessins sur papier"]
+            },
+            {
+              "item": "Cartes problèmes simples",
+              "quantity": "15 cartes avec soustractions 0-5",
+              "preparation": "Illustrer clairement avec images et nombres",
+              "alternatives": ["Problèmes oraux", "Situations inventées", "Objets réels"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau portable ou ardoise",
+              "quantity": "6 mini-tableaux pour démonstrations",
+              "purpose": "Permettre aux élèves d'enseigner comme vrais enseignants"
+            }
+          ]
+        },
+        "visualSupports": "Guide visuel 'Comment enseigner': 1. Montrer 2. Expliquer 3. Laisser essayer 4. Encourager",
+        "decisionPoints": [
+          "Si 'enseignant' donne mauvaise réponse → l'autre élève peut gentiment corriger",
+          "Si frustration d'un partenaire → changer les rôles plus souvent"
+        ],
+        "movementBreaks": [
+          "Rotation des rôles enseignant/élève (minute 15)",
+          "Pause pour applaudir les bons enseignants (minute 22)"
+        ]
       },
       "closing": {
         "duration": "10 minutes",
         "activity": "Certificat de jeune enseignant",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Certificats 'Jeune Enseignant' personnalisés",
+              "quantity": "25 certificats avec noms des élèves",
+              "preparation": "Remplir les noms à l'avance, prévoir crayons pour signature",
+              "alternatives": ["Autocollants spéciaux", "Badges temporaires", "Médailles en carton"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Appareil photo pour cérémonie",
+              "quantity": "1 pour documenter la remise",
+              "purpose": "Capturer le moment spécial de reconnaissance"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Félicitations nos jeunes enseignants!', affichage des qualités d'un bon enseignant",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si élèves trop timides pour enseigner: permettre enseignement en trio ou avec support adulte. Si explications confuses: utiliser plus de gestes et moins de mots.",
+        "then": "Modéliser d'abord avec élève volontaire, puis laisser essayer par petites étapes"
       },
       "realWorldConnection": "Aider notre petit frère ou sœur à apprendre quelque chose",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Permettre enseigner seulement avec gestes et objets",
+          "Jumeler avec élève plus confiant comme co-enseignant",
+          "Utiliser problèmes très simples (2-1, 3-1)",
+          "Accepter démonstration silencieuse avec manipulation"
+        ],
+        "forAdvanced": [
+          "Enseigner problèmes plus complexes (soustractions jusqu'à 10)",
+          "Créer leurs propres problèmes à enseigner",
+          "Aider plusieurs élèves en rotation",
+          "Développer techniques d'enseignement créatives"
+        ],
+        "forELL": [
+          "Privilégier gestes et manipulation visuelle",
+          "Permettre explication en langue première puis français",
+          "Utiliser images et pictogrammes pour soutenir",
+          "Jumeler avec élève bilingue si possible"
+        ],
+        "forIEP": [
+          "Adapter selon capacités - peut observer et applaudir",
+          "Utiliser communication alternative si nécessaire",
+          "Permettre participation à son niveau (tenir matériel, pointer)",
+          "Célébrer toute forme de participation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève explique une soustraction à un partenaire",
+          "L'élève utilise du matériel pour démontrer un concept",
+          "L'élève encourage son partenaire avec patience",
+          "L'élève utilise le vocabulaire mathématique approprié"
+        ],
+        "checkpoints": [
+          "Observation des interactions élève-enseignant/élève-apprenant",
+          "Écoute des explications données par les 'enseignants'",
+          "Documentation photo/vidéo des moments d'enseignement",
+          "Auto-évaluation: 'Comment je me sens comme enseignant?'"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -2963,41 +3055,133 @@
       "opening": {
         "duration": "8 minutes",
         "activity": "Révision enseignement de la leçon 17",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Certificats de jeune enseignant de la leçon 17",
+              "quantity": "25 certificats des élèves",
+              "preparation": "Afficher fièrement les certificats obtenus",
+              "alternatives": ["Photos des élèves enseignants", "Liste des accomplissements", "Badges temporaires"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Couronnes ou médailles de champion",
+              "quantity": "25 pour la motivation",
+              "purpose": "Créer atmosphère de championnat"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Championnat Mathématique!', tableau de bord avec équipes et scores",
+        "decisionPoints": [
+          "Si élèves surstimulés par compétition → rappeler l'esprit sportif et la collaboration"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "27 minutes",
         "activity": "Championnat de jeux mathématiques",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": {
+          "required": [
+            {
+              "item": "Jeux mathématiques variés (dés, cartes, plateau)",
+              "quantity": "6 jeux différents pour rotation",
+              "preparation": "Installer stations avec règles simplifiées affichées",
+              "alternatives": ["Jeux faits maison", "Adaptations de jeux existants", "Jeux numériques"]
+            },
+            {
+              "item": "Matériel de comptage pour scores",
+              "quantity": "50 jetons ou cubes pour compter les points",
+              "preparation": "Préparer contenants pour chaque équipe",
+              "alternatives": ["Papier et crayons", "Ardoises", "Bâtons de comptage"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuterie colorée pour rotations",
+              "quantity": "1 pour gérer le temps",
+              "purpose": "Maintenir rythme énergique du championnat"
+            }
+          ]
+        },
+        "visualSupports": "Règles illustrées pour chaque jeu, affichage des scores d'équipe",
+        "decisionPoints": [
+          "Si jeux trop difficiles → simplifier règles ou réduire nombres",
+          "Si disputes entre équipes → rappeler fairplay et encourager coopération"
+        ],
+        "movementBreaks": [
+          "Rotation entre stations de jeux (toutes les 5 minutes)",
+          "Célébrations d'équipe après chaque réussite"
+        ]
       },
       "closing": {
         "duration": "10 minutes",
         "activity": "Remise des médailles de championnat",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Médailles de championnat personnalisées",
+              "quantity": "25 médailles (différentes catégories: effort, fairplay, créativité)",
+              "preparation": "Personnaliser avec noms et catégories spéciales",
+              "alternatives": ["Certificats colorés", "Autocollants spéciaux", "Badges en carton"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Podium ou estrade de remise",
+              "quantity": "1 pour cérémonie officielle",
+              "purpose": "Créer moment solennel et valorisant"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Champions Mathématiques!', affichage des différentes catégories de médailles",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si frustration avec jeux complexes: simplifier règles et utiliser nombres plus petits. Si compétition cause stress: mettre accent sur participation plutôt que victoire.",
+        "then": "Revenir aux jeux plus simples des leçons précédentes, créer équipes mixtes avec support mutuel"
       },
       "realWorldConnection": "Jouer à des jeux plus difficiles comme les grands",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser jeux avec soustractions simples (nombres 0-5)",
+          "Permettre utilisation d'objets concrets pour calculer",
+          "Jumeler avec élève plus fort comme partenaire",
+          "Accepter tentatives même si réponses incorrectes"
+        ],
+        "forAdvanced": [
+          "Proposer jeux avec nombres jusqu'à 20",
+          "Créer stratégies de jeu plus sophistiquées",
+          "Devenir mentors pour autres élèves",
+          "Inventer nouvelles variations de jeux"
+        ],
+        "forELL": [
+          "Utiliser jeux très visuels avec peu de vocabulaire",
+          "Permettre communication gestuelle pour stratégies",
+          "Jumeler avec élève bilingue pour traduction",
+          "Fournir cartes de vocabulaire de jeu"
+        ],
+        "forIEP": [
+          "Adapter selon capacités - peut observer et applaudir",
+          "Utiliser jeux sensoriels adaptés",
+          "Permettre participation à son niveau (lancer dés, tenir cartes)",
+          "Célébrer chaque tentative de participation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève applique stratégies de soustraction dans contexte ludique",
+          "L'élève persévère face aux défis mathématiques",
+          "L'élève démontre fairplay et esprit sportif",
+          "L'élève utilise vocabulaire mathématique dans interactions de jeu"
+        ],
+        "checkpoints": [
+          "Observation des stratégies utilisées pendant les jeux",
+          "Documentation des progrès dans résolution de problèmes complexes",
+          "Évaluation de l'engagement et motivation dans activités challengeantes",
+          "Auto-réflexion: 'Quel jeu m'a le mieux aidé à apprendre?'"
+        ]
       },
       "extensionGuidance": {
         "category": "Enrichissement",
@@ -3054,41 +3238,133 @@
       "opening": {
         "duration": "8 minutes",
         "activity": "Révision championnat de la leçon 18",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Médailles de championnat de la leçon 18",
+              "quantity": "25 médailles des élèves",
+              "preparation": "Encourager élèves à porter leurs médailles avec fierté",
+              "alternatives": ["Photos des champions", "Diplômes affichés", "Autocollants de réussite"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Portfolio individuel de projets",
+              "quantity": "25 dossiers vides pour organiser créations",
+              "purpose": "Commencer collection personnelle de projets"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Nos Projets Créatifs!', galerie d'idées de projets mathématiques",
+        "decisionPoints": [
+          "Si élèves intimidés par mot 'projet' → expliquer comme 'création spéciale' ou 'cadeau mathématique'"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "27 minutes",
         "activity": "Atelier de projets mathématiques",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": {
+          "required": [
+            {
+              "item": "Matériaux d'arts et créativité",
+              "quantity": "Papiers colorés, crayons, autocollants, colle (matériel varié)",
+              "preparation": "Organiser stations créatives avec matériaux accessibles",
+              "alternatives": ["Matériel récupéré", "Fournitures de base seulement", "Matériel numérique"]
+            },
+            {
+              "item": "Objets de manipulation mathématique",
+              "quantity": "200 objets variés (cubes, jetons, boutons, cailloux)",
+              "preparation": "Placer dans contenants facilement accessibles",
+              "alternatives": ["Matériel classe existant", "Objets naturels", "Dessins d'objets"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Exemples de projets mathématiques",
+              "quantity": "5-6 modèles créés par enseignant",
+              "purpose": "Inspirer créativité sans limiter imagination"
+            }
+          ]
+        },
+        "visualSupports": "Affiches d'idées créatives: livre de math, jeu inventé, histoire illustrée, sculpture de nombres",
+        "decisionPoints": [
+          "Si blocage créatif → offrir choix de 3 projets prédéfinis",
+          "Si perfectionnisme paralyse → encourager 'version brouillon' d'abord"
+        ],
+        "movementBreaks": [
+          "Visite des créations des autres (minute 15)",
+          "Pause étirement créatif avec les mains (minute 22)"
+        ]
       },
       "closing": {
         "duration": "10 minutes",
         "activity": "Planification de la présentation",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Carnets de planification ou papier",
+              "quantity": "25 feuilles pour notes de présentation",
+              "preparation": "Préparer template simple: 'Mon projet + Ce que j'ai appris + Ce que j'aime le plus'",
+              "alternatives": ["Discussion orale seulement", "Dessins de planification", "Enregistrements vocaux"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Étiquettes 'Fier de mon projet'",
+              "quantity": "25 autocollants motivants",
+              "purpose": "Célébrer accomplissement créatif"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Comment présenter': 1. Montrer 2. Expliquer 3. Partager ce qu'on aime",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si paralysie créative ou perfectionnisme: offrir projets avec étapes guidées. Si frustration avec matériel: simplifier et se concentrer sur l'idée plutôt que l'exécution.",
+        "then": "Proposer collaboration en paires, utiliser templates prêts, permettre projets très simples mais significatifs"
       },
       "realWorldConnection": "Faire un projet spécial comme à la maison avec papa et maman",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir choix entre 3 projets prédéfinis avec étapes claires",
+          "Permettre projets très simples: livre à 2 pages, collage simple",
+          "Fournir templates et modèles à compléter",
+          "Accepter représentations non-conventionnelles"
+        ],
+        "forAdvanced": [
+          "Encourager projets complexes intégrant plusieurs concepts",
+          "Proposer création de jeux mathématiques complets",
+          "Développer projets pour enseigner aux autres",
+          "Intégrer technologies si disponibles"
+        ],
+        "forELL": [
+          "Privilégier projets très visuels avec peu de texte",
+          "Permettre annotations dans langue première",
+          "Utiliser projets universels (nombres, images, symboles)",
+          "Jumeler avec élève bilingue pour soutien"
+        ],
+        "forIEP": [
+          "Adapter projets selon capacités individuelles",
+          "Permettre participation avec aide adulte ou pair",
+          "Accepter contributions à son niveau (coller, pointer, choisir)",
+          "Célébrer toute forme d'expression créative"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève intègre concepts de soustraction dans son projet créatif",
+          "L'élève démontre compréhension à travers création personnelle",
+          "L'élève planifie et organise présentation de son projet",
+          "L'élève exprime fierté et accomplissement dans son travail"
+        ],
+        "checkpoints": [
+          "Observation de l'intégration mathématique dans projets créatifs",
+          "Documentation du processus créatif et des choix mathématiques",
+          "Évaluation de la planification de présentation",
+          "Auto-réflexion sur apprentissages: 'Qu'est-ce que mon projet montre que je sais?'"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -3145,41 +3421,139 @@
       "opening": {
         "duration": "8 minutes",
         "activity": "Installation de la galerie de projets",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Projets créatifs de la leçon 19",
+              "quantity": "25 projets des élèves",
+              "preparation": "Disposer artistiquement sur tables ou murs pour exposition",
+              "alternatives": ["Photos des projets si originaux fragiles", "Présentations numériques", "Projets en cours d'achèvement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Décorations festives (ballons, banderoles)",
+              "quantity": "Matériel de décoration coloré",
+              "purpose": "Créer atmosphère de célébration spéciale"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Notre Voyage Mathématique!', panneau 'Fiers de nos apprentissages!'",
+        "decisionPoints": [
+          "Si certains projets non terminés → célébrer effort et processus plutôt que produit fini"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "27 minutes",
         "activity": "Festival de fin d'unité",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": {
+          "required": [
+            {
+              "item": "Tous les travaux et créations de l'unité",
+              "quantity": "Portfolio complet de chaque élève (20 leçons d'apprentissages)",
+              "preparation": "Organiser chronologiquement pour montrer progression",
+              "alternatives": ["Sélection des meilleurs travaux", "Photos chronologiques", "Échantillons représentatifs"]
+            },
+            {
+              "item": "Certificats de réussite personnalisés",
+              "quantity": "25 certificats 'Maître de la Soustraction!'",
+              "preparation": "Personnaliser avec noms et accomplissements spéciaux",
+              "alternatives": ["Diplômes faits main", "Médailles", "Autocollants de reconnaissance"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Invitations pour familles",
+              "quantity": "25 invitations pour partager célébration",
+              "purpose": "Permettre aux familles de célébrer accomplissements"
+            }
+          ]
+        },
+        "visualSupports": "Frise chronologique de l'unité, galerie 'Avant/Après' montrant progrès, affichage des moments marquants",
+        "decisionPoints": [
+          "Si émotions fortes (nostalgie, fierté) → prendre temps pour reconnaître sentiments",
+          "Si timidité pour présenter → permettre présentation en duo ou avec soutien"
+        ],
+        "movementBreaks": [
+          "Tour de la galerie avec applaudissements (minute 10)",
+          "Danse de célébration mathématique (minute 20)"
+        ]
       },
       "closing": {
         "duration": "10 minutes",
         "activity": "Photo souvenir et promesses",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Appareil photo ou caméra",
+              "quantity": "1 pour capturer moment spécial",
+              "preparation": "Tester fonctionnement, prévoir arrière-plan festif",
+              "alternatives": ["Téléphone avec caméra", "Tablette", "Demande aide collègue photographe"]
+            },
+            {
+              "item": "Cartes de promesses mathématiques",
+              "quantity": "25 cartes 'Je promets de continuer à apprendre!'",
+              "preparation": "Préparer cartes avec espace pour engagement personnel",
+              "alternatives": ["Papier simple", "Engagement oral", "Dessins de promesses"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Accessoires photo amusants (chapeaux, lunettes)",
+              "quantity": "Variété pour photo groupe festive",
+              "purpose": "Rendre photo mémorable et joyeuse"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Classe des Maîtres Soustraction 2024!', arrière-plan décoratif pour photo",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si tristesse de fin d'unité: reconnaître sentiments normaux et promettre nouvelles aventures mathématiques. Si surstimulation émotionnelle: créer moments calmes de réflexion.",
+        "then": "Équilibrer célébration joyeuse avec moments de transition douce, rassurer sur continuité des apprentissages"
       },
       "realWorldConnection": "Célébrer nos réussites comme lors des anniversaires ou fêtes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Célébrer progrès personnels plutôt que comparaisons",
+          "Permettre réflexion silencieuse ou avec aide adulte",
+          "Utiliser supports visuels pour montrer croissance",
+          "Accepter participation à leur niveau de confort"
+        ],
+        "forAdvanced": [
+          "Encourager à mentionner apprentissages favoris et prochains défis souhaités",
+          "Proposer de créer message d'encouragement pour futurs élèves",
+          "Inviter à partager stratégies d'apprentissage efficaces",
+          "Demander réflexion sur connexions entre concepts"
+        ],
+        "forELL": [
+          "Permettre expression de fierté dans langue première",
+          "Utiliser photos et images pour faciliter réflexion",
+          "Accepter gestes et expressions non-verbales",
+          "Jumeler avec élève bilingue pour traduction si souhaité"
+        ],
+        "forIEP": [
+          "Adapter célébration selon préférences sensorielles",
+          "Permettre participation selon capacités individuelles",
+          "Utiliser moyens de communication préférés",
+          "Célébrer tous types de progrès et participation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève exprime fierté de ses accomplissements mathématiques",
+          "L'élève identifie croissance personnelle dans apprentissages",
+          "L'élève participe joyeusement aux célébrations de groupe",
+          "L'élève démontre reconnaissance pour son parcours d'apprentissage"
+        ],
+        "checkpoints": [
+          "Observation de l'expression de fierté et accomplissement",
+          "Documentation des réflexions sur croissance personnelle",
+          "Capture photo/vidéo des moments de célébration authentique",
+          "Auto-réflexion finale: 'Ce dont je suis le plus fier dans mes apprentissages'"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",

@@ -25,6 +25,7 @@
 | formes-2d (formes-geometriques) | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | mesure-non-standard | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | addition-jusqua-10 | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| soustraction | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | patterns-repetition | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | resolution-problemes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | nombres-11-20 | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -134,25 +135,25 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 50  
-**Enhanced**: 5 / 50 (10%)  
-**Translations Fixed**: 5 / 50 (10%)  
-**Decision Points Added**: 5 / 50 (10%)  
-**Materials Specified**: 5 / 50 (10%)  
+**Enhanced**: 6 / 50 (12%)  
+**Translations Fixed**: 6 / 50 (12%)  
+**Decision Points Added**: 6 / 50 (12%)  
+**Materials Specified**: 6 / 50 (12%)  
 **Committed**: 0 / 50 (0%)  
 **Reviewed**: 1 / 50 (2%)
 
 ## 🎯 Current Focus
 
 **Next Unit to Enhance**: mathematiques/patterns-repetition  
-**Recently Completed**: mathematiques/comparaison (COMPREHENSIVE ENHANCEMENT COMPLETED)
-- ✅ Enhanced ALL 20 lessons with complete pedagogical elements (core lessons 1-14 + extension lessons 15-20)
-- ✅ Added decision points: 2-3 for lessons 1-5, 1-2 for lessons 6-15, 0-1 for lessons 16-20
-- ✅ Added comprehensive differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) to ALL 20 lessons
-- ✅ Added detailed assessment criteria with observable behaviors and checkpoints for all lessons
-- ✅ Enhanced materials with specific quantities for 20-25 students, school-available only (NO parent donations)
-- ✅ Enhanced visual supports and comparison-specific pedagogical approaches (plus grand que, moins que, égal à)
-- ✅ Integrated comparison pedagogy with concrete manipulatives, balance scales, number lines, and visual comparison tools
-- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson mathematics unit with comprehensive enhancement covering comparison strategies and ordering concepts
+**Recently Completed**: mathematiques/soustraction (COMPREHENSIVE ENHANCEMENT COMPLETED - LESSONS 17-20 FINALIZED)
+- ✅ Completed final 4 extension lessons (17-20) with full pedagogical elements: "Enseigner à un ami", "Jeux mathématiques avancés", "Projet créatif final", "Célébration et réflexion"
+- ✅ Added comprehensive materials with specific quantities for 20-25 students (certificates, games, creative supplies, celebration items)
+- ✅ Enhanced all lessons with visual supports, decision points (0-1 each as appropriate for extension lessons)
+- ✅ Added complete differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) to all 4 lessons
+- ✅ Added detailed assessment criteria focusing on peer teaching, problem-solving persistence, creative expression, and reflection
+- ✅ Maintained subtraction pedagogy focus with peer teaching, advanced games, creative projects, and celebratory reflection
+- ✅ All materials school-available only (NO parent donations) with practical alternatives provided
+- 🔴 **CRITICAL ACHIEVEMENT**: Complete 20-lesson subtraction unit now fully enhanced with extension lessons for differentiation, enrichment, and celebration
 
 **Previous Completions**: 
 - mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
