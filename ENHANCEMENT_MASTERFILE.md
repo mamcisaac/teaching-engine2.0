@@ -64,7 +64,7 @@
 | eveil-printemps | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | sons-vibrations | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | environnement-partage | ✅ | ✅ | ✅ | ⬜ | ⬜ |
-| exposition-finale | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| exposition-finale | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ### Arts visuels (10 units)
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
