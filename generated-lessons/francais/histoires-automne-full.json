@@ -19,42 +19,105 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Chanson d'accueil avec gestes : 'Bonjour l'automne!' Les élèves se rassemblent au tapis et chantent en mimant les feuilles qui tombent et le vent qui souffle.",
+        "materials": [
+          "Tapis de rassemblement pour 25 élèves",
+          "Images d'automne collées au tableau",
+          "Feuilles d'automne réelles (ramassées dehors)"
+        ],
+        "visualSupports": "Affichage de photos d'automne avec les mots 'automne', 'feuilles', 'orange' écrits en gros sous chaque image",
+        "decisionPoints": [
+          "Si les élèves semblent excités par les feuilles réelles, prolonger l'exploration tactile",
+          "Si certains élèves ne participent pas aux gestes, modéliser davantage avant de continuer"
+        ],
+        "movementBreaks": [
+          "Gestes pour imiter les feuilles qui tombent (bras qui bougent)",
+          "Mouvements pour représenter le vent (corps qui balance)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration guidée : Sortie à l'extérieur (ou observation par la fenêtre) pour identifier les signes d'automne. Les élèves nomment ce qu'ils voient en français avec aide. Retour en classe pour créer un mur de mots illustré 'L'automne arrive!' avec dessins et étiquettes.",
+        "materials": [
+          "Tableau blanc ou papier grand format",
+          "Marqueurs de couleur (orange, rouge, jaune, brun)",
+          "Étiquettes pré-écrites : automne, feuilles, orange",
+          "Crayons et papier pour dessins individuels (25 copies)",
+          "Bac pour collecter feuilles d'automne"
+        ],
+        "visualSupports": "Cartes-images plastifiées montrant les couleurs d'automne, les arbres avec/sans feuilles, le vocabulaire écrit en gros caractères",
+        "decisionPoints": [
+          "Si la météo ne permet pas de sortir, utiliser les images de la fenêtre ou des photos agrandies",
+          "Si les élèves ont de la difficulté avec 'orange', montrer des objets orange de la classe",
+          "Si l'activité de dessin prend plus de temps prévu, permettre aux élèves de finir plus tard"
+        ],
+        "movementBreaks": [
+          "Marcher dehors pour observer (si possible)",
+          "Se lever pour coller les étiquettes au mur",
+          "Pause danse : imiter les feuilles qui tombent"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de partage : Chaque élève partage un mot qu'il a appris ou montre quelque chose qu'il a dessiné. Révision du vocabulaire avec répétition chorale et gestes. Chanson de fermeture : 'Au revoir automne, à demain!'",
+        "materials": [
+          "Dessins des élèves",
+          "Mur de mots créé pendant l'activité principale",
+          "Feuilles d'automne collectées"
+        ],
+        "visualSupports": "Affichage final du mur de mots avec dessins et étiquettes, gestes pour chaque mot de vocabulaire",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour partager, commencer par leur demander de montrer leur dessin",
+          "Si le temps manque, faire une révision rapide avec tout le groupe plutôt que des partages individuels"
+        ],
+        "movementBreaks": [
+          "Se lever pour montrer les dessins",
+          "Gestes accompagnant la chanson de fermeture"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la prononciation des nouveaux mots français ou la participation aux activités",
+        "then": "utiliser plus de gestes et de supports visuels, permettre aux élèves de montrer plutôt que de dire, pairer avec un ami, donner plus de temps pour observer avant de demander de parler"
       },
       "realWorldConnection": "How people notice and talk about changing seasons in their daily lives",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des images avec mots écrits dessus",
+          "Permettre de montrer au lieu de dire",
+          "Travailler en petit groupe avec plus de soutien",
+          "Utiliser des objets concrets et manipulation"
+        ],
+        "forAdvanced": [
+          "Encourager à utiliser des phrases complètes en français",
+          "Demander de décrire pourquoi les feuilles changent de couleur",
+          "Rôle d'aide-enseignant pour modéliser aux autres",
+          "Ajouter du vocabulaire supplémentaire (brun, doré)"
+        ],
+        "forELL": [
+          "Permettre l'usage de L1 pour expliquer puis répéter en français",
+          "Pairs tutors avec élèves francophones",
+          "Plus de supports visuels et gestes",
+          "Répétition fréquente et modélisation claire"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels du PEI",
+          "Soutien individuel si nécessaire",
+          "Outils alternatifs de communication si requis",
+          "Modification de l'environnement selon les besoins sensoriels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Reconnaît et nomme 'automne', 'feuilles', 'orange' avec ou sans support visuel",
+          "Participe aux activités de groupe avec engagement",
+          "Démontre compréhension par gestes, dessins ou mots",
+          "Utilise le nouveau vocabulaire dans des contextes similaires"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration : observer qui identifie les signes d'automne",
+          "Pendant le dessin : noter qui peut associer les mots aux images",
+          "Pendant le partage : écouter pour l'usage spontané du vocabulaire"
+        ]
       }
     },
     {
@@ -70,42 +133,107 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Révision des mots d'automne avec une danse des feuilles. Les élèves tiennent des feuilles de papier colorées (rouge, jaune, orange) et dansent en écoutant 'Les feuilles d'automne tombent, tombent, tombent...'",
+        "materials": [
+          "Feuilles de papier coloré (rouge, jaune, orange) - 25 copies",
+          "Musique douce d'automne ou chanson enregistrée",
+          "Haut-parleur/lecteur de musique",
+          "Affichage des couleurs avec mots écrits"
+        ],
+        "visualSupports": "Cartes de couleurs géantes au mur (rouge, jaune, orange) avec les mots écrits clairement, démonstration des mouvements par l'enseignant",
+        "decisionPoints": [
+          "Si certains élèves sont réticents à danser, les encourager à bouger leurs feuilles assis",
+          "Si l'espace est limité, faire deux groupes qui dansent à tour de rôle"
+        ],
+        "movementBreaks": [
+          "Danse avec feuilles - mouvements libres",
+          "Imiter les feuilles qui tombent lentement puis rapidement"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Station d'exploration des couleurs : 3 stations rotatives (1) Tri des feuilles par couleurs avec verbalisation, (2) Peinture avec éponges pour créer des arbres d'automne rouge/jaune, (3) Jeu de mouvement 'Jacques a dit' avec actions des feuilles (tomber, danser, voler).",
+        "materials": [
+          "Vraies feuilles d'automne de différentes couleurs",
+          "3 bacs de tri étiquetés rouge, jaune, orange",
+          "Peinture rouge et jaune avec éponges (25 sets)",
+          "Papier blanc format lettre (25 copies)",
+          "Tabliers ou vieux vêtements pour peinture",
+          "Cartes d'instructions visuelles pour chaque station"
+        ],
+        "visualSupports": "Instructions illustrées à chaque station, modèles de peintures terminées, cartes de mouvements avec flèches et images",
+        "decisionPoints": [
+          "Si la peinture prend trop de temps, limiter à 2 couleurs simples par élève",
+          "Si certains élèves ont fini plus tôt, leur permettre d'aider aux autres stations",
+          "Si le jeu Jacques a dit devient trop excitant, faire une pause calme"
+        ],
+        "movementBreaks": [
+          "Transition entre stations en marchant comme des feuilles qui tombent",
+          "Station de jeu de mouvement intégrée",
+          "Étirements en imitant les branches d'arbres"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Galerie d'art des feuilles : Les élèves présentent leurs peintures et nomment les couleurs utilisées. Chanson finale 'Rouge, jaune, orange - les couleurs d'automne!' avec gestes pour chaque couleur.",
+        "materials": [
+          "Peintures séchées des élèves",
+          "Espace pour exposition temporaire",
+          "Paroles de la chanson affichées avec couleurs"
+        ],
+        "visualSupports": "Exposition des œuvres avec étiquettes de couleurs, gestes standardisés pour chaque couleur enseignés",
+        "decisionPoints": [
+          "Si les peintures ne sont pas sèches, faire le partage sur les feuilles triées à la place",
+          "Si certains élèves sont timides pour présenter, faire des présentations en paires"
+        ],
+        "movementBreaks": [
+          "Se déplacer pour voir les œuvres des autres",
+          "Gestes de la chanson finale avec tout le corps"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la différenciation des couleurs ou la participation aux activités de mouvement",
+        "then": "utiliser des objets concrets de la classe dans ces couleurs pour renforcement, permettre la participation partielle au mouvement, offrir des choix d'activités alternatives, utiliser un système de copain pour le soutien"
       },
       "realWorldConnection": "Observing how leaves change and fall in our neighborhood and parks",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le nombre de couleurs à 2 (rouge et jaune)",
+          "Fournir des modèles visuels à copier",
+          "Assistance individuelle pour le tri des couleurs",
+          "Mouvements adaptés selon capacités physiques"
+        ],
+        "forAdvanced": [
+          "Ajouter des nuances (rouge foncé/clair, jaune doré)",
+          "Encourager des phrases descriptives complètes",
+          "Rôle de leader dans les stations",
+          "Créer des motifs complexes avec les couleurs"
+        ],
+        "forELL": [
+          "Étiquettes couleurs en L1 et français côte à côte",
+          "Démonstration répétée des actions",
+          "Partenariat avec élève francophone",
+          "Plus de temps pour traitement et réponse"
+        ],
+        "forIEP": [
+          "Modifications selon objectifs PEI individuels",
+          "Outils adaptatifs pour peinture si nécessaire",
+          "Environnement sensoriel ajusté",
+          "Support de communication alternatif"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie et nomme les couleurs rouge, jaune avec support visuel",
+          "Démontre compréhension de 'tomber' par mouvement ou geste",
+          "Participe aux activités de tri et création avec engagement",
+          "Utilise le vocabulaire de couleurs dans le contexte des feuilles"
+        ],
+        "checkpoints": [
+          "Station de tri : observer la précision de classification des couleurs",
+          "Pendant la peinture : écouter l'usage spontané des mots de couleur",
+          "Présentation finale : noter l'aisance avec le nouveau vocabulaire"
+        ]
       }
     },
     {
@@ -121,42 +249,106 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Jeu de devinettes : L'enseignant(e) décrit un arbre ('Je vois quelque chose de grand avec des branches') et les élèves devinent. Révision kinesthésique : les élèves deviennent des arbres avec leurs bras comme branches.",
+        "materials": [
+          "Images d'arbres de différentes tailles",
+          "Espace libre pour mouvement",
+          "Cartes de vocabulaire : arbre, branches, grand"
+        ],
+        "visualSupports": "Photos d'arbres avec étiquettes, démonstration physique des concepts 'grand', 'petit', gestes pour 'branches'",
+        "decisionPoints": [
+          "Si les élèves ont du mal avec 'grand', comparer avec des objets familiers de la classe",
+          "Si l'activité kinesthésique est trop énergique, adapter en position assise avec bras seulement"
+        ],
+        "movementBreaks": [
+          "Imiter des arbres : se tenir debout, bras levés comme branches",
+          "Grandir lentement de petit à grand arbre"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration d'arbres réels : Observation guidée par la fenêtre ou sortie courte pour identifier les parties d'un arbre. Activité de dessin détaillé : créer un arbre d'automne en étiquetant les parties. Jeu de comparaison : trier des images d'arbres par taille (grand/petit).",
+        "materials": [
+          "Papier de dessin (25 copies)",
+          "Crayons de couleur et crayons à mine",
+          "Images d'arbres variés pour tri (grand/petit)",
+          "Étiquettes pré-écrites : arbre, branches, grand, petit",
+          "Colle bâton (assez pour la classe)",
+          "Jumelles jouet ou loupes pour observation (optionnel)"
+        ],
+        "visualSupports": "Diagramme d'arbre avec parties étiquetées au tableau, séquence d'instructions de dessin illustrées, exemples de dessins terminés",
+        "decisionPoints": [
+          "Si les élèves ont difficulté à dessiner, fournir des gabarits à tracer",
+          "Si pas possible de sortir, utiliser observation détaillée par fenêtre ou photos agrandies",
+          "Si le tri est trop facile, ajouter des catégories (taille de branches, nombre de feuilles)"
+        ],
+        "movementBreaks": [
+          "Sortie courte pour observation (si météo permet)",
+          "Se déplacer pour coller étiquettes sur dessins",
+          "Pause 'grandir comme un arbre' - mouvement lent de bas en haut"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exposition d'arbres : Les élèves présentent leurs dessins d'arbres en utilisant le vocabulaire appris. Jeu final 'Grand ou petit?' avec gestes corporels pour renforcer les concepts de taille.",
+        "materials": [
+          "Dessins terminés des élèves",
+          "Espace pour mini-exposition",
+          "Cartes de révision vocabulaire"
+        ],
+        "visualSupports": "Galerie de dessins affichée, cartes récapitulatives avec mots et images, gestes de référence pour grand/petit",
+        "decisionPoints": [
+          "Si certains élèves ne veulent pas présenter, encourager à montrer seulement leur dessin",
+          "Si le jeu devient répétitif, ajouter des variations (branches longues/courtes, feuilles nombreuses/peu)"
+        ],
+        "movementBreaks": [
+          "Circuler pour voir les dessins des autres",
+          "Gestes corporels pour grand (étirement) et petit (accroupi)"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "les concepts de taille (grand/petit) ou l'identification des parties de l'arbre",
+        "then": "utiliser comparaisons concrètes avec élèves (grand élève, petit élève), montrer avec objets manipulables, dessiner étape par étape au tableau, permettre le travail en équipe avec élève plus avancé"
       },
       "realWorldConnection": "How trees provide homes for animals and beauty in our communities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Gabarits d'arbres à tracer pour le dessin",
+          "Images avec moins de détails pour simplifier l'observation",
+          "Travail en petit groupe avec soutien supplémentaire",
+          "Focus sur vocabulaire de base : arbre, grand seulement"
+        ],
+        "forAdvanced": [
+          "Ajouter vocabulaire enrichi (tronc, racines, écorce)",
+          "Dessiner plusieurs types d'arbres différents",
+          "Créer des descriptions complètes des arbres observés",
+          "Rechercher différents types d'arbres sur le terrain de l'école"
+        ],
+        "forELL": [
+          "Étiquettes bilingues pour supports visuels",
+          "Plus de temps pour traitement et réponse",
+          "Modélisation répétée des gestes et mots",
+          "Partenariat avec élève francophone fort"
+        ],
+        "forIEP": [
+          "Adaptations selon besoins individuels du PEI",
+          "Outils de dessin alternatifs si difficultés motrices",
+          "Environnement d'apprentissage ajusté",
+          "Objectifs modifiés selon capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie et nomme 'arbre' et 'branches' avec support visuel",
+          "Démontre compréhension de 'grand' vs 'petit' par tri ou geste",
+          "Participe activement aux observations et discussions",
+          "Inclut éléments de base dans son dessin d'arbre (tronc, branches)"
+        ],
+        "checkpoints": [
+          "Pendant observation : noter qui identifie les parties correctement",
+          "Pendant dessin : observer l'inclusion du vocabulaire appris",
+          "Pendant présentation : écouter l'usage approprié des nouveaux mots"
+        ]
       }
     },
     {
@@ -172,42 +364,110 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Routine météo interactive : Observer par la fenêtre et décrire ce qu'on voit et ressent. Mime de sensations : 'Il fait frais!' (serrer les bras), 'Le vent souffle!' (balancer), 'Je vois des nuages' (pointer le ciel).",
+        "materials": [
+          "Grande fenêtre ou espace pour voir dehors",
+          "Cartes météo avec pictogrammes",
+          "Thermomètre géant en carton",
+          "Vêtements d'automne pour démonstration"
+        ],
+        "visualSupports": "Cartes météo colorées avec mots et images, gestes standardisés pour chaque condition météo, photos de nuages différents",
+        "decisionPoints": [
+          "Si la météo ne correspond pas aux mots enseignés, adapter avec photos ou expériences simulées",
+          "Si certains élèves ont chaud/froid, ajuster en expliquant les sensations différentes",
+          "Si les gestes sont trop énergiques pour l'espace, adapter en position assise"
+        ],
+        "movementBreaks": [
+          "Gestes météo : serrer les bras pour 'frais'",
+          "Balancer comme le vent",
+          "Pointer et observer le ciel"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Station météo active : (1) Station vêtements - associer vêtements aux conditions météo avec verbalisation, (2) Station observation - dessiner la météo d'aujourd'hui avec étiquettes, (3) Station sensorielle - sentir différents niveaux de température/air avec ventilateur et expérimenter les sensations 'frais'.",
+        "materials": [
+          "Vêtements d'automne variés (chandails, vestes, foulards) - 20-25 pièces",
+          "Images de conditions météo pour association",
+          "Papier et crayons pour dessin météo (25 copies)",
+          "Étiquettes pré-écrites : frais, vent, nuages",
+          "Petit ventilateur portable pour simulation du vent",
+          "Bouteille d'eau froide et tiède pour comparaisons de température"
+        ],
+        "visualSupports": "Instructions illustrées pour chaque station, modèles de dessins météo, diagramme de vêtements étiquetés",
+        "decisionPoints": [
+          "Si les vêtements sont sales/non disponibles, utiliser images de vêtements à découper et trier",
+          "Si le ventilateur fait trop de bruit, l'utiliser par intervalles courts seulement",
+          "Si certains élèves n'aiment pas les sensations tactiles, offrir observation sans contact direct"
+        ],
+        "movementBreaks": [
+          "Rotation entre stations avec marche 'météo' (marcher contre le vent, etc.)",
+          "Pause étirements en imitant des nuages qui bougent",
+          "Essayer les vêtements (mouvement naturel)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Bulletin météo de classe : Les élèves présentent leurs dessins météo en utilisant les nouveaux mots. Création collective d'un bulletin météo chanté : 'Aujourd'hui il fait frais, le vent souffle, je vois des nuages!'",
+        "materials": [
+          "Dessins météo des élèves",
+          "Grand tableau ou espace d'affichage",
+          "Microphone jouet pour bulletin météo (optionnel)",
+          "Paroles de la chanson météo affichées"
+        ],
+        "visualSupports": "Gallery de dessins météo affichée, paroles avec images météo intégrées, gestes de révision pour chaque mot",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour présenter, faire des présentations en duo",
+          "Si la chanson est trop complexe, simplifier à répétition chorale simple"
+        ],
+        "movementBreaks": [
+          "Présentation debout avec gestes",
+          "Mouvement de la chanson météo avec tout le corps"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension des sensations météo ou l'association vêtements-température",
+        "then": "utiliser expériences concrètes (toucher objets froids/tièdes), démonstration physique (porter/enlever chandail), comparaisons avec expériences personnelles ('Quand tu vas dehors l'automne...'), supports visuels très clairs avec photos réelles"
       },
       "realWorldConnection": "How autumn weather affects our clothing choices and daily activities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus sur un seul concept météo à la fois",
+          "Plus d'expériences sensorielles concrètes",
+          "Images très simples et claires pour association",
+          "Assistance individuelle pour dessins et étiquetage"
+        ],
+        "forAdvanced": [
+          "Ajouter vocabulaire météo enrichi (nuageux, venteux, frisquet)",
+          "Prédictions météo simples pour demain",
+          "Descriptions météo en phrases complètes",
+          "Recherche sur pourquoi il fait plus frais en automne"
+        ],
+        "forELL": [
+          "Comparaisons avec météo de pays d'origine",
+          "Mots météo en L1 et français côte à côte",
+          "Plus de supports visuels et expériences tactiles",
+          "Temps supplémentaire pour associations conceptuelles"
+        ],
+        "forIEP": [
+          "Adaptations sensorielles selon besoins individuels",
+          "Modifications des matériaux tactiles si sensibilités",
+          "Objectifs simplifiés selon capacités",
+          "Support additionnel pour concepts abstraits"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Associe sensation 'frais' avec geste ou expression appropriée",
+          "Identifie 'vent' et 'nuages' visuellement ou par description",
+          "Fait des connexions appropriées vêtements-météo",
+          "Utilise vocabulaire météo dans contexte approprié"
+        ],
+        "checkpoints": [
+          "Station vêtements : observer précision des associations météo-vêtements",
+          "Station dessin : noter inclusion du vocabulaire dans représentations",
+          "Bulletin météo : écouter usage naturel et approprié des nouveaux termes"
+        ]
       }
     },
     {
@@ -223,42 +483,109 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Jeu de mime animalier : L'enseignant(e) mime un écureuil qui ramasse des noix, puis un oiseau qui bat des ailes. Les élèves devinent et imitent. Introduction du concept 'se préparer pour l'hiver' avec gestes de rangement et préparation.",
+        "materials": [
+          "Images d'animaux d'automne (écureuil, oiseau, ours, etc.)",
+          "Vraies noix ou images de noix",
+          "Espace libre pour mouvements",
+          "Cartes de vocabulaire avec images d'animaux"
+        ],
+        "visualSupports": "Grandes photos d'animaux avec leurs noms écrits, séquences illustrées d'animaux se préparant (écureuil avec noix, oiseaux qui migrent)",
+        "decisionPoints": [
+          "Si certains élèves ont peur d'imiter les animaux, les encourager à observer d'abord puis participer graduellement",
+          "Si le concept 'se préparer' est difficile, utiliser analogies avec préparation des élèves (ranger son sac, s'habiller)",
+          "Si l'énergie est trop haute, alterner entre mouvements actifs et calmes"
+        ],
+        "movementBreaks": [
+          "Mimer l'écureuil : ramasser et cacher des noix",
+          "Mimer l'oiseau : battre des ailes, regarder au loin",
+          "Gestes pour 'se préparer' : organiser, ranger, planifier"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Histoire interactive des animaux : Lecture d'une histoire simple sur les animaux qui se préparent, avec participation des élèves (bruitages, mouvements). Création d'un livre de classe : chaque élève dessine un animal qui se prépare et explique comment. Jeu de correspondance : associer animaux et leurs préparations d'automne.",
+        "materials": [
+          "Livre d'histoire simple sur animaux d'automne (ou histoire créée)",
+          "Papier pour livre de classe (25 copies)",
+          "Crayons de couleur et crayons réguliers",
+          "Cartes d'association animaux-préparations",
+          "Images de nourritures d'animaux (noix, graines, etc.)",
+          "Agrafeuse pour assembler le livre de classe"
+        ],
+        "visualSupports": "Illustrations de l'histoire projetées ou affichées, exemples de dessins d'animaux avec leurs préparations, cartes de correspondance claires et colorées",
+        "decisionPoints": [
+          "Si pas de livre disponible, créer histoire simple improvisée avec images",
+          "Si les dessins prennent trop de temps, simplifier à dessins basiques avec étiquettes pré-faites",
+          "Si le jeu de correspondance est trop facile, ajouter plus d'animaux ou détails sur leurs préparations"
+        ],
+        "movementBreaks": [
+          "Participation physique pendant l'histoire (mouvements d'animaux)",
+          "Se lever pour contribuer au livre de classe collectif",
+          "Pause 'migration' : marcher en formation comme des oiseaux"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Présentation du livre de classe terminé : Lecture collective de 'Notre livre des animaux qui se préparent'. Chanson/comptine finale avec mouvements : 'L'écureuil ramasse, l'oiseau s'envole, tous se préparent pour l'hiver qui arrive!'",
+        "materials": [
+          "Livre de classe assemblé avec dessins des élèves",
+          "Espace pour rassemblement circulaire",
+          "Paroles de la chanson écrites avec pictogrammes"
+        ],
+        "visualSupports": "Livre de classe avec dessins visibles pour tous, cartes de révision des animaux et actions, gestes de la chanson modélisés",
+        "decisionPoints": [
+          "Si le livre n'est pas terminé, montrer quelques exemples et promettre de finir plus tard",
+          "Si certains élèves ne veulent pas que leur dessin soit montré, respecter leur choix et les inclure autrement"
+        ],
+        "movementBreaks": [
+          "Gestes de la chanson : actions d'animaux intégrées",
+          "Applaudissements pour célébrer le livre créé ensemble"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension du concept 'se préparer' ou l'identification des animaux d'automne",
+        "then": "utiliser exemples concrets de la vie des élèves (comment ils se préparent pour l'école, l'hiver), montrer vidéos courtes d'animaux en automne si disponibles, simplifier à 1-2 animaux familiers seulement, utiliser beaucoup de répétition et gestes"
       },
       "realWorldConnection": "Observing how animals in our area get ready for colder weather",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus sur un seul animal à la fois (écureuil OU oiseau)",
+          "Dessins très simples avec étiquettes pré-faites",
+          "Plus de support pour tenir crayons et dessiner",
+          "Associations visuelles très claires (une image = une action)"
+        ],
+        "forAdvanced": [
+          "Ajouter plus d'animaux (ours, marmotte, castor)",
+          "Encourager descriptions complètes des préparations",
+          "Rechercher d'autres comportements d'animaux en automne",
+          "Créer mini-histoire personnelle avec animal choisi"
+        ],
+        "forELL": [
+          "Images avec mots en L1 et français",
+          "Plus de démonstrations physiques des concepts",
+          "Partenariat avec élève francophone pour explication",
+          "Connexions avec animaux de pays d'origine si pertinent"
+        ],
+        "forIEP": [
+          "Adaptations selon objectifs individuels du PEI",
+          "Matériaux de dessin alternatifs si difficultés motrices",
+          "Support supplémentaire pour concepts abstraits",
+          "Participation modifiée aux activités de mouvement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie et nomme 'écureuil' et 'oiseau' avec support visuel",
+          "Démontre compréhension de 'se préparer' par actions ou explications simples",
+          "Associe correctement animaux et leurs comportements d'automne",
+          "Participe activement aux imitations et créations"
+        ],
+        "checkpoints": [
+          "Pendant l'histoire : noter qui fait des connexions appropriées",
+          "Pendant le dessin : observer qui peut expliquer ce que fait son animal",
+          "Pendant la présentation : écouter pour usage approprié du nouveau vocabulaire"
+        ]
       }
     },
     {
@@ -274,42 +601,105 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle d'écoute : Les élèves s'assoient confortablement pendant que l'enseignant(e) introduit l'heure du conte avec des gestes pour 'écouter' (main à l'oreille) et 'regarder' (pointer les yeux). Révision rapide du vocabulaire d'automne appris.",
+        "materials": [
+          "Tapis ou coussins pour cercle confortable",
+          "Livre d'histoire d'automne illustré",
+          "Cartes de gestes pour écouter/regarder",
+          "Affichage du vocabulaire d'automne précédent"
+        ],
+        "visualSupports": "Cartes de comportements d'écoute (yeux qui regardent, oreilles qui écoutent), couverture du livre montrée, gestes clairs modélisés",
+        "decisionPoints": [
+          "Si les élèves sont agités, faire une activité calme supplémentaire avant l'histoire",
+          "Si certains ne voient pas bien le livre, réorganiser le cercle ou utiliser des images plus grandes"
+        ],
+        "movementBreaks": [
+          "Gestes pour 'écouter' et 'regarder'",
+          "S'installer confortablement dans le cercle d'écoute"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Lecture interactive d'une histoire d'automne simple : L'enseignant(e) lit en montrant les images, fait des pauses pour questions/prédictions, encourage les élèves à participer avec gestes et sons. Après la lecture : discussion guidée sur l'histoire, séquençage d'images de l'histoire, et début d'une création collective d'histoire de classe.",
+        "materials": [
+          "Histoire d'automne appropriée (livre ou histoire créée)",
+          "Images séquentielles de l'histoire plastifiées",
+          "Tableau de flanelle ou support magnétique",
+          "Papier grand format pour histoire de classe",
+          "Marqueurs colorés",
+          "Cartes de questions simples (Qui? Quoi? Où?)"
+        ],
+        "visualSupports": "Images de l'histoire clairement visibles, séquence d'événements illustrée, début d'histoire de classe avec images",
+        "decisionPoints": [
+          "Si les élèves perdent l'attention, raccourcir l'histoire ou ajouter plus de participation",
+          "Si le séquençage est trop difficile, commencer avec seulement 3 images principales"
+        ],
+        "movementBreaks": [
+          "Gestes et mouvements pendant la lecture interactive",
+          "Se lever pour placer images en séquence",
+          "Pause étirement au milieu de l'activité principale"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Réflexion sur l'histoire : Les élèves partagent leur partie préférée en montrant une image ou en faisant un geste. Préparation pour demain : 'Demain, nous continuons notre histoire de classe!' Chanson de fermeture sur l'écoute des histoires.",
+        "materials": [
+          "Images de l'histoire pour sélection par élèves",
+          "Début d'histoire de classe créée",
+          "Paroles de chanson d'histoire"
+        ],
+        "visualSupports": "Récapitulatif visuel de l'histoire lue, images pour soutenir les réflections des élèves",
+        "decisionPoints": [
+          "Si certains élèves ne peuvent identifier une partie préférée, leur offrir des choix visuels"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer les parties préférées",
+          "Chanson avec mouvements simples"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "maintenir l'attention pendant l'histoire ou comprendre les questions sur l'histoire",
+        "then": "raccourcir l'histoire, ajouter plus d'éléments interactifs, utiliser plus de supports visuels, poser des questions très simples avec choix multiples visuels, permettre des réponses non-verbales"
       },
       "realWorldConnection": "How families and communities share stories about seasons and nature",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Histoire plus courte avec images très claires",
+          "Questions avec choix de réponses visuelles",
+          "Plus de temps pour traiter les informations",
+          "Support individuel pour compréhension"
+        ],
+        "forAdvanced": [
+          "Questions plus complexes sur l'histoire (pourquoi, comment)",
+          "Encourager à prédire la suite",
+          "Rôle d'aide pour expliquer aux autres",
+          "Connexions avec d'autres histoires connues"
+        ],
+        "forELL": [
+          "Images avec vocabulaire en L1 et français",
+          "Plus de répétition des concepts clés",
+          "Partenariat pour soutien en compréhension",
+          "Gestes et expressions faciales accentués"
+        ],
+        "forIEP": [
+          "Adaptations selon objectifs PEI individuels",
+          "Position assise confortable adaptée aux besoins",
+          "Supports sensoriels si nécessaire",
+          "Participation modifiée selon capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre comportements d'écoute appropriés pendant l'histoire",
+          "Répond aux questions sur l'histoire par gestes, mots, ou images",
+          "Participe aux activités de séquençage avec support",
+          "Montre compréhension de base de l'histoire lue"
+        ],
+        "checkpoints": [
+          "Pendant la lecture : observer l'engagement et les réactions appropriées",
+          "Pendant les questions : noter qui peut identifier éléments de base",
+          "Pendant le séquençage : observer la logique dans l'organisation des images"
+        ]
       }
     },
     {
@@ -325,42 +715,105 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Jeu de personnages : L'enseignant(e) se déguise ou utilise une voix différente pour présenter des personnages d'automne (petit écureuil gentil, grand arbre sage). Les élèves devinent et décrivent les personnages avec les mots 'petit' et 'gentil'.",
+        "materials": [
+          "Accessoires simples (chapeau, écharpe, oreilles d'écureuil)",
+          "Images de personnages d'histoires d'automne",
+          "Cartes de vocabulaire : personnage, petit, gentil",
+          "Miroir pour montrer les expressions"
+        ],
+        "visualSupports": "Cartes de personnages avec caractéristiques (petit/grand, gentil/méchant), expressions faciales illustrées, gestes pour chaque adjectif",
+        "decisionPoints": [
+          "Si les élèves sont timides pour participer, commencer par des descriptions simples ensemble",
+          "Si la différenciation petit/grand est difficile, utiliser objets concrets de la classe"
+        ],
+        "movementBreaks": [
+          "Imiter les personnages avec voix et gestes",
+          "Montrer 'petit' et 'grand' avec le corps"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Atelier de création de personnages : Les élèves créent leurs propres personnages d'automne en dessinant et en choisissant des caractéristiques (petit/grand, gentil/méchant). Théâtre de personnages : présentation des créations avec jeu de rôle simple et description des traits de caractère.",
+        "materials": [
+          "Papier de dessin (25 copies)",
+          "Crayons de couleur et marqueurs",
+          "Autocollants de traits (sourires, formes)",
+          "Bâtonnets de bricolage pour marionnettes",
+          "Cartes de traits de caractère illustrées",
+          "Espace pour mini-théâtre"
+        ],
+        "visualSupports": "Exemples de personnages créés avec traits étiquetés, banque d'expressions et caractéristiques illustrées",
+        "decisionPoints": [
+          "Si les dessins prennent trop de temps, fournir gabarits à colorier",
+          "Si le jeu de rôle est trop complexe, simplifier à montrer et nommer seulement"
+        ],
+        "movementBreaks": [
+          "Se lever pour présenter les personnages",
+          "Gestes et mouvements pour le mini-théâtre",
+          "Pause danse : bouger comme différents personnages"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Galerie de personnages : Tour de la classe pour admirer tous les personnages créés. Chaque élève présente brièvement son personnage en utilisant les mots appris. Vote amical pour différentes catégories (plus gentil, plus coloré, etc.).",
+        "materials": [
+          "Personnages créés par les élèves",
+          "Espace d'exposition temporaire",
+          "Certificats de reconnaissance simples"
+        ],
+        "visualSupports": "Galerie organisée avec personnages affichés, étiquettes de catégories positives",
+        "decisionPoints": [
+          "Si certains élèves ne veulent pas présenter, permettre de montrer seulement"
+        ],
+        "movementBreaks": [
+          "Circuler pour voir la galerie",
+          "Applaudissements pour chaque présentation"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la compréhension des traits de caractère ou la création artistique",
+        "then": "utiliser exemples concrets de personnages connus (dans la classe, à la télé), simplifier à choix binaires (petit OU grand, gentil OU pas gentil), offrir aide pour dessiner, permettre collaboration avec partenaire"
       },
       "realWorldConnection": "How stories help us understand different personalities and feelings",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Gabarits de personnages à colorier",
+          "Choix limités de traits (2-3 options max)",
+          "Support individuel pour création artistique",
+          "Focus sur un trait à la fois"
+        ],
+        "forAdvanced": [
+          "Création de plusieurs personnages",
+          "Histoires courtes avec leurs personnages",
+          "Traits de caractère plus complexes",
+          "Aide aux autres élèves dans leurs créations"
+        ],
+        "forELL": [
+          "Images très claires pour chaque trait",
+          "Répétition fréquente du vocabulaire",
+          "Association avec personnages familiers",
+          "Plus de temps pour expression verbale"
+        ],
+        "forIEP": [
+          "Adaptations selon objectifs PEI",
+          "Matériaux adaptés pour création",
+          "Participation modifiée au théâtre si nécessaire",
+          "Support pour concepts abstraits"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie et utilise 'personnage', 'petit', 'gentil' appropriément",
+          "Crée un personnage avec caractéristiques identifiables",
+          "Décrit son personnage en utilisant le nouveau vocabulaire",
+          "Participe aux activités créatives et théâtrales"
+        ],
+        "checkpoints": [
+          "Pendant la création : observer inclusion des traits enseignés",
+          "Pendant les présentations : écouter usage du vocabulaire de caractère",
+          "Pendant la galerie : noter reconnaissance des traits chez les autres"
+        ]
       }
     },
     {
@@ -376,42 +829,105 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Séquence du matin : Les élèves racontent leur routine matinale en utilisant 'D'abord je me lève, puis je mange, après je me brosse les dents, maintenant je suis à l'école.' Gestes pour chaque mot de temps introduit.",
+        "materials": [
+          "Cartes de routine quotidienne illustrées",
+          "Cartes de mots de temps : puis, après, maintenant",
+          "Ligne de temps simple au tableau",
+          "Horloge décorative (optionnel)"
+        ],
+        "visualSupports": "Séquence visuelle de routine avec flèches, cartes de temps avec couleurs différentes, gestes standardisés pour chaque mot de séquence",
+        "decisionPoints": [
+          "Si les élèves ont difficulté avec le concept de temps, utiliser actions concrètes immédiate (lever la main, puis s'asseoir)",
+          "Si trop complexe, commencer avec 'maintenant' et 'après' seulement"
+        ],
+        "movementBreaks": [
+          "Mimer les actions de routine matinale",
+          "Gestes pour chaque mot de temps (pointer, continuer, présent)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Rétablir l'ordre d'une histoire d'automne : Présenter histoire en désordre, les élèves remettent événements en séquence en utilisant les mots de temps. Création d'une histoire collective avec séquence claire. Jeu 'Que se passe-t-il après?' avec prédictions.",
+        "materials": [
+          "Images d'histoire d'automne en désordre (6-8 images)",
+          "Bandes de séquençage ou ligne de temps géante",
+          "Papier pour histoire collective",
+          "Marqueurs colorés",
+          "Cartes de mots de temps à placer",
+          "Images de cause-effet simples"
+        ],
+        "visualSupports": "Ligne de temps visuelle claire, numéros et flèches pour séquence, images d'histoire grandes et claires",
+        "decisionPoints": [
+          "Si le séquençage est trop difficile, réduire à 3-4 images principales",
+          "Si les élèves se disputent l'ordre, voter démocratiquement après discussion"
+        ],
+        "movementBreaks": [
+          "Se lever pour placer images dans l'ordre",
+          "Mimer les événements de l'histoire en séquence",
+          "Pause danse : mouvements séquentiels (1-2-3)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Récapitulatif de l'histoire remise en ordre : Lecture finale de l'histoire séquencée avec participation des élèves pour les mots de temps. Prévision pour demain : 'Maintenant nous savons séquencer, après nous créerons nos propres histoires!'",
+        "materials": [
+          "Histoire remise en ordre par la classe",
+          "Cartes de mots de temps pour révision",
+          "Tableau de prévisions pour demain"
+        ],
+        "visualSupports": "Histoire finale bien organisée et visible, mots de temps mis en évidence en couleur",
+        "decisionPoints": [
+          "Si le temps manque, faire révision rapide des mots de temps seulement"
+        ],
+        "movementBreaks": [
+          "Gestes de récapitulation pour chaque étape",
+          "Applaudissements pour le travail d'équipe accompli"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "les concepts de temps et de séquence ou l'ordre logique des événements",
+        "then": "utiliser expériences très concrètes et immédiates (actions en classe), simplifier à 2-3 étapes seulement, utiliser manipulation physique d'objets, répéter avec différents exemples, permettre travail en équipe"
       },
       "realWorldConnection": "Understanding how events connect in our daily lives and experiences",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Séquences très simples (3 étapes max)",
+          "Manipulation physique des cartes d'images",
+          "Plus de support individuel pour logique",
+          "Connexions avec expériences personnelles familières"
+        ],
+        "forAdvanced": [
+          "Séquences plus complexes avec détails",
+          "Création de leurs propres histoires séquencées",
+          "Utilisation de tous les mots de temps en phrases",
+          "Aide aux autres pour comprendre la séquence"
+        ],
+        "forELL": [
+          "Répétition fréquente des mots de temps",
+          "Gestes très clairs pour chaque concept temporel",
+          "Images avec séquences très évidentes",
+          "Plus de temps pour comprendre les relations temporelles"
+        ],
+        "forIEP": [
+          "Adaptations selon besoins PEI individuels",
+          "Support pour concepts abstraits de temps",
+          "Matériaux concrets pour manipulation",
+          "Objectifs simplifiés selon capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise 'puis', 'après', 'maintenant' dans contexte approprié",
+          "Place événements en ordre logique avec support",
+          "Comprend séquence temporelle basique",
+          "Participe aux activités de séquençage et prédiction"
+        ],
+        "checkpoints": [
+          "Pendant séquençage : observer logique dans placement des images",
+          "Pendant histoire collective : noter usage des mots de temps",
+          "Pendant récapitulatif : écouter compréhension de l'ordre des événements"
+        ]
       }
     },
     {
@@ -427,42 +943,104 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Jeu 'J'espère un mot...' : L'élève dit un mot d'automne, les autres répètent puis ajoutent un nouveau. Introduction de 'mot', 'dire', 'répéter' avec gestes (pointer la bouche, parler, redîre).",
+        "materials": [
+          "Mur de mots d'automne créé précédemment",
+          "Cartes de gestes pour dire/répéter",
+          "Boule de neige/objet à passer pour prendre la parole"
+        ],
+        "visualSupports": "Cartes de vocabulaire d'automne affichées, gestes standard pour chaque action verbale, modélisation claire des tours de parole",
+        "decisionPoints": [
+          "Si certains élèves sont timides, commencer par répéter seulement",
+          "Si le vocabulaire manque, retourner au mur de mots pour inspiration"
+        ],
+        "movementBreaks": [
+          "Gestes pour 'dire' (bouche) et 'répéter' (geste de boucle)",
+          "Passer l'objet de parole autour du cercle"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Centres de mots d'automne : (1) Mémoire de mots - associer images et mots écrits, (2) Création de livre personnel de mots avec dessins, (3) Théâtre de mots - mimer des mots pour que les autres devinent. Rotation entre les trois centres.",
+        "materials": [
+          "Jeu de mémoire avec mots d'automne (images et mots)",
+          "Carnets de mots personnels (25 copies)",
+          "Crayons et matériel de dessin",
+          "Cartes de mots à mimer",
+          "Minuteur pour rotations",
+          "Instructions illustrées pour chaque centre"
+        ],
+        "visualSupports": "Instructions visuelles claires à chaque centre, exemples de pages de carnets terminées, cartes de mots avec images pour support",
+        "decisionPoints": [
+          "Si les centres prennent trop de temps, réduire à 2 centres ou simplifier les activités",
+          "Si certains élèves finissent tôt, leur donner des mots bonus à explorer"
+        ],
+        "movementBreaks": [
+          "Rotation physique entre les centres",
+          "Centre théâtre intègre mouvement naturellement",
+          "Pause étirement au milieu des rotations"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Partage de mots préférés : Chaque élève partage un mot de son carnet ou un nouveau mot appris. Chanson de récapitulatif : 'Les mots d'automne que je dis, je les répète et je souris!'",
+        "materials": [
+          "Carnets de mots des élèves",
+          "Paroles de chanson illustrées",
+          "Mur de mots classé pour référence"
+        ],
+        "visualSupports": "Chanson avec pictogrammes, mur de mots organisé par catégories, gestes de la chanson modélisés",
+        "decisionPoints": [
+          "Si certains élèves n'ont pas de mot à partager, les aider à choisir dans leur carnet"
+        ],
+        "movementBreaks": [
+          "Gestes et mouvements de la chanson de récapitulatif",
+          "Montrer fîèrement les créations de mots"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la mémorisation du vocabulaire ou l'expression orale des nouveaux mots",
+        "then": "utiliser plus de répétition avec gestes, créer associations visuelles fortes, permettre dessin au lieu de écriture, utiliser chansons ou rimes pour mémorisation, travailler en petit groupe pour confiance"
       },
       "realWorldConnection": "How learning new words helps us express our thoughts and feelings",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus sur 5-6 mots de base seulement",
+          "Plus d'images et moins de mots écrits",
+          "Répétition supplémentaire avec support individuel",
+          "Association d'images avec chaque nouveau mot"
+        ],
+        "forAdvanced": [
+          "Vocabulaire enrichi et mots plus complexes",
+          "Création de phrases avec les nouveaux mots",
+          "Rôle d'enseignant pour aider les autres",
+          "Recherche de mots d'automne supplémentaires"
+        ],
+        "forELL": [
+          "Connexion avec mots similaires en L1 si possible",
+          "Plus de support visuel et gestuel",
+          "Répétition avec correction douce de prononciation",
+          "Temps supplémentaire pour traitement"
+        ],
+        "forIEP": [
+          "Adaptations selon objectifs PEI",
+          "Matériaux alternatifs pour création (autocollants, etc.)",
+          "Objectifs de vocabulaire ajustés",
+          "Support pour rétention et rappel"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Reconnaît et utilise 'mot', 'dire', 'répéter' appropriément",
+          "Démontre compréhension du vocabulaire d'automne dans les jeux",
+          "Crée un carnet de mots personnel avec éléments appropriés",
+          "Participe activement aux centres et partages de mots"
+        ],
+        "checkpoints": [
+          "Centres de mots : observer reconnaissance et usage du vocabulaire",
+          "Carnet personnel : noter inclusion et compréhension des mots",
+          "Partage final : écouter confiance et aisance avec nouveaux mots"
+        ]
       }
     },
     {
@@ -478,42 +1056,106 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de pratique 'tour à tour' : Passer un objet speécial, chaque élève dit 'C'est mon tour' et ajoute une phrase à une histoire simple. Introduction des concepts 'raconter', 'ensemble', 'tour' avec gestes et démonstrations.",
+        "materials": [
+          "Bâton de parole ou objet speécial à passer",
+          "Images d'histoires pour inspiration",
+          "Cartes de vocabulaire : raconter, ensemble, tour",
+          "Affichage des règles de tour de parole"
+        ],
+        "visualSupports": "Règles visuelles pour tours de parole, gestes pour 'ensemble' (bras ouverts) et 'tour' (pointer), modélisation claire du partage",
+        "decisionPoints": [
+          "Si certains élèves monopolisent la parole, utiliser minuteur visuel",
+          "Si d'autres sont timides, leur donner choix d'images pour inspiration"
+        ],
+        "movementBreaks": [
+          "Passer l'objet de parole physiquement",
+          "Gestes pour 'ensemble' et 'tour' avec tout le corps"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création d'histoire collaborative d'automne : Débuter avec une phrase («Il était une fois, en automne...»), chaque élèves ajoute une phrase à tour de rôle. L'enseignant(e) écrit/dessine l'histoire au fur et à mesure. Deuxième histoire en petits groupes avec support d'images.",
+        "materials": [
+          "Papier géant pour histoire collective",
+          "Marqueurs colorés",
+          "Images d'automne pour inspiration",
+          "Papier pour histoires de petits groupes",
+          "Cartes de début d'histoire («Il était une fois...»)",
+          "Minuteur pour tours de parole"
+        ],
+        "visualSupports": "Histoire écrite/dessinée en temps réel visible à tous, images d'inspiration affichées, indicateur visuel de qui a le tour",
+        "decisionPoints": [
+          "Si l'histoire devient incohérente, guider doucement pour connexion avec phrase précédente",
+          "Si certains groupes ont des difficultés, fournir plus d'images ou de prompts"
+        ],
+        "movementBreaks": [
+          "Se lever pour contribuer à l'écriture collective",
+          "Déplacements entre petits groupes",
+          "Pause gestuelle pour mimer parties de l'histoire"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Partage des histoires créées : Lecture à haute voix de l'histoire collective, puis représentants de chaque petit groupe présentent leur histoire. Célébration du travail 'ensemble' avec applaudissements.",
+        "materials": [
+          "Histoire collective terminée",
+          "Histoires de petits groupes",
+          "Espace pour présentations",
+          "Certificats de 'Conteurs d'automne' (optionnel)"
+        ],
+        "visualSupports": "Histoires affichées pour que tous puissent voir, gestes d'encouragement et applaudissements modélisés",
+        "decisionPoints": [
+          "Si le temps manque, se concentrer sur l'histoire collective seulement"
+        ],
+        "movementBreaks": [
+          "Applaudissements pour chaque histoire partagée",
+          "Célébration finale avec gestes de joie"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "attendre leur tour ou contribuer de manière cohérente à l'histoire",
+        "then": "utiliser supports visuels pour tours (cartes nom, minuteur), donner prompts ou choix multiples pour contribution, permettre dessins au lieu de mots, modéliser comment ajouter à une histoire, travailler en très petits groupes d'abord"
       },
       "realWorldConnection": "How families and friends create stories together during conversations and activities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Contribution par dessins ou gestes si mots difficiles",
+          "Support individuel pour connexion avec histoire précédente",
+          "Groupes plus petits avec plus d'aide",
+          "Prompts ou choix multiples pour inspiration"
+        ],
+        "forAdvanced": [
+          "Encourager détails et descriptions riches",
+          "Rôle de facilitateur dans petit groupe",
+          "Connexions complexes entre événements d'histoire",
+          "Création d'histoires multiples ou plus longues"
+        ],
+        "forELL": [
+          "Images pour soutenir contribution verbale",
+          "Accepter mélange de L1 et français au besoin",
+          "Partenariat avec élève francophone fort",
+          "Plus de temps pour formuler contributions"
+        ],
+        "forIEP": [
+          "Adaptations selon objectifs PEI",
+          "Méthodes alternatives de contribution (dessin, choix)",
+          "Soutien pour tour de parole si difficultés sociales",
+          "Environnement ajusté pour concentration"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Comprend et utilise 'raconter', 'ensemble', 'tour' appropriément",
+          "Respecte les tours de parole dans les activités de groupe",
+          "Contribue de manière positive aux histoires collectives",
+          "Démontre compréhension de la collaboration en narration"
+        ],
+        "checkpoints": [
+          "Pendant histoire collective : observer respect des tours et qualité des contributions",
+          "Pendant petits groupes : noter collaboration et utilisation du vocabulaire",
+          "Pendant partage : évaluer compréhension du processus collaboratif"
+        ]
       }
     },
     {
@@ -529,42 +1171,105 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Jeu d'écoute : Moment de silence complet pour écouter les sons autour (dans la classe, dehors). Les élèves partagent ce qu'ils entendent. Introduction du vocabulaire avec gestes : 'bruit' (couvrir oreilles), 'entendre' (main à l'oreille), 'silence' (doigt sur les lèvres).",
+        "materials": [
+          "Espace silencieux pour écoute",
+          "Cartes de vocabulaire sonore",
+          "Images de sources de bruits d'automne",
+          "Gestes de référence affichés"
+        ],
+        "visualSupports": "Cartes avec bruits d'automne illustrés (feuilles qui craquent, vent, oiseaux), gestes clairs pour chaque concept sonore",
+        "decisionPoints": [
+          "Si l'environnement est trop bruyant pour écoute, utiliser enregistrements de sons d'automne",
+          "Si certains élèves ont difficultés auditives, se concentrer sur vibrations et supports visuels"
+        ],
+        "movementBreaks": [
+          "Gestes pour bruit, entendre, silence",
+          "Position d'écoute active (se pencher, tendre l'oreille)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration sonore d'automne : (1) Chasse aux sons - sortie courte pour collecter et imiter sons d'automne, (2) Création d'instruments d'automne avec feuilles, noix, brindilles, (3) Orchestre d'automne - chacun joue son instrument pour créer 'symphonie d'automne'.",
+        "materials": [
+          "Sacs pour collecter matériaux naturels",
+          "Feuilles sèches, noix, brindilles, céréales",
+          "Contenants (boîtes, bouteilles) pour instruments",
+          "Enregistreur pour capturer sons (optionnel)",
+          "Cartes d'instructions pour fabrication d'instruments",
+          "Espace pour orchestre"
+        ],
+        "visualSupports": "Instructions illustrées pour création d'instruments, exemples d'instruments terminés, notation musicale simple pour orchestre",
+        "decisionPoints": [
+          "Si impossible de sortir, utiliser matériaux pré-collectés ou sons enregistrés",
+          "Si fabrication d'instruments trop complexe, utiliser matériaux simples pré-préparés"
+        ],
+        "movementBreaks": [
+          "Sortie de collecte (marche et exploration)",
+          "Fabrication d'instruments (manipulation fine)",
+          "Performance d'orchestre (mouvements musicaux)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Concert d'automne : Présentation de la symphonie d'automne créée par la classe. Moment final de silence pour apprécier et comparer avec les bruits. Réflexion : 'Quels sons préférez-vous en automne?'",
+        "materials": [
+          "Instruments d'automne créés",
+          "Espace de concert",
+          "Support pour enregistrement si désiré"
+        ],
+        "visualSupports": "Programme de concert simple, images des sons d'automne pour références, applaudissements illustrés",
+        "decisionPoints": [
+          "Si le niveau sonore devient trop élevé, alterner entre groupes pour performance"
+        ],
+        "movementBreaks": [
+          "Performance musicale avec mouvements",
+          "Applaudissements et célébrations"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la discrimination des sons ou la création d'instruments sonores",
+        "then": "simplifier à 2-3 sons très distincts, utiliser plus de supports visuels pour identifier sons, pré-fabriquer instruments plus simples, permettre collaboration pour création, se concentrer sur expérience sensorielle plutôt que précision"
       },
       "realWorldConnection": "How different seasons bring different sounds to our environment",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus sur sons très distincts et familiers",
+          "Instruments pré-fabriqués ou plus simples",
+          "Plus de supports visuels pour concepts sonores",
+          "Partenariat pour activités de création"
+        ],
+        "forAdvanced": [
+          "Identification de sons plus subtils",
+          "Création d'instruments plus complexes",
+          "Composition de mélodies ou rythmes",
+          "Rôle de chef d'orchestre"
+        ],
+        "forELL": [
+          "Association sons avec mots en L1 et français",
+          "Plus d'expérience sensorielle directe",
+          "Répétition des termes avec les sons réels",
+          "Support gestuel accentué"
+        ],
+        "forIEP": [
+          "Adaptations selon besoins sensoriels individuels",
+          "Alternatives pour difficultés auditives",
+          "Instruments adaptés aux capacités motrices",
+          "Participation ajustée à l'orchestre"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie et nomme différents 'bruits' avec support",
+          "Démontre compréhension d''écouter' et 'silence' par comportements",
+          "Participe activement aux activités d'exploration sonore",
+          "Crée et utilise instruments simples de manière appropriée"
+        ],
+        "checkpoints": [
+          "Pendant chasse aux sons : observer identification et imitation des sons",
+          "Pendant création : noter engagement et compréhension des concepts",
+          "Pendant concert : évaluer participation et utilisation du vocabulaire"
+        ]
       }
     },
     {
@@ -580,42 +1285,105 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Révision collaborative : 'Qu'avons-nous appris sur l'automne?' Création d'une liste collective avec tous les mots et idées. Introduction des mots 'créer' (geste de façonner), 'dessiner' (geste de crayon), 'notre' (geste englobant tout le groupe).",
+        "materials": [
+          "Tableau ou papier géant pour liste collective",
+          "Marqueurs de couleur",
+          "Tous les travaux d'automne créés précédemment",
+          "Cartes de vocabulaire pour révision"
+        ],
+        "visualSupports": "Mur de mots d'automne visible, gestes clairs pour chaque nouveau terme, travaux antérieurs affichés pour inspiration",
+        "decisionPoints": [
+          "Si la liste devient trop longue, catégoriser (couleurs, animaux, actions, etc.)",
+          "Si certains élèves ne contribuent pas, les encourager avec questions dirigées"
+        ],
+        "movementBreaks": [
+          "Gestes pour créer, dessiner, notre",
+          "Se lever pour contribuer à la liste au tableau"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création collaborative du livre 'Notre Automne' : Planification de l'histoire ensemble (personnages, événements, début-milieu-fin). Chaque élève crée une page avec dessin et phrase courte. Assembly initial du livre avec couverture décorée collectivement.",
+        "materials": [
+          "Papier spécial pour livre (25+ pages)",
+          "Crayons de couleur, feutres, matériel artistique",
+          "Matériaux pour couverture (carton coloré, autocollants)",
+          "Guide de planification d'histoire simple",
+          "Reliure temporaire (anneaux ou agrafes)",
+          "Modèles de phrases simples"
+        ],
+        "visualSupports": "Plan d'histoire illustré au tableau, exemples de pages terminées, banque de phrases débuts pour inspiration",
+        "decisionPoints": [
+          "Si la planification devient trop complexe, simplifier à structure de base (début-milieu-fin)",
+          "Si certains élèves ont difficulté avec leur page, offrir collaboration ou modèles"
+        ],
+        "movementBreaks": [
+          "Circuler pour travailler sur différentes parties du livre",
+          "Collaboration pour décoration de couverture",
+          "Pause étirement au milieu de l'activité créative"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Présentation du livre en cours : Montrer la couverture créée et quelques pages terminées. Célébrer le travail collaboratif : 'Regardez ce que nous avons créé ensemble!' Anticiper la finalisation pour la prochaine leçon.",
+        "materials": [
+          "Livre en cours avec couverture et pages initiales",
+          "Espace d'exposition pour montrer le progrès",
+          "Certificats de 'Créateurs d'histoire' temporaires"
+        ],
+        "visualSupports": "Livre partiellement terminé bien visible, progrès illustré visuellement, tableau de planification pour prochaine étape",
+        "decisionPoints": [
+          "Si le livre n'est pas assez avancé pour présentation, se concentrer sur célébration du processus collaboratif"
+        ],
+        "movementBreaks": [
+          "Circuler pour admirer le travail en cours",
+          "Applaudissements pour célébrer l'effort collectif"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la collaboration créative ou la contribution individuelle au projet de classe",
+        "then": "réduire les attentes à contributions très simples, offrir choix multiples pour participation, permettre collaboration à deux sur une page, utiliser dictée à l'adulte pour phrase si nécessaire, célébrer toutes les contributions"
       },
       "realWorldConnection": "How communities work together to create and share meaningful stories",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Page plus simple avec dessin de base et phrase courte dictée",
+          "Collaboration avec partenaire pour création",
+          "Contribution par autocollants ou découpage si dessin difficile",
+          "Plus de temps et de soutien individuel"
+        ],
+        "forAdvanced": [
+          "Page plus détaillée avec phrase complexe ou multiple",
+          "Rôle de coordinateur pour aider à l'assemblage",
+          "Création de page de titre ou d'index",
+          "Aide aux autres élèves dans leurs créations"
+        ],
+        "forELL": [
+          "Dessin comme forme principale d'expression",
+          "Phrases très simples avec support visuel",
+          "Collaboration avec élève francophone pour phrase",
+          "Acceptation de contribution en L1 avec traduction"
+        ],
+        "forIEP": [
+          "Adaptations selon objectifs PEI individuels",
+          "Matériaux créatifs adaptés aux capacités motrices",
+          "Forme de contribution ajustée (tampon, collage, etc.)",
+          "Soutien pour participation au travail de groupe"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise 'créer', 'dessiner', 'notre' dans contexte approprié",
+          "Contribue de manière positive au projet collectif",
+          "Crée une page personnelle qui s'intègre au thème d'automne",
+          "Démontre fierté du travail collaboratif accompli"
+        ],
+        "checkpoints": [
+          "Pendant planification : observer contribution aux idées collectives",
+          "Pendant création : noter qualité et engagement dans travail personnel",
+          "Pendant présentation : évaluer compréhension du processus collaboratif"
+        ]
       }
     },
     {
@@ -631,42 +1399,107 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de fierté : Chaque élève partage quelque chose qu'il sait maintenant sur l'automne qu'il ne savait pas avant. Introduction de 'savoir' (toucher la tête), 'apprendre' (geste d'ouverture), 'bien' (pouce en l'air).",
+        "materials": [
+          "Tous les travaux d'automne de l'unité pour référence",
+          "Cartes de vocabulaire complète de l'unité",
+          "Photos des activités faites ensemble",
+          "Certificats de progrès préparés"
+        ],
+        "visualSupports": "Portfolio d'activités d'automne visible, mur de mots complet affiché, photos des créations et apprentissages",
+        "decisionPoints": [
+          "Si certains élèves ne trouvent pas quelque chose à partager, les aider avec questions guidées",
+          "Si le temps de partage s'éternise, limiter à un mot ou idée par élève"
+        ],
+        "movementBreaks": [
+          "Gestes pour savoir, apprendre, bien",
+          "Applaudissements pour chaque partage de fierté"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Festival de jeux d'automne : Stations rotatives avec jeux de révision - (1) Charades d'automne avec tous les mots appris, (2) Bingo d'automne avec images et mots, (3) Course aux trésors de vocabulaire dans la classe, (4) Quiz d'équipe amical avec célébrations pour toutes les bonnes réponses.",
+        "materials": [
+          "Cartes de charades avec mots d'automne",
+          "Cartes de bingo personnalisées (25 copies)",
+          "Marqueurs ou jetons pour bingo",
+          "Indices de chasse au trésor illustrés",
+          "Questions de quiz adaptées au niveau",
+          "Prix symboliques (autocollants, certificats)",
+          "Minuteur pour rotations"
+        ],
+        "visualSupports": "Instructions claires à chaque station, références visuelles pour tous les jeux, tableau de score positif et encourageant",
+        "decisionPoints": [
+          "Si certaines stations sont trop difficiles, ajuster la difficulté en temps réel",
+          "Si élèves deviennent frustrés, rappeler que c'est pour s'amuser et apprendre ensemble"
+        ],
+        "movementBreaks": [
+          "Rotation active entre stations",
+          "Charades implique mouvement naturel",
+          "Chasse au trésor nécessite déplacement"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cérémonie de célébration : Distribution de certificats 'Experts d'automne' personnalisés. Chanson finale récapitulative de tous les mots appris avec gestes. Promesse pour demain : 'Demain nous présentons notre livre à d'autres classes!'",
+        "materials": [
+          "Certificats personnalisés pour chaque élève",
+          "Chanson récapitulative avec paroles affichées",
+          "Livre de classe terminé pour montrer",
+          "Appareil photo pour capturer célébration (optionnel)"
+        ],
+        "visualSupports": "Cérémonie organisée avec espace spécial, chanson avec gestes illustrés, affichage fier de tous les accomplissements",
+        "decisionPoints": [
+          "Si la cérémonie devient trop longue, simplifier à distribution de certificats et chanson"
+        ],
+        "movementBreaks": [
+          "Recevoir certificats debout avec fierté",
+          "Chanson finale avec tous les gestes appris"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "se rappeler du vocabulaire ou participer aux jeux de révision",
+        "then": "adapter les jeux pour être plus supportés visuellement, permettre travail d'équipe, offrir indices supplémentaires, célébrer l'effort autant que les bonnes réponses, utiliser supports concrets et manipulation"
       },
       "realWorldConnection": "How reflecting on our learning helps us grow and feel proud of our progress",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Jeux adaptés avec moins de vocabulaire",
+          "Plus de supports visuels et indices",
+          "Partenariat pour les activités de station",
+          "Célébration de progrès personnels plutôt que absolus"
+        ],
+        "forAdvanced": [
+          "Défis supplémentaires dans les jeux",
+          "Rôle d'aide-animateur aux stations",
+          "Vocabulaire étendu ou phrases complètes",
+          "Leadership dans activités de groupe"
+        ],
+        "forELL": [
+          "Jeux avec supports visuels très clairs",
+          "Permission d'utiliser L1 pour expliquer si nécessaire",
+          "Plus de temps pour réponses",
+          "Célébration de l'effort linguistique autant que résultats"
+        ],
+        "forIEP": [
+          "Adaptations selon objectifs PEI individuels",
+          "Jeux modifiés selon capacités",
+          "Participation ajustée aux activités de groupe",
+          "Reconnaissance des progrès selon objectifs personnels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre reco nnaissance du vocabulaire d'automne dans les jeux",
+          "Utilise 'savoir', 'apprendre', 'bien' de manière appropriée",
+          "Participe avec confiance aux activités de révision",
+          "Montre fierté et conscience de ses apprentissages"
+        ],
+        "checkpoints": [
+          "Stations de jeux : observer aisance avec vocabulaire dans contextes variés",
+          "Partage de fierté : noter articulation des apprentissages réalisés",
+          "Participation générale : évaluer engagement et confiance avec contenu d'unité"
+        ]
       }
     },
     {
@@ -682,42 +1515,106 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Préparatifs de présentation : Les élèves s'exercent à présenter leurs pages en disant 'Je suis fier de présenter ma page' et 'J'aime partager notre histoire.' Révision des mots avec gestes : présenter (montrer), partager (donner), fier (sourire et poitrine bombée).",
+        "materials": [
+          "Livre de classe 'Notre Automne' terminé",
+          "Espace arrangé pour présentation spéciale",
+          "Microphone jouet (optionnel)",
+          "Cartes de phrases d'aide pour présentation"
+        ],
+        "visualSupports": "Phrases modèles affichées, gestes de présentation modélisés, livre fini attrayant prêt à montrer",
+        "decisionPoints": [
+          "Si certains élèves sont nerveux, les rassurer et offrir support de partenaire",
+          "Si le livre n'est pas complètement fini, célébrer ce qui est accompli"
+        ],
+        "movementBreaks": [
+          "Gestes de présentation (montrer, partager, fier)",
+          "S'exercer à tenir et montrer le livre"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Lanc ement officiel du livre : Présentation du livre à une autre classe, aux parents, ou à la direction (selon disponibilité). Chaque élève présente sa page et explique sa contribution. Lecture chorale de parties sélectionnées. Session de questions et d'appréciation avec l'audience.",
+        "materials": [
+          "Livre 'Notre Automne' relié et prêt",
+          "Audience invitée (autre classe, parents, personnel)",
+          "Espace de présentation aménagé",
+          "Support visuel agrandi de pages clés",
+          "Certificats de reconnaissance pour audience",
+          "Appareil photo/vidéo pour mémoires"
+        ],
+        "visualSupports": "Livre bien présenté et visible, pages clés agrandies pour audience, espace organisé professionnellement",
+        "decisionPoints": [
+          "Si pas d'audience externe disponible, présenter à une autre classe de l'école",
+          "Si certains élèves ne veulent pas présenter individuellement, permettre présentations de groupe"
+        ],
+        "movementBreaks": [
+          "Se lever pour présentations individuelles",
+          "Circuler pour montrer pages aux membres de l'audience",
+          "Applaudissements et célébrations tout au long"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration finale : Réflexion sur l'unité complète d'automne. 'De quoi sommes-nous les plus fiers?' Placement spécial du livre dans la bibliothèque de classe. Chanson finale : 'Nous avons appris, nous avons créé, nous sommes fiers de partager!'",
+        "materials": [
+          "Place d'honneur pour le livre dans la classe",
+          "Certificats finaux de 'Créateurs d'histoires d'automne'",
+          "Paroles de chanson finale",
+          "Photos prises pendant présentation"
+        ],
+        "visualSupports": "Livre placé fièrement en évidence, photos de présentation montrées, chanson avec gestes fiers",
+        "decisionPoints": [
+          "Si les élèves sont très excités, canaliser l'enthousiasme positivement vers la fierté"
+        ],
+        "movementBreaks": [
+          "Placement cérémonieux du livre",
+          "Chanson finale avec gestes de fierté et de célébration"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "la nervosité de présentation ou l'articulation de leur fierté",
+        "then": "offrir choix de présentation (seul, avec partenaire, en groupe), utiliser phrases préparées à compléter, permettre montrer plutôt que parler, rappeler tous les succès précédents, créer atmosphère de soutien et encouragement"
       },
       "realWorldConnection": "How sharing our creations builds confidence and connects us with others",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Présentation simplifiée avec support de phrases",
+          "Possibilité de présentation en duo ou petit groupe",
+          "Focus sur montrer leur page plutôt qu'expliquer longuement",
+          "Reconnaissance spéciale pour effort et participation"
+        ],
+        "forAdvanced": [
+          "Présentation plus détaillée avec descriptions étendues",
+          "Rôle d'animateur ou de maître de cérémonie",
+          "Questions à poser à l'audience pour engagement",
+          "Leadership dans organisation de présentation"
+        ],
+        "forELL": [
+          "Support bilingue si nécessaire",
+          "Focus sur fierté visà-vis accomplissement plutôt que perfection linguistique",
+          "Partenariat avec élève francophone pour soutien",
+          "Célébration du courage linguistique"
+        ],
+        "forIEP": [
+          "Adaptations selon objectifs PEI et préférences",
+          "Forme de présentation ajustée aux capacités",
+          "Soutien émotionnel si nécessaire pour situation sociale",
+          "Reconnaissance des progrès individuels accomplis"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise 'présenter', 'partager', 'fier' de manière appropriée",
+          "Démontre fierté authentique de son travail et de celui du groupe",
+          "Participe positivement à la présentation publique",
+          "Articule sa contribution au projet collaboratif"
+        ],
+        "checkpoints": [
+          "Pendant présentations : observer confiance et usage du vocabulaire de fierté",
+          "Pendant interactions avec audience : noter aisance et engagement",
+          "Réflexion finale : écouter articulation des apprentissages et accomplissements"
+        ]
       }
     },
     {
@@ -733,42 +1630,98 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Voyage culturel : Introduction aux contes traditionnels avec images de différents pays francophones. Écoute d'une comptine traditionnelle française d'automne. Les élèves explorent les mots 'traditionnel', 'culture', 'autrefois' avec gestes temporels.",
+        "materials": [
+          "Carte du monde avec pays francophones",
+          "Images de fêtes d'automne du Québec, France, Afrique francophone",
+          "Comptine traditionnelle enregistrée ou chantée",
+          "Objets traditionnels d'automne (vraies citrouilles, blé, etc.)"
+        ],
+        "visualSupports": "Carte colorée avec drapeaux, images de traditions d'automne variées, ligne de temps simple montrant 'autrefois' vs 'maintenant'",
+        "decisionPoints": [
+          "Si les concepts culturels sont complexes, se concentrer sur similitudes avec traditions locales"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer passage du temps (autrefois vs maintenant)",
+          "Mouvements de comptine traditionnelle"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Découverte de contes : Écoute d'une version adaptée d'un conte traditionnel d'automne francophone. Comparaison avec traditions locales d'automne. Création d'illustrations inspirées du conte avec matériaux divers pour accommoder styles d'apprentissage variés.",
+        "materials": [
+          "Conte traditionnel d'automne adapté pour 1re année",
+          "Matériaux artistiques variés (papier, tissus, éléments naturels)",
+          "Images de traditions d'automne locales pour comparaison",
+          "Cartes de compréhension avec choix multiples",
+          "Matériaux sensoriels pour différents apprenants"
+        ],
+        "visualSupports": "Histoire illustrée visuellement, comparaisons côte à côte des traditions, choix d'activités illustrées",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Participation gestuelle pendant le conte",
+          "Création artistique avec manipulation",
+          "Échanges debout entre élèves pour comparaisons"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Galerie culturelle : Partage des créations inspirées du conte. Réflexion guidée sur ressemblances entre traditions d'ici et d'ailleurs. Préparation pour activité optionnelle : recherche de traditions familiales.",
+        "materials": [
+          "Espace d'exposition pour créations",
+          "Questions de réflexion illustrées",
+          "Note optionnelle aux parents sur traditions familiales"
+        ],
+        "visualSupports": "Gallery organisée, questions visuelles pour réflexion culturelle",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Circulation pour admirer créations",
+          "Gestes de salutation culturelle du conte"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "concepts culturels abstraits ou comparaisons entre traditions",
+        "then": "utiliser plus d'images concrètes, se concentrer sur similitudes plutôt que différences, permettre connections avec expériences personnelles, offrir choix d'activités selon styles d'apprentissage"
       },
       "realWorldConnection": "How different cultures have special stories about autumn and harvest time",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus sur une tradition simple et concrète",
+          "Plus d'images et moins de concepts abstraits",
+          "Activités créatives adaptées aux capacités",
+          "Connection avec traditions très familières d'abord"
+        ],
+        "forAdvanced": [
+          "Exploration de multiples traditions culturelles",
+          "Recherche supplémentaire sur pays francophones",
+          "Créations artistiques plus élaborées",
+          "Leadership dans discussions comparatives"
+        ],
+        "forELL": [
+          "Connections avec traditions de pays d'origine",
+          "Support bilingue pour concepts culturels",
+          "Plus de supports visuels pour compréhension",
+          "Valorisation de diversité culturelle apportée"
+        ],
+        "forIEP": [
+          "Activités adaptées selon objectifs individuels",
+          "Choix de modalités d'expression (verbale, artistique, gestuelle)",
+          "Environnement d'apprentissage ajusté",
+          "Participation flexible selon capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Montre intérêt pour contes traditionnels d'autres cultures",
+          "Fait des connections entre traditions différentes",
+          "Participe aux activités culturelles avec respect",
+          "Exprime appréciation pour diversité culturelle"
+        ],
+        "checkpoints": [
+          "Pendant écoute du conte : observer engagement et compréhension",
+          "Pendant création : noter connections personnelles avec contenu",
+          "Pendant partage : écouter réflexions sur diversité culturelle"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -824,42 +1777,99 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Préparation théâtrale : Exercices d'échauffement dramatique (devenir des feuilles, des arbres, des animaux). Introduction des mots du théâtre avec démonstrations : 'jouer' (mimer), 'spectacle' (montrer scène), 'rôle' (se transformer).",
+        "materials": [
+          "Espace dégagé pour mouvement",
+          "Accessoires théâtraux simples (foulards, chapeaux)",
+          "Images de différents rôles d'automne",
+          "Cartes de vocabulaire théâtral"
+        ],
+        "visualSupports": "Cartes d'émotions et rôles, exemples de costumes simples, espace scénique délimité",
+        "decisionPoints": [
+          "Si certains élèves sont timides, les encourager à observer d'abord puis participer graduellement"
+        ],
+        "movementBreaks": [
+          "Échauffements théâtraux intégrés",
+          "Transformations corporelles en éléments d'automne"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Création de spectacle d'automne : En petits groupes flexibles, les élèves choisissent scène d'automne à jouer (animaux se préparant, feuilles tombant, fête d'automne). Préparation avec costumes et accessoires adaptés. Répétitions courtes avec support différencié.",
+        "materials": [
+          "Boîte de costumes d'automne (tissus, accessoires)",
+          "Cartes de scénarios simples avec choix",
+          "Accessoires naturels (feuilles, branches sécuritaires)",
+          "Espace de 'coulisses' pour préparation",
+          "Caméra ou téléphone pour capturer performances (optionnel)"
+        ],
+        "visualSupports": "Scénarios illustrés avec choix multiples, exemples de costumes et accessoires, règles du théâtre affichées",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Répétitions actives avec mouvement corporel",
+          "Création et essayage de costumes",
+          "Déplacements entre espaces de préparation et scène"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Festival théâtral d'automne : Chaque groupe présente sa scène courte. Audience d'élèves applaudit et partage appréciations positives. Célébration de la créativité et du courage artistique de tous.",
+        "materials": [
+          "Espace scénique pour performances",
+          "Costumes et accessoires utilisés",
+          "Certificats d'acteurs d'automne",
+          "Applaudissements et encouragements"
+        ],
+        "visualSupports": "Scène organisée, règles d'audience respectueuse, récompenses visuelles",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Performances théâtrales avec mouvement naturel",
+          "Applaudissements et célébrations finales"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "timidité théâtrale ou difficultés à jouer un rôle",
+        "then": "offrir choix de rôles (narrateur, accessoiriste, audience), commencer par activités en très petits groupes, permettre masques ou marionnettes pour réduire exposition, valoriser toutes formes de participation créative"
       },
       "realWorldConnection": "How acting and drama help us understand different perspectives and express creativity",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Rôles simples avec moins de texte ou mouvement",
+          "Support d'équipier pour confiance",
+          "Focus sur plaisir plutôt que performance parfaite",
+          "Choix de niveau de participation"
+        ],
+        "forAdvanced": [
+          "Rôles plus complexes avec plus de répliques",
+          "Rôle de metteur en scène pour leur groupe",
+          "Création de dialogue original",
+          "Leadership dans organisation théâtrale"
+        ],
+        "forELL": [
+          "Rôles avec plus d'action que de paroles",
+          "Support pour prononciation si répliques",
+          "Valorisation de expression corporelle",
+          "Incorporation de langues maternelles si approprié"
+        ],
+        "forIEP": [
+          "Rôles adaptés aux capacités individuelles",
+          "Participation flexible selon besoins",
+          "Support émotionnel pour exposition publique",
+          "Alternative de participation selon objectifs PEI"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe avec plaisir aux activités théâtrales",
+          "Utilise 'jouer', 'spectacle', 'rôle' dans contexte dramatique",
+          "Exprime créativité à travers le jeu dramatique",
+          "Respecte et encourage performances des autres"
+        ],
+        "checkpoints": [
+          "Pendant préparation : observer engagement créatif et collaboration",
+          "Pendant performances : noter expression personnelle et confiance",
+          "Comme audience : évaluer respect et appréciation pour créativité des autres"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -915,42 +1925,99 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration rythmique : Écoute d'un poème d'automne simple avec battements de mains pour le rythme. Découverte des mots qui 'sonnent pareil' (rimes). Introduction ludique : 'poème' (livre ouvert), 'rythme' (battre), 'rime' (mots jumeaux).",
+        "materials": [
+          "Poème d'automne simple et rythmique",
+          "Instruments de percussion simples (maracas, tambourins)",
+          "Cartes de mots qui riment",
+          "Exemples visuels de poèmes illustrés"
+        ],
+        "visualSupports": "Poème affiché avec mots qui riment en couleurs, représentation visuelle du rythme, gestes pour chaque concept poétique",
+        "decisionPoints": [
+          "Si le concept de rime est difficile, se concentrer sur rythme et sons répétitifs d'abord"
+        ],
+        "movementBreaks": [
+          "Battements rythmiques avec mains et instruments",
+          "Gestes pour illustrer concepts de poésie"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Atelier de création poétique : Création collective d'un poème d'automne simple avec structure de support. Exploration de mots d'automne qui riment. Illustration poétique avec différents matériaux créatifs selon préférences d'apprentissage.",
+        "materials": [
+          "Structure de poème simple à compléter",
+          "Banque de mots d'automne pour inspiration",
+          "Matériaux artistiques variés pour illustration",
+          "Carnets de poésie personnels",
+          "Cartes de rimes d'automne préparées"
+        ],
+        "visualSupports": "Modèles de poèmes simples, banque visuelle de mots qui riment, exemples d'illustrations poétiques variées",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Récitation avec gestes et mouvements",
+          "Création artistique active",
+          "Partages debout avec expressions corporelles"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Café poétique d'automne : Partage volontaire de poèmes créés avec micro ouvert. Célébration de la créativité linguistique et artistique. Réflexion sur beauté des mots et sons.",
+        "materials": [
+          "Poèmes et illustrations créés",
+          "Espace 'scène' pour récitations",
+          "Microphone jouet",
+          "Applaudissements et encouragements"
+        ],
+        "visualSupports": "Espace poétique aménagé, œuvres poétiques exposées, atmosphère créative et bienveillante",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Récitations avec expression corporelle",
+          "Applaudissements et célébrations poétiques"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "concepts abstraits de poésie ou création de rimes",
+        "then": "se concentrer sur plaisir des sons et rythmes plutôt que structure parfaite, offrir modèles à compléter, valoriser toute créativité langagière, permettre dessins comme forme d'expression poétique"
       },
       "realWorldConnection": "How poetry helps us express feelings about nature and seasonal changes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Poèmes très simples avec structure guidée",
+          "Focus sur rythme et sons plutôt que rimes parfaites",
+          "Illustration comme expression poétique principale",
+          "Support individuel pour création"
+        ],
+        "forAdvanced": [
+          "Création de poèmes plus élaborés",
+          "Exploration de différentes structures poétiques",
+          "Jeu avec métaphores simples sur l'automne",
+          "Aide aux autres dans créations poétiques"
+        ],
+        "forELL": [
+          "Poésie avec support de L1 pour inspiration",
+          "Focus sur sons et musicalité plutôt que sens parfait",
+          "Plus de support visuel pour création",
+          "Valorisation de richesse linguistique apportée"
+        ],
+        "forIEP": [
+          "Expression poétique adaptée aux capacités",
+          "Choix de modalités d'expression (orale, visuelle, gestuelle)",
+          "Objectifs ajustés selon besoins individuels",
+          "Support pour concepts abstraits"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Montre plaisir dans jeux de sons et rythmes",
+          "Reconnaît mots qui riment avec support",
+          "Participe créativement à activités poétiques",
+          "Exprime appréciation pour beauté des mots"
+        ],
+        "checkpoints": [
+          "Pendant exploration rythmique : observer engagement avec sons et rythmes",
+          "Pendant création : noter originalité et plaisir dans expression",
+          "Pendant partage : évaluer confiance et fierté créative"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1006,42 +2073,100 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Atmosphère mystique : Création d'ambiance spéciale avec éclairage tamisé et musique douce. Introduction au monde des légendes avec objets mystérieux d'automne. Découverte des mots magiques : 'légende' (livre ancien), 'magique' (baguette), 'mystère' (boîte fermée).",
+        "materials": [
+          "Éclairage doux ou chandelles LED",
+          "Objets mystérieux liés à l'automne (cristaux, feuilles spéciales, pierres)",
+          "Musique instrumentale douce",
+          "Livre de légendes décoratif",
+          "Boîte à mystères"
+        ],
+        "visualSupports": "Ambiance visuelle créée spécialement, objets tangibles pour concepts abstraits, atmosphère immersive",
+        "decisionPoints": [
+          "Si certains élèves sont inquiets de l'ambiance, l'éclaircir et rassurer sur aspect ludique"
+        ],
+        "movementBreaks": [
+          "Gestes mystérieux et magiques pour vocabulaire",
+          "Exploration tactile d'objets de légende"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Voyage dans les légendes : Écoute d'une légende d'automne adaptée (pourquoi les feuilles changent de couleur, origine des citrouilles, etc.). Exploration créative libre - chaque élève choisit comment exprimer la légende (dessin, danse, modélisation, narration). Partage des créations dans cercle magique.",
+        "materials": [
+          "Légende d'automne adaptée et illustrée",
+          "Matériaux créatifs très variés (peinture, pâte à modeler, tissus, éléments naturels)",
+          "Espace pour expressions variées",
+          "Musique de fond inspireée de la nature",
+          "Carnet d'exploration pour ceux qui préfèrent écrire"
+        ],
+        "visualSupports": "Légende racontée avec illustrations captivantes, choix d'activités illustrés clairement, inspiration visuelle variée",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Participation gestuelle pendant l'écoute de légende",
+          "Exploration créative libre avec mouvement naturel",
+          "Déplacements entre stations d'expression"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Cercle des légendes : Partage des créations dans atmosphère respectueuse et émerveillée. Réflexion sur magie des histoires qui expliquent le monde. Retour à éclairage normal avec sensation d'avoir vécu quelque chose de spécial.",
+        "materials": [
+          "Créations des élèves",
+          "Cercle spécial pour partage",
+          "Ambiance douce maintenue",
+          "Paroles d'appréciation et d'émerveillement"
+        ],
+        "visualSupports": "Exposition temporaire des créations, cercle organisé pour écoute respectueuse, transition douce vers réalité",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Partage avec gestes expressifs selon créations",
+          "Transition physique douce vers fin d'activité"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "concepts abstraits de légende et magie ou surexcitation due à l'ambiance",
+        "then": "ancrer dans réalité en expliquant que légendes sont histoires spéciales, ajuster ambiance si trop stimulante, offrir choix de participation selon niveau de confort, valoriser toute forme d'expression créative"
       },
       "realWorldConnection": "How legends help communities explain natural phenomena and preserve cultural wisdom",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Légende très simple avec concepts concrets",
+          "Expression par manipulation d'objets ou dessin",
+          "Soutien individuel pour compréhension",
+          "Ambiance ajustée si trop stimulante"
+        ],
+        "forAdvanced": [
+          "Exploration plus approfondie de légendes multiples",
+          "Création de leur propre légende d'automne",
+          "Réflexion sur rôle des légendes dans cultures",
+          "Leadership dans partage et discussions"
+        ],
+        "forELL": [
+          "Légende avec support visuel très fort",
+          "Expression principalement créative plutôt que verbale",
+          "Connections avec légendes de cultures d'origine",
+          "Valorisation de richesse culturelle apportée"
+        ],
+        "forIEP": [
+          "Participation ajustée selon besoins sensoriels",
+          "Expression dans modalité préférée",
+          "Support pour concepts abstraits avec concret",
+          "Environnement adapté aux besoins individuels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe avec imagination aux activités de légende",
+          "Montre appréciation pour histoires explicatives",
+          "Exprime créativité à travers modalité choisie",
+          "Respecte ambiance spéciale et partages des autres"
+        ],
+        "checkpoints": [
+          "Pendant écoute : observer engagement imaginatif avec légende",
+          "Pendant création : noter expression personnelle et créativité",
+          "Pendant partage : évaluer respect et émerveillement pour créations diverses"
+        ]
       },
       "extensionGuidance": {
         "category": "Exploration créative",
@@ -1097,42 +2222,100 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Tour du monde d'automne : Présentation de globe terrestre et identification de pays francophones. Observation de photos d'automne de différents pays. Introduction de 'monde' (globe), 'pays' (drapeaux), 'différent' (comparaison visuelle).",
+        "materials": [
+          "Globe terrestre ou mappemonde",
+          "Photos d'automne de France, Québec, Suisse, Belgique, Afrique francophone",
+          "Drapeaux de pays francophones",
+          "Images comparatives montrant différences"
+        ],
+        "visualSupports": "Carte du monde avec pays francophone mis en évidence, photos contrastantes d'automne selon régions, drapeaux colorés",
+        "decisionPoints": [
+          "Si les concepts géographiques sont complexes, se concentrer sur 2-3 pays avec différences évidentes"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer globe (rond avec bras)",
+          "Pointer différents pays sur carte"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Voyage culturel d'automne : Exploration de traditions d'automne de différents pays francophones à travers stations. Station France (vendanges), Station Québec (érables), Station Afrique (saison sèche). Création d'un passeport de voyage avec dessins et découvertes de chaque 'pays'.",
+        "materials": [
+          "3 stations thématiques avec décorations",
+          "Images et objets représentatifs de chaque région",
+          "Passeports de voyage vierges (25 copies)",
+          "Tampons ou autocollants pour chaque station",
+          "Matériaux créatifs pour documentation",
+          "Musique traditionnelle de chaque région (optionnel)"
+        ],
+        "visualSupports": "Stations clairement identifiées visuellement, passeports avec espaces pour dessins, références visuelles culturelles authentiques",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Voyage entre stations géographiques",
+          "Activités culturelles spécifiques à chaque station",
+          "Danse ou mouvement traditionnel simple"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Retour de voyage : Partage des découvertes de chaque 'pays' visité. Comparaison avec automne local - ressemblances et différences. Célébration de la diversité mondiale tout en reconnaissant points communs humains.",
+        "materials": [
+          "Passeports complétés des élèves",
+          "Tableau de comparaison simple",
+          "Photos de l'automne local pour comparaison",
+          "Certificats de 'Voyageurs du monde'"
+        ],
+        "visualSupports": "Comparaisons visuelles organisées, passeports remplis exposés, célébration de diversité et unité",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Partage avec mouvements culturels appris",
+          "Célébration finale avec gestes du monde"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "concepts géographiques ou surcharge d'informations culturelles",
+        "then": "simplifier à comparaisons visuelles simples, se concentrer sur similitudes avant différences, ancrer dans expérience personnelle des élèves, utiliser plus de manipulation concrète et moins d'abstraction"
       },
       "realWorldConnection": "How people around the world experience and celebrate autumn in diverse ways",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Focus sur 1-2 pays avec différences très évidentes",
+          "Plus d'images et manipulation concrète",
+          "Passeport simplifié avec autocollants plutôt qu'dessins",
+          "Soutien individuel pour concepts géographiques"
+        ],
+        "forAdvanced": [
+          "Exploration plus approfondie de cultures multiples",
+          "Recherche de causes des différences climatiques",
+          "Création de présentation sur pays choisi",
+          "Leadership dans comparaisons culturelles"
+        ],
+        "forELL": [
+          "Connections explicites avec pays/cultures d'origine",
+          "Valorisation de diversité culturelle apportée",
+          "Support bilingue pour concepts géographiques",
+          "Partage d'expériences personnelles d'automne"
+        ],
+        "forIEP": [
+          "Participation ajustée selon capacités cognitives",
+          "Focus sur expériences sensorielles plutôt que concepts abstraits",
+          "Passeport adapté aux capacités motrices",
+          "Soutien pour traitement d'informations multiples"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Montre curiosité pour diversité culturelle mondiale",
+          "Identifie similitudes et différences entre régions",
+          "Utilise 'monde', 'pays', 'différent' dans contexte géographique",
+          "Respecte et apprécie diversité culturelle"
+        ],
+        "checkpoints": [
+          "Stations culturelles : observer engagement et compréhension des différences",
+          "Passeport : noter capacité à documenter découvertes",
+          "Partage final : écouter réflexions sur diversité et similitudes"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1188,42 +2371,101 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Ouverture festive : Décoration de classe en mode festival avec aide des élèves. Préparation de 'notre festival d'automne' avec rôles pour chacun. Introduction joyeuse : 'festival' (fête), 'célébrer' (applaudir), 'communauté' (tous ensemble).",
+        "materials": [
+          "Décorations d'automne créées précédemment",
+          "Banderoles et guirlandes de festival",
+          "Tous les travaux d'automne pour exposition",
+          "Rôles de festival préparés (hôte, présentateur, artiste, etc.)",
+          "Musique festive d'automne"
+        ],
+        "visualSupports": "Classe transformée en espace festif, rôles illustrés pour chaque participant, atmosphère célébratoire visible",
+        "decisionPoints": [
+          "Si installation prend trop de temps, préparer décorations à l'avance"
+        ],
+        "movementBreaks": [
+          "Installation collaborative des décorations",
+          "Gestes de célébration et préparation festive"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Festival d'automne en action : Kiosques multiples avec activités libres - (1) Galerie d'art d'automne, (2) Coin contes et poésie, (3) Théâtre d'automne, (4) Café des saveurs d'automne (collation thématique), (5) Musique et danse d'automne. Invitation d'autres classes ou familles si possible.",
+        "materials": [
+          "Toutes créations d'automne pour exposition",
+          "Espaces aménagés pour différents kiosques",
+          "Collations thématiques d'automne (si autorisé)",
+          "Matériel pour performances (costumes, instruments)",
+          "Invités de la communauté scolaire",
+          "Appareil photo pour mémoires"
+        ],
+        "visualSupports": "Kiosques clairement identifiés et décorés, programme de festival illustré, atmosphère accueillante et festive",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Circulation libre entre kiosques",
+          "Performances et présentations actives",
+          "Danse et célébrations intégrées"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Clôture du festival : Rassemblement de toute la communauté présente. Réflexion collective sur parcours d'automne accompli. Cérémonie de reconnaissance pour tous les participants. Chanson finale de l'unité avec tous ensemble.",
+        "materials": [
+          "Espace de rassemblement pour clôture",
+          "Certificats ou reconnaissances pour tous",
+          "Chanson finale préparée",
+          "Photos du festival pour partage futur"
+        ],
+        "visualSupports": "Cérémonie organisée avec fierté, reconnaissance visible de tous les accomplissements, atmosphère de clôture positive",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Rassemblement cérémonieux de la communauté",
+          "Chanson finale avec gestes et célébration"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "surexcitation due au festival ou difficulté à gérer activités multiples",
+        "then": "maintenir structure avec rôles clairs, offrir espaces calmes pour ceux qui ont besoin de pauses, adapter niveau d'activité selon énergie du groupe, garder focus sur célébration d'apprentissages"
       },
       "realWorldConnection": "How festivals and celebrations strengthen community bonds and honor seasonal transitions",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Rôle de festival adapté à capacités et préférences",
+          "Espace calme disponible si stimulation excessive",
+          "Participation flexible selon niveau de confort",
+          "Support individuel pour navigation du festival"
+        ],
+        "forAdvanced": [
+          "Rôle de leadership dans organisation festival",
+          "Présentation approfondie de leurs apprentissages",
+          "Aide aux visiteurs et autres élèves",
+          "Réflexion sur impact communautaire du festival"
+        ],
+        "forELL": [
+          "Participation principalement par démonstrations et créations",
+          "Soutien pour interactions avec visiteurs",
+          "Célébration de progrès linguistiques réalisés",
+          "Inclusion de famille pour partage culturel"
+        ],
+        "forIEP": [
+          "Rôle de festival aligné avec objectifs et capacités",
+          "Environnement adapté aux besoins sensoriels",
+          "Participation ajustée selon énergie et intérêts",
+          "Célébration de progrès individuels accomplis"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe joyeusement aux célébrations communautaires",
+          "Démontre fierté des apprentissages d'automne réalisés",
+          "Utilise 'festival', 'célébrer', 'communauté' appropriément",
+          "Contribue positivement à atmosphère festive et inclusive"
+        ],
+        "checkpoints": [
+          "Participation aux kiosques : observer engagement et partage des apprentissages",
+          "Interactions communautaires : noter aisance et fierté dans présentations",
+          "Réflexion finale : écouter articulation du parcours d'apprentissage accompli"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",

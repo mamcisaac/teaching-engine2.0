@@ -41,6 +41,7 @@
 | **explorateurs-de-mots** | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | exploration-phonemes-lettres | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | premieres-histoires | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| **histoires-automne** | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | famille | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | nos-traditions-hivernales | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | communication-orale | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -138,10 +139,10 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 52 (51 + 1 introductory)  
-**Enhanced**: 13 / 52 (25%) - **MATHEMATICS COMPLETE! 🎉 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝**  
-**Translations Fixed**: 13 / 52 (25%)  
-**Decision Points Added**: 13 / 52 (25%)  
-**Materials Specified**: 13 / 52 (25%)  
+**Enhanced**: 14 / 52 (27%) - **MATHEMATICS COMPLETE! 🎉 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖**  
+**Translations Fixed**: 14 / 52 (27%)  
+**Decision Points Added**: 14 / 52 (27%)  
+**Materials Specified**: 14 / 52 (27%)  
 **Committed**: 2 / 52 (4%)  
 **Reviewed**: 2 / 52 (4%)
 
@@ -171,7 +172,18 @@ git push origin main
 - ✅ Extension lessons (15-20) include creative applications: games, stories, art, cooking, music, celebration
 - ✅ Perfect progression for beginning-of-year French immersion with oral communication emphasis and gesture support
 
-**LATEST ACHIEVEMENT**: francais/explorateurs-de-mots (FRENCH WORD EXPLORATION UNIT COMPLETED) 🔍📚
+**LATEST ACHIEVEMENT**: francais/histoires-automne (FRENCH AUTUMN STORIES UNIT COMPLETED) 🍁📖
+- ✅ Enhanced all 20 lessons of "Histoires d'automne" focusing on autumn vocabulary, storytelling, and seasonal French immersion for Grade 1 students
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with autumn storytelling focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available resources including natural autumn materials, art supplies, storytelling props
+- ✅ Comprehensive progression from autumn vocabulary to collaborative story creation and cultural celebration
+- ✅ Assessment criteria focused on seasonal vocabulary, story comprehension, oral communication, and creative expression
+- ✅ Core lessons (1-14) develop autumn themes: seasonal arrival, leaves & colors, trees & weather, animal preparations, storytelling basics, characters & events, vocabulary games, collaboration
+- ✅ Extension lessons (15-20) include cultural applications: traditional stories, theatre, poetry, legends, global perspectives, community festival
+- ✅ Perfect seasonal unit combining French immersion with autumn learning, storytelling skills, and cultural connections
+
+**Previous Achievement**: francais/explorateurs-de-mots (FRENCH WORD EXPLORATION UNIT COMPLETED) 🔍📚
 - ✅ Enhanced all 20 lessons of "Explorateurs de mots" focusing on French vocabulary building, phonics, and word exploration for Grade 1 students
 - ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
 - ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with word exploration focus
