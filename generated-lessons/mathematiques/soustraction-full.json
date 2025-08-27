@@ -10,255 +10,788 @@
       "lessonNumber": 1,
       "lessonType": "core",
       "title": "Découvrir enlever",
-      "oneGoal": "Comprendre que la soustraction c'est enlever quelque chose",
+      "oneGoal": "Les élèves comprennent la soustraction comme l'action d'enlever quelque chose d'un groupe",
       "duration": "45 minutes",
       "keyVocabulary": [
         "enlever",
-        "partir",
-        "reste"
+        "retirer",
+        "il reste",
+        "partir"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Chanson de bienvenue et introduction des 'amis cubes'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "HISTOIRE CONCRÈTE: 'Voici 5 amis cubes qui jouent ensemble. Oh non! 2 amis cubes doivent partir à la maison. Combien d'amis cubes il reste pour jouer?' Manipulation concrète avec cubes colorés.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables colorés",
+              "quantity": "10 cubes par élève (250 pour classe de 25)",
+              "preparation": "Organiser par couleur dans bacs étiquetés, vérifier que tous s'emboîtent bien",
+              "alternatives": ["Blocs de bois colorés", "Jetons de comptage bicolores", "Boutons assortis"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Boîte à histoires avec personnages",
+              "quantity": "1 boîte décorative pour présentation",
+              "purpose": "Rendre l'histoire plus engageante visuellement"
+            }
+          ]
+        },
+        "visualSupports": "Tableau magnétique avec aimants amis cubes, affiche 'enlever = partir'",
+        "decisionPoints": [
+          "Si confusion sur 'enlever' → utiliser mouvement physique (élèves qui partent de la classe)",
+          "Si difficulté avec 'il reste' → compter ensemble ce qui reste après manipulation",
+          "Si perte d'attention → permettre manipulation libre des cubes avant activité dirigée"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Que veut dire 'enlever' selon toi?",
+          "Comment peux-tu me montrer ce qui reste?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Histoire des cubes qui partent en voyage",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "EXPLORATION CONCRÈTE (15 min): Stations de manipulation - élèves créent groupes de 3-5 objets, enlèvent physiquement 1-2 objets, comptent ce qui reste. HISTOIRES VÉCUES (8 min): Chaque élève raconte son action: 'J'avais ___, j'ai enlevé ___, il reste ___'. JEU MOTEUR (4 min): 'Le jeu des amis qui partent' - élèves se lèvent, quelques-uns s'assoient, compter combien sont encore debout.",
+        "materials": {
+          "required": [
+            {
+              "item": "Collections variées pour manipuler",
+              "quantity": "150 objets total (jetons, boutons, cailloux naturels)",
+              "preparation": "Organiser en 6 stations de 25 objets chacune, placer dans contenants étiquetés",
+              "alternatives": ["Cubes uniquement", "Haricots lima et boutons", "Blocs de différentes formes"]
+            },
+            {
+              "item": "Contenants de tri pour stations",
+              "quantity": "18 contenants (3 par station de 4-5 élèves)",
+              "preparation": "Étiqueter: 'Au début', 'Enlevés', 'Il reste'",
+              "alternatives": ["Assiettes de papier colorées", "Cercles tracés sur tables", "Tapis de tri individuels"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuterie visuelle colorée",
+              "quantity": "1 pour la classe",
+              "purpose": "Gérer rotations entre stations et temps d'exploration"
+            }
+          ]
+        },
+        "visualSupports": "Affiche séquence visuelle: groupe complet → enlever → compter reste, cartes pictogrammes pour actions",
+        "decisionPoints": [
+          "Si élèves ne comptent pas systématiquement → enseigner technique 'toucher et compter'",
+          "Si confusion entre enlever et ajouter → utiliser objets très contrastés (gros/petits)"
+        ],
+        "movementBreaks": [
+          "Jeu debout/assis pour comprendre 'enlever' (minute 15)",
+          "Étirements avec comptage à l'envers (minute 22)"
+        ],
+        "mathTalk": [
+          "Explique à ton partenaire ce que tu viens de faire",
+          "Que se passe-t-il quand on enlève quelque chose?",
+          "Comment sais-tu combien il reste?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Chanson 'Au revoir les cubes'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "duration": "~10 min",
+        "activity": "CERCLE DE PARTAGE: Élèves montrent un exemple d'enlever avec leurs objets et expliquent avec phrase modèle. CHANSON D'APPRENTISSAGE: 'Au revoir les objets' avec gestes d'enlever.",
+        "materials": {
+          "required": [
+            {
+              "item": "Tapis de rassemblement",
+              "quantity": "1 grand tapis ou cercle marqué au sol",
+              "preparation": "S'assurer espace suffisant pour tous avec objets",
+              "alternatives": ["Marqueurs au sol avec ruban", "Chaises en demi-cercle"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Enregistreur ou support audio",
+              "quantity": "1 pour la classe",
+              "purpose": "Enregistrer la chanson créée par la classe"
+            }
+          ]
+        },
+        "visualSupports": "Phrases modèles affichées: 'J'avais ___, j'ai enlevé ___, il reste ___'",
+        "decisionPoints": [
+          "Si élèves hésitent à partager → modéliser avec propre exemple concret"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si confusion sur concept 'enlever': utiliser situations familières (manger biscuits, ranger jouets). Si erreurs de comptage: rester avec nombres 0-3 et compter très lentement.",
+        "then": "Revenir à manipulation guidée avec objets familiers, utiliser mouvements corporels pour enlever"
       },
-      "realWorldConnection": "Quand maman mange des biscuits dans le pot, il en reste moins",
+      "realWorldConnection": "Manger des biscuits du pot (il en reste moins), donner des jouets à un ami (j'en ai moins)",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2-1 et 3-1 (rester dans nombres 0-3)",
+          "Utiliser objets identiques pour éviter distraction visuelle",
+          "Permettre comptage lent avec pointage de chaque objet restant",
+          "Offrir support individuel pendant manipulation guidée"
+        ],
+        "forAdvanced": [
+          "Introduire soustractions jusqu'à 6-2, 5-3 si maîtrise rapide",
+          "Demander de créer leurs propres histoires d'enlever",
+          "Encourager à enseigner concept à un pair qui a besoin d'aide",
+          "Explorer 'enlever zéro' - que se passe-t-il?"
+        ],
+        "forELL": [
+          "Utiliser gestes très clairs pour 'enlever' et 'il reste'",
+          "Associer chaque action à une image ou pictogramme",
+          "Permettre narration dans langue première puis répéter en français",
+          "Utiliser objets culturellement familiers (nourriture, vêtements)"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs individuels - peut se concentrer sur reconnaissance 'partir'",
+          "Utiliser supports sensoriels supplémentaires (textures différentes)",
+          "Permettre communication alternative (gestes, images, technologie)",
+          "Ajuster attentes selon capacités - peut observer et imiter"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève enlève physiquement des objets d'un groupe",
+          "L'élève compte ce qui reste après avoir enlevé",
+          "L'élève utilise le vocabulaire 'enlever' et 'il reste'",
+          "L'élève explique son action avec des mots ou gestes"
+        ],
+        "checkpoints": [
+          "Observation directe pendant manipulation aux stations",
+          "Écoute active pendant partage en cercle",
+          "Documentation photos des créations d'élèves",
+          "Notes anecdotiques sur utilisation du vocabulaire"
+        ]
       }
     },
     {
       "lessonNumber": 2,
       "lessonType": "core",
-      "title": "Compter à l'envers",
-      "oneGoal": "Apprendre à compter de 10 à 0 pour comprendre la soustraction",
+      "title": "Compter à rebours",
+      "oneGoal": "Les élèves apprennent à compter à rebours pour comprendre 'retirer' et 'il reste moins'",
       "duration": "45 minutes",
       "keyVocabulary": [
         "reculer",
+        "à rebours",
         "moins",
-        "compte"
+        "descendre"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision rapide - Histoire des cubes de la leçon 1",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "JEU CORPOREL: 'L'escalier invisible' - élèves montent escalier imaginaire de 0 à 5 puis DESCENDENT en comptant à rebours. 'Maintenant descendons: 5, 4, 3, 2, 1, 0!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Bandes numériques 0-10 affichées",
+              "quantity": "1 grande bande pour classe + 25 individuelles",
+              "preparation": "Laminer bandes, placer une au mur à hauteur des élèves",
+              "alternatives": ["Échelle numérique dessinée au tableau", "Marches numérotées au sol"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique rythmée douce",
+              "quantity": "1 source audio",
+              "purpose": "Accompagner les mouvements corporels de comptage"
+            }
+          ]
+        },
+        "visualSupports": "Échelle numérique géante avec flèche qui descend, cartes gestes pour 'monter/descendre'",
+        "decisionPoints": [
+          "Si élèves confondent monter/descendre → utiliser escalier physique réel",
+          "Si difficulté avec rebours → commencer seulement 3-2-1-0 puis étendre",
+          "Si fatigue physique → alterner positions debout/assis"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Que se passe-t-il quand on descend les marches?",
+          "Qu'est-ce qui change quand on compte à rebours?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "L'escalier magique qui descend",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "LIGNE NUMÉRIQUE VIVANTE (12 min): Élèves se placent sur ligne numérique géante au sol, comptent à rebours en 'marchant vers l'arrière' - comprendre que reculer = nombres plus petits. SOUSTRACTION CONCRÈTE (10 min): Avec manipulatifs, commencer à 5, enlever 2, compter à rebours '5, 4, 3' - il reste 3! HISTOIRE À REBOURS (5 min): 'Les 5 oiseaux qui s'envolent un par un du nid'.",
+        "materials": {
+          "required": [
+            {
+              "item": "Ligne numérique géante au sol",
+              "quantity": "1 ligne de 3m avec nombres 0-10",
+              "preparation": "Marquer au ruban coloré, s'assurer anti-dérapant",
+              "alternatives": ["Marelles numérotées", "Cercles numérotés au sol", "Tapis de yoga avec étiquettes"]
+            },
+            {
+              "item": "Oiseaux miniatures ou images",
+              "quantity": "5 oiseaux par groupe (125 total pour 25 élèves)",
+              "preparation": "Organiser dans contenants par groupes de 5",
+              "alternatives": ["Papillons en papier", "Avions en papier", "Feuilles d'automne"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Enregistrement de chants d'oiseaux",
+              "quantity": "1 source audio",
+              "purpose": "Ambiance sonore pour l'histoire des oiseaux"
+            }
+          ]
+        },
+        "visualSupports": "Flèches directionnelles pour 'reculer', affiche 'à rebours = retirer', séquence visuelle oiseaux qui partent",
+        "decisionPoints": [
+          "Si élèves ont peur de reculer physiquement → permettre de se tourner et avancer vers zéro",
+          "Si confusion nombres/rebours → chanter comptine familière à l'envers d'abord"
+        ],
+        "movementBreaks": [
+          "Danse des oiseaux qui volent (minute 18)",
+          "Étirements en comptant à rebours de 5 à 1 (minute 25)"
+        ],
+        "mathTalk": [
+          "Que remarques-tu quand tu recules sur la ligne?",
+          "Comment les oiseaux nous aident-ils à comprendre 'retirer'?",
+          "Quelle est la différence entre compter en avant et à rebours?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Comptine à l'envers avec mouvements",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "duration": "~10 min",
+        "activity": "COMPTINE COLLECTIVE: Création de notre comptine à rebours '5 petits objets, un qui s'en va, il en reste 4!' avec gestes. CONNEXION: Discuter d'autres situations où on compte à rebours (fusée, minuteur cuisine).",
+        "materials": {
+          "required": [
+            {
+              "item": "Grande affiche vierge pour comptine",
+              "quantity": "1 affiche ou tableau effacement à sec",
+              "preparation": "Préparer marqueurs colorés lavables",
+              "alternatives": ["Tableau noir et craie", "Feuilles géantes et crayons feutres"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Instruments de musique simples",
+              "quantity": "5-10 instruments variés",
+              "purpose": "Accompagner la comptine créée par la classe"
+            }
+          ]
+        },
+        "visualSupports": "Affiche comptine avec dessins simples, cartes nombres pour séquence visuelle",
+        "decisionPoints": [
+          "Si création trop complexe → utiliser comptine connue et l'adapter à rebours"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si confusion avec direction rebours: utiliser escalier réel ou monter/descendre chaise. Si oubli séquence numérique: pratiquer seulement 3-2-1 puis étendre graduellement.",
+        "then": "Revenir aux mouvements corporels concrets, utiliser supports visuels avec flèches directionnelles"
       },
-      "realWorldConnection": "Comme compter les marches en descendant l'escalier",
+      "realWorldConnection": "Décompte avant décollage fusée, minuteur cuisine, descendre les marches en comptant",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 3-2-1-0 (petits nombres)",
+          "Utiliser support physique réel (escalier, blocs empilés)",
+          "Permettre comptage aidé avec pointage visuel",
+          "Offrir plus de temps pour intégrer séquence rebours"
+        ],
+        "forAdvanced": [
+          "Compter à rebours depuis 10 ou même 15",
+          "Créer leurs propres comptines à rebours",
+          "Enseigner concept à un pair - devenir 'expert rebours'",
+          "Explorer compter par 2 à rebours (10, 8, 6, 4, 2, 0)"
+        ],
+        "forELL": [
+          "Utiliser gestes très clairs pour 'monter' et 'descendre'",
+          "Associer chaque nombre à un geste corporel mémorable",
+          "Permettre comptine dans langue première puis traduire",
+          "Utiliser supports visuels colorés pour séquence"
+        ],
+        "forIEP": [
+          "Adapter selon capacités - peut se concentrer sur reconnaissance 'moins'",
+          "Utiliser supports tactiles (objets à textures variées)",
+          "Permettre participation par observation et imitation",
+          "Ajuster objectifs selon plan individualisé"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève compte à rebours de 5 à 0 avec ou sans support",
+          "L'élève associe 'reculer' avec nombres qui diminuent",
+          "L'élève utilise vocabulaire 'moins', 'descendre', 'à rebours'",
+          "L'élève participe aux comptines et mouvements corporels"
+        ],
+        "checkpoints": [
+          "Observation pendant déplacements sur ligne numérique",
+          "Écoute active pendant création de comptines",
+          "Documentation vidéo des mouvements corporels mathématiques",
+          "Notes sur utilisation spontanée du vocabulaire"
+        ]
       }
     },
     {
       "lessonNumber": 3,
       "lessonType": "core",
-      "title": "Histoires d'enlever",
-      "oneGoal": "Créer des histoires simples avec des situations de soustraction",
+      "title": "Histoires de soustraction",
+      "oneGoal": "Les élèves créent et résolvent des histoires de soustraction avec contextes familiers",
       "duration": "45 minutes",
       "keyVocabulary": [
         "histoire",
+        "situation",
         "problème",
-        "solution"
+        "résoudre"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision avec l'escalier magique de la leçon 2",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "HISTOIRE MYSTÈRE: 'Madame Lapine avait 4 carottes dans son panier. Elle en a donné 2 à ses bébés lapins. Combien lui reste-t-il?' Élèves manipulent vraies carottes ou images.",
+        "materials": {
+          "required": [
+            {
+              "item": "Carottes miniatures ou images réalistes",
+              "quantity": "8 carottes par élève (200 total)",
+              "preparation": "Nettoyer si vraies, plastifier si images, organiser en paniers",
+              "alternatives": ["Images d'autres légumes", "Cubes orange", "Jetons carotte-couleur"]
+            },
+            {
+              "item": "Paniers ou contenants lapins",
+              "quantity": "25 petits paniers décorés",
+              "preparation": "Décorer avec oreilles de lapin ou autocollants",
+              "alternatives": ["Boîtes décorées", "Assiettes avec dessins lapins"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Costume ou marionnette Madame Lapine",
+              "quantity": "1 pour présentation théâtrale",
+              "purpose": "Rendre l'histoire plus vivante et mémorable"
+            }
+          ]
+        },
+        "visualSupports": "Images séquentielles: lapine avec carottes → donne aux bébés → compte ce qui reste",
+        "decisionPoints": [
+          "Si confusion sur 'donner' vs 'enlever' → clarifier avec gestes concrets",
+          "Si élèves veulent manger carottes → rappeler que c'est matériel mathématique",
+          "Si difficulté à visualiser histoire → jouer scène avec élèves volontaires"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Que fait Madame Lapine avec ses carottes?",
+          "Comment pouvons-nous résoudre ce problème?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Théâtre d'histoires mathématiques",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "STATION CRÉATION D'HISTOIRES (15 min): Élèves en groupes de 4 créent histoires de soustraction avec objets réels - biscuits mangés, jouets donnés, fleurs cueillies. THÉÂTRE MATHÉMATIQUE (8 min): Chaque groupe joue son histoire, autres devinent combien il reste. BANQUE D'HISTOIRES (4 min): Collectionner histoires préférées dans 'livre de classe'.",
+        "materials": {
+          "required": [
+            {
+              "item": "Collections d'objets pour histoires",
+              "quantity": "50 biscuits jouets, 30 petits jouets, 25 fleurs plastique",
+              "preparation": "Organiser par type dans boîtes étiquetées pour chaque station",
+              "alternatives": ["Images plastifiées d'objets", "Dessins faits par élèves", "Objets de recyclage décorés"]
+            },
+            {
+              "item": "Livret 'Nos histoires mathématiques'",
+              "quantity": "1 grand livret pour classe + feuilles vierges",
+              "preparation": "Préparer couverture décorative, perforer feuilles",
+              "alternatives": ["Boîte à histoires décorée", "Affichage mural des histoires"]
+            },
+            {
+              "item": "Cartes de rôles théâtre",
+              "quantity": "25 cartes avec rôles simples (maman, bébé, ami, animal)",
+              "preparation": "Plastifier cartes, attacher cordons pour porter",
+              "alternatives": ["Chapeaux ou accessoires simples", "Autocollants de rôles"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Appareil photo ou tablette",
+              "quantity": "1 pour documenter",
+              "purpose": "Photographier théâtre mathématique pour portfolio"
+            }
+          ]
+        },
+        "visualSupports": "Aide-mémoire structure histoire: 'Il y avait ___, puis ___, maintenant il reste ___'",
+        "decisionPoints": [
+          "Si histoires trop complexes → guider vers situations simples familières",
+          "Si timidité pour théâtre → permettre narration assise ou avec partenaire"
+        ],
+        "movementBreaks": [
+          "Danse des objets qui disparaissent (minute 18)",
+          "Étirements en racontant mini-histoire corporelle (minute 24)"
+        ],
+        "mathTalk": [
+          "Raconte-nous ton histoire de soustraction",
+          "Comment as-tu su combien il restait?",
+          "Quelle partie de l'histoire montre 'enlever'?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Dessiner notre histoire préférée",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "duration": "~10 min",
+        "activity": "DESSIN-HISTOIRE: Chaque élève dessine histoire préférée en 3 parties: avant, pendant (enlever), après (ce qui reste). PARTAGE EN BINÔMES: Expliquer dessin à un partenaire.",
+        "materials": {
+          "required": [
+            {
+              "item": "Papier tri-plié pour séquences",
+              "quantity": "25 feuilles pliées en 3 sections",
+              "preparation": "Plier et marquer sections: Avant/Pendant/Après",
+              "alternatives": ["Feuilles avec 3 boîtes dessinées", "3 feuilles séparées par élève"]
+            },
+            {
+              "item": "Crayons de couleur courts",
+              "quantity": "8 couleurs par élève (200 crayons total)",
+              "preparation": "Tailler, organiser dans contenants par table",
+              "alternatives": ["Marqueurs à pointe large", "Crayons de cire"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Autocollants décoratifs",
+              "quantity": "Variété d'autocollants thématiques",
+              "purpose": "Embellir les dessins-histoires"
+            }
+          ]
+        },
+        "visualSupports": "Exemple dessin-histoire au tableau, mots-étiquettes pour chaque section",
+        "decisionPoints": [
+          "Si perfectionnisme bloque → rappeler que dessins simples sont parfaits"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si difficulté à créer histoires: utiliser modèles d'histoires simples (cookies mangés, jouets rangés). Si timidité pour théâtre: permettre narration avec objets seulement.",
+        "then": "Offrir structure d'histoire avec images, permettre collaboration avec pair plus confiant"
       },
-      "realWorldConnection": "Les histoires qu'on lit à la maison parlent souvent d'enlever ou perdre",
+      "realWorldConnection": "Histoires vécues: manger collation (il en reste moins), donner autocollants aux amis, perdre dents de lait",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser histoires très simples avec seulement 2-3 objets",
+          "Offrir structure d'histoire complète à remplir",
+          "Permettre dessins très basiques ou symboles",
+          "Travailler en équipe avec pair plus avancé"
+        ],
+        "forAdvanced": [
+          "Créer histoires avec nombres plus grands (jusqu'à 10)",
+          "Inventer plusieurs histoires différentes",
+          "Aider à mettre en scène histoires d'autres élèves",
+          "Ajouter détails et personnages aux histoires"
+        ],
+        "forELL": [
+          "Utiliser objets concrets et gestes pour raconter",
+          "Permettre narration dans langue première avec traduction",
+          "Offrir vocabulaire clé avec images",
+          "Encourager dessins détaillés pour compenser mots manquants"
+        ],
+        "forIEP": [
+          "Adapter selon capacités - peut se concentrer sur manipulation d'objets",
+          "Utiliser communication alternative (gestes, images, technologie)",
+          "Accepter participation par observation et imitation",
+          "Ajuster attentes selon objectifs individualisés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève crée une histoire simple avec situation de soustraction",
+          "L'élève identifie 'avant', 'enlever', 'après' dans histoires",
+          "L'élève utilise objets pour résoudre problème d'histoire",
+          "L'élève partage ou joue son histoire avec autres"
+        ],
+        "checkpoints": [
+          "Documentation des histoires créées (audio, photos)",
+          "Observation pendant théâtre mathématique",
+          "Collection des dessins-histoires en 3 parties",
+          "Notes sur utilisation vocabulaire soustraction dans histoires"
+        ]
       }
     },
     {
       "lessonNumber": 4,
       "lessonType": "core",
-      "title": "Jeux avec des objets",
-      "oneGoal": "Manipuler des objets concrets pour pratiquer la soustraction",
+      "title": "Manipulation concrète",
+      "oneGoal": "Les élèves manipulent des objets concrets pour maîtriser l'action physique de soustraire",
       "duration": "45 minutes",
       "keyVocabulary": [
-        "cubes",
-        "jetons",
-        "manipuler"
+        "manipuler",
+        "retirer",
+        "toucher",
+        "compter"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Histoire éclair de la leçon 3",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "DÉFI TACTILE: 'Ferme les yeux et touche 6 cubes. Maintenant, sans regarder, retire-en 2. Combien peux-tu sentir qu'il en reste?' Exploration sensorielle de la soustraction.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes tactiles texturés",
+              "quantity": "15 cubes par élève (375 total)",
+              "preparation": "Sélectionner cubes avec textures intéressantes, nettoyer",
+              "alternatives": ["Blocs de bois rugueux", "Pierres lisses naturelles", "Objets texturés variés"]
+            },
+            {
+              "item": "Bandeaux ou foulards doux",
+              "quantity": "25 bandeaux propres",
+              "preparation": "Laver et vérifier propreté, organiser dans panier",
+              "alternatives": ["Demander aux élèves de fermer yeux", "Boites opaques pour exploration"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique douce instrumentale",
+              "quantity": "1 source audio",
+              "purpose": "Créer ambiance calme pour exploration sensorielle"
+            }
+          ]
+        },
+        "visualSupports": "Cartes des 5 sens, affiche 'toucher pour compter'",
+        "decisionPoints": [
+          "Si inconfort avec bandeau → permettre exploration avec yeux fermés volontairement",
+          "Si difficulté tactile → commencer avec yeux ouverts puis réduire vision graduellement",
+          "Si distraction → créer espaces individuels calmes"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Que sens-tu quand tu touches les cubes?",
+          "Comment sais-tu combien il en reste sans regarder?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Centres de jeux mathématiques",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "CENTRES DE MANIPULATION (20 min): 5 stations - pâte à modeler (enlever morceaux), jetons dans contenants (vider partiellement), boutons (trier et retirer), billes dans tubes (faire sortir), cailloux (collections diminuent). ROTATION LIBRE (7 min): Exploration personnelle préférée.",
+        "materials": {
+          "required": [
+            {
+              "item": "Matériaux pour 5 stations",
+              "quantity": "Pâte à modeler, 500 jetons, 300 boutons, 100 billes, 200 cailloux",
+              "preparation": "Organiser chaque station avec contenants et instructions visuelles",
+              "alternatives": ["Remplacer par objets de récupération", "Utiliser éléments naturels collectés"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuterie visuelle pour rotations",
+              "quantity": "1 minuterie colorée",
+              "purpose": "Gestion autonome des rotations entre stations"
+            }
+          ]
+        },
+        "visualSupports": "Instructions picturales pour chaque station, cartes 'avant/après' pour chaque activité",
+        "decisionPoints": [
+          "Si surpopulation d'une station → établir système de tickets d'attente",
+          "Si matériaux mélangés → enseigner soin des centres mathématiques"
+        ],
+        "movementBreaks": [
+          "Nettoyage dance entre rotations (minute 12 et 20)"
+        ],
+        "mathTalk": [
+          "Montre-moi ce que tu as enlevé",
+          "Comment as-tu compté ce qui restait?",
+          "Quelle station préfères-tu pour pratiquer enlever?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Partage des découvertes",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "duration": "~10 min",
+        "activity": "CERCLE DES DÉCOUVERTES: Chaque élève apporte un objet de sa station préférée et montre comment il a pratiqué 'retirer'. VOTE COLLECTIF: Quelle station était la meilleure pour comprendre la soustraction?",
+        "materials": {
+          "required": [
+            {
+              "item": "Plateau de présentation",
+              "quantity": "1 grand plateau décoratif",
+              "preparation": "Nettoyer, placer au centre du cercle",
+              "alternatives": ["Nappe colorée au sol", "Cerceau décoratif"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Autocollants de vote",
+              "quantity": "25 autocollants par station",
+              "purpose": "Vote visuel pour station préférée"
+            }
+          ]
+        },
+        "visualSupports": "Tableau de vote des stations, images de chaque activité de manipulation",
+        "decisionPoints": [
+          "Si hésitation à partager → commencer par montrer plutôt que parler"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si hyperstimulation sensorielle: offrir station calme avec moins d'objets. Si difficulté fine moteure: utiliser objets plus gros et faciles à manipuler.",
+        "then": "Adapter matériaux selon besoins, permettre exploration à rythme individuel"
       },
-      "realWorldConnection": "Comme jouer avec des jouets et les ranger dans des boîtes",
+      "realWorldConnection": "Vider boîte de légos pour en prendre quelques-uns, manger bonbons d'un sac (il en reste moins)",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Stations avec moins d'objets (3-4 seulement)",
+          "Manipulation guidée avec support individuel",
+          "Focus sur une station préférée plutôt que rotation",
+          "Objets plus gros et faciles à manipuler"
+        ],
+        "forAdvanced": [
+          "Stations avec nombres plus élevés (jusqu'à 10-12 objets)",
+          "Création de leurs propres défis de manipulation",
+          "Aide aux pairs dans d'autres stations",
+          "Exploration de patterns dans la soustraction"
+        ],
+        "forELL": [
+          "Focus sur manipulation concrète avec moins de langage",
+          "Modélisation claire des actions sans mots",
+          "Partenariat avec élève francophone",
+          "Utilisation gestes universels pour actions mathématiques"
+        ],
+        "forIEP": [
+          "Adaptation matériaux selon capacités motrices",
+          "Stations adaptées aux objectifs individualisés",
+          "Exploration sensorielle adaptée aux préférences",
+          "Participation flexible selon capacités du jour"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève manipule objets pour créer groupes et retirer",
+          "L'élève compte après avoir enlevé des objets",
+          "L'élève engage plusieurs sens dans apprentissage",
+          "L'élève fait connexions entre différents types d'objets"
+        ],
+        "checkpoints": [
+          "Observation directe aux stations de manipulation",
+          "Photos des créations et explorations",
+          "Notes sur préférences sensorielles et stratégies",
+          "Documentation des découvertes partagées en cercle"
+        ]
       }
     },
     {
       "lessonNumber": 5,
       "lessonType": "core",
-      "title": "Addition et soustraction ensemble",
-      "oneGoal": "Découvrir que l'addition et la soustraction sont des opérations inverses",
+      "title": "Opérations inverses",
+      "oneGoal": "Les élèves découvrent que l'addition et la soustraction sont des opérations contraires qui s'annulent",
       "duration": "45 minutes",
       "keyVocabulary": [
         "inverse",
-        "ajouter",
-        "contraire"
+        "contraire",
+        "annuler",
+        "revenir"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Jeu rapide avec les cubes de la leçon 4",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "JEU DE MAGIE MATHÉMATIQUE: 'Je commence avec 3 objets. J'en ajoute 2. Maintenant j'en ai 5. Mais attention, magie! Si j'enlève les 2 que j'avais ajoutés... je reviens à 3!' Manipulation concrète magique.",
+        "materials": {
+          "required": [
+            {
+              "item": "Objets 'magiques' colorés",
+              "quantity": "10 objets par élève (250 total) - jetons, coquillages, boutons",
+              "preparation": "Choisir objets intéressants et 'spéciaux', nettoyer et organiser",
+              "alternatives": ["Cubes brillants", "Pierres colorées", "Jetons décoratifs"]
+            },
+            {
+              "item": "Baguette ou accessoire magique",
+              "quantity": "1 baguette décorative pour enseignant",
+              "preparation": "Décorer baguette simple pour effet théâtral",
+              "alternatives": ["Foulard coloré", "Chapeau de magicien", "Geste théâtral"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique mystérieuse",
+              "quantity": "1 source audio",
+              "purpose": "Créer ambiance magique pour découverte mathématique"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'magie mathématique', symboles + et - avec flèches inverses",
+        "decisionPoints": [
+          "Si élèves trop excités par magie → canaliser vers observation mathématique",
+          "Si confusion sur concept → répéter démonstration avec nombres plus petits",
+          "Si scepticisme sur 'magie' → expliquer que vraie magie est dans les mathématiques"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Qu'est-ce qui est 'magique' dans ce que nous venons de faire?",
+          "Pourquoi sommes-nous revenus au nombre du début?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "La machine magique addition-soustraction",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "MACHINE MAGIQUE (15 min): Boîte décorée avec 2 compartiments - 'AJOUTER' et 'ENLEVER'. Élèves testent: mettre 3 objets, ajouter 2 (=5), puis enlever 2 (revient à 3). DÉFI INVERSE (8 min): Commencer avec soustraction 5-2=3, puis vérifier en ajoutant 3+2=5. MANIPULATION LIBRE (4 min): Exploration personnelle des opérations inverses.",
+        "materials": {
+          "required": [
+            {
+              "item": "Boîte machine magique",
+              "quantity": "6 boîtes décorées (une par groupe de 4-5)",
+              "preparation": "Décorer avec compartiments + et -, instructions visuelles",
+              "alternatives": ["Plateaux avec zones marquées", "Cercles + et - au sol"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Affiche opérations inverses avec flèches circulaires",
+        "decisionPoints": [
+          "Si confusion sur concept inverse → utiliser actions corporelles (s'asseoir/se lever)",
+          "Si difficultés avec machine → modéliser plusieurs fois avant pratique autonome"
+        ],
+        "movementBreaks": [
+          "Danse addition-soustraction (bras en l'air/bras en bas) minute 18"
+        ],
+        "mathTalk": [
+          "Que se passe-t-il quand on fait le contraire?",
+          "Comment peux-tu vérifier ta réponse?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Chanson de l'addition-soustraction",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "duration": "~10 min",
+        "activity": "CHANSON COLLECTIVE: Création chanson classe 'Addition puis soustraction, ça nous ramène au début!' avec gestes inverses.",
+        "materials": {
+          "required": [
+            {
+              "item": "Affiche paroles chanson",
+              "quantity": "1 grande affiche",
+              "preparation": "Préparer canevas simple pour chanson collective",
+              "alternatives": ["Tableau noir avec paroles"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Gestes pour addition (rassembler) et soustraction (séparer)",
+        "decisionPoints": [
+          "Si création chanson trop complexe → utiliser mélodie connue et adapter paroles"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si confusion sur inverse: utiliser mouvements corporels concrets (ouvrir/fermer, monter/descendre). Si difficulté abstract: rester avec objets concrets plus longtemps.",
+        "then": "Multiplier exemples concrets avant passage à l'abstraction, utiliser supports corporels"
       },
-      "realWorldConnection": "Si on met des chaussettes puis les enlève, on revient au début",
+      "realWorldConnection": "Mettre chaussettes puis enlever, construire tour puis démolir, remplir verre puis vider",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Travailler avec nombres très petits (1-3 seulement)",
+          "Focus sur une opération inverse à la fois",
+          "Support individuel avec manipulation guidée",
+          "Utiliser objets familiers et concrets"
+        ],
+        "forAdvanced": [
+          "Explorer opérations inverses avec nombres jusqu'à 10",
+          "Créer leurs propres défis d'opérations inverses",
+          "Enseigner concept à d'autres élèves",
+          "Découvrir patterns dans les opérations inverses"
+        ],
+        "forELL": [
+          "Emphasis sur actions et gestes plutôt que mots",
+          "Utiliser objets universellement reconnaissables",
+          "Permettre démonstration sans explication verbale",
+          "Partenariat avec élève francophone pour traduction"
+        ],
+        "forIEP": [
+          "Adapter matériaux selon capacités individuelles",
+          "Focus sur reconnaissance pattern plutôt que calcul",
+          "Utiliser supports sensoriels adaptés",
+          "Objectifs ajustés selon plan individualisé"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une action puis son inverse",
+          "L'élève comprend que +2 puis -2 revient au début",
+          "L'élève utilise vocabulaire 'inverse', 'contraire', 'revenir'",
+          "L'élève vérifie soustraction avec addition correspondante"
+        ],
+        "checkpoints": [
+          "Observation pendant utilisation machine magique",
+          "Documentation vidéo des gestes mathématiques inverses",
+          "Écoute active pendant création de chanson collective",
+          "Notes sur compréhension concept inverse dans jeu libre"
+        ]
       }
     },
     {
@@ -273,43 +806,156 @@
         "erreur"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision machine magique de la leçon 5",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "RÉVISION DÉTECTIVE: 'Voici la machine magique de la leçon 5! Elle dit: 4-2=2. Comment pouvons-nous vérifier si c'est correct?' Introduction du concept de vérification avec addition inverse.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables colorés",
+              "quantity": "8 cubes par élève (200 pour classe de 25)",
+              "preparation": "Organiser en paires de couleurs contrastées, vérifier emboîtement",
+              "alternatives": ["Jetons bicolores", "Boutons de 2 couleurs", "Blocs de bois assortis"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Machine magique décorative (boîte)",
+              "quantity": "1 pour démonstration classe",
+              "purpose": "Créer mystère et engagement pour concept vérification"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Détectives Mathématiques': soustraction + vérification = certitude, loupe géante pour 'examiner'",
+        "decisionPoints": [
+          "Si confusion sur 'vérifier' → utiliser analogie détective qui vérifie indices",
+          "Si difficulté avec addition inverse → montrer avec objets physiques très lentement"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Comment un détective vérifie-t-il ses indices?",
+          "Que peux-tu faire pour être sûr de ta réponse?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Bureau des détectives mathématiques",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "BUREAU DÉTECTIVES (15 min): Stations avec problèmes à vérifier - élèves utilisent addition pour confirmer soustractions. PRATIQUE GUIDÉE (8 min): Avec partenaire, créer soustraction puis vérifier avec addition. JEU VÉRIFICATION (4 min): 'Vrai ou Faux' - montrer soustraction, élèves vérifient et lèvent pouce.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes problèmes soustraction",
+              "quantity": "30 cartes avec soustractions 0-5 (6 stations de 5 cartes)",
+              "preparation": "Laminer cartes, inclure réponses correctes et incorrectes à vérifier",
+              "alternatives": ["Problèmes écrits au tableau", "Cartes faites maison", "Objets réels à compter"]
+            },
+            {
+              "item": "Loupes jouets pour détectives",
+              "quantity": "25 loupes (1 par élève)",
+              "preparation": "Nettoyer, vérifier que toutes fonctionnent",
+              "alternatives": ["Cercles de carton", "Mains formant loupes", "Lunettes de lecture jouets"]
+            },
+            {
+              "item": "Cahiers détectives",
+              "quantity": "25 cahiers (feuilles agrafées)",
+              "preparation": "Préparer pages avec espaces pour soustraction et vérification",
+              "alternatives": ["Feuilles simples", "Mini-tableaux blancs", "Ardoises"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Badges détectives",
+              "quantity": "25 badges temporaires",
+              "purpose": "Encourager engagement et fierté dans rôle détective"
+            }
+          ]
+        },
+        "visualSupports": "Posters méthode détective: 1. Lire problème 2. Vérifier avec addition 3. Marquer ✓ ou ✗",
+        "decisionPoints": [
+          "Si élèves oublient de vérifier → rappel constant 'Que fait un bon détective?'"
+        ],
+        "movementBreaks": [
+          "Étirements de détective avec loupes (minute 15)",
+          "Marche de détective autour de la classe (minute 22)"
+        ],
+        "mathTalk": [
+          "Explique à ton partenaire comment tu vérifies",
+          "Pourquoi est-ce important de vérifier nos réponses?",
+          "Quelle méthode de vérification préfères-tu?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Certificat de détective mathématique",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "CÉRÉMONIE DÉTECTIVES: Remise de certificats 'Détective Mathématique Niveau 1'. Chaque élève présente une vérification réussie. SERMENT DÉTECTIVE: 'Je promets de toujours vérifier mes réponses!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Certificats détective imprimés",
+              "quantity": "25 certificats personnalisés",
+              "preparation": "Imprimer sur papier coloré, écrire nom de chaque élève",
+              "alternatives": ["Certificates faits main", "Autocollants spéciaux", "Tampons de félicitations"]
+            },
+            {
+              "item": "Tapis de rassemblement",
+              "quantity": "1 grand tapis circulaire",
+              "preparation": "Vérifier propreté, disposer en cercle de cérémonie",
+              "alternatives": ["Chaises en cercle", "Marquage au sol", "Couverture de classe"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique cérémonielle douce",
+              "quantity": "1 source audio",
+              "purpose": "Créer atmosphère solennelle pour remise certificats"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Détectives Mathématiques Diplômés', affiche du serment détective",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si confusion entre soustraction originale et vérification par addition: utiliser couleurs différentes (rouge pour enlever, vert pour vérifier). Si erreurs persistantes de calcul: revenir aux nombres 0-3 avec manipulation concrète.",
+        "then": "Modéliser plusieurs fois avec objets physiques, utiliser langage très clair: 'D'abord j'enlève, puis je vérifie en rajoutant'"
       },
       "realWorldConnection": "Comme compter ses jouets pour être sûr qu'on n'en a pas perdu",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec soustractions très simples 2-1, 3-1 uniquement",
+          "Utiliser manipulation physique pour chaque étape de vérification",
+          "Permettre aide d'un pair plus avancé pendant pratique",
+          "Offrir cartes visuelles montrant étapes: enlever → compter → ajouter → vérifier"
+        ],
+        "forAdvanced": [
+          "Introduire vérification de soustractions jusqu'à 8-3, 7-2",
+          "Demander de créer leurs propres problèmes incorrects pour que pairs vérifient",
+          "Encourager à expliquer POURQUOI la vérification fonctionne",
+          "Explorer ce qui arrive si on vérifie avec mauvaise addition"
+        ],
+        "forELL": [
+          "Utiliser gestes très clairs pour 'enlever' vs 'ajouter pour vérifier'",
+          "Fournir cartes visuelles avec symboles - et + clairement distingués",
+          "Permettre utilisation langue première pour expliquer processus",
+          "Associer 'vérifier' à 'check' ou équivalent dans langue première"
+        ],
+        "forIEP": [
+          "Adapter selon objectifs - peut se concentrer uniquement sur reconnaître 'correct/incorrect'",
+          "Utiliser supports tactiles (textures) pour différencier soustraction/addition",
+          "Permettre communication alternative pour expliquer vérification",
+          "Ajuster attentes - peut participer à cérémonie sans démonstration complexe"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève utilise l'addition pour vérifier une soustraction donnée",
+          "L'élève identifie correctement si une soustraction est juste ou fausse",
+          "L'élève explique le processus de vérification avec mots ou gestes",
+          "L'élève comprend que vérifier nous aide à être certains"
+        ],
+        "checkpoints": [
+          "Observation directe pendant travail aux stations détectives",
+          "Écoute active pendant explications à partenaires",
+          "Documentation photos des cahiers détectives complétés",
+          "Notes anecdotiques sur utilisation spontanée de vérification"
+        ]
       }
     },
     {
@@ -321,46 +967,173 @@
       "keyVocabulary": [
         "image",
         "voir",
-        "dessiner"
+        "dessiner",
+        "enlever",
+        "barrer"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision détective avec des cubes de la leçon 6",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "RÉVISION VISUELLE: 'Regardez cette image: 5 papillons sur une fleur. 2 papillons s'envolent (barrer sur image). Combien il reste?' Introduction des images comme outils pour résoudre soustractions.",
+        "materials": {
+          "required": [
+            {
+              "item": "Images grandes pour démonstration",
+              "quantity": "3 images plastifiées 40x30 cm (papillons, pommes, voitures)",
+              "preparation": "Laminer, prévoir marqueurs effaçables pour barrer",
+              "alternatives": ["Dessins au tableau", "Images projetées", "Flanelle avec objets amovibles"]
+            },
+            {
+              "item": "Marqueurs effaçables colorés",
+              "quantity": "3 marqueurs (rouge, bleu, vert) pour démonstration",
+              "preparation": "Tester que marquage s'efface bien des images",
+              "alternatives": ["Craies de couleur", "Post-it colorés", "Autocollants amovibles"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Loupe géante pour examiner images",
+              "quantity": "1 loupe décorative",
+              "purpose": "Attirer attention sur détails importants des images"
+            }
+          ]
+        },
+        "visualSupports": "Poster 'Méthode Image': 1. Regarder image 2. Compter objets 3. Barrer ceux qui partent 4. Compter ce qui reste",
+        "decisionPoints": [
+          "Si élèves ne voient pas clairement les objets → agrandir images ou utiliser projecteur",
+          "Si confusion sur 'barrer' → montrer avec X très visible sur objets qui partent"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Que vois-tu sur cette image?",
+          "Comment peux-tu montrer que des objets sont partis?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Galerie d'art mathématique",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "GALERIE MATHÉMATIQUE (15 min): 6 stations avec images différentes - élèves résolvent problèmes en barrant objets qui partent. CRÉATION ARTISTIQUE (8 min): Élèves dessinent leur propre problème de soustraction avec images. PARTAGE CRÉATIONS (4 min): Présenter dessins aux pairs qui résolvent.",
+        "materials": {
+          "required": [
+            {
+              "item": "Images de soustraction pour stations",
+              "quantity": "36 cartes images (6 par station, 6 stations de 4 élèves)",
+              "preparation": "Laminer cartes, organiser par station avec nombres 0-5",
+              "alternatives": ["Photos imprimées", "Dessins faits main", "Images découpées magazines"]
+            },
+            {
+              "item": "Marqueurs fins effaçables",
+              "quantity": "25 marqueurs (1 par élève)",
+              "preparation": "Tester effaçage, organiser dans contenants par couleur",
+              "alternatives": ["Crayons de couleur", "Feutres lavables", "Craies grasses"]
+            },
+            {
+              "item": "Papier de dessin",
+              "quantity": "50 feuilles (2 par élève)",
+              "preparation": "Pré-découper format approprié, prévoir crayons de couleur",
+              "alternatives": ["Ardoises blanches", "Tablettes de dessin", "Papier recyclé"]
+            },
+            {
+              "item": "Contenants organisateurs",
+              "quantity": "6 bacs pour stations + 1 bac matériel dessin",
+              "preparation": "Étiqueter chaque station, vérifier contenu complet",
+              "alternatives": ["Plateaux", "Boîtes à chaussures", "Sacs ziploc"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuterie visuelle colorée",
+              "quantity": "1 pour gestion rotations",
+              "purpose": "Aider transitions fluides entre activités"
+            }
+          ]
+        },
+        "visualSupports": "Affiches exemples de résolution: image complète → barrer objets → compter reste, symboles visuels pour chaque étape",
+        "decisionPoints": [
+          "Si élèves effacent mal → montrer technique de barrure en X plutôt qu'effacement complet"
+        ],
+        "movementBreaks": [
+          "Pause étirements avec gestes 'voler comme papillons' (minute 15)",
+          "Marche d'exposition - élèves circulent voir œuvres des autres (minute 23)"
+        ],
+        "mathTalk": [
+          "Explique à ton partenaire comment tu as résolu ce problème d'image",
+          "Pourquoi as-tu barré ces objets et pas les autres?",
+          "Quelle image était la plus facile à résoudre pour toi?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Exposition de nos œuvres",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "EXPOSITION D'ART MATHÉMATIQUE: Accrochage des créations au 'Mur des Artistes-Mathématiciens'. Chaque élève présente brièvement son œuvre. VOTE DE LA CLASSE pour l'image la plus créative (tous gagnent un autocollant).",
+        "materials": {
+          "required": [
+            {
+              "item": "Mur ou panneau d'exposition",
+              "quantity": "1 espace mural ou grand panneau d'affichage",
+              "preparation": "Préparer punaises ou attaches, nettoyer surface",
+              "alternatives": ["Cordes à linge avec pinces", "Tableaux d'affichage", "Réfrigérateur de classe"]
+            },
+            {
+              "item": "Autocollants de félicitation",
+              "quantity": "25 autocollants variés (1 par élève)",
+              "preparation": "Choisir autocollants attrayants, organiser distribution",
+              "alternatives": ["Tampons encreurs", "Étoiles dorées", "Dessins de félicitations"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cadres décoratifs en carton",
+              "quantity": "25 cadres simples pour encadrer œuvres",
+              "purpose": "Valoriser créations des élèves comme vraies œuvres d'art"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Galerie des Artistes-Mathématiciens de 1ère année', certificat 'Artiste du Jour'",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si difficultés à identifier objets dans images complexes: utiliser images très simples avec objets identiques clairement séparés. Si erreurs de comptage après barrage: enseigner à compter uniquement objets NON barrés.",
+        "then": "Revenir aux objets physiques si images trop abstraites, utiliser pointage systématique pour compter les objets restants"
       },
-      "realWorldConnection": "Comme regarder des photos de famille et voir qui manque",
+      "realWorldConnection": "Comme regarder des photos de famille et voir qui manque, compter les jouets dans notre chambre avant/après rangement",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser images très simples avec 2-3 objets identiques maximum",
+          "Permettre utilisation d'objets physiques parallèlement aux images",
+          "Offrir aide individuelle pour technique de barrage appropriée",
+          "Accepter pointage et comptage oral plutôt qu'écriture"
+        ],
+        "forAdvanced": [
+          "Proposer images plus complexes avec nombres jusqu'à 8-10",
+          "Encourager création d'histoires complètes accompagnant leurs images",
+          "Demander d'enseigner technique de résolution à un pair",
+          "Explorer différentes façons de montrer 'enlever' (barrer, encercler, colorier)"
+        ],
+        "forELL": [
+          "Utiliser images culturellement familières et universelles",
+          "Permettre description des actions dans langue première puis en français",
+          "Fournir cartes vocabulaire avec images et mots français/anglais",
+          "Encourager narration gestuelle accompagnant résolution"
+        ],
+        "forIEP": [
+          "Adapter complexité images selon capacités visuelles individuelles",
+          "Utiliser supports tactiles si difficultés visuelles (objets réels)",
+          "Permettre participation à l'exposition même avec créations simples",
+          "Ajuster attentes - peut observer et imiter plutôt que créer"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie correctement les objets dans une image",
+          "L'élève barre ou marque les objets qui 'partent' selon le problème",
+          "L'élève compte avec précision les objets restants après barrage",
+          "L'élève explique sa méthode de résolution avec images"
+        ],
+        "checkpoints": [
+          "Observation directe pendant travail aux stations d'images",
+          "Examen des créations artistiques pour logique mathématique",
+          "Écoute active pendant présentations d'œuvres",
+          "Documentation photos des techniques de barrage utilisées"
+        ]
       }
     },
     {
@@ -372,46 +1145,174 @@
       "keyVocabulary": [
         "cinq",
         "zéro",
-        "petit"
+        "petit",
+        "enlever",
+        "il reste"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision art mathématique de la leçon 7",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "JEU DES DOIGTS: 'Montrez 5 doigts. Cachez 2 doigts derrière le dos. Combien restent visibles?' Exploration concrète avec nos mains pour comprendre soustractions 0-5.",
+        "materials": {
+          "required": [
+            {
+              "item": "Gants colorés ou marionnettes doigts",
+              "quantity": "25 gants (1 par élève) ou 125 marionnettes (5 par élève)",
+              "preparation": "Choisir couleurs vives, vérifier tailles appropriées",
+              "alternatives": ["Doigts nus avec autocollants", "Gants de jardinage enfant", "Dessins sur doigts"]
+            },
+            {
+              "item": "Affichage numérique 0-5",
+              "quantity": "1 grande bande numérique pour classe",
+              "preparation": "Plastifier, installer à hauteur des élèves",
+              "alternatives": ["Écriture au tableau", "Cartes nombres géantes", "Projections numériques"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique rythmée pour jeu doigts",
+              "quantity": "1 source audio",
+              "purpose": "Accompagner mouvements de doigts et rendre activité plus engageante"
+            }
+          ]
+        },
+        "visualSupports": "Poster 'Main Magique': main ouverte (5) → cacher doigts → compter visibles, affichage 0-1-2-3-4-5",
+        "decisionPoints": [
+          "Si élèves confondent doigts cachés/visibles → utiliser gants de couleurs contrastées",
+          "Si difficultés avec zéro → expliquer 'plus rien de visible' = 0"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Combien de doigts vois-tu maintenant?",
+          "Que se passe-t-il quand je cache tous mes doigts?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "École des experts 0-5",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "ÉCOLE DES EXPERTS 0-5 (15 min): 5 stations spécialisées - chaque station maîtrise une soustraction (5-1, 4-2, 3-3, 2-1, 1-1). ÉPREUVES D'EXPERT (8 min): Défis chronométrés avec objets à manipuler. DIPLÔMES DE MAÎTRISE (4 min): Chaque élève démontre une soustraction parfaite.",
+        "materials": {
+          "required": [
+            {
+              "item": "Collections d'objets par station",
+              "quantity": "125 objets total (25 par station: cubes, jetons, boutons, cailloux, haricots)",
+              "preparation": "Organiser par type dans bacs étiquetés, vérifier quantités exactes",
+              "alternatives": ["Un seul type d'objet pour toutes stations", "Objets recyclés assortis", "Matériel naturel"]
+            },
+            {
+              "item": "Cartes défis d'expert",
+              "quantity": "25 cartes (5 par station) avec soustractions 0-5",
+              "preparation": "Laminer, créer niveaux progressifs, réponses au verso",
+              "alternatives": ["Défis écrits au tableau", "Cartes faites main", "Instructions orales"]
+            },
+            {
+              "item": "Diplômes 'Expert 0-5'",
+              "quantity": "25 diplômes personnalisés",
+              "preparation": "Imprimer sur papier spécial, écrire noms d'élèves",
+              "alternatives": ["Certificats simples", "Autocollants spéciaux", "Badges temporaires"]
+            },
+            {
+              "item": "Chronomètre visuel",
+              "quantity": "1 minuterie colorée pour défis",
+              "preparation": "Tester fonctionnement, régler sur 2-3 minutes par défi",
+              "alternatives": ["Chronomètre simple", "Comptage rythmé", "Musique temporisée"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Toges ou chapeaux d'expert",
+              "quantity": "5 costumes rotatifs pour stations",
+              "purpose": "Créer ambiance académique amusante"
+            }
+          ]
+        },
+        "visualSupports": "Affiches stations: '5-1=4', '4-2=2', '3-3=0', '2-1=1', '1-1=0' avec illustrations visuelles",
+        "decisionPoints": [
+          "Si élèves se trompent systématiquement sur une soustraction → pratique supplémentaire avec objets",
+          "Si frustration avec chronomètre → enlever pression temps, focus sur précision"
+        ],
+        "movementBreaks": [
+          "Étirements d'expert avec gestes académiques (minute 15)",
+          "Parade des experts autour de la classe (minute 23)"
+        ],
+        "mathTalk": [
+          "Quelle soustraction trouves-tu la plus facile dans 0-5?",
+          "Comment expliques-tu pourquoi 3-3=0?",
+          "Peux-tu enseigner ta soustraction favorite à un ami?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Test d'expert rigolo",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "CÉRÉMONIE DE GRADUATION EXPERTS 0-5: Remise solennelle des diplômes. Chaque élève démontre UNE soustraction parfaite devant la classe. CHANSON DES EXPERTS: 'Nous sommes les champions des petits nombres!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Podium ou estrade pour démonstrations",
+              "quantity": "1 petite estrade ou tapis spécial",
+              "preparation": "Installer dans espace visible de tous, décorer",
+              "alternatives": ["Chaise spéciale", "Marquage au sol", "Simple espace désigné"]
+            },
+            {
+              "item": "Tapis de cérémonie",
+              "quantity": "1 grand tapis pour rassemblement",
+              "preparation": "Nettoyer, disposer en demi-cercle face au podium",
+              "alternatives": ["Chaises en demi-cercle", "Marquages au sol", "Couverture festive"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Applaudissements enregistrés",
+              "quantity": "1 fichier audio",
+              "purpose": "Encourager chaque démonstration avec applaudissements"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Félicitations Experts 0-5', tableau d'honneur avec photos des diplômés",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si erreurs persistantes avec 0 comme résultat: utiliser objets qui 'disparaissent complètement' (dans sac, sous tissu). Si confusions entre nombres: se concentrer sur 2-3 soustractions seulement.",
+        "then": "Revenir à manipulation très concrète, utiliser situations familières (manger tous les biscuits = 0 restant)"
       },
-      "realWorldConnection": "Compter nos doigts d'une main et en cacher quelques-uns",
+      "realWorldConnection": "Compter nos doigts d'une main et en cacher quelques-uns, manger des bonbons d'un petit sac",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 3 soustractions: 2-1, 3-1, 4-1",
+          "Utiliser toujours mêmes objets familiers pour éviter confusion",
+          "Permettre temps supplémentaire sans chronomètre",
+          "Accepter démonstration avec aide d'un pair"
+        ],
+        "forAdvanced": [
+          "Ajouter soustractions jusqu'à 6-1, 7-2 si maîtrise rapide",
+          "Demander de créer leurs propres défis pour la classe",
+          "Explorer différentes façons d'obtenir même réponse (4-1=3, 5-2=3)",
+          "Devenir 'professeurs assistants' pour pairs en difficulté"
+        ],
+        "forELL": [
+          "Utiliser nombres dans langue première puis répéter en français",
+          "Fournir cartes visuelles avec chiffres et mots français",
+          "Permettre comptage à voix haute dans langue comfortable",
+          "Utiliser gestes universels pour 'enlever' et 'il reste'"
+        ],
+        "forIEP": [
+          "Adapter selon capacités - peut se concentrer sur 1-2 soustractions",
+          "Utiliser objets sensoriellement adaptés (textures, tailles)",
+          "Permettre participation à cérémonie selon capacités individuelles",
+          "Ajuster format de démonstration (gestes vs verbal)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève résout correctement des soustractions avec nombres 0-5",
+          "L'élève utilise manipulation concrète efficacement",
+          "L'élève reconnaît que soustraire tout donne zéro",
+          "L'élève démontre confiance avec les petits nombres"
+        ],
+        "checkpoints": [
+          "Observation directe pendant épreuves d'expert aux stations",
+          "Évaluation des démonstrations finales individuelles",
+          "Notes sur stratégies utilisées (doigts, objets, mental)",
+          "Documentation photos des manipulations réussies"
+        ]
       }
     },
     {
@@ -423,46 +1324,174 @@
       "keyVocabulary": [
         "dix",
         "grand",
-        "difficile"
+        "enlever",
+        "retirer",
+        "il reste"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Test d'expert 0-5 de la leçon 8",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "DÉFI DES DEUX MAINS: 'Montrez tous vos doigts (10)! Maintenant cachez 3 doigts. Combien restent visibles?' Introduction des 'grands nombres' avec manipulation des deux mains.",
+        "materials": {
+          "required": [
+            {
+              "item": "Gants ou mitaines colorées",
+              "quantity": "50 gants (2 par élève - couleurs différentes par main)",
+              "preparation": "Organiser en paires contrastées (ex: rouge/bleu), vérifier tailles",
+              "alternatives": ["Doigts nus avec bracelets colorés", "Autocollants sur doigts", "Peinture lavable temporaire"]
+            },
+            {
+              "item": "Affichage numérique 6-10",
+              "quantity": "1 grande bande numérique pour classe",
+              "preparation": "Plastifier, installer à hauteur des élèves, highlighting 6-10",
+              "alternatives": ["Tableau numérique interactif", "Cartes géantes", "Projections"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Miroir de classe",
+              "quantity": "1 grand miroir portable",
+              "purpose": "Permettre aux élèves de voir leurs propres doigts pendant démonstrations"
+            }
+          ]
+        },
+        "visualSupports": "Poster 'Deux Mains Magiques': 10 doigts → cacher quelques-uns → compter visibles, échelle 6-7-8-9-10",
+        "decisionPoints": [
+          "Si élèves ont du mal avec 10 doigts → commencer avec 6-8 doigts seulement",
+          "Si confusions entre mains → utiliser couleurs très contrastées pour chaque main"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Combien de doigts vois-tu sur mes deux mains?",
+          "Que se passe-t-il si je cache une main complète?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Aventure des grands nombres",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "AVENTURE GRANDS NOMBRES (15 min): Parcours d'aventure avec 4 défis progressifs (6-1, 7-2, 8-3, 10-5) utilisant objets concrets. LABORATOIRE DÉCOUVERTE (8 min): Exploration libre avec partenaire - créer soustractions 6-10. JEU ÉQUIPE (4 min): 'Plus Grand Gagne' - équipes résolvent soustractions, plus grand résultat gagne point.",
+        "materials": {
+          "required": [
+            {
+              "item": "Objets manipulation grands nombres",
+              "quantity": "250 objets (cubes, blocs, jetons) pour 25 élèves",
+              "preparation": "Organiser en groupes de 10 dans contenants transparents",
+              "alternatives": ["Objets recyclés comptés", "Matériel naturel", "Boutons/haricots"]
+            },
+            {
+              "item": "Cartes défis 6-10",
+              "quantity": "20 cartes défis avec illustrations visuelles",
+              "preparation": "Laminer, créer niveaux progressifs, inclure supports visuels",
+              "alternatives": ["Défis écrits au tableau", "Cartes faites main", "Instructions orales illustrées"]
+            },
+            {
+              "item": "Parcours d'aventure marqué",
+              "quantity": "4 stations avec marquage au sol",
+              "preparation": "Utiliser ruban coloré, installer signalisation claire",
+              "alternatives": ["Cercles dessinés", "Tapis distincts", "Simple organisation spatiale"]
+            },
+            {
+              "item": "Tableaux de score d'équipe",
+              "quantity": "2 grandes affiches pour scores",
+              "preparation": "Préparer colonnes pour points, fournir marqueurs",
+              "alternatives": ["Tableau noir traditionnel", "Papier simple", "Comptage oral"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Costumes d'aventuriers",
+              "quantity": "Chapeaux/accessoires pour ambiance",
+              "purpose": "Créer engagement thématique pour aventure mathématique"
+            }
+          ]
+        },
+        "visualSupports": "Cartes visuelles pour chaque défi: illustrations claires des objets à enlever, poster progression 6→10",
+        "decisionPoints": [
+          "Si élèves submergés par grands nombres → revenir temporairement à nombres 0-5",
+          "Si erreurs de comptage fréquentes → insister sur groupage par 5 ou utilisation des doigts"
+        ],
+        "movementBreaks": [
+          "Étirements d'aventurier avec gestes grandioses (minute 15)",
+          "Marche d'exploration entre stations (pendant transitions)"
+        ],
+        "mathTalk": [
+          "Quelle stratégie utilises-tu pour les grands nombres?",
+          "Comment 10-5 est-il différent de 5-2?",
+          "Peux-tu expliquer ton calcul à ton équipe?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Chanson des grands nombres",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "CÉLÉBRATION GRANDS NOMBRES: Création collective d'une chanson sur les soustractions 6-10. Chaque élève propose une ligne avec gestes. DÉFILÉ FINAL: Marche victorieuse en chantant la chanson créée.",
+        "materials": {
+          "required": [
+            {
+              "item": "Grand papier pour écriture collective",
+              "quantity": "1 affiche géante pour chanson",
+              "preparation": "Installer support visible de tous, prévoir marqueurs larges",
+              "alternatives": ["Tableau traditionnel", "Papier kraft", "Surface d'écriture disponible"]
+            },
+            {
+              "item": "Instruments rythmiques simples",
+              "quantity": "25 instruments (shakers, claves, tambourins)",
+              "preparation": "Organiser distribution, tester son de chacun",
+              "alternatives": ["Mains frappées", "Objets de classe comme percussion", "Claquements rythmés"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Enregistreur audio",
+              "quantity": "1 appareil pour enregistrer chanson",
+              "purpose": "Conserver création collective de la classe"
+            }
+          ]
+        },
+        "visualSupports": "Affiche paroles en développement, pictogrammes pour accompagner gestes de chanson",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Défilé musical final avec toute la classe (dernières 3 minutes)"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si difficultés persistantes avec nombres au-dessus de 5: rester focalisé sur 6-8 uniquement cette leçon. Si erreurs de comptage avec grands nombres: enseigner groupage par 5 (une main) puis compter reste.",
+        "then": "Revenir aux objets physiques organisés par 5, utiliser doigts systématiquement pour vérification"
       },
-      "realWorldConnection": "Compter tous nos doigts et en cacher quelques-uns",
+      "realWorldConnection": "Compter tous nos doigts et en cacher quelques-uns, compter jouets dans une boîte et en retirer quelques-uns",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à nombres 6-8 seulement pour cette leçon",
+          "Utiliser objets organisés en groupes de 5 pour faciliter comptage",
+          "Permettre utilisation constante des doigts comme support",
+          "Accepter réponses approximatives si démarche est correcte"
+        ],
+        "forAdvanced": [
+          "Introduire soustractions jusqu'à 12-3, 15-5 si très à l'aise",
+          "Demander de créer problèmes d'histoire pour grands nombres",
+          "Explorer patterns: qu'est-ce qui arrive si on enlève toujours le même nombre?",
+          "Devenir mentors pour élèves ayant des difficultés"
+        ],
+        "forELL": [
+          "Utiliser nombres familiers dans langue première parallèlement",
+          "Fournir cartes visuelles avec chiffres écrits dans les deux langues",
+          "Permettre explication stratégies dans langue confortable",
+          "Utiliser objets culturellement familiers quand possible"
+        ],
+        "forIEP": [
+          "Adapter selon capacités - peut se concentrer sur 6-7 uniquement",
+          "Utiliser supports sensoriels appropriés (textures, couleurs, tailles)",
+          "Permettre participation à création chanson selon capacités",
+          "Ajuster format - peut observer et participer gestuellement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève tente des soustractions avec nombres 6-10",
+          "L'élève utilise stratégies appropriées (doigts, objets, groupage)",
+          "L'élève reconnaît que grands nombres demandent plus d'attention",
+          "L'élève persévère face aux défis des grands nombres"
+        ],
+        "checkpoints": [
+          "Observation directe pendant aventure aux 4 stations",
+          "Écoute des stratégies partagées avec partenaires",
+          "Notes sur méthodes privilégiées par chaque élève",
+          "Documentation photos des manipulations avec grands nombres"
+        ]
       }
     },
     {
@@ -474,46 +1503,186 @@
       "keyVocabulary": [
         "jeu",
         "tour",
-        "gagner"
+        "gagner",
+        "enlever",
+        "il reste"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision chanson des grands nombres de la leçon 9",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "JEU ÉCHAUFFEMENT 'LE MAGICIEN ENLÈVE': 'Le magicien a 6 lapins dans son chapeau. Abracadabra! 2 lapins disparaissent. Combien reste-t-il?' Introduction ludique avec tour de magie simple.",
+        "materials": {
+          "required": [
+            {
+              "item": "Chapeau de magicien ou boîte décorative",
+              "quantity": "1 chapeau pour démonstrations classe",
+              "preparation": "Décorer, s'assurer ouverture facile pour manipulations",
+              "alternatives": ["Sac opaque décoré", "Boîte à surprises", "Simple contenant couvert"]
+            },
+            {
+              "item": "Petits jouets ou objets 'magiques'",
+              "quantity": "15 objets identiques (lapins, étoiles, cubes colorés)",
+              "preparation": "Choisir objets attrayants, faciles à manipuler",
+              "alternatives": ["Jetons colorés", "Cartes imagées", "Blocs de construction"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Baguette magique décorative",
+              "quantity": "1 pour ambiance théâtrale",
+              "purpose": "Créer atmosphere magique et engagement"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Magie Mathématique': chapeau → objets → abracadabra → moins d'objets!, pictogrammes de tours de magie",
+        "decisionPoints": [
+          "Si élèves distraits par aspect magique → simplifier présentation, focus sur mathématiques",
+          "Si confusions sur objets cachés vs enlevés → montrer clairement objets retirés"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Comment le magicien fait-il disparaître les objets?",
+          "Peux-tu prédire combien il en restera?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Carnaval de jeux mathématiques",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "CARNAVAL JEUX MATHÉMATIQUES (20 min): 4 stations rotatives - 'Bowling Mathématique', 'Course aux Trésors', 'Dés Magiques', 'Mémoire Soustraction'. TOURNOI EXPRESS (7 min): Compétition amicale par équipes avec jeu choisi collectivement.",
+        "materials": {
+          "required": [
+            {
+              "item": "Matériel station Bowling",
+              "quantity": "10 bouteilles plastique + 2 balles souples",
+              "preparation": "Numéroter bouteilles 1-10, tester stabilité, prévoir espace sécuritaire",
+              "alternatives": ["Cubes empilables", "Contenants recyclés", "Quilles improvisées"]
+            },
+            {
+              "item": "Matériel station Course aux Trésors",
+              "quantity": "30 cartes trésors + 4 contenants 'coffres'",
+              "preparation": "Cartes avec soustractions visuelles, coffres étiquetés par niveau",
+              "alternatives": ["Cartes faites main", "Objets cachés réels", "Images découpées"]
+            },
+            {
+              "item": "Matériel station Dés Magiques",
+              "quantity": "6 dés géants (mousse ou carton) + feuilles score",
+              "preparation": "Numéroter faces 0-5, créer feuilles score adaptées",
+              "alternatives": ["Dés normaux agrandis", "Cartes nombres", "Roulette numérique"]
+            },
+            {
+              "item": "Matériel station Mémoire",
+              "quantity": "24 cartes mémoire (12 paires: soustraction + réponse)",
+              "preparation": "Plastifier cartes, créer design attrayant uniforme",
+              "alternatives": ["Cartes faites main", "Images imprimées", "Objets réels appairés"]
+            },
+            {
+              "item": "Tableaux de score et marqueurs",
+              "quantity": "4 tableaux (1 par station) + 8 marqueurs",
+              "preparation": "Format simple pour encouragement, pas compétition stressante",
+              "alternatives": ["Papier simple", "Ardoises", "Comptage oral"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique festive de carnaval",
+              "quantity": "1 source audio avec musique joyeuse",
+              "purpose": "Créer ambiance festive et énergisante"
+            }
+          ]
+        },
+        "visualSupports": "Affiches explicatives pour chaque jeu avec illustrations, règles visuelles simples",
+        "decisionPoints": [
+          "Si élèves se disputent aux jeux → rappeler règles de fairplay, ajuster groupes",
+          "Si frustration face à difficultés → adapter règles, encourager effort plutôt que performance"
+        ],
+        "movementBreaks": [
+          "Rotation entre stations comme mouvement naturel",
+          "Étirements de célébration après chaque réussite"
+        ],
+        "mathTalk": [
+          "Quelle stratégie utilises-tu pour ce jeu?",
+          "Comment ce jeu t'aide-t-il à comprendre 'enlever'?",
+          "Quel jeu préfères-tu pour apprendre la soustraction?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Vote pour le jeu préféré",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "VOTE DÉMOCRATIQUE: Chaque élève vote pour son jeu préféré avec explication. REMISE DE MÉDAILLES: Tous reçoivent médaille 'Champion des Jeux Mathématiques' personnalisée. PLANIFICATION: 'Quel jeu voulez-vous refaire demain?'",
+        "materials": {
+          "required": [
+            {
+              "item": "Bulletins de vote illustrés",
+              "quantity": "25 bulletins avec images des 4 jeux",
+              "preparation": "Dessiner ou coller images claires de chaque station",
+              "alternatives": ["Vote à main levée", "Jetons de vote", "Autocollants colorés"]
+            },
+            {
+              "item": "Médailles 'Champion Jeux Math'",
+              "quantity": "25 médailles en carton ou plastique",
+              "preparation": "Personnaliser avec nom de chaque élève, rubans colorés",
+              "alternatives": ["Autocollants spéciaux", "Certificats", "Badges temporaires"]
+            },
+            {
+              "item": "Urne de vote décorative",
+              "quantity": "1 boîte décorée pour bulletins",
+              "preparation": "Décorer festivement, prévoir fente assez large",
+              "alternatives": ["Simple boîte", "Sac opaque", "Contenant transparent"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Podium ou estrade de remise",
+              "quantity": "1 petite estrade pour cérémonie",
+              "purpose": "Valoriser achievement de chaque élève"
+            }
+          ]
+        },
+        "visualSupports": "Tableau résultats vote avec pictogrammes, bannière 'Félicitations Champions!'",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si difficultés avec règles complexes: simplifier jeux, utiliser versions guidées. Si frustrations sociales: ajuster groupes, enseigner stratégies de coopération.",
+        "then": "Revenir aux manipulations concrètes simples, réduire aspect compétitif au profit de la collaboration"
       },
-      "realWorldConnection": "Comme jouer à cache-cache - quelqu'un part et il en reste moins",
+      "realWorldConnection": "Comme jouer à cache-cache - quelqu'un part et il en reste moins, jeux de société en famille",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Choisir stations avec nombres plus petits (0-3 uniquement)",
+          "Permettre collaboration avec pair plus avancé",
+          "Utiliser versions simplifiées des règles de jeux",
+          "Concentrer sur un seul jeu à la fois plutôt que rotation"
+        ],
+        "forAdvanced": [
+          "Proposer variantes plus complexes avec nombres jusqu'à 15",
+          "Devenir 'assistants animateurs' pour aider autres élèves",
+          "Créer leurs propres variantes de jeux existants",
+          "Défis supplémentaires: résoudre en temps limité"
+        ],
+        "forELL": [
+          "Utiliser jeux avec supports visuels forts plutôt que langage",
+          "Permettre explication règles dans langue première",
+          "Associer chaque jeu à vocabulaire bilingue",
+          "Encourager participation gestuelle même si vocabulaire limité"
+        ],
+        "forIEP": [
+          "Adapter règles selon capacités motrices et cognitives",
+          "Utiliser jeux sensoriellement appropriés (textures, sons)",
+          "Permettre participation selon niveau de confort individuel",
+          "Focus sur plaisir du jeu plutôt que performance mathématique"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève participe activement aux jeux de soustraction",
+          "L'élève applique concepts de soustraction dans contexte ludique",
+          "L'élève coopère positivement pendant jeux de groupe",
+          "L'élève exprime préférences et explique stratégies de jeu"
+        ],
+        "checkpoints": [
+          "Observation directe pendant rotations aux 4 stations de jeux",
+          "Écoute des explications lors du vote final",
+          "Notes sur interactions sociales et coopération",
+          "Documentation photos des élèves engagés dans les jeux"
+        ]
       }
     },
     {
@@ -525,46 +1694,188 @@
       "keyVocabulary": [
         "réel",
         "quotidien",
-        "utilise"
+        "utilise",
+        "enlever",
+        "donner"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision jeu préféré de la leçon 10",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "HISTOIRE VRAIE: 'Ce matin, j'avais 7 biscuits dans ma boîte à lunch. J'en ai mangé 3 à la récréation. Combien m'en reste-t-il pour le dîner?' Démonstration avec vraie nourriture.",
+        "materials": {
+          "required": [
+            {
+              "item": "Vraie nourriture pour démonstration",
+              "quantity": "10 biscuits ou craquelins identiques",
+              "preparation": "Choisir aliments sains, vérifier allergies, prévoir napkins",
+              "alternatives": ["Images de nourriture plastifiées", "Jouets alimentaires", "Cartes imagées"]
+            },
+            {
+              "item": "Boîte à lunch d'enseignant(e)",
+              "quantity": "1 vraie boîte à lunch",
+              "preparation": "Nettoyer, décorer si désiré pour rendre attrayante",
+              "alternatives": ["Sac papier", "Contenant alimentaire", "Panier décoratif"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Photos de situations quotidiennes",
+              "quantity": "5-6 photos de famille/école montrant situations de soustraction",
+              "purpose": "Illustrer connexions vie réelle + mathématiques"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Math dans ma Vie': maison, école, jeu → situations où on enlève quelque chose",
+        "decisionPoints": [
+          "Si élèves distraits par nourriture → utiliser quantités très petites",
+          "Si difficultés à identifier le problème mathématique → souligner mots-clés 'j'avais', 'j'ai mangé'"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "As-tu déjà vécu une situation comme celle-là?",
+          "Où utilises-tu 'enlever' dans ta vraie vie?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Détectives de la vraie vie",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "DÉTECTIVES VRAIE VIE (15 min): 5 centres avec scénarios authentiques - 'À la maison', 'À l'école', 'Au parc', 'En magasin', 'Avec amis'. RÉSOLUTION COLLABORATIVE (8 min): Pairs travaillent sur problèmes choisis. THÉÂTRE MATHÉMATIQUE (4 min): Groupes jouent leurs problèmes résolus.",
+        "materials": {
+          "required": [
+            {
+              "item": "Scénarios 'À la maison'",
+              "quantity": "6 cartes avec situations familiales (jouets, vêtements, nourriture)",
+              "preparation": "Illustrer clairement, utiliser vocabulaire Grade 1",
+              "alternatives": ["Scénarios oraux", "Photos de famille", "Dessins simples"]
+            },
+            {
+              "item": "Scénarios 'À l'école'",
+              "quantity": "6 cartes avec situations scolaires (crayons, livres, amis)",
+              "preparation": "Refléter vraie vie de classe, nombres appropriés",
+              "alternatives": ["Situations observées en classe", "Exemples spontanés", "Photos école"]
+            },
+            {
+              "item": "Scénarios 'Au parc'",
+              "quantity": "6 cartes avec jeux extérieurs (balançoires, toboggans)",
+              "preparation": "Choisir équipements familiers aux élèves",
+              "alternatives": ["Descriptions orales", "Images parc local", "Souvenirs communs"]
+            },
+            {
+              "item": "Objets de manipulation réalistes",
+              "quantity": "150 objets divers (jouets, fournitures, répliques alimentaires)",
+              "preparation": "Organiser par centre thématique dans contenants étiquetés",
+              "alternatives": ["Objets réels de classe", "Images découpées", "Dessins élèves"]
+            },
+            {
+              "item": "Costumes/accessoires simples",
+              "quantity": "15 accessoires pour théâtre (chapeaux, foulards)",
+              "preparation": "Nettoyer, organiser par type d'accessoire",
+              "alternatives": ["Gestes seulement", "Objets improvisés", "Imagination pure"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Caméra/tablette pour enregistrer théâtre",
+              "quantity": "1 appareil pour documenter présentations",
+              "purpose": "Permettre révision et célébration des créations"
+            }
+          ]
+        },
+        "visualSupports": "Affiches pour chaque centre avec exemples visuels, mots-clés soulignés pour identifier problèmes",
+        "decisionPoints": [
+          "Si élèves inventent problèmes trop complexes → guider vers nombres 0-10",
+          "Si difficulté à dramatiser → permettre narration simple sans théâtre"
+        ],
+        "movementBreaks": [
+          "Transitions entre centres comme mouvement naturel",
+          "Étirements 'actions quotidiennes' (se brosser dents, s'habiller) minute 15"
+        ],
+        "mathTalk": [
+          "Cette situation arrive-t-elle vraiment dans ta vie?",
+          "Comment résous-tu ce problème à la maison?",
+          "Quels mots t'aident à savoir qu'il faut enlever?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Notre livre de problèmes",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "duration": "~10 min",
+        "activity": "CRÉATION LIVRE DE CLASSE: 'Nos Problèmes de Vraie Vie'. Chaque élève contribue un problème personnel avec illustration. LECTURE COLLECTIVE: Parcourir quelques problèmes créés par les élèves.",
+        "materials": {
+          "required": [
+            {
+              "item": "Grande reliure ou cartable classe",
+              "quantity": "1 reliure décorative pour livre collectif",
+              "preparation": "Décorer couverture, prévoir système d'ajout de pages",
+              "alternatives": ["Cahier spiralé géant", "Classeur simple", "Pages agrafées"]
+            },
+            {
+              "item": "Feuilles pour problèmes individuels",
+              "quantity": "25 feuilles pré-formatées avec espace dessin/texte",
+              "preparation": "Créer format: 'Mon problème:', 'Ma solution:', 'Mon dessin:'",
+              "alternatives": ["Papier blanc simple", "Pages lignées", "Format libre"]
+            },
+            {
+              "item": "Crayons de couleur/marqueurs",
+              "quantity": "75 crayons (3 couleurs par élève minimum)",
+              "preparation": "Organiser par couleur, vérifier pointes",
+              "alternatives": ["Crayons plomb seulement", "Feutres lavables", "Craies grasses"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Plastifieuse pour préserver créations",
+              "quantity": "1 plastifieuse si disponible",
+              "purpose": "Conserver livre de classe de façon durable"
+            }
+          ]
+        },
+        "visualSupports": "Page titre collective 'Nos Mathématiques Quotidiennes - Classe de 1ère année'",
+        "decisionPoints": [
+          "Si élèves en panne d'inspiration → suggérer routines familières"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si difficulté à identifier problèmes mathématiques dans situations réelles: souligner mots-clés, utiliser gestes pour 'avant'/'après'. Si problèmes trop complexes: simplifier scénarios, rester avec objets familiers.",
+        "then": "Revenir à situations très concrètes vécues en classe même (distribuer/ranger matériel)"
       },
-      "realWorldConnection": "Résoudre des problèmes qu'on rencontre vraiment chaque jour",
+      "realWorldConnection": "Résoudre des problèmes qu'on rencontre vraiment chaque jour - manger, jouer, partager",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser situations très familières de leur quotidien personnel",
+          "Permettre manipulation d'objets réels pendant résolution",
+          "Accepter problèmes avec nombres très petits (0-3)",
+          "Offrir aide d'un pair pour identification du problème mathématique"
+        ],
+        "forAdvanced": [
+          "Encourager création de problèmes à étapes multiples",
+          "Utiliser nombres plus grands si approprié",
+          "Demander de créer problèmes pour défier leurs pairs",
+          "Explorer différentes façons de résoudre même situation"
+        ],
+        "forELL": [
+          "Utiliser situations universelles (manger, dormir, jouer)",
+          "Permettre description situations dans langue première",
+          "Utiliser supports visuels forts pour chaque scénario",
+          "Encourager gestes et démonstration plutôt que explication verbale"
+        ],
+        "forIEP": [
+          "Adapter complexité selon capacités cognitives individuelles",
+          "Utiliser situations de leur environnement immédiat",
+          "Permettre participation selon niveau de confort",
+          "Focus sur reconnaissance 'quelque chose part' plutôt que calcul précis"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie situations de soustraction dans contextes réels",
+          "L'élève résout problèmes de vraie vie avec manipulation concrète",
+          "L'élève explique ses stratégies avec vocabulaire quotidien",
+          "L'élève fait liens entre mathématiques et expériences personnelles"
+        ],
+        "checkpoints": [
+          "Observation directe pendant travail aux 5 centres thématiques",
+          "Écoute des créations personnelles pour le livre de classe",
+          "Notes sur capacité à identifier éléments mathématiques dans scénarios",
+          "Documentation des stratégies de résolution utilisées"
+        ]
       }
     },
     {
@@ -576,46 +1887,182 @@
       "keyVocabulary": [
         "stratégie",
         "façon",
-        "méthode"
+        "méthode",
+        "enlever",
+        "compter"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision problèmes de la vraie vie de la leçon 11",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "DÉFI MULTIPLE: 'Voici 8-3. Montre-moi TROIS façons différentes de résoudre ce problème!' Démonstration avec objets, doigts, et comptage à rebours.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables multicolores",
+              "quantity": "200 cubes (8 par élève) organisés par couleur",
+              "preparation": "Séparer en couleurs distinctes, vérifier assemblage facile",
+              "alternatives": ["Jetons bicolores", "Boutons assortis", "Blocs de bois colorés"]
+            },
+            {
+              "item": "Bande numérique géante 0-10",
+              "quantity": "1 grande bande affichée + 25 bandes individuelles",
+              "preparation": "Plastifier, installer à hauteur élèves, distribuer copies personnelles",
+              "alternatives": ["Règle graduée géante", "Marches numériques", "Cartes nombres"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau magnétique avec aimants",
+              "quantity": "1 tableau + 20 aimants colorés",
+              "purpose": "Démonstrations visuelles des différentes stratégies"
+            }
+          ]
+        },
+        "visualSupports": "Affiche '3 Façons de Résoudre': 1. Enlever objets 2. Compter doigts 3. Reculer sur ligne numérique",
+        "decisionPoints": [
+          "Si élèves se fixent sur une seule méthode → encourager expérimentation des autres",
+          "Si confusion entre les méthodes → les nommer clairement et distinctement"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Quelle méthode trouves-tu la plus facile?",
+          "Pourquoi ces méthodes donnent-elles la même réponse?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Marché aux stratégies",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "MARCHÉ AUX STRATÉGIES (18 min): 4 kiosques - 'Comptage Objets', 'Doigts Magiques', 'Ligne Numérique', 'Dessins et Images'. FOIRE ÉCHANGE (6 min): Élèves enseignent leur stratégie préférée à un pair. DÉFIS STRATÉGIQUES (3 min): Résoudre même problème avec 2 méthodes différentes.",
+        "materials": {
+          "required": [
+            {
+              "item": "Kiosque 1: Objets manipulatifs variés",
+              "quantity": "100 objets divers (cubes, jetons, haricots, boutons)",
+              "preparation": "Organiser par type dans contenants étiquetés",
+              "alternatives": ["Objets recyclés", "Matériel naturel", "Fournitures scolaires"]
+            },
+            {
+              "item": "Kiosque 2: Supports pour doigts",
+              "quantity": "25 gants colorés ou autocollants doigts",
+              "preparation": "Organiser par tailles, choisir couleurs vives",
+              "alternatives": ["Marionnettes doigts", "Dessins sur doigts", "Doigts naturels"]
+            },
+            {
+              "item": "Kiosque 3: Lignes numériques",
+              "quantity": "25 lignes plastifiées + marqueurs effaçables",
+              "preparation": "Laminer solidement, tester marqueurs effaçables",
+              "alternatives": ["Bandes papier", "Lignes au sol", "Règles adaptées"]
+            },
+            {
+              "item": "Kiosque 4: Matériel dessin",
+              "quantity": "100 feuilles + 75 crayons (3 couleurs par élève)",
+              "preparation": "Pré-découper feuilles, organiser crayons par couleur",
+              "alternatives": ["Ardoises blanches", "Tablettes de dessin", "Papier recyclé"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuterie rotative colorée",
+              "quantity": "1 minuteur visuel pour rotations",
+              "purpose": "Gérer temps équitablement entre kiosques"
+            }
+          ]
+        },
+        "visualSupports": "Panneaux explicatifs pour chaque kiosque avec exemples illustrés, affiches comparatives des stratégies",
+        "decisionPoints": [
+          "Si élèves restent uniquement à leur kiosque préféré → encourager exploration de tous",
+          "Si difficultés avec nouvelle stratégie → permettre retour à méthode familière"
+        ],
+        "movementBreaks": [
+          "Rotations entre kiosques comme mouvement naturel",
+          "Étirements 'stratégiques': gestes pour chaque méthode (minute 12)"
+        ],
+        "mathTalk": [
+          "Explique ta stratégie à ton partenaire",
+          "Quelle stratégie est plus rapide pour toi?",
+          "Comment choisis-tu quelle méthode utiliser?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Ma stratégie préférée",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "duration": "~10 min",
+        "activity": "GALERIE STRATÉGIES PERSONNELLES: Chaque élève affiche sa méthode préférée avec justification. VOTE DE CLASSE: 'Stratégie la plus créative', 'Stratégie la plus claire'. ENGAGEMENT: 'Cette semaine, j'essaierai une nouvelle stratégie!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Affiches individuelles pour stratégies",
+              "quantity": "25 affiches format A4 avec titre 'Ma Stratégie Préférée'",
+              "preparation": "Pré-écrire titre, prévoir espace pour dessin/explication",
+              "alternatives": ["Feuilles simples", "Pages de cahier", "Format libre"]
+            },
+            {
+              "item": "Matériel affichage mural",
+              "quantity": "Punaises/attaches pour 25 affiches",
+              "preparation": "Délimiter espace mural approprié, nettoyer surface",
+              "alternatives": ["Cordes à linge", "Panneaux mobiles", "Tables d'exposition"]
+            },
+            {
+              "item": "Bulletins de vote illustrés",
+              "quantity": "25 bulletins avec pictogrammes des 4 stratégies",
+              "preparation": "Dessiner clairement chaque méthode, prévoir cases vote",
+              "alternatives": ["Vote à main levée", "Autocollants colorés", "Jetons vote"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Certificats 'Expert en Stratégies'",
+              "quantity": "25 certificats personnalisés",
+              "purpose": "Reconnaître exploration et ouverture aux différentes méthodes"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Nos Stratégies de Classe', tableau des résultats de vote avec pictogrammes",
+        "decisionPoints": [
+          "Si difficulté à choisir une préférée → encourager à expliquer pourquoi hésitation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si résistance à essayer nouvelles stratégies: commencer avec variations de leur méthode préférée. Si confusion entre les méthodes: utiliser toujours même problème simple (5-2) pour comparaisons.",
+        "then": "Permettre maîtrise d'une stratégie avant d'introduire les autres, utiliser encouragement par les pairs"
       },
-      "realWorldConnection": "Il y a plusieurs façons de faire la même chose dans la vie",
+      "realWorldConnection": "Il y a plusieurs façons de faire la même chose dans la vie - s'habiller, ranger sa chambre, aller à l'école",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2 stratégies au lieu de 4",
+          "Utiliser nombres très petits (0-3) pour toutes les méthodes",
+          "Permettre collaboration avec pair pour explorer nouvelles stratégies",
+          "Focus sur maîtrise d'une méthode plutôt que diversité"
+        ],
+        "forAdvanced": [
+          "Encourager invention de leurs propres stratégies originales",
+          "Défis: utiliser 3 méthodes différentes pour même problème",
+          "Devenir 'professeurs de stratégies' pour aider autres élèves",
+          "Réflexion: quand utiliser quelle stratégie selon le contexte"
+        ],
+        "forELL": [
+          "Utiliser stratégies visuelles et gestuelles plutôt que verbales",
+          "Permettre explication dans langue première puis traduction",
+          "Utiliser pictogrammes et symboles universels",
+          "Encourager démonstration plutôt qu'explication verbale"
+        ],
+        "forIEP": [
+          "Adapter selon capacités - peut se concentrer sur 1-2 stratégies",
+          "Utiliser supports sensoriels appropriés pour chaque méthode",
+          "Permettre modification des stratégies selon besoins individuels",
+          "Focus sur compréhension conceptuelle plutôt que diversité technique"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève expérimente au moins 2 stratégies différentes de soustraction",
+          "L'élève explique sa stratégie préférée avec justification simple",
+          "L'élève reconnaît que différentes méthodes donnent même réponse",
+          "L'élève démontre ouverture à essayer nouvelles approches"
+        ],
+        "checkpoints": [
+          "Observation directe pendant exploration aux 4 kiosques",
+          "Écoute des justifications lors du choix de stratégie préférée",
+          "Notes sur flexibilité et adaptation aux différentes méthodes",
+          "Documentation des stratégies maîtrisées par chaque élève"
+        ]
       }
     },
     {
@@ -627,46 +2074,174 @@
       "keyVocabulary": [
         "expliquer",
         "montrer",
-        "travail"
+        "travail",
+        "d'abord",
+        "ensuite"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision stratégies préférées de la leçon 12",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "DÉMONSTRATION PROF: 'Je vais vous montrer comment résoudre 7-3 étape par étape.' Narration détaillée avec gestes et objets visible pour tous.",
+        "materials": {
+          "required": [
+            {
+              "item": "Objets de démonstration grande taille",
+              "quantity": "10 objets très visibles (cubes géants, balles colorées)",
+              "preparation": "Choisir objets assez grands pour être vus du fond de classe",
+              "alternatives": ["Aimants géants sur tableau", "Marionnettes", "Objets du quotidien géants"]
+            },
+            {
+              "item": "Affichage étapes résolution",
+              "quantity": "1 poster avec étapes: 1.Lire 2.Représenter 3.Enlever 4.Compter 5.Vérifier",
+              "preparation": "Créer visuels clairs, numéroter étapes, plastifier",
+              "alternatives": ["Écriture au tableau", "Cartes étapes", "Projections séquentielles"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Microphone jouet ou décoratif",
+              "quantity": "1 micro pour dramatiser les explications",
+              "purpose": "Engager attention et créer ambiance de présentation professionnelle"
+            }
+          ]
+        },
+        "visualSupports": "Poster 'Comment Expliquer Mon Travail': pictogrammes pour chaque étape d'explication",
+        "decisionPoints": [
+          "Si élèves distraits par objets → utiliser objets plus neutres",
+          "Si incompréhension séquence → répéter avec problème plus simple"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Qu'est-ce que j'ai fait en premier?",
+          "Comment saviez-vous ce que j'allais faire ensuite?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "École de mini-professeurs",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "ÉCOLE MINI-PROFESSEURS (20 min): Pairs alternent rôles professeur/élève pour expliquer résolutions. CAFÉ PÉDAGOGIQUE (7 min): Groupes de 4 partagent leurs meilleures explications. Chacun enseigne sa méthode préférée.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes problèmes pour enseignement",
+              "quantity": "50 cartes avec problèmes simples 0-10",
+              "preparation": "Sélectionner problèmes appropriés, laminer pour durabilité",
+              "alternatives": ["Problèmes écrits au tableau", "Situations orales", "Cartes faites main"]
+            },
+            {
+              "item": "Matériel manipulation pour démonstrations",
+              "quantity": "200 objets divers organisés en kits de 25",
+              "preparation": "Créer kits identiques, organiser dans boîtes étiquetées",
+              "alternatives": ["Objets de classe disponibles", "Matériel recyclé", "Dessins et images"]
+            },
+            {
+              "item": "Accessoires mini-professeurs",
+              "quantity": "12 paires lunettes jouets + 12 pointeurs improvisés",
+              "preparation": "Nettoyer accessoires, créer pointeurs avec règles/bâtons",
+              "alternatives": ["Gestes naturels seulement", "Objets du quotidien", "Accessoires improvisés"]
+            },
+            {
+              "item": "Tableaux individuels ou ardoises",
+              "quantity": "25 mini-tableaux ou ardoises effaçables",
+              "preparation": "Nettoyer surfaces, vérifier marqueurs/craies disponibles",
+              "alternatives": ["Feuilles de papier", "Dos d'enveloppes", "Tables surfaces effaçables"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuterie douce pour rotations",
+              "quantity": "1 minuteur avec signal discret",
+              "purpose": "Gérer temps équitablement entre rôles professeur/élève"
+            }
+          ]
+        },
+        "visualSupports": "Affiches 'Phrases Utiles': 'D'abord je...', 'Ensuite je...', 'À la fin...', 'J'ai trouvé...'",
+        "decisionPoints": [
+          "Si élèves timides pour enseigner → commencer en très petits groupes",
+          "Si explications confuses → fournir phrases-modèles simples"
+        ],
+        "movementBreaks": [
+          "Changements rôles professeur/élève comme mouvement naturel",
+          "Étirements 'pédagogiques' avec gestes d'enseignement (minute 15)"
+        ],
+        "mathTalk": [
+          "Comment ton partenaire t'a-t-il aidé à comprendre?",
+          "Quelle partie était la plus difficile à expliquer?",
+          "Qu'est-ce qui rend une explication claire?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Diplôme de mini-professeur",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "CÉRÉMONIE DIPLÔMES: Remise de diplômes 'Mini-Professeur de Mathématiques'. Chaque élève reçoit reconnaissance pour sa contribution à l'enseignement. ENGAGEMENT: 'À la maison, je montrerai ma méthode à ma famille!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Diplômes Mini-Professeur personnalisés",
+              "quantity": "25 diplômes avec nom de chaque élève",
+              "preparation": "Imprimer sur papier spécial, écrire noms individuellement",
+              "alternatives": ["Certificats simples", "Cartes de félicitation", "Autocollants spéciaux"]
+            },
+            {
+              "item": "Espace cérémonie organisé",
+              "quantity": "1 espace avec sièges en demi-cercle face podium",
+              "preparation": "Organiser sièges, créer 'podium' même simple",
+              "alternatives": ["Cercle au sol", "Arrangement informel", "Positions debout"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique ceremonielle douce",
+              "quantity": "1 source audio avec musique appropriée",
+              "purpose": "Créer atmosphère solennelle et festive pour remise"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Félicitations à nos Mini-Professeurs!', photos Polaroid de chaque élève enseignant",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si difficulté à séquencer explication: utiliser phrases-cadres très structurées. Si timidité excessive: permettre explications à voix basse ou par gestes seulement.",
+        "then": "Modéliser répétitivement la séquence d'explication, valoriser chaque tentative même imparfaite"
       },
-      "realWorldConnection": "Expliquer à papa comment on a résolu un problème",
+      "realWorldConnection": "Expliquer à papa comment on a résolu un problème, enseigner à un petit frère/sœur",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser problèmes très simples (2-1, 3-1) pour explications",
+          "Permettre explications par démonstration plutôt que mots",
+          "Accepter explications partielles avec encouragement",
+          "Fournir phrases-modèles très simples à compléter"
+        ],
+        "forAdvanced": [
+          "Encourager explications de problèmes plus complexes",
+          "Demander d'expliquer POURQUOI leur méthode fonctionne",
+          "Défier d'enseigner plusieurs méthodes différentes",
+          "Devenir mentors pour élèves ayant plus de difficultés"
+        ],
+        "forELL": [
+          "Encourager explications gestuelles avant verbales",
+          "Utiliser mots-clés bilingues sur affiches de référence",
+          "Permettre mélange langue première/français dans explications",
+          "Valoriser démonstration claire même si vocabulaire limité"
+        ],
+        "forIEP": [
+          "Adapter format selon capacités de communication individuelles",
+          "Permettre supports visuels ou tactiles pour expliquer",
+          "Accepter explications selon niveau de confort personnel",
+          "Focus sur partage d'une stratégie qui fonctionne pour eux"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève explique sa démarche de résolution en séquence logique",
+          "L'élève utilise vocabulaire mathématique approprié lors d'explications",
+          "L'élève démontre patience et clarté en enseignant à un pair",
+          "L'élève identifie étapes importantes de sa méthode de résolution"
+        ],
+        "checkpoints": [
+          "Observation directe pendant sessions mini-professeurs",
+          "Écoute de la qualité et clarté des explications données",
+          "Notes sur utilisation spontanée de vocabulaire séquentiel",
+          "Documentation des stratégies d'enseignement développées par élèves"
+        ]
       }
     },
     {
@@ -678,46 +2253,186 @@
       "keyVocabulary": [
         "réussir",
         "fier",
-        "apprendre"
+        "apprendre",
+        "progrès",
+        "célébrer"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision mini-professeur de la leçon 13",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "TOUR DE FIERTÉ: 'Raconte une chose de la soustraction que tu sais maintenant faire et dont tu es fier!' Chaque élève partage un succès personnel.",
+        "materials": {
+          "required": [
+            {
+              "item": "Bâton de parole décoratif",
+              "quantity": "1 bâton coloré ou objet spécial pour prendre parole",
+              "preparation": "Décorer joliment, s'assurer facile à tenir pour petites mains",
+              "alternatives": ["Microphone jouet", "Peluche mascotte", "Objet classe spécial"]
+            },
+            {
+              "item": "Tapis de cercle festif",
+              "quantity": "1 grand tapis coloré pour rassemblement",
+              "preparation": "Nettoyer, disposer en cercle accueillant",
+              "alternatives": ["Chaises en cercle", "Marquage au sol", "Couverture colorée"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Appareil photo/tablette",
+              "quantity": "1 pour documenter moments de fierté",
+              "purpose": "Capturer expressions de joie et accomplissement"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Nos Réussites en Soustraction' avec étoiles pour chaque progrès mentionné",
+        "decisionPoints": [
+          "Si élèves hésitent à partager → modéliser avec ses propres fiertés d'enseignant(e)",
+          "Si certains élèves dominent temps → utiliser minuteur doux pour équité"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "De quoi es-tu le plus fier dans tes apprentissages?",
+          "Qu'est-ce qui était difficile au début et qui est plus facile maintenant?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Festival de la soustraction",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "FESTIVAL ÉVALUATION (20 min): 5 kiosques festifs - 'Défis Objets', 'Résolution Images', 'Jeux Rapides', 'Problèmes Vraie Vie', 'Création Libre'. PORTFOLIO PERSONNEL (7 min): Chaque élève choisit ses 3 meilleures réussites pour portfolio.",
+        "materials": {
+          "required": [
+            {
+              "item": "Kiosque 1: Défis avec objets",
+              "quantity": "50 objets + 20 cartes défis gradués",
+              "preparation": "Organiser défis du plus simple au plus complexe",
+              "alternatives": ["Objets variés disponibles", "Matériel recyclé", "Fournitures classe"]
+            },
+            {
+              "item": "Kiosque 2: Images à résoudre",
+              "quantity": "30 images problèmes plastifiées + marqueurs",
+              "preparation": "Choisir images claires, tester marqueurs effaçables",
+              "alternatives": ["Dessins simples", "Photos imprimées", "Illustrations maison"]
+            },
+            {
+              "item": "Kiosque 3: Jeux rapides",
+              "quantity": "Dés, cartes, jetons pour 3 jeux différents",
+              "preparation": "Installer jeux des leçons préférées identifiées",
+              "alternatives": ["Jeux improvisés", "Matériel simple", "Activités orales"]
+            },
+            {
+              "item": "Kiosque 4: Scénarios vraie vie",
+              "quantity": "25 cartes situations réelles + objets manipulation",
+              "preparation": "Sélectionner situations familières aux élèves",
+              "alternatives": ["Situations orales", "Roleplay simple", "Objets réels"]
+            },
+            {
+              "item": "Portfolios individuels décorés",
+              "quantity": "25 portfolios/dossiers personnalisés avec nom élève",
+              "preparation": "Décorer avec couleurs vives, écrire noms clairement",
+              "alternatives": ["Chemises simples", "Enveloppes décorées", "Sacs personnalisés"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuterie musicale douce",
+              "quantity": "1 minuteur avec musique joyeuse",
+              "purpose": "Créer ambiance festive pendant rotations"
+            }
+          ]
+        },
+        "visualSupports": "Banderoles colorées 'Festival de la Soustraction!', affiches encourageantes à chaque kiosque",
+        "decisionPoints": [
+          "Si élèves stressés par évaluation → rappeler aspect festif et célébration",
+          "Si difficultés à tous kiosques → permettre concentration sur kiosques préférés seulement"
+        ],
+        "movementBreaks": [
+          "Rotations entre kiosques comme mouvement naturel",
+          "Danse de célébration entre rotations (1 minute chacune)"
+        ],
+        "mathTalk": [
+          "Quel kiosque as-tu trouvé le plus amusant?",
+          "Qu'est-ce qui te montre que tu as bien appris?",
+          "De quoi peux-tu être fier aujourd'hui?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Cérémonie de remise des certificats",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "GRANDE CÉRÉMONIE: Remise des certificats 'Expert en Soustraction Grade 1'. Photos de groupe, applaudissements. PROMESSE COLLECTIVE: 'Nous continuerons à utiliser la soustraction dans notre vie!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Certificats 'Expert Soustraction' personnalisés",
+              "quantity": "25 certificats luxueux avec nom de chaque élève",
+              "preparation": "Imprimer sur papier épais, calligraphier noms, ajouter rubans",
+              "alternatives": ["Certificats simples", "Diplômes faits main", "Cartes félicitations"]
+            },
+            {
+              "item": "Podium ou espace cérémonie décoré",
+              "quantity": "1 espace spécial avec décorations festives",
+              "preparation": "Décorer avec banderoles, ballons, créer atmosphere solennelle",
+              "alternatives": ["Espace simple désigné", "Cercle spécial", "Arrangement informel"]
+            },
+            {
+              "item": "Médailles ou badges commémoratifs",
+              "quantity": "25 médailles 'Je sais soustraire!'",
+              "preparation": "Créer ou acheter médailles spéciales, attacher rubans",
+              "alternatives": ["Autocollants spéciaux", "Badges faits main", "Bracelets célébration"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique cérémonielle appropriée",
+              "quantity": "1 playlist musique inspirante et joyeuse",
+              "purpose": "Accompagner remise certificats et créer ambiance mémorable"
+            }
+          ]
+        },
+        "visualSupports": "Grande bannière 'Félicitations Experts en Soustraction!', mur photos du parcours d'apprentissage",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": ["Parade finale de célébration avec certificats (dernières 2 minutes)"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si anxiété face à l'évaluation: rappeler constamment l'aspect célébration et progrès. Si élève sent qu'il n'a pas bien réussi: valoriser effort et progrès personnels plutôt que performance absolue.",
+        "then": "Focus sur croissance individuelle, célébrer chaque petit progrès, assurer que tous reçoivent reconnaissance"
       },
-      "realWorldConnection": "Être fier de ce qu'on a appris, comme apprendre à faire du vélo",
+      "realWorldConnection": "Être fier de ce qu'on a appris, comme apprendre à faire du vélo, nager, ou lacer ses souliers",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Concentrer évaluation sur progrès personnels plutôt que standards absolus",
+          "Permettre démonstration de réussites avec support (objets, aide)",
+          "Célébrer particulièrement efforts et persévérance montrés",
+          "Inclure dans portfolio des tentatives courageuses même imparfaites"
+        ],
+        "forAdvanced": [
+          "Encourager démonstration de stratégies sophistiquées développées",
+          "Inclure défis plus complexes dans leur évaluation personnelle",
+          "Valoriser leur rôle de mentors pendant les apprentissages",
+          "Documenter innovations et créativité mathématique montrées"
+        ],
+        "forELL": [
+          "Permettre démonstration de compréhension par actions plutôt que mots",
+          "Valoriser utilisation croissante du vocabulaire français mathématique",
+          "Célébrer courage de participer malgré barrière linguistique",
+          "Inclure progrès en communication mathématique dans célébration"
+        ],
+        "forIEP": [
+          "Adapter critères évaluation selon objectifs individuels établis",
+          "Célébrer tous types de progrès selon capacités personnelles",
+          "Utiliser formats évaluation appropriés aux besoins individuels",
+          "Focus sur participation, effort et progrès dans zone proximale"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre compréhension concepts soustraction selon son niveau",
+          "L'élève utilise stratégies appropriées pour résoudre problèmes",
+          "L'élève exprime fierté et confiance face à ses apprentissages",
+          "L'élève reconnaît ses progrès depuis début des apprentissages"
+        ],
+        "checkpoints": [
+          "Observation directe des performances aux 5 kiosques d'évaluation",
+          "Documentation des stratégies utilisées spontanément",
+          "Notes sur confiance et attitude positive envers mathématiques",
+          "Portfolio individuel témoignant du parcours d'apprentissage"
+        ]
       }
     },
     {
@@ -729,46 +2444,167 @@
       "keyVocabulary": [
         "créer",
         "inventer",
-        "partager"
+        "partager",
+        "enlever",
+        "histoire"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision célébration de la leçon 14",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "INSPIRATION D'AUTEUR: 'Nous allons devenir auteurs de mathématiques! Voici comment créer un problème: choisir personnages, décider ce qui arrive, faire calcul.' Démonstration création problème en direct.",
+        "materials": {
+          "required": [
+            {
+              "item": "Figurines ou images personnages variés",
+              "quantity": "30 personnages différents (animaux, personnes, objets)",
+              "preparation": "Organiser personnages attrayants, vérifier qu'ils inspirent histoires",
+              "alternatives": ["Dessins simples", "Cartes imagées", "Marionnettes doigts"]
+            },
+            {
+              "item": "Tableau création collective",
+              "quantity": "1 grand tableau pour modéliser processus création",
+              "preparation": "Préparer format: Personnages → Situation → Calcul → Question",
+              "alternatives": ["Papier géant", "Surface effaçable", "Présentation numérique"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Béret d'artiste ou chapeau créatif",
+              "quantity": "1 accessoire pour ambiance créative",
+              "purpose": "Créer atmosphère d'atelier d'artiste"
+            }
+          ]
+        },
+        "visualSupports": "Affiche 'Recette d'un Problème': 1.Choisir héros 2.Créer situation 3.Ajouter soustraction 4.Poser question",
+        "decisionPoints": [
+          "Si élèves submergés par choix → limiter à 3-4 personnages",
+          "Si difficultés créatives → fournir débuts d'histoires à compléter"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Quel personnage veux-tu utiliser dans ton histoire?",
+          "Comment vas-tu faire enlever quelque chose dans ton histoire?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Atelier d'auteurs mathématiques",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~27 min",
+        "activity": "ATELIER AUTEURS (20 min): Création individuelle de 2 problèmes originaux avec illustrations. CAFÉ LITTÉRAIRE (7 min): Partage en petits groupes, élèves lisent créations et pairs résolvent.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cahiers d'auteur personnalisés",
+              "quantity": "25 cahiers décorés avec nom de chaque élève",
+              "preparation": "Décorer couvertures, prévoir pages format problèmes",
+              "alternatives": ["Feuilles spéciales", "Carnets simples", "Pages agrafées"]
+            },
+            {
+              "item": "Matériel illustration varié",
+              "quantity": "100 crayons couleurs + 50 feutres + 25 crayons plomb",
+              "preparation": "Organiser par couleur, vérifier pointes, prévoir taille-crayons",
+              "alternatives": ["Crayons de base seulement", "Pastels", "Matériel disponible"]
+            },
+            {
+              "item": "Banque d'inspiration",
+              "quantity": "50 cartes inspiration (lieux, situations, nombres)",
+              "preparation": "Créer cartes avec idées démarreurs pour élèves en panne",
+              "alternatives": ["Liste au tableau", "Suggestions orales", "Images magazines"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique douce d'ambiance créative",
+              "quantity": "1 playlist musique inspirante",
+              "purpose": "Créer atmosphère propice à créativité"
+            }
+          ]
+        },
+        "visualSupports": "Exemples de problèmes créés par d'autres enfants, modèles de mise en page",
+        "decisionPoints": [
+          "Si perfectionnisme paralyse → encourager 'premiers jets' imparfaits mais créatifs"
+        ],
+        "movementBreaks": [
+          "Étirements créatifs avec gestes d'écriture et dessin (minute 12)",
+          "Transition café littéraire comme mouvement naturel"
+        ],
+        "mathTalk": [
+          "Comment ton ami pourrait-il résoudre ton problème?",
+          "Ton histoire est-elle claire pour quelqu'un d'autre?",
+          "Quel problème as-tu préféré résoudre?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Première de notre livre de problèmes",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "PREMIÈRE LITTÉRAIRE: Lancement officiel du 'Livre de Problèmes de Notre Classe'. 3 auteurs volontaires lisent leurs créations. SIGNATURE DÉDICACES: Chacun signe cahier des autres comme vrais auteurs.",
+        "materials": {
+          "required": [
+            {
+              "item": "Espace lecture théâtral",
+              "quantity": "1 coin lecture avec fauteuil spécial",
+              "preparation": "Créer ambiance librairie, installer éclairage doux",
+              "alternatives": ["Chaise décorée", "Coussin spécial", "Espace désigné"]
+            },
+            {
+              "item": "Livre de classe compilé",
+              "quantity": "1 reliure pour rassembler toutes créations",
+              "preparation": "Préparer belle reliure, titre attractif",
+              "alternatives": ["Classeur décoré", "Cahier géant", "Portfolio classe"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Appareil photo pour immortaliser première",
+              "quantity": "1 pour documenter moment historique",
+              "purpose": "Créer souvenir mémorable de leurs créations"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Première Mondiale: Nos Problèmes de Soustraction', affiche auteurs de la classe",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si blocage créatif: offrir choix multiples plutôt que création libre. Si problèmes trop simples ou complexes: guider vers nombres 0-10 avec situations familières.",
+        "then": "Fournir structures de phrases, encourager collaboration créative, valoriser toutes tentatives originales"
       },
-      "realWorldConnection": "Inventer des histoires comme les auteurs de nos livres préférés",
+      "realWorldConnection": "Inventer des histoires comme les auteurs de nos livres préférés, créer pour partager avec d'autres",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser gabarits pré-formatés avec début d'histoire",
+          "Permettre collaboration avec pair plus créatif",
+          "Accepter dessins avec explications orales simples",
+          "Utiliser nombres très petits (0-3) dans leurs créations"
+        ],
+        "forAdvanced": [
+          "Encourager création d'histoires à plusieurs étapes",
+          "Défis: créer problèmes avec nombres plus grands",
+          "Devenir éditeurs aidant à améliorer créations des pairs",
+          "Illustrer avec détails sophistiqués"
+        ],
+        "forELL": [
+          "Permettre création dans langue première puis traduction",
+          "Utiliser beaucoup d'illustrations pour compenser vocabulaire",
+          "Encourager narration orale avant écriture",
+          "Accepter mélange linguistique dans créations"
+        ],
+        "forIEP": [
+          "Adapter format selon capacités (oral, visuel, tactile)",
+          "Utiliser supports technologiques si disponibles",
+          "Permettre création collaborative ou assistée",
+          "Célébrer créativité sous toutes ses formes"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève crée problèmes de soustraction mathématiquement cohérents",
+          "L'élève développe histoires créatives incorporant soustraction",
+          "L'élève partage fièrement ses créations avec pairs",
+          "L'élève apprécie et respecte créations des autres"
+        ],
+        "checkpoints": [
+          "Examen des cahiers d'auteur pour créativité et exactitude mathématique",
+          "Observation engagement pendant café littéraire",
+          "Notes sur originalité et effort créatif déployé",
+          "Documentation des réactions positives aux créations des pairs"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -820,46 +2656,164 @@
       "keyVocabulary": [
         "dessiner",
         "colorier",
-        "artistique"
+        "artistique",
+        "enlever",
+        "barrer"
       ],
       "opening": {
-        "duration": "8 minutes",
-        "activity": "Révision livre de problèmes de la leçon 15",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "duration": "~8 min",
+        "activity": "INSPIRATION ARTISTE: Admirons des œuvres d'art qui racontent des histoires mathématiques! Démonstration: transformer '5 oiseaux, 2 s'envolent' en belle illustration colorée.",
+        "materials": {
+          "required": [
+            {
+              "item": "Exemples d'art mathématique",
+              "quantity": "5-6 illustrations inspirantes montrant soustraction",
+              "preparation": "Sélectionner images claires, colorées, mathématiquement correctes",
+              "alternatives": ["Dessins faits maison", "Images internet", "Créations d'années précédentes"]
+            },
+            {
+              "item": "Matériel démonstration artistique",
+              "quantity": "Papier géant + marqueurs couleurs pour démonstration live",
+              "preparation": "Installer chevalet ou support visible, organiser couleurs",
+              "alternatives": ["Tableau et craies colorées", "Surface numérique", "Papier au mur"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Béret d'artiste pour ambiance",
+              "quantity": "1 béret ou foulard artistique",
+              "purpose": "Créer atmosphère d'atelier d'art professionnel"
+            }
+          ]
+        },
+        "visualSupports": "Galerie exemples d'art mathématique, poster 'L'Art Raconte des Mathématiques'",
+        "decisionPoints": [
+          "Si élèves se focalisent sur beauté plutôt que mathématiques → rappeler équilibre art + calcul"
+        ],
+        "movementBreaks": [],
+        "mathTalk": [
+          "Comment cette œuvre raconte-t-elle une soustraction?",
+          "Quels couleurs et formes vas-tu utiliser?"
+        ]
       },
       "main": {
-        "duration": "27 minutes",
-        "activity": "Galerie d'art mathématique",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~27 min",
+        "activity": "ATELIER ARTISTE-MATHÉMATICIEN (25 min): Création individuelle d'œuvres intégrant soustraction et art. Techniques libres: dessin, collage, peinture. EXPOSITION TEMPORAIRE (2 min): Installation rapide des œuvres pour admiration.",
+        "materials": {
+          "required": [
+            {
+              "item": "Papier art de qualité",
+              "quantity": "50 feuilles format A3 (2 par élève)",
+              "preparation": "Choisir papier épais, découper format approprié",
+              "alternatives": ["Papier construction coloré", "Carton léger", "Papier disponible"]
+            },
+            {
+              "item": "Matériel artistique varié",
+              "quantity": "Crayons, feutres, pastels, colle, ciseaux pour 25 élèves",
+              "preparation": "Organiser par type, vérifier pointes et fonctionnement",
+              "alternatives": ["Crayons et papier seulement", "Matériel recyclé", "Fournitures disponibles"]
+            },
+            {
+              "item": "Supports inspiration mathématique",
+              "quantity": "25 cartes avec soustractions simples à illustrer",
+              "preparation": "Préparer problèmes 0-10 motivants à transformer en art",
+              "alternatives": ["Suggestions au tableau", "Choix libre", "Problèmes oraux"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tabliers ou protection vêtements",
+              "quantity": "25 protections si utilisation peinture",
+              "purpose": "Protéger vêtements pendant création artistique"
+            }
+          ]
+        },
+        "visualSupports": "Techniques artistiques affichées, palette couleurs suggérées, exemples œuvres terminées",
         "decisionPoints": [],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirements d'artiste avec gestes créatifs (minute 15)",
+          "Déambulation pour admirer œuvres en cours (transitions naturelles)"
+        ],
+        "mathTalk": [
+          "Comment ton art montre-t-il la soustraction?",
+          "Quelle partie mathématique est la plus visible?",
+          "Comment un ami comprendrait-il ton calcul en regardant ton dessin?"
+        ]
       },
       "closing": {
-        "duration": "10 minutes",
-        "activity": "Vernissage de notre galerie",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "VERNISSAGE OFFICIEL: Inauguration Galerie 'Art-Mathématiques Grade 1'. Chaque artiste présente brièvement son œuvre. Applaudissements et félicitations mutuelles.",
+        "materials": {
+          "required": [
+            {
+              "item": "Espace galerie organisé",
+              "quantity": "Murs ou panneaux pour exposer 25 œuvres",
+              "preparation": "Préparer accrochage, numéroter emplacements",
+              "alternatives": ["Tables d'exposition", "Sol avec organisation", "Présentation individuelle"]
+            },
+            {
+              "item": "Étiquettes œuvres d'art",
+              "quantity": "25 étiquettes 'Artiste: ___, Œuvre: ___'",
+              "preparation": "Format professionnel, espaces pour noms et titres",
+              "alternatives": ["Étiquettes simples", "Écriture directe", "Présentation orale seulement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Appareil photo pour immortaliser vernissage",
+              "quantity": "1 pour documenter œuvres et fierté des artistes",
+              "purpose": "Créer souvenir permanent de leurs créations artistiques"
+            }
+          ]
+        },
+        "visualSupports": "Bannière 'Vernissage: Art et Mathématiques', programme officiel du vernissage",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si perfectionnisme artistique paralyse: encourager expression libre, valoriser tentatives. Si difficultés à intégrer mathématiques: suggérer méthodes simples (barrer objets, utiliser couleurs pour grouper).",
+        "then": "Modéliser intégration art-math avec exemples simples, encourager collaboration créative"
       },
-      "realWorldConnection": "Dessiner nos histoires préférées avec des math dedans",
+      "realWorldConnection": "Dessiner nos histoires préférées avec des math dedans, illustrateurs de livres d'enfants",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser problèmes très simples (2-1, 3-1) pour illustrations",
+          "Permettre techniques artistiques basiques (crayons, formes simples)",
+          "Accepter représentations très concrètes et littérales",
+          "Offrir aide pour organisation spatiale sur papier"
+        ],
+        "forAdvanced": [
+          "Encourager techniques artistiques sophistiquées",
+          "Défis: illustrer problèmes plus complexes ou à étapes multiples",
+          "Expérimenter styles artistiques différents",
+          "Créer séries d'œuvres reliées thématiquement"
+        ],
+        "forELL": [
+          "L'art transcende barrières linguistiques - valoriser expression visuelle",
+          "Utiliser vocabulaire artistique bilingue sur affichages",
+          "Encourager narration gestuelle de leurs œuvres",
+          "Permettre titres d'œuvres dans langue première"
+        ],
+        "forIEP": [
+          "Adapter techniques selon capacités motrices (pinceaux adaptés, supports)",
+          "Permettre collaboration artistique assistée",
+          "Utiliser supports sensoriels appropriés (textures, couleurs contrastées)",
+          "Célébrer expression artistique sous toutes ses formes"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève intègre concepts de soustraction dans créations artistiques",
+          "L'élève explique connexion entre son art et mathématiques",
+          "L'élève fait preuve de créativité dans représentations visuelles",
+          "L'élève apprécie et respecte expressions artistiques des pairs"
+        ],
+        "checkpoints": [
+          "Examen des œuvres pour intégration mathématique-artistique",
+          "Observation engagement créatif pendant atelier",
+          "Écoute des présentations lors du vernissage",
+          "Documentation de la fierté et accomplissement artistique"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -904,14 +2858,16 @@
     },
     {
       "lessonNumber": 17,
-      "lessonType": "extension",
+      "lessonType": "extension", 
       "title": "Enseigner à un ami",
       "oneGoal": "Expliquer la soustraction à un partenaire ou à la classe",
       "duration": "45 minutes",
       "keyVocabulary": [
         "enseigner",
-        "aide",
-        "patient"
+        "aide", 
+        "patient",
+        "enlever",
+        "expliquer"
       ],
       "opening": {
         "duration": "8 minutes",
