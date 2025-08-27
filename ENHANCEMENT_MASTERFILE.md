@@ -22,7 +22,7 @@
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
 |------|--------------|-----------------|-----------|-----------|----------|
 | nombres-0-10 | ✅ | ✅ | ✅ | ⬜ | ✅ |
-| formes-geometriques | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| formes-2d (formes-geometriques) | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | mesure-temps | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | patterns-repetition | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | resolution-problemes | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -134,23 +134,26 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 50  
-**Enhanced**: 1 / 50 (2%)  
-**Translations Fixed**: 1 / 50 (2%)  
-**Decision Points Added**: 1 / 50 (2%)  
-**Materials Specified**: 1 / 50 (2%)  
+**Enhanced**: 2 / 50 (4%)  
+**Translations Fixed**: 2 / 50 (4%)  
+**Decision Points Added**: 2 / 50 (4%)  
+**Materials Specified**: 2 / 50 (4%)  
 **Committed**: 0 / 50 (0%)  
-**Reviewed**: 0 / 50 (0%)
+**Reviewed**: 1 / 50 (2%)
 
 ## 🎯 Current Focus
 
-**Next Unit to Enhance**: mathematiques/formes-geometriques  
-**Recently Completed**: mathematiques/nombres-0-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
-- ✅ Fixed incomplete materials in lessons 8, 9, 16-17
-- ✅ Added missing decision points to lessons 8, 9, 16-17  
-- ✅ Added differentiation strategies to ALL 20 lessons (forStruggling, forAdvanced, forELL, forIEP)
-- ✅ Added assessment criteria to lesson 1
-- ✅ Fixed empty visual supports in multiple lessons
-- 🔴 **CRITICAL FIXES**: Addressed all major ETFO compliance issues identified in quality review
+**Next Unit to Enhance**: mathematiques/mesure-temps  
+**Recently Completed**: mathematiques/formes-2d (COMPREHENSIVE ENHANCEMENT COMPLETED)
+- ✅ Enhanced lessons 13-20 with detailed materials specifications
+- ✅ Added 1-2 decision points to lessons 13-15, 0-1 to lessons 16-20 (extension lessons)  
+- ✅ Added comprehensive differentiation strategies (forStruggling, forAdvanced, forELL, forIEP) to all 8 lessons
+- ✅ Added detailed assessment criteria with observable behaviors and checkpoints
+- ✅ Enhanced materials with specific quantities for 20-25 students
+- ✅ Added proper visual supports descriptions
+- 🔴 **CRITICAL ACHIEVEMENT**: All 20 lessons now have complete enhanced format with quality template compliance
+
+**Previous Completion**: mathematiques/nombres-0-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
 
 ---
 

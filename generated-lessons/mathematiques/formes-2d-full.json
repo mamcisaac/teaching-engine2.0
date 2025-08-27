@@ -573,23 +573,80 @@
       "opening": {
         "duration": 8,
         "activity": "Préparation de l'expedition : révision des formes à chercher et règles de sécurité",
-        "materials": [
-          "carnet d'exploration",
-          "crayons",
-          "planchettes à pince"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Carnets d'exploration géométrique",
+              "quantity": "25 carnets format A5 avec pages quadrillées",
+              "source": "Fournitures pédagogiques - armoire papeterie",
+              "preparation": "Préparer une page avec images des 3 formes de base et cases à cocher",
+              "alternatives": ["Feuilles agrafées maison", "Tablettes effaçables"]
+            },
+            {
+              "item": "Crayons de couleur courts",
+              "quantity": "25 crayons (rouge, bleu, vert pour codage des formes)",
+              "source": "Fournitures de classe - bac crayons",
+              "preparation": "Tailler et attacher ficelle pour éviter les pertes",
+              "alternatives": ["Feutres lavables", "Crayons de cire"]
+            },
+            {
+              "item": "Planchettes à pince robustes",
+              "quantity": "25 planchettes format A5 avec pince métallique",
+              "source": "Matériel d'écriture - rangement bureau",
+              "preparation": "Vérifier que les pinces fonctionnent bien",
+              "alternatives": ["Livres épais comme support", "Cartables rigides"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Sac à dos d'exploration de classe",
+              "quantity": "1 sac avec compartiments pour organisation",
+              "purpose": "Transporter le matériel pendant la sortie dans l'école"
+            }
+          ]
+        },
         "visualSupports": "Carte simple de l'école avec pictogrammes des formes à trouver",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont excités par la sortie → établir un signal calme (main levée) avant de partir",
+          "Si certains oublient les formes à chercher → afficher les 3 formes sur la planchette comme aide-mémoire"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Exploration de l'école en petits groupes pour documenter les formes trouvées",
-        "materials": [
-          "appareil photo simple",
-          "autocollants de formes",
-          "sacs de collecte"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Appareils photo numériques simples",
+              "quantity": "6 appareils pour groupes de 4 élèves",
+              "source": "Équipement technologique de l'école - bureau principal",
+              "preparation": "Charger batteries, nettoyer écrans, vérifier fonctionnement",
+              "alternatives": ["Tablettes avec appareil photo", "Dessins sur carnets si pas de technologie"]
+            },
+            {
+              "item": "Autocollants géométriques colorés",
+              "quantity": "150 autocollants (50 cercles rouges, 50 carrés bleus, 50 triangles verts)",
+              "source": "Fournitures créatives - tiroir autocollants",
+              "preparation": "Organiser par forme dans petits contenants étiquetés",
+              "alternatives": ["Étiquettes dessinées à la main", "Tampons encreurs avec formes"]
+            },
+            {
+              "item": "Sacs de collecte transparents",
+              "quantity": "6 sacs ziplock grande taille pour échantillons non fixés",
+              "source": "Fournitures générales - armoire organisation",
+              "preparation": "Étiqueter chaque sac avec nom du groupe",
+              "alternatives": ["Boîtes en plastique", "Paniers de collecte légers"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Loupes d'exploration",
+              "quantity": "6 loupes pour observer détails architecturaux",
+              "purpose": "Examiner les formes dans les détails décoratifs ou textures"
+            }
+          ]
+        },
         "visualSupports": "Carnet avec images de formes à cocher quand trouvées",
         "decisionPoints": [
           {
@@ -608,9 +665,35 @@
       "closing": {
         "duration": 10,
         "activity": "Retour en classe pour partager les découvertes et créer une carte des formes de l'école",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Grande carte murale de l'école",
+              "quantity": "1 affichage format A1 ou tableau",
+              "source": "Plan de l'école du bureau - plastifier si papier",
+              "preparation": "Marquer clairement la classe et zones visitées",
+              "alternatives": ["Dessiner plan simple au tableau", "Utiliser plan existant de la classe"]
+            },
+            {
+              "item": "Gommettes repositionnables",
+              "quantity": "75 gommettes (25 par forme) de couleurs vives",
+              "source": "Fournitures bureau - boîte gommettes",
+              "preparation": "Préparer sur planche pour distribution rapide",
+              "alternatives": ["Dessiner directement sur la carte", "Épingler petites formes en papier"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau de feutre portable",
+              "quantity": "1 support pour affichage temporaire",
+              "purpose": "Créer espace d'affichage si pas d'accès au mur"
+            }
+          ]
+        },
+        "visualSupports": "Carte murale de l'école avec gommettes colorées montrant où chaque type de forme a été trouvé, légende avec forme=couleur",
+        "decisionPoints": [
+          "Si les élèves ont trouvé trop d'exemples à partager → choisir 2-3 découvertes les plus surprenantes par groupe"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -619,14 +702,44 @@
       },
       "realWorldConnection": "Chercher des formes en se promenant dans le quartier avec la famille",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur seulement 2 formes (cercle et carré) pendant l'exploration",
+          "Jumeler avec un partenaire pour support mutuel durant la chasse aux formes",
+          "Utiliser des images référence plastifiées attachées au carnet avec ficelle",
+          "Commencer par chercher dans la classe avant d'élargir à l'école"
+        ],
+        "forAdvanced": [
+          "Chercher des formes plus complexes (rectangle, ovale, losange) en plus des 3 de base",
+          "Estimer et compter le nombre total de chaque forme trouvée",
+          "Devenir guide pour aider d'autres groupes à identifier les formes moins évidentes",
+          "Créer catégories (formes naturelles vs artificielles, grandes vs petites)"
+        ],
+        "forELL": [
+          "Associer chaque forme trouvée à un mot-clé familier (cercle-soleil, carré-boîte, triangle-toit)",
+          "Utiliser gestes pour renforcer le vocabulaire spatial (chercher=regarder partout, trouver=pointer)",
+          "Permettre description dans langue première puis répéter en français",
+          "Fournir carnet avec vocabulaire illustré (porte=rectangulaire, horloge=circulaire)"
+        ],
+        "forIEP": [
+          "Adapter la durée selon capacité d'attention (raccourcir ou ajouter pauses)",
+          "Utiliser support visuel séquentiel montrant étapes de l'exploration",
+          "Offrir choix de participation (dessiner, photographier, pointer, ou simplement observer)",
+          "Prévoir espace calme de retour si stimulation sensorielle excessive"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie correctement les 3 formes de base dans l'environnement architectural",
+          "Élève documente ses découvertes par dessin, photo ou autocollant approprié",
+          "Élève respecte les règles de déplacement sécuritaire dans l'école",
+          "Élève utilise vocabulaire géométrique en contexte (cette fenêtre est carrée, la porte est rectangulaire)",
+          "Élève collabore efficacement en petits groupes pendant l'exploration"
+        ],
+        "checkpoints": [
+          "Avant le départ : vérifier que l'élève peut nommer et reconnaître les 3 formes cibles",
+          "Pendant l'exploration : observer la capacité à transférer reconnaissance des formes abstraites aux objets réels",
+          "Au retour : noter la participation au partage et qualité des exemples trouvés"
+        ]
       }
     },
     {
@@ -643,44 +756,120 @@
       "opening": {
         "duration": 8,
         "activity": "Observation d'images simples créées avec des formes géométriques de base",
-        "materials": [
-          "formes prédécoupées en papier",
-          "colle en bâton",
-          "papier de construction"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Formes prédécoupées en papier construction coloré",
+              "quantity": "200 formes par forme de base (600 total) en 4 tailles différentes",
+              "source": "Papier de bricolage - armoire arts créatifs",
+              "preparation": "Découper à l'avance, organiser par forme et taille dans bacs étiquetés",
+              "alternatives": ["Formes en mousse adhésive", "Modèles à tracer pour élèves"]
+            },
+            {
+              "item": "Bâtons de colle lavable non-toxique",
+              "quantity": "25 bâtons individuels de 10g chacun",
+              "source": "Fournitures de bricolage - tiroir colle",
+              "preparation": "Vérifier que les bouchons ferment bien pour éviter dessèchement",
+              "alternatives": ["Colle liquide avec petits pinceaux", "Bâtons de colle partagés par groupe"]
+            },
+            {
+              "item": "Papier de construction format A4",
+              "quantity": "30 feuilles (25 pour élèves + 5 extras) en couleurs claires",
+              "source": "Papeterie - pile papier couleur",
+              "preparation": "Choisir couleurs qui contrastent avec les formes prédécoupées",
+              "alternatives": ["Papier blanc standard", "Carton léger coloré"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Exemples d'images créées par l'enseignant",
+              "quantity": "3-4 modèles variés (simple à complexe)",
+              "purpose": "Inspiration et modèles de référence pour stimuler la créativité"
+            }
+          ]
+        },
         "visualSupports": "Exemples d'images : maison (carré + triangle), robot (rectangles + cercles)",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves veulent imiter exactement les exemples → encourager leurs propres idées créatives d'abord",
+          "Si confusion sur comment assembler les formes → démontrer avec grandes formes au tableau magnétique"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Création libre d'images en collant des formes colorées sur papier",
-        "materials": [
-          "formes de différentes tailles",
-          "ciseaux adaptés",
-          "feutres"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Collection variée de formes prédécoupées",
+              "quantity": "300 formes supplémentaires en 3 tailles (petite, moyenne, grande)",
+              "source": "Complément du matériel d'ouverture - mêmes bacs organisés",
+              "preparation": "S'assurer d'avoir suffisamment de chaque forme pour tous les projets créatifs",
+              "alternatives": ["Modèles pour que les élèves découpent eux-mêmes", "Formes en feutre adhésif"]
+            },
+            {
+              "item": "Ciseaux de sécurité bout rond",
+              "quantity": "25 paires adaptées aux mains de Grade 1",
+              "source": "Matériel de découpage - casiers d'arts",
+              "preparation": "Vérifier que les lames coupent bien et nettoyer",
+              "alternatives": ["Ciseaux à ressort pour faciliter l'usage", "Cutter de sécurité pour enseignant"]
+            },
+            {
+              "item": "Feutres lavables pointe fine",
+              "quantity": "6 boîtes de 8 couleurs partagées entre groupes",
+              "source": "Fournitures artistiques - tiroir feutres",
+              "preparation": "Vérifier que les bouchons ferment et les pointes ne sont pas sèches",
+              "alternatives": ["Crayons de couleur", "Craies de cire"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Paillettes et autocollants décoratifs",
+              "quantity": "Assortiment pour décoration finale",
+              "purpose": "Embellissement final pour les artistes qui terminent rapidement"
+            }
+          ]
+        },
         "visualSupports": "Guide visuel montrant comment assembler des formes pour faire des objets",
         "decisionPoints": [
-          {
-            "question": "Les élèves sont-ils créatifs avec les formes?",
-            "ifYes": "Encouragez des créations plus complexes ou originales",
-            "ifNo": "Proposez des modèles simples à reproduire d'abord"
-          },
-          {
-            "question": "Comprennent-ils comment assembler les formes?",
-            "ifYes": "Laissez-les expérimenter librement",
-            "ifNo": "Démontrez étape par étape l'assemblage d'une image simple"
-          }
+          "Si les élèves manquent d'idées créatives → suggérer des thèmes (animaux, véhicules, bâtiments)",
+          "Si certains élèves collent trop rapidement sans planifier → encourager à essayer d'abord sans coller",
+          "Si difficulté à assembler les formes → démontrer étape par étape avec formes magnétiques au tableau"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Galerie d'art improvisée : affichage et description des créations par les artistes",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Pinces à linge ou trombones",
+              "quantity": "30 pinces pour accrocher les œuvres",
+              "source": "Fournitures bureau ou buanderie",
+              "preparation": "Installer corde ou fil entre deux supports pour créer ligne d'exposition",
+              "alternatives": ["Pâte adhésive repositionnable", "Aimants si tableau magnétique disponible"]
+            },
+            {
+              "item": "Petites étiquettes autocollantes",
+              "quantity": "25 étiquettes pour identifier les artistes",
+              "source": "Fournitures bureau - rouleau étiquettes",
+              "preparation": "Pré-écrire les noms des élèves si nécessaire",
+              "alternatives": ["Papier et colle", "Marquage direct sur œuvre"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cadres improvisés en carton",
+              "quantity": "Quelques cadres pour les œuvres spéciales",
+              "purpose": "Mettre en valeur les créations exceptionnelles pour motiver les artistes"
+            }
+          ]
+        },
+        "visualSupports": "Espace d'exposition organisé avec œuvres à hauteur des yeux des élèves, éclairage approprié si possible",
+        "decisionPoints": [
+          "Si les élèves sont timides pour présenter → commencer par faire décrire seulement les formes utilisées"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -689,14 +878,44 @@
       },
       "realWorldConnection": "Faire des dessins de maisons, de robots, d'animaux en utilisant des formes géométriques",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2 types de formes pour simplifier les choix créatifs",
+          "Fournir modèles simples à reproduire (maison = carré + triangle) avant création libre",
+          "Utiliser formes plus grandes pour faciliter manipulation et collage précis",
+          "Permettre collaboration avec un partenaire pour générer des idées créatives"
+        ],
+        "forAdvanced": [
+          "Encourager création d'images complexes avec détails (fenêtres sur maisons, roues sur véhicules)",
+          "Introduire formes supplémentaires (rectangle, ovale) pour plus de possibilités créatives",
+          "Défis créatifs : créer une scène complète ou raconter une histoire avec les formes",
+          "Devenir mentors pour aider d'autres élèves à développer leurs idées"
+        ],
+        "forELL": [
+          "Associer chaque création à vocabulaire concret (maison, voiture, fleur, visage)",
+          "Encourager à nommer les formes utilisées en français pendant la création",
+          "Utiliser gestes pour expliquer actions (coller, placer, tourner) avec mots français",
+          "Permettre description initiale en langue première puis traduction simple en français"
+        ],
+        "forIEP": [
+          "Adapter outils selon besoins moteurs (colle en gros bâton, formes avec languettes)",
+          "Proposer alternatives sensorielles (formes texturées, contrastes colorés importants)",
+          "Ajuster durée et permettre pauses selon capacités d'attention individuelles",
+          "Offrir choix de présentation (montrer silencieusement, décrire à l'enseignant, dessiner en plus)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève utilise au moins 2 formes différentes dans sa création artistique",
+          "Élève assemble les formes de manière logique pour créer image reconnaissable",
+          "Élève manipule efficacement les outils (colle, ciseaux) pour réaliser son projet",
+          "Élève nomme les formes qu'il utilise pendant ou après la création",
+          "Élève fait preuve de créativité et d'originalité dans son assemblage"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : observer si l'élève identifie les formes dans les exemples présentés",
+          "Pendant la création : noter la planification (essai avant collage) et les choix créatifs",
+          "Pendant la galerie : évaluer la capacité à décrire sa création et les formes utilisées"
+        ]
       }
     },
     {
@@ -713,44 +932,119 @@
       "opening": {
         "duration": 8,
         "activity": "Jeu de tri rapide : séparer les formes rondes des formes avec des coins",
-        "materials": [
-          "collection variée de formes",
-          "bacs de tri colorés",
-          "étiquettes visuelles"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Collection variée de formes en plastique dur",
+              "quantity": "150 formes mélangées (50 cercles, 50 carrés, 50 triangles) de tailles variées",
+              "source": "Kit de manipulation géométrique - armoire mathématiques",
+              "preparation": "Mélanger toutes les formes dans grand contenant pour activité de tri",
+              "alternatives": ["Formes découpées en carton épais", "Objets réels de formes variées"]
+            },
+            {
+              "item": "Bacs de tri en plastique transparent",
+              "quantity": "6 bacs moyens avec couvercles amovibles (2 par critère de tri)",
+              "source": "Matériel d'organisation - rangement classe",
+              "preparation": "Nettoyer et étiqueter temporairement selon critères de tri",
+              "alternatives": ["Assiettes en carton solide", "Cercles tracés au sol avec ruban"]
+            },
+            {
+              "item": "Étiquettes visuelles pictographiques",
+              "quantity": "8 étiquettes grand format (4x2 critères contraires)",
+              "source": "Créer avec imprimante ou dessiner à la main",
+              "preparation": "Plastifier pour réutilisation, magnets au dos si tableau métallique",
+              "alternatives": ["Dessins simples au tableau", "Formes modèles collées sur cartons"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Chrono visuel ou sablier",
+              "quantity": "1 minuteur pour créer urgence ludique",
+              "purpose": "Ajouter aspect jeu chronométré pour motiver la participation"
+            }
+          ]
+        },
         "visualSupports": "Panneaux avec pictogrammes montrant les critères de tri",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves confondent les critères → démontrer avec une forme en la plaçant dans le bon bac",
+          "Si le tri va trop lentement → diviser en équipes et créer compétition amicale"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Activités de tri par forme, couleur, taille avec justification des choix",
-        "materials": [
-          "formes de différentes couleurs et tailles",
-          "cercles de tri",
-          "pinces géantes"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Formes multicolores en trois tailles",
+              "quantity": "200 formes au total (25 de chaque combinaison forme/couleur/taille)",
+              "source": "Kit avancé de formes géométriques - armoire manipulation",
+              "preparation": "Organiser par stations avec différents défis de tri",
+              "alternatives": ["Formes faites maison en carton coloré", "Objets du quotidien triés par critères"]
+            },
+            {
+              "item": "Cercles de tri en tissu ou plastic",
+              "quantity": "12 cercles de différentes couleurs (30cm de diamètre)",
+              "source": "Matériel d'organisation - ou créer avec cerceaux ou corde",
+              "preparation": "Disposer sur tables ou au sol selon l'espace disponible",
+              "alternatives": ["Cercles dessinés à la craie", "Assiettes en carton grand format"]
+            },
+            {
+              "item": "Pinces de préhension géantes",
+              "quantity": "8 pinces adaptées aux petites mains",
+              "source": "Matériel de motricité fine - casier développement",
+              "preparation": "Vérifier le bon fonctionnement et nettoyer",
+              "alternatives": ["Baguettes ou cuillères pour ramasser", "Manipulation directe avec les mains"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableaux de pointage simple",
+              "quantity": "6 feuilles pour noter les critères de tri",
+              "purpose": "Documenter et justifier les choix de tri pour réflexion"
+            }
+          ]
+        },
         "visualSupports": "Tableaux de tri avec colonnes clairement identifiées",
         "decisionPoints": [
-          {
-            "question": "Les élèves comprennent-ils les critères de tri?",
-            "ifYes": "Introduisez des critères multiples (forme ET couleur)",
-            "ifNo": "Commencez avec un seul critère très clair"
-          },
-          {
-            "question": "Peuvent-ils expliquer leurs regroupements?",
-            "ifYes": "Demandez-leur d'inventer leurs propres critères de tri",
-            "ifNo": "Utilisez des phrases modèles : 'Je mets ensemble parce que...'"
-          }
+          "Si les élèves proposent des critères inhabituels → encourager et tester leurs idées créatives",
+          "Si difficulté à justifier leurs choix → poser questions orientées (pourquoi cette forme va avec celle-là?)"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Présentation des tris : chaque groupe explique comment et pourquoi ils ont trié",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Microphone factice ou bâton de parole",
+              "quantity": "1 objet pour désigner le tour de parole",
+              "source": "Matériel de communication - ou improviser avec objet spécial",
+              "preparation": "Choisir objet attrayant que les élèves aimeront tenir",
+              "alternatives": ["Peluche de classe", "Bâton décoré", "Simplement lever la main"]
+            },
+            {
+              "item": "Tableau de synthèse des découvertes",
+              "quantity": "1 grande feuille ou section de tableau",
+              "source": "Papier affichage ou utiliser tableau de classe",
+              "preparation": "Diviser en sections pour différents critères de tri",
+              "alternatives": ["Cartons plus petits assemblés", "Documentation photographique"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Caméra ou appareil photo",
+              "quantity": "1 pour documenter les résultats de tri créatifs",
+              "purpose": "Conserver trace des découvertes pour référence future"
+            }
+          ]
+        },
+        "visualSupports": "Affichage des différents tris réalisés avec étiquettes explicatives simples",
+        "decisionPoints": [
+          "Si les élèves parlent tous en même temps → utiliser signal visuel (main levée) pour demander le silence"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -759,14 +1053,44 @@
       },
       "realWorldConnection": "Trier les jouets, les ustensiles de cuisine, ou les vêtements par forme",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2 critères simples (rond vs pas rond)",
+          "Utiliser formes très contrastées en taille et couleur pour faciliter discrimination",
+          "Permettre manipulation individuelle avant tri en groupe",
+          "Fournir modèle visuel permanent pour chaque critère (forme coller sur bac)"
+        ],
+        "forAdvanced": [
+          "Introduire tri complexe avec critères multiples (forme ET couleur ET taille)",
+          "Défis de création : inventer nouveaux critères originaux de classement",
+          "Analyser et corriger les erreurs de tri d'autres groupes",
+          "Créer graphiques simples pour représenter les résultats de tri"
+        ],
+        "forELL": [
+          "Associer chaque critère à geste et mot répété (rond=mouvement circulaire+\érond\é)",
+          "Utiliser étiquettes visuelles avec mots et images pour tous les critères",
+          "Encourager description simple : \u00e7a va ensemble parce que... c'est pareil",
+          "Permettre démonstration non-verbale avant explication orale"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins sensoriels (formes texturées, contrastes visuels)",
+          "Proposer outils adaptés pour préhension (pinces à gros manche, cuillères)",
+          "Ajuster durée et permettre pauses selon capacité d'attention",
+          "Offrir alternatives de participation (pointer les groupes, donner formes à partenaire)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie et applique critère de tri donné (forme, couleur, ou taille)",
+          "Élève trie correctement selon critère établi avec précision",
+          "Élève explique son raisonnement en utilisant vocabulaire approprié",
+          "Élève propose nouveaux critères logiques pour regroupement",
+          "Élève travaille coopérativement lors des activités de tri en groupe"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : vérifier la compréhension du concept de critère de tri",
+          "Pendant les activités : observer la précision du tri et la justification des choix",
+          "Pendant le partage : évaluer la capacité à expliquer et défendre les regroupements"
+        ]
       }
     },
     {
@@ -783,23 +1107,80 @@
       "opening": {
         "duration": 8,
         "activity": "Chanson des côtés et coins avec gestes : tracer les côtés et pointer les coins",
-        "materials": [
-          "formes géantes en carton",
-          "pointeurs colorés",
-          "tableau de comptage"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Formes géantes en carton coloré robuste",
+              "quantity": "9 formes (3 cercles, 3 carrés, 3 triangles) de 40cm minimum",
+              "source": "Carton de récupération ou acheter - découper à l'avance",
+              "preparation": "Renforcer les bords, plastifier si possible, ajouter support au dos pour tenue",
+              "alternatives": ["Formes en mousse épaisse", "Formes magnétiques géantes"]
+            },
+            {
+              "item": "Pointeurs ou bâguettes colorés",
+              "quantity": "6 pointeurs de couleurs variées avec bouts sécuritaires",
+              "source": "Matériel de présentation - ou fabriquer avec bâtons et pompons",
+              "preparation": "Vérifier sécurité des bouts, attacher ficelle pour éviter perte",
+              "alternatives": ["Doigt de l'enseignant", "Règles colorées"]
+            },
+            {
+              "item": "Tableau de comptage grand format",
+              "quantity": "1 affichage A1 avec colonnes forme/côtés/coins",
+              "source": "Papier affichage ou tableau à feuilles mobiles",
+              "preparation": "Dessiner grille claire avec pictogrammes des formes",
+              "alternatives": ["Section de tableau de classe", "Cartons assemblés"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Enregistrement de la chanson ou mélodie simple",
+              "quantity": "1 audio ou chanter a cappella",
+              "purpose": "Support rythmique pour apprentissage des gestes et vocabulaire"
+            }
+          ]
+        },
         "visualSupports": "Formes avec côtés et coins clairement marqués en couleurs différentes",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves confondent côtés et coins → utiliser gestes exagérés (tracer=doigt, pointer=index)",
+          "Si difficulté à suivre la chanson → ralentir le tempo et répéter phrase par phrase"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Exploration tactile et comptage systématique des côtés et coins de chaque forme",
-        "materials": [
-          "formes en relief",
-          "jetons de comptage",
-          "ficelle colorée"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Formes géométriques en relief ou texturées",
+              "quantity": "75 formes (25 de chaque type) avec bords tactiles prononcés",
+              "source": "Matériel sensoriel - ou créer avec carton et colle texture",
+              "preparation": "Vérifier que les bords sont nets et safe au toucher",
+              "alternatives": ["Formes en bois avec bords marqués", "Formes en plastique épais"]
+            },
+            {
+              "item": "Jetons de comptage colorés assortis",
+              "quantity": "200 jetons (100 rouges pour côtés, 100 bleus pour coins)",
+              "source": "Matériel de manipulation mathématique - bacs comptage",
+              "preparation": "Organiser par couleur dans contenants séparés clairement étiquetés",
+              "alternatives": ["Haricots colorés", "Boutons de deux couleurs"]
+            },
+            {
+              "item": "Ficelles ou rubans colorés assortis",
+              "quantity": "25 longueurs de 30cm (rouge pour tracer côtés)",
+              "source": "Fournitures de bricolage - ou couper ficelle ordinaire",
+              "preparation": "Couper longueurs pré-mesurées et nouer une extrémité pour repère",
+              "alternatives": ["Cordons de souliers colorés", "Chenilles de bricolage"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Loupes ou lentilles grossissantes",
+              "quantity": "6 loupes pour observer détails des côtés et coins",
+              "purpose": "Faciliter observation précise des caractéristiques géométriques"
+            }
+          ]
+        },
         "visualSupports": "Tableaux de comptage avec cases pour noter les découvertes",
         "decisionPoints": [
           {
@@ -818,9 +1199,42 @@
       "closing": {
         "duration": 10,
         "activity": "Création d'un tableau collectif des découvertes : combien de côtés et coins par forme",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Grand tableau de synthèse avec grille",
+              "quantity": "1 affichage A0 ou section de tableau avec colonnes preparées",
+              "source": "Papier affichage ou utiliser tableau de classe permanent",
+              "preparation": "Dessiner grille : Forme | Côtés | Coins avec pictogrammes",
+              "alternatives": ["Plusieurs cartons assemblés", "Tableau numérique projecté"]
+            },
+            {
+              "item": "Marqueurs épais de couleur vive",
+              "quantity": "3 marqueurs (rouge pour côtés, bleu pour coins, noir pour formes)",
+              "source": "Fournitures de présentation - vérifier encre",
+              "preparation": "Tester que les marqueurs écrivent bien et choisir couleurs contrastées",
+              "alternatives": ["Craies colorées si tableau noir", "Crayons gras"]
+            },
+            {
+              "item": "Autocollants numériques ou chiffres magnétiques",
+              "quantity": "Chiffres 0-4 en plusieurs exemplaires",
+              "source": "Matériel mathématique - ou créer sur cartons",
+              "preparation": "S'assurer d'avoir suffisamment de chaque chiffre pour le tableau",
+              "alternatives": ["Écrire directement les chiffres", "Jetons avec points"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Appareil photo pour documenter le tableau final",
+              "quantity": "1 pour garder trace des découvertes collectives",
+              "purpose": "Référence future et portfolio de classe"
+            }
+          ]
+        },
+        "visualSupports": "Tableau de synthèse complet avec résultats clairement organisés et colorés",
+        "decisionPoints": [
+          "Si désaccord sur le nombre → recompter ensemble en pointant chaque élément"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -829,14 +1243,44 @@
       },
       "realWorldConnection": "Compter les côtés d'une table, les coins d'un livre, les bords d'une fenêtre",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur une forme à la fois (commencer par le triangle qui a le moins d'éléments)",
+          "Utiliser correspondance un-à-un : placer un jeton sur chaque côté et coin avant comptage",
+          "Formes avec côtés et coins très contrastés (couleurs, textures) pour faciliter discrimination",
+          "Permettre répétition multiple avec même forme avant passage à une autre"
+        ],
+        "forAdvanced": [
+          "Introduire formes plus complexes (pentagone, hexagone) pour comptage avancé",
+          "Comparer et analyser patterns : relation entre forme et nombre de côtés/coins",
+          "Prédire combien aurait une forme inventée ou dessiner forme avec nombre spécifique d'éléments",
+          "Devenir tuteurs pour aider autres élèves dans comptage précis"
+        ],
+        "forELL": [
+          "Associer comptage à geste répétitif (tracer côté + dire nombre, pointer coin + dire nombre)",
+          "Vocabulaire concret : côté=ligne, coin=point, avec objets familiers de référence",
+          "Compter en français mais permettre vérification en langue première",
+          "Utiliser rythme et musique pour mémoriser séquence de comptage"
+        ],
+        "forIEP": [
+          "Adapter outils tactiles : formes avec textures prononcées, reliefs ou vibrations",
+          "Ajuster selon capacité de concentration : sessions plus courtes avec pauses fréquentes",
+          "Outils de comptage adaptés (gros jetons, pinces facilitantes) selon besoins moteurs",
+          "Options de participation : montrer au lieu de dire, utiliser ardoise pour noter nombres"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève distingue clairement entre côtés (lignes) et coins (points d'intersection)",
+          "Élève compte avec précision le nombre de côtés et coins de chaque forme de base",
+          "Élève utilise stratégie de comptage systématique (début et fin clairs)",
+          "Élève communique ses résultats en utilisant vocabulaire géométrique approprié",
+          "Élève vérifie ses résultats par recomptage ou méthode alternative"
+        ],
+        "checkpoints": [
+          "Pendant la chanson : observer si l'élève associe correctement gestes aux concepts",
+          "Pendant l'exploration : noter la précision du comptage et usage des outils",
+          "Pendant la synthèse : vérifier les résultats et capacité à justifier les réponses"
+        ]
       }
     },
     {
@@ -853,44 +1297,119 @@
       "opening": {
         "duration": 8,
         "activity": "Échauffement avec le jeu 'Jacques a dit' utilisant des mouvements de formes",
-        "materials": [
-          "cartes de formes",
-          "sablier",
-          "boîte mystère"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes de formes grand format plastifiées",
+              "quantity": "15 cartes (5 de chaque forme) format A4 minimum",
+              "source": "Créer et plastifier ou acheter cartes pédagogiques",
+              "preparation": "Plastifier pour durabilité, ajouter magnets au dos si tableau métallique",
+              "alternatives": ["Dessiner formes géantes au tableau", "Formes en mousse à tenir"]
+            },
+            {
+              "item": "Sablier visuel ou minuteur",
+              "quantity": "1 minuteur 2-3 minutes visible de tous",
+              "source": "Matériel de gestion du temps - ou smartphone avec affichage",
+              "preparation": "Tester le fonctionnement et choisir durée appropriée",
+              "alternatives": ["Compter lentement jusqu'à 20", "Chanson de durée connue"]
+            },
+            {
+              "item": "Boîte mystère opaque avec ouverture",
+              "quantity": "1 boîte assez grande pour manipulation à l'intérieur",
+              "source": "Boîte de chaussures décorée ou contenant opaque",
+              "preparation": "Découper ouverture pour la main, décorer pour attirer attention",
+              "alternatives": ["Sac en tissu opaque", "Boîte avec couvercle amovible"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique rythmique pour les jeux",
+              "quantity": "1 playlist ou CD de musiques entraînantes",
+              "purpose": "Créer ambiance ludique et rythmer les activités"
+            }
+          ]
+        },
         "visualSupports": "Cartes visuelles des règles de chaque jeu",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté avec les règles → démontrer chaque mouvement lentement d'abord",
+          "Si trop d'excitation → faire une pause calme avec respirations profondes"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Rotation entre stations de jeux : loto des formes, mémoire, devine-qui géométrique",
-        "materials": [
-          "planches de loto",
-          "cartes mémoire",
-          "sacs tactiles"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Planches de loto des formes personnalisées",
+              "quantity": "8 planches différentes avec 6-9 formes chacune",
+              "source": "Créer avec carton et images collées ou imprimer modèles",
+              "preparation": "Plastifier pour durabilité, créer cartes correspondantes",
+              "alternatives": ["Grilles dessinées sur papier", "Version numérique sur tablette"]
+            },
+            {
+              "item": "Jeu de cartes mémoire géométriques",
+              "quantity": "24 cartes (12 paires de formes) format standard",
+              "source": "Créer avec carton coloré ou acheter jeu commercial",
+              "preparation": "S'assurer que les paires sont identiques, plastifier",
+              "alternatives": ["Formes réelles cachées sous gobelets", "Cartes à jouer modifiées"]
+            },
+            {
+              "item": "Sacs tactiles avec formes variées",
+              "quantity": "6 sacs opaques avec 5 formes différentes chacun",
+              "source": "Sacs en tissu ou plastique avec formes en bois ou plastique dur",
+              "preparation": "Vérifier que les formes sont bien distinctes au toucher",
+              "alternatives": ["Boîtes avec couvercles", "Taies d'oreiller avec formes"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau de scores ou jetons de points",
+              "quantity": "Matériel pour noter réussites et maintenir motivation",
+              "purpose": "Encourager progression et célébrer succès dans les jeux"
+            }
+          ]
+        },
         "visualSupports": "Instructions illustrées à chaque station de jeu",
         "decisionPoints": [
-          {
-            "question": "Les élèves sont-ils engagés dans les jeux?",
-            "ifYes": "Augmentez la vitesse ou la complexité des jeux",
-            "ifNo": "Simplifiez les règles ou jouez tous ensemble d'abord"
-          },
-          {
-            "question": "Le niveau de difficulté est-il approprié?",
-            "ifYes": "Ajoutez des formes moins communes ou des variantes",
-            "ifNo": "Concentrez-vous sur les 3 formes de base seulement"
-          }
+          "Si les élèves finissent rapidement leurs jeux → introduire variantes plus complexes ou nouvelles formes",
+          "Si confusion dans les rotations → utiliser minuteur et signal sonore pour changements"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Cercle de partage : quel a été leur jeu préféré et pourquoi",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Tapis de rassemblement circulaire",
+              "quantity": "1 grand tapis ou espace délimité au sol",
+              "source": "Matériel de classe ou marquer cercle avec ruban",
+              "preparation": "S'assurer que tous les élèves peuvent s'asseoir confortablement",
+              "alternatives": ["Chaises en cercle", "Marquage au sol temporaire"]
+            },
+            {
+              "item": "Jetons ou autocollants de récompense",
+              "quantity": "25 récompenses symboliques pour participation",
+              "source": "Fournitures motivationnelles - ou fabriquer avec papier coloré",
+              "preparation": "Préparer récompenses à distribuer pour encourager partage",
+              "alternatives": ["Applaudissements", "Points sur tableau de classe"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Carnet de classe pour noter jeux préférés",
+              "quantity": "1 carnet pour documenter préférences de la classe",
+              "purpose": "Mémoire collective et planification future des activités"
+            }
+          ]
+        },
+        "visualSupports": "Affichage des jeux joués avec pictogrammes pour aide-mémoire",
+        "decisionPoints": [
+          "Si les élèves sont timides pour partager → commencer par questions simples oui/non"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -899,14 +1418,44 @@
       },
       "realWorldConnection": "Jouer au 'devine la forme' en famille, identifier des formes sur des panneaux routiers",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec jeux utilisant seulement 2 formes pour réduire choix et simplifier",
+          "Permettre collaboration avec partenaire plus fort pour support mutuel",
+          "Utiliser formes très grandes et contrastantes pour faciliter reconnaissance rapide",
+          "Donner plus de temps ou réduire nombre d'éléments à mémoriser dans jeux"
+        ],
+        "forAdvanced": [
+          "Introduire formes supplémentaires (ovale, rectangle, losange) dans tous les jeux",
+          "Créer défis chronométrés ou compétitions amicales pour augmenter difficulté",
+          "Inventer nouvelles règles ou variantes pour les jeux existants",
+          "Devenir animateurs pour aider et guider autres groupes dans leurs jeux"
+        ],
+        "forELL": [
+          "Utiliser gestes et indices visuels en plus des mots pour faciliter compréhension",
+          "Permettre réponses non-verbales (pointer, montrer) avant description orale",
+          "Associer chaque jeu à vocabulaire essentiel répété et renforcé",
+          "Encourager participation graduelle : observer d'abord, puis jouer avec support"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins sensoriels (formes texturées, couleurs contrastées)",
+          "Ajuster règles pour inclure tous types de participation (verbal, gestuel, écrit)",
+          "Offrir pauses sensorielles si surstimulation par bruit ou activité groupe",
+          "Personnaliser durée de participation selon capacité d'attention individuelle"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève reconnaît rapidement et correctement les formes géométriques dans les jeux",
+          "Élève suit les règles des jeux et participe de manière appropriée",
+          "Élève utilise vocabulaire géométrique pour décrire et nommer les formes",
+          "Élève fait preuve de persévérance et concentration pendant les activités ludiques",
+          "Élève travaille coopérativement et respectueusement avec ses pairs"
+        ],
+        "checkpoints": [
+          "Pendant l'échauffement : observer l'engagement et compréhension des consignes",
+          "Pendant les stations : noter la précision des réponses et qualité de participation",
+          "Pendant le partage : évaluer la réflexion et capacité à exprimer préférences"
+        ]
       }
     },
     {
@@ -923,45 +1472,133 @@
       "opening": {
         "duration": 8,
         "activity": "Observation de photos d'éléments naturels contenant des formes géométriques",
-        "materials": [
-          "collection d'objets naturels",
-          "loupes",
-          "carnets d'observation"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Collection variée d'objets naturels authentiques",
+              "quantity": "50+ objets : feuilles, câilloux, coquillages, graines, fleurs séchées",
+              "source": "Collecte extérieure ou demande aux familles - vérifier sécurité",
+              "preparation": "Nettoyer, trier par forme approximative, éliminer objets dangereux",
+              "alternatives": ["Photos haute qualité d'objets naturels", "Vidéos de nature"]
+            },
+            {
+              "item": "Loupes de qualité pour enfants",
+              "quantity": "12 loupes avec grossissement 3x minimum",
+              "source": "Matériel scientifique - vérifier état des lentilles",
+              "preparation": "Nettoyer lentilles, attacher cordes pour éviter chutes",
+              "alternatives": ["Verres grossissants improvisés", "Observation à l'œil nu"]
+            },
+            {
+              "item": "Carnets d'observation avec pages structées",
+              "quantity": "25 carnets A5 avec grilles et espaces de dessin",
+              "source": "Créer avec agrafage de feuilles ou acheter carnets",
+              "preparation": "Préparer pages avec cadres pour dessins et lignes pour notes",
+              "alternatives": ["Feuilles simples dans planchettes", "Tablettes numériques"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Photos agrandies d'éléments naturels géométriques",
+              "quantity": "10-15 photos format A4 plastifiées",
+              "purpose": "Inspiration et modèles pour guider observation des élèves"
+            }
+          ]
+        },
         "visualSupports": "Photos agrandies de formes dans la nature : nid d'abeille, coquillages, fleurs",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ont difficulté à voir les formes → utiliser doigt pour tracer contours sur photos",
+          "Si manque d'intérêt pour observation → créer mystique avec 'chasse au trésor géométrique'"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Exploration d'objets naturels apportés en classe et recherche de formes à l'extérieur",
-        "materials": [
-          "feuilles variées",
-          "coquillages",
-          "pierres",
-          "fleurs"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Collection étendue de feuilles de formes variées",
+              "quantity": "40+ feuilles de différents arbres (rondes, ovales, triangulaires)",
+              "source": "Collecte saisonnière ou conservation de spécimens",
+              "preparation": "Presser entre livres si sèches, plastifier les plus fragiles",
+              "alternatives": ["Images haute résolution de feuilles", "Moulages en plâtre"]
+            },
+            {
+              "item": "Coquillages variés en formes et tailles",
+              "quantity": "25+ coquillages avec formes distinctes (spirales, éventails, cônes)",
+              "source": "Achat en magasin de loisirs ou collecte plage",
+              "preparation": "Nettoyer soigneusement, vérifier absence de bords tranchants",
+              "alternatives": ["Répliques en plastique", "Photos 3D de coquillages"]
+            },
+            {
+              "item": "Pierres et minéraux aux formes intéressantes",
+              "quantity": "20+ pierres variées (rondes, cubiques, triangulaires)",
+              "source": "Collecte extérieure sécuritaire ou achat éducatif",
+              "preparation": "Sélectionner formes claires, nettoyer, éliminer pierres dangereuses",
+              "alternatives": ["Géodes artificielles", "Blocs de construction colorés"]
+            },
+            {
+              "item": "Fleurs fraîches ou séchées variées",
+              "quantity": "15+ spécimens avec formes géométriques claires",
+              "source": "Jardin de l'école ou dons de parents",
+              "preparation": "Vérifier absence d'allergies, préparer conservation temporaire",
+              "alternatives": ["Fleurs artificielles réalistes", "Photos macro de fleurs"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Plateaux d'organisation par type d'objet",
+              "quantity": "4 plateaux pour classification durant exploration",
+              "purpose": "Organisation et présentation esthétique des collections naturelles"
+            }
+          ]
+        },
         "visualSupports": "Guide d'identification des formes dans les éléments naturels",
         "decisionPoints": [
-          {
-            "question": "Les élèves peuvent-ils voir les formes dans la nature?",
-            "ifYes": "Cherchez des formes plus subtiles ou des motifs répétitifs",
-            "ifNo": "Commencez par des exemples très évidents comme les cercles des tournesols"
-          },
-          {
-            "question": "Comprennent-ils que la géométrie existe naturellement?",
-            "ifYes": "Discutez pourquoi la nature utilise ces formes",
-            "ifNo": "Concentrez-vous sur la découverte et la reconnaissance simple"
-          }
+          "Si les élèves ne voient pas les formes dans objets naturels → utiliser cadre en carton pour isoler sections",
+          "Si fascination excessive pour objets naturels → rappeler focus sur formes géométriques"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Création d'un musée de formes naturelles avec les objets trouvés",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Tables ou surfaces d'exposition",
+              "quantity": "3-4 surfaces pour créer zones d'exposition thématiques",
+              "source": "Tables de classe ou planches sur supports",
+              "preparation": "Couvrir de nappe ou papier pour créer fond uni",
+              "alternatives": ["Tapis au sol", "Cartons grands formats posés"]
+            },
+            {
+              "item": "Étiquettes et marqueurs pour identification",
+              "quantity": "30 petites étiquettes + 3 marqueurs de couleurs",
+              "source": "Fournitures bureau - préparer étiquettes blanches",
+              "preparation": "Pré-découper étiquettes de taille uniforme",
+              "alternatives": ["Autocollants réutilisables", "Petits cartons pliés"]
+            },
+            {
+              "item": "Loupes fixes ou sur supports pour musée",
+              "quantity": "4 loupes disponibles pour visiteurs du musée",
+              "source": "Même matériel que l'exploration mais réorganisé",
+              "preparation": "Placer stratégiquement pour observation détaillée",
+              "alternatives": ["Loupes partagées en circulation", "Observation directe seulement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Panneaux explicatifs illustrés",
+              "quantity": "3 panneaux thématiques pour guider visite",
+              "purpose": "Information éducative sur formes géométriques dans nature"
+            }
+          ]
+        },
+        "visualSupports": "Musée organisé avec zones thématiques claires et étiquetage simple",
+        "decisionPoints": [
+          "Si désordre durant installation → assigner rôles spécifiques (conservateur, guide, organisateur)"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -970,14 +1607,44 @@
       },
       "realWorldConnection": "Observer les formes des feuilles, des fleurs, des roches, des coquillages",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec objets naturels aux formes très évidentes (rond, carré seulement)",
+          "Utiliser cadre découpé pour isoler et concentrer attention sur parties géométriques",
+          "Permettre manipulation prolongée d'un objet avant passage au suivant",
+          "Associer à objets familiers (feuille ronde comme assiette, pierre carrée comme dé)"
+        ],
+        "forAdvanced": [
+          "Rechercher patterns répétitifs complexes (spirales de coquillages, symétries florales)",
+          "Analyser pourquoi la nature utilise certaines formes (efficacité, solidité, esthétique)",
+          "Créer classification personnelle basée sur critères géométriques multiples",
+          "Devenir guides experts pour expliquer découvertes aux autres élèves"
+        ],
+        "forELL": [
+          "Vocabulaire concret avec objets réels : cette feuille EST ronde, cette pierre EST carrée",
+          "Utiliser gestes déscriptifs pour accompagner mots (tracer contours, pointer caractéristiques)",
+          "Encourager comparaisons simples en français : même forme que..., différent de...",
+          "Accepter description mixte (langue première + mots français de formes)"
+        ],
+        "forIEP": [
+          "Adapter selon sensibilités : objets doux vs rugueux, gros vs petits selon préférences",
+          "Options de participation : observer seulement, toucher avec outils, description orale/gestuelle",
+          "Environnement sensoriel contrôlé : éviter surstimulation par trop d'objets à la fois",
+          "Temps flexible : pauses fréquentes selon besoins individuels de concentration"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie formes géométriques de base dans objets naturels authentiques",
+          "Élève utilise outils d'observation (loupe, carnet) de manière appropriée",
+          "Élève documente découvertes par dessin ou notation dans carnet d'observation",
+          "Élève fait connexions entre formes abstraites et manifestations naturelles",
+          "Élève participe respectueusement à création et visite du musée collectif"
+        ],
+        "checkpoints": [
+          "Pendant l'observation : noter capacité à transférer reconnaissance des formes aux objets naturels",
+          "Pendant l'exploration : observer usage des outils et qualité de la documentation",
+          "Pendant le musée : évaluer participation à organisation et capacité à expliquer découvertes"
+        ]
       }
     },
     {
@@ -994,44 +1661,117 @@
       "opening": {
         "duration": 8,
         "activity": "Comparaison directe entre formes plates (2D) et objets épais (3D)",
-        "materials": [
-          "solides géométriques en bois",
-          "formes plates correspondantes",
-          "boîte surprise"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Collection de solides géométriques en bois massif",
+              "quantity": "18 solides (6 cubes, 6 sphères, 6 cylindres) de taille manipulable",
+              "source": "Kit de géométrie 3D - armoire matériel mathématique",
+              "preparation": "Vérifier état du bois, poncer si nécessaire pour sécurité",
+              "alternatives": ["Solides en plastique dur", "Objets quotidiens de formes correspondantes"]
+            },
+            {
+              "item": "Formes plates 2D correspondantes aux solides",
+              "quantity": "18 formes plates (carrés, cercles, rectangles) même taille que faces",
+              "source": "Découper dans carton épais ou utiliser formes existantes",
+              "preparation": "S'assurer que dimensions correspondent aux faces des solides",
+              "alternatives": ["Dessins au tableau", "Formes magnétiques plates"]
+            },
+            {
+              "item": "Boîte mystère tactile améliorée",
+              "quantity": "1 grande boîte avec compartiments pour exploration tactile",
+              "source": "Boîte de chaussures décorée avec ouvertures pour mains",
+              "preparation": "Découper ouvertures, lisser bords, décorer de manière attrayante",
+              "alternatives": ["Sac opaque résistant", "Contenant avec couvercle amovible"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Projecteur ou source lumineuse pour ombres",
+              "quantity": "1 pour démonstration ombres 2D des solides 3D",
+              "purpose": "Illustrer concept abstrait de projection 3D vers 2D"
+            }
+          ]
+        },
         "visualSupports": "Paires d'objets 2D et 3D côte à côte pour comparaison",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ne comprennent pas la différence 2D/3D → utiliser analogie de l'ombre projetée au mur"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Manipulation libre des solides 3D et découverte de leurs propriétés uniques",
-        "materials": [
-          "cubes en bois",
-          "balles de différentes tailles",
-          "cylindres en plastique"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes en bois de tailles variées",
+              "quantity": "15 cubes (petit=3cm, moyen=5cm, grand=8cm) - 5 de chaque taille",
+              "source": "Kit de construction ou matériel de manipulation",
+              "preparation": "Vérifier surfaces lisses et arrêtes sécuritaires",
+              "alternatives": ["Boites cubiques vides", "Dés géants en mousse"]
+            },
+            {
+              "item": "Sphères/balles de matériaux différents",
+              "quantity": "12 sphères variées (caoutchouc, bois, plastique, mousse)",
+              "source": "Collection de balles de sport, billes géantes, sphères pédagogiques",
+              "preparation": "S'assurer sécurité (pas trop petites pour éviter étouffement)",
+              "alternatives": ["Oranges/pommes comme sphères naturelles", "Balles de tennis"]
+            },
+            {
+              "item": "Cylindres en matériaux robustes",
+              "quantity": "10 cylindres (tubes carton, boîtes conserve vides, rondins bois)",
+              "source": "Récupération sécurisée ou achat matériel pédagogique",
+              "preparation": "Recouvrir bords métalliques, poncer surfaces rugueuses",
+              "alternatives": ["Rouleaux papier toilette renforcés", "Tubes PVC courts"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Objets quotidiens correspondants",
+              "quantity": "Collection d'objets familièrs (boîtes, canettes, balles de sport)",
+              "purpose": "Connexions concrètes entre solides abstraits et réalité"
+            }
+          ]
+        },
         "visualSupports": "Objets du quotidien correspondant aux solides géométriques",
         "decisionPoints": [
-          {
-            "question": "Les élèves comprennent-ils la différence 2D/3D?",
-            "ifYes": "Explorez comment les solides occupent l'espace",
-            "ifNo": "Utilisez l'analogie de l'ombre : les formes plates sont comme des ombres"
-          },
-          {
-            "question": "Le concept de tridimensionnel est-il trop abstrait?",
-            "ifYes": "Concentrez-vous sur la manipulation et les noms seulement",
-            "ifNo": "Introduisez les termes longueur, largeur, hauteur"
-          }
+          "Si le concept 3D est trop abstrait → se concentrer sur manipulation et noms seulement (cube, sphère, cylindre)"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Jeu de correspondance : associer chaque solide avec un objet familier de même forme",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Photos d'objets familièrs de formes correspondantes",
+              "quantity": "12 photos plastifiées (boîtes, balles, canettes, etc.)",
+              "source": "Imprimer photos ou dessiner illustrations claires",
+              "preparation": "Plastifier pour durabilité, choisir objets très reconnaissables",
+              "alternatives": ["Objets réels apportés en classe", "Dessins simples au tableau"]
+            },
+            {
+              "item": "Tapis ou espace délimité pour jeu",
+              "quantity": "1 grande surface pour disposer solides et photos",
+              "source": "Tapis de classe ou marquer zone avec ruban",
+              "preparation": "Délimiter clairement espace de jeu pour organisation",
+              "alternatives": ["Tables réorganisées", "Sol libre avec élèves assis en cercle"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Chrono visuel pour dynamiser le jeu",
+              "quantity": "1 minuteur pour créer urgence ludique",
+              "purpose": "Maintenir engagement et rythme soutenu"
+            }
+          ]
+        },
+        "visualSupports": "Correspondances claires entre solides abstraits et objets concrets familièrs",
+        "decisionPoints": [
+          "Si élèves ont difficulté à faire correspondances → commencer par associations les plus évidentes"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1040,14 +1780,44 @@
       },
       "realWorldConnection": "Identifier les boîtes (cubes), les balles (sphères), les canettes (cylindres)",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur un seul type de solide à la fois (commencer par la sphère, plus intuitive)",
+          "Utiliser objets très familièrs avant solides abstraits (balle, boîte de mouchoirs, tube)",
+          "Encourager exploration tactile prolongée pour intégrer concept de tridimensionnalité",
+          "Simplifier vocabulaire : ça roule (sphère), ça empile (cube), ça tient debout (cylindre)"
+        ],
+        "forAdvanced": [
+          "Introduire solides plus complexes (pyramide, cône, prisme) pour classification avancée",
+          "Explorer relations entre solides 3D et leurs faces 2D (cube a faces carrées)",
+          "Analyser propriétés physiques (pourquoi sphère roule, cube empile facilement)",
+          "Devenir experts pour enseigner différences 2D/3D aux autres élèves"
+        ],
+        "forELL": [
+          "Associer chaque solide à geste caractéristique (rouler pour sphère, empiler pour cube)",
+          "Vocabulaire concret avec objets réels : cette balle EST une sphère, cette boîte EST un cube",
+          "Utiliser comparaisons corporelles : cube comme maison, sphère comme tête, cylindre comme bras",
+          "Permettre description en langue première puis répétition en français"
+        ],
+        "forIEP": [
+          "Adapter selon besoins sensoriels (textures variées, tailles appropriées, contrastes visuels)",
+          "Options de manipulation : outils adaptés si difficultés motrices, supports stables",
+          "Ajuster rythme selon capacité d'attention : pauses fréquentes, durée flexible",
+          "Alternatives de participation : observation, description verbale, démonstration assistée"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève distingue clairement entre objets 2D (plats) et 3D (épais/volumineux)",
+          "Élève nomme correctement les trois solides de base : cube, sphère, cylindre",
+          "Élève manipule efficacement les solides pour explorer leurs propriétés",
+          "Élève établit correspondances logiques entre solides abstraits et objets familièrs",
+          "Élève utilise vocabulaire approprié pour décrire les caractéristiques des solides"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : vérifier compréhension de la différence fondamentale 2D/3D",
+          "Pendant la manipulation : observer reconnaissance tactile et visuelle des trois solides",
+          "Pendant le jeu de correspondance : noter justesse des associations avec objets familièrs"
+        ]
       }
     },
     {
@@ -1064,23 +1834,79 @@
       "opening": {
         "duration": 8,
         "activity": "Prédictions : quel objet va rouler, glisser ou rester en place sur un plan incliné?",
-        "materials": [
-          "plan incliné",
-          "objets variés",
-          "feuille de prédictions"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Plan incliné ajustable robuste",
+              "quantity": "1 rampe 60cm minimum avec supports réglables",
+              "source": "Matériel scientifique ou construire avec planche et cales",
+              "preparation": "Vérifier stabilité, ajuster angle modéré pour sécurité",
+              "alternatives": ["Planche appuyée sur chaise", "Rampe de jeu extérieur"]
+            },
+            {
+              "item": "Collection d'objets aux propriétés variées",
+              "quantity": "12 objets : sphères, cubes, cylindres, objets irréguliers",
+              "source": "Solides géométriques + objets quotidiens sécuritaires",
+              "preparation": "Sélectionner objets de taille similaire pour comparaison équitable",
+              "alternatives": ["Jouets de formes variées", "Objets de la classe"]
+            },
+            {
+              "item": "Feuilles de prédictions illustrées",
+              "quantity": "25 feuilles avec pictogrammes simples (rouler/glisser/rester)",
+              "source": "Créer avec dessins ou imprimer modèles",
+              "preparation": "Prévoir colonnes claires pour prédictions et résultats",
+              "alternatives": ["Ardoises individuelles", "Section du tableau de classe"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Caméra ou appareil pour filmer expériences",
+              "quantity": "1 pour documenter mouvements et revoir en ralenti",
+              "purpose": "Analyse détaillée des mouvements pour compréhension approfondie"
+            }
+          ]
+        },
         "visualSupports": "Tableau de prédictions avec pictogrammes de mouvements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves prédisent tout au hasard → démontrer avec un exemple évident d'abord"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Expérimentation systématique du mouvement des solides sur différentes surfaces",
-        "materials": [
-          "rampes de différents angles",
-          "tapis rugueux",
-          "surfaces lisses"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Rampes multi-angles ajustables",
+              "quantity": "3 rampes ou 1 rampe avec 3 réglages (doux, moyen, raide)",
+              "source": "Extension du matériel d'ouverture ou construire variants",
+              "preparation": "Marquer angles clairement, sécuriser fixations",
+              "alternatives": ["Utiliser livres pour créer angles différents", "Rampe unique avec tests répétés"]
+            },
+            {
+              "item": "Surfaces de texture contrastée",
+              "quantity": "4 types : tapis rugueux, surface lisse, sable fin, surface collante",
+              "source": "Tapis de classe, plateau lisse, bac à sable, surface antidérapante",
+              "preparation": "Délimiter zones clairement, sécuriser surfaces au sol",
+              "alternatives": ["Papiers de textures variées", "Surfaces improviser avec matériaux classe"]
+            },
+            {
+              "item": "Matériel de mesure simple",
+              "quantity": "Règles ou rubans pour mesurer distances parcourues",
+              "source": "Matériel de mathématiques ou improviser avec ficelles",
+              "preparation": "Marquer unités simples adaptées à l'âge",
+              "alternatives": ["Compter pas pour mesurer", "Observation qualitative seulement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Chronomètres simples",
+              "quantity": "2-3 minuteurs pour mesurer durées",
+              "purpose": "Comparaisons temporelles pour analyses plus poussées"
+            }
+          ]
+        },
         "visualSupports": "Instructions visuelles pour tester chaque type de mouvement",
         "decisionPoints": [
           {
@@ -1110,14 +1936,44 @@
       },
       "realWorldConnection": "Faire rouler une balle, empiler des boîtes, faire glisser un livre",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 3 objets très contrastés (balle, cube, objet irrégulier) pour simplifier",
+          "Utiliser rampe douce et surface simple pour réduire variables",
+          "Permettre prédictions par gestes avant verbalisation",
+          "Associer à mouvements corporels familiers pour compréhension"
+        ],
+        "forAdvanced": [
+          "Tester objets complexes et prédire comportements selon formes",
+          "Analyser effet des surfaces et angles sur types de mouvements",
+          "Mesurer distances et temps pour comparaisons quantitatives",
+          "Expliquer principes physiques simples derrière les mouvements"
+        ],
+        "forELL": [
+          "Vocabulaire action avec démonstrations : ROULER (geste), GLISSER (geste), RESTER (geste)",
+          "Répéter mots-clés pendant chaque expérience avec renforcement visuel",
+          "Utiliser onomatopées si nécessaire (rrrrou pour rouler, ssss pour glisser)",
+          "Permettre description simple : ça bouge/ça bouge pas avant vocabulaire précis"
+        ],
+        "forIEP": [
+          "Adapter hauteur rampe selon capacités motrices pour manipulation sécuritaire",
+          "Utiliser objets de tailles adaptées aux capacités de préhension",
+          "Permettre observation sans manipulation si nécessaire",
+          "Ajuster volume et stimulation sensorielle selon sensibilités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève prédit correctement le type de mouvement selon la forme d'objet",
+          "Élève observe et décrit précisément les mouvements observés",
+          "Élève utilise vocabulaire approprié : rouler, glisser, rester, empiler",
+          "Élève établit liens logiques entre propriétés des formes et comportements",
+          "Élève participe activement aux expériences et discussions"
+        ],
+        "checkpoints": [
+          "Pendant prédictions : noter logique du raisonnement et précision des hypothèses",
+          "Pendant expériences : observer capacité à corriger prédictions selon résultats",
+          "Pendant synthèse : évaluer compréhension des relations forme-mouvement"
+        ]
       }
     },
     {
@@ -1134,44 +1990,97 @@
       "opening": {
         "duration": 8,
         "activity": "Inspiration créative : observation de sculptures simples et de constructions 3D",
-        "materials": [
-          "variety pack de solides",
-          "pâte adhésive",
-          "cure-dents"
+        "materials": {
+          "required": [
+            {
+              "item": "Variety pack de solides géométriques",
+              "quantity": "1 ensemble de 36 pièces (12 cubes, 12 cylindres, 12 sphères) en bois massif",
+              "source": "Kit manipulatifs mathématiques 3D - armoire D",
+              "preparation": "Trier par type de solide dans bacs étiquetés avec images",
+              "alternatives": ["Solides en plastique dur", "Boîtes et contenants recyclés de formes appropriées"]
+            },
+            {
+              "item": "Pâte adhésive réutilisable",
+              "quantity": "8 paquets de 50g (couleurs variées)",
+              "source": "Fournitures artistiques - tiroir matériaux collants",
+              "preparation": "Diviser en portions individuelles dans petits contenants",
+              "alternatives": ["Pâte à modeler", "Cure-dents et bouchons"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Photos de sculptures géométriques",
+              "quantity": "12 images plastifiées format A4",
+              "purpose": "Inspiration visuelle pour stimuler créativité et donner exemples concrets"
+            }
+          ]
+        },
+        "visualSupports": "Photos de sculptures géométriques simples adaptées à l'âge affichées au tableau, exemples d'assemblages possibles avec modèles étape par étape",
+        "decisionPoints": [
+          "Si les élèves manquent d'inspiration → montrer techniques d'assemblage simple (empiler, connecter avec pâte adhésive)",
+          "Si préoccupations de sécurité avec petites pièces → utiliser solides plus gros ou supervision renforcée"
         ],
-        "visualSupports": "Photos de sculptures géométriques simples adaptées à l'âge",
-        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Construction libre de sculptures et structures en utilisant les propriétés des solides",
-        "materials": [
-          "blocs 3D variés",
-          "cylindres en carton",
-          "sphères en polystyrène"
-        ],
-        "visualSupports": "Exemples de techniques d'assemblage et d'équilibrage",
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs 3D variés en bois",
+              "quantity": "120 pièces (40 cubes variés, 40 cylindres différentes tailles, 40 sphères/demi-sphères)",
+              "source": "Kit construction géométrique - grande armoire construction",
+              "preparation": "Organiser par station de 4-5 élèves avec variété équilibrée de formes",
+              "alternatives": ["Blocs en mousse dense", "Contenants recyclés propres et sécuritaires"]
+            },
+            {
+              "item": "Cylindres en carton robuste",
+              "quantity": "25 cylindres (tubes papier toilette, essuie-tout) différentes hauteurs",
+              "source": "Recyclage classe - collecte sur 2 semaines",
+              "preparation": "Nettoyer, renforcer avec ruban adhésif si nécessaire",
+              "alternatives": ["Cylindres en plastique", "Bouteilles cylindriques vides"]
+            },
+            {
+              "item": "Sphères en polystyrène",
+              "quantity": "30 sphères de 3 tailles différentes (5cm, 7cm, 10cm)",
+              "source": "Matériel artistique - boîte formes 3D",
+              "preparation": "Vérifier intégrité, retirer si cassées ou friables",
+              "alternatives": ["Balles de tennis/ping-pong", "Boules de pâte à modeler durcie"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Plateaux de construction individuels",
+              "quantity": "25 plateaux ou napperons",
+              "purpose": "Définir espace de travail et faciliter rangement"
+            }
+          ]
+        },
+        "visualSupports": "Poster avec techniques d'assemblage et d'équilibrage, exemples photographiques de constructions réussies par étapes",
         "decisionPoints": [
-          {
-            "question": "Les élèves planifient-ils leurs constructions?",
-            "ifYes": "Encouragez des projets plus ambitieux ou collaboratifs",
-            "ifNo": "Commencez par des défis simples : tour la plus haute, pont le plus solide"
-          },
-          {
-            "question": "Comprennent-ils les concepts d'équilibre?",
-            "ifYes": "Explorez des constructions en porte-à-faux ou asymétriques",
-            "ifNo": "Concentrez-vous sur des empilements simples et symétriques"
-          }
+          "Si les élèves ont des difficultés d'équilibre → démontrer technique de base large et centre de gravité",
+          "Si constructions s'effondrent fréquemment → encourager planification préalable et tests d'assemblage"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Exposition de sculptures avec présentation par les artistes de leurs techniques",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Étiquettes pour exposition",
+              "quantity": "25 petites cartes bristol",
+              "purpose": "Permettre aux élèves de nommer leurs créations comme vrais artistes"
+            }
+          ]
+        },
+        "visualSupports": "Espace d'exposition organisé avec numéros pour chaque œuvre, tableau de vocabulaire artistique (sculpture, équilibre, créatif)",
+        "decisionPoints": [
+          "Si élèves timides pour présenter → permettre présentation à un partenaire puis à plus grand groupe"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1180,14 +2089,44 @@
       },
       "realWorldConnection": "Construire des châteaux de sable, des tours avec des boîtes de conserve",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 2 types de solides pour réduire la complexité de choix",
+          "Fournir modèles simples à reproduire (tour de 3 pièces, pont basique) avant création libre",
+          "Permettre travail en binome avec partenaire plus expérimenté pour soutien mutuel",
+          "Utiliser solides plus gros et plus stables pour faciliter manipulation et équilibre"
+        ],
+        "forAdvanced": [
+          "Défier avec création de structures complexes multi-niveaux (châteaux, villes miniatures)",
+          "Introduire contraintes créatives (utiliser exactement 12 pièces, créer sans cubes)",
+          "Encourager planification préalable par dessin ou croquis avant construction",
+          "Proposer rôle de mentor pour enseigner techniques d'assemblage aux autres"
+        ],
+        "forELL": [
+          "Associer chaque solide à objets familiers concrets (cube=dé, cylindre=canette, sphère=balle)",
+          "Utiliser gestes et démonstrations visuelles plutot qu'explications verbales complexes",
+          "Permettre description initiale en langue première puis traduction en français simple",
+          "Fournir vocabulaire illustré de construction (empiler, connecter, équilibrer, stable)"
+        ],
+        "forIEP": [
+          "Adapter matériaux selon capacités motrices (solides plus gros, surfaces antidérapantes)",
+          "Offrir outils d'assistance si nécessaire (pinces, supports, gants texturés)",
+          "Ajuster durée et permettre pauses fréquentes selon capacité d'attention",
+          "Proposer alternatives tactiles si sensibilités aux textures (gants, outils intermédiaires)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève manipule les solides 3D avec intention créative et controle moteur approprié",
+          "Élève crée structure stable qui tient debout indépendamment",
+          "Élève nomme les solides utilisés dans sa création (cube, cylindre, sphère)",
+          "Élève explique ses techniques d'assemblage avec vocabulaire approprié",
+          "Élève fait preuve de persévérance face aux difficultés d'équilibrage"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : observer l'engagement avec les exemples visuels et inspiration",
+          "Pendant la construction : noter stratégies d'assemblage et capacité d'adaptation",
+          "Pendant l'exposition : évaluer capacité à décrire sa création et processus créatif"
+        ]
       }
     },
     {
@@ -1204,44 +2143,105 @@
       "opening": {
         "duration": 8,
         "activity": "Mystère des empreintes : observer des traces dans la pâte et deviner quel objet les a faites",
-        "materials": [
-          "pâte à modeler",
-          "solides variés",
-          "encre lavable"
+        "materials": {
+          "required": [
+            {
+              "item": "Pâte à modeler souple et réutilisable",
+              "quantity": "8 blocs de 200g (couleurs variées pour différencier les stations)",
+              "source": "Fournitures artistiques - vérifier fraîcheur avant utilisation",
+              "preparation": "Pétrir pour assouplir, diviser en portions égales dans contenants",
+              "alternatives": ["Argile naturelle humide", "Pâte à sel maison"]
+            },
+            {
+              "item": "Solides géométriques variésàfaces distinctes",
+              "quantity": "30 solides (10 cubes, 10 cylindres, 10 prismes rectangulaires) tailles moyennes",
+              "source": "Collection manipulatifs 3D - nettoyer avant usage",
+              "preparation": "Sélectionner solides avec faces bien définies et surfaces lisses",
+              "alternatives": ["Objets du quotidien (boîtes, canettes, dés)", "Solides imprimés 3D"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Plateaux de travail individuels",
+              "quantity": "25 plateaux ou napperons plastifiés",
+              "purpose": "Contenir la pâte et faciliter le nettoyage après activité"
+            }
+          ]
+        },
+        "visualSupports": "Exemples d'empreintes déjà créées avec objets correspondants affichés, poster montrant différentes faces d'un même solide",
+        "decisionPoints": [
+          "Si pâte trop dure pour empreintes claires → réchauffer entre les mains ou ajouter un peu d'eau",
+          "Si élèves ont difficulté à deviner → montrer l'objet sur différents côtés avant l'empreinte"
         ],
-        "visualSupports": "Exemples d'empreintes déjà créées avec les objets correspondants",
-        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Création systématique d'empreintes de différentes faces des solides 3D",
-        "materials": [
-          "tampons encreurs",
-          "papier épais",
-          "pâte à modeler fraîche"
-        ],
-        "visualSupports": "Guide montrant comment positionner les solides pour créer des empreintes",
+        "materials": {
+          "required": [
+            {
+              "item": "Tampons encreurs lavables grand format",
+              "quantity": "8 tampons de couleurs variées (4 couleurs x 2 tampons)",
+              "source": "Fournitures artistiques - vérifier humidité des tampons",
+              "preparation": "Humidifier si nécessaire, choisir couleurs contrastantes avec papier",
+              "alternatives": ["Peinture dans assiettes avec éponges", "Crayons gras pour frottage"]
+            },
+            {
+              "item": "Papier cartonné épais blanc",
+              "quantity": "75 feuilles format A4 (3 par élève pour expériences multiples)",
+              "source": "Papeterie - grammage 200g minimum pour éviter transpercement",
+              "preparation": "Découper en sections si trop grandes, numéroter par élève",
+              "alternatives": ["Papier journal pour brouillons", "Carton léger recyclé"]
+            },
+            {
+              "item": "Pâte à modeler fraîche supplémentaire",
+              "quantity": "5 blocs de rechange pour compléter empreintes profondes",
+              "source": "Réserve fournitures artistiques",
+              "preparation": "Maintenir souplesse dans contenants hermétiques",
+              "alternatives": ["Sable humide dans bacs", "Argile malaxable"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Loupes d'observation",
+              "quantity": "8-10 loupes pour examiner détails des empreintes",
+              "purpose": "Permettre observation fine des textures et contours créés"
+            }
+          ]
+        },
+        "visualSupports": "Guide illustré montrant comment positionner solides pour empreintes optimales, exemples de techniques (pression, rotation, angles)",
         "decisionPoints": [
-          {
-            "question": "Les élèves voient-ils la connexion 2D/3D?",
-            "ifYes": "Explorez comment un solide peut créer plusieurs formes différentes",
-            "ifNo": "Commencez avec des objets évidents : boîte fait des carrés"
-          },
-          {
-            "question": "Peuvent-ils prédire la forme de l'empreinte?",
-            "ifYes": "Testez avec des solides plus complexes ou inhabituels",
-            "ifNo": "Faites d'abord l'empreinte, puis discutez de ce qui est apparu"
-          }
+          "Si empreintes pas assez nettes → augmenter pression ou vérifier humidité tampon",
+          "Si confusion sur correspondance 2D/3D → faire empreinte en direct devant groupe"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Jeu de correspondance : associer les empreintes avec les solides qui les ont créées",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Tableau d'affichage pour galerie d'empreintes",
+              "quantity": "1 grand panneau ou section de mur",
+              "source": "Utiliser tableau d'affichage existant ou mur classe",
+              "preparation": "Organiser espace pour afficher toutes les empreintes clairement",
+              "alternatives": ["Cordes avec pinces pour suspendre", "Sol délimité pour exposition"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Autocollants ou marqueurs pour votes",
+              "quantity": "25 autocollants par élève",
+              "purpose": "Permettre aux élèves de voter pour leurs empreintes préférées"
+            }
+          ]
+        },
+        "visualSupports": "Galerie organisée des empreintes avec espace pour placer solides correspondants, légendes visuelles",
+        "decisionPoints": [
+          "Si difficultés d'association → permettre manipulation directe: placer solide sur empreinte pour vérifier"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1250,14 +2250,44 @@
       },
       "realWorldConnection": "Faire des empreintes dans la pâte, observer les traces de pas dans la neige",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec un seul solide familier (cube) et explorer toutes ses faces avant d'ajouter d'autres",
+          "Utiliser objets du quotidien très reconnaissables (boîte de mouchoirs, canette) avant formes abstraites",
+          "Permettre manipulation prolongée du solide avant de faire l'empreinte",
+          "Faire empreinte avec aide de l'adulte au début puis progressivement autonomie"
+        ],
+        "forAdvanced": [
+          "Explorer comment un même solide peut créer différentes formes selon l'orientation",
+          "Prédire la forme de l'empreinte avant de la faire et vérifier hypothèses",
+          "Créer des compositions artistiques en combinant plusieurs empreintes",
+          "Analyser et expliquer pourquoi certaines faces donnent des formes identiques"
+        ],
+        "forELL": [
+          "Associer chaque empreinte à vocabulaire concret (carré comme fenêtre, cercle comme assiette)",
+          "Utiliser gestes démonstratifs: appuyer, tourner, presser, avec répétition verbale",
+          "Permettre description en langue première puis traduction simple en français",
+          "Fournir cartes visuelles montrant étapes: solide → empreinte → forme 2D"
+        ],
+        "forIEP": [
+          "Adapter outils selon besoins moteurs (poignées sur solides, guides pour pression)",
+          "Utiliser supports sensoriels si nécessaire (textures contrastées, couleurs vives)",
+          "Ajuster durée et permettre pauses fréquentes selon capacité d'attention",
+          "Offrir alternatives: observer pendant que partenaire fait empreinte, puis identifier"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève comprend que les solides 3D peuvent créer des formes 2D par leurs faces",
+          "Élève identifie correctement la relation entre un solide et son empreinte",
+          "Élève manipule efficacement la pâte et les solides pour créer empreintes claires",
+          "Élève nomme les formes 2D créées à partir des faces des solides",
+          "Élève prédit avec précision croissante quelle empreinte un solide va créer"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture : observer capacité à associer empreintes mystères avec objets correspondants",
+          "Pendant l'exploration : noter précision des techniques d'empreinte et compréhension 2D/3D",
+          "Pendant le jeu final : évaluer succès dans associations empreintes-solides et justifications"
+        ]
       }
     },
     {
@@ -1274,44 +2304,98 @@
       "opening": {
         "duration": 8,
         "activity": "Planification artistique : choisir techniques et matériaux pour créer une œuvre finale",
-        "materials": [
-          "matériaux d'art variés",
-          "formes et solides",
-          "toiles ou papier grand format"
-        ],
-        "visualSupports": "Exemples d'art géométrique adapté à l'âge (Mondrian, Kandinsky simplifié)",
+        "materials": {
+          "required": [
+            {
+              "item": "Matériaux d'art variés pour création libre",
+              "quantity": "Station multiple: peinture (8 couleurs), colle, ciseaux, crayons, marqueurs",
+              "source": "Fournitures artistiques complètes - vérifier stocks avant leçon",
+              "preparation": "Organiser en stations accessibles avec matériel visible et à portée",
+              "alternatives": ["Matériaux naturels collectés", "Matériaux recyclés colorés et propres"]
+            },
+            {
+              "item": "Collection complète formes 2D et solides 3D",
+              "quantity": "Tous les manipulatifs utilisés dans l'unité pour référence et inspiration",
+              "source": "Rassembler tous les matériaux géométriques de l'unité",
+              "preparation": "Nettoyer et organiser par type dans bacs étiquetés et accessibles",
+              "alternatives": ["Photos des formes si objets indisponibles", "Dessins de référence des formes"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Reproductions d'art géométrique célèbre",
+              "quantity": "6-8 images plastifiées d'art géométrique adapté à l'âge",
+              "purpose": "Inspiration artistique et connexion avec vrais artistes"
+            }
+          ]
+        },
+        "visualSupports": "Galerie d'inspiration avec exemples d'art géométrique adapté (Mondrian simplifié, Kandinsky coloré), techniques artistiques illustrées",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Création libre d'œuvres artistiques intégrant tous les apprentissages géométriques",
-        "materials": [
-          "pinceaux",
-          "peinture",
-          "collage",
-          "matériaux de sculpture"
-        ],
-        "visualSupports": "Techniques artistiques illustrées : collage, peinture, sculpture",
+        "materials": {
+          "required": [
+            {
+              "item": "Pinceaux de tailles variées",
+              "quantity": "30 pinceaux (petits, moyens, gros) + gobelets d'eau",
+              "source": "Kit peinture classe - nettoyer avant usage",
+              "preparation": "Vérifier état des poils, préparer eau de rinçage, serviettes",
+              "alternatives": ["Brosses à dents pour textures", "Tampons en mousse"]
+            },
+            {
+              "item": "Peinture tempera lavable",
+              "quantity": "8 couleurs principales en tubes ou pots partageables",
+              "source": "Fournitures artistiques - vérifier fluidité et quantités",
+              "preparation": "Préparer palettes ou assiettes pour mélange, diluer si nécessaire",
+              "alternatives": ["Peinture à l'eau maison", "Crayons aquarellables"]
+            },
+            {
+              "item": "Papier support grand format",
+              "quantity": "25 feuilles A3 ou plus grand (carton léger ou papier épais)",
+              "source": "Papeterie - choisir grammage adapté pour peinture",
+              "preparation": "Prédécouper si besoin, préparer espace séchage",
+              "alternatives": ["Cartons de récupération propres", "Toiles en tissu simple"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Matériaux de collage et sculpture",
+              "quantity": "Collection: tissus, papiers colorés, matériaux texturés divers",
+              "purpose": "Permettre techniques artistiques mixtes et exploration créative"
+            }
+          ]
+        },
+        "visualSupports": "Poster de techniques artistiques illustrées (collage, peinture, assemblage), exemples d'intégration des formes géométriques",
         "decisionPoints": [
-          {
-            "question": "Les élèves sont-ils fiers de leurs créations?",
-            "ifYes": "Encouragez l'expérimentation et les détails artistiques",
-            "ifNo": "Aidez-les à voir les réussites dans leur travail et offrez du soutien"
-          },
-          {
-            "question": "Peuvent-ils expliquer leurs œuvres?",
-            "ifYes": "Préparez-les à présenter comme de vrais artistes",
-            "ifNo": "Aidez-les à identifier une chose qu'ils aiment dans leur création"
-          }
+          "Si élèves manquent d'inspiration artistique → proposer thèmes simples (maison, paysage, animal) utilisant les formes apprises"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Vernissage de la galerie avec présentation des artistes et applaudissements",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Espace d'exposition aménagé",
+              "quantity": "Murs, cordes ou panneaux pour afficher toutes les œuvres",
+              "source": "Utiliser murs classe ou couloir, installer supports temporaires",
+              "preparation": "Organiser parcours de visite, numéroter ou nommer les œuvres",
+              "alternatives": ["Sol délimité pour exposition", "Tables d'exposition"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Étiquettes d'artiste et certificats",
+              "quantity": "25 étiquettes personnalisées et certificats de participation",
+              "purpose": "Célébrer les créations et valoriser le travail artistique de chacun"
+            }
+          ]
+        },
+        "visualSupports": "Galerie organisée avec œuvres bien mises en valeur, éclairage approprié si possible",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1321,14 +2405,44 @@
       },
       "realWorldConnection": "Créer un coin art à la maison, montrer ses œuvres à la famille",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Proposer projets guidés avec étapes claires (dessiner maison = carré + triangle sur le toit)",
+          "Fournir gabarits des formes principales pour tracer avant de peindre ou coller",
+          "Permettre travail en équipe ou avec assistance d'un partenaire plus expérimenté",
+          "Simplifier la palette de couleurs et le choix de matériaux pour éviter la surcharge"
+        ],
+        "forAdvanced": [
+          "Encourager techniques artistiques complexes (mélange de couleurs, superposition, textures)",
+          "Défier avec intégration de formes moins communes (ovales, losanges) dans les créations",
+          "Proposer création de séries d'œuvres ou variations sur un thème géométrique",
+          "Inviter à devenir mentors artistiques pour aider et inspirer autres élèves"
+        ],
+        "forELL": [
+          "Associer création artistique à vocabulaire concret (ma maison, mon animal, mon jardin)",
+          "Utiliser gestes et démonstrations visuelles pour expliquer techniques artistiques",
+          "Permettre expression créative non-verbale avec description simple après création",
+          "Fournir cartes visuelles des techniques de base (peindre, coller, découper, assembler)"
+        ],
+        "forIEP": [
+          "Adapter outils artistiques selon besoins moteurs (pinceaux à gros manches, supports antidérapants)",
+          "Offrir alternatives sensorielles (textures douces, couleurs non-vives si sensibilités)",
+          "Ajuster durée et intensité créative selon capacité d'attention et tolérance",
+          "Proposer rôles alternatifs (observer, commenter, organiser matériel) si création difficile"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève intègre formes géométriques apprises dans sa création artistique personnelle",
+          "Élève utilise techniques artistiques variées (peinture, collage, assemblage) avec intention",
+          "Élève nomme les formes utilisées dans son œuvre avec vocabulaire approprié",
+          "Élève explique ses choix créatifs et décrit son processus artistique",
+          "Élève fait preuve de fierté et de plaisir dans sa création finale"
+        ],
+        "checkpoints": [
+          "Pendant planification : observer capacité à envisager intégration des formes géométriques",
+          "Pendant création : noter utilisation créative des apprentissages et techniques artistiques",
+          "Pendant vernissage : évaluer capacité à présenter et décrire son œuvre avec vocabulaire géométrique"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1385,43 +2499,98 @@
       "opening": {
         "duration": 8,
         "activity": "Présentation de photos de professionnels utilisant des formes dans leur travail",
-        "materials": [
-          "photos de métiers",
-          "outils de construction miniatures",
-          "déguisements"
-        ],
-        "visualSupports": "Images claires montrant architectes, chefs, mécaniciens au travail",
+        "materials": {
+          "required": [
+            {
+              "item": "Photos de professionnels et métiers divers",
+              "quantity": "12-15 images plastifiées format A4 montrant géométrie dans métiers",
+              "source": "Banque d'images pédagogiques ou impression couleur",
+              "preparation": "Sélectionner images représentant diversité genres et cultures, plastifier",
+              "alternatives": ["Vidéos courtes de professionnels", "Inviter parents à présenter leur métier"]
+            },
+            {
+              "item": "Outils de construction et métiers miniatures",
+              "quantity": "Collection: marteau jouet, règle, emporte-pièces, outils de dessin",
+              "source": "Jouets éducatifs - coin jeu symbolique",
+              "preparation": "Nettoyer et organiser par métier dans paniers étiquetés",
+              "alternatives": ["Objets réels sécuritaires", "Images d'outils si objets indisponibles"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Accessoires de déguisement simples",
+              "quantity": "Chapeaux, tabliers, lunettes de sécurité jouet pour jeu de rôle",
+              "purpose": "Encourager identification aux métiers et jeu de rôle authentique"
+            }
+          ]
+        },
+        "visualSupports": "Images claires et diverses montrant architectes, chefs, mécaniciens, artistes au travail avec formes géométriques visibles",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "Jeu de rôle : les élèves 'travaillent' comme différents professionnels utilisant les formes",
-        "materials": [
-          "blocs de construction",
-          "emporte-pièces",
-          "outils de mesure jouets"
-        ],
-        "visualSupports": "Stations de métiers avec matériaux et instructions visuelles",
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs de construction variés",
+              "quantity": "60-80 pièces (cubes, cylindres, prismes) pour construction architecturale",
+              "source": "Collection manipulatifs - rassembler toutes formes disponibles",
+              "preparation": "Organiser par station de 4-5 élèves avec variété équilibrée",
+              "alternatives": ["Blocs Lego ou similaires", "Cartons de recyclage propres"]
+            },
+            {
+              "item": "Emporte-pièces géométriques",
+              "quantity": "12-15 emporte-pièces de formes variées + pâte à modeler",
+              "source": "Fournitures culinaires pédagogiques",
+              "preparation": "Nettoyer, vérifier sécurité, préparer pâte en portions",
+              "alternatives": ["Formes à découper en carton", "Gabarits à tracer"]
+            },
+            {
+              "item": "Outils de mesure adaptés aux enfants",
+              "quantity": "8 règles souples, mètres ruban, équerres en plastique",
+              "source": "Matériel mathématique - sélectionner outils sécuritaires",
+              "preparation": "Vérifier état, nettoyer, organiser dans boîte outils",
+              "alternatives": ["Ficelles pour mesurer", "Pas comme unité de mesure"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Carnets de 'plans' pour architectes en herbe",
+              "quantity": "25 petits carnets et crayons pour dessiner constructions",
+              "purpose": "Permettre planification comme vrais professionnels"
+            }
+          ]
+        },
+        "visualSupports": "Stations de métiers clairement étiquetées avec instructions visuelles et exemples de réalisations",
         "decisionPoints": [
-          {
-            "question": "Les élèves comprennent-ils les liens avec les métiers?",
-            "ifYes": "Explorez des métiers moins évidents utilisant la géométrie",
-            "ifNo": "Concentrez-vous sur des exemples très concrets et visuels"
-          },
-          {
-            "question": "Les métiers présentés sont-ils diversifiés?",
-            "ifYes": "Continuez avec la variété actuelle",
-            "ifNo": "Ajoutez des métiers représentant différents genres et cultures"
-          }
+          "Si élèves ont difficulté à faire liens métiers-formes → démontrer concrètement (architecte dessine carrés pour fenêtres)"
         ],
         "movementBreaks": []
       },
       "closing": {
         "duration": 10,
         "activity": "Discussion : quel métier les intéresse et comment ils utiliseraient les formes",
-        "materials": [],
-        "visualSupports": "",
+        "materials": {
+          "required": [
+            {
+              "item": "Tableau ou affichage pour noter réponses",
+              "quantity": "Espace d'affichage pour consigner idées des élèves",
+              "source": "Tableau classe ou grande feuille",
+              "preparation": "Préparer colonnes: Métier | Formes utilisées",
+              "alternatives": ["Cartes mobiles à organiser", "Discussion orale sans affichage"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Photos des créations réalisées aux stations",
+              "quantity": "Appareil photo pour documenter réalisations",
+              "purpose": "Garder trace des apprentissages et valoriser créations"
+            }
+          ]
+        },
+        "visualSupports": "Récapitulatif visuel des métiers explorés avec exemples de formes associées",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -1431,14 +2600,44 @@
       },
       "realWorldConnection": "Observer le travail des architectes, des cuisiniers, des mécaniciens",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 2-3 métiers très familiers (cuisinier, constructeur) avec liens évidents",
+          "Utiliser objets très concrets et reconnaissables dans jeu de rôle",
+          "Permettre observation passive avant participation active aux stations",
+          "Simplifier liens: cette personne utilise des cercles, cette personne utilise des carrés"
+        ],
+        "forAdvanced": [
+          "Explorer métiers moins évidents utilisant géométrie (designer, ingénieur, artiste)",
+          "Analyser comment formes influencent fonctionnalité (roue ronde pour rouler, mur carré pour solidité)",
+          "Créer liens entre différents métiers partageant mêmes formes géométriques",
+          "Proposer d'inventer nouveau métier utilisant formes spécifiques"
+        ],
+        "forELL": [
+          "Associer chaque métier à gestes et actions concrètes (cuisiner, construire, mesurer)",
+          "Utiliser photos et démonstrations visuelles plutôt qu'explications verbales longues",
+          "Permettre expression en langue première puis traduction simple des métiers connus",
+          "Fournir cartes visuelles: métier + outil + forme utilisée"
+        ],
+        "forIEP": [
+          "Adapter participation selon capacités: observer, manipuler outils, ou décrire",
+          "Utiliser métiers familiers du milieu de vie de l'élève",
+          "Ajuster intensité sensorielle des stations selon tolérance",
+          "Proposer rôles alternatifs si manipulation d'outils difficile"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 2 métiers utilisant formes géométriques dans leur travail",
+          "Élève établit liens logiques entre formes et usage professionnel",
+          "Élève participe au jeu de rôle en imitant actions professionnelles appropriées",
+          "Élève utilise vocabulaire des métiers et des formes de façon contextuelle",
+          "Élève exprime intérêt ou curiosité pour découvrir d'autres métiers"
+        ],
+        "checkpoints": [
+          "Pendant présentation : noter reconnaissance des métiers et formes dans photos",
+          "Pendant stations : observer qualité du jeu de rôle et compréhension des liens",
+          "Pendant discussion : évaluer capacité à verbaliser connexions métiers-géométrie"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1495,11 +2694,24 @@
       "opening": {
         "duration": 8,
         "activity": "Échauffement corporel : imiter les formes avec tout le corps",
-        "materials": [
-          "musique rythmée",
-          "foulards",
-          "espace de mouvement"
-        ],
+        "materials": {
+          "required": [
+            {
+              "item": "Musique rythmée adaptée aux enfants",
+              "quantity": "Playlist 15-20 minutes de musiques variées",
+              "source": "Système audio classe ou portable",
+              "preparation": "Tester volume et sélectionner rythmes appropriés",
+              "alternatives": ["Chant a cappella", "Instruments simples en classe"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Foulards colorés pour mouvement expressif",
+              "quantity": "25 foulards légers de couleurs vives",
+              "purpose": "Prolonger et visualiser les mouvements corporels"
+            }
+          ]
+        },
         "visualSupports": "Démonstrations de postures corporelles représentant chaque forme",
         "decisionPoints": [],
         "movementBreaks": []
@@ -1540,14 +2752,44 @@
       },
       "realWorldConnection": "Faire des mouvements ronds, pointus, ou droits en jouant à la maison",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer par mouvements simples avec mains seulement avant corps entier",
+          "Permettre imitation directe des gestes de l'enseignant plutôt que création libre",
+          "Utiliser formes les plus familières (cercle = tourner) avant autres mouvements",
+          "Offrir pause et observation si fatigue ou timidité avec mouvement"
+        ],
+        "forAdvanced": [
+          "Créer chorégraphie complexe combinant plusieurs formes en séquence",
+          "Improviser mouvements originaux exprimant propriétés des formes (coins pointus, côtés droits)",
+          "Diriger et enseigner mouvements aux autres élèves",
+          "Intégrer émotions dans danse géométrique (formes joyeuses, tristes, énergiques)"
+        ],
+        "forELL": [
+          "Utiliser mouvements corporels comme langage universel avant mots",
+          "Associer mouvement à mots simples répétés (rond-tourner, carré-stop-go)",
+          "Permettre expression corporelle libre puis ajouter vocabulaire français progressivement",
+          "Utiliser musiques familières ou de sa culture d'origine si possible"
+        ],
+        "forIEP": [
+          "Adapter mouvements selon capacités physiques individuelles",
+          "Offrir alternatives assises ou modifiées si mobilité restreinte",
+          "Respecter sensibilités auditives (volume, type de musique)",
+          "Permettre participation à son rythme sans pression de performance"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève exprime formes géométriques par mouvements corporels appropriés",
+          "Élève adapte son mouvement aux propriétés de chaque forme",
+          "Élève participe avec plaisir aux activités de mouvement et danse",
+          "Élève utilise vocabulaire des formes pendant activités corporelles",
+          "Élève fait preuve de créativité dans expression corporelle des concepts géométriques"
+        ],
+        "checkpoints": [
+          "Pendant échauffement : observer aisance avec mouvements corporels de base",
+          "Pendant chorégraphie : noter précision et créativité dans expression des formes",
+          "Pendant présentation : évaluer confiance et plaisir dans performance"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1651,14 +2893,44 @@
       },
       "realWorldConnection": "Utiliser des emporte-pièces à la maison, couper des légumes en formes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser emporte-pièces plus grands et plus faciles à manipuler",
+          "Permettre aide d'un adulte pour pression et découpe",
+          "Se concentrer sur 1-2 formes simples plutôt que variété complète",
+          "Offrir alternative observation si allergies alimentaires"
+        ],
+        "forAdvanced": [
+          "Créer compositions artistiques complexes avec formes multiples",
+          "Explorer techniques de décoration avancées",
+          "Calculer et planifier quantités nécessaires",
+          "Enseigner techniques aux autres élèves"
+        ],
+        "forELL": [
+          "Associer actions culinaires à gestes et démonstrations concrètes",
+          "Utiliser vocabulaire culinaire simple avec objets réels",
+          "Permettre description en langue première des saveurs et textures",
+          "Fournir cartes visuelles des étapes de préparation"
+        ],
+        "forIEP": [
+          "Adapter outils selon besoins moteurs (emporte-pièces ergonomiques)",
+          "Respecter restrictions alimentaires et allergies strictement",
+          "Offrir alternatives si manipulation d'aliments difficile",
+          "Ajuster participation selon tolérance sensorielle aux textures"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève utilise emporte-pièces avec technique appropriée et sécuritaire",
+          "Élève identifie et nomme formes créées dans les aliments",
+          "Élève fait preuve de créativité dans arrangements et décorations",
+          "Élève respecte règles d'hygiène et de sécurité alimentaire",
+          "Élève exprime plaisir dans activité culinaire créative"
+        ],
+        "checkpoints": [
+          "Pendant préparation : observer respect des règles d'hygiène et manipulation sécuritaire",
+          "Pendant création : noter précision des formes et créativité des compositions",
+          "Pendant dégustation : évaluer capacité à décrire formes et expérience culinaire"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1761,14 +3033,44 @@
       },
       "realWorldConnection": "Inventer des histoires avec des jouets de formes différentes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer par histoires très simples avec 2 personnages-formes seulement",
+          "Utiliser amorces : 'Un jour, Cercle roula jusqu'à...' pour débuter récit",
+          "Permettre récit avec images ou gestes si expression orale difficile",
+          "Offrir collaboration avec partenaire pour développer histoire ensemble"
+        ],
+        "forAdvanced": [
+          "Créer histoires complexes avec intrigue, problème et résolution",
+          "Intégrer morale ou leçon de vie dans récit géométrique",
+          "Inventer personnages-formes avec personnalités distinctes et interactions",
+          "Adapter histoire en courte pièce de théâtre pour présentation"
+        ],
+        "forELL": [
+          "Utiliser structure simple répétitive : 'Cercle va... Triangle va... Carré va...'",
+          "Permettre mélange langue première et français dans récit initial",
+          "Associer actions à gestes pour renforcer compréhension narrative",
+          "Fournir banque de mots d'action simples illustrés pour construire histoire"
+        ],
+        "forIEP": [
+          "Adapter longueur d'histoire selon capacité d'attention",
+          "Offrir support visuel continu (images, objets) pendant narration",
+          "Permettre alternative non-verbale : dessiner histoire en séquence",
+          "Respecter rythme individuel pour développement et présentation du récit"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève crée récit cohérent intégrant personnages-formes géométriques",
+          "Élève utilise propriétés des formes pour développer intrigue",
+          "Élève structure histoire avec début, développement et fin",
+          "Élève utilise vocabulaire géométrique approprié dans narration",
+          "Élève fait preuve de créativité et d'originalité dans invention"
+        ],
+        "checkpoints": [
+          "Pendant planification : observer capacité à imaginer personnages et situations",
+          "Pendant création : noter intégration créative des concepts géométriques",
+          "Pendant présentation : évaluer qualité narrative et engagement du public"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1872,14 +3174,44 @@
       },
       "realWorldConnection": "Organiser une exposition de formes pour les parents et amis",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser phrases modèles simples : 'J'ai appris que...' 'Je peux maintenant...'",
+          "Permettre démonstration concrete plutôt qu'explication verbale complexe",
+          "Offrir support visuel (photos, objets) pour rappeler apprentissages",
+          "Célébrer progrès individuels même si objectifs partiellement atteints"
+        ],
+        "forAdvanced": [
+          "Encourager réflexion méta-cognitive profonde sur processus d'apprentissage",
+          "Proposer analyse critique : qu'est-ce qui était difficile/facile et pourquoi",
+          "Inviter à enseigner et expliquer concepts aux autres élèves ou visiteurs",
+          "Défier avec projets de transfert : où utiliser ces apprentissages ailleurs"
+        ],
+        "forELL": [
+          "Permettre expression mixte (langue première + français) pour articulation complète",
+          "Utiliser objets manipulatifs pour soutenir expression des apprentissages",
+          "Fournir vocabulaire de réflexion illustré (j'ai appris, je comprends, je peux)",
+          "Accepter expression gestuelle et démonstration comme formes de réflexion valides"
+        ],
+        "forIEP": [
+          "Adapter format de réflexion selon capacités (oral, dessin, démonstration)",
+          "Permettre temps supplémentaire pour traitement et formulation des idées",
+          "Offrir choix dans mode d'expression et de participation à la célébration",
+          "Personnaliser critères de réussite selon objectifs individualisés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève articule au moins 2 apprentissages géométriques significatifs de l'unité",
+          "Élève démontre fierté et satisfaction de ses progrès et réalisations",
+          "Élève participe positivement aux activités de célébration et partage",
+          "Élève utilise vocabulaire géométrique appris pour expliquer ses apprentissages",
+          "Élève établit connexions entre différentes leçons et activités de l'unité"
+        ],
+        "checkpoints": [
+          "Pendant réflexion : évaluer précision et profondeur des apprentissages identifiés",
+          "Pendant démonstrations : observer capacité à expliquer et enseigner concepts",
+          "Pendant célébration : noter engagement, fierté et capacité à partager succès"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",
