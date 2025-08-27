@@ -11,65 +11,113 @@
       "lessonType": "core",
       "title": "Découverte des nombres 11 et 12",
       "oneGoal": "Reconnaître et nommer les nombres 11 et 12 comme 'dix et un', 'dix et deux'",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "onze",
         "douze",
         "dizaine"
       ],
       "opening": {
-        "duration": 8,
-        "activity": "Révision de comptage jusqu'à 10 avec des objets concrets. Présentation du problème: 'Que se passe-t-il quand nous avons plus de 10 objets?'",
-        "materials": [
-          "10 cubes de couleur",
-          "compteurs supplémentaires",
-          "tableau de nombres 1-10"
+        "duration": "~8 min",
+        "activity": "Révision interactive de comptage jusqu'à 10 avec des objets concrets. Chanson: 'Comptons jusqu'à dix!' Présentation du problème: 'Que se passe-t-il quand nous avons plus de 10 objets?'",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes unifix de couleurs vives",
+              "quantity": "240 cubes (10 ensembles de 24 pour 24 élèves)",
+              "source": "Matériel mathématique - armoire de manipulatifs",
+              "preparation": "Préparer 10 cubes par élève dans des bacs individuels",
+              "alternatives": ["Compteurs colorés", "Blocs Lego", "Jetons"]
+            },
+            {
+              "item": "Tableau numérique 1-10 grand format",
+              "quantity": "1 pour classe (minimum 60x40cm)",
+              "source": "Matériel pédagogique - collection mathématiques",
+              "preparation": "Afficher au tableau principal, bien visible de tous",
+              "alternatives": ["Dessiner à la craie", "Projection numérique"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Grilles de dix cases plastifiées",
+              "quantity": "25 grilles pour distribution individuelle",
+              "purpose": "Support visuel pour visualiser le concept de 'plein'"
+            }
+          ]
+        },
+        "visualSupports": "Grille de 10 cases affichée au tableau avec objets groupés par ensembles de 10, ligne numérique 1-10 visible",
+        "decisionPoints": [
+          "Si les élèves ont oublié la séquence 1-10 → réviser avec chanson de comptage et manipulatifs individuels",
+          "Si confusion avec les quantités → utiliser groupement physique avec contenants de 10",
+          "Si certains élèves maîtrisent déjà → poser le défi d'estimer combien d'objets au-delà de 10"
         ],
-        "visualSupports": [
-          "Grille de 10 cases remplie",
-          "objets groupés en ensembles de 10"
-        ],
-        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
-        "activity": "Construction de 11 et 12 avec des blocs de base dix. Les élèves manipulent 1 dizaine + 1 unité, puis 1 dizaine + 2 unités. Introduction du vocabulaire 'onze' et 'douze'. Pratique de l'écriture des nombres avec support visuel.",
-        "materials": [
-          "Blocs de base dix (dizaines et unités)",
-          "compteurs colorés",
-          "cartes numériques 11-12",
-          "feuilles de travail avec grilles"
-        ],
-        "visualSupports": [
-          "Représentations visuelles 10+1 et 10+2",
-          "cartes avec points organisés",
-          "ligne numérique jusqu'à 12"
-        ],
+        "duration": "~27 min",
+        "activity": "Construction active de 11 et 12 avec des blocs de base dix. Les élèves manipulent 1 dizaine + 1 unité, puis 1 dizaine + 2 unités. Introduction ludique du vocabulaire 'onze' et 'douze' avec histoires. Pratique de l'écriture des nombres avec support visuel constant.",
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs de base dix (dizaines et unités)",
+              "quantity": "25 ensembles complets (25 barres de dix + 250 unités individuelles)",
+              "source": "Matériel mathématique - collection manipulatifs",
+              "preparation": "Préparer dans des bacs individuels: 1 barre de dix + 10 unités par élève",
+              "alternatives": ["Regroupements avec compteurs", "Faisceaux de bâtonnets"]
+            },
+            {
+              "item": "Cartes numériques 11-12 grand format",
+              "quantity": "2 jeux (50 cartes) - 1 pour affichage, 1 pour manipulation",
+              "source": "Matériel pédagogique - ressources numériques",
+              "preparation": "Plastifier et préparer pour distribution",
+              "alternatives": ["Fabrication maison sur cartons", "Affichage numérique"]
+            },
+            {
+              "item": "Feuilles de travail avec grilles 10+",
+              "quantity": "25 copies (1 par élève + 2 de rechange)",
+              "source": "Photocopies - bureau administratif",
+              "preparation": "Imprimer et vérifier la clarté des grilles",
+              "alternatives": ["Dessiner sur ardoises individuelles", "Utiliser cahier math"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Compteurs colorés variés",
+              "quantity": "300 compteurs en 3 couleurs différentes",
+              "purpose": "Enrichissement et différenciation visuelle"
+            }
+          ]
+        },
+        "visualSupports": "Tableau avec représentations visuelles 10+1 et 10+2, cartes avec points organisés, ligne numérique jusqu'à 12 affichée en permanence",
         "decisionPoints": [
-          {
-            "question": "Les élèves comprennent-ils facilement le concept de 10+1 et 10+2?",
-            "ifYes": "Introduire le nombre 13 et demander aux élèves de prédire sa structure",
-            "ifNo": "Fournir plus de temps avec des manipulations concrètes et revenir aux bases de groupement par 10"
-          },
-          {
-            "question": "Y a-t-il confusion entre 'onze' et 'douze' dans la prononciation?",
-            "ifYes": "Utiliser des chansons et des rimes pour ancrer la prononciation, associer à des images mnémotechniques",
-            "ifNo": "Procéder à la pratique d'écriture et de reconnaissance visuelle"
-          },
-          {
-            "question": "Certains élèves maîtrisent-ils déjà ces concepts?",
-            "ifYes": "Les faire devenir tuteurs pour leurs pairs et leur donner des défis d'extension avec 13-15",
-            "ifNo": "Continuer avec le rythme prévu pour le groupe"
-          }
+          "Si les élèves comprennent facilement le concept de 10+1 et 10+2 → introduire le nombre 13 et demander de prédire sa structure",
+          "Si confusion entre 'onze' et 'douze' dans la prononciation → utiliser chansons et rimes pour ancrer, associer à images mnémotechniques",
+          "Si certains élèves maîtrisent déjà ces concepts → les faire devenir tuteurs pour leurs pairs et donner défis d'extension avec 13-15"
         ],
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
-        "activity": "Jeu de reconnaissance rapide: montrer des groupes d'objets (11 ou 12) et demander aux élèves d'identifier le nombre. Récapitulatif de ce qui a été appris.",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "Jeu de reconnaissance rapide 'Montre-moi!': montrer des groupes d'objets (11 ou 12) et les élèves lèvent leur carte correspondante. Récapitulatif en cercle: 'Qu'avons-nous découvert sur onze et douze?'",
+        "materials": {
+          "required": [
+            {
+              "item": "Collections d'objets (11-12)",
+              "quantity": "5-6 groupes préparés (boutons, crayons, élastiques)",
+              "source": "Matériel de classe et recyclage",
+              "preparation": "Compter et vérifier les quantités à l'avance",
+              "alternatives": ["Images projetées", "Dessins au tableau"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cartes réponse individuelle 11-12",
+              "quantity": "25 jeux (50 cartes total)",
+              "purpose": "Participation active de tous les élèves"
+            }
+          ]
+        },
+        "visualSupports": "Cercle marqué au sol pour rassemblement, récapitulatif visuel des apprentissages au tableau",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -79,14 +127,45 @@
       },
       "realWorldConnection": "Compter les œufs dans une boîte de 12, observer les heures sur une horloge (11h00, 12h00), compter les mois de l'année jusqu'à décembre",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser uniquement des objets concrets avant d'introduire les symboles numériques",
+          "Travailler avec des nombres plus petits (révision 6-10) avant 11-12",
+          "Permettre l'utilisation continue de comptage avec les doigts et d'objets",
+          "Offrir plus de temps de manipulation libre avec les blocs de base dix"
+        ],
+        "forAdvanced": [
+          "Introduire les nombres 13-15 comme extension naturelle",
+          "Défier avec des représentations multiples (dessins, mots, symboles)",
+          "Encourager la création de leurs propres problèmes avec 11-12 objets",
+          "Assigner un rôle de tuteur pour aider les pairs"
+        ],
+        "forELL": [
+          "Répéter fréquemment 'onze' et 'douze' avec gestes associés",
+          "Utiliser des supports visuels riches avec images et objets réels",
+          "Encourager l'expression en français même si incomplète",
+          "Associer les nouveaux mots à des chansons et rythmes"
+        ],
+        "forIEP": [
+          "Adapter les manipulatifs selon les besoins moteurs (plus gros, texture différente)",
+          "Utiliser des signaux visuels clairs pour les changements d'activité",
+          "Permettre des temps de pause si nécessaire",
+          "Offrir des choix dans les modes de représentation (oral, visuel, tactile)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève peut identifier visuellement les quantités 11 et 12 avec objets concrets",
+          "Élève prononce correctement 'onze' et 'douze' en français",
+          "Élève démontre la compréhension de 10+1 et 10+2 avec manipulatifs",
+          "Élève peut écrire les chiffres 11 et 12 avec assistance minimale",
+          "Élève fait le lien entre représentation concrète et symbole numérique"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: capacité à compter jusqu'à 10 avec précision",
+          "Pendant l'activité principale: manipulation correcte des blocs de base dix",
+          "Pendant la fermeture: reconnaissance rapide des quantités 11-12",
+          "Observation continue: engagement et participation active"
+        ]
       }
     },
     {
@@ -94,41 +173,88 @@
       "lessonType": "core",
       "title": "Explorer 13, 14 et 15",
       "oneGoal": "Comprendre que 13-15 suivent le même modèle: dix plus des unités supplémentaires",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "treize",
         "quatorze",
         "quinze"
       ],
       "opening": {
-        "duration": 8,
-        "activity": "Révision rapide de 11 et 12 avec des blocs de base dix. Présentation du défi: 'Comment construire les nombres suivants?'",
-        "materials": [
-          "Blocs de base dix",
-          "objets à compter"
+        "duration": "~8 min",
+        "activity": "Révision active de 11 et 12 avec manipulatifs. Chanson de révision: 'Onze, douze, qu'est-ce qui vient après?' Présentation du défi: 'Découvrons les nombres secrets qui suivent!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs de base dix (dizaines et unités)",
+              "quantity": "25 ensembles complets pour manipulation individuelle",
+              "source": "Matériel mathématique - armoire manipulatifs",
+              "preparation": "Distribuer 1 barre de dix + 10 unités par élève",
+              "alternatives": ["Compteurs groupés", "Faisceaux de bâtonnets"]
+            },
+            {
+              "item": "Objets variés à compter (boutons, jetons, perles)",
+              "quantity": "400 objets au total (16 par élève)",
+              "source": "Ressources de classe et matériel recyclable",
+              "preparation": "Précompter en groupes de 15 dans des contenants",
+              "alternatives": ["Cubes unifix", "Cartes à points"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cartes nombres 11-12 pour révision rapide",
+              "quantity": "2 jeux (50 cartes) pour activité d'échauffement",
+              "purpose": "Renforcement et évaluation rapide des acquis"
+            }
+          ]
+        },
+        "visualSupports": "Affichage permanent des nombres 11-12 avec représentations concrètes, ligne numérique 1-15 avec espaces vides à compléter",
+        "decisionPoints": [
+          "Si les élèves ont oublié 11-12 → reprendre manipulation concrète et révision guidée",
+          "Si maîtrise rapide de la révision → introduire immédiatement le défi des nombres suivants"
         ],
-        "visualSupports": [
-          "Affichage des nombres 11-12 construits",
-          "ligne numérique vierge à compléter"
-        ],
-        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
-        "activity": "Construction séquentielle de 13, 14, et 15 avec des manipulatifs. Les élèves utilisent 1 dizaine + 3, 4, ou 5 unités. Pratique de l'écriture et de la séquence. Introduction de chansons de comptage pour mémoriser.",
-        "materials": [
-          "Blocs de base dix",
-          "compteurs",
-          "cartes numériques 13-15",
-          "tableau de 100 partiel",
-          "abaques"
-        ],
-        "visualSupports": [
-          "Grilles montrant 10+3, 10+4, 10+5",
-          "représentations en points",
-          "cartes avec mots et chiffres"
-        ],
+        "duration": "~27 min",
+        "activity": "Construction séquentielle de 13, 14, et 15 avec manipulatifs variés. Les élèves découvrent 1 dizaine + 3, 4, ou 5 unités par exploration guidée. Pratique intégrée de l'écriture des symboles. Introduction de chansons rythmiques pour ancrer la mémorisation.",
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs de base dix - dizaines et unités",
+              "quantity": "25 ensembles complets (25 barres + 375 unités)",
+              "source": "Matériel mathématique - collection principale",
+              "preparation": "Organiser en stations: 1 barre + 15 unités par élève",
+              "alternatives": ["Regroupements avec haricots et contenants", "Cartes à points organisées"]
+            },
+            {
+              "item": "Compteurs colorés en 3 couleurs",
+              "quantity": "375 compteurs (15 par élève en 3 couleurs)",
+              "source": "Ressources manipulatifs - bacs colorés",
+              "preparation": "Trier par couleurs dans des bacs accessibles",
+              "alternatives": ["Jetons uniforme avec marqueurs couleur", "Boutons triés"]
+            },
+            {
+              "item": "Cartes numériques 13-15 grand format",
+              "quantity": "3 jeux (75 cartes total) - affichage et manipulation",
+              "source": "Matériel pédagogique ou fabrication",
+              "preparation": "Plastifier et organiser en 3 piles séparées",
+              "alternatives": ["Fabrication avec cartons colorés", "Affichage numérique"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau de 100 partiel (1-20)",
+              "quantity": "1 grand format pour classe + 25 copies individuelles",
+              "purpose": "Contextualisation dans la séquence numérique complète"
+            },
+            {
+              "item": "Abaques à 2 tiges",
+              "quantity": "12 abaques pour travail en pairs",
+              "purpose": "Représentation alternative dizaines-unités"
+            }
+          ]
+        },
+        "visualSupports": "Tableau avec grilles permanentes montrant 10+3, 10+4, 10+5, représentations visuelles en points organisés, cartes affichées avec mots français et chiffres associés",
         "decisionPoints": [
           {
             "question": "Les élèves saisissent-ils rapidement le modèle dizaine+unités?",
@@ -149,10 +275,27 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
-        "activity": "Création d'une séquence collective 11-15 au tableau. Les élèves placent les cartes numériques dans l'ordre et récitent la séquence ensemble.",
-        "materials": [],
-        "visualSupports": "",
+        "duration": "~10 min",
+        "activity": "Création collaborative d'une ligne numérique 11-15 au tableau. Les élèves viennent placer les cartes dans l'ordre et chantent la séquence ensemble. Jeu 'Nombre caché': retirer une carte et deviner le nombre manquant.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes numériques 11-15 aimantées ou à coller",
+              "quantity": "2 jeux (10 cartes) pour sécurité et remplacement",
+              "source": "Matériel d'affichage ou fabrication",
+              "preparation": "Préparer support magnétique ou pâte adhésive",
+              "alternatives": ["Dessiner directement au tableau", "Utiliser tableau interactif"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Règle ou guide-ligne pour alignement",
+              "quantity": "1 longue règle ou ficelle",
+              "purpose": "Maintenir alignement visuel des nombres"
+            }
+          ]
+        },
+        "visualSupports": "Ligne de base tracée au tableau pour placer les cartes, espace pour jeu 'nombre caché', affichage de rappel des représentations 10+n",
         "decisionPoints": [],
         "movementBreaks": []
       },
@@ -162,14 +305,45 @@
       },
       "realWorldConnection": "Compter les élèves dans la classe, les crayons dans une grande boîte, les livres sur une étagère de bibliothèque",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Permettre de travailler avec un seul nombre à la fois (13 seulement d'abord)",
+          "Utiliser des couleurs différentes pour chaque nombre (13=rouge, 14=bleu, 15=vert)",
+          "Offrir plus de temps de manipulation concrète avant écriture",
+          "Travailler en petits groupes avec soutien d'adulte ou pair tuteur"
+        ],
+        "forAdvanced": [
+          "Introduire 16-17 comme extension naturelle du modèle",
+          "Défier avec création de problèmes concrets utilisant 13-15",
+          "Explorer différentes façons de représenter les mêmes quantités",
+          "Assigner rôle d'aide-enseignant pour soutenir les pairs"
+        ],
+        "forELL": [
+          "Répéter fréquemment 'treize', 'quatorze', 'quinze' avec gestes",
+          "Associer chaque nombre à une image ou histoire mémorable",
+          "Encourager la participation orale même avec erreurs de prononciation",
+          "Utiliser chansons et rythmes pour faciliter mémorisation"
+        ],
+        "forIEP": [
+          "Adapter manipulatifs selon besoins moteurs (plus gros, texturés)",
+          "Utiliser supports visuels clairs et contrastes pour changements d'activité",
+          "Offrir pauses sensorielles si nécessaire",
+          "Permettre expression par modalité préférée (oral, gestuel, écrit)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève construit correctement 13, 14, 15 avec manipulatifs (1 dizaine + unités)",
+          "Élève prononce clairement 'treize', 'quatorze', 'quinze' en français",
+          "Élève reconnaît le modèle consistant 10+n pour tous les nombres",
+          "Élève peut continuer la séquence 11-12-13-14-15 oralement",
+          "Élève fait le lien entre représentation concrète et symbole écrit"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: maîtrise de la révision 11-12",
+          "Pendant construction: compréhension du modèle dizaine+unités",
+          "Pendant chanson: mémorisation de la séquence 13-14-15",
+          "Pendant fermeture: capacité à placer nombres dans l'ordre correct"
+        ]
       }
     },
     {
@@ -177,14 +351,14 @@
       "lessonType": "core",
       "title": "Nombres 16, 17, 18, 19",
       "oneGoal": "Maîtriser la séquence complète de 11 à 19 en reconnaissant le modèle consistant",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "seize",
         "dix-sept",
         "dix-huit"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Comptage en chœur de 1 à 15. Introduction du mystère: 'Quels nombres viennent après 15 avant d'arriver à 20?'",
         "materials": [
           "Cartes numériques 1-15",
@@ -198,7 +372,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Construction systématique de 16-19 avec des matériaux de manipulation. Attention particulière à 'seize' vs 'six'. Utilisation de grilles de nombres et de cartes éclairs. Pratique de l'ordre croissant et décroissant.",
         "materials": [
           "Blocs de base dix",
@@ -232,7 +406,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Jeu de séquence: les élèves se placent en ordre avec des cartes numériques 11-19. Récitation collective de la séquence complète.",
         "materials": [],
         "visualSupports": "",
@@ -245,14 +419,45 @@
       },
       "realWorldConnection": "Compter les jours sur un calendrier (16-19 du mois), les élèves dans l'autobus scolaire, les articles dans un panier d'épicerie",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 16-17 seulement avant d'introduire 18-19",
+          "Utiliser supports visuels contrastés pour distinguer 'seize' de 'six'",
+          "Permettre utilisation continue des doigts et objets concrets pour compter",
+          "Travailler en petits groupes avec soutien additionnel d'adulte"
+        ],
+        "forAdvanced": [
+          "Introduire le nombre 20 comme aperçu de la leçon suivante",
+          "Défier avec activités de comparaison (16 vs 17, 18 vs 19)",
+          "Explorer pattern des nombres teen et prédire 20, 21, 22",
+          "Créer leurs propres problèmes avec quantités 16-19"
+        ],
+        "forELL": [
+          "Répéter fréquemment 'seize', 'dix-sept', 'dix-huit', 'dix-neuf' avec gestes",
+          "Utiliser supports visuels riches montrant objets familiers en quantités",
+          "Encourager participation orale même avec erreurs de prononciation",
+          "Associer nombres à chansons et comptines françaises"
+        ],
+        "forIEP": [
+          "Adapter manipulatifs selon besoins moteurs individuels",
+          "Utiliser signaux visuels clairs pour transitions d'activité",
+          "Offrir pauses movement si nécessaire pendant construction",
+          "Permettre expression par modalité préférée (oral, visuel, tactile)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève construit correctement 16-19 avec manipulatifs (1 dizaine + unités)",
+          "Élève distingue clairement 'seize' de 'six' à l'oral et visuellement",
+          "Élève peut réciter séquence 11-19 avec fluidité croissante",
+          "Élève place nombres 16-19 correctement sur ligne numérique",
+          "Élève reconnaît modèle consistant 10+n à travers toute la gamme"
+        ],
+        "checkpoints": [
+          "Pendant ouverture: maîtrise séquence 1-15 comme base",
+          "Pendant construction: compréhension pattern dizaine+unités pour 16-19",
+          "Pendant activité ordre: capacité séquencer nombres correctement",
+          "Pendant fermeture: participation active au jeu de séquence collective"
+        ]
       }
     },
     {
@@ -260,14 +465,14 @@
       "lessonType": "core",
       "title": "Le nombre 20 et la deuxième dizaine",
       "oneGoal": "Comprendre que 20 représente 2 groupes de dix, introduisant le concept de dizaines",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "vingt",
         "dizaine",
         "deux dizaines"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Révision de 19 avec manipulatifs. Question d'accroche: 'Que se passe-t-il si nous ajoutons encore un objet à 19?'",
         "materials": [
           "19 objets groupés (1 dizaine + 9 unités)",
@@ -281,7 +486,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Démonstration de la transformation de 19 à 20 en regroupant. Utilisation d'objets groupables pour montrer 2 groupes de 10. Comparaison avec 10 et 19. Introduction de billets fictifs et pièces pour représenter la valeur.",
         "materials": [
           "Objets groupables (haricots, cubes)",
@@ -315,7 +520,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Création collective de différentes représentations de 20. Chaque élève montre 20 d'une façon différente (objets, dessins, groupes).",
         "materials": [],
         "visualSupports": "",
@@ -328,14 +533,45 @@
       },
       "realWorldConnection": "Compter par groupes de 10 doigts (2 personnes), organiser 20 crayons en 2 boîtes de 10, compter 20 centimes (2 groupes de 10¢)",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser objets concrets familiers pour groupements par 10 (crayons, blocs)",
+          "Commencer avec un seul groupe de 10 avant d'introduire le deuxième",
+          "Utiliser contenants physiques distincts pour visualiser 2 groupes séparés",
+          "Permettre comptage individuel de chaque objet avant groupement"
+        ],
+        "forAdvanced": [
+          "Introduire concept de dizaines comme unité de mesure",
+          "Explorer d'autres nombres avec 2 dizaines: 21, 22, 23",
+          "Défier avec estimation: 'Combien de groupes de 10 dans 30, 40?'",
+          "Créer problèmes concrets nécessitant regroupement par dizaines"
+        ],
+        "forELL": [
+          "Répéter 'vingt' et 'deux dizaines' avec gestes de groupement",
+          "Utiliser supports visuels montrant objets organisés en groupes distincts",
+          "Associer 'vingt' à contextes familiars (20 doigts de la classe)",
+          "Encourager expression 'dix et dix font vingt' en français"
+        ],
+        "forIEP": [
+          "Adapter manipulatifs pour besoins sensoriels (textures, tailles)",
+          "Utiliser signalisation visuelle pour changements d'activité",
+          "Permettre temps additionnel pour manipulation et groupement",
+          "Offrir choix de modalités d'expression (gestuelle, orale, écrite)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève peut grouper 20 objets en 2 ensembles de 10 spontanément",
+          "Élève prononce correctement 'vingt' et comprend son sens",
+          "Élève reconnaît que 20 = 10 + 10 avec manipulatifs",
+          "Élève peut expliquer différence entre 20 objets et 2 groupes de 10",
+          "Élève utilise vocabulaire 'dizaine' de manière appropriée"
+        ],
+        "checkpoints": [
+          "Pendant ouverture: compréhension que 19+1=20",
+          "Pendant manipulation: capacité à créer groupements par 10",
+          "Pendant discussion: usage approprié vocabulaire 'dizaines'",
+          "Pendant fermeture: application concept à situations concrètes"
+        ]
       }
     },
     {
@@ -343,14 +579,14 @@
       "lessonType": "core",
       "title": "Révision et consolidation 11-20",
       "oneGoal": "Consolider la reconnaissance, l'écriture et l'ordre des nombres 11-20",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "séquence",
         "ordre",
         "avant/après"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Comptage collectif de 1 à 20 avec mouvements. Présentation des stations d'activités de révision.",
         "materials": [
           "Cartes numériques mélangées 11-20"
@@ -363,7 +599,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Rotation par stations: 1) Jeux de cartes numériques, 2) Séquences à compléter, 3) Exercices d'écriture, 4) Construction avec manipulatifs, 5) Comparaisons et ordre. Évaluation formative pendant les rotations.",
         "materials": [
           "Jeux de cartes variés",
@@ -397,7 +633,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Partage des réussites de chaque station. Auto-évaluation: les élèves montrent avec leurs doigts leur niveau de confiance pour chaque nombre 11-20.",
         "materials": [],
         "visualSupports": "",
@@ -410,14 +646,45 @@
       },
       "realWorldConnection": "Utiliser les nombres 11-20 dans des contextes quotidiens: température extérieure, âges des membres de la famille, numéros de maisons dans le quartier",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur maîtrise solide de 11-15 avant 16-20",
+          "Utiliser supports visuels permanents (ligne numérique, tableaux)",
+          "Permettre utilisation d'aides-mémoire personnalisées pendant activités",
+          "Offrir pratique supplémentaire avec manipulatifs préférés"
+        ],
+        "forAdvanced": [
+          "Introduire nombres au-delà de 20 (21-25) comme extension",
+          "Défier avec problèmes de comparaisons complexes et patterns",
+          "Encourager création de jeux mathématiques pour pairs",
+          "Explorer applications créatives des nombres 11-20 dans projets"
+        ],
+        "forELL": [
+          "Réviser vocabulaire complet avec associations visuelles fortes",
+          "Utiliser chansons et comptines pour ancrer prononciation",
+          "Encourager utilisation active du français pendant activités partenaires",
+          "Associer nombres à contextes culturels familiers"
+        ],
+        "forIEP": [
+          "Adapter activités selon profils sensoriels et cognitifs individuels",
+          "Utiliser horaires visuels pour séquencer activités de révision",
+          "Offrir choix d'activités de consolidation selon intérêts",
+          "Permettre expression de maîtrise par modalités variées"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre maîtrise complète séquence 11-20 oralement",
+          "Élève reconnaît et nomme tous nombres 11-20 présentés au hasard",
+          "Élève applique compréhension pattern 10+n à tous nombres",
+          "Élève utilise nombres 11-20 dans contextes problèmes concrets",
+          "Élève explique stratégies personnelles de mémorisation"
+        ],
+        "checkpoints": [
+          "Pendant activités stations: autonomie et précision dans manipulations",
+          "Pendant jeux partenaires: utilisation correcte vocabulaire",
+          "Pendant résolution problèmes: application flexible des connaissances",
+          "Pendant réflexion finale: articulation claire des apprentissages"
+        ]
       }
     },
     {
@@ -425,14 +692,14 @@
       "lessonType": "core",
       "title": "Compter par bonds de 10",
       "oneGoal": "Développer la compréhension que compter par 10 est efficace et révèle la structure des nombres",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "bonds",
         "dizaines",
         "compter par dix"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Comptage traditionnel de 1 à 20, puis introduction: 'Y a-t-il une façon plus rapide de compter de grandes quantités?'",
         "materials": [
           "Grands groupes d'objets (30-40)",
@@ -445,7 +712,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Démonstration du comptage par bonds de 10 avec objets physiques. Utilisation d'une droite numérique et de grilles de 100. Pratique de 10, 20, 30 avec mouvements corporels et chansons. Exploration de patterns.",
         "materials": [
           "Objets groupables par 10",
@@ -479,7 +746,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Création d'une chanson de classe pour compter par 10. Démonstration finale de l'efficacité: compter 30 objets par 1 vs par 10.",
         "materials": [],
         "visualSupports": "",
@@ -507,14 +774,14 @@
       "lessonType": "core",
       "title": "Représenter les nombres avec dizaines et unités",
       "oneGoal": "Utiliser des représentations visuelles pour montrer la décomposition des nombres 11-20",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "représenter",
         "dizaines",
         "unités"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Présentation d'un nombre mystère (ex: 17) avec différents matériaux. Défi: 'Trouvez autant de façons que possible de montrer ce nombre.'",
         "materials": [
           "Différents types de manipulatifs",
@@ -527,7 +794,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Exploration systématique des représentations: blocs de base dix, faisceaux de bâtonnets, compteurs groupés, dessins et diagrammes. Création d'un 'musée des représentations' pour chaque nombre 11-20.",
         "materials": [
           "Blocs de base dix",
@@ -561,7 +828,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Galerie de représentations: les élèves circulent pour voir les différentes façons de représenter les nombres et expliquent leurs favoris.",
         "materials": [],
         "visualSupports": "",
@@ -589,14 +856,14 @@
       "lessonType": "core",
       "title": "Comparer les nombres 11-20",
       "oneGoal": "Développer la capacité de comparer et ordonner les nombres entre 11 et 20",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "plus grand",
         "plus petit",
         "égal"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Jeu de devinette: 'Je pense à un nombre entre 11 et 20. Il est plus grand que 15 mais plus petit que 18.' Introduction des termes de comparaison.",
         "materials": [
           "Cartes numériques 11-20",
@@ -610,7 +877,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Activités de comparaison avec matériaux de manipulation pour comparer visuellement. Jeux de comparaison par paires et en groupes. Introduction progressive des symboles >, <, =. Pratique avec droites numériques.",
         "materials": [
           "Matériaux de manipulation variés",
@@ -643,7 +910,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Jeu de classement humain: les élèves se placent en ordre croissant ou décroissant avec leurs cartes numériques. Discussion sur les stratégies utilisées.",
         "materials": [],
         "visualSupports": "",
@@ -671,14 +938,14 @@
       "lessonType": "core",
       "title": "Patterns et régularités avec 11-20",
       "oneGoal": "Identifier et créer des patterns en utilisant les nombres 11-20",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "pattern",
         "régularité",
         "prédire"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Présentation d'un pattern simple: 13, 14, 15, ?, ?. Question: 'Que remarquez-vous? Que vient ensuite?'",
         "materials": [
           "Cartes numériques",
@@ -692,7 +959,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Exploration de patterns croissants et décroissants. Utilisation d'objets colorés et d'autocollants pour créer des patterns visuels. Création de patterns par les élèves. Découverte de patterns cachés dans la grille de 100.",
         "materials": [
           "Objets colorés variés",
@@ -726,7 +993,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Galerie de patterns: présentation des créations des élèves. Jeu de prédiction: compléter les patterns créés par les pairs.",
         "materials": [],
         "visualSupports": "",
@@ -754,14 +1021,14 @@
       "lessonType": "core",
       "title": "Introduction à l'addition simple avec des nombres teen",
       "oneGoal": "Appliquer la compréhension des nombres 11-20 dans des situations d'addition simple",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "addition",
         "total",
         "ensemble"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Histoire mathématique: 'Marie a 10 autocollants. Son ami lui en donne 3 de plus. Combien en a-t-elle maintenant?' Manipulation avec objets concrets.",
         "materials": [
           "Autocollants ou objets similaires",
@@ -775,7 +1042,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Exploration de l'addition avec des objets concrets. Focus sur 10 + nombres simples (1-9). Utilisation d'histoires mathématiques et de problèmes contextuels. Introduction de différentes stratégies d'addition.",
         "materials": [
           "Objets variés pour compter",
@@ -808,7 +1075,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Création collective d'une histoire mathématique de classe. Les élèves proposent des éléments et résolvent ensemble le problème d'addition.",
         "materials": [],
         "visualSupports": "",
@@ -836,14 +1103,14 @@
       "lessonType": "core",
       "title": "Résolution de problèmes avec 11-20",
       "oneGoal": "Appliquer les connaissances des nombres 11-20 pour résoudre des problèmes de la vie réelle",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "problème",
         "solution",
         "stratégie"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Présentation d'un problème réel de classe: 'Nous avons 15 élèves et 18 chaises. Combien de chaises vides y a-t-il?' Exploration collective des stratégies.",
         "materials": [
           "Chaises de classe",
@@ -857,7 +1124,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Présentation de problèmes contextuels variés. Encouragement de l'utilisation de matériel de manipulation. Discussion des différentes approches de résolution. Travail en groupes sur des problèmes adaptés.",
         "materials": [
           "Matériel de manipulation varié",
@@ -890,7 +1157,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Partage des stratégies utilisées. Création d'un 'mur de stratégies' avec les différentes approches découvertes par les élèves.",
         "materials": [],
         "visualSupports": "",
@@ -918,14 +1185,14 @@
       "lessonType": "core",
       "title": "Jeux mathématiques avec 11-20",
       "oneGoal": "Renforcer la fluidité avec les nombres 11-20 à travers des jeux engageants",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "jeu",
         "règles",
         "stratégie"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Présentation des centres de jeux mathématiques. Démonstration rapide de chaque jeu et établissement des règles de rotation.",
         "materials": [
           "Matériel pour 4-5 jeux différents"
@@ -939,7 +1206,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Rotation par centres de jeux: 1) Cartes et dés avec nombres 11-20, 2) Jeu de plateau numérique, 3) Mémoire avec nombres et représentations, 4) Course aux nombres, 5) Construction libre avec défis numériques.",
         "materials": [
           "Cartes numériques",
@@ -974,7 +1241,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Cercle de partage: chaque groupe partage son jeu préféré et explique pourquoi. Planification des jeux favoris pour les temps libres.",
         "materials": [],
         "visualSupports": "",
@@ -1002,14 +1269,14 @@
       "lessonType": "core",
       "title": "Estimation avec les nombres 11-20",
       "oneGoal": "Développer des compétences d'estimation raisonnable avec des quantités de 11-20",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "estimation",
         "environ",
         "raisonnable"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Présentation de bocaux mystères avec différentes quantités d'objets. Question: 'Combien y en a-t-il environ? Comment pourriez-vous deviner sans compter?'",
         "materials": [
           "Bocaux transparents avec 11-20 objets variés",
@@ -1023,7 +1290,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Développement de stratégies d'estimation: utilisation de références (groupes de 5, 10), comparaison avec des quantités connues. Activités variées: estimation puis vérification. Création d'un 'guide d'estimation' de classe.",
         "materials": [
           "Objets variés en différentes quantités",
@@ -1056,7 +1323,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Création du 'guide d'estimation de classe' avec les meilleures stratégies découvertes. Test final d'estimation avec un nouveau bocal mystère.",
         "materials": [],
         "visualSupports": "",
@@ -1084,14 +1351,14 @@
       "lessonType": "core",
       "title": "Nombres ordinaux jusqu'à 20",
       "oneGoal": "Comprendre et utiliser les nombres ordinaux de premier à vingtième",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "premier",
         "deuxième",
         "dernier"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Organisation d'une file d'élèves. Introduction: 'Comment peut-on décrire la position de chaque personne dans la file?' Introduction du vocabulaire ordinal.",
         "materials": [
           "Cartes ordinales illustrées"
@@ -1104,7 +1371,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Exploration des ordinaux avec files d'élèves, courses simulées, livres sur étagère. Pratique de l'identification de positions. Activités de classement avec objets. Connexion entre nombres cardinaux et ordinaux.",
         "materials": [
           "Objets à classer",
@@ -1138,7 +1405,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Jeu final: 'Course aux positions'. Les élèves doivent se placer selon les positions ordinales appelées. Récapitulatif du vocabulaire appris.",
         "materials": [],
         "visualSupports": "",
@@ -1166,14 +1433,14 @@
       "lessonType": "extension",
       "title": "Évaluation formative et consolidation",
       "oneGoal": "Évaluer la compréhension et identifier les domaines nécessitant un renforcement",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "évaluation",
         "progrès",
         "amélioration"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Révision interactive: 'Tour de mathématiques'. Chaque élève partage une chose qu'il a apprise sur les nombres 11-20.",
         "materials": [
           "Objet 'bâton de parole'",
@@ -1187,7 +1454,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Évaluation par stations: 1) Construction de nombres avec manipulatifs, 2) Séquences et ordre, 3) Comparaisons, 4) Résolution de problèmes simples, 5) Représentations diverses. Observation et documentation systématiques.",
         "materials": [
           "Matériel d'évaluation pour chaque station",
@@ -1220,7 +1487,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Célébration des progrès. Chaque élève reçoit un certificat personnalisé mentionnant ses forces avec les nombres 11-20. Planification des prochaines aventures mathématiques.",
         "materials": [],
         "visualSupports": "",
@@ -1288,14 +1555,14 @@
       "lessonType": "extension",
       "title": "Introduction aux nombres 21-25",
       "oneGoal": "Étendre la compréhension de la valeur de position aux nombres dans la troisième dizaine",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "vingt-et-un",
         "vingt-deux",
         "troisième dizaine"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Construction de 20 avec manipulatifs, puis question: 'Que se passe-t-il si nous continuons à compter? Que vient après 20?'",
         "materials": [
           "Blocs de base dix (2 dizaines)",
@@ -1309,7 +1576,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Construction sur la compréhension de 20 en ajoutant des unités. Utilisation de matériaux de manipulation pour montrer 2 dizaines + unités. Exploration des patterns de nommage (vingt-et-un, vingt-deux). Comparaison avec 11-15.",
         "materials": [
           "Blocs de base dix étendus",
@@ -1342,7 +1609,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Création d'une ligne numérique collective 20-25. Chaque élève contribue en plaçant un nombre et en expliquant sa structure (2 dizaines + unités).",
         "materials": [],
         "visualSupports": "",
@@ -1410,14 +1677,14 @@
       "lessonType": "extension",
       "title": "Exploration libre: nombres jusqu'à 30",
       "oneGoal": "Encourager l'exploration indépendante et la découverte de patterns dans les nombres jusqu'à 30",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "explorer",
         "découvrir",
         "indépendant"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Présentation de divers matériaux et invitation: 'Aujourd'hui, vous êtes des explorateurs de nombres! Découvrez tout ce que vous pouvez sur les nombres jusqu'à 30.'",
         "materials": [
           "Variété de manipulatifs",
@@ -1432,7 +1699,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Exploration libre avec guidance minimale. Les élèves choisissent leurs matériaux et explorent les patterns, créent des représentations, posent des questions. L'enseignant circule et facilite les découvertes sans diriger.",
         "materials": [
           "Manipulatifs variés",
@@ -1466,7 +1733,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Cercle de partage des découvertes. Chaque élève ou groupe partage une chose intéressante qu'il a découverte. Création d'un 'mur des découvertes'.",
         "materials": [],
         "visualSupports": "",
@@ -1534,14 +1801,14 @@
       "lessonType": "extension",
       "title": "Projet: Collection et comptage",
       "oneGoal": "Appliquer toutes les compétences acquises dans un projet de collection et de comptage personnel",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "projet",
         "collection",
         "présentation"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Présentation du projet: 'Choisissez une collection personnelle de 11-30 objets. Vous allez devenir des experts de votre collection!' Explication des critères et du processus.",
         "materials": [
           "Exemples de collections",
@@ -1556,7 +1823,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Travail individuel sur les projets. Les élèves comptent, organisent, représentent et analysent leurs collections. Création de différentes représentations (dessins, graphiques, textes). Préparation des présentations.",
         "materials": [
           "Collections personnelles des élèves",
@@ -1589,7 +1856,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Préparation finale des présentations. Les élèves pratiquent leurs présentations avec un partenaire et reçoivent des encouragements pour la séance de partage.",
         "materials": [],
         "visualSupports": "",
@@ -1657,14 +1924,14 @@
       "lessonType": "extension",
       "title": "Partage et célébration des apprentissages",
       "oneGoal": "Célébrer les progrès et partager les apprentissages avec un public authentique",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "partager",
         "célébrer",
         "fier"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Préparation de l'espace de présentation. Accueil des invités (parents, autres classes). Introduction du contexte d'apprentissage et des réalisations des élèves.",
         "materials": [
           "Espace de présentation aménagé",
@@ -1679,7 +1946,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Séance de partage organisée où les élèves présentent leurs projets de collection. Chaque élève explique sa collection, ses découvertes mathématiques et ses apprentissages. Questions et interactions avec le public.",
         "materials": [
           "Collections et présentations des élèves",
@@ -1711,7 +1978,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Cercle de célébration finale. Chaque élève reçoit des commentaires positifs. Photo de groupe avec les collections. Planification des prochaines aventures mathématiques.",
         "materials": [],
         "visualSupports": "",
@@ -1779,14 +2046,14 @@
       "lessonType": "extension",
       "title": "Réflexion et planification future",
       "oneGoal": "Réfléchir sur les apprentissages accomplis et anticiper les prochaines étapes mathématiques",
-      "duration": 45,
+      "duration": "45 minutes",
       "keyVocabulary": [
         "réflexion",
         "apprentissage",
         "futur"
       ],
       "opening": {
-        "duration": 8,
+        "duration": "~8 min",
         "activity": "Voyage dans le temps: 'Pensez au début de notre unité sur les nombres 11-20. Qu'est-ce qui a changé dans vos connaissances mathématiques?'",
         "materials": [
           "Photos ou travaux du début de l'unité"
@@ -1800,7 +2067,7 @@
         "movementBreaks": []
       },
       "main": {
-        "duration": 27,
+        "duration": "~27 min",
         "activity": "Réflexion guidée sur le parcours d'apprentissage. Création de portfolios ou journaux de bord. Discussion des mathématiques futures. Établissement d'objectifs personnels pour les prochains apprentissages.",
         "materials": [
           "Matériel pour portfolios",
@@ -1833,7 +2100,7 @@
         "movementBreaks": []
       },
       "closing": {
-        "duration": 10,
+        "duration": "~10 min",
         "activity": "Création d'un 'arbre des apprentissages' collectif où chaque élève ajoute une feuille représentant un apprentissage important. Engagement pour l'aventure mathématique continue.",
         "materials": [],
         "visualSupports": "",
