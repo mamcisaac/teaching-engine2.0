@@ -20,25 +20,86 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Chanson de bienvenue avec gestes: 'Bonjour les nombres, bonjour les amis!' Montrer 0 doigt (rien), 1 doigt, 2 doigts, 3 doigts avec mouvements expressifs.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes visuelles grandes 0-3",
+              "quantity": "1 jeu pour classe (4 cartes format 8x10)",
+              "source": "Matériel pédagogique - armoire mathématiques",
+              "preparation": "Plastifier si nécessaire, installer au tableau",
+              "alternatives": ["Dessiner à la craie", "Afficher sur écran numérique"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cloche ou signal auditif",
+              "quantity": "1 pour classe",
+              "purpose": "Recentrer l'attention pendant la chanson"
+            }
+          ]
+        },
+        "visualSupports": "Cartes affichées au tableau montrant 0, 1, 2, 3",
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté à montrer les nombres avec leurs doigts → modéliser lentement et permettre l'imitation",
+          "Si distraction pendant la chanson → utiliser la cloche pour ramener l'attention",
+          "Si confusion entre zéro et les autres nombres → insister sur 'rien du tout' pour zéro"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Promenade des nombres: Explorer la classe pour trouver des exemples de 0 (boîte vide), 1 (horloge), 2 (ciseaux), 3 (crayons). Les élèves touchent, comptent et nomment.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Boîtes transparentes vides",
+              "quantity": "3-4 boîtes pour démontrer 'zéro'",
+              "source": "Matériel recyclé - bureau administratif",
+              "preparation": "Nettoyer et vérifier qu'elles sont complètement vides",
+              "alternatives": ["Contenants plastique transparents", "Bocaux en verre"]
+            },
+            {
+              "item": "Objets concrets de la classe",
+              "quantity": "Collection variée (1 horloge, 2 ciseaux, 3+ crayons)",
+              "source": "Matériel déjà présent en classe",
+              "preparation": "Vérifier accessibilité et sécurité pour manipulation",
+              "alternatives": ["Photos plastifiées des objets", "Images projetées"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Étiquettes nombres 0-3",
+              "quantity": "1 jeu pour affichage",
+              "purpose": "Support visuel pendant l'exploration"
+            }
+          ]
+        },
         "visualSupports": "Tableau visuel avec symboles: 0 = boîte vide, 1 = soleil, 2 = yeux, 3 = roues de tricycle",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves se dispersent pendant l'exploration → diviser en petits groupes de 4-5 élèves",
+          "Si confusion sur le concept de 'zéro' → comparer avec des boîtes pleines versus vides",
+          "Si trop d'excitation pendant la promenade → établir des règles claires de déplacement"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Cercle de partage: Chaque élève montre un nombre avec ses doigts. Chanson de fermeture: 'Un, deux, trois, au revoir!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Musique douce de fond",
+              "quantity": "1 source audio",
+              "purpose": "Ambiance calme pour la fermeture"
+            }
+          ]
+        },
+        "visualSupports": "Cercle marqué au sol ou tapis de rassemblement",
+        "decisionPoints": [
+          "Si les élèves montrent incorrectement les nombres avec les doigts → modéliser et permettre répétition",
+          "Si difficulté à faire le cercle → utiliser des marqueurs visuels au sol"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -71,25 +132,88 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision de la Leçon 1 avec gestes: 'Hier nous avons trouvé des nombres! Montrez-moi 0, 1, 2, 3 avec vos doigts!' Chanson des doigts avec mouvement.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 0-3 de la leçon précédente",
+              "quantity": "1 jeu pour affichage",
+              "source": "Matériel de la leçon 1",
+              "preparation": "Réinstaller au tableau pour révision",
+              "alternatives": ["Redessiner rapidement", "Utiliser écran numérique"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Cartes nombres 0-3 affichées pour référence",
+        "decisionPoints": [
+          "Si les élèves ont oublié la leçon précédente → faire une brève révision avec les objets concrets",
+          "Si difficulté avec la chanson → ralentir le rythme et accentuer les gestes"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Stations de comptage: Station 1 - Compter des blocs dans des boîtes (0-3). Station 2 - Jeu de doigts avec comptines. Station 3 - Tri d'objets par quantité.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables colorés",
+              "quantity": "120 cubes (20 pour chaque station de 4-5 élèves)",
+              "source": "Kit mathématiques - armoire A",
+              "preparation": "Séparer en groupes de 0-3 dans des boîtes transparentes",
+              "alternatives": ["Jetons de comptage", "Blocs de bois", "Haricots lima"]
+            },
+            {
+              "item": "Boîtes transparentes petites",
+              "quantity": "12 boîtes (4 par station)",
+              "source": "Matériel de rangement",
+              "preparation": "Nettoyer et étiqueter 0, 1, 2, 3",
+              "alternatives": ["Assiettes de papier", "Contenants de yogourt"]
+            },
+            {
+              "item": "Objets à trier variés",
+              "quantity": "60 objets (20 par station): boutons, crayons, gommes",
+              "source": "Matériel de classe et fournitures",
+              "preparation": "Vérifier sécurité, organiser dans paniers",
+              "alternatives": ["Autocollants géométriques", "Images découpées"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuteur visuel",
+              "quantity": "3 minuteurs (1 par station)",
+              "purpose": "Gestion du temps de rotation"
+            }
+          ]
+        },
         "visualSupports": "Cartes numériques avec points, lignes de nombre tactile au sol",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves comptent sans correspondance un-à-un → modéliser 'toucher et dire' à chaque objet",
+          "Si confusion dans les rotations → utiliser des signaux visuels clairs pour chaque station",
+          "Si certains finissent très rapidement → préparer des défis supplémentaires avec nombres 4-5"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Jeu 'Montre-moi': L'enseignant dit un nombre, les élèves le montrent avec leurs doigts et trouvent ce nombre d'objets.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Petits objets pour comptage rapide",
+              "quantity": "100 objets identiques (4 par élève): jetons, boutons, cubes",
+              "source": "Réutiliser matériel de l'activité principale",
+              "preparation": "Distribuer 4 objets par élève dans petits contenants",
+              "alternatives": ["Crayons cassés", "Blocs Lego", "Bouchons"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Cercle de rassemblement avec espace pour objets",
+        "decisionPoints": [
+          "Si difficulté à trouver le bon nombre d'objets → commencer par nombres plus petits (0-2)",
+          "Si élèves lancent les objets → rappeler les règles de manipulation douce"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -122,25 +246,95 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision avec mouvement: 'Comment montrions-nous 2 hier?' (doigts, objets). 'Aujourd'hui nous allons DESSINER les nombres!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Quelques objets de révision",
+              "quantity": "10 objets pour démonstration (cubes ou jetons)",
+              "source": "Matériel de la leçon précédente",
+              "preparation": "Préparer groupes de 1, 2, 3 pour rappel rapide",
+              "alternatives": ["Doigts seulement", "Images projetées"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Exemples de représentations: objets réels, doigts, puis dessins",
+        "decisionPoints": [
+          "Si les élèves ont oublié les leçons précédentes → faire révision plus approfondie avec manipulation",
+          "Si anxiété face au dessin → rassurer que tous les dessins sont acceptables"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Atelier de représentation: Les élèves choisissent comment représenter chaque nombre (dessins, autocollants, empreintes de doigts, pâte à modeler). Créer un 'livre personnel des nombres'.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Papier pour livre personnel",
+              "quantity": "4 feuilles par élève (100 feuilles): 1 page par nombre 0-3",
+              "source": "Fournitures de classe",
+              "preparation": "Plier en format livret, numéroter les pages",
+              "alternatives": ["Papier recyclé", "Dos de feuilles utilisées"]
+            },
+            {
+              "item": "Crayons de couleur ou marqueurs",
+              "quantity": "1 boîte par table (6 boîtes pour 25 élèves)",
+              "source": "Matériel artistique de classe",
+              "preparation": "Vérifier que tous fonctionnent, organiser par table",
+              "alternatives": ["Crayons de plomb seulement", "Craies colorées"]
+            },
+            {
+              "item": "Autocollants ronds (optionnel)",
+              "quantity": "50 autocollants (2 par élève par nombre)",
+              "source": "Matériel artistique ou bureau",
+              "preparation": "Prévoir autocollants simples et colorés",
+              "alternatives": ["Gommettes faites maison", "Dessins seulement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Pâte à modeler",
+              "quantity": "10 pots pour partage",
+              "purpose": "Option tactile pour représentation 3D"
+            }
+          ]
+        },
         "visualSupports": "Exemples variés de représentations: dots, lignes, formes, dessins",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si frustration avec le dessin → encourager d'autres options comme autocollants ou empreintes",
+          "Si perfectionnisme bloque la créativité → montrer que toutes les tentatives sont valables",
+          "Si élèves finissent rapidement → les inviter à décorer ou essayer une deuxième technique"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Galerie de nombres: Afficher les créations et inviter les élèves à 'lire' les nombres des autres.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Espace d'affichage (tableau ou mur)",
+              "quantity": "Espace pour 25 livrets ouverts",
+              "source": "Espace classe existant",
+              "preparation": "Dégager espace au niveau des yeux des élèves",
+              "alternatives": ["Tables arrangées pour exposition", "Sol avec tapis"]
+            },
+            {
+              "item": "Punaises ou épingles (si affichage mural)",
+              "quantity": "25-30 punaises",
+              "source": "Matériel de bureau",
+              "preparation": "Vérifier sécurité pour élèves de 6 ans",
+              "alternatives": ["Pâte collante", "Affichage sur tables"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Organisation en galerie avec chemin de circulation",
+        "decisionPoints": [
+          "Si timidité pour partager → commencer par observation silencieuse puis inviter commentaires volontaires",
+          "Si difficulté à 'lire' les représentations des autres → encourager les questions à l'auteur"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -173,25 +367,94 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision active: 'Montrez-moi vos nombres 0-3!' Puis surprise: 'Aujourd'hui nous rencontrons de NOUVEAUX amis: 4 et 5!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 0-3 existantes",
+              "quantity": "Cartes déjà utilisées",
+              "source": "Matériel des leçons précédentes",
+              "preparation": "Réinstaller pour révision rapide",
+              "alternatives": ["Dessiner rapidement au tableau"]
+            },
+            {
+              "item": "Cartes nouvelles 4 et 5",
+              "quantity": "2 grandes cartes format affichage",
+              "source": "Préparer nouveau matériel ou dessiner",
+              "preparation": "Cartes colorées et attrayantes pour l'excitation",
+              "alternatives": ["Dessiner directement au tableau"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique d'introduction festive",
+              "quantity": "1 source audio",
+              "purpose": "Créer excitation pour nouveaux nombres"
+            }
+          ]
+        },
+        "visualSupports": "Progression visible: 0, 1, 2, 3... puis révélation de 4 et 5",
+        "decisionPoints": [
+          "Si les élèves semblent dépassés par deux nouveaux nombres → se concentrer sur 4 aujourd'hui, introduire 5 demain",
+          "Si excellente révision de 0-3 → procéder avec confiance aux nouveaux nombres"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Exploration guidée: Utiliser une main géante pour montrer 5 doigts. Construire des tours de 4 et 5 blocs. Jeu de collections: faire des groupes de 4 et 5 objets.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables pour constructions",
+              "quantity": "200 cubes (8 par élève): assez pour tours de 4 et 5",
+              "source": "Kit mathématiques - armoire A",
+              "preparation": "Séparer en couleurs, prévoir contenants pour distribution",
+              "alternatives": ["Blocs de bois", "Boîtes empilables", "Livres pour empiler"]
+            },
+            {
+              "item": "Objets variés pour collections",
+              "quantity": "250 objets au total: crayons (50), gommes (50), jetons (50), boutons (50), bouchons (50)",
+              "source": "Matériel de classe et collections",
+              "preparation": "Organiser dans 5 paniers différents, vérifier sécurité",
+              "alternatives": ["Autocollants", "Coquillages", "Haricots lima"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Main géante en carton",
+              "quantity": "1 main découpee format grand affichage",
+              "purpose": "Demonstration visuelle spectaculaire de 5 doigts"
+            }
+          ]
+        },
         "visualSupports": "Main géante avec doigts numérotés, cartes visuelles 4-5 avec objets familiers",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si surcharge cognitive avec 4 ET 5 → se concentrer sur 4 seulement et reporter 5 à demain",
+          "Si tours s'effondrent constamment → encourager constructions plus larges à la base",
+          "Si difficulté à faire collections exactes → modéliser comptage en touchant chaque objet"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Jeu 'Main magique': Montrer différents nombres de doigts, les élèves nomment le nombre et le construisent avec des blocs.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Quelques cubes par élève",
+              "quantity": "125 cubes (5 par élève) dans petits contenants",
+              "source": "Réutiliser cubes de l'activité principale",
+              "preparation": "Distribuer 5 cubes maximum par élève",
+              "alternatives": ["Jetons", "Boutons dans coupelles", "Bouchons"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Cercle avec espace central pour démonstrations",
+        "decisionPoints": [
+          "Si élèves confondent encore 4 et 5 → revenir à comparer avec les doigts d'une main",
+          "Si agitation avec les blocs → établir règles claires de manipulation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -224,25 +487,109 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Échauffement 'Danse des nombres': Musique, quand elle s'arrête, montrer le nombre de doigts demandé.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Musique entraînante adaptée aux enfants",
+              "quantity": "1 source audio avec contrôle facile pause/play",
+              "source": "Système audio de classe ou appareil personnel",
+              "preparation": "Tester volume et facilité d'arrêt rapide",
+              "alternatives": ["Chansons a capella", "Battement de mains rhythmique"]
+            },
+            {
+              "item": "Cartes nombres 0-5 pour référence",
+              "quantity": "1 jeu pour affichage rapide",
+              "source": "Matériel déjà préparé",
+              "preparation": "Garder à portée de main pour rappels",
+              "alternatives": ["Doigts de l'enseignant seulement"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Espace de danse dégagé, cartes nombres visibles",
+        "decisionPoints": [
+          "Si élèves trop excités par la musique → baisser volume et raccourcir périodes",
+          "Si difficulté à montrer nombres rapidement → ralentir le rythme et donner plus de temps",
+          "Si confusion sur nombres 4-5 → se concentrer sur 0-3 pour cette activité"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Rotation de jeux: Jeu 1 - Dé géant (rouler, dire le nombre, applaudir ce nombre de fois). Jeu 2 - Sac mystère (deviner le nombre d'objets au toucher). Jeu 3 - Course de nombres (trouver le nombre appelé dans la classe).",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Dé géant en mousse ou carton",
+              "quantity": "1 dé avec faces 0-5 (couvrir le 6 ou faire dé spécial)",
+              "source": "Matériel éducatif ou fabriquer avec boîte",
+              "preparation": "Vérifier que faces montrent 0, 1, 2, 3, 4, 5",
+              "alternatives": ["Dé régulier avec équivalences", "Roulette avec nombres"]
+            },
+            {
+              "item": "Sacs opaques pour jeu mystère",
+              "quantity": "6 sacs (2 par station de 8-9 élèves)",
+              "source": "Sacs en tissu ou papier",
+              "preparation": "Préparer avec 0-5 objets identiques dans chaque sac",
+              "alternatives": ["Boîtes fermées", "Contenants opaques"]
+            },
+            {
+              "item": "Objets pour sacs mystère",
+              "quantity": "90 objets identiques: 30 cubes, 30 jetons, 30 boutons",
+              "source": "Matériel de comptage existant",
+              "preparation": "Séparer en groupes de 0-5 par sac",
+              "alternatives": ["Cailloux lisses", "Blocs identiques", "Bouchons"]
+            },
+            {
+              "item": "Cartes nombres à afficher dans la classe",
+              "quantity": "15 cartes (3 copies de chaque nombre 0-5)",
+              "source": "Fabriquer ou imprimer grand format",
+              "preparation": "Afficher à différents endroits de la classe",
+              "alternatives": ["Dessiner nombres au tableau temporairement"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuteur pour rotations",
+              "quantity": "1 minuteur visuel",
+              "purpose": "Gestion des rotations de 9 minutes par jeu"
+            }
+          ]
+        },
         "visualSupports": "Nombres affichés partout dans la classe, cartes colorées avec symboles",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si trop d'excitation avec le dé géant → établir règles claires: rouler doucement, attendre son tour",
+          "Si difficulté avec sac mystère → permettre de regarder après avoir deviné",
+          "Si course devient chaotique → établir règles de déplacement sécuritaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Cercle de célébration: Chaque élève dit son nombre préféré entre 0-5 et explique pourquoi.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cercle ou tapis de rassemblement",
+              "quantity": "Espace pour 25 élèves assis",
+              "source": "Aménagement de classe existant",
+              "preparation": "Dégager l'espace, marquer places si nécessaire",
+              "alternatives": ["Chaises en cercle", "Marqueurs au sol"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Bâton de parole ou objet à passer",
+              "quantity": "1 objet spécial",
+              "purpose": "Gestion des tours de parole"
+            }
+          ]
+        },
+        "visualSupports": "Cartes nombres 0-5 affichées comme référence",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour partager → commencer par modéliser avec votre nombre préféré",
+          "Si discussions deviennent trop longues → limiter à une phrase par élève"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -275,25 +622,79 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision en mouvement: Marcher sur la ligne de nombre en comptant vers l'avant 0-5, puis applaudir en reculant 5-0.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Ligne de nombre au sol",
+              "quantity": "1 ligne marquée 0 à 5 (6 points)",
+              "source": "Ruban adhésif coloré ou craie",
+              "preparation": "Marquer au sol avec espaces de 50cm entre nombres",
+              "alternatives": ["Cerceaux placés en ligne", "Feuilles numérotées au sol"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Ligne numérique visible au sol",
+        "decisionPoints": [
+          "Si confusion directionnelle (avant/arrière) → utiliser flèches au sol et gestes clairs",
+          "Si élèves trébuchent sur la ligne → élargir l'espace ou permettre côté de la ligne"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Activités séquentielles: Escalier de nombres (monter en comptant vers l'avant, descendre en comptant vers l'arrière). Théâtre de marionnettes: nombres qui se suivent racontent leur histoire.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs ou boîtes pour escalier",
+              "quantity": "30 blocs identiques pour construire escalier 6 marches",
+              "source": "Blocs de construction ou boîtes",
+              "preparation": "Préparer construction stable, étiqueter marches 0-5",
+              "alternatives": ["Utiliser escalier réel de l'école", "Dessiner escalier géant au tableau"]
+            },
+            {
+              "item": "Marionnettes nombres simples",
+              "quantity": "6 marionnettes ou personnages (0, 1, 2, 3, 4, 5)",
+              "source": "Fabriquer avec papier ou chaussettes",
+              "preparation": "Créer personnages expressifs, faciles à manipuler",
+              "alternatives": ["Cartes nombres avec visages", "Doigts déguisés"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "Flèches directionnelles, ligne de nombre colorée, marionnettes expressives",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si escalier physique non sécuritaire → utiliser version au sol ou dessinnée",
+          "Si élèves perdent intérêt dans théâtre → les inviter à manipuler marionnettes eux-mêmes"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Chanson 'L'ascenseur des nombres': Monter et descendre avec la mélodie en comptant.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Espace pour mouvement vertical",
+              "quantity": "Espace classe dégagé pour 25 élèves",
+              "source": "Centre de la classe",
+              "preparation": "Pousser chaises/tables si nécessaire",
+              "alternatives": ["Mouvement assis (bras vers haut/bas)", "Utiliser couloir"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique d'ascenseur douce",
+              "quantity": "1 source audio",
+              "purpose": "Ambiance pour la chanson"
+            }
+          ]
+        },
+        "visualSupports": "Géstes clairs pour monter/descendre",
+        "decisionPoints": [
+          "Si espace insuffisant → faire activité en deux groupes"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -326,25 +727,77 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision énergique 0-5, puis surprise: 'Nous grandissons! Voici 6 et 7, nos nouveaux amis nombres!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 0-5 pour révision",
+              "quantity": "1 jeu d'affichage",
+              "source": "Matériel des leçons précédentes",
+              "preparation": "Réinstaller rapidement",
+              "alternatives": ["Compter sur doigts seulement"]
+            },
+            {
+              "item": "Cartes nouvelles 6 et 7",
+              "quantity": "2 cartes grand format",
+              "source": "Préparer ou dessiner",
+              "preparation": "Rendre attrayantes pour exciter",
+              "alternatives": ["Dessiner au tableau"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Progression 0-5 puis ajout de 6-7",
+        "decisionPoints": [
+          "Si surcharge avec deux nouveaux nombres → se concentrer sur 6 seulement"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Construction et exploration: Construire des tours de 6 et 7 blocs. Utiliser des boîtes d'œufs pour visualiser 6. Explorer comment faire 7 (6+1). Jeux de comparaison: 'plus que 5'.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes pour constructions",
+              "quantity": "175 cubes (7 par élève)",
+              "source": "Kit mathématiques",
+              "preparation": "Distribuer en contenants",
+              "alternatives": ["Blocs de bois", "Boîtes empilables"]
+            },
+            {
+              "item": "Boîtes d'œufs (6 compartiments)",
+              "quantity": "10 boîtes pour démonstration",
+              "source": "Matériel recyclé ou imitation carton",
+              "preparation": "Nettoyer si réelles, vérifier 6 compartiments",
+              "alternatives": ["Dessiner grilles de 6 cases", "Moules à muffins"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "Images concrètes (6 pattes d'insecte, 7 jours semaine), tableaux de comparaison",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si tours s'effondrent constamment → encourager bases plus larges ou constructions horizontales",
+          "Si confusion entre 6 et 7 → utiliser comparaison avec une main (5) plus doigts supplémentaires"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Célébration des nombres 'grands': Applaudir 6 fois lentement, puis 7 fois avec enthousiasme.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Musique célébration",
+              "quantity": "1 source audio",
+              "purpose": "Ambiance festive pour les nouveaux nombres"
+            }
+          ]
+        },
+        "visualSupports": "Espace pour applaudir ensemble en cercle",
+        "decisionPoints": [
+          "Si confusion dans comptage d'applaudissements → applaudir plus lentement avec modélisation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -385,9 +838,30 @@
       "main": {
         "duration": "~27 min",
         "activity": "Ateliers de mesure: Mesurer des livres avec des trombones, des bureaux avec des blocs, des crayons avec des jetons. Prédire d'abord, puis mesurer et compter.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Trombones pour mesurer",
+              "quantity": "200 trombones (8 par élève)",
+              "source": "Fournitures de bureau",
+              "preparation": "Vérifier qu'ils sont tous de même taille",
+              "alternatives": ["Cubes unifix", "Jetons identiques", "Crayons cassés de même longueur"]
+            },
+            {
+              "item": "Objets à mesurer variés",
+              "quantity": "Livres (25), crayons (25), règles (10)",
+              "source": "Matériel de classe existant",
+              "preparation": "Sélectionner objets de longueurs variées intéressantes",
+              "alternatives": ["Objets personnels des élèves", "Fournitures de classe"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "Tableaux de prédiction, étiquettes 'long/court', exemples de mesure",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec alignement des unités → modéliser placement bout à bout",
+          "Si frustration avec comptage long → choisir objets plus courts à mesurer"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -479,25 +953,99 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Moment magique: 'Aujourd'hui nous rencontrons le nombre le plus spécial: DIX!' Montrer deux mains complètes avec gants colorés.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Gants colorés pour enseignant",
+              "quantity": "1 paire de gants voyants",
+              "source": "Gants d'hiver ou gants de jardinage colorés",
+              "preparation": "Choisir couleurs vives pour effet dramatique",
+              "alternatives": ["Mains nues avec bracelets colorés", "Dessiner sur mains"]
+            },
+            {
+              "item": "Affichage spécial pour 10",
+              "quantity": "1 grande carte décorative",
+              "source": "Fabriquer spécialement",
+              "preparation": "Rendre très spéciale: paillettes, couleurs vives",
+              "alternatives": ["Dessiner très grand au tableau"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique magique d'introduction",
+              "quantity": "1 source audio",
+              "purpose": "Créer atmosphere magique pour introduction de 10"
+            }
+          ]
+        },
+        "visualSupports": "Deux mains bien visibles, affichage dramatique du 10",
+        "decisionPoints": [
+          "Si élèves trop excités → canaliser l'excitation vers l'observation attentive",
+          "Si confusion sur pourquoi 10 est spécial → montrer connexion avec nos deux mains"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Exploration de 10: Utiliser des cadres de 10 pour différentes combinaisons. Jeu des 'deux mains magiques'. Collections de 10 objets identiques. Découvrir que 10 = 5+5.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cadres de 10 (grilles 2x5)",
+              "quantity": "25 cadres plastifiés (1 par élève)",
+              "source": "Imprimer grilles ou fabriquer avec carton",
+              "preparation": "2 rangées de 5 cases chacune, plastifier pour réutilisation",
+              "alternatives": ["Boîtes d'œufs coupées", "Grilles dessinées"]
+            },
+            {
+              "item": "Jetons pour remplir cadres",
+              "quantity": "500 jetons (20 par élève)",
+              "source": "Matériel de comptage existant",
+              "preparation": "Distribuer dans petits contenants",
+              "alternatives": ["Haricots", "Boutons", "Autocollants ronds"]
+            },
+            {
+              "item": "Collections d'objets identiques",
+              "quantity": "10 groupes de 10 objets: crayons (10), gommes (10), trombones (10), etc.",
+              "source": "Matériel de classe organisé",
+              "preparation": "Compter et regrouper exactement 10 de chaque type",
+              "alternatives": ["Collections naturelles: cailloux, feuilles"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "Cadres de 10 géants, affiches de collections de 10, mains tracées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si surcharge avec concept de 10 → revenir aux nombres plus petits pour sécuriser",
+          "Si difficulté avec combinaisons 5+5 → utiliser comparaison concrète avec deux mains"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Célébration du 10: Chanson spéciale '10 petits doigts' avec mouvements chorégraphiés.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Espace de danse dégagé",
+              "quantity": "Espace pour 25 élèves en mouvement",
+              "source": "Centre de classe ou couloir",
+              "preparation": "Dégager mobilier si nécessaire",
+              "alternatives": ["Mouvements assis", "Cour extérieure si temps permet"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique entraînante",
+              "quantity": "1 chanson rythmée appropriée",
+              "purpose": "Accompagnement pour chanson des 10 doigts"
+            }
+          ]
+        },
+        "visualSupports": "Modélisation des gestes par l'enseignant",
+        "decisionPoints": [
+          "Si espace insuffisant → adapter mouvements ou faire en deux groupes"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -683,9 +1231,22 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Célébration des apprentissages: 'Vous avez appris tellement! Aujourd'hui, montrez tout ce que vous savez!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Portfolios vides ou cahiers",
+              "quantity": "25 portfolios individuels",
+              "source": "Cahiers école ou feuilles agrafées",
+              "preparation": "Préparer avec nom de chaque élève",
+              "alternatives": ["Chemises cartonnées", "Feuilles simples"]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Affichage des nombres 0-10 appris comme référence",
+        "decisionPoints": [
+          "Si anxiété d'évaluation → rassurer que c'est pour célébrer apprentissages"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -738,9 +1299,29 @@
       "main": {
         "duration": "~27 min",
         "activity": "Centres de jeux rotatifs: Jeux de dés, jeux de cartes simples, bingo des nombres, jeux de plateau adaptés. Rotation toutes les 8-10 minutes.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Jeux de dés (faces 0-10)",
+              "quantity": "8 dés pour 4 centres",
+              "source": "Jeux éducatifs ou modifier dés existants",
+              "preparation": "Vérifier que faces montrent nombres 0-10",
+              "alternatives": ["Roulettes numériques", "Cartes à piger"]
+            },
+            {
+              "item": "Cartes bingo simples",
+              "quantity": "25 cartes différentes avec nombres 0-10",
+              "source": "Fabriquer ou imprimer",
+              "preparation": "Plastifier pour durabilité",
+              "alternatives": ["Grilles dessinées sur papier"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "Instructions visuelles pour chaque jeu, minuteur visuel",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si disputes dans jeux → rappeler règles de fair-play et tour de rôle"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -825,9 +1406,28 @@
       "main": {
         "duration": "~27 min",
         "activity": "Atelier d'art libre: Créer des œuvres intégrant les nombres - peintures, collages, sculptures, dessins. Les nombres peuvent être décoratifs, structurels ou thématiques.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Matériel artistique varié",
+              "quantity": "Papier (25 feuilles), crayons (6 boîtes), marqueurs (3 boîtes)",
+              "source": "Fournitures artistiques de classe",
+              "preparation": "Organiser en stations accessibles",
+              "alternatives": ["Crayons de plomb et papier recyclé"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Autocollants nombres décoratifs",
+              "quantity": "2-3 feuilles d'autocollants",
+              "purpose": "Option pour élèves moins confiants en dessin"
+            }
+          ]
+        },
         "visualSupports": "Exemples d'art mathématique, galerie d'inspiration",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si blocage créatif → proposer techniques simples comme pochoirs ou autocollants"
+        ],
         "movementBreaks": []
       },
       "closing": {
