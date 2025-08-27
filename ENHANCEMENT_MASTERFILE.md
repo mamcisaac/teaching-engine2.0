@@ -21,7 +21,7 @@
 ### Mathématiques (10 units)
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
 |------|--------------|-----------------|-----------|-----------|----------|
-| nombres-0-10 | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| nombres-0-10 | ✅ | ✅ | ✅ | ⬜ | ✅ |
 | formes-geometriques | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | mesure-temps | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | patterns-repetition | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -144,7 +144,13 @@ git push origin main
 ## 🎯 Current Focus
 
 **Next Unit to Enhance**: mathematiques/formes-geometriques  
-**Recently Completed**: mathematiques/nombres-0-10 (Enhanced with decision points and materials)
+**Recently Completed**: mathematiques/nombres-0-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
+- ✅ Fixed incomplete materials in lessons 8, 9, 16-17
+- ✅ Added missing decision points to lessons 8, 9, 16-17  
+- ✅ Added differentiation strategies to ALL 20 lessons (forStruggling, forAdvanced, forELL, forIEP)
+- ✅ Added assessment criteria to lesson 1
+- ✅ Fixed empty visual supports in multiple lessons
+- 🔴 **CRITICAL FIXES**: Addressed all major ETFO compliance issues identified in quality review
 
 ---
 

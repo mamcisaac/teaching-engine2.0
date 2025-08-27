@@ -108,14 +108,43 @@
       },
       "realWorldConnection": "Compter les jouets à la maison, les doigts, les crayons sur le bureau",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement les nombres 0-2 au lieu de 0-3",
+          "Permettre l'utilisation d'objets concrets pendant toute la leçon",
+          "Offrir plus de temps pour la manipulation et l'exploration",
+          "Fournir un partenaire pour le soutien pendant la promenade"
+        ],
+        "forAdvanced": [
+          "Introduire le nombre 4 s'ils maîtrisent rapidement 0-3",
+          "Demander de trouver et compter des collections plus grandes dans la classe",
+          "Encourager l'écriture ou le dessin des nombres trouvés",
+          "Créer leur propre chanson avec gestes pour les nombres"
+        ],
+        "forELL": [
+          "Associer chaque nombre à une image claire et constante",
+          "Permettre l'usage de la langue première pour compter initialement",
+          "Utiliser gestes exagérés et répétition pour vocabulaire",
+          "Fournir cartes visuelles avec nombres et objets concrets"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins sensoriels (volume, éclairage, espace)",
+          "Modifier les attentes de participation (pointer au lieu de parler)",
+          "Utiliser supports tactiles si nécessaire (nombres en relief)",
+          "Ajuster la durée d'attention avec pauses fréquentes"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève montre 0-3 avec ses doigts correctement",
+          "Élève reconnaît les nombres 0-3 dans l'environnement",
+          "Élève participe activement à la promenade des nombres",
+          "Élève utilise le vocabulaire: nombre, zéro, un en contexte"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: Vérifier si élève suit les gestes de la chanson",
+          "Pendant l'exploration: Observer la manipulation des objets et comptage",
+          "Pendant la fermeture: Noter la participation au cercle de partage"
+        ]
       }
     },
     {
@@ -222,10 +251,30 @@
       },
       "realWorldConnection": "Compter les membres de la famille, les animaux de compagnie",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 0-1-2, retarder l'introduction de 3",
+          "Utiliser des objets plus gros et faciles à manipuler",
+          "Permettre comptage plus lent avec pause entre chaque nombre",
+          "Utiliser supports visuels constants pour chaque nombre"
+        ],
+        "forAdvanced": [
+          "Introduire le comptage jusqu'à 5 si maîtrise rapide",
+          "Demander de créer des collections de différentes tailles",
+          "Encourager à enseigner le comptage à un pair",
+          "Explorer différentes façons de montrer un nombre (doigts, objets, dessins)"
+        ],
+        "forELL": [
+          "Répéter chaque nombre plusieurs fois avec gestes clairs",
+          "Associer nombres à des images/photos familières",
+          "Permettre comptage dans langue maternelle puis en français",
+          "Utiliser objets culturellement familiers quand possible"
+        ],
+        "forIEP": [
+          "Adapter les manipulatives selon besoins moteurs (plus gros, texturés)",
+          "Modifier attentes de production verbale (gestes ok)",
+          "Ajuster éclairage et position selon besoins sensoriels",
+          "Fournir pauses sensorielles fréquentes"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -343,10 +392,30 @@
       },
       "realWorldConnection": "Dessiner le nombre d'étoiles dans le ciel, de fleurs dans un jardin",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -463,10 +532,30 @@
       },
       "realWorldConnection": "Compter les doigts d'une main, les roues d'une voiture plus une de rechange",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -598,10 +687,30 @@
       },
       "realWorldConnection": "Jouer aux dés, reconnaître les numéros de maison en marchant",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -703,10 +812,30 @@
       },
       "realWorldConnection": "Compter les marches en montant et descendant l'escalier",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -806,10 +935,30 @@
       },
       "realWorldConnection": "Compter les jours de la semaine, les couleurs de l'arc-en-ciel",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -830,9 +979,29 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Connexion: 'Hier nous avons appris 6 et 7. Aujourd'hui, nous utilisons TOUS nos nombres pour mesurer!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 6 et 7 de révision",
+              "quantity": "2 cartes format affichage",
+              "source": "Matériel des leçons précédentes",
+              "preparation": "Afficher au tableau pour connexion",
+              "alternatives": ["Redessiner rapidement au tableau"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Règle ou mètre à ruban",
+              "quantity": "1 pour démonstration",
+              "purpose": "Montrer l'idée de mesurer pendant l'introduction"
+            }
+          ]
+        },
+        "visualSupports": "Cartes nombres 6-7 affichées, exemple de mesure simple au tableau",
+        "decisionPoints": [
+          "Si les élèves ont oublié les nombres 6 et 7 → faire une révision rapide avec les doigts",
+          "Si confusion sur le concept de 'mesurer' → montrer brièvement avec la règle"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -867,9 +1036,29 @@
       "closing": {
         "duration": "~10 min",
         "activity": "Partage des découvertes: 'Qu'est-ce qui était long? Court? Combien de trombones?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Tableau de résultats de mesure",
+              "quantity": "1 affiche pour classe",
+              "source": "Papier grand format et marqueurs",
+              "preparation": "Préparer colonnes: Objet, Nombre de trombones, Long/Court",
+              "alternatives": ["Utiliser le tableau noir pour noter les résultats"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Objets mesurés pour référence",
+              "quantity": "2-3 exemples",
+              "purpose": "Rappeler les mesures effectuées pendant le partage"
+            }
+          ]
+        },
+        "visualSupports": "Tableau de résultats, objets de référence pour comparaison long/court",
+        "decisionPoints": [
+          "Si difficulté à se rappeler les résultats → montrer les objets mesurés à nouveau",
+          "Si discussion trop longue → limiter à 3-4 exemples marquants"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -878,10 +1067,30 @@
       },
       "realWorldConnection": "Mesurer la taille d'un livre avec des trombones, compter les pas",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -902,25 +1111,114 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision par le mouvement: Compter jusqu'à 7 en marchant, puis découvrir 'Voici les nombres 8 et 9!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 0-7 de révision",
+              "quantity": "8 cartes format affichage",
+              "source": "Matériel des leçons précédentes",
+              "preparation": "Afficher en séquence 0-7 pour la révision",
+              "alternatives": ["Dessiner rapidement au tableau"]
+            },
+            {
+              "item": "Cartes nombres 8 et 9 (nouvelles)",
+              "quantity": "2 grandes cartes colorées",
+              "source": "Préparer nouveau matériel",
+              "preparation": "Cartes attrayantes pour la révélation",
+              "alternatives": ["Dessiner au tableau avec couleurs"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique rythmique pour marcher",
+              "quantity": "1 source audio",
+              "purpose": "Accompagner le mouvement de comptage"
+            }
+          ]
+        },
+        "visualSupports": "Séquence nombres 0-7 affichée, puis révélation de 8 et 9",
+        "decisionPoints": [
+          "Si les élèves se fatiguent pendant la marche → réduire à compter sur place avec gestes",
+          "Si oubli des nombres précédents → pointer les cartes pendant le comptage"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Activités de regroupement: Créer des groupes de 8 et 9 objets sur des assiettes. Explorer différentes façons de faire 8 (4+4, 5+3). Jeu de 'familles de nombres'.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Assiettes en papier ou contenants",
+              "quantity": "30 assiettes (1-2 par élève)",
+              "source": "Fournitures de classe ou cafétéria",
+              "preparation": "Distribuer avant l'activité",
+              "alternatives": ["Cercles de papier", "Napperons"]
+            },
+            {
+              "item": "Objets à compter variés",
+              "quantity": "300+ petits objets (jetons, boutons, haricots)",
+              "source": "Collection de manipulatives de classe",
+              "preparation": "Placer dans des bacs accessibles par équipe",
+              "alternatives": ["Cubes unifix", "Blocs de bois", "Cailloux propres"]
+            },
+            {
+              "item": "Cartes décomposition 8 et 9",
+              "quantity": "10 cartes montrant 4+4, 5+3, etc.",
+              "source": "Créer ou imprimer",
+              "preparation": "Plastifier pour durabilité",
+              "alternatives": ["Dessiner exemples au tableau"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Pinces pour manipulation fine",
+              "quantity": "10-12 pinces",
+              "purpose": "Développement de la motricité fine"
+            }
+          ]
+        },
         "visualSupports": "Cercles de regroupement dessinés, images de collections naturelles (8 pattes araignée)",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si confusion avec regroupement → modéliser avec une assiette au tableau",
+          "Si objets se mélangent entre groupes → utiliser contenants séparés plus éloignés",
+          "Si difficulté avec décomposition 4+4, 5+3 → utiliser des couleurs différentes d'objets"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Jeu 'Devinez mon groupe': Montrer un groupe d'objets, les élèves devinent le nombre.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Boîtes mystère ou sacs opaques",
+              "quantity": "3-4 contenants",
+              "source": "Boîtes de chaussures ou sacs en tissu",
+              "preparation": "Préparer groupes de 6, 7, 8, 9 objets dans chaque",
+              "alternatives": ["Utiliser des nappes pour couvrir les groupes"]
+            },
+            {
+              "item": "Objets identiques pour les groupes",
+              "quantity": "40+ objets (boutons, jetons, blocs)",
+              "source": "Matériel de manipulatives réutilisé",
+              "preparation": "Créer des groupes de tailles différentes",
+              "alternatives": ["Dessins d'objets groupés"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau de score simple",
+              "quantity": "1 affiche",
+              "purpose": "Suivre les bonnes réponses si désiré"
+            }
+          ]
+        },
+        "visualSupports": "Groupes d'objets, cartes nombres 6-9 pour référence",
+        "decisionPoints": [
+          "Si trop facile → montrer partiellement les objets pour plus de défi",
+          "Si élèves devinent au hasard → encourager le comptage attentif avant de deviner"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -929,10 +1227,30 @@
       },
       "realWorldConnection": "Compter les pattes d'une araignée, les joueurs dans une équipe de baseball",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1054,10 +1372,30 @@
       },
       "realWorldConnection": "Compter tous nos doigts, les orteils, les œufs dans une boîte",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1105,10 +1443,30 @@
       },
       "realWorldConnection": "Numéros de maison qui se suivent, pages d'un livre en ordre",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1156,10 +1514,30 @@
       },
       "realWorldConnection": "Comparer l'âge avec des frères et sœurs, le nombre de jouets",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1207,10 +1585,30 @@
       },
       "realWorldConnection": "Écrire son âge, le numéro de sa maison, la date",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1271,10 +1669,30 @@
       },
       "realWorldConnection": "Créer un livre personnel de nombres pour la famille",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1338,10 +1756,30 @@
       },
       "realWorldConnection": "Jeux familiaux avec des dés, cartes numériques",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1398,9 +1836,36 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Inspiration artistique: Montrer des exemples d'art avec des nombres et demander des idées créatives.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Exemples d'art mathématique",
+              "quantity": "5-6 images ou créations",
+              "source": "Internet, livres d'art, créations précédentes",
+              "preparation": "Imprimer ou préparer sur écran, montrer nombres intégrés",
+              "alternatives": ["Dessiner exemples simples au tableau"]
+            },
+            {
+              "item": "Cartes nombres 0-10 décoratives",
+              "quantity": "11 cartes colorées",
+              "source": "Matériel existing ou créer",
+              "preparation": "Affichage attrayant pour inspiration",
+              "alternatives": ["Nombres écrits au tableau avec couleurs"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique d'ambiance créative",
+              "quantity": "1 source audio douce",
+              "purpose": "Créer ambiance artistique inspirante"
+            }
+          ]
+        },
+        "visualSupports": "Galerie d'exemples d'art mathématique, nombres 0-10 affichés artistiquement",
+        "decisionPoints": [
+          "Si peu de réaction aux exemples → poser des questions spécifiques: 'Où voyez-vous les nombres?'",
+          "Si trop d'excitation → canaliser l'enthousiasme vers des idées concrètes"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1433,9 +1898,36 @@
       "closing": {
         "duration": "~10 min",
         "activity": "Vernissage: Exposer les créations et inviter les commentaires positifs des pairs.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Surface d'exposition",
+              "quantity": "Murs, tableau d'affichage ou tables",
+              "source": "Espaces de classe disponibles",
+              "preparation": "Dégager espace pour galerie temporaire",
+              "alternatives": ["Présentations au bureau de chaque élève"]
+            },
+            {
+              "item": "Système d'accrochage simple",
+              "quantity": "Punaises, tréfles ou ruban adhésif (25 pièces)",
+              "source": "Fournitures de classe",
+              "preparation": "Accès facile pour installation rapide",
+              "alternatives": ["Tenir les œuvres pour présentation"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cartons de présentation",
+              "quantity": "25 petites étiquettes",
+              "purpose": "Permettre aux élèves d'écrire leur nom d'artiste"
+            }
+          ]
+        },
+        "visualSupports": "Galerie d'œuvres organisée, affichage attractif des créations",
+        "decisionPoints": [
+          "Si commentaires négatifs → rediriger vers aspects positifs et nombres utilisés",
+          "Si trop de temps pour chaque œuvre → limiter à un commentaire positif par élève"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1444,10 +1936,30 @@
       },
       "realWorldConnection": "Décorer sa chambre avec des chiffres, créer des cartes d'anniversaire",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1504,25 +2016,114 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Échauffement musical: Révision de comptines connues intégrant des nombres.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Recueil de comptines numériques",
+              "quantity": "1 livre ou feuilles imprimées",
+              "source": "Ressources pédagogiques ou Internet",
+              "preparation": "Sélectionner 3-4 comptines simples avec nombres 0-10",
+              "alternatives": ["Mémoriser quelques comptines classiques"]
+            },
+            {
+              "item": "Cartes nombres 0-10 musicales",
+              "quantity": "11 cartes avec symboles musicaux",
+              "source": "Créer ou décorer cartes existantes",
+              "preparation": "Ajouter notes de musique ou instruments à chaque nombre",
+              "alternatives": ["Dessiner au tableau avec symboles musicaux"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Instrument de rythme simple",
+              "quantity": "1 tambourin ou maracas",
+              "purpose": "Accompagner le chant et marquer le tempo"
+            }
+          ]
+        },
+        "visualSupports": "Cartes nombres musicales affichées, paroles de comptines au tableau",
+        "decisionPoints": [
+          "Si les élèves ne connaissent pas les comptines → enseigner une simple phrase à la fois",
+          "Si timidité pour chanter → commencer par des chuchotements puis augmenter le volume"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Création musicale: Apprendre de nouvelles chansons de nombres, créer des rythmes pour chaque chiffre, composer une chanson de classe avec les nombres 0-10.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Instruments de percussion variés",
+              "quantity": "25+ instruments (maracas, tambourins, cuillères, blocs)",
+              "source": "Collection d'instruments de classe ou créer avec matériau recyclé",
+              "preparation": "Organiser en stations accessibles par groupes",
+              "alternatives": ["Objets du quotidien: pots, cuillères, boîtes"]
+            },
+            {
+              "item": "Tableau de rythmes pour nombres",
+              "quantity": "1 grande affiche ou tableau",
+              "source": "Créer avec symboles visuels",
+              "preparation": "Montrer rythmes différents pour chaque nombre (0=silence, 1=tap, 2=tap-tap)",
+              "alternatives": ["Utiliser le tableau noir avec symboles"]
+            },
+            {
+              "item": "Papier grand format pour composition",
+              "quantity": "2-3 feuilles grand format",
+              "source": "Papier d'emballage ou journaux",
+              "preparation": "Préparer pour écrire paroles de chanson collective",
+              "alternatives": ["Utiliser le tableau pour noter les idées"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Enregistreur audio simple",
+              "quantity": "1 appareil ou téléphone",
+              "purpose": "Enregistrer la chanson créée pour réécouter"
+            }
+          ]
+        },
         "visualSupports": "Partitions picturales, gestes musicaux, cartes rythmiques",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si trop de bruit avec instruments → établir signal pour 'silence musical' et règles d'utilisation",
+          "Si difficulté à créer rythmes pour nombres → modéliser avec 0=silence, 1=un son, 2=deux sons",
+          "Si composition de chanson trop complexe → se concentrer sur une simple phrase répétée"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Concert de classe: Performance de la chanson créée ensemble.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Scène improvisée (espace dégagé)",
+              "quantity": "Zone devant la classe",
+              "source": "Réorganiser l'espace classe",
+              "preparation": "Dégager espace pour «scène» et public",
+              "alternatives": ["Rester aux places avec performances individuelles"]
+            },
+            {
+              "item": "Paroles de chanson créée",
+              "quantity": "1 affiche visible ou copies",
+              "source": "Résultats de l'activité principale",
+              "preparation": "Afficher clairement pour référence pendant performance",
+              "alternatives": ["Mémorisation simple sans support écrit"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Public improvisé (autres classes)",
+              "quantity": "Inviter une classe voisine",
+              "purpose": "Créer ambiance de vrai concert"
+            }
+          ]
+        },
+        "visualSupports": "Paroles affichées, espace de performance délimité",
+        "decisionPoints": [
+          "Si timidité pour performance → commencer par chanter tous ensemble, puis volontaires",
+          "Si oubli des paroles → permettre aide du public ou référence à l'affiche"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1531,10 +2132,30 @@
       },
       "realWorldConnection": "Chansons comptines à la maison, danser en comptant",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1618,10 +2239,30 @@
       },
       "realWorldConnection": "Chercher des nombres en sortant, dans les magasins",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1705,10 +2346,30 @@
       },
       "realWorldConnection": "Raconter des histoires à la famille impliquant des nombres",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1792,10 +2453,30 @@
       },
       "realWorldConnection": "Partager ses connaissances mathématiques avec la famille et les amis",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "forAdvanced": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "forELL": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
       },
       "assessmentCriteria": {
         "observable": [],
