@@ -10,7 +10,7 @@
       "lessonNumber": 1,
       "lessonType": "core",
       "title": "Découverte tactile: Qu'est-ce qu'une texture?",
-      "oneGoal": "",
+      "oneGoal": "Les élèves exploreront différentes textures par le toucher et apprendront à identifier et décrire des surfaces variées.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "texture",
@@ -23,49 +23,58 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de bienvenue. Montrer une boîte mystère contenant différents objets texturés (lisse, rugueux, doux, dur). Les élèves touchent les objets sans regarder et décrivent ce qu'ils ressentent en français: 'C'est rugueux comme l'écorce d'un arbre' ou 'C'est lisse comme du verre'.",
+        "materials": ["Boîte mystère", "Objets texturés variés (lisse: miroir, rugueux: papier sablé, doux: peluche, dur: pierre)", "Cartes visuelles des textures"],
+        "visualSupports": "Cartes illustrées montrant différentes textures avec les mots en français",
+        "decisionPoints": [
+          "Si les élèves ont peur de toucher : Commencer par observer visuellement, puis toucher avec un doigt seulement",
+          "Si les élèves mélangent les mots : Utiliser des gestes corporels pour chaque texture (caresser pour doux, frotter pour rugueux)",
+          "Si certains élèves sont trop excités : Établir des règles claires - un élève touche à la fois, les autres observent"
+        ],
+        "movementBreaks": ["Jeu 'texture corporelle' - les élèves imitent des textures avec leur corps (rigide pour dur, ondulé pour ondulé)"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Station d'exploration tactile avec 6 postes : 1) Textiles variés, 2) Papiers différents, 3) Objets naturels, 4) Surfaces métalliques, 5) Plastiques texturés, 6) Matériaux recyclés. Les élèves circulent par groupes de 4, touchent et décrivent en français. Création d'un 'livre tactile' collectif où chaque élève dessine et colle un échantillon de texture avec le mot français.",
+        "materials": ["6 plateaux d'exploration", "Textiles variés", "Papiers texturés", "Objets naturels (coquillages, pierres, écorce)", "Surfaces métalliques", "Plastiques texturés", "Matériaux recyclés", "Carnet collectif", "Colle", "Crayons"],
+        "visualSupports": "Affiches des 6 stations avec pictogrammes et mots en français, tableau de vocabulaire tactile",
+        "decisionPoints": [
+          "Si certains élèves évitent certaines textures : Respecter leurs limites, proposer d'observer ou de décrire ce que touchent les autres",
+          "Si le vocabulaire est difficile : Utiliser des comparaisons familières (doux comme un chat, rugueux comme la langue d'un chat)"
+        ],
+        "movementBreaks": ["Danse des textures - musique rythmée, les élèves bougent selon la texture nommée"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de partage. Chaque élève choisit sa texture préférée de la journée et explique pourquoi en français simple: 'J'aime le doux parce que c'est comme câliner maman.' Récapitulatif du vocabulaire avec gestes. Plan pour la prochaine leçon : chercher des textures dans notre environnement.",
+        "materials": ["Échantillons de textures explorées", "Cartes vocabulaire"],
+        "visualSupports": "Mur de mots tactiles commencé aujourd'hui",
+        "decisionPoints": [
+          "Si les élèves sont timides pour partager : Permettre de montrer leur texture sans parler ou de chuchoter à l'oreille de l'enseignant(e)"
+        ],
+        "movementBreaks": ["Relaxation tactile - caresser doucement ses bras en respirant calmement"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui refuse de toucher certaines textures ou semble anxieux avec les sensations tactiles",
+        "then": "Respecter ses limites. Proposer d'abord l'observation visuelle, puis toucher avec un objet (bâtonnet), enfin avec un doigt si confortable. Utiliser des comparaisons rassurantes et valoriser toute tentative."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Faire le lien avec les vêtements qu'ils portent (doux pull, jeans rugueux), les animaux de compagnie (poil doux du chat), les surfaces à la maison (table lisse, tapis doux).",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Commencer avec seulement 3 textures de base (lisse, rugueux, doux)", "Utiliser des objets familiers (peluche, livre, caillou)", "Permettre de toucher avec supervision étroite"],
+        "forAdvanced": ["Introduire des nuances (très rugueux, un peu lisse)", "Créer des phrases comparatives complexes", "Devenir 'expert texture' pour aider les pairs"],
+        "forELL": ["Cartes visuelles avec mots en français et images claires", "Gestes corporels pour chaque texture", "Répétition fréquente du vocabulaire"],
+        "forIEP": ["Adaptation tactile selon sensibilités sensorielles", "Temps supplémentaire pour explorer", "Support visuel personnalisé"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Élève touche différentes textures volontairement", "Utilise le vocabulaire tactile en français", "Fait des comparaisons simples entre textures", "Participe aux discussions de groupe"],
+        "checkpoints": ["Évaluation informelle pendant l'exploration des stations", "Observation des interactions pendant le cercle de partage", "Documentation des mots de vocabulaire utilisés spontanément"]
       }
     },
     {
       "lessonNumber": 2,
       "lessonType": "core",
       "title": "Chasse aux textures dans notre environnement",
-      "oneGoal": "",
+      "oneGoal": "Les élèves observeront et documenteront différentes textures dans leur environnement scolaire, apprenant à classifier les textures naturelles et artificielles.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "observer",
@@ -77,49 +86,58 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle d'ouverture avec révision des textures d'hier. Présenter la mission du jour : devenir des 'détectives de textures' pour explorer l'école. Montrer des cartes d'exploration avec symboles pour observer, documenter et classifier. Expliquer la différence entre naturel (arbre, pierre) et artificiel (plastique, métal) avec exemples concrets.",
+        "materials": ["Cartes d'exploration", "Carnets de détective", "Crayons", "Tablettes à pinces", "Exemples naturels et artificiels"],
+        "visualSupports": "Tableau de classification naturel/artificiel avec images, badges de détectives",
+        "decisionPoints": [
+          "Si les élèves ne comprennent pas naturel/artificiel : Utiliser des exemples très concrets (feuille vs papier, pierre vs brique)",
+          "Si certains élèves sont impatients de partir : Créer un système de partenaires pour la responsabilité mutuelle",
+          "Si le concept d'observation semble abstrait : Modeler avec un objet visible en expliquant chaque étape d'observation"
+        ],
+        "movementBreaks": ["Échauffement corporel : imiter les mouvements d'observation (regarder de près, de loin, toucher délicatement)"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Chasse aux textures par équipes de 3 dans différentes zones de l'école : 1) Cour d'école (naturel), 2) Couloirs (artificiel), 3) Bibliothèque (mixte), 4) Gymnase (artificiel), 5) Jardin scolaire (naturel). Chaque équipe documente 5 textures différentes par zone avec dessins simples et mots français. Retour en classe pour créer une carte géante des textures de l'école avec classification naturel/artificiel.",
+        "materials": ["Carnets d'exploration par équipe", "Crayons de couleur", "Tablettes à pinces", "Grande carte de l'école", "Autocollants colorés (vert=naturel, bleu=artificiel)", "Appareil photo pour documentation"],
+        "visualSupports": "Carte de l'école avec zones marquées, exemples visuels de documentation, tableau de classification",
+        "decisionPoints": [
+          "Si certaines zones sont inaccessibles : Adapter avec photos pré-prises ou observation par fenêtres",
+          "Si les élèves se dispersent trop : Établir des limites claires et utiliser des sifflets de rappel"
+        ],
+        "movementBreaks": ["Pause mouvement entre zones : marcher comme la texture trouvée (rigide, souple, ondulé)"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Rassemblement devant la carte géante des textures. Chaque équipe présente sa découverte la plus surprenante en français : 'Nous avons trouvé que le mur de briques est rugueux ET dur.' Célébrer les détectives avec remise de badges. Connexion avec demain : nous utiliserons ces textures pour créer de l'art avec la technique du frottage.",
+        "materials": ["Carte géante complétée", "Badges de détectives", "Découvertes documentées"],
+        "visualSupports": "Carte des textures avec classification visuelle, galerie des découvertes",
+        "decisionPoints": [
+          "Si certains élèves sont timides : Permettre la présentation en duo ou en montrant simplement leur découverte"
+        ],
+        "movementBreaks": ["Danse de célébration : bouger selon les textures trouvées"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui a de la difficulté à différencier naturel et artificiel ou qui se perd pendant l'exploration",
+        "then": "Simplifier en utilisant seulement des exemples très évidents (feuille=naturel, plastique=artificiel). Assigner un partenaire responsable. Limiter à 2-3 textures au lieu de 5."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Connecter avec leur chambre à coucher (oreiller doux, mur lisse), le parc où ils jouent (herbe, balançoires métalliques), les textures qu'ils aiment ou n'aiment pas toucher.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Limiter à 3 textures claires", "Partenaire de soutien constant", "Cartes visuelles avec exemples évidents", "Zone d'exploration réduite"],
+        "forAdvanced": ["Chercher 7-8 textures différentes", "Utiliser un vocabulaire descriptif plus riche", "Aider à guider les pairs", "Créer des catégories supplémentaires (dur/mou, chaud/froid)"],
+        "forELL": ["Images claires pour naturel/artificiel", "Gestes pour chaque action (observer, toucher, dessiner)", "Partenaire francophone", "Liste visuelle du vocabulaire"],
+        "forIEP": ["Temps supplémentaire pour exploration", "Adaptation selon besoins sensoriels", "Zone de retrait si surcharge", "Documentation simplifiée"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Élève identifie correctement naturel vs artificiel", "Utilise le vocabulaire d'observation en français", "Documente ses découvertes avec dessins ou mots", "Collabore efficacement en équipe"],
+        "checkpoints": ["Observation pendant l'exploration", "Vérification des carnets de détective", "Écoute lors des présentations finales", "Participation à la carte géante"]
       }
     },
     {
       "lessonNumber": 3,
       "lessonType": "core",
       "title": "Premiers frottages: Technique de base",
-      "oneGoal": "",
+      "oneGoal": "Les élèves découvriront la technique du frottage pour révéler des textures cachées et créer leurs premières impressions artistiques.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "frottage",
@@ -131,49 +149,58 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle magique avec démonstration mystère : placer une pièce de monnaie sous papier et frotter avec crayon pour révéler l'image. Émerveiller les élèves avec cette 'magie' du frottage. Expliquer que nous allons utiliser cette technique pour capturer les textures trouvées hier.",
+        "materials": ["Pièces de monnaie", "Papier fin", "Crayons de cire", "Exemples de frottages"],
+        "visualSupports": "Affiches montrant les étapes du frottage, exemples artistiques célèbres",
+        "decisionPoints": [
+          "Si les élèves sont trop excités par la 'magie' : Canaliser l'enthousiasme vers l'expérimentation structurée",
+          "Si certains ne comprennent pas la technique : Démonstration individuelle avec guidage de la main",
+          "Si les matériaux ne fonctionnent pas bien : Ajuster avec des alternatives (pastels, papiers différents)"
+        ],
+        "movementBreaks": ["Gestes corporels : imiter les mouvements de frottage dans les airs"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Atelier de frottage avec progression : 1) Pratique avec objets plats (feuilles, formes géométriques), 2) Textures de l'école découvertes hier, 3) Création libre avec combinaisons. Les élèves expérimentent différentes pressions et directions. Création d'un portfolio individuel de frottages avec annotations en français.",
+        "materials": ["Papier de soie ou papier fin", "Crayons de cire variés", "Objets texturés collectionnables", "Planches à dessin", "Portfolios individuels"],
+        "visualSupports": "Guide visuel des techniques de pression, galerie d'exemples, carte de l'école pour référence",
+        "decisionPoints": [
+          "Si le papier se déchire : Montrer comment ajuster la pression et utiliser du papier plus épais",
+          "Si les impressions sont floues : Enseigner la technique de maintien ferme du papier"
+        ],
+        "movementBreaks": ["Pause créative : étirement des bras et des doigts avec mouvements ondulés"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Galerie instantanée : afficher tous les frottages sur les tables. Promenade silencieuse pour admirer le travail de chacun. Chaque élève choisit un frottage (pas le sien) et dit un mot d'appréciation en français. Réflexion : qu'avons-nous appris sur les textures invisibles?",
+        "materials": ["Frottages créés", "Supports d'affichage"],
+        "visualSupports": "Espace galerie aménagé, vocabulaire d'appréciation affiché",
+        "decisionPoints": [
+          "Si certains élèves sont autocritiques : Valoriser l'effort et la découverte plutôt que le résultat"
+        ],
+        "movementBreaks": ["Relaxation : respirer profondément en imaginant les textures créées"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui n'arrive pas à faire des frottages nets ou qui se frustre avec la technique",
+        "then": "Guider physiquement sa main pour montrer la pression et le mouvement. Commencer avec des textures très prononcées. Valoriser toute impression visible même faible."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Relier aux empreintes qu'ils voient (pneus dans la boue, semelles sur le sable), aux détectives qui prennent des empreintes, aux archéologues qui font des moulages.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Textures très marquées pour débuter", "Guidage manuel de la technique", "Papier plus épais si nécessaire", "Validation fréquente des progrès"],
+        "forAdvanced": ["Expérimentation avec couleurs multiples", "Combinaison de plusieurs textures", "Création d'effets artistiques", "Aide aux pairs en difficulté"],
+        "forELL": ["Démonstrations visuelles claires", "Vocabulaire technique avec gestes", "Exemples annotés en français simple", "Support par un pair francophone"],
+        "forIEP": ["Adaptation des outils selon capacités motrices", "Temps supplémentaire", "Support émotionnel si frustration", "Alternative si difficultés sensorielles"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Élève maîtrise la technique de base du frottage", "Produit des impressions reconnaissables", "Utilise le vocabulaire technique en français", "Fait preuve de persévérance face aux défis"],
+        "checkpoints": ["Observation pendant la pratique guidée", "Évaluation des portfolios individuels", "Participation aux discussions techniques", "Capacité d'auto-évaluation"]
       }
     },
     {
       "lessonNumber": 4,
       "lessonType": "core",
       "title": "Frottages créatifs: Exploration avancée",
-      "oneGoal": "",
+      "oneGoal": "Les élèves combineront plusieurs textures en superposition pour créer des compositions artistiques harmonieuses et contrastées.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "superposition",
@@ -757,6 +784,288 @@
       "assessmentCriteria": {
         "observable": [],
         "checkpoints": []
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Textures et lumière: Jeux d'ombres",
+      "oneGoal": "Les élèves exploreront comment la lumière révèle et transforme les textures à travers les ombres et la transparence.",
+      "duration": "45 minutes",
+      "keyVocabulary": ["ombre", "lumière", "transparent", "opaque", "projection", "silhouette"],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu de découverte avec lampe de poche et objets texturés. Observer comment les textures créent des ombres différentes. Introduction au concept de projection d'ombres texturées.",
+        "materials": ["Lampes de poche", "Objets texturés variés", "Mur blanc ou écran"],
+        "visualSupports": "Exemples d'art avec ombres, vocabulaire lumière/ombre illustré",
+        "decisionPoints": ["Si la salle est trop claire : Utiliser rideaux ou créer zones sombres"],
+        "movementBreaks": ["Jeu corporel : créer des ombres avec les mains"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création d'art d'ombres texturées. Les élèves placent objets texturés devant sources lumineuses pour projeter des ombres intéressantes. Documentation par dessins et frottages des ombres créées. Expérimentation avec transparences colorées.",
+        "materials": ["Lampes variées", "Objets texturés", "Papiers transparents colorés", "Carnet de documentation"],
+        "visualSupports": "Guide de manipulation de la lumière, exemples d'artistes travaillant avec ombres",
+        "decisionPoints": ["Si les ombres ne sont pas nettes : Ajuster distance entre objet et source lumineuse"],
+        "movementBreaks": ["Pause mouvement : danse des ombres au rythme lent"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Spectacle d'ombres : chaque élève présente sa création d'ombre favorite. Discussion sur comment la lumière change notre perception des textures. Connexion avec l'art des ombres dans le monde.",
+        "materials": ["Créations d'ombres", "Équipement de projection"],
+        "visualSupports": "Espace de présentation avec éclairage approprié",
+        "decisionPoints": [],
+        "movementBreaks": ["Relaxation : imaginer être une ombre qui danse"]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Élève qui ne voit pas les effets d'ombres ou trouve difficile de documenter",
+        "then": "Utiliser des textures très contrastées. Simplifier la documentation à des formes simples. Travailler en partenariat."
+      },
+      "realWorldConnection": "Ombres des arbres sur le sol, silhouettes au coucher du soleil, ombres chinoises, théâtre d'ombres traditionnel.",
+      "differentiation": {
+        "forStruggling": ["Textures simples avec ombres marquées", "Documentation simplifiée", "Support constant"],
+        "forAdvanced": ["Création d'histoires avec ombres", "Manipulation complexe de lumière", "Leadership dans groupes"],
+        "forELL": ["Démonstrations visuelles", "Vocabulaire illustré", "Expression par l'art plutôt que mots"],
+        "forIEP": ["Adaptation outils selon capacités", "Temps flexible", "Support sensoriel approprié"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Manipule efficacement lumière et objets", "Reconnaît effets de lumière sur textures", "Participe aux présentations"],
+        "checkpoints": ["Observation pendant manipulation", "Documentation créée", "Participation aux discussions"]
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Textures comestibles: Art culinaire tactile",
+      "oneGoal": "Les élèves découvriront les textures à travers les aliments et créeront des arrangements artistiques comestibles.",
+      "duration": "45 minutes",
+      "keyVocabulary": ["comestible", "croquant", "moelleux", "granuleux", "arrangement", "saveur"],
+      "opening": {
+        "duration": 8,
+        "activity": "Dégustation à l'aveugle de différentes textures alimentaires. Décrire les sensations tactiles dans la bouche en français. Introduction à l'art culinaire comme forme d'expression artistique.",
+        "materials": ["Aliments textures variées (sécuritaires)", "Bandeaux", "Assiettes", "Serviettes"],
+        "visualSupports": "Images d'art culinaire, vocabulaire des textures alimentaires",
+        "decisionPoints": ["Si allergies alimentaires : Adapter avec alternatives sécuritaires"],
+        "movementBreaks": ["Mouvement de mastication exagérée pour comprendre textures"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création d'arrangements artistiques avec aliments de différentes textures. Focus sur couleurs, formes et textures contrastantes. Documentation photographique avant dégustation collective. Connexion art et nutrition.",
+        "materials": ["Fruits/légumes variés", "Assiettes artistiques", "Ustensiles", "Appareil photo"],
+        "visualSupports": "Exemples d'art culinaire, guide des combinaisons harmonieuses",
+        "decisionPoints": ["Si résistance à certains aliments : Respecter préférences tout en encourageant exploration"],
+        "movementBreaks": ["Étirement gourmand : mouvements imitant croquer, mâcher délicatement"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Exposition culinaire suivie de dégustation collective. Chaque élève présente son arrangement en décrivant les textures choisies. Réflexion sur art éphémère et plaisir des sens.",
+        "materials": ["Arrangements créés", "Documentation photo"],
+        "visualSupports": "Galerie des créations photographiées",
+        "decisionPoints": [],
+        "movementBreaks": ["Remerciement corporel pour les sens : toucher cœur, bouche, yeux"]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Élève réticent aux nouveaux aliments ou anxieux avec textures alimentaires",
+        "then": "Commencer avec aliments familiers. Permettre exploration sans obligation de goûter. Valoriser participation visuelle et créative."
+      },
+      "realWorldConnection": "Cuisine familiale, restaurants artistiques, traditions culinaires culturelles, marchés de producteurs locaux.",
+      "differentiation": {
+        "forStruggling": ["Aliments très familiers", "Création simple", "Pas d'obligation de goûter"],
+        "forAdvanced": ["Arrangements complexes", "Recherche sur traditions culinaires", "Animation des dégustations"],
+        "forELL": ["Focus sur exploration sensorielle", "Vocabulaire alimentaire de base", "Partage culturel"],
+        "forIEP": ["Respect sensibilités alimentaires", "Alternatives adaptées", "Participation selon capacités"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Crée arrangements esthétiques", "Utilise vocabulaire des textures alimentaires", "Participe aux échanges sensoriels"],
+        "checkpoints": ["Qualité arrangements créés", "Participation aux discussions", "Respect des autres et des aliments"]
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension", 
+      "title": "Textures numériques: Art et technologie",
+      "oneGoal": "Les élèves exploreront les textures virtuelles et créeront de l'art numérique inspiré de leurs découvertes tactiles.",
+      "duration": "45 minutes",
+      "keyVocabulary": ["numérique", "virtuel", "application", "digital", "écran", "tactile"],
+      "opening": {
+        "duration": 8,
+        "activity": "Découverte des textures sur tablettes tactiles. Comparaison entre toucher réel et virtuel. Introduction aux applications d'art numérique adaptées à l'âge.",
+        "materials": ["Tablettes", "Applications d'art adaptées", "Stylets"],
+        "visualSupports": "Exemples d'art numérique texturé, comparaison réel/virtuel",
+        "decisionPoints": ["Si problèmes techniques : Prévoir alternatives ou travail en binômes"],
+        "movementBreaks": ["Mouvement doigts : exercices préparatoires pour manipulation tactile"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création d'art numérique inspiré des textures découvertes dans les leçons précédentes. Utilisation d'outils de texture virtuels pour recréer sensations tactiles. Expérimentation avec couleurs et formes.",
+        "materials": ["Tablettes avec applications", "Stylets", "Portfolios physiques pour inspiration"],
+        "visualSupports": "Guide d'utilisation applications, galerie d'inspirations numériques",
+        "decisionPoints": ["Si frustration avec outils : Simplifier ou permettre création libre"],
+        "movementBreaks": ["Pause écran : regarder au loin et cligner des yeux"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Présentation des créations numériques sur écran partagé. Comparaison avec créations physiques précédentes. Discussion sur avantages et limites de l'art numérique.",
+        "materials": ["Créations numériques", "Écran de projection", "Créations physiques antérieures"],
+        "visualSupports": "Espace de présentation numérique organisé",
+        "decisionPoints": [],
+        "movementBreaks": ["Reconnection corporelle : toucher différentes textures réelles"]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Élève intimidé par la technologie ou préférant le tactile physique",
+        "then": "Rassurer sur normalité des préférences. Proposer collaboration avec pairs à l'aise. Maintenir liens avec créations physiques."
+      },
+      "realWorldConnection": "Applications sur téléphones familiaux, jeux vidéo, art numérique dans musées, design graphique moderne.",
+      "differentiation": {
+        "forStruggling": ["Applications très simples", "Support technique constant", "Objectifs réduits"],
+        "forAdvanced": ["Fonctions avancées des applications", "Création de tutoriels pour pairs", "Exploration autonome"],
+        "forELL": ["Interface visuelle intuitive", "Démonstrations sans paroles nécessaires", "Expression artistique universelle"],
+        "forIEP": ["Adaptations technologiques selon besoins", "Alternatives si difficultés", "Rythme personnalisé"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Utilise outils numériques de base", "Crée art inspiré d'expériences tactiles", "Compare art numérique et physique"],
+        "checkpoints": ["Manipulation des outils", "Créations produites", "Participation aux discussions comparatives"]
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Textures musicales: Sons et sensations",
+      "oneGoal": "Les élèves établiront des connexions entre textures tactiles et qualités sonores pour créer une expérience multisensorielle.",
+      "duration": "45 minutes", 
+      "keyVocabulary": ["sonorité", "rythme", "mélodie", "vibration", "résonance", "harmonique"],
+      "opening": {
+        "duration": 8,
+        "activity": "Écoute de sons produits par différentes textures (frotter papier sablé, caresser soie, taper surfaces variées). Association texture-son en français. Introduction synesthésie artistique.",
+        "materials": ["Objets texturés", "Enregistreur/haut-parleur", "Instruments simples"],
+        "visualSupports": "Carte son-texture, exemples d'art synesthésique",
+        "decisionPoints": ["Si niveau sonore problématique : Utiliser casques ou réduire intensité"],
+        "movementBreaks": ["Mouvement rythmé selon textures entendues"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de 'paysages sonores texturés'. Les élèves associent leurs textures favorites à des sons, créent des séquences rythmiques. Composition collective d'une 'symphonie des textures' avec mouvements corporels.",
+        "materials": ["Objets texturés producteurs de sons", "Instruments de percussion simple", "Enregistreur"],
+        "visualSupports": "Partition visuelle simple, code couleur pour textures-sons",
+        "decisionPoints": ["Si cacophonie : Organiser en petits groupes avec tours de rôle"],
+        "movementBreaks": ["Danse des textures : mouvements selon qualité sonore"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Concert final de la 'symphonie des textures'. Chaque groupe présente sa création. Réflexion sur liens entre sens différents et expression artistique multisensorielle.",
+        "materials": ["Compositions créées", "Instruments utilisés"],
+        "visualSupports": "Programme de concert créé collectivement",
+        "decisionPoints": [],
+        "movementBreaks": ["Applaudissements texturés : frotter mains plutôt que claquer"]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Élève qui ne fait pas les connexions son-texture ou sensible au bruit",
+        "then": "Commencer avec associations évidentes (rugueux=râpeux). Proposer participation par observation ou mouvement sans production sonore."
+      },
+      "realWorldConnection": "Musique d'ambiance, bruits familiers (pluie, feuilles), instruments de musique traditionnelle, sons de la nature.",
+      "differentiation": {
+        "forStruggling": ["Associations simples évidentes", "Participation par mouvement", "Rôles adaptés dans groupe"],
+        "forAdvanced": ["Créations sonores complexes", "Direction musicale de groupes", "Exploration d'instruments variés"],
+        "forELL": ["Expression par sons et mouvements", "Participation non-verbale valorisée", "Découverte culturelle par musique"],
+        "forIEP": ["Adaptations sensorielles nécessaires", "Participation selon confort auditif", "Alternatives visuelles/tactiles"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Établit connexions texture-son", "Participe aux créations collectives", "Exprime préférences artistiques"],
+        "checkpoints": ["Participation aux associations", "Contribution aux créations groupales", "Expression dans discussions finales"]
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Textures en mouvement: Danse tactile", 
+      "oneGoal": "Les élèves traduiront leurs découvertes sur les textures en mouvements corporels expressifs et chorégraphies créatives.",
+      "duration": "45 minutes",
+      "keyVocabulary": ["mouvement", "chorégraphie", "fluide", "saccadé", "gracieux", "expression"],
+      "opening": {
+        "duration": 8,
+        "activity": "Échauffement corporel en imitant différentes textures : mouvements lisses comme soie, saccadés comme rugueux, rebondissants comme spongieux. Connexion corps-texture-expression.",
+        "materials": ["Espace dégagé", "Musiques variées", "Échantillons textures"],
+        "visualSupports": "Guide mouvements-textures illustré, exemples de danse expressive",
+        "decisionPoints": ["Si espace restreint : Adapter mouvements à l'espace disponible"],
+        "movementBreaks": ["L'activité entière est un mouvement break !"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de danses individuelles et en petits groupes inspirées des textures explorées. Chaque élève développe sa 'signature de texture' en mouvement. Répétitions pour présentation finale avec narration en français.",
+        "materials": ["Musiques variées", "Accessoires texture (foulards, papiers)", "Espace de pratique"],
+        "visualSupports": "Exemples chorégraphiques, vocabulaire mouvement en français",
+        "decisionPoints": ["Si timidité excessive : Commencer en groupe, respecter ceux qui préfèrent observer"],
+        "movementBreaks": ["Repos dynamique : étirements doux entre séquences"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Spectacle de danses texturées. Chaque création est présentée avec explication de l'inspiration texture. Public apprécie en identifiant les textures représentées. Célébration du voyage artistique multisensoriel.",
+        "materials": ["Costumes/accessoires simples", "Espace de présentation"],
+        "visualSupports": "Scène aménagée, programme du spectacle",
+        "decisionPoints": [],
+        "movementBreaks": ["Relaxation finale : retour au calme avec respirations profondes"]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Élève trop timide pour danser ou qui ne trouve pas de mouvements",
+        "then": "Proposer rôle de narrateur ou musicien. Commencer par mouvements minimes (mains seulement). Valoriser toute expression corporelle."
+      },
+      "realWorldConnection": "Danses traditionnelles, spectacles artistiques, expression corporelle quotidienne, communication non-verbale.",
+      "differentiation": {
+        "forStruggling": ["Mouvements simples repetitifs", "Imitation d'autres élèves", "Participation partielle valorisée"],
+        "forAdvanced": ["Chorégraphies complexes", "Leadership créatif", "Narration sophistiquée en français"],
+        "forELL": ["Expression corporelle universelle", "Pas de barrière linguistique", "Vocabulaire mouvement avec gestes"],
+        "forIEP": ["Mouvements adaptés aux capacités", "Participation selon confort physique", "Rôles alternatifs disponibles"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Traduit textures en mouvements expressifs", "Participe aux créations collaboratives", "Communique idées par le corps"],
+        "checkpoints": ["Créativité mouvements développés", "Collaboration dans groupes", "Participation aux présentations finales"]
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration des textures: Exposition finale",
+      "oneGoal": "Les élèves organiseront une exposition complète de leur parcours d'apprentissage des textures, intégrant toutes les découvertes et créations.",
+      "duration": "45 minutes",
+      "keyVocabulary": ["exposition", "curator", "vernissage", "collection", "parcours", "célébration"],
+      "opening": {
+        "duration": 8,
+        "activity": "Préparation de l'exposition : sélection des meilleures créations, rédaction d'étiquettes en français, organisation de l'espace. Rôles de curator attribués aux élèves volontaires.",
+        "materials": ["Toutes créations de l'unité", "Étiquettes", "Supports d'exposition", "Matériel d'organisation"],
+        "visualSupports": "Exemples d'expositions d'art, guide du curator débutant",
+        "decisionPoints": ["Si désaccords sur sélection : Démocratiser les choix par vote collectif"],
+        "movementBreaks": ["Installation dynamique : porter, placer, arranger avec soin"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Vernissage de l'exposition 'Notre Voyage dans les Textures'. Chaque élève guide les visiteurs devant ses créations favorites, explique son parcours d'apprentissage en français. Démonstrations interactives pour les invités.",
+        "materials": ["Exposition installée", "Programmes", "Démonstrations tactiles", "Rafraîchissements simples"],
+        "visualSupports": "Signalisation exposition, parcours fléché, portfolio collectif de l'unité",
+        "decisionPoints": ["Si trop de visiteurs : Organiser en petits groupes avec rotations"],
+        "movementBreaks": ["Circulation libre et naturelle dans l'exposition"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cercle final de réflexion après l'exposition. Chaque élève partage sa découverte la plus surprenante sur les textures. Remise de certificats de 'Explorateur de Textures'. Projection vers futures explorations artistiques.",
+        "materials": ["Certificats personnalisés", "Portfolio collectif complet"],
+        "visualSupports": "Mur des découvertes surprenantes, galerie des moments forts",
+        "decisionPoints": [],
+        "movementBreaks": ["Applaudissements finaux et accolades de célébration"]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Élève submergé par l'exposition ou ayant du mal à articuler ses apprentissages",
+        "then": "Permettre présentation en duo. Préparer phrases-clés à l'avance. Valoriser toute participation, même minimale."
+      },
+      "realWorldConnection": "Musées locaux, galeries d'art communautaires, expositions scolaires, célébrations familiales des réussites.",
+      "differentiation": {
+        "forStruggling": ["Rôle adapté dans exposition", "Phrases préparées pour présentation", "Support par pairs"],
+        "forAdvanced": ["Rôle de guide principal", "Créations sophistiquées mises en valeur", "Animation des démonstrations"],
+        "forELL": ["Présentation visuelle prioritaire", "Support traduction si nécessaire", "Fierté culturelle valorisée"],
+        "forIEP": ["Participation selon capacités", "Adaptations pour confort", "Célébration individualisée des progrès"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Articule apprentissages sur les textures", "Présente travaux avec fierté", "Apprécie créations des pairs"],
+        "checkpoints": ["Qualité présentation personnelle", "Participation à organisation collective", "Réflexion sur parcours d'apprentissage"]
       }
     }
   ],
