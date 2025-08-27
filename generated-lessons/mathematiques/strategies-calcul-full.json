@@ -720,7 +720,9 @@
         "activity": "Problème mystère au tableau: '8+5=?' Défi: 'Pouvez-vous utiliser votre connaissance du 10 pour résoudre ceci plus facilement?'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -728,7 +730,9 @@
         "activity": "Enseignement explicite de la décomposition: '8+5 → je prends 2 du 5 pour faire 8+2=10, puis j'ajoute les 3 restants: 10+3=13!' Pratique guidée avec ten frames et schémas visuels. Stations: problèmes variés avec support.",
         "materials": [],
         "visualSupports": "Schémas muraux montrant la décomposition step-by-step. Ten frames avec lignes de décomposition. Affiches de référence stratégique.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -736,7 +740,9 @@
         "activity": "Réflexion: 'Comment faire 10 d'abord vous a-t-il aidé?' Partage de stratégies réussies. Promesse d'utiliser cette 'super stratégie'!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -745,13 +751,38 @@
       },
       "realWorldConnection": "Mettre 8 jouets dans une boîte de 10, puis ajouter les 5 restants",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -772,7 +803,9 @@
         "activity": "Chanson des bonds: 'Hop, hop, on saute de 2 en 2!' avec mouvements. Démonstration: compter les chaussures de 5 élèves en sautant: 2,4,6,8,10!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -780,7 +813,9 @@
         "activity": "Exploration des patterns de 2: sur la ligne numérique, identifier les nombres 'sautés'. Pratique corporelle: marcher sur les nombres pairs seulement. Applications: additionner des paires d'objets rapidement (chaussettes, gants, yeux).",
         "materials": [],
         "visualSupports": "Ligne numérique colorée alternant les bonds de 2. Tableau des nombres pairs mis en évidence. Affiches d'objets qui viennent par paires.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -788,7 +823,9 @@
         "activity": "Récital des bonds: chaque élève dit un nombre en bonds de 2. Célébration: 'Nous pouvons compter super rapidement maintenant!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -797,13 +834,38 @@
       },
       "realWorldConnection": "Compter les chaussures de la classe par paires",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -823,7 +885,10 @@
         "activity": "Jeu de magie: 'J'ai 7 crayons, j'en cache 3. Combien en reste-t-il?' Introduire: 'La soustraction, c'est comme l'addition en arrière!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si confusion entre addition et soustraction → montrer avec objets physiques 'ajouter vs enlever'",
+          "Si difficultés à compter en arrière → utiliser ligne numérique avec doigt pour reculer"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -831,7 +896,10 @@
         "activity": "Comparaison explicite: addition vs soustraction sur ligne numérique. Pour 8-3, montrer 'compter en arrière': 8,7,6,5 ou 'enlever' 3 objets d'un groupe de 8. Connexion: 'Si 5+3=8, alors 8-3=5!'",
         "materials": [],
         "visualSupports": "Ligne numérique avec flèches dans les deux directions. Affiches montrant 'enlever' vs 'compter en arrière'. Tableaux de familles de faits.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves comptent toujours depuis 1 → modéliser 'compter en arrière' avec gestes expressifs",
+          "Si confusion avec direction sur ligne numérique → utiliser couleurs (vert=avancer, rouge=reculer)"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -839,7 +907,9 @@
         "activity": "Découverte: 'Comment l'addition peut-elle aider avec la soustraction?' Partage des connexions trouvées. Célébrer la flexibilité mathématique!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si connexions trop abstraites → redonner exemples concrets avec objets manipulables"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -848,13 +918,38 @@
       },
       "realWorldConnection": "Enlever des biscuits d'une assiette en comptant combien il en reste",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -875,7 +970,10 @@
         "activity": "Défi du jour: '6+6' - qui peut utiliser une stratégie différente? Collecter toutes les approches: doubles, compter, doigts, etc.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves donnent toujours même stratégie → encourager 'Qui peut essayer autrement?'",
+          "Si stratégies inefficaces → valider effort puis guider vers stratégies plus rapides"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -883,7 +981,10 @@
         "activity": "Station 'Détectives de stratégies': examiner des problèmes (3+4, 8+2, 5+5, 9-4) et débattre de la meilleure approche. Chronométrer différentes stratégies pour le même problème. Créer un guide personnel des 'meilleures stratégies'.",
         "materials": [],
         "visualSupports": "Tableau de référence des stratégies avec exemples. Affiches 'Quand utiliser chaque stratégie'. Cartes de décision avec questions guides.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si débats deviennent argumentaires → rediriger vers 'Testons ensemble les deux façons'",
+          "Si chronométrage crée anxiété → rappeler que précision compte plus que vitesse"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -891,7 +992,9 @@
         "activity": "Partage des découvertes: 'Quelle stratégie avez-vous trouvé la plus utile aujourd'hui?' Engagement à être des 'détectives de stratégies' intelligents!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si partage devient trop long → limiter à une découverte par élève maximum"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -900,13 +1003,38 @@
       },
       "realWorldConnection": "Choisir la façon la plus rapide de compter ses cadeaux d'anniversaire",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -927,7 +1055,9 @@
         "activity": "Révision rapide des petits doubles avec chanson. Défi mystère: 'Si 5+5=10, que pensez-vous de 6+6?' Construire l'anticipation!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves n'établissent pas connexions avec petits doubles → rappeler patterns déjà connus"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -935,7 +1065,9 @@
         "activity": "Exploration pattern des doubles: construire 6+6 avec objets, observer le pattern de croissance. Découverte guidée: chaque double augmente de 2. Construction de la chanson des grands doubles. Vérification avec calculatrice pour émerveillement.",
         "materials": [],
         "visualSupports": "Tableau de tous les doubles avec patterns colorés. Affiches visuelles montrant l'augmentation de +2. Cartes de référence des grands doubles.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -943,7 +1075,9 @@
         "activity": "Célébration des mathématiciens: 'Vous connaissez maintenant les doubles jusqu'à 20!' Partage du double le plus impressionnant découvert.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -952,13 +1086,38 @@
       },
       "realWorldConnection": "Compter les roues de plusieurs voitures (4+4, 6+6 pour 3 voitures)",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -979,7 +1138,9 @@
         "activity": "Révision rapide: 'Si 7+7=14, que pensez-vous de 7+8?' Démonstration avec objets: construire 7+7, puis ajouter 1 de plus.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves ne voient pas connexion avec doubles → faire lien visuel explicite avec matériel"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -987,7 +1148,9 @@
         "activity": "Extension systématique: pour chaque grand double, explorer le +1 et -1. 8+8=16, donc 8+9=17 et 7+8=15. Pratique guidée avec supports visuels. Jeu 'Presque jumeaux avancés': cartes flash rapides.",
         "materials": [],
         "visualSupports": "Tableaux montrant double → presque double avec flèches +1. Affiches de référence pour tous les presque doubles avancés. Schémas de connexion colorés.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -995,7 +1158,9 @@
         "activity": "Réflexion sur les connexions: 'Comment les doubles vous aident-ils avec les presque doubles?' Célébrer la pensée mathématique avancée!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1004,13 +1169,38 @@
       },
       "realWorldConnection": "Compter les doigts de 7 amis plus les 8 doigts d'un autre ami",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -1031,7 +1221,9 @@
         "activity": "Défi du jour: '13+8=?' Rappel: 'Comment notre stratégie favorite 'faire 10' peut-elle nous aider avec des nombres plus grands?'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1039,7 +1231,9 @@
         "activity": "Extension de la stratégie: 13+8 → je prends 7 du 8 pour faire 13+7=20, puis j'ajoute le 1 restant: 20+1=21. Pratique avec ten frames doubles. Application à diverses situations avec nombres jusqu'à 20.",
         "materials": [],
         "visualSupports": "Schémas de décomposition pour nombres à deux chiffres. Ten frames multiples pour visualiser. Affiches step-by-step de la stratégie étendue.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1047,7 +1241,9 @@
         "activity": "Émerveillement: 'Notre stratégie fonctionne même avec de grands nombres!' Partage des découvertes et succès personnels.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1056,13 +1252,38 @@
       },
       "realWorldConnection": "Ajouter des crayons à une boîte qui en contient déjà 7 pour faire des groupes de 10",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -1083,7 +1304,9 @@
         "activity": "Révision bonds de 2 avec mouvement. Nouveau défi: 'Nos mains ont 5 doigts. Comptons par mains complètes!' Démonstration: 5, 10, 15, 20!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1091,7 +1314,9 @@
         "activity": "Exploration des patterns de 5 et 10 sur ligne numérique. Pratique corporelle: lever une main pour +5, deux mains pour +10. Applications concrètes: compter par nickels et dimes. Découverte: les bonds de 10 sont encore plus faciles!",
         "materials": [],
         "visualSupports": "Ligne numérique avec bonds colorés de 5 et 10. Tableaux des multiples mis en évidence. Affiches montrant mains et monnaie.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1099,7 +1324,9 @@
         "activity": "Concert des bonds: groupes chantent bonds de 5 vs bonds de 10. Célébration: 'Nous pouvons compter très vite maintenant!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1108,13 +1335,38 @@
       },
       "realWorldConnection": "Compter les doigts de plusieurs mains (5, 10, 15...) ou des pièces de 10 cents",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -1135,7 +1387,9 @@
         "activity": "Problème mystère: '3+7+2=?' Défi: 'Y a-t-il une façon plus intelligente de faire ce calcul?' Découverte guidée du regroupement.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1143,7 +1397,9 @@
         "activity": "Enseignement explicite du regroupement: identifier les liens vers 10 dans un groupe de nombres. Pratique avec objets: réorganiser physiquement pour voir les liens. Extensions: 4+8+6+2 → (4+6)+(8+2) = 10+10.",
         "materials": [],
         "visualSupports": "Schémas montrant 'avant regroupement' vs 'après regroupement'. Affiches des liens vers 10 à rechercher. Tableaux de stratégies de réorganisation.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1151,7 +1407,9 @@
         "activity": "Réflexion sur la flexibilité: 'Comment le regroupement rend-il les maths plus faciles?' Partage des découvertes de regroupement créatives.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1160,13 +1418,38 @@
       },
       "realWorldConnection": "Réorganiser des jouets en groupes pour les compter plus facilement",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       }
     },
@@ -1187,7 +1470,9 @@
         "activity": "Échauffement rapide: chaque élève partage sa stratégie préférée. 'Aujourd'hui, nous testons nos super pouvoirs mathématiques!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1195,7 +1480,9 @@
         "activity": "Stations de jeux rotatifs: 1) Course de calculs avec chronomètre, 2) Jeu de société avec dés mathématiques, 3) Défis par équipes, 4) 'Bataille' de cartes avec calculs. Emphasis sur choix de stratégies rapides.",
         "materials": [],
         "visualSupports": "Affiches de référence des stratégies disponibles. Tableaux de scores visuels. Cartes aide-mémoire pour chaque station.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1203,7 +1490,9 @@
         "activity": "Célébration des mathématiciens rapides! Partage des stratégies qui ont le mieux fonctionné. Remise des badges d'effort.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1212,13 +1501,38 @@
       },
       "realWorldConnection": "Jeux de mathématiques en famille, calculs rapides au magasin",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       },
       "extensionGuidance": {
@@ -1279,7 +1593,9 @@
         "activity": "Problème du jour: 'Sarah a 7 autocollants. Son frère lui en donne 6 de plus. Combien en a-t-elle maintenant?' Réflexion: quelle stratégie utiliser?",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1287,7 +1603,9 @@
         "activity": "Résolution guidée de problèmes variés: partage de bonbons, collection de cartes, argent de poche. Pour chaque problème: 1) Comprendre la situation, 2) Choisir une stratégie, 3) Calculer mentalement, 4) Vérifier si la réponse a du sens.",
         "materials": [],
         "visualSupports": "Schémas de processus de résolution. Affiches des types de problèmes courants. Tableaux de stratégies avec exemples d'usage.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1295,7 +1613,9 @@
         "activity": "Partage des résolutions: 'Quelle stratégie avez-vous choisie et pourquoi?' Célébrer les différentes approches valides.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1304,13 +1624,38 @@
       },
       "realWorldConnection": "Calculer combien d'argent de poche on aura après deux semaines",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       },
       "extensionGuidance": {
@@ -1371,7 +1716,9 @@
         "activity": "Invitation spéciale: 'Aujourd'hui, vous êtes tous des professeurs de mathématiques! Quelle stratégie voulez-vous enseigner?' Préparation en paires.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1379,7 +1726,9 @@
         "activity": "Mini-leçons par les élèves: chaque paire enseigne une stratégie (5 minutes par présentation). Structure: 1) Expliquer la stratégie, 2) Démontrer avec exemple, 3) Faire pratiquer la classe, 4) Répondre aux questions. Audience active avec questions et encouragements.",
         "materials": [],
         "visualSupports": "Tableaux vierges pour créer des affiches d'enseignement. Cartes d'exemples disponibles. Modèles de présentation affichés.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1387,7 +1736,9 @@
         "activity": "Assemblée d'appréciation: applaudir chaque 'professeur'. Réflexion: 'Qu'avez-vous appris en enseignant?' Certificats d'excellence en enseignement!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1396,13 +1747,38 @@
       },
       "realWorldConnection": "Aider un petit frère ou une petite sœur avec ses devoirs de mathématiques",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       },
       "extensionGuidance": {
@@ -1463,7 +1839,9 @@
         "activity": "Jeu mystère: montrer un bocal avec des bonbons. 'Combien y en a-t-il ENVIRON?' Introduire: 'Parfois, on n'a pas besoin d'une réponse exacte!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1471,7 +1849,9 @@
         "activity": "Stations d'estimation: 1) Estimer puis compter des objets, 2) Estimation de calculs (13+17 ≈ ?), 3) Estimer des mesures, 4) Jeux d'estimation en équipes. Emphasis sur 'raisonnable' vs 'exact'. Stratégies: arrondir, regrouper visuellement, utiliser les benchmarks.",
         "materials": [],
         "visualSupports": "Affiches 'Environ vs Exact'. Tableaux de mots d'estimation (environ, près de, plus ou moins). Références visuelles pour les benchmarks.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1479,7 +1859,9 @@
         "activity": "Partage des découvertes: 'Quand est-ce qu'une estimation est assez bonne?' Célébrer les estimations raisonnables, même si pas exactes.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1488,13 +1870,38 @@
       },
       "realWorldConnection": "Estimer combien de bonbons il y a dans un bocal avant de compter",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       },
       "extensionGuidance": {
@@ -1555,7 +1962,9 @@
         "activity": "Invitation spéciale: 'Créons un livre de vos super pouvoirs mathématiques!' Présentation du format portfolio et des attentes.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1563,7 +1972,9 @@
         "activity": "Création guidée du portfolio: 1) Page couverture personnalisée, 2) Une page par stratégie maîtrisée avec exemple et explication, 3) Page 'Ma stratégie préférée', 4) Page 'Mes défis surmontés', 5) Réflexion finale sur les apprentissages. Travail autonome avec support disponible.",
         "materials": [],
         "visualSupports": "Modèles de pages de portfolio affichés. Exemples de démonstrations acceptables. Critères de qualité visibles.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1571,7 +1982,9 @@
         "activity": "Première présentation des portfolios: chaque élève partage une page dont il est fier. Planifier le partage avec les familles.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1580,13 +1993,38 @@
       },
       "realWorldConnection": "Créer un guide personnel de mathématiques pour la famille",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       },
       "extensionGuidance": {
@@ -1647,7 +2085,9 @@
         "activity": "Ouverture festive: 'Bienvenue à notre célébration des mathématiciens!' Reconnaissance des progrès extraordinaires de chacun.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1655,7 +2095,9 @@
         "activity": "Célébration interactive: 1) Galerie des portfolios avec visite libre, 2) Présentations volontaires des réussites personnelles, 3) Jeu 'Devine ma stratégie préférée', 4) Création collective d'une affiche 'Nos stratégies de classe', 5) Signature du livre d'or avec réflexions.",
         "materials": [],
         "visualSupports": "Galerie d'affichage des portfolios. Affiche collective géante à créer. Certificats personnalisés pour chaque élève.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1663,7 +2105,9 @@
         "activity": "Cercle de gratitude: chaque élève partage une chose qu'il a apprise et dont il est fier. Remise solennelle des certificats. Promesse de continuer à être des mathématiciens curieux!",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté avec concept → revenir aux manipulatifs concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1672,13 +2116,38 @@
       },
       "realWorldConnection": "Partager ses nouvelles compétences mathématiques avec la famille et les amis",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux calculs simples avec nombres jusqu'à 10",
+          "Utiliser objets concrets et manipulatifs",
+          "Permettre comptage à voix haute avec support visuel",
+          "Donner plus de temps et encouragement"
+        ],
+        "forAdvanced": [
+          "Introduire nombres plus grands et calculs complexes",
+          "Explorer multiples stratégies pour même problème",
+          "Créer leurs propres problèmes et défis",
+          "Enseigner stratégies aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes et supports visuels pour vocabulaire mathématique",
+          "Permettre expression en langue première pour vérifier compréhension",
+          "Répéter et modéliser vocabulaire clé",
+          "Associer concepts à objets et images concrètes"
+        ],
+        "forIEP": [
+          "Adapter matériel selon besoins moteurs et sensoriels",
+          "Ajuster rythme et attentes selon capacités individuelles",
+          "Fournir supports personnalisés si nécessaire",
+          "Offrir pauses et alternatives selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
+        "observable": [
+          "Élève utilise stratégies de calcul mental appropriées",
+          "Élève explique sa méthode avec vocabulaire mathématique",
+          "Élève démontre compréhension avec objets concrets",
+          "Élève choisit stratégies efficaces selon le contexte"
+        ],
         "checkpoints": []
       },
       "extensionGuidance": {
