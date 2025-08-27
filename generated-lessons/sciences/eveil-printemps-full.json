@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "L'éveil du printemps",
   "subject": "Sciences de la nature",
   "grade": "1",
   "totalLessons": 20,
@@ -20,41 +20,64 @@
       "opening": {
         "duration": 8,
         "activity": "Circle time (8 min): Show winter photo of school yard from earlier this year. Ask 'Qu'est-ce qui est différent maintenant?' Look out window together. Point and name: 'C'est le printemps!' Teach spring gesture (arms opening like flowers).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Photos de l'école en hiver (imprimées)", "Accès à une fenêtre avec vue extérieure"],
+        "visualSupports": "Photos avant/après de l'école, gestes visuels pour 'printemps', pointage vers l'extérieur",
+        "decisionPoints": [
+          {
+            "timeStamp": "2 min",
+            "decision": "Si les élèves ont de la difficulté à voir les différences, orienter avec des questions spécifiques: 'Regardez les arbres', 'Sentez-vous l'air?'"
+          },
+          {
+            "timeStamp": "6 min",
+            "decision": "Si la météo ne permet pas de regarder dehors, utiliser des photos récentes de la cour d'école ou décrire ce qu'on a observé hier"
+          }
+        ],
+        "movementBreaks": ["Geste du printemps (bras qui s'ouvrent comme des fleurs) - 30 secondes"]
       },
       "main": {
         "duration": 27,
         "activity": "Spring detective walk (27 min): Outdoor exploration with clipboards and spring signs checklist. Students search for: warmer air (feel with hands), longer daylight (discuss morning/evening), buds on trees, birds singing, people wearing lighter clothes. Each student draws 2-3 spring signs they find. Practice saying 'Au printemps, je vois...' Create class spring discovery chart with student findings.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Planchettes à pince (25)", "Feuilles d'observation du printemps (25)", "Crayons de couleur (assez pour la classe)", "Grand papier graphique pour tableau de classe", "Marqueurs"],
+        "visualSupports": "Liste illustrée des signes du printemps, exemples de dessins d'observation, gestes pour 'voir', 'sentir', 'entendre'",
+        "decisionPoints": [
+          {
+            "timeStamp": "10 min",
+            "decision": "Si certains élèves ont de la difficulté à trouver des signes, les guider vers des exemples évidents: soleil plus chaud, moins de manteaux d'hiver"
+          },
+          {
+            "timeStamp": "20 min",
+            "decision": "Si le temps extérieur ne convient pas, faire l'exploration depuis les fenêtres de la classe avec des jumelles ou une loupe"
+          }
+        ],
+        "movementBreaks": ["Marche exploratoire active - mouvement intégré", "Pause étirement au milieu (2 min)"]
       },
       "closing": {
         "duration": 10,
         "activity": "Science circle (10 min): Students share one spring sign they discovered. Teacher records on class chart with simple drawings. End with spring awakening chant: 'Le printemps arrive, tout se réveille!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Tableau de classe des découvertes", "Marqueurs de couleur"],
+        "visualSupports": "Dessins simples pour illustrer les découvertes, gestes pour le chant du printemps",
+        "decisionPoints": [
+          {
+            "timeStamp": "5 min",
+            "decision": "Si certains élèves sont timides pour partager, encourager en montrant leurs dessins ou en posant des questions ouvertes"
+          }
+        ],
+        "movementBreaks": ["Chant avec mouvements du printemps - 2 minutes"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "identifier les signes du printemps ou participer à l'exploration extérieure",
+        "then": "commencer par des signes évidents (soleil, température), permettre l'exploration en binômes, offrir des choix d'activités (observer, dessiner, ou pointer)"
       },
       "realWorldConnection": "Students recognize spring changes they see walking to school or playing outside with families",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Fournir des images de référence des signes du printemps", "Travailler en binômes avec un pair plus expérimenté", "Simplifier à 2 signes au lieu de 3", "Offrir des choix: dessiner OU écrire OU pointer"],
+        "forAdvanced": ["Encourager à trouver des signes plus subtils ou moins évidents", "Demander de faire des connexions entre les signes observés", "Inviter à prédire d'autres changements à venir", "Rôle de guide pour aider les autres"],
+        "forELL": ["Permettre l'usage de mots en anglais avec traduction", "Utiliser beaucoup de gestes et de pointage", "Fournir du vocabulaire visuel avec images", "Encourager les dessins avec étiquettes simples"],
+        "forIEP": ["Adapter selon les besoins sensoriels (lunettes de soleil, réduction du bruit)", "Offrir des pauses fréquentes", "Permettre différents modes de participation (observation, toucher, mouvement)", "Utiliser des supports visuels personnalisés selon le besoin"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["L'élève identifie au moins 2 signes du printemps", "L'élève utilise des mots français pour décrire ses observations", "L'élève participe activement à l'exploration", "L'élève fait des connexions entre les observations et le concept de printemps"],
+        "checkpoints": ["5 min: Vérifier la compréhension du concept 'printemps'", "15 min: Observer l'engagement dans l'exploration", "25 min: Noter les découvertes partagées par chaque élève", "Fin: Évaluer la participation au partage en groupe"]
       }
     },
     {
@@ -71,41 +94,64 @@
       "opening": {
         "duration": 8,
         "activity": "Connection to previous lesson (8 min): Review spring signs from Lesson 1. Today we're looking closer at trees. Show sleeping gesture: 'En hiver, les arbres dorment.' Then waking up gesture: 'Au printemps, ils se réveillent!' Introduce 'bourgeons' with hand motions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Tableau des découvertes du printemps de la leçon 1", "Images d'arbres en hiver vs printemps"],
+        "visualSupports": "Gestes pour 'dormir' et 'se réveiller', images comparatives des arbres, pointage vers les fenêtres",
+        "decisionPoints": [
+          {
+            "timeStamp": "3 min",
+            "decision": "Si les élèves ont de la difficulté à se rappeler de la leçon précédente, utiliser le tableau des découvertes comme aide-mémoire"
+          },
+          {
+            "timeStamp": "6 min",
+            "decision": "Si le concept 'se réveiller' n'est pas clair, faire une démonstration physique avec les élèves (s'étirer, bâiller, ouvrir les yeux)"
+          }
+        ],
+        "movementBreaks": ["Gestes de sommeil et réveil des arbres - 1 minute"]
       },
       "main": {
         "duration": 27,
         "activity": "Tree awakening exploration (27 min): Outdoor investigation focusing on tree branches and buds. Students work in pairs to find different types of buds using observation sheets. Use magnifying glasses to examine bud shapes, colors, and sizes. Practice vocabulary: 'Je vois des bourgeons sur les branches.' Students draw their favorite buds and predict what will happen next. Create class bud observation journal with student drawings and predictions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Feuilles d'observation des bourgeons (25)", "Loupes (12-15 pour partager)", "Crayons de couleur", "Planchettes à pince (25)", "Grand cahier d'observation de classe"],
+        "visualSupports": "Feuilles d'observation avec images de différents types de bourgeons, exemples de dessins d'observation, vocabulary cards visuelles",
+        "decisionPoints": [
+          {
+            "timeStamp": "10 min",
+            "decision": "Si certains élèves ont de la difficulté à trouver des bourgeons, les diriger vers des arbres avec des bourgeons plus évidents ou plus gros"
+          },
+          {
+            "timeStamp": "20 min",
+            "decision": "Si le temps ne permet pas l'exploration extérieure, apporter des branches avec bourgeons à l'intérieur pour observation de près"
+          }
+        ],
+        "movementBreaks": ["Marche exploratoire - mouvement intégré", "Pause étirement au milieu (2 min)"]
       },
       "closing": {
         "duration": 10,
         "activity": "Bud discovery sharing (10 min): Students show their bud drawings and share predictions. Teacher introduces concept: 'Les bourgeons vont devenir des feuilles!' End with tree awakening movement: arms as branches, hands as buds slowly opening.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Dessins d'observation des élèves", "Cahier de classe"],
+        "visualSupports": "Séquence visuelle bourgeon → feuille, démonstration des mouvements d'arbre",
+        "decisionPoints": [
+          {
+            "timeStamp": "5 min",
+            "decision": "Si les élèves sont timides pour partager, commencer par demander de montrer leurs dessins sans explication verbale"
+          }
+        ],
+        "movementBreaks": ["Mouvement d'éveil des arbres avec bras et mains - 2 minutes"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "observer et identifier les bourgeons ou utiliser les loupes",
+        "then": "pointer spécifiquement vers des bourgeons évidents, permettre l'observation sans loupe d'abord, offrir des images de référence pour comparaison"
       },
       "realWorldConnection": "Students notice buds on trees in their neighborhoods and understand trees are getting ready to grow",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Pointer vers des bourgeons plus gros et évidents", "Permettre l'observation en groupe plutôt qu'en binôme", "Fournir des images de référence des bourgeons", "Simplifier à dessiner 1 bourgeon au lieu de plusieurs"],
+        "forAdvanced": ["Encourager à comparer différents types de bourgeons", "Demander de faire des prédictions plus détaillées", "Inviter à observer et noter les différences de taille/couleur", "Rôle de mentor pour aider les pairs"],
+        "forELL": ["Utiliser beaucoup de pointage et de gestuelle", "Fournir vocabulary cards avec images", "Permettre les descriptions en anglais avec traduction", "Encourager les dessins avec étiquettes simples"],
+        "forIEP": ["Adapter les outils d'observation selon les besoins moteurs", "Offrir des pauses fréquentes", "Permettre différentes positions d'observation", "Utiliser des supports sensoriels adaptés"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["L'élève identifie les bourgeons sur les branches", "L'élève utilise le vocabulaire 'bourgeons', 'branches'", "L'élève fait des prédictions sur l'évolution des bourgeons", "L'élève participe à l'exploration en binôme"],
+        "checkpoints": ["5 min: Vérifier la compréhension du concept 'bourgeon'", "15 min: Observer l'utilisation des loupes et l'engagement", "25 min: Noter les prédictions partagées", "Fin: Évaluer la participation aux mouvements d'arbre"]
       }
     },
     {
@@ -122,41 +168,64 @@
       "opening": {
         "duration": 8,
         "activity": "Connecting to buds (8 min): Review buds from Lesson 2. Ask 'Pourquoi les bourgeons se réveillent maintenant?' Introduce sun and warmth concepts with gestures: sun rays (arms spreading), warmth (hugging self), plant growth (growing taller).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cahier d'observation des bourgeons de la leçon 2", "Images du soleil et de la chaleur"],
+        "visualSupports": "Gestes pour soleil (bras écartés), chaleur (se serrer), croissance (grandir), images visuelles du soleil",
+        "decisionPoints": [
+          {
+            "timeStamp": "3 min",
+            "decision": "Si les élèves ne se rappellent pas les bourgeons, utiliser le cahier d'observation comme rappel visuel"
+          },
+          {
+            "timeStamp": "6 min",
+            "decision": "Si le concept 'pourquoi' est difficile, simplifier avec des exemples concrets: 'Quand fait-il chaud, que font les gens?'"
+          }
+        ],
+        "movementBreaks": ["Gestes du soleil et de la chaleur - 1 minute"]
       },
       "main": {
         "duration": 27,
         "activity": "Plant needs investigation (27 min): Dramatic exploration of plant needs using movement and props. Students act as sleeping plants (curled up), then teacher adds 'sun' (flashlight) and 'warmth' (warm air from heater), and plants 'wake up' and grow. Set up simple experiment: place identical plants in warm sunny spot vs. cool dark spot. Students predict what will happen. Create plant needs chart with drawings of sun, warmth, and growing plants. Practice saying 'Les plantes ont besoin de soleil et de chaleur.'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Lampe de poche ou projecteur", "2 plantes identiques en pot", "Grand papier graphique", "Marqueurs", "Images du soleil et de nuages"],
+        "visualSupports": "Tableau des besoins des plantes avec images, démonstration physique des concepts, feuilles de prédictions",
+        "decisionPoints": [
+          {
+            "timeStamp": "10 min",
+            "decision": "Si les élèves sont timides pour le jeu dramatique, commencer par des mouvements simples en groupe avant les rôles individuels"
+          },
+          {
+            "timeStamp": "20 min",
+            "decision": "Si l'expérimentation avec les plantes n'est pas possible, utiliser des images séquentielles ou des vidéos courtes"
+          }
+        ],
+        "movementBreaks": ["Jeu dramatique des plantes - mouvement intégré", "Pause étirement après l'expérience (2 min)"]
       },
       "closing": {
         "duration": 10,
         "activity": "Plant needs review (10 min): Students demonstrate plant awakening sequence with movements. Review plant needs chart together. End with plant awakening song: 'Soleil, chaleur, les plantes poussent!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Tableau des besoins des plantes complété"],
+        "visualSupports": "Tableau visuel, mouvements de démonstration, chanson avec gestes",
+        "decisionPoints": [
+          {
+            "timeStamp": "5 min",
+            "decision": "Si les élèves ont de la difficulté avec la chanson, la répéter plusieurs fois avec gestes simples"
+          }
+        ],
+        "movementBreaks": ["Chanson du réveil des plantes avec mouvements - 3 minutes"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les besoins des plantes ou participer au jeu dramatique",
+        "then": "utiliser des exemples personnels (ce dont les élèves ont besoin pour grandir), permettre l'observation seulement au lieu de participation, offrir des rôles simples (être le soleil)"
       },
       "realWorldConnection": "Students understand why their family gardens start growing when weather gets warmer in spring",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Simplifier aux besoins de base: soleil et chaleur seulement", "Utiliser des comparaisons avec les besoins humains", "Permettre l'observation passive du jeu dramatique", "Fournir des images séquentielles des besoins des plantes"],
+        "forAdvanced": ["Ajouter d'autres besoins comme l'eau et l'air", "Encourager à expliquer le 'pourquoi' derrière chaque besoin", "Inviter à faire des prédictions sur l'expérience", "Rôle de narrateur pour expliquer aux autres"],
+        "forELL": ["Utiliser beaucoup de gestes et démonstrations physiques", "Vocabulary cards avec images des besoins", "Permettre les explications en anglais avec aide pour traduction", "Encourager la participation par actions plutôt que par mots"],
+        "forIEP": ["Adapter la participation physique selon les besoins", "Offrir différents rôles selon les capacités", "Utiliser supports sensoriels (textures, sons)", "Permettre des pauses fréquentes pendant l'activité"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["L'élève identifie le soleil et la chaleur comme besoins des plantes", "L'élève participe au jeu dramatique ou démontre la compréhension par d'autres moyens", "L'élève utilise le vocabulaire 'plantes', 'chaleur', 'pousser'", "L'élève fait des prédictions sur l'expérience avec les plantes"],
+        "checkpoints": ["5 min: Vérifier la compréhension des concepts soleil/chaleur", "15 min: Observer la participation au jeu dramatique", "25 min: Noter les prédictions faites sur l'expérience", "Fin: Évaluer la participation à la chanson et aux mouvements"]
       }
     },
     {
@@ -173,41 +242,64 @@
       "opening": {
         "duration": 8,
         "activity": "Building on plant growth (8 min): Review how sun and warmth help plants grow from Lesson 3. Today we'll see what happens to buds! Show sequence: bud → small leaf → bigger leaf. Use hand gestures to show leaf unfurling from closed fist to open hand.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Tableau des besoins des plantes de la leçon 3", "Images séquentielles bourgeon → feuille"],
+        "visualSupports": "Séquence visuelle bourgeon-feuille, gestes des mains (poing fermé → main ouverte), images de feuilles vertes",
+        "decisionPoints": [
+          {
+            "timeStamp": "3 min",
+            "decision": "Si les élèves ont de la difficulté à se rappeler la leçon précédente, utiliser le tableau des besoins comme aide visuelle"
+          },
+          {
+            "timeStamp": "6 min",
+            "decision": "Si le geste poing-main ouverte est difficile, utiliser tout le corps (se recroqueviller puis s'étirer)"
+          }
+        ],
+        "movementBreaks": ["Gestes de déploiement des feuilles avec les mains - 1 minute"]
       },
       "main": {
         "duration": 27,
         "activity": "New leaf discovery walk (27 min): Outdoor leaf investigation focusing on brand-new spring growth. Students search for the tiniest new leaves and the brightest green colors. Use simple leaf observation sheets to draw different leaf shapes and sizes. Count new leaves on chosen branches. Practice vocabulary: 'Je vois de nouvelles feuilles vertes.' Compare new spring leaves with old ones still on trees. Create class leaf collection (draw, don't pick) showing variety of new spring growth.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Feuilles d'observation des feuilles (25)", "Planchettes à pince (25)", "Crayons de couleur", "Loupes (12-15)", "Grand livre de collection de classe"],
+        "visualSupports": "Feuilles d'observation avec exemples, vocabulary cards visuelles, exemples de différentes formes de feuilles",
+        "decisionPoints": [
+          {
+            "timeStamp": "10 min",
+            "decision": "Si les nouvelles feuilles sont difficiles à trouver, pointer vers des endroits ensoleillés ou des plantes plus avancées"
+          },
+          {
+            "timeStamp": "20 min",
+            "decision": "Si le temps ne permet pas l'exploration extérieure, utiliser des branches fraîches apportées en classe"
+          }
+        ],
+        "movementBreaks": ["Marche exploratoire - mouvement intégré", "Pause étirement au milieu (2 min)"]
       },
       "closing": {
         "duration": 10,
         "activity": "Leaf growth celebration (10 min): Students share their favorite new leaf discoveries. Discuss how new leaves show plants are healthy and growing. End with leaf growing movement: start as tiny buds, slowly unfurl into full leaves reaching toward the sun.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Dessins d'observation des élèves", "Livre de collection de classe"],
+        "visualSupports": "Démonstration des mouvements de croissance, dessins des élèves affichés",
+        "decisionPoints": [
+          {
+            "timeStamp": "5 min",
+            "decision": "Si les élèves sont réticents à partager, commencer par demander de montrer leurs dessins préférés"
+          }
+        ],
+        "movementBreaks": ["Mouvement de croissance des feuilles - 3 minutes"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "identifier les nouvelles feuilles ou comprendre le concept de croissance",
+        "then": "comparer côte à côte avec de vieilles feuilles, utiliser des exemples de croissance humaine, permettre l'observation en groupe, offrir des images de référence"
       },
       "realWorldConnection": "Students notice new green leaves appearing on trees and plants around their homes and playgrounds",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Pointer spécifiquement vers des feuilles nouvelles évidentes", "Permettre de dessiner 1-2 feuilles au lieu de plusieurs", "Travailler avec un partenaire plus expérimenté", "Utiliser des images de référence pour comparaison"],
+        "forAdvanced": ["Encourager à noter les différences subtiles entre feuilles", "Demander de prédire la croissance future", "Inviter à comparer différents types d'arbres", "Rôle de guide pour aider les pairs"],
+        "forELL": ["Vocabulary cards avec images de feuilles", "Utiliser beaucoup de pointage et gestes", "Permettre descriptions en anglais avec traduction", "Encourager dessins avec étiquettes simples"],
+        "forIEP": ["Adapter outils d'observation selon besoins moteurs", "Offrir différentes positions d'observation", "Utiliser supports sensoriels (toucher feuilles douces)", "Permettre pauses fréquentes"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["L'élève identifie les nouvelles feuilles vertes", "L'élève utilise le vocabulaire 'feuilles', 'vert', 'nouveau'", "L'élève compare nouvelles et anciennes feuilles", "L'élève participe au mouvement de croissance des feuilles"],
+        "checkpoints": ["5 min: Vérifier compréhension nouvelle vs ancienne feuille", "15 min: Observer engagement dans l'exploration", "25 min: Noter observations partagées par élève", "Fin: Évaluer participation aux mouvements de croissance"]
       }
     },
     {
@@ -224,41 +316,64 @@
       "opening": {
         "duration": 8,
         "activity": "Connection to warmth (8 min): Review how plants need warmth from Lesson 3. Ask students to feel the air temperature with their skin. Introduce thermometer as a tool that 'tells us how warm or cold it is.' Show thermometer and demonstrate reading it together.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Tableau des besoins des plantes de la leçon 3", "Thermomètre de classe", "Images de thermomètres"],
+        "visualSupports": "Démonstration du thermomètre, gestes pour 'chaud' et 'froid', images visuelles de températures",
+        "decisionPoints": [
+          {
+            "timeStamp": "3 min",
+            "decision": "Si les élèves ont de la difficulté à sentir la différence de température, les faire sortir brièvement puis rentrer"
+          },
+          {
+            "timeStamp": "6 min",
+            "decision": "Si le thermomètre est difficile à lire, utiliser un thermomètre plus grand ou coloré pour démonstration"
+          }
+        ],
+        "movementBreaks": ["Gestes pour chaud/froid avec tout le corps - 1 minute"]
       },
       "main": {
         "duration": 27,
         "activity": "Temperature investigation (27 min): Outdoor temperature exploration using classroom thermometer. Students take turns reading the thermometer in different locations: sunny spots, shady areas, near building, in open space. Record temperatures on simple chart using pictures (sun for warm, snowflake for cold). Practice vocabulary: 'Il fait plus chaud aujourd'hui.' Compare current spring temperature to winter temperature from earlier in year. Students draw pictures showing how temperature affects their clothing choices and activities.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Thermomètre de classe", "Tableau de température avec images", "Crayons", "Feuilles d'observation (25)", "Images soleil/flocon"],
+        "visualSupports": "Tableau température avec symboles visuels, démonstration lecture thermomètre, exemples vêtements saison",
+        "decisionPoints": [
+          {
+            "timeStamp": "10 min",
+            "decision": "Si lecture thermomètre difficile pour élèves, faire démonstrations répétées ou utiliser thermomètre digital"
+          },
+          {
+            "timeStamp": "20 min",
+            "decision": "Si temps ne permet pas exploration extérieure, prendre mesures près fenêtres ou utiliser données météo"
+          }
+        ],
+        "movementBreaks": ["Déplacements pour mesures température - mouvement intégré", "Pause au milieu (2 min)"]
       },
       "closing": {
         "duration": 10,
         "activity": "Temperature discoveries (10 min): Review temperature findings from different locations. Discuss why some spots are warmer than others. End with temperature movement: huddle together for cold, spread out with arms up for warm.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Tableau température complété", "Dessins des élèves"],
+        "visualSupports": "Tableau des découvertes, démonstration mouvements température",
+        "decisionPoints": [
+          {
+            "timeStamp": "5 min",
+            "decision": "Si concept 'plus chaud/plus froid' difficile, utiliser comparaisons directes avec corps (mains, visage)"
+          }
+        ],
+        "movementBreaks": ["Mouvements température (se serrer/s'étaler) - 2 minutes"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "lire le thermomètre ou comprendre les différences de température",
+        "then": "utiliser sensations corporelles d'abord, simplifier aux concepts chaud/froid de base, permettre travail en binômes, utiliser thermomètre coloré"
       },
       "realWorldConnection": "Students understand how families check weather temperature to decide what clothes to wear",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Utiliser sensations corporelles avant thermomètre", "Simplifier à chaud/froid seulement", "Permettre observation plutôt que lecture", "Images référence pour comparaison"],
+        "forAdvanced": ["Encourager prédictions de températures", "Demander explications des différences", "Inviter à noter nuances température", "Rôle guide pour aider pairs"],
+        "forELL": ["Vocabulary cards chaud/froid avec images", "Beaucoup gestes et démonstrations", "Permettre descriptions anglais avec traduction", "Support visuel température"],
+        "forIEP": ["Adapter manipulation thermomètre selon besoins moteurs", "Offrir pauses fréquentes", "Différentes façons participer", "Supports sensoriels température"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["L'élève identifie différences température", "L'élève utilise vocabulaire 'température', 'chaud'", "L'élève participe exploration température", "L'élève fait connexions température-vêtements"],
+        "checkpoints": ["5 min: Vérifier compréhension thermomètre", "15 min: Observer engagement exploration", "25 min: Noter découvertes température partagées", "Fin: Évaluer participation mouvements"]
       }
     },
     {
@@ -275,18 +390,28 @@
       "opening": {
         "duration": 8,
         "activity": "Building on temperature (8 min): Review warmer spring temperatures from Lesson 5. Introduce new concept: spring days are also longer! Ask students if they notice staying up later or getting up when it's lighter. Show window and discuss how much light we see.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Tableau température de la leçon 5", "Images jour/nuit", "Horloge de classe"],
+        "visualSupports": "Images comparatives jour court/long, gestes pour 'long' et 'court', démonstration avec horloge",
+        "decisionPoints": [
+          {
+            "timeStamp": "5 min",
+            "decision": "Si le concept 'jours plus longs' est abstrait, utiliser comparaisons concrètes avec horaires élèves (lever/coucher)"
+          }
+        ],
+        "movementBreaks": ["Gestes pour jour court (petit) vs jour long (grand) - 1 minute"]
       },
       "main": {
         "duration": 27,
         "activity": "Daylight exploration (27 min): Indoor and outdoor investigation of daily light changes. Students observe light coming through classroom windows at different times if possible. Go outside to notice how bright it is and compare to students' memories of winter darkness. Create simple timeline showing winter short days vs. spring longer days using pictures. Practice vocabulary: 'Les jours sont plus longs au printemps.' Discuss how longer light affects plants (more growing time) and animals (more time to find food and be active).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Feuilles d'observation de la lumière (25)", "Images hiver/printemps", "Matériaux pour ligne de temps", "Crayons"],
+        "visualSupports": "Ligne de temps visuelle jour court/long, images comparatives saisons, vocabulary cards",
+        "decisionPoints": [
+          {
+            "timeStamp": "15 min",
+            "decision": "Si comparaison hiver/printemps difficile pour élèves, utiliser photos classe prises à différents moments"
+          }
+        ],
+        "movementBreaks": ["Exploration lumière - mouvement intégré", "Pause étirement (2 min)"]
       },
       "closing": {
         "duration": 10,
