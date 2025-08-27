@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Exploration 3D : Créer dans l'espace",
   "subject": "Arts visuels",
   "grade": "1",
   "totalLessons": 20,
@@ -9,48 +9,1071 @@
     {
       "lessonNumber": 1,
       "lessonType": "core",
-      "title": "",
-      "oneGoal": "",
+      "title": "Découvrir le monde 3D",
+      "oneGoal": "Explorer et identifier les objets tridimensionnels dans notre environnement.",
       "duration": 45,
-      "keyVocabulary": [],
+      "keyVocabulary": ["3D", "tridimensionnel", "forme", "objet", "toucher", "autour"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Chasse au trésor 3D : Les élèves cherchent des objets qu'ils peuvent tenir et toucher de tous les côtés. Partage en cercle des découvertes.",
+        "materials": ["Objets divers de la classe", "Panier de collection"],
+        "visualSupports": "Panneau avec images d'objets 2D vs 3D",
+        "decisionPoints": [
+          "Si les élèves trouvent rapidement : ajouter le défi de trouver des formes spécifiques",
+          "Si besoin d'aide : modeler en cherchant ensemble un objet évident"
+        ],
+        "movementBreaks": ["Marcher pour chercher les objets"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration sensorielle : manipuler des objets 3D variés (cubes, balles, cônes). Décrire ce qu'on ressent. Tri par caractéristiques (lisse/rugueux, lourd/léger).",
+        "materials": ["Boîtes géométriques", "Balles de textures", "Blocs de construction", "Objets naturels"],
+        "visualSupports": "Cartes de vocabulaire tactile avec images et mots",
+        "decisionPoints": [
+          "Si les élèves veulent plus d'exploration : ajouter des objets mystères dans des sacs",
+          "Si difficile de décrire : fournir des mots de vocabulaire sur des cartes"
+        ],
+        "movementBreaks": ["Se lever pour chercher de nouveaux objets", "Étirements des mains après manipulation"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
+        "activity": "Galerie des découvertes : chaque élève présente son objet 3D préféré et explique pourquoi c'est spécial.",
+        "materials": ["Objets collectés"],
+        "visualSupports": "Phrases d'aide : 'J'aime cet objet parce que...'",
+        "decisionPoints": [
+          "Si timides : permettre de montrer sans parler ou chuchoter à l'oreille"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "la différence entre 2D et 3D",
+        "then": "utiliser des exemples concrets : photo vs objet réel, dessin vs jouet"
+      },
+      "realWorldConnection": "Tous les objets que nous utilisons à la maison sont 3D - jouets, vaisselle, meubles.",
+      "differentiation": {
+        "forStruggling": ["Objets très différents au toucher", "Travail avec un partenaire", "Vocabulaire de base seulement"],
+        "forAdvanced": ["Décrire avec des phrases complètes", "Comparer plusieurs objets", "Créer des catégories"],
+        "forELL": ["Support visuel bilingue", "Gestes et démonstrations", "Répétition du vocabulaire clé"],
+        "forIEP": ["Objets adaptés aux besoins moteurs", "Temps supplémentaire", "Support individuel"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Identifie les objets 3D", "Utilise le vocabulaire tactile", "Décrit les caractéristiques"],
+        "checkpoints": ["Participation à la chasse au trésor", "Description d'au moins un objet", "Engagement dans l'exploration"]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Nos premières sculptures",
+      "oneGoal": "Créer sa première sculpture simple avec de la pâte à modeler.",
+      "duration": 45,
+      "keyVocabulary": ["sculpture", "modeler", "pâte", "créer", "forme", "rouler"],
+      "opening": {
+        "duration": 8,
+        "activity": "Révision tactile : toucher et nommer des objets 3D. Introduction de la pâte à modeler comme matériau pour créer nos propres objets 3D.",
+        "materials": ["Pâte à modeler colorée", "Napperons plastifiés"],
+        "visualSupports": "Images de sculpteurs au travail",
+        "decisionPoints": [
+          "Si les élèves veulent commencer tout de suite : laisser explorer 2 minutes",
+          "Si besoin d'encouragement : modeler devant eux"
+        ],
+        "movementBreaks": ["Étirements des doigts"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création libre : explorer la pâte à modeler en roulant, pressant, étirant. Créer un objet simple (boule, serpent, pot). Décrire son processus.",
+        "materials": ["Pâte à modeler", "Outils simples (rouleau, emporte-pièces)", "Napperons"],
+        "visualSupports": "Cartes de techniques de base avec photos",
+        "decisionPoints": [
+          "Si frustration avec la pâte : offrir une pâte plus souple",
+          "Si création rapide : encourager l'ajout de détails"
+        ],
+        "movementBreaks": ["Pause pour regarder les créations des autres", "Étirements des mains"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Exposition des sculptures : placer les créations sur une table d'exposition. Chaque élève explique ce qu'il a fait.",
+        "materials": ["Table d'exposition"],
+        "visualSupports": "Phrases d'aide : 'J'ai fait...', 'C'était facile/difficile...'",
+        "decisionPoints": [
+          "Si réticents à partager : permettre l'exposition sans présentation orale"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "manipuler la pâte à modeler",
+        "then": "réchauffer la pâte dans les mains, offrir des outils d'aide, modeler ensemble"
+      },
+      "realWorldConnection": "Les sculpteurs créent des œuvres d'art en 3D comme nous aujourd'hui.",
+      "differentiation": {
+        "forStruggling": ["Pâte plus molle", "Outils adaptés", "Formes très simples"],
+        "forAdvanced": ["Combinaison de couleurs", "Formes plus complexes", "Ajout de textures"],
+        "forELL": ["Démonstration visuelle des techniques", "Vocabulaire gestuel", "Support de phrases"],
+        "forIEP": ["Outils adaptés aux besoins moteurs", "Support physique si nécessaire", "Objectifs individualisés"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Manipule la pâte à modeler", "Crée une forme tridimensionnelle", "Décrit son processus"],
+        "checkpoints": ["Exploration des techniques de base", "Création d'un objet identifiable", "Participation au partage"]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Construire avec des formes",
+      "oneGoal": "Assembler différentes formes pour créer une construction stable.",
+      "duration": 45,
+      "keyVocabulary": ["construire", "assembler", "stable", "équilibre", "empiler", "base"],
+      "opening": {
+        "duration": 8,
+        "activity": "Défi d'équilibre : empiler 5 blocs sans qu'ils tombent. Discuter de ce qui rend une construction stable.",
+        "materials": ["Blocs de construction variés", "Formes géométriques"],
+        "visualSupports": "Images de constructions stables vs instables",
+        "decisionPoints": [
+          "Si trop facile : augmenter le nombre de blocs",
+          "Si frustrant : commencer avec 3 blocs seulement"
+        ],
+        "movementBreaks": ["Se déplacer pour ramasser les blocs qui tombent"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Construction créative : utiliser des formes variées (cubes, cylindres, cônes) pour créer une tour, une maison, ou un animal. Explorer l'équilibre.",
+        "materials": ["Blocs géométriques", "Formes en mousse", "Tubes de carton", "Boîtes diverses"],
+        "visualSupports": "Affiches de techniques de construction avec photos",
+        "decisionPoints": [
+          "Si constructions tombent : encourager l'expérimentation avec différentes bases",
+          "Si besoin d'inspiration : montrer des exemples d'architectures simples"
+        ],
+        "movementBreaks": ["Marcher autour pour voir les constructions des autres", "Étirements après être accroupi"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Visite du musée des constructions : tour de la classe pour admirer et commenter les créations. Voter pour la plus stable.",
         "materials": [],
-        "visualSupports": "",
+        "visualSupports": "Critères d'évaluation : 'La plus haute', 'La plus créative', 'La plus stable'",
+        "decisionPoints": [
+          "Si comparaisons négatives : se concentrer sur les aspects positifs de chaque construction"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "faire tenir les constructions",
+        "then": "expliquer l'importance d'une base large et stable, démontrer avec des exemples"
+      },
+      "realWorldConnection": "Les architectes et ingénieurs doivent s'assurer que les bâtiments sont stables comme nos constructions.",
+      "differentiation": {
+        "forStruggling": ["Formes plus grandes et stables", "Aide pour placer les pièces", "Constructions plus simples"],
+        "forAdvanced": ["Défis de hauteur ou complexité", "Intégration de plusieurs matériaux", "Explication des techniques"],
+        "forELL": ["Démonstration de techniques", "Vocabulaire visuel de construction", "Apprentissage par imitation"],
+        "forIEP": ["Blocs adaptés à la motricité", "Support physique", "Objectifs adaptés"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Assemble les formes", "Crée une construction stable", "Utilise le vocabulaire de construction"],
+        "checkpoints": ["Participation au défi initial", "Création d'une construction qui tient debout", "Engagement dans l'exploration"]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Textures et surfaces",
+      "oneGoal": "Découvrir et créer différentes textures sur des surfaces 3D.",
+      "duration": 45,
+      "keyVocabulary": ["texture", "rugueux", "lisse", "surface", "motif", "imprimer"],
+      "opening": {
+        "duration": 8,
+        "activity": "Sac mystère des textures : identifier des objets par le toucher seulement. Décrire ce qu'on ressent avec des mots.",
+        "materials": ["Sacs opaques", "Objets de textures variées"],
+        "visualSupports": "Mur de vocabulaire des textures avec échantillons",
+        "decisionPoints": [
+          "Si facile à deviner : utiliser des objets plus similaires",
+          "Si difficile : donner des indices"
+        ],
+        "movementBreaks": ["Faire passer les sacs de main en main"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de textures : utiliser des outils variés pour créer des motifs sur de la pâte à modeler ou de l'argile. Expérimenter avec différentes impressions.",
+        "materials": ["Pâte à modeler/argile", "Outils texturés (fourchettes, éponges, brosses)", "Objets naturels", "Napperons"],
+        "visualSupports": "Tableau d'outils et leurs effets avec exemples",
+        "decisionPoints": [
+          "Si intimidés par les outils : commencer par les doigts",
+          "Si veulent plus d'outils : ajouter des objets trouvés"
+        ],
+        "movementBreaks": ["Marcher pour échanger des outils", "Étirements des mains"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie tactile : exposer les créations texturées. Les élèves touchent (avec permission) et décrivent les différentes sensations.",
+        "materials": ["Créations des élèves"],
+        "visualSupports": "Cartes de vocabulaire tactile pour aider les descriptions",
+        "decisionPoints": [
+          "Si hésitent à toucher : modeler en touchant et décrivant d'abord"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "créer des textures visibles",
+        "then": "appuyer plus fort, utiliser des outils plus marquants, modeler la technique"
+      },
+      "realWorldConnection": "Les artistes utilisent les textures pour rendre leurs œuvres plus intéressantes au toucher et à voir.",
+      "differentiation": {
+        "forStruggling": ["Outils simples et efficaces", "Pâte plus souple", "Aide pour appuyer"],
+        "forAdvanced": ["Combinaison de plusieurs textures", "Création de motifs répétitifs", "Exploration d'outils complexes"],
+        "forELL": ["Démonstration de chaque technique", "Vocabulaire gestuel", "Exemples concrets"],
+        "forIEP": ["Outils adaptés à la motricité fine", "Support physique", "Textures contrastées"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Identifie différentes textures", "Crée des textures variées", "Utilise le vocabulaire tactile"],
+        "checkpoints": ["Participation au sac mystère", "Expérimentation avec les outils", "Description des textures créées"]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Animaux en 3D",
+      "oneGoal": "Créer un animal simple en assemblant des formes tridimensionnelles.",
+      "duration": 45,
+      "keyVocabulary": ["animal", "corps", "tête", "pattes", "queue", "assembler"],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu 'Devine mon animal' : décrire les formes du corps d'un animal (tête ronde, corps ovale, pattes longues) pour que les autres devinent.",
+        "materials": ["Cartes d'animaux", "Images de formes géométriques"],
+        "visualSupports": "Affiche d'animaux avec leurs formes de base identifiées",
+        "decisionPoints": [
+          "Si difficile de décrire : fournir des mots de vocabulaire",
+          "Si trop facile : utiliser des animaux moins connus"
+        ],
+        "movementBreaks": ["Imiter l'animal deviné"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Sculpture d'animal : choisir un animal favori et le créer avec de la pâte à modeler en assemblant des formes de base (boules, saucisses, etc.).",
+        "materials": ["Pâte à modeler colorée", "Outils de sculpture", "Images d'animaux", "Napperons"],
+        "visualSupports": "Guide étape par étape pour créer des animaux simples",
+        "decisionPoints": [
+          "Si difficile de commencer : montrer comment faire une souris simple",
+          "Si finissent rapidement : ajouter des détails comme des yeux, des motifs"
+        ],
+        "movementBreaks": ["Se lever pour voir les animaux des autres", "Mouvements d'animaux"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Zoo de la classe : présenter son animal et dire pourquoi on l'a choisi. Les autres peuvent deviner l'animal si ce n'est pas évident.",
+        "materials": ["Animaux créés"],
+        "visualSupports": "Phrases d'aide : 'Mon animal est...', 'Il a...', 'J'aime cet animal parce que...'",
+        "decisionPoints": [
+          "Si timides : permettre de juste montrer sans présenter"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "assembler les parties de l'animal",
+        "then": "montrer comment 'coller' les pièces en pressant, utiliser de l'eau si nécessaire"
+      },
+      "realWorldConnection": "Les sculpteurs créent des statues d'animaux qu'on peut voir dans les parcs et musées.",
+      "differentiation": {
+        "forStruggling": ["Animaux très simples (serpent, poisson)", "Aide pour assembler", "Images de référence claires"],
+        "forAdvanced": ["Animaux plus complexes", "Ajout de détails fins", "Création de plusieurs animaux"],
+        "forELL": ["Vocabulaire visuel des parties du corps", "Démonstrations étape par étape", "Support gestuel"],
+        "forIEP": ["Formes pré-préparées si nécessaire", "Support individuel", "Animaux adaptés aux intérêts"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Identifie les formes des animaux", "Assemble des formes pour créer un animal", "Explique ses choix"],
+        "checkpoints": ["Participation au jeu de devinettes", "Création d'un animal reconnaissable", "Présentation de sa création"]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Mobiles et équilibre",
+      "oneGoal": "Créer un mobile simple en explorant l'équilibre et le mouvement.",
+      "duration": 45,
+      "keyVocabulary": ["mobile", "équilibre", "suspendre", "poids", "bouger", "léger"],
+      "opening": {
+        "duration": 8,
+        "activity": "Observation d'un mobile en mouvement. Discussion : pourquoi ça bouge ? Qu'est-ce qui le fait tenir en équilibre ?",
+        "materials": ["Mobile simple ou vidéo de mobile", "Objets de poids différents"],
+        "visualSupports": "Schéma simple d'un mobile avec flèches de mouvement",
+        "decisionPoints": [
+          "Si fascinés par le mouvement : laisser observer plus longtemps",
+          "Si difficile de comprendre : utiliser une balance simple"
+        ],
+        "movementBreaks": ["Bouger comme un mobile au vent"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de mobile : suspendre des objets légers (papier, plumes, petits jouets) à des branches ou bâtonnets. Tester l'équilibre.",
+        "materials": ["Bâtonnets/branches", "Ficelle", "Objets légers variés", "Papier coloré", "Ciseaux"],
+        "visualSupports": "Instructions illustrées pour faire des nœuds simples",
+        "decisionPoints": [
+          "Si difficulté avec les nœuds : utiliser du ruban adhésif",
+          "Si mobile ne s'équilibre pas : ajuster ensemble les positions"
+        ],
+        "movementBreaks": ["Marcher pour tester le mouvement du mobile", "Étirements des bras"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Test de mobiles : suspendre les créations et observer lesquelles bougent le mieux. Discuter des découvertes.",
+        "materials": ["Supports pour suspendre", "Mobiles créés"],
+        "visualSupports": "Questions guide : 'Qu'est-ce qui fait bouger ton mobile ?'",
+        "decisionPoints": [
+          "Si mobiles ne bougent pas : créer un courant d'air doux"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "faire tenir le mobile en équilibre",
+        "then": "montrer comment ajuster les positions, utiliser des objets de poids similaire"
+      },
+      "realWorldConnection": "Les mobiles décorent les chambres de bébés et bougent avec l'air comme les nôtres.",
+      "differentiation": {
+        "forStruggling": ["Mobile à 2 éléments seulement", "Aide pour les nœuds", "Objets pré-perçés"],
+        "forAdvanced": ["Mobile à plusieurs niveaux", "Calcul de l'équilibre", "Décoration des éléments"],
+        "forELL": ["Démonstration visuelle des étapes", "Vocabulaire gestuel", "Travail en paire"],
+        "forIEP": ["Outils adaptés pour manipuler", "Support individuel", "Mobile simplifié"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Comprend le concept d'équilibre", "Assemble un mobile fonctionnel", "Ajuste pour améliorer"],
+        "checkpoints": ["Participation à l'observation", "Création d'un mobile qui tient", "Explication des ajustements"]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Jardin de sculptures",
+      "oneGoal": "Créer des sculptures extérieures avec des matériaux naturels.",
+      "duration": 45,
+      "keyVocabulary": ["nature", "extérieur", "temporaire", "arrangement", "naturel", "collection"],
+      "opening": {
+        "duration": 8,
+        "activity": "Chasse au trésor nature (si possible à l'extérieur) : collecter des matériaux naturels intéressants. Discuter des textures et formes trouvées.",
+        "materials": ["Paniers de collecte", "Feuilles, branches, pierres, pommes de pin"],
+        "visualSupports": "Images d'art environnemental et sculptures naturelles",
+        "decisionPoints": [
+          "Si à l'intérieur : utiliser une collection préparée de matériaux naturels",
+          "Si peu d'éléments trouvés : compléter avec des matériaux préparés"
+        ],
+        "movementBreaks": ["Marcher pour chercher des matériaux"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de sculptures temporaires : arranger les matériaux naturels pour créer des œuvres d'art 3D. Explorer l'empilage, l'équilibre, et les motifs.",
+        "materials": ["Matériaux naturels collectés", "Bases (cartons, napperons)"],
+        "visualSupports": "Exemples d'art environnemental de Andy Goldsworthy (adapté pour enfants)",
+        "decisionPoints": [
+          "Si structures tombent : encourager l'expérimentation avec différentes bases",
+          "Si manquent d'idées : suggerer des thèmes (spirales, lignes, cercles)"
+        ],
+        "movementBreaks": ["Marcher autour des sculptures", "Rechercher plus de matériaux"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie de jardin : présenter les sculptures et expliquer les choix de matériaux. Photographier les œuvres temporaires.",
+        "materials": ["Caméra/tablette pour photos"],
+        "visualSupports": "Phrases d'aide : 'J'ai utilisé... parce que...'",
+        "decisionPoints": [
+          "Si réticents à détruire : expliquer la beauté de l'art temporaire"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "faire tenir les matériaux naturels ensemble",
+        "then": "montrer des techniques d'équilibre, utiliser des bases plus stables"
+      },
+      "realWorldConnection": "Les artistes créent de l'art avec des matériaux naturels dans les parcs et forêts.",
+      "differentiation": {
+        "forStruggling": ["Arrangements simples et plats", "Matériaux plus faciles à manipuler", "Aide pour commencer"],
+        "forAdvanced": ["Structures complexes et hautes", "Intégration de plusieurs techniques", "Création de séries"],
+        "forELL": ["Vocabulaire descriptif avec images", "Démonstration de techniques", "Apprentissage tactile"],
+        "forIEP": ["Matériaux adaptés à la motricité", "Support pour manipuler", "Objectifs individualisés"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Sélectionne des matériaux appropriés", "Arrange les éléments de façon créative", "Explique ses choix"],
+        "checkpoints": ["Participation à la collecte", "Création d'un arrangement 3D", "Présentation de son œuvre"]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Masques en relief",
+      "oneGoal": "Créer un masque simple avec des éléments en relief pour explorer la dimension.",
+      "duration": 45,
+      "keyVocabulary": ["masque", "relief", "dépasser", "profondeur", "visage", "décorer"],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration de masques : observer différents types de masques (photos). Toucher son propre visage pour sentir les reliefs (nez, lèvres, sourcils).",
+        "materials": ["Images de masques variés", "Miroirs"],
+        "visualSupports": "Collection d'images de masques du monde avec reliefs identifiés",
+        "decisionPoints": [
+          "Si timides de toucher leur visage : utiliser des images ou poupées",
+          "Si très intéressés : montrer plus d'exemples culturels"
+        ],
+        "movementBreaks": ["Faire des expressions faciales"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de masque : sur une base de carton, ajouter des éléments en relief (coton, boutons, papier froissé). Créer de la profondeur.",
+        "materials": ["Bases de masques en carton", "Matériaux de relief (coton, boutons, papier)", "Colle", "Ciseaux"],
+        "visualSupports": "Exemples d'ajouts pour créer du relief avec matériaux disponibles",
+        "decisionPoints": [
+          "Si difficulté avec la colle : pré-appliquer ou utiliser ruban adhésif",
+          "Si veulent plus de matériaux : ajouter des éléments recyclables"
+        ],
+        "movementBreaks": ["Marcher pour sécher les masques", "Étirements des doigts"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Défilé de masques : porter les masques (si confortable) ou les présenter. Discuter des effets de relief créés.",
+        "materials": ["Masques créés"],
+        "visualSupports": "Questions guide : 'Qu'est-ce qui dépasse de ton masque ?'",
+        "decisionPoints": [
+          "Si inconfortable de porter : tenir devant le visage ou juste présenter"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "faire coller les éléments en relief",
+        "then": "utiliser plus de colle, maintenir les éléments en place, essayer d'autres techniques"
+      },
+      "realWorldConnection": "Les masques sont utilisés dans les fêtes, théâtre, et célébrations du monde entier.",
+      "differentiation": {
+        "forStruggling": ["Masques pré-découpés", "Éléments faciles à coller", "Aide pour positionner"],
+        "forAdvanced": ["Détails fins et multiples couches", "Techniques de relief avancées", "Masques thématiques"],
+        "forELL": ["Vocabulaire du visage avec images", "Démonstration des techniques", "Support visuel"],
+        "forIEP": ["Matériaux adaptés à manipuler", "Masques simplifiés", "Support individuel"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Identifie les reliefs du visage", "Crée des éléments en relief", "Utilise différents matériaux"],
+        "checkpoints": ["Exploration des masques existants", "Ajout d'éléments en relief", "Présentation du masque fini"]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Architecture de blocs",
+      "oneGoal": "Concevoir et construire une structure architecturale simple.",
+      "duration": 45,
+      "keyVocabulary": ["architecture", "bâtiment", "structure", "solide", "plan", "concevoir"],
+      "opening": {
+        "duration": 8,
+        "activity": "Tour virtuelle : observer des photos de bâtiments intéressants (châteaux, ponts, tours). Identifier les formes de base utilisées.",
+        "materials": ["Images de bâtiments variés", "Blocs pour démonstration"],
+        "visualSupports": "Images d'architecture avec formes géométriques mises en évidence",
+        "decisionPoints": [
+          "Si captivés par certains bâtiments : explorer plus en détail",
+          "Si difficile d'identifier les formes : pointer et nommer ensemble"
+        ],
+        "movementBreaks": ["Faire la forme des bâtiments avec le corps"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Construction d'architecture : utiliser différents types de blocs pour créer un bâtiment. Planifier d'abord, puis construire.",
+        "materials": ["Blocs de construction variés", "Blocs de mousse", "Blocs magnétiques", "Papier pour croquis"],
+        "visualSupports": "Guide de planification simple avec symboles pour différents blocs",
+        "decisionPoints": [
+          "Si structures s'effondrent : revenir aux bases de stabilité",
+          "Si finissent rapidement : ajouter des défis de hauteur ou complexité"
+        ],
+        "movementBreaks": ["Marcher autour des constructions", "Mouvements pour imiter les formes"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Exposition d'architecture : présenter les bâtiments créés comme un architecte. Expliquer les choix de construction.",
+        "materials": ["Constructions des élèves"],
+        "visualSupports": "Phrases d'architecte : 'J'ai construit...', 'C'est solide parce que...'",
+        "decisionPoints": [
+          "Si difficile d'expliquer : poser des questions simples sur leur construction"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "créer des structures stables",
+        "then": "revoir les principes de base stable, murs droits, distribution du poids"
+      },
+      "realWorldConnection": "Les architectes conçoivent tous les bâtiments où nous vivons, travaillons et jouons.",
+      "differentiation": {
+        "forStruggling": ["Structures simples et basses", "Blocs plus gros et stables", "Modèles à suivre"],
+        "forAdvanced": ["Défis architecturaux complexes", "Intégration de plusieurs matériaux", "Croquis détaillés"],
+        "forELL": ["Vocabulaire architectural visuel", "Démonstrations pratiques", "Apprentissage par construction"],
+        "forIEP": ["Blocs adaptés à manipuler", "Structures adaptées aux capacités", "Support étape par étape"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Identifie les éléments architecturaux", "Planifie avant de construire", "Crée une structure fonctionnelle"],
+        "checkpoints": ["Observation des bâtiments", "Planification de la construction", "Présentation comme architecte"]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Sculptures à histoire",
+      "oneGoal": "Créer une sculpture qui raconte une histoire ou représente un moment.",
+      "duration": 45,
+      "keyVocabulary": ["histoire", "scène", "personnage", "moment", "raconter", "représenter"],
+      "opening": {
+        "duration": 8,
+        "activity": "Lecture d'images : observer des sculptures qui racontent des histoires (statues de personnages, scènes). Deviner l'histoire représentée.",
+        "materials": ["Images de sculptures narratives", "Livre d'histoires simple"],
+        "visualSupports": "Images de sculptures avec bulles de dialogue imaginaires",
+        "decisionPoints": [
+          "Si difficile de deviner : donner des indices sur l'histoire",
+          "Si très créatifs dans les histoires : encourager l'imagination"
+        ],
+        "movementBreaks": ["Mimer les actions vues dans les sculptures"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de scène : choisir un moment d'histoire favorite et le recréer en 3D avec des matériaux variés. Inclure personnages et décor.",
+        "materials": ["Pâte à modeler", "Cure-pipes", "Petits objets", "Cartons pour bases", "Matériaux de bricolage"],
+        "visualSupports": "Exemples de scènes simples avec éléments identifiés",
+        "decisionPoints": [
+          "Si n'ont pas d'idée d'histoire : proposer des contes simples connus",
+          "Si veulent faire des scènes complexes : encourager à commencer simple"
+        ],
+        "movementBreaks": ["Se lever pour voir les scènes des autres", "Étirements créatifs"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Théâtre de sculptures : présenter sa scène et raconter l'histoire. Les autres peuvent poser des questions sur les détails.",
+        "materials": ["Scènes créées"],
+        "visualSupports": "Phrases de présentation : 'Dans mon histoire...', 'Ce personnage...'",
+        "decisionPoints": [
+          "Si difficile de raconter : aider avec des questions guide"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "représenter des personnages en 3D",
+        "then": "simplifier avec des formes de base, utiliser des objets trouvés comme aide"
+      },
+      "realWorldConnection": "Les dioramas dans les musées racontent des histoires comme nos sculptures.",
+      "differentiation": {
+        "forStruggling": ["Histoires très simples avec peu de personnages", "Matériaux faciles à manipuler", "Aide pour structurer"],
+        "forAdvanced": ["Scènes détaillées avec plusieurs éléments", "Histoires originales", "Techniques avancées"],
+        "forELL": ["Histoires visuellement claires", "Support pour le vocabulaire narratif", "Utilisation d'images"],
+        "forIEP": ["Histoires adaptées aux intérêts", "Matériaux accessibles", "Support pour organiser les idées"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Comprend le concept de sculpture narrative", "Crée une scène reconnaissable", "Explique son histoire"],
+        "checkpoints": ["Interprétation des sculptures d'exemple", "Création d'une scène 3D", "Narration de son histoire"]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Sculptures collaboratives",
+      "oneGoal": "Travailler en équipe pour créer une grande sculpture 3D.",
+      "duration": 45,
+      "keyVocabulary": ["collaboration", "équipe", "ensemble", "partager", "connecter", "grand"],
+      "opening": {
+        "duration": 8,
+        "activity": "Défi de construction : en paires, construire une tour en alternant qui place chaque bloc. Discussion sur le travail d'équipe.",
+        "materials": ["Blocs de construction", "Chronomètre"],
+        "visualSupports": "Règles du travail d'équipe illustrées",
+        "decisionPoints": [
+          "Si tensions entre partenaires : rappeler les règles de collaboration"
+        ],
+        "movementBreaks": ["Placer les blocs à tour de rôle"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Sculpture géante : en groupes de 4, créer une sculpture monumentale en connectant leurs créations individuelles. Planifier ensemble d'abord.",
+        "materials": ["Matériaux de sculpture variés", "Grandes bases", "Matériaux de connexion"],
+        "visualSupports": "Exemples de sculptures collaboratives avec éléments connectés",
+        "decisionPoints": [
+          "Si difficultés à s'entendre : assigner des rôles spécifiques",
+          "Si une partie domine : encourager la participation de tous"
+        ],
+        "movementBreaks": ["Tourner autour de la sculpture pour voir tous les angles", "Pauses pour planifier"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cérémonie d'inauguration : chaque équipe présente sa sculpture monumentale et explique comment ils ont collaboré.",
+        "materials": ["Sculptures collaboratives"],
+        "visualSupports": "Questions guide : 'Comment avez-vous travaillé ensemble ?'",
+        "decisionPoints": [
+          "Si certains ne veulent pas parler : permettre à d'autres de représenter l'équipe"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "travailler ensemble harmonieusement",
+        "then": "rappeler l'importance de l'écoute, proposer des compromis, célébrer les réussites"
+      },
+      "realWorldConnection": "Les grands monuments et sculptures publiques sont souvent créés par des équipes d'artistes.",
+      "differentiation": {
+        "forStruggling": ["Groupes plus petits", "Rôles clairement définis", "Support pour la communication"],
+        "forAdvanced": ["Défis de conception complexe", "Leadership rotatif", "Techniques avancées"],
+        "forELL": ["Support visuel pour la planification", "Gestes et démonstrations", "Mots-clés de collaboration"],
+        "forIEP": ["Adaptations pour interaction sociale", "Rôles adaptés aux forces", "Support pour participation"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Collabore effectivement", "Contribue aux idées de groupe", "Respecte les idées des autres"],
+        "checkpoints": ["Participation au défi initial", "Collaboration dans la création", "Présentation d'équipe"]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Ombres et lumière",
+      "oneGoal": "Explorer comment la lumière interagit avec les objets 3D pour créer des ombres.",
+      "duration": 45,
+      "keyVocabulary": ["ombre", "lumière", "projection", "forme", "changer", "angle"],
+      "opening": {
+        "duration": 8,
+        "activity": "Théâtre d'ombres : utiliser une lampe de poche et ses mains pour créer des ombres d'animaux sur le mur. Observer les formes.",
+        "materials": ["Lampes de poche", "Drap blanc ou mur", "Objets simples"],
+        "visualSupports": "Guide d'ombres de mains avec formes d'animaux",
+        "decisionPoints": [
+          "Si salle trop lumineuse : utiliser des rideaux ou changer d'endroit",
+          "Si difficile de faire des formes : commencer par des ombres simples"
+        ],
+        "movementBreaks": ["Bouger les mains pour créer des ombres"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Sculptures d'ombres : créer des objets 3D spécifiquement pour leurs ombres intéressantes. Tester avec différents angles de lumière.",
+        "materials": ["Matériaux translucides et opaques", "Lampes", "Cure-pipes", "Cartons découpés"],
+        "visualSupports": "Photos d'artistes créant avec les ombres",
+        "decisionPoints": [
+          "Si ombres pas visibles : ajuster l'éclairage ou les matériaux",
+          "Si fascinés par l'effet : explorer plus d'angles et positions"
+        ],
+        "movementBreaks": ["Se déplacer pour tester différents angles", "Pauses pour observer"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Spectacle d'ombres : présenter les sculptures et leurs ombres. Expliquer les découvertes sur la lumière et les formes.",
+        "materials": ["Sculptures créées", "Lampes"],
+        "visualSupports": "Questions d'exploration : 'Que remarques-tu quand la lumière change ?'",
+        "decisionPoints": [
+          "Si difficulté à expliquer : aider avec des démonstrations"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "voir les ombres clairement",
+        "then": "ajuster l'éclairage ambiant, utiliser des matériaux plus contrastés, rapprocher la lampe"
+      },
+      "realWorldConnection": "Les sculpteurs utilisent l'éclairage pour mettre en valeur leurs œuvres dans les musées.",
+      "differentiation": {
+        "forStruggling": ["Matériaux à fort contraste", "Ombres simples et claires", "Support pour observer"],
+        "forAdvanced": ["Effets d'ombre complexes", "Multiples sources de lumière", "Analyse des angles"],
+        "forELL": ["Vocabulaire de la lumière avec démonstrations", "Exploration tactile", "Support visuel"],
+        "forIEP": ["Adaptations visuelles si nécessaire", "Éclairage adapté", "Support sensoriel"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Comprend la relation lumière-ombre", "Crée intentionnellement des effets d'ombre", "Explique ses observations"],
+        "checkpoints": ["Participation au théâtre d'ombres", "Création avec conscience des ombres", "Démonstration des découvertes"]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Recyclage créatif",
+      "oneGoal": "Transformer des matériaux recyclés en sculptures 3D créatives.",
+      "duration": 45,
+      "keyVocabulary": ["recycler", "transformer", "réutiliser", "déchet", "nouveau", "environnement"],
+      "opening": {
+        "duration": 8,
+        "activity": "Chasse au trésor de recyclage : explorer les matériaux recyclés disponibles. Imaginer ce qu'ils pourraient devenir.",
+        "materials": ["Boîtes, tubes, bouteilles vides", "Matériaux d'emballage", "Journaux"],
+        "visualSupports": "Exemples d'art recyclé avant/après",
+        "decisionPoints": [
+          "Si peu d'idées : montrer des transformations simples",
+          "Si beaucoup d'idées : encourager à planifier d'abord"
+        ],
+        "movementBreaks": ["Marcher pour collecter les matériaux"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Transformation créative : créer une sculpture en transformant complètement des objets recyclés. Les décorer et assembler.",
+        "materials": ["Matériaux recyclés variés", "Peinture", "Papier coloré", "Colle", "Décorations"],
+        "visualSupports": "Techniques de transformation avec exemples concrets",
+        "decisionPoints": [
+          "Si difficulté à visualiser la transformation : commencer par des changements simples",
+          "Si matériaux difficiles à manipuler : préparer ou adapter"
+        ],
+        "movementBreaks": ["Marcher pour sécher les pièces", "Mouvements de peinture"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Exposition éco-artistique : présenter les transformations réalisées. Discuter de l'impact environnemental positif.",
+        "materials": ["Sculptures recyclées"],
+        "visualSupports": "Messages sur le recyclage et l'art écologique",
+        "decisionPoints": [
+          "Si peu conscients de l'environnement : expliquer simplement les bénéfices"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "voir le potentiel des matériaux recyclés",
+        "then": "montrer des exemples de transformations, commencer par des changements évidents"
+      },
+      "realWorldConnection": "De nombreux artistes créent des œuvres magnifiques à partir de matériaux recyclés pour protéger l'environnement.",
+      "differentiation": {
+        "forStruggling": ["Transformations simples et évidentes", "Matériaux faciles à manipuler", "Aide pour visualiser"],
+        "forAdvanced": ["Transformations complexes et créatives", "Intégration de message écologique", "Techniques avancées"],
+        "forELL": ["Vocabulaire environnemental avec images", "Démonstrations de techniques", "Support visuel"],
+        "forIEP": ["Matériaux sécuritaires et adaptables", "Transformations adaptées", "Support individuel"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Identifie le potentiel créatif des matériaux", "Transforme efficacement les objets", "Comprend les bénéfices environnementaux"],
+        "checkpoints": ["Sélection créative des matériaux", "Réalisation d'une transformation", "Présentation de l'œuvre recyclée"]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Galerie personnelle",
+      "oneGoal": "Organiser et présenter ses meilleures créations 3D dans une exposition.",
+      "duration": 45,
+      "keyVocabulary": ["galerie", "exposition", "présenter", "organiser", "fier", "spectateur"],
+      "opening": {
+        "duration": 8,
+        "activity": "Visite de galerie : observer comment les œuvres d'art sont présentées dans les vraies galeries (photos/vidéos). Discuter de l'organisation.",
+        "materials": ["Images de galeries d'art", "Exemples d'expositions"],
+        "visualSupports": "Photos de différentes façons de présenter l'art 3D",
+        "decisionPoints": [
+          "Si intéressés par les détails : explorer plus les techniques de présentation",
+          "Si impatients de commencer : raccourcir l'introduction"
+        ],
+        "movementBreaks": ["Marcher comme dans une galerie"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Curéation d'exposition : choisir ses 3 meilleures sculptures 3D, les disposer esthétiquement, créer des étiquettes descriptives.",
+        "materials": ["Sculptures créées précédemment", "Supports d'exposition", "Cartons pour étiquettes", "Matériaux de décoration"],
+        "visualSupports": "Modèle d'étiquette d'œuvre d'art simple",
+        "decisionPoints": [
+          "Si difficulté à choisir : aider à évaluer selon des critères",
+          "Si manquent de créations : permettre la finalisation d'œuvres en cours"
+        ],
+        "movementBreaks": ["Déplacer et arranger les œuvres", "Marcher pour voir les arrangements"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Vernissage : inauguration officielle des galeries personnelles. Chacun présente son exposition comme un vrai artiste.",
+        "materials": ["Expositions complètes"],
+        "visualSupports": "Phrases d'artiste : 'Dans mon exposition...', 'Cette œuvre représente...'",
+        "decisionPoints": [
+          "Si nerveux pour présenter : permettre des présentations plus courtes"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "choisir et organiser ses œuvres",
+        "then": "aider à identifier les points forts, proposer des critères simples de sélection"
+      },
+      "realWorldConnection": "Les vrais artistes organisent des expositions pour partager leur travail avec le public.",
+      "differentiation": {
+        "forStruggling": ["Aide pour sélectionner les œuvres", "Étiquettes simplifiées", "Support pour organiser"],
+        "forAdvanced": ["Exposition thématique", "Étiquettes détaillées", "Présentation sophistiquée"],
+        "forELL": ["Support pour le vocabulaire d'exposition", "Modèles d'étiquettes", "Aide pour présenter"],
+        "forIEP": ["Exposition adaptée aux capacités", "Support individuel", "Célébration des réussites"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Sélectionne ses meilleures œuvres", "Organise une présentation cohérente", "Explique son travail artistique"],
+        "checkpoints": ["Compréhension du concept de galerie", "Organisation d'une exposition personnelle", "Présentation comme artiste"]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Sculptures cinétiques",
+      "oneGoal": "Créer des sculptures qui bougent ou semblent bouger.",
+      "duration": 45,
+      "keyVocabulary": ["cinétique", "mouvement", "mécanique", "rotation", "oscillation", "moteur"],
+      "opening": {
+        "duration": 8,
+        "activity": "Démonstration de sculptures cinétiques : observer des exemples simples (toupies, mobiles motorisés). Analyser les types de mouvements.",
+        "materials": ["Exemples de sculptures cinétiques simples", "Vidéos d'art cinétique"],
+        "visualSupports": "Diagrammes des différents types de mouvement avec flèches",
+        "decisionPoints": [
+          "Si fascinés par un type : se concentrer sur ce mouvement"
+        ],
+        "movementBreaks": ["Imiter les mouvements observés"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création cinétique : construire une sculpture simple qui bouge (avec vent, gravité, ou mécanisme simple). Tester et ajuster.",
+        "materials": ["Cure-pipes flexibles", "Billes", "Ventilateurs", "Mécanismes simples", "Supports rotatifs"],
+        "visualSupports": "Guide de construction de mécanismes simples",
+        "decisionPoints": [
+          "Si mécanismes trop complexes : se concentrer sur le mouvement par vent",
+          "Si réussisent rapidement : ajouter plus de complexité"
+        ],
+        "movementBreaks": ["Tester les mouvements", "Ajuster les mécanismes"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Spectacle cinétique : démonstration des sculptures en mouvement. Discussion sur les défis et réussites.",
+        "materials": ["Sculptures cinétiques créées"],
+        "visualSupports": "Questions d'évaluation : 'Comment as-tu créé le mouvement ?'",
+        "decisionPoints": [
+          "Si sculptures ne bougent pas bien : célébrer l'effort et les idées"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "créer un mouvement stable",
+        "then": "simplifier le mécanisme, vérifier l'équilibre, ajuster les supports"
+      },
+      "realWorldConnection": "Les sculptures cinétiques dans les musées et espaces publics fascinent par leur mouvement constant.",
+      "differentiation": {
+        "forStruggling": ["Mouvements simples (balancement)", "Mécanismes très basiques", "Aide technique"],
+        "forAdvanced": ["Mécanismes multiples", "Mouvements synchronisés", "Analyse technique"],
+        "forELL": ["Vocabulaire du mouvement avec démonstrations", "Apprentissage par expérimentation", "Support technique"],
+        "forIEP": ["Mécanismes adaptés aux capacités motrices", "Support individuel", "Célébration des réussites"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Comprend le principe du mouvement", "Crée un élément mobile", "Persiste dans les ajustements"],
+        "checkpoints": ["Analyse des exemples cinétiques", "Création avec mouvement", "Présentation du mécanisme"]
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Sculptures mathématiques",
+      "oneGoal": "Créer des sculptures basées sur des formes géométriques et des motifs mathématiques.",
+      "duration": 45,
+      "keyVocabulary": ["géométrique", "motif", "répétition", "symétrie", "angle", "mesure"],
+      "opening": {
+        "duration": 8,
+        "activity": "Chasse aux formes : identifier des formes géométriques dans la classe et discuter de leurs propriétés. Créer des motifs simples.",
+        "materials": ["Formes géométriques en carton", "Papier", "Crayons"],
+        "visualSupports": "Affiche des formes géométriques avec leurs noms",
+        "decisionPoints": [
+          "Si difficile d'identifier : pointer et nommer ensemble"
+        ],
+        "movementBreaks": ["Faire des formes avec le corps"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Sculpture géométrique : utiliser des formes précises pour créer une sculpture mathématique. Explorer la répétition et la symétrie.",
+        "materials": ["Formes géométriques variées", "Matériaux de construction précis", "Règles et gabarits"],
+        "visualSupports": "Exemples de sculptures géométriques et architecture mathématique",
+        "decisionPoints": [
+          "Si trop abstrait : utiliser des exemples concrets"
+        ],
+        "movementBreaks": ["Marcher autour pour voir tous les angles", "Mouvements géométriques"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Musée de mathématiques : présenter les sculptures en expliquant les formes et motifs utilisés. Compter et mesurer ensemble.",
+        "materials": ["Sculptures géométriques", "Outils de mesure"],
+        "visualSupports": "Vocabulaire mathématique pour décrire les formes",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts géométriques",
+        "then": "utiliser des exemples concrets et manipulables, simplifier les concepts"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "L'architecture utilise des formes géométriques précises pour créer des bâtiments solides et beaux.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Formes simples et reconnaissables", "Moins de précision requise", "Support visuel constant"],
+        "forAdvanced": ["Formes complexes et calculs", "Projets de précision", "Intégration de mesures"],
+        "forELL": ["Vocabulaire mathématique avec démonstrations", "Support visuel", "Apprentissage concret"],
+        "forIEP": ["Formes adaptées aux capacités", "Outils d'aide", "Objectifs individualisés"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Reconnaît les formes géométriques", "Crée des motifs organisés", "Explique ses choix mathématiques"],
+        "checkpoints": ["Identification des formes", "Création avec précision", "Présentation mathématique"]
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Sculptures sonores",
+      "oneGoal": "Créer des sculptures qui produisent des sons intéressants.",
+      "duration": 45,
+      "keyVocabulary": ["sonore", "son", "vibration", "résonance", "instrument", "musique"],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration sonore : tester différents matériaux pour les sons qu'ils produisent. Créer une symphonie d'objets.",
+        "materials": ["Matériaux variés", "Bâtonnets pour frapper", "Récipients vides"],
+        "visualSupports": "Images d'instruments et sculptures sonores",
+        "decisionPoints": [
+          "Si trop bruyant : établir des règles de volume"
+        ],
+        "movementBreaks": ["Bouger au rythme des sons créés"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Construction d'instruments : créer une sculpture-instrument en assemblant des matériaux qui produisent des sons. Tester et ajuster.",
+        "materials": ["Tubes, boîtes, métal", "Matériaux de résonance", "Outils de construction", "Décorations"],
+        "visualSupports": "Exemples d'instruments faits maison et techniques",
+        "decisionPoints": [
+          "Si pas de son : ajuster la construction ou les techniques"
+        ],
+        "movementBreaks": ["Tester les sons en bougeant", "Pauses auditives"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Concert de sculptures : présenter les instruments créés en jouant une petite mélodie ou rythme. Orchestre de classe.",
+        "materials": ["Instruments-sculptures créés"],
+        "visualSupports": "Signes de chef d'orchestre simple",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "produire des sons clairs",
+        "then": "ajuster la construction, vérifier les vibrations, simplifier l'instrument"
+      },
+      "realWorldConnection": "Les sculpteurs créent des œuvres interactives qui produisent de la musique dans les parcs.",
+      "differentiation": {
+        "forStruggling": ["Instruments très simples", "Sons faciles à produire", "Aide technique"],
+        "forAdvanced": ["Instruments complexes multi-sons", "Mélodies et rythmes", "Techniques avancées"],
+        "forELL": ["Vocabulaire musical avec démonstrations", "Apprentissage par écoute", "Support gestuel"],
+        "forIEP": ["Instruments adaptés aux capacités motrices", "Volumes contrôlés", "Participation adaptée"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Identifie les matériaux sonores", "Construit un instrument fonctionnel", "Joue de son instrument créé"],
+        "checkpoints": ["Exploration des sons", "Construction d'instrument", "Performance musicale"]
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Installation artistique",
+      "oneGoal": "Créer une installation 3D qui transforme un espace.",
+      "duration": 45,
+      "keyVocabulary": ["installation", "espace", "environnement", "transformer", "expérience", "immersion"],
+      "opening": {
+        "duration": 8,
+        "activity": "Découverte d'installations : observer des photos d'installations artistiques. Discuter de l'effet sur les spectateurs.",
+        "materials": ["Images d'installations artistiques", "Videos courtes"],
+        "visualSupports": "Exemples d'installations adaptées aux enfants",
+        "decisionPoints": [],
+        "movementBreaks": ["Se déplacer pour imaginer être dans l'installation"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création d'installation : transformer un coin de la classe en espace artistique spécial avec sculptures, lumières, textures.",
+        "materials": ["Tissus", "Sculptures précédentes", "Lumières colorées", "Matériaux sensoriels"],
+        "visualSupports": "Plan simple pour organiser l'espace",
+        "decisionPoints": [
+          "Si espace limité : adapter à un plus petit coin"
+        ],
+        "movementBreaks": ["Installer et réarranger les éléments", "Tester l'expérience"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Inauguration d'installation : inviter les autres à expérimenter l'installation créée. Recueillir les réactions.",
+        "materials": ["Installation complète"],
+        "visualSupports": "Questions pour les visiteurs : 'Que ressens-tu ici ?'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "conceptualiser l'installation",
+        "then": "commencer par un thème simple, utiliser les sens comme guide"
+      },
+      "realWorldConnection": "Les installations dans les musées créent des expériences uniques pour les visiteurs.",
+      "differentiation": {
+        "forStruggling": ["Installations simples et sensorielles", "Thèmes concrets", "Support pour organiser"],
+        "forAdvanced": ["Installations conceptuelles complexes", "Multi-sensorielles", "Messages artistiques"],
+        "forELL": ["Thèmes universels", "Expérience sensorielle avant verbale", "Support descriptif"],
+        "forIEP": ["Installations adaptées aux sensibilités", "Expériences accessibles", "Support individuel"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Comprend le concept d'installation", "Transforme effectivement l'espace", "Crée une expérience pour les autres"],
+        "checkpoints": ["Analyse des installations existantes", "Création d'espace transformé", "Accueil des visiteurs"]
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Art numérique 3D",
+      "oneGoal": "Explorer la création 3D avec des outils numériques simples.",
+      "duration": 45,
+      "keyVocabulary": ["numérique", "virtuel", "ordinateur", "créer", "technologie", "futur"],
+      "opening": {
+        "duration": 8,
+        "activity": "Découverte d'art numérique : observer des créations 3D réalisées sur ordinateur. Comparer avec l'art physique.",
+        "materials": ["Tablettes/ordinateurs", "Exemples d'art numérique 3D"],
+        "visualSupports": "Comparaison art traditionnel vs numérique",
+        "decisionPoints": [],
+        "movementBreaks": ["Gestes de sculpture dans l'air"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création numérique : utiliser des applications simples de dessin/sculpture 3D pour créer des formes et objets virtuels.",
+        "materials": ["Tablettes avec apps de création 3D", "Stylets si disponibles"],
+        "visualSupports": "Guide simple des outils numériques de base",
+        "decisionPoints": [
+          "Si difficultés techniques : passer plus de temps sur les bases"
+        ],
+        "movementBreaks": ["Pauses écran", "Mouvements des doigts"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie virtuelle : partager les créations numériques sur grand écran. Discuter des différences avec l'art physique.",
+        "materials": ["Projecteur/grand écran", "Créations numériques"],
+        "visualSupports": "Questions de comparaison : 'Qu'est-ce qui est différent ? Pareil ?'",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "utiliser les outils numériques",
+        "then": "simplifier l'interface, se concentrer sur un outil à la fois, aide technique"
+      },
+      "realWorldConnection": "Les designers et architectes utilisent des ordinateurs pour créer avant de construire.",
+      "differentiation": {
+        "forStruggling": ["Applications très simples", "Aide technique constante", "Créations basiques"],
+        "forAdvanced": ["Outils plus complexes", "Créations détaillées", "Exploration approfondie"],
+        "forELL": ["Interface visuelle intuitive", "Support technique", "Apprentissage par exploration"],
+        "forIEP": ["Outils adaptés aux capacités motrices", "Interfaces simplifiées", "Support individualisé"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Utilise les outils numériques de base", "Crée des formes 3D virtuelles", "Compare art physique et numérique"],
+        "checkpoints": ["Exploration des outils", "Création numérique réussie", "Réflexion comparative"]
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration 3D finale",
+      "oneGoal": "Célébrer l'apprentissage 3D avec une exposition finale et réflexion.",
+      "duration": 45,
+      "keyVocabulary": ["célébrer", "apprentissage", "progrès", "fierté", "réflexion", "futur"],
+      "opening": {
+        "duration": 8,
+        "activity": "Rétrospective : revoir toutes les créations 3D réalisées pendant l'unité. Identifier les progrès et moments de fierté.",
+        "materials": ["Portfolio de créations", "Photos du parcours"],
+        "visualSupports": "Chronologie visuelle de l'unité avec photos",
+        "decisionPoints": [],
+        "movementBreaks": ["Circuler pour revoir toutes les créations"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Musée des réussites : organiser une exposition finale avec toutes les meilleures créations. Préparer des présentations de fierté.",
+        "materials": ["Toutes les créations de l'unité", "Matériaux d'exposition", "Cértificats d'artiste"],
+        "visualSupports": "Modèles de réflexion : 'J'ai appris...', 'Je suis fier de...'",
+        "decisionPoints": [],
+        "movementBreaks": ["Organiser l'exposition", "Répéter les présentations"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cérémonie de remise : présenter les certificats d'artiste 3D. Partager les rêves artistiques futurs. Applaudissements de célébration.",
+        "materials": ["Certificats personnalisés", "Exposition finale"],
+        "visualSupports": "Messages d'encouragement pour l'avenir artistique",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "identifier ses progrès",
+        "then": "pointer des exemples concrets, utiliser les photos du parcours, célébrer tous les efforts"
+      },
+      "realWorldConnection": "Les vrais artistes célèbrent leurs réussites et continuent à apprendre toute leur vie.",
+      "differentiation": {
+        "forStruggling": ["Célébration de tous les efforts", "Support pour identifier les réussites", "Fierté des tentatives"],
+        "forAdvanced": ["Réflexion approfondie", "Objectifs artistiques futurs", "Leadership dans les présentations"],
+        "forELL": ["Célébration universelle", "Expression par l'art plus que par les mots", "Reconnaissance visuelle"],
+        "forIEP": ["Célébration individualisée", "Reconnaissance des forces uniques", "Participation adaptée"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Identifie ses progrès artistiques", "Exprime sa fierté", "Envisage des projets futurs"],
+        "checkpoints": ["Réflexion sur le parcours", "Organisation d'exposition", "Participation à la célébration"]
       }
     }
   ],
@@ -122,7 +1145,7 @@
       }
     ],
     "rubrics": {
-      "title": "Rubrique d'évaluation - ",
+      "title": "Rubrique d'évaluation - Exploration 3D",
       "levels": [
         {
           "level": "Émergent",
@@ -243,7 +1266,7 @@
     }
   },
   "familyConnections": {
-    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en arts visuels\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\n\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nValorisez le processus créatif autant que le produit final.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Exploration 3D : Créer dans l'espace\"\n\nCette unité permettra à votre enfant de:\n• Explorer la création tridimensionnelle avec divers matériaux\n• Développer sa compréhension spatiale et sa motricité fine\n• Apprendre le vocabulaire français de la sculpture et construction\n• Découvrir comment les artistes créent des œuvres en 3D\n• Collaborer et partager ses créations artistiques\n\nQuelques thèmes que nous explorerons:\n• Découverte des objets 3D dans notre environnement\n• Sculptures avec pâte à modeler et argile\n• Construction et équilibre avec différents matériaux\n• Exploration de textures et reliefs\n• Création d'animaux et personnages en sculpture\n• Art avec matériaux naturels et recyclés\n• Installations artistiques et sculptures mobiles\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ses créations 3D\n• Explorez ensemble les textures d'objets du quotidien\n• Essayez des activités de construction avec des matériaux sécuritaires\n• Visitez des sculptures ou monuments dans votre communauté\n• Encouragez l'expérimentation et la créativité sans crainte des 'erreurs'\n\nValorisez le processus créatif autant que le produit final. En art 3D, l'exploration et l'expérimentation sont essentielles!\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité tridimensionnelle s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
     "homeActivities": [
       {
         "title": "Conversation quotidienne",
@@ -281,7 +1304,28 @@
         "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
       }
     ],
-    "vocabularyList": []
+    "vocabularyList": [
+      "3D", "tridimensionnel", "forme", "objet", "toucher", "autour",
+      "sculpture", "modeler", "pâte", "créer", "forme", "rouler",
+      "construire", "assembler", "stable", "équilibre", "empiler", "base",
+      "texture", "rugueux", "lisse", "surface", "motif", "imprimer",
+      "animal", "corps", "tête", "pattes", "queue", "assembler",
+      "mobile", "équilibre", "suspendre", "poids", "bouger", "léger",
+      "nature", "extérieur", "temporaire", "arrangement", "naturel", "collection",
+      "masque", "relief", "dépasser", "profondeur", "visage", "décorer",
+      "architecture", "bâtiment", "structure", "solide", "plan", "concevoir",
+      "histoire", "scène", "personnage", "moment", "raconter", "représenter",
+      "collaboration", "équipe", "ensemble", "partager", "connecter", "grand",
+      "ombre", "lumière", "projection", "forme", "changer", "angle",
+      "recycler", "transformer", "réutiliser", "déchet", "nouveau", "environnement",
+      "galerie", "exposition", "présenter", "organiser", "fier", "spectateur",
+      "cinétique", "mouvement", "mécanique", "rotation", "oscillation", "moteur",
+      "géométrique", "motif", "répétition", "symétrie", "angle", "mesure",
+      "sonore", "son", "vibration", "résonance", "instrument", "musique",
+      "installation", "espace", "environnement", "transformer", "expérience", "immersion",
+      "numérique", "virtuel", "ordinateur", "créer", "technologie", "futur",
+      "célébrer", "apprentissage", "progrès", "fierté", "réflexion", "futur"
+    ]
   },
   "resourceAlternatives": {
     "materials": {
