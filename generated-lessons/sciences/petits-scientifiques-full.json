@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Petits scientifiques - Découvrir le monde avec curiosité",
   "subject": "Sciences de la nature",
   "grade": "1",
   "totalLessons": 20,
@@ -21,29 +21,62 @@
         "duration": 8,
         "activity": "Science area tour - students explore and touch safe science materials while teacher narrates",
         "materials": [
-          "science corner setup",
-          "safe tools display",
-          "welcome poster"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)",
+          "coin sciences aménagé avec 25 places assises",
+          "affiche de bienvenue colorée avec images d'enfants-scientifiques",
+          "objets mystères dans des sacs (6 sacs)"
         ],
         "visualSupports": "colorful science area label with pictures of tools and discoveries",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
+          },
+          {
+            "question": "Appliquent-ils les règles de sécurité scientifique?",
+            "ifYes": "Féliciter et permettre plus d'autonomie dans l'exploration",
+            "ifNo": "Rappeler gentiment les règles avec démonstration"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "hands-on exploration of science tools and materials with guided discovery questions",
         "materials": [
-          "magnifying glasses",
-          "measuring cups",
-          "safe objects to explore",
-          "science journals"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)",
+          "coin sciences aménagé avec 25 places assises",
+          "affiche de bienvenue colorée avec images d'enfants-scientifiques",
+          "objets mystères dans des sacs (6 sacs)"
         ],
         "visualSupports": "picture cards showing scientists at work, lab safety symbols",
         "decisionPoints": [
           {
-            "question": "Are students excited about the science tools and asking questions?",
-            "ifYes": "Let them handle tools briefly with safety reminders",
-            "ifNo": "Model exciting discoveries you can make with each tool"
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
+          },
+          {
+            "question": "Appliquent-ils les règles de sécurité scientifique?",
+            "ifYes": "Féliciter et permettre plus d'autonomie dans l'exploration",
+            "ifNo": "Rappeler gentiment les règles avec démonstration"
           }
         ],
         "movementBreaks": []
@@ -62,14 +95,45 @@
       },
       "realWorldConnection": "Understanding that scientists work in special places with special tools, just like doctors or chefs",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (scientifique, laboratoire, découverte)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -87,27 +151,60 @@
         "duration": 8,
         "activity": "Safety song with actions - teaching three key safety moves: hands on ears (listen), hand over eyes (look), gentle hands (be careful)",
         "materials": [
-          "safety rule posters",
-          "props for demonstration"
+          "affiches de sécurité scientifique plastifiées",
+          "symboles de sécurité visuels",
+          "contenants de rangement sécuritaires",
+          "marionnette pour démonstration",
+          "cartes de sécurité individuelles (25)",
+          "instruments de musique simples pour la chanson"
         ],
         "visualSupports": "three large safety rule pictures with simple symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
+          },
+          {
+            "question": "Appliquent-ils les règles de sécurité scientifique?",
+            "ifYes": "Féliciter et permettre plus d'autonomie dans l'exploration",
+            "ifNo": "Rappeler gentiment les règles avec démonstration"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "safety practice scenarios where students demonstrate listening, looking carefully, and being gentle with science materials",
         "materials": [
-          "scenario cards",
-          "safe science materials",
-          "safety symbols"
+          "affiches de sécurité scientifique plastifiées",
+          "symboles de sécurité visuels",
+          "contenants de rangement sécuritaires",
+          "marionnette pour démonstration",
+          "cartes de sécurité individuelles (25)",
+          "instruments de musique simples pour la chanson"
         ],
         "visualSupports": "safety rule reminder chart visible during all activities",
         "decisionPoints": [
           {
-            "question": "Can students demonstrate the three safety rules consistently?",
-            "ifYes": "Practice with actual science materials",
-            "ifNo": "Use role-play with stuffed animals or puppets to show safe vs unsafe behaviors"
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
+          },
+          {
+            "question": "Appliquent-ils les règles de sécurité scientifique?",
+            "ifYes": "Féliciter et permettre plus d'autonomie dans l'exploration",
+            "ifNo": "Rappeler gentiment les règles avec démonstration"
           }
         ],
         "movementBreaks": []
@@ -126,14 +223,45 @@
       },
       "realWorldConnection": "Learning that safety rules help us have fun and stay safe, like wearing seatbelts in cars",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (sécurité, règles, attention)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -151,27 +279,60 @@
         "duration": 8,
         "activity": "Eye spy science game - students find objects with specific characteristics using only their eyes",
         "materials": [
-          "variety of interesting classroom objects",
-          "observation cards"
+          "collection d'objets naturels sécuritaires (coquillages, pierres polies, plumes)",
+          "échantillons de tissus variés",
+          "contenants transparents (25)",
+          "objets variés pour observation (75 items)",
+          "cartes d'observation avec vocabulary visuel",
+          "sacs mystères opaques (6)"
         ],
         "visualSupports": "poster showing different observation words: big, small, shiny, rough",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
+          },
+          {
+            "question": "Appliquent-ils les règles de sécurité scientifique?",
+            "ifYes": "Féliciter et permettre plus d'autonomie dans l'exploration",
+            "ifNo": "Rappeler gentiment les règles avec démonstration"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "detailed observation practice with mystery objects in bags - students describe what they see without touching",
         "materials": [
-          "cloth bags with interesting objects",
-          "observation recording sheets",
-          "colored pencils"
+          "collection d'objets naturels sécuritaires (coquillages, pierres polies, plumes)",
+          "échantillons de tissus variés",
+          "contenants transparents (25)",
+          "objets variés pour observation (75 items)",
+          "cartes d'observation avec vocabulary visuel",
+          "sacs mystères opaques (6)"
         ],
         "visualSupports": "observation vocabulary chart with pictures, 'scientist eyes' poster",
         "decisionPoints": [
           {
-            "question": "Can students describe multiple details about objects using observation words?",
-            "ifYes": "Challenge them to notice tiny details or compare two similar objects",
-            "ifNo": "Model observation by thinking aloud about one object together"
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
+          },
+          {
+            "question": "Appliquent-ils les règles de sécurité scientifique?",
+            "ifYes": "Féliciter et permettre plus d'autonomie dans l'exploration",
+            "ifNo": "Rappeler gentiment les règles avec démonstration"
           }
         ],
         "movementBreaks": []
@@ -190,14 +351,45 @@
       },
       "realWorldConnection": "Using careful looking to notice things around us, like watching for changes in the weather",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (observer, regarder, détails)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -215,29 +407,48 @@
         "duration": 8,
         "activity": "Sound detective game - students close eyes and identify familiar classroom sounds",
         "materials": [
-          "mystery sound makers",
-          "sound cards",
-          "quiet listening space"
+          "contenants avec matériaux sonores (riz, haricots, sable)",
+          "blocs de bois variés",
+          "cuillères de métal",
+          "matériaux doux et silencieux",
+          "espace d'écoute calme"
         ],
         "visualSupports": "poster showing different sound words: loud, quiet, high, low",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "sound exploration stations where students safely shake, tap, and drop different materials to compare sounds",
         "materials": [
-          "containers with rice/beans/sand",
-          "wooden blocks",
-          "metal spoons",
-          "soft materials"
+          "contenants avec matériaux sonores (riz, haricots, sable)",
+          "blocs de bois variés",
+          "cuillères de métal",
+          "matériaux doux et silencieux",
+          "espace d'écoute calme"
         ],
         "visualSupports": "sound comparison chart, listening rules poster",
         "decisionPoints": [
           {
-            "question": "Can students describe differences between sounds using sound vocabulary?",
-            "ifYes": "Have them predict what sounds different materials will make",
-            "ifNo": "Focus on simple loud/quiet comparisons with clear examples"
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
           }
         ],
         "movementBreaks": []
@@ -256,14 +467,45 @@
       },
       "realWorldConnection": "Understanding how listening carefully helps us learn, like hearing if something is working properly",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (écouter, sons, différent)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -281,28 +523,46 @@
         "duration": 8,
         "activity": "Safe smelling demonstration - teacher shows proper 'wafting' technique with pleasant scents",
         "materials": [
-          "safe scent containers",
-          "demonstration props",
-          "safety reminder cards"
+          "contenants d'odeurs sécuritaires (vanille, citron, cannelle)",
+          "matériaux pour pratique de 'wafting'",
+          "feuilles d'enregistrement simples",
+          "serviettes humides pour nettoyer"
         ],
         "visualSupports": "step-by-step safe smelling poster with hand gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "guided scent exploration with teacher-prepared safe containers and practice of safe smelling technique",
         "materials": [
-          "scent containers with vanilla, lemon, cinnamon",
-          "wafting practice materials",
-          "recording sheets"
+          "contenants d'odeurs sécuritaires (vanille, citron, cannelle)",
+          "matériaux pour pratique de 'wafting'",
+          "feuilles d'enregistrement simples",
+          "serviettes humides pour nettoyer"
         ],
         "visualSupports": "smell safety rules chart, scent description word wall",
         "decisionPoints": [
           {
-            "question": "Are students using safe smelling technique consistently?",
-            "ifYes": "Let them explore different scents and describe what they smell",
-            "ifNo": "Practice wafting technique with unscented containers first"
+            "question": "Les élèves montrent-ils de l'engagement actif dans l'activité scientifique?",
+            "ifYes": "Encourager l'exploration plus profonde et poser des questions ouvertes",
+            "ifNo": "Modéliser l'émerveillement et rendre l'activité plus interactive"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique approprié?",
+            "ifYes": "Inviter à expliquer leurs observations aux autres",
+            "ifNo": "Répéter et renforcer le vocabulaire avec gestes et images"
           }
         ],
         "movementBreaks": []
@@ -321,14 +581,45 @@
       },
       "realWorldConnection": "Learning that some smells tell us about safety, like smelling food to know if it's fresh",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (sentir, odeur, sécurité)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -346,30 +637,46 @@
         "duration": 8,
         "activity": "Touch safety demonstration using 'one finger first' rule and identifying no-touch items",
         "materials": [
-          "texture exploration materials",
-          "no-touch examples",
-          "safety gloves"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "safe touching rules poster with pictures, red 'no-touch' symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "texture exploration stations with various safe materials and practice of gentle touching techniques",
         "materials": [
-          "sandpaper",
-          "cotton balls",
-          "smooth stones",
-          "bumpy materials",
-          "texture recording sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "texture vocabulary chart with feeling words, safe touch reminder signs",
         "decisionPoints": [
           {
-            "question": "Are students using gentle touch and following 'one finger first' rule?",
-            "ifYes": "Challenge them to find textures that are similar or completely different",
-            "ifNo": "Model gentle touching with a puppet or stuffed animal first"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
           }
         ],
         "movementBreaks": []
@@ -388,14 +695,45 @@
       },
       "realWorldConnection": "Understanding when it's safe to touch things and when we need to be careful, like petting friendly animals",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (toucher, texture, précaution)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -413,30 +751,46 @@
         "duration": 8,
         "activity": "Science tool mystery box - students guess tools by feeling them and discussing their uses",
         "materials": [
-          "mystery box with tools",
-          "real science tools",
-          "tool picture cards"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "large tool identification poster with names and pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "hands-on tool exploration where students practice holding and using each tool safely with teacher guidance",
         "materials": [
-          "magnifying glasses",
-          "rulers",
-          "measuring cups",
-          "exploration objects",
-          "tool practice sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "tool safety rules chart, proper holding technique pictures",
         "decisionPoints": [
           {
-            "question": "Can students hold tools safely and name them correctly?",
-            "ifYes": "Let them practice using tools with interesting objects",
-            "ifNo": "Focus on one tool at a time with lots of modeling and practice"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
           }
         ],
         "movementBreaks": []
@@ -455,14 +809,45 @@
       },
       "realWorldConnection": "Understanding that scientists use special tools to see and measure better, like how doctors use stethoscopes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (outils, loupe, mesurer)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -480,30 +865,46 @@
         "duration": 8,
         "activity": "Magnifying glass magic - teacher demonstrates amazing details visible through magnification",
         "materials": [
-          "large magnifying glasses",
-          "interesting objects for magnifying",
-          "discovery collection"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "magnifying glass safety rules poster with pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "guided magnifying exploration of classroom objects with focus on discovering new details and safe handling",
         "materials": [
-          "individual magnifying glasses",
-          "leaves",
-          "fabric samples",
-          "coins",
-          "exploration recording sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "detail discovery chart, safe magnifying technique posters",
         "decisionPoints": [
           {
-            "question": "Are students discovering new details and using magnifiers safely?",
-            "ifYes": "Challenge them to compare details between similar objects",
-            "ifNo": "Provide easier objects with obvious details and model proper magnifying technique"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
           }
         ],
         "movementBreaks": []
@@ -522,14 +923,45 @@
       },
       "realWorldConnection": "Understanding how magnifying glasses help us see tiny things, like looking at insects or reading small print",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (loupe, agrandir, petits détails)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -547,30 +979,46 @@
         "duration": 8,
         "activity": "Size comparison game - students order objects by size using their hands and eyes before using tools",
         "materials": [
-          "objects of different sizes",
-          "measuring tools",
-          "comparison charts"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "size comparison vocabulary poster: bigger, smaller, same size",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "measurement exploration stations using non-standard (blocks, hands) and standard tools (rulers) to compare object sizes",
         "materials": [
-          "unit blocks",
-          "rulers",
-          "measuring cups",
-          "various objects to measure",
-          "measurement recording sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "measurement technique posters, comparison language chart",
         "decisionPoints": [
           {
-            "question": "Can students use measuring tools to compare objects accurately?",
-            "ifYes": "Have them predict measurements before testing and compare predictions to results",
-            "ifNo": "Start with non-standard units (blocks, hands) and focus on 'longer/shorter' comparisons"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
           }
         ],
         "movementBreaks": []
@@ -589,14 +1037,45 @@
       },
       "realWorldConnection": "Understanding how we measure things in daily life, like checking if clothes fit or measuring ingredients",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (mesurer, comparer, taille)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -614,30 +1093,46 @@
         "duration": 8,
         "activity": "Scientist drawing demonstration - teacher shows how scientists draw what they see, not what they think",
         "materials": [
-          "drawing materials",
-          "observation object",
-          "example science drawings"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "scientific drawing rules poster: draw what you see, include details, use labels",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "guided observation drawing practice with real objects, focusing on accuracy and detail recording",
         "materials": [
-          "drawing paper",
-          "pencils",
-          "colored pencils",
-          "interesting objects to draw",
-          "observation journals"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "scientific drawing examples, observation vocabulary for labeling",
         "decisionPoints": [
           {
-            "question": "Are students drawing what they actually see rather than what they know?",
-            "ifYes": "Encourage them to add labels and more details to their drawings",
-            "ifNo": "Cover the object and uncover it gradually, drawing each part as they see it"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          },
+          {
+            "question": "Sont-ils capables d'expliquer leurs découvertes?",
+            "ifYes": "Encourager le partage avec d'autres groupes",
+            "ifNo": "Offrir des structures de phrases et supports visuels"
           }
         ],
         "movementBreaks": []
@@ -656,14 +1151,45 @@
       },
       "realWorldConnection": "Understanding that scientists keep track of what they discover by drawing, like how we draw pictures of family trips",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (dessiner, noter, observations)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -681,29 +1207,36 @@
         "duration": 8,
         "activity": "Sorting game with students - teacher sorts students by clothing colors, then students suggest other sorting rules",
         "materials": [
-          "various classroom objects",
-          "sorting containers",
-          "classification cards"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "sorting rules poster with pictures showing different ways to group objects",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "hands-on sorting activities where students classify objects multiple ways and explain their sorting decisions",
         "materials": [
-          "mixed collection of objects",
-          "sorting mats",
-          "classification labels",
-          "recording sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "classification vocabulary chart, sorting strategy posters",
         "decisionPoints": [
           {
-            "question": "Can students sort objects consistently using observable characteristics?",
-            "ifYes": "Challenge them to re-sort the same objects using different rules",
-            "ifNo": "Start with obvious differences (big/small, red/blue) and model thinking aloud"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
           }
         ],
         "movementBreaks": []
@@ -722,14 +1255,45 @@
       },
       "realWorldConnection": "Understanding how we organize things at home by putting similar items together, like toys in bins",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (trier, classer, groupes)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -747,29 +1311,36 @@
         "duration": 8,
         "activity": "Prediction demonstration - teacher models making a guess about what will happen, then testing it",
         "materials": [
-          "simple prediction materials",
-          "prediction recording sheets",
-          "testing materials"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "prediction process poster: guess, test, discover",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "guided prediction and testing activities with safe materials like floating/sinking or rolling/sliding experiments",
         "materials": [
-          "water containers",
-          "various objects to test",
-          "ramps for rolling",
-          "prediction recording sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "prediction vocabulary chart, testing safety reminders",
         "decisionPoints": [
           {
-            "question": "Are students making thoughtful predictions based on observations?",
-            "ifYes": "Have them explain why they made specific predictions",
-            "ifNo": "Model prediction thinking: 'I think this will float because it's light like...'"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
           }
         ],
         "movementBreaks": []
@@ -788,14 +1359,45 @@
       },
       "realWorldConnection": "Understanding that we often guess what will happen before we try something, like predicting weather or game outcomes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (prédire, penser, vérifier)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -813,30 +1415,44 @@
         "duration": 8,
         "activity": "Water safety review and experiment preview - students practice safety rules and predict experiment outcomes",
         "materials": [
-          "water experiment materials",
-          "safety reminders",
-          "prediction sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)",
+          "contenants d'eau (6 grands bacs)",
+          "objets variés pour tester flottaison",
+          "serviettes absorbantes (25)",
+          "tabliers de protection (25)"
         ],
         "visualSupports": "water safety rules poster, experiment steps chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "guided water experiment where students test objects for floating/sinking while using observation tools and recording results",
         "materials": [
-          "water containers",
-          "test objects",
-          "magnifying glasses",
-          "towels",
-          "recording sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)",
+          "contenants d'eau (6 grands bacs)",
+          "objets variés pour tester flottaison",
+          "serviettes absorbantes (25)",
+          "tabliers de protection (25)"
         ],
         "visualSupports": "experiment process chart, result recording template",
         "decisionPoints": [
           {
-            "question": "Are students following safety protocols and making good observations?",
-            "ifYes": "Let them design their own tests with additional objects",
-            "ifNo": "Provide more structure and model each step clearly"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
           }
         ],
         "movementBreaks": []
@@ -855,14 +1471,45 @@
       },
       "realWorldConnection": "Understanding that experiments help us learn by trying things safely, like testing which materials work best",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (expérience, eau, résultats)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -880,29 +1527,36 @@
         "duration": 8,
         "activity": "Scientist presentation modeling - teacher demonstrates how scientists share discoveries clearly and excitedly",
         "materials": [
-          "presentation examples",
-          "discovery collections",
-          "sharing materials"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "good presentation rules poster with pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "student presentation preparation and practice where they choose their favorite discovery to share with the class",
         "materials": [
-          "discovery journals",
-          "presentation props",
-          "sharing station materials",
-          "audience response sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "presentation planning template, audience listening rules",
         "decisionPoints": [
           {
-            "question": "Are students comfortable sharing their discoveries and findings?",
-            "ifYes": "Encourage them to demonstrate their discoveries interactively",
-            "ifNo": "Allow sharing in pairs or small groups before presenting to the whole class"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
           }
         ],
         "movementBreaks": []
@@ -921,14 +1575,45 @@
       },
       "realWorldConnection": "Understanding that scientists share their discoveries with others, like how we tell family about interesting things we learned",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (partager, expliquer, découvertes)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       }
     },
     {
@@ -946,29 +1631,36 @@
         "duration": 8,
         "activity": "Outdoor safety preparation - reviewing safety rules for nature exploration and discussing what to observe outside",
         "materials": [
-          "outdoor exploration tools",
-          "safety equipment",
-          "nature observation sheets"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "outdoor safety rules poster, nature observation checklist",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "guided outdoor exploration using learned observation skills to investigate natural objects, weather, and phenomena",
         "materials": [
-          "magnifying glasses",
-          "collection containers",
-          "drawing materials",
-          "measurement tools"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "portable observation guide, nature safety reminders",
         "decisionPoints": [
           {
-            "question": "Are students applying indoor observation skills successfully outdoors?",
-            "ifYes": "Encourage them to make comparisons between indoor and outdoor discoveries",
-            "ifNo": "Focus on one observation skill at a time and provide more guided structure"
+            "question": "Les élèves démontrent-ils la compétence scientifique ciblée?",
+            "ifYes": "Offrir des défis d'extension ou des rôles d'aide-scientifique",
+            "ifNo": "Fournir un soutien supplémentaire et simplifier l'approche"
           }
         ],
         "movementBreaks": []
@@ -987,14 +1679,45 @@
       },
       "realWorldConnection": "Understanding that science happens everywhere, especially in nature where we can observe weather, plants, and animals",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (nature, extérieur, explorer)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1052,29 +1775,36 @@
         "duration": 8,
         "activity": "Question modeling - teacher demonstrates asking scientific questions about classroom objects and how to find answers",
         "materials": [
-          "interesting objects",
-          "question word cards",
-          "investigation materials"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "question word poster: What? How? Why? Where?",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils appliquer leurs apprentissages de façon autonome?",
+            "ifYes": "Célébrer leurs succès et encourager la créativité",
+            "ifNo": "Offrir un soutien structuré et des rappels visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "guided question generation and simple investigation planning where students ask questions about familiar objects",
         "materials": [
-          "mystery objects",
-          "question recording sheets",
-          "simple investigation materials",
-          "answer-finding tools"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "question formation examples, investigation process chart",
         "decisionPoints": [
           {
-            "question": "Are students asking questions that can be answered through observation or simple testing?",
-            "ifYes": "Help them plan ways to investigate their questions safely",
-            "ifNo": "Model question formation and provide question starters: 'What happens if...' or 'How does...'"
+            "question": "Les élèves peuvent-ils appliquer leurs apprentissages de façon autonome?",
+            "ifYes": "Célébrer leurs succès et encourager la créativité",
+            "ifNo": "Offrir un soutien structuré et des rappels visuels"
           }
         ],
         "movementBreaks": []
@@ -1093,14 +1823,45 @@
       },
       "realWorldConnection": "Understanding that asking questions leads to learning, just like how we ask questions to learn about new places or activities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (questions, curieux, pourquoi)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1158,29 +1919,36 @@
         "duration": 8,
         "activity": "Home safety discussion - reviewing what makes science activities safe at home with family help",
         "materials": [
-          "home science examples",
-          "safety checklist",
-          "family permission materials"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "home science safety rules poster with family pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils appliquer leurs apprentissages de façon autonome?",
+            "ifYes": "Célébrer leurs succès et encourager la créativité",
+            "ifNo": "Offrir un soutien structuré et des rappels visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "home science activity planning where students choose safe investigations they can do with family members",
         "materials": [
-          "home science idea cards",
-          "planning sheets",
-          "family instruction guides",
-          "safety checklists"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "home science examples chart, family supervision reminders",
         "decisionPoints": [
           {
-            "question": "Can students identify which activities are safe for home exploration?",
-            "ifYes": "Help them plan specific home investigations with clear family instruction",
-            "ifNo": "Focus on simple observation activities that require no special materials"
+            "question": "Les élèves peuvent-ils appliquer leurs apprentissages de façon autonome?",
+            "ifYes": "Célébrer leurs succès et encourager la créativité",
+            "ifNo": "Offrir un soutien structuré et des rappels visuels"
           }
         ],
         "movementBreaks": []
@@ -1199,14 +1967,45 @@
       },
       "realWorldConnection": "Understanding that science learning continues at home through safe kitchen experiments, nature walks, and careful observation",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (maison, famille, explorer)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       },
       "extensionGuidance": {
         "category": "Exploration créative",
@@ -1264,29 +2063,36 @@
         "duration": 8,
         "activity": "Teaching preparation - students review safety rules and practice explaining them simply to others",
         "materials": [
-          "safety rule materials",
-          "teaching props",
-          "practice audience (stuffed animals)"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "teaching tips poster, safety rule visual aids",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils appliquer leurs apprentissages de façon autonome?",
+            "ifYes": "Célébrer leurs succès et encourager la créativité",
+            "ifNo": "Offrir un soutien structuré et des rappels visuels"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
         "activity": "safety teaching practice where students prepare presentations about science safety for younger students or families",
         "materials": [
-          "presentation materials",
-          "safety demonstration props",
-          "teaching practice sheets",
-          "audience feedback forms"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "good teaching examples, safety rule visuals for sharing",
         "decisionPoints": [
           {
-            "question": "Can students explain safety rules clearly and demonstrate them properly?",
-            "ifYes": "Have them create interactive safety demonstrations or games",
-            "ifNo": "Focus on one simple safety rule and model clear explanation techniques"
+            "question": "Les élèves peuvent-ils appliquer leurs apprentissages de façon autonome?",
+            "ifYes": "Célébrer leurs succès et encourager la créativité",
+            "ifNo": "Offrir un soutien structuré et des rappels visuels"
           }
         ],
         "movementBreaks": []
@@ -1305,14 +2111,45 @@
       },
       "realWorldConnection": "Understanding that we can help keep others safe by sharing what we know, like teaching siblings about playground safety",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (enseigner, aider, sécuritaire)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1370,9 +2207,10 @@
         "duration": 8,
         "activity": "Home tool hunt - students brainstorm household items that could work like science tools",
         "materials": [
-          "household item pictures",
-          "tool comparison charts",
-          "home exploration ideas"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "household science tools poster with pictures and safety notes",
         "decisionPoints": [],
@@ -1382,19 +2220,13 @@
         "duration": 27,
         "activity": "home tool exploration where students match household items to science tools and plan safe home investigations",
         "materials": [
-          "household item samples",
-          "science tool comparisons",
-          "home investigation planning sheets",
-          "safety guides"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "tool matching chart, home safety reminder posters",
-        "decisionPoints": [
-          {
-            "question": "Can students identify appropriate household items as science tools?",
-            "ifYes": "Have them plan specific investigations using these household tools",
-            "ifNo": "Show clear examples and focus on simple tools like measuring cups or flashlights"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
@@ -1411,14 +2243,45 @@
       },
       "realWorldConnection": "Understanding that science tools are all around us, like using kitchen measuring cups or flashlights for exploration",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (maison, objets, utiliser)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1476,10 +2339,10 @@
         "duration": 8,
         "activity": "Celebration preparation - students set up demonstration stations showing their favorite scientific discoveries",
         "materials": [
-          "display materials",
-          "demonstration tools",
-          "celebration decorations",
-          "showcase props"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "celebration schedule poster, demonstration station signs",
         "decisionPoints": [],
@@ -1489,19 +2352,13 @@
         "duration": 27,
         "activity": "science celebration showcase where students demonstrate skills, share discoveries, and teach visitors about safety",
         "materials": [
-          "all unit tools and materials",
-          "demonstration stations",
-          "visitor interaction materials",
-          "celebration activities"
+          "loupes individuelles (25)",
+          "plateaux d'exploration (6 - un par groupe)",
+          "carnets d'observation simples (25)",
+          "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "skill demonstration posters, visitor welcome signs, safety rule displays",
-        "decisionPoints": [
-          {
-            "question": "Are students confidently demonstrating their scientific skills and knowledge?",
-            "ifYes": "Encourage them to teach visitors about their favorite discoveries",
-            "ifNo": "Provide support partners and focus on skills they feel most confident about"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
@@ -1518,14 +2375,45 @@
       },
       "realWorldConnection": "Sharing our scientific learning with families and showing how we can safely explore and discover the world around us",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Offrir des objets familiers et concrets pour commencer",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre le travail en petits groupes avec soutien",
+          "Donner plus de temps et répétitions"
+        ],
+        "forAdvanced": [
+          "Proposer des questions d'investigation plus complexes",
+          "Encourager le rôle de mentor scientifique",
+          "Offrir des matériaux et défis supplémentaires",
+          "Inviter à créer leurs propres expériences"
+        ],
+        "forELL": [
+          "Associer tout nouveau vocabulaire à des images et gestes",
+          "Permettre l'usage de la L1 pour clarifier les concepts",
+          "Jumeler avec des partenaires francophones bienveillants",
+          "Utiliser des organisateurs graphiques visuels"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins physiques",
+          "Offrir des pauses sensorielles régulières",
+          "Utiliser des supports visuels personnalisés",
+          "Permettre diverses façons de démontrer l'apprentissage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement aux activités scientifiques",
+          "Suit les règles de sécurité de façon appropriée",
+          "Utilise le matériel scientifique avec soin",
+          "Exprime sa curiosité et pose des questions",
+          "Utilise le vocabulaire scientifique approprié (célébration, montrer, fierté)"
+        ],
+        "checkpoints": [
+          "Noter l'engagement et la participation",
+          "Observer l'utilisation appropriée du matériel",
+          "Documenter les questions et découvertes",
+          "Évaluer la compréhension à travers les explications"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",
@@ -2271,9 +3159,9 @@
     ]
   },
   "metadata": {
-    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "lastUpdated": "2025-08-27T19:00:00.000Z",
     "version": "2.0",
-    "status": "complete",
+    "status": "enhanced_complete",
     "originalFormat": "unit-with-lessons"
   }
 }

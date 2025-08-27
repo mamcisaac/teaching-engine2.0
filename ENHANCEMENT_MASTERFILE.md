@@ -55,7 +55,7 @@
 ### Sciences (10 units)
 | Unit | Translations | Decision Points | Materials | Committed | Reviewed |
 |------|--------------|-----------------|-----------|-----------|----------|
-| petits-scientifiques | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| petits-scientifiques | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | materiaux | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | croissance-besoins | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | changements-saisonniers | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -140,10 +140,10 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 16 / 54 (30%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉**  
-**Translations Fixed**: 16 / 54 (30%)  
-**Decision Points Added**: 16 / 54 (30%)  
-**Materials Specified**: 16 / 54 (30%)  
+**Enhanced**: 17 / 54 (31%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE STARTING! 🔬🌟**  
+**Translations Fixed**: 17 / 54 (31%)  
+**Decision Points Added**: 17 / 54 (31%)  
+**Materials Specified**: 17 / 54 (31%)  
 **Committed**: 3 / 54 (6%)  
 **Reviewed**: 2 / 54 (4%)
 
@@ -227,6 +227,17 @@ git push origin main
 - ✅ Core lessons (1-14) develop story elements: authors, ideas, drawing, words, characters, settings, actions, first pages, sharing, revision
 - ✅ Extension lessons (15-20) include advanced applications: illustration techniques, collaboration, class library, mentoring, celebration
 - ✅ Perfect balance of creativity and structure with emphasis on drawing + labels + simple sentences appropriate for Grade 1
+
+**NEWEST ACHIEVEMENT**: sciences/petits-scientifiques (FIRST SCIENCE UNIT COMPLETED) 🔬🌟
+- ✅ Enhanced all 20 lessons of "Petits scientifiques - Découvrir le monde avec curiosité" focusing on scientific inquiry and safety for Grade 1 students
+- ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)  
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with scientific exploration focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available science materials (magnifying glasses, measuring tools, exploration objects)
+- ✅ Comprehensive progression from laboratory introduction to confident young scientists conducting experiments
+- ✅ Assessment criteria focused on observation skills, safety awareness, scientific vocabulary, and curiosity development
+- ✅ Core lessons (1-14) develop scientific foundations: lab introduction, safety rules, observation with all senses, scientific tools, measurement, documentation, classification, prediction, experimentation, communication
+- ✅ Extension lessons (15-20) include advanced applications: outdoor exploration, inquiry questioning, home science, safety teaching, household tools, celebration showcase
+- ✅ Perfect introduction to scientific thinking with emphasis on hands-on exploration, safety, and wonder-based learning appropriate for Grade 1
 
 **Previous Completions**: 
 - mathematiques/addition-jusqua-10 (COMPREHENSIVE ENHANCEMENT COMPLETED)
