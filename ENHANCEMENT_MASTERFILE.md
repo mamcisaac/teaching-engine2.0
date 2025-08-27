@@ -62,7 +62,7 @@
 | forces-mouvements | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | lumiere-chaleur | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | eveil-printemps | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| sons-vibrations | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| sons-vibrations | ✅ | ✅ | ✅ | ⬜ | ⬜ |
 | environnement-partage | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | exposition-finale | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
@@ -140,10 +140,10 @@ git push origin main
 ## 📊 Progress Statistics
 
 **Total Units**: 54 (53 + 1 introductory)  
-**Enhanced**: 20 / 54 (37%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥**  
-**Translations Fixed**: 20 / 54 (37%)  
-**Decision Points Added**: 20 / 54 (37%)  
-**Materials Specified**: 20 / 54 (37%)  
+**Enhanced**: 21 / 54 (39%) - **MATHEMATICS COMPLETE! 🎉 FRENCH COMMUNICATION CREATIVE COMPLETE! 🗣️🎭🇫🇷 FRENCH WORD EXPLORATION COMPLETE! 🇫🇷🔍📝 AUTUMN STORIES COMPLETE! 🍁📖 WINTER CELEBRATIONS COMPLETE! ❄️🎉 SCIENCE MATERIALS ENHANCED! 🔬🧪 FORCES & MOVEMENT COMPLETE! ⚡🏃‍♂️ LIGHT & HEAT COMPLETE! 💡🔥 SOUNDS & VIBRATIONS COMPLETE! 🔊🎵**  
+**Translations Fixed**: 21 / 54 (39%)  
+**Decision Points Added**: 21 / 54 (39%)  
+**Materials Specified**: 21 / 54 (39%)  
 **Committed**: 3 / 54 (6%)  
 **Reviewed**: 2 / 54 (4%)
 
@@ -153,17 +153,17 @@ git push origin main
 **🇫🇷 FRENCH BIENVENUE UNIT COMPLETE!** Welcome unit fully enhanced for Grade 1 French Immersion  
 **💡 NEW ACHIEVEMENT**: sciences/lumiere-chaleur (LIGHT & HEAT SCIENCE UNIT COMPLETED) 💡🔥🔬  
 
-**LATEST COMPLETION**: sciences/lumiere-chaleur (LIGHT & HEAT PHYSICS UNIT COMPLETED) 💡🔥
-- ✅ Enhanced "Lumière et chaleur: explorer notre monde lumineux" with comprehensive Grade 1 physics exploration focusing on light sources, shadows, heat sources, and insulation
+**LATEST COMPLETION**: sciences/sons-vibrations (SOUNDS & VIBRATIONS ACOUSTICS UNIT COMPLETED) 🔊🎵
+- ✅ Enhanced "Sons et vibrations - Exploration acoustique" with comprehensive Grade 1 acoustics exploration focusing on sound sources, vibrations, and musical instruments
 - ✅ Implemented graduated decision point strategy: lessons 1-5 (2-3 points), lessons 6-15 (1-2 points), lessons 16-20 (0-1 points)
-- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with hands-on light and heat science focus
-- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available science materials (flashlights, thermometers, insulation materials, mirrors, prisms)
-- ✅ Comprehensive progression from basic light identification to complex heat experiments and energy conservation understanding
-- ✅ Assessment criteria focused on light/heat vocabulary, scientific observation, energy understanding, and physics concept development
-- ✅ Core lessons (1-14) develop physics foundations: light sources, sun energy, shadow creation, shadow experiments, artificial lights, light timing, solar heat, heat sources, insulation, scientific testing, animal adaptations, reflections, color spectrum, science journals
-- ✅ Extension lessons (15-20) include practical applications: energy conservation, global climate comparisons, heating inventions, plant energy needs, science demonstrations, family celebration
-- ✅ Perfect hands-on physics unit with emphasis on energy concepts, scientific experimentation, and real-world energy applications appropriate for Grade 1
-- 🎯 **SIGNIFICANT ACHIEVEMENT**: Successfully enhanced all 20 lessons with complete pedagogical structure, creating comprehensive light and heat foundation for young scientists
+- ✅ Added complete differentiation strategies for all lessons (forStruggling, forAdvanced, forELL, forIEP) with hands-on sound science focus
+- ✅ Enhanced materials with exact quantities for 20-25 students - all school-available materials (simple instruments, containers, rubber bands, recycled materials for instrument making)
+- ✅ Comprehensive progression from basic sound identification to complex instrument creation and acoustic investigations
+- ✅ Assessment criteria focused on sound vocabulary, acoustic observation, vibration understanding, and musical concept development
+- ✅ Core lessons (1-14) develop acoustic foundations: sound discovery, loud/soft sounds, high/low pitch, sound sources, vibration exploration, string phones, drums, kazoos, bottle music, shakers, box guitars, pan flutes, class orchestra, demonstration concert
+- ✅ Extension lessons (15-20) include creative applications: nature sounds, echoes, world music, sound inventions, recording creations, sound festival
+- ✅ Perfect hands-on acoustics unit with emphasis on sound exploration, musical creativity, and scientific understanding of vibrations appropriate for Grade 1
+- 🎯 **SIGNIFICANT ACHIEVEMENT**: Successfully enhanced all 20 lessons with complete pedagogical structure, creating comprehensive sounds and vibrations foundation for young acoustic scientists
 
 **PREVIOUS COMPLETION**: sciences/forces-mouvements (FORCES AND MOVEMENT PHYSICS UNIT COMPLETED) ⚡🏃‍♂️
 - ✅ Enhanced all 20 lessons of "Forces et mouvements" focusing on hands-on physics exploration and simple machines for Grade 1 students
