@@ -22,7 +22,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève semble anxieux à l'idée de partager des émotions → commencer avec la marionnette seulement",
+          "Si difficultés à identifier émotions de base → utiliser miroir et expressions exagérées"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -30,7 +33,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève montre des signes de détresse émotionnelle → offrir soutien immédiat et espace calme",
+          "Si vocabulaire émotionnel trop complexe → simplifier à 'content/triste' avec gestes",
+          "Si élève refuse de participer → respecter le besoin et offrir observation silencieuse"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -77,7 +84,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève inconfortable avec miroirs → utiliser photos et dessins d'émotions",
+          "Si peur du vocabulaire 'fâché/peur' → commencer par 'content/pas content'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -85,7 +95,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève devient bouleversé en voyant visages tristes/fâchés → passer aux visages souriants",
+          "Si difficulté à faire expressions faciales → modeler avec exagération et encouragement",
+          "Si élève partage expérience traumatisante → écouter avec compassion et diriger vers ressources"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -132,7 +146,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève mal à l'aise avec exploration corporelle → utiliser marionnette/poupée seulement",
+          "Si expériences corporelles négatives mentionnées → offrir réconfort et soutien professionnel"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -140,7 +157,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ressent anxiété physique pendant l'activité → techniques de respiration immédiates",
+          "Si partage de sensations corporelles troublantes → écouter et diriger vers aide appropriée",
+          "Si résistance au toucher auto-dirigé → respecter limites et utiliser supports visuels"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -187,7 +208,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève exprime honte concernant certaines émotions → validation immédiate et normalisation",
+          "Si confusion sur concept 'normal' → utiliser exemples concrets et rassurants"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -195,7 +219,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève révèle émotions réprimées à la maison → soutien empathique et conversation privée",
+          "Si résistance à accepter émotions négatives → modeler acceptation avec marionnette",
+          "Si élève devient émotionnel en parlant d'acceptation → espace pour pleurer et réconfort"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -242,7 +270,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève timide pour exprimer émotions → commencer par chuchoter à marionnette",
+          "Si anxiété de performance linguistique → accepter expression en anglais ou gestes"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -250,7 +281,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève partage expérience émotionnelle difficile → écouter avec empathie et soutien",
+          "Si débordement émotionnel pendant partage → pause pour respirer et réconfort",
+          "Si difficulté à trouver mots pour émotions → offrir cartes visuelles et patience"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -297,7 +332,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève trop excité et perturbateur → canaliser énergie avec mouvements structurés"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -305,7 +342,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève partage tristesse pendant leçon sur la joie → valider émotion et rappeler que c'est normal",
+          "Si difficulté à identifier moments de bonheur → donner exemples simples et concrets"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -352,7 +392,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève commence à pleurer pendant introduction → offrir réconfort immédiat"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -360,7 +402,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève révèle perte ou chagrin profond → soutien individuel et ressources de counseling",
+          "Si évitee de parler de tristesse → respecter et offrir alternatives non-verbales"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -407,7 +452,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève déjà fâché en arrivant → commencer par techniques de calme"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -415,7 +462,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si escalade de colère pendant activité → pause immédiate avec techniques de respiration",
+          "Si partage de colère liée à violence → soutien confidentiel et protocole de sécurité"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -462,7 +512,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève montre signes d'anxiété au mot 'peur' → commencer par héros courageux"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -470,7 +522,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si peur liée à sécurité personnelle révélée → conversation privée et ressources protection",
+          "Si peurs irrationnelles excessives → réassurance et techniques d'ancrage"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -517,7 +572,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève agité dès le début → commencer immédiatement par respiration guidée"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -525,7 +582,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si respiration provoque anxiété ou panique → arrêter et utiliser distraction apaisante",
+          "Si difficultés respiratoires médicales → adapter techniques et consulter infirmière"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -572,7 +632,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève montre difficultés sociales évidentes → soutien supplémentaire et modélisation"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -580,7 +642,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si conflit entre élèves pendant activité d'empathie → pause pour médiation guidée",
+          "Si élève incapable de reconnaître émotions chez autres → exemples exagérés et simples"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -627,7 +692,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève partage situation d'intimidation → protocole de sécurité et soutien immédiat"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -635,7 +702,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève révèle aucun ami à l'école → plan d'intégration sociale et soutien",
+          "Si trop d'empressement à 'réparer' tous les problèmes → enseigner limites saines"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -682,7 +752,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève overwhelmé par trop de choix → limiter à 2-3 stratégies de base"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -690,7 +762,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si stratégies mentionnées potentiellement dangereuses → rediriger vers options sécuritaires",
+          "Si aucune stratégie personnelle identifiée → guidée découverte avec exemples"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -737,7 +812,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si anxiété de performance concernant création → réassurance que processus compte plus que perfection"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -745,7 +822,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si émotion difficile émerge pendant création → pause pour discussion et soutien",
+          "Si comparaison négative avec travaux des autres → recentrer sur voyage personnel"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -788,7 +868,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève sensible au bruit → offrir casque réducteur ou zone silencieuse"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -796,7 +878,10 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si musique déclenche émotion forte inattendue → pause pour soutien et discussion",
+          "Si résistance à participer musicalement → offrir rôle d'observateur ou d'aide"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -887,7 +972,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si art éveille émotions difficiles inattendues → soutien immédiat et espace sécuritaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -970,7 +1057,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si escalade émotionnelle pendant jeux compétitifs → pause calme et rappel des stratégies"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1069,7 +1158,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si histoire déclenche souvenirs personnels difficiles → soutien individuel discret"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1160,7 +1251,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si révélations concernant dynamiques familiales troublantes → soutien confidentiel approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {

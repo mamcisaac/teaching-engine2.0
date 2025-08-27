@@ -26,8 +26,22 @@
           "feeling faces cards"
         ],
         "visualSupports": "Big smile gestures, welcoming arms, photos of happy children at school",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si anxiété face aux nouveaux espaces?",
+            "ifYes": "Visite guidée en petit groupe avec pause réconfort",
+            "ifNo": "Exploration libre avec partage des découvertes"
+          },
+          {
+            "question": "Si difficulté à identifier ce qui rend l'école accueillante?",
+            "ifYes": "Pointer les éléments visuels concrets (couleurs, sourires, décorations)",
+            "ifNo": "Encourager l'expression des sentiments personnels"
+          }
+        ],
+        "movementBreaks": [
+          "Arrêt étirement devant chaque espace spécial",
+          "Marche contemplative entre les espaces"
+        ]
       },
       "main": {
         "duration": 27,
@@ -41,25 +55,35 @@
         "visualSupports": "Point to building features, use appreciation gestures, encouraging facial expressions",
         "decisionPoints": [
           {
-            "question": "How familiar are students with their school building?",
+            "question": "Les élèves connaissent-ils bien leur école?",
             "ifYes": "Focus on deeper appreciation and feelings about familiar spaces",
             "ifNo": "Take more time exploring and orienting students to school layout"
           },
           {
-            "question": "What level of emotional support do students need for school comfort?",
+            "question": "Les élèves ont-ils besoin de soutien émotionnel pour se sentir en sécurité?",
             "ifYes": "Use buddy system and extra reassurance about school safety",
             "ifNo": "Encourage independent exploration and sharing of discoveries"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Share one thing that makes our school special. Create class commitment to taking care of our special school.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si timidité lors du partage?",
+            "ifYes": "Permettre le partage par dessin ou chuchotement à l'enseignant",
+            "ifNo": "Encourager l'expression orale avec support visuel"
+          }
+        ],
+        "movementBreaks": [
+          "Étirement de célébration pour notre école spéciale"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students feeling nervous or uncertain about school",
@@ -67,14 +91,38 @@
       },
       "realWorldConnection": "Every person belongs to communities like school, family, and neighborhood",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec photos de l'école",
+          "Partenaire de soutien pendant la visite",
+          "Temps supplémentaire pour traiter les informations"
+        ],
+        "forAdvanced": [
+          "Rôle de guide pour les autres élèves",
+          "Questions de réflexion plus complexes sur l'utilisation des espaces",
+          "Documentation photographique des découvertes"
+        ],
+        "forELL": [
+          "Vocabulaire visuel avec étiquettes image-mot",
+          "Gestes et actions pour comprendre les concepts",
+          "Traduction en langue maternelle si nécessaire"
+        ],
+        "forIEP": [
+          "Adaptation selon les besoins sensoriels (bruit, lumière)",
+          "Pauses fréquentes selon l'attention",
+          "Communication alternative selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève exprime des sentiments positifs envers l'école",
+          "Élève identifie l'école comme un lieu spécial",
+          "Élève participe à la création du tableau communautaire"
+        ],
+        "checkpoints": [
+          "Pendant la visite: observe l'engagement et les réactions",
+          "Pendant le partage: écoute les expressions de sentiment",
+          "Pendant la création: note la participation et la créativité"
+        ]
       }
     },
     {
@@ -97,8 +145,22 @@
           "photos of students learning"
         ],
         "visualSupports": "Point to self proudly, student badge gestures, learning action poses",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si difficulté à comprendre le concept d'étudiant?",
+            "ifYes": "Utiliser miroir et photos pour concrétiser l'identité",
+            "ifNo": "Encourager l'expression de la fierté d'être élève"
+          },
+          {
+            "question": "Si timidité lors de la présentation de soi?",
+            "ifYes": "Permettre expression non-verbale avec badge ou geste",
+            "ifNo": "Encourager partage oral avec support du groupe"
+          }
+        ],
+        "movementBreaks": [
+          "Geste de fierté en levant les bras",
+          "Marche d'élève autour du cercle"
+        ]
       },
       "main": {
         "duration": 27,
@@ -112,25 +174,35 @@
         "visualSupports": "Acting gestures for scenarios, thumbs up for rights, helping hands for responsibilities",
         "decisionPoints": [
           {
-            "question": "Are students ready to discuss responsibilities or should we focus on rights first?",
+            "question": "Les élèves sont-ils prêts à parler de responsabilités ou commencer par les droits?",
             "ifYes": "Balance rights and responsibilities equally in discussion",
             "ifNo": "Focus heavily on rights first, then gently introduce responsibilities"
           },
           {
-            "question": "How do we balance individual identity with group belonging?",
+            "question": "Comment équilibrer identité individuelle et appartenance au groupe?",
             "ifYes": "Emphasize both 'I am special' and 'We belong together'",
             "ifNo": "Focus more on individual identity and comfort first"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Student identity celebration where each child receives recognition for being an important student in our class.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si confusion sur les concepts abstraits?",
+            "ifYes": "Célébrer chaque élève individuellement avec reconnaissance spéciale",
+            "ifNo": "Partage en groupe des identités d'étudiant uniques"
+          }
+        ],
+        "movementBreaks": [
+          "Applaudissement pour chaque élève célébré"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students confused about abstract concepts like rights and responsibilities",
@@ -138,14 +210,38 @@
       },
       "realWorldConnection": "Being a student is an important role with special rights and responsibilities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Exemples concrets de droits et responsabilités avec images",
+          "Jeux de rôle simples avec guidance",
+          "Focus sur un concept à la fois (droits OU responsabilités)"
+        ],
+        "forAdvanced": [
+          "Discussion sur l'équilibre droits-responsabilités",
+          "Création de scénarios pour les autres élèves",
+          "Leadership dans les jeux de rôle"
+        ],
+        "forELL": [
+          "Actions et gestes pour illustrer droits et responsabilités",
+          "Vocabulaire de base avec traduction visuelle",
+          "Participation par imitation avant expression orale"
+        ],
+        "forIEP": [
+          "Adaptation des scénarios selon les capacités",
+          "Communication par gestes ou supports alternatifs",
+          "Participation à son niveau de confort"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève comprend son rôle d'étudiant",
+          "Élève identifie au moins un droit et une responsabilité",
+          "Élève exprime de la fierté à être élève"
+        ],
+        "checkpoints": [
+          "Pendant l'activité miroir: observe l'expression de l'identité",
+          "Pendant les jeux de rôle: note la compréhension des concepts",
+          "Pendant la célébration: écoute l'expression de la fierté"
+        ]
       }
     },
     {
@@ -168,8 +264,22 @@
           "exploration clipboards"
         ],
         "visualSupports": "Detective gestures, pointing to different areas, questioning expressions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si surcharge sensorielle lors de l'exploration?",
+            "ifYes": "Exploration en petit groupe avec pauses calmes",
+            "ifNo": "Exploration libre avec partage des découvertes"
+          },
+          {
+            "question": "Si difficulté à identifier les différents espaces?",
+            "ifYes": "Pointer et nommer chaque espace clairement",
+            "ifNo": "Laisser les élèves découvrir et catégoriser"
+          }
+        ],
+        "movementBreaks": [
+          "Marche de détective entre les espaces",
+          "Geste de découverte avec loupe"
+        ]
       },
       "main": {
         "duration": 27,
@@ -183,25 +293,35 @@
         "visualSupports": "Bird's eye view gestures, mapping motions, labeling actions",
         "decisionPoints": [
           {
-            "question": "Which classroom areas are most meaningful for students to explore?",
+            "question": "Quels espaces de la classe sont les plus importants à explorer?",
             "ifYes": "Focus on student-chosen areas and their personal connections",
             "ifNo": "Guide exploration to ensure all functional areas are understood"
           },
           {
-            "question": "Should we create a classroom map together or individually?",
+            "question": "Créer une carte ensemble ou individuellement?",
             "ifYes": "Create individual maps first, then combine into class map",
             "ifNo": "Work together on one large class map with everyone contributing"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Classroom space commitment circle. Students share how they will take care of different classroom areas.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si difficulté à s'engager dans les soins des espaces?",
+            "ifYes": "Modéliser les gestes de soin et inviter à imiter",
+            "ifNo": "Encourager les idées créatives de soin des espaces"
+          }
+        ],
+        "movementBreaks": [
+          "Gestes de soin pour la classe (caresser, ranger, nettoyer)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students having difficulty with mapping concepts",
@@ -209,14 +329,38 @@
       },
       "realWorldConnection": "All learning spaces are designed to help people work, learn, and be together",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Carte simple avec moins d'éléments à identifier",
+          "Travail avec partenaire plus expérimenté",
+          "Utilisation d'objets 3D pour comprendre la perspective"
+        ],
+        "forAdvanced": [
+          "Carte détaillée avec légende et symboles",
+          "Comparaison avec d'autres espaces d'apprentissage",
+          "Aide aux autres élèves pour la cartographie"
+        ],
+        "forELL": [
+          "Vocabulaire spatial avec gestes directionnels",
+          "Étiquettes bilingues pour les espaces",
+          "Utilisation de couleurs et symboles avant les mots"
+        ],
+        "forIEP": [
+          "Adaptation des outils de cartographie selon les capacités motrices",
+          "Cartographie orale ou par placement d'objets",
+          "Focus sur espaces les plus significatifs personnellement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie les différents espaces de la classe",
+          "Élève comprend la fonction des espaces d'apprentissage",
+          "Élève exprime une connexion personnelle avec certains espaces"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration: observe la reconnaissance des espaces",
+          "Pendant la cartographie: note la compréhension spatiale",
+          "Pendant le partage: écoute l'expression des préférences"
+        ]
       }
     },
     {
@@ -239,8 +383,22 @@
           "questioning gestures cards"
         ],
         "visualSupports": "Point to photos clearly, use wondering gestures, prediction thinking poses",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si anxiété face aux nouveaux espaces?",
+            "ifYes": "Présentation virtuelle avec photos avant visite",
+            "ifNo": "Exploration directe avec enthusiasm"
+          },
+          {
+            "question": "Si surcharge d'informations lors de la visite?",
+            "ifYes": "Visiter moins d'espaces avec plus de profondeur",
+            "ifNo": "Exploration complète avec documentation riche"
+          }
+        ],
+        "movementBreaks": [
+          "March respectueuse entre les espaces",
+          "Pause observation dans chaque espace"
+        ]
       },
       "main": {
         "duration": 27,
@@ -254,25 +412,35 @@
         "visualSupports": "Observation gestures, respectful visiting behavior, note-taking actions",
         "decisionPoints": [
           {
-            "question": "Which school spaces are most important for students to understand first?",
+            "question": "Quels espaces scolaires sont prioritaires à comprendre?",
             "ifYes": "Prioritize spaces students use regularly (library, gym, cafeteria)",
             "ifNo": "Include spaces students rarely see (boiler room, storage) for broader understanding"
           },
           {
-            "question": "Should we take a walking tour or use photos and maps?",
+            "question": "Faire une visite guidée ou utiliser photos et cartes?",
             "ifYes": "Combine walking tour with photo documentation for later reference",
             "ifNo": "Use virtual tour approach with photos, videos, and maps"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "School spaces appreciation circle. Share discoveries about how different spaces help our school community.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si timidité lors du partage des découvertes?",
+            "ifYes": "Partage en petits groupes ou par dessin",
+            "ifNo": "Présentation créative des découvertes au groupe"
+          }
+        ],
+        "movementBreaks": [
+          "Geste d'appréciation pour chaque espace découvert"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students overwhelmed by large school building or getting distracted during tour",
@@ -280,14 +448,38 @@
       },
       "realWorldConnection": "Different spaces in our community serve different purposes for different people",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Visite d'un seul espace à la fois avec pauses",
+          "Photos de référence pour se rappeler de chaque espace",
+          "Questions simples avec réponses oui/non"
+        ],
+        "forAdvanced": [
+          "Documentation photographique pour les autres classes",
+          "Questions d'interview plus complexes pour le personnel",
+          "Comparaison avec d'autres écoles ou espaces connus"
+        ],
+        "forELL": [
+          "Vocabulaire spatial avec gestes et actions",
+          "Observation silencieuse avant participation orale",
+          "Support visuel pour comprendre les fonctions des espaces"
+        ],
+        "forIEP": [
+          "Adaptation sensorielle (bruit, éclairage) dans certains espaces",
+          "Communication des découvertes par moyens alternatifs",
+          "Participation à distance si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie les espaces principaux de l'école",
+          "Élève comprend la fonction de chaque espace visité",
+          "Élève montre du respect pour les espaces et les personnes"
+        ],
+        "checkpoints": [
+          "Pendant la visite: observe l'engagement et le respect",
+          "Pendant les interviews: note la compréhension des rôles",
+          "Pendant le partage: écoute les connexions faites"
+        ]
       }
     },
     {
@@ -310,8 +502,16 @@
           "office props (toy phone, papers)"
         ],
         "visualSupports": "Clear job action gestures, office work motions, helping others poses",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -324,25 +524,35 @@
         "visualSupports": "Respectful visiting posture, listening gestures, questioning hand raises",
         "decisionPoints": [
           {
-            "question": "How comfortable are students with meeting school authority figures?",
+            "question": "Les élèves sont-ils à l'aise de rencontrer les autorités scolaires?",
             "ifYes": "Encourage natural conversation and questions",
             "ifNo": "Use more structured interview format with prepared questions"
           },
           {
-            "question": "Should we visit the office or invite guests to our classroom?",
+            "question": "Visiter le bureau ou inviter des personnes en classe?",
             "ifYes": "Office visit gives authentic context for understanding their work",
             "ifNo": "Classroom visit might feel safer and more controlled for students"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Thank you card creation for principal and secretary. Share appreciation for how they help our school community.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students intimidated by principal or office environment",
@@ -350,14 +560,38 @@
       },
       "realWorldConnection": "Every community has leaders who help organize and support everyone",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -380,8 +614,16 @@
           "photos of teachers helping students"
         ],
         "visualSupports": "Caring gestures, helping hand motions, learning support actions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -394,25 +636,35 @@
         "visualSupports": "Interview posture, respectful listening, note-taking gestures",
         "decisionPoints": [
           {
-            "question": "How do we help students see teachers as people with feelings and needs?",
+            "question": "Comment aider les élèves à voir les enseignants comme des personnes?",
             "ifYes": "Include questions about teachers' lives, interests, and experiences",
             "ifNo": "Focus primarily on professional roles and classroom responsibilities"
           },
           {
-            "question": "Should we interview teachers or observe them in action?",
+            "question": "Interviewer les enseignants ou les observer en action?",
             "ifYes": "Combine interviews with classroom observation of teaching in action",
             "ifNo": "Focus on interview format to encourage personal connection"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Teacher appreciation creation. Make thank you notes or drawings expressing gratitude for how teachers support learning.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students struggling to think of meaningful interview questions",
@@ -420,14 +672,38 @@
       },
       "realWorldConnection": "Teachers and helpers exist in many community settings, not just schools",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -450,8 +726,16 @@
           "work action cards"
         ],
         "visualSupports": "Work action gestures, appreciation expressions, community helper poses",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -464,25 +748,35 @@
         "visualSupports": "Work observation gestures, respectful visiting behavior, appreciation expressions",
         "decisionPoints": [
           {
-            "question": "How do we highlight the importance of support roles without stereotyping?",
+            "question": "Comment valoriser les rôles de soutien sans stéréotypes?",
             "ifYes": "Emphasize skill, importance, and choice in all work roles",
             "ifNo": "Focus primarily on appreciation without discussing role value comparisons"
           },
           {
-            "question": "Should we observe work in action or have conversations with staff?",
+            "question": "Observer le travail ou converser avec le personnel?",
             "ifYes": "Combine observation with conversation for full understanding",
             "ifNo": "Focus on conversation to build personal connections with staff"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Support staff thank you project. Create appreciation gifts or notes recognizing essential work of custodial and kitchen staff.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students not understanding importance of support roles",
@@ -490,14 +784,38 @@
       },
       "realWorldConnection": "Every community depends on people who maintain spaces and provide services",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -520,8 +838,16 @@
           "rule examples chart"
         ],
         "visualSupports": "Safety gestures, problem-solving expressions, community cooperation poses",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -534,25 +860,35 @@
         "visualSupports": "Rule reading gestures, safety demonstrations, community agreement actions",
         "decisionPoints": [
           {
-            "question": "Are students ready to discuss rule purposes or should we focus on examples first?",
+            "question": "Les élèves comprennent-ils le pourquoi des règles ou commencer par des exemples?",
             "ifYes": "Explore both what rules are and why they exist",
             "ifNo": "Focus on identifying and understanding existing rules first"
           },
           {
-            "question": "Should we create new class rules or explore existing school rules?",
+            "question": "Créer de nouvelles règles de classe ou explorer les règles existantes?",
             "ifYes": "Combine exploration of existing rules with collaborative creation of class agreements",
             "ifNo": "Focus on understanding and appreciating existing school rule system"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Rule commitment ceremony. Students share how they will follow school rules to help everyone feel safe and included.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students seeing rules as restrictive rather than helpful",
@@ -560,14 +896,38 @@
       },
       "realWorldConnection": "All communities have agreements that help people live and work together safely",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -590,8 +950,16 @@
           "thinking poses cards"
         ],
         "visualSupports": "Thinking gestures, problem-solving expressions, solution discovery actions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -605,25 +973,35 @@
         "visualSupports": "Calm-down gestures, talking and listening poses, helping hand signals",
         "decisionPoints": [
           {
-            "question": "What types of conflicts are most relevant to students' experience?",
+            "question": "Quels types de conflits sont les plus pertinents pour les élèves?",
             "ifYes": "Focus on conflicts students actually experience in classroom and playground",
             "ifNo": "Use hypothetical scenarios to introduce problem-solving concepts"
           },
           {
-            "question": "Should we role-play solutions or discuss real classroom situations?",
+            "question": "Jouer les solutions ou discuter de vraies situations de classe?",
             "ifYes": "Carefully address real situations that have occurred with sensitivity",
             "ifNo": "Use role-play scenarios to practice skills without personalizing conflicts"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Problem-solving commitment circle. Students share one problem-solving strategy they will try when conflicts arise.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students getting upset during conflict role-play or real situation discussion",
@@ -631,14 +1009,38 @@
       },
       "realWorldConnection": "Learning to solve problems peacefully helps in all relationships and communities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -661,8 +1063,16 @@
           "celebration symbols"
         ],
         "visualSupports": "Story gestures, celebration actions, tradition demonstration poses",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -676,25 +1086,35 @@
         "visualSupports": "Historical comparison gestures, timeline actions, celebration demonstrations",
         "decisionPoints": [
           {
-            "question": "Which school traditions are most meaningful for Grade 1 students?",
+            "question": "Quelles traditions scolaires sont les plus significatives pour les élèves de 1re?",
             "ifYes": "Focus on traditions students can participate in and understand",
             "ifNo": "Include broader school traditions to build comprehensive understanding"
           },
           {
-            "question": "Should we focus on current year traditions or school history?",
+            "question": "Se concentrer sur les traditions actuelles ou l'histoire de l'école?",
             "ifYes": "Balance current traditions students will experience with historical context",
             "ifNo": "Focus primarily on traditions students will directly participate in this year"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Tradition appreciation circle. Students share excitement about school traditions they want to participate in.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students from different cultural backgrounds feeling excluded from school traditions",
@@ -702,14 +1122,38 @@
       },
       "realWorldConnection": "Traditions help communities remember their values and celebrate together",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -732,8 +1176,16 @@
           "treasure map props"
         ],
         "visualSupports": "Map reading gestures, direction pointing, navigation actions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -748,25 +1200,35 @@
         "visualSupports": "Bird's eye view demonstrations, mapping motions, symbol explanation gestures",
         "decisionPoints": [
           {
-            "question": "Are students ready for bird's-eye view mapping or should we use floor-level perspective?",
+            "question": "Les élèves sont-ils prêts pour une vue d'oiseau ou plutôt au niveau du sol?",
             "ifYes": "Introduce bird's eye view with physical demonstrations and examples",
             "ifNo": "Start with floor-level perspective and gradually introduce aerial view concepts"
           },
           {
-            "question": "Should maps focus on favorite spaces or all school areas?",
+            "question": "Les cartes doivent-elles montrer les espaces préférés ou toute l'école?",
             "ifYes": "Encourage personal mapping with favorite spaces highlighted",
             "ifNo": "Provide structure for comprehensive school area mapping"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Map gallery walk. Students display maps and explain special features they included. Appreciate different mapping perspectives.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students frustrated with mapping complexity or accuracy",
@@ -774,14 +1236,38 @@
       },
       "realWorldConnection": "Maps help us understand and navigate all the communities we belong to",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -804,8 +1290,16 @@
           "appreciation gesture guides"
         ],
         "visualSupports": "Question asking gestures, careful listening poses, note-taking actions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -819,25 +1313,35 @@
         "visualSupports": "Professional interview posture, respectful questioning, note-taking demonstrations",
         "decisionPoints": [
           {
-            "question": "Which staff members would be most comfortable and engaging for student interviews?",
+            "question": "Quels membres du personnel seraient les plus engageants pour les interviews?",
             "ifYes": "Choose staff known for enjoying student interaction and communication",
             "ifNo": "Prepare staff in advance and provide structured interview formats"
           },
           {
-            "question": "Should interviews be structured with prepared questions or more conversational?",
+            "question": "Interviews structurées avec questions préparées ou plus conversationnelles?",
             "ifYes": "Use structured questions to build student confidence and focus",
             "ifNo": "Encourage natural conversation with question prompts available"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Interview discovery sharing. Students share interesting things they learned about school staff and their contributions to school community.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students too shy or nervous to conduct interviews",
@@ -845,14 +1349,38 @@
       },
       "realWorldConnection": "Asking questions and listening to answers helps us understand our community better",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -875,8 +1403,16 @@
           "want examples"
         ],
         "visualSupports": "Essential need gestures, want desire expressions, sorting actions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -890,25 +1426,35 @@
         "visualSupports": "Needs identification gestures, assessment actions, brainstorming thinking poses",
         "decisionPoints": [
           {
-            "question": "How do we help students distinguish between wants and needs in school context?",
+            "question": "Comment aider les élèves à distinguer besoins et désirs à l'école?",
             "ifYes": "Use concrete examples and 'what if' scenarios to clarify essential vs. nice-to-have",
             "ifNo": "Accept broader interpretation of needs and focus on community cooperation"
           },
           {
-            "question": "Should we focus on material needs or emotional/social needs first?",
+            "question": "Commencer par les besoins matériels ou émotionnels/sociaux?",
             "ifYes": "Start with tangible material needs, then explore social/emotional community needs",
             "ifNo": "Integrate both types of needs as equally important for school community"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "School needs commitment circle. Students choose one school need they want to help address and share their commitment.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students identifying too many wants as needs or feeling overwhelmed by school needs",
@@ -916,14 +1462,38 @@
       },
       "realWorldConnection": "All communities have needs that are met when people work together",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -946,8 +1516,16 @@
           "contribution examples chart"
         ],
         "visualSupports": "Helping action demonstrations, appreciation expressions, contribution celebration gestures",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -961,25 +1539,35 @@
         "visualSupports": "Helping action demonstrations, teamwork gestures, pride in contribution expressions",
         "decisionPoints": [
           {
-            "question": "What level of responsibility are students ready to take on?",
+            "question": "Quel niveau de responsabilité les élèves sont-ils prêts à assumer?",
             "ifYes": "Offer substantial helping opportunities with appropriate supervision",
             "ifNo": "Start with simple, manageable helping tasks to build confidence"
           },
           {
-            "question": "Should we focus on individual contributions or group projects?",
+            "question": "Se concentrer sur contributions individuelles ou projets de groupe?",
             "ifYes": "Balance individual choice with collaborative group helping projects",
             "ifNo": "Focus on group projects to build community cooperation skills"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Contribution celebration circle. Students share how it felt to help school community and plan continued contributions.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students feeling overwhelmed by responsibility or not seeing impact of their help",
@@ -987,14 +1575,38 @@
       },
       "realWorldConnection": "Everyone, including children, can make important contributions to their communities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       }
     },
     {
@@ -1017,8 +1629,16 @@
           "community location cards"
         ],
         "visualSupports": "Map pointing gestures, location identification actions, neighborhood connection expressions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1032,25 +1652,35 @@
         "visualSupports": "Observation pointing, community connection gestures, mapping demonstration actions",
         "decisionPoints": [
           {
-            "question": "How familiar are students with the area around their school?",
+            "question": "Les élèves connaissent-ils bien les environs de leur école?",
             "ifYes": "Build on existing knowledge to deepen community understanding",
             "ifNo": "Provide foundational orientation to immediate school neighborhood"
           },
           {
-            "question": "Should we explore through windows, walks, or maps and photos?",
+            "question": "Explorer par les fenêtres, marches ou cartes et photos?",
             "ifYes": "Combine multiple exploration methods for comprehensive understanding",
             "ifNo": "Choose safest and most practical exploration method for student group"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "School-community appreciation circle. Students share connections they discovered between school and neighborhood.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students not seeing connections between school and neighborhood or feeling confused about community boundaries",
@@ -1058,14 +1688,38 @@
       },
       "realWorldConnection": "Schools are part of larger communities with connections to many other places and people",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1128,8 +1782,16 @@
           "then/now comparison cards"
         ],
         "visualSupports": "Time passage gestures, historical comparison expressions, then/now demonstration actions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1143,25 +1805,35 @@
         "visualSupports": "Historical comparison gestures, time difference demonstrations, change explanation actions",
         "decisionPoints": [
           {
-            "question": "What aspects of school history will be most interesting and accessible to Grade 1s?",
+            "question": "Quels aspects de l'histoire de l'école intéresseront le plus les élèves de 1re?",
             "ifYes": "Focus on tangible differences students can observe and understand",
             "ifNo": "Include broader historical context about education and community changes"
           },
           {
-            "question": "Should we use photos, artifacts, or stories from older community members?",
+            "question": "Utiliser photos, artéfacts ou histoires des membres plus âgés?",
             "ifYes": "Combine multiple sources for rich historical understanding",
             "ifNo": "Focus on most engaging and accessible historical source for student group"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Time appreciation circle. Students share what they appreciate about schools today and what was interesting about schools in the past.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students confused about time concepts or overwhelmed by historical information",
@@ -1169,14 +1841,38 @@
       },
       "realWorldConnection": "All communities have histories that help us understand how they became what they are today",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1239,8 +1935,16 @@
           "collaboration planning tools"
         ],
         "visualSupports": "Brainstorming thinking gestures, collaboration planning actions, project excitement expressions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1253,25 +1957,35 @@
         "visualSupports": "Teamwork cooperation gestures, project work demonstrations, progress celebration actions",
         "decisionPoints": [
           {
-            "question": "What type of project would be meaningful and achievable for Grade 1 students?",
+            "question": "Quel type de projet serait significatif et réalisable pour les élèves de 1re?",
             "ifYes": "Choose project that provides visible impact and matches student developmental capabilities",
             "ifNo": "Select simpler project that ensures success and builds confidence in community contribution"
           },
           {
-            "question": "Should the project focus on classroom, school, or neighborhood improvement?",
+            "question": "Le projet devrait-il améliorer la classe, l'école ou le quartier?",
             "ifYes": "Choose scope that allows students to see direct impact of their work",
             "ifNo": "Focus on immediate school community for most meaningful and visible results"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Project completion celebration. Admire completed project and discuss how collaboration made improvement possible.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students having difficulty with collaboration or project feeling too complex",
@@ -1279,14 +1993,38 @@
       },
       "realWorldConnection": "Working together on projects is how communities solve problems and create positive changes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1349,8 +2087,16 @@
           "confidence building activities"
         ],
         "visualSupports": "Confident presentation postures, welcoming gestures, information sharing actions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1364,25 +2110,35 @@
         "visualSupports": "Presentation delivery gestures, audience engagement actions, information sharing demonstrations",
         "decisionPoints": [
           {
-            "question": "Who would be the best audience for student presentations about their school?",
+            "question": "Quel serait le meilleur public pour les présentations des élèves?",
             "ifYes": "Choose audience that will be genuinely interested and supportive",
             "ifNo": "Present to classmates or teachers if external audience isn't available"
           },
           {
-            "question": "Should presentations be formal or conversational, individual or group?",
+            "question": "Présentations formelles ou conversationnelles, individuelles ou en groupe?",
             "ifYes": "Match presentation format to student comfort levels and learning goals",
             "ifNo": "Use group presentations to provide mutual support and shared responsibility"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Ambassador appreciation circle. Celebrate student success in representing their school community and sharing their knowledge.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students feeling nervous about presentations or struggling to organize information",
@@ -1390,14 +2146,38 @@
       },
       "realWorldConnection": "Being able to describe and represent our communities helps others understand and appreciate them",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1460,8 +2240,16 @@
           "planning materials"
         ],
         "visualSupports": "Celebration planning gestures, joyful expressions, community appreciation actions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1474,25 +2262,35 @@
         "visualSupports": "Celebration participation gestures, appreciation expressions, community joy demonstrations",
         "decisionPoints": [
           {
-            "question": "What format of celebration would best honor the diverse contributions in school community?",
+            "question": "Quel format de célébration honorerait le mieux la diversité des contributions?",
             "ifYes": "Choose inclusive celebration format that recognizes many different contributions",
             "ifNo": "Focus on simple appreciation format that ensures everyone feels included"
           },
           {
-            "question": "Should celebration focus on students, staff, or the whole school community?",
+            "question": "La célébration devrait-elle se concentrer sur les élèves, le personnel ou toute la communauté?",
             "ifYes": "Include whole school community to emphasize interconnected relationships",
             "ifNo": "Focus on group that would be most meaningful and manageable for Grade 1 students"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Celebration reflection circle. Share feelings about celebration and appreciation for school community relationships.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students overwhelmed by celebration planning or execution",
@@ -1500,14 +2298,38 @@
       },
       "realWorldConnection": "Celebrations help communities appreciate their shared experiences and values",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",
@@ -1570,8 +2392,16 @@
           "journey timeline materials"
         ],
         "visualSupports": "Growth demonstration gestures, journey reflection actions, learning appreciation expressions",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1585,25 +2415,35 @@
         "visualSupports": "Reflection thinking poses, goal setting actions, citizenship demonstration gestures",
         "decisionPoints": [
           {
-            "question": "How do we help students see their learning journey and growth over the unit?",
+            "question": "Comment aider les élèves à voir leur parcours d'apprentissage et leur croissance?",
             "ifYes": "Use concrete examples and documentation to show visible learning progression",
             "ifNo": "Focus on current understanding and abilities rather than change over time"
           },
           {
-            "question": "Should reflection focus on personal growth or community contribution?",
+            "question": "La réflexion devrait-elle se concentrer sur la croissance personnelle ou la contribution communautaire?",
             "ifYes": "Balance both personal learning and community impact in reflection",
             "ifNo": "Focus on area that feels most meaningful and achievable for student group"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "School citizenship commitment ceremony. Students make commitments to continued positive school community membership and receive recognition as valued school citizens.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          {
+            "question": "Si besoin de soutien supplémentaire pour la compréhension?",
+            "ifYes": "Fournir exemples concrets et support visuel",
+            "ifNo": "Encourager l'exploration indépendante des concepts"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement corporel lié à l'activité d'apprentissage"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students struggling with abstract citizenship concepts or goal setting",
@@ -1611,14 +2451,38 @@
       },
       "realWorldConnection": "Being a good community member is a lifelong journey of learning, contributing, and growing",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Support visuel avec images et exemples concrets",
+          "Temps supplémentaire pour traiter l'information",
+          "Questions simplifiées avec choix multiples"
+        ],
+        "forAdvanced": [
+          "Questions de réflexion plus approfondies",
+          "Rôle de mentor pour aider les autres élèves",
+          "Projets d'extension ou de recherche"
+        ],
+        "forELL": [
+          "Vocabulaire soutenu par gestes et images",
+          "Répétition et pratique du vocabulaire clé",
+          "Support en langue maternelle si disponible"
+        ],
+        "forIEP": [
+          "Adaptations selon les besoins individuels spécifiés",
+          "Communication alternative ou support technologique",
+          "Pauses et ajustements selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des concepts clés de la leçon",
+          "Élève participe activement aux activités d'apprentissage",
+          "Élève montre du respect pour la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: observe l'engagement initial",
+          "Pendant l'activité principale: note la participation et compréhension",
+          "Pendant la clôture: écoute l'expression des apprentissages"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",

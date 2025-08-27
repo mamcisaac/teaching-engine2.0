@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Célébrations et traditions hivernales",
   "subject": "Sciences humaines",
   "grade": "1",
   "totalLessons": 20,
@@ -10,14 +10,14 @@
       "lessonNumber": 1,
       "lessonType": "core",
       "title": "Bienvenue dans notre monde d'hiver",
-      "oneGoal": "",
+      "oneGoal": "Nous explorons les différentes façons de célébrer l'hiver dans nos familles et communautés.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["hiver", "famille", "tradition", "célébration", "spécial"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Cercle de bienvenue avec question: 'Qu'est-ce que ta famille fait de spécial en hiver?'",
+        "materials": ["Photos de familles en hiver", "Globe terrestre"],
+        "visualSupports": "Affiche avec images des quatre saisons"
       },
       "main": {
         "duration": 27,
@@ -32,15 +32,15 @@
         "visualSupports": ""
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si élève ne célèbre pas ou a peu d'expériences hivernales",
+        "then": "Inclure les activités quotidiennes d'hiver (jouer dehors, boire du chocolat chaud, porter des mitaines)"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Connexion avec les traditions familiales réelles des élèves et la diversité de la classe",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Dessiner au lieu de parler", "Utiliser photos personnelles"],
+        "forAdvanced": ["Aider les pairs à partager", "Poser questions aux autres"],
+        "forELL": ["Gestes et images OK", "Mot anglais accepté si nécessaire"],
+        "forIEP": ["Adaptation selon besoins individuels", "Temps supplémentaire si nécessaire"]
       },
       "assessmentCriteria": {
         "observable": [
@@ -61,37 +61,37 @@
       "lessonNumber": 2,
       "lessonType": "core",
       "title": "Noël autour du monde",
-      "oneGoal": "",
+      "oneGoal": "Nous découvrons comment différentes familles célèbrent Noël dans le monde.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["Noël", "monde", "pays", "décorations", "traditions"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Montrer différents objets de Noël du monde entier",
+        "materials": ["Artefäcts de Noël", "Carte du monde", "Images de Noël"],
+        "visualSupports": "Carte avec pays highlightés"
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Visite virtuelle de Noël dans différents pays avec création d'un passeport",
+        "materials": ["Passeports vierges", "Autocollants pays", "Vidéos courtes"],
+        "visualSupports": "Images de Noël par pays"
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Partage du pays préféré découvert aujourd'hui",
+        "materials": ["Passeports complétés"],
+        "visualSupports": "Carte du monde collective"
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si élève ne célèbre pas Noël ou sensibilité religieuse",
+        "then": "Focus sur aspects culturels et communautaires plutôt que religieux, inclure leur tradition hivernale spéciale"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Connexion avec les élèves d'origine chinoise dans l'école ou la communauté, respect pour toutes les traditions",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Focus sur une tradition simple", "Utiliser plus d'images visuelles"],
+        "forAdvanced": ["Comparer avec autres traditions du Nouvel An", "Enseigner un mot chinois simple"],
+        "forELL": ["Montrer plutôt que dire", "Accepter participation non-verbale"],
+        "forIEP": ["Adapter les matériaux au besoin", "Permettre participation alternative"]
       },
       "assessmentCriteria": {
         "observable": [
@@ -112,37 +112,37 @@
       "lessonNumber": 3,
       "lessonType": "core",
       "title": "La magie de Hanouka",
-      "oneGoal": "",
+      "oneGoal": "Nous apprenons sur Hanouka et l'importance des lumières et de la famille.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["Hanouka", "lumières", "menorah", "histoire", "famille"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Histoire simple de Hanouka avec kamishibai",
+        "materials": ["Kamishibai Hanouka", "Menorah", "Bougies factices"],
+        "visualSupports": "Images séquentielles de l'histoire"
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Création d'une menorah en pâte à modeler et apprentissage du comptage des jours",
+        "materials": ["Pâte à modeler", "Cure-dents", "Calendrier Hanouka"],
+        "visualSupports": "Modèle de menorah simple"
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Cercle de réflexion: 'Quand ta famille allume-t-elle des lumières spéciales?'",
+        "materials": ["Menorahs créées"],
+        "visualSupports": "Photos de différentes traditions de lumières"
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si élève ne connaît pas Hanouka ou sensibilité religieuse",
+        "then": "Connecter à l'idée universelle des lumières en hiver et des moments spéciaux en famille"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Connexion avec les traditions de lumières dans différentes cultures et familles",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Compter avec aide visuelle", "Menorah pré-formée disponible"],
+        "forAdvanced": ["Apprendre les noms des jours en hébreu", "Expliquer la tradition à un pair"],
+        "forELL": ["Utiliser gestes pour compter", "Montrer plutôt qu'expliquer"],
+        "forIEP": ["Matériaux adaptés si nécessaire", "Participation selon capacités"]
       },
       "assessmentCriteria": {
         "observable": [
@@ -163,37 +163,37 @@
       "lessonNumber": 4,
       "lessonType": "core",
       "title": "Kwanzaa et les valeurs communautaires",
-      "oneGoal": "",
+      "oneGoal": "Nous découvrons Kwanzaa et les valeurs importantes dans nos communautés.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["Kwanzaa", "valeurs", "communauté", "famille", "partage"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Introduction aux couleurs et symboles de Kwanzaa",
+        "materials": ["Tissus rouge-noir-vert", "Kinara simple", "Images Kwanzaa"],
+        "visualSupports": "Affiche des 7 principes avec pictogrammes"
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Explorer 3 valeurs simples (partage, famille, communauté) avec exemples concrets",
+        "materials": ["Cartes valeurs", "Exemples d'actions", "Miroir de classe"],
+        "visualSupports": "Photos d'actions communautaires"
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Engagement personnel: 'Une façon d'aider dans notre classe'",
+        "materials": ["Cartes engagement", "Crayons"],
+        "visualSupports": "Affiche des engagements collectifs"
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si élève ne comprend pas les valeurs abstraites",
+        "then": "Utiliser des exemples concrets de la classe et de l'école, montrer des photos d'actions d'entraide"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Connexion avec les valeurs vécues à l'école et dans les familles des élèves",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Focus sur une valeur à la fois", "Exemples très concrets de la classe"],
+        "forAdvanced": ["Connecter aux autres traditions", "Proposer des actions communautaires"],
+        "forELL": ["Utiliser gestes et mimes", "Photos d'actions plutôt que mots"],
+        "forIEP": ["Adapter les activités aux capacités", "Participation selon niveau"]
       },
       "assessmentCriteria": {
         "observable": [
@@ -214,30 +214,30 @@
       "lessonNumber": 5,
       "lessonType": "core",
       "title": "Le Nouvel An chinois",
-      "oneGoal": "",
+      "oneGoal": "Nous explorons les traditions joyeuses du Nouvel An chinois.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["Nouvel An", "chinois", "dragon", "fête", "traditions"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Démonstration de danse du dragon simple avec musique",
+        "materials": ["Dragon en tissu", "Musique festive", "Enveloppes rouges"],
+        "visualSupports": "Images du Nouvel An chinois"
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Découverte du zodiaque chinois et création d'enveloppes rouges porte-bonheur",
+        "materials": ["Enveloppes rouges", "Autocollants animaux", "Papier doré"],
+        "visualSupports": "Roue du zodiaque simplifiée"
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Partage de souhaits pour la nouvelle année",
+        "materials": ["Enveloppes complétées"],
+        "visualSupports": "Affiche des souhaits collectifs"
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si élève est trop excité ou timide pour la danse",
+        "then": "Permettre observation respectueuse ou mouvement des mains seulement, canaliser énergie vers création artistique"
       },
       "realWorldConnection": "",
       "differentiation": {
@@ -265,37 +265,37 @@
       "lessonNumber": 6,
       "lessonType": "core",
       "title": "Diwali, la fête des lumières",
-      "oneGoal": "",
+      "oneGoal": "Nous apprenons sur Diwali et pourquoi les lumières sont importantes.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["Diwali", "lumières", "fête", "lampes", "joie"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Découverte de lampes diya et rangoli avec histoire simple",
+        "materials": ["Lampes diya", "Sable coloré", "Images Diwali"],
+        "visualSupports": "Photos de célébrations Diwali"
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Création de diyas en argile et décorations rangoli simples",
+        "materials": ["Argile", "Peintures", "Modèles rangoli"],
+        "visualSupports": "Exemples de motifs rangoli simples"
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Cercle de partage: moments où la lumière nous rend heureux",
+        "materials": ["Diyas créées"],
+        "visualSupports": "Affiche collective des moments de joie"
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si élève ne connaît pas Diwali ou sensibilité culturelle",
+        "then": "Connecter aux moments de joie universels et à l'idée que toutes les cultures ont des fêtes lumineuses"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Connexion avec les célébrations de lumière dans toutes les cultures et familles",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Modèles rangoli très simples", "Aide pour moulage argile"],
+        "forAdvanced": ["Création de motifs originaux", "Expliquer la tradition aux pairs"],
+        "forELL": ["Focus sur création visuelle", "Participation non-verbale OK"],
+        "forIEP": ["Matériaux adaptés", "Soutien individuel selon besoins"]
       },
       "assessmentCriteria": {
         "observable": [
@@ -316,9 +316,9 @@
       "lessonNumber": 7,
       "lessonType": "core",
       "title": "Las Posadas du Mexique",
-      "oneGoal": "",
+      "oneGoal": "Nous découvrons la tradition mexicaine de Las Posadas et l'importance de l'hospitalité.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["Las Posadas", "Mexique", "procession", "hospitalité", "communauté"],
       "opening": {
         "duration": 8,
         "activity": "",
@@ -367,9 +367,9 @@
       "lessonNumber": 8,
       "lessonType": "core",
       "title": "Santa Lucia en Suède",
-      "oneGoal": "",
+      "oneGoal": "Nous apprenons sur Santa Lucia et comment on apporte la lumière dans l'obscurité.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["Santa Lucia", "Suède", "lumière", "couronne", "défilé"],
       "opening": {
         "duration": 8,
         "activity": "",
@@ -418,30 +418,30 @@
       "lessonNumber": 9,
       "lessonType": "core",
       "title": "Le solstice d'hiver",
-      "oneGoal": "",
+      "oneGoal": "Nous découvrons pourquoi les jours changent en hiver et comment les gens célèbrent.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["solstice", "hiver", "jour", "nuit", "lumière"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Démonstration simple avec lampe de poche et globe",
+        "materials": ["Globe", "Lampe de poche", "Calendrier visuel"],
+        "visualSupports": "Images jour/nuit en été vs hiver"
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Création d'un calendrier des saisons avec observation des changements",
+        "materials": ["Papier circulaire", "Attaches parisiennes", "Images saisons"],
+        "visualSupports": "Graphique simple des heures de lumière"
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Discussion: 'Que fait ta famille quand il fait noir tôt?'",
+        "materials": ["Calendriers créés"],
+        "visualSupports": "Photos d'activités d'hiver en famille"
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si concept abstrait du solstice trop difficile",
+        "then": "Focus sur l'observation concrete: il fait noir plus tôt, on allume plus de lumières"
       },
       "realWorldConnection": "",
       "differentiation": {
@@ -469,30 +469,30 @@
       "lessonNumber": 10,
       "lessonType": "core",
       "title": "Nos traditions familiales",
-      "oneGoal": "",
+      "oneGoal": "Nous partageons et célébrons les traditions spéciales de nos familles.",
       "duration": "30 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["tradition", "famille", "spécial", "partage", "fieré"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Cercle de partage avec objet familial ou photo spéciale",
+        "materials": ["Boîte à trésors", "Photos familiales", "Objets personnels"],
+        "visualSupports": "Affiche 'Nos familles sont spéciales'"
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Présentations courtes des traditions familiales et création d'un livre de classe",
+        "materials": ["Papier grand format", "Crayons", "Collé"],
+        "visualSupports": "Pages du livre en création"
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": ""
+        "activity": "Célébration de la diversité: 'Nous sommes tous différents et spéciaux'",
+        "materials": ["Livre de classe complété"],
+        "visualSupports": "Affiche de la diversité célébrée"
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Si élève n'a pas de tradition à partager ou timidité",
+        "then": "Inclure les petites routines familiales (repas ensemble, histoires du soir) ou permettre dessin sans présentation"
       },
       "realWorldConnection": "",
       "differentiation": {
@@ -1494,7 +1494,15 @@
         "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
       }
     ],
-    "vocabularyList": []
+    "vocabularyList": [
+      {"word": "hiver", "definition": "La saison froide avec de la neige", "example": "En hiver, il fait froid."},
+      {"word": "tradition", "definition": "Ce que les familles font chaque année", "example": "Noël est une tradition."},
+      {"word": "célébration", "definition": "Une fête spéciale", "example": "Une célébration joyeuse."},
+      {"word": "famille", "definition": "Les personnes qui vivent ensemble et s'aiment", "example": "Ma famille célèbre ensemble."},
+      {"word": "lumières", "definition": "Ce qui éclaire dans l'obscurité", "example": "Les lumières de Noël brillent."},
+      {"word": "communauté", "definition": "Les gens qui vivent près de nous", "example": "Notre communauté à l'école."},
+      {"word": "partage", "definition": "Donner aux autres", "example": "Le partage rend heureux."}
+    ]
   },
   "resourceAlternatives": {
     "materials": {

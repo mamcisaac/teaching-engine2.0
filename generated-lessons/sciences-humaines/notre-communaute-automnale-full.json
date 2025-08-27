@@ -26,7 +26,18 @@
           "autumn background music"
         ],
         "visualSupports": "Wide arm gestures for community, pointing outward for neighborhood, heart hands for belonging",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si timidité à regarder par la fenêtre → commencer par photos de l'école",
+            "ifYes": "Utiliser des photos familiales de l'école pour établir le confort avant d'explorer l'extérieur",
+            "ifNo": "Encourager l'exploration visuelle et les observations spontanées"
+          },
+          {
+            "question": "Si peu familier avec le mot 'communauté' → utiliser gestes et exemples concrets",
+            "ifYes": "Démontrer 'ensemble' avec bras larges, donner exemples comme 'famille d'école'",
+            "ifNo": "Construire sur leur compréhension existante de l'appartenance communautaire"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -42,12 +53,12 @@
         "visualSupports": "Connecting gestures between school and community, proud posture for school belonging, discovery expressions",
         "decisionPoints": [
           {
-            "question": "How familiar are students with the area around their school?",
+            "question": "Les élèves connaissent-ils bien le quartier autour de leur école?",
             "ifYes": "Encourage students to share specific places they know and visit with families",
             "ifNo": "Use photos and maps to introduce nearby community places and explain connections"
           },
           {
-            "question": "What community landmarks can students see from school windows?",
+            "question": "Quels points de repère communautaires les élèves peuvent-ils voir par les fenêtres de l'école?",
             "ifYes": "Point out visible landmarks and explain how they connect to school community",
             "ifNo": "Use photos of nearby landmarks and discuss how they support school community"
           }
@@ -59,7 +70,13 @@
         "activity": "Community belonging circle where students share one thing they like about their school being part of the community. End with group chant: 'Notre école fait partie de notre communauté!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si hésitation à partager → modéliser avec exemple personnel",
+            "ifYes": "Partager votre propre appréciation: 'J'aime que notre école ait un beau parc à côté'",
+            "ifNo": "Célébrer toutes les réponses authentiques des élèves"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -98,7 +115,18 @@
           "thank you phrases in French"
         ],
         "visualSupports": "Helping hands gestures, grateful expressions, pointing to helper photos with appreciation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si difficulté à identifier les personnes aidantes → commencer par les plus visibles",
+            "ifYes": "Pointer vers l'enseignant(e), le directeur/directrice, montrer photos familiales",
+            "ifNo": "Encourager les élèves à nommer ceux qu'ils connaissent déjà"
+          },
+          {
+            "question": "Si hésitation avec 'Merci de nous aider' → pratiquer avec gestes",
+            "ifYes": "Modéliser en joignant les mains et en inclinant la tête avec reconnaissance",
+            "ifNo": "Laisser les élèves exprimer leur gratitude de manière naturelle"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -113,12 +141,12 @@
         "visualSupports": "Helper-specific gestures (key for principal, cleaning for custodian), appreciation expressions, helping hand motions",
         "decisionPoints": [
           {
-            "question": "Which school helpers do students interact with most often?",
+            "question": "Avec quelles personnes aidantes de l'école les élèves interagissent-ils le plus souvent?",
             "ifYes": "Focus on these familiar helpers first and add others as extensions",
             "ifNo": "Introduce helpers through photos and explain how they help students even if not seen daily"
           },
           {
-            "question": "Should we include volunteers or focus only on staff?",
+            "question": "Devrions-nous inclure les bénévoles ou nous concentrer uniquement sur le personnel?",
             "ifYes": "Include parent volunteers and reading helpers to show broader school community",
             "ifNo": "Focus on consistent staff helpers that students see regularly"
           }
@@ -130,7 +158,13 @@
         "activity": "Helper appreciation circle where students share which school helper they'd like to thank and why. Practice saying 'Merci' to different school helpers they might see.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si timidité pour remercier publiquement → permettre d'autres moyens",
+            "ifYes": "Offrir option de dessiner un merci ou de chuchoter à l'oreille",
+            "ifNo": "Célébrer tous les mercis, peu importe comment ils sont exprimés"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -169,7 +203,18 @@
           "autumn leaves or props"
         ],
         "visualSupports": "Falling leaf gestures, cooler weather motions (rubbing arms), changing colors hand movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si difficulté à observer les changements d'automne → apporter exemples concrets",
+            "ifYes": "Montrer vraies feuilles colorées, photos de l'Île en automne, vêtements plus chauds",
+            "ifNo": "Construire sur leurs observations personnelles et les relier à la communauté"
+          },
+          {
+            "question": "Si hésitation avec vocabulaire automnal → utiliser gestes et supports visuels",
+            "ifYes": "Démontrer 'changement' avec transformation, 'feuilles' qui tombent, 'automne' qui refroidit",
+            "ifNo": "Encourager l'utilisation du vocabulaire qu'ils connaissent déjà"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -184,12 +229,12 @@
         "visualSupports": "Comparison gestures (showing different), observation motions (pointing and looking), seasonal change expressions",
         "decisionPoints": [
           {
-            "question": "What autumn changes are most visible in our local area?",
+            "question": "Quels changements d'automne sont les plus visibles dans notre région?",
             "ifYes": "Focus on dramatic local changes like leaf colors, harvest activities, or weather preparations",
             "ifNo": "Use photos of typical autumn changes and help students look for subtle local changes"
           },
           {
-            "question": "Should we focus on natural changes or community activity changes?",
+            "question": "Devrions-nous nous concentrer sur les changements naturels ou les changements d'activités communautaires?",
             "ifYes": "Balance both natural changes (leaves, weather) and community changes (harvest festivals, preparation activities)",
             "ifNo": "Start with natural changes students can see, then connect to community activity changes"
           }
@@ -201,7 +246,13 @@
         "activity": "Autumn appreciation circle where students share their favorite autumn change in the community. Practice saying 'J'aime l'automne parce que...'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si difficulté à compléter 'J'aime l'automne parce que...' → offrir choix multiples",
+            "ifYes": "Proposer: '...les feuilles sont belles' ou '...il fait plus frais' ou '...on récolte'",
+            "ifNo": "Encourager l'expression personnelle authentique sur leurs préférences automnales"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -240,7 +291,18 @@
           "protective equipment props"
         ],
         "visualSupports": "Protective gestures (shield motion), safety pointing (stop hand), grateful expressions for helpers",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si anxiété autour de la sécurité → emphasiser la protection plutôt que le danger",
+            "ifYes": "Parler de comment les aidants nous gardent en sécurité et nous protègent avec bienveillance",
+            "ifNo": "Célébrer tous les héros communautaires qui veillent sur nous"
+          },
+          {
+            "question": "Si peu familier avec les aidants de sécurité → commencer par les plus visibles",
+            "ifYes": "Montrer photos de pompiers, police, brigadiers scolaires que les élèves connaissent",
+            "ifNo": "Construire sur leur connaissance existante des personnes qui les protègent"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -255,12 +317,12 @@
         "visualSupports": "Helper-specific gestures (traffic directing for crossing guard, siren sounds for emergency helpers), safety expressions",
         "decisionPoints": [
           {
-            "question": "Are students comfortable discussing safety without creating fear?",
+            "question": "Les élèves sont-ils à l'aise de discuter de sécurité sans créer de peur?",
             "ifYes": "Focus on positive safety helper roles and how they help community feel secure",
             "ifNo": "Emphasize helper friendliness and community service rather than emergency situations"
           },
           {
-            "question": "Which safety helpers are most visible in our community?",
+            "question": "Quelles personnes aidantes pour la sécurité sont les plus visibles dans notre communauté?",
             "ifYes": "Feature most visible helpers prominently and explain their daily community presence",
             "ifNo": "Introduce variety of safety helpers and explain when and how they help community"
           }
@@ -272,7 +334,13 @@
         "activity": "Safety appreciation circle where students practice saying 'Merci de nous protéger' and share how safety helpers make them feel secure in their community.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si timidité à parler de sécurité → utiliser termes positifs et rassurants",
+            "ifYes": "Dire 'Les aidants nous gardent en sécurité et nous aident à nous sentir tranquilles'",
+            "ifNo": "Encourager le partage des sentiments positifs envers les protecteurs communautaires"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -325,12 +393,12 @@
         "visualSupports": "Following firefighter demonstrations, safety rule gestures, appreciation expressions for visitor",
         "decisionPoints": [
           {
-            "question": "Can we arrange an actual firefighter visit or should we use virtual resources?",
+            "question": "Pouvons-nous organiser une vraie visite de pompier ou devrions-nous utiliser des ressources virtuelles?",
             "ifYes": "Coordinate with local fire department for in-person visit with equipment demonstration",
             "ifNo": "Use high-quality virtual firefighter presentation with interactive elements and Q&A"
           },
           {
-            "question": "What fire safety concepts are appropriate for Grade 1?",
+            "question": "Quels concepts de sécurité incendie sont appropriés pour la 1re année?"
             "ifYes": "Focus on basic safety: stop-drop-roll, calling 911, meeting spots, not playing with fire",
             "ifNo": "Keep concepts simple and positive, focusing on firefighter helpers rather than fire dangers"
           }
@@ -395,12 +463,12 @@
         "visualSupports": "Helper-specific gestures (stethoscope listening, gentle care motions), health and wellness expressions",
         "decisionPoints": [
           {
-            "question": "Should we include mental health helpers or focus on physical health?",
+            "question": "Devrions-nous inclure les aidants en santé mentale ou nous concentrer sur la santé physique?",
             "ifYes": "Include school counselors and explain how they help with feelings and worries",
             "ifNo": "Focus on familiar physical health helpers that students encounter regularly"
           },
           {
-            "question": "How do we discuss medical help without creating anxiety?",
+            "question": "Comment discuter d'aide médicale sans créer d'anxiété?",
             "ifYes": "Emphasize helper kindness, community care, and how helpers help people feel better",
             "ifNo": "Focus on wellness promotion and helper friendliness rather than illness treatment"
           }
@@ -466,12 +534,12 @@
         "visualSupports": "Sequential gestures for food journey, harvest celebration motions, food sharing expressions",
         "decisionPoints": [
           {
-            "question": "Should we focus on local farmers or include broader food supply chain?",
+            "question": "Devrions-nous nous concentrer sur les agriculteurs locaux ou inclure la chaîne alimentaire plus large?",
             "ifYes": "Emphasize local autumn harvest and nearby farms that supply community stores",
             "ifNo": "Include broader food system while highlighting autumn harvest and seasonal foods"
           },
           {
-            "question": "Which food helpers are most visible in our autumn community?",
+            "question": "Quelles personnes aidantes pour la nourriture sont les plus visibles dans notre communauté automnale?",
             "ifYes": "Feature farmers market vendors, grocery store workers, and autumn harvest helpers",
             "ifNo": "Use photos to introduce variety of food system workers and their autumn contributions"
           }
@@ -536,12 +604,12 @@
         "visualSupports": "Following field trip guides, observation gestures, polite interaction demonstrations",
         "decisionPoints": [
           {
-            "question": "Can we arrange an actual grocery store field trip or virtual tour?",
+            "question": "Pouvons-nous organiser une vraie sortie à l'épicerie ou une visite virtuelle?",
             "ifYes": "Coordinate with local grocery store for educational visit with worker interactions",
             "ifNo": "Use comprehensive virtual grocery tour with focus on worker roles and community service"
           },
           {
-            "question": "Which grocery store roles should we highlight for Grade 1?",
+            "question": "Quels rôles d'épicerie devrions-nous mettre en évidence pour la 1re année?",
             "ifYes": "Focus on visible roles: cashiers, produce workers, managers, cart helpers",
             "ifNo": "Introduce variety of store workers and explain how they serve community families"
           }
@@ -606,12 +674,12 @@
         "visualSupports": "Environmental helper gestures, recycling motions, community cooperation expressions",
         "decisionPoints": [
           {
-            "question": "Should we include environmental helpers beyond garbage collection?",
+            "question": "Devrions-nous inclure les aidants environnementaux au-delà de la collecte des ordures?",
             "ifYes": "Include park maintenance, recycling workers, and environmental protection helpers",
             "ifNo": "Focus on most visible sanitation workers and explain their daily community contributions"
           },
           {
-            "question": "How do we emphasize student responsibility for community cleanliness?",
+            "question": "Comment souligner la responsabilité des élèves pour la propreté communautaire?",
             "ifYes": "Balance helper appreciation with student actions like not littering and helping with cleanup",
             "ifNo": "Focus primarily on helper appreciation while mentioning simple student contributions"
           }
@@ -676,12 +744,12 @@
         "visualSupports": "Activity-specific gestures, calendar organization motions, community participation expressions",
         "decisionPoints": [
           {
-            "question": "Which autumn activities are most common in our local community?",
+            "question": "Quelles activités automnales sont les plus communes dans notre communauté locale?",
             "ifYes": "Feature prominent local events like harvest festivals, pumpkin patches, or autumn sports",
             "ifNo": "Introduce variety of typical autumn community activities and help students identify local versions"
           },
           {
-            "question": "Should we focus on organized events or informal community gatherings?",
+            "question": "Devrions-nous nous concentrer sur les événements organisés ou les rassemblements communautaires informels?"
             "ifYes": "Include both formal events and informal activities like neighborhood leaf raking or outdoor play",
             "ifNo": "Focus on organized community events that families can easily participate in together"
           }
@@ -746,12 +814,12 @@
         "visualSupports": "Guided observation techniques, discovery expressions, community helper identification gestures",
         "decisionPoints": [
           {
-            "question": "Can we take an actual neighborhood walk or should we use virtual exploration?",
+            "question": "Pouvons-nous faire une vraie promenade de quartier ou devrions-nous utiliser l'exploration virtuelle?",
             "ifYes": "Plan safe walking route with multiple helper observation opportunities and autumn change viewing",
             "ifNo": "Use comprehensive virtual neighborhood tour with interactive elements and discussion opportunities"
           },
           {
-            "question": "Which community helpers are we likely to see during our walk?",
+            "question": "Quelles personnes aidantes de la communauté sommes-nous susceptibles de voir pendant notre promenade?",
             "ifYes": "Prepare students to recognize mail carriers, crossing guards, maintenance workers, shop keepers",
             "ifNo": "Use photos and descriptions to supplement observation with helper identification activities"
           }
@@ -816,12 +884,12 @@
         "visualSupports": "Helper-specific motions, safety demonstration gestures, weather-appropriate transportation expressions",
         "decisionPoints": [
           {
-            "question": "Should we include public transportation or focus on school transportation?",
+            "question": "Devrions-nous inclure les transports publics ou nous concentrer sur le transport scolaire?",
             "ifYes": "Include both school buses and public transportation to show full range of community transportation",
             "ifNo": "Focus on school transportation helpers that students interact with most regularly"
           },
           {
-            "question": "Which transportation helpers are most relevant to student experience?",
+            "question": "Quelles personnes aidantes pour le transport sont les plus pertinentes pour l'expérience des élèves?",
             "ifYes": "Emphasize school bus drivers, crossing guards, and walking safety helpers",
             "ifNo": "Introduce variety of transportation helpers and explain how they serve different community needs"
           }
@@ -886,12 +954,12 @@
         "visualSupports": "Construction motions, seasonal preparation gestures, community strength expressions",
         "decisionPoints": [
           {
-            "question": "Should we focus on new construction or maintenance and repair work?",
+            "question": "Devrions-nous nous concentrer sur la nouvelle construction ou les travaux d'entretien et de réparation?",
             "ifYes": "Balance both new building projects and ongoing maintenance that keeps community functioning",
             "ifNo": "Focus on maintenance and repair work that students can observe in their daily community experience"
           },
           {
-            "question": "Which construction helpers are most visible in our autumn community?",
+            "question": "Quelles personnes aidantes pour la construction sont les plus visibles dans notre communauté automnale?",
             "ifYes": "Highlight road crews, building maintenance, and autumn preparation workers",
             "ifNo": "Use photos to introduce variety of construction helpers and explain their community contributions"
           }
@@ -956,12 +1024,12 @@
         "visualSupports": "Service action demonstrations, citizen pride gestures, community impact expressions",
         "decisionPoints": [
           {
-            "question": "What are realistic ways Grade 1 students can help their community?",
+            "question": "Quelles sont les façons réalistes pour les élèves de 1re année d'aider leur communauté?",
             "ifYes": "Focus on simple actions: not littering, being kind to neighbors, helping elderly, thanking helpers",
             "ifNo": "Brainstorm with students and provide examples of age-appropriate community contributions"
           },
           {
-            "question": "Should we focus on individual actions or group community projects?",
+            "question": "Devrions-nous nous concentrer sur les actions individuelles ou les projets communautaires de groupe?",
             "ifYes": "Include both individual kindness actions and simple group projects like card-making for helpers",
             "ifNo": "Focus on individual actions students can take immediately in their daily community interactions"
           }
@@ -1012,7 +1080,18 @@
           "directional gesture demonstrations"
         ],
         "visualSupports": "Directional pointing, map-reading gestures, location identification expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si difficulté avec les concepts de carte → commencer par la classe comme carte",
+            "ifYes": "Montrer comment la classe est une 'carte' - où sont les bureaux, la porte, les centres",
+            "ifNo": "Construire sur leur connaissance des lieux familiers pour créer des cartes communautaires"
+          },
+          {
+            "question": "Si confus avec 'lieux importants' → donner exemples concrets de l'Île",
+            "ifYes": "Nommer: magasin, pompiers, école, parc - lieux où les familles vont souvent",
+            "ifNo": "Encourager les élèves à identifier leurs lieux préférés dans la communauté"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1027,12 +1106,12 @@
         "visualSupports": "Map-making motions, spatial organization gestures, community pride expressions",
         "decisionPoints": [
           {
-            "question": "Should maps focus on helper locations or general community landmarks?",
+            "question": "Les cartes devraient-elles se concentrer sur les emplacements des aidants ou les points de repère communautaires généraux?",
             "ifYes": "Balance both helper workplaces and general landmarks to show complete community picture",
             "ifNo": "Focus on helper locations while including key landmarks that students recognize"
           },
           {
-            "question": "What map-making tools are appropriate for Grade 1 students?",
+            "question": "Quels outils de création de cartes sont appropriés pour les élèves de 1re année?"
             "ifYes": "Use simple symbols, stickers, and drawing tools that allow creative but clear map-making",
             "ifNo": "Provide templates with some pre-drawn elements that students can add to and personalize"
           }
@@ -1044,7 +1123,13 @@
         "activity": "Map sharing circle where students show their community maps and practice describing locations with 'Sur ma carte, je vois...'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si hésitation à présenter leur carte → offrir soutien par paires",
+            "ifYes": "Permettre de présenter avec un ami ou pointer vers leur carte sans parler",
+            "ifNo": "Célébrer toutes les créations cartographiques et encourager la fierté communautaire"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1139,12 +1224,12 @@
         "visualSupports": "Artistic demonstration techniques, detailed observation gestures, creative expression encouragement",
         "decisionPoints": [
           {
-            "question": "Should students choose their favorite helper or draw multiple helpers?",
+            "question": "Les élèves devraient-ils choisir leur aidant préféré ou dessiner plusieurs aidants?",
             "ifYes": "Allow choice of favorite helper to ensure personal connection and artistic motivation",
             "ifNo": "Assign specific helpers to ensure variety across classroom while allowing artistic interpretation"
           },
           {
-            "question": "What art materials will help students best express their appreciation?",
+            "question": "Quels matériaux artistiques aideront les élèves à mieux exprimer leur appréciation?",
             "ifYes": "Provide variety of materials so students can choose tools that match their artistic vision",
             "ifNo": "Use consistent art materials to focus on content creation rather than material choice"
           }
@@ -1250,12 +1335,12 @@
         "visualSupports": "Role-specific actions and movements, community interaction demonstrations, helper service expressions",
         "decisionPoints": [
           {
-            "question": "Which helper roles are most engaging and appropriate for Grade 1 role-play?",
+            "question": "Quels rôles d'aidants sont les plus engageants et appropriés pour les jeux de rôle de 1re année?",
             "ifYes": "Focus on active, visible helpers like firefighters, teachers, store workers, safety helpers",
             "ifNo": "Include variety of helpers and let students explore different roles throughout activity"
           },
           {
-            "question": "Should students choose their own roles or rotate through different helpers?",
+            "question": "Les élèves devraient-ils choisir leurs propres rôles ou faire une rotation à travers différents aidants?",
             "ifYes": "Allow role choice to ensure engagement while encouraging some role rotation for variety",
             "ifNo": "Assign roles to ensure variety and give all students opportunity to explore different helpers"
           }
@@ -1361,12 +1446,12 @@
         "visualSupports": "Writing demonstration techniques, gratitude expression examples, letter completion celebrations",
         "decisionPoints": [
           {
-            "question": "Which community helpers should receive student thank you letters?",
+            "question": "Quelles personnes aidantes de la communauté devraient recevoir des lettres de remerciement des élèves?",
             "ifYes": "Target helpers students have met or observed, like school helpers, local store workers, safety helpers",
             "ifNo": "Choose variety of helpers to represent different types of community service students have learned about"
           },
           {
-            "question": "What writing level is appropriate for Grade 1 thank you letters?",
+            "question": "Quel niveau d'écriture est approprié pour les lettres de remerciement de 1re année?",
             "ifYes": "Support simple sentences, drawings, and dictated messages that express genuine appreciation",
             "ifNo": "Provide templates with starter phrases that students can complete with specific appreciation details"
           }
@@ -1472,12 +1557,12 @@
         "visualSupports": "Celebration preparation actions, appreciation demonstration techniques, festive community expressions",
         "decisionPoints": [
           {
-            "question": "Should we invite real community helpers to our celebration?",
+            "question": "Devrions-nous inviter de vraies personnes aidantes de la communauté à notre célébration?",
             "ifYes": "Invite available local helpers to attend and receive student appreciation in person",
             "ifNo": "Create celebration that honors helpers symbolically and prepares students to express appreciation in community"
           },
           {
-            "question": "What type of celebration activities would best honor community helpers?",
+            "question": "Quel type d'activités de célébration honorerait le mieux les personnes aidantes de la communauté?",
             "ifYes": "Include appreciation speeches, thank you art displays, helper role demonstrations, and gratitude expressions",
             "ifNo": "Focus on student-led appreciation activities that demonstrate learning and genuine gratitude"
           }
@@ -1582,12 +1667,12 @@
         "visualSupports": "Reflection demonstration techniques, learning celebration gestures, community pride expressions",
         "decisionPoints": [
           {
-            "question": "How do we help students articulate what they've learned about community?",
+            "question": "Comment aidons-nous les élèves à articuler ce qu'ils ont appris sur la communauté?",
             "ifYes": "Use specific prompts about favorite helpers, most interesting discoveries, and personal community connections",
             "ifNo": "Provide sentence starters and visual prompts to help students express learning and community understanding"
           },
           {
-            "question": "Should reflection focus on helper appreciation or student community belonging?",
+            "question": "La réflexion devrait-elle se concentrer sur l'appréciation des aidants ou le sentiment d'appartenance communautaire des élèves?"
             "ifYes": "Balance both helper appreciation and student recognition of their own community membership and contribution potential",
             "ifNo": "Focus primarily on student community belonging while acknowledging helper learning throughout unit"
           }

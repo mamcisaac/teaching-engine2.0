@@ -22,7 +22,10 @@
         "activity": "Chanson de bienvenue et question du jour : 'Qu'avez-vous mangé ce matin?'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si différences culturelles dans les repas → célébrer la diversité alimentaire",
+          "Si élève n'a pas déjeuné → adapter sans jugement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -30,7 +33,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si vocabulaire trop complexe → utiliser gestes et images simples"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -73,7 +78,10 @@
         "activity": "Révision avec la chanson de la nutrition et question : 'Comment vous sentez-vous dans votre ventre maintenant?'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève mal à l'aise de partager → respecter la confidentialité corporelle",
+          "Si horaires de repas différents → normaliser diverses routines familiales"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -81,7 +89,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève montre des signes d'inconfort corporel → offrir pause et soutien"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -124,7 +134,10 @@
         "activity": "Chanson des couleurs et révision des signaux du corps",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève mentionne aliments 'interdits' → rediriger vers équilibre et modération",
+          "Si daltonisme ou difficultés visuelles → adapter avec textures et formes"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -132,7 +145,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si références aux 'mauvais aliments' → reformuler positivement"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -175,7 +190,10 @@
         "activity": "Révision de l'arc-en-ciel alimentaire et devinettes avec des indices sur des fruits/légumes",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève n'aime pas certains fruits/légumes → valider les préférences individuelles",
+          "Si allergies alimentaires mentionnées → adapter exemples selon besoins"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -183,7 +201,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si restrictions alimentaires → inclure alternatives appropriées"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -191,7 +211,9 @@
         "activity": "Cercle de dégustation : goûter un petit morceau de fruit et légume nouveaux",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève refuse de goûter → respecter le choix sans pression"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -226,7 +248,10 @@
         "activity": "Révision fruits/légumes avec un jeu de mémoire et introduction énergique avec des sauts",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si régimes sans gluten mentionnés → inclure options alternatives",
+          "Si différents types de céréales culturelles → célébrer la diversité"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -234,7 +259,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si besoins énergétiques individuels différents → adapter selon les activités"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -277,7 +304,9 @@
         "activity": "Révision énergique des céréales et introduction en touchant nos os (bras, jambes)",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si intolérance au lactose → présenter alternatives comme lait d'amande"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -285,7 +314,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si choix alimentaires familiaux différents → respecter toutes les options"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -328,7 +359,9 @@
         "activity": "Révision des os forts et flexion des muscles pour introduire les protéines",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si familles végétariennes → inclure sources de protéines végétales"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -336,7 +369,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si restrictions religieuses alimentaires → adapter exemples respectueusement"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -379,7 +414,9 @@
         "activity": "Révision de tous les groupes alimentaires et question : 'Qu'est-ce qui n'est pas de la nourriture mais est essentiel?'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si préférences de boissons variées → valider l'eau comme choix principal"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -430,7 +467,9 @@
         "activity": "Révision de l'hydratation en buvant un peu d'eau, puis stretching matinal",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si limitations physiques → adapter mouvements selon capacités individuelles"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -438,7 +477,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si niveaux d'énergie différents → encourager participation selon capacités"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -481,7 +522,9 @@
         "activity": "Révision de la routine d'exercice personnelle et échauffement collectif",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si équipements adaptatifs nécessaires → inclure options pour tous"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -489,7 +532,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si préférences de jeux différentes → offrir plusieurs options simultanément"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -532,7 +577,9 @@
         "activity": "Révision des jeux actifs avec des étirements doux, puis transition vers le calme",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si routines de sommeil familiales différentes → respecter diversité culturelle"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -583,7 +630,9 @@
         "activity": "Révision du sommeil réparateur et observation de nos mains",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si problèmes de motricité fine → adapter techniques de lavage"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -634,7 +683,9 @@
         "activity": "Révision du lavage des mains avec la chanson et introduction de l'hygiène complète",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si pratiques d'hygiène culturelles différentes → valider approches familiales"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -642,7 +693,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si besoins spéciaux d'hygiène → adapter routine individuellement"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -685,7 +738,9 @@
         "activity": "Révision de l'hygiène en se lavant les mains avant de manipuler de la nourriture",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si allergies alimentaires sévères → adapter activité selon sécurité"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -693,7 +748,9 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si habiletés de préparation variées → offrir soutien selon besoins"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -736,7 +793,9 @@
         "activity": "Révision des collations santé et transformation en chefs avec tabliers",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si allergies aux fruits → substituer ingrédients sûrs"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -827,7 +886,9 @@
         "activity": "Révision de l'expérience de chef et transformation de la classe en restaurant",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si confort avec jeu de rôle varie → adapter participation selon préférences"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1100,7 +1161,9 @@
         "activity": "Révision de l'enquête nutritionnelle et introduction au jardinage comme source d'aliments",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si allergies environnementales → adapter matériaux de jardinage"
+        ],
         "movementBreaks": []
       },
       "main": {

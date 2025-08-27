@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Impression et motifs",
   "subject": "Arts visuels",
   "grade": "1",
   "totalLessons": 20,
@@ -9,48 +9,1032 @@
     {
       "lessonNumber": 1,
       "lessonType": "core",
-      "title": "",
-      "oneGoal": "",
+      "title": "Découverte des impressions",
+      "oneGoal": "Nous allons explorer les concepts d'impression et de motif dans notre environnement",
       "duration": 45,
-      "keyVocabulary": [],
+      "keyVocabulary": ["impression", "motif", "tampon", "répétition"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "activity": "Observer des motifs dans la classe et la nature",
+        "materials": ["Objets avec motifs", "Loupe", "Images"],
+        "visualSupports": "Exemples visuels de motifs",
+        "decisionPoints": [
+          "Si curiosité élevée → laisser plus de temps pour observer",
+          "Si difficulté à identifier motifs → pointer des exemples concrets"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Première exploration avec tampons simples",
+        "materials": ["Bouchons", "Peinture tempera", "Papier"],
+        "visualSupports": "Démonstration étape par étape",
+        "decisionPoints": [
+          "Si frustration avec technique → démontrer lentement",
+          "Si créativité débordante → encourager expérimentation",
+          "Si perfectionnisme → rappeler que surprises font partie de l'art"
+        ],
+        "movementBreaks": ["Pause pour laver les mains"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
+        "activity": "Partage des premières créations",
+        "materials": ["Œuvres des élèves"],
+        "visualSupports": "Espace d'exposition temporaire",
+        "decisionPoints": [
+          "Si élèves veulent continuer → permettre finition calme"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Contrôle de la pression du tampon",
+        "then": "Démontrer technique de tamponnage léger"
+      },
+      "realWorldConnection": "Les motifs dans nos vêtements et maison",
+      "differentiation": {
+        "forStruggling": ["Tampons plus gros", "Peinture plus épaisse"],
+        "forAdvanced": ["Défis de motifs complexes"],
+        "forELL": ["Vocabulaire visuel"],
+        "forIEP": ["Support individuel"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Participe à l'exploration", "Identifie des motifs"],
+        "checkpoints": ["Première utilisation de tampon"]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Mes premiers tampons",
+      "oneGoal": "Nous apprenons à créer des impressions avec des objets du quotidien",
+      "duration": 45,
+      "keyVocabulary": ["bouchon", "éponge", "texture", "pression"],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration tactile d'objets tampons",
+        "materials": ["Bouchons variés", "Éponges", "Objets texturés"],
+        "visualSupports": "Collection d'objets organisée",
+        "decisionPoints": [
+          "Si fascination tactile → permettre exploration prolongée",
+          "Si réticence à toucher → proposer alternatives"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création avec tampons du quotidien",
+        "materials": ["Objets variés", "Peinture", "Papier grand format"],
+        "visualSupports": "Techniques de pression montrées",
+        "decisionPoints": [
+          "Si mélange de couleurs non planifié → célébrer découverte",
+          "Si comparaison entre élèves → rediriger vers processus personnel"
+        ],
+        "movementBreaks": ["Rotation des stations"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie silencieuse - observation des créations",
+        "materials": ["Toutes les œuvres"],
+        "visualSupports": "Disposition en galerie",
+        "decisionPoints": [
+          "Si commentaires négatifs → recentrer sur les découvertes"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Choix d'objets appropriés",
+        "then": "Guider vers objets plus faciles à manipuler"
+      },
+      "realWorldConnection": "Objets utiles de la maison peuvent devenir art",
+      "differentiation": {
+        "forStruggling": ["Objets faciles à tenir", "Couleurs contrastantes"],
+        "forAdvanced": ["Combinaisons de tampons"],
+        "forELL": ["Noms d'objets en français"],
+        "forIEP": ["Aide pour tenir objets"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Contrôle moteur amélioré", "Choix délibérés"],
+        "checkpoints": ["Utilisation variée d'objets"]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core", 
+      "title": "Impressions de la nature",
+      "oneGoal": "Nous découvrons comment la nature nous offre des tampons magnifiques",
+      "duration": 45,
+      "keyVocabulary": ["feuille", "branche", "texture naturelle", "nervures"],
+      "opening": {
+        "duration": 8,
+        "activity": "Collection et observation d'éléments naturels",
+        "materials": ["Feuilles", "Fleurs", "Branches", "Loupes"],
+        "visualSupports": "Collection organisée par textures",
+        "decisionPoints": [
+          "Si découvertes excitantes → laisser temps pour partager",
+          "Si allergies saisonnières → alternatives disponibles"
+        ],
+        "movementBreaks": ["Sortie rapide pour collecter"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Impression avec éléments naturels",
+        "materials": ["Matériaux naturels", "Peinture", "Papier fin"],
+        "visualSupports": "Technique de pression douce montrée",
+        "decisionPoints": [
+          "Si éléments fragiles → montrer pression très légère",
+          "Si émerveillement devant résultats → encourager observation détaillée"
+        ],
+        "movementBreaks": ["Changement de matériaux naturels"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Création d'un mur de la nature",
+        "materials": ["Œuvres", "Espace d'affichage"],
+        "visualSupports": "Organisation thématique",
+        "decisionPoints": [
+          "Si fierté évidente → célébrer connexion nature-art"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Éléments qui se cassent",
+        "then": "Fournir alternatives plus solides"
+      },
+      "realWorldConnection": "Art inspiré par la nature autour de nous",
+      "differentiation": {
+        "forStruggling": ["Éléments plus robustes"],
+        "forAdvanced": ["Combinaisons créatives"],
+        "forELL": ["Vocabulaire de la nature"],
+        "forIEP": ["Support pour manipuler"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Connexion avec nature", "Délicatesse technique"],
+        "checkpoints": ["Appréciation textures naturelles"]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Création de motifs simples",
+      "oneGoal": "Nous apprenons comment la répétition crée des motifs beaux",
+      "duration": 45,
+      "keyVocabulary": ["répétition", "ligne", "colonne", "organisation"],
+      "opening": {
+        "duration": 8,
+        "activity": "Observation de motifs répétitifs simples",
+        "materials": ["Exemples de motifs", "Objets à motifs"],
+        "visualSupports": "Motifs clairs et organisés",
+        "decisionPoints": [
+          "Si confusion sur répétition → démontrer avec gestes",
+          "Si compréhension rapide → défier avec motifs plus complexes"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de premiers motifs organisés",
+        "materials": ["Tampons identiques", "Peinture", "Grille guide"],
+        "visualSupports": "Guide de répétition visuelle",
+        "decisionPoints": [
+          "Si perte du motif → rappeler pattern avec gestes",
+          "Si innovation spontanée → encourager nouvelle direction"
+        ],
+        "movementBreaks": ["Rotation pour voir d'autres motifs"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Découverte des motifs des autres",
+        "materials": ["Œuvres complétées"],
+        "visualSupports": "Comparaison respectueuse",
+        "decisionPoints": [
+          "Si émerveillement devant diversité → prolonger observation"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Maintien de l'organisation",
+        "then": "Utiliser guide physique ou marqueurs"
+      },
+      "realWorldConnection": "Motifs sur nos vêtements et décorations",
+      "differentiation": {
+        "forStruggling": ["Grilles plus grandes", "Guides physiques"],
+        "forAdvanced": ["Motifs avec variations"],
+        "forELL": ["Vocabulaire spatial"],
+        "forIEP": ["Support organisationnel"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Compréhension répétition", "Organisation spatiale"],
+        "checkpoints": ["Premier motif intentionnel"]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Motifs géométriques", 
+      "oneGoal": "Nous explorons les formes géométriques pour créer des motifs ordonnés",
+      "duration": 45,
+      "keyVocabulary": ["cercle", "carré", "triangle", "géométrique"],
+      "opening": {
+        "duration": 8,
+        "activity": "Chasse aux formes dans la classe",
+        "materials": ["Formes découpées", "Objets géométriques"],
+        "visualSupports": "Collection de formes organisée",
+        "decisionPoints": [
+          "Si excitation de découverte → temps additionnel pour chercher",
+          "Si difficulté identification → revenir aux formes de base"
+        ],
+        "movementBreaks": ["Mouvement pour chercher formes"]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de motifs avec formes géométriques",
+        "materials": ["Tampons formes", "Peinture", "Papier quadrillé"],
+        "visualSupports": "Exemples de combinations",
+        "decisionPoints": [
+          "Si complexité croissante naturelle → soutenir progression",
+          "Si frustration avec précision → rappeler beauté de l'imperfect"
+        ],
+        "movementBreaks": ["Changement de station formes"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Mathématiques dans l'art - compter les formes",
+        "materials": ["Œuvres terminées"],
+        "visualSupports": "Focus sur patterns mathématiques",
+        "decisionPoints": [
+          "Si connexion math-art évidente → explorer davantage"
+        ],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Precision géométrique",
+        "then": "Encourager expression personnelle des formes"
+      },
+      "realWorldConnection": "Formes géométriques dans architecture et design",
+      "differentiation": {
+        "forStruggling": ["Formes plus grandes", "Moins de variété"],
+        "forAdvanced": ["Combinaisons complexes"],
+        "forELL": ["Noms des formes répétés"],
+        "forIEP": ["Guides tactiles"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Reconnaissance formes", "Organisation systématique"],
+        "checkpoints": ["Motif géométrique intentionnel"]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Couleurs et contrastes",
+      "oneGoal": "Nous découvrons comment les couleurs rendent nos motifs plus expressifs",
+      "duration": 45,
+      "keyVocabulary": ["couleur", "contraste", "vif", "doux"],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration des couleurs primaires",
+        "materials": ["Peintures primaires", "Roue des couleurs simple"],
+        "visualSupports": "Couleurs organisées clairement",
+        "decisionPoints": [
+          "Si fascination couleurs → permettre exploration libre"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Motifs avec contrastes de couleurs",
+        "materials": ["Tampons", "Couleurs contrastantes"],
+        "visualSupports": "Exemples de contrastes",
+        "decisionPoints": [
+          "Si mélange couleurs imprévu → célébrer nouvelles découvertes"
+        ],
+        "movementBreaks": ["Rotation stations couleurs"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie des contrastes",
+        "materials": ["Œuvres colorées"],
+        "visualSupports": "Organisation par contrastes",
         "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Mélange non désiré de couleurs",
+        "then": "Montrer nettoyage entre couleurs"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Couleurs dans la nature et nos vêtements",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Moins de couleurs à la fois"],
+        "forAdvanced": ["Nuances et mélanges"],
+        "forELL": ["Noms des couleurs"],
+        "forIEP": ["Couleurs très contrastées"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Choix de couleurs", "Compréhension contraste"],
+        "checkpoints": ["Utilisation intentionnelle couleurs"]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Textures et impressions",
+      "oneGoal": "Nous explorons comment différentes textures créent des impressions uniques",
+      "duration": 45,
+      "keyVocabulary": ["texture", "rugueux", "lisse", "sensation"],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration tactile de matériaux texturés",
+        "materials": ["Matériaux variés", "Tissu", "Papier sablé"],
+        "visualSupports": "Organisation par textures",
+        "decisionPoints": [
+          "Si réticence tactile → respecter et offrir alternatives"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Impression avec matériaux texturés",
+        "materials": ["Objets texturés", "Rouleau", "Encre"],
+        "visualSupports": "Démonstration technique rouleau",
+        "decisionPoints": [
+          "Si surprise des résultats → encourager expérimentation continue"
+        ],
+        "movementBreaks": ["Changement matériaux"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Deviner les textures utilisées",
+        "materials": ["Œuvres terminées"],
+        "visualSupports": "Jeu d'observation",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Technique du rouleau",
+        "then": "Démonstration individuelle"
+      },
+      "realWorldConnection": "Textures dans notre environnement quotidien",
+      "differentiation": {
+        "forStruggling": ["Matériaux plus faciles"],
+        "forAdvanced": ["Combinaisons de textures"],
+        "forELL": ["Vocabulaire tactile"],
+        "forIEP": ["Support sensoriel"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Exploration sensorielle", "Technique développée"],
+        "checkpoints": ["Choix délibéré de textures"]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Motifs narratifs",
+      "oneGoal": "Nous apprenons à créer des motifs qui racontent une histoire",
+      "duration": 45,
+      "keyVocabulary": ["histoire", "séquence", "début", "fin"],
+      "opening": {
+        "duration": 8,
+        "activity": "Histoire simple avec motifs",
+        "materials": ["Livre illustré", "Exemples motifs narratifs"],
+        "visualSupports": "Images séquentielles",
+        "decisionPoints": [
+          "Si engagement élevé dans histoire → prolonger narration"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de motif qui raconte",
+        "materials": ["Tampons thématiques", "Papier long"],
+        "visualSupports": "Exemple de progression narrative",
+        "decisionPoints": [
+          "Si histoire complexe émerge → soutenir développement"
+        ],
+        "movementBreaks": ["Changement tampons thématiques"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Partage des histoires en motifs",
+        "materials": ["Œuvres narratives"],
+        "visualSupports": "Espace de présentation",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Séquence logique",
+        "then": "Simplifier à début-milieu-fin"
+      },
+      "realWorldConnection": "Histoires dans l'art et les décorations",
+      "differentiation": {
+        "forStruggling": ["Histoire plus simple"],
+        "forAdvanced": ["Histoires complexes"],
+        "forELL": ["Support narratif visuel"],
+        "forIEP": ["Séquences courtes"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Pensée séquentielle", "Expression créative"],
+        "checkpoints": ["Motif avec intention narrative"]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Impression collective",
+      "oneGoal": "Nous créons ensemble une grande œuvre avec nos motifs",
+      "duration": 45,
+      "keyVocabulary": ["ensemble", "collaboration", "grand", "unité"],
+      "opening": {
+        "duration": 8,
+        "activity": "Planification de l'œuvre collective",
+        "materials": ["Grand papier", "Crayons planning"],
+        "visualSupports": "Esquisse du projet commun",
+        "decisionPoints": [
+          "Si désaccords sur design → faciliter compromis créatif"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création collaborative par sections",
+        "materials": ["Tampons partagés", "Peintures communes"],
+        "visualSupports": "Plan de travail visible",
+        "decisionPoints": [
+          "Si territoire artistique → rappeler esprit collaboratif"
+        ],
+        "movementBreaks": ["Rotation des sections"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Célébration de l'œuvre commune",
+        "materials": ["Œuvre complétée"],
+        "visualSupports": "Présentation solennelle",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Partage des matériaux",
+        "then": "Système de rotation organisé"
+      },
+      "realWorldConnection": "Art communautaire et murales",
+      "differentiation": {
+        "forStruggling": ["Section plus simple"],
+        "forAdvanced": ["Responsabilité coordination"],
+        "forELL": ["Collaboration non-verbale"],
+        "forIEP": ["Rôle adapté aux capacités"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Collaboration positive", "Contribution personnelle"],
+        "checkpoints": ["Participation à œuvre collective"]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Techniques mixtes",
+      "oneGoal": "Nous combinons l'impression avec d'autres techniques artistiques",
+      "duration": 45,
+      "keyVocabulary": ["mélanger", "combiner", "crayon", "collage"],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration de techniques artistiques connues",
+        "materials": ["Crayons", "Pastels", "Papier collage"],
+        "visualSupports": "Station multi-techniques",
+        "decisionPoints": [
+          "Si hésitation technique → encourager expérimentation"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création avec techniques combinées",
+        "materials": ["Tout matériel disponible"],
+        "visualSupports": "Exemples de combinaisons",
+        "decisionPoints": [
+          "Si innovation technique → documenter découverte"
+        ],
+        "movementBreaks": ["Rotation libre entre techniques"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Exposition techniques mixtes",
+        "materials": ["Œuvres variées"],
+        "visualSupports": "Organisation par techniques",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Trop de choix techniques",
+        "then": "Limiter à 2-3 techniques maximum"
+      },
+      "realWorldConnection": "Artistes utilisent plusieurs techniques",
+      "differentiation": {
+        "forStruggling": ["Techniques familières"],
+        "forAdvanced": ["Défis techniques complexes"],
+        "forELL": ["Techniques universelles"],
+        "forIEP": ["Techniques adaptées capacités"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Intégration techniques", "Créativité développée"],
+        "checkpoints": ["Combinaison réussie techniques"]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Motifs de saisons", 
+      "oneGoal": "Nous créons des motifs inspirés par l'hiver qui nous entoure",
+      "duration": 45,
+      "keyVocabulary": ["hiver", "flocon", "froid", "blanc"],
+      "opening": {
+        "duration": 8,
+        "activity": "Observation de l'hiver par la fenêtre",
+        "materials": ["Fenêtre", "Images hivernales"],
+        "visualSupports": "Éléments hivernaux identifiés",
+        "decisionPoints": [
+          "Si observation riche → prolonger connexion saisonnière"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création de motifs hivernaux",
+        "materials": ["Tampons flocons", "Peinture blanche et bleue"],
+        "visualSupports": "Palette hivernale",
+        "decisionPoints": [
+          "Si couleurs non-traditionnelles → accepter interprétation créative"
+        ],
+        "movementBreaks": ["Observation extérieure"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Forêt d'hiver collective",
+        "materials": ["Toutes œuvres hivernales"],
+        "visualSupports": "Installation saisonnière",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Inspiration hivernale",
+        "then": "Proposer éléments concrets observables"
+      },
+      "realWorldConnection": "Art inspiré par les saisons",
+      "differentiation": {
+        "forStruggling": ["Motifs hivernaux simples"],
+        "forAdvanced": ["Paysages hivernaux complexes"],
+        "forELL": ["Vocabulaire saisonnier"],
+        "forIEP": ["Support observation"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Connexion saisonnière", "Choix thématiques"],
+        "checkpoints": ["Motifs inspirés saison"]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Auto-évaluation artistique",
+      "oneGoal": "Nous réfléchissons sur nos créations et notre progression artistique",
+      "duration": 45,
+      "keyVocabulary": ["réflexion", "progrès", "fier", "améliorer"],
+      "opening": {
+        "duration": 8,
+        "activity": "Revue de portfolio personnel",
+        "materials": ["Portfolios élèves", "Œuvres précédentes"],
+        "visualSupports": "Organisation chronologique",
+        "decisionPoints": [
+          "Si émotion forte face progrès → honorer moment"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Auto-évaluation guidée avec images",
+        "materials": ["Fiche d'auto-évaluation visuelle"],
+        "visualSupports": "Échelle visuelle simple",
+        "decisionPoints": [
+          "Si auto-critique sévère → rediriger vers positif"
+        ],
+        "movementBreaks": ["Partage en pairs"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Célébration des progressions",
+        "materials": ["Certificats de progrès"],
+        "visualSupports": "Rituel de célébration",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Auto-évaluation négative",
+        "then": "Guider vers aspects réussis spécifiques"
+      },
+      "realWorldConnection": "Importance de réfléchir sur nos apprentissages",
+      "differentiation": {
+        "forStruggling": ["Évaluation très guidée"],
+        "forAdvanced": ["Réflexion plus nuancée"],
+        "forELL": ["Support visuel évaluation"],
+        "forIEP": ["Évaluation adaptée"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Capacité réflexive", "Reconnaissance progrès"],
+        "checkpoints": ["Auto-évaluation complétée"]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Préparation d'exposition",
+      "oneGoal": "Nous préparons nos œuvres pour les partager avec fierté",
+      "duration": 45,
+      "keyVocabulary": ["exposition", "présenter", "cadre", "étiquette"],
+      "opening": {
+        "duration": 8,
+        "activity": "Visite d'une vraie galerie (photos)",
+        "materials": ["Photos galeries", "Exemples présentations"],
+        "visualSupports": "Standards professionnels adaptés",
+        "decisionPoints": [
+          "Si émerveillement face art professionnel → connecter à leurs œuvres"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Préparation physique des œuvres",
+        "materials": ["Cadres simples", "Étiquettes", "Matériaux montage"],
+        "visualSupports": "Étapes de présentation",
+        "decisionPoints": [
+          "Si perfectionnisme montage → rappeler beauté de l'effort"
+        ],
+        "movementBreaks": ["Installation active"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Répétition de présentation orale",
+        "materials": ["Œuvres préparées"],
+        "visualSupports": "Phrases modèles simples",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Anxiété de présentation",
+        "then": "Rassurer et pratiquer en petit groupe"
+      },
+      "realWorldConnection": "Artistes exposent leurs œuvres",
+      "differentiation": {
+        "forStruggling": ["Montage assisté"],
+        "forAdvanced": ["Responsabilités curatoriales"],
+        "forELL": ["Présentation simple"],
+        "forIEP": ["Rôle adapté exposition"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Préparation soignée", "Fierté évidente"],
+        "checkpoints": ["Œuvre prête pour exposition"]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Partage et célébration",
+      "oneGoal": "Nous célébrons nos créations et notre parcours artistique",
+      "duration": 45,
+      "keyVocabulary": ["célébrer", "partager", "applaudir", "artiste"],
+      "opening": {
+        "duration": 8,
+        "activity": "Inauguration solennelle de l'exposition",
+        "materials": ["Exposition installée", "Ruban cérémoniel"],
+        "visualSupports": "Ambiance galerie créée",
+        "decisionPoints": [
+          "Si émotion collective forte → honorer moment spécial"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Présentation par les artistes élèves",
+        "materials": ["Œuvres exposées", "Public invité"],
+        "visualSupports": "Espace de présentation organisé",
+        "decisionPoints": [
+          "Si nervosité présentation → soutenir avec bienveillance"
+        ],
+        "movementBreaks": ["Circulation exposition"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cérémonie de reconnaissance artistique",
+        "materials": ["Certificats", "Applaudissements"],
+        "visualSupports": "Rituel de clôture",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Émotion trop intense",
+        "then": "Créer espace sécuritaire pour expression"
+      },
+      "realWorldConnection": "Art rassemble les communautés",
+      "differentiation": {
+        "forStruggling": ["Participation selon confort"],
+        "forAdvanced": ["Leadership cérémoniel"],
+        "forELL": ["Expression non-verbale"],
+        "forIEP": ["Célébration adaptée"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Fierté évidente", "Participation célébration"],
+        "checkpoints": ["Présentation réussie"]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Impressions 3D",
+      "oneGoal": "Nous explorons l'impression avec des objets tridimensionnels",
+      "duration": 45,
+      "keyVocabulary": ["3D", "dimension", "relief", "volume"],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration d'objets tridimensionnels",
+        "materials": ["Objets 3D variés", "Pâte à modeler"],
+        "visualSupports": "Collection organisée par formes",
+        "decisionPoints": [
+          "Si fascination forme → permettre exploration approfondie"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création d'impressions tridimensionnelles",
+        "materials": ["Objets 3D", "Argile", "Peinture épaisse"],
+        "visualSupports": "Technique adaptation 3D",
+        "decisionPoints": [
+          "Si innovation technique → documenter découverte"
+        ],
+        "movementBreaks": ["Exploration stations 3D"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie sculpturale",
+        "materials": ["Créations 3D"],
+        "visualSupports": "Présentation tridimensionnelle",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Complexité 3D",
+        "then": "Revenir à approches plus simples"
+      },
+      "realWorldConnection": "Sculpture et art dimensionnel",
+      "differentiation": {
+        "forStruggling": ["Objets simples"],
+        "forAdvanced": ["Compositions complexes"],
+        "forELL": ["Vocabulaire dimensionnel"],
+        "forIEP": ["Support manipulation"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Perception spatiale", "Adaptation technique"],
+        "checkpoints": ["Exploration 3D réussie"]
+      }
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension", 
+      "title": "Motifs culturels",
+      "oneGoal": "Nous découvrons des motifs de différentes cultures du monde",
+      "duration": 45,
+      "keyVocabulary": ["culture", "tradition", "monde", "différent"],
+      "opening": {
+        "duration": 8,
+        "activity": "Voyage virtuel découverte motifs culturels",
+        "materials": ["Images culturelles", "Carte du monde"],
+        "visualSupports": "Motifs organisés par origine",
+        "decisionPoints": [
+          "Si connexion personnelle culture → encourager partage"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création inspirée de motifs culturels",
+        "materials": ["Tampons inspirés", "Couleurs traditionnelles"],
+        "visualSupports": "Exemples respectueux",
+        "decisionPoints": [],
+        "movementBreaks": ["Tour du monde artistique"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Exposition multiculturelle",
+        "materials": ["Œuvres inspirées"],
+        "visualSupports": "Célébration diversité",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Respect culturel",
+        "then": "Guider vers appréciation respectueuse"
+      },
+      "realWorldConnection": "Art unit les cultures du monde",
+      "differentiation": {
+        "forStruggling": ["Une culture focus"],
+        "forAdvanced": ["Recherche culturelle"],
+        "forELL": ["Connexion culture origine"],
+        "forIEP": ["Support culturel adapté"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Ouverture culturelle", "Respect diversité"],
+        "checkpoints": ["Appréciation motifs culturels"]
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Art numérique simple",
+      "oneGoal": "Nous créons des motifs avec des outils numériques simples",
+      "duration": 45,
+      "keyVocabulary": ["numérique", "tablette", "écran", "digital"],
+      "opening": {
+        "duration": 8,
+        "activity": "Exploration d'application dessin simple",
+        "materials": ["Tablettes", "Application adaptée âge"],
+        "visualSupports": "Interface simplifiée",
+        "decisionPoints": [
+          "Si difficulté technique → support patient"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création motifs numériques",
+        "materials": ["Tablettes configurées"],
+        "visualSupports": "Aide-mémoire gestes tactiles",
+        "decisionPoints": [],
+        "movementBreaks": ["Pause écran régulière"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Partage créations numériques",
+        "materials": ["Projections œuvres"],
+        "visualSupports": "Affichage numérique",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Interface numérique",
+        "then": "Retour au physique si nécessaire"
+      },
+      "realWorldConnection": "Art numérique moderne",
+      "differentiation": {
+        "forStruggling": ["Interface très simple"],
+        "forAdvanced": ["Fonctionnalités additionnelles"],
+        "forELL": ["Icônes universelles"],
+        "forIEP": ["Support technique adapté"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Adaptation technologique", "Créativité digitale"],
+        "checkpoints": ["Motif numérique créé"]
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Impression sur textiles",
+      "oneGoal": "Nous expérimentons l'impression sur tissus",
+      "duration": 45,
+      "keyVocabulary": ["tissu", "textile", "vêtement", "permanent"],
+      "opening": {
+        "duration": 8,
+        "activity": "Observation tissus et textures",
+        "materials": ["Tissus variés", "Loupes"],
+        "visualSupports": "Collection textile organisée",
+        "decisionPoints": [
+          "Si fascination textile → temps exploration tactile"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Impression sur petits tissus",
+        "materials": ["Morceaux tissus", "Peinture textile"],
+        "visualSupports": "Technique adaptation textile",
+        "decisionPoints": [],
+        "movementBreaks": ["Séchage et rotation"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Défilé créations textiles",
+        "materials": ["Tissus imprimés"],
+        "visualSupports": "Présentation mode artistique",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Peinture textile",
+        "then": "Démonstration technique spécifique"
+      },
+      "realWorldConnection": "Design textile et mode",
+      "differentiation": {
+        "forStruggling": ["Tissus faciles"],
+        "forAdvanced": ["Techniques élaborées"],
+        "forELL": ["Vocabulaire textile"],
+        "forIEP": ["Support manipulation"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Adaptation matériel", "Créativité textile"],
+        "checkpoints": ["Impression textile réussie"]
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Motifs mathématiques",
+      "oneGoal": "Nous explorons les patterns mathématiques dans l'art",
+      "duration": 45,
+      "keyVocabulary": ["mathématiques", "compter", "suite", "logique"],
+      "opening": {
+        "duration": 8,
+        "activity": "Découverte patterns mathématiques simples",
+        "materials": ["Séquences visuelles", "Objets à compter"],
+        "visualSupports": "Patterns mathématiques clairs",
+        "decisionPoints": [
+          "Si connexion évidente → explorer patterns complexes"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création motifs avec logique mathématique",
+        "materials": ["Tampons géométriques", "Grilles"],
+        "visualSupports": "Exemples progression logique",
+        "decisionPoints": [],
+        "movementBreaks": ["Rotation stations mathématiques"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Musée mathématiques artistiques",
+        "materials": ["Motifs mathématiques créés"],
+        "visualSupports": "Organisation logique",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Logique mathématique",
+        "then": "Simplifier à patterns très basiques"
+      },
+      "realWorldConnection": "Mathématiques dans l'art et l'architecture",
+      "differentiation": {
+        "forStruggling": ["Patterns très simples"],
+        "forAdvanced": ["Séquences complexes"],
+        "forELL": ["Mathématiques universelles"],
+        "forIEP": ["Support visuel mathématique"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Pensée logique", "Application mathématique"],
+        "checkpoints": ["Pattern mathématique créé"]
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Projet final personnel",
+      "oneGoal": "Nous créons une œuvre personnelle intégrant tous nos apprentissages",
+      "duration": 45,
+      "keyVocabulary": ["personnel", "synthèse", "autonomie", "chef-d'œuvre"],
+      "opening": {
+        "duration": 8,
+        "activity": "Planification projet personnel",
+        "materials": ["Portfolio révision", "Matériaux disponibles"],
+        "visualSupports": "Guide planification simple",
+        "decisionPoints": [
+          "Si ambition trop grande → aider à réduire portée"
+        ],
+        "movementBreaks": []
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création autonome chef-d'œuvre",
+        "materials": ["Tous matériaux unité"],
+        "visualSupports": "Support technique disponible",
+        "decisionPoints": [],
+        "movementBreaks": ["Support individuel circulation"]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Présentation chefs-d'œuvre personnels",
+        "materials": ["Projets finaux"],
+        "visualSupports": "Célébration accomplissements",
+        "decisionPoints": [],
+        "movementBreaks": []
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Choix trop nombreux",
+        "then": "Guider vers techniques maîtrisées"
+      },
+      "realWorldConnection": "Artistes créent œuvres personnelles",
+      "differentiation": {
+        "forStruggling": ["Projet très guidé"],
+        "forAdvanced": ["Autonomie complète"],
+        "forELL": ["Expression personnelle universelle"],
+        "forIEP": ["Projet adapté capacités"]
+      },
+      "assessmentCriteria": {
+        "observable": ["Autonomie créative", "Synthèse apprentissages"],
+        "checkpoints": ["Chef-d'œuvre personnel complété"]
       }
     }
   ],
@@ -60,13 +1044,13 @@
         "category": "Créativité",
         "items": [
           "Démontre une compréhension de base en créativité",
-          "Participe activement aux activités de créativité",
+          "Participe activement aux activités de créativité", 
           "Montre du progrès dans créativité",
           "Applique les apprentissages de créativité dans de nouveaux contextes"
         ],
         "frequency": [
           "Pas encore",
-          "Parfois",
+          "Parfois", 
           "Souvent",
           "Toujours"
         ],
@@ -77,13 +1061,13 @@
         "items": [
           "Démontre une compréhension de base en utilisation des matériaux",
           "Participe activement aux activités de utilisation des matériaux",
-          "Montre du progrès dans utilisation des matériaux",
+          "Montre du progrès dans utilisation des matériaux", 
           "Applique les apprentissages de utilisation des matériaux dans de nouveaux contextes"
         ],
         "frequency": [
           "Pas encore",
           "Parfois",
-          "Souvent",
+          "Souvent", 
           "Toujours"
         ],
         "notes": "Observations spécifiques:"
@@ -97,7 +1081,7 @@
           "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
         ],
         "frequency": [
-          "Pas encore",
+          "Pas encore", 
           "Parfois",
           "Souvent",
           "Toujours"
@@ -105,7 +1089,7 @@
         "notes": "Observations spécifiques:"
       },
       {
-        "category": "Appréciation artistique",
+        "category": "Appréciation artistique", 
         "items": [
           "Démontre une compréhension de base en appréciation artistique",
           "Participe activement aux activités de appréciation artistique",
@@ -122,7 +1106,7 @@
       }
     ],
     "rubrics": {
-      "title": "Rubrique d'évaluation - ",
+      "title": "Rubrique d'évaluation - Impression et motifs",
       "levels": [
         {
           "level": "Émergent",
@@ -130,14 +1114,14 @@
           "description": "L'élève commence à développer les compétences",
           "criteria": [
             "Nécessite un soutien constant",
-            "Démontre une compréhension partielle",
+            "Démontre une compréhension partielle", 
             "Participe avec encouragement",
             "Essaie les nouvelles activités"
           ]
         },
         {
           "level": "En développement",
-          "emoji": "🌿",
+          "emoji": "🌿", 
           "description": "L'élève progresse vers les attentes",
           "criteria": [
             "Nécessite un soutien occasionnel",
@@ -153,14 +1137,14 @@
           "criteria": [
             "Travaille de façon autonome",
             "Démontre une compréhension solide",
-            "Participe activement et aide les autres",
+            "Participe activement et aide les autres", 
             "Applique les apprentissages de façon créative"
           ]
         }
       ],
       "focusAreas": [
         "Créativité",
-        "Utilisation des matériaux",
+        "Utilisation des matériaux", 
         "Expression personnelle",
         "Appréciation artistique"
       ]
@@ -170,7 +1154,7 @@
         "title": "Comment je me sens sur mon apprentissage",
         "options": [
           "🎨",
-          "🖌️",
+          "🖌️", 
           "✏️"
         ],
         "meanings": [
@@ -191,7 +1175,7 @@
         },
         {
           "question": "J'ai appris quelque chose de nouveau",
-          "responseType": "emoji",
+          "responseType": "emoji", 
           "options": [
             "🌟 Beaucoup!",
             "⭐ Un peu",
@@ -202,7 +1186,7 @@
           "question": "J'ai aidé un ami",
           "responseType": "emoji",
           "options": [
-            "✓ Oui",
+            "✓ Oui", 
             "~ Parfois",
             "? Non"
           ]
@@ -230,7 +1214,7 @@
       ],
       "organizationTips": [
         "Organiser par date ou par compétence",
-        "Inclure des réflexions de l'élève",
+        "Inclure des réflexions de l'élève", 
         "Ajouter des notes sur le contexte",
         "Partager régulièrement avec les familles"
       ],
@@ -243,7 +1227,7 @@
     }
   },
   "familyConnections": {
-    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en arts visuels\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\n\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nValorisez le processus créatif autant que le produit final.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Impression et motifs\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en arts visuels\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\n• Techniques d'impression avec tampons\n• Création de motifs répétitifs\n• Exploration des couleurs et textures\n• Art inspiré par la nature\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nValorisez le processus créatif autant que le produit final.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
     "homeActivities": [
       {
         "title": "Conversation quotidienne",
@@ -253,11 +1237,11 @@
         "frenchSupport": "C'est correct si votre enfant répond en anglais!"
       },
       {
-        "title": "Chasse au trésor vocabulaire",
-        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "title": "Chasse au trésor motifs",
+        "description": "Cherchez ensemble les motifs dans votre maison et environnement", 
         "timeRequired": "10-15 minutes",
-        "materials": "Liste de vocabulaire",
-        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+        "materials": "Yeux curieux!",
+        "frenchSupport": "Nommez les motifs que vous trouvez"
       },
       {
         "title": "Création artistique libre",
@@ -274,61 +1258,65 @@
         "frenchSupport": "Demandez à votre enfant d'expliquer ses œuvres"
       },
       {
-        "title": "Projet créatif familial",
-        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
-        "timeRequired": "30 minutes (optionnel)",
-        "materials": "Matériaux créatifs disponibles",
-        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+        "title": "Exploration tampons maison",
+        "description": "Découvrez des objets de la maison qui peuvent servir de tampons",
+        "timeRequired": "15 minutes",
+        "materials": "Objets sécuritaires, peinture lavable",
+        "frenchSupport": "Nommez les objets utilisés en français"
       }
     ],
-    "vocabularyList": []
+    "vocabularyList": [
+      "impression", "motif", "tampon", "répétition", "couleur", "texture", 
+      "feuille", "branche", "cercle", "carré", "triangle", "peinture"
+    ]
   },
   "resourceAlternatives": {
     "materials": {
       "lowCost": [
-        "Matériaux recyclés (boîtes, papier, carton)",
-        "Objets de la nature (feuilles, pierres, branches)",
-        "Matériaux quotidiens (boutons, pâtes, haricots)",
-        "Papier et crayons de base"
+        "Bouchons de bouteille comme tampons",
+        "Éponges découpées en formes",
+        "Objets de la nature (feuilles, branches)",  
+        "Matériaux recyclés (boîtes, tubes)"
       ],
       "noCost": [
-        "Observation de l'environnement",
-        "Discussion et partage oral",
-        "Mouvements et gestes",
-        "Jeux d'imagination"
+        "Observation de motifs dans l'environnement",
+        "Création de tampons avec doigts",
+        "Dessin de motifs sans matériel", 
+        "Mouvements corporels répétitifs"
       ],
       "digital": [
-        "Applications éducatives gratuites",
-        "Vidéos éducatives en ligne",
-        "Livres numériques de la bibliothèque",
-        "Jeux éducatifs en ligne"
+        "Applications de dessin simples",
+        "Photos de motifs naturels",
+        "Vidéos techniques d'impression",
+        "Galeries d'art virtuelles"
       ]
     },
     "digitalResources": [
       {
         "type": "Sites web éducatifs",
         "examples": [
-          "Radio-Canada Jeunesse",
-          "TFO Éducation",
-          "Bibliothèque numérique locale"
+          "Radio-Canada Jeunesse - arts", 
+          "TFO Éducation - créativité",
+          "Bibliothèque numérique - livres d'art"
         ],
         "note": "Ressources gratuites en français"
       },
       {
-        "type": "Applications",
+        "type": "Applications créatives",
         "examples": [
-          "Applications de lecture",
-          "Jeux mathématiques",
-          "Exploration scientifique"
+          "Tux Paint (gratuit)",
+          "Aplikasi menggambar sederhana",
+          "Outils de patterns en ligne"
         ],
-        "note": "Cherchez des options gratuites"
+        "note": "Vérifier appropriateness âge"
       }
     ]
   },
   "metadata": {
-    "lastUpdated": "2025-08-22T21:43:10.366Z",
-    "version": "2.0",
-    "status": "complete",
-    "originalFormat": "unit-with-lessons"
+    "lastUpdated": "2025-08-27T19:45:00.000Z",
+    "version": "3.0", 
+    "status": "enhanced_complete",
+    "originalFormat": "unit-with-lessons",
+    "enhancementNote": "Added comprehensive 20-lesson structure with arts-focused decision points"
   }
 }

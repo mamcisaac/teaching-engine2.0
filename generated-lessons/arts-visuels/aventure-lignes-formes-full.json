@@ -81,7 +81,16 @@
           "Student pointing/gesturing allowed",
           "Visual sentence starter card"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont du mal à partager leurs découvertes de lignes",
+            "choice": "Permettre de montrer avec le doigt ou le corps plutôt que d'expliquer avec des mots"
+          },
+          {
+            "moment": "Si certains élèves comparent leurs trouvailles négativement",
+            "choice": "Rediriger vers l'unicité : chaque ligne trouvée est spéciale et différente"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -197,7 +206,16 @@
           "Performance space marked on floor",
           "Clapping for encouragement"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si l'énergie baisse après les performances",
+            "choice": "Terminer avec un mouvement de groupe calme - tous faire une ligne droite ensemble puis s'asseoir lentement"
+          },
+          {
+            "moment": "Si certains élèves sont trop excités par le mouvement",
+            "choice": "Introduire des lignes 'chuchotées' - mouvements très doux et silencieux"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -313,7 +331,16 @@
           "Paintings displayed at student height",
           "Thumbs up/down for guessing game"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves se concentrent trop sur 'deviner' l'émotion correcte",
+            "choice": "Rappeler qu'il n'y a pas de bonne réponse - chaque ligne peut exprimer différentes choses pour différentes personnes"
+          },
+          {
+            "moment": "Si certains élèves veulent garder leur peinture secrète",
+            "choice": "Respecter ce choix et permettre un partage optionnel ou en petit groupe seulement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -433,7 +460,16 @@
           "Students pointing to shape locations",
           "Body shape demonstrations"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves identifient trop d'objets à la fois",
+            "choice": "Ralentir et célébrer chaque découverte : 'Quelle forme magnifique tu as trouvée!'"
+          },
+          {
+            "moment": "Si certains élèves sont déçus de ne pas trouver toutes les formes",
+            "choice": "Les rassurer que même les artistes professionnels cherchent longtemps pour trouver les formes parfaites"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -556,7 +592,16 @@
           "Student artwork displayed",
           "Hand movement demonstrations"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves se frustrent avec les outils qui ne fonctionnent pas comme attendu",
+            "choice": "Transformer cela en exploration : 'Regardons ce que cet outil peut faire de spécial!'"
+          },
+          {
+            "moment": "Si certains élèves critiquent leurs propres créations",
+            "choice": "Rediriger vers les découvertes : 'Raconte-moi une chose nouvelle que tu as apprise sur les lignes'"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -670,7 +715,12 @@
           "Artwork displayed on desks or walls",
           "Pointing and nodding communication"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent nettoyer leurs mains trop souvent",
+            "choice": "Encourager à explorer avec 'mains colorées' un peu plus - c'est partie du processus artistique"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -788,7 +838,12 @@
           "Maps displayed in center of circle",
           "Finger tracing demonstrations"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent dessiner des personnages au lieu de se concentrer sur les lignes",
+            "choice": "Permettre quelques personnages simples mais rediriger vers l'histoire que racontent les lignes elles-mêmes"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -904,7 +959,12 @@
           "Clapping rhythms",
           "Walking presentation"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent que leurs motifs soient parfaitement identiques",
+            "choice": "Célébrer les 'accidents heureux' et les variations - c'est ce qui rend l'art fait à la main spécial"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1018,7 +1078,12 @@
           "Student artwork displayed",
           "Natural reference objects available for comparison"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves sont déçus que leurs créations ne ressemblent pas exactement à la nature",
+            "choice": "Expliquer que les artistes interprètent la nature - ils ne la copient pas exactement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1215,7 +1280,12 @@
           "Emotion reference cards",
           "Teacher demonstration of feeling-lines"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves disent ne pas savoir quoi créer",
+            "choice": "Les guider vers leurs sentiments du moment : 'Comment te sens-tu maintenant? Quelle ligne représenterait cela?'"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1238,7 +1308,12 @@
           "Quiet, respectful environment",
           "Student artwork as focus"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont du mal à mettre des mots sur leurs créations",
+            "choice": "Permettre l'expression non-verbale - gestes, sons, ou simplement tenir leur œuvre avec fierté"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1280,7 +1355,12 @@
           "Magnifying glasses",
           "One clear art example"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves trouvent les œuvres 'bizarres' ou difficiles à comprendre",
+            "choice": "Normaliser : 'Tous les arts ne nous parlent pas de la même façon - qu'est-ce qui attire ton œil?'"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1344,7 +1424,12 @@
           "All previous artwork displayed chronologically",
           "Lesson reference cards for teacher prompts"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont du mal à choisir leurs meilleures œuvres",
+            "choice": "Les rassurer que tous leurs essais sont précieux - choisir 2-3 qu'ils aiment pour des raisons différentes"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1930,7 +2015,12 @@
           "Gallery setup examples",
           "Museum behavior visual guides"
         ],
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves sont nerveux à l'idée de présenter leurs œuvres",
+            "choice": "Rassurer que chaque artiste a créé quelque chose de spécial et unique - ils peuvent simplement montrer avec fierté"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {

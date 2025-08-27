@@ -41,14 +41,14 @@
         "visualSupports": "Pointing to different family types with equal celebration, diversity hand gestures, appreciation expressions",
         "decisionPoints": [
           {
-            "question": "How comfortable are students sharing about their family structure?",
-            "ifYes": "Encourage specific sharing while maintaining privacy boundaries",
-            "ifNo": "Keep discussions general and use book examples rather than personal sharing"
+            "question": "Les élèves sont-ils à l'aise de partager leur structure familiale?",
+            "ifYes": "Encourager le partage spécifique tout en respectant la vie privée",
+            "ifNo": "Maintenir les discussions générales avec des exemples de livres"
           },
           {
-            "question": "What level of emotional support do students need when discussing family?",
-            "ifYes": "Use extra reassurance and validate all feelings about family",
-            "ifNo": "Focus on celebration and positive aspects of family diversity"
+            "question": "Quel niveau de soutien émotionnel les élèves ont-ils besoin en parlant de famille?",
+            "ifYes": "Utiliser plus de réconfort et valider tous les sentiments familiaux",
+            "ifNo": "Se concentrer sur la célébration et les aspects positifs de la diversité"
           }
         ],
         "movementBreaks": []
@@ -97,7 +97,18 @@
           "confident posture cards"
         ],
         "visualSupports": "Proud chest out posture, happy confident faces, thumbs up gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si élève inconfortable à parler de fierté familiale → respecter la réserve",
+            "ifYes": "Offrir alternatives comme dessiner ou gestes silencieux",
+            "ifNo": "Permettre l'observation sans pression de participation"
+          },
+          {
+            "question": "Si famille en difficulté actuellement → rediriger vers aspects positifs universels",
+            "ifYes": "Se concentrer sur l'amour et le soin plutôt que les circonstances",
+            "ifNo": "Utiliser des exemples généraux de fierté familiale"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -112,14 +123,14 @@
         "visualSupports": "Creative expression gestures, family love symbols, celebration movements",
         "decisionPoints": [
           {
-            "question": "How do we ensure all family structures feel valued and included?",
-            "ifYes": "Celebrate each family presentation equally with specific positive feedback",
-            "ifNo": "Focus on universal family themes like love, care, and togetherness"
+            "question": "Comment s'assurer que toutes les structures familiales se sentent valorisées?",
+            "ifYes": "Célébrer chaque présentation familiale avec des commentaires positifs spécifiques",
+            "ifNo": "Se concentrer sur les thèmes universels comme l'amour et la solidarité"
           },
           {
-            "question": "Should students draw, tell, or show photos of their families?",
-            "ifYes": "Offer multiple options and let students choose their comfort level",
-            "ifNo": "Use drawing as the main activity with optional sharing"
+            "question": "Les élèves devraient-ils dessiner, raconter ou montrer des photos?",
+            "ifYes": "Offrir plusieurs options et laisser les élèves choisir leur niveau de confort",
+            "ifNo": "Utiliser le dessin comme activité principale avec partage optionnel"
           }
         ],
         "movementBreaks": []
@@ -168,7 +179,18 @@
           "guessing game props"
         ],
         "visualSupports": "Age-appropriate movements, caring gestures, family relationship symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si confusion sur rôles familiaux non-traditionnels → clarifier avec exemples inclusifs",
+            "ifYes": "Utiliser des exemples de différentes structures familiales",
+            "ifNo": "Se concentrer sur les relations d'amour et de soin"
+          },
+          {
+            "question": "Si vocabulaire trop complexe pour certains → simplifier et gestualiser",
+            "ifYes": "Adapter le langage au niveau de compréhension",
+            "ifNo": "Utiliser plus de supports visuels et mouvements"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -183,14 +205,14 @@
         "visualSupports": "Connection gestures, relationship pointing, family bond symbols",
         "decisionPoints": [
           {
-            "question": "Which family roles are most common in our classroom community?",
-            "ifYes": "Include those roles prominently while also showing other family structures",
-            "ifNo": "Use diverse examples from books and media to show variety"
+            "question": "Quels rôles familiaux sont les plus communs dans notre classe?",
+            "ifYes": "Inclure ces rôles tout en montrant d'autres structures familiales",
+            "ifNo": "Utiliser des exemples diversifiés de livres et médias"
           },
           {
-            "question": "How do we include non-traditional family structures in our vocabulary?",
-            "ifYes": "Introduce inclusive terms like 'family member' alongside specific roles",
-            "ifNo": "Focus on universal relationship concepts like love, care, and support"
+            "question": "Comment inclure les structures familiales non-traditionnelles dans notre vocabulaire?",
+            "ifYes": "Introduire des termes inclusifs comme 'membre de la famille' avec les rôles spécifiques",
+            "ifNo": "Se concentrer sur les concepts universels comme l'amour et le soin"
           }
         ],
         "movementBreaks": []
@@ -200,7 +222,13 @@
         "activity": "Family bond celebration where students share one special thing about a family member's relationship to them.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si émotions intenses en parlant de relations familiales → offrir soutien",
+            "ifYes": "Valider les émotions et offrir un espace sécuritaire",
+            "ifNo": "Rediriger vers les aspects positifs des relations"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -254,14 +282,14 @@
         "visualSupports": "Circular motion for wheel, helping gestures, appreciation movements",
         "decisionPoints": [
           {
-            "question": "How do we present family work without reinforcing gender stereotypes?",
-            "ifYes": "Show diverse examples of who does what work and emphasize flexibility",
-            "ifNo": "Focus on the concept that everyone helps without specific task assignments"
+            "question": "Comment présenter le travail familial sans renforcer les stéréotypes de genre?",
+            "ifYes": "Montrer divers exemples de qui fait quoi et souligner la flexibilité",
+            "ifNo": "Se concentrer sur le concept que tout le monde aide sans assignations spécifiques"
           },
           {
-            "question": "Should we focus on traditional chores or emotional support roles?",
-            "ifYes": "Include both practical help and emotional support like hugs, listening, playing",
-            "ifNo": "Emphasize emotional support and care as equally important family work"
+            "question": "Devrait-on se concentrer sur les tâches traditionnelles ou le soutien émotionnel?",
+            "ifYes": "Inclure l'aide pratique et le soutien émotionnel comme les câlins, l'écoute, le jeu",
+            "ifNo": "Souligner que le soutien émotionnel et les soins sont du travail familial tout aussi important"
           }
         ],
         "movementBreaks": []
@@ -271,7 +299,13 @@
         "activity": "Family teamwork celebration where students share how their family works together as a team.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si élève se sent inadéquat dans ses contributions familiales → valoriser tous les efforts",
+            "ifYes": "Souligner que toutes les contributions, petites et grandes, sont importantes",
+            "ifNo": "Rediriger vers des exemples d'aide appropriés à l'âge"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -467,14 +501,14 @@
         "visualSupports": "Diversity gestures, celebration movements, inclusion symbols",
         "decisionPoints": [
           {
-            "question": "How do we celebrate differences without making any student feel 'different'?",
-            "ifYes": "Emphasize that diversity makes our classroom community richer and more interesting",
-            "ifNo": "Focus on common family themes while gently acknowledging variety"
+            "question": "Comment célébrer les différences sans qu'aucun élève se sente 'différent'?",
+            "ifYes": "Souligner que la diversité rend notre communauté de classe plus riche et intéressante",
+            "ifNo": "Se concentrer sur les thèmes familiaux communs tout en reconnaissant doucement la variété"
           },
           {
-            "question": "Should students share about friends' families or discuss in general terms?",
-            "ifYes": "Keep all sharing general and anonymous to protect privacy",
-            "ifNo": "Use book examples and imaginary families to explore diversity"
+            "question": "Les élèves devraient-ils partager sur les familles d'amis ou discuter en termes généraux?",
+            "ifYes": "Maintenir tous les partages généraux et anonymes pour protéger la vie privée",
+            "ifNo": "Utiliser des exemples de livres et des familles imaginaires pour explorer la diversité"
           }
         ],
         "movementBreaks": []
@@ -538,14 +572,14 @@
         "visualSupports": "Tradition gestures, celebration movements, memory symbols",
         "decisionPoints": [
           {
-            "question": "How do we include families with few established traditions or recent immigration?",
-            "ifYes": "Emphasize that new traditions can start anytime and small daily practices count",
-            "ifNo": "Focus on universal family practices like bedtime routines, meals, or weekend activities"
+            "question": "Comment inclure les familles avec peu de traditions établies ou récemment immigrées?",
+            "ifYes": "Souligner que de nouvelles traditions peuvent commencer à tout moment et que les petites pratiques quotidiennes comptent",
+            "ifNo": "Se concentrer sur les pratiques familiales universelles comme les routines du coucher, les repas ou les activités de fin de semaine"
           },
           {
-            "question": "Should we focus on holiday traditions or daily family habits?",
-            "ifYes": "Include both special occasions and daily family practices as traditions",
-            "ifNo": "Emphasize daily traditions since they're more universal and accessible"
+            "question": "Devrait-on se concentrer sur les traditions de vacances ou les habitudes quotidiennes?",
+            "ifYes": "Inclure à la fois les occasions spéciales et les pratiques familiales quotidiennes comme traditions",
+            "ifNo": "Souligner les traditions quotidiennes car elles sont plus universelles et accessibles"
           }
         ],
         "movementBreaks": []
@@ -609,14 +643,14 @@
         "visualSupports": "Celebration movements, joy expressions, family happiness symbols",
         "decisionPoints": [
           {
-            "question": "How do we include families who celebrate in quiet or non-religious ways?",
-            "ifYes": "Show that celebrations can be big or small, loud or quiet, and all are wonderful",
-            "ifNo": "Focus on universal celebration concepts like appreciation, joy, and togetherness"
+            "question": "Comment inclure les familles qui célèbrent de manière tranquille ou non-religieuse?",
+            "ifYes": "Montrer que les célébrations peuvent être grandes ou petites, bruyantes ou tranquilles, et toutes sont merveilleuses",
+            "ifNo": "Se concentrer sur les concepts universels de célébration comme l'appréciation, la joie et la connexion"
           },
           {
-            "question": "Should we focus on big celebrations or small daily moments?",
-            "ifYes": "Include both major celebrations and small daily joys like family dinners or bedtime stories",
-            "ifNo": "Emphasize small daily celebrations since they're more accessible to all families"
+            "question": "Devrait-on se concentrer sur les grandes célébrations ou les petits moments quotidiens?",
+            "ifYes": "Inclure à la fois les célébrations majeures et les petites joies quotidiennes comme les dîners familiaux ou les histoires du coucher",
+            "ifNo": "Souligner les petites célébrations quotidiennes car plus accessibles à toutes les familles"
           }
         ],
         "movementBreaks": []
@@ -626,7 +660,13 @@
         "activity": "Joy sharing circle where students share how celebrations make them feel and practice gratitude for family joy.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si famille sans grandes célébrations → valoriser les petits moments de joie",
+            "ifYes": "Aider à identifier les moments de connexion familiale comme célébrations",
+            "ifNo": "Se concentrer sur la gratitude pour la famille plutôt que des événements spécifiques"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -680,14 +720,14 @@
         "visualSupports": "Food sharing gestures, cultural appreciation movements, family meal symbols",
         "decisionPoints": [
           {
-            "question": "How do we handle students with food insecurity or dietary restrictions sensitively?",
-            "ifYes": "Focus on any positive food experiences and family meal memories, however simple",
-            "ifNo": "Emphasize the connection and love in family meals rather than specific foods"
+            "question": "Comment gérer avec sensibilité les élèves avec insécurité alimentaire ou restrictions?",
+            "ifYes": "Se concentrer sur les expériences alimentaires positives et les souvenirs de repas familiaux, même simples",
+            "ifNo": "Souligner la connexion et l'amour dans les repas familiaux plutôt que les aliments spécifiques"
           },
           {
-            "question": "Should we focus on special occasion foods or daily family meals?",
-            "ifYes": "Include both special foods and everyday family meal practices",
-            "ifNo": "Focus on everyday family meal connection since it's more universal"
+            "question": "Devrait-on se concentrer sur les aliments d'occasions spéciales ou les repas quotidiens?",
+            "ifYes": "Inclure à la fois les aliments spéciaux et les pratiques de repas familiaux quotidiens",
+            "ifNo": "Se concentrer sur la connexion des repas familiaux quotidiens car plus universelle"
           }
         ],
         "movementBreaks": []
@@ -736,7 +776,18 @@
           "safety representations"
         ],
         "visualSupports": "Home safety gestures, belonging movements, love symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si différences économiques évidentes → normaliser toutes les formes de foyer",
+            "ifYes": "Souligner que l'amour fait un foyer, pas la taille ou le luxe",
+            "ifNo": "Se concentrer sur ce qui rend un espace sécuritaire et aimant"
+          },
+          {
+            "question": "Si élève vit dans une situation de logement difficile → valoriser la famille",
+            "ifYes": "Célébrer que les familles créent le foyer par leur amour",
+            "ifNo": "Se concentrer sur les sentiments de sécurité et appartenance"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -751,14 +802,14 @@
         "visualSupports": "Home comfort gestures, family space symbols, belonging movements",
         "decisionPoints": [
           {
-            "question": "How do we discuss housing without highlighting economic differences?",
-            "ifYes": "Focus entirely on feelings of home rather than physical building characteristics",
-            "ifNo": "Emphasize that homes are about family love and safety, not size or type of building"
+            "question": "Comment discuter du logement sans souligner les différences économiques?",
+            "ifYes": "Se concentrer entièrement sur les sentiments de chez-soi plutôt que les caractéristiques physiques",
+            "ifNo": "Souligner que les foyers concernent l'amour et la sécurité familiale, pas la taille ou le type de bâtiment"
           },
           {
-            "question": "Should we focus on house types or what makes a place feel like home?",
-            "ifYes": "Focus completely on feelings, safety, love, and family connection in any space",
-            "ifNo": "Avoid discussing building types and focus on universal home feelings"
+            "question": "Devrait-on se concentrer sur les types de maisons ou ce qui fait qu'un endroit se sent comme chez soi?",
+            "ifYes": "Se concentrer complètement sur les sentiments, la sécurité, l'amour et la connexion familiale dans n'importe quel espace",
+            "ifNo": "Éviter de discuter des types de bâtiments et se concentrer sur les sentiments universels de chez-soi"
           }
         ],
         "movementBreaks": []
@@ -893,14 +944,14 @@
         "visualSupports": "Communication gestures, family connection movements, sharing symbols",
         "decisionPoints": [
           {
-            "question": "How do we include families who communicate in multiple languages?",
-            "ifYes": "Celebrate multilingual communication as a special family gift and strength",
-            "ifNo": "Focus on universal communication concepts like listening, caring, and understanding"
+            "question": "Comment inclure les familles qui communiquent en plusieurs langues?",
+            "ifYes": "Célébrer la communication multilingue comme un cadeau et une force spéciale de la famille",
+            "ifNo": "Se concentrer sur les concepts universels de communication comme l'écoute, le soin et la compréhension"
           },
           {
-            "question": "Should we focus on verbal communication or include non-verbal family communication?",
-            "ifYes": "Include talking, listening, hugs, smiles, and other ways families share feelings",
-            "ifNo": "Emphasize all forms of family communication as important and valuable"
+            "question": "Devrait-on se concentrer sur la communication verbale ou inclure la communication familiale non-verbale?",
+            "ifYes": "Inclure parler, écouter, câlins, sourires et autres façons dont les familles partagent des sentiments",
+            "ifNo": "Souligner que toutes les formes de communication familiale sont importantes et précieuses"
           }
         ],
         "movementBreaks": []
@@ -964,14 +1015,14 @@
         "visualSupports": "Web connection gestures, community building movements, contribution symbols",
         "decisionPoints": [
           {
-            "question": "How connected are students' families to the local community?",
-            "ifYes": "Build on existing connections and celebrate family community involvement",
-            "ifNo": "Focus on simple community connections like school, neighbors, or local places"
+            "question": "Dans quelle mesure les familles des élèves sont-elles connectées à la communauté locale?",
+            "ifYes": "S'appuyer sur les connexions existantes et célébrer l'implication communautaire familiale",
+            "ifNo": "Se concentrer sur des connexions communautaires simples comme l'école, les voisins ou les lieux locaux"
           },
           {
-            "question": "Should we focus on neighborhood connections or broader community involvement?",
-            "ifYes": "Include both close neighbors and broader community connections like school and local businesses",
-            "ifNo": "Focus on immediate community connections that students can observe and understand"
+            "question": "Devrait-on se concentrer sur les connexions de quartier ou l'implication communautaire plus large?",
+            "ifYes": "Inclure à la fois les voisins proches et les connexions communautaires plus larges comme l'école et les entreprises locales",
+            "ifNo": "Se concentrer sur les connexions communautaires immédiates que les élèves peuvent observer et comprendre"
           }
         ],
         "movementBreaks": []
@@ -1035,14 +1086,14 @@
         "visualSupports": "Book creation gestures, family celebration movements, story organization symbols",
         "decisionPoints": [
           {
-            "question": "What format would work best for students with different fine motor skills?",
-            "ifYes": "Offer multiple formats including drawing, dictating, photo books, or digital creation",
-            "ifNo": "Focus on simple formats that emphasize content over complex construction"
+            "question": "Quel format fonctionnerait le mieux pour les élèves avec différentes habiletés motrices fines?",
+            "ifYes": "Offrir plusieurs formats incluant le dessin, la dictée, les livres photos ou la création numérique",
+            "ifNo": "Se concentrer sur des formats simples qui mettent l'accent sur le contenu plutôt que la construction complexe"
           },
           {
-            "question": "Should books focus on current family or include family history?",
-            "ifYes": "Focus primarily on current family with option to include family history if available",
-            "ifNo": "Emphasize current family relationships and experiences students know well"
+            "question": "Les livres devraient-ils se concentrer sur la famille actuelle ou inclure l'histoire familiale?",
+            "ifYes": "Se concentrer principalement sur la famille actuelle avec option d'inclure l'histoire familiale si disponible",
+            "ifNo": "Souligner les relations familiales actuelles et les expériences que les élèves connaissent bien"
           }
         ],
         "movementBreaks": []
@@ -1146,14 +1197,14 @@
         "visualSupports": "Gallery sharing gestures, family appreciation movements, diversity celebration symbols",
         "decisionPoints": [
           {
-            "question": "How do we create a safe, celebratory atmosphere for family sharing?",
-            "ifYes": "Establish clear appreciation guidelines and model respectful, positive responses",
-            "ifNo": "Keep sharing optional and provide alternative ways for students to participate"
+            "question": "Comment créer une atmosphère sécuritaire et célébratoire pour le partage familial?",
+            "ifYes": "Établir des directives d'appréciation claires et modéliser des réponses respectueuses et positives",
+            "ifNo": "Garder le partage optionnel et offrir des façons alternatives pour les élèves de participer"
           },
           {
-            "question": "Should presentations be formal or informal, individual or small group?",
-            "ifYes": "Use informal sharing in small groups to reduce pressure and increase connection",
-            "ifNo": "Allow students to choose their comfort level for sharing"
+            "question": "Les présentations devraient-elles être formelles ou informelles, individuelles ou en petit groupe?",
+            "ifYes": "Utiliser le partage informel en petits groupes pour réduire la pression et augmenter la connexion",
+            "ifNo": "Permettre aux élèves de choisir leur niveau de confort pour le partage"
           }
         ],
         "movementBreaks": []
@@ -1257,14 +1308,14 @@
         "visualSupports": "Family interaction gestures, role-play movements, vocabulary practice symbols",
         "decisionPoints": [
           {
-            "question": "Which family scenarios would be most engaging and appropriate for role-play?",
-            "ifYes": "Focus on positive family interactions like meals, celebrations, problem-solving, and care-giving",
-            "ifNo": "Use universal family scenarios that all students can relate to and enjoy"
+            "question": "Quels scénarios familiaux seraient les plus engageants et appropriés pour le jeu de rôle?",
+            "ifYes": "Se concentrer sur les interactions familiales positives comme les repas, célébrations, résolution de problèmes et soins",
+            "ifNo": "Utiliser des scénarios familiaux universels auxquels tous les élèves peuvent s'identifier et apprécier"
           },
           {
-            "question": "Should students play their own family roles or explore different family structures?",
-            "ifYes": "Allow students to explore different family roles to build empathy and understanding",
-            "ifNo": "Let students choose whether to play familiar or unfamiliar family roles"
+            "question": "Les élèves devraient-ils jouer leurs propres rôles familiaux ou explorer différentes structures familiales?",
+            "ifYes": "Permettre aux élèves d'explorer différents rôles familiaux pour développer l'empathie et la compréhension",
+            "ifNo": "Laisser les élèves choisir s'ils veulent jouer des rôles familiaux familiers ou non-familiers"
           }
         ],
         "movementBreaks": []
@@ -1368,14 +1419,14 @@
         "visualSupports": "Writing gestures, appreciation movements, love expression symbols",
         "decisionPoints": [
           {
-            "question": "What writing level is appropriate for Grade 1 students' letter writing?",
-            "ifYes": "Support with templates, pictures, and simple words while encouraging personal expression",
-            "ifNo": "Focus on the expression of feelings rather than perfect writing mechanics"
+            "question": "Quel niveau d'écriture est approprié pour l'écriture de lettres des élèves de 1ère année?",
+            "ifYes": "Soutenir avec des modèles, images et mots simples tout en encourageant l'expression personnelle",
+            "ifNo": "Se concentrer sur l'expression des sentiments plutôt que sur la mécanique parfaite de l'écriture"
           },
           {
-            "question": "Should letters focus on gratitude, love, or sharing school learning?",
-            "ifYes": "Include appreciation, love, and sharing of school family learning",
-            "ifNo": "Focus primarily on expressing love and appreciation for family"
+            "question": "Les lettres devraient-elles se concentrer sur la gratitude, l'amour ou le partage des apprentissages scolaires?",
+            "ifYes": "Inclure l'appréciation, l'amour et le partage des apprentissages familiaux de l'école",
+            "ifNo": "Se concentrer principalement sur l'expression de l'amour et l'appréciation pour la famille"
           }
         ],
         "movementBreaks": []
@@ -1479,14 +1530,14 @@
         "visualSupports": "Celebration preparation gestures, family honor movements, diversity celebration symbols",
         "decisionPoints": [
           {
-            "question": "What type of celebration would include and honor all family structures?",
-            "ifYes": "Focus on universal family themes like love, care, support, and belonging",
-            "ifNo": "Create celebration activities that work for all family types without exclusion"
+            "question": "Quel type de célébration inclurait et honorerait toutes les structures familiales?",
+            "ifYes": "Se concentrer sur les thèmes familiaux universels comme l'amour, les soins, le soutien et l'appartenance",
+            "ifNo": "Créer des activités de célébration qui fonctionnent pour tous les types de famille sans exclusion"
           },
           {
-            "question": "Should families be invited to participate or should this be a classroom-only event?",
-            "ifYes": "Consider family availability and comfort while focusing on student celebration of families",
-            "ifNo": "Keep celebration student-focused while honoring families through student appreciation"
+            "question": "Les familles devraient-elles être invitées à participer ou devrait-ce être un événement de classe seulement?",
+            "ifYes": "Considérer la disponibilité et le confort des familles tout en se concentrant sur la célébration des familles par les élèves",
+            "ifNo": "Garder la célébration centrée sur les élèves tout en honorant les familles par l'appréciation des élèves"
           }
         ],
         "movementBreaks": []
@@ -1590,14 +1641,14 @@
         "visualSupports": "Pride expressions, reflection gestures, family appreciation movements",
         "decisionPoints": [
           {
-            "question": "How do we help students articulate what they've learned about families?",
-            "ifYes": "Use reflection prompts and examples to help students recognize their learning growth",
-            "ifNo": "Focus on feelings and appreciation rather than academic articulation"
+            "question": "Comment aider les élèves à articuler ce qu'ils ont appris sur les familles?",
+            "ifYes": "Utiliser des invitations à la réflexion et des exemples pour aider les élèves à reconnaître leur croissance d'apprentissage",
+            "ifNo": "Se concentrer sur les sentiments et l'appréciation plutôt que sur l'articulation académique"
           },
           {
-            "question": "Should reflection focus on personal growth or family appreciation?",
-            "ifYes": "Include both personal learning growth and deepened family appreciation",
-            "ifNo": "Emphasize family appreciation and pride as the primary focus"
+            "question": "La réflexion devrait-elle se concentrer sur la croissance personnelle ou l'appréciation familiale?",
+            "ifYes": "Inclure à la fois la croissance d'apprentissage personnelle et l'appréciation familiale approfondie",
+            "ifNo": "Souligner l'appréciation et la fierté familiale comme foyer principal"
           }
         ],
         "movementBreaks": []
