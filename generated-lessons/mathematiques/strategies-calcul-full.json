@@ -21,25 +21,73 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Chanson d'ouverture avec gestes: 'Mes dix doigts sont mes amis, ils m'aident à compter ici!' Montrer tous les doigts, puis cacher et révéler différents nombres.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Gants colorés pour démonstration",
+              "quantity": "2 gants (différentes couleurs)",
+              "source": "Fournitures hivernales - rangement saisonnier",
+              "preparation": "Nettoyer et vérifier intégrité",
+              "alternatives": ["Marionnettes à doigts", "Gants de jardinage"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si confusion entre doigts → numéroter temporairement les doigts avec autocollants",
+          "Si difficultés motrices → adapter avec objets manipulables identiques aux doigts",
+          "Si attention dispersée → réduire à additions jusqu'à 3 seulement"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Station rotation: 1) Additions avec doigts (2+1, 3+2), 2) Marionnettes de doigts qui 'parlent' maths, 3) Cubes unifix pour vérifier les calculs de doigts. Démonstration explicite: 'Je pense 2+3. Je mets 2 doigts, puis j'ajoute 3. Je compte tous mes doigts: 1,2,3,4,5!'",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes unifix colorés",
+              "quantity": "200 cubes (25 par groupe de 4-5 élèves)",
+              "source": "Matériel mathématiques - armoire B",
+              "preparation": "Séparer par couleur, vérifier emboîtage",
+              "alternatives": ["Jetons de comptage", "Haricots lima colorés"]
+            },
+            {
+              "item": "Marionnettes digitales simples",
+              "quantity": "20 marionnettes (variées)",
+              "source": "Théâtre de classe - bac artistique",
+              "preparation": "Vérifier propreté et solidité",
+              "alternatives": ["Autocollants pour doigts", "Marqueurs lavables"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tapis d'activité pour stations",
+              "quantity": "3 tapis colorés",
+              "purpose": "Délimitation claire des espaces d'apprentissage"
+            }
+          ]
+        },
         "visualSupports": "Affiches murales montrant différentes façons de montrer les nombres avec les doigts. Tableaux de référence des additions simples avec illustrations de mains.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si marionnettes distraient → utiliser objets neutres (cubes) uniquement",
+          "Si rotations chaotiques → assigner places fixes par couleur/symbole"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Jeu 'Devinez mon calcul': Un élève montre ses doigts pour une addition, les autres devinent l'équation. Célébrer que nos doigts sont des outils mathématiques!",
-        "materials": [],
+        "materials": {
+          "required": [],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si jeu devient trop compétitif → rappeler aspect coopératif",
+          "Si partage trop long → limiter à 3 exemples seulement"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -48,14 +96,43 @@
       },
       "realWorldConnection": "Compter sur ses doigts pour savoir combien de biscuits manger",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter aux additions 1+1, 2+1, 2+2 maximum",
+          "Utiliser objets physiques avant transition aux doigts",
+          "Permettre comptage lent avec verbalisation de chaque nombre",
+          "Offrir soutien individuel pendant manipulations"
+        ],
+        "forAdvanced": [
+          "Introduire additions jusqu'à 8 (3+5, 4+4) si maîtrise rapide",
+          "Demander d'enseigner stratégie à un pair en difficulté",
+          "Explorer calcul mental sans objets pour certaines additions",
+          "Créer leurs propres jeux de calcul mental avec doigts"
+        ],
+        "forELL": [
+          "Utiliser gestes clairs pour 'calcul mental' et 'doigts'",
+          "Associer chaque nombre à image visuelle familière",
+          "Permettre comptage dans langue première puis français",
+          "Utiliser objets culturellement significatifs si disponibles"
+        ],
+        "forIEP": [
+          "Adapter manipulatifs selon besoins moteurs (plus gros, texturés)",
+          "Modifier attentes de verbalisation selon capacités",
+          "Ajuster éclairage et position pour besoins sensoriels",
+          "Permettre pauses fréquentes selon plan individualisé"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève utilise ses doigts pour représenter nombres",
+          "Élève compte correctement le total après addition",
+          "Élève utilise vocabulaire: calcul mental, doigts, additionner",
+          "Élève explique sa stratégie avec phrases simples"
+        ],
+        "checkpoints": [
+          "Pendant ouverture: Noter participation à la chanson gestuelle",
+          "Pendant stations: Observer utilisation correcte des doigts",
+          "Pendant fermeture: Vérifier compréhension du jeu des devinettes"
+        ]
       }
     },
     {
@@ -72,25 +149,80 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision rapide: Montrer 3+2 avec les doigts. Puis démonstration dramatique: 'Compter 1,2,3,4,5 vs commencer à 3 et dire 4,5!' Lequel est plus rapide?",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Chrono numérique visible",
+              "quantity": "1 chronoètre/minuterie",
+              "source": "Équipement audiovisuel - placard TIC",
+              "preparation": "Vérifier pile, régler à zéro",
+              "alternatives": ["Horloge murale avec trotteuse", "Application chrono tablet"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves confondus par rapidité → ralentir démonstration et répéter",
+          "Si difficulté à voir différence → utiliser objets physiques pour comparaison",
+          "Si groupe agité → faire exercice de respiration avant continuer"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Enseignement explicite avec ligne numérique: 'Pour 4+3, je commence à 4 (pas à 1!) et je saute: 5,6,7!' Pratique guidée avec problèmes variés. Course amicale: qui peut faire 5+2 plus rapidement, en comptant depuis 1 ou depuis 5?",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Ligne numérique au sol grande taille",
+              "quantity": "1 ligne 0-20 (carreaux 30cm)",
+              "source": "Matériel concret math - armoire C",
+              "preparation": "Dérouler, fixer avec ruban adhésif",
+              "alternatives": ["Ligne numérique magnétique", "Carreaux numérotés au sol"]
+            },
+            {
+              "item": "Jetons sauteurs colorés",
+              "quantity": "25 jetons (5 couleurs différentes)",
+              "source": "Jeux éducatifs - bac manipulatifs",
+              "preparation": "Trier par couleur, vérifier état",
+              "alternatives": ["Figurines miniatures", "Pions de jeux"]
+            },
+            {
+              "item": "Cartes d'équations plastifiées",
+              "quantity": "20 cartes (additions jusqu'à 10)",
+              "source": "Ressources math maison - classeur",
+              "preparation": "Vérifier lisibilité, organiser par difficulté",
+              "alternatives": ["Écrire équations au tableau", "Cartes faites à la main"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique rythmique douce",
+              "quantity": "Playlist 10 minutes",
+              "purpose": "Accompagner les sauts sur ligne numérique"
+            }
+          ]
+        },
         "visualSupports": "Ligne numérique colorée de 0-20. Affiches comparant les deux méthodes. Cartes stratégies avec images step-by-step.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si confusion entre méthodes → marquer clairement points de départ différents",
+          "Si course devient frustrante → transformer en collaboration (aider ensemble)"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Réflexion guidée: 'Pourquoi commencer par le plus grand nombre est-il plus intelligent?' Engagement: promettre d'essayer cette stratégie à la maison!",
-        "materials": [],
+        "materials": {
+          "required": [],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si réflexion trop abstraite → redonner exemple concret avec objets",
+          "Si promesses d'engagement faibles → donner exemple amusant pour maison"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -99,14 +231,43 @@
       },
       "realWorldConnection": "Ajouter des nouveaux livres à une pile existante en comptant depuis le nombre déjà là",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec additions très simples (4+1, 5+1, 3+2)",
+          "Utiliser ligne numérique avec doigt pour pointer chaque nombre",
+          "Permettre comptage à voix haute avec support visuel",
+          "Pratiquer d'abord avec plus petit nombre + 1 seulement"
+        ],
+        "forAdvanced": [
+          "Introduire additions avec nombres plus grands (7+4, 8+3)",
+          "Explorer stratégie 'compter à rebours' pour soustractions",
+          "Demander d'expliquer pourquoi cette méthode est plus efficace",
+          "Créer leurs propres exemples pour enseigner aux pairs"
+        ],
+        "forELL": [
+          "Utiliser gestes clairs pour 'compter en partant de' et 'plus rapide'",
+          "Associer chaque étape à mouvement physique sur ligne numérique",
+          "Permettre verbalisation dans langue première pour comprendre concept",
+          "Utiliser comparaisons visuelles pour montrer efficacité"
+        ],
+        "forIEP": [
+          "Adapter ligne numérique selon besoins moteurs (plus large, texturée)",
+          "Modifier attentes de rapidité selon capacités individuelles",
+          "Ajuster position et éclairage pour optimiser accès visuel",
+          "Fournir pauses sensorielles fréquentes si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie le plus grand nombre dans addition",
+          "Élève commence comptage à partir du plus grand nombre",
+          "Élève utilise vocabulaire: compter en partant de, efficace",
+          "Élève démontre compréhension de l'efficacité de cette méthode"
+        ],
+        "checkpoints": [
+          "Pendant ouverture: Noter compréhension de la comparaison de rapidité",
+          "Pendant pratique: Observer utilisation correcte de la ligne numérique",
+          "Pendant fermeture: Vérifier capacité d'expliquer pourquoi méthode plus intelligente"
+        ]
       }
     },
     {
@@ -124,25 +285,94 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Jeu du miroir: par paires, un élève fait un geste avec des objets, l'autre 'reflète' exactement la même chose. Introduire: 'C'est un double!'",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Miroirs individuels incassables",
+              "quantity": "12 miroirs (pour paires)",
+              "source": "Matériel sciences - bac d'exploration",
+              "preparation": "Nettoyer surfaces, vérifier absence de fissures",
+              "alternatives": ["Surfaces réfléchissantes métalliques", "Activité sans miroir"]
+            },
+            {
+              "item": "Objets identiques par paires",
+              "quantity": "24 objets (12 paires variées)",
+              "source": "Collection manipulation - bacs thématiques",
+              "preparation": "Assortir par paires, placer dans contenants",
+              "alternatives": ["Blocs identiques", "Crayons de même couleur"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si miroirs distraient ou causent jeux → retirer et utiliser gestuelle simple",
+          "Si difficulté à comprendre 'double' → utiliser objets très identiques visiblement",
+          "Si paires désorganisées → assigner partenaires fixes avec places désignées"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Exploration des doubles dans la nature et notre corps: 2 yeux, 2 mains, 2 pieds. Créer des doubles avec pâte à modeler. Station apprentissage: cartes doubles à associer, construction de doubles avec blocs, chanson des doubles avec gestes.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Pâte à modeler non-toxique",
+              "quantity": "25 portions individuelles (couleurs variées)",
+              "source": "Matériel artistique - armoire arts",
+              "preparation": "Vérifier souplesse, réchauffer si nécessaire",
+              "alternatives": ["Argile naturelle", "Pâte maison (farine/sel)"]
+            },
+            {
+              "item": "Cartes doubles illustrées",
+              "quantity": "40 cartes (20 paires)",
+              "source": "Ressources math - collection maison",
+              "preparation": "Plastifier si nécessaire, vérifier paires complètes",
+              "alternatives": ["Créer cartes simples", "Utiliser images d'internet"]
+            },
+            {
+              "item": "Blocs de construction identiques",
+              "quantity": "200 blocs (25 par station)",
+              "source": "Centre de blocs - rangement bas",
+              "preparation": "Trier par forme et couleur, compter portions",
+              "alternatives": ["Cubes emboîtables", "LEGO duplo"]
+            },
+            {
+              "item": "Napperons de travail",
+              "quantity": "25 napperons plastifiés",
+              "source": "Matériel général - tiroir organisation",
+              "preparation": "Nettoyer surfaces, distribuer par station",
+              "alternatives": ["Feuilles plastifiées", "Plateaux"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique douce pour concentration",
+              "quantity": "Playlist 15 minutes",
+              "purpose": "Ambiance calme pour travail de création"
+            }
+          ]
+        },
         "visualSupports": "Affiches murales des doubles avec images symétriques (papillons, maisons, visages). Cartes de référence plastifiées. Tableau des doubles avec illustrations.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si pâte à modeler devient distraction → limiter à une couleur par élève",
+          "Si stations trop bruyantes → réduire à 2 stations simultanément"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Chanson finale des doubles: '1+1 fait 2, 2+2 fait 4, 3+3 fait 6, et encore plus!' avec gestes. Chaque élève partage son double préféré.",
-        "materials": [],
+        "materials": {
+          "required": [],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si chanson trop rapide pour suivre → ralentir et répéter plusieurs fois",
+          "Si partage prend trop de temps → limiter à quelques volontaires"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -151,14 +381,43 @@
       },
       "realWorldConnection": "Voir ses deux mains, deux chaussures, deux yeux - tout vient en paires",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec doubles très concrets (1+1, 2+2) uniquement",
+          "Utiliser objets réels identiques avant représentations abstraites",
+          "Permettre manipulation lente avec verbalisation de chaque étape",
+          "Associer chaque double à partie du corps familiar (2 mains, 2 yeux)"
+        ],
+        "forAdvanced": [
+          "Introduire doubles plus grands (6+6, 7+7) si compréhension solide",
+          "Explorer concept d'à peu près doubles (5+6, 4+5)",
+          "Demander de trouver doubles dans environnement classe",
+          "Créer histoire mathématique utilisant plusieurs doubles"
+        ],
+        "forELL": [
+          "Utiliser objets identiques visuellement très clairs",
+          "Associer geste miroir à mot 'double' répété",
+          "Permettre utilisation langue maternelle pour identifier paires",
+          "Utiliser chanson avec gestes répétitifs pour mémorisation"
+        ],
+        "forIEP": [
+          "Adapter matériaux selon besoins tactiles (texturés, plus gros)",
+          "Modifier attentes motrices pour créations pâte à modeler",
+          "Ajuster éclairage et contraste pour reconnaissance visuelle",
+          "Permettre temps additionnel pour exploration des stations"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie objets identiques par paires",
+          "Élève crée doubles avec matériaux (blocs, pâte)",
+          "Élève utilise vocabulaire: doubles, même nombre, jumeaux",
+          "Élève récite au moins 3 faits de doubles (1+1, 2+2, 3+3)"
+        ],
+        "checkpoints": [
+          "Pendant ouverture: Observer compréhension du jeu miroir",
+          "Pendant stations: Vérifier création correcte de doubles",
+          "Pendant fermeture: Noter participation à chanson des doubles"
+        ]
       }
     },
     {
@@ -175,25 +434,80 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Révision rapide des doubles avec chanson. Puis mystère: 'Que se passe-t-il si j'ajoute UN de plus à un double?' Démonstration avec objets.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Objets de démonstration colorés",
+              "quantity": "15 objets (même type, couleurs variées)",
+              "source": "Manipulatifs math - bac central",
+              "preparation": "Sélectionner objets identiques, ajouter 1 couleur différente",
+              "alternatives": ["Blocs colorés", "Jetons avec 1 spécial"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si concept 'un de plus' confus → utiliser couleur très contrastée pour l'extra",
+          "Si attention faible après chanson → faire mouvement corporel avant mystère",
+          "Si difficulté à voir démonstration → utiliser objets plus grands et rapprochés"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Découverte guidée: 'Je sais que 3+3=6. Donc 3+4, c'est juste 6+1=7!' Pratique avec manipulatives: construire le double, ajouter un cube différent. Jeu 'Presque jumeaux': identifier les additions qui sont 'presque des doubles'.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables bicolores",
+              "quantity": "250 cubes (200 d'une couleur, 50 d'autre couleur)",
+              "source": "Matériel math - bac manipulatifs",
+              "preparation": "Séparer par couleur, 10 de chaque couleur par élève",
+              "alternatives": ["Jetons rouges/bleus", "Blocs de couleur"]
+            },
+            {
+              "item": "Cartes équations 'presque doubles'",
+              "quantity": "30 cartes (3+4, 4+5, 5+6, etc.)",
+              "source": "Collection math maison",
+              "preparation": "Plastifier, organiser par difficulté",
+              "alternatives": ["Écrire au tableau", "Cartes faites à la main"]
+            },
+            {
+              "item": "Plateaux de travail individuels",
+              "quantity": "25 plateaux ou napperons",
+              "source": "Fournitures générales",
+              "preparation": "Nettoyer, placer sur chaque bureau",
+              "alternatives": ["Feuilles plastifiées grandes", "Utiliser surface bureau"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Bacs de rangement par couleur",
+              "quantity": "6 bacs étiquetés",
+              "purpose": "Organisation facile pour rotation matériel"
+            }
+          ]
+        },
         "visualSupports": "Cartes visuelles montrant double + jeton différent. Affiche stratégie step-by-step. Tableau comparatif doubles vs presque doubles.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si confusion entre double et presque-double → accentuer visuellement l'objet supplémentaire",
+          "Si jeu devient trop compétitif → transformer en collaboration d'équipe"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Partage de découvertes: 'Quel presque double avez-vous trouvé le plus facile?' Promesse d'utiliser cette stratégie intelligente!",
-        "materials": [],
+        "materials": {
+          "required": [],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si partages répétitifs → encourager exemples variés",
+          "Si promesses peu enthousiastes → donner exemple concret amusant"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -202,14 +516,43 @@
       },
       "realWorldConnection": "Avoir 3 biscuits et en recevoir 4 autres - c'est presque un double!",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Maîtriser d'abord les doubles avant ajouter +1",
+          "Utiliser objets concrets pour visualiser double + objet différent",
+          "Commencer avec 2+3, 3+4 seulement (petits nombres)",
+          "Permettre comptage lent après identification du double"
+        ],
+        "forAdvanced": [
+          "Introduire doubles-moins-un (5+4=6-1, 7+6=8-1)",
+          "Explorer presque-doubles plus grands (6+7, 8+9)",
+          "Demander d'expliquer stratégie à autre élève",
+          "Créer histoire math avec plusieurs presque-doubles"
+        ],
+        "forELL": [
+          "Utiliser geste clair: double (mains identiques) + un (lever doigt)",
+          "Associer 'presque' à expressions culturellement familières",
+          "Permettre explication dans langue première puis français",
+          "Utiliser couleur vive pour accentuer l'objet supplémentaire"
+        ],
+        "forIEP": [
+          "Adapter manipulatifs selon capacités motrices individuelles",
+          "Modifier attentes de verbalisation selon besoins communication",
+          "Ajuster éclairage pour distinguer couleurs doubles vs extras",
+          "Fournir temps additionnel pour manipulation et découverte"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie le double dans presque-double (3+4 vient de 3+3)",
+          "Élève ajoute correctement +1 au résultat du double",
+          "Élève utilise vocabulaire: doubles plus un, presque double",
+          "Élève explique stratégie avec matériel concret"
+        ],
+        "checkpoints": [
+          "Pendant ouverture: Observer compréhension du mystère +1",
+          "Pendant pratique: Vérifier utilisation correcte de la stratégie",
+          "Pendant jeu: Noter reconnaissance presque-doubles vs autres additions"
+        ]
       }
     },
     {
@@ -226,25 +569,94 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Mystère de la boîte magique: montrer une boîte d'œufs de 10. 'Cette boîte veut toujours être complète! Trouvons toutes les façons de la remplir!'",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Boîtes d'œufs vides (10 compartiments)",
+              "quantity": "5 boîtes propres et sèches",
+              "source": "Matériel recyclé - demande aux familles",
+              "preparation": "Nettoyer, vérifier intégrité, étiqueter si nécessaire",
+              "alternatives": ["Plateaux 10 compartiments", "Cadres 10 cases plastifiés"]
+            },
+            {
+              "item": "Objets de remplissage colorés",
+              "quantity": "100 petits objets (pompons, haricots, billes)",
+              "source": "Matériel artistique et manipulatifs",
+              "preparation": "Compter portions de 15-20 par boîte",
+              "alternatives": ["Jetons mathématiques", "Cubes unifix"]
+            }
+          ],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si boîtes d'œufs indisponibles → dessiner 10 cercles au tableau",
+          "Si concept de compléter confus → démontrer avec exemple simple (5+?=10)",
+          "Si objets trop petits difficiles à manipuler → utiliser matériel plus gros"
+        ],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Exploration systématique avec ten frames: commencer avec 1 jeton rouge, combien de bleus pour faire 10? Puis 2 rouges, etc. Création d'un mur des 'liens vers 10'. Jeu 'Partenaires de 10': cartes flash rapides.",
-        "materials": [],
+        "materials": {
+          "required": [
+            {
+              "item": "Ten frames plastifiés individuels",
+              "quantity": "25 ten frames (cadres 2x5)",
+              "source": "Ressources math - collection maison",
+              "preparation": "Plastifier si nécessaire, distribuer 1 par élève",
+              "alternatives": ["Dessiner ten frames sur papier", "Utiliser boîtes œufs coupées"]
+            },
+            {
+              "item": "Jetons bicolores (rouge/bleu)",
+              "quantity": "250 jetons (125 de chaque couleur)",
+              "source": "Matériel math - bacs manipulatifs",
+              "preparation": "Séparer par couleur, 10 de chaque par élève",
+              "alternatives": ["Pompons de 2 couleurs", "Blocs rouges/bleus"]
+            },
+            {
+              "item": "Cartes flash liens vers 10",
+              "quantity": "20 cartes (récto: équation, verso: réponse)",
+              "source": "Collection math - ressources maison",
+              "preparation": "Vérifier complétude, plastifier si nécessaire",
+              "alternatives": ["Créer cartes simples", "Utiliser tableau pour flash"]
+            },
+            {
+              "item": "Papier mural pour affichage",
+              "quantity": "1 grande feuille (60x90cm)",
+              "source": "Fournitures artistiques",
+              "preparation": "Tracer sections pour chaque lien vers 10",
+              "alternatives": ["Tableau blanc", "Plusieurs petites affiches"]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Marqueurs de couleur pour affichage",
+              "quantity": "Set de marqueurs variés",
+              "purpose": "Color-coder les différentes combinaisons"
+            }
+          ]
+        },
         "visualSupports": "Ten frames géants muraux. Affiche 'Famille du 10' avec toutes les combinaisons. Cartes visuelles colorées pour chaque lien.",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si progression trop rapide → s'arrêter après 5 liens et consolider",
+          "Si cartes flash trop difficiles → ralentir et permettre réflexion"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Célébration de la famille du 10: chanter tous les liens découverts. 'Nous connaissons maintenant tous les amis du 10!'",
-        "materials": [],
+        "materials": {
+          "required": [],
+          "optional": []
+        },
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si chanson trop longue → se concentrer sur 3-4 liens favoris",
+          "Si énergie faible → ajouter gestes et mouvements à la chanson"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -253,14 +665,43 @@
       },
       "realWorldConnection": "Remplir une boîte d'œufs de 10 - différentes façons d'arriver à 10",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer avec seulement 3 liens vers 10 (5+5, 6+4, 7+3)",
+          "Utiliser objets concrets avant ten frames abstraits",
+          "Permettre comptage lent pour vérifier chaque lien",
+          "Fournir support individuel pendant exploration"
+        ],
+        "forAdvanced": [
+          "Découvrir liens vers 20 (10+10, 11+9, 12+8)",
+          "Identifier patterns dans les liens vers 10 (à mesure qu'un augmente, l'autre diminue)",
+          "Enseigner un lien vers 10 à un pair en difficulté",
+          "Créer jeu de mémoire avec liens vers 10"
+        ],
+        "forELL": [
+          "Utiliser gestes clairs pour 'faire 10' et 'partenaires'",
+          "Associer chaque lien à couleur spécifique pour mémorisation",
+          "Permettre verbalisation dans langue première puis français",
+          "Utiliser objets familiers culturellement si disponibles"
+        ],
+        "forIEP": [
+          "Adapter ten frames selon besoins visuels (plus gros, contrastés)",
+          "Modifier attentes motrices pour manipulation jetons",
+          "Ajuster rythme selon capacités attentionnelles individuelles",
+          "Permettre pauses fréquentes pendant exploration"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 liens vers 10 différents",
+          "Élève utilise ten frame pour démontrer liens vers 10",
+          "Élève utilise vocabulaire: faire 10, partenaires de 10, liens",
+          "Élève explique comment deux nombres font 10 ensemble"
+        ],
+        "checkpoints": [
+          "Pendant ouverture: Observer compréhension concept boîte complète",
+          "Pendant exploration: Vérifier découverte systématique des liens",
+          "Pendant jeu flash: Noter rapidité de reconnaissance liens maîtrisés"
+        ]
       }
     },
     {

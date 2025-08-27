@@ -31,6 +31,7 @@
 | nombres-11-20 | ✅ | ✅ | ✅ | ✅ | ⬜ |
 | addition-soustraction | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | comparaisons-quantites (comparaison) | ✅ | ✅ | ✅ | ⬜ | ⬜ |
+| strategies-calcul | ✅ | ✅ | ✅ | ⬜ | ✅ |
 | graphiques-donnees | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ### Français (10 units)
