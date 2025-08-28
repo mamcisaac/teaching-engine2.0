@@ -554,7 +554,10 @@
         "activity": "Light schedule creation (10 min): Create class schedule showing when artificial lights are most needed during school day. Plan to observe and record light usage over one day.",
         "materials": ["Horaire de classe sur grand papier", "Autocollants d'ampoules"],
         "visualSupports": "Horaire visuel avec pictogrammes, tableau d'observation simple",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté à comprendre l'horaire → simplifier en utilisant seulement 'matin', 'midi', 'soir' avec des images",
+          "Si certains élèves collent tous les autocollants partout → donner des exemples concrets: 'Quand arrives-tu le matin, fait-il noir?'"
+        ],
         "movementBreaks": ["Applaudissements pour chaque moment identifié sur l'horaire"]
       },
       "troubleshooting": {
@@ -645,7 +648,10 @@
         "activity": "Solar heat demonstration (10 min): Students share discoveries about sun's heating power. Create movements showing how sun warms Earth (arms spreading warmth) and discuss why sunny days feel warmer than cloudy days.",
         "materials": ["Aucun matériel spécial nécessaire"],
         "visualSupports": "Images comparatives: journée ensoleillée vs nuageuse",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ne comprennent pas pourquoi le soleil réchauffe → les faire toucher un objet au soleil vs à l'ombre",
+          "Si certains élèves sont trop excités par les mouvements → structurer avec 'Simon dit' pour canaliser l'énergie"
+        ],
         "movementBreaks": ["Mouvements de réchauffement avec les bras", "Gestes pour nuages bloquant le soleil"]
       },
       "troubleshooting": {
@@ -734,10 +740,13 @@
       "closing": {
         "duration": 10,
         "activity": "Heat source appreciation circle (10 min): Students share their favorite heat source and explain how it helps them. Discuss how different heat sources are used for different purposes.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images de sources de chaleur variées", "Tableau pour enregistrer les partages"],
+        "visualSupports": "Affiche avec pictogrammes des sources de chaleur courantes, cartes visuelles pour soutenir l'expression orale",
+        "decisionPoints": [
+          "Si les élèves répètent tous la même source → donner des exemples variés: cuisinière, radiateur, soleil, feu",
+          "Si certains élèves sont timides pour partager → utiliser le partenaire de murmure d'abord ou pointer une image"
+        ],
+        "movementBreaks": ["Gestes pour imiter chaque source de chaleur mentionnée", "Mouvement en cercle pour changer de place"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Distinguer les différents types de sources de chaleur",
@@ -808,18 +817,25 @@
       "main": {
         "duration": 27,
         "activity": "Insulation exploration (25 min): Test various materials as insulators: wrap identical warm objects (like warm water bottles) in different materials (cotton, wool, plastic, paper, foil). Feel and compare how well each material keeps warmth in. Create insulation testing charts. Examine winter clothing and discuss how layers trap warm air. Practice vocabulary: 'Ce matériel garde la chaleur', 'L'isolation nous protège du froid'. Compare thick vs thin materials.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["6 bouteilles d'eau chaude identiques", "Différents matériaux: coton, laine, plastique, papier, papier d'aluminium", "Tableau d'observation pour chaque équipe", "Vêtements d'hiver variés à examiner", "Crayons pour enregistrement"],
+        "visualSupports": "Pictogrammes des matériaux testeur, affiche du vocabulaire 'garde la chaleur', images de vêtements d'hiver avec layers visibles",
+        "decisionPoints": [
+          "Si l'eau dans les bouteilles n'est plus assez chaude → les renouveler avec de l'eau tiède sécuritaire",
+          "Si les élèves ont de la difficulté à sentir les différences → exagérer avec des matériaux très différents (tissu épais vs papier fin)",
+          "Si certains élèves touchent trop les matériaux chauds → démontrer d'abord la technique sécuritaire avec le dos de la main"
+        ],
+        "movementBreaks": ["Rotation entre les stations de test", "Mimer s'habiller avec des couches multiples"]
       },
       "closing": {
         "duration": 10,
         "activity": "Insulation fashion show (10 min): Students show how they would dress for winter weather, explaining which materials help keep them warm and why layering works.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Vêtements d'hiver de différentes tailles", "Miroir ou grande glace", "Affiche avec mots de vocabulaire"],
+        "visualSupports": "Images séquentielles montrant comment s'habiller par couches, pictogrammes des parties du corps à couvrir",
+        "decisionPoints": [
+          "Si certains élèves sont gênés de faire le défilé → permettre de montrer avec une poupée ou dessiner",
+          "Si les explications deviennent trop complexes → se concentrer sur 'chaud' et 'froid' seulement"
+        ],
+        "movementBreaks": ["Déambulation pour le défilé de mode", "Applaudissements et encouragements pour chaque présentation"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Comprendre le concept d'isolation thermique",
@@ -890,33 +906,69 @@
       "main": {
         "duration": 27,
         "activity": "Insulation effectiveness experiment (25 min): Wrap identical ice cubes in different materials: bare (control), thin paper, thick fabric, cotton balls, aluminum foil. Place in identical containers and observe which ice melts slowest. Record observations every 5 minutes with drawings and simple words. Alternative: Use warm water in containers with different insulation and measure temperature retention. Create experiment recording sheets comparing predictions vs results.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["20 glaçons identiques", "Papier mince, tissu épais, boules de coton, papier d'aluminium", "5 contenants identiques transparents", "Feuilles d'observation avec dessins simples", "Minuteur pour observations aux 5 minutes", "Essuie-tout pour nettoyer"],
+        "visualSupports": "Tableau d'observation avec pictogrammes, affiche de vocabulaire 'fond', 'garde froid', images séquentielles de l'expérience",
+        "decisionPoints": [
+          "Si les glaçons fondent trop rapidement → utiliser des glaçons plus gros ou de l'eau tiède au lieu de chaude",
+          "Si les élèves veulent toucher constamment → désigner des 'observateurs officiels' qui changent à tour de rôle",
+          "Si les résultats ne sont pas clairs → exagérer les différences avec des matériaux très contrastés"
+        ],
+        "movementBreaks": ["Rotation entre les stations d'observation", "Gestes pour mimer la fonte et la solidification"]
       },
       "closing": {
         "duration": 10,
         "activity": "Scientific conclusion sharing (10 min): Students share experiment results and explain which materials work best as insulators. Connect to real world: best insulators are like best winter clothing materials.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Résultats de l'expérience affichés", "Images de vêtements d'hiver", "Tableau de conclusions de classe"],
+        "visualSupports": "Graphique simple montrant quel matériau a gardé le glaçon le plus longtemps, images comparative hiver/été",
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté à expliquer les résultats → utiliser des questions guidées: 'Quel glaçon est encore dur?'",
+          "Si certains élèves contestent les résultats → valider leurs observations et répéter que c'est normal d'avoir des différences"
+        ],
+        "movementBreaks": ["Lever la main pour voter pour le meilleur isolant", "Gestes pour montrer 'chaud' et 'froid' pendant le partage"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre pourquoi certains matériaux gardent mieux la glace froide",
+        "then": "Utiliser l'analogie du manteau: 'Quel manteau te garde plus au chaud - le mince ou l'épais?' Faire toucher les matériaux et comparer épais/mince, doux/dur. Simplifier aux concepts de base: 'Ce matériau garde le froid' vs 'Ce matériau laisse partir le froid'"
       },
       "realWorldConnection": "Students understand scientific reasons why certain winter clothing materials work better and how insulation keeps homes warm",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur seulement 2 matériaux très différents (tissu épais vs papier mince)",
+          "Utiliser des concepts tactiles: chaud/froid, épais/mince",
+          "Permettre de dessiner au lieu d'écrire les observations",
+          "Jumeler avec un partenaire plus fort pour l'interprétation"
+        ],
+        "forAdvanced": [
+          "Tester plus de matériaux différents",
+          "Prédire les résultats avant l'expérience",
+          "Expliquer pourquoi certains matériaux fonctionnent mieux",
+          "Faire des connexions avec la science des matériaux"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de gestes et pointage pour le vocabulaire",
+          "Associer avec des mots dans leur langue maternelle",
+          "Utiliser des images pour soutenir les concepts",
+          "Permettre l'expression en L1 puis traduire ensemble"
+        ],
+        "forIEP": [
+          "Adapter les outils d'observation selon les besoins moteurs",
+          "Utiliser des supports visuels additionnels",
+          "Ajuster la durée selon les capacités attentionnelles",
+          "Fournir des choix multiples pour l'expression des résultats"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie quels matériaux gardent la glace plus longtemps",
+          "Fait des connexions avec les vêtements d'hiver",
+          "Utilise le vocabulaire: isolant, garde froid, matériau",
+          "Participe activement aux expériences et discussions"
+        ],
+        "checkpoints": [
+          "Pendant l'expérience: observer les prédictions et comparaisons de l'élève",
+          "Lors du partage: écouter les explications et connexions faites",
+          "Après l'activité: vérifier la compréhension avec questions simples"
+        ]
       }
     },
     {
@@ -933,41 +985,80 @@
       "opening": {
         "duration": 8,
         "activity": "Animal light mystery (5 min): Show pictures of firefly, glowing fish, and regular animals. Ask students which animals can make their own light and how they might do it.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images d'animaux lumineux: lucioles, poissons fluorescents", "Images d'animaux réguliers pour comparaison", "Lampe de poche pour démonstration"],
+        "visualSupports": "Affiche avec animaux qui brillent vs animaux normaux, pictogrammes 'brille' et 'ne brille pas'",
+        "decisionPoints": [
+          "Si les élèves confondent réflexion et création de lumière → démontrer avec miroir vs lampe de poche",
+          "Si certains élèves ont peur des animaux inconnus → commencer par des animaux familiers puis introduire progressivement"
+        ],
+        "movementBreaks": ["Gestes pour 'briller' avec les doigts qui scintillent", "Mimer différents animaux mentionnés"]
       },
       "main": {
         "duration": 27,
         "activity": "Animal energy exploration (25 min): Explore animals that create light (fireflies, some fish, jellyfish) using videos and pictures. Investigate how animals create heat: body warmth, movement, huddling together. Compare cold-blooded vs warm-blooded animals in winter. Students create animal energy journals showing different animals' light and heat strategies. Practice vocabulary: 'Cet animal crée sa propre lumière', 'Les animaux à sang chaud gardent leur chaleur'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Vidéos courtes d'animaux lumineux", "Images d'animaux en hiver: ours, oiseaux qui migrent, hérissons", "Carnets d'exploration pour chaque élève", "Crayons de couleur", "Autocollants d'animaux"],
+        "visualSupports": "Affiche de vocabulaire avec gestes, tableau comparatif 'crée sa lumière/ne crée pas', images d'animaux qui se blottissent pour la chaleur",
+        "decisionPoints": [
+          "Si les concepts 'sang chaud/sang froid' sont trop difficiles → simplifier à 'reste chaud en hiver/devient froid en hiver'",
+          "Si certains élèves ont peur des vidéos d'animaux → utiliser seulement des images statiques douces",
+          "Si l'activité de carnet devient trop longue → limiter à 2-3 animaux par élève"
+        ],
+        "movementBreaks": ["Mimer les animaux étudiés", "Gestes pour se blottir comme les animaux en hiver", "Rotation entre les stations d'observation"]
       },
       "closing": {
         "duration": 10,
         "activity": "Animal adaptation celebration (10 min): Students choose an animal and demonstrate how it creates light or stays warm. Discuss amazing ways animals meet their energy needs.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images de référence des animaux étudiés", "Accessoires simples pour mimer (foulards, lampes de poche)"],
+        "visualSupports": "Galerie d'images des animaux avec leurs stratégies, affiche de célébration avec émoticônes positives",
+        "decisionPoints": [
+          "Si plusieurs élèves choisissent le même animal → encourager la diversité ou permettre des démonstrations différentes du même animal",
+          "Si certains élèves sont gênés de démontrer seuls → permettre les démonstrations en paires"
+        ],
+        "movementBreaks": ["Démonstrations actives des adaptations animales", "Applaudissements et encouragements pour chaque présentation"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre comment les animaux créent ou trouvent la lumière et la chaleur",
+        "then": "Utiliser des exemples concrets de leur expérience: 'As-tu vu un chat au soleil? Pourquoi penses-tu qu'il fait ça?' Utiliser des vidéos courtes d'animaux familiers. Simplifier aux comportements observables: les animaux vont vers la chaleur, certains animaux brillent la nuit"
       },
       "realWorldConnection": "Students observe fireflies in summer, understand why cats seek warm spots, and learn how birds survive cold winters",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur les animaux familiers: chats, chiens, oiseaux",
+          "Utiliser des concepts simples: chaud/froid, brille/ne brille pas",
+          "Permettre d'imiter les animaux au lieu d'écrire",
+          "Utiliser beaucoup d'images et de gestes"
+        ],
+        "forAdvanced": [
+          "Explorer plus d'animaux exotiques (poissons des profondeurs, vers luisants)",
+          "Discuter des raisons scientifiques des adaptations",
+          "Comparer les stratégies de différents animaux",
+          "Rechercher d'autres exemples d'adaptations"
+        ],
+        "forELL": [
+          "Utiliser des noms d'animaux dans leur langue maternelle",
+          "Associer avec des animaux de leur pays d'origine",
+          "Utiliser beaucoup de vidéos et d'images",
+          "Encourager les gestes et mouvements pour communiquer"
+        ],
+        "forIEP": [
+          "Adapter les activités sensorielles selon les besoins",
+          "Utiliser des peluches d'animaux pour manipulation",
+          "Ajuster le volume des vidéos si nécessaire",
+          "Permettre l'expression par le dessin ou les gestes"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie au moins 2 animaux qui créent de la lumière (lucioles, poissons)",
+          "Comprend que les animaux cherchent la chaleur pour rester au chaud",
+          "Utilise le vocabulaire: animal, brille, chaud, froid",
+          "Démontre la compréhension par gestes ou imitations"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration: observer les connexions que l'élève fait avec ses expériences",
+          "Lors des démonstrations: noter la compréhension des adaptations animales",
+          "En fin d'activité: vérifier avec questions simples sur les animaux étudiés"
+        ]
       }
     },
     {
@@ -984,41 +1075,80 @@
       "opening": {
         "duration": 8,
         "activity": "Reflection magic show (5 min): Use mirror to reflect flashlight beam onto wall. Ask students how light 'bounced' from flashlight to mirror to wall.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Miroir de taille moyenne", "Lampe de poche puissante", "Mur blanc ou écran pour projection"],
+        "visualSupports": "Diagramme simple montrant lumière → miroir → mur, pictogrammes 'rebondit' et 'reflet'",
+        "decisionPoints": [
+          "Si la réflexion n'est pas assez visible → obscurcir davantage la classe ou utiliser une lampe plus puissante",
+          "Si les élèves veulent tous tenir le miroir → faire tourner chacun pour 30 secondes"
+        ],
+        "movementBreaks": ["Gestes pour mimer la lumière qui rebondit", "Mouvements pour suivre le trajet de la lumière avec les bras"]
       },
       "main": {
         "duration": 27,
         "activity": "Reflection laboratory (25 min): Students experiment with various reflective surfaces: mirrors, water in bowls, aluminum foil, shiny metal. Use flashlights to create reflections and try to direct reflected light to different targets. Explore what makes good reflectors vs poor reflectors. Create reflection art by bouncing light patterns onto walls. Practice vocabulary: 'La lumière rebondit', 'Le miroir fait un reflet', 'Je peux diriger la lumière'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["5-6 lampes de poche pour les équipes", "Miroirs de poche (un par élève)", "Bols avec eau", "Papier d'aluminium", "Objets métalliques brillants", "Cibles sur le mur (papiers colorés)"],
+        "visualSupports": "Affiche de vocabulaire avec gestes, exemples de bons vs mauvais réflecteurs, diagrammes simples de réflexion",
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté à viser les cibles → agrandir les cibles ou les rapprocher",
+          "Si l'eau se renverse des bols → utiliser des contenants plus larges et moins profonds",
+          "Si certains élèves aveuglent les autres avec les réflexions → revoir immédiatement les règles de sécurité"
+        ],
+        "movementBreaks": ["Rotation entre les stations d'expérimentation", "Pauses pour nettoyer les dégâts d'eau", "Gestes collectifs pour célébrer les découvertes"]
       },
       "closing": {
         "duration": 10,
         "activity": "Reflection light show (10 min): Students create group light show using mirrors and flashlights to make patterns on walls. Discuss how reflections help us see around corners and make rooms brighter.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Miroirs et lampes de poche de l'activité précédente", "Musique douce pour accompagner le spectacle"],
+        "visualSupports": "Exemples d'images montrant comment les miroirs aident dans la vraie vie (rétroviseurs, miroirs dentiste)",
+        "decisionPoints": [
+          "Si le spectacle devient trop excitant et bruyant → structurer avec des tours de rôle et des consignes claires",
+          "Si certains élèves monopolisent l'équipement → mettre en place des rotations chronométrées"
+        ],
+        "movementBreaks": ["Déplacement créatif pour positionner les miroirs", "Applaudissements pour chaque création lumineuse"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre comment la lumière 'rebondit' sur les surfaces pour créer des reflets",
+        "then": "Utiliser une balle qui rebondit pour montrer le concept: 'La lumière fait comme la balle - elle rebondit!' Faire des démonstrations très visibles avec lampe de poche et miroir. Utiliser des mots simples: 'La lumière saute du miroir au mur'"
       },
       "realWorldConnection": "Students understand how bathroom mirrors work, why water looks shiny, and how reflective surfaces can make dark areas brighter",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement des miroirs plats simples au début",
+          "Se concentrer sur voir son reflet dans le miroir",
+          "Utiliser des gestes pour mimer 'rebondir'",
+          "Limiter à une seule surface réfléchissante à la fois"
+        ],
+        "forAdvanced": [
+          "Expérimenter avec différents angles de miroirs",
+          "Créer des motifs complexes avec plusieurs miroirs",
+          "Expliquer pourquoi certaines surfaces réfléchissent mieux",
+          "Découvrir d'autres objets réfléchissants dans la classe"
+        ],
+        "forELL": [
+          "Associer 'reflet' avec des mots similaires dans leur langue",
+          "Utiliser beaucoup de démonstrations visuelles",
+          "Encourager l'utilisation de gestes pour 'rebondir'",
+          "Permettre de nommer les objets réfléchissants en L1 d'abord"
+        ],
+        "forIEP": [
+          "Adapter la manipulation des miroirs selon les capacités motrices",
+          "Utiliser des miroirs plus grands si nécessaire",
+          "Permettre l'exploration tactile sécuritaire des surfaces",
+          "Ajuster l'intensité lumineuse si sensibilité visuelle"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre que les miroirs créent des reflets",
+          "Peut diriger la lumière avec un miroir vers une cible",
+          "Utilise le vocabulaire: miroir, reflet, rebondir",
+          "Identifie d'autres surfaces réfléchissantes (eau, métal)"
+        ],
+        "checkpoints": [
+          "Pendant la manipulation: observer la compréhension du concept de réflexion",
+          "Lors des démonstrations: noter la capacité à diriger la lumière",
+          "En discussion: évaluer les connexions avec la vraie vie"
+        ]
       }
     },
     {
@@ -1035,41 +1165,80 @@
       "opening": {
         "duration": 8,
         "activity": "Rainbow hunt (5 min): Ask students when they've seen rainbows and what colors they remember. Show how white light can be 'broken' into colors.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Prisme simple pour démonstration", "Lampe de poche", "Images d'arcs-en-ciel naturels"],
+        "visualSupports": "Images d'arcs-en-ciel dans la nature, bande de couleurs du spectre, pictogrammes des couleurs",
+        "decisionPoints": [
+          "Si les élèves n'ont jamais vu d'arc-en-ciel → utiliser des exemples familiers comme bulles de savon ou jardin avec tuyau d'arrosage",
+          "Si la démonstration de prisme ne fonctionne pas bien → avoir des photos claires comme plan B"
+        ],
+        "movementBreaks": ["Gestes en arc pour mimer l'arc-en-ciel", "Mouvements des bras pour les différentes couleurs"]
       },
       "main": {
         "duration": 27,
         "activity": "Color discovery laboratory (25 min): Use prisms, water sprays, or soap bubbles to create rainbow colors from white light. Students observe and name colors they see: rouge, orange, jaune, vert, bleu, violet. Try making rainbows in different ways and locations around classroom. Create color spectrum journals documenting their discoveries. Compare artificial rainbows to natural rainbows in photos. Practice vocabulary: 'La lumière blanche contient toutes les couleurs', 'Je vois un arc-en-ciel'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["5-6 prismes pour les équipes", "Vaporisateurs d'eau", "Solution de bulles de savon et baguettes", "Carnets de spectre pour chaque élève", "Crayons de couleur de l'arc-en-ciel", "Photos d'arcs-en-ciel naturels"],
+        "visualSupports": "Affiche des couleurs de l'arc-en-ciel dans l'ordre, vocabulaire avec pictogrammes, exemples de spectres créés",
+        "decisionPoints": [
+          "Si les élèves ne voient pas bien les couleurs → obscurcir la classe et utiliser des lampes plus puissantes",
+          "Si l'eau des vaporisateurs mouille trop → limiter à de fines brîmes et avoir des essuie-tout prêts",
+          "Si les couleurs sont difficiles à distinguer → commencer par identifier seulement rouge, jaune, bleu"
+        ],
+        "movementBreaks": ["Rotation entre les stations de création d'arcs-en-ciel", "Danses courtes aux couleurs identifiées", "Pauses pour nettoyer les surfaces mouillées"]
       },
       "closing": {
         "duration": 10,
         "activity": "Rainbow celebration dance (10 min): Students create movements for each color of the rainbow and sing about colors hidden in light. Discuss where else they might look for light colors.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Musique douce pour accompagner les mouvements", "Foulards colorés ou tissus légers (optionnel)"],
+        "visualSupports": "Affiche des couleurs de l'arc-en-ciel pour référence, images d'autres endroits où voir des couleurs (gouttes d'eau, CD)",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour danser → commencer par des gestes assis puis progresser vers debout",
+          "Si l'activité devient trop bruyante → utiliser des signaux visuels pour contrôler le volume"
+        ],
+        "movementBreaks": ["Danse créative pour chaque couleur", "Pauses entre les couleurs pour respirer et se préparer"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Voir et nommer les différentes couleurs dans l'arc-en-ciel",
+        "then": "Commencer par identifier seulement 3 couleurs principales: rouge, jaune, bleu. Utiliser des objets colorés familiers pour association: 'Rouge comme une pomme, jaune comme le soleil, bleu comme le ciel'. Permettre de pointer les couleurs au lieu de les nommer"
       },
       "realWorldConnection": "Students connect to rainbows they see after rain, colors in soap bubbles, and understanding why sunlight creates beautiful colors",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 3 couleurs principales seulement",
+          "Utiliser des associations avec objets familiers colorés",
+          "Permettre de colorier au lieu d'écrire",
+          "Utiliser des lunettes de soleil si les couleurs sont trop vives"
+        ],
+        "forAdvanced": [
+          "Nommer les 6-7 couleurs de l'arc-en-ciel dans l'ordre",
+          "Explorer le mélange des couleurs primaires",
+          "Créer des arcs-en-ciel dans différents endroits",
+          "Expliquer pourquoi la lumière blanche contient toutes les couleurs"
+        ],
+        "forELL": [
+          "Associer les couleurs avec des mots dans leur langue maternelle",
+          "Utiliser des chansons de couleurs dans leur culture",
+          "Permettre d'identifier les couleurs par pointage d'abord",
+          "Utiliser beaucoup d'objets concrets colorés"
+        ],
+        "forIEP": [
+          "Ajuster l'intensité lumineuse selon la sensibilité visuelle",
+          "Utiliser des objets tactiles colorés pour associations",
+          "Permettre l'exploration à son propre rythme",
+          "Fournir des pauses si overstimulation visuelle"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie au moins 3 couleurs dans un arc-en-ciel",
+          "Comprend que la lumière blanche contient des couleurs",
+          "Utilise le vocabulaire des couleurs de base: rouge, jaune, bleu",
+          "Fait des connexions avec les arcs-en-ciel dans la nature"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration: observer quelles couleurs l'élève identifie spontanément",
+          "Lors de la création: noter la compréhension des couleurs mélangées",
+          "En discussion: évaluer les connexions avec expériences personnelles"
+        ]
       }
     },
     {
@@ -1086,41 +1255,80 @@
       "opening": {
         "duration": 8,
         "activity": "Scientific author introduction (5 min): Review all the light and heat discoveries made throughout the unit. Explain that scientists document their findings so others can learn from their work.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Journal des découvertes de la classe", "Images des expériences réalisées", "Exemples de livres scientifiques simples"],
+        "visualSupports": "Chronologie visuelle des découvertes faites, pictogrammes 'je sais maintenant', photos des activités réalisées",
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté à se rappeler des découvertes → utiliser des photos et des objets concrets de chaque activité",
+          "Si le concept de documentation scientifique est trop abstrait → comparer à un album photo de famille"
+        ],
+        "movementBreaks": ["Gestes de 'tourner les pages' d'un livre", "Applaudissements pour célébrer les découvertes faites"]
       },
       "main": {
         "duration": 27,
         "activity": "Science journal creation (25 min): Students compile their learning into comprehensive light and heat journals. Include pages for: light sources, shadow experiments, heat sources, insulation testing, animal adaptations, reflection discoveries, color observations. Add drawings, simple writing, photos from experiments, and key vocabulary. Students organize their favorite discoveries and most important learning. Create journal covers showing light and heat themes.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cahiers de science vierges pour chaque élève", "Photos imprimées des expériences réalisées", "Crayons de couleur et marqueurs", "Bâtons de colle", "Autocollants thématiques lumière/chaleur", "Modèles de pages pré-formatées"],
+        "visualSupports": "Exemples de pages de journal complétées, banque de mots illustrés, modèles de couverture créative",
+        "decisionPoints": [
+          "Si certains élèves sont découragés par l'écriture → encourager plus de dessins et utiliser des modèles à compléter",
+          "Si l'organisation des pages est difficile → fournir un ordre suggéré avec numéros",
+          "Si certains élèves finissent trop vite → suggrer d'ajouter des détails ou d'aider un camarade"
+        ],
+        "movementBreaks": ["Pauses pour se lever et chercher des matériaux", "Tours de table pour montrer le progrès", "Pauses étirement toutes les 8 minutes"]
       },
       "closing": {
         "duration": 10,
         "activity": "Journal sharing celebration (10 min): Students present their favorite page from their science journal and explain one important thing they learned about light and heat. Plan to share journals with families.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Journaux des élèves complétés", "Tableau de présentation"],
+        "visualSupports": "Affiche 'Ce que j'ai appris', exemples de pages réussies pour inspiration",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour présenter → permettre de montrer seulement à un ami d'abord",
+          "Si plusieurs élèves choisissent la même page → encourager à expliquer des détails différents"
+        ],
+        "movementBreaks": ["Applaudissements pour chaque présentation", "Gestes pour mimer les découvertes partagées"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Organiser et documenter leurs découvertes scientifiques dans un journal",
+        "then": "Fournir des modèles pré-formatés avec des boîtes pour dessins et espaces pour mots simples. Utiliser plus d'images et d'autocollants que d'écriture. Permettre le travail en partenariat pour l'organisation"
       },
       "realWorldConnection": "Students learn how scientists keep careful records and understand the importance of documenting discoveries to share knowledge",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des gabarits pré-formatés avec images",
+          "Utiliser plus d'autocollants et de collage que d'écriture",
+          "Permettre l'aide d'un partenaire pour l'organisation",
+          "Se concentrer sur 2-3 découvertes principales seulement"
+        ],
+        "forAdvanced": [
+          "Créer des pages additionnelles avec plus de détails",
+          "Ajouter des prédictions pour futures expériences",
+          "Inclure des connexions scientifiques plus complexes",
+          "Aider d'autres élèves avec leur documentation"
+        ],
+        "forELL": [
+          "Permettre l'utilisation de mots dans leur langue maternelle avec traduction",
+          "Utiliser beaucoup d'images et de pictogrammes",
+          "Fournir du vocabulaire bilingue pour concepts scientifiques",
+          "Encourager l'expression orale avant l'écriture"
+        ],
+        "forIEP": [
+          "Adapter les outils d'écriture selon les besoins moteurs",
+          "Permettre la documentation orale enregistrée",
+          "Ajuster la quantité de travail selon l'endurance",
+          "Utiliser des supports technologiques au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Organise ses découvertes de manière logique dans son journal",
+          "Inclut des dessins et descriptions de ses expériences préférées",
+          "Utilise le vocabulaire scientifique appris dans l'unité",
+          "Démontre la fierté de ses apprentissages et découvertes"
+        ],
+        "checkpoints": [
+          "Pendant la création: observer l'organisation et la compréhension des concepts",
+          "Lors du partage: évaluer la capacité à expliquer ses découvertes",
+          "En révision finale: vérifier l'intégration des apprentissages de l'unité"
+        ]
       }
     },
     {
@@ -1137,41 +1345,79 @@
       "opening": {
         "duration": 8,
         "activity": "Energy detective introduction (5 min): Students become 'energy detectives' looking for ways to save light energy at school and home.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Badges de détective énergétique", "Loupes en plastique"],
+        "visualSupports": "Pictogrammes de détective, images d'économies d'énergie simples",
+        "decisionPoints": [
+          "Si certains élèves ne comprennent pas 'détective' → expliquer comme 'chercheur de trésors cachés'",
+          "Si l'énergie est un concept trop abstrait → se concentrer sur 'allumer et éteindre les lumières'"
+        ],
+        "movementBreaks": ["Gestes de détective avec loupe imaginaire", "Marche d'exploration dans la classe"]
       },
       "main": {
         "duration": 27,
         "activity": "Energy conservation exploration (25 min): Identify opportunities to save light energy: turning off lights in empty rooms, using daylight instead of artificial lights when possible, choosing efficient light sources. Create energy-saving action plans for classroom and home. Practice vocabulary: 'Nous économisons l'énergie', 'Éteignons les lumières inutiles'. Design energy-saving reminder signs for classroom.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes d'activités d'économie d'énergie", "Papier pour affiches de rappel", "Marqueurs colorés"],
+        "visualSupports": "Phrases de vocabulaire affichées, pictogrammes 'allumé/éteint', images de lumières inutiles vs nécessaires",
+        "decisionPoints": [
+          "Si les élèves éteignent toutes les lumières → expliquer quand nous avons besoin de lumière pour la sécurité",
+          "Si les concepts d'économie d'énergie sont trop complexes → simplifier à 'éteindre quand nous partons'"
+        ],
+        "movementBreaks": ["Déplacement pour vérifier les lumières de la classe", "Gestes pour allumer/éteindre"]
       },
       "closing": {
         "duration": 10,
         "activity": "Energy-saving commitment ceremony (10 min): Students make personal commitments to save light energy and share ideas with families. Create classroom energy-saving goals.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Cartes d'engagement personnel", "Autocollants de promesse"],
+        "visualSupports": "Affiche des objectifs de classe, pictogrammes d'actions d'économie d'énergie",
+        "decisionPoints": [
+          "Si certains élèves font des promesses irréalistes → les aider à choisir une action simple et faisable",
+          "Si les élèves oublient leurs engagements → créer des rappels visuels quotidiens"
+        ],
+        "movementBreaks": ["Lever la main pour prendre l'engagement", "Applaudissements pour chaque promesse"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre le concept d'économiser l'énergie lumineuse",
+        "then": "Utiliser des exemples concrets et familiers: 'Éteindre la lumière quand tu sors de ta chambre - comme fermer la porte.' Montrer avec des interrupteurs réels. Simplifier à 'allumer/éteindre' au lieu de 'conservation d'énergie'"
       },
       "realWorldConnection": "Students develop habits of turning off lights, using daylight, and understanding their role in energy conservation",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur des actions simples: allumer/éteindre",
+          "Utiliser des exemples de la maison (chambre, salle de bain)",
+          "Permettre de mimer les actions au lieu de les expliquer",
+          "Utiliser des supports visuels avec interrupteurs"
+        ],
+        "forAdvanced": [
+          "Explorer les coûts de l'électricité et l'impact environnemental",
+          "Créer des plans d'économie d'énergie pour la classe",
+          "Calculer les économies potentielles simples",
+          "Devenir des 'ambassadeurs d'énergie' pour d'autres classes"
+        ],
+        "forELL": [
+          "Associer avec pratiques d'économie dans leur culture d'origine",
+          "Utiliser des gestes universels pour allumer/éteindre",
+          "Permettre l'expression en L1 puis traduire",
+          "Utiliser des pictogrammes pour les concepts d'énergie"
+        ],
+        "forIEP": [
+          "Adapter les activités de manipulation d'interrupteurs",
+          "Utiliser des minuteurs visuels pour les durées",
+          "Permettre des pauses si concept trop abstrait",
+          "Fournir des récompenses tangibles pour les bonnes habitudes"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Démontre comment éteindre les lumières inutiles",
+          "Fait des suggestions pour économiser l'énergie à l'école",
+          "Utilise le vocabulaire: économiser, éteindre, allumer",
+          "Montre des habitudes d'économie d'énergie en classe"
+        ],
+        "checkpoints": [
+          "Pendant l'exploration: observer les connexions avec expériences personnelles",
+          "Lors des démonstrations: noter la compréhension des actions d'économie",
+          "Sur plusieurs jours: surveiller l'adoption de nouvelles habitudes"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1228,30 +1474,39 @@
       "opening": {
         "duration": 8,
         "activity": "Global climate tour (5 min): Use globe to show different climate zones. Ask students to predict how people in very cold vs very hot places might use light and heat differently.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Globe terrestre", "Images de différents climats"],
+        "visualSupports": "Carte du monde simplifiée, pictogrammes chaud/froid, images de personnes dans différents climats",
+        "decisionPoints": [
+          "Si les élèves n'ont pas l'expérience de climats très différents → utiliser des comparaisons avec les saisons locales",
+          "Si le globe est trop complexe → utiliser des images simples de désert vs Arctique"
+        ],
+        "movementBreaks": ["Gestes pour mimer les températures chaudes et froides", "Faire le tour du globe avec le doigt"]
       },
       "main": {
         "duration": 27,
         "activity": "World light and heat exploration (25 min): Compare how people in different climates meet light and heat needs: Arctic igloos vs tropical open-air homes, seasonal festivals with lights in different cultures, how people dress for different climates. Create world climate comparison charts. Students choose a climate different from theirs and design solutions for light and heat needs.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images de maisons dans différents climats", "Photos de festivals de lumières", "Exemples de vêtements traditionnels"],
+        "visualSupports": "Tableau comparatif des climats, carte du monde avec exemples, pictogrammes des solutions de chauffage/refroidissement",
+        "decisionPoints": [
+          "Si les concepts culturels sont trop complexes → se concentrer sur les différences de température et vêtements",
+          "Si certains élèves choisissent tous le même climat → encourager l'exploration de climats variés"
+        ],
+        "movementBreaks": ["Mimer s'habiller pour différents climats", "Gestes pour construire des iglous vs maisons ouvertes"]
       },
       "closing": {
         "duration": 10,
         "activity": "Global appreciation circle (10 min): Students share their favorite global light or heat solution and discuss how people everywhere need light and heat but solve challenges differently.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images de solutions créatives du monde entier"],
+        "visualSupports": "Galerie de solutions mondiales, pictogrammes de différentes cultures, affiche 'Même besoin, différentes solutions'",
+        "decisionPoints": [
+          "Si les élèves répètent les mêmes solutions → proposer des exemples moins connus pour diversifier",
+          "Si certains jugent négativement d'autres solutions → rappeler que toutes les solutions intelligentes méritent respect"
+        ],
+        "movementBreaks": ["Mouvement en cercle pour changer de place", "Gestes pour mimer chaque solution partagée"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre comment les gens dans différents climats utilisent la lumière et la chaleur",
+        "then": "Utiliser des comparaisons avec leur propre expérience: 'En hiver ici, nous portons des manteaux. Dans les pays très chauds, les gens portent des vêtements légers.' Montrer des photos simples et faire des liens avec les saisons qu'ils connaissent"
       },
       "realWorldConnection": "Students appreciate global diversity in meeting basic light and heat needs and understand universal human requirements",
       "differentiation": {
@@ -1319,30 +1574,40 @@
       "opening": {
         "duration": 8,
         "activity": "Inventor introduction (5 min): Students become inventors solving winter heating problems. Review heat sources and insulation knowledge to prepare for design challenges.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Badges d'inventeur", "Images d'inventions réelles simples"],
+        "visualSupports": "Pictogrammes d'inventeur avec ampoule, rappel des sources de chaleur découvertes, affiche 'Les inventeurs résolvent des problèmes'",
+        "decisionPoints": [
+          "Si certains élèves ne comprennent pas 'inventeur' → utiliser des exemples d'inventions familières comme la roue ou l'ampoule",
+          "Si les problèmes d'hiver semblent trop abstraits → rappeler leurs expériences personnelles de froid"
+        ],
+        "movementBreaks": ["Geste de 'avoir une idée' avec l'index qui pointe vers la tête", "Mimer bricoler et construire"]
       },
       "main": {
         "duration": 27,
         "activity": "Heat invention workshop (25 min): Students design inventions to solve heating problems: keeping hands warm outdoors, heating a cold room, staying warm while camping. Use drawings and available materials to create invention prototypes. Apply knowledge of heat sources, insulation, and heat transfer. Present inventions explaining how they work using scientific vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Matériaux de bricolage variés", "Papier de dessin", "Crayons de couleur", "Matériaux d'isolation disponibles"],
+        "visualSupports": "Banque de vocabulaire scientifique, exemples de prototypes simples, affiches des trois problèmes à résoudre",
+        "decisionPoints": [
+          "Si certains élèves sont frustrés par des idées trop complexes → les encourager à simplifier et commencer petit",
+          "Si les matériaux ne suffisent pas → permettre les dessins détaillés comme alternatives valides",
+          "Si les présentations deviennent trop longues → limiter à 2 minutes par invention"
+        ],
+        "movementBreaks": ["Pauses pour se lever et chercher des matériaux", "Gestes pour expliquer le fonctionnement des inventions"]
       },
       "closing": {
         "duration": 10,
         "activity": "Invention showcase (10 min): Students present their heating inventions and explain how they used their scientific knowledge to solve problems. Celebrate creative problem-solving.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Podium ou espace de présentation", "Inventions créées par les élèves"],
+        "visualSupports": "Affiche de célébration, pictogrammes pour 'inventeur génial', banque de mots d'encouragement",
+        "decisionPoints": [
+          "Si certains élèves sont trop timides pour présenter → offrir l'option de présenter à un petit groupe d'abord",
+          "Si les explications sont confuses → poser des questions guidées: 'Comment ton invention garde-t-elle la chaleur?'"
+        ],
+        "movementBreaks": ["Applaudissements énergiques pour chaque invention", "Gestes pour mimer le fonctionnement de chaque invention"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Créer des inventions pour résoudre des problèmes de chauffage",
+        "then": "Commencer par des problèmes très simples qu'ils connaissent: 'Comment garder tes mains au chaud dehors?' Encourager toute idée créative et rappeler les matériaux isolants découverts. Permettre les dessins au lieu de constructions complexes"
       },
       "realWorldConnection": "Students understand how inventors create new heating solutions and how scientific knowledge leads to practical inventions",
       "differentiation": {
@@ -1410,30 +1675,39 @@
       "opening": {
         "duration": 8,
         "activity": "Plant winter survival question (5 min): Ask students how outdoor plants survive winter and why houseplants need special care indoors.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Images de plantes en hiver vs été", "Exemples de plantes d'intérieur"],
+        "visualSupports": "Comparaison visuelle plantes extérieures/intérieures, pictogrammes des besoins des plantes (lumière, chaleur, eau)",
+        "decisionPoints": [
+          "Si les élèves n'ont pas d'expérience avec les plantes → utiliser des exemples d'arbres familiers qu'ils voient dehors",
+          "Si les réponses sont très variées → noter toutes les idées pour explorer ensemble"
+        ],
+        "movementBreaks": ["Gestes pour mimer les plantes qui poussent", "Mimer se blottir contre le froid comme les plantes"]
       },
       "main": {
         "duration": 27,
         "activity": "Plant energy needs investigation (25 min): Observe how houseplants are positioned near windows for light and kept warm indoors. Experiment with placing plants in different light and heat conditions to observe growth differences. Create plant care journals documenting light and heat requirements. Connect to plant biology: plants need light for food-making and heat for growth.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Petites plantes pour expérimentation", "Carnets de soins des plantes", "Thermomètres simples"],
+        "visualSupports": "Diagramme des besoins des plantes, affiche 'Lumière + Chaleur = Croissance', exemple de journal de soins",
+        "decisionPoints": [
+          "Si les différences de croissance ne sont pas visibles immédiatement → expliquer que les changements prennent du temps",
+          "Si certains élèves déplacent trop souvent les plantes → établir un horaire d'observation sans manipulation"
+        ],
+        "movementBreaks": ["Déplacement pour observer les plantes à différents endroits", "Gestes pour mimer la croissance des plantes"]
       },
       "closing": {
         "duration": 10,
         "activity": "Plant care commitment (10 min): Students make commitments to help care for classroom plants, understanding their light and heat needs. Discuss how understanding plant needs helps us grow food in winter.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Horaire de soins des plantes", "Arrosoirs miniatures"],
+        "visualSupports": "Tableau des responsabilités de soins, pictogrammes des tâches de jardinage, images de légumes d'hiver",
+        "decisionPoints": [
+          "Si tous les élèves veulent la même tâche → créer un système de rotation équitable",
+          "Si certains élèves oublient leurs engagements → mettre en place des rappels visuels quotidiens"
+        ],
+        "movementBreaks": ["Mimer arroser et soigner les plantes", "Gestes de promesse avec la main sur le cœur"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Comprendre que les plantes ont besoin de lumière et de chaleur pour survivre",
+        "then": "Utiliser des comparaisons simples: 'Les plantes sont comme nous - elles ont besoin d'être au chaud et d'avoir de la lumière pour se sentir bien.' Montrer des plantes qui semblent tristes vs heureuses. Faire toucher des feuilles de plantes dans différents endroits"
       },
       "realWorldConnection": "Students understand houseplant care, greenhouse farming, and how understanding plant needs helps provide food year-round",
       "differentiation": {
@@ -1501,30 +1775,41 @@
       "opening": {
         "duration": 8,
         "activity": "Science showtime preparation (5 min): Students prepare to become science demonstrators, sharing their light and heat knowledge through performances.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Accessoires de spectacle simple", "Liste des démonstrations possibles"],
+        "visualSupports": "Affiche 'Scientifiques-vedettes', exemples de démonstrations, pictogrammes de performance",
+        "decisionPoints": [
+          "Si certains élèves sont anxieux de performer → les rassurer qu'ils sont déjà des experts après toutes leurs découvertes",
+          "Si les idées de démonstration sont trop complexes → suggérer des expériences simples déjà réussies"
+        ],
+        "movementBreaks": ["Gestes de vedette avec des révérences", "Applaudissements d'encouragement"]
       },
       "main": {
         "duration": 27,
         "activity": "Light science show creation (25 min): Students create demonstrations showcasing their learning: shadow puppet shows, light reflection displays, color spectrum demonstrations, heat source explanations. Practice using scientific vocabulary while entertaining audiences. Prepare materials and practice presentations.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Matériaux pour marionnettes d'ombres", "Miroirs et lampes de poche", "Prismes", "Cartes de vocabulaire scientifique"],
+        "visualSupports": "Guide des démonstrations possibles, banque de vocabulaire scientifique, exemples de spectacles réussis",
+        "decisionPoints": [
+          "Si certains élèves choisissent des démonstrations trop difficiles → les aider à adapter à leur niveau",
+          "Si la préparation prend plus de temps → permettre des démonstrations plus simples mais bien expliquées",
+          "Si certains oublient le vocabulaire scientifique → avoir des cartes aide-mémoire disponibles"
+        ],
+        "movementBreaks": ["Pratique des gestes de démonstration", "Pauses entre les répétitions"]
       },
       "closing": {
         "duration": 10,
         "activity": "Dress rehearsal performance (10 min): Students perform their light demonstrations for classmates, practicing their scientist presentation skills. Prepare for family science show.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Équipement de démonstration préparé", "Cartes de rappel du vocabulaire"],
+        "visualSupports": "Affiche d'encouragement, ordre de passage affiché, pictogrammes de bons scientifiques",
+        "decisionPoints": [
+          "Si certains élèves oublient leurs démonstrations → offrir un aide-mémoire discret",
+          "Si les performances sont trop longues → donner un signal gentil pour conclure",
+          "Si certains sont déçus de leurs performances → rassurer que c'est normal et qu'ils s'amélioreront"
+        ],
+        "movementBreaks": ["Applaudissements entre chaque performance", "Gestes d'encouragement du public"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Présenter leurs découvertes scientifiques dans un spectacle",
+        "then": "Rassurer qu'ils sont déjà des experts après toutes leurs expériences. Simplifier les démonstrations: montrer une ombre avec leurs mains, faire briller une lampe dans un miroir. Permettre les démonstrations en équipe pour réduire l'anxiété"
       },
       "realWorldConnection": "Students learn how scientists share knowledge through demonstrations and develop confidence in scientific communication",
       "differentiation": {
@@ -1592,30 +1877,41 @@
       "opening": {
         "duration": 8,
         "activity": "Expert scientist preparation (5 min): Students put on their scientist roles and prepare to share their expertise about light and heat with families.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Badges de scientifique expert", "Blouses de laboratoire ou tabliers"],
+        "visualSupports": "Affiche 'Scientifiques experts en lumière et chaleur', rappel des découvertes importantes",
+        "decisionPoints": [
+          "Si certains élèves sont intimidés par le rôle d'expert → rappeler toutes leurs découvertes authentiques",
+          "Si des élèves semblent avoir oublié leurs apprentissages → faire un rappel rapide des concepts clés"
+        ],
+        "movementBreaks": ["Gestes fiers de scientifiques experts", "Ajustement des badges et costumes"]
       },
       "main": {
         "duration": 27,
         "activity": "Family light and heat celebration (25 min): Students guide families through interactive stations: shadow experiments, insulation testing, light reflection activities, heat source identification, color spectrum creation. Students explain their discoveries using scientific vocabulary and demonstrate their understanding. Families participate in experiments and ask questions about student learning.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Stations d'expériences préparées", "Matériel de démonstration", "Guides d'activité pour familles"],
+        "visualSupports": "Panneaux explicatifs des stations, banque de vocabulaire visible, exemples de résultats d'expériences",
+        "decisionPoints": [
+          "Si certains élèves sont trop excités avec leurs familles → structurer avec des rotations chronométrées",
+          "Si des familles posent des questions trop avancées → rediriger vers les concepts que l'élève maîtrise",
+          "Si certains élèves oublient d'expliquer → avoir des cartes questions pour guider les familles"
+        ],
+        "movementBreaks": ["Rotation organisée entre les stations", "Pauses pour féliciter les démonstrations réussies"]
       },
       "closing": {
         "duration": 10,
         "activity": "Scientific achievement ceremony (10 min): Celebrate student growth as light and heat scientists. Present certificates recognizing specific achievements and discoveries. Students share their favorite learning from the unit.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Certificats de scientifique personnalisés", "Médailles ou autocollants de réussite"],
+        "visualSupports": "Galerie des découvertes de la classe, affiche de célébration, photos des expériences réussies",
+        "decisionPoints": [
+          "Si certains élèves sont émotifs lors de la célébration → normaliser que c'est beau d'être fier de ses apprentissages",
+          "Si les partages deviennent très longs → limiter à une phrase favorite par élève",
+          "Si certains élèves minimisent leurs réussites → souligner spécifiquement leurs contributions importantes"
+        ],
+        "movementBreaks": ["Applaudissements chaleureux pour chaque certificat", "Gestes de victoire pour célébrer les réussites"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Partager leurs connaissances sur la lumière et la chaleur avec leurs familles",
+        "then": "Rappeler toutes leurs découvertes incroyables: ils savent comment les ombres se forment, quels matériaux gardent la chaleur, comment le soleil nous réchauffe. Utiliser des cartes aide-mémoire visuelles et permettre aux familles de poser des questions simples"
       },
       "realWorldConnection": "Students proudly share their scientific learning with families, building community appreciation for science education and light/heat understanding",
       "differentiation": {

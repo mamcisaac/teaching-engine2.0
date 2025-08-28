@@ -1058,7 +1058,16 @@
         "activity": "Celebrate completing the core lessons! Explain that now we get to PLAY with all the words we've learned. Show game materials and build excitement.",
         "materials": ["Game station materials preview", "Celebration banners", "Core lessons completion certificate"],
         "visualSupports": "Game station preview poster, Celebration of learning visual, Word games excitement chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves sont très excités par l'idée des jeux de mots",
+            "choice": "Canaliser l'énergie avec une mini-démonstration ou commencer par un jeu calme"
+          },
+          {
+            "moment": "Si certains élèves semblent inquiets des jeux compétitifs",
+            "choice": "Rassurer que tous les jeux sont pour s'amuser ensemble, pas pour gagner"
+          }
+        ],
         "movementBreaks": ["Celebration gestures", "Preview of game movements"]
       },
       "main": {
@@ -1079,7 +1088,16 @@
         "activity": "Game Champions Circle - Everyone sits and shares which game was most fun. Give everyone a 'Word Game Champion' sticker because everyone played well.",
         "materials": ["Word Game Champion stickers (25+)", "Circle sitting arrangement", "Game reflection prompts"],
         "visualSupports": "Circle sharing format, Game reflection guide, Champion celebration visual",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si trop d'élèves veulent partager en même temps",
+            "choice": "Utiliser le bâton de parole ou limiter à une phrase par élève"
+          },
+          {
+            "moment": "Si un élève n'a pas aimé les jeux",
+            "choice": "Valider ses sentiments et demander ce qu'il a préféré dans la leçon"
+          }
+        ],
         "movementBreaks": ["Moving to circle formation", "Standing for champion sticker ceremony"]
       },
       "troubleshooting": {
@@ -1154,7 +1172,16 @@
         "activity": "Review favorite word games from yesterday. Show a simple picture book and explain that stories are made with words - we can make stories with OUR words.",
         "materials": ["Simple French picture book", "Game memories chart from lesson 15", "Story concept visual aids"],
         "visualSupports": "Story structure poster (beginning-middle-end), Word collection display, Picture book example",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves sont distraits par le livre d'images",
+            "choice": "Permettre quelques minutes d'exploration libre avant de commencer l'activité"
+          },
+          {
+            "moment": "Si les élèves ne comprennent pas le concept d'histoire",
+            "choice": "Utiliser des exemples familiers comme leurs histoires de famille ou de vacances"
+          }
+        ],
         "movementBreaks": ["Acting out favorite games", "Page-turning gestures with picture book"]
       },
       "main": {
@@ -1175,7 +1202,16 @@
         "activity": "Story Time Circle - 3-4 volunteers share their mini stories. Class responds with 'C'est une belle histoire!' after each one.",
         "materials": ["Student created stories", "Class response cue card", "Cozy story circle setup"],
         "visualSupports": "Story time format poster, Audience response guide, Story sharing celebration visual",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève est trop nerveux pour partager son histoire",
+            "choice": "Offrir de la lire avec lui ou permettre de montrer seulement les dessins"
+          },
+          {
+            "moment": "Si une histoire est très longue ou confuse",
+            "choice": "Remercier chaleureusement et aider à identifier la partie préférée"
+          }
+        ],
         "movementBreaks": ["Moving to story circle", "Story sharing gestures", "Appreciative response movements"]
       },
       "troubleshooting": {
@@ -1250,7 +1286,16 @@
         "activity": "Share a few mini stories from yesterday. Show school map and explain that our school is FULL of French words - we're going on a word treasure hunt around the building.",
         "materials": ["Mini stories from lesson 16", "Simple school map or layout", "Treasure hunt props (magnifying glasses)"],
         "visualSupports": "School layout visual, Word treasure hunt concept poster, French in our environment examples",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves sont très excités par la chasse aux mots",
+            "choice": "Établir des règles claires de marche silencieuse avant de quitter la classe"
+          },
+          {
+            "moment": "Si certains élèves ont peur d'explorer l'école",
+            "choice": "Rassurer qu'on reste ensemble et visiter les endroits familiers d'abord"
+          }
+        ],
         "movementBreaks": ["Story sharing gestures", "Map exploration movements"]
       },
       "main": {
@@ -1271,7 +1316,16 @@
         "activity": "Safari Debrief - Back in classroom, share the most interesting words found. Create a class list of 'School French Words' on chart paper.",
         "materials": ["Chart paper and markers", "Word collection sheets from hunt", "Safari celebration props"],
         "visualSupports": "School French words chart, Safari debrief format, Word discovery celebration poster",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont trouvé beaucoup trop de mots pour tous les partager",
+            "choice": "Choisir les 5 plus intéressants ou créer plusieurs affiches par catégorie"
+          },
+          {
+            "moment": "Si un élève n'a trouvé aucun mot pendant la chasse",
+            "choice": "L'encourager à partager un endroit qu'il a aimé visiter dans l'école"
+          }
+        ],
         "movementBreaks": ["Returning to classroom", "Sharing discoveries with enthusiasm", "Chart creation participation"]
       },
       "troubleshooting": {
@@ -1346,7 +1400,16 @@
         "activity": "Review school words found yesterday. Read a simple French poem or chant with rhythm and rhyme. Explain that poems are special ways to play with words and sounds.",
         "materials": ["School words chart from lesson 17", "Simple French poem book or chant card", "Rhythm instruments (optional)"],
         "visualSupports": "Poetry concept poster, Rhythm and rhyme examples, Simple poem format guide",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ne comprennent pas ce qu'est un poème",
+            "choice": "Comparer aux chansons qu'ils connaissent ou aux comptines de maternelle"
+          },
+          {
+            "moment": "Si les élèves veulent réciter le poème plusieurs fois",
+            "choice": "Permettre la répétition et ajouter des gestes ou des instruments"
+          }
+        ],
         "movementBreaks": ["Rhythmic movements while reading poem", "Sound and rhythm exploration gestures"]
       },
       "main": {
@@ -1367,7 +1430,16 @@
         "activity": "Poetry Café - Students sit in circle and share poems like a coffee shop poetry reading. Soft snaps or finger wiggles for applause after each poem.",
         "materials": ["Student created poems", "Cozy circle setup", "Optional: coffee shop props"],
         "visualSupports": "Poetry café setup visual, Audience appreciation guide, Poetry sharing format",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève est trop timide pour lire son poème",
+            "choice": "Offrir de le lire ensemble ou permettre à un ami de l'aider"
+          },
+          {
+            "moment": "Si les applaudissements deviennent trop bruyants",
+            "choice": "Enseigner les applaudissements silencieux du café (remuer les doigts)"
+          }
+        ],
         "movementBreaks": ["Moving to poetry circle", "Gentle applause movements", "Poetry performance gestures"]
       },
       "troubleshooting": {
@@ -1442,7 +1514,16 @@
         "activity": "Share a few poems from yesterday's poetry café. Explain that today we celebrate how well we can spell our learned words - like a friendly contest where everyone wins.",
         "materials": ["Poems from lesson 18", "Friendly competition concept visual", "Celebration props"],
         "visualSupports": "Friendly spelling celebration poster, 'Everyone wins' concept visual, Spelling celebration format",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves semblent anxieux à propos de l'orthographe",
+            "choice": "Rassurer que c'est pour célébrer ce qu'ils savent, pas pour les tester"
+          },
+          {
+            "moment": "Si certains élèves ne veulent pas participer au 'concours'",
+            "choice": "Expliquer que c'est un jeu d'équipe où tout le monde s'aide"
+          }
+        ],
         "movementBreaks": ["Poetry sharing gestures", "Celebration anticipation movements"]
       },
       "main": {
@@ -1463,7 +1544,16 @@
         "activity": "Spelling Champions Ceremony - Every student receives a 'Spelling Star' certificate. Celebrate growth and effort rather than perfect spelling.",
         "materials": ["Spelling Star certificates (25+)", "Ceremony music (optional)", "Celebration props"],
         "visualSupports": "Spelling champions ceremony format, Growth and effort celebration poster, Certificate presentation visual",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève se compare négativement aux autres",
+            "choice": "Souligner ses progrès personnels et ses efforts pendant l'unité"
+          },
+          {
+            "moment": "Si la cérémonie devient trop longue",
+            "choice": "Donner tous les certificats ensemble avec un gros applaudissement"
+          }
+        ],
         "movementBreaks": ["Standing for certificate ceremony", "Applause for all participants", "Victory celebration gestures"]
       },
       "troubleshooting": {
@@ -1538,7 +1628,16 @@
         "activity": "Show spelling certificates from yesterday. Set up celebration atmosphere with decorations. Announce that today we celebrate our amazing journey as word explorers!",
         "materials": ["Spelling certificates from lesson 19", "Celebration decorations (streamers, banners)", "Unit journey display materials"],
         "visualSupports": "Unit celebration poster, Word explorer journey timeline, Achievement celebration visual",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves sont trop excités par les décorations",
+            "choice": "Permettre quelques minutes d'admiration avant de commencer les activités"
+          },
+          {
+            "moment": "Si un élève semble triste que l'unité se termine",
+            "choice": "Rassurer qu'ils continueront à explorer les mots dans d'autres unités"
+          }
+        ],
         "movementBreaks": ["Admiring certificates together", "Setting up celebration space"]
       },
       "main": {
@@ -1546,7 +1645,20 @@
         "activity": "Explorer Celebration Festival - Set up stations: 1) Memory gallery of all unit work, 2) Favorite moment sharing circle, 3) Future goals setting ('Next I want to learn...'). Students rotate and celebrate their growth.",
         "materials": ["All unit work samples for display", "Sharing circle setup", "Future goals recording sheets", "Celebration station signs", "Rotation timer"],
         "visualSupports": "Celebration stations guide, Memory gallery display, Future goals prompts, Learning journey celebration chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent rester trop longtemps à une station",
+            "choice": "Donner un avertissement de 2 minutes avant la rotation"
+          },
+          {
+            "moment": "Si un élève ne trouve pas ses travaux dans l'exposition",
+            "choice": "L'aider à chercher ou célébrer sa participation aux activités de groupe"
+          },
+          {
+            "moment": "Si les élèves ont de la difficulté avec les objectifs futurs",
+            "choice": "Suggérer des idées simples comme 'apprendre plus de mots d'animaux'"
+          }
+        ],
         "movementBreaks": ["Rotating between celebration stations", "Sharing and admiring work displays", "Celebrating achievements with gestures"]
       },
       "closing": {
@@ -1554,7 +1666,16 @@
         "activity": "Explorer Pledge - Class stands together and recites: 'We are word explorers! We discover, we learn, we share, we grow!' End with group cheer and applause.",
         "materials": ["Explorer pledge poster", "Class celebration props", "Final unit achievement certificates (optional)"],
         "visualSupports": "Explorer pledge visual, Class motto poster, Unit completion celebration chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont de la difficulté à mémoriser la promesse d'explorateur",
+            "choice": "La réciter phrase par phrase et ajouter des gestes pour aider la mémorisation"
+          },
+          {
+            "moment": "Si l'énergie devient trop intense pendant les acclamations",
+            "choice": "Diriger vers des gestes de célébration plus calmes mais enthousiastes"
+          }
+        ],
         "movementBreaks": ["Standing together for pledge", "Group cheer with full body movement", "Celebration applause and cheering"]
       },
       "troubleshooting": {

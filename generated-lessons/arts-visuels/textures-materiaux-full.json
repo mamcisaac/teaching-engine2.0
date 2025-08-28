@@ -212,27 +212,39 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Révision des frottages simples de la leçon précédente avec présentation des réussites. Introduction du concept de superposition : montrer comment superposer deux frottages crée de nouveaux effets visuels. Démonstration en direct avec deux textures différentes. Discussion sur contraste (rugueux + lisse) vs harmonie (textures similaires).",
+        "materials": ["Frottages de la leçon précédente", "Papier calque", "Crayons cire de couleurs variées", "Objets texturés pour démonstration"],
+        "visualSupports": "Exemples de superpositions réussies, vocabulaire contraste/harmonie illustré",
+        "decisionPoints": [
+          "Si confusion entre contraste et harmonie → utiliser des exemples très visuels (noir sur blanc vs bleu sur bleu)",
+          "Si appréhension face à la complexité → rassurer que l'expérimentation fait partie de l'art",
+          "Si impatience de commencer → canaliser en les faisant deviner les textures de la démonstration"
+        ],
+        "movementBreaks": ["Danse de superposition : mouvements de couches qui se superposent harmonieusement"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création de frottages superposés par étapes guidées. Étape 1 : Premier frottage avec couleur claire sur texture douce (7 min). Étape 2 : Deuxième frottage avec couleur plus foncée sur texture contrastée, en superposition partielle (10 min). Étape 3 : Ajouts créatifs et détails personnels (10 min). Circulation pour encouragements et conseils techniques personnalisés.",
+        "materials": ["Papier résistant pour frottages multiples", "Crayons cire palette étendue", "Variété d'objets texturés classés par intensité", "Papier brouillon pour tests"],
+        "visualSupports": "Exemples d'étapes en cours d'exécution, palette de couleurs conseillées pour superposition",
+        "decisionPoints": [
+          "Si résultat décevant après première tentative → encourager à voir la beauté des 'accidents' artistiques",
+          "Si difficulté à gérer pression pour deuxième couche → ajuster technique avec toucher plus léger",
+          "Si frustration avec choix de couleurs → proposer combinaisons testées sur brouillon d'abord",
+          "Si avancement trop rapide → encourager à explorer détails et nuances"
+        ],
+        "movementBreaks": ["Pause créative : étirements en admirant les œuvres en cours depuis différents angles"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Galerie d'appréciation mutuelle : accrochage temporaire des frottages superposés. Visite libre avec commentaires positifs encouragés. Identification collective des effets de superposition réussis : contrastes saisissants, harmonies douces, effets surprise. Chaque élève choisit son détail préféré sur l'œuvre d'un pair.",
+        "materials": ["Frottages superposés créés", "Système d'accrochage rapide", "Cartons pour commentaires positifs"],
+        "visualSupports": "Galerie organisée avec éclairage valorisant, cartes de vocabulaire appréciatif",
+        "decisionPoints": [
+          "Si timidité pour commenter positivement → proposer structure simple 'J'aime...' ou pointer silencieusement",
+          "Si comparaisons négatives → recentrer sur la découverte des techniques et l'unicité de chaque création"
+        ],
+        "movementBreaks": ["Applaudissements texturés : applaudir avec différentes nuances selon les œuvres"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -254,7 +266,7 @@
       "lessonNumber": 5,
       "lessonType": "core",
       "title": "Matériaux naturels: Découverte et collection",
-      "oneGoal": "",
+      "oneGoal": "Les élèves découvriront la diversité des textures naturelles et créeront une collection personnelle de matériaux trouvés dans la nature.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "naturel",
@@ -266,49 +278,59 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de découverte avec boîte mystère contenant des trésors naturels (feuilles, écorce, cailloux, branches). Les élèves explorent en touchant et décrivent en français. Discussion sur les différences entre matériaux naturels et fabriqués par l'humain.",
+        "materials": ["Boîte mystère", "Trésors naturels variés (feuilles, écorce, pierres lisses, branches, pommes de pin)", "Cartes visuelles nature/artificiel"],
+        "visualSupports": "Tableau de classification nature vs artificiel avec images claires",
+        "decisionPoints": [
+          "Si un élève a peur des insectes sur les matériaux → nettoyer les objets à l'avance et rassurer sur la sécurité",
+          "Si certains élèves ne distinguent pas naturel/artificiel → utiliser des exemples très contrastés (feuille vs papier, pierre vs brique)",
+          "Si surexcitation avec les découvertes → établir règle du 'toucher respectueux' comme un scientifique"
+        ],
+        "movementBreaks": ["Mouvement nature : imiter la croissance d'un arbre (racines, tronc, branches)"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sortie d'exploration dans la cour d'école ou le parc adjacent. Par équipes de 3, les élèves collectent différentes textures naturelles en respectant les règles (ne pas arracher de plantes vivantes, prendre seulement ce qui est tombé). Création d'un 'passeport de textures naturelles' avec dessins et échantillons collés. Classification par texture : rugueux, lisse, doux, piquant.",
+        "materials": ["Sacs de collection", "Carnets de terrain", "Crayons", "Loupes", "Colle", "Étiquettes", "Règles de collecte illustrées"],
+        "visualSupports": "Guide visuel des bonnes pratiques de collecte, carte de la zone d'exploration",
+        "decisionPoints": [
+          "Si météo défavorable → explorer les matériaux naturels apportés en classe et créer des centres de découverte",
+          "Si un élève veut tout garder → expliquer le partage et limiter à 5 éléments par personne",
+          "Si difficultés à trouver des différences → guider vers des zones riches (base des arbres, près des fleurs)"
+        ],
+        "movementBreaks": ["Pause exploration : étirements comme les branches dans le vent"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exposition des collections sur les tables. Chaque équipe présente sa trouvaille la plus intéressante en expliquant sa texture en français. Création d'une banque collective de matériaux naturels pour les prochaines activités artistiques. Discussion sur le respect de la nature.",
+        "materials": ["Collections créées", "Passeports complétés", "Bacs de rangement pour banque collective"],
+        "visualSupports": "Galerie temporaire des découvertes, affiche des règles de respect de la nature",
+        "decisionPoints": [
+          "Si timidité pour présenter → permettre de présenter en binôme ou simplement montrer silencieusement"
+        ],
+        "movementBreaks": ["Remerciement à la nature : geste de gratitude avec les mains vers le cœur"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui refuse de toucher certains matériaux naturels ou semble anxieux à l'extérieur",
+        "then": "Respecter ses limites tout en encourageant l'observation. Proposer d'utiliser des outils (pinces, bâtonnets) pour manipuler. Rester proche et offrir des choix sécurisants."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Matériaux utilisés dans leur maison (plancher de bois, comptoir de pierre), objets d'artisanat local, jardins familiaux, parcs où ils jouent, traditions autochtones d'utilisation des ressources naturelles.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Collection guidée avec aide directe", "Seulement 3 textures de base à identifier", "Support visuel constant"],
+        "forAdvanced": ["Recherche de textures complexes ou rares", "Documentation scientifique détaillée", "Animation de la présentation pour les pairs"],
+        "forELL": ["Vocabulaire illustré avec gestes", "Focus sur l'exploration sensorielle", "Expression par le dessin encouragée"],
+        "forIEP": ["Adaptation selon sensibilités sensorielles", "Zone de collecte réduite si nécessaire", "Support individuel pour manipulation"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Identifie matériaux naturels vs artificiels", "Décrit textures en français simple", "Respecte règles de collecte", "Participe activement à l'exploration"],
+        "checkpoints": ["Observation pendant la collecte extérieure", "Qualité des descriptions dans le passeport", "Participation aux présentations"]
       }
     },
     {
       "lessonNumber": 6,
       "lessonType": "core",
       "title": "Art avec la nature: Créations éphémères",
-      "oneGoal": "",
+      "oneGoal": "Les élèves créeront des œuvres d'art temporaires en utilisant leurs matériaux naturels collectés, découvrant le concept d'art éphémère.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "éphémère",
@@ -320,49 +342,59 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Découverte du concept d'art éphémère avec photos d'Andy Goldsworthy et d'autres artistes du land art. Explication que certaines œuvres d'art sont temporaires et changent avec le temps. Les élèves observent leurs collections de matériaux naturels de la leçon précédente et imaginent des arrangements possibles.",
+        "materials": ["Photos d'art éphémère", "Collections de matériaux naturels de la leçon 5", "Loupe", "Appareils photo ou tablettes"],
+        "visualSupports": "Galerie d'images d'art éphémère, vocabulaire illustré temporaire/permanent",
+        "decisionPoints": [
+          "Si les élèves sont tristes que l'art disparaisse → expliquer la beauté des cycles naturels et l'importance de la documentation photo",
+          "Si confusion entre temporaire et permanent → donner des exemples concrets (château de sable vs statue de pierre)",
+          "Si les matériaux collectés sont abîmés → expliquer que cela fait partie de l'art éphémère et reste utilisable"
+        ],
+        "movementBreaks": ["Imitation des cycles naturels : grandir, fleurir, faner, renaître"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création d'arrangements artistiques éphémères à l'extérieur ou dans un espace dédié. Les élèves travaillent par équipes de 2-3 pour créer des mandalas, spirales, ou autres formes avec leurs matériaux naturels. Accent sur l'harmonie des couleurs, textures et formes. Documentation photographique de chaque étape et du résultat final. Observation des changements si vent ou autre élément naturel interagit.",
+        "materials": ["Matériaux naturels collectés", "Bâches ou supports temporaires", "Appareils photo/tablettes", "Carnet d'artiste", "Minuterie pour rotations"],
+        "visualSupports": "Exemples de formes géométriques simples, guide de composition",
+        "decisionPoints": [
+          "Si dispute sur les matériaux → rappeler l'esprit de partage et proposer des échanges entre équipes",
+          "Si perfectionnisme excessif → rappeler que l'art éphémère accepte l'imperfection et le changement",
+          "Si œuvre détruite accidentellement → utiliser comme apprentissage sur la nature temporaire de l'art"
+        ],
+        "movementBreaks": ["Pause créative : mouvements lents et harmonieux comme disposer délicatement des matériaux"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Galerie éphémère : chaque équipe présente son œuvre en expliquant les choix de matériaux et de formes. Photos projetées pour que tous puissent apprécier les détails. Discussion sur les sentiments ressentis en créant quelque chose de temporaire. Laisser les œuvres dehors pour observer l'évolution naturelle lors de la prochaine visite.",
+        "materials": ["Photos des créations", "Écran ou mur de projection", "Carnets d'artiste"],
+        "visualSupports": "Galerie photo numérique des créations, certificats de 'créateur d'art éphémère'",
+        "decisionPoints": [
+          "Si émotion forte face à la perte de l'œuvre → valider les sentiments et souligner l'importance des souvenirs et photos"
+        ],
+        "movementBreaks": ["Respiration d'acceptation : inspirer la création, expirer le détachement"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui refuse de laisser son œuvre à l'extérieur ou est trop attaché au résultat",
+        "then": "Respecter l'attachement émotionnel. Proposer de ramasser délicatement l'œuvre pour la conserver temporairement, ou créer une version 'permanente' en dessin. Expliquer les cycles naturels avec bienveillance."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Saisons qui changent, jardins qui évoluent, châteaux de sable à la plage, bonhommes de neige, feuilles qui tombent et se décomposent, art de rue temporaire.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Arrangements très simples (lignes, cercles)", "Travail avec partenaire expérimenté", "Focus sur l'expérience plutôt que le résultat"],
+        "forAdvanced": ["Création de motifs complexes", "Intégration d'éléments environnementaux", "Documentation détaillée du processus"],
+        "forELL": ["Expression principalement visuelle", "Vocabulaire de base avec gestes", "Partage par montrer plutôt que parler"],
+        "forIEP": ["Matériaux adaptés aux capacités motrices", "Temps flexible", "Support émotionnel si attachement difficile"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Crée des arrangements esthétiques", "Utilise variété de matériaux naturels", "Comprend le concept d'art temporaire", "Documente son processus créatif"],
+        "checkpoints": ["Qualité de l'arrangement créé", "Collaboration dans l'équipe", "Réaction face au caractère éphémère"]
       }
     },
     {
       "lessonNumber": 7,
       "lessonType": "core",
       "title": "Introduction au collage: Techniques de base",
-      "oneGoal": "",
+      "oneGoal": "Les élèves découvriront les techniques fondamentales du collage et créeront leur première œuvre en combinant papiers de différentes textures.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "collage",
@@ -374,49 +406,59 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Démonstration des techniques de base du collage avec différents adhésifs (bâton de colle, colle liquide, ruban adhésif). Les élèves explorent une sélection de papiers aux textures variées (lisse, rugueux, brillant, mat) et apprennent à les déchirer vs les couper pour différents effets.",
+        "materials": ["Variété de papiers texturés", "Bâtons de colle", "Colle liquide avec pinceaux", "Ciseaux à bout rond", "Supports cartonnés", "Chiffons humides"],
+        "visualSupports": "Exemples de collages célèbres adaptés à l'âge, démonstration des techniques",
+        "decisionPoints": [
+          "Si dégâts de colle importants → garder chiffons humides à portée et enseigner technique du 'petit point de colle'",
+          "Si frustration avec déchirure vs découpage → montrer que les deux techniques ont leur beauté et usage",
+          "Si hésitation à commencer → encourager l'expérimentation libre avant la création dirigée"
+        ],
+        "movementBreaks": ["Gestes de l'artiste : mouvements de déchirure délicate et de collage précis"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création d'un collage libre sur le thème 'Mon jardin de textures'. Les élèves choisissent un support et composent en superposant papiers de différentes textures pour représenter un jardin imaginaire. Expérimentation avec transparence (papier calque), contraste (lisse vs rugueux) et harmonie des couleurs. Introduction de la technique du frottage sur certains papiers avant collage.",
+        "materials": ["Papiers variés (journal, magazine, papier de soie, papier sableux, papier métallisé)", "Supports A4 cartonnés", "Adhésifs variés", "Crayons cire pour frottage", "Objets texturés pour frottage"],
+        "visualSupports": "Exemples de jardins de textures, palette de combinaisons harmonieuses",
+        "decisionPoints": [
+          "Si surcharge de colle → enseigner la règle 'moins c'est plus' et technique de nettoyage",
+          "Si paralysie face aux choix → proposer de commencer par 3 papiers maximum et ajouter progressivement",
+          "Si comparaison avec les autres → rappeler que chaque jardin est unique comme chaque artiste"
+        ],
+        "movementBreaks": ["Danse du collage : mouvements de déplacement et de superposition avec le corps"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Galerie des jardins de textures : accrochage temporaire des œuvres et visite guidée par les artistes. Chaque élève présente une texture préférée de son jardin et explique pourquoi. Introduction du vocabulaire critique simple : 'J'aime parce que...' Discussion sur les découvertes techniques.",
+        "materials": ["Œuvres créées", "Système d'accrochage temporaire", "Cartons d'identification"],
+        "visualSupports": "Espace galerie organisé, cartes de vocabulaire critique",
+        "decisionPoints": [
+          "Si timidité pour présenter → permettre de pointer silencieusement ou chuchoter à un partenaire qui traduit"
+        ],
+        "movementBreaks": ["Applaudissements texturés : applaudir avec différentes intensités selon les œuvres"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui a peur de 'gâcher' son œuvre ou veut tout recommencer",
+        "then": "Rassurer que l'art accepte les 'erreurs' comme partie du processus créatif. Montrer comment intégrer les éléments non prévus. Proposer des techniques de 'réparation artistique'."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Affiches publicitaires, magazines, emballages alimentaires, décoration intérieure, art mural urbain, techniques d'artistes locaux.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Pré-découpe de formes de base", "Support avec guide visuel léger", "Choix limité de matériaux pour éviter surcharge"],
+        "forAdvanced": ["Techniques avancées (superposition complexe, frottage multiple)", "Rôle de mentor pour pairs", "Exploration de nouvelles combinaisons"],
+        "forELL": ["Focus sur création visuelle", "Vocabulaire tactile avec gestes", "Expression non-verbale encouragée"],
+        "forIEP": ["Outils adaptés (gros pinceaux, prises faciles)", "Espace de travail organisé", "Pauses fréquentes"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Utilise techniques de base du collage", "Combine différentes textures harmonieusement", "Fait des choix artistiques réfléchis", "Prend soin du matériel"],
+        "checkpoints": ["Maîtrise technique pendant création", "Qualité esthétique de l'œuvre", "Participation à la discussion critique"]
       }
     },
     {
       "lessonNumber": 8,
       "lessonType": "core",
       "title": "Collage texturé: Intégration des matériaux",
-      "oneGoal": "",
+      "oneGoal": "Les élèves intégreront des matériaux naturels collectés à leurs techniques de collage pour créer des œuvres mixtes texturées.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "intégrer",
@@ -428,49 +470,59 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Révision des collages de la leçon précédente et découverte d'œuvres d'artistes utilisant matériaux mixtes (Kurt Schwitters, Robert Rauschenberg adapté ). Introduction du concept de technique mixte : papier + matériaux naturels. Les élèves observent leurs matériaux naturels et imaginent comment les intégrer artistiquement.",
+        "materials": ["Collages de la leçon 7", "Exemples d'œuvres mixtes", "Matériaux naturels conservés", "Loupe pour observation détaillée"],
+        "visualSupports": "Galerie d'œuvres mixtes, schéma visuel papier + nature",
+        "decisionPoints": [
+          "Si les matériaux naturels sont trop fraîles → enseigner techniques de renforcement avec papier de soie",
+          "Si réticence à 'abîmer' les beaux matériaux → expliquer que l'art transforme et embellit",
+          "Si découragement face à la complexité → commencer par un seul élément naturel à intégrer"
+        ],
+        "movementBreaks": ["Danse de l'intégration : mouvements qui mélangent et unifient"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création de collages techniques mixtes sur le thème 'Portraits de la nature'. Les élèves combinent papiers de différentes textures avec leurs matériaux naturels pour créer des visages ou silhouettes abstraites. Techniques enseignées : fixation d'éléments 3D avec colle forte, création de reliefs, jeu entre mat et brillant. Rotation entre 4 stations de matériaux.",
+        "materials": ["Papiers variés", "Matériaux naturels sélectionnés", "Colle forte adaptée", "Pinces à linge pour séchage", "Plateaux par station", "Supports rigides"],
+        "visualSupports": "4 stations thématiques (feuilles, pierres, textures, couleurs), guides techniques",
+        "decisionPoints": [
+          "Si difficultés avec colle forte → supervision étroite et technique de pression temporaire",
+          "Si encombrement des stations → système de rotation chronométrée 7 minutes",
+          "Si matériaux se détachent → enseigner technique de 'couchage' sous papiers lourds"
+        ],
+        "movementBreaks": ["Rotation-danse : mouvement fluide entre stations au son de la nature"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exposition 'Portraits nature' avec mise en scène dramatique (lumière tamisée). Chaque artiste présente son portrait en décrivant le 'caractère' qu'il a voulu donner avec les matériaux choisis. Introduction du vocabulaire émotionnel lié aux textures : doux = calme, rugueux = fort, etc.",
+        "materials": ["Œuvres séchées", "Éclairage d'ambiance", "Cartes vocabulaire émotionnel"],
+        "visualSupports": "Mise en scène galerie, association texture-émotion illustrée",
+        "decisionPoints": [
+          "Si élève ne voit pas de 'personnage' dans son œuvre → l'encourager à décrire ce qu'il ressent plutôt"
+        ],
+        "movementBreaks": ["Salut d'artiste : révérence théâtrale pour célébrer les créations"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève dont les matériaux ne tiennent pas ou qui est frustré par les difficultés techniques",
+        "then": "Offrir alternatives techniques (attaches temporaires, intégration partielle). Valoriser l'intention artistique plus que la perfection technique. Proposer collaboration avec pair expérimenté."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Art urbain avec matériaux recyclés, sculptures publiques utilisant pierre et métal, décoration d'intérieur mixte, artisanat local combinant matériaux.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Matériaux pré-fixés partiellement", "Choix simplifié de 2 matériaux naturels", "Support avec guide léger"],
+        "forAdvanced": ["Défi multi-textures complexes", "Création de reliefs prononcés", "Aide technique aux pairs"],
+        "forELL": ["Communication par gestes et montrer", "Focus sur ressenti tactile", "Vocabulaire émotionnel avec images"],
+        "forIEP": ["Outils de manipulation adaptés", "Espace de séchage personnalisé", "Temps supplémentaire selon besoin"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Intègre harmonieusement matériaux mixtes", "Utilise techniques de fixation appropriées", "Exprime des idées par les textures", "Respecte temps de rotation"],
+        "checkpoints": ["Réussite technique des assemblages", "Originalité dans combinaisons", "Expression du 'caractère' de l'œuvre"]
       }
     },
     {
       "lessonNumber": 9,
       "lessonType": "core",
       "title": "Palette de textures: Organisation et présentation",
-      "oneGoal": "",
+      "oneGoal": "Les élèves créeront un portfolio personnel organisé de leurs découvertes texturées pour servir de référence artistique.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "portfolio",
@@ -482,49 +534,59 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Découverte du concept de portfolio d'artiste avec exemples de portfolios simples. Discussion sur l'importance de garder des traces de ses découvertes artistiques. Les élèves rassemblent toutes leurs créations texturées : frottages, collages, photos d'art éphémère, matériaux collectés.",
+        "materials": ["Exemples de portfolios adaptés à l'âge", "Toutes créations de l'unité", "Chemises ou cartables", "Photos imprimées des créations éphémères"],
+        "visualSupports": "Portfolios d'artistes simplifiés, exemples d'organisation claire",
+        "decisionPoints": [
+          "Si élèves découragés par œuvres abîmées → expliquer que les traces d'usage font partie de l'histoire artistique",
+          "Si difficulté à tout retrouver → utiliser cette occasion pour parler de l'importance du rangement d'atelier",
+          "Si comparaison entre portfolios → souligner l'unicité du parcours artistique de chacun"
+        ],
+        "movementBreaks": ["Danse de l'archiviste : mouvements de tri et classement délicats"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création d'un portfolio 'Mon parcours des textures'. Les élèves organisent chronologiquement leurs découvertes avec pages dédiées : 'Mes premières textures', 'Mes trouvailles naturelles', 'Mes frottages', 'Mes collages', 'Mon art éphémère'. Chaque section include œuvres, photos, et une phrase de réflexion dictée à l'adulte. Décoration personnalisée de la couverture.",
+        "materials": ["Cartables ou chemises épaisses", "Feuilles de séparation", "Toutes créations accumulées", "Matériaux de décoration", "Plastification pour protection"],
+        "visualSupports": "Modèle de pages types, exemples de réflexions adaptées à l'âge",
+        "decisionPoints": [
+          "Si trop d'œuvres pour l'espace → apprendre la sélection des plus représentatives",
+          "Si frustration avec organisation chronologique → permettre organisation par préférence ou couleur",
+          "Si réticence à la réflexion → utiliser questions guidées simples ('Que préfères-tu dans cette création?')"
+        ],
+        "movementBreaks": ["Pause portfolio : feuilleter délicatement comme un livre précieux"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Vernissage des portfolios : présentation solennelle où chaque élève montre sa page préférée. Signature collective d'un 'livre d'or' de l'unité. Remise de certificats 'Explorateur de textures diplômé'. Discussion sur ce qu'ils aimeraient découvrir ensuite en art.",
+        "materials": ["Portfolios complétés", "Livre d'or collectif", "Certificats personnalisés", "Espace vernissage aménagé"],
+        "visualSupports": "Espace galerie solennel, certificats artistiques",
+        "decisionPoints": [
+          "Si émotion face à la fin de l'unité → rassurer que les portfolios gardent les souvenirs vivants"
+        ],
+        "movementBreaks": ["Applaudissements de vernissage : applaudissements sophistiqués d'exposition"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève déçu de la qualité de certaines œuvres ou qui veut tout refaire",
+        "then": "Valoriser le progrès visible dans le portfolio. Montrer que même les artistes professionnels gardent leurs premières œuvres. Proposer d'ajouter une note sur ce qu'il ferait différemment maintenant."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Albums photos familiaux, carnets de voyage, collections personnelles, dossiers scolaires, portfolios d'artistes locaux, archives historiques.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Organisation simplifiée en 3 sections max", "Aide pour placement et colle", "Réflexions très courtes"],
+        "forAdvanced": ["Sections supplémentaires personnelles", "Réflexions détaillées auto-dictées", "Aide à l'organisation des pairs"],
+        "forELL": ["Réflexions avec dessins/gestes", "Organisation par images plutôt que mots", "Partage visuel du portfolio"],
+        "forIEP": ["Portfolio adapté aux capacités motrices", "Aide technique pour organisation", "Objectifs ajustés selon besoins"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Organise portfolio de manière cohérente", "Sélectionne œuvres représentatives", "Exprime réflexions sur son parcours", "Présente son travail avec fierté"],
+        "checkpoints": ["Complétude et organisation du portfolio", "Qualité des réflexions partagées", "Engagement dans le processus de documentation"]
       }
     },
     {
       "lessonNumber": 10,
       "lessonType": "core",
       "title": "Projet personnel: Planification",
-      "oneGoal": "",
+      "oneGoal": "Les élèves planifieront un projet artistique personnel en utilisant leurs connaissances sur les textures et matériaux acquises.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "planifier",
@@ -536,49 +598,59 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Introduction au concept de projet artistique personnel avec exemples adaptés (construire une cabane, faire un gâteau, planter un jardin). Discussion sur l'importance de planifier avant de créer. Les élèves consultent leurs portfolios pour s'inspirer de leurs découvertes préférées. Brainstorm collectif d'idées de projets utilisant textures.",
+        "materials": ["Portfolios de la leçon précédente", "Exemples de projets simples", "Tableau pour brainstorm", "Images inspirantes de créations texturées"],
+        "visualSupports": "Galerie d'inspiration, schéma simple des étapes de projet",
+        "decisionPoints": [
+          "Si idées trop ambitieuses ou complexes → guider vers adaptations réalisables en 2 leçons",
+          "Si manque d'inspiration → proposer thèmes simples (animal texturé, paysage tactile, portrait matériaux)",
+          "Si plusieurs élèves veulent la même idée → expliquer que chaque réalisation sera unique"
+        ],
+        "movementBreaks": ["Gestes de planification : mouvements de réflexion et d'organisation dans l'espace"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création d'un plan de projet individuel avec fiche de planification illustrée. Les élèves choisissent leur projet, dessinent leur idée, sélectionnent 3-5 matériaux/textures de leur portfolio, anticipent les étapes (découper, coller, décorer). Consultation individuelle avec l'enseignant pour valider faisabilité. Préparation de la 'commande' de matériaux nécessaires.",
+        "materials": ["Fiches de planification illustrées", "Crayons et crayons de couleur", "Portfolios personnels", "Catalogs de matériaux disponibles", "Listes de vérification simples"],
+        "visualSupports": "Modèles de fiches complétées, galerie d'étapes visuelles",
+        "decisionPoints": [
+          "Si changement d'idée en cours de planification → accompagner la réflexion plutôt que décourager",
+          "Si difficulté à visualiser le résultat final → proposer de commencer et ajuster en cours",
+          "Si anxiété face à l'autonomie → rassurer sur présence d'aide et possibilité de modification"
+        ],
+        "movementBreaks": ["Pause créative : mouvements d'artiste qui visualise son œuvre future"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Partage des plans de projet par binômes. Chaque élève explique son idée et les matériaux choisis. Les pairs posent une question ou donnent une idée constructive. Vérification collective des listes de matériaux et préparation pour la réalisation. Signature solennelle du 'contrat d'artiste' avec son projet.",
+        "materials": ["Plans de projet complétés", "Contrats d'artiste pré-imprimés", "Matériaux pour vérification"],
+        "visualSupports": "Galerie temporaire des plans, contrat d'artiste officiel",
+        "decisionPoints": [
+          "Si critique négative entre élèves → recentrer sur questions constructives et encouragement"
+        ],
+        "movementBreaks": ["Signature cérémonielle : geste solennel de l'engagement artistique"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui change constamment d'idée ou qui est paralysé par l'indécision",
+        "then": "Pour l'indécision : limiter à 2-3 choix et utiliser des critères simples (plus amusant, plus facile, plus beau). Pour les changements : fixer une limite bienveillante et expliquer que modifier en cours est normal en art."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Planification de vacances familiales, préparation d'une fête d'anniversaire, organisation d'un spectacle, construction avec blocs, recettes de cuisine.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Choix pré-sélectionnés de 3 projets simples", "Fiche de planification simplifiée", "Consultation approfondie avec enseignant"],
+        "forAdvanced": ["Projets plus complexes multi-étapes", "Planification détaillée avec timing", "Rôle de mentor pour pairs"],
+        "forELL": ["Planification principalement visuelle", "Support gestuel pour explication", "Utilisation du portfolio comme référence"],
+        "forIEP": ["Projets adaptés aux capacités motrices", "Planification avec support individuel", "Objectifs ajustés selon besoins"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Élabore un plan réalisable", "Sélectionne matériaux appropriés", "Anticipe les étapes principales", "Communique son idée clairement"],
+        "checkpoints": ["Qualité et faisabilité du plan créé", "Pertinence des matériaux choisis", "Engagement dans le processus de planification"]
       }
     },
     {
       "lessonNumber": 11,
       "lessonType": "core",
       "title": "Projet personnel: Création (Partie 1)",
-      "oneGoal": "",
+      "oneGoal": "Les élèves commenceront la réalisation de leur projet artistique personnel en appliquant leurs connaissances des textures et techniques apprises.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "réalisation",
@@ -589,49 +661,60 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Rappel des projets planifiés avec consultation des plans individuels. Mise en place des espaces de travail personnalisés selon les projets. Distribution des matériaux demandés. Rituel de début d'atelier : 'Aujourd'hui je suis un artiste qui crée'. Échanges sur l'excitation et l'anxiété de commencer.",
+        "materials": ["Plans de projets individuels", "Tous matériaux demandés", "Espaces de travail organisés", "Portfolios pour inspiration"],
+        "visualSupports": "Ateliers aménagés selon projets, rappel des techniques apprises",
+        "decisionPoints": [
+          "Si élève veut changer complètement de projet → explorer pourquoi et proposer modifications plutôt que changement total",
+          "Si anxiété de 'gâcher' les matériaux → rassurer que l'expérimentation fait partie de l'art",
+          "Si surexcitation et précipitation → rappeler l'importance de suivre son plan étape par étape"
+        ],
+        "movementBreaks": ["Réchauffement d'artiste : préparation des mains et de l'esprit créatif"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Travail individuel guidé sur les projets personnels. Les élèves commencent par préparer leur support, puis appliquent leur première étape (souvent coller/placer les éléments principaux). Circulation de l'enseignant pour encouragement et conseils techniques. Mini-consultations de 2 minutes par élève. Partage spontané de découvertes entre pairs. Documentation photo du processus.",
+        "materials": ["Matériaux individuels sélectionnés", "Outils de base (colle, ciseaux, pinceaux)", "Supports variés", "Appareils photo pour documentation", "Chiffons et nettoyage"],
+        "visualSupports": "Rappel des techniques disponibles, galerie des étapes en cours",
+        "decisionPoints": [
+          "Si erreur ou 'catastrophe' → transformer en opportunité créative et montrer comment les artistes adaptent",
+          "Si frustration technique → simplifier l'étape ou proposer aide d'un pair expérimenté",
+          "Si avancement trop rapide → encourager à approfondir les détails ou ajouter des éléments",
+          "Si comparaison avec autres projets → recentrer sur son propre parcours et progrès"
+        ],
+        "movementBreaks": ["Pause créative : étirements en observant son œuvre sous différents angles"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Galerie d'avancement : chaque élève montre brièvement où il en est sans jugement de complétude. Focus sur 'ce que j'ai découvert aujourd'hui' plutôt que sur ce qui reste à faire. Planification de ce qui sera fait dans la partie 2. Rangement soigneux des projets en cours avec étiquettes nom.",
+        "materials": ["Œuvres en cours", "Espace de séchage/conservation sécurisé", "Étiquettes d'identification", "Carnets pour notes"],
+        "visualSupports": "Espace d'exposition temporaire des progrès, planning de la suite",
+        "decisionPoints": [
+          "Si déception face à l'avancement → normaliser les rythmes différents et valoriser la qualité sur la vitesse"
+        ],
+        "movementBreaks": ["Relaxation post-création : mouvements de satisfaction et anticipation"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève bloqué qui n'arrive pas à commencer ou qui veut tout recommencer",
+        "then": "Pour le blocage : proposer de commencer par un petit élément ou faire ensemble le premier geste. Pour recommencer : explorer ce qui ne satisfait pas et voir si c'est ajustable plutôt que tout refaire."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Projets de bricolage à la maison, construction avec blocs, cuisine avec parents, jardinage, réparations, décoration de chambre.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Supervision étroite et encouragement constant", "Simplification des étapes si nécessaire", "Collaboration avec pair aidant"],
+        "forAdvanced": ["Défis techniques supplémentaires", "Rôle de mentor discret", "Exploration de variations créatives"],
+        "forELL": ["Communication gestuelle et visuelle", "Modélisation plutôt qu'explications verbales", "Encouragement par sourires et approbation"],
+        "forIEP": ["Adaptations techniques selon besoins", "Rythme personnalisé", "Outils et supports adaptés"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Suit son plan avec flexibilité", "Utilise techniques apprises appropriement", "Persévère face aux défis", "Demande aide au besoin"],
+        "checkpoints": ["Progression vers objectif personnel", "Application des techniques texturées", "Autonomie et engagement dans le processus"]
       }
     },
     {
       "lessonNumber": 12,
       "lessonType": "core",
       "title": "Projet personnel: Création (Partie 2)",
-      "oneGoal": "",
+      "oneGoal": "Les élèves finaliseront leur projet artistique personnel et développeront leurs compétences d'évaluation constructive.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "finaliser",
@@ -642,49 +725,59 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retrouvailles avec projets et évaluation du travail à compléter. Introduction au concept de 'regard critique constructif' : observer ce qui fonctionne bien et ce qui pourrait être amélioré. Modélisation avec une œuvre de l'enseignant. Établissement d'objectifs de finition réalistes pour chaque élève.",
+        "materials": ["Projets en cours", "Œuvre exemple de l'enseignant", "Grille d'évaluation simplifiée", "Matériaux de finition"],
+        "visualSupports": "Modèle de critique constructive, exemples avant/après finition",
+        "decisionPoints": [
+          "Si autocritique négative excessive → recentrer sur les aspects réussis et progrès réalisés",
+          "Si refus de voir les imperfections → guider délicatement vers observation objective",
+          "Si découragement face aux améliorations à faire → rappeler que perfectionner fait partie du plaisir artistique"
+        ],
+        "movementBreaks": ["Gestes d'évaluation : observer avec les yeux, toucher délicatement, réfléchir"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Travail de finition guidé avec pauses réflexives. Les élèves appliquent améliorations identifiées : ajout de détails, renforcement de textures, harmonisation des couleurs. À mi-parcours, échange critique constructive en binômes avec structure : 'Ce que j'aime' + 'Une idée pour embellir encore'. Finalisation avec attention aux détails. Préparation de l'exposition avec titres et descriptions.",
+        "materials": ["Matériaux de finition variés", "Grilles d'échange entre pairs", "Cartons pour titres", "Feutres pour descriptions", "Outils de précision"],
+        "visualSupports": "Structure d'échange positive, exemples de descriptions d'œuvres",
+        "decisionPoints": [
+          "Si échange critique devient négatif → recentrer sur formulation positive et suggestions encourageantes",
+          "Si perfectionnisme bloque finalisation → fixer limite de temps douce et célébrer état actuel",
+          "Si manque de motivation pour finir → rappeler la satisfaction de l'aboutissement et l'exposition à venir"
+        ],
+        "movementBreaks": ["Pause perspective : reculer et observer son œuvre comme un visiteur de musée"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cérémonie de finalisation : signature solennelle des œuvres complétées. Chaque artiste présente en 30 secondes son œuvre finalisée avec fierté. Installation de l'exposition pour le lendemain. Cercle de gratitude pour le parcours accompli ensemble. Anticipation joyeuse du partage avec familles.",
+        "materials": ["Œuvres finalisées", "Système d'exposition", "Programme de l'exposition", "Invitations pour familles"],
+        "visualSupports": "Espace d'exposition prêt, galerie des œuvres abouties",
+        "decisionPoints": [
+          "Si émotion forte face à l'accomplissement → accueillir ces sentiments et les célébrer collectivement"
+        ],
+        "movementBreaks": ["Applaudissements d'aboutissement : reconnaissance collective du travail accompli"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui n'arrive pas à accepter que son œuvre soit 'finie' ou suffisamment belle",
+        "then": "Normaliser ce sentiment d'artiste. Aider à voir la beauté unique de son œuvre. Expliquer que même les maîtres ne sont jamais entièrement satisfaits. Valoriser le courage de créer et partager."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Finition de devoirs scolaires, préparation de spectacles, amélioration de chambres, perfectionnement de recettes, finition de cadeaux faits main.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Évaluation très positive focusée sur réussites", "Finitions simples et réalisables", "Support constant pour maintenir confiance"],
+        "forAdvanced": ["Défis techniques avancés de finition", "Rôle de critique constructif expert", "Aide à l'installation d'exposition"],
+        "forELL": ["Évaluation principalement visuelle et gestuelle", "Expression de satisfaction non-verbale", "Participation à l'exposition par présence"],
+        "forIEP": ["Critères d'aboutissement personnalisés", "Outils adaptés pour finitions", "Reconnaissance individuelle de l'effort"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Améliore son œuvre avec discernement", "Participe à échanges critiques constructifs", "Persiste jusqu'à satisfaction personnelle", "Prépare présentation soignée"],
+        "checkpoints": ["Qualité des améliorations apportées", "Pertinence des échanges critiques", "Fierté et satisfaction exprimées"]
       }
     },
     {
       "lessonNumber": 13,
       "lessonType": "core",
       "title": "Présentation et partage",
-      "oneGoal": "",
+      "oneGoal": "Les élèves présenteront leurs projets personnels avec fierté et développeront leurs compétences de communication artistique.",
       "duration": "45 minutes",
       "keyVocabulary": [
         "présenter",
@@ -695,42 +788,53 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Préparation de l'exposition et accueil des invités (parents, autres classes). Installation finale des œuvres avec vérification des cartons d'identification. Les élèves-artistes se préparent mentalement et pratiquent leurs présentations. Discussion sur le courage et la beauté du partage artistique.",
+        "materials": ["Œuvres prêtes à exposer", "Cartons d'identification", "Espace d'exposition organisé", "Badges ou écharpes 'artiste'"],
+        "visualSupports": "Exposition complètement installée, espace accueillant pour visiteurs",
+        "decisionPoints": [
+          "Si timidité ou stress avant l'arrivée des invités → rassurer et proposer présentation en binôme",
+          "Si surexcitation → canaliser énergie avec répétition calme des présentations",
+          "Si problème d'installation → impliquer les élèves dans la recherche de solutions créatives"
+        ],
+        "movementBreaks": ["Respiration d'artiste : préparation calme et confiante pour le grand moment"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Vernissage officiel avec visite guidée par les jeunes artistes. Chaque élève présente son œuvre aux invités en expliquant : titre choisi, matériaux utilisés, ce qu'il a voulu exprimer. Temps libre pour admiration et questions du public. Circulation libre avec élèves comme guides. Livre d'or pour commentaires des visiteurs. Photos souvenirs officielles.",
+        "materials": ["Œuvres installées", "Livre d'or et stylos", "Appareils photo", "Espace circulation organisé", "Collations simples optionnelles"],
+        "visualSupports": "Exposition professionnelle complète, signalisation claire",
+        "decisionPoints": [
+          "Si élève trop timide pour présenter → encourager présentation silencieuse ou aide d'un ami",
+          "Si questions trop techniques du public → recentrer sur le ressenti et processus créatif",
+          "Si comparaisons entre œuvres → souligner l'unicité et beauté de chaque création",
+          "Si émotion forte face à la reconnaissance → accueillir et célébrer ces moments précieux"
+        ],
+        "movementBreaks": ["Circulation d'exposition : mouvements dignes et professionnels de guide d'art"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cérémonie de clôture après départ des invités. Lecture de commentaires du livre d'or. Chaque élève partage en un mot son sentiment sur cette expérience. Remise solennelle de certificats 'Artiste explorateur de textures'. Projection vers les prochaines aventures artistiques. Applaudissements finaux.",
+        "materials": ["Livre d'or avec commentaires", "Certificats personnalisés", "Espace cercle de clôture"],
+        "visualSupports": "Certificats officiels, exposition encore visible",
+        "decisionPoints": [
+          "Si tristesse face à la fin → célébrer les apprentissages durables et encourager futures créations"
+        ],
+        "movementBreaks": ["Salut final d'artistes : reconnaissance collective de l'aventure partagée"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève submergé par l'attention ou déçu de la réception de son œuvre",
+        "then": "Pour l'anxiété : offrir espace de retrait temporaire. Pour la déception : aider à voir commentaires positifs et rappeler que l'art touche chacun différemment."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Expositions familiales sur frigos, spectacles d'école, concours locaux, galeries communautaires, fêtes de famille, présentations en classe.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Présentation libre (gestes, sourires)", "Présence bienveillante constante", "Valorisation de toute participation"],
+        "forAdvanced": ["Rôles d'organisation d'exposition", "Présentations détaillées engageantes", "Questions au public sur réactions"],
+        "forELL": ["Communication gestuelle et visuelle", "Mots simples suffisants", "Expression par présence joyeuse"],
+        "forIEP": ["Modalités de présentation personnalisées", "Espace sécurisé disponible", "Reconnaissance adaptée aux capacités"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Présente œuvre avec fierté appropriée", "Communique processus créatif clairement", "Interagit respectueusement avec public", "Démontre apprentissages intégrés"],
+        "checkpoints": ["Qualité et confiance de la présentation", "Capacité à expliquer son travail", "Fierté et accomplissement manifestés"]
       }
     },
     {
@@ -748,42 +852,52 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour sur l'exposition de la veille avec partage des moments forts. Consultation des portfolios personnels pour retracer le chemin parcouru depuis la première leçon. Comparaison des premières découvertes tactiles avec les créations finales. Introduction du concept de progrès artistique et personnel.",
+        "materials": ["Portfolios personnels complets", "Photos de l'exposition", "Premières créations de l'unité (frottages, collections)"],
+        "visualSupports": "Galerie chronologique du parcours de l'unité, photos souvenirs de l'exposition",
+        "decisionPoints": [
+          "Si difficulté à voir ses progrès → pointer concrètement améliorations techniques et confiance acquises",
+          "Si nostalgie excessive du début → valoriser la richesse des acquisitions et compétences développées",
+          "Si impatience pour l'activité de réflexion → structurer avec supports visuels concrets"
+        ],
+        "movementBreaks": ["Voyage dans le temps : mouvements représentant l'évolution du débutant à l'artiste"]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création d'une carte mentale collective 'Nos découvertes sur les textures' avec techniques apprises, matériaux explorés, mots nouveaux. Activité individuelle : 'Chasse aux textures dans ma vie' où chaque élève identifie textures dans vêtements, jouets, nourriture, maison. Échange en petits groupes sur applications futures. Création d'un 'contrat d'explorateur' pour continuer à remarquer textures au quotidien.",
+        "materials": ["Grand papier pour carte mentale", "Feutres et crayons", "Images de textures quotidiennes", "Contrats d'explorateur à emporter"],
+        "visualSupports": "Toutes créations de l'unité visibles, exemples de textures quotidiennes",
+        "decisionPoints": [
+          "Si difficulté à faire des liens avec le quotidien → guider avec exemples concrets de leur environnement",
+          "Si résistance à la réflexion abstraite → utiliser manipulations tactiles et exemples visuels",
+          "Si monopolisation de la parole → structurer échanges avec tour de parole chronométré"
+        ],
+        "movementBreaks": ["Démonstration tactile : toucher différentes textures des vêtements portés"]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cérémonie finale de clôture de l'unité. Chaque élève exprime une découverte surprenante et un engagement pour continuer à explorer. Signature collective du 'contrat de classe des explorateurs de textures'. Rangement soigneux des portfolios pour les rapporter. Projection vers la prochaine aventure artistique. Remerciements mutuels pour le parcours partagé.",
+        "materials": ["Contrat collectif à signer", "Portfolios à emporter", "Certificats finaux si non remis"],
+        "visualSupports": "Contrat collectif sur affiche, résumé visuel du parcours accompli",
+        "decisionPoints": [
+          "Si émotion face à la fin définitive → rassurer sur continuité des apprentissages et souvenirs durables"
+        ],
+        "movementBreaks": ["Salut final d'explorateurs : geste symbolique de reconnaissance mutuelle"]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Élève qui ne voit pas ses progrès ou se dévalorise en comparant avec d'autres",
+        "then": "Utiliser le portfolio pour montrer concrètement l'évolution. Souligner progrès uniques et personnels. Rappeler que chaque artiste a son rythme et ses forces particuliers."
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Observations de textures dans nature lors de promenades, choix de vêtements par texture, cuisine avec parents, jeux sensoriels, décoration personnelle, collections personnelles.",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": ["Réflexion guidée avec questions très concrètes", "Valorisation de chaque petite découverte", "Support visuel constant"],
+        "forAdvanced": ["Réflexions plus approfondies sur techniques", "Connexions sophistiquées avec d'autres domaines", "Rôle de facilitateur pour pairs"],
+        "forELL": ["Expression par gestes et dessins", "Mots clés illustrés", "Participation selon niveau de confort"],
+        "forIEP": ["Modalités d'expression adaptées", "Réflexion à son rythme", "Reconnaissance personnalisée du parcours"]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": ["Identifie progrès personnels réalisés", "Fait liens entre apprentissages et vie quotidienne", "Exprime appréciation pour expériences vécues", "Montre motivation pour continuer l'exploration"],
+        "checkpoints": ["Qualité de la réflexion sur les apprentissages", "Pertinence des connexions avec quotidien", "Engagement dans les projections futures"]
       }
     },
     {
@@ -814,7 +928,10 @@
         "activity": "Spectacle d'ombres : chaque élève présente sa création d'ombre favorite. Discussion sur comment la lumière change notre perception des textures. Connexion avec l'art des ombres dans le monde.",
         "materials": ["Créations d'ombres", "Équipement de projection"],
         "visualSupports": "Espace de présentation avec éclairage approprié",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si certains élèves ont peur des ombres projetées → rassurer en expliquant le processus et permettre de rester à distance",
+          "Si difficultés techniques d'éclairage → simplifier avec lampe de poche et accepter effets moins précis"
+        ],
         "movementBreaks": ["Relaxation : imaginer être une ombre qui danse"]
       },
       "troubleshooting": {
@@ -861,7 +978,10 @@
         "activity": "Exposition culinaire suivie de dégustation collective. Chaque élève présente son arrangement en décrivant les textures choisies. Réflexion sur art éphémère et plaisir des sens.",
         "materials": ["Arrangements créés", "Documentation photo"],
         "visualSupports": "Galerie des créations photographiées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève refuse de goûter certains aliments → respecter ses limites et valoriser la création visuelle",
+          "Si excitation excessive pendant dégustation → structurer avec règles claires de dégustation respectueuse"
+        ],
         "movementBreaks": ["Remerciement corporel pour les sens : toucher cœur, bouche, yeux"]
       },
       "troubleshooting": {
@@ -908,7 +1028,10 @@
         "activity": "Présentation des créations numériques sur écran partagé. Comparaison avec créations physiques précédentes. Discussion sur avantages et limites de l'art numérique.",
         "materials": ["Créations numériques", "Écran de projection", "Créations physiques antérieures"],
         "visualSupports": "Espace de présentation numérique organisé",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si frustration avec la technologie persiste → valoriser l'effort et l'apprentissage plutôt que le résultat",
+          "Si préférence marquée pour le tactile → normaliser et encourager cette sensibilité particulière"
+        ],
         "movementBreaks": ["Reconnection corporelle : toucher différentes textures réelles"]
       },
       "troubleshooting": {
@@ -955,7 +1078,10 @@
         "activity": "Concert final de la 'symphonie des textures'. Chaque groupe présente sa création. Réflexion sur liens entre sens différents et expression artistique multisensorielle.",
         "materials": ["Compositions créées", "Instruments utilisés"],
         "visualSupports": "Programme de concert créé collectivement",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si niveau sonore devient problématique → ajuster volume et enseigner nuances douces",
+          "Si certains élèves se couvrent les oreilles → offrir pause silencieuse et participation visuelle"
+        ],
         "movementBreaks": ["Applaudissements texturés : frotter mains plutôt que claquer"]
       },
       "troubleshooting": {
@@ -1002,7 +1128,10 @@
         "activity": "Spectacle de danses texturées. Chaque création est présentée avec explication de l'inspiration texture. Public apprécie en identifiant les textures représentées. Célébration du voyage artistique multisensoriel.",
         "materials": ["Costumes/accessoires simples", "Espace de présentation"],
         "visualSupports": "Scène aménagée, programme du spectacle",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si timidité pour danser devant public → permettre présentation en groupe ou participation discrète",
+          "Si surexcitation pendant spectacle → canaliser énergie avec rôles d'organisation ou d'aide technique"
+        ],
         "movementBreaks": ["Relaxation finale : retour au calme avec respirations profondes"]
       },
       "troubleshooting": {
@@ -1049,7 +1178,10 @@
         "activity": "Cercle final de réflexion après l'exposition. Chaque élève partage sa découverte la plus surprenante sur les textures. Remise de certificats de 'Explorateur de Textures'. Projection vers futures explorations artistiques.",
         "materials": ["Certificats personnalisés", "Portfolio collectif complet"],
         "visualSupports": "Mur des découvertes surprenantes, galerie des moments forts",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si émotion forte face à la fin de l'unité → accueillir nostalgie et célébrer accomplissements durables",
+          "Si difficulté à identifier découverte surprenante → guider avec questions simples sur préférences nouvelles"
+        ],
         "movementBreaks": ["Applaudissements finaux et accolades de célébration"]
       },
       "troubleshooting": {

@@ -82,14 +82,26 @@
           ]
         },
         "visualSupports": "Affiches de motifs simples (AB, AAB, ABC), tableau d'exemples avec flèches montrant répétition",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne voit pas le motif → pointer chaque élément en comptant 'un rouge, deux bleus, un rouge, deux bleus' avec gestes rythmés",
+          "Si confusion sur ce qui se répète → utiliser objets identiques pour créer motif très simple (AB) puis demander 'Qu'est-ce qui vient après?'",
+          "Si élèves font n'importe quoi → revenir au modèle classe entière avec manipulation guidée pas à pas"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Partage des trésors: Chaque équipe présente son motif préféré trouvé. 'Qu'est-ce qui se répète?'",
         "materials": {
-          "required": [],
+          "required": [
+            {
+              "item": "Affichoir mobile",
+              "quantity": "1 pour exposition des découvertes",
+              "source": "Matériel classe mobile",
+              "preparation": "Installer dans zone de rassemblement",
+              "alternatives": ["Mur d'affichage", "Tableau magnétique"]
+            }
+          ],
           "optional": [
             {
               "item": "Tableau d'affichage mobile",
@@ -99,7 +111,11 @@
           ]
         },
         "visualSupports": "Espace d'affichage désigné pour galerie, cercle de rassemblement",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne peut pas expliquer son motif → l'aider avec questions guidées 'Montre-moi ce qui se répète'",
+          "Si groupe devient agité → limiter à 2-3 présentations et garder le reste pour demain",
+          "Si élève timide ne veut pas présenter → permettre de chuchoter à un ami qui présente pour lui"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -224,14 +240,26 @@
           ]
         },
         "visualSupports": "Cartes modèles AB plastifiées à chaque station, code couleur au sol",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève crée AAB au lieu de AB → pointer le modèle en disant 'Regarde: rouge-bleu, rouge-bleu' avec rythme",
+          "Si station devient chaotique → arrêter l'activité, remodéliser ensemble puis reprendre",
+          "Si élève ne comprend pas la rotation → l'accompagner physiquement à la première transition"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Galerie de motifs: Exposer créations et inviter commentaires. 'Quel motif continue le mieux?'",
         "materials": {
-          "required": [],
+          "required": [
+            {
+              "item": "Bandes de papier pour affichage",
+              "quantity": "25 bandes pour exposer créations",
+              "source": "Fournitures bureau - salle enseignants",
+              "preparation": "Découper bandes 8x20cm, prévoir marqueurs",
+              "alternatives": ["Carton de récupération", "Dos de feuilles usagées"]
+            }
+          ],
           "optional": [
             {
               "item": "Tables d'exposition",
@@ -241,7 +269,11 @@
           ]
         },
         "visualSupports": "Espace d'exposition organisé par type de motif",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève critique le travail d'un autre → rediriger vers l'aspect positif: 'Qu'est-ce qui est réussi dans ce motif?'",
+          "Si élève ne veut pas partager sa création → permettre d'observer seulement ou de montrer sans expliquer",
+          "Si discussion s'éternise → utiliser minuteur visuel et fixer 2 commentaires maximum par motif"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -304,7 +336,15 @@
         "duration": "~8 min",
         "activity": "Échauffement rythmique: 'Clap-clap-stomp, clap-clap-stomp' avec mouvements corporels expressifs.",
         "materials": {
-          "required": [],
+          "required": [
+            {
+              "item": "Instruments rythmiques simples",
+              "quantity": "25 instruments (tambourins, maracas, claves)",
+              "source": "Collection instruments musicaux - armoire musique",
+              "preparation": "Sélectionner instruments robustes, nettoyer",
+              "alternatives": ["Contenants remplis de riz", "Cuillères en bois"]
+            }
+          ],
           "optional": [
             {
               "item": "Haut-parleur portable",
@@ -350,14 +390,26 @@
           ]
         },
         "visualSupports": "Cartes de gestes, symboles pour sons forts/doux, pictogrammes mouvements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Concert de motifs: Chaque groupe présente son motif sonore. Audience devine le motif.",
         "materials": {
-          "required": [],
+          "required": [
+            {
+              "item": "Matériel de manipulation pour motifs",
+              "quantity": "50 objets variés (blocs, jetons, formes)",
+              "source": "Kit mathématiques classe - armoire A",
+              "preparation": "Sélectionner objets colorés avec attributs clairs",
+              "alternatives": ["Objets de la classe", "Matériel de recyclage"]
+            }
+          ],
           "optional": [
             {
               "item": "Micro jouet ou amplificateur vocal",
@@ -367,7 +419,11 @@
           ]
         },
         "visualSupports": "Espace de 'scène' désigné, public assis en demi-cercle",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne veut pas présenter → respecter son choix et proposer d'écouter ou d'applaudir seulement",
+          "Si présentations deviennent trop longues → utiliser minuteur visuel et limiter à 30 secondes par élève",
+          "Si groupe s'agite pendant écoute → faire pause mouvement ou respiration calme avant de continuer"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -486,7 +542,11 @@
           ]
         },
         "visualSupports": "Cercles de tri colorés, cartes d'attributs affichées, exemples de classifications au tableau",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -505,7 +565,11 @@
           "optional": []
         },
         "visualSupports": "Espace de démonstration désigné, cercle pour audience",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne veut pas démontrer → respecter son choix et proposer d'observer ou d'aider un partenaire",
+          "Si démonstration devient confuse → remodéliser ensemble et encourager à reprendre lentement",
+          "Si audience devient agitée → rappeler les règles d'écoute respectueuse avec signal visuel"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -623,7 +687,11 @@
           ]
         },
         "visualSupports": "Cartes avec points d'interrogation, flèches de direction, tableau de réponses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -642,7 +710,11 @@
           "optional": []
         },
         "visualSupports": "Cercle au sol, espace central pour démonstrations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a du mal à continuer le motif → pointer chaque élément déjà placé en comptant le rythme",
+          "Si plusieurs élèves donnent des réponses différentes → valider que plusieurs continuations peuvent être correctes",
+          "Si élève ne participe pas → l'inviter à pointer ou chuchoter la réponse plutôt que de parler fort"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -752,14 +824,26 @@
           ]
         },
         "visualSupports": "Cartes modèles ABC plastifiées, code couleur pour séquences, lignes de construction",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Exposition ABC: Présenter créations et expliquer la 'règle de trois' de leur motif.",
         "materials": {
-          "required": [],
+          "required": [
+            {
+              "item": "Matériel de manipulation pour motifs",
+              "quantity": "50 objets variés (blocs, jetons, formes)",
+              "source": "Kit mathématiques classe - armoire A",
+              "preparation": "Sélectionner objets colorés avec attributs clairs",
+              "alternatives": ["Objets de la classe", "Matériel de recyclage"]
+            }
+          ],
           "optional": [
             {
               "item": "Espace d'exposition organisé",
@@ -769,7 +853,11 @@
           ]
         },
         "visualSupports": "Zone d'exposition désignée, cercle pour présentations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -892,14 +980,26 @@
           ]
         },
         "visualSupports": "Guide visuel de motifs naturels, carnet d'exploration structuré avec sections",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Musée nature: Exposer trouvailles et discuter 'Pourquoi la nature fait-elle des motifs?'",
         "materials": {
-          "required": [],
+          "required": [
+            {
+              "item": "Matériel de manipulation pour motifs",
+              "quantity": "50 objets variés (blocs, jetons, formes)",
+              "source": "Kit mathématiques classe - armoire A",
+              "preparation": "Sélectionner objets colorés avec attributs clairs",
+              "alternatives": ["Objets de la classe", "Matériel de recyclage"]
+            }
+          ],
           "optional": [
             {
               "item": "Espace d'exposition nature",
@@ -909,7 +1009,11 @@
           ]
         },
         "visualSupports": "Zone d'exposition organisée, étiquettes pour classification",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1031,7 +1135,11 @@
           ]
         },
         "visualSupports": "Cartes diagnostiques, outils de réparation visuels, tableau avant/après",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1050,7 +1158,11 @@
           "optional": []
         },
         "visualSupports": "Espace cérémoniel pour remise de certificats",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1167,14 +1279,26 @@
           ]
         },
         "visualSupports": "Tableaux Venn simples, cartes de comparaison, codes couleur par famille",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Galerie de familles: Exposer groupes de motifs similaires et expliquer liens de parenté.",
         "materials": {
-          "required": [],
+          "required": [
+            {
+              "item": "Matériel de manipulation pour motifs",
+              "quantity": "50 objets variés (blocs, jetons, formes)",
+              "source": "Kit mathématiques classe - armoire A",
+              "preparation": "Sélectionner objets colorés avec attributs clairs",
+              "alternatives": ["Objets de la classe", "Matériel de recyclage"]
+            }
+          ],
           "optional": [
             {
               "item": "Panneaux de famille",
@@ -1184,7 +1308,11 @@
           ]
         },
         "visualSupports": "Espace exposition organisé par familles, étiquettes claires",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1248,7 +1376,11 @@
         "activity": "Inspiration créative: 'Vous êtes maintenant des artistes de motifs! Créez quelque chose que personne n'a jamais vu!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1256,7 +1388,11 @@
         "activity": "Atelier création libre: Inventer motifs personnels uniques. Utiliser couleurs, formes, textures préférées. Documenter dans cahier personnel. Enseigner motif à quelqu'un d'autre.",
         "materials": [],
         "visualSupports": "Galerie d'inspiration, matériaux organisés par type, exemples de créativité",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1264,7 +1400,11 @@
         "activity": "Vernissage personnel: Chaque artiste présente sa création unique et explique son inspiration.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1386,14 +1526,26 @@
           ]
         },
         "visualSupports": "Cartes avec révélations progressives, tableau de stratégies de déduction",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Rapport d'agents: Présenter résolutions et expliquer méthodes de déduction utilisées.",
         "materials": {
-          "required": [],
+          "required": [
+            {
+              "item": "Matériel de manipulation pour motifs",
+              "quantity": "50 objets variés (blocs, jetons, formes)",
+              "source": "Kit mathématiques classe - armoire A",
+              "preparation": "Sélectionner objets colorés avec attributs clairs",
+              "alternatives": ["Objets de la classe", "Matériel de recyclage"]
+            }
+          ],
           "optional": [
             {
               "item": "Tableaux de résultats",
@@ -1403,7 +1555,11 @@
           ]
         },
         "visualSupports": "Espace rapport avec mystères résolus affichés",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1468,7 +1624,11 @@
         "activity": "Voyage dans le temps: 'Les motifs ne sont pas que dans l'espace, ils sont aussi dans le TEMPS!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1476,7 +1636,11 @@
         "activity": "Exploration temporelle: Identifier motifs dans semaine (lundi-mardi-...). Observer motifs météo. Créer calendrier personnel avec motifs d'activités. Prédire motifs futurs.",
         "materials": [],
         "visualSupports": "Calendriers colorés, cartes temporelles, graphiques de routine",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1484,7 +1648,11 @@
         "activity": "Prophètes du temps: Prédire motifs de demain, semaine prochaine, saison suivante.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1519,7 +1687,11 @@
         "activity": "Transformation magique: 'Un motif peut se transformer! Regardez ce rouge-bleu devenir fort-doux!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1527,7 +1699,11 @@
         "activity": "Métamorphoses créatives: Transformer motif visuel en sonore. Créer même motif avec corps, objets, couleurs. Photographier motifs dans différents contextes. Explorer équivalences créatives.",
         "materials": [],
         "visualSupports": "Tableaux de transformation, exemples de métamorphoses, guides de création",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1535,7 +1711,11 @@
         "activity": "Festival de métamorphoses: Présenter transformations et expliquer connexions entre versions.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1570,7 +1750,11 @@
         "activity": "Célébration des experts: 'Vous êtes maintenant des experts en motifs! Montrez tous vos talents!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1578,7 +1762,11 @@
         "activity": "Création de portfolio: Documenter meilleurs exemples de motifs créés. Inclure découvertes naturelles, créations personnelles, résolutions de mystères. Auto-évaluation avec critères simples.",
         "materials": [],
         "visualSupports": "Critères d'évaluation visuels, exemples de portfolios excellents, guides de réflexion",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1586,7 +1774,11 @@
         "activity": "Galerie des experts: Exposition des portfolios et partage des fiertés personnelles.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1621,7 +1813,11 @@
         "activity": "Inspiration artistique: Explorer œuvres d'art avec motifs. 'Les artistes utilisent les motifs pour rendre leurs œuvres belles!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1629,7 +1825,11 @@
         "activity": "Atelier d'art décoratif: Créer bordures à motifs, papiers peints personnalisés, tissus décorés. Expérimenter avec tampons, pochoirs, techniques d'impression. Combiner motifs multiples.",
         "materials": [],
         "visualSupports": "Galerie d'art avec motifs, techniques démontrées, palettes de couleurs",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1637,7 +1837,11 @@
         "activity": "Vernissage décoratif: Exposer créations artistiques et apprécier diversité esthétique.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1712,7 +1916,11 @@
         "activity": "Concert d'ouverture: Écouter motifs dans musiques familières. 'La musique est pleine de motifs qui se répètent!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1720,7 +1928,11 @@
         "activity": "Compositeurs en herbe: Créer rythmes à motifs avec instruments. Enregistrer compositions personnelles. Diriger orchestre de classe. Inventer notations visuelles pour motifs.",
         "materials": [],
         "visualSupports": "Partitions avec symboles, cartes rythmiques, conducteur visuel",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1728,7 +1940,11 @@
         "activity": "Festival musical: Concert de compositions originales avec applaudissements rythmés.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1803,7 +2019,11 @@
         "activity": "Voyage culturel: 'Partons en voyage! Chaque culture du monde a ses motifs spéciaux!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1811,7 +2031,11 @@
         "activity": "Exploration culturelle: Examiner motifs de différents continents. Reproduire motifs traditionnels simples. Discuter significations culturelles. Créer motif 'fusion' personnel.",
         "materials": [],
         "visualSupports": "Atlas de motifs culturels, exemples authentiques, carte du monde interactive",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1819,7 +2043,11 @@
         "activity": "Festival mondial: Partager motifs créés et apprécier diversité culturelle des motifs.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1894,7 +2122,11 @@
         "activity": "Architectes en herbe: 'Les bâtiments aussi ont des motifs! Regardons notre école comme des architectes!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1902,7 +2134,11 @@
         "activity": "Exploration architecturale: Observer motifs dans bâtiment scolaire. Construire structures avec motifs répétitifs. Dessiner plans avec motifs décoratifs. Créer maquettes de maisons à motifs.",
         "materials": [],
         "visualSupports": "Photos architecturales, plans simples, exemples de motifs structurels",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1910,7 +2146,11 @@
         "activity": "Exposition architecturale: Présenter créations et expliquer choix de motifs décoratifs.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1985,7 +2225,11 @@
         "activity": "Détectives littéraires: 'Les histoires aussi ont des motifs cachés! Trouvons-les ensemble!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1993,7 +2237,11 @@
         "activity": "Investigation littéraire: Identifier phrases répétitives dans histoires. Reconnaître motifs visuels dans illustrations. Prédire répétitions narratives. Créer histoire simple avec motifs.",
         "materials": [],
         "visualSupports": "Histoires avec motifs évidents, tableaux de documentation, cartes narratives",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2001,7 +2249,11 @@
         "activity": "Cercle de conteurs: Partager histoires créées et souligner motifs inventés.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2076,7 +2328,11 @@
         "activity": "Ouverture festive: 'Bienvenue au Festival des Motifs! Célébrons tous nos apprentissages merveilleux!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne suit pas le rythme → ralentir le tempo et utiliser gestes exagérés pour modéliser",
+          "Si groupe perd le rythme → arrêter, revenir au modèle simple clap-clap-stomp seulement",
+          "Si élève timide ne participe pas → l'inviter à observer d'abord puis imiter doucement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2084,7 +2340,11 @@
         "activity": "Festival multi-stations: Exposition de tous les portfolios et créations. Démonstrations interactives pour visiteurs. Performances musicales de motifs. Ateliers où élèves enseignent aux invités.",
         "materials": [],
         "visualSupports": "Exposition organisée, panneaux explicatifs, démonstrations visuelles",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les activités → accompagner physiquement et décomposer chaque étape lentement",
+          "Si station devient chaotique → utiliser signal visuel (lever la main) pour pause et réorganisation",
+          "Si élève ne participe pas → adapter l'activité à son niveau ou permettre observation active avec partenaire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2092,7 +2352,11 @@
         "activity": "Cercle de fierté finale: Remise de certificats et partage des plus grandes fiertés d'apprentissage.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève a des difficultés avec l'activité → offrir support supplémentaire et adapter selon ses besoins mathématiques",
+          "Si élève ne participe pas aux motifs → respecter son rythme et proposer alternatives douces avec partenaire",
+          "Si élève montre frustration avec les régularités → simplifier le motif et célébrer chaque petit succès"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

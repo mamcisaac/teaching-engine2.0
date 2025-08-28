@@ -800,26 +800,38 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review completed books. 'Maintenant, explorons différents types d'histoires!' Show examples: funny, scary, adventure.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Exemples de livres drôles, d'aventure, mystère (15 livres)", "Cartes de types d'histoires avec pictogrammes", "Tableau de classification des genres"],
+        "visualSupports": "Images de différents genres d'histoires, gestes pour 'drôle' (rire), 'effrayant' (surprise), 'aventure' (exploration)",
+        "decisionPoints": [
+          "Si un élève dit qu'il ne sait pas écrire → l'encourager à commencer par un dessin et ajouter des mots qu'il connaît",
+          "Si l'idée semble trop complexe → aider à simplifier en une ou deux phrases courtes",
+          "Si un élève veut tout écrire parfaitement → rappeler que c'est un brouillon, les erreurs sont normales"
+        ],
+        "movementBreaks": ["Étirements des mains avant d'écrire", "Mimer les animaux pour inspiration"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Students experiment with different story types through drawing and play. No pressure to complete, just explore creativity.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Papier brouillon par genre (25 feuilles × 3 genres)", "Crayons de couleur (25 boîtes)", "Dés à histoires avec images", "Cartes d'inspiration par genre"],
+        "visualSupports": "Stations d'exploration par genre, exemples de débuts d'histoires, encouragement à l'expérimentation créative",
+        "decisionPoints": [
+          "Si les suggestions fusent trop vite → utiliser un bâton de parole pour tour de rôle",
+          "Si un élève critique négativement → rediriger vers suggestions constructives ('Et si on ajoutait...')",
+          "Si la participation est inégale → poser des questions spécifiques aux plus timides"
+        ],
+        "movementBreaks": ["Rotation entre les stations de genres", "Mimer les actions des personnages inventés"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Share discoveries: 'Quel type d'histoire préférez-vous?' Light discussion about different story preferences.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Tableau de préférences collectives", "Autocollants pour votes", "Certificats 'Explorateur de genres'"],
+        "visualSupports": "Graphique des préférences de classe, célébration de la diversité des goûts, reconnaissance de l'exploration",
+        "decisionPoints": [
+          "Si certains élèves sont déçus de leur travail → souligner spécifiquement leurs efforts et progrès",
+          "Si l'excitation devient excessive → canaliser vers partage calme et respectueux",
+          "Si un élève refuse de partager → respecter son choix mais l'encourager à essayer demain"
+        ],
+        "movementBreaks": ["Applaudissements spéciaux pour chaque explorateur", "Marche de fierté avec découvertes"]
       },
       "troubleshooting": "If students can't think of new ideas, let them modify their original character into new situation",
       "realWorldConnection": "There are many different types of stories to create - just like there are different types of games and activities",
@@ -900,7 +912,11 @@
         "activity": "Students create detailed illustrations focusing on artistic technique. Encourage attention to details, colors, backgrounds.",
         "materials": ["Papier de qualité artistique (25 feuilles)", "Crayons de couleur professionnels", "Pastels (optionnel)", "Pinceaux fins et peinture à l'eau", "Règles et gabarits pour détails précis"],
         "visualSupports": "Techniques d'illustration simples, exemples de textures et détails, encouragement à l'expérimentation artistique",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève se décourage avec les détails → l'encourager à commencer simple et ajouter graduellement",
+          "Si les illustrations prennent tout le temps → rappeler l'équilibre texte/image",
+          "Si perfectionnisme paralyse → montrer que même les auteurs professionnels révisent"
+        ],
         "movementBreaks": ["Pause pour observer son travail de loin", "Changer de matériaux artistiques"]
       },
       "closing": {
@@ -908,7 +924,11 @@
         "activity": "Art gallery walk - students display illustrations and admire each other's artistic work with positive comments.",
         "materials": ["Espaces d'exposition temporaire", "Cartes de commentaires artistiques positifs"],
         "visualSupports": "Galerie d'art improvisée, appréciation artistique, vocabulaire d'éloge artistique",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si timidité empêche le partage → proposer de lire seulement une phrase ou montrer une image",
+          "Si commentaires deviennent critiques → recentrer sur appréciation positive seulement",
+          "Si attention diminue pendant présentations → limiter à 2 phrases par présentation"
+        ],
         "movementBreaks": ["Déambulation artistique dans la galerie", "Applaudissements d'appréciation artistique"]
       },
       "troubleshooting": "If students are afraid to 'mess up' good paper, remind them that artists make many drafts",
@@ -990,7 +1010,11 @@
         "activity": "Small groups (3-4 students) create one story together. Each student contributes one element. Practice compromise and sharing ideas.",
         "materials": ["Feuilles de planification collaborative (8 copies)", "Matériaux artistiques partagés", "Minuteur pour rotations d'idées", "Rôles de collaboration (cartes)"],
         "visualSupports": "Structure de collaboration claire, étapes du processus collaboratif, encouragement au consensus",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si conflits émergent dans les groupes → rappeler les règles de collaboration respectueuse",
+          "Si un élève veut tout contrôler → encourager l'écoute et le partage des décisions",
+          "Si groupe manque d'idées → poser des questions ouvertes pour stimuler créativité"
+        ],
         "movementBreaks": ["Changement de places dans les groupes", "Pause pour célébrer progrès d'équipe"]
       },
       "closing": {
@@ -998,7 +1022,11 @@
         "activity": "Groups share their collaborative stories. Celebrate teamwork and different perspectives in one story.",
         "materials": ["Espace de présentation pour groupes", "Applaudissements d'équipe"],
         "visualSupports": "Célébration du travail d'équipe, valorisation de la diversité d'idées, fierté collective",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si groupes ont de la difficulté à se mettre d'accord → offrir structure pour alternance des idées",
+          "Si résultat ne ressemble pas aux intentions → célébrer les découvertes créatives inattendues",
+          "Si certains groupes terminent tôt → les inviter à embellir ou aider d'autres groupes"
+        ],
         "movementBreaks": ["Présentations d'équipe avec mouvements", "Applaudissements collaboratifs spéciaux"]
       },
       "troubleshooting": "If collaboration is too challenging, let students work in pairs instead of larger groups",
@@ -1070,7 +1098,11 @@
         "activity": "Look at all the books students have created. 'Regardez tous ces livres! Nous avons une bibliothèque d'auteurs!'",
         "materials": ["Tous les livres créés par les élèves", "Exemples de vraies bibliothèques organisées"],
         "visualSupports": "Collection impressionnante des créations, comparaison avec bibliothèques professionnelles, fierté collective",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si système d'organisation semble complexe → simplifier avec seulement 2-3 catégories de base",
+          "Si disputes sur classement → utiliser vote démocratique ou catégories multiples",
+          "Si élèves veulent garder tous leurs livres → créer section spéciale 'Mes favoris'"
+        ],
         "movementBreaks": ["Admirer la quantité impressionnante de livres créés"]
       },
       "main": {
@@ -1078,7 +1110,11 @@
         "activity": "Students help organize their books into class library. Create categories, make labels, set up checkout system for reading each other's books.",
         "materials": ["Étagères ou bacs pour organisation", "Étiquettes pour catégories", "Cartes de bibliothèque pour emprunt", "Matériaux pour décoration de bibliothèque"],
         "visualSupports": "Système d'organisation simple, étiquettes illustrées pour catégories, procédure d'emprunt visuelle",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si certains livres sont abîmés → utiliser comme leçon sur soin des livres",
+          "Si système d'emprunt confus → pratiquer avec jeux de rôle plusieurs fois",
+          "Si jalousie sur popularité des livres → créer rotation équitable"
+        ],
         "movementBreaks": ["Se déplacer pour organiser physiquement les livres", "Rotation entre différentes tâches d'organisation"]
       },
       "closing": {
@@ -1086,7 +1122,11 @@
         "activity": "Admire the completed class library. Students choose one book written by classmate to 'check out' for reading.",
         "materials": ["Premières cartes d'emprunt", "Cérémonie d'ouverture de bibliothèque"],
         "visualSupports": "Célébration de la bibliothèque complète, démonstration du système d'emprunt, accès public aux créations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si premiers emprunts créent chaos → ralentir et superviser chaque transaction",
+          "Si certains élèves oublient procédure → afficher guide visuel étape par étape",
+          "Si surexcitation nuit au processus → prévoir moment calme avant ouverture officielle"
+        ],
         "movementBreaks": ["Première visite officielle de leur nouvelle bibliothèque", "Cérémonie de premier emprunt"]
       },
       "troubleshooting": "If students are protective of their books, start with just displaying them before implementing checkout",
@@ -1158,7 +1198,11 @@
         "activity": "Discuss being 'big kids' who can teach. 'Vous pouvez partager vos histoires avec les petits enfants.'",
         "materials": ["Photos d'élèves plus âgés lisant aux plus jeunes", "Leurs propres livres créés"],
         "visualSupports": "Modèles de lecture aux plus jeunes, gestes de patience et bienveillance, fierté du rôle de mentor",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si idée semble effrayante → rassurer sur bienveillance et patience requises",
+          "Si élèves se sentent pas assez bons → rappeler leur propre progrès depuis septembre",
+          "Si anticipation cause nervosité → pratiquer lecture douce avec toutous d'abord"
+        ],
         "movementBreaks": ["Mimer lire doucement et patiemment à un petit enfant"]
       },
       "main": {
@@ -1166,7 +1210,11 @@
         "activity": "Students practice reading their books aloud with expression. If possible, visit kindergarten class to share stories, or practice with stuffed animals.",
         "materials": ["Toutous ou poupées comme public de pratique", "Espace confortable pour lecture", "Guide de lecture expressive"],
         "visualSupports": "Techniques de lecture expressive, modélisation de patience avec jeune public, encouragement à la bienveillance",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si lecture trop rapide ou monotone → modéliser tempo adapté aux jeunes oreilles",
+          "Si frustration avec 'public' inanimé → encourager comme excellente pratique sans jugement",
+          "Si certains abandonnent → rappeler que même adultes pratiquent avant vraies présentations"
+        ],
         "movementBreaks": ["Changer de position pour lecture confortable", "Pause pour encourager les 'lecteurs'"]
       },
       "closing": {
@@ -1174,7 +1222,11 @@
         "activity": "Reflect on being teachers and authors. Discuss how it feels to share stories with others.",
         "materials": ["Cercle de réflexion", "Questions guidées sur l'expérience"],
         "visualSupports": "Réflexion sur expérience de mentorat, fierté du rôle d'enseignant, impact de leurs créations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si émotion submerge certains élèves → normaliser fierté et permettre larmes de joie",
+          "Si comparaisons négatives émergent → recentrer sur croissance individuelle unique",
+          "Si humilité excessive → encourager reconnaissance méritée de leurs accomplissements"
+        ],
         "movementBreaks": ["Applaudissements pour leur nouveau rôle de mentors"]
       },
       "troubleshooting": "If reading aloud is too challenging, let students just show pictures and tell story in simple words",
@@ -1246,7 +1298,11 @@
         "activity": "Look back at journey from Lesson 1 to now. 'Regardez comme vous avez grandi comme auteurs!'",
         "materials": ["Portfolio des travaux depuis la leçon 1", "Photos du parcours d'auteur", "Premières tentatives vs créations finales"],
         "visualSupports": "Chronologie visuelle du parcours d'auteur, comparaisons avant/après impressionnantes, célébration de la croissance",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si timidité pour accepter reconnaissance → respecter et offrir alternatives douces",
+          "Si excitation déborde → canaliser dans célébration organisée et respectueuse",
+          "Si émotions intenses → prévoir temps et espace pour expressions individuelles"
+        ],
         "movementBreaks": ["Applaudissements de célébration pour leur croissance"]
       },
       "main": {
@@ -1254,7 +1310,11 @@
         "activity": "Celebration party with sharing of favorite parts of being authors. Present author certificates. Create memory book of writing journey.",
         "materials": ["Certificats d'auteur personnalisés (25)", "Livre-souvenir de classe", "Matériaux pour décorations de fête", "Musique de célébration", "Collations spéciales (optionnel)"],
         "visualSupports": "Ambiance festive et célébratoire, reconnaissance officielle de leur statut d'auteur, souvenirs durables",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si émotion rend difficile de parler → permettre silence respectueux ou expressions non-verbales",
+          "Si nostalgie de finir l'unité → célébrer que écriture continue toujours au-delà de cette unité",
+          "Si certains veulent continuer immédiatement → promettre futures opportunités d'écriture créative"
+        ],
         "movementBreaks": ["Danse de célébration d'auteurs", "Défilé avec certificats"]
       },
       "closing": {
@@ -1262,7 +1322,11 @@
         "activity": "Final circle: each student completes 'Je suis un auteur parce que...' Group picture with all their books.",
         "materials": ["Appareil photo pour photo de groupe historique", "Banderole 'Nos auteurs de 1re année'", "Tous leurs livres pour la photo finale"],
         "visualSupports": "Cérémonie de clôture mémorable, photo souvenir avec toutes leurs créations, fierté collective ultime",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté technique avec photo → impliquer élèves dans solutions créatives",
+          "Si certains élèves absent → prévoir photo make-up et inclusion dans souvenir final",
+          "Si perfectionnisme pour photo parfaite → rappeler que authentique vaut mieux que parfait"
+        ],
         "movementBreaks": ["Organisation pour photo de groupe parfaite", "Célébration finale avec tous les livres"]
       },
       "troubleshooting": "If some students feel their work isn't good enough, emphasize effort and growth over perfection",

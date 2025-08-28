@@ -81,16 +81,7 @@
           "Student pointing/gesturing allowed",
           "Visual sentence starter card"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves oublient le vocabulaire des lignes",
-            "choice": "Rappeler avec des gestes : doigt droit pour 'droit', ondulation pour 'courbe'"
-          },
-          {
-            "moment": "Si certains élèves ne participent pas au partage",
-            "choice": "Utiliser le pointage silencieux - ils montrent leurs lignes préférées sans parler"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -206,20 +197,7 @@
           "Performance space marked on floor",
           "Clapping for encouragement"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ont peur de bouger librement",
-            "choice": "Commencer par des mouvements assis, puis ajouter les bras, enfin tout le corps"
-          },
-          {
-            "moment": "Si l'espace devient trop agité",
-            "choice": "Créer des 'zones de danse' avec du ruban au sol pour limiter l'espace"
-          },
-          {
-            "moment": "Si certains copient au lieu de créer",
-            "choice": "Encourager : 'Montre-moi TA façon spéciale de faire une ligne zigzag'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -335,20 +313,7 @@
           "Paintings displayed at student height",
           "Thumbs up/down for guessing game"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient pas les formes dans les objets",
-            "choice": "Tracer les contours avec le doigt en nommant : 'Je trace un cercle'"
-          },
-          {
-            "moment": "Si certains nomment incorrectement les formes",
-            "choice": "Valider l'effort puis corriger gentiment : 'Presque! C'est un triangle'"
-          },
-          {
-            "moment": "Si l'enthousiasme baisse",
-            "choice": "Transformer en 'chasse au trésor' avec des indices sur les formes"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -468,16 +433,7 @@
           "Students pointing to shape locations",
           "Body shape demonstrations"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les formes ne ressemblent pas aux modèles",
-            "choice": "Célébrer les tentatives : 'Ton cercle a sa propre personnalité!'"
-          },
-          {
-            "moment": "Si les élèves ont du mal avec les ciseaux",
-            "choice": "Proposer de déchirer le papier pour créer des formes organiques"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -600,16 +556,7 @@
           "Student artwork displayed",
           "Hand movement demonstrations"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne comprennent pas 'motif'",
-            "choice": "Montrer avec des gestes répétitifs : 'rond-carré-rond-carré'"
-          },
-          {
-            "moment": "Si les motifs sont trop complexes",
-            "choice": "Simplifier à 2 éléments qui se répètent : ligne-point-ligne-point"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -723,16 +670,7 @@
           "Artwork displayed on desks or walls",
           "Pointing and nodding communication"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient pas de motifs dans la nature",
-            "choice": "Commencer par des exemples évidents : pétales de fleur, rayures d'animal"
-          },
-          {
-            "moment": "Si l'attention se disperse à l'extérieur",
-            "choice": "Créer un cadre avec les mains pour focaliser l'observation"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -850,16 +788,7 @@
           "Maps displayed in center of circle",
           "Finger tracing demonstrations"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne connaissent pas les cultures mentionnées",
-            "choice": "Connecter à leur expérience : 'Comme les décorations chez grand-maman'"
-          },
-          {
-            "moment": "Si les motifs semblent trop avancés",
-            "choice": "Extraire un élément simple : juste les formes rondes par exemple"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -975,16 +904,7 @@
           "Clapping rhythms",
           "Walking presentation"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves n'associent pas lignes et émotions",
-            "choice": "Montrer avec le corps : 'ligne droite = je suis fort, ligne ondulée = je suis calme'"
-          },
-          {
-            "moment": "Si certains sont mal à l'aise avec les émotions",
-            "choice": "Utiliser des exemples neutres : 'cette ligne me fait penser au vent'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1098,16 +1018,7 @@
           "Student artwork displayed",
           "Natural reference objects available for comparison"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient que la surface des œuvres",
-            "choice": "Guider l'observation : 'Regarde les couleurs, puis les formes, puis les lignes'"
-          },
-          {
-            "moment": "Si certains critiquent négativement",
-            "choice": "Rediriger : 'Qu'est-ce que tu remarques d'intéressant dans cette œuvre?'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1168,79 +1079,36 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Shape Building Challenge",
-        "materials": [
-          "Crayons de couleur (25 boîtes)",
-          "Papier blanc grand format (25 feuilles)",
-          "Règles de plastique (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Pattern blocks for manipulation",
           "Example shape combinations",
           "Teacher demonstration"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne comprennent pas 'texture' visuellement",
-            "choice": "Faire toucher d'abord : 'Rugueux comme du papier sablé, lisse comme du plastique'"
-          },
-          {
-            "moment": "Si les outils de texture ne fonctionnent pas",
-            "choice": "Improviser avec des objets de classe : gommes à effacer, règles texturées"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Shape Construction Studio",
-        "materials": [
-          "Papier coloré (assortiment)",
-          "Ciseaux sécuritaires (25 paires)",
-          "Bâtons de colle (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Variety of pre-cut shapes in different sizes",
           "Example combinations displayed",
           "Step-by-step building visuals"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves bougent trop vite et ratent des détails",
-            "choice": "Instaurer des pauses : 'Stop! Regardons bien cette partie ensemble'"
-          },
-          {
-            "moment": "Si l'énergie devient trop haute",
-            "choice": "Transformer en mouvement lent : 'Bougeons comme des astronautes'"
-          },
-          {
-            "moment": "Si certains ne participent pas aux mouvements",
-            "choice": "Proposer des rôles alternatifs : 'Tu peux être le guide qui observe'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Shape Building Show and Tell",
-        "materials": [
-          "Tampons géométriques (set de 25)",
-          "Encreurs lavables (6 couleurs)",
-          "Papier d'art (25 feuilles)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Student creations displayed",
           "Pointing and counting demonstrations"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne savent pas comment collaborer",
-            "choice": "Donner des rôles clairs : 'Toi les formes, toi les couleurs, toi l'assemblage'"
-          },
-          {
-            "moment": "Si des conflits éclatent sur les choix artistiques",
-            "choice": "Proposer le vote : 'On essaie les deux idées et on choisit ensemble'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1276,75 +1144,36 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Cultural Pattern Discovery",
-        "materials": [
-          "Crayons de cire (25 boîtes)",
-          "Surfaces texturées (écorce, tissus, grillage)",
-          "Papier fin (25 feuilles)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Real cultural objects or high-quality photos",
           "Pattern close-up examples",
           "World map showing pattern origins"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves sont gênés de présenter",
-            "choice": "Permettre de présenter avec un ami ou juste montrer sans parler"
-          },
-          {
-            "moment": "Si les présentations sont timides ou inaudibles",
-            "choice": "Encourager : 'Tiens ton dessin haut pour que tout le monde voie bien'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Cultural Pattern Creation",
-        "materials": [
-          "Papier affiche grand format (6 feuilles)",
-          "Marqueurs lavables (6 sets)",
-          "Ruban adhésif"
-        ],
+        "materials": [],
         "visualSupports": [
           "Pattern templates from different cultures",
           "Step-by-step pattern guides",
           "Cultural reference materials"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si certains terminent très rapidement",
-            "choice": "Proposer d'ajouter des détails ou de créer une deuxième version"
-          },
-          {
-            "moment": "Si certains se découragent de leurs dessins",
-            "choice": "Valoriser l'observation : 'Tu as bien vu ce détail important!'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Cultural Pattern Appreciation Circle",
-        "materials": [
-          "Musique rythmée",
-          "Foulards ou rubans (25)",
-          "Espace dégagé"
-        ],
+        "materials": [],
         "visualSupports": [
           "Student pattern creations",
           "Cultural reference materials for comparison"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves oublient le vocabulaire des lignes",
-            "choice": "Rappeler avec des gestes : doigt droit pour 'droit', ondulation pour 'courbe'"
-          },
-          {
-            "moment": "Si certains élèves ne participent pas au partage",
-            "choice": "Utiliser le pointage silencieux - ils montrent leurs lignes préférées sans parler"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1380,83 +1209,36 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Feeling Check-in and Expression",
-        "materials": [
-          "Loupes (25)",
-          "Carnets d'observation (25)",
-          "Crayons à mine (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Mirrors for self-reflection",
           "Emotion reference cards",
           "Teacher demonstration of feeling-lines"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ont peur de bouger librement",
-            "choice": "Commencer par des mouvements assis, puis ajouter les bras, enfin tout le corps"
-          },
-          {
-            "moment": "Si l'espace devient trop agité",
-            "choice": "Créer des 'zones de danse' avec du ruban au sol pour limiter l'espace"
-          },
-          {
-            "moment": "Si certains copient au lieu de créer",
-            "choice": "Encourager : 'Montre-moi TA façon spéciale de faire une ligne zigzag'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Personal Expression Art Creation",
-        "materials": [
-          "Tapis de rassemblement",
-          "Chevalet d'exposition",
-          "Pinces à dessin"
-        ],
+        "materials": [],
         "visualSupports": [
           "All previous lesson techniques available",
           "Soft background music",
           "Encouraging teacher presence"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient pas les formes dans les objets",
-            "choice": "Tracer les contours avec le doigt en nommant : 'Je trace un cercle'"
-          },
-          {
-            "moment": "Si certains nomment incorrectement les formes",
-            "choice": "Valider l'effort puis corriger gentiment : 'Presque! C'est un triangle'"
-          },
-          {
-            "moment": "Si l'enthousiasme baisse",
-            "choice": "Transformer en 'chasse au trésor' avec des indices sur les formes"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Artist Reflection Time",
-        "materials": [
-          "Crayons de couleur (25 boîtes)",
-          "Papier blanc grand format (25 feuilles)",
-          "Règles de plastique (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Quiet, respectful environment",
           "Student artwork as focus"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les formes ne ressemblent pas aux modèles",
-            "choice": "Célébrer les tentatives : 'Ton cercle a sa propre personnalité!'"
-          },
-          {
-            "moment": "Si les élèves ont du mal avec les ciseaux",
-            "choice": "Proposer de déchirer le papier pour créer des formes organiques"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1492,75 +1274,36 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Art Detective Training",
-        "materials": [
-          "Papier coloré (assortiment)",
-          "Ciseaux sécuritaires (25 paires)",
-          "Bâtons de colle (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Art detective badges or clipboards",
           "Magnifying glasses",
           "One clear art example"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne comprennent pas 'motif'",
-            "choice": "Montrer avec des gestes répétitifs : 'rond-carré-rond-carré'"
-          },
-          {
-            "moment": "Si les motifs sont trop complexes",
-            "choice": "Simplifier à 2 éléments qui se répètent : ligne-point-ligne-point"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Gallery Investigation",
-        "materials": [
-          "Tampons géométriques (set de 25)",
-          "Encreurs lavables (6 couleurs)",
-          "Papier d'art (25 feuilles)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Art prints at student eye level",
           "Simple observation sheets with pictures",
           "Detective tools"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient pas de motifs dans la nature",
-            "choice": "Commencer par des exemples évidents : pétales de fleur, rayures d'animal"
-          },
-          {
-            "moment": "Si l'attention se disperse à l'extérieur",
-            "choice": "Créer un cadre avec les mains pour focaliser l'observation"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Detective Report Sharing",
-        "materials": [
-          "Crayons de cire (25 boîtes)",
-          "Surfaces texturées (écorce, tissus, grillage)",
-          "Papier fin (25 feuilles)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Student pointing at artworks",
           "Body demonstrations of elements"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne connaissent pas les cultures mentionnées",
-            "choice": "Connecter à leur expérience : 'Comme les décorations chez grand-maman'"
-          },
-          {
-            "moment": "Si les motifs semblent trop avancés",
-            "choice": "Extraire un élément simple : juste les formes rondes par exemple"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1596,74 +1339,35 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Art Memory Lane",
-        "materials": [
-          "Papier affiche grand format (6 feuilles)",
-          "Marqueurs lavables (6 sets)",
-          "Ruban adhésif"
-        ],
+        "materials": [],
         "visualSupports": [
           "All previous artwork displayed chronologically",
           "Lesson reference cards for teacher prompts"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves n'associent pas lignes et émotions",
-            "choice": "Montrer avec le corps : 'ligne droite = je suis fort, ligne ondulée = je suis calme'"
-          },
-          {
-            "moment": "Si certains sont mal à l'aise avec les émotions",
-            "choice": "Utiliser des exemples neutres : 'cette ligne me fait penser au vent'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Portfolio Creation and Reflection",
-        "materials": [
-          "Musique rythmée",
-          "Foulards ou rubans (25)",
-          "Espace dégagé"
-        ],
+        "materials": [],
         "visualSupports": [
           "Portfolio organization examples",
           "Simple reflection sheets with picture prompts",
           "Teacher individual conferencing"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient que la surface des œuvres",
-            "choice": "Guider l'observation : 'Regarde les couleurs, puis les formes, puis les lignes'"
-          },
-          {
-            "moment": "Si certains critiquent négativement",
-            "choice": "Rediriger : 'Qu'est-ce que tu remarques d'intéressant dans cette œuvre?'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Portfolio Pride Celebration",
-        "materials": [
-          "Loupes (25)",
-          "Carnets d'observation (25)",
-          "Crayons à mine (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Student portfolios as props",
           "Celebratory atmosphere"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne comprennent pas 'texture' visuellement",
-            "choice": "Faire toucher d'abord : 'Rugueux comme du papier sablé, lisse comme du plastique'"
-          },
-          {
-            "moment": "Si les outils de texture ne fonctionnent pas",
-            "choice": "Improviser avec des objets de classe : gommes à effacer, règles texturées"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1699,78 +1403,35 @@
       "opening": {
         "duration": "~8 min",
         "activity": "3D Line Body Sculptures",
-        "materials": [
-          "Tapis de rassemblement",
-          "Chevalet d'exposition",
-          "Pinces à dessin"
-        ],
+        "materials": [],
         "visualSupports": [
           "Partner demonstrations",
           "Teacher showing different viewing angles"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves bougent trop vite et ratent des détails",
-            "choice": "Instaurer des pauses : 'Stop! Regardons bien cette partie ensemble'"
-          },
-          {
-            "moment": "Si l'énergie devient trop haute",
-            "choice": "Transformer en mouvement lent : 'Bougeons comme des astronautes'"
-          },
-          {
-            "moment": "Si certains ne participent pas aux mouvements",
-            "choice": "Proposer des rôles alternatifs : 'Tu peux être le guide qui observe'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Wire Line Sculpture Studio",
-        "materials": [
-          "Crayons de couleur (25 boîtes)",
-          "Papier blanc grand format (25 feuilles)",
-          "Règles de plastique (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "3D sculpture examples",
           "Step-by-step construction visuals",
           "Teacher demonstration"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne savent pas comment collaborer",
-            "choice": "Donner des rôles clairs : 'Toi les formes, toi les couleurs, toi l'assemblage'"
-          },
-          {
-            "moment": "Si des conflits éclatent sur les choix artistiques",
-            "choice": "Proposer le vote : 'On essaie les deux idées et on choisit ensemble'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Sculpture Gallery Walk",
-        "materials": [
-          "Papier coloré (assortiment)",
-          "Ciseaux sécuritaires (25 paires)",
-          "Bâtons de colle (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Sculpture display tables",
           "Walking gallery format"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves sont gênés de présenter",
-            "choice": "Permettre de présenter avec un ami ou juste montrer sans parler"
-          },
-          {
-            "moment": "Si les présentations sont timides ou inaudibles",
-            "choice": "Encourager : 'Tiens ton dessin haut pour que tout le monde voie bien'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1846,79 +1507,36 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Shape Layering Exploration",
-        "materials": [
-          "Tampons géométriques (set de 25)",
-          "Encreurs lavables (6 couleurs)",
-          "Papier d'art (25 feuilles)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Pre-cut shapes for demonstration",
           "Teacher layering examples",
           "Visual vocabulary cards"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si certains terminent très rapidement",
-            "choice": "Proposer d'ajouter des détails ou de créer une deuxième version"
-          },
-          {
-            "moment": "Si certains se découragent de leurs dessins",
-            "choice": "Valoriser l'observation : 'Tu as bien vu ce détail important!'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Collage Creation Workshop",
-        "materials": [
-          "Crayons de cire (25 boîtes)",
-          "Surfaces texturées (écorce, tissus, grillage)",
-          "Papier fin (25 feuilles)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Collage examples",
           "Step-by-step cutting and layering visuals",
           "Safe scissor use demonstration"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves oublient le vocabulaire des lignes",
-            "choice": "Rappeler avec des gestes : doigt droit pour 'droit', ondulation pour 'courbe'"
-          },
-          {
-            "moment": "Si certains élèves ne participent pas au partage",
-            "choice": "Utiliser le pointage silencieux - ils montrent leurs lignes préférées sans parler"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Collage Composition Discussion",
-        "materials": [
-          "Papier affiche grand format (6 feuilles)",
-          "Marqueurs lavables (6 sets)",
-          "Ruban adhésif"
-        ],
+        "materials": [],
         "visualSupports": [
           "Student collages displayed",
           "Pointing to layered elements"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ont peur de bouger librement",
-            "choice": "Commencer par des mouvements assis, puis ajouter les bras, enfin tout le corps"
-          },
-          {
-            "moment": "Si l'espace devient trop agité",
-            "choice": "Créer des 'zones de danse' avec du ruban au sol pour limiter l'espace"
-          },
-          {
-            "moment": "Si certains copient au lieu de créer",
-            "choice": "Encourager : 'Montre-moi TA façon spéciale de faire une ligne zigzag'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1994,78 +1612,35 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Movement Line Acting",
-        "materials": [
-          "Musique rythmée",
-          "Foulards ou rubans (25)",
-          "Espace dégagé"
-        ],
+        "materials": [],
         "visualSupports": [
           "Ribbon scarves for visible movement trails",
           "Teacher movement demonstrations"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient pas les formes dans les objets",
-            "choice": "Tracer les contours avec le doigt en nommant : 'Je trace un cercle'"
-          },
-          {
-            "moment": "Si certains nomment incorrectement les formes",
-            "choice": "Valider l'effort puis corriger gentiment : 'Presque! C'est un triangle'"
-          },
-          {
-            "moment": "Si l'enthousiasme baisse",
-            "choice": "Transformer en 'chasse au trésor' avec des indices sur les formes"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Action Line Drawing Studio",
-        "materials": [
-          "Loupes (25)",
-          "Carnets d'observation (25)",
-          "Crayons à mine (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Action photo references",
           "Comic book examples of movement lines",
           "Teacher demonstration drawings"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les formes ne ressemblent pas aux modèles",
-            "choice": "Célébrer les tentatives : 'Ton cercle a sa propre personnalité!'"
-          },
-          {
-            "moment": "Si les élèves ont du mal avec les ciseaux",
-            "choice": "Proposer de déchirer le papier pour créer des formes organiques"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Movement Line Performance",
-        "materials": [
-          "Tapis de rassemblement",
-          "Chevalet d'exposition",
-          "Pinces à dessin"
-        ],
+        "materials": [],
         "visualSupports": [
           "Student artwork displayed",
           "Movement demonstrations"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne comprennent pas 'motif'",
-            "choice": "Montrer avec des gestes répétitifs : 'rond-carré-rond-carré'"
-          },
-          {
-            "moment": "Si les motifs sont trop complexes",
-            "choice": "Simplifier à 2 éléments qui se répètent : ligne-point-ligne-point"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2141,74 +1716,35 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Pattern Inventor Brainstorm",
-        "materials": [
-          "Crayons de couleur (25 boîtes)",
-          "Papier blanc grand format (25 feuilles)",
-          "Règles de plastique (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Review charts of all learned shapes and lines",
           "Brainstorming encouraging environment"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient pas de motifs dans la nature",
-            "choice": "Commencer par des exemples évidents : pétales de fleur, rayures d'animal"
-          },
-          {
-            "moment": "Si l'attention se disperse à l'extérieur",
-            "choice": "Créer un cadre avec les mains pour focaliser l'observation"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Personal Pattern Design Studio",
-        "materials": [
-          "Papier coloré (assortiment)",
-          "Ciseaux sécuritaires (25 paires)",
-          "Bâtons de colle (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "All previous art techniques available",
           "Pattern planning guides",
           "Designer pattern examples for inspiration"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne connaissent pas les cultures mentionnées",
-            "choice": "Connecter à leur expérience : 'Comme les décorations chez grand-maman'"
-          },
-          {
-            "moment": "Si les motifs semblent trop avancés",
-            "choice": "Extraire un élément simple : juste les formes rondes par exemple"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Pattern Designer Presentation",
-        "materials": [
-          "Tampons géométriques (set de 25)",
-          "Encreurs lavables (6 couleurs)",
-          "Papier d'art (25 feuilles)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Student patterns displayed professionally",
           "Presentation space"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves n'associent pas lignes et émotions",
-            "choice": "Montrer avec le corps : 'ligne droite = je suis fort, ligne ondulée = je suis calme'"
-          },
-          {
-            "moment": "Si certains sont mal à l'aise avec les émotions",
-            "choice": "Utiliser des exemples neutres : 'cette ligne me fait penser au vent'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2284,79 +1820,36 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Teamwork Planning Circle",
-        "materials": [
-          "Crayons de cire (25 boîtes)",
-          "Surfaces texturées (écorce, tissus, grillage)",
-          "Papier fin (25 feuilles)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Small group formation",
           "Planning sheets with pictures",
           "Turn-taking visual cues"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne voient que la surface des œuvres",
-            "choice": "Guider l'observation : 'Regarde les couleurs, puis les formes, puis les lignes'"
-          },
-          {
-            "moment": "Si certains critiquent négativement",
-            "choice": "Rediriger : 'Qu'est-ce que tu remarques d'intéressant dans cette œuvre?'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Collaborative Art Creation",
-        "materials": [
-          "Papier affiche grand format (6 feuilles)",
-          "Marqueurs lavables (6 sets)",
-          "Ruban adhésif"
-        ],
+        "materials": [],
         "visualSupports": [
           "Large workspace for each group",
           "Shared supplies",
           "Collaboration examples"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne comprennent pas 'texture' visuellement",
-            "choice": "Faire toucher d'abord : 'Rugueux comme du papier sablé, lisse comme du plastique'"
-          },
-          {
-            "moment": "Si les outils de texture ne fonctionnent pas",
-            "choice": "Improviser avec des objets de classe : gommes à effacer, règles texturées"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Collaborative Art Gallery Opening",
-        "materials": [
-          "Musique rythmée",
-          "Foulards ou rubans (25)",
-          "Espace dégagé"
-        ],
+        "materials": [],
         "visualSupports": [
           "Professional gallery setup",
           "Group presentation format"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves bougent trop vite et ratent des détails",
-            "choice": "Instaurer des pauses : 'Stop! Regardons bien cette partie ensemble'"
-          },
-          {
-            "moment": "Si l'énergie devient trop haute",
-            "choice": "Transformer en mouvement lent : 'Bougeons comme des astronautes'"
-          },
-          {
-            "moment": "Si certains ne participent pas aux mouvements",
-            "choice": "Proposer des rôles alternatifs : 'Tu peux être le guide qui observe'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2432,74 +1925,35 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Gallery Setup Preparation",
-        "materials": [
-          "Loupes (25)",
-          "Carnets d'observation (25)",
-          "Crayons à mine (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Gallery setup examples",
           "Museum behavior visual guides"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves ne savent pas comment collaborer",
-            "choice": "Donner des rôles clairs : 'Toi les formes, toi les couleurs, toi l'assemblage'"
-          },
-          {
-            "moment": "Si des conflits éclatent sur les choix artistiques",
-            "choice": "Proposer le vote : 'On essaie les deux idées et on choisit ensemble'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "main": {
         "duration": "~27 min",
         "activity": "Art Exhibition and Gallery Tours",
-        "materials": [
-          "Tapis de rassemblement",
-          "Chevalet d'exposition",
-          "Pinces à dessin"
-        ],
+        "materials": [],
         "visualSupports": [
           "Professional gallery display",
           "Artist presentation spaces",
           "Audience behavior guides"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si les élèves sont gênés de présenter",
-            "choice": "Permettre de présenter avec un ami ou juste montrer sans parler"
-          },
-          {
-            "moment": "Si les présentations sont timides ou inaudibles",
-            "choice": "Encourager : 'Tiens ton dessin haut pour que tout le monde voie bien'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Artist Appreciation Celebration",
-        "materials": [
-          "Crayons de couleur (25 boîtes)",
-          "Papier blanc grand format (25 feuilles)",
-          "Règles de plastique (25)"
-        ],
+        "materials": [],
         "visualSupports": [
           "Circle formation for community",
           "Celebration atmosphere"
         ],
-        "decisionPoints": [
-          {
-            "moment": "Si certains terminent très rapidement",
-            "choice": "Proposer d'ajouter des détails ou de créer une deuxième version"
-          },
-          {
-            "moment": "Si certains se découragent de leurs dessins",
-            "choice": "Valoriser l'observation : 'Tu as bien vu ce détail important!'"
-          }
-        ],
+        "decisionPoints": [],
         "movementBreaks": []
       },
       "troubleshooting": {

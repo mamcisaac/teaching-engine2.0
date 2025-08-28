@@ -1852,7 +1852,20 @@
         "activity": "Celebration of readiness and final encouragement circle",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "situation": "Si un élève ressent encore de l'anxiété avant la présentation finale",
+            "action": "offrir des stratégies de respiration calme et rappeler les succès de la pratique"
+          },
+          {
+            "situation": "Si le cercle d'encouragement devient trop long ou répétitif",
+            "action": "guider vers des messages spécifiques et positifs avec gestes d'encouragement"
+          },
+          {
+            "situation": "Si certains élèves expriment de l'inquiétude pour les oublis pendant la présentation",
+            "action": "rappeler que les erreurs font partie de l'apprentissage et suggérer des signaux d'aide"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2001,7 +2014,20 @@
         "activity": "Thank visitors, celebration of accomplishment, and cleanup",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "situation": "Si les visiteurs posent des questions trop complexes aux élèves",
+            "action": "intervenir doucement pour simplifier ou rediriger vers ce que l'élève peut partager"
+          },
+          {
+            "situation": "Si un élève devient émotionnel pendant ou après sa présentation",
+            "action": "offrir un espace calme et célébrer sa bravoure de partager son apprentissage"
+          },
+          {
+            "situation": "Si les visiteurs s'attardent trop longtemps et fatiguent les élèves",
+            "action": "guider poliment vers une conclusion avec remerciements et reconnaissance du travail accompli"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2149,7 +2175,20 @@
         "activity": "Class celebration with recognition of everyone's unique contribution",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "situation": "Si un élève a de la difficulté à identifier ses propres réussites",
+            "action": "utiliser des exemples spécifiques observés pendant l'exposition pour souligner ses forces"
+          },
+          {
+            "situation": "Si la célébration devient compétitive entre élèves",
+            "action": "recentrer sur les contributions uniques de chacun et la diversité des apprentissages"
+          },
+          {
+            "situation": "Si certains élèves sont encore déçus de leur performance",
+            "action": "mettre l'accent sur le courage démontré et les apprentissages acquis tout au long du processus"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2297,7 +2336,20 @@
         "activity": "Create thank-you notes or appreciation messages for classmates",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "situation": "Si un élève ne se souvient d'aucune présentation de ses camarades",
+            "action": "utiliser des photos ou supports visuels pour stimuler la mémoire et encourager l'observation"
+          },
+          {
+            "situation": "Si les messages de remerciement deviennent répétitifs ou génériques",
+            "action": "guider vers des détails spécifiques appréciés chez chaque camarade"
+          },
+          {
+            "situation": "Si un élève exprime de la jalousie envers le travail d'un autre",
+            "action": "rediriger vers l'appréciation de la diversité et comment chacun apporte quelque chose de spécial"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2445,7 +2497,20 @@
         "activity": "Share summer science plans and final celebration of year's science learning",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "situation": "Si un élève n'arrive pas à penser à des activités scientifiques pour l'été",
+            "action": "connecter aux activités estivales qu'il aime déjà et montrer les aspects scientifiques cachés"
+          },
+          {
+            "situation": "Si les élèves deviennent nostalgiques ou tristes que l'année se termine",
+            "action": "célébrer tous les apprentissages acquis et l'excitation de continuer à explorer cet été"
+          },
+          {
+            "situation": "Si un élève s'inquiète d'oublier ses apprentissages scientifiques pendant l'été",
+            "action": "rassurer qu'explorer la nature et poser des questions maintient l'esprit scientifique vivant"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

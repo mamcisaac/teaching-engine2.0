@@ -26,7 +26,11 @@
           "welcoming music"
         ],
         "visualSupports": "Open arms for inclusion, heart gestures for love, smiling faces for celebration",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'il n'a pas de famille traditionnelle → célébrer que toutes les familles sont différentes et spéciales, utiliser des exemples variés de structures familiales",
+          "Si un élève semble gêné de sa situation familiale → rassurer que chaque famille est parfaite comme elle est, rediriger vers les aspects positifs",
+          "Si un élève ne veut pas partager → respecter sa confidentialité et offrir l'option d'écouter seulement"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -56,9 +60,18 @@
       "closing": {
         "duration": 10,
         "activity": "Family appreciation circle where students share one word that describes how families make them feel. End with group chant: 'Toutes les familles sont spéciales!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de mots émotionnels",
+          "autocollants cœurs",
+          "tableau de célébration familiale",
+          "musique douce de fermeture"
+        ],
+        "visualSupports": "Gestes d'appréciation, cercle visuel de partage, expressions de fierté familiale",
+        "decisionPoints": [
+          "Si un élève ne trouve pas de mot pour décrire sa famille → l'aider avec des suggestions douces comme 'aimante' ou 'gentille'",
+          "Si un élève devient émotionnel en parlant de famille → valider ses sentiments et offrir un câlin ou moment de réconfort",
+          "Si un élève reste silencieux → respecter son choix et lui dire que chaque famille mérite d'être célébrée même en silence"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -97,7 +110,11 @@
           "confident posture cards"
         ],
         "visualSupports": "Proud chest out posture, happy confident faces, thumbs up gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a de la difficulté à dire qu'il est fier de sa famille → l'encourager à commencer par 'J'aime ma famille' comme alternative",
+          "Si un élève semble inquiet de sa situation familiale → rappeler que toutes les familles sont différentes et spéciales",
+          "Si un élève ne veut pas utiliser le miroir → respecter son choix et offrir de faire l'activité sans miroir"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -127,9 +144,18 @@
       "closing": {
         "duration": 10,
         "activity": "Family gallery walk where students admire each other's family representations and share one positive observation about a classmate's family.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "étiquettes de commentaires positifs",
+          "cartes d'observation",
+          "autocollants étoiles",
+          "guide de compliments"
+        ],
+        "visualSupports": "Gestes d'admiration, expressions positives, mouvements de célébration respectueuse",
+        "decisionPoints": [
+          "Si un élève fait un commentaire inapproprié sur une famille → rediriger doucement vers les aspects positifs et rappeler le respect",
+          "Si un élève ne veut pas partager d'observation → l'inviter à simplement regarder et apprécier en silence",
+          "Si un élève semble jaloux d'une autre famille → valider ses sentiments et rappeler ce qui rend sa propre famille spéciale"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -138,14 +164,39 @@
       },
       "realWorldConnection": "Being proud of our family helps us feel confident and secure in who we are",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des photos de familles simples pour modéliser",
+          "Permettre le dessin libre au lieu de structures complexes",
+          "Offrir de l'aide individuelle pour l'expression"
+        ],
+        "forAdvanced": [
+          "Encourager l'ajout de détails sur les relations familiales",
+          "Inviter à expliquer les rôles spéciaux dans leur famille",
+          "Permettre de partager des histoires familiales"
+        ],
+        "forELL": [
+          "Fournir du vocabulaire de membres familiaux en français",
+          "Utiliser des images pour appuyer la compréhension",
+          "Encourager le mélange linguistique avec traduction"
+        ],
+        "forIEP": [
+          "Adapter les outils de représentation familiale",
+          "Offrir des options de communication alternatives",
+          "Respecter les besoins individuels de participation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre de la fierté envers sa famille",
+          "Élève crée une représentation de sa famille",
+          "Élève respecte les représentations des autres",
+          "Élève utilise un langage positif sur les familles"
+        ],
+        "checkpoints": [
+          "Observation de l'activité créative - engagement personnel",
+          "Documentation des commentaires lors de la galerie",
+          "Noter l'expression de fierté familiale"
+        ]
       }
     },
     {
@@ -168,7 +219,11 @@
           "guessing game props"
         ],
         "visualSupports": "Age-appropriate movements, caring gestures, family relationship symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a pas certains membres familiaux traditionnels → encourager à montrer les personnes qui s'occupent de lui avec amour",
+          "Si un élève semble confus par les rôles familiaux → expliquer que chaque famille organise les rôles différemment",
+          "Si un élève ne veut pas participer aux mouvements → l'inviter à être le devineur spécial"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -198,9 +253,18 @@
       "closing": {
         "duration": 10,
         "activity": "Family bond celebration where students share one special thing about a family member's relationship to them.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de relations familiales",
+          "autocollants cœurs de connexion",
+          "cercle de partage visuel",
+          "guide de mots positifs"
+        ],
+        "visualSupports": "Gestes de connexion, expressions d'amour familial, symboles de lien spécial",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier une relation spéciale → l'aider avec des exemples: 'Qui te fait rire?' ou 'Qui te lit des histoires?'",
+          "Si un élève devient émotionnel en parlant de famille → offrir du réconfort et valider que l'amour familial peut être fort",
+          "Si un élève ne veut pas nommer une personne spécifique → l'encourager à parler d'un sentiment spécial sur sa famille"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -209,14 +273,39 @@
       },
       "realWorldConnection": "Each family member has a special place and important role in the family",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des images simples de relations familiales",
+          "Offrir des phrases modèles pour décrire les membres familiaux",
+          "Permettre le dessin au lieu de l'arbre généalogique traditionnel"
+        ],
+        "forAdvanced": [
+          "Encourager l'explication des rôles spéciaux dans leur famille",
+          "Inviter à comparer les structures familiales avec respect",
+          "Permettre de créer des arbres familiaux complexes"
+        ],
+        "forELL": [
+          "Fournir du vocabulaire familial bilingue avec images",
+          "Utiliser des gestes pour renforcer les relations",
+          "Encourager l'utilisation de la langue maternelle avec traduction"
+        ],
+        "forIEP": [
+          "Adapter les outils de cartographie selon les capacités",
+          "Offrir des supports visuels personnalisés",
+          "Respecter les besoins de communication individuels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie les membres de sa famille",
+          "Élève décrit des relations familiales positives",
+          "Élève montre de la compréhension des liens familiaux",
+          "Élève respecte la diversité des structures familiales"
+        ],
+        "checkpoints": [
+          "Observation pendant la création de l'arbre familial",
+          "Documentation des descriptions de relations",
+          "Noter la participation à la célébration des liens"
+        ]
       }
     },
     {
@@ -239,7 +328,11 @@
           "guess-and-celebrate materials"
         ],
         "visualSupports": "Work action gestures, helping hands motions, teamwork symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne fait pas de travaux traditionnels → élargir la définition pour inclure jouer, parler, et prendre soin l'un de l'autre",
+          "Si un élève semble gêné par les tâches de sa famille → souligner que chaque famille organise les responsabilités différemment",
+          "Si un élève ne veut pas agir certaines activités → lui offrir le rôle de devineur spécial ou d'encourageur"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -269,9 +362,18 @@
       "closing": {
         "duration": 10,
         "activity": "Family teamwork celebration where students share how their family works together as a team.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de travail d'équipe",
+          "autocollants d'équipe familiale",
+          "guide de célébration",
+          "symboles de coopération"
+        ],
+        "visualSupports": "Gestes de travail d'équipe, expressions de fierté collective, mouvements de coopération",
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne travaille pas ensemble → l'aider à identifier de petits moments de coopération comme manger ensemble",
+          "Si un élève compare sa famille négativement aux autres → rappeler que chaque famille a sa propre façon spéciale de s'entraider",
+          "Si un élève ne veut pas partager → l'inviter à simplement écouter et apprécier les histoires des autres"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -280,14 +382,39 @@
       },
       "realWorldConnection": "Families work best when everyone helps and contributes in their own special way",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des exemples concrets de travaux familiaux simples",
+          "Permettre de montrer l'aide au lieu de l'expliquer",
+          "Offrir des images de tâches familiales pour modéliser"
+        ],
+        "forAdvanced": [
+          "Encourager la discussion sur l'équité des tâches familiales",
+          "Inviter à proposer des améliorations pour le travail d'équipe familial",
+          "Permettre de créer des horaires de contribution familiale"
+        ],
+        "forELL": [
+          "Fournir du vocabulaire de tâches familiales en français",
+          "Utiliser des gestes pour démontrer les activités familiales",
+          "Encourager le partage dans les deux langues avec traduction"
+        ],
+        "forIEP": [
+          "Adapter les tâches selon les capacités individuelles",
+          "Offrir des outils visuels personnalisés pour l'organisation",
+          "Respecter les rôles familiaux individuels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève comprend que chacun peut contribuer à la famille",
+          "Élève identifie des façons d'aider dans sa famille",
+          "Élève démontre une attitude positive envers le travail d'équipe familial",
+          "Élève respecte différentes façons d'organiser les tâches familiales"
+        ],
+        "checkpoints": [
+          "Observation pendant l'activité de charades - compréhension des rôles",
+          "Documentation de la création de la roue des contributions",
+          "Noter les commentaires lors de la célébration du travail d'équipe"
+        ]
       }
     },
     {
@@ -310,7 +437,11 @@
           "warm blanket for circle"
         ],
         "visualSupports": "Gentle hugging motions, care-giving gestures, comfort expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier des soins reçus → l'aider avec des exemples universels comme manger ensemble ou dormir en sécurité",
+          "Si un élève devient émotionnel en pensant aux soins familiaux → offrir du réconfort et valider que se sentir aimé est important",
+          "Si un élève semble inquiet de sa situation → rappeler que chaque famille montre l'amour à sa façon spéciale"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -340,9 +471,18 @@
       "closing": {
         "duration": 10,
         "activity": "Gratitude expression where students share one way they feel cared for and practice saying 'merci' to family in their hearts.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de gratitude",
+          "cœurs en papier",
+          "guide de remerciements",
+          "autocollants d'appréciation"
+        ],
+        "visualSupports": "Gestes de remerciement, expressions de gratitude, mouvements de cœur reconnaissant",
+        "decisionPoints": [
+          "Si un élève a du mal à exprimer sa gratitude → l'aider avec des phrases simples comme 'Ma famille me donne...' ou 'Je me sens aimé quand...'",
+          "Si un élève semble triste en pensant à sa famille → valider ses sentiments et rappeler que l'amour peut être compliqué parfois",
+          "Si un élève ne veut pas dire merci à voix haute → respecter son choix et encourager le merci silencieux dans son cœur"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -351,14 +491,39 @@
       },
       "realWorldConnection": "Being cared for by family helps us grow strong, healthy, and confident",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des exemples concrets de soins familiaux simples",
+          "Permettre l'expression par le dessin au lieu des mots",
+          "Offrir des phrases modèles pour exprimer la gratitude"
+        ],
+        "forAdvanced": [
+          "Encourager la discussion sur différents types de soins familiaux",
+          "Inviter à réfléchir sur comment montrer de la gratitude à la famille",
+          "Permettre de créer des cartes de remerciement détaillées"
+        ],
+        "forELL": [
+          "Fournir du vocabulaire de soins familiaux en français",
+          "Utiliser des gestes pour démontrer les soins reçus",
+          "Encourager l'expression dans les deux langues avec traduction"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins de communication individuels",
+          "Utiliser des supports visuels personnalisés pour les soins",
+          "Respecter les façons individuelles de recevoir et d'exprimer l'amour"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève reconnaît les soins reçus de sa famille",
+          "Élève exprime de la gratitude pour les soins familiaux",
+          "Élève démontre une compréhension de l'amour familial",
+          "Élève respecte différentes façons de montrer les soins"
+        ],
+        "checkpoints": [
+          "Observation pendant le cercle de partage - reconnaissance des soins",
+          "Documentation de la carte des soins familiaux",
+          "Noter l'expression de gratitude lors de la fermeture"
+        ]
       }
     },
     {
@@ -381,7 +546,11 @@
           "proud posture examples"
         ],
         "visualSupports": "Strong helper postures, superhero gestures, pride expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'il n'aide pas sa famille → l'aider à identifier des petites façons comme sourire, obéir, ou être gentil",
+          "Si un élève se sent trop petit pour aider → souligner que même les plus petits membres de famille sont des helpers importants",
+          "Si un élève ne veut pas faire la pose de super-héros → lui offrir d'autres façons de montrer sa fierté d'être un helper"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -411,9 +580,18 @@
       "closing": {
         "duration": 10,
         "activity": "Helper appreciation ceremony where students celebrate their role as important family contributors.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats d'aide familiale",
+          "badges de contribution",
+          "couronne de helpers",
+          "guide de célébration"
+        ],
+        "visualSupports": "Gestes de fierté, expressions de célébration, mouvements d'appréciation personnelle",
+        "decisionPoints": [
+          "Si un élève ne se sent pas comme un vrai helper → souligner que grandir et apprendre sont des façons importantes d'aider sa famille",
+          "Si un élève compare son aide négativement aux autres → rappeler que chaque famille a besoin de différents types d'aide",
+          "Si un élève ne veut pas être célébré → respecter sa préférence et offrir une célébration plus douce et privée"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -422,14 +600,39 @@
       },
       "realWorldConnection": "Even young people have important ways to help and support their families",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des exemples très simples d'aide familiale",
+          "Permettre l'expression par l'action au lieu des mots",
+          "Offrir des images de helpers familiaux pour modéliser"
+        ],
+        "forAdvanced": [
+          "Encourager la réflexion sur l'impact de leur aide sur la famille",
+          "Inviter à proposer de nouvelles façons d'aider",
+          "Permettre de créer un plan d'aide familiale personnalisé"
+        ],
+        "forELL": [
+          "Fournir du vocabulaire d'aide familiale en français",
+          "Utiliser des gestes pour démontrer les contributions",
+          "Encourager le partage bilingue avec traduction"
+        ],
+        "forIEP": [
+          "Adapter les tâches d'aide selon les capacités individuelles",
+          "Utiliser des supports visuels personnalisés pour les contributions",
+          "Respecter les façons individuelles de contribuer à la famille"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève reconnaît son rôle important dans sa famille",
+          "Élève identifie des façons spécifiques d'aider sa famille",
+          "Élève démontre de la fierté pour ses contributions familiales",
+          "Élève comprend que toutes les contributions sont importantes"
+        ],
+        "checkpoints": [
+          "Observation pendant l'activité superhero - conscience du rôle",
+          "Documentation du portfolio de contributions",
+          "Noter la participation à la cérémonie d'appréciation"
+        ]
       }
     },
     {
@@ -452,7 +655,11 @@
           "curious expressions cards"
         ],
         "visualSupports": "Open curiosity gestures, appreciation movements, friendship symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève fait des commentaires négatifs sur la famille d'un ami → rediriger doucement vers la curiosité et rappeler que toutes les familles sont spéciales",
+          "Si un élève semble jaloux des familles de ses amis → valider ses sentiments et rappeler ce qui rend sa propre famille unique",
+          "Si un élève ne veut pas parler des familles de ses amis → respecter sa préférence et l'inviter à simplement écouter avec appréciation"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -482,9 +689,18 @@
       "closing": {
         "duration": 10,
         "activity": "Community appreciation where students celebrate how family diversity makes their classroom community special and interesting.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de diversité",
+          "symboles de communauté",
+          "autocollants de célébration",
+          "guide d'appréciation"
+        ],
+        "visualSupports": "Gestes d'inclusion, expressions de célébration communautaire, mouvements d'appréciation de la diversité",
+        "decisionPoints": [
+          "Si un élève fait encore des comparaisons négatives → rediriger vers l'idée que la diversité rend notre classe plus intéressante",
+          "Si un élève semble confus par tant de différences → rappeler que l'amour familial est la même chose dans toutes les familles",
+          "Si un élève ne veut pas célébrer la diversité → respecter son rythme et l'inviter à simplement écouter les autres"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -493,14 +709,39 @@
       },
       "realWorldConnection": "Learning about different families helps us understand and appreciate our community better",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des images de différentes familles pour faciliter la compréhension",
+          "Permettre l'expression par le dessin au lieu de la discussion",
+          "Offrir des exemples concrets de diversité familiale positive"
+        ],
+        "forAdvanced": [
+          "Encourager la discussion sur les avantages de la diversité familiale",
+          "Inviter à réfléchir sur les similitudes entre différentes familles",
+          "Permettre de créer un projet sur l'appréciation de la diversité"
+        ],
+        "forELL": [
+          "Fournir du vocabulaire de diversité familiale en français",
+          "Utiliser des gestes pour renforcer l'inclusion",
+          "Encourager le partage bilingue sur les structures familiales"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins de compréhension sociale",
+          "Utiliser des supports visuels personnalisés pour la diversité",
+          "Respecter les niveaux individuels de participation sociale"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève montre de l'appréciation pour la diversité familiale",
+          "Élève démontre de la curiosité positive envers différentes familles",
+          "Élève respecte les différences dans les structures familiales",
+          "Élève contribue positivement aux discussions sur la diversité"
+        ],
+        "checkpoints": [
+          "Observation pendant le cercle d'appréciation - attitudes positives",
+          "Documentation des contributions au graphique de diversité",
+          "Noter la participation à la célébration communautaire"
+        ]
       }
     },
     {
@@ -523,7 +764,11 @@
           "sharing circles"
         ],
         "visualSupports": "Repetitive motion gestures, memory symbols, tradition representations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit que sa famille n'a pas de traditions → l'aider à identifier des petites habitudes comme les repas ensemble ou les histoires avant le coucher",
+          "Si un élève semble gêné par les traditions de sa famille → souligner que chaque famille crée ses propres façons spéciales de faire les choses",
+          "Si un élève ne veut pas partager ses traditions → respecter sa confidentialité et l'inviter à simplement écouter les autres"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -553,9 +798,18 @@
       "closing": {
         "duration": 10,
         "activity": "Tradition appreciation walk where students view each other's traditions and share appreciation for the variety of ways families create special moments.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'appréciation des traditions",
+          "guide de commentaires positifs",
+          "autocollants de célébration",
+          "symboles de mémoire familiale"
+        ],
+        "visualSupports": "Gestes d'admiration respectueuse, expressions d'appréciation, mouvements de célébration des traditions",
+        "decisionPoints": [
+          "Si un élève fait des commentaires négatifs sur les traditions d'autrui → rediriger vers l'appréciation et rappeler que toutes les traditions sont spéciales",
+          "Si un élève semble jaloux des traditions des autres → l'aider à voir la beauté unique dans ses propres traditions familiales",
+          "Si un élève ne veut pas regarder les traditions des autres → respecter son choix et l'inviter à rester près de l'enseignant"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -594,7 +848,11 @@
           "celebration props"
         ],
         "visualSupports": "Joyful dancing, celebration gestures, happiness expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne veut pas danser ou célébrer → respecter son style et l'inviter à bouger doucement ou à regarder avec appréciation",
+          "Si un élève dit que sa famille ne célèbre jamais → l'aider à identifier de petits moments de joie comme rire ensemble",
+          "Si un élève devient trop excité par la célébration → offrir un moment de calme et de respiration profonde"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -624,9 +882,18 @@
       "closing": {
         "duration": 10,
         "activity": "Joy sharing circle where students share how celebrations make them feel and practice gratitude for family joy.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'émotions de joie",
+          "symboles de gratitude",
+          "guide de partage des sentiments",
+          "autocollants de bonheur"
+        ],
+        "visualSupports": "Expressions de joie, gestes de gratitude, mouvements de partage émotionnel positif",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier la joie → l'aider avec des exemples simples comme se sentir heureux ou content",
+          "Si un élève semble triste en pensant aux célébrations → valider ses sentiments et rappeler que chaque famille trouve la joie différemment",
+          "Si un élève ne veut pas exprimer de gratitude → respecter son choix et l'inviter à ressentir la gratitude en silence"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -665,7 +932,11 @@
           "family meal pictures"
         ],
         "visualSupports": "Eating gestures, appreciation movements, sharing symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des restrictions alimentaires ou ne mange pas certains aliments → célébrer la diversité alimentaire et se concentrer sur le partage",
+          "Si un élève semble gêné par sa nourriture familiale → souligner que toutes les traditions alimentaires sont spéciales et délicieuses",
+          "Si un élève ne mange pas souvent en famille → élargir la définition pour inclure tout moment de partage de nourriture"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -695,9 +966,18 @@
       "closing": {
         "duration": 10,
         "activity": "Family meal appreciation where students share how food brings their family together and practice gratitude for family meals.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de gratitude alimentaire",
+          "symboles de partage familial",
+          "guide d'appréciation des repas",
+          "autocollants de reconnaissance"
+        ],
+        "visualSupports": "Gestes de gratitude pour la nourriture, expressions d'appréciation familiale, mouvements de partage",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier comment la nourriture unit sa famille → l'aider avec des exemples comme manger ensemble ou préparer des collations",
+          "Si un élève semble triste à propos des repas familiaux → valider ses sentiments et se concentrer sur tout aspect positif, même très petit",
+          "Si un élève ne veut pas partager sur la nourriture → respecter sa confidentialité et l'inviter à ressentir la gratitude silencieusement"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -736,7 +1016,11 @@
           "safety representations"
         ],
         "visualSupports": "Home safety gestures, belonging movements, love symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève semble gêné par sa situation de logement → souligner que l'amour familial fait un vrai foyer, peu importe l'endroit",
+          "Si un élève compare sa maison négativement aux autres → rappeler que ce qui compte c'est la famille qui s'aime, pas le bâtiment",
+          "Si un élève ne veut pas parler de son foyer → respecter sa confidentialité et se concentrer sur les sentiments universels de sécurité"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -766,9 +1050,18 @@
       "closing": {
         "duration": 10,
         "activity": "Home gratitude circle where students share what makes them feel at home with their family, regardless of where they live.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de sentiments de foyer",
+          "symboles de gratitude pour la maison",
+          "guide d'appréciation du foyer",
+          "autocollants de reconnaissance familiale"
+        ],
+        "visualSupports": "Gestes d'appréciation du foyer, expressions de gratitude familiale, mouvements de sécurité et appartenance",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier ce qui le fait se sentir chez lui → l'aider avec des exemples comme se sentir en sécurité ou aimé",
+          "Si un élève semble triste à propos de son foyer → valider ses sentiments et rappeler que l'amour familial voyage partout",
+          "Si un élève ne veut pas exprimer de gratitude → respecter son choix et l'inviter à ressentir la sécurité du cercle"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -807,7 +1100,11 @@
           "family connection representations"
         ],
         "visualSupports": "Memory gestures, space appreciation movements, family connection symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a pas d'espace spécial fixe → l'aider à identifier n'importe quel endroit où sa famille se sent unie, même temporaire",
+          "Si un élève semble gêné par ses espaces familiaux → rappeler que l'amour familial rend n'importe quel espace spécial",
+          "Si un élève ne veut pas partager ses espaces → respecter sa confidentialité et l'inviter à penser silencieusement à des souvenirs heureux"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -837,9 +1134,18 @@
       "closing": {
         "duration": 10,
         "activity": "Special space appreciation where students share how family spaces help them feel connected and loved.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'appréciation des espaces",
+          "symboles de connexion familiale",
+          "guide de partage des souvenirs",
+          "autocollants de reconnaissance"
+        ],
+        "visualSupports": "Gestes d'appréciation des espaces, expressions de connexion familiale, mouvements de souvenirs heureux",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier comment un espace l'aide → l'aider avec des exemples comme se sentir en sécurité ou heureux",
+          "Si un élève devient nostalgique ou triste → valider ses sentiments et rappeler que les souvenirs d'amour restent avec nous",
+          "Si un élève ne veut pas exprimer d'appréciation → respecter son rythme et l'inviter à ressentir la connexion en silence"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -878,7 +1184,11 @@
           "expression cards"
         ],
         "visualSupports": "Speaking gestures, listening movements, expression symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne communique pas beaucoup → l'aider à identifier des petites façons comme les regards, sourires ou gestes",
+          "Si un élève semble inquiet de la communication familiale → souligner que chaque famille a sa propre façon de montrer l'amour",
+          "Si un élève ne veut pas pratiquer la communication → respecter son choix et l'inviter à observer les autres avec appréciation"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -908,9 +1218,18 @@
       "closing": {
         "duration": 10,
         "activity": "Communication appreciation where students share how their family communicates love and connection.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'appréciation de la communication",
+          "symboles d'amour et connexion",
+          "guide de partage des façons de communiquer",
+          "autocollants de reconnaissance"
+        ],
+        "visualSupports": "Gestes de communication affectueuse, expressions d'appréciation de la connexion, mouvements de partage familial",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier comment sa famille communique l'amour → l'aider avec des exemples comme les câlins, sourires, ou temps passé ensemble",
+          "Si un élève semble triste à propos de la communication familiale → valider ses sentiments et rappeler que l'amour existe même sans beaucoup de mots",
+          "Si un élève ne veut pas partager → respecter sa confidentialité et l'inviter à apprécier silencieusement sa famille"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -949,7 +1268,11 @@
           "family network representations"
         ],
         "visualSupports": "Connection gestures, community movements, network symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne connaît personne dans la communauté → rappeler que l'école est une communauté et que les connexions grandissent avec le temps",
+          "Si un élève semble gêné par l'isolement de sa famille → souligner que chaque famille commence quelque part et crée des connexions à son rythme",
+          "Si un élève ne veut pas parler de sa communauté → respecter sa confidentialité et se concentrer sur l'idée générale de communauté"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -979,9 +1302,18 @@
       "closing": {
         "duration": 10,
         "activity": "Community appreciation where students celebrate how families working together make communities strong and caring.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'appréciation communautaire",
+          "symboles de force communautaire",
+          "guide de célébration des connexions",
+          "autocollants de reconnaissance collective"
+        ],
+        "visualSupports": "Gestes de force communautaire, expressions de célébration collective, mouvements d'unité familiale",
+        "decisionPoints": [
+          "Si un élève ne comprend pas comment les familles rendent la communauté forte → donner des exemples simples comme être gentil avec les voisins",
+          "Si un élève se sent déconnecté de la communauté → rappeler que sa famille fait partie de notre communauté scolaire spéciale",
+          "Si un élève ne veut pas célébrer → respecter son rythme et l'inviter à simplement ressentir l'appartenance du groupe"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1020,7 +1352,11 @@
           "family story inspiration"
         ],
         "visualSupports": "Story-telling gestures, celebration movements, book creation symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit que son histoire familiale n'est pas intéressante → souligner que chaque famille a une histoire unique et précieuse à célébrer",
+          "Si un élève semble inquiet de créer son livre → rassurer qu'il n'y a pas de mauvaise façon de raconter l'histoire de sa famille",
+          "Si un élève ne veut pas partager son histoire → respecter sa confidentialité et lui permettre de créer un livre privé"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1050,9 +1386,18 @@
       "closing": {
         "duration": 10,
         "activity": "Author celebration where students appreciate their creation and their family's special story.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats d'auteur",
+          "autocollants de célébration",
+          "guide d'appréciation des livres",
+          "symboles de fierté créatrice"
+        ],
+        "visualSupports": "Gestes de fierté d'auteur, expressions de célébration créatrice, mouvements d'appréciation personnelle",
+        "decisionPoints": [
+          "Si un élève n'est pas satisfait de son livre → souligner que chaque histoire familiale racontée avec amour est parfaite",
+          "Si un élève ne veut pas célébrer sa création → respecter sa modestie et offrir une célébration plus tranquille",
+          "Si un élève veut partager son livre avec d'autres → célébrer sa volonté de partager tout en respectant la confidentialité familiale"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1131,7 +1476,11 @@
           "respectful sharing examples"
         ],
         "visualSupports": "Gallery gestures, appreciation movements, respectful sharing symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne veut pas partager son livre en public → respecter sa confidentialité et lui offrir un rôle de spectateur appréciatif",
+          "Si un élève semble nerveux de présenter → offrir du soutien et rappeler que chaque famille mérite d'être célébrée",
+          "Si un élève fait des commentaires inappropriés sur les familles des autres → rediriger doucement vers l'appréciation et le respect"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1161,9 +1510,18 @@
       "closing": {
         "duration": 10,
         "activity": "Family diversity celebration where students appreciate the variety and beauty of all the families in their classroom.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de célébration de la diversité",
+          "symboles de beauté familiale",
+          "guide d'appréciation collective",
+          "autocollants de reconnaissance"
+        ],
+        "visualSupports": "Gestes de célébration de la diversité, expressions d'appréciation collective, mouvements d'unité dans la différence",
+        "decisionPoints": [
+          "Si un élève a encore de la difficulté à apprécier la diversité → rappeler doucement que différent est beau et rend notre classe intéressante",
+          "Si un élève se sent émotionnel à propos des familles → valider ses sentiments et rappeler que tout amour familial est précieux",
+          "Si un élève ne veut pas participer à la célébration → respecter son rythme et l'inviter à simplement ressentir l'appartenance du groupe"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1242,7 +1600,11 @@
           "character appreciation examples"
         ],
         "visualSupports": "Role-play gestures, family relationship movements, character appreciation symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne veut pas jouer de rôles → respecter son choix et lui offrir des rôles d'observateur ou d'assistant",
+          "Si un élève semble mal à l'aise avec certains rôles familiaux → lui permettre de choisir des rôles avec lesquels il se sent confortable",
+          "Si un élève veut seulement jouer sa propre structure familiale → célébrer son choix tout en encourageant doucement l'exploration"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1272,9 +1634,18 @@
       "closing": {
         "duration": 10,
         "activity": "Role-play reflection where students share what they learned about family relationships through creative exploration.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de réflexion sur les rôles",
+          "guide de partage des apprentissages",
+          "symboles de compréhension familiale",
+          "autocollants de découverte"
+        ],
+        "visualSupports": "Gestes de réflexion, expressions de compréhension nouvelle, mouvements de partage des apprentissages",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à réfléchir sur son apprentissage → l'aider avec des questions comme 'Qu'est-ce qui était amusant?' ou 'Qu'as-tu remarqué?'",
+          "Si un élève fait des commentaires négatifs sur certains rôles familiaux → rediriger vers l'appréciation et la compréhension",
+          "Si un élève ne veut pas partager sa réflexion → respecter sa préférence et l'inviter à écouter les autres avec appréciation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1353,7 +1724,11 @@
           "love expression symbols"
         ],
         "visualSupports": "Letter writing gestures, appreciation movements, love expression symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne sait pas quoi écrire à sa famille → l'aider avec des phrases simples comme 'Je t'aime' ou 'Merci de prendre soin de moi'",
+          "Si un élève semble émotionnel en pensant à sa famille → valider ses sentiments et rappeler que l'amour peut être fort et beau",
+          "Si un élève ne veut pas écrire une lettre → respecter son choix et offrir des alternatives comme dessiner ou faire un câlin symbolique"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1383,9 +1758,18 @@
       "closing": {
         "duration": 10,
         "activity": "Letter appreciation where students share (if comfortable) their messages and prepare to deliver their family love.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "enveloppes spéciales",
+          "autocollants de livraison d'amour",
+          "guide de partage optionnel",
+          "certificats de messagers d'amour"
+        ],
+        "visualSupports": "Gestes de préparation de livraison, expressions de fierté créatrice, mouvements d'amour familial",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager sa lettre → respecter complètement sa confidentialité et célébrer son amour privé",
+          "Si un élève s'inquiète de la réaction de sa famille → rassurer que toute expression d'amour est un cadeau précieux",
+          "Si un élève veut faire une autre lettre → célébrer son enthousiasme et encourager son amour généreux"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1464,7 +1848,11 @@
           "inclusive celebration ideas"
         ],
         "visualSupports": "Celebration gestures, planning movements, family honor symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne sait pas comment célébrer sa famille → l'aider avec des idées simples comme faire des dessins ou dire des mots gentils",
+          "Si un élève semble gêné de célébrer sa famille publiquement → offrir des façons plus privées de participer à la célébration",
+          "Si un élève a trop d'idées pour la célébration → canaliser son enthousiasme en l'aidant à choisir les meilleures idées"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1494,9 +1882,18 @@
       "closing": {
         "duration": 10,
         "activity": "Celebration culmination where students participate in their family appreciation celebration and share joy about family diversity.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "décorations de célébration familiale",
+          "symboles de joie et diversité",
+          "certificats de célébration",
+          "souvenirs de la célébration"
+        ],
+        "visualSupports": "Gestes de célébration joyeuse, expressions d'appréciation collective, mouvements de fierté familiale partagée",
+        "decisionPoints": [
+          "Si un élève devient trop excité par la célébration → offrir un moment de calme tout en maintenant la joie de l'événement",
+          "Si un élève semble triste ou nostalgique → valider ses émotions et rappeler que l'amour familial est toujours avec nous",
+          "Si un élève ne veut pas participer activement → respecter son choix et l'inviter à être un observateur appréciatif"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1575,7 +1972,11 @@
           "learning growth examples"
         ],
         "visualSupports": "Pride gestures, reflection movements, growth symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a de la difficulté à ressentir de la fierté pour sa famille → l'aider à identifier même de très petites choses positives sur sa famille",
+          "Si un élève ne se souvient pas de ce qu'il a appris → l'aider avec des rappels doux sur les activités familiales qu'on a explorées",
+          "Si un élève semble émotionnel en réfléchissant à sa famille → valider ses sentiments et rappeler que l'amour familial peut être très fort"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1605,9 +2006,18 @@
       "closing": {
         "duration": 10,
         "activity": "Family pride celebration where students share their final reflections and celebrate their growth in understanding and appreciating families.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats de fierté familiale",
+          "autocollants de célébration finale",
+          "guide de réflexions finales",
+          "souvenirs d'apprentissage"
+        ],
+        "visualSupports": "Gestes de fierté et célébration finale, expressions de reconnaissance d'apprentissage, mouvements de gratitude familiale",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager sa réflexion finale → respecter sa préférence et l'inviter à célébrer silencieusement",
+          "Si un élève devient très émotionnel lors de la célébration → offrir du réconfort et rappeler que ces émotions montrent l'amour fort",
+          "Si un élève veut continuer à parler de sa famille → célébrer son enthousiasme tout en incluant les autres dans la conversation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

@@ -1117,7 +1117,11 @@
       "title": "Histoires d'hiver magiques",
       "oneGoal": "Students explore winter stories and legends from different cultures",
       "duration": 45,
-      "keyVocabulary": [],
+      "keyVocabulary": [
+        "histoire",
+        "tradition",
+        "famille"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Story circle magic: Students sit in cozy circle with dim lighting and winter scene backdrop. Teacher introduces story time with 'Il était une fois...' (Once upon a time) and shows beautiful winter story illustrations. Students practice story listening position.",
@@ -1144,7 +1148,11 @@
           "Cultural winter storybooks from different countries"
         ],
         "visualSupports": "Story prediction picture cards, cultural story comparison chart, story element identification posters, winter story vocabulary with pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît pas d'histoires d'hiver → encourager à parler de sa propre famille ou inventer une histoire simple",
+          "Si les livres sont trop difficiles → utiliser les images pour raconter l'histoire en français simple",
+          "Si l'attention diminue → ajouter des gestes et des voix de personnages"
+        ],
         "movementBreaks": ["Story acting with props", "Character movements and actions", "Drawing and illustration activities"]
       },
       "closing": {
@@ -1156,7 +1164,11 @@
           "'Applause rain' demonstration"
         ],
         "visualSupports": "Story sharing sentence starters, appreciation gesture cards, favorite story vocabulary support",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est timide pour partager → commencer par pointer une image et dire 'J'aime ça!'",
+          "Si le temps manque → choisir 3-4 histoires préférées pour partager demain",
+          "Si les élèves parlent tous en même temps → utiliser le bâton de parole avec rappel 'Chacun son tour'"
+        ],
         "movementBreaks": ["Story illustration sharing movements", "'Applause rain' appreciation gestures"]
       },
       "troubleshooting": {
@@ -1221,7 +1233,11 @@
       "title": "Jeux d'hiver intérieurs",
       "oneGoal": "Students play traditional winter games from different cultures",
       "duration": 45,
-      "keyVocabulary": [],
+      "keyVocabulary": [
+        "jeux",
+        "jouer",
+        "amusant"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Game discovery time: Show pictures of children playing different winter games around the world. Students guess how each game is played through gestures and movements. Introduce concept of 'jeux' (games) that keep people happy during winter.",
@@ -1231,7 +1247,11 @@
           "Movement demonstration space"
         ],
         "visualSupports": "'Jeux d'hiver' vocabulary poster, game identification pictures, movement gesture cards",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves devinent trop rapidement → ajouter des indices plus subtils avec des gestes",
+          "Si un jeu n'est pas familier → demander si quelqu'un connaît ce jeu ou un jeu similaire",
+          "Si l'énergie est très haute → utiliser des signaux calmes et la voix chuchotée"
+        ],
         "movementBreaks": ["Game guessing movements and gestures throughout opening"]
       },
       "main": {
@@ -1262,7 +1282,11 @@
           "Cultural game reference cards for guessing"
         ],
         "visualSupports": "Game demonstration cards, cultural appreciation posters, 'favorite game' sharing prompts",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne veut pas démontrer → offrir de faire équipe ou juste observer cette fois",
+          "Si les démonstrations prennent trop de temps → limiter à 2 minutes par jeu avec minuterie visuelle",
+          "Si les élèves se disputent les jeux → utiliser un système de rotation avec numéros"
+        ],
         "movementBreaks": ["Individual game demonstrations", "Group guessing movements and responses"]
       },
       "troubleshooting": {
@@ -1327,7 +1351,11 @@
       "title": "Cartes de vœux multiculturelles",
       "oneGoal": "Students create greeting cards for different winter celebrations",
       "duration": 45,
-      "keyVocabulary": [],
+      "keyVocabulary": [
+        "carte",
+        "bonjour",
+        "merci"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Greeting card exploration: Show beautiful example cards from different cultures and celebrations. Students practice different cultural greetings with gestures. Introduce card-making as way to share celebration wishes with others.",
@@ -1337,7 +1365,11 @@
           "Example of card-giving demonstration"
         ],
         "visualSupports": "Multicultural greeting card display, greeting gesture reference chart, card-giving etiquette pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne célèbre pas ces fêtes → inclure des cartes de gentillesse générale comme 'Bonne journée!'",
+          "Si les salutations sont difficiles à prononcer → accepter les tentatives et modeler doucement",
+          "Si un élève est timide avec les gestes → commencer par un simple sourire et 'Bonjour!'"
+        ],
         "movementBreaks": ["Cultural greeting gestures and practice", "Card-giving demonstration movements"]
       },
       "main": {
@@ -1353,7 +1385,11 @@
           "Cultural celebration reference posters"
         ],
         "visualSupports": "Cultural symbol and color meaning charts, greeting phrase pronunciation guides, respectful cultural representation guidelines, card-making instruction steps",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève trouve la création difficile → offrir des pochoirs ou des autocollants simples",
+          "Si les matériaux se mélangent → utiliser des plateaux individuels avec noms",
+          "Si un élève termine rapidement → encourager à faire une carte bonus pour la famille"
+        ],
         "movementBreaks": ["Card creation hand movements", "Cultural symbol tracing and drawing", "Card decoration activities"]
       },
       "closing": {
@@ -1365,7 +1401,11 @@
           "Cultural greeting phrase reminders"
         ],
         "visualSupports": "Card presentation and gifting etiquette poster, cultural greeting reference, appreciation and gratitude visual supports",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève oublie les mots → chuchoter doucement ou utiliser des gestes d'aide",
+          "Si l'échange devient chaotique → utiliser un système de partenaires organisé",
+          "Si un élève reçoit beaucoup de cartes → s'assurer que tout le monde en reçoit au moins une"
+        ],
         "movementBreaks": ["Card presentation movements", "Greeting gestures", "Card exchange activities"]
       },
       "troubleshooting": {
@@ -1430,7 +1470,11 @@
       "title": "Spectacle de talents d'hiver",
       "oneGoal": "Students perform songs, dances, or stories from winter celebrations",
       "duration": 45,
-      "keyVocabulary": [],
+      "keyVocabulary": [
+        "talent",
+        "spectacle",
+        "applaudir"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Talent show warm-up: Students practice being good audience members with gentle applause, appreciation gestures, and encouraging faces. Review performance options from winter celebration unit and let students choose their talent to share.",
@@ -1440,7 +1484,11 @@
           "Talent choice recording sheet"
         ],
         "visualSupports": "Good audience behavior poster, performance option visual menu, encouragement gesture cards",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a pas d'idée de talent → suggérer des options simples comme montrer un jouet ou faire un sourire spécial",
+          "Si quelqu'un a le trac → offrir de présenter avec un ami ou juste montrer aux enseignants",
+          "Si le temps de pratique est court → encourager des talents de 30 secondes maximum"
+        ],
         "movementBreaks": ["Audience appreciation gesture practice", "Performance choice movements and demonstrations"]
       },
       "main": {
@@ -1471,7 +1519,11 @@
           "Documentation for portfolios"
         ],
         "visualSupports": "Appreciation feedback prompts, group celebration posters, performance celebration visual supports",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne veut pas performer → encourager à être un super public avec applaudissements spéciaux",
+          "Si les performances dépassent le temps → garder les extras pour un spectacle bonus demain",
+          "Si un élève fait des commentaires négatifs → rappeler 'Nous encourageons nos amis' avec geste positif"
+        ],
         "movementBreaks": ["Appreciation circle movements", "Group celebration gestures and responses"]
       },
       "troubleshooting": {
@@ -1536,7 +1588,11 @@
       "title": "Interview avec les familles",
       "oneGoal": "Students interview family members about their winter celebration traditions",
       "duration": 45,
-      "keyVocabulary": [],
+      "keyVocabulary": [
+        "famille",
+        "célébrer",
+        "spécial"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Family connection introduction: Students share photos or drawings of their families celebrating. Practice interview skills with simple questions like 'What do you like?' and good listening. Introduce concept of learning from family knowledge.",
@@ -1546,7 +1602,11 @@
           "Good listening demonstration props"
         ],
         "visualSupports": "Family celebration photo examples, interview question picture cards, good listening behavior poster",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a pas de photos de famille → utiliser des dessins ou parler de personnes spéciales",
+          "Si les célébrations sont très différentes → célébrer cette diversité avec 'Que c'est intéressant!'",
+          "Si un élève ne veut pas partager → respecter ce choix et offrir d'écouter les autres"
+        ],
         "movementBreaks": ["Family sharing gestures", "Good listening position practice", "Interview question practice movements"]
       },
       "main": {
@@ -1561,7 +1621,11 @@
           "Take-home interview materials for families"
         ],
         "visualSupports": "Family interview question cards with pictures, respectful questioning guidelines, family tradition documentation templates, cultural appreciation posters",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les questions d'entrevue sont trop difficiles → simplifier à 'Qu'est-ce que tu aimes?' ou utiliser images",
+          "Si un partenaire est absent → faire l'entrevue en trio ou avec l'enseignant",
+          "Si la pratique devient bruyante → utiliser des voix de souris et des signaux visuels"
+        ],
         "movementBreaks": ["Interview practice role-play activities", "Documentation preparation movements", "Partnership interview practice"]
       },
       "closing": {
@@ -1573,7 +1637,11 @@
           "Sharing preview planning sheet"
         ],
         "visualSupports": "Family interview commitment poster, sharing preview visual supports, family appreciation and gratitude cards",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les familles ne peuvent pas participer → offrir d'interviewer un membre du personnel ou utiliser photos",
+          "Si un élève oublie l'entrevue à la maison → lui donner une autre chance ou faire une entrevue en classe",
+          "Si l'excitation est très haute → canaliser avec des gestes de calme et respiration profonde"
+        ],
         "movementBreaks": ["Commitment gestures", "Excitement sharing movements", "Family appreciation expressions"]
       },
       "troubleshooting": {
@@ -1638,7 +1706,11 @@
       "title": "Calendrier de célébrations d'hiver",
       "oneGoal": "Students create a winter celebration calendar showing diverse cultural celebrations",
       "duration": 45,
-      "keyVocabulary": [],
+      "keyVocabulary": [
+        "calendrier",
+        "mémoire",
+        "ensemble"
+      ],
       "opening": {
         "duration": 8,
         "activity": "Learning journey reflection: Display all student work from winter celebration unit around the room. Students take appreciation walk to remember all celebrations learned. Introduce calendar as way to organize and remember celebration learning.",
@@ -1648,7 +1720,11 @@
           "Calendar introduction materials"
         ],
         "visualSupports": "Winter celebration learning journey display, calendar concept introduction poster, celebration memory prompts",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont excités par tous les souvenirs → utiliser 'J'observe' silencieux d'abord puis partager",
+          "Si quelqu'un ne trouve pas ses œuvres → aider à chercher ensemble ou célébrer le travail d'un ami",
+          "Si le temps d'appréciation est long → limiter à 2 commentaires positifs par élève"
+        ],
         "movementBreaks": ["Appreciation walk around room", "Memory sharing gestures", "Calendar introduction movements"]
       },
       "main": {
@@ -1665,7 +1741,11 @@
           "Photos from all previous lessons"
         ],
         "visualSupports": "Cultural celebration date reference charts, calendar creation instruction cards, celebration timeline visual supports, multicultural calendar examples",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si la création du calendrier devient chaotique → assigner des sections spécifiques à chaque groupe",
+          "Si les matériaux se mélangent → utiliser des bacs étiquetés par mois avec photos",
+          "Si certains élèves dominent → utiliser un système de rotation 'Chacun ajoute une chose'"
+        ],
         "movementBreaks": ["Calendar decoration activities", "Collaborative creation movements", "Cultural element placement activities"]
       },
       "closing": {
@@ -1677,7 +1757,11 @@
           "Celebration accomplishment materials"
         ],
         "visualSupports": "Unit accomplishment poster, reflection sharing prompts, celebration and gratitude visual supports",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont tristes que l'unité se termine → planifier comment continuer les célébrations tout l'hiver",
+          "Si la présentation du calendrier prend trop de temps → chaque élève dit une chose qu'il a apprise",
+          "Si quelqu'un n'a pas participé beaucoup → trouver quelque chose de positif qu'il a fait pour le célébrer"
+        ],
         "movementBreaks": ["Calendar presentation movements", "Celebration accomplishment gestures", "Unit reflection sharing"]
       },
       "troubleshooting": {

@@ -407,7 +407,16 @@
         "activity": "Character parade - students briefly demonstrate their favorite character voice and movement.",
         "materials": [],
         "visualSupports": "Espace désigné pour la parade",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves hésitent à faire la parade",
+            "options": ["Commencer par un seul élève volontaire", "Faire la parade en petits groupes", "Permettre d'observer d'abord"]
+          },
+          {
+            "moment": "Si certains personnages sont trop bruyants",
+            "options": ["Chuchoter les voix de personnages", "Utiliser gestes sans voix", "Signal pour contrôler volume"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If character work feels too complex, start with familiar animals or family member voices",
@@ -465,7 +474,16 @@
         "activity": "Emotion check-in - students share how they're feeling using French emotion words and expressions.",
         "materials": [],
         "visualSupports": "Thermomètre des émotions pour auto-évaluation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève ne veut pas partager ses émotions",
+            "options": ["Utiliser marionnette pour exprimer", "Choisir émotion d'un livre", "Écouter seulement aujourd'hui"]
+          },
+          {
+            "moment": "Si les émotions deviennent trop intenses",
+            "options": ["Respiration calme ensemble", "Passer à émotion plus légère", "Pause réconfortante"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If emotion work feels too personal, use characters or stuffed animals to explore emotional expression",
@@ -523,7 +541,16 @@
         "activity": "Mini performances - few pairs share their scenes with class. Celebrate teamwork and creativity.",
         "materials": [],
         "visualSupports": "Espace de performance désigné",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si peu de paires veulent partager",
+            "options": ["Commencer par enseignant et élève", "Partage optionnel seulement", "Un élève raconte pour le groupe"]
+          },
+          {
+            "moment": "Si les performances sont très courtes",
+            "options": ["Célébrer chaque effort", "Poser une question douce", "Applaudir avec enthousiasme"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If partner work is challenging, let students work individually or provide very structured role assignments",
@@ -581,7 +608,16 @@
         "activity": "Audience appreciation - students practice giving positive feedback using simple French phrases.",
         "materials": [],
         "visualSupports": "Phrases de félicitations : 'Bravo!', 'J'aime...', 'C'est beau!'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les commentaires sont trop critiques",
+            "options": ["Modeler phrases positives", "Règle: toujours dire quelque chose de beau", "Guide vers compliments spécifiques"]
+          },
+          {
+            "moment": "Si certains élèves dominent les commentaires",
+            "options": ["Tour de rôle structuré", "Chacun dit une chose", "Temps de réflexion avant partage"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If presentation anxiety is high, let students practice explanation with just teacher before group presentation",
@@ -639,7 +675,16 @@
         "activity": "Celebrate good questions asked today. Discuss how questions help us learn about each other.",
         "materials": [],
         "visualSupports": "Collection des meilleures questions de la journée",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves posent questions trop personnelles",
+            "options": ["Rappeler questions respectueuses", "Rediriger vers sujets légers", "Modeler questions appropriées"]
+          },
+          {
+            "moment": "Si quelqu'un ne veut pas répondre",
+            "options": ["Droit de passer respecté", "Question plus simple", "Réponse en privé plus tard"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If questioning feels awkward, use familiar topics and model enthusiastic curiosity about simple things",
@@ -697,7 +742,16 @@
         "activity": "Reflect on what makes instructions easy to follow. Celebrate successful teaching moments.",
         "materials": [],
         "visualSupports": "Critères d'instructions claires affichés",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les instructions sont confuses",
+            "options": ["Démonstration avec gestes", "Répéter plus lentement", "Élève aide à expliquer"]
+          },
+          {
+            "moment": "Si certains ne suivent pas les instructions",
+            "options": ["Vérifier compréhension individuellement", "Support visuel supplémentaire", "Partenaire guide"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If instruction-giving is overwhelming, start with very familiar activities like hand-washing or line-up procedures",
@@ -755,7 +809,16 @@
         "activity": "Guessing game - students give descriptions while others guess what they're describing.",
         "materials": [],
         "visualSupports": "Règles du jeu de devinettes affichées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les descriptions manquent de détails",
+            "options": ["Poser questions guides: couleur? taille?", "Utiliser les sens: toucher, odeur", "Exemple avec objet familier"]
+          },
+          {
+            "moment": "Si le jeu devient trop facile",
+            "options": ["Objets moins évidents", "Descriptions sans regarder", "Catégories spécifiques"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If descriptive language feels difficult, start with familiar objects and use sensory exploration",
@@ -813,7 +876,16 @@
         "activity": "Audience appreciation and celebration of everyone's communication growth. Take photos of proud performers.",
         "materials": ["Caméra ou téléphone pour photos"],
         "visualSupports": "Certificats de participation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves sont trop nerveux pour performer",
+            "options": ["Performance en duo", "Public plus petit d'abord", "Présentation assise au lieu debout"]
+          },
+          {
+            "moment": "Si l'attention du public se disperse",
+            "options": ["Performances plus courtes", "Activité interactive pour audience", "Pause mouvement rapide"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If performance anxiety is high, make it optional or offer alternative ways to showcase learning",
@@ -871,7 +943,16 @@
         "activity": "Portfolio sharing - students share one thing they're most proud of in their communication growth.",
         "materials": [],
         "visualSupports": "Cercle de fierté avec coussins spéciaux",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si la réflexion semble difficile",
+            "options": ["Photos du début de l'année", "Exemples concrets de progrès", "Aide de camarades"]
+          },
+          {
+            "moment": "Si certains ne voient pas leur croissance",
+            "options": ["Rappeler moments spécifiques", "Portfolio avec preuves", "Compliments des pairs"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If reflection feels abstract, use concrete examples like 'remember when you were shy to speak, now you love presenting!'",
@@ -903,7 +984,16 @@
         "activity": "Celebrate communication portfolio completion. Today become master storytellers creating elaborate tales!",
         "materials": ["Images d'inspiration pour histoires"],
         "visualSupports": "Structure d'histoire : début, milieu, fin",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves manquent d'inspiration",
+            "options": ["Images provocatrices", "Début d'histoire fourni", "Histoires familières réinventées"]
+          },
+          {
+            "moment": "Si les histoires deviennent trop longues",
+            "options": ["Limite de temps douce", "Signal à mi-parcours", "Focus sur une partie préférée"]
+          }
+        ],
         "movementBreaks": ["Échauffement créatif"]
       },
       "main": {
@@ -924,7 +1014,16 @@
         "activity": "Storyteller appreciation circle - audience gives specific compliments about storytelling techniques.",
         "materials": [],
         "visualSupports": "Modèles de compliments spécifiques",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les histoires manquent de structure",
+            "options": ["Guide: qui, quoi, où", "Images séquence pour support", "Histoire à tour de rôle"]
+          },
+          {
+            "moment": "Si l'audience perd intérêt",
+            "options": ["Questions d'engagement", "Gestes pour maintenir attention", "Conteur change de place"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If elaborate storytelling feels overwhelming, let students adapt familiar stories with their own creative twists",
@@ -996,7 +1095,16 @@
         "activity": "Review creative storytelling. Today be news reporters sharing real information about our school!",
         "materials": ["Microphones-jouets", "Cartes d'événements scolaires"],
         "visualSupports": "Format de nouvelles : Qui, Quoi, Où, Quand",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les sujets de nouvelles manquent",
+            "options": ["Tour de l'école pour inspiration", "Événements de la semaine", "Nouvelles de la classe"]
+          },
+          {
+            "moment": "Si l'information est insuffisante",
+            "options": ["Questions de base: qui, quoi, quand", "Interview rapide", "Observation directe"]
+          }
+        ],
         "movementBreaks": ["Pratique posture reporter"]
       },
       "main": {
@@ -1017,7 +1125,16 @@
         "activity": "Evening news show - students present their news reports to 'television audience' (class).",
         "materials": [],
         "visualSupports": "Décor 'télévision' simple",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les présentations sont trop courtes",
+            "options": ["Une question de suivi", "Détail supplémentaire demandé", "Support visuel ajouté"]
+          },
+          {
+            "moment": "Si le format télé intimide",
+            "options": ["Conversation naturelle d'abord", "Micro invisible", "Partenaire co-présentateur"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If news reporting feels too formal, start with sharing simple announcements or describing class activities",
@@ -1089,7 +1206,16 @@
         "activity": "Review news reporting. Today learn that people can have different ideas and still be friends!",
         "materials": ["Images de sujets d'opinion simples"],
         "visualSupports": "Phrases respectueuses : 'Je pense que...', 'Tu as raison aussi'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les opinions deviennent conflictuelles",
+            "options": ["Rappel des règles de respect", "Pause pour respirer", "Retour aux exemples neutres"]
+          },
+          {
+            "moment": "Si certains évitent de donner opinions",
+            "options": ["Commencer par préférences simples", "Vote anonyme d'abord", "Expression par dessin"]
+          }
+        ],
         "movementBreaks": ["Gestes d'accord et désaccord respectueux"]
       },
       "main": {
@@ -1110,7 +1236,16 @@
         "activity": "Reflection on respectful disagreement - students share what they learned about different opinions.",
         "materials": [],
         "visualSupports": "Leçons sur diversité d'opinions affichées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves se sentent mal à l'aise",
+            "options": ["Célébrer toutes différences", "Rappeler que différent = intéressant", "Partage volontaire seulement"]
+          },
+          {
+            "moment": "Si peu d'élèves participent",
+            "options": ["Commencer par l'enseignant", "Partage en petits groupes", "Questions guidées spécifiques"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If debate concept is too challenging, focus on sharing preferences and asking 'why do you think that?'",
@@ -1182,7 +1317,16 @@
         "activity": "Review respectful opinion sharing. Today become teachers sharing expertise with others!",
         "materials": ["Badge 'Enseignant Expert'"],
         "visualSupports": "Qualités d'un bon enseignant affichées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si l'expertise semble limitée",
+            "options": ["Valoriser savoirs simples", "Enseigner par démonstration", "Passions personnelles acceptées"]
+          },
+          {
+            "moment": "Si les explications sont confuses",
+            "options": ["Questions clarifiantes douces", "Reformulation par enseignant", "Support visuel improvisé"]
+          }
+        ],
         "movementBreaks": ["Posture enseignant confiant"]
       },
       "main": {
@@ -1203,7 +1347,16 @@
         "activity": "Teacher appreciation - students reflect on what makes good teaching and how it feels to help others learn.",
         "materials": [],
         "visualSupports": "Célébration des enseignants du jour",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves hésitent à partager culture",
+            "options": ["Commencer par nourriture favorite", "Photos de famille", "Histoires simples"]
+          },
+          {
+            "moment": "Si certaines cultures dominent discussion",
+            "options": ["Temps égal pour tous", "Focus sur points communs", "Célébration de chaque unicité"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If teaching concept is too abstract, let students demonstrate rather than formally teach",
@@ -1275,7 +1428,16 @@
         "activity": "Review being teachers and experts. Today be cultural ambassadors sharing special traditions from our families!",
         "materials": ["Objets culturels apportés par élèves"],
         "visualSupports": "Carte du monde pour localiser cultures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves hésitent à partager culture",
+            "options": ["Commencer par nourriture favorite", "Photos de famille", "Histoires simples"]
+          },
+          {
+            "moment": "Si certaines cultures dominent discussion",
+            "options": ["Temps égal pour tous", "Focus sur points communs", "Célébration de chaque unicité"]
+          }
+        ],
         "movementBreaks": ["Salutations de différentes cultures"]
       },
       "main": {
@@ -1296,7 +1458,16 @@
         "activity": "Cultural appreciation - celebrate the diversity in classroom and what we learned about each other's backgrounds.",
         "materials": [],
         "visualSupports": "Mosaïque de diversité créée ensemble",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les familles ne sont pas représentées",
+            "options": ["Diversité de structures familiales", "Focus sur amour et soin", "Inclusion de tous types de familles"]
+          },
+          {
+            "moment": "Si l'appréciation manque de spécificité",
+            "options": ["Questions guides pour détails", "Ce qui vous a surpris?", "Modeler commentaires précis"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If cultural sharing feels uncomfortable, focus on simple family traditions like holiday celebrations or favorite foods",
@@ -1368,7 +1539,16 @@
         "activity": "Look back at incredible communication journey from shy beginners to confident communicators!",
         "materials": ["Portfolio de classe avec photos/travaux du début"],
         "visualSupports": "Ligne de temps des apprentissages avec photos",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont du mal à voir leurs progrès",
+            "options": ["Vidéos du début d'année", "Portfolio avec preuves", "Témoignages des pairs"]
+          },
+          {
+            "moment": "Si l'émotion devient trop forte",
+            "options": ["Pause pour respirer ensemble", "Focus sur fierté calme", "Célébration douce"]
+          }
+        ],
         "movementBreaks": ["Danse célébration du progrès"]
       },
       "main": {
@@ -1389,7 +1569,16 @@
         "activity": "Final circle: each student completes 'Je suis un communicateur confiant parce que...' Group celebration photo with certificates.",
         "materials": ["Caméra pour photo de groupe"],
         "visualSupports": "Phrase de complétion affichée",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les phrases sont difficiles à compléter",
+            "options": ["Exemples multiples donnés", "Aide d'un ami", "Phrases plus simples"]
+          },
+          {
+            "moment": "Si l'émotion empêche participation",
+            "options": ["Expression non-verbale acceptée", "Geste ou sourire suffit", "Moment privé avec enseignant"]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": "If students don't recognize their progress, use before/after examples from beginning of unit",

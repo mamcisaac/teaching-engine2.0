@@ -497,7 +497,11 @@
         "activity": "Jeu du symbole magique - placer = entre groupes égaux",
         "materials": [],
         "visualSupports": "Collection de trouvailles avec = placé correctement",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève place = entre groupes inégaux → compter ensemble les objets de chaque côté pour vérifier",
+          "Si les élèves comprennent bien le symbole = → introduire le défi de créer leurs propres égalités",
+          "Si confusion sur l'orientation du symbole = → montrer que = reste pareil même tourné"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -598,7 +602,11 @@
         "activity": "Lecture d'équations - 'raconter l'histoire' de chaque équation créée",
         "materials": [],
         "visualSupports": "Histoires créées par les élèves affichées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a de la difficulté à raconter son histoire → l'encourager avec questions guidées simples",
+          "Si les histoires sont très créatives → célébrer et afficher les plus originales",
+          "Si élève dit que son équation n'a pas d'histoire → modéliser comment 3 = 3 peut raconter l'égalité parfaite"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -698,7 +706,11 @@
         "activity": "Prédictions réussies - célébrer les bonnes prédictions d'équilibre",
         "materials": [],
         "visualSupports": "Tableau de réussite des prédictions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève fait une prédiction incorrecte → encourager en montrant que c'est normal d'apprendre",
+          "Si plusieurs élèves réussissent leurs prédictions → organiser une mini-célébration avec applaudissements",
+          "Si élève hésite à faire une prédiction → l'encourager en disant qu'il n'y a pas de mauvaise réponse"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -798,7 +810,11 @@
         "activity": "Détective mathématique - expliquer comment on a découvert si c'était vrai ou faux",
         "materials": [],
         "visualSupports": "Stratégies de détective mathématique",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne peut pas expliquer sa stratégie → l'aider avec des questions comme 'Comment as-tu su?'",
+          "Si élève utilise une stratégie créative → la partager avec la classe comme exemple",
+          "Si confusion entre vrai et faux → recompter ensemble pour clarifier"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -899,7 +915,11 @@
         "activity": "Exposition d'équations - présenter sa création favorite",
         "materials": [],
         "visualSupports": "Exposition fière des créations originales",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est timide pour présenter → permettre de présenter avec un ami ou en petit groupe",
+          "Si élève très fier de sa création → encourager à expliquer pourquoi il l'aime tant",
+          "Si création contient une erreur → valoriser l'effort et corriger gentiment ensemble"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1001,7 +1021,11 @@
         "activity": "Partage de découvertes - quelle addition était la plus intéressante?",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne trouve aucune addition intéressante → l'aider en rappelant les activités du jour",
+          "Si élève partage une découverte unique → demander à la classe si d'autres ont remarqué la même chose",
+          "Si confusion sur ce qui rend une addition 'intéressante' → donner des exemples concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1101,7 +1125,11 @@
         "activity": "Prédiction de pattern - deviner la prochaine équation dans la séquence",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne voit pas le pattern → montrer les deux premières équations en les comparant",
+          "Si élève identifie le pattern rapidement → le défier avec une séquence plus complexe",
+          "Si prédictions sont incorrectes → revoir ensemble ce qui change d'une équation à l'autre"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1201,7 +1229,11 @@
         "activity": "Célébration des réparations - montrer les équations réparées",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'arrive pas à réparer son équation → l'aider en identifiant ensemble le problème",
+          "Si élève répare rapidement → lui demander d'expliquer sa stratégie de réparation",
+          "Si réparation crée une nouvelle erreur → célébrer l'effort et recommencer calmement"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1303,7 +1335,11 @@
         "activity": "Cercle de réflexion - quel jeu a été le plus amusant et pourquoi?",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'aucun jeu n'était amusant → explorer ce qui rendrait les mathématiques plus amusantes pour lui",
+          "Si élève explique clairement pourquoi il a aimé un jeu → demander aux autres s'ils sont d'accord",
+          "Si réponses très courtes → encourager avec questions comme 'Qu'est-ce qui t'a fait sourire?'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1407,7 +1443,11 @@
         "activity": "Vernissage - présenter son œuvre et expliquer l'égalité qu'elle montre",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne peut pas expliquer l'égalité → l'aider en comptant ensemble les éléments de son œuvre",
+          "Si présentation très créative → encourager les autres à poser des questions sur l'œuvre",
+          "Si élève timide pour présenter → permettre de chuchoter à l'enseignant qui répète à la classe"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1475,7 +1515,11 @@
           "loupes de détective"
         ],
         "visualSupports": "Badges de détective et indices visuels",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève devine trop rapidement → ajouter des indices plus subtils pour maintenir le mystère",
+          "Si élève frustré de ne pas deviner → donner des indices progressifs",
+          "Si trop d'élèves devinent en même temps → organiser en petits groupes de détectives"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1502,7 +1546,11 @@
         "activity": "Partage de stratégies - comment avez-vous trouvé le nombre mystère?",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne peut pas expliquer sa stratégie → l'aider en retraçant ses étapes ensemble",
+          "Si stratégie très originale → la faire démontrer à la classe",
+          "Si élève dit avoir juste deviné → explorer s'il y avait vraiment des indices qu'il a utilisés"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1609,7 +1657,11 @@
           "album de classe"
         ],
         "visualSupports": "Images diverses de familles partageant équitablement",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a pas apporté de photo → utiliser les photos de l'album de classe ou créer un dessin rapide",
+          "Si élève partage histoire émouvante sur sa famille → valider ses sentiments et remercier le partage",
+          "Si concept de partage équitable pas clair → utiliser exemples concrets comme diviser des collations"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1636,7 +1688,11 @@
         "activity": "Promesses de partage - comment vais-je partager équitablement à la maison?",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne trouve pas d'idées de partage → suggérer des exemples simples comme partager ses jouets",
+          "Si promesses très ambitieuses → encourager tout en gardant réaliste pour un enfant de 6-7 ans",
+          "Si élève semble triste à propos de sa situation familiale → offrir réconfort et alternatives adaptées"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1744,7 +1800,11 @@
           "carnet d'explorateur"
         ],
         "visualSupports": "Collection d'images de symétrie naturelle (feuilles, papillons)",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne voit pas la symétrie → tracer une ligne imaginaire au milieu et comparer les côtés",
+          "Si élèves très intéressés par les détails → encourager à utiliser les loupes pour observer de plus près",
+          "Si connexion avec les mathématiques pas claire → expliquer que la nature aime l'égalité aussi"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1772,7 +1832,11 @@
         "activity": "Musée de nature - présenter sa découverte d'égalité naturelle favorite",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève hésite à présenter → permettre de montrer silencieusement ou avec l'aide d'un ami",
+          "Si présentation très détaillée → encourager les questions du public",
+          "Si connexion à l'égalité pas évidente → aider à identifier les éléments égaux des deux côtés"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1879,7 +1943,11 @@
           "autocollants de réussite"
         ],
         "visualSupports": "Affichage des progrès et accomplissements de la classe",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne se souvient pas de ses réussites → l'aider en feuilletant son portfolio ensemble",
+          "Si élève très fier de ses progrès → l'inviter à partager sa fierté avec la classe",
+          "Si manque de confiance apparent → souligner des progrès spécifiques et concrets observés"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1906,7 +1974,11 @@
         "activity": "Célébration des efforts - reconnaître persévérance et strategies utilisées",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a pas persévéré → célébrer ses tentatives et encourager pour la prochaine fois",
+          "Si stratégies très variées dans la classe → faire un tour de table pour partager les différentes approches",
+          "Si émotion forte de réussite → permettre célébration spontanée et authentique"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2013,7 +2085,11 @@
           "photos de activités"
         ],
         "visualSupports": "Chronologie visuelle de notre parcours d'apprentissage",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne reconnaît pas ses propres travaux → l'aider en rappelant le contexte de chaque activité",
+          "Si émotion en voyant les progrès → valider les sentiments et célébrer le chemin parcouru",
+          "Si difficulté à voir l'évolution → pointer des éléments spécifiques qui montrent la croissance"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2042,7 +2118,11 @@
         "activity": "Répétition de présentation - s'entraîner à présenter son apprentissage favori",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne sait pas quoi choisir comme apprentissage favori → l'aider en réfléchissant à ce qui l'a fait sourire",
+          "Si présentation très bien préparée → encourager à ajouter des détails personnels",
+          "Si nervosité avant la présentation → pratiquer des techniques de respiration et se rappeler que c'est juste pour s'amuser"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2150,7 +2230,11 @@
           "appareils photo"
         ],
         "visualSupports": "Bannières et décorations célébrant les mathématiques",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves très excités par la célébration → canaliser l'énergie avec gestes et mouvements",
+          "Si timidité pour chanter → permettre de participer en tapant des mains ou hochant la tête",
+          "Si chanson trop difficile → se concentrer sur les refrains simples et répétitifs"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2176,7 +2260,11 @@
         "activity": "Cercle de gratitude - remercier et partager nos moments mathématiques favoris",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne trouve pas de moment favori → l'aider en suggérant des moments observés où il souriait",
+          "Si partages très émotifs → permettre l'expression et valider l'importance de ces moments",
+          "Si difficile de terminer car trop de partages → promouvoir continuation informelle et créer un livre de souvenirs"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

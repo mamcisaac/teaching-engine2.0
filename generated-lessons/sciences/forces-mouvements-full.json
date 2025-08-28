@@ -740,7 +740,7 @@
         "activity": "Systematic machine testing (25 min): Students test their built machines systematically. First, try completing their chosen task without the machine - observe effort and success. Then, use their machine to complete same task - compare effort and results. Students rate their machines: works great/works okay/needs fixing. For machines that don't work well, students identify problems and try simple modifications. Create class testing results chart showing which types of machines worked best and what problems were discovered.",
         "materials": ["Machines des élèves", "Feuilles d'évaluation simples", "Matériaux pour ajustements", "Graphique de résultats collectifs"],
         "visualSupports": "Échelle d'évaluation visuelle (bien/okay/à réparer), processus de test étape par étape, graphique de succès",
-        "decisionPoints": [],
+        "decisionPoints": ["Si une machine ne fonctionne pas du tout → encourager l'élève et identifier ensemble une petite partie qui marche", "Si les élèves se découragent avec leurs résultats → rappeler que les vrais ingénieurs font plusieurs essais", "Si certains testent trop énergiquement → modéliser des tests doux et contrôlés"],
         "movementBreaks": ["Tests actifs avec manipulation des machines"]
       },
       "closing": {
@@ -748,7 +748,7 @@
         "activity": "Testing results sharing (10 min): Students share testing outcomes: 'Ma machine marche bien parce que...' or 'Ma machine a besoin d'amélioration parce que...' Discuss: real engineers test their machines many times and keep making improvements.",
         "materials": ["Résultats de tests", "Machines pour démonstration"],
         "visualSupports": "Phrases modèles pour partage, graphique des résultats collectifs, message sur processus ingénierie",
-        "decisionPoints": [],
+        "decisionPoints": ["Si certains hésitent à partager leurs échecs → célébrer les tentatives et montrer que c'est normal", "Si les présentations durent trop longtemps → utiliser minuteur de 1 minute par élève"],
         "movementBreaks": ["Présentations debout actives"]
       },
       "troubleshooting": {
@@ -831,7 +831,7 @@
         "activity": "Machine improvement workshop (25 min): Students work to improve their machines based on testing feedback. Possible improvements: make ramps less steep, add more wheels, strengthen lever fulcrums, adjust pulley positions, reinforce weak joints. Students may also get new ideas from seeing other students' successful machines. Test improved machines and compare results to original versions. Some students may choose to build completely new machines if original designs need major changes.",
         "materials": ["Machines existantes", "Matériaux supplémentaires pour améliorations", "Outils de fixation", "Espace de travail organisé"],
         "visualSupports": "Guide d'améliorations possibles, exemples de modifications, comparaisons avant/après",
-        "decisionPoints": [],
+        "decisionPoints": ["Si les améliorations proposées sont trop complexes → suggérer un seul changement simple à la fois", "Si un élève veut tout recommencer → l'encourager à garder ce qui fonctionnait déjà", "Si manque de matériaux pour améliorations → encourager partage et réutilisation créative"],
         "movementBreaks": ["Travail actif de construction et amélioration"]
       },
       "closing": {
@@ -839,7 +839,7 @@
         "activity": "Improvement celebration (10 min): Students present their improved machines and explain changes made: 'J'ai amélioré ma machine en...' Discuss how making improvements is normal part of engineering - even professional engineers redesign their inventions many times.",
         "materials": ["Machines améliorées", "Versions originales pour comparaison"],
         "visualSupports": "Phrase modèle pour présentation, célébration des améliorations, message sur processus itératif",
-        "decisionPoints": [],
+        "decisionPoints": ["Si certains élèves sont déçus de leurs améliorations → souligner les progrès même petits", "Si les présentations manquent de détails → poser questions guidées sur les changements"],
         "movementBreaks": ["Présentations actives avec démonstrations"]
       },
       "troubleshooting": {
@@ -922,7 +922,7 @@
         "activity": "Games and forces exploration (25 min): Students examine playground activities for forces and machines. Swings: pushing and pulling forces, pendulum motion. Slides: ramps (inclined planes) that use gravity. Seesaws: levers in action with fulcrum in middle. Ball games: pushing forces to make balls move, rolling forces. Jump rope: pulling forces and circular motion. Students create 'Forces in Games' chart showing push/pull examples and simple machines found in recreational activities.",
         "materials": ["Images d'équipement de cour", "Graphique 'Forces dans les jeux'", "Crayons", "Autocollants ou timbres"],
         "visualSupports": "Images claires de chaque jeu avec forces identifiées, graphique à compléter, exemples visuels",
-        "decisionPoints": [],
+        "decisionPoints": ["Si certains ne voient pas les forces dans les jeux familiers → démontrer avec leurs corps d'abord", "Si l'énergie devient trop élevée en parlant de jeux → revenir au vocabulaire scientifique calme", "Si les élèves confondent machines simples et jeux → utiliser exemples très clairs comme balançoire = levier"],
         "movementBreaks": ["Simulation des jeux dans la classe (mouvements contrôlés)"]
       },
       "closing": {
@@ -930,7 +930,7 @@
         "activity": "Games science sharing (10 min): Students share discoveries: 'Dans ce jeu, j'utilise une force de...' or 'Cette activité utilise une machine simple qui est...' Appreciate how science makes play more fun and how playing helps us understand science naturally.",
         "materials": ["Graphique complété", "Découvertes des élèves"],
         "visualSupports": "Phrases modèles pour partage, célébration des découvertes, lien science-jeu",
-        "decisionPoints": [],
+        "decisionPoints": ["Si certains veulent parler de jeux non-liés aux forces → rediriger gentiment vers les jeux avec push/pull", "Si les partages deviennent des histoires personnelles → recentrer sur les découvertes scientifiques"],
         "movementBreaks": ["Partage debout avec démonstrations gestuelles"]
       },
       "troubleshooting": {
@@ -1013,7 +1013,7 @@
         "activity": "Invention design process (25 min): Students identify problems they've observed: reaching high shelves, moving heavy backpacks, organizing scattered toys, getting objects across room quickly. Choose one problem to solve using simple machines. Design invention on paper first: draw their machine, label parts, explain how it works. Build simple prototype using available materials. Test invention and make adjustments. Prepare to present invention as 'inventors' explaining their problem-solution creation.",
         "materials": ["Papier pour dessins d'invention", "Matériaux de construction variés", "Crayons", "Exemples de problèmes illustrés"],
         "visualSupports": "Processus de design étape par étape, exemples d'inventions simples, feuille de conception",
-        "decisionPoints": [],
+        "decisionPoints": ["Si un élève ne trouve pas de problème à résoudre → suggérer problèmes observés en classe cette semaine", "Si les dessins d'invention sont trop complexes → encourager simplicité avec 1-2 parties seulement", "Si la construction ne ressemble pas au dessin → célébrer l'adaptation créative"],
         "movementBreaks": ["Construction active constitue l'activité physique"]
       },
       "closing": {
@@ -1021,7 +1021,7 @@
         "activity": "Inventor presentations (10 min): Students present inventions: 'Le problème était... Mon invention résout le problème parce que...' Celebrate creative problem-solving and connect to real inventors who help make life easier through simple machines.",
         "materials": ["Inventions des élèves", "Dessins de conception"],
         "visualSupports": "Phrase modèle pour présentation, célébration de la créativité, lien avec vrais inventeurs",
-        "decisionPoints": [],
+        "decisionPoints": ["Si un élève est gêné que son invention ne marche pas → rappeler que c'est exactement comme les vrais inventeurs", "Si les présentations manquent de vocabulaire scientifique → poser questions guidées utilisant 'force', 'machine simple'"],
         "movementBreaks": ["Présentations debout avec démonstrations"]
       },
       "troubleshooting": {
@@ -1104,7 +1104,7 @@
         "activity": "Simple machines exhibition (25 min): Students set up exhibition stations displaying their built machines, invention designs, and experiment results from throughout the unit. Each student or pair becomes 'expert guide' for their station, explaining to visitors (classmates, other classes, or family members): what forces are, how their machines work, what problems their inventions solve. Include hands-on demonstrations where visitors can try simple machines and feel the difference they make. Create exhibition signs with student drawings and explanations.",
         "materials": ["Toutes les machines construites", "Panneaux d'exposition", "Dessins et expériences", "Espace organisé en stations"],
         "visualSupports": "Stations d'exposition clairement organisées, panneaux explicatifs, démonstrations interactives",
-        "decisionPoints": [],
+        "decisionPoints": ["Si l'organisation des stations devient chaotique → assigner rôles spécifiques (guide, démonstrateur, accueillant)", "Si certains élèves parlent trop vite aux visiteurs → rappeler de parler lentement et clairement", "Si les visiteurs ne comprennent pas les explications → encourager plus de démonstrations physiques"],
         "movementBreaks": ["Mouvement naturel entre stations et démonstrations actives"]
       },
       "closing": {
@@ -1112,7 +1112,7 @@
         "activity": "Exhibition reflection celebration (10 min): Students reflect on their exhibition experience: what they enjoyed about teaching others, what they learned by explaining their work, how it felt to be science experts. Celebrate becoming forces and simple machines experts who can teach others.",
         "materials": ["Réflexions des visiteurs", "Certificats d'expert (optionnel)"],
         "visualSupports": "Célébration des accomplissements, réflexion sur apprentissages, reconnaissance expertise",
-        "decisionPoints": [],
+        "decisionPoints": ["Si certains élèves se sentent timides devant les visiteurs → leur permettre d'être assistants plutôt que présentateurs principaux", "Si l'exhibition devient trop bruyante → utiliser signal pour attention collective"],
         "movementBreaks": ["Célébration debout avec applaudissements"]
       },
       "troubleshooting": {
@@ -1195,7 +1195,7 @@
         "activity": "Engineering achievements celebration (25 min): Families rotate through student-led stations: Forces Discovery Station (students demonstrate push/pull with various objects), Simple Machines Showcase (students explain and demonstrate wheels, levers, ramps, pulleys), Invention Fair (students present their problem-solving machines), Engineering Challenge Station (families work with students to build simple machines together). Students guide families through hands-on experiences and explain scientific concepts using vocabulary learned throughout unit.",
         "materials": ["Toutes les créations des élèves", "Stations clairement organisées", "Matériaux pour défis familiaux", "Panneaux explicatifs"],
         "visualSupports": "Stations festives bien organisées, parcours de rotation, démonstrations interactives prêtés",
-        "decisionPoints": [],
+        "decisionPoints": ["Si les familles arrivent à des heures différentes → avoir stations flexibles qui fonctionnent avec groupes variables", "Si certaines stations deviennent trop populaires → guider rotation avec minuteur doux", "Si les explications scientifiques sont trop avancées pour les familles → encourager démonstrations simples"],
         "movementBreaks": ["Rotation active entre stations avec familles"]
       },
       "closing": {
@@ -1203,7 +1203,7 @@
         "activity": "Engineer achievement ceremony (10 min): Celebrate student growth as engineers and scientists. Present certificates recognizing specific achievements: creative problem-solver, excellent experimenter, clear explainer, persistent builder. Students share favorite discovery from forces and simple machines unit with families.",
         "materials": ["Certificats personnalisés", "Découvertes favorites des élèves"],
         "visualSupports": "Cérémonie de remise festive, reconnaissance des accomplissements uniques, partage des découvertes",
-        "decisionPoints": [],
+        "decisionPoints": ["Si certains élèves deviennent émotifs pendant les reconnaissances → offrir soutien discret et rappeler leurs réussites", "Si la cérémonie traîne en longueur → garder reconnaissance brève mais significative"],
         "movementBreaks": ["Cérémonie debout avec applaudissements"]
       },
       "troubleshooting": {

@@ -748,7 +748,18 @@
           "body percussion visual guides (class set of 25-30)"
         ],
         "visualSupports": "rhythm pattern posters, drum circle formation diagram",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Le niveau de bruit devient-il trop élevé durant les percussions corporelles?",
+            "ifYes": "Utiliser le signal de silence et pratiquer les mouvements sans son d'abord",
+            "ifNo": "Continuer avec l'exploration rythmique comme prévue"
+          },
+          {
+            "question": "Les élèves ont-ils de la difficulté à suivre les motifs rythmiques?",
+            "ifYes": "Simplifier à 2 battements par motif et utiliser plus de supports visuels",
+            "ifNo": "Progresser vers des motifs plus complexes selon le niveau"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -782,7 +793,13 @@
         "activity": "Drum concert - students use their handmade drums to create a simple group rhythm performance",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Y a-t-il des problèmes techniques avec les tambours faits maison?",
+            "ifYes": "Avoir des tambours de rechange prêts et aider à réparer rapidement",
+            "ifNo": "Laisser les élèves explorer librement leurs créations"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -849,7 +866,18 @@
           "throat vibration exploration (class set of 25-30)"
         ],
         "visualSupports": "voice production diagram, different voice sounds example chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils mal à l'aise de toucher leur gorge?",
+            "ifYes": "Démontrer d'abord et respecter ceux qui préfèrent seulement observer",
+            "ifNo": "Encourager l'exploration tactile des vibrations vocales"
+          },
+          {
+            "question": "Les élèves crient-ils trop fort en explorant leur voix?",
+            "ifYes": "Rappeler que les scientifiques utilisent des voix douces et contrôlées",
+            "ifNo": "Continuer avec les différents niveaux de volume"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -882,7 +910,13 @@
         "activity": "Kazoo orchestra - students use their kazoos to hum a simple familiar song together",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Certains élèves n'arrivent-ils pas à faire fonctionner leur kazoo?",
+            "ifYes": "Démontrer la technique de fredonnement et vérifier l'assemblage",
+            "ifNo": "Encourager l'expérimentation avec différentes chansons"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -949,7 +983,18 @@
           "prediction recording sheets (class set of 25-30)"
         ],
         "visualSupports": "water level and pitch prediction chart, before/after comparison setup",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Y a-t-il des déversements d'eau durant l'expérience?",
+            "ifYes": "Avoir des serviettes prêtes et montrer comment tenir les bouteilles avec précaution",
+            "ifNo": "Continuer avec l'exploration des différents niveaux d'eau"
+          },
+          {
+            "question": "Les élèves ont-ils de la difficulté à entendre les différences de hauteur?",
+            "ifYes": "Utiliser des différences plus marquées entre les niveaux d'eau",
+            "ifNo": "Encourager les comparaisons directes entre bouteilles"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -983,7 +1028,13 @@
         "activity": "Bottle band performance - small groups use their bottle sets to play simple tunes or create musical conversations",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Le groupe musical devient-il trop bruyant pour l'espace?",
+            "ifYes": "Diviser en plus petits groupes et faire des performances alternées",
+            "ifNo": "Encourager la créativité musicale collaborative"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1050,7 +1101,18 @@
           "mystery box setup (class set of 25-30)"
         ],
         "visualSupports": "shaker contents guessing chart, different materials picture cards",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves ouvrent-ils les shakers avant de deviner?",
+            "ifYes": "Rappeler que les scientifiques font leurs hypothèses avant de vérifier",
+            "ifNo": "Encourager les prédictions et discussions sur les indices sonores"
+          },
+          {
+            "question": "Certains shakers ne font-ils pas de son distinct?",
+            "ifYes": "Avoir des shakers de rechange avec des contenus plus contrastés",
+            "ifNo": "Continuer avec l'exploration comparative des sons"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1085,7 +1147,13 @@
         "activity": "Shaker rhythm celebration - students create group rhythms using their different-sounding shakers",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Le rythme de groupe devient-il chaotique?",
+            "ifYes": "Utiliser un chef d'orchestre pour guider le tempo",
+            "ifNo": "Laisser l'expression rythmique libre se développer"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1152,7 +1220,18 @@
           "individual exploration trays (class set of 25-30)"
         ],
         "visualSupports": "string vibration slow-motion demonstration, pitch and tension connection chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élastiques se brisent-ils durant l'expérimentation?",
+            "ifYes": "Avoir des élastiques de rechange et montrer comment étirer doucement",
+            "ifNo": "Encourager l'exploration des différentes tensions"
+          },
+          {
+            "question": "Les élèves ont-ils de la difficulté à voir les vibrations?",
+            "ifYes": "Utiliser un élastique plus épais et ralentir le mouvement de pincement",
+            "ifNo": "Encourager l'observation attentive et la description des mouvements"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1185,7 +1264,13 @@
         "activity": "Guitar showcase - students take turns playing their box guitars and sharing their favorite sound discovery",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les guitares en boîte ne produisent-elles pas de son satisfaisant?",
+            "ifYes": "Aider à ajuster la tension des élastiques et vérifier l'assemblage",
+            "ifNo": "Célébrer les découvertes musicales individuelles"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1253,7 +1338,18 @@
           "length measurement guides (class set of 25-30)"
         ],
         "visualSupports": "length and pitch relationship demonstration, wind instrument pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves ont-ils de la difficulté à souffler dans les pailles?",
+            "ifYes": "Démontrer la technique de souffle doux et vérifier que les pailles ne sont pas bouchées",
+            "ifNo": "Encourager l'expérimentation avec différentes longueurs"
+          },
+          {
+            "question": "Les différences de hauteur de son sont-elles difficiles à entendre?",
+            "ifYes": "Utiliser des différences de longueur plus marquées entre les pailles",
+            "ifNo": "Encourager les comparaisons directes et la discussion des observations"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1287,7 +1383,13 @@
         "activity": "Pan flute orchestra - students combine their instruments to create group musical experiences",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "L'orchestre de flûtes de pan devient-il trop cacophonique?",
+            "ifYes": "Organiser des performances en plus petits groupes avec écoute active",
+            "ifNo": "Encourager l'harmonie et l'écoute mutuelle"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1467,7 +1569,18 @@
           "instrument display areas (class set of 25-30)"
         ],
         "visualSupports": "concert program with student names and instruments, science explanation prompt cards",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils nerveux de performer devant la classe?",
+            "ifYes": "Offrir l'option de performer en duo ou permettre seulement la démonstration",
+            "ifNo": "Encourager les performances individuelles avec célébration"
+          },
+          {
+            "question": "Le concert devient-il trop long pour maintenir l'attention?",
+            "ifYes": "Diviser en plusieurs mini-concerts ou raccourcir les performances",
+            "ifNo": "Continuer avec le programme complet en célébrant chaque contribution"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1499,7 +1612,13 @@
         "activity": "Concert celebration and reflection - students receive certificates and share what they're most proud of learning about sound and music",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils déçus que leur concert soit terminé?",
+            "ifYes": "Planifier une performance bis ou promettre d'autres concerts futurs",
+            "ifNo": "Célébrer les accomplissements et encourager la pratique continue"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1567,7 +1686,18 @@
           "portable speaker (class set of 25-30)"
         ],
         "visualSupports": "nature sound identification cards, outdoor safety reminder chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Le temps ne permet-il pas la sortie à l'extérieur?",
+            "ifYes": "Utiliser des enregistrements de sons de nature et ouvrir les fenêtres si possible",
+            "ifNo": "Profiter de l'exploration sonore naturelle à l'extérieur"
+          },
+          {
+            "question": "Les élèves se dispersent-ils trop durant l'exploration extérieure?",
+            "ifYes": "Utiliser un système de partenaires et définir des zones d'écoute spécifiques",
+            "ifNo": "Encourager l'exploration autonome avec vérifications périodiques"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1599,7 +1729,13 @@
         "activity": "Nature sound sharing - students report their discoveries and create a class list of all the natural sounds they identified",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Certains élèves n'ont-ils pas trouvé beaucoup de sons naturels?",
+            "ifYes": "Encourager le partage entre partenaires et valider même les découvertes simples",
+            "ifNo": "Célébrer la diversité des découvertes sonores"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1706,7 +1842,18 @@
           "safety guidelines for echo exploration (class set of 25-30)"
         ],
         "visualSupports": "echo demonstration pictures, sound wave bouncing diagram",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les échos ne sont-ils pas audibles dans l'espace disponible?",
+            "ifYes": "Essayer des espaces alternatifs ou utiliser des démonstrations audio d'échos",
+            "ifNo": "Encourager l'expérimentation avec différents cris et espaces"
+          },
+          {
+            "question": "Les élèves crient-ils trop fort en testant les échos?",
+            "ifYes": "Enseigner que les échos marchent aussi avec des voix normales",
+            "ifNo": "Encourager l'expérimentation avec différents volumes"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1738,7 +1885,13 @@
         "activity": "Echo experiment reporting - students share their discoveries about where echoes work best and why",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves n'ont-ils pas réussi à entendre des échos?",
+            "ifYes": "Valoriser toutes les tentatives et expliquer que les échos dépendent de l'espace",
+            "ifNo": "Encourager le partage des meilleures découvertes d'écho"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1846,7 +1999,18 @@
           "cultural instrument pictures (class set of 25-30)"
         ],
         "visualSupports": "world map with musical traditions, instrument pictures from different cultures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Certains élèves trouvent-ils la musique mondiale étrange ou dérangeante?",
+            "ifYes": "Expliquer que toutes les cultures ont leur belle musique et encourager l'ouverture",
+            "ifNo": "Célébrer la curiosité et l'appréciation de la diversité musicale"
+          },
+          {
+            "question": "Les élèves ont-ils de la difficulté à identifier les instruments inconnus?",
+            "ifYes": "Fournir plus d'indices visuels et se concentrer sur les sons plutôt que les noms",
+            "ifNo": "Encourager les comparaisons avec des instruments familiers"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1877,7 +2041,13 @@
         "activity": "World music appreciation circle - students share what they found most interesting about music from different cultures",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves veulent-ils continuer à écouter plus de musiques du monde?",
+            "ifYes": "Promettere d'autres sessions d'écoute et encourager l'exploration à la maison",
+            "ifNo": "Respecter les préférences et célébrer ce qui a été apprécié"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1985,7 +2155,18 @@
           "design planning sheets (class set of 25-30)"
         ],
         "visualSupports": "invention process poster, famous inventor examples, creative thinking prompts",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves manquent-ils d'idées pour leurs inventions sonores?",
+            "ifYes": "Fournir des exemples concrets et encourager la modification d'instruments existants",
+            "ifNo": "Soutenir la créativité individuelle et offrir de l'aide technique"
+          },
+          {
+            "question": "Les matériaux de recyclage sont-ils insuffisants ou inappropriés?",
+            "ifYes": "Avoir des matériaux supplémentaires prêts et montrer des alternatives créatives",
+            "ifNo": "Encourager l'expérimentation avec les matériaux disponibles"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2016,7 +2197,13 @@
         "activity": "Inventor showcase - students present their sound inventions and explain their design thinking",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Certaines inventions ne produisent-elles pas de son satisfaisant?",
+            "ifYes": "Aider à modifier la conception ou célébrer l'effort créatif même si le son est faible",
+            "ifNo": "Célébrer l'ingéniosité et encourager l'explication du processus d'invention"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2124,7 +2311,18 @@
           "recording studio setup (class set of 25-30)"
         ],
         "visualSupports": "recording studio pictures, recording process step-by-step guide",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "La technologie d'enregistrement ne fonctionne-t-elle pas correctement?",
+            "ifYes": "Avoir un plan de sauvegarde avec enregistrements simples ou démonstrations en direct",
+            "ifNo": "Encourager l'expérimentation avec différents sons et voix"
+          },
+          {
+            "question": "Les élèves sont-ils timides devant la technologie d'enregistrement?",
+            "ifYes": "Commencer par des enregistrements de groupe et rassurer sur les tentatives",
+            "ifNo": "Encourager l'exploration créative et l'expérimentation sonore"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2156,7 +2354,13 @@
         "activity": "Recording listening party - students share their favorite recorded creations with the class",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les enregistrements sont-ils de qualité insuffisante pour bien les entendre?",
+            "ifYes": "Se concentrer sur l'effort créatif plutôt que la qualité technique",
+            "ifNo": "Célébrer les créations et encourager l'écoute attentive mutuelle"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2264,7 +2468,18 @@
           "demonstration station supplies"
         ],
         "visualSupports": "festival map and station guide, student teacher preparation cards",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "L'organisation du festival devient-elle trop complexe pour les élèves?",
+            "ifYes": "Simplifier les stations et donner des rôles plus guidés",
+            "ifNo": "Encourager le leadership étudiant et l'organisation collaborative"
+          },
+          {
+            "question": "Les visiteurs du festival sont-ils trop nombreux pour l'espace?",
+            "ifYes": "Organiser des rotations de visiteurs ou des visites échelonnées",
+            "ifNo": "Profiter de l'énergie et de l'enthousiasme du grand groupe"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2296,7 +2511,13 @@
         "activity": "Festival reflection and celebration - students share their proudest learning moments and celebrate their growth as sound scientists",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils dépassés par tout ce qu'ils ont appris?",
+            "ifYes": "Guider une réflexion simple sur 2-3 apprentissages favoris",
+            "ifNo": "Encourager le partage libre et célébrer tous les apprentissages"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

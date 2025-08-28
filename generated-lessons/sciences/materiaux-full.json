@@ -1543,7 +1543,10 @@
           "Matériel pour badges 'Héros du Recyclage' (25)"
         ],
         "visualSupports": "Affiches des stations, symboles de recyclage, images avant/après transformation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves se mélangent entre les stations, utiliser des chapeaux colorés ou des badges pour identifier les équipes",
+          "Si le concept de recyclage est abstrait, montrer des objets avant/après transformation concrets"
+        ],
         "movementBreaks": [
           "Danse du recyclage : mouvements de tri, transformation, renaissance"
         ]
@@ -1557,7 +1560,10 @@
           "Cartes de phrases 'Je peux réutiliser...'"
         ],
         "visualSupports": "Images d'actions environnementales positives, célébration des petits gestes",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves proposent des actions trop complexes pour leur âge, les aider à simplifier en actions quotidiennes",
+          "Si certains sont timides pour partager leurs idées, commencer par des suggestions en groupe"
+        ],
         "movementBreaks": [
           "Célébration des héros environnementaux avec applaudissements spéciaux"
         ]
@@ -1686,7 +1692,10 @@
           "Crayons et marqueurs pour décoration"
         ],
         "visualSupports": "Exemples d'inventions simples, guide des propriétés utiles par matériau, étapes de création",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les inventions deviennent trop complexes, rappeler les propriétés de base des matériaux comme guide",
+          "Si les élèves sont frustrés par les échecs, célébrer les 'erreurs utiles' comme partie de l'invention"
+        ],
         "movementBreaks": [
           "Pause créative : étirer les doigts et regarder son invention sous tous les angles"
         ]
@@ -1700,7 +1709,10 @@
           "Applaudimètre pour célébrer les créations"
         ],
         "visualSupports": "Célébration de l'innovation, phrases pour expliquer les choix de matériaux",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ont du mal à expliquer leurs choix, utiliser des questions guidées : 'Pourquoi ce matériau était parfait?'",
+          "Si les présentations sont trop longues, utiliser une minuterie douce avec signal musical"
+        ],
         "movementBreaks": [
           "Défilé des inventeurs avec leurs créations"
         ]
@@ -1828,7 +1840,10 @@
           "Gants de jardinage légers si sortie extérieure"
         ],
         "visualSupports": "Guide d'identification des matériaux naturels, comparaisons propriétés nature/artificiel",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si la collecte extérieure n'est pas possible, utiliser une collection pré-réunie avec variété naturelle",
+          "Si certains élèves ont peur des insectes ou salissures, fournir des outils d'exploration comme des pinces"
+        ],
         "movementBreaks": [
           "Imiter les matériaux naturels : être dur comme pierre, flexible comme feuille"
         ]
@@ -1842,7 +1857,10 @@
           "Images d'innovations inspirées par la nature"
         ],
         "visualSupports": "Exemples bio-inspiration (velcro/bardane, nageoires/palmes), célébration de la nature",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les connections nature-objets sont complexes, commencer par des exemples évidents comme plumes-doudoune",
+          "Si l'attention disperse, faire des pauses d'émerveillement avec 'Waouh!' collectifs"
+        ],
         "movementBreaks": [
           "Gestes de remerciement à la nature (mains au cœur, regard vers le ciel)"
         ]
@@ -1970,7 +1988,10 @@
           "Vêtements saisonniers pour démonstration"
         ],
         "visualSupports": "Affiches des 4 stations, images des effets météo sur matériaux, thermomètre visuel",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les effets de la météo sont difficiles à visualiser, utiliser des objets réels affectés (bois gonflé, métal froid)",
+          "Si les stations deviennent trop animées, établir des signaux calmes pour les rotations"
+        ],
         "movementBreaks": [
           "Danse des saisons : mouvements lents (hiver) vs rapides (été)"
         ]
@@ -1984,7 +2005,10 @@
           "Tableau 'Choix Intelligents' pour noter les découvertes"
         ],
         "visualSupports": "Célébration de l'adaptabilité humaine, connections saison-matériau-confort",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les connections saison-matériau sont complexes, utiliser des vêtements saisonniers concrets comme exemples",
+          "Si certains élèves vivent dans des climats différents, célébrer cette diversité d'expérience"
+        ],
         "movementBreaks": [
           "Applaudissements pour l'intelligence saisonnière des humains"
         ]
@@ -2094,7 +2118,10 @@
           "Cartes de vocabulaire d'expert (étudier, découvrir, expliquer)"
         ],
         "visualSupports": "Images de scientifiques présentant leurs recherches, phrases d'expert confiant",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si certains élèves sont nerveux de devenir 'experts', rassurer en disant que chacun est expert de ses découvertes",
+          "Si la pratique au miroir gêne, permettre la pratique en paires ou avec une marionnette"
+        ],
         "movementBreaks": [
           "Posture d'expert confiant : épaules droites, voix claire, sourire"
         ]
@@ -2110,7 +2137,11 @@
           "Cartes de questions pour l'audience"
         ],
         "visualSupports": "Guide de présentation avec structure, exemples de compliments positifs, étapes de démonstration",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les présentations dépassent le temps, utiliser des signaux visuels doux pour la gestion du temps",
+          "Si certains élèves oublient leur contenu, avoir des cartes aide-mémoire avec images des découvertes",
+          "Si l'audience devient agitée, enseigner des gestes d'écoute respectueux comme les scientifiques"
+        ],
         "movementBreaks": [
           "Applaudissements spéciaux pour chaque présentation d'expert"
         ]
@@ -2124,7 +2155,10 @@
           "Livre de classe 'Nos Découvertes sur les Matériaux'"
         ],
         "visualSupports": "Célébration du parcours scientifique, avant/après connaissances, fierté d'apprentissage",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ont du mal à voir leur progrès, montrer des photos ou dessins de la première leçon",
+          "Si certains sont modestes sur leurs réussites, encourager la reconnaissance de leurs découvertes"
+        ],
         "movementBreaks": [
           "Ovation debout pour tous les experts en matériaux"
         ]
@@ -2235,7 +2269,10 @@
           "Parcours fléché pour les familles"
         ],
         "visualSupports": "Plan de la fête, instructions pour guides-étudiants, affiches de bienvenue festives",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si l'organisation dépasse certains élèves, créer des rôles simples et clairs pour chacun",
+          "Si l'excitation perturbe la préparation, canaliser l'énergie avec des tâches actives"
+        ],
         "movementBreaks": [
           "Préparation festive : arranger l'espace comme des organisateurs d'événements"
         ]
@@ -2251,7 +2288,10 @@
           "Collations simples pour l'ambiance festive"
         ],
         "visualSupports": "Stations clairement étiquetées, démonstrations visuelles, guide pour parents participants",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les familles arrivent en grands groupes, avoir un système de guidage par petits groupes",
+          "Si certains élèves deviennent trop excités avec les familles, rappeler leur rôle d'expert calm"
+        ],
         "movementBreaks": [
           "Circulation joyeuse entre stations avec familles"
         ]
@@ -2266,7 +2306,10 @@
           "Petits cadeaux souvenirs (optionnel)"
         ],
         "visualSupports": "Mur de fierté avec réalisations, avant/après apprentissage, célébration du chemin parcouru",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si certaines familles ne peuvent pas assister, créer des enregistrements ou photos à partager",
+          "Si l'émotion est forte, permettre les moments de fierté familiale avec des pauses naturelles"
+        ],
         "movementBreaks": [
           "Célébration finale avec applaudissements et félicitations familiales"
         ]

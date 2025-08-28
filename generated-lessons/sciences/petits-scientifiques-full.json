@@ -86,7 +86,23 @@
         "activity": "Circle discussion - students share what they're most excited to discover in our science area",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves partagent-ils leurs idées avec enthousiasme?",
+            "ifYes": "Encourager et valoriser toutes les curiosités exprimées",
+            "ifNo": "Poser des questions simples pour stimuler leur intérêt"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique appris?",
+            "ifYes": "Répéter leurs mots en les félicitant de parler comme des scientifiques",
+            "ifNo": "Modéliser le vocabulaire en répétant leurs idées avec les mots scientifiques"
+          },
+          {
+            "question": "Restent-ils engagés pendant le cercle de discussion?",
+            "ifYes": "Continuer le partage et inviter plus de détails",
+            "ifNo": "Ajouter du mouvement ou des gestes pour maintenir l'attention"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -214,7 +230,23 @@
         "activity": "Safety promise circle - each student practices one safety rule and makes a promise to stay safe",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils les règles de sécurité correctement?",
+            "ifYes": "Féliciter et demander d'enseigner à un ami",
+            "ifNo": "Modéliser à nouveau avec des gestes clairs et simples"
+          },
+          {
+            "question": "Font-ils des promesses sincères de sécurité?",
+            "ifYes": "Célébrer leur engagement avec applaudissements",
+            "ifNo": "Expliquer pourquoi la sécurité aide les scientifiques à découvrir plus"
+          },
+          {
+            "question": "Comprennent-ils l'importance des règles?",
+            "ifYes": "Inviter à expliquer pourquoi chaque règle est importante",
+            "ifNo": "Donner des exemples concrets de sécurité scientifique"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -342,7 +374,23 @@
         "activity": "Observation sharing - students tell partners about the most interesting detail they noticed",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves partagent-ils des détails spécifiques observés?",
+            "ifYes": "Encourager à dessiner ou montrer ce qu'ils ont vu",
+            "ifNo": "Poser des questions guidées : 'Quelle couleur? Quelle forme?'"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire d'observation?",
+            "ifYes": "Répéter leurs mots et ajouter des synonymes",
+            "ifNo": "Modéliser : 'Tu as observé que c'était...' avec le bon vocabulaire"
+          },
+          {
+            "question": "Écoutent-ils activement leur partenaire?",
+            "ifYes": "Inviter à poser des questions sur les observations partagées",
+            "ifNo": "Rappeler les règles d'écoute avec gestes"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -458,7 +506,23 @@
         "activity": "Sound symphony - students create patterns with their favorite sound-makers from the lesson",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves créent-ils des motifs sonores intentionnels?",
+            "ifYes": "Inviter à expliquer leur motif aux autres",
+            "ifNo": "Modéliser un motif simple : fort-doux-fort-doux"
+          },
+          {
+            "question": "Collaborent-ils bien pour la symphonie de groupe?",
+            "ifYes": "Célébrer leur travail d'équipe scientifique",
+            "ifNo": "Assigner des rôles spécifiques : chef d'orchestre, musiciens"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire des sons appris?",
+            "ifYes": "Encourager à décrire leurs sons avec les mots scientifiques",
+            "ifNo": "Rappeler les mots : fort, doux, aigu, grave avec exemples"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -572,7 +636,23 @@
         "activity": "Scent memory game - students match pleasant scents they explored and discuss safety rules",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves appliquent-ils la technique de sentir sécuritairement?",
+            "ifYes": "Féliciter leur technique scientifique parfaite",
+            "ifNo": "Rappeler : 'Les scientifiques sentent avec la technique du vent'"
+          },
+          {
+            "question": "Font-ils des connexions entre odeurs et objets?",
+            "ifYes": "Encourager à expliquer leurs associations",
+            "ifNo": "Guider avec des indices : 'Ça sent comme dans la cuisine...'"
+          },
+          {
+            "question": "Respectent-ils les règles de sécurité olfactive?",
+            "ifYes": "Valoriser leur comportement de scientifique responsable",
+            "ifNo": "Réviser ensemble : jamais sentir fort, toujours demander d'abord"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -686,7 +766,23 @@
         "activity": "Texture guessing game - students describe how materials feel without naming them",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves utilisent-ils la règle 'un doigt d'abord'?",
+            "ifYes": "Féliciter leur technique de scientifique prudent",
+            "ifNo": "Rappeler gentiment : 'Les scientifiques touchent avec un doigt d'abord'"
+          },
+          {
+            "question": "Décrivent-ils les textures avec des mots précis?",
+            "ifYes": "Ajouter des synonymes et enrichir leur vocabulaire",
+            "ifNo": "Offrir des choix : 'Est-ce rugueux ou lisse? Dur ou mou?'"
+          },
+          {
+            "question": "Participent-ils activement au jeu de devinettes?",
+            "ifYes": "Inviter à créer leurs propres devinettes tactiles",
+            "ifNo": "Simplifier avec des contrastes évidents : doux vs rugueux"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -800,7 +896,23 @@
         "activity": "Tool match game - students match tool names to pictures and share which tool they're most excited to use",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils les outils scientifiques?",
+            "ifYes": "Inviter à expliquer à quoi sert chaque outil",
+            "ifNo": "Faire des gestes pour montrer l'utilisation de chaque outil"
+          },
+          {
+            "question": "Montrent-ils de l'enthousiasme pour utiliser les outils?",
+            "ifYes": "Promettre qu'ils utiliseront tous les outils pendant l'unité",
+            "ifNo": "Partager des découvertes excitantes possibles avec chaque outil"
+          },
+          {
+            "question": "Comprennent-ils le lien entre l'outil et son usage?",
+            "ifYes": "Demander de prédire de nouvelles utilisations possibles",
+            "ifNo": "Démontrer concrètement avec l'outil en action"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -914,7 +1026,23 @@
         "activity": "Amazing discoveries sharing - students share the coolest detail they discovered through magnification",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves décrivent-ils des détails spécifiques vus avec la loupe?",
+            "ifYes": "Encourager à dessiner ce qu'ils ont vu pour le garder en mémoire",
+            "ifNo": "Guider en posant des questions : 'Était-ce plus grand? Plus coloré?'"
+          },
+          {
+            "question": "Montrent-ils de l'émerveillement pour leurs découvertes?",
+            "ifYes": "Célébrer leur curiosité de vrais scientifiques",
+            "ifNo": "Partager votre propre émerveillement en répétant leurs observations"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire de la magnification?",
+            "ifYes": "Répéter et enrichir : 'agrandir', 'détails', 'observer de près'",
+            "ifNo": "Modéliser : 'Tu as vu quelque chose d'agrandi avec ta loupe!'"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1028,7 +1156,23 @@
         "activity": "Measurement discoveries - students share surprising measurement discoveries and demonstrate measuring techniques",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves utilisent-ils les outils de mesure correctement?",
+            "ifYes": "Inviter à enseigner leur technique à un camarade",
+            "ifNo": "Modéliser à nouveau en expliquant chaque étape lentement"
+          },
+          {
+            "question": "Expriment-ils de la surprise face à leurs découvertes?",
+            "ifYes": "Encourager à expliquer pourquoi c'était surprenant",
+            "ifNo": "Poser des questions : 'Est-ce plus grand ou plus petit que tu pensais?'"
+          },
+          {
+            "question": "Comprennent-ils le concept de comparaison de tailles?",
+            "ifYes": "Défier avec des objets de tailles similaires à comparer",
+            "ifNo": "Utiliser des contrastes évidents : très grand vs très petit"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1142,7 +1286,23 @@
         "activity": "Drawing gallery walk - students display their observation drawings and explain what details they included",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves incluent-ils des détails observés dans leurs dessins?",
+            "ifYes": "Féliciter leur précision scientifique et pointer les détails excellents",
+            "ifNo": "Encourager : 'Montre-moi ce que tes yeux de scientifique ont vu'"
+          },
+          {
+            "question": "Expliquent-ils leurs dessins avec confiance?",
+            "ifYes": "Inviter les autres à poser des questions sur les dessins",
+            "ifNo": "Offrir des débuts de phrases : 'J'ai observé que...'"
+          },
+          {
+            "question": "Apprécient-ils les dessins d'observation des autres?",
+            "ifYes": "Encourager à partager ce qu'ils apprennent des dessins des autres",
+            "ifNo": "Modéliser en commentant positivement les dessins exposés"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1246,7 +1406,23 @@
         "activity": "Sorting explanations - students explain their sorting choices to partners and try to guess partners' sorting rules",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves expliquent-ils clairement leurs critères de tri?",
+            "ifYes": "Encourager à essayer un nouveau critère de tri",
+            "ifNo": "Guider avec des questions : 'Qu'est-ce qui est pareil dans ce groupe?'"
+          },
+          {
+            "question": "Arrivent-ils à deviner les règles de tri des autres?",
+            "ifYes": "Célébrer leur pensée scientifique et logique",
+            "ifNo": "Donner des indices : 'Regarde les couleurs... les formes...'"
+          },
+          {
+            "question": "Respectent-ils les idées de tri différentes des leurs?",
+            "ifYes": "Souligner que les scientifiques voient les choses différemment",
+            "ifNo": "Rappeler que chaque scientifique a de bonnes idées"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1350,7 +1526,23 @@
         "activity": "Prediction celebration - students share their favorite predictions and discoveries from testing",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils la différence entre prédiction et résultat?",
+            "ifYes": "Inviter à expliquer pourquoi certaines prédictions étaient correctes",
+            "ifNo": "Clarifier : 'Tu as pensé que... et après on a découvert que...'"
+          },
+          {
+            "question": "Célèbrent-ils autant les prédictions correctes qu'incorrectes?",
+            "ifYes": "Souligner que les erreurs nous apprennent beaucoup en sciences",
+            "ifNo": "Modéliser : 'Même si ce n'était pas comme tu pensais, tu as appris quelque chose!'"
+          },
+          {
+            "question": "Montrent-ils de la curiosité pour faire plus de prédictions?",
+            "ifYes": "Promettre plus d'activités de prédiction dans les leçons suivantes",
+            "ifNo": "Donner un exemple simple et excitant de prédiction à tester"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1462,7 +1654,23 @@
         "activity": "Experiment results sharing - students compare their discoveries and discuss surprises from the experiment",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comparent-ils leurs résultats avec intérêt?",
+            "ifYes": "Encourager à expliquer pourquoi les résultats pourraient être différents",
+            "ifNo": "Poser des questions : 'Qu'est-ce qui s'est passé dans ton expérience?'"
+          },
+          {
+            "question": "Identifient-ils des éléments surprenants?",
+            "ifYes": "Célébrer leur capacité d'observation scientifique",
+            "ifNo": "Guider : 'Est-ce que quelque chose t'a surpris? Était-ce différent de ce que tu pensais?'"
+          },
+          {
+            "question": "Utilisent-ils le vocabulaire scientifique pour décrire leurs résultats?",
+            "ifYes": "Enrichir avec des synonymes et des termes plus précis",
+            "ifNo": "Reformuler leurs idées avec le vocabulaire scientifique approprié"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1566,7 +1774,23 @@
         "activity": "Discovery celebration - students applaud each presentation and share what they learned from classmates",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves écoutent-ils activement les présentations des autres?",
+            "ifYes": "Inviter à poser des questions respectueuses aux présentateurs",
+            "ifNo": "Rappeler les règles d'écoute et donner un rôle spécifique à chacun"
+          },
+          {
+            "question": "Identifient-ils des apprentissages nouveaux des présentations?",
+            "ifYes": "Encourager à dessiner ou noter ces nouvelles découvertes",
+            "ifNo": "Guider : 'Qu'est-ce que [nom] t'a appris de nouveau?'"
+          },
+          {
+            "question": "Montrent-ils de l'appréciation pour le travail des camarades?",
+            "ifYes": "Modéliser des compliments spécifiques et encourageants",
+            "ifNo": "Enseigner des façons positives de célébrer : 'J'ai aimé quand tu as dit...'"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1670,7 +1894,23 @@
         "activity": "Nature discoveries debrief - students share their most interesting outdoor observations back in the classroom",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des liens entre les observations intérieures et extérieures?",
+            "ifYes": "Encourager à expliquer les similitudes et différences qu'ils remarquent",
+            "ifNo": "Guider : 'As-tu vu dehors quelque chose comme ce qu'on a observé en classe?'"
+          },
+          {
+            "question": "Utilisent-ils leurs compétences d'observation développées?",
+            "ifYes": "Féliciter leur transfert de compétences et leur croissance scientifique",
+            "ifNo": "Rappeler les techniques apprises : regarder, écouter, sentir en sécurité"
+          },
+          {
+            "question": "Montrent-ils un respect pour la nature observée?",
+            "ifYes": "Souligner l'importance du respect dans l'exploration scientifique",
+            "ifNo": "Discuter de comment les scientifiques protègent ce qu'ils étudient"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1814,7 +2054,23 @@
         "activity": "Question sharing circle - students share their scientific questions and discuss how they might find answers",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves posent-ils des questions authentiquement curieuses?",
+            "ifYes": "Valoriser leur curiosité et noter les questions pour des explorations futures",
+            "ifNo": "Modéliser en posant des questions 'Je me demande pourquoi...' ou 'Qu'arriverait-il si...?'"
+          },
+          {
+            "question": "Proposent-ils des façons de chercher des réponses?",
+            "ifYes": "Encourager leurs idées créatives d'investigation",
+            "ifNo": "Guider : 'Comment pourrions-nous découvrir cela? Observer? Tester?'"
+          },
+          {
+            "question": "Écoutent-ils les questions des autres avec intérêt?",
+            "ifYes": "Inviter à ajouter leurs propres idées aux questions des camarades",
+            "ifNo": "Rappeler que toutes les questions scientifiques sont importantes et intéressantes"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1958,7 +2214,23 @@
         "activity": "Home science promises - students commit to specific home explorations and discuss safety with families",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves choisissent-ils des activités sécuritaires pour la maison?",
+            "ifYes": "Féliciter leurs choix réfléchis et responsables",
+            "ifNo": "Réviser ensemble quelles activités nécessitent la supervision d'un adulte"
+          },
+          {
+            "question": "Comprennent-ils l'importance d'inclure leur famille?",
+            "ifYes": "Encourager à expliquer à leur famille ce qu'ils ont appris",
+            "ifNo": "Expliquer que la science est encore plus amusante quand on la partage"
+          },
+          {
+            "question": "Montrent-ils de l'enthousiasme pour explorer à la maison?",
+            "ifYes": "Promettre qu'ils pourront partager leurs découvertes à la classe",
+            "ifNo": "Donner des exemples simples et amusants d'exploration domestique"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2102,7 +2374,23 @@
         "activity": "Teaching reflection - students discuss how teaching others helps them remember safety rules better",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils que l'enseignement renforce l'apprentissage?",
+            "ifYes": "Souligner qu'ils sont maintenant des experts qui peuvent aider d'autres",
+            "ifNo": "Expliquer : 'Quand tu enseignes, tu apprends encore plus!'"
+          },
+          {
+            "question": "Réfléchissent-ils sur leurs progrès en sécurité scientifique?",
+            "ifYes": "Inviter à partager ce qu'ils trouvent maintenant facile",
+            "ifNo": "Guider : 'Au début de l'unité, qu'est-ce qui était difficile? Et maintenant?'"
+          },
+          {
+            "question": "Montrent-ils de la fierté face à leur rôle d'enseignant?",
+            "ifYes": "Célébrer leur transformation en experts scientifiques",
+            "ifNo": "Rappeler tous les moments où ils ont bien aidé et enseigné"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2213,7 +2501,23 @@
           "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "household science tools poster with pictures and safety notes",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connections créatives entre objets domestiques et outils scientifiques?",
+            "ifYes": "Encourager à expliquer comment ils utiliseraient chaque objet",
+            "ifNo": "Donner des exemples : 'Une cuillère peut mesurer comme nos gobelets doseurs'"
+          },
+          {
+            "question": "Considèrent-ils automatiquement la sécurité dans leurs suggestions?",
+            "ifYes": "Féliciter leur réflexe de sécurité de vrais scientifiques",
+            "ifNo": "Guider : 'Est-ce que cet objet est sécuritaire pour les enfants?'"
+          },
+          {
+            "question": "Participent-ils activement au remue-méninges?",
+            "ifYes": "Valoriser toutes les idées, même les plus créatives",
+            "ifNo": "Stimuler : 'Regarde autour de toi... qu'est-ce que tu vois?'"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2226,7 +2530,23 @@
           "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "tool matching chart, home safety reminder posters",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves planifient-ils des investigations réalistes pour la maison?",
+            "ifYes": "Encourager à détailler les étapes de leur plan",
+            "ifNo": "Simplifier : 'Que veux-tu observer? De quoi as-tu besoin?'"
+          },
+          {
+            "question": "Intègrent-ils automatiquement les règles de sécurité?",
+            "ifYes": "Souligner leur excellente habitude de penser sécurité d'abord",
+            "ifNo": "Réviser : 'Qui t'aidera? Qu'est-ce qui pourrait être dangereux?'"
+          },
+          {
+            "question": "Font-ils des liens logiques entre outils domestiques et scientifiques?",
+            "ifYes": "Inviter à expliquer leurs raisonnements aux autres",
+            "ifNo": "Guider avec des similarités évidentes : forme, fonction, utilisation"
+          }
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2234,7 +2554,23 @@
         "activity": "Home tool commitments - students choose specific household tools to use for science exploration with family",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des choix réfléchis et sécuritaires?",
+            "ifYes": "Valider leurs choix et encourager leur planification",
+            "ifNo": "Guider vers des options plus appropriées et sécuritaires"
+          },
+          {
+            "question": "Comprennent-ils l'importance de l'implication familiale?",
+            "ifYes": "Encourager à préparer ce qu'ils expliqueront à leur famille",
+            "ifNo": "Expliquer que la science partagée est plus amusante et plus sûre"
+          },
+          {
+            "question": "Montrent-ils de l'excitation pour continuer leur apprentissage?",
+            "ifYes": "Promettre qu'ils pourront partager leurs découvertes domestiques",
+            "ifNo": "Donner des exemples d'observations simples et amusantes à faire"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2345,7 +2681,23 @@
           "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "celebration schedule poster, demonstration station signs",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves choisissent-ils leurs découvertes les plus significatives?",
+            "ifYes": "Encourager à expliquer pourquoi ces découvertes sont spéciales",
+            "ifNo": "Aider à réfléchir : 'Qu'est-ce qui t'a le plus surpris? Le plus intéressé?'"
+          },
+          {
+            "question": "Organisent-ils leurs stations de façon logique?",
+            "ifYes": "Féliciter leur sens de l'organisation scientifique",
+            "ifNo": "Guider l'organisation : outils ensemble, observations groupées, sécurité visible"
+          },
+          {
+            "question": "Pratiquent-ils comment expliquer aux visiteurs?",
+            "ifYes": "Encourager à utiliser des mots simples que tous peuvent comprendre",
+            "ifNo": "Modéliser : 'Voici ma découverte... J'ai utilisé... J'ai appris que...'"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2358,7 +2710,23 @@
           "crayons de couleur (ensembles de 6)"
         ],
         "visualSupports": "skill demonstration posters, visitor welcome signs, safety rule displays",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves démontrent-ils avec confiance leurs compétences scientifiques?",
+            "ifYes": "Célébrer leur croissance et leur expertise",
+            "ifNo": "Offrir un soutien discret et rappeler leurs succès"
+          },
+          {
+            "question": "Enseignent-ils efficacement la sécurité aux visiteurs?",
+            "ifYes": "Souligner leur rôle important d'ambassadeurs de la sécurité",
+            "ifNo": "Rappeler les règles clés et modéliser l'enseignement"
+          },
+          {
+            "question": "Interagissent-ils bien avec tous les visiteurs?",
+            "ifYes": "Valoriser leurs compétences de communication scientifique",
+            "ifNo": "Offrir des phrases d'aide et rester proche pour soutien"
+          }
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2366,7 +2734,23 @@
         "activity": "Celebration reflection - students share what they're proudest of learning and what they want to explore next",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves identifient-ils des apprentissages spécifiques et significatifs?",
+            "ifYes": "Célébrer chaque apprentissage et relier aux objectifs de l'unité",
+            "ifNo": "Guider en révisant les activités : 'Te rappelles-tu quand on a utilisé la loupe...?'"
+          },
+          {
+            "question": "Expriment-ils des curiosités pour de futures explorations?",
+            "ifYes": "Noter leurs intérêts pour planifier de futures sciences",
+            "ifNo": "Inspirer avec des possibilités : 'Les scientifiques étudient aussi les animaux, les plantes...'"
+          },
+          {
+            "question": "Reconnaissent-ils leur croissance comme petits scientifiques?",
+            "ifYes": "Affirmer leur transformation en véritables petits scientifiques",
+            "ifNo": "Rappeler le chemin parcouru depuis la première leçon"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

@@ -195,7 +195,22 @@
           "applause gesture cards (25)"
         ],
         "visualSupports": "Performance area clearly marked, audience behavior visual cues, appreciation gesture demonstrations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève est trop timide pour performer seul",
+            "options": [
+              "Permettre une performance en duo avec un ami",
+              "Encourager à commencer par des gestes seulement"
+            ]
+          },
+          {
+            "moment": "Si les élèves dans l'audience parlent pendant les performances",
+            "options": [
+              "Rappeler les règles d'audience avec des gestes silencieux",
+              "Utiliser un signal visuel pour 'écouter'"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Gentle body shake-out and deep breathing (1 minute)"
         ]
@@ -696,7 +711,22 @@
           "celebration certificates (25)"
         ],
         "visualSupports": "Performance circle setup, celebration gesture cues, participation encouragement posters",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves dominent le partage des comptines",
+            "options": [
+              "Utiliser un objet de partage pour donner des tours égaux",
+              "Faire des petits groupes puis partager avec tous"
+            ]
+          },
+          {
+            "moment": "Si des élèves oublient les paroles des comptines",
+            "options": [
+              "Permettre de fredonner la mélodie seulement",
+              "Afficher les mots clés avec des images"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Gentle comptine movements without singing (1 minute)"
         ]
@@ -808,7 +838,22 @@
           "appreciation cards (25)"
         ],
         "visualSupports": "Gallery walk format guide, appreciation gesture demonstrations, sharing protocol visuals",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves se déplacent trop rapidement dans la galerie",
+            "options": [
+              "Utiliser un minuteur visuel pour chaque station",
+              "Créer un parcours avec flèches au sol"
+            ]
+          },
+          {
+            "moment": "Si des élèves sont critiques envers les créations des autres",
+            "options": [
+              "Modeler des commentaires positifs avec des exemples",
+              "Utiliser des cartes d'appréciation avec phrases positives"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Creative rhythm stretches - invent movements while walking (2 minutes)"
         ]
@@ -920,7 +965,22 @@
           "feeling validation stickers (25)"
         ],
         "visualSupports": "Emotion sharing circle format, feeling validation responses, emotional safety cues",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève devient émotionnel en exprimant ses sentiments",
+            "options": [
+              "Offrir un moment de pause et de réconfort",
+              "Permettre de dessiner l'émotion au lieu de parler"
+            ]
+          },
+          {
+            "moment": "Si les élèves utilisent seulement 'content' et 'triste'",
+            "options": [
+              "Introduire des mots d'émotion avec des gestes",
+              "Utiliser un tableau d'émotions avec visages"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Emotional release movements - happy bounces, sad droops, excited shakes (2 minutes)"
         ]
@@ -1032,7 +1092,22 @@
           "rhyme appreciation cards (25)"
         ],
         "visualSupports": "Rhyme sharing circle setup, rhyme pattern visual supports, appreciation gesture cues",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont du mal à identifier les rimes",
+            "options": [
+              "Exagérer la prononciation des fins de mots",
+              "Utiliser des gestes pour montrer les sons qui se ressemblent"
+            ]
+          },
+          {
+            "moment": "Si des élèves créent des 'fausses' rimes par excitement",
+            "options": [
+              "Célébrer l'effort et modeler de vraies rimes ensemble",
+              "Transformer leurs mots en vraies rimes simples"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Rhyming movements - hop for words that rhyme (2 minutes)"
         ]
@@ -1144,7 +1219,22 @@
           "speed achievement stickers (25)"
         ],
         "visualSupports": "Performance setup with tempo indicators, speed control demonstrations, achievement celebration cues",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves confondent 'vite' et 'fort' (volume)",
+            "options": [
+              "Modeler vite-doucement et fort-doucement séparément",
+              "Utiliser des gestes distincts pour vitesse vs volume"
+            ]
+          },
+          {
+            "moment": "Si certains élèves ne peuvent pas suivre le tempo rapide",
+            "options": [
+              "Permettre leur propre vitesse confortable",
+              "Créer un groupe 'tempo lent' et un groupe 'tempo vite'"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Tempo stretches - slow motion and quick movements (2 minutes)"
         ]
@@ -1215,7 +1305,22 @@
           "performance confidence cards (25)"
         ],
         "visualSupports": "Good audience behavior demonstrations, performer confidence gestures, applause signals",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève refuse de performer devant la classe",
+            "options": [
+              "Permettre une performance seulement pour l'enseignant",
+              "Offrir de faire partie d'un groupe plus large"
+            ]
+          },
+          {
+            "moment": "Si les élèves oublient leur performance préparée",
+            "options": [
+              "Encourager l'improvisation avec support",
+              "Permettre de recommencer après un moment"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1251,7 +1356,22 @@
           "class applause signal (1)"
         ],
         "visualSupports": "Celebration circle setup, performance appreciation cues, confident performer recognition displays",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves se sentent moins confiants que d'autres",
+            "options": [
+              "Célébrer des aspects spécifiques de chaque performance",
+              "Créer des catégories d'appréciation variées (créativité, effort, etc.)"
+            ]
+          },
+          {
+            "moment": "Si le niveau de bruit devient trop élevé pendant la célébration",
+            "options": [
+              "Utiliser des signaux visuels pour modérer le volume",
+              "Alterner entre célébrations bruyantes et calmes"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Performance celebration movements - bows, waves, proud poses (2 minutes)"
         ]
@@ -1322,7 +1442,22 @@
           "humor encouragement posters (5)"
         ],
         "visualSupports": "Exaggerated facial expressions, silly sound demonstrations, humor encouragement posters",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si des élèves deviennent trop excités par les mots drôles",
+            "options": [
+              "Établir un signal pour 'calmer l'amusement'",
+              "Canaliser l'énergie vers la création de nouveaux mots"
+            ]
+          },
+          {
+            "moment": "Si certains élèves trouvent les mots inappropriés",
+            "options": [
+              "Rediriger vers des mots drôles mais respectueux",
+              "Expliquer la différence entre drôle et impoli"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1357,7 +1492,22 @@
           "laughter appreciation cards (25)"
         ],
         "visualSupports": "Silly word showcase setup, humor celebration cues, laughter and joy encouragement displays",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves rient trop fort et perturbent d'autres classes",
+            "options": [
+              "Introduire le concept de 'rire intérieur' avec gestes",
+              "Déplacer l'activité dans un espace plus isolé"
+            ]
+          },
+          {
+            "moment": "Si un élève ne trouve pas les mots drôles amusants",
+            "options": [
+              "Respecter leur style d'humeur et offrir d'autres rôles",
+              "Trouver des types de mots qu'ils trouvent intéressants"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Silly word wiggles - move like your nonsense words sound (2 minutes)"
         ]
@@ -1469,7 +1619,22 @@
           "storytelling appreciation tokens (25)"
         ],
         "visualSupports": "Story sharing format guides, storytelling appreciation cues, narrative celebration displays",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si une histoire devient trop longue ou complexe",
+            "options": [
+              "Guider doucement vers une conclusion",
+              "Suggérer de diviser l'histoire en parties"
+            ]
+          },
+          {
+            "moment": "Si les élèves perdent le rythme en racontant",
+            "options": [
+              "Battre doucement le rythme avec les mains",
+              "Encourager les pauses rythmiques naturelles"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Story rhythm movements - act out story beats with body (2 minutes)"
         ]
@@ -1540,7 +1705,22 @@
           "learning journey timeline (1 large)"
         ],
         "visualSupports": "Growth visualization charts, progress celebration indicators, achievement recognition symbols",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève ne voit pas ses propres progrès",
+            "options": [
+              "Montrer des exemples concrets de son travail de septembre vs maintenant",
+              "Demander aux pairs de partager ce qu'ils ont remarqué"
+            ]
+          },
+          {
+            "moment": "Si certains élèves comparent leurs progrès négativement",
+            "options": [
+              "Mettre l'accent sur les parcours individuels uniques",
+              "Célébrer différents types de croissance (effort, créativité, etc.)"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1575,7 +1755,22 @@
           "celebration achievement cards (25)"
         ],
         "visualSupports": "Celebration circle setup, pride sharing prompts, achievement recognition displays, learning growth visuals",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève est trop modeste pour partager sa fierté",
+            "options": [
+              "Demander aux autres de partager ce qu'ils admirent chez cette personne",
+              "Offrir de dessiner leur fierté au lieu de parler"
+            ]
+          },
+          {
+            "moment": "Si certains élèves monopolisent le temps de partage",
+            "options": [
+              "Utiliser un minuteur visuel pour des partages équitables",
+              "Créer une structure 'un point de fierté par personne'"
+            ]
+          }
+        ],
         "movementBreaks": [
           "Pride celebrations - stand tall and show proud movements (2 minutes)"
         ]
@@ -1646,7 +1841,22 @@
           "presentation confidence boosters (25)"
         ],
         "visualSupports": "Presentation structure charts, audience engagement tips, confidence-building reminders",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves choisissent des présentations trop ambitieuses",
+            "options": [
+              "Aider à simplifier leurs idées en éléments réalisables",
+              "Suggérer de commencer petit et d'ajouter ensuite"
+            ]
+          },
+          {
+            "moment": "Si certains élèves paniquent à l'idée de présenter",
+            "options": [
+              "Offrir des options de présentation alternative (poster, démonstration)",
+              "Permettre la présentation en petits groupes d'abord"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1676,9 +1886,24 @@
       "closing": {
         "duration": 10,
         "activity": "Appreciation and reflection - audience provides feedback and students reflect on sharing experience",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": ["feuilles de rétroaction", "autocollants d'appréciation"],
+        "visualSupports": "Guide de rétroaction positive, exemples de commentaires constructifs",
+        "decisionPoints": [
+          {
+            "moment": "Si les commentaires de l'audience sont trop critiques",
+            "options": [
+              "Modeler des commentaires positifs et constructifs",
+              "Utiliser une structure 'J'ai aimé... J'ai remarqué...'"
+            ]
+          },
+          {
+            "moment": "Si les présentateurs sont déçus de leurs performances",
+            "options": [
+              "Mettre l'accent sur l'effort et le courage de partager",
+              "Demander à l'audience de trouver des aspects positifs spécifiques"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1787,7 +2012,22 @@
           "country flags"
         ],
         "visualSupports": "Large francophone world map, cultural rhythm visual representations, country identification pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont du mal à différencier les rythmes culturels",
+            "options": [
+              "Se concentrer sur 2-3 rythmes très distincts seulement",
+              "Utiliser des mouvements corporels différents pour chaque rythme"
+            ]
+          },
+          {
+            "moment": "Si certains élèves font des commentaires inappropriés sur les cultures",
+            "options": [
+              "Rediriger vers l'appréciation et la curiosité respectueuse",
+              "Expliquer que toutes les cultures ont des beautés uniques"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1816,9 +2056,24 @@
       "closing": {
         "duration": 10,
         "activity": "Cultural rhythm appreciation - students share which rhythm style they enjoyed most and why",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": ["cartes de préférence", "drapeaux de pays francophones"],
+        "visualSupports": "Tableau de rythmes préférés, images des pays francophones",
+        "decisionPoints": [
+          {
+            "moment": "Si tous les élèves choisissent le même rythme préféré",
+            "options": [
+              "Encourager l'exploration de différents aspects de chaque rythme",
+              "Demander de trouver une deuxième préférence différente"
+            ]
+          },
+          {
+            "moment": "Si des élèves ne peuvent pas articuler pourquoi ils aiment un rythme",
+            "options": [
+              "Offrir des mots descriptifs simples comme choix",
+              "Permettre de montrer avec des mouvements au lieu de mots"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1926,7 +2181,22 @@
           "seasonal picture cards"
         ],
         "visualSupports": "Winter nature photographs, sound wave representations, seasonal rhythm demonstrations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont des expériences limitées avec la nature hivernale",
+            "options": [
+              "Utiliser des vidéos ou enregistrements de sons de la nature",
+              "Inviter le partage d'expériences de nature de toute saison"
+            ]
+          },
+          {
+            "moment": "Si certains élèves expriment de la tristesse face à l'hiver",
+            "options": [
+              "Valider leurs sentiments et chercher des aspects positifs ensemble",
+              "Créer des poèmes qui transforment la tristesse en beauté"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1955,9 +2225,24 @@
       "closing": {
         "duration": 10,
         "activity": "Nature poetry sharing - students share their nature poems with natural rhythm patterns",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": ["carnets de poésie nature", "crayons de couleur"],
+        "visualSupports": "Exemples de poèmes nature simple, images inspirantes de la nature",
+        "decisionPoints": [
+          {
+            "moment": "Si des élèves disent qu'ils ne peuvent pas écrire de poèmes",
+            "options": [
+              "Commencer par une liste de mots nature, puis les organiser",
+              "Permettre des poèmes d'un seul mot ou phrase"
+            ]
+          },
+          {
+            "moment": "Si les poèmes manquent de rythme naturel",
+            "options": [
+              "Battre le rythme ensemble en lisant",
+              "Encourager la lecture à voix haute pour 'entendre' le rythme"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2065,7 +2350,22 @@
           "voice-instrument combination examples"
         ],
         "visualSupports": "Instrument demonstration visuals, voice-instrument coordination guides, sound combination charts",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves jouent des instruments trop fort par rapport aux voix",
+            "options": [
+              "Pratiquer les 'instruments chuchottent' et 'voix parlent'",
+              "Désigner des rôles de 'conducteur de volume'"
+            ]
+          },
+          {
+            "moment": "Si certains élèves dominent avec leurs instruments",
+            "options": [
+              "Créer un système de rotation des instruments",
+              "Enseigner l'écoute mutuelle et l'harmonie"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2094,9 +2394,24 @@
       "closing": {
         "duration": 10,
         "activity": "Mixed ensemble performance - groups perform their voice-instrument combinations for each other",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": ["cartes d'évaluation performance", "autocollants d'appréciation ensemble"],
+        "visualSupports": "Critères de bon travail d'équipe, signaux de performance ensemble",
+        "decisionPoints": [
+          {
+            "moment": "Si une performance d'ensemble devient désorganisée",
+            "options": [
+              "Arrêter et recommencer avec un tempo plus lent",
+              "Désigner un 'chef d'orchestre' élève pour guider"
+            ]
+          },
+          {
+            "moment": "Si certains élèves ne participent pas activement",
+            "options": [
+              "Leur donner un rôle spécial comme 'gardien du rythme'",
+              "Permettre la participation par des gestes au lieu d'instruments"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2204,7 +2519,22 @@
           "collaboration role cards"
         ],
         "visualSupports": "Showcase structure examples, collaboration process charts, planning timeline visuals",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les groupes ont des difficultés à s'entendre sur leurs idées",
+            "options": [
+              "Utiliser un vote simple ou combiner des éléments de chaque idée",
+              "Permettre aux groupes de diviser leur spectacle en sections"
+            ]
+          },
+          {
+            "moment": "Si certains groupes planifient quelque chose de trop complexe",
+            "options": [
+              "Guider vers la simplification avec un impact maximum",
+              "Suggérer de garder les idées complexes pour plus tard"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2233,9 +2563,24 @@
       "closing": {
         "duration": 10,
         "activity": "Showcase preview - groups share their plans and get feedback from other groups",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": ["feuilles de rétroaction spectacle", "suggestions d'amélioration"],
+        "visualSupports": "Guide de rétroaction constructive, exemples de suggestions utiles",
+        "decisionPoints": [
+          {
+            "moment": "Si les suggestions d'amélioration sont trop critiques",
+            "options": [
+              "Modeler des suggestions positives et constructives",
+              "Utiliser la structure 'Continuez... Essayez aussi...'"
+            ]
+          },
+          {
+            "moment": "Si certains groupes sont déçus de leurs présentations",
+            "options": [
+              "Souligner les forces et l'amélioration depuis le début",
+              "Rappeler que la pratique mène vers la perfection"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2343,7 +2688,22 @@
           "growth reflection sheets"
         ],
         "visualSupports": "Learning journey timeline, growth comparison charts, achievement celebration displays",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si des élèves ne reconnaissent pas leur croissance en poésie et rythme",
+            "options": [
+              "Montrer des enregistrements ou exemples de leur travail initial",
+              "Demander aux pairs de témoigner des progrès qu'ils ont observés"
+            ]
+          },
+          {
+            "moment": "Si certains élèves se concentrent sur ce qu'ils ne maîtrisent pas encore",
+            "options": [
+              "Rediriger vers tout ce qu'ils ont appris et accompli",
+              "Créer une liste de 'déjà maîtrisé' vs 'objectifs futurs'"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2372,9 +2732,24 @@
       "closing": {
         "duration": 10,
         "activity": "Legacy celebration - students share their plans and celebrate their rhythm and poetry journey",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": ["certificats d'héritage rythmique", "plans de continuation"],
+        "visualSupports": "Célébration des réalisations, vision de l'avenir musical et poétique",
+        "decisionPoints": [
+          {
+            "moment": "Si des élèves sont tristes que l'unité se termine",
+            "options": [
+              "Créer un plan pour continuer la poésie et le rythme à la maison",
+              "Prévoir des moments de poésie dans d'autres matières"
+            ]
+          },
+          {
+            "moment": "Si certains élèves ne voient pas comment continuer leur apprentissage",
+            "options": [
+              "Suggérer des livres de poésie ou des chansons à explorer",
+              "Encourager les familles à partager leurs traditions rythmiques"
+            ]
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

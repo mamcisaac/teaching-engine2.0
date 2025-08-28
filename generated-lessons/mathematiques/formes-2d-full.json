@@ -377,7 +377,11 @@
         "activity": "Galerie d'observation : les élèves visitent les créations de leurs pairs dans le sable",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève hésite à partager sa création → encourager en montrant une caractéristique positive 'Regarde ce beau carré!'",
+          "Si les explications sont trop complexes → guider avec des questions simples 'Quelle forme vois-tu ici?'",
+          "Si certains enfants sont timides → permettre de montrer sans parler d'abord"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -511,7 +515,10 @@
         "activity": "Présentation des constructions : chaque élève explique ce qu'il a construit",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève présente trop rapidement → dire 'Montre-nous d'abord, puis explique'",
+          "Si les constructions tombent → rassurer 'C'est normal, on apprend!' et aider à reconstruire"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1927,7 +1934,10 @@
         "activity": "Discussion des découvertes et création d'un tableau de classification des mouvements",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves confondent rouler et glisser → faire la démonstration avec son corps 'Je roule comme une balle'",
+          "Si la discussion devient chaotique → utiliser un objet-parole (forme en carton) pour organiser les tours"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2330,7 +2340,10 @@
           ]
         },
         "visualSupports": "Galerie d'inspiration avec exemples d'art géométrique adapté (Mondrian simplifié, Kandinsky coloré), techniques artistiques illustrées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont intimidés par les œuvres d'art → dire 'Vous pouvez faire quelque chose de beau aussi!'",
+          "Si l'attention se disperse → pointer une forme spécifique 'Qui voit un cercle rouge ici?'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2396,7 +2409,10 @@
           ]
         },
         "visualSupports": "Galerie organisée avec œuvres bien mises en valeur, éclairage approprié si possible",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est déçu de son œuvre → valoriser un aspect positif 'J'aime ton cercle bleu!'",
+          "Si les commentaires deviennent négatifs → rediriger 'Disons ce qui est beau dans chaque œuvre'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2525,7 +2541,10 @@
           ]
         },
         "visualSupports": "Images claires et diverses montrant architectes, chefs, mécaniciens, artistes au travail avec formes géométriques visibles",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ne voient pas les formes dans les métiers → pointer directement 'Regarde la roue ronde de ce vélo'",
+          "Si certains ne connaissent pas ces métiers → expliquer simplement 'L'architecte fait des maisons'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2591,7 +2610,10 @@
           ]
         },
         "visualSupports": "Récapitulatif visuel des métiers explorés avec exemples de formes associées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève mélange les métiers et les formes → reprendre calmement 'Le cercle, c'est pour quelle job?'",
+          "Si plusieurs parlent en même temps → utiliser la règle 'Une personne, on écoute'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2713,7 +2735,10 @@
           ]
         },
         "visualSupports": "Démonstrations de postures corporelles représentant chaque forme",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves génèrent trop d'énergie → ralentir le rythme 'Faisons les mouvements comme au ralenti'",
+          "Si certains sont gênés de bouger → encourager 'Chacun bouge à sa manière!'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2743,7 +2768,10 @@
         "activity": "Performance finale : présentation des danses de formes devant la classe",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève refuse de présenter → proposer 'Tu peux juste regarder cette fois'",
+          "Si la performance devient chaotique → rappeler 'Une forme à la fois, les autres regardent'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2852,7 +2880,10 @@
           "planches de travail"
         ],
         "visualSupports": "Instructions visuelles pour la sécurité alimentaire et l'hygiène",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève oublie de se laver les mains → rappeler gentiment 'Les mains propres avant de cuisiner!'",
+          "Si l'emporte-pièce ne fonctionne pas bien → aider à appuyer plus fort ou changer l'outil"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2884,7 +2915,10 @@
         "activity": "Dégustation géométrique : savourer les créations en nommant les formes",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'aime pas sa création → encourager 'Goute juste un petit morceau'",
+          "Si certains mangent trop vite → rappeler 'Mange lentement pour bien gouter ta forme'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2993,7 +3027,10 @@
           "livre d'histoire"
         ],
         "visualSupports": "Histoire illustrée avec des formes anthropomorphisées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ont peur des formes qui parlent → rassurer 'C'est comme un dessin animé, c'est amusant!'",
+          "Si l'histoire devient trop longue → faire participer en demandant 'Que va faire le triangle maintenant?'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -3024,7 +3061,10 @@
         "activity": "Théâtre de formes : représentation des histoires devant un public",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève oublie son rôle → souffler discrètement 'Tu es le cercle qui roule'",
+          "Si le public devient bruyant → lever la main pour demander le silence respectueux"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -3133,7 +3173,10 @@
           "carnets de souvenirs"
         ],
         "visualSupports": "Plan du festival avec stations clairement identifiées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves se perdent entre les stations → utiliser un système de couleurs pour guider",
+          "Si une station est trop populaire → proposer 'On va essayer une autre activité d'abord'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -3165,7 +3208,10 @@
         "activity": "Cercle de fierté : chaque élève partage sa découverte préférée sur les formes",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit 'Je n'ai rien appris' → l'aider avec 'Te souviens-tu du carré rouge?'",
+          "Si certains répètent les mêmes idées → encourager 'Peux-tu penser à autre chose?'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

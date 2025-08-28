@@ -278,7 +278,12 @@
         "activity": "Share different text types they found. Discuss which ones they see at home.",
         "materials": ["Textes triés en catégories"],
         "visualSupports": "Affichage des catégories créées, connexions maison-école",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent partager encore plus de types de textes",
+            "choice": "Permettre 2-3 partages supplémentaires ou créer liste pour demain"
+          }
+        ],
         "movementBreaks": ["Cercle de partage assis"]
       },
       "troubleshooting": "If concept is too abstract, use texts from their daily life - lunch menus, name tags, etc.",
@@ -326,7 +331,12 @@
         "activity": "Share best clues they found today. Remind them they can be word detectives with any text.",
         "materials": ["Collection des meilleurs indices"],
         "visualSupports": "Badge 'Détective de mots' pour chaque élève",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent partager tous leurs indices trouvés",
+            "choice": "Permettre 2-3 partages supplémentaires ou créer mur d'indices"
+          }
+        ],
         "movementBreaks": ["Célébration des découvertes"]
       },
       "troubleshooting": "If clue-finding is too difficult, start with very obvious picture-word matches",
@@ -374,7 +384,12 @@
         "activity": "Share best questions they asked. Explain how questions help us understand stories better.",
         "materials": ["Collection des meilleures questions"],
         "visualSupports": "Tableau 'Nos meilleures questions', connexions questions-compréhension",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves confondent les types de questions (qui/quoi/où)",
+            "choice": "Utiliser gestes distinctifs pour chaque type ou revenir aux exemples visuels"
+          }
+        ],
         "movementBreaks": ["Célébration des bons questionneurs"]
       },
       "troubleshooting": "If questioning is too abstract, use familiar story and model each question type with clear examples",
@@ -422,7 +437,12 @@
         "activity": "Few students share favorites with whole class. Create class list of favorite books.",
         "materials": ["Grand tableau pour liste de classe"],
         "visualSupports": "Liste visuelle des favoris de la classe avec couvertures si possible",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont de la difficulté à poser leurs propres questions",
+            "choice": "Utiliser phrases-modèles ou questions guidées avec supports visuels"
+          }
+        ],
         "movementBreaks": ["Applaudissements pour chaque partage"]
       },
       "troubleshooting": "If students don't have book preferences yet, let them choose from classroom books they've enjoyed",
@@ -470,7 +490,12 @@
         "activity": "Discuss what they learned from comparing stories. Some stories share ideas but tell them differently.",
         "materials": ["Tableau de comparaison terminé"],
         "visualSupports": "Récapitulatif visuel des découvertes de comparaison",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si l'histoire semble trop longue pour l'attention des élèves",
+            "choice": "Faire pause interactive au milieu ou raccourcir à l'essentiel"
+          }
+        ],
         "movementBreaks": ["Cercle de discussion finale"]
       },
       "troubleshooting": "If comparing is too abstract, use familiar stories with clear visual similarities",
@@ -518,7 +543,12 @@
         "activity": "Share one new fact they learned today. Discuss difference between learning facts and enjoying stories.",
         "materials": ["Tableau des faits appris rempli"],
         "visualSupports": "Comparaison visuelle entre 'faits' et 'histoires imaginaires'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent réécouter certaines parties de l'histoire",
+            "choice": "Relire sections favorites ou promettre de reprendre demain"
+          }
+        ],
         "movementBreaks": ["Célébration des nouvelles connaissances"]
       },
       "troubleshooting": "If fiction/non-fiction distinction is unclear, use familiar examples they know are real or pretend",
@@ -566,7 +596,12 @@
         "activity": "Discuss how reading with expression makes stories more fun. Practice reading one sentence with different emotions.",
         "materials": ["Phrase simple écrite pour pratiquer", "Cartes émotions"],
         "visualSupports": "Démonstration visuelle de différentes expressions faciales",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les prédictions des élèves sont très créatives mais loin du texte",
+            "choice": "Célébrer créativité puis orienter vers indices dans le texte"
+          }
+        ],
         "movementBreaks": ["Mimer différentes émotions en lisant"]
       },
       "troubleshooting": "If shared reading is challenging, use very familiar songs or chants in text form",
@@ -614,7 +649,12 @@
         "activity": "Students ask their questions to partners. Celebrate being good questioners who help others think.",
         "materials": ["Questions créées par les élèves"],
         "visualSupports": "Certificats 'Excellent questionneur', mur des bonnes questions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves n'osent pas faire de prédictions",
+            "choice": "Commencer par questions simples 'oui/non' ou travail en paires"
+          }
+        ],
         "movementBreaks": ["Célébration des créateurs de questions"]
       },
       "troubleshooting": "If question creation is too difficult, let students choose from pre-made question options to ask",
@@ -662,7 +702,12 @@
         "activity": "Students share one thing they learned about texts. Celebrate growth as text explorers and readers.",
         "materials": ["Portfolios terminés"],
         "visualSupports": "Certificat d'explorateur de textes, photos de célébration",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont des difficultés à identifier le début/milieu/fin",
+            "choice": "Utiliser gestes physiques ou ligne du temps très simple"
+          }
+        ],
         "movementBreaks": ["Célébration debout des accomplissements"]
       },
       "troubleshooting": "If reflection is too abstract, use concrete examples of what they can do now that they couldn't before",
@@ -692,26 +737,55 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review all different text types learned. Today explore special kinds of stories - poetry, fairy tales, etc.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Collection de livres de différents genres (5-6 livres)",
+          "Affiches visuelles des genres (poésie, conte, histoire vraie)",
+          "Cartes vocabulaire illustrées pour chaque genre"
+        ],
+        "visualSupports": "Affiches colorées montrant caractéristiques de chaque genre",
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves confondent les genres de textes",
+            "choice": "Revenir aux caractéristiques visuelles ou utiliser gestes distinctifs"
+          }
+        ],
+        "movementBreaks": ["Se déplacer pour explorer différents coins de lecture"]
       },
       "main": {
         "duration": "~27 min",
         "activity": "Playful exploration of different genres through listening, acting, and simple identification games. Focus on enjoyment over analysis.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Livre de poésie illustré pour enfants",
+          "Livre de contes traditionnels",
+          "Histoire vraie simple avec photos",
+          "CD ou enregistrement audio de poèmes",
+          "Costumes simples ou accessoires pour jouer les genres"
+        ],
+        "visualSupports": "Images des personnages de contes, exemples de rimes visuelles",
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves préfèrent beaucoup un genre et rejettent les autres",
+            "choice": "Respecter préférences mais explorer doucement les autres aussi"
+          }
+        ],
+        "movementBreaks": ["Jouer des personnages, réciter poèmes avec gestes"]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Share which genre was most interesting today. Discuss how many different ways there are to tell stories.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Exemples des genres explorés",
+          "Tableaux simples pour noter préférences",
+          "Autocollants ou tampons pour marquer favoris"
+        ],
+        "visualSupports": "Tableau de préférences avec symboles pour chaque genre",
+        "decisionPoints": [
+          {
+            "moment": "Si les discussions sur les préférences prennent trop de temps",
+            "choice": "Limiter à un partage par élève ou continuer demain"
+          }
+        ],
+        "movementBreaks": ["Cercle de partage avec gestes pour favoris"]
       },
       "troubleshooting": "If genre concept is too complex, focus on obvious features like 'stories that rhyme' vs. 'regular stories'",
       "realWorldConnection": "There are many different kinds of stories and texts to enjoy - like different types of games or music",
@@ -790,7 +864,12 @@
         "activity": "Word hunting game in new texts - students search for and collect familiar words they can recognize and understand.",
         "materials": ["Nouveaux textes avec mots familiers inclus", "Paniers de collection", "Autocollants pour marquer trouvailles"],
         "visualSupports": "Banque de mots familiers affichée, cartes pour collection",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si l'activité de remise en ordre prend plus de temps prévu",
+            "choice": "Faire en grand groupe plutôt qu'individuellement"
+          }
+        ],
         "movementBreaks": ["Mouvement libre pour chasser les mots"]
       },
       "closing": {
@@ -798,7 +877,12 @@
         "activity": "Share word hunting successes. Discuss how knowing some words helps us read new things.",
         "materials": ["Collection des mots trouvés"],
         "visualSupports": "Tableau des succès de chasse aux mots",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent ajouter leurs propres détails aux histoires",
+            "choice": "Encourager créativité en petits groupes ou noter pour activité future"
+          }
+        ],
         "movementBreaks": ["Célébration des découvertes"]
       },
       "troubleshooting": "If students frustrated by unknown words, remind them they're looking for words they already know",
@@ -878,7 +962,12 @@
         "activity": "Students choose familiar stories to act out in small groups. Focus on showing understanding through movement and simple dialogue.",
         "materials": ["Sélection d'histoires familiers", "Accessoires de théâtre simples", "Espace pour représentations"],
         "visualSupports": "Images des histoires pour inspiration, conseils simples pour jeu dramatique",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves sont intimidés par l'idée de 'créer' une histoire",
+            "choice": "Commencer par compléter une histoire ensemble ou utiliser images guidées"
+          }
+        ],
         "movementBreaks": ["Jeu dramatique continu"]
       },
       "closing": {
@@ -886,7 +975,12 @@
         "activity": "Mini performances for class. Celebrate how acting helps us understand and remember stories better.",
         "materials": ["Scène simple pour performances"],
         "visualSupports": "Applaudimètre visuel, certificats d'acteur",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les histoires créées sont très courtes ou simples",
+            "choice": "Célébrer tous les efforts et aider à ajouter un détail si désiré"
+          }
+        ],
         "movementBreaks": ["Applaudissements et célébrations debout"]
       },
       "troubleshooting": "If acting is too challenging, let students just show one scene or character action from story",
@@ -966,7 +1060,12 @@
         "activity": "Students interview classmates about interests, then recommend books from classroom library. Practice giving simple reasons for recommendations.",
         "materials": ["Feuilles d'interview simples", "Bibliothèque de classe organisée", "Cartes de recommandation"],
         "visualSupports": "Questions d'interview affichées, structure 'Je recommande... parce que...'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont des difficultés à identifier les personnages principaux",
+            "choice": "Utiliser images du livre ou dessins simples pour clarifier"
+          }
+        ],
         "movementBreaks": ["Circulation pour interviews et recommandations"]
       },
       "closing": {
@@ -974,7 +1073,12 @@
         "activity": "Share successful recommendations made today. Discuss how helping others find good books makes reading more fun.",
         "materials": ["Recommandations faites pendant la leçon"],
         "visualSupports": "Tableau des bonnes recommandations, connexions lecture-amitié",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent dessiner leurs parties préférées",
+            "choice": "Permettre quelques minutes de dessin rapide ou garder pour activité séparée"
+          }
+        ],
         "movementBreaks": ["Cercle de partage final"]
       },
       "troubleshooting": "If recommendation process is complex, let students just share favorite books with reasons they like them",
@@ -1054,7 +1158,12 @@
         "activity": "Students share texts, stories, or traditions from their families/cultures. Celebrate diversity and different ways of telling stories.",
         "materials": ["Objets ou images apportés de la maison", "Espace de partage confortable"],
         "visualSupports": "Affichage célébrant la diversité, support pour structures de partage",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves n'arrivent pas à expliquer pourquoi ils aiment une histoire",
+            "choice": "Utiliser questions guidées simples ('Qui préfères-tu?', 'Quelle partie?')"
+          }
+        ],
         "movementBreaks": ["Mouvement pour montrer différentes traditions"]
       },
       "closing": {
@@ -1062,7 +1171,12 @@
         "activity": "Reflect on how many different types of stories and texts exist in our classroom community.",
         "materials": ["Collection des partages de la journée"],
         "visualSupports": "Mur de la diversité des textes et cultures de la classe",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves veulent en savoir plus sur les cultures des autres",
+            "choice": "Planifier une séance spéciale de partage culturel ou inviter familles"
+          }
+        ],
         "movementBreaks": ["Cercle de réflexion assis ensemble"]
       },
       "troubleshooting": "If students don't connect with cultural aspect, focus on any family stories or special books from home",
@@ -1143,7 +1257,12 @@
         "activity": "Celebration of reading growth with sharing of portfolios, presentation of certificates, and reflection on favorite discoveries.",
         "materials": ["Portfolios de lecture créés", "Certificats d'explorateur de textes (25)", "Décorations de célébration"],
         "visualSupports": "Affichage des accomplissements de la classe, photos du parcours d'apprentissage",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves sont timides pour partager leurs portfolios",
+            "choice": "Permettre partage en petits groupes ou avec un ami seulement"
+          }
+        ],
         "movementBreaks": ["Marche fière pour recevoir certificats"]
       },
       },
@@ -1152,7 +1271,12 @@
         "activity": "Final circle: each student completes 'Je suis un explorateur de textes parce que...' Group celebration photo.",
         "materials": ["Phrase à compléter affichée", "Appareil photo pour photo de groupe"],
         "visualSupports": "Structure de phrase compléter, accessoires pour photo célébratoire",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves ont difficulté à compléter la phrase de célébration",
+            "choice": "Offrir choix de phrases simples ou permettre dessin au lieu de mots"
+          }
+        ],
         "movementBreaks": ["Positionnement pour photo de groupe finale"]
       },
       "troubleshooting": "If students don't recognize their growth, use specific examples of skills they've gained during unit",

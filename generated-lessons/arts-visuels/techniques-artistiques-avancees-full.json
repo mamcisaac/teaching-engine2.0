@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Techniques artistiques avancées",
   "subject": "Arts visuels",
   "grade": "1",
   "totalLessons": 20,
@@ -20,46 +20,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Mystery tool exploration: Show professional art tools (palette knives, brayers, fine brushes, sculpting tools) in covered containers. Students guess what each tool does. Introduce vocabulary: OUTIL (show tool gesture), PROFESSIONNEL (formal, careful handling), SÉCURITÉ (safe handling demonstration).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Outils d'art professionnels dans des contenants couverts",
+          "Cartes de vocabulaire avec gestes",
+          "Affiches de sécurité colorées",
+          "Exemples d'outils utilisés par différents professionnels"
+        ],
+        "visualSupports": "Photos d'artistes professionnels utilisant des outils, cartes de vocabulaire avec gestes, affiche de sécurité avec symboles colorés",
+        "decisionPoints": [
+          "Si des élèves ont peur des outils → montrer d'abord des outils familiers (pinceaux normaux) puis introduire les nouveaux graduellement",
+          "Si des élèves veulent toucher immédiatement → expliquer qu'on observe d'abord comme de vrais professionnels",
+          "Si des élèves ne comprennent pas 'professionnel' → comparer aux outils de papa/maman au travail"
+        ],
+        "movementBreaks": [
+          "Gestes pour chaque outil (palette knife, brayer, etc.)",
+          "Mouvements de sécurité (mains propres, rangement soigneux)"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Exploration guidée des outils professionnels. En stations rotatives de 4-5 minutes, les élèves explorent chaque outil sous supervision. Démontrer la technique correcte, laisser pratiquer sur papier d'essai. Encourager: 'Cet outil professionnel fait...', 'Je dois être prudent avec...'. Documenter les découvertes.",
         "materials": [
           "Professional art tools (palette knives, brayers, detail brushes, sculpting tools)",
           "Practice materials for each tool",
           "Safety guidelines poster",
           "Tool storage organization"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Démonstrations étape par étape, affiches de sécurité, photos d'artistes au travail",
+        "decisionPoints": [
+          "Si un élève trouve un outil trop difficile → simplifier en montrant la version la plus facile d'abord, puis progresser étape par étape",
+          "Si des outils sont mal utilisés → arrêter doucement, re-démontrer la bonne technique avec l'élève",
+          "Si des élèves veulent échanger d'outils → établir un système de rotation toutes les 5 minutes"
+        ],
+        "movementBreaks": [
+          "Rotation entre stations d'outils",
+          "Pauses pour nettoyer et organiser les outils"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Professional Artist Role-Play. Students choose their favorite professional tool and demonstrate proper use to 'art students' (classmates). Practice vocabulary: 'Cet outil professionnel fait...' Emphasize safety and skill.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Outils utilisés pendant la leçon",
+          "Lingettes de nettoyage",
+          "Bacs de rangement étiquetés"
+        ],
+        "visualSupports": "Guide visuel pour le rangement des outils, cartes de rappel de sécurité",
+        "decisionPoints": [
+          "Si des élèves ne veulent pas ranger → transformer en jeu 'trouve la bonne maison pour ton outil'",
+          "Si le rangement prend trop de temps → faire des équipes de rangement avec des rôles spéciaux",
+          "Si des élèves oublient leur outil préféré → rassurer que tous les outils seront disponibles dans les prochaines leçons"
+        ],
+        "movementBreaks": [
+          "Marche pour montrer son outil préféré",
+          "Geste de salut aux outils professionnels"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "l'utilisation sécuritaire des outils ou la compréhension des consignes",
         "then": "Tool study without handling: Use pictures and videos of professional artists using tools, practice vocabulary and safety concepts without physical tool use."
       },
       "realWorldConnection": "Understanding that artists use special tools, like how doctors, builders, or chefs have professional tools",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Observer et nommer les outils sans les manipuler",
+          "Se concentrer sur 2-3 outils seulement",
+          "Jumeler avec un partenaire pour l'aide",
+          "Utiliser des outils plus gros et plus sécuritaires"
+        ],
+        "forAdvanced": [
+          "Explorer des techniques combinées avec plusieurs outils",
+          "Devenir aide-enseignant pour démontrer aux autres",
+          "Rechercher des artistes qui utilisent ces outils",
+          "Créer un mini-guide d'utilisation illustré"
+        ],
+        "forELL": [
+          "Cartes visuelles avec noms d'outils en images",
+          "Permettre l'usage de leur langue première pour clarifier",
+          "Gestes et démonstrations plutôt que explications verbales",
+          "Jumeler avec un élève bilingue si possible"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les capacités motrices",
+          "Réduire le nombre d'outils à explorer",
+          "Fournir un support physique au besoin",
+          "Utiliser des outils modifiés ou adaptés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie différents outils d'art professionnel",
+          "L'élève démontre une utilisation sécuritaire des outils",
+          "L'élève utilise le vocabulaire: outil, professionnel, sécurité",
+          "L'élève respecte les consignes de manipulation"
+        ],
+        "checkpoints": [
+          "Peut nommer 3 outils professionnels",
+          "Manipule les outils avec précaution",
+          "Utilise les mots de vocabulaire dans ses explications",
+          "Respecte les règles de sécurité établies"
+        ]
       }
     },
     {
@@ -76,46 +136,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Show examples of mixed media artworks. Identify different materials used together: paint + collage, crayon + watercolor, etc. Introduce vocabulary: MÉLANGER (mixing gesture), MÉDIUM (hold up different materials), COMBINAISON (bringing hands together).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Exemples d'œuvres d'art mixte",
+          "Cartes de vocabulaire avec gestes",
+          "Différents matériaux d'art pour démonstration",
+          "Photos avant/après de créations mixtes"
+        ],
+        "visualSupports": "Exemples d'œuvres mixtes, cartes de vocabulaire avec gestes, tableau de combinaisons possibles",
+        "decisionPoints": [
+          "Si des élèves ne voient pas les différents matériaux → pointer et toucher chaque matériau tout en nommant",
+          "Si des élèves pensent que c'est du gâchis → expliquer que les artistes font des choix créatifs pour exprimer des idées",
+          "Si des élèves ont peur de mélanger → commencer par montrer des combinaisons simples et jolies"
+        ],
+        "movementBreaks": [
+          "Gestes de mélange avec les mains",
+          "Mouvements pour chaque matériau (peinture, colle, etc.)"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création d'œuvres mixtes guidées. Les élèves planifient puis créent des œuvres combinant 2-3 matériaux différents. Démontrer des techniques: crayon + aquarelle, collage + peinture. Encourager: 'Je mélange... avec...', 'Ma combinaison utilise...'. Circuler pour guider les choix.",
         "materials": [
           "Variety of art materials (paints, crayons, markers, collage materials, pastels)",
           "Planning sheets",
           "Mixed media paper",
           "Demonstration examples"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Tableau des combinaisons possibles, exemples étape par étape, guide de planification illustré",
+        "decisionPoints": [
+          "Si des élèves utilisent trop de matériaux → les encourager à se concentrer sur 2-3 pour une meilleure qualité",
+          "Si des matériaux ne se mélangent pas bien → montrer des techniques d'application en couches",
+          "Si des élèves sont frustrés par les résultats → rappeler que l'expérimentation fait partie de l'art"
+        ],
+        "movementBreaks": [
+          "Rotation entre stations de matériaux",
+          "Pauses pour observer le travail des autres"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Mixed Media Gallery Walk. Display all mixed media works. Students identify different mediums used in each artwork. Practice vocabulary: 'Je vois une combinaison de...' Discuss which combinations were most effective.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace d'affichage pour les œuvres",
+          "Supports pour exposition",
+          "Petites étiquettes pour identifier les techniques"
+        ],
+        "visualSupports": "Exemple de galerie d'art, cartes de vocabulaire pour décrire les œuvres",
+        "decisionPoints": [
+          "Si des élèves ne voient pas les différents matériaux → guider leur observation en pointant et nommant",
+          "Si la galerie devient trop bruyante → introduire la marche silencieuse 'd'artiste en visite'",
+          "Si des élèves font des commentaires négatifs → rediriger vers l'appréciation des techniques utilisées"
+        ],
+        "movementBreaks": [
+          "Marche lente et silencieuse entre les œuvres",
+          "Pause pour admirer et réfléchir"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la planification ou l'exécution des techniques mixtes",
         "then": "Mixed media planning: Use magazines and art materials to plan mixed media combinations without creating full artworks, focusing on vocabulary and combination concepts."
       },
       "realWorldConnection": "Mixing different ingredients in cooking, combining different materials in building projects",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Pré-sélectionner 2 matériaux compatibles",
+          "Fournir des exemples à reproduire",
+          "Jumeler avec un partenaire expérimenté",
+          "Utiliser des matériaux plus faciles à manipuler"
+        ],
+        "forAdvanced": [
+          "Expérimenter avec plus de 3 matériaux",
+          "Créer des effets spéciaux avec les mélanges",
+          "Aider à enseigner les techniques aux autres",
+          "Créer une série d'œuvres avec différentes combinaisons"
+        ],
+        "forELL": [
+          "Cartes visuelles montrant les combinaisons",
+          "Démonstrations plutôt qu'explications verbales",
+          "Permettre l'expression en langue première",
+          "Support d'un pair bilingue"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les capacités motrices",
+          "Réduire le nombre de matériaux",
+          "Fournir un support physique",
+          "Permettre des techniques alternatives"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève combine avec succès différents matériaux",
+          "L'élève utilise le vocabulaire: mélanger, médium, combinaison",
+          "L'élève planifie ses choix de matériaux",
+          "L'élève expérimente avec confiance"
+        ],
+        "checkpoints": [
+          "Peut nommer les matériaux utilisés dans son œuvre",
+          "Démontre des techniques de mélange de base",
+          "Explique ses choix créatifs",
+          "Apprécie les combinaisons des autres"
+        ]
       }
     },
     {
@@ -132,14 +252,26 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Compare basic brush painting to advanced techniques using demonstrations. Show sponge painting, stencil work, palette knife techniques. Introduce vocabulary: TECHNIQUE (skillful gesture), ÉPONGE (dabbing motion), POCHOIR (stencil demonstration).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Pinceaux ordinaires et outils spéciaux",
+          "Éponges de différentes textures",
+          "Pochoirs et couteaux à palette",
+          "Cartes de vocabulaire avec démonstrations"
+        ],
+        "visualSupports": "Comparaisons avant/après, étapes des techniques illustrées, exemples d'effets obtenus",
+        "decisionPoints": [
+          "Si des élèves préfèrent les pinceaux normaux → rassurer que c'est bien et montrer comment les techniques avancées ajoutent de la variété",
+          "Si des élèves trouvent les nouvelles techniques difficiles → commencer par la plus simple (éponge) avant les autres",
+          "Si des élèves ne voient pas la différence → faire une comparaison côte-à-côte sur le même papier"
+        ],
+        "movementBreaks": [
+          "Gestes pour chaque technique (tamponner, gratter, rouler)",
+          "Mouvements de préparation des outils"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Exploration de stations de techniques avancées. Rotation de 8-9 minutes entre stations: éponge, pochoir, couteau. Démontrer chaque technique, laisser pratiquer. Encourager: 'Cette technique crée...', 'J'utilise l'éponge pour...'. Documenter les effets préférés.",
         "materials": [
           "Various sponges for painting",
           "Stencils (commercial and handmade)",
@@ -147,32 +279,80 @@
           "Paints suitable for advanced techniques",
           "Practice papers"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Guides visuels pour chaque station, exemples de techniques réussies, aide-mémoire des étapes",
+        "decisionPoints": [
+          "Si une technique ne fonctionne pas bien → ajuster la quantité de peinture ou la pression appliquée",
+          "Si des élèves restent trop longtemps à une station → les encourager à essayer toutes les techniques",
+          "Si les outils se salissent trop → avoir des stations de nettoyage entre chaque technique"
+        ],
+        "movementBreaks": [
+          "Rotation active entre les stations",
+          "Nettoyage et préparation entre techniques"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Technique Showcase. Students demonstrate their best advanced technique to classmates. Explain process: 'Ma technique avancée utilise...' Compare effects achieved with different techniques.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Exemples créés pendant la leçon",
+          "Outils de démonstration",
+          "Support d'affichage pour les techniques"
+        ],
+        "visualSupports": "Galerie des techniques, étiquettes pour identifier chaque méthode",
+        "decisionPoints": [
+          "Si des élèves sont timides pour démontrer → permettre de montrer en paires ou petits groupes",
+          "Si les démonstrations prennent trop de temps → limiter à 30 secondes par élève",
+          "Si des élèves critiquent les techniques des autres → rediriger vers l'appréciation des différents effets"
+        ],
+        "movementBreaks": [
+          "Mouvements de démonstration pour chaque technique",
+          "Applaudissements pour chaque présentation"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la coordination motrice ou l'application des techniques",
         "then": "Technique analysis: Study photos and videos of advanced painting techniques, practice vocabulary and technique identification without hands-on painting."
       },
       "realWorldConnection": "Watching house painters use different techniques, seeing how artists create different effects",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur une seule technique par leçon",
+          "Utiliser des outils adaptés (plus gros, plus faciles)",
+          "Fournir plus de guidage physique",
+          "Permettre des techniques simplifiées"
+        ],
+        "forAdvanced": [
+          "Combiner plusieurs techniques en une œuvre",
+          "Expérimenter avec des variations personnelles",
+          "Enseigner les techniques à leurs pairs",
+          "Créer leurs propres pochoirs"
+        ],
+        "forELL": [
+          "Démonstrations visuelles sans langage complexe",
+          "Cartes de vocabulaire avec images de techniques",
+          "Jumelage avec des pairs bilingues",
+          "Focus sur l'action plutôt que l'explication"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les capacités",
+          "Réduire le nombre de techniques à essayer",
+          "Fournir un support physique",
+          "Modifier les attentes selon les objectifs"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève utilise avec succès au moins une technique avancée",
+          "L'élève utilise le vocabulaire: technique, éponge, pochoir",
+          "L'élève compare les effets des différentes techniques",
+          "L'élève fait des choix techniques délibérés"
+        ],
+        "checkpoints": [
+          "Démontre la technique de l'éponge",
+          "Utilise correctement un pochoir",
+          "Explique pourquoi il choisit une technique",
+          "Crée des effets variés avec les outils"
+        ]
       }
     },
     {
@@ -189,14 +369,26 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Explore 3D vs 2D concepts using simple objects and pictures. Handle sculptures vs looking at paintings. Introduce vocabulary: SCULPTURE (3D gesture with hands), MODELAGE (shaping clay motion), FORME (outline 3D shapes in air).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets 3D et images 2D pour comparaison",
+          "Petites sculptures à manipuler",
+          "Cartes de vocabulaire avec gestes",
+          "Matériaux de modelage pour démonstration"
+        ],
+        "visualSupports": "Comparaisons 2D/3D, gestes pour chaque mot de vocabulaire, exemples de sculptures célèbres",
+        "decisionPoints": [
+          "Si des élèves ne comprennent pas la différence 2D/3D → leur faire toucher et tourner autour des objets",
+          "Si des élèves ont peur de toucher l'argile → commencer par des matériaux plus familiers comme la pâte à modeler",
+          "Si des élèves veulent immédiatement créer → canaliser cette énergie en leur montrant les possibilités"
+        ],
+        "movementBreaks": [
+          "Gestes pour sculpter et modeler",
+          "Mouvements pour décrire des formes 3D dans l'espace"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Exploration libre de sculpture et modelage. Stations avec différents matériaux: argile, pâte, matériaux souples. Encourager l'expérimentation: 'Ma sculpture a la forme de...', 'Je modele pour créer...'. Documenter les découvertes sur les formes 3D.",
         "materials": [
           "Various clay types",
           "Sculpting tools from Lesson 1",
@@ -204,32 +396,80 @@
           "Soft carving materials (soap, foam)",
           "Workspace protection"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Exemples de techniques de modelage, guide des formes de base, photos de sculptures d'élèves",
+        "decisionPoints": [
+          "Si l'argile devient trop sèche → enseigner comment l'humidifier avec de l'eau",
+          "Si des élèves se frustrulent avec la 3D → commencer par des formes simples comme des boules et des serpents",
+          "Si des sculptures se cassent → montrer comment réparer et que ça fait partie du processus"
+        ],
+        "movementBreaks": [
+          "Rotation entre stations de matériaux",
+          "Pauses pour observer les créations sous tous les angles"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Sculpture Gallery. Display 3D works so they can be viewed from all angles. Students walk around sculptures, describing what they see from different viewpoints. Practice 3D vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Surfaces d'exposition pour sculptures",
+          "Plateaux tournants si disponibles",
+          "Cartes pour commentaires sur les œuvres"
+        ],
+        "visualSupports": "Exemple de galerie de sculptures, cartes de vocabulaire pour décrire les formes 3D",
+        "decisionPoints": [
+          "Si des sculptures sont fragiles → limiter les manipulations et enseigner l'observation visuelle",
+          "Si des élèves comparent négativement → rediriger vers l'appréciation des choix créatifs uniques",
+          "Si la galerie devient désorganisée → assigner des rôles de gardiens d'œuvres d'art"
+        ],
+        "movementBreaks": [
+          "Marche autour des sculptures pour voir tous les angles",
+          "Gestes pour décrire les formes observées"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la coordination motrice fine ou la compréhension des formes 3D",
         "then": "3D construction with classroom materials: Use blocks, boxes, and other classroom items to explore 3D construction concepts and practice vocabulary."
       },
       "realWorldConnection": "Playing with playdough, building with blocks, shaping sand castles",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des matériaux plus mous et faciles à manipuler",
+          "Créer des formes simples avec guidance",
+          "Travailler en équipe avec un partenaire",
+          "Se concentrer sur l'exploration tactile"
+        ],
+        "forAdvanced": [
+          "Créer des sculptures détaillées et complexes",
+          "Combiner différents matériaux et techniques",
+          "Planifier des sculptures avec des croquis",
+          "Aider à enseigner les techniques aux autres"
+        ],
+        "forELL": [
+          "Focus sur l'exploration tactile et visuelle",
+          "Cartes visuelles pour vocabulaire 3D",
+          "Démonstrations sans explications verbales complexes",
+          "Jumelage avec pairs bilingues"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les capacités motrices",
+          "Fournir support physique au besoin",
+          "Matériaux adaptés aux sensibilités tactiles",
+          "Objectifs modifiés selon les besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève crée des formes tridimensionnelles",
+          "L'élève utilise le vocabulaire: sculpture, modelage, forme",
+          "L'élève manipule les matériaux avec intention",
+          "L'élève observe et décrit les formes 3D"
+        ],
+        "checkpoints": [
+          "Crée au moins une forme 3D reconnaissable",
+          "Explique sa création en utilisant le vocabulaire",
+          "Démontre des techniques de base de modelage",
+          "Apprécie les sculptures des autres"
+        ]
       }
     },
     {
@@ -246,14 +486,26 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Demonstrate concept of making multiple copies: stamp a simple design multiple times. Compare to unique artworks vs prints. Introduce vocabulary: GRAVURE (carving motion), IMPRESSION (printing press motion), MULTIPLES (counting copies).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Tampons et encreurs pour démonstration",
+          "Exemples d'œuvres uniques vs imprimées",
+          "Cartes de vocabulaire avec gestes",
+          "Matériaux de gravure simples"
+        ],
+        "visualSupports": "Comparaisons œuvre unique vs multiples, étapes de l'impression illustrées, gestes pour le vocabulaire",
+        "decisionPoints": [
+          "Si des élèves ne comprennent pas le concept de multiples → faire compter les copies identiques créées",
+          "Si des élèves préfèrent les œuvres uniques → expliquer que les deux types d'art ont de la valeur",
+          "Si les démonstrations sont trop rapides → répéter lentement en nommant chaque étape"
+        ],
+        "movementBreaks": [
+          "Gestes de gravure et d'impression",
+          "Comptage des multiples avec les doigts"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création de matrices d'impression simples. Utiliser mousse, carton, objets texturés pour créer des matrices. Démontrer l'application d'encre et le processus d'impression. Encourager: 'Ma gravure montre...', 'Je peux faire plusieurs impressions de...'. Créer une série de copies.",
         "materials": [
           "Printmaking materials (foam plates, cardboard, cutting tools)",
           "Printing ink or paint",
@@ -261,32 +513,80 @@
           "Brayers for ink application",
           "Printing press or spoons"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Étapes de l'impression illustrées, exemples de matrices et résultats, guide de sécurité pour outils",
+        "decisionPoints": [
+          "Si l'encre est mal appliquée → démontrer la bonne quantité et technique d'application",
+          "Si les impressions sont floues → vérifier la pression et la stabilité du papier",
+          "Si des élèves se découragent avec les premiers essais → rappeler que l'impression demande de la pratique"
+        ],
+        "movementBreaks": [
+          "Mouvements de pressage pour l'impression",
+          "Rotation entre stations d'encrage et d'impression"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Print Exhibition and Trading. Display print series. Students can trade prints with each other since multiple copies exist. Discuss how printmaking allows sharing artwork. Practice printmaking vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace d'exposition pour séries d'impressions",
+          "Système d'échange organisé",
+          "Contenants pour ranger les œuvres"
+        ],
+        "visualSupports": "Exposition organisée par séries, étiquettes pour identifier les techniques utilisées",
+        "decisionPoints": [
+          "Si des élèves ne veulent pas échanger → respecter leur choix et expliquer les options",
+          "Si l'échange devient désordonné → organiser en tours de table ou petits groupes",
+          "Si des élèves veulent garder toutes leurs impressions → expliquer que c'est le but des multiples"
+        ],
+        "movementBreaks": [
+          "Marche autour de l'exposition",
+          "Gestes d'échange et de partage"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "les techniques d'impression ou la création de matrices",
         "then": "Print analysis and planning: Study different types of prints, plan printmaking designs on paper, practice vocabulary without actual printing process."
       },
       "realWorldConnection": "Stamps, copying machines, printed books and newspapers",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des matrices pré-faites ou simplifiées",
+          "Se concentrer sur le processus d'impression seulement",
+          "Travailler avec assistance pour l'encrage",
+          "Utiliser des outils plus gros et plus faciles"
+        ],
+        "forAdvanced": [
+          "Créer des matrices complexes avec plusieurs couleurs",
+          "Expérimenter avec différents papiers et encres",
+          "Créer des séries thématiques d'impressions",
+          "Enseigner les techniques aux autres"
+        ],
+        "forELL": [
+          "Focus sur les démonstrations visuelles",
+          "Cartes de vocabulaire avec images du processus",
+          "Jumelage avec pairs pour guidance",
+          "Permettre l'expression en langue première"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les capacités motrices",
+          "Simplifier les étapes du processus",
+          "Fournir aide physique pour l'impression",
+          "Objectifs adaptés aux capacités individuelles"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève crée une matrice d'impression simple",
+          "L'élève réalise plusieurs impressions identiques",
+          "L'élève utilise le vocabulaire: gravure, impression, multiples",
+          "L'élève comprend le concept de reproduction"
+        ],
+        "checkpoints": [
+          "Produit au moins 3 impressions similaires",
+          "Explique le processus d'impression",
+          "Utilise correctement les outils de base",
+          "Participe à l'échange d'œuvres"
+        ]
       }
     },
     {
@@ -303,14 +603,26 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Compare simple collages to sophisticated examples. Identify layers, composition principles, intentional material choices. Introduce vocabulary: COLLAGE (layering gesture), COUCHE (layer-building motion), COMPOSITION (arranging gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Exemples de collages simples et sophistiqués",
+          "Matériaux de collage variés pour démonstration",
+          "Cartes de vocabulaire avec gestes",
+          "Transparences pour montrer les couches"
+        ],
+        "visualSupports": "Comparaisons de collages, démonstration des couches, exemples de compositions réussies",
+        "decisionPoints": [
+          "Si des élèves ne voient pas la différence entre simple et sophistiqué → pointer les éléments spécifiques comme les couches",
+          "Si des élèves pensent que sophistiqué = difficile → expliquer que c'est une question de planification, pas de difficulté",
+          "Si les concepts sont trop abstraits → utiliser des analogies comme construire un sandwich"
+        ],
+        "movementBreaks": [
+          "Gestes pour superposer les couches",
+          "Mouvements d'organisation et de composition"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création de collages sophistiqués. Planifier d'abord la composition sur croquis, puis construire par couches. Utiliser variété de textures, transparences, papiers spéciaux. Encourager: 'Ma première couche montre...', 'Cette composition crée...'. Documenter les choix créatifs.",
         "materials": [
           "Variety of sophisticated collage materials (textured papers, transparencies, fabrics)",
           "Quality adhesives",
@@ -318,32 +630,80 @@
           "Large format papers",
           "Planning sketches"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Guide de planification de composition, exemples de superposition, techniques de collage illustrées",
+        "decisionPoints": [
+          "Si les couches se décollent → montrer les bonnes techniques de collage et types d'adhésifs",
+          "Si la composition semble déséquilibrée → enseigner la règle des tiers et l'équilibre visuel",
+          "Si les élèves utilisent trop de matériaux → les guider vers des choix plus sélectifs"
+        ],
+        "movementBreaks": [
+          "Pauses pour reculer et observer la composition",
+          "Changement entre différentes stations de matériaux"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Collage Critique Session. Students present their sophisticated collages, explaining layering and compositional choices. Use advanced vocabulary: 'Ma composition utilise des couches pour...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Supports d'exposition pour collages",
+          "Guides de présentation",
+          "Cartes de vocabulaire pour critique constructive"
+        ],
+        "visualSupports": "Modèles de présentation, vocabulaire de critique artistique, exemples de feedback constructif",
+        "decisionPoints": [
+          "Si des élèves sont timides pour présenter → offrir l'option de présenter en paires",
+          "Si les critiques deviennent négatives → rediriger vers l'analyse des techniques et choix créatifs",
+          "Si le temps manque → faire des présentations express de 30 secondes"
+        ],
+        "movementBreaks": [
+          "Mouvements pour présenter et pointer les éléments",
+          "Applaudissements pour chaque présentation"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la planification des compositions ou la manipulation des matériaux",
         "then": "Collage analysis and planning: Study sophisticated collages in art books or online, plan complex collages on paper using drawing and vocabulary practice."
       },
       "realWorldConnection": "Magazine layouts, scrapbooks, mood boards, advertising design",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des modèles de composition pré-planés",
+          "Limiter à 2-3 types de matériaux",
+          "Fournir de l'aide pour la planification",
+          "Travailler sur format plus petit"
+        ],
+        "forAdvanced": [
+          "Créer des compositions multi-couches complexes",
+          "Expérimenter avec des techniques mixtes",
+          "Planifier des séries de collages liés",
+          "Mentorer d'autres élèves dans leurs techniques"
+        ],
+        "forELL": [
+          "Focus sur l'exploration visuelle et tactile",
+          "Cartes de vocabulaire avec images de techniques",
+          "Démonstrations sans explications verbales complexes",
+          "Support de pairs bilingues"
+        ],
+        "forIEP": [
+          "Adapter les outils de découpage selon les besoins",
+          "Simplifier les étapes de planification",
+          "Matériaux adaptés aux sensibilités",
+          "Objectifs modifiés selon les capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève crée un collage avec plusieurs couches",
+          "L'élève utilise le vocabulaire: collage, couche, composition",
+          "L'élève démontre des choix compositionnels délibérés",
+          "L'élève explique ses décisions créatives"
+        ],
+        "checkpoints": [
+          "Planifie sa composition avant de coller",
+          "Utilise au moins 3 matériaux différents",
+          "Crée un effet de profondeur avec les couches",
+          "Présente son œuvre avec vocabulaire approprié"
+        ]
       }
     },
     {
@@ -360,14 +720,26 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Explore different textiles: woven vs knitted vs sewn. Feel different fabric textures and structures. Introduce vocabulary: TEXTILE (fabric touching motion), TISSER (weaving motion with fingers), COUDRE (stitching motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Variété de textiles à toucher et examiner",
+          "Exemples de tissage, tricot, couture",
+          "Cartes de vocabulaire avec gestes",
+          "Loupes pour observer les structures"
+        ],
+        "visualSupports": "Images agrandies de structures textiles, gestes pour chaque mot de vocabulaire, exemples d'arts textiles",
+        "decisionPoints": [
+          "Si des élèves ont des sensibilités tactiles → permettre l'observation visuelle seulement ou utiliser des outils",
+          "Si des élèves ne voient pas les différences → guider leurs doigts pour sentir les textures contrastées",
+          "Si des élèves confondent les techniques → démontrer les mouvements distinctifs de chaque technique"
+        ],
+        "movementBreaks": [
+          "Gestes de tissage avec les doigts",
+          "Mouvements de couture et de manipulation de tissu"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Stations d'exploration textile. Rotation entre tissage simple, couture sur feutrine, manipulation de tissus. Démontrer chaque technique, laisser explorer. Encourager: 'Je tisse en passant...', 'Mon textile a une texture...'. Créer de petites œuvres textiles.",
         "materials": [
           "Simple weaving looms or cardboard frames",
           "Yarn and fabric strips",
@@ -375,32 +747,80 @@
           "Felt and burlap for stitching",
           "Variety of fabrics for manipulation"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Démonstrations étape par étape pour chaque technique, guides de sécurité, exemples d'œuvres textiles",
+        "decisionPoints": [
+          "Si le tissage est trop difficile → simplifier avec des bandes de papier avant d'utiliser la laine",
+          "Si les aiguilles causent des difficultés → commencer par le tissage manuel sans outils",
+          "Si des élèves se frustrent avec les nœuds → enseigner des techniques simples ou aider individuellement"
+        ],
+        "movementBreaks": [
+          "Rotation entre stations d'activités textiles",
+          "Mouvements de tissage et d'étirement des fils"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Textile Arts Appreciation. Display textile creations and discuss how textile arts connect to clothing, decoration, and cultural traditions. Practice textile vocabulary in context.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Supports d'affichage pour œuvres textiles",
+          "Images de textiles traditionnels de différentes cultures",
+          "Vêtements ou objets décoratifs textiles"
+        ],
+        "visualSupports": "Galerie d'arts textiles, connexions culturelles illustrées, vocabulaire textile en contexte",
+        "decisionPoints": [
+          "Si des élèves ne voient pas les connexions culturelles → montrer des exemples concrets de leur environnement",
+          "Si l'appréciation devient trop abstraite → se concentrer sur l'observation et la description des textures",
+          "Si le temps manque → faire un tour rapide en nommant les techniques observées"
+        ],
+        "movementBreaks": [
+          "Mouvements pour imiter les techniques textiles observées",
+          "Gestes d'appréciation pour les créations"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la coordination fine ou la manipulation des outils textiles",
         "then": "Textile exploration without tools: Examine different fabrics and textiles, practice vocabulary, plan textile art projects using drawing and fabric samples."
       },
       "realWorldConnection": "Clothing construction, quilts, traditional crafts, home decoration",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des matériaux plus gros et plus faciles à manipuler",
+          "Se concentrer sur une seule technique par session",
+          "Fournir aide physique pour les mouvements complexes",
+          "Simplifier les projets textile"
+        ],
+        "forAdvanced": [
+          "Combiner plusieurs techniques textiles en une œuvre",
+          "Explorer des motifs et designs complexes",
+          "Rechercher des techniques textiles traditionnelles",
+          "Enseigner les techniques à leurs pairs"
+        ],
+        "forELL": [
+          "Focus sur l'exploration tactile et visuelle",
+          "Cartes de vocabulaire avec images de techniques",
+          "Démonstrations sans explications verbales complexes",
+          "Jumelage avec pairs bilingues"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les capacités motrices",
+          "Simplifier les techniques selon les besoins",
+          "Fournir supports physiques au besoin",
+          "Matériaux adaptés aux sensibilités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève explore différentes techniques textiles",
+          "L'élève utilise le vocabulaire: textile, tisser, coudre",
+          "L'élève crée des œuvres textiles simples",
+          "L'élève fait des connexions avec les textiles quotidiens"
+        ],
+        "checkpoints": [
+          "Essaie au moins deux techniques textiles",
+          "Identifie différentes structures textiles",
+          "Utilise le vocabulaire pour décrire son travail",
+          "Crée une petite œuvre textile personnelle"
+        ]
       }
     },
     {
@@ -417,14 +837,26 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review all advanced techniques learned in previous lessons. Show examples of artworks combining multiple techniques. Introduce vocabulary: MIXTE (combining gesture), COMPLEXE (layered complexity gesture), INTÉGRER (integration motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Exemples d'œuvres utilisant plusieurs techniques",
+          "Affichage des techniques apprises (leçons 1-7)",
+          "Cartes de vocabulaire avec gestes",
+          "Matériaux de toutes les leçons précédentes"
+        ],
+        "visualSupports": "Résumé visuel des techniques apprises, exemples de combinaisons réussies, gestes pour le vocabulaire",
+        "decisionPoints": [
+          "Si des élèves ne se souviennent pas des techniques précédentes → faire un rappel rapide avec démonstrations",
+          "Si le concept de 'complexe' intimide → expliquer que complexe = plusieurs techniques simples ensemble",
+          "Si des élèves veulent tout essayer en même temps → les guider vers 2-3 techniques compatibles"
+        ],
+        "movementBreaks": [
+          "Gestes de rappel pour chaque technique apprise",
+          "Mouvements d'intégration et de combinaison"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création d'œuvres à techniques mixtes. Planifier d'abord: choisir 2-3 techniques compatibles. Créer une œuvre intégrant les techniques choisies. Encourager: 'J'intègre... avec...', 'Mon œuvre complexe utilise...'. Documenter le processus créatif.",
         "materials": [
           "All materials from previous advanced technique lessons",
           "Large format paper or canvas",
@@ -432,32 +864,80 @@
           "Documentation cameras",
           "Complex artwork examples"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Guide de planification pour techniques mixtes, exemples d'intégration réussie, étapes de combinaison illustrées",
+        "decisionPoints": [
+          "Si les techniques ne se mélangent pas bien → suggerer des alternatives compatibles ou des zones séparées",
+          "Si les élèves sont dépassés par les choix → limiter à 2 techniques et guider la planification",
+          "Si le résultat ne ressemble pas aux attentes → célébrer l'expérimentation et les découvertes"
+        ],
+        "movementBreaks": [
+          "Rotation entre différentes stations de techniques",
+          "Pauses pour observer et planifier les prochaines étapes"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Complex Artwork Presentation. Students present their multi-technique works, explaining how different techniques were integrated. Use sophisticated vocabulary to describe complex creative decisions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Supports d'exposition pour œuvres complexes",
+          "Cartes de présentation structurées",
+          "Guide de vocabulaire pour présentations"
+        ],
+        "visualSupports": "Modèles de présentation, vocabulaire sophistiqué pour décrire les œuvres, exemples d'analyse d'œuvres",
+        "decisionPoints": [
+          "Si des élèves ont du mal à expliquer leur processus → les aider avec des questions guidées",
+          "Si les présentations deviennent trop longues → structurer avec un temps limité par élève",
+          "Si le vocabulaire sophistiqué est difficile → offrir des alternatives simples mais précises"
+        ],
+        "movementBreaks": [
+          "Mouvements pour démontrer les techniques intégrées",
+          "Applaudissements pour célébrer les créations complexes"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "l'intégration de plusieurs techniques ou la planification complexe",
         "then": "Integration planning and analysis: Plan multi-technique artworks on paper, analyze complex artworks by other artists, practice integration vocabulary without full creation."
       },
       "realWorldConnection": "Professional artists combining many techniques, complex craft projects",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Limiter à 2 techniques simples et compatibles",
+          "Fournir des modèles de planification pré-faits",
+          "Travailler en équipe avec support",
+          "Se concentrer sur l'exploration plutôt que le résultat"
+        ],
+        "forAdvanced": [
+          "Intégrer 4-5 techniques différentes",
+          "Créer des effets innovants avec les combinaisons",
+          "Planifier des séries d'œuvres liées",
+          "Mentorer d'autres élèves dans l'intégration"
+        ],
+        "forELL": [
+          "Focus sur la création visuelle plutôt que verbale",
+          "Démonstrations claires des combinaisons",
+          "Vocabulaire supporté par des images",
+          "Jumelage pour l'explication du processus"
+        ],
+        "forIEP": [
+          "Adapter le nombre de techniques selon les capacités",
+          "Simplifier la planification avec supports visuels",
+          "Fournir aide physique pour l'exécution",
+          "Objectifs modifiés selon les besoins individuels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève combine avec succès plusieurs techniques",
+          "L'élève utilise le vocabulaire: mixte, complexe, intégrer",
+          "L'élève planifie ses combinaisons de techniques",
+          "L'élève explique ses choix d'intégration"
+        ],
+        "checkpoints": [
+          "Intègre au moins 2 techniques différentes",
+          "Planifie avant d'exécuter",
+          "Utilise le vocabulaire pour décrire son processus",
+          "Crée des effets uniques avec les combinaisons"
+        ]
       }
     },
     {
@@ -474,46 +954,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Look at students' artwork from throughout the unit. Identify patterns in their choices: favorite techniques, colors, subjects, approaches. Introduce vocabulary: STYLE (distinctive gesture), PERSONNEL (point to self), DÉVELOPPER (growth motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Portfolios d'œuvres des élèves de l'unité",
+          "Exemples de styles artistiques variés",
+          "Cartes de vocabulaire avec gestes",
+          "Grilles d'analyse de style personnel"
+        ],
+        "visualSupports": "Galerie des œuvres de l'élève, exemples de différents styles artistiques, gestes pour le vocabulaire",
+        "decisionPoints": [
+          "Si des élèves ne voient pas leurs patterns → les aider à identifier leurs techniques préférées ou couleurs récurrentes",
+          "Si des élèves pensent qu'ils n'ont pas de style → expliquer que chaque personne a des préférences uniques",
+          "Si la comparaison devient compétitive → rediriger vers l'appréciation des différences et de l'unicité"
+        ],
+        "movementBreaks": [
+          "Gestes distinctifs pour montrer son style personnel",
+          "Mouvements de développement et de croissance artistique"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Développement du style personnel. Analyser ses œuvres précédentes pour identifier son style unique. Créer une nouvelle œuvre qui exprime délibérément ce style. Encourager: 'Mon style personnel utilise...', 'Je développe mon style en...'. Documenter les choix stylistiques.",
         "materials": [
           "Student artwork portfolios from entire unit",
           "Art creation materials matching individual preferences",
           "Style documentation sheets",
           "Recording equipment for style statements"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Guide d'analyse de style personnel, exemples de déclarations d'artistes sur leur style, modèles de documentation",
+        "decisionPoints": [
+          "Si des élèves veulent copier le style des autres → encourager l'inspiration tout en développant leur vision unique",
+          "Si des élèves sont frustrés par leurs 'limitations' → les aider à voir leurs caractéristiques comme des forces",
+          "Si le style semble trop limité → encourager l'expérimentation dans les paramètres de leur style"
+        ],
+        "movementBreaks": [
+          "Mouvements expressifs qui représentent leur style",
+          "Pauses pour réfléchir et observer son travail"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Personal Style Gallery. Display newest artworks that emphasize individual styles. Students present style statements and point out style elements in their work. Celebrate artistic individuality.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace d'exposition pour styles personnels",
+          "Cartes de déclaration de style",
+          "Supports pour présentation individuelle"
+        ],
+        "visualSupports": "Galerie organisée par style, modèles de déclarations d'artiste, célébration de la diversité",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par des partages en petits groupes",
+          "Si des styles semblent trop similaires → aider à identifier les nuances subtiles mais importantes",
+          "Si des élèves critiquent les styles des autres → rediriger vers l'appréciation de la diversité artistique"
+        ],
+        "movementBreaks": [
+          "Mouvements de présentation confiante de son style",
+          "Célébration collective de la diversité artistique"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "l'identification de leur style personnel ou la confiance en leurs choix artistiques",
         "then": "Style study without creation: Analyze famous artists' styles, identify style elements in artwork reproduction, practice style vocabulary through analysis activities."
       },
       "realWorldConnection": "Recognizing that everyone has their own way of creating and expressing",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des guides pour identifier les éléments de style",
+          "Concentrer sur 1-2 caractéristiques de style seulement",
+          "Utiliser des comparaisons visuelles simples",
+          "Célébrer tous les choix comme valides"
+        ],
+        "forAdvanced": [
+          "Analyser l'évolution de leur style à travers l'unité",
+          "Créer une série d'œuvres dans leur style",
+          "Comparer leur style à celui d'artistes célèbres",
+          "Planifier le développement futur de leur style"
+        ],
+        "forELL": [
+          "Focus sur l'identification visuelle plutôt que verbale",
+          "Utiliser des images pour communiquer le style",
+          "Permettre l'expression en langue première",
+          "Support par des pairs bilingues"
+        ],
+        "forIEP": [
+          "Adapter l'analyse selon les capacités cognitives",
+          "Simplifier les concepts de style",
+          "Utiliser des supports visuels concrets",
+          "Célébrer leur expression unique"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie des éléments de son style personnel",
+          "L'élève utilise le vocabulaire: style, personnel, développer",
+          "L'élève crée consciemment dans son style",
+          "L'élève articule ses choix stylistiques"
+        ],
+        "checkpoints": [
+          "Identifie 2-3 caractéristiques de son style",
+          "Crée une œuvre qui exprime son style personnel",
+          "Présente son style avec confiance",
+          "Apprécie la diversité des styles des autres"
+        ]
       }
     },
     {
@@ -530,46 +1070,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Discuss difference between decorative art and conceptual art. Show examples of art that expresses ideas vs art that's purely visual. Introduce vocabulary: CONCEPT (thinking gesture), IDÉE (lightbulb gesture), EXPRIMER (expression gestures).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Exemples d'art décoratif vs conceptuel",
+          "Images d'œuvres qui expriment des idées",
+          "Cartes de vocabulaire avec gestes",
+          "Objets pour illustrer les concepts vs décoration"
+        ],
+        "visualSupports": "Comparaisons art décoratif/conceptuel, gestes pour le vocabulaire, exemples d'œuvres à message",
+        "decisionPoints": [
+          "Si des élèves ne comprennent pas la différence → utiliser des exemples très concrets comme un dessin de fleur vs un dessin sur l'amitié",
+          "Si le concept semble trop abstrait → commencer par des idées simples comme 'bonheur', 'famille', 'nature'",
+          "Si des élèves préfèrent l'art décoratif → expliquer que les deux types sont valides et importants"
+        ],
+        "movementBreaks": [
+          "Gestes de réflexion et d'expression d'idées",
+          "Mouvements pour représenter différents concepts"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création d'art conceptuel. Choisir une idée importante (amitié, nature, famille). Planifier comment l'exprimer avec les techniques apprises. Créer une œuvre qui communique ce concept. Encourager: 'Mon concept est...', 'J'exprime cette idée en...'. Documenter les choix conceptuels.",
         "materials": [
           "All advanced technique materials from previous lessons",
           "Concept planning sheets",
           "Idea development templates",
           "Examples of concept-technique connections"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Guide de développement d'idées, connexions concept-technique, exemples d'art conceptuel pour enfants",
+        "decisionPoints": [
+          "Si des élèves choisissent des concepts trop complexes → les aider à simplifier et concrétiser",
+          "Si l'exécution ne reflète pas le concept → guider vers des ajustements ou des explications supplémentaires",
+          "Si des élèves abandonnent leur concept en cours → les encourager à persister ou adapter leur approche"
+        ],
+        "movementBreaks": [
+          "Pauses pour réfléchir sur le concept choisi",
+          "Mouvements expressifs liés au concept"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Conceptual Art Presentations. Students present artworks and explain concepts being expressed. Audience tries to 'read' concepts in artwork. Practice vocabulary: 'Cette œuvre exprime le concept de...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Supports de présentation pour art conceptuel",
+          "Guide pour 'lire' les concepts dans l'art",
+          "Cartes de feedback constructif"
+        ],
+        "visualSupports": "Modèles de présentation conceptuelle, vocabulaire pour analyser l'art conceptuel",
+        "decisionPoints": [
+          "Si l'audience ne 'lit' pas le concept → aider l'artiste à expliquer ou pointer les éléments clés",
+          "Si des concepts sont mal interprétés → célébrer les multiples interprétations possibles",
+          "Si des élèves critiquent les concepts des autres → rediriger vers l'appréciation des idées personnelles"
+        ],
+        "movementBreaks": [
+          "Mouvements pour 'montrer' et expliquer le concept",
+          "Gestes d'appréciation pour les idées partagées"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la sélection d'un concept ou l'expression d'idées à travers l'art",
         "then": "Conceptual planning without creation: Develop concept-to-technique plans on paper, analyze conceptual artworks, practice conceptual vocabulary through planning exercises."
       },
       "realWorldConnection": "Understanding that art can express feelings, ideas, and messages",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir une liste de concepts simples à choisir",
+          "Utiliser des images pour clarifier les concepts",
+          "Se concentrer sur l'expression plutôt que la complexité",
+          "Permettre l'aide verbale pour expliquer le concept"
+        ],
+        "forAdvanced": [
+          "Explorer des concepts abstraits plus complexes",
+          "Créer des séries d'œuvres sur le même concept",
+          "Analyser comment les artistes célèbres expriment des idées",
+          "Développer leur propre symbolisme artistique"
+        ],
+        "forELL": [
+          "Utiliser des concepts universels (famille, nature)",
+          "Permettre l'explication en langue première",
+          "Focus sur l'expression visuelle plutôt que verbale",
+          "Support par des images et des gestes"
+        ],
+        "forIEP": [
+          "Simplifier les concepts selon les capacités cognitives",
+          "Utiliser des supports visuels concrets",
+          "Adapter les attentes d'expression",
+          "Célébrer toute tentative d'expression conceptuelle"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève choisit un concept à exprimer",
+          "L'élève utilise le vocabulaire: concept, idée, exprimer",
+          "L'élève crée une œuvre avec intention conceptuelle",
+          "L'élève explique le lien entre son idée et son œuvre"
+        ],
+        "checkpoints": [
+          "Articule clairement le concept choisi",
+          "Fait des choix artistiques délibérés pour exprimer l'idée",
+          "Présente son œuvre conceptuelle avec confiance",
+          "Apprécie les concepts exprimés par les autres"
+        ]
       }
     },
     {
@@ -586,14 +1186,26 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Introduce art criticism as learning tool, not just opinion sharing. Practice constructive criticism vs destructive criticism. Introduce vocabulary: CRITIQUE (analytical thinking gesture), ANALYSER (close examination motion), VOCABULAIRE (words/speaking gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Exemples de critiques constructives vs destructives",
+          "Liste de vocabulaire d'analyse artistique",
+          "Cartes de questions pour la critique",
+          "Exemples d'œuvres à analyser"
+        ],
+        "visualSupports": "Comparaisons critique constructive/destructive, vocabulaire d'analyse illustré, gestes pour le vocabulaire",
+        "decisionPoints": [
+          "Si des élèves confondent critique et méchanceté → démontrer avec des exemples concrets la différence",
+          "Si des élèves ont peur de critiquer → commencer par des observations neutres avant les jugements",
+          "Si la critique devient trop négative → rediriger vers l'identification des forces et améliorations possibles"
+        ],
+        "movementBreaks": [
+          "Gestes d'analyse et d'examen attentif",
+          "Mouvements pour exprimer différents types de critiques"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Pratique de critique d'art guidée. En paires, analyser des œuvres d'élèves et d'artistes professionnels. Utiliser le vocabulaire avancé et poser des questions analytiques. Pratiquer: 'Cette œuvre utilise...', 'L'artiste exprime...'. Documenter les analyses.",
         "materials": [
           "Advanced art vocabulary lists",
           "Critique question templates",
@@ -601,32 +1213,80 @@
           "Professional artwork examples",
           "Critique recording sheets"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Guide de questions d'analyse, vocabulaire d'art avancé, modèles de critique constructive",
+        "decisionPoints": [
+          "Si les critiques manquent de vocabulaire spécifique → fournir des listes de mots et encourager leur usage",
+          "Si des élèves donnent seulement des opinions → les guider vers des observations factuelles d'abord",
+          "Si les critiques deviennent répétitives → introduire de nouveaux aspects à analyser (couleur, composition, technique)"
+        ],
+        "movementBreaks": [
+          "Changement de partenaires pour différentes analyses",
+          "Mouvements pour pointer et examiner les détails"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Critique Reflection. Students reflect on criticism received and given. Discuss how critique helps artistic growth. Practice vocabulary: 'La critique m'aide à...' Plan how to use critique for improvement.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Feuilles de réflexion sur la critique",
+          "Guide pour utiliser la critique constructivement",
+          "Cartes de résumé des apprentissages"
+        ],
+        "visualSupports": "Modèles de réflexion, cycle de l'amélioration par la critique, vocabulaire de croissance",
+        "decisionPoints": [
+          "Si des élèves sont découragés par les critiques reçues → souligner les aspects positifs et les opportunités",
+          "Si des élèves résistent à la critique → expliquer comment elle aide tous les artistes à grandir",
+          "Si la réflexion est superficielle → poser des questions plus profondes sur l'impact personnel"
+        ],
+        "movementBreaks": [
+          "Gestes de croissance et d'amélioration",
+          "Mouvements de gratitude pour les commentaires reçus"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "l'utilisation du vocabulaire critique ou la formulation d'analyses constructives",
         "then": "Critique practice with reproductions: Practice critique skills using famous artworks or art reproductions, focusing on vocabulary development and analytical thinking."
       },
       "realWorldConnection": "Discussing movies, books, music - expressing opinions about creative works",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des phrases-modèles pour la critique",
+          "Se concentrer sur des observations simples avant l'analyse",
+          "Utiliser des images pour supporter le vocabulaire",
+          "Permettre la critique orale plutôt qu'écrite"
+        ],
+        "forAdvanced": [
+          "Utiliser un vocabulaire critique plus sophistiqué",
+          "Analyser des aspects techniques complexes",
+          "Comparer les œuvres à différents styles artistiques",
+          "Formuler des critiques détaillées et nuancées"
+        ],
+        "forELL": [
+          "Vocabulaire critique supporté par des images",
+          "Permettre l'usage de la langue première pour clarifier",
+          "Focus sur l'observation avant l'analyse verbale",
+          "Support de pairs bilingues"
+        ],
+        "forIEP": [
+          "Simplifier le vocabulaire critique",
+          "Adapter les attentes d'analyse",
+          "Utiliser des supports visuels concrets",
+          "Encourager toute tentative d'analyse"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève utilise le vocabulaire critique approprié",
+          "L'élève fait des observations précises sur les œuvres",
+          "L'élève donne des critiques constructives",
+          "L'élève réfléchit sur les critiques reçues"
+        ],
+        "checkpoints": [
+          "Utilise au moins 3 termes de vocabulaire artistique",
+          "Identifie techniques et choix artistiques",
+          "Formule des commentaires constructifs",
+          "Planifie des améliorations basées sur les critiques"
+        ]
       }
     },
     {
@@ -643,46 +1303,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Discuss how they created their best artwork: what steps, what decisions, what changes. Introduce vocabulary: PROCESSUS (step-by-step motion), CRÉATIF (creative thinking gesture), DOCUMENTER (recording/writing motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Œuvres précédentes des élèves pour référence",
+          "Diagrammes de processus créatifs",
+          "Cartes de vocabulaire avec gestes",
+          "Exemples de documentation de processus"
+        ],
+        "visualSupports": "Étapes du processus créatif illustrées, gestes pour le vocabulaire, exemples de réflexion d'artistes",
+        "decisionPoints": [
+          "Si des élèves ne se souviennent pas de leurs étapes → les aider avec des questions guidées sur leur dernière création",
+          "Si des élèves pensent qu'ils n'ont pas de processus → expliquer que chacun a une façon unique de créer",
+          "Si le concept semble trop abstrait → utiliser des analogies comme cuisiner ou construire"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer les étapes du processus",
+          "Mouvements de documentation et d'enregistrement"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Documentation du processus créatif personnel. Créer une petite œuvre en documentant chaque étape: idée initiale, choix de matériaux, décisions, changements. Encourager: 'Mon processus commence par...', 'Je documente en...'. Réfléchir sur leurs habitudes créatives.",
         "materials": [
           "Documentation tools (cameras, recording devices, notebooks)",
           "Art materials for new creation",
           "Process analysis templates",
           "Process documentation examples"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Modèles de documentation, exemples de processus créatifs d'élèves, guide de réflexion",
+        "decisionPoints": [
+          "Si la documentation interrompt la création → alterner entre création et documentation par petites étapes",
+          "Si des élèves résistentqu'à la réflexion → la présenter comme une découverte de soi intéressante",
+          "Si le processus semble trop complexe → simplifier en se concentrant sur 3-4 étapes principales"
+        ],
+        "movementBreaks": [
+          "Pauses pour observer et réfléchir sur le processus",
+          "Mouvements pour changer entre création et documentation"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Process Sharing. Students share insights about their creative processes. Compare different approaches. Discuss how understanding process helps improve art-making. Celebrate process diversity.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Documentations de processus créées",
+          "Tableau comparatif des différents processus",
+          "Cartes de célébration de la diversité"
+        ],
+        "visualSupports": "Galerie de processus, comparaisons de différentes approches, célébration de l'unicité",
+        "decisionPoints": [
+          "Si des élèves comparent négativement leurs processus → souligner que chaque processus est unique et valide",
+          "Si certains processus semblent plus 'impressionnants' → célébrer la simplicité autant que la complexité",
+          "Si des élèves veulent copier d'autres processus → encourager l'inspiration tout en valorisant leur approche personnelle"
+        ],
+        "movementBreaks": [
+          "Mouvements pour montrer et expliquer son processus",
+          "Gestes d'appréciation pour la diversité créative"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la réflexion sur leur processus ou la documentation des étapes",
         "then": "Process analysis without new creation: Analyze creative processes used in previous artworks, discuss creative decision-making, practice process vocabulary through reflection."
       },
       "realWorldConnection": "Understanding how they learn and create in all areas of life",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier la documentation à 3 étapes principales",
+          "Utiliser des dessins plutôt que des mots pour documenter",
+          "Fournir des modèles de réflexion guidée",
+          "Se concentrer sur le ressenti plutôt que l'analyse"
+        ],
+        "forAdvanced": [
+          "Analyser l'évolution de leur processus à travers l'unité",
+          "Comparer leur processus à celui d'artistes professionnels",
+          "Développer des stratégies pour améliorer leur processus",
+          "Documenter de multiples approches créatives"
+        ],
+        "forELL": [
+          "Documentation visuelle plutôt que verbale",
+          "Vocabulaire du processus supporté par des images",
+          "Permettre l'explication en langue première",
+          "Focus sur l'action plutôt que la description"
+        ],
+        "forIEP": [
+          "Adapter la complexité de la réflexion",
+          "Utiliser des supports visuels concrets",
+          "Simplifier les outils de documentation",
+          "Célébrer leur approche unique"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie les étapes de son processus créatif",
+          "L'élève utilise le vocabulaire: processus, créatif, documenter",
+          "L'élève documente ses choix et décisions",
+          "L'élève réfléchit sur sa façon de créer"
+        ],
+        "checkpoints": [
+          "Décrit au moins 3 étapes de son processus",
+          "Documente ses décisions créatives",
+          "Partage ses insights sur son approche créative",
+          "Apprécie la diversité des processus des autres"
+        ]
       }
     },
     {
@@ -699,46 +1419,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Discuss how professional artists collaborate: sharing expertise, dividing complex tasks, combining different strengths. Introduce vocabulary: COLLABORATION (working together gesture), AVANCÉ (sophisticated level gesture), TECHNIQUE (skillful demonstration).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images d'artistes collaborant",
+          "Exemples de projets collaboratifs réussis",
+          "Cartes de rôles pour collaboration",
+          "Cartes de vocabulaire avec gestes"
+        ],
+        "visualSupports": "Exemples de collaborations artistiques, gestes pour le vocabulaire, diagrammes de rôles collaboratifs",
+        "decisionPoints": [
+          "Si des élèves préfèrent travailler seuls → expliquer les avantages uniques de la collaboration artistique",
+          "Si des élèves sont inquiets de partager leurs idées → créer un environnement sécuritaire pour le partage",
+          "Si le concept de collaboration avancée semble intimidant → commencer par des exemples simples et familiaux"
+        ],
+        "movementBreaks": [
+          "Gestes de collaboration et de travail d'équipe",
+          "Mouvements pour montrer différentes compétences techniques"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Projet collaboratif avancé. Équipes de 3-4 élèves planifient puis créent une œuvre combinant plusieurs techniques apprises. Chaque membre contribue avec sa spécialité. Encourager: 'Notre collaboration utilise...', 'Mon rôle avancé est de...'. Documenter le processus collaboratif.",
         "materials": [
           "All advanced technique materials from unit",
           "Large format collaborative workspace",
           "Role assignment tools",
           "Collaboration planning templates"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Guides de planification collaborative, exemples de répartition des rôles, modèles d'œuvres collaboratives",
+        "decisionPoints": [
+          "Si des conflits émergent dans les équipes → enseigner des stratégies de résolution et de compromis",
+          "Si certains élèves dominent le projet → s'assurer que chaque membre a un rôle défini et valorisé",
+          "Si la coordination devient difficile → introduire des temps de planification et de vérification réguliers"
+        ],
+        "movementBreaks": [
+          "Rotation entre différentes tâches collaboratives",
+          "Pauses pour coordination et planification d'équipe"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Collaborative Artwork Presentation. Groups present artworks and explain how different advanced techniques were contributed by different collaborators. Celebrate successful artistic teamwork.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Supports de présentation pour œuvres collaboratives",
+          "Cartes de réflexion sur la collaboration",
+          "Certificats de collaboration réussie"
+        ],
+        "visualSupports": "Galerie de projets collaboratifs, modèles de présentation d'équipe, célébration du travail d'équipe",
+        "decisionPoints": [
+          "Si des équipes oublient de mentionner tous les contributeurs → les encourager à reconnaître chaque rôle",
+          "Si des présentations sont déséquilibrées → s'assurer que chaque membre a l'occasion de parler",
+          "Si des élèves critiquent d'autres équipes → rediriger vers l'appréciation des différentes approches collaboratives"
+        ],
+        "movementBreaks": [
+          "Mouvements de présentation collaborative",
+          "Célébrations d'équipe et applaudissements"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la coordination d'équipe ou l'intégration des différentes techniques",
         "then": "Collaboration planning without creation: Plan complex collaborative artworks on paper, assign roles, practice collaboration vocabulary through planning exercises."
       },
       "realWorldConnection": "Professional artists working together, family projects requiring different skills",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Assigner des rôles spécifiques et plus simples",
+          "Jumeler avec des équipiers soutenants",
+          "Réduire la complexité des techniques requises",
+          "Fournir plus de structure et de guidance"
+        ],
+        "forAdvanced": [
+          "Prendre des rôles de leadership dans l'équipe",
+          "Intégrer des techniques particulièrement complexes",
+          "Aider à coordonner le projet d'équipe",
+          "Développer des innovations collaboratives"
+        ],
+        "forELL": [
+          "Focus sur la contribution technique plutôt que verbale",
+          "Jumelage avec pairs bilingues",
+          "Rôles qui utilisent leurs forces artistiques",
+          "Communication supportée par l'art visuel"
+        ],
+        "forIEP": [
+          "Adapter les rôles selon les capacités individuelles",
+          "Fournir support supplémentaire pour l'interaction sociale",
+          "Ajuster les attentes de collaboration",
+          "Célébrer toute participation à l'équipe"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève contribue activement au projet d'équipe",
+          "L'élève utilise le vocabulaire: collaboration, avancé, technique",
+          "L'élève intègre ses compétences avec celles des autres",
+          "L'élève respecte et valorise les contributions des autres"
+        ],
+        "checkpoints": [
+          "Remplit son rôle dans l'équipe efficacement",
+          "Contribue avec des techniques avancées maîtrisées",
+          "Communique et coordonne avec les coequipiers",
+          "Présente fier du travail collaboratif"
+        ]
       }
     },
     {
@@ -755,46 +1535,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Experience difference between small artworks and large installations. Walk through or around large classroom arrangement. Introduce vocabulary: INSTALLATION (environmental gesture), ÉCHELLE (scale comparison), ESPACE (space-defining gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Arrangement large dans la classe pour démonstration",
+          "Images d'installations artistiques célèbres",
+          "Cartes de vocabulaire avec gestes",
+          "Outils de mesure pour comprendre l'échelle"
+        ],
+        "visualSupports": "Photos d'installations, gestes pour le vocabulaire, comparaisons d'échelle, exemples d'utilisation de l'espace",
+        "decisionPoints": [
+          "Si des élèves sont désorientés par l'installation démo → les guider physiquement et verbalement à travers l'espace",
+          "Si le concept d'échelle est difficile → utiliser leur corps comme unité de mesure pour comparaisons",
+          "Si des élèves ont peur des grands espaces → commencer par des installations plus petites et intimes"
+        ],
+        "movementBreaks": [
+          "Marche exploratoire autour de l'installation démo",
+          "Gestes pour définir et mesurer l'espace"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création d'installation artistique. En équipes, planifier puis construire une installation utilisant les techniques apprises. Considérer l'espace, l'échelle, l'interaction. Encourager: 'Notre installation transforme l'espace...', 'L'échelle crée l'effet de...'. Documenter l'expérience.",
         "materials": [
           "Large installation space",
           "Advanced technique materials scaled up",
           "Installation planning tools",
           "Spatial measurement tools"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Plans d'installation, guides de l'utilisation de l'espace, exemples d'effets d'échelle",
+        "decisionPoints": [
+          "Si les installations deviennent trop ambitieuses → aider à ajuster l'échelle aux contraintes de temps et d'espace",
+          "Si des équipes ont du mal avec l'espace 3D → commencer par des croquis et maquettes",
+          "Si l'installation perturbe d'autres activités → définir des zones spécifiques et des règles d'usage"
+        ],
+        "movementBreaks": [
+          "Déplacements pour construire dans différentes zones",
+          "Pauses pour observer l'installation sous différents angles"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Installation Experience. Walk through completed installation as viewers. Discuss how large scale and spatial relationships affect artistic experience. Practice installation vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Parcours organisé pour visiter les installations",
+          "Cartes d'observation d'installation",
+          "Guide de vocabulaire pour décrire l'expérience spatiale"
+        ],
+        "visualSupports": "Guide de visite d'installation, vocabulaire pour décrire les effets spatiaux",
+        "decisionPoints": [
+          "Si la circulation devient chaotique → organiser des groupes de visite avec des parcours structurés",
+          "Si des installations sont fragiles → établir des règles d'observation respectueuse",
+          "Si des élèves ne comprennent pas l'effet spatial → les guider vers des observations spécifiques"
+        ],
+        "movementBreaks": [
+          "Marche contemplative à travers les installations",
+          "Pauses pour apprécier différents points de vue"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "la conception spatiale ou la compréhension de l'échelle",
         "then": "Installation planning and analysis: Plan installations on paper or in miniature, analyze famous installations, practice installation vocabulary through planning exercises."
       },
       "realWorldConnection": "Museum installations, public art, themed room decoration",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Travailler sur des installations plus petites et simples",
+          "Se concentrer sur un aspect (couleur, texture) plutôt que complexité",
+          "Utiliser des modèles et supports visuels",
+          "Collaboration étroite avec des pairs plus expérimentés"
+        ],
+        "forAdvanced": [
+          "Créer des installations multi-sensorielles complexes",
+          "Intégrer plusieurs techniques avancées",
+          "Explorer des concepts spatiaux sophistiqués",
+          "Guider d'autres équipes dans leurs installations"
+        ],
+        "forELL": [
+          "Focus sur l'expression spatiale plutôt que verbale",
+          "Vocabulaire supporté par l'expérience directe",
+          "Jumelage avec pairs bilingues pour explication",
+          "Utiliser l'installation comme langage universel"
+        ],
+        "forIEP": [
+          "Adapter l'échelle selon les capacités physiques",
+          "Simplifier les concepts spatiaux",
+          "Fournir support pour navigation dans l'espace",
+          "Célébrer toute contribution à l'installation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève contribue à créer une installation spatiale",
+          "L'élève utilise le vocabulaire: installation, échelle, espace",
+          "L'élève considère les effets spatiaux et d'échelle",
+          "L'élève navigue et apprécie les installations des autres"
+        ],
+        "checkpoints": [
+          "Participe à la planification spatiale de l'installation",
+          "Utilise les techniques apprises à grande échelle",
+          "Décrit l'impact de l'échelle sur l'expérience",
+          "Respecte et apprécie l'espace artistique créé"
+        ]
       }
     },
     {
@@ -811,46 +1651,107 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review all advanced techniques learned in unit. Students identify which techniques they feel most confident using. Introduce vocabulary: MAÎTRISE (mastery demonstration), DÉMONTRER (showing/proving gesture), CHOISI (choice-making gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Portfolio complet des techniques apprises dans l'unité",
+          "Auto-évaluations des compétences techniques",
+          "Cartes de vocabulaire avec gestes",
+          "Exemples de maîtrise artistique de différents niveaux"
+        ],
+        "visualSupports": "Résumé visuel de toutes les techniques, échelles de maîtrise, gestes pour le vocabulaire",
+        "decisionPoints": [
+          "Si des élèves ont du mal à choisir leurs techniques fortes → les aider à revoir leur portfolio pour identifier les réussites",
+          "Si des élèves sous-estiment leur maîtrise → souligner leurs progrès et améliorations observées",
+          "Si certains pensent tout maîtriser → les défier gentiment à démontrer avec excellence"
+        ],
+        "movementBreaks": [
+          "Gestes de démonstration de maîtrise pour chaque technique",
+          "Mouvements de choix délibéré et de confiance"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Démonstration de maîtrise personnelle. Chaque élève crée une œuvre finale utilisant ses techniques les mieux maîtrisées. Viser l'excellence dans l'exécution. Encourager: 'Je démontre ma maîtrise de...', 'J'ai choisi cette technique parce que...'. Préparer une déclaration d'artiste.",
         "materials": [
           "All advanced technique materials",
           "High-quality art materials for mastery work",
           "Documentation tools",
           "Artist statement templates"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Modèles de déclarations d'artiste, critères d'excellence technique, exemples de maîtrise artistique",
+        "decisionPoints": [
+          "Si des élèves visent la perfection impossible → rediriger vers la maîtrise de leurs capacités actuelles",
+          "Si l'exécution ne reflète pas la maîtrise claimée → encourager la persisting ou le choix d'une technique mieux maîtrisée",
+          "Si des élèves perdent confiance en cours → rappeler leurs succès précédents et encourager"
+        ],
+        "movementBreaks": [
+          "Pauses pour évaluer et ajuster la qualité du travail",
+          "Moments de concentration intense sur la maîtrise technique"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Mastery Exhibition. Present mastery artworks with formal artist statements. Celebrate individual technical growth and achievement. Practice mastery vocabulary in formal presentation context.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace d'exposition formelle pour œuvres de maîtrise",
+          "Supports pour déclarations d'artiste",
+          "Certificats de maîtrise technique",
+          "Cartes de célébration des progrès"
+        ],
+        "visualSupports": "Galerie de maîtrise, modèles de présentations formelles, célébration des accomplissements",
+        "decisionPoints": [
+          "Si des présentations manquent de confiance → rappeler concrètement les progrès réalisés depuis le début",
+          "Si l'atmosphère devient trop compétitive → rediriger vers la célébration des progrès individuels",
+          "Si des élèves minimisent leurs accomplissements → souligner spécifiquement leur croissance et maîtrise"
+        ],
+        "movementBreaks": [
+          "Mouvements de présentation confiante et professionnelle",
+          "Célébrations d'accomplissement et de fierté artistique"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "l'identification de leurs compétences maîtrisées ou la confiance en leurs capacités",
         "then": "Mastery planning and analysis: Plan mastery demonstrations on paper, analyze technical mastery in professional artworks, practice mastery vocabulary through self-assessment."
       },
       "realWorldConnection": "Showing what they've learned, like performing a piano piece or demonstrating sports skills",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Définir la maîtrise selon leurs capacités individuelles",
+          "Célébrer les progrès plutôt que la perfection",
+          "Fournir des exemples concrets de leurs améliorations",
+          "Permettre la démonstration de techniques plus simples mais bien exécutées"
+        ],
+        "forAdvanced": [
+          "Défier à démontrer des techniques particulièrement complexes",
+          "Encourager l'innovation dans l'usage des techniques maîtrisées",
+          "Créer des œuvres qui poussent leurs limites techniques",
+          "Devenir mentors pour partager leur maîtrise"
+        ],
+        "forELL": [
+          "Maîtrise démontrée à travers l'art plutôt que les mots",
+          "Vocabulaire de maîtrise supporté par l'action",
+          "Déclarations d'artiste avec support visuel",
+          "Célébration de l'expression artistique universelle"
+        ],
+        "forIEP": [
+          "Adapter les critères de maîtrise aux objectifs individuels",
+          "Célébrer toute démonstration de progrès",
+          "Fournir supports supplémentaires pour la présentation",
+          "Reconnaissance de leurs accomplissements uniques"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie ses techniques les mieux maîtrisées",
+          "L'élève utilise le vocabulaire: maîtrise, démontrer, choisi",
+          "L'élève exécute des techniques avec compétence",
+          "L'élève présente ses accomplissements avec fierté"
+        ],
+        "checkpoints": [
+          "Démontre maîtrise d'au moins 2 techniques avancées",
+          "Crée une œuvre qui reflète ses compétences",
+          "Présente avec confiance et vocabulaire approprié",
+          "Reconnaît et célèbre sa croissance artistique"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",

@@ -26,7 +26,11 @@
           "welcome music"
         ],
         "visualSupports": "Open arms for community inclusion, pointing gestures for exploration, wide circle for neighborhood concept",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît pas le mot 'quartier' → utiliser des gestes qui montrent 'autour de nous' et pointer vers les fenêtres pour montrer l'extérieur",
+          "Si un élève dit qu'il n'aime pas son quartier → rassurer qu'on peut toujours trouver quelque chose de bien et commencer par identifier une chose positive",
+          "Si un élève veut parler de lieux dangereux → rediriger vers les endroits sécuritaires et les personnes qui aident dans le quartier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -59,7 +63,10 @@
         "activity": "Neighborhood appreciation circle where students share one word that describes their neighborhood. End with group chant: 'Mon quartier est spécial!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne peut pas penser à un mot pour décrire son quartier → suggérer des mots simples comme 'bon', 'calme', ou 'grand'",
+          "Si un élève utilise des mots négatifs → accepter ses sentiments et ajouter quelque chose de positif comme 'et aussi...'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -98,7 +105,10 @@
           "pointing props"
         ],
         "visualSupports": "Confident pointing gestures, proud posture, directional movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne sait pas où il habite → commencer par identifier des repères qu'il connaît près de l'école",
+          "Si un élève confond 'maison' et 'quartier' → utiliser ses mains pour montrer 'petit' pour maison et 'grand' pour quartier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -131,7 +141,10 @@
         "activity": "Home connection sharing where students show their drawings and share one thing they like about where their home is located. Celebrate all locations as special.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit 'Je ne sais pas mon adresse' → rassurer que c'est normal et qu'on peut commencer par des repères qu'il connaît",
+          "Si un élève veut dire son adresse complète → l'encourager mais garder le focus sur les concepts généraux pour tous"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -170,7 +183,10 @@
           "celebration music"
         ],
         "visualSupports": "Varied hand shapes for different houses, celebratory expressions, inclusive arm movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît pas ses voisins → expliquer qu'on peut quand même observer les maisons autour de nous",
+          "Si un élève veut parler de problèmes avec des voisins → rediriger vers l'observation respectueuse des différences"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -203,7 +219,10 @@
         "activity": "Home appreciation sharing where students share one positive thing about a different type of home they learned about. End with chant: 'Toutes les maisons sont importantes!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève fait des commentaires négatifs sur d'autres maisons → rediriger vers l'appréciation de la diversité: 'Toutes les maisons sont spéciales'",
+          "Si un élève semble triste de sa propre maison → célébrer que chaque maison est parfaite pour sa famille"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -242,7 +261,10 @@
           "connection ribbons"
         ],
         "visualSupports": "Walking motions, stopping gestures, looking both ways, connecting hand movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur de marcher dans certaines rues → discuter des adultes de confiance et des règles de sécurité",
+          "Si un élève veut explorer au-delà des limites → expliquer l'importance de rester dans notre zone sécuritaire"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -275,7 +297,10 @@
         "activity": "Street appreciation circle where students share one place they like to go on neighborhood streets. Practice safe walking movements together.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a jamais remarqué les règles de sécurité → commencer par observer ensemble les feux et les passages piétons",
+          "Si un élève partage une expérience effrayante → valider ses sentiments et renforcer les stratégies de sécurité"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -314,7 +339,10 @@
           "alertness music"
         ],
         "visualSupports": "Alert posture, looking both ways, confident walking stance, protective gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur de marcher dans certaines rues → discuter des adultes de confiance et des règles de sécurité",
+          "Si un élève veut explorer au-delà des limites → expliquer l'importance de rester dans notre zone sécuritaire"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -347,7 +375,10 @@
         "activity": "Safety confidence circle where students share one safety rule they will remember and practice their confident, alert walking stance.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a jamais remarqué les règles de sécurité → commencer par observer ensemble les feux et les passages piétons",
+          "Si un élève partage une expérience effrayante → valider ses sentiments et renforcer les stratégies de sécurité"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -386,7 +417,10 @@
           "service music"
         ],
         "visualSupports": "Service gestures, helping movements, shopping actions, community connection motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît aucun commerce dans son quartier → commencer par identifier où sa famille fait les courses",
+          "Si un élève confond les types de commerces → utiliser des objets concrets pour clarifier (pain = boulangerie)"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -419,7 +453,10 @@
         "activity": "Business appreciation circle where students share one neighborhood business they would like to learn more about and why it's helpful to families.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève veut visiter tous les commerces maintenant → expliquer qu'on va les découvrir petit à petit",
+          "Si un élève dit que sa famille ne va jamais dans les commerces → accepter que chaque famille a ses habitudes"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -458,7 +495,10 @@
           "appreciation music"
         ],
         "visualSupports": "Job-specific movements, helping gestures, respectful acknowledgment, community service motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne reconnaît aucun travailleur du quartier → commencer par les personnes à l'école comme exemples",
+          "Si un élève veut parler du travail de ses parents → l'encourager mais maintenir le focus sur les travailleurs visibles dans le quartier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -491,7 +531,10 @@
         "activity": "Worker appreciation circle where students share one neighborhood worker they want to thank and practice saying 'Merci pour votre travail' (Thank you for your work).",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève veut être tous les métiers à la fois → célébrer son enthousiasme et dire qu'il peut choisir plus tard",
+          "Si un élève dit qu'un métier est 'pour les filles' ou 'pour les garçons' → clarifier que tous les métiers sont pour tout le monde"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -530,7 +573,10 @@
           "community music"
         ],
         "visualSupports": "Sharing gestures, inclusive arm movements, welcoming expressions, community gathering motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne comprend pas ce que sont les services publics → utiliser des exemples concrets qu'il voit chaque jour",
+          "Si un élève demande pourquoi on a besoin de ces services → expliquer simplement comment ils aident les familles"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -563,7 +609,10 @@
         "activity": "Public service appreciation circle where students share one public place they enjoy and explain how it helps everyone in the neighborhood.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a jamais utilisé certains services → expliquer que toutes les familles ont des besoins différents",
+          "Si un élève veut savoir qui paie pour ces services → donner une explication simple sur le travail communautaire"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -602,7 +651,10 @@
           "visualization music"
         ],
         "visualSupports": "Bird's-eye view gestures, drawing motions in air, spatial positioning, overview perspectives",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève trouve difficile de dessiner une carte → l'encourager à commencer par dessiner sa maison et l'école",
+          "Si un élève veut inclure trop de détails → l'aider à choisir les éléments les plus importants"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -636,7 +688,10 @@
         "activity": "Map sharing gallery walk where students display their maps and share one interesting route or place they included.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève compare sa carte négativement à d'autres → célébrer que chaque quartier est unique et spécial",
+          "Si un élève ne peut pas lire sa propre carte → l'aider à ajouter des symboles ou images simples"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -677,7 +732,10 @@
           "safety vests"
         ],
         "visualSupports": "Alert observation postures, pointing gestures, scanning movements, confident walking stance",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur d'explorer certains endroits → respecter ses sentiments et se concentrer sur les lieux sécuritaires",
+          "Si un élève veut aller au-delà des limites établies → rediriger vers l'exploration dans notre zone désignée"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -710,7 +768,10 @@
         "activity": "Exploration debrief circle where students share one new thing they noticed about their neighborhood and one way they felt connected to their community during the walk.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève trouve l'exploration fatigante → offrir des pauses et rappeler l'objectif d'apprendre ensemble",
+          "Si un élève fait des découvertes excitantes → l'encourager à les partager avec la classe"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -749,7 +810,10 @@
           "growth music"
         ],
         "visualSupports": "Before/after comparison gestures, growth movements, positive change expressions, development motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne remarque aucun changement → l'aider en posant des questions spécifiques sur les saisons ou nouveaux bâtiments",
+          "Si un élève s'inquiète des changements → expliquer que les changements peuvent être positifs et aider le quartier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -782,7 +846,10 @@
         "activity": "Change appreciation circle where students share one positive change they would like to see in their neighborhood and explain how it would help families.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève résiste aux changements → valider que parfois les changements sont difficiles mais peuvent être bons aussi",
+          "Si un élève a des idées très créatives pour les changements → célébrer sa créativité et discuter de réalisme"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -821,7 +888,10 @@
           "community care music"
         ],
         "visualSupports": "Gentle caring gestures, protective movements, nurturing actions, community stewardship motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne sait pas comment aider → commencer par des actions très simples comme ne pas jeter de déchets",
+          "Si un élève propose des idées trop ambitieuses → valider son enthousiasme et rediriger vers des actions à sa portée"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -854,7 +924,10 @@
         "activity": "Community care commitment circle where students share one way they will help take care of their neighborhood and practice saying 'Notre quartier est précieux' (Our neighborhood is precious).",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit 'Ça ne change rien si je le fais tout seul' → expliquer que chaque personne compte et que les petites actions s'additionnent",
+          "Si un élève veut nettoyer tout le quartier aujourd'hui → célébrer son esprit communautaire et parler de patience"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -893,7 +966,10 @@
           "travel music"
         ],
         "visualSupports": "Various transportation movements, confident travel gestures, safe movement demonstrations, connection motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît aucun moyen de transport dans son quartier → commencer par observer comment les gens se déplacent",
+          "Si un élève s'inquiète de la sécurité des transports → discuter des règles de sécurité et des adultes de confiance"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -926,7 +1002,10 @@
         "activity": "Transportation appreciation circle where students share their favorite way to travel through the neighborhood and explain why it's helpful for families.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève veut essayer tous les moyens de transport → expliquer qu'on peut observer et apprendre d'abord",
+          "Si un élève a peur de certains transports → valider ses sentiments et se concentrer sur ceux qui le rassurent"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -965,7 +1044,10 @@
           "peaceful nature music"
         ],
         "visualSupports": "Growing plant gestures, peaceful breathing, nature appreciation movements, outdoor connection motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a pas d'espaces verts près de chez lui → expliquer que même un petit arbre ou des fleurs comptent",
+          "Si un élève veut jouer dans tous les espaces verts → discuter des règles et du respect de la nature"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -998,7 +1080,10 @@
         "activity": "Green space appreciation circle where students share one activity they enjoy in outdoor spaces and explain why green spaces are important for neighborhoods.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'il n'y a rien de vert dans son quartier → l'aider à chercher même les plus petits éléments naturels",
+          "Si un élève veut ramasser tout ce qu'il voit dans la nature → enseigner le respect en laissant les choses en place"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1037,7 +1122,10 @@
           "welcoming music"
         ],
         "visualSupports": "Friendly waving, warm greeting expressions, respectful acknowledgment, community connection gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est très timide pour rencontrer des voisins → commencer par un simple sourire et 'bonjour'",
+          "Si un élève veut aller frapper à toutes les portes → expliquer l'importance du respect et des limites"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1070,7 +1158,10 @@
         "activity": "Neighbor appreciation circle where students share one way they can be a good neighbor and practice saying 'Nous sommes une communauté' (We are a community).",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève partage une interaction négative avec un voisin → valider ses sentiments et se concentrer sur les relations positives possibles",
+          "Si un élève veut devenir le meilleur ami de tous les voisins → apprécier son enthousiasme social et discuter d'attentes réalistes"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1149,7 +1240,10 @@
           "festive music"
         ],
         "visualSupports": "Joyful celebration movements, inclusive gathering gestures, community participation actions, festive expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a jamais participé à un événement de quartier → expliquer qu'il y en aura peut-être un bientôt",
+          "Si un élève veut organiser un énorme événement tout de suite → canaliser son enthousiasme vers des idées plus simples"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1182,7 +1276,10 @@
         "activity": "Event planning circle where students share one type of neighborhood event they would enjoy and explain how it would help neighbors feel connected.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève propose un événement très coûteux → rediriger vers des activités simples et amusantes",
+          "Si un élève ne peut pas penser à un événement → suggérer des idées simples comme un pique-nique"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1261,7 +1358,10 @@
           "collaborative music"
         ],
         "visualSupports": "Thinking postures, collaborative gestures, solution-finding movements, confident problem-solving expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève se concentre trop sur les problèmes négatifs → rediriger vers des solutions positives et l'espoir",
+          "Si un élève propose des solutions irréalistes → valider sa créativité et guider vers des solutions pratiques"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1294,7 +1394,10 @@
         "activity": "Solution sharing circle where students present their group's solution ideas and practice saying 'Nous pouvons faire la différence' (We can make a difference).",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est trop timide pour présenter → lui permettre de présenter avec un partenaire ou de contribuer autrement",
+          "Si un élève critique les idées d'autres groupes → rediriger vers l'appréciation et les commentaires constructifs"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1373,7 +1476,10 @@
           "empowerment music"
         ],
         "visualSupports": "Leadership postures, citizen action gestures, community contribution movements, empowered expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne se sent pas capable de faire du leadership → rassurer que chaque contribution compte, même petite",
+          "Si un élève veut tout diriger seul → encourager le travail d'équipe et le partage des responsabilités"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1406,7 +1512,10 @@
         "activity": "Project commitment circle where students share their role in the improvement project and practice saying 'Mon action compte' (My action matters).",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne sait pas quel rôle choisir → l'aider à identifier ses forces et intérêts personnels",
+          "Si un élève veut prendre tous les rôles → expliquer l'importance du travail d'équipe et de la spécialisation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1485,7 +1594,10 @@
           "pride music"
         ],
         "visualSupports": "Confident presentation postures, proud gesturing, ambassadorial expressions, community pride demonstrations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est nerveux de présenter → lui rappeler qu'il connaît bien son quartier et peut parler de ce qu'il aime",
+          "Si un élève ne trouve rien de positif à présenter → l'aider à identifier au moins une chose spéciale dans son quartier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1518,7 +1630,10 @@
         "activity": "Presentation celebration circle where students share one highlight from their neighborhood presentation preparation and practice audience appreciation.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'arrive pas à choisir un point fort → l'aider en posant des questions spécifiques sur ce qu'il a appris",
+          "Si un élève critique sa propre présentation → rediriger vers les aspects positifs et l'effort fourni"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1597,7 +1712,10 @@
           "pride celebration items"
         ],
         "visualSupports": "Heart-centered gestures, loving expressions, pride postures, community appreciation movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne se sent pas fier de son quartier → l'aider à identifier les aspects positifs et ses propres connections",
+          "Si un élève compare négativement son quartier à d'autres → célébrer l'unicité et les qualités spéciales de chaque quartier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1630,7 +1748,10 @@
         "activity": "Community pride celebration circle where students share one way their learning about neighborhoods has made them feel more connected to their community. End with group chant: 'Notre quartier, notre fierté!' (Our neighborhood, our pride!)",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a du mal à articuler sa connection → l'aider avec des questions guidées sur ses apprentissages favoris",
+          "Si un élève exprime de la tristesse de finir l'unité → célébrer que son apprentissage continue dans sa vie quotidienne"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

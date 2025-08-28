@@ -1418,7 +1418,11 @@
         "activity": "Révision rythmée: Compter 0-10 en tapant des mains, puis identifier 'Qu'est-ce qui vient après 5? Avant 8?'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves confondent l'ordre des nombres → utiliser la ligne de nombre physique et montrer avec le doigt",
+          "Si perte d'attention avec le rythme → varier la vitesse du claquement et ajouter des gestes",
+          "Si confusion sur 'avant et après' → utiliser des objets concrets comme des perles sur une ficelle"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1426,7 +1430,11 @@
         "activity": "Chasse aux régularités: Créer des colliers de perles suivant la séquence 0-10. Jeu 'Nombre mystère' (quel nombre manque?). Construire des tours suivant l'ordre numérique.",
         "materials": [],
         "visualSupports": "Ligne de nombre géante, cartes séquentielles, motifs visuels",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si frustration avec les perles → offrir des blocs plus gros et faciles à manipuler",
+          "Si élève trouve trop facilement le nombre manquant → cacher deux nombres consécutifs",
+          "Si confusion dans la construction des tours → montrer étape par étape et laisser imiter"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1434,7 +1442,11 @@
         "activity": "Cercle de régularité: Chaque élève dit le nombre qui vient après celui de son voisin.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit le mauvais nombre → encourager doucement et rappeler le dernier nombre dit",
+          "Si timidité pour participer → permettre de chuchoter la réponse à l'oreille",
+          "Si excitation trop forte → utiliser un objet 'bâton de parole' pour structurer les tours"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1489,7 +1501,11 @@
         "activity": "Jeu de comparaison corporelle: 'Qui est plus grand/petit?' puis transition vers 'Quels nombres sont plus grands/petits?'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne comprend pas 'plus grand/petit' → comparer d'abord avec la taille des élèves",
+          "Si confusion entre les mots français → utiliser des gestes: main haute pour 'plus', main basse pour 'moins'",
+          "Si agitation pendant les comparaisons → faire participer le corps: se lever si plus grand, s'accroupir si plus petit"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1497,7 +1513,11 @@
         "activity": "Ateliers de comparaison: Balance avec objets pour comparer quantités. Tours de cubes côte à côte. Jeu 'Plus ou moins' avec cartes. Tri d'objets par quantité.",
         "materials": [],
         "visualSupports": "Symboles visuels (<, >, =), couleurs pour 'plus/moins', graphiques comparatifs",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si balance penche trop vite → ajouter les objets un par un lentement pour voir l'effet",
+          "Si élèves veulent tous toucher en même temps → établir des tours avec minuteur de 2 minutes",
+          "Si confusion avec les symboles < > → expliquer que 'la bouche mange le plus gros nombre'"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1505,7 +1525,11 @@
         "activity": "Jeu 'Vrai ou faux': L'enseignant fait une affirmation de comparaison, les élèves montrent pouce levé/baissé.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves montrent pouce trop rapidement sans réfléchir → demander de compter jusqu'à trois avant de montrer",
+          "Si désaccord sur vrai/faux → refaire la comparaison avec objets concrets devant tous",
+          "Si fatigue à rester assis → permettre de se lever pour montrer pouce levé/baissé"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1560,7 +1584,11 @@
         "activity": "Échauffement moteur: Tracer les nombres dans l'air avec tout le bras, puis avec le doigt.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves bougent n'importe comment → modéliser des mouvements lents et contrôlés",
+          "Si confusion entre tracer dans l'air et écrire → montrer la différence: 'grand dans l'air, petit sur papier'",
+          "Si certains ne participent pas → offrir choix: grand mouvement de bras ou petit mouvement de doigt"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1568,7 +1596,11 @@
         "activity": "Ateliers d'écriture multi-sensoriels: Tracer dans le sable, écrire avec craies sur papier texturé, suivre des modèles pointillés, créer un carnet personnel de nombres.",
         "materials": [],
         "visualSupports": "Flèches directionnelles sur les chiffres, couleurs pour différentes parties",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si frustration avec écriture au crayon → commencer avec doigt dans sable ou peinture au doigt",
+          "Si chiffre écrit à l'envers → mettre point de départ vert et flèche de direction",
+          "Si élève perfectionne trop et se décourage → célébrer toute tentative: 'Je vois que tu essaies!'"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1576,7 +1608,11 @@
         "activity": "Exposition d'écriture: Célébrer les tentatives d'écriture et les progrès de chacun.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève timide pour montrer son travail → permettre de présenter à un ami seulement",
+          "Si élève dit 'c'est laid' → rediriger: 'Dis-moi comment tu l'as fait' au lieu de juger",
+          "Si comparaisons entre élèves → célébrer les différences: 'Chaque personne écrit différemment'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1643,7 +1679,9 @@
         },
         "visualSupports": "Affichage des nombres 0-10 appris comme référence",
         "decisionPoints": [
-          "Si anxiété d'évaluation → rassurer que c'est pour célébrer apprentissages"
+          "Si anxiété d'évaluation → rassurer que c'est pour célébrer apprentissages",
+          "Si élève dit 'Je ne sais rien faire' → montrer exemples de progrès depuis leçon 1",
+          "Si excitation trop forte pour le portfolio → établir règles calmes: chuchoter, marcher lentement"
         ],
         "movementBreaks": []
       },
@@ -1652,7 +1690,11 @@
         "activity": "Création de portfolio: Les élèves choisissent comment démontrer leur compréhension (dessins, constructions, écriture, photos). Stations optionnelles pour différents styles d'expression.",
         "materials": [],
         "visualSupports": "Exemples de portfolios, listes de vérification visuelles",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne sait pas quoi mettre dans portfolio → offrir 3 choix simples: dessiner, construire ou montrer avec doigts",
+          "Si élève veut tout faire en même temps → utiliser minuteur: 10 minutes par station",
+          "Si blocage créatif → commencer par 'Montre-moi ton nombre préféré' et développer à partir de là"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1660,7 +1702,11 @@
         "activity": "Partage des fiertés: Chaque élève partage une chose dont il est fier dans son portfolio.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève trop timide pour partager → permettre de montrer silencieusement en tenant son travail",
+          "Si élève veut tout expliquer → utiliser minuteur 'bâton de parole' de 1 minute",
+          "Si élève dit 'Je ne suis fier de rien' → aider à identifier une petite réussite: 'Tu as essayé, c'est formidable!'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1711,7 +1757,11 @@
         "activity": "Choix de jeux: Présenter les options de jeux et laisser les élèves choisir leurs préférences.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si tous veulent le même jeu → faire rotation obligatoire ou diviser en petits groupes",
+          "Si élève ne veut jouer à aucun jeu → offrir rôle d'aide-enseignant ou observateur spécial",
+          "Si trop d'excitation au choix → utiliser système de numéros tirés au hasard pour équité"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1747,7 +1797,11 @@
         "activity": "Réflexion ludique: Quel jeu était le plus amusant? Pourquoi? Qu'avez-vous pratiqué?",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève dit 'Rien n'était amusant' → aider à identifier une petite chose intéressante dans les jeux",
+          "Si tous parlent en même temps → utiliser 'bâton de parole' ou lever la main pour tour de parole",
+          "Si difficulté à expliquer 'pourquoi' → simplifier: 'Montre-moi avec ton visage si tu as aimé'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2214,7 +2268,11 @@
         "activity": "Mission d'enquête: Présenter la mission de détectives des nombres et réviser les règles de sécurité.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves se dispersent hors de l'école → rester en groupes de 4-5 avec un adulte par groupe",
+          "Si trop d'excitation en voyant les nombres → rappeler la mission: 'Nous sommes des détectives calmes'",
+          "Si élève ne trouve aucun nombre → guider vers horloge, numéros de salle, ou escaliers"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2222,7 +2280,11 @@
         "activity": "Exploration guidée: Parcourir l'école en petits groupes pour documenter les nombres trouvés - numéros de salles, horloges, panneaux, escaliers, etc. Noter ou photographier les découvertes.",
         "materials": [],
         "visualSupports": "Carnet d'enquête avec images, carte de l'école, liste de vérification",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves se perdent dans l'école → utiliser système de 'buddy' avec partenaire responsable",
+          "Si carnet tombe ou se perd → avoir carnets supplémentaires et rassurer que ce n'est pas grave",
+          "Si élève trouve trop de nombres → limiter à 3 favoris pour éviter surcharge"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2230,7 +2292,11 @@
         "activity": "Rapport de mission: Partager les découvertes les plus intéressantes et créer une carte des nombres de l'école.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si plusieurs élèves veulent partager en même temps → utiliser système de 'bâton de détective'",
+          "Si élève timide n'ose pas partager → permettre de chuchoter sa découverte à l'enseignant qui la répète",
+          "Si pas assez de temps pour tous → planifier suite au prochain cours avec photos prises"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2321,7 +2387,11 @@
         "activity": "Inspiration narrative: Lire une courte histoire mettant en vedette des nombres pour stimuler l'imagination.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves n'ont pas d'idées d'histoire → proposer début simple: 'Il était une fois le nombre 3 qui...'",
+          "Si histoire devient très longue → encourager gentiment: 'Raconte-moi la partie la plus importante'",
+          "Si élève veut utiliser nombres plus grands que 10 → rediriger: 'Nos amis 0-10 ont besoin d'aventures!'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2329,7 +2399,11 @@
         "activity": "Atelier de création d'histoires: Les élèves inventent des histoires où les nombres sont personnages principaux. Options: dessiner, dicter, jouer avec marionnettes, enregistrer.",
         "materials": [],
         "visualSupports": "Images d'inspiration, amorces d'histoire, exemples de personnages-nombres",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève frustré de ne pas pouvoir dessiner → offrir option de dicter histoire à l'adulte",
+          "Si élève veut faire histoire trop compliquée → simplifier: 'Que fait ton nombre aujourd'hui?'",
+          "Si manque d'inspiration → suggérer: 'Imagine si le nombre 5 rencontrait le nombre 2...'"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2337,7 +2411,11 @@
         "activity": "Théâtre d'histoires: Présentation volontaire des créations sous forme de mini-spectacles.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève trop timide pour présenter → permettre présentation à un seul ami ou en chuchotant",
+          "Si histoire trop longue pour le temps → encourager: 'Montre-nous juste la partie la plus excitante'",
+          "Si élève oublie son histoire → l'aider en posant questions simples: 'Quel nombre était le héros?'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2428,7 +2506,11 @@
         "activity": "Ouverture festive: Accueillir avec musique joyeuse et rappeler le chemin parcouru depuis la Leçon 1.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves trop excités par la musique → baisser le volume et utiliser gestes calmes",
+          "Si élève triste que l'unité se termine → rassurer: 'Nos nombres restent avec nous toujours!'",
+          "Si nostalgie des premières leçons → regarder ensemble photos du début: 'Regardez comme vous avez grandi!'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2436,7 +2518,11 @@
         "activity": "Festival des mathématiques: Centres de célébration - exposition des portfolios, démonstrations de compétences, jeux préférés revisités, partage avec d'autres classes ou parents.",
         "materials": [],
         "visualSupports": "Exposition organisée, affiches de progression, photos du parcours",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves se bousculent aux centres → établir rotation avec minuteur et maximum 4 par centre",
+          "Si élève ne veut pas que parents voient son travail → respecter et offrir alternative privée",
+          "Si sur-stimulation avec tous les centres → prévoir coin calme avec quelques élèves et adulte"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2444,7 +2530,11 @@
         "activity": "Cercle de reconnaissance: Chaque élève reçoit une reconnaissance spéciale et partage sa plus grande fierté mathématique.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève timide pour partager fierté → permettre de montrer objet de portfolio au lieu de parler",
+          "Si élève dit 'Je ne suis pas bon' → rediriger vers effort: 'Tu as essayé chaque jour, c'est magnifique!'",
+          "Si émotions fortes (larmes de joie/tristesse) → valider sentiment: 'C'est normal de ressentir cela, tu as travaillé si fort!'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

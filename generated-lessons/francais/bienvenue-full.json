@@ -638,7 +638,13 @@
           "classroom sound system (1)"
         ],
         "visualSupports": "Cat paw gestures, dog panting and tail wagging movements, bird flying motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent intimidés par les nouveaux sons d'animaux?",
+            "ifYes": "Commencer par les gestes seulement, ajouter les sons graduellement",
+            "ifNo": "Intégrer immédiatement les sons avec les mouvements pour enrichir l'apprentissage"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -674,7 +680,18 @@
           "Pierre puppet (1)"
         ],
         "visualSupports": "Model animal movements clearly, encourage gentle movements, animal sound demonstrations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves deviennent trop excités pendant les mouvements d'animaux?",
+            "ifYes": "Utiliser des signaux visuels pour calmer et ralentir les mouvements",
+            "ifNo": "Encourager l'enthousiasme tout en maintenant les règles de sécurité"
+          },
+          {
+            "question": "Si certains élèves hésitent à participer aux mouvements?",
+            "ifYes": "Permettre l'observation d'abord, puis encourager la participation graduelle",
+            "ifNo": "Continuer avec les activités de mouvement pour tous"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -744,7 +761,13 @@
           "body part poster for reference"
         ],
         "visualSupports": "Clear touching gestures, pointing to body parts, exaggerated movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont timides de toucher leurs parties du corps?",
+            "ifYes": "Utiliser Pierre puppet pour démontrer d'abord, encourager doucement",
+            "ifNo": "Procéder avec les activités de toucher et pointer directement"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -780,7 +803,13 @@
           "body part poster (1)"
         ],
         "visualSupports": "Clear body part demonstrations, gentle touching motions, rhythmic goodbye sequence",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves confondent encore les parties du corps?",
+            "ifYes": "Réviser lentement avec répétition, utiliser le miroir pour clarification",
+            "ifNo": "Célébrer leurs succès et encourager l'utilisation autonome"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -849,7 +878,13 @@
           "object basket"
         ],
         "visualSupports": "Clear pointing to objects, holding and touching gestures, searching movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne trouvent pas les objets demandés?",
+            "ifYes": "Donner des indices visuels supplémentaires et aider individuellement",
+            "ifNo": "Continuer avec le jeu de recherche et encourager l'entraide"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -879,9 +914,19 @@
       "closing": {
         "duration": 10,
         "activity": "Object appreciation circle: each child holds a classroom object and we say 'Merci, crayon!' or 'Au revoir, livre!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "classroom objects for appreciation (10-15)",
+          "Pierre puppet (1)",
+          "thank you gesture cards (10)"
+        ],
+        "visualSupports": "Gentle holding gestures, appreciation expressions, grateful heart gesture",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont de la difficulté à dire merci aux objets?",
+            "ifYes": "Modéliser avec Pierre puppet, permettre les gestes seulement",
+            "ifNo": "Encourager les phrases complètes avec 'Merci, [objet]!'"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -950,7 +995,18 @@
           "heart and X symbols"
         ],
         "visualSupports": "Heart gesture for 'j'aime', X or shaking head for 'non', thumbs up for 'oui'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves hésitent à exprimer leurs préférences?",
+            "ifYes": "Commencer par les gestes simples, encourager sans pression",
+            "ifNo": "Encourager l'expression libre des goûts avec 'J'aime' et 'Je n'aime pas'"
+          },
+          {
+            "question": "Si tous les élèves disent 'j'aime' pour tout?",
+            "ifYes": "Expliquer qu'il est normal d'avoir des préférences différentes",
+            "ifNo": "Célébrer la diversité des goûts dans la classe"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -981,9 +1037,19 @@
       "closing": {
         "duration": 10,
         "activity": "Preference sharing circle: each child shows one thing they love with 'J'aime' gesture and heart.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "favorite thing sharing circle props (1 set)",
+          "heart gesture cards (25)",
+          "celebration stickers (50)"
+        ],
+        "visualSupports": "Enthusiastic appreciation gestures, sharing circle movements, celebratory expressions",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves deviennent émotifs en partageant leurs favoris?",
+            "ifYes": "Offrir du réconfort et valider leurs sentiments avec douceur",
+            "ifNo": "Continuer le partage joyeux et encourager l'écoute respectueuse"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1563,7 +1629,18 @@
           "'Bravo!' celebration cards"
         ],
         "visualSupports": "Enthusiastic clapping, celebratory facial expressions, thumbs up gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont des difficultés avec les nombres en français?",
+            "ifYes": "Utiliser plus de supports visuels et compter ensemble lentement",
+            "ifNo": "Encourager le comptage autonome et ajouter des défis amusants"
+          },
+          {
+            "question": "Si l'activité de comptage devient chaotique?",
+            "ifYes": "Rétablir l'ordre avec des signaux visuels et reprendre calmement",
+            "ifNo": "Maintenir l'énergie positive tout en gardant la structure"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1676,7 +1753,13 @@
           "celebration music (optional)"
         ],
         "visualSupports": "Joyful laughter demonstrations, happy clapping, celebratory gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves deviennent trop excités pendant la célébration?",
+            "ifYes": "Canaliser l'énergie avec des mouvements structurés et des pauses calmes",
+            "ifNo": "Laisser la joie naturelle s'exprimer tout en maintenant la sécurité"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1829,7 +1912,18 @@
           "memory book or chart for class story"
         ],
         "visualSupports": "Gentle appreciation gestures, story memory demonstrations, encouraging expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal à se rappeler les détails de l'histoire?",
+            "ifYes": "Utiliser des indices visuels et poser des questions plus simples",
+            "ifNo": "Encourager le partage détaillé et poser des questions d'approfondissement"
+          },
+          {
+            "question": "Si certains élèves dominent la discussion de l'histoire?",
+            "ifYes": "Utiliser un objet de parole pour tour de rôle équitable",
+            "ifNo": "Continuer la discussion naturelle en encourageant tous à participer"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1981,7 +2075,18 @@
           "appreciation vocabulary cards"
         ],
         "visualSupports": "Admiring gestures, appreciation expressions, gentle art viewing movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves critiquent l'art des autres?",
+            "ifYes": "Rappeler les règles de respect et modéliser l'appréciation positive",
+            "ifNo": "Continuer l'appréciation artistique et encourager les compliments"
+          },
+          {
+            "question": "Si les élèves sont timides de montrer leur art?",
+            "ifYes": "Permettre le partage volontaire et rassurer sur la valeur de tout art",
+            "ifNo": "Encourager le partage fier et célébrer chaque création"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2134,7 +2239,18 @@
           "gratitude expressions poster"
         ],
         "visualSupports": "Appreciation gestures, 'délicieux' facial expressions, gratitude movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves n'aiment pas la nourriture présentée?",
+            "ifYes": "Respecter les préférences tout en encourageant l'ouverture respectueuse",
+            "ifNo": "Célébrer l'appréciation et encourager l'expression de gratitude"
+          },
+          {
+            "question": "Si les élèves ont des restrictions alimentaires?",
+            "ifYes": "Adapter l'activité avec des alternatives appropriées et sécuritaires",
+            "ifNo": "Continuer l'exploration culinaire tout en restant attentif aux besoins"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2287,7 +2403,18 @@
           "vocabulary cards for rhythm chant"
         ],
         "visualSupports": "Rhythmic conducting gestures, group coordination movements, celebratory musical expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal à suivre le rythme ensemble?",
+            "ifYes": "Ralentir le tempo et utiliser des signaux visuels clairs pour coordination",
+            "ifNo": "Maintenir le rythme et ajouter des variations musicales amusantes"
+          },
+          {
+            "question": "Si certains élèves sont timides de chanter?",
+            "ifYes": "Permettre la participation par les gestes seulement, encourager graduellement",
+            "ifNo": "Encourager le chant joyeux et créer un environnement accueillant"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2397,7 +2524,18 @@
           "certificate template (25 personalized certificates)"
         ],
         "visualSupports": "Celebration gestures, proud expressions, achievement recognition motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont modestes sur leurs accomplissements?",
+            "ifYes": "Encourager doucement la reconnaissance personnelle et célébrer leurs efforts",
+            "ifNo": "Continuer la célébration positive et encourager la fierté saine"
+          },
+          {
+            "question": "Si les élèves comparent leurs progrès avec les autres?",
+            "ifYes": "Recentrer sur les progrès individuels et célébrer chaque parcours unique",
+            "ifNo": "Maintenir l'accent sur les accomplissements personnels de chacun"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2433,7 +2571,18 @@
           "celebration music (optional)"
         ],
         "visualSupports": "Proud celebration expressions, achievement recognition gestures, community appreciation movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves deviennent émotifs en réfléchissant à leurs progrès?",
+            "ifYes": "Offrir du soutien émotionnel et valider leurs sentiments de fierté",
+            "ifNo": "Continuer la réflexion positive et encourager l'expression de gratitude"
+          },
+          {
+            "question": "Si les élèves veulent continuer à apprendre maintenant?",
+            "ifYes": "Rassurer qu'il y aura beaucoup plus d'apprentissage français à venir",
+            "ifNo": "Célébrer cette étape importante et encourager l'anticipation future"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

@@ -22,7 +22,11 @@
         "activity": "Chanson de bienvenue avec gestes: 'Mes mains mesurent tout!' Les élèves lèvent leurs mains, les comparent, explorent leur taille. Jeu 'Grande main, petite main' avec mouvements.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne comprend pas 'mesurer avec les mains' → montrer en plaçant sa main sur un objet puis ajouter une deuxième main",
+          "Si les élèves comparent des tailles de mains différentes → expliquer que chacun utilise SES mains pour mesurer",
+          "Si manque d'enthousiasme → ajouter jeu rythmé 'Tape, tape, mesure!' avec les mains"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -30,7 +34,11 @@
         "activity": "Exploration libre: Les élèves choisissent des objets et les mesurent avec leurs mains. Ils placent leurs mains bout à bout le long des objets. Activité en duo: comparer leurs résultats pour le même objet.",
         "materials": [],
         "visualSupports": "Tableau avec images: main = unité de mesure. Démonstration visuelle de 'bout à bout' sans espaces",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève laisse des espaces entre ses mains → montrer 'bout à bout' clairement avec gestes",
+          "Si difficulté à tenir l'objet stable → fournir aide d'un partenaire pour tenir l'objet",
+          "Si élève compte ses doigts au lieu des mains → rediriger vers la paume complète comme unité"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -38,7 +46,11 @@
         "activity": "Cercle de partage: Chaque élève montre un objet mesuré et dit combien de mains il fait. Chanson: 'Une main, deux mains, je sais mesurer!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés à partager ses résultats → l'encourager à montrer avec ses mains plutôt qu'à parler",
+          "Si confusion sur 'plus long' → utiliser des objets très différents pour clarifier le concept",
+          "Si temps insuffisant → raccourcir en demandant seulement 2-3 élèves de partager"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -769,7 +781,11 @@
           ]
         },
         "visualSupports": "Cercle au sol, tableau de résultats encore visible pour référence",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève déçu d'avoir un résultat différent → expliquer que c'est normal et intéressant",
+          "Si disputes sur 'qui a le bon résultat' → montrer que tous peuvent être corrects",
+          "Si manque de vocabulaire pour expliquer → fournir phrases modèles simples"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -912,7 +928,11 @@
           ]
         },
         "visualSupports": "Cercle au sol, rapports d'équipes visibles, objets mesurés",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si équipe n'arrive pas à présenter → les aider avec questions dirigées sur leur processus",
+          "Si présentation trop longue → limiter à une phrase par membre de l'équipe",
+          "Si autres équipes s'impatientent → incorporer mouvement ou chanson entre présentations"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1048,7 +1068,11 @@
           ]
         },
         "visualSupports": "Cercle au sol, feuilles de prédiction visibles, objets utilisés",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève veut changer sa prédiction après voir les autres → expliquer qu'on garde notre première idée",
+          "Si élève très fier d'une prédiction proche → célébrer tout en valorisant les autres efforts",
+          "Si élève découragé par ses prédictions → rappeler que c'est difficile et normal d'apprendre"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1191,7 +1215,11 @@
           ]
         },
         "visualSupports": "Lignes d'objets classés visibles, bacs de tri étiquetés",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si disputes sur l'ordre correct → montrer qu'il peut y avoir plusieurs bonnes réponses",
+          "Si élève ne peut expliquer son classement → poser questions simples: 'Celui-ci est plus...?'",
+          "Si fatigue avec l'activité → réduire nombre d'objets à classer"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1316,7 +1344,11 @@
         "activity": "Partage des découvertes: 'Qu'avez-vous appris sur les courbes?' Jeu: trouver d'autres objets courbes dans la classe à mesurer.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne peut expliquer la différence → utiliser objets droits et courbes côte à côte",
+          "Si confusion sur quand utiliser corde → donner règle simple: 'Si ça tourne, utilise la corde'",
+          "Si élève préfère toujours les objets droits → l'encourager à essayer au moins un objet courbe"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1380,7 +1412,11 @@
         "activity": "Jeu corporel: 'Montre-moi la hauteur!' (bras vers le haut), 'Montre-moi la largeur!' (bras écartés). Exploration de leur propre hauteur et largeur. Chanson directionnelle.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si confusion entre hauteur et largeur → utiliser gestes corporels: bras en l'air vs bras écartés",
+          "Si élève mesure toujours la même dimension → l'encourager: 'Essaie dans l'autre sens maintenant'",
+          "Si difficultés spatiales → utiliser objets rectangulaires simples comme références"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1388,7 +1424,11 @@
         "activity": "Stations directionnelles: Station 1 - Mesurer la hauteur de tours de blocs. Station 2 - Mesurer la largeur de livres. Station 3 - Mesurer leur propre hauteur et largeur. Découvrir les deux dimensions.",
         "materials": [],
         "visualSupports": "Flèches indiquant hauteur (↑) et largeur (↔), images de référence",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confond les directions → utiliser repères: 'Vers le plafond' pour hauteur, 'Vers les murs' pour largeur",
+          "Si frustration avec objets complexes → commencer par des formes géométriques simples",
+          "Si élève veut mesurer en diagonale → expliquer qu'on mesure droit dans chaque direction"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1396,7 +1436,11 @@
         "activity": "Jeu 'Direction mystère': L'enseignant demande la hauteur ou largeur d'un objet, les élèves montrent la direction appropriée avant de mesurer.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne peut expliquer la différence hauteur/largeur → faire comparer avec son corps",
+          "Si confusion sur laquelle est plus grande → accepter l'observation et célébrer la découverte",
+          "Si élève fatigué des mesures → permettre pause et encourager observation des autres"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1460,7 +1504,11 @@
         "activity": "Défi de l'inventeur: 'Vous êtes des inventeurs de mesure!' Brainstorm: quels objets pourraient servir d'unités? Encourager la créativité avec enthousiasme.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si manque d'idées créatives → proposer suggestions: 'Et avec ton pied? Ton doigt?'",
+          "Si élève choisit unité trop petite/grande → guider vers approprié sans décourager créativité",
+          "Si unité inventée ne fonctionne pas → encourager ajustement plutôt qu'abandon"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1468,7 +1516,11 @@
         "activity": "Atelier d'invention: Les élèves choisissent ou créent leur propre unité de mesure. Ils testent leur efficacité en mesurant différents objets. Partage et échange d'unités inventées.",
         "materials": [],
         "visualSupports": "Galerie d'idées d'unités possibles, critères d'une bonne unité de mesure",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si unité créative est impraticable → aider à la modifier pour qu'elle fonctionne mieux",
+          "Si élève copie les idées des autres → encourager au moins une modification personnelle",
+          "Si unité trop fragile → suggérer matériau plus solide ou technique différente"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1476,7 +1528,11 @@
         "activity": "Expo des inventions: chaque élève présente son unité inventée et démontre son utilisation. Applaudissements pour chaque invention créative.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne peut expliquer son invention → poser questions simples sur pourquoi il l'a choisie",
+          "Si autres élèves critiquent l'invention → rediriger vers aspects positifs et créatifs",
+          "Si présentation trop longue → limiter à 'Voici mon unité et comment elle marche'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1540,7 +1596,11 @@
         "activity": "Célébration de la croissance: 'Vous grandissez chaque jour!' Comparaison de tailles avec jeu debout. Anticipation: 'Combien mesurons-nous?' Chanson de croissance.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève timide face à être mesuré → commencer par mesurer objet familier comme son sac",
+          "Si chatouilles ou rires pendant mesure → garder atmosphère ludique tout en restant focalisé",
+          "Si préoccupation avec taille personnelle → normaliser toutes les tailles comme parfaites"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1548,7 +1608,11 @@
         "activity": "Stations de mesure personnelle: Les élèves se mesurent mutuellement contre le mur avec différentes unités. Ils notent leurs résultats et comparent. Photo de leur taille avec leur unité préférée.",
         "materials": [],
         "visualSupports": "Mur gradué, carnet visuel de croissance, photos de référence",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté à rester immobile → permettre mesure par segments ou avec aide d'ami",
+          "Si comparaisons blessantes entre tailles → rediriger vers aspects mathématiques neutres",
+          "Si élève veut se mesurer plusieurs fois → limiter pour garder temps pour tous"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1556,7 +1620,11 @@
         "activity": "Cercle de fierté: chaque élève partage sa taille dans son unité préférée. Célébration de leurs découvertes. Discussion sur la croissance future.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne se souvient pas de sa mesure → l'aider à retrouver son carnet ou refaire rapidement",
+          "Si élève gêné de partager sa taille → respecter et permettre participation alternative",
+          "Si discussion devient comparative/compétitive → rediriger vers célébration individuelle"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1620,7 +1688,11 @@
         "activity": "Défi de l'architecte: 'Vous êtes des architectes!' Présentation du projet: construire selon des mesures précises. Exploration des matériaux. Chanson des constructeurs.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève intimidé par le terme 'architecte' → expliquer simplement comme 'constructeur spécial'",
+          "Si confusion sur 'mesures précises' → montrer exemple concret de construction réussie vs manquée",
+          "Si manque d'enthousiasme pour construire → mentionner qu'ils peuvent construire CE qu'ils veulent"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1628,7 +1700,11 @@
         "activity": "Projet de construction guidée: Les élèves reçoivent des consignes de construction (tour de 8 blocs, route de 12 trombones). Ils mesurent, planifient puis construisent. Vérification finale des mesures.",
         "materials": [],
         "visualSupports": "Plans visuels simples, aide-mémoire des consignes, exemples de réussites",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si construction s'écroule répétitivement → encourager à mesurer AVANT de placer chaque pièce",
+          "Si frustration face aux consignes → décomposer en étapes plus petites: '1 bloc, puis le deuxième'",
+          "Si élève ignore la mesure → rappeler doucement: 'Vérifie d'abord avec ton unité!'"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1636,7 +1712,11 @@
         "activity": "Exposition des constructions: présentation des créations avec explication du processus de mesure. Célébration des réussites et apprentissages des défis.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève déçu que sa construction ne correspond pas exactement → célébrer l'effort et l'apprentissage",
+          "Si élève ne peut expliquer son processus → poser questions guidées: 'Qu'as-tu mesuré en premier?'",
+          "Si comparaisons négatives entre constructions → rediriger vers ce qui rend chaque création spéciale"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1700,7 +1780,11 @@
         "activity": "Cercle de conteurs: 'Vous êtes maintenant des experts en mesure!' Révision rapide du vocabulaire appris. Préparation à devenir des conteurs de mesures.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne se sent pas 'expert' → rappeler tous ses apprentissages concrets depuis le début",
+          "Si oubli du vocabulaire → utiliser cartes visuelles pour rafraîchir la mémoire",
+          "Si timidité face à raconter → rassurer qu'il peut raconter à un ami d'abord"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1708,7 +1792,11 @@
         "activity": "Atelier de narration: Les élèves préparent et présentent l'histoire de leurs apprentissages en mesure. Ils utilisent des objets pour démontrer et expliquent leurs méthodes à un public imagé.",
         "materials": [],
         "visualSupports": "Cartes de vocabulaire, chronologie des apprentissages, objets de démonstration",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si difficulté à organiser leur histoire → fournir canevas simple: 'D'abord... puis... enfin...'",
+          "Si utilisation incorrecte du vocabulaire → modéliser les mots justes avec bienveillance",
+          "Si élève veut raconter TOUS les détails → l'aider à choisir ses 2-3 moments préférés"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1716,7 +1804,11 @@
         "activity": "Applaudissements pour tous les conteurs! Discussion: 'Qu'est-ce qui était difficile à expliquer?' Célébration de leur maîtrise du vocabulaire de mesure.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève dit que 'tout était facile' → poser des questions plus précises sur ses défis",
+          "Si plusieurs disent la même difficulté → noter pour reprendre ce concept plus tard",
+          "Si élève frustré de ses erreurs → normaliser que les erreurs aident à apprendre mieux"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1820,7 +1912,11 @@
         "activity": "Rassemblement des champions: 'Bienvenue aux Jeux olympiques de la mesure!' Présentation des défis avec enthousiasme. Échauffement avec gestes de mesure.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves surexcités par l'idée olympique → canaliser l'énergie avec gestes structurés",
+          "Si peur de ne pas réussir les défis → rassurer que le but est de s'amuser et apprendre",
+          "Si comparaisons compétitives → établir dès le départ l'esprit de collaboration"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1828,7 +1924,11 @@
         "activity": "Circuit de défis: Station 1 - Trouver un objet de 5 mains. Station 2 - Construire une tour de 10 blocs. Station 3 - Mesurer un objet mystère. Station 4 - Défi créatif libre. Rotation avec célébrations.",
         "materials": [],
         "visualSupports": "Cartes de défis illustrées, tableau de réussites, exemples de solutions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève bloqué à une station → offrir un indice ou permettre aide d'un pair",
+          "Si frustration face à l'échec → redéfinir réussite comme 'essayer avec effort'",
+          "Si station trop facile/difficile → ajuster sur-le-champ pour maintenir défi approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1836,7 +1936,11 @@
         "activity": "Cérémonie de clôture: célébration de tous les participants. Remise de 'médailles' symboliques. Chant de victoire: 'Nous sommes des champions de la mesure!'",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève triste de ne pas avoir 'gagné' → expliquer que tous sont gagnants pour avoir appris",
+          "Si cérémonie trop longue → accélérer en donnant médailles par groupes",
+          "Si élève refuse sa médaille par timidité → respecter et célébrer discrètement"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1940,7 +2044,11 @@
         "activity": "Préparation d'expédition: 'Nous partons explorer la nature!' Règles de sécurité extérieure. Anticipation des découvertes. Chanson des explorateurs.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève anxieux de sortir dehors → rassurer sur la sécurité et rester près de l'école",
+          "Si surexcitation face à l'extérieur → établir règles claires et rappeler l'objectif mesure",
+          "Si préoccupation météo → adapter les attentes et prévoir solution de rechange intérieure"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1948,7 +2056,11 @@
         "activity": "Exploration nature: Collecte d'éléments naturels (feuilles, branches, pierres). Utilisation de ces éléments comme unités de mesure. Mesure d'objets extérieurs avec leurs trouvailles naturelles.",
         "materials": [],
         "visualSupports": "Cartes d'exploration, aide-mémoire pour la collecte sécuritaire",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves collectent éléments inadaptés → guider vers unités plus régulières (pierres rondes, feuilles similaires)",
+          "Si dispersion du groupe → regrouper régulièrement et maintenir contact visuel",
+          "Si difficulté à utiliser éléments fragiles → encourager éléments plus robustes comme pierres"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1956,7 +2068,11 @@
         "activity": "Retour à la classe: partage des trouvailles et des mesures découvertes. Création d'une collection naturelle de mesure pour la classe.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si éléments naturels trop salés/mouillés → nettoyer délicatement ou laisser sécher avant collection",
+          "Si trop d'éléments collectés → demander aux élèves de choisir leurs 2-3 préférés",
+          "Si élève déçu de ses trouvailles → valoriser l'unicité et utilité de chaque élément"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2060,7 +2176,11 @@
         "activity": "Transformation en chefs: 'Bienvenue dans notre cuisine!' Exploration des ustensiles de mesure. Jeu de reconnaissance: 'À quoi sert cet outil?' Chanson des petits chefs.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne connaît pas les ustensiles culinaires → démontrer usage normal avant usage en mesure",
+          "Si surexcitation face aux 'vrais outils de cuisine' → établir règles de manipulation sécuritaire",
+          "Si difficulté à tenir certains ustensiles → proposer alternatives plus adaptées à leurs mains"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2068,7 +2188,11 @@
         "activity": "Atelier cuisine simulée: Les élèves 'cuisinent' des recettes imaginaires en mesurant avec cuillères, tasses, bols. Ils découvrent les unités culinaires et comparent avec leurs unités habituelles.",
         "materials": [],
         "visualSupports": "Recettes visuelles simples, images d'ustensiles de mesure, tableau d'équivalences",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si confusion entre tailles d'ustensiles → se concentrer sur une taille par élève d'abord",
+          "Si jeu devient trop 'réaliste' avec dégâts → rappeler que c'est simulation et maintenir propreté",
+          "Si difficulté à voir liens avec unités habituelles → faire comparaisons directes côte à côte"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2076,7 +2200,11 @@
         "activity": "Festin des mesures: présentation des 'plats' préparés avec explication des mesures utilisées. Discussion sur l'importance de mesurer en cuisine.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne peut expliquer ses mesures culinaires → poser questions guidées: 'Combien de cuillères as-tu utilisées?'",
+          "Si difficulté à voir importance mesure cuisine → donner exemples concrets d'échec sans mesure",
+          "Si présentation trop longue → limiter à un 'plat' et une mesure par élève"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2180,7 +2308,11 @@
         "activity": "Préparation d'exposition: 'Nous organisons un musée de la mesure!' Planification collective de l'exposition. Assignation des rôles: conservateurs, guides, artistes.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si surexcitation face au projet exposition → canaliser l'énergie vers tâches concrètes d'organisation",
+          "Si élève ne veut pas de rôle assigné → négocier rôle alternatif qui lui convient mieux",
+          "Si confusion sur concept 'exposition' → expliquer comme 'montrer nos apprentissages aux autres'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2188,7 +2320,11 @@
         "activity": "Montage de l'exposition: Les élèves organisent leurs travaux, créent des étiquettes explicatives, préparent leurs présentations. Pratique de leur rôle de guide pour expliquer leurs apprentissages.",
         "materials": [],
         "visualSupports": "Exemples d'étiquettes d'exposition, organisation spatiale claire",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève perfectionniste passe trop de temps sur étiquettes → encourager 'assez bien' et passer à autre chose",
+          "Si disputes sur placement des travaux → proposer système de rotation ou zones désignées",
+          "Si élève intimidé par rôle de guide → jumeler avec ami confiant ou offrir rôle plus discret"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2196,7 +2332,11 @@
         "activity": "Répétition générale: pratique des présentations entre élèves. Ajustements finaux de l'exposition. Anticipation de la venue des visiteurs.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si stress face aux visiteurs futurs → rassurer qu'ils viennent apprendre d'eux, pas les juger",
+          "Si oubli des présentations pratiquées → encourager à parler de leurs expériences personnelles plutôt que réciter",
+          "Si perfectionnisme excessif sur exposition → rappeler que le but est de partager leurs apprentissages"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2300,7 +2440,11 @@
         "activity": "Ouverture festive: 'Bienvenue à notre célébration de la mesure!' Accueil des visiteurs avec fierté. Chanson thème de l'unité avec tous les gestes appris.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si timidité face aux visiteurs → commencer par activité de groupe (chanson) avant interactions individuelles",
+          "Si surexcitation et agitation → canaliser avec tâches concrètes d'accueil et organisation",
+          "Si élèves oublient les gestes de la chanson → accepter approximations et célébrer leur effort"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2308,7 +2452,11 @@
         "activity": "Célébration interactive: Les élèves guident les visiteurs dans leur exposition, démontrent leurs apprentissages, partagent leurs découvertes préférées. Moment de réflexion collective sur le chemin parcouru.",
         "materials": [],
         "visualSupports": "Exposition complète, chronologie visuelle des apprentissages, photos souvenirs",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève monopolise un visiteur → encourager partage du temps et circulation vers d'autres élèves",
+          "Si difficulté à expliquer apprentissages → utiliser objets concrets et démonstrations plutôt que mots",
+          "Si émotion face au chemin parcouru → accueillir sentiment et célébrer croissance de chacun"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2316,7 +2464,11 @@
         "activity": "Remise des certificats 'Expert en mesure non-standard'. Cercle final de partage: 'Qu'avez-vous préféré apprendre?' Engagement à continuer de mesurer dans leur vie quotidienne.",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne se sent pas 'expert' → énumérer spécifiquement tout ce qu'il sait faire maintenant",
+          "Si difficulté à nommer préférence → aider avec questions: 'Quelle unité as-tu préférée?'",
+          "Si émotion de fin d'unité → accueillir sentiment et rassurer que les apprentissages continuent"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

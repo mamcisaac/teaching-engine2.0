@@ -19,27 +19,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de découverte émotionnelle avec marionnette Émilie. Comptine: 'Comment tu te sens, mon petit cœur?' Montrer des visages souriants et tristes avec miroir magique des émotions. TPR: mimer content (sourire, mains sur le cœur) et triste (moue, essuyer des larmes imaginaires).",
+        "materials": [
+          "Marionnette Émilie (petit ourson en peluche)",
+          "Miroir magique des émotions (miroir décoré)",
+          "Cartes d'émotions visuelles (content/triste)",
+          "Livre d'images 'Les émotions de Petit Ours'"
+        ],
+        "visualSupports": "Cartes visuelles avec visages expressifs, gestuelle TPR pour chaque émotion, expressions faciales exagérées de l'enseignant(e)",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier 'content' → utiliser le miroir des émotions pour qu'il observe son propre sourire et le geste du cœur heureux",
+          "Si un élève semble anxieux face aux émotions → commencer avec la marionnette Émilie qui montre ses émotions en premier, sans pression personnelle",
+          "Si un élève confond triste/fâché → utiliser des gestes distincts (larmes pour triste, sourcils froncés pour fâché) avec beaucoup de répétition visuelle"
+        ],
+        "movementBreaks": [
+          "Geste du cœur content (mains sur le cœur)",
+          "Mouvement triste (essuyer larmes doucement)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration émotionnelle interactive. Émilie la marionnette raconte ses journées: 'Hier j'étais contente parce que...' Élèves écoutent et montrent l'émotion avec leur corps. Jeu du détective émotionnel: regarder des images et deviner 'Est-ce qu'Émilie est contente ou triste?' Chaque élève choisit une carte émotion et mime pour les amis.",
+        "materials": [
+          "Histoires visuelles d'Émilie la marionnette",
+          "Cartes émotionnelles à grandes images",
+          "Boîte magique des émotions",
+          "Autocollants souriants et tristes"
+        ],
+        "visualSupports": "Séquences d'images émotionnelles, expressions corporelles marquées, gestuelle constante pour renforcer chaque émotion",
+        "decisionPoints": [
+          "Si un élève ne peut pas nommer l'émotion → l'encourager à pointer l'image correspondante ou faire le geste associé sans obligation de parler",
+          "Si un élève partage une émotion personnelle difficile → valider avec 'C'est normal de se sentir comme ça' et rediriger vers Émilie la marionnette",
+          "Si le groupe devient trop stimulé émotionnellement → faire une pause respiration avec Émilie: 'Respirons ensemble comme un petit ours calme'"
+        ],
+        "movementBreaks": [
+          "Respiration de petit ours (lente et profonde)",
+          "Étirement des bras 'content comme un oiseau'"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle. Émilie demande: 'Comment vous sentez-vous maintenant?' Chaque élève choisit un autocollant émotion pour son cahier. Chanson de fermeture: 'Toutes mes émotions sont importantes, dans mon cœur elles restent!' Câlin de groupe avec Émilie.",
+        "materials": [
+          "Cahiers personnels des élèves",
+          "Autocollants émotionnels",
+          "Carte de chanson illustrée",
+          "Émilie la marionnette"
+        ],
+        "visualSupports": "Geste du cœur pour la chanson finale, cercle visuel pour le retour au calme, routine prévisible de fermeture",
+        "decisionPoints": [
+          "Si un élève ne veut pas d'autocollant → respecter son choix et proposer de garder l'autocollant pour plus tard dans sa boîte personnelle",
+          "Si un élève ne veut pas participer au câlin de groupe → offrir une alternative comme serrer la main d'Émilie ou faire un signe de la main",
+          "Si un élève semble bouleversé à la fin → rester avec lui quelques minutes de plus avec Émilie pour aider à se calmer avant la transition"
+        ],
+        "movementBreaks": [
+          "Câlin de groupe doux",
+          "Geste du cœur pour la chanson"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -51,14 +87,39 @@
       },
       "realWorldConnection": "Knowing how we feel helps us tell parents, teachers, and friends what we need",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser uniquement 'content' et 'triste' avec beaucoup de support visuel",
+          "Permettre la réponse par gestes plutôt que par mots",
+          "Offrir plus de temps avec la marionnette en individuel"
+        ],
+        "forAdvanced": [
+          "Introduire 'très content' et 'un peu triste' pour nuancer",
+          "Encourager à aider leurs pairs à identifier les émotions",
+          "Permettre de raconter des histoires d'émotions plus complexes"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels très clairs et répétés",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec un pair francophone pour le soutien"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins sensoriels individuels",
+          "Utiliser des aides technologiques si approprié",
+          "Modifier les attentes selon les objectifs du PEI"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève pointe ou nomme 'content' quand il voit un visage souriant",
+          "L'élève fait le geste approprié pour 'triste' (larmes)",
+          "L'élève écoute attentivement les histoires d'Émilie",
+          "L'élève participe aux mouvements émotionnels"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier si l'élève distingue content/triste visuellement",
+          "Fin de leçon: Observer si l'élève peut choisir un autocollant émotionnel approprié",
+          "Transition: Noter comment l'élève exprime son état émotionnel actuel"
+        ]
       }
     },
     {
@@ -74,27 +135,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Jeu du miroir magique. Émilie montre son visage dans le miroir: 'Regardez mon visage!' Faire des expressions exagérées (fâché = sourcils froncés, peur = yeux grands ouverts). Comptine: 'Mon visage raconte mes histoires, dans mes yeux tu peux voir!' Chaque élève se regarde dans le miroir.",
+        "materials": [
+          "Grand miroir incassable décoré",
+          "Petits miroirs individuels",
+          "Cartes d'expressions faciales (fâché/peur/content)",
+          "Émilie la marionnette"
+        ],
+        "visualSupports": "Expressions faciales très marquées de l'enseignant(e), cartes visuelles montées sur bâtons, miroirs pour auto-observation",
+        "decisionPoints": [
+          "Si un élève a peur de voir son visage dans le miroir → commencer avec Émilie la marionnette qui se regarde d'abord, sans pression",
+          "Si un élève confond fâché et triste → exagérer les sourcils froncés pour fâché versus les larmes pour triste avec gestes clairs",
+          "Si un élève ne veut pas faire les expressions → l'inviter à observer seulement et pointer les parties du visage (yeux, bouche)"
+        ],
+        "movementBreaks": [
+          "Toucher doucement son propre visage",
+          "Faire des grimaces amusantes"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration des visages émotionnels. Galerie de portraits: regarder des photos de vrais enfants avec différentes émotions. Jeu 'Devine l'émotion': un élève fait une expression, les autres devinent. Émilie raconte: 'Quand mon visage montre fâché...' Créer un livre collectif des visages émotionnels avec photos des élèves (optionnel).",
+        "materials": [
+          "Photos d'enfants avec expressions émotionnelles variées",
+          "Caméra Polaroid ou tablette (optionnel)",
+          "Carnet collectif pour livre des visages",
+          "Autocollants d'émotions faciales"
+        ],
+        "visualSupports": "Photos réelles d'enfants, démonstrations corporelles, expressions faciales modelées par l'enseignant(e)",
+        "decisionPoints": [
+          "Si un élève refuse d'être photographie → respecter totalement son choix et proposer de dessiner son visage ou utiliser Émilie à sa place",
+          "Si un élève fait toujours la même expression → utiliser le miroir pour l'aider à observer les différences dans les parties de son visage",
+          "Si un élève identifie difficilement les expressions des autres → commencer par ses propres expressions dans le miroir avant de regarder les photos"
+        ],
+        "movementBreaks": [
+          "Massage doux du visage (tempes, joues)",
+          "Exercices faciaux (ouvrir/fermer les yeux, sourire/froncer)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au grand miroir. Chaque élève montre à Émilie son expression préférée. Chanson finale: 'Mon visage, c'est ma voix, il raconte tout de moi!' Ranger les petits miroirs en disant merci pour les découvertes. Câlin facial doux avec Émilie.",
+        "materials": [
+          "Grand miroir pour fermeture",
+          "Petits miroirs à ranger",
+          "Chanson illustrée du visage",
+          "Émilie la marionnette"
+        ],
+        "visualSupports": "Routine de rangement visuelle, chanson avec gestes pour le visage, expressions finales positives",
+        "decisionPoints": [
+          "Si un élève ne veut pas montrer d'expression finale → l'inviter à simplement regarder Émilie ou toucher doucement son propre visage",
+          "Si un élève garde une expression négative persistante → valider son émotion et terminer avec une respiration calme ensemble",
+          "Si un élève ne veut pas ranger son miroir → permettre de le garder quelques minutes de plus ou proposer qu'Émilie l'aide à ranger"
+        ],
+        "movementBreaks": [
+          "Câlin facial doux (mains sur les joues)",
+          "Sourire final partagé"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -106,14 +203,39 @@
       },
       "realWorldConnection": "Reading faces helps us know when friends need help or want to play",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 'content' et 'triste' seulement avec gestes très marqués",
+          "Utiliser uniquement Émilie la marionnette pour les expressions difficiles",
+          "Permettre d'observer sans participer activement aux mimiques"
+        ],
+        "forAdvanced": [
+          "Ajouter 'surpris' et 'timide' aux expressions faciales",
+          "Encourager à créer des histoires sur les expressions vues",
+          "Inviter à guider les pairs dans la reconnaissance faciale"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de mime et de gestes plutôt que de mots",
+          "Permettre de nommer dans leur langue maternelle puis répéter en français",
+          "Fournir des cartes visuelles avec mots dans les deux langues"
+        ],
+        "forIEP": [
+          "Adapter les miroirs selon les besoins sensoriels (taille, distance)",
+          "Modifier les attentes selon la capacité de reconnaissance visuelle",
+          "Utiliser des supports tactiles si les supports visuels sont inadaptés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève pointe les bonnes parties du visage (yeux, bouche) pour chaque émotion",
+          "L'élève imite les expressions de base avec son propre visage",
+          "L'élève reconnaît 'fâché' versus 'peur' sur les cartes visuelles",
+          "L'élève participe au jeu du miroir avec curiosité"
+        ],
+        "checkpoints": [
+          "Début: Vérifier le confort avec les miroirs et ajuster au besoin",
+          "Milieu: Observer si l'élève peut faire au moins deux expressions distinctes",
+          "Fin: Noter quelle expression l'élève préfère montrer et pourquoi"
+        ]
       }
     },
     {
@@ -129,27 +251,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Écoute ton corps avec Émilie. Utiliser un stéthoscope jouet pour écouter les battements de cœur. Comptine corporelle: 'Mon cœur bat fort quand je suis content!' Exercice calme: mains sur le cœur, puis sur le ventre. Émilie montre où elle ressent ses émotions sur son corps de peluche.",
+        "materials": [
+          "Stéthoscope jouet (sécuritaire)",
+          "Silhouette géante du corps humain",
+          "Autocollants de cœur et d'étoiles colorées",
+          "Émilie la marionnette avec marqueurs corporels"
+        ],
+        "visualSupports": "Silhouette corporelle affichée, gestes pour localiser cœur et ventre, démonstrations avec Émilie",
+        "decisionPoints": [
+          "Si un élève est mal à l'aise de toucher son corps → utiliser uniquement Émilie la marionnette et la silhouette géante pour explorer",
+          "Si un élève a peur du stéthoscope → commencer en l'écoutant sur Émilie d'abord, puis proposer sans insister",
+          "Si un élève mentionne des sensations corporelles intenses → valider doucement et rediriger vers les sensations positives de bonheur"
+        ],
+        "movementBreaks": [
+          "Respiration avec les mains sur le cœur",
+          "Caresser doucement son ventre (auto-apaisement)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Découverte des sensations corporelles. Émilie raconte: 'Quand je suis contente, mon cœur danse!' Placer des autocollants sur la silhouette géante pour marquer où on ressent les émotions. Exercice de conscience corporelle: sentir son cœur battre après avoir sauté, remarquer son ventre quand on respire profondément. Créer une carte corporelle personnelle.",
+        "materials": [
+          "Autocollants de formes variées (cœurs, étoiles, nuages)",
+          "Feuilles individuelles avec silhouette corporelle",
+          "Crayons de couleur",
+          "Petites balles de stress (douces et sécuritaires)"
+        ],
+        "visualSupports": "Carte corporelle collective, démonstrations avec gestes, autocollants visuels pour marquer les zones",
+        "decisionPoints": [
+          "Si un élève ne ressent rien de spécial dans son corps → l'aider à remarquer sa respiration ou les battements de cœur, très simple",
+          "Si un élève signale une douleur ou un malaise → réconforter et rediriger vers les sensations agréables, contacter le personnel scolaire si nécessaire",
+          "Si un élève devient trop excité avec l'activité physique → revenir aux exercices calmes avec Émilie et respiration profonde"
+        ],
+        "movementBreaks": [
+          "Sauts légers pour sentir le cœur",
+          "Respiration ventrale profonde et lente"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Moment de gratitude corporelle. Remercier son corps: 'Merci mon cœur, merci mon ventre!' Placer les mains sur différentes parties du corps en disant merci. Émilie fait un câlin corporel doux. Ranger les matériaux en étant conscient de ses mains qui bougent.",
+        "materials": [
+          "Cartes personnelles terminées",
+          "Chanson de gratitude corporelle",
+          "Émilie pour câlins finaux",
+          "Boîte de rangement décorée"
+        ],
+        "visualSupports": "Routine de gratitude avec gestes, chanson illustrée, câlin visuel avec Émilie",
+        "decisionPoints": [
+          "Si un élève ne veut pas dire merci à son corps → respecter son choix et permettre d'observer seulement ou de remercier Émilie",
+          "Si un élève veut continuer l'activité → permettre quelques minutes supplémentaires puis guider doucement vers la fermeture",
+          "Si un élève semble préoccupé par ses sensations corporelles → rassurer sur la normalité et offrir un moment calme avec Émilie"
+        ],
+        "movementBreaks": [
+          "Caresses douces sur les bras (auto-apaisement)",
+          "Câlin de soi-même"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -161,14 +319,39 @@
       },
       "realWorldConnection": "When our body tells us we're worried, we can ask for help or take deep breaths",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer uniquement sur cœur et respiration avec Émilie comme guide",
+          "Utiliser moins d'autocollants, plus de démonstration",
+          "Permettre d'observer plutôt que de participer activement"
+        ],
+        "forAdvanced": [
+          "Explorer plus de parties du corps (mains, pieds, tête)",
+          "Encourager à décrire les sensations avec plus de détail",
+          "Inviter à aider les pairs à découvrir leurs sensations"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de gestes et de toucher doux pour enseigner",
+          "Répéter les mots corporels avec pointage constant",
+          "Utiliser des chansons corporelles simples et répétitives"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins sensoriels (aucun toucher si nécessaire)",
+          "Modifier les outils selon les capacités motrices",
+          "Ajuster les attentes selon la conscience corporelle individuelle"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut placer sa main sur son cœur et remarquer les battements",
+          "L'élève montre son ventre quand on parle de respiration",
+          "L'élève place au moins un autocollant sur la silhouette corporelle",
+          "L'élève participe aux mouvements corporels avec curiosité"
+        ],
+        "checkpoints": [
+          "Début: Vérifier le confort avec les explorations corporelles",
+          "Milieu: Observer si l'élève fait des connexions entre émotions et sensations",
+          "Fin: Noter les découvertes que l'élève partage sur son corps"
+        ]
       }
     },
     {
@@ -184,27 +367,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle d'acceptation avec la Boîte Arc-en-ciel des Émotions. Émilie sort différentes émotions colorées: 'Toutes mes émotions sont importantes!' Comptine: 'Content, triste, fâché, peur... tous sont normal dans mon cœur!' Chaque élève choisit une émotion et la place dans l'arc-en-ciel collectif.",
+        "materials": [
+          "Boîte Arc-en-ciel des Émotions décorée",
+          "Cartes émotions de toutes les couleurs",
+          "Grande affiche arc-en-ciel pour le mur",
+          "Émilie avec sa propre boîte d'émotions"
+        ],
+        "visualSupports": "Arc-en-ciel visuel des émotions, cartes colorées organisées, geste d'acceptation (mains sur le cœur)",
+        "decisionPoints": [
+          "Si un élève dit qu'une émotion est 'mauvaise' → utiliser Émilie pour montrer que toutes les émotions aident à comprendre nos besoins",
+          "Si un élève refuse de choisir certaines émotions → respecter son choix et expliquer que nous ne les ressentons pas toutes en même temps",
+          "Si un élève semble inquiet de ses propres émotions → rassurer avec Émilie: 'Même moi, j'ai toutes ces émotions et c'est normal!'"
+        ],
+        "movementBreaks": [
+          "Geste d'acceptation (mains sur le cœur)",
+          "Mouvement arc-en-ciel (bras en arc au-dessus de la tête)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration de la normalité émotionnelle. Émilie raconte des histoires: 'Un jour j'étais fâchée et c'était normal parce que...' Créer un livre collectif 'Nos Émotions Normales' avec dessins ou autocollants. Jeu des émotions météo: 'Aujourd'hui mon cœur est ensoleillé/nuageux/orageux et c'est normal!'",
+        "materials": [
+          "Histoires d'Émilie illustrées",
+          "Grand cahier pour livre collectif",
+          "Autocollants météo et émotions",
+          "Roue des émotions météo"
+        ],
+        "visualSupports": "Livre en construction visible, métaphores météo avec images, expressions rassurantes constantes",
+        "decisionPoints": [
+          "Si un élève exprime une émotion difficile personnelle → accueillir avec empathie et valider: 'C'est normal de se sentir comme ça parfois'",
+          "Si un élève juge les émotions des autres → rediriger gentiment: 'Chaque personne ressent différemment et c'est normal pour elle'",
+          "Si un élève devient émotionnellement dépassé → offrir un moment calme avec Émilie et rappeler la respiration arc-en-ciel"
+        ],
+        "movementBreaks": [
+          "Respiration arc-en-ciel (inspirer toutes les couleurs)",
+          "Danser comme la météo de son cœur"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration de la diversité émotionnelle. Chaque élève place sa main sur l'arc-en-ciel collectif et dit: 'Mes émotions sont normales!' Chanson finale: 'Dans l'arc-en-ciel de mon cœur, toutes les couleurs ont leur tour!' Émilie donne un câlin d'acceptation à chacun.",
+        "materials": [
+          "Arc-en-ciel collectif terminé",
+          "Chanson illustrée de l'arc-en-ciel",
+          "Certificats 'Mes Émotions Normales' (optionnel)",
+          "Émilie pour câlins finaux"
+        ],
+        "visualSupports": "Arc-en-ciel complété bien visible, routine positive de fermeture, gestes d'acceptation partagés",
+        "decisionPoints": [
+          "Si un élève ne veut pas dire que ses émotions sont normales → respecter et proposer qu'il dise simplement 'Mes émotions sont à moi'",
+          "Si un élève veut continuer à parler d'émotions difficiles → valider brièvement et proposer de continuer la conversation après avec l'adulte responsable",
+          "Si un élève refuse le câlin d'Émilie → offrir une alternative comme un high-five ou un sourire d'Émilie"
+        ],
+        "movementBreaks": [
+          "Câlin d'acceptation de soi",
+          "Salut arc-en-ciel (geste final partagé)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -216,14 +435,39 @@
       },
       "realWorldConnection": "When we accept our emotions, we feel better about ourselves and can get help easier",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement 3-4 émotions de base avec beaucoup de répétition",
+          "Se concentrer sur le message 'C'est correct de ressentir' avec Émilie",
+          "Utiliser plus d'autocollants, moins de discussion verbale"
+        ],
+        "forAdvanced": [
+          "Explorer les nuances: 'un peu fâché' vs 'très fâché'",
+          "Discuter pourquoi certaines émotions arrivent dans certaines situations",
+          "Inviter à créer des histoires d'acceptation pour les pairs"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de visuels et de gestes pour 'normal' et 'accepter'",
+          "Répéter les concepts avec des exemples concrets et universels",
+          "Permettre l'expression dans la langue maternelle puis traduire ensemble"
+        ],
+        "forIEP": [
+          "Adapter le concept d'acceptation selon la compréhension individuelle",
+          "Utiliser des supports visuels personnalisés si nécessaire",
+          "Modifier les attentes selon les besoins émotionnels spécifiques"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève place des émotions dans l'arc-en-ciel sans hésitation excessive",
+          "L'élève écoute les histoires d'Émilie sans jugement visible",
+          "L'élève participe au geste d'acceptation (mains sur le cœur)",
+          "L'élève montre de l'ouverture aux différentes émotions présentées"
+        ],
+        "checkpoints": [
+          "Début: Observer les réactions initiales aux différentes émotions présentées",
+          "Milieu: Noter si l'élève exprime des jugements sur certaines émotions",
+          "Fin: Vérifier l'acceptation du message que toutes les émotions sont normales"
+        ]
       }
     },
     {
@@ -239,27 +483,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Téléphone émotionnel avec Émilie. Utiliser un faux téléphone coloré. Émilie appelle: 'Allo! Comment tu te sens?' Modèle de phrases: 'Je me sens content', 'Je me sens triste'. Comptine du téléphone: 'Allo, allo, je peux te dire, ce que je ressens dans mon cœur!' Chaque élève répond au téléphone d'Émilie.",
+        "materials": [
+          "Téléphone jouet coloré (2-3 exemplaires)",
+          "Cartes phrases avec images 'Je me sens...'",
+          "Support visuel pour structures de phrases",
+          "Émilie avec son propre petit téléphone"
+        ],
+        "visualSupports": "Structures de phrases visuelles, cartes de soutien, modèle constant avec Émilie au téléphone",
+        "decisionPoints": [
+          "Si un élève est timide au téléphone → commencer par lui faire écouter Émilie parler, puis l'inviter à chuchoter dans le téléphone",
+          "Si un élève ne peut pas former les phrases complètes → accepter un mot seul comme 'content' ou même juste un geste avec le téléphone",
+          "Si un élève veut parler d'émotions complexes → valider et aider à simplifier: 'Ah, tu te sens inquiet! C'est comme se sentir un peu triste.'"
+        ],
+        "movementBreaks": [
+          "Geste de tenir le téléphone à l'oreille",
+          "Mouvement de parler (geste de la bouche)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Pratique d'expression émotionnelle. Jeu de rôle: Émilie a différents problèmes et demande de l'aide ('Je me sens triste parce que j'ai perdu mon jouet'). Élèves répondent avec empathie. Créer un 'Guide de Communication Émotionnelle' avec dessins et phrases simples. Station de pratique: parler à différents amis (marionnettes).",
+        "materials": [
+          "Marionnettes diverses pour amis (3-4 personnages)",
+          "Scénarios simples illustrés pour Émilie",
+          "Cahier collectif pour guide de communication",
+          "Autocollants récompenses pour tentatives"
+        ],
+        "visualSupports": "Scénarios en images, structures de réponse affichées, démonstrations constantes avec marionnettes",
+        "decisionPoints": [
+          "Si un élève donne des réponses inappropriées → rediriger gentiment avec modèle: 'Une bonne réponse serait...' et faire répéter",
+          "Si un élève ne veut pas participer aux jeux de rôle → l'inviter à être l'assistant qui donne les cartes ou aide Émilie",
+          "Si un élève exprime ses vraies émotions pendant l'activité → accueillir avec bienveillance et connecter à l'apprentissage"
+        ],
+        "movementBreaks": [
+          "Échange de marionnettes (mouvement et choix)",
+          "Gestes d'empathie (câlin, tape sur l'épaule)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cérémonie de communication. Chaque élève dit à Émilie: 'Maintenant je peux dire mes sentiments!' Tour de cercle: chaque élève partage UNE émotion qu'il ressent maintenant. Applaudissements pour tous. Chanson finale: 'Mes mots sont importants, mes sentiments aussi!' Ranger les téléphones en disant merci.",
+        "materials": [
+          "Téléphones à ranger cérémonieusement",
+          "Guide de communication terminé",
+          "Chanson d'autonomie illustrée",
+          "Émilie pour félicitations finales"
+        ],
+        "visualSupports": "Routine de célébration visuelle, guide terminé bien visible, gestes de félicitation partagés",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager son émotion actuelle → respecter et proposer qu'il dise simplement 'Je me sens bien' ou qu'il passe son tour",
+          "Si un élève partage une émotion très intense → accueillir brièvement, valider, et suggérer d'en parler plus avec l'adulte responsable après",
+          "Si un élève ne veut pas applaudir pour les autres → respecter son choix et proposer un sourire ou un pouce en l'air"
+        ],
+        "movementBreaks": [
+          "Applaudissements pour tous",
+          "Geste de 'parler' (main sur le cœur, puis vers l'extérieur)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -271,14 +551,39 @@
       },
       "realWorldConnection": "When we tell people how we feel, they can help us or celebrate with us",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Accepter un mot seul ou un geste pour exprimer l'émotion",
+          "Utiliser plus de cartes visuelles avec phrases pré-écrites",
+          "Permettre plus de temps et de répétition avec Émilie"
+        ],
+        "forAdvanced": [
+          "Encourager l'ajout de 'parce que' dans leurs phrases",
+          "Inviter à consoler et répondre aux émotions des marionnettes",
+          "Permettre de créer leurs propres scénarios émotionnels"
+        ],
+        "forELL": [
+          "Répéter les structures de phrases avec beaucoup de modèles",
+          "Utiliser des gestes et des images pour soutenir chaque mot",
+          "Permettre la traduction initiale puis la pratique en français"
+        ],
+        "forIEP": [
+          "Adapter les modes de communication selon les besoins individuels",
+          "Utiliser la technologie d'assistance si nécessaire",
+          "Modifier les attentes d'expression selon les capacités verbales"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève utilise le téléphone jouet avec intérêt",
+          "L'élève tente d'exprimer au moins une émotion, même avec aide",
+          "L'élève écoute les émotions exprimées par Émilie et les pairs",
+          "L'élève montre de l'empathie envers les marionnettes en détresse"
+        ],
+        "checkpoints": [
+          "Début: Évaluer le confort initial avec l'expression verbale",
+          "Milieu: Observer les tentatives de communication émotionnelle, même partielles",
+          "Fin: Noter le niveau de confiance acquis pour partager ses émotions"
+        ]
       }
     },
     {
@@ -294,27 +599,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Fête de la joie avec Émilie! Bulles de savon magiques qui apportent le bonheur. Émilie danse: 'Je suis contente, je suis heureuse!' Comptine joyeuse: 'Quand je suis content, mon cœur fait la fête!' Chaque élève attrape des bulles et dit ce qui le rend heureux. Mouvements de joie: sautiller, battre des mains, tourner.",
+        "materials": [
+          "Machine à bulles ou bulles manuelles",
+          "Musique joyeuse douce",
+          "Rubans colorés pour danser",
+          "Émilie décorée avec des autocollants souriants"
+        ],
+        "visualSupports": "Bulles visibles et amusantes, mouvements de danse démontrés, expressions faciales très joyeuses",
+        "decisionPoints": [
+          "Si un élève est trop excité par les bulles → l'aider à respirer doucement tout en gardant sa joie, ajuster le nombre de bulles",
+          "Si un élève ne semble pas heureux aujourd'hui → respecter son état et l'inviter à observer la joie d'Émilie sans pression de participer",
+          "Si un élève devient très turbulent → canaliser son énergie avec des mouvements structurés comme marcher en rond avec les rubans"
+        ],
+        "movementBreaks": [
+          "Sautillements joyeux sur place",
+          "Battements de mains rythmiques"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration de la joie appropriée. Émilie enseigne: 'Il y a différentes façons d'être content!' Démonstration: joie calme (sourire, mains sur cœur), joie moyenne (rire, applaudissements), grande joie (sauter, crier de joie doucement). Créer un 'Livre de nos Joies' avec dessins de ce qui rend chacun heureux. Pratiquer la joie respectueuse adaptée aux situations.",
+        "materials": [
+          "Cartes de niveaux de joie avec images",
+          "Grand cahier pour livre collectif des joies",
+          "Crayons de couleurs vives",
+          "Miroir pour observer ses expressions joyeuses"
+        ],
+        "visualSupports": "Niveaux de joie illustrés clairement, démonstrations continues avec Émilie, exemples visuels de joie appropriée",
+        "decisionPoints": [
+          "Si un élève a du mal à contrôler sa joie → pratiquer la 'joie calme' avec respiration et sourire, féliciter chaque tentative",
+          "Si un élève ne trouve pas ce qui le rend heureux → l'aider avec des suggestions simples comme 'jouer' ou 'câlins' et accepter ses choix",
+          "Si un élève devient émotionnellement dépassé par la joie → offrir un moment calme avec Émilie et revenir aux bulles douces"
+        ],
+        "movementBreaks": [
+          "Pratiquer la joie calme (balancement doux)",
+          "Pratiquer la grande joie (sauts contrôlés)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration joyeuse collective. Tour de cercle: chaque élève montre sa façon préférée d'être content. Créer un 'Sourire Collectif' - tous sourient ensemble et se regardent. Chanson finale calme: 'Ma joie est précieuse, je la garde dans mon cœur!' Émilie donne un câlin joyeux mais doux à chacun.",
+        "materials": [
+          "Livre des joies terminé à montrer",
+          "Appareil photo pour capturer le sourire collectif (optionnel)",
+          "Chanson douce illustrée",
+          "Émilie pour câlins joyeux finaux"
+        ],
+        "visualSupports": "Livre terminé visible, routine de sourire partagé, gestes doux pour la chanson finale",
+        "decisionPoints": [
+          "Si un élève ne veut pas sourire pour la photo → respecter son choix et permettre d'observer ou de faire un geste de la main",
+          "Si un élève reste très excité à la fin → l'aider à se calmer avec Émilie et respiration avant la transition",
+          "Si un élève semble triste pendant la célébration → valider son émotion: 'C'est correct de ne pas être joyeux aujourd'hui' et offrir du réconfort"
+        ],
+        "movementBreaks": [
+          "Sourire collectif partagé",
+          "Câlins joyeux mais calmes"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -326,14 +667,39 @@
       },
       "realWorldConnection": "Showing joy appropriately helps us share happiness with others without overwhelming them",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur joie calme et sourires simples avec Émilie",
+          "Utiliser moins de stimulation (moins de bulles, musique plus douce)",
+          "Permettre d'observer la joie des autres sans obligation de participer activement"
+        ],
+        "forAdvanced": [
+          "Explorer différentes intensités de joie et leurs contextes appropriés",
+          "Encourager à aider leurs pairs à trouver leur façon d'être content",
+          "Inviter à créer des histoires joyeuses pour le livre collectif"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de gestes et d'expressions faciales pour enseigner les nuances",
+          "Répéter 'content', 'heureux', 'joie' avec des démonstrations claires",
+          "Permettre l'expression de la joie dans leur langue maternelle d'abord"
+        ],
+        "forIEP": [
+          "Adapter le niveau de stimulation selon les besoins sensoriels",
+          "Modifier les attentes d'expression selon les capacités individuelles",
+          "Utiliser des supports visuels personnalisés pour les niveaux de joie"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève montre de l'intérêt pour les bulles et activités joyeuses",
+          "L'élève tente de démontrer au moins un niveau de joie avec Émilie",
+          "L'élève contribue au livre des joies par dessin, geste ou participation",
+          "L'élève montre de l'empathie envers les expressions de joie des autres"
+        ],
+        "checkpoints": [
+          "Début: Observer le niveau d'engagement initial avec les activités joyeuses",
+          "Milieu: Noter si l'élève peut distinguer différents niveaux de joie",
+          "Fin: Évaluer si l'élève peut exprimer sa joie de manière appropriée au contexte"
+        ]
       }
     },
     {
@@ -349,27 +715,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de réconfort avec Émilie qui se sent triste. Histoire: 'Hier Émilie était triste parce que son ami n'était pas là.' Chanson douce: 'Quand mon cœur est triste, j'ai besoin d'amour.' Introduction de la boîte à réconfort avec objets doux. TPR: geste de câlin (bras croisés sur le cœur) et mouvement de consoler doucement.",
+        "materials": [
+          "Émilie la marionnette (avec expression triste)",
+          "Boîte à réconfort (tissu doux, petit coussin, photo de famille)",
+          "Livre illustré 'Quand Petit Ours est triste'",
+          "Musique douce de fond"
+        ],
+        "visualSupports": "Carte visuelle 'demander un câlin', expressions faciales douces, gestes de réconfort modelés, environnement chaleureux et sécurisant",
+        "decisionPoints": [
+          "Si un élève devient triste en écoutant l'histoire → offrir immédiatement un objet réconfortant de la boîte et valider ses sentiments",
+          "Si un élève ne comprend pas 'triste' → utiliser des larmes douces sur les joues et un geste de cœur qui fait mal (main sur le cœur)",
+          "Si un élève semble anxieux face à la tristesse → rassurer avec 'Émilie va mieux quand elle reçoit un câlin' et montrer la fin heureuse"
+        ],
+        "movementBreaks": [
+          "Geste du câlin doux (bras sur le cœur)",
+          "Caresser doucement un tissu réconfortant"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration du réconfort. Émilie montre différentes façons de se consoler: câlin avec doudou, respiration douce, demander de l'aide. Jeu 'Qui peut consoler Émilie?': élèves proposent des gestes doux. Création d'un coin réconfort dans la classe avec coussins et objets doux. Chaque élève pratique demander un câlin à Émilie.",
+        "materials": [
+          "Coussins doux et couvertures",
+          "Doudous et peluches diverses",
+          "Cartes visuelles des gestes de réconfort",
+          "Boîte à mouchoirs décorée"
+        ],
+        "visualSupports": "Séquence visuelle 'quand je suis triste', coin réconfort bien défini, gestes de consolation modelés clairement",
+        "decisionPoints": [
+          "Si un élève refuse les câlins → respecter ses limites et proposer d'autres réconforts comme tenir un doudou ou écouter de la musique douce",
+          "Si un élève partage une tristesse personnelle → écouter avec empathie, valider ses sentiments et offrir du réconfort approprié",
+          "Si un élève devient trop émotionnel → utiliser le coin réconfort avec lui et respirer doucement ensemble avec Émilie"
+        ],
+        "movementBreaks": [
+          "Respiration de réconfort (lente et apaisante)",
+          "Bercement doux assis au coin réconfort"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Émilie qui se sent mieux. Chanson: 'Quand je suis triste, je demande de l'aide, et mon cœur se sent mieux!' Chaque élève choisit un objet réconfortant à garder sur son bureau. Câlin de groupe doux optionnel. Message final: 'Il est normal d'être triste parfois.'",
+        "materials": [
+          "Petits objets réconfortants (pierres douces, autocollants cœur)",
+          "Chanson illustrée du réconfort",
+          "Émilie souriante maintenant",
+          "Miroir pour vérifier les sourires retrouvés"
+        ],
+        "visualSupports": "Progression visuelle triste→réconfort→mieux, routine de fermeture apaisante, objets tangibles de réconfort",
+        "decisionPoints": [
+          "Si un élève reste triste à la fin → lui permettre de garder un objet réconfortant spécial et vérifier avec lui plus tard",
+          "Si un élève ne veut pas d'objet réconfortant → respecter son choix et proposer de dessiner un cœur sur sa main à la place",
+          "Si un élève a besoin de plus de temps → permettre une transition graduelle avec Émilie et rester disponible quelques minutes supplémentaires"
+        ],
+        "movementBreaks": [
+          "Câlin de groupe doux et volontaire",
+          "Caresser l'objet réconfortant choisi"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -381,14 +783,39 @@
       },
       "realWorldConnection": "When we're sad, asking for comfort helps us feel better and shows others how to help us",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 'triste' et 'câlin' uniquement avec objets de réconfort tangibles",
+          "Permettre l'expression par les gestes plutôt que par les mots",
+          "Offrir plus de temps individuel avec objets réconfortants"
+        ],
+        "forAdvanced": [
+          "Explorer différents types de tristesse (déçu, nostalgique, inquiet)",
+          "Encourager à consoler leurs pairs avec des gestes appropriés",
+          "Discuter de quand demander l'aide d'un adulte versus d'un ami"
+        ],
+        "forELL": [
+          "Utiliser des objets réconfortants universels et beaucoup de gestuelle",
+          "Permettre l'expression des émotions dans leur langue maternelle si nécessaire",
+          "Jumeler avec un pair francophone compatissant"
+        ],
+        "forIEP": [
+          "Adapter les objets réconfortants selon les besoins sensoriels",
+          "Utiliser des supports visuels personnalisés pour les stratégies de réconfort",
+          "Modifier les attentes selon les objectifs individuels du PEI"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie la tristesse chez Émilie ou dans les images",
+          "L'élève peut demander ou accepter un réconfort approprié",
+          "L'élève utilise le coin réconfort de manière appropriée",
+          "L'élève montre de la compassion envers les autres qui sont tristes"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Observer si l'élève comprend le concept de demander du réconfort",
+          "Fin de leçon: Noter si l'élève peut choisir un objet ou geste réconfortant approprié",
+          "Transition: Évaluer comment l'élève gère sa propre émotion après la leçon"
+        ]
       }
     },
     {
@@ -404,27 +831,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de découverte de la colère avec Émilie qui boude. Histoire: 'Émilie était fâchée quand quelqu'un a pris son jouet.' Introduction du coussin de colère et de la bouteille magique de calme (avec paillettes). TPR: respiration de dragon (souffler lentement) et geste de calme (mains qui descendent).",
+        "materials": [
+          "Émilie la marionnette (expression fâchée)",
+          "Coussin de colère rouge spécial",
+          "Bouteille de calme avec paillettes",
+          "Cartes visuelles 'fâché' et 'calme'"
+        ],
+        "visualSupports": "Expressions faciales marquées pour 'fâché' (sourcils froncés), gestes de respiration visibles, couleurs rouge (colère) et bleu (calme)",
+        "decisionPoints": [
+          "Si un élève devient fâché pendant la leçon → offrir immédiatement le coussin de colère et modeler la respiration du dragon",
+          "Si un élève a peur de la colère → rassurer que 'c'est normal d'être fâché parfois' et montrer Émilie qui se calme doucement",
+          "Si un élève confond fâché et triste → exagérer les sourcils froncés pour fâché versus les larmes pour triste avec beaucoup de répétition"
+        ],
+        "movementBreaks": [
+          "Respiration du dragon (lente et contrôlée)",
+          "Secouer les mains pour évacuer la colère"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration de la gestion de colère. Émilie montre différentes façons de se calmer: respirer avec la bouteille magique, serrer le coussin de colère, compter jusqu'à cinq. Jeu 'Aide Émilie à se calmer': élèves proposent des stratégies. Pratique de la respiration du dragon ensemble. Création d'un coin de calme avec outils de gestion.",
+        "materials": [
+          "Multiples bouteilles de calme",
+          "Coussins de différentes textures pour serrer",
+          "Timer visuel pour respirer",
+          "Cartes de stratégies de calme illustrées"
+        ],
+        "visualSupports": "Séquence visuelle 'fâché→respire→calme', coin de calme bien défini, démonstration claire des techniques de respiration",
+        "decisionPoints": [
+          "Si un élève refuse les techniques de calme → respecter son rythme et proposer simplement d'observer Émilie ou de tenir un objet doux",
+          "Si un élève partage une colère personnelle → valider ses sentiments et rediriger vers les stratégies d'Émilie sans insister sur les détails",
+          "Si un élève devient très agité → utiliser immédiatement la bouteille de calme et respirer ensemble lentement jusqu'à l'apaisement"
+        ],
+        "movementBreaks": [
+          "Secouer tout le corps puis se détendre",
+          "Marche lente autour du coin de calme"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Émilie maintenant calme. Révision: 'Quand je suis fâché, je peux respirer, serrer un coussin, compter.' Chaque élève choisit sa stratégie préférée et la mime. Chanson: 'Respire, compte, serre fort, et ton cœur retrouve le confort!' Message: 'Il est correct d'être fâché, mais on peut apprendre à se calmer.'",
+        "materials": [
+          "Cartes stratégies individuelles pour chaque élève",
+          "Émilie maintenant souriante",
+          "Autocollants 'Je sais me calmer'",
+          "Chanson illustrée du calme"
+        ],
+        "visualSupports": "Progression visuelle fâché→techniques→calme, stratégies affichées clairement, routine de fermeture apaisante",
+        "decisionPoints": [
+          "Si un élève reste agité à la fin → lui permettre plus de temps avec la bouteille de calme et l'accompagner personnellement",
+          "Si un élève ne peut pas choisir de stratégie → l'aider en montrant les options avec Émilie et respecter son rythme",
+          "Si un élève a besoin de continuer à pratiquer → permettre l'accès au coin de calme pendant la transition suivante"
+        ],
+        "movementBreaks": [
+          "Respiration finale profonde ensemble",
+          "Étirement relaxant des bras"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -436,14 +899,39 @@
       },
       "realWorldConnection": "Learning to handle anger safely keeps us and others safe and helps solve problems",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur une seule technique: respiration du dragon avec support visuel",
+          "Utiliser des objets sensoriels (coussin texturé, bouteille tactile)",
+          "Permettre l'expression physique avant la technique de calme"
+        ],
+        "forAdvanced": [
+          "Explorer différents niveaux de colère (irrité, fâché, très fâché)",
+          "Enseigner à reconnaître les signes avant-coureurs de colère",
+          "Encourager à aider leurs pairs avec des techniques de calme"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de démonstration physique et d'objets manipulables",
+          "Permettre l'expression initiale de colère dans leur langue maternelle",
+          "Jumeler avec un pair pour pratiquer les techniques ensemble"
+        ],
+        "forIEP": [
+          "Adapter les outils sensoriels selon les besoins individuels",
+          "Utiliser des supports visuels personnalisés et des horaires prévisibles",
+          "Modifier les techniques selon les capacités motrices de l'élève"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie la colère chez Émilie ou sur les images",
+          "L'élève peut essayer au moins une technique de calme",
+          "L'élève utilise appropriément les outils du coin de calme",
+          "L'élève montre un comportement plus calme après avoir pratiqué"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier si l'élève comprend le lien entre colère et techniques de calme",
+          "Fin de leçon: Observer quelle technique de calme l'élève préfère et peut utiliser",
+          "Transition: Évaluer si l'élève peut appliquer les stratégies apprises dans son comportement"
+        ]
       }
     },
     {
@@ -459,27 +947,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de courage avec Émilie qui chuchote qu'elle a un peu peur. Histoire: 'Émilie a peur du noir parfois, mais elle sait demander de l'aide.' Introduction du doudou courage et de la cape de super-héros. TPR: geste courage (poing sur le cœur) et signal d'aide (main levée). Chanson douce: 'Quand j'ai peur, je demande de l'aide.'",
+        "materials": [
+          "Émilie la marionnette (expression inquiète)",
+          "Doudou courage spécial (ours ou lapin doux)",
+          "Cape de super-héros miniature",
+          "Cartes visuelles 'peur' et 'courageux'"
+        ],
+        "visualSupports": "Expressions faciales pour 'avoir peur' (yeux grands, bouche petite), geste de demander aide très visible, environnement rassurant et lumineux",
+        "decisionPoints": [
+          "Si un élève montre des signes de peur réelle → offrir immédiatement le doudou courage et se placer près de lui pour rassurer",
+          "Si un élève ne comprend pas 'peur' → utiliser des exemples doux (peur du tonnerre, peur des gros chiens) avec Émilie",
+          "Si un élève semble anxieux → commencer par montrer Émilie qui devient courageuse avec de l'aide, sans pression personnelle"
+        ],
+        "movementBreaks": [
+          "Geste du courage (poing doux sur le cœur)",
+          "Caresser le doudou courage"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration du courage et de l'aide. Émilie montre comment elle devient courageuse: tenir son doudou, respirer profondément, demander de l'aide à un adulte. Jeu 'Qui peut aider Émilie?': identifier les personnes sécuritaires (parents, enseignants, pompiers). Pratique du signal d'aide et du geste courage. Création d'une boîte à courage avec objets réconfortants.",
+        "materials": [
+          "Photos de personnes sécuritaires (parents, enseignants, pompiers)",
+          "Boîte à courage décorée",
+          "Multiples doudous et objets réconfortants",
+          "Cartes visuelles 'demander aide' illustrées"
+        ],
+        "visualSupports": "Séquence visuelle 'peur→demande aide→courage', personnes sécuritaires clairement identifiées, gestes d'aide bien démontrés",
+        "decisionPoints": [
+          "Si un élève partage une peur personnelle → valider avec empathie et rediriger vers les stratégies d'Émilie sans insister sur les détails",
+          "Si un élève a peur des adultes mentionnés → respecter ses sentiments et se concentrer sur Émilie et les doudous courage",
+          "Si un élève devient très anxieux → utiliser immédiatement la boîte à courage et rester près de lui avec des objets réconfortants"
+        ],
+        "movementBreaks": [
+          "Respiration de courage (profonde et lente)",
+          "Marche confiante autour du cercle avec doudou"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Émilie maintenant courageuse grâce à l'aide reçue. Révision: 'Quand j'ai peur, je peux tenir mon doudou, respirer, demander de l'aide.' Chaque élève choisit un objet courage à emporter. Chanson finale: 'Je suis courageux, je peux demander de l'aide!' Message: 'Il est normal d'avoir peur, et c'est intelligent de demander de l'aide.'",
+        "materials": [
+          "Petits objets courage pour chaque élève (pierre douce, autocollant étoile)",
+          "Émilie maintenant souriante et confiante",
+          "Certificats 'Je suis courageux' illustrés",
+          "Chanson du courage avec gestes"
+        ],
+        "visualSupports": "Progression visuelle peur→aide→courage, routine de fermeture sécurisante, objets courage tangibles",
+        "decisionPoints": [
+          "Si un élève reste inquiet à la fin → lui permettre de garder un objet courage spécial et vérifier avec lui plus tard",
+          "Si un élève ne veut pas d'objet courage → respecter son choix et proposer de dessiner une étoile courage sur sa main",
+          "Si un élève a besoin de plus de réassurance → rester près de lui avec Émilie et permettre une transition graduelle"
+        ],
+        "movementBreaks": [
+          "Geste final du courage en groupe",
+          "Caresser l'objet courage choisi"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -491,14 +1015,39 @@
       },
       "realWorldConnection": "Being brave means we can try new things, and asking for help keeps us safe",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 'demander aide' avec objets courage tangibles et support visuel",
+          "Utiliser uniquement des exemples très doux et rassurants",
+          "Permettre plus de temps avec les doudous et objets réconfortants"
+        ],
+        "forAdvanced": [
+          "Explorer différents types de courage (essayer quelque chose de nouveau, aider un ami)",
+          "Discuter de différentes personnes qui peuvent aider selon les situations",
+          "Encourager à réconforter leurs pairs avec empathie"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de gestuelle et d'objets visuels pour 'aide' et 'courage'",
+          "Permettre l'identification de personnes sécuritaires dans leur langue maternelle",
+          "Jumeler avec un pair francophone bienveillant"
+        ],
+        "forIEP": [
+          "Adapter les objets courage selon les préférences sensorielles",
+          "Utiliser des supports visuels personnalisés pour identifier l'aide disponible",
+          "Modifier les attentes selon les objectifs individuels de sécurité"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie la peur chez Émilie ou dans les images",
+          "L'élève peut nommer ou pointer vers une personne qui peut aider",
+          "L'élève utilise les objets courage de manière appropriée",
+          "L'élève montre des signes de réconfort avec les stratégies présentées"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Observer si l'élève comprend le concept de demander de l'aide quand on a peur",
+          "Fin de leçon: Vérifier si l'élève peut choisir une stratégie de courage appropriée",
+          "Transition: Noter comment l'élève applique les stratégies apprises pour gérer son inquiétude"
+        ]
       }
     },
     {
@@ -514,27 +1063,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de respiration avec Émilie qui montre comment elle respire pour se calmer. Histoire: 'Émilie était énervée, mais elle a respiré comme un papillon doux.' Introduction de plumes légères pour pratiquer la respiration. TPR: respiration papillon (légère) et respiration ours (profonde). Chanson: 'Respire in, respire out, ton cœur devient tout doux.'",
+        "materials": [
+          "Émilie la marionnette montrant la respiration calme",
+          "Plumes colorées légères pour exercices",
+          "Cartes visuelles 'respirer' avec flèches",
+          "Petite clochette pour rythme de respiration"
+        ],
+        "visualSupports": "Démonstration claire de respiration profonde, flèches visuelles inspirer/expirer, mouvements lents et apaisants modelés",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à comprendre la respiration → utiliser sa propre main sur son ventre pour sentir le mouvement",
+          "Si un élève devient étourdi → arrêter immédiatement et faire respirer normalement, utiliser des respirations plus courtes",
+          "Si un élève trouve ça ennuyeux → ajouter plus de jeu avec les plumes et faire voler doucement les plumes"
+        ],
+        "movementBreaks": [
+          "Respiration papillon (très légère)",
+          "Faire voler les plumes doucement"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration de différentes respirations calmantes. Émilie enseigne la respiration de l'ours (profonde), du papillon (légère), et de l'arbre (lente). Jeu 'Fais voler la plume': chaque élève souffle doucement pour faire bouger sa plume. Station de respiration avec coussins confortables. Pratique de respirer quand on se sent différentes émotions.",
+        "materials": [
+          "Coussins de respiration confortables",
+          "Plumes individuelles pour chaque élève",
+          "Cartes d'animaux respirants (ours, papillon, arbre)",
+          "Musique douce de fond"
+        ],
+        "visualSupports": "Cartes visuelles des différents types de respiration, démonstrations claires avec les mains, environnement calme et apaisant",
+        "decisionPoints": [
+          "Si un élève ne peut pas rester assis pour respirer → permettre la respiration debout ou en marchant lentement",
+          "Si un élève souffle trop fort sur sa plume → modeler la respiration douce et montrer comment faire danser la plume délicatement",
+          "Si un élève semble inquiet des exercices → le rassurer que c'est juste pour le plaisir et respirer normalement avec lui d'abord"
+        ],
+        "movementBreaks": [
+          "Respiration debout avec bras qui montent et descendent",
+          "Marche lente avec respiration"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle pour respiration finale apaisante. Émilie fait une respiration très calme avec tout le groupe. Révision: 'Quand je veux être calme, je peux respirer comme un ours, un papillon, ou un arbre.' Chaque élève garde sa plume spéciale. Chanson finale douce: 'Ma respiration m'aide à rester calme et heureux.'",
+        "materials": [
+          "Plumes à emporter pour chaque élève",
+          "Petites cartes de rappel respiration",
+          "Émilie très détendue et calme",
+          "Musique de relaxation finale"
+        ],
+        "visualSupports": "Progression visuelle énervé→respire→calme, routine de fermeture très apaisante, objets tangibles de rappel",
+        "decisionPoints": [
+          "Si un élève reste agité à la fin → rester avec lui pour quelques respirations supplémentaires jusqu'à ce qu'il se sente mieux",
+          "Si un élève ne veut pas garder sa plume → respecter son choix et proposer de dessiner une respiration sur sa main à la place",
+          "Si un élève veut continuer à pratiquer → l'encourager et permettre quelques respirations supplémentaires avec Émilie"
+        ],
+        "movementBreaks": [
+          "Respiration finale très lente en groupe",
+          "Caresser doucement la plume"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -546,14 +1131,39 @@
       },
       "realWorldConnection": "Deep breathing helps us feel calmer anywhere - at home, school, or playing",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur une seule technique de respiration simple avec beaucoup de support visuel",
+          "Permettre des respirations plus courtes et moins profondes selon le confort",
+          "Utiliser des objets tactiles comme les plumes pour rendre l'exercice plus concret"
+        ],
+        "forAdvanced": [
+          "Enseigner des techniques de respiration plus sophistiquées (respiration carrée simple)",
+          "Encourager à guider leurs pairs dans les exercices de respiration",
+          "Discuter de quand utiliser différentes respirations selon les situations"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de modélisation physique et d'objets manipulables",
+          "Permettre l'expression du ressenti dans leur langue maternelle",
+          "Jumeler avec un pair pour pratiquer les techniques ensemble"
+        ],
+        "forIEP": [
+          "Adapter les positions de respiration selon les capacités motrices",
+          "Utiliser des aides visuelles personnalisées et des rappels tactiles",
+          "Modifier la durée et l'intensité selon les besoins sensoriels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut imiter les mouvements de respiration de base",
+          "L'élève utilise la plume pour pratiquer la respiration douce",
+          "L'élève montre des signes de détente pendant les exercices",
+          "L'élève peut rester relativement calme pendant les activités de respiration"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Observer si l'élève comprend le lien entre respiration et sentiment calme",
+          "Fin de leçon: Vérifier quelle technique de respiration l'élève préfère et peut utiliser",
+          "Transition: Noter si l'élève semble plus détendu après les exercices de respiration"
+        ]
       }
     },
     {
@@ -569,27 +1179,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle d'observation avec Émilie et son amie Léa (deux marionnettes). Histoire: 'Émilie voit que Léa semble triste aujourd'hui.' Jeu du miroir émotionnel: regarder le visage d'un ami et deviner ce qu'il ressent. TPR: geste 'regarder avec ses yeux' et geste 'cœur qui comprend'. Chanson: 'Avec mes yeux je regarde, avec mon cœur je comprends.'",
+        "materials": [
+          "Émilie et Léa (deux marionnettes)",
+          "Grand miroir pour jeu d'observation",
+          "Cartes d'émotions avec visages d'enfants",
+          "Cœurs en feutrine à distribuer"
+        ],
+        "visualSupports": "Expressions faciales très marquées, geste pointant vers les yeux puis vers le cœur, environnement invitant à l'observation",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier les émotions → utiliser des expressions très exagérées et pointer vers les parties du visage (sourire, larmes)",
+          "Si un élève semble gêné d'observer les autres → commencer avec les marionnettes seulement et rassurer que c'est pour aider",
+          "Si un élève confond les émotions → utiliser des comparaisons simples (content comme le soleil, triste comme la pluie)"
+        ],
+        "movementBreaks": [
+          "Geste de regarder avec les yeux (mains autour des yeux)",
+          "Geste du cœur qui comprend (main sur le cœur)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration de la compréhension des autres. Émilie et Léa montrent différentes situations: Léa est fatiguée, contente, inquiète. Jeu 'Détective du cœur': observer et deviner ce que ressent un camarade. Pratique de gestes gentils: donner un cœur en feutrine, offrir un sourire, dire 'Ça va?'. Création d'une boîte de gentillesse avec gestes réconfortants.",
+        "materials": [
+          "Scénarios illustrés avec les marionnettes",
+          "Cœurs en feutrine pour chaque élève",
+          "Boîte de gentillesse décorée",
+          "Cartes de gestes gentils (sourire, câlin, écouter)"
+        ],
+        "visualSupports": "Séquences visuelles 'observer→comprendre→aider', démonstration claire des gestes gentils, expressions faciales modelées",
+        "decisionPoints": [
+          "Si un élève ne veut pas participer au jeu d'observation → respecter ses limites et l'inviter à observer seulement les marionnettes",
+          "Si un élève donne des gestes inappropriés → rediriger doucement vers les options de la boîte de gentillesse",
+          "Si un élève devient trop émotionnel en observant les autres → utiliser Émilie pour modeler et prendre une pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Distribuer les cœurs en feutrine avec douceur",
+          "Marche d'observation calme autour du cercle"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Émilie et Léa maintenant heureuses. Révision: 'Pour comprendre les autres, je regarde avec mes yeux et j'écoute avec mon cœur.' Chaque élève choisit un geste gentil à pratiquer aujourd'hui. Chanson finale: 'Comprendre les autres, ça rend tout le monde heureux!' Message: 'Être gentil avec les autres nous rend heureux aussi.'",
+        "materials": [
+          "Cartes de gestes gentils à emporter",
+          "Émilie et Léa souriantes ensemble",
+          "Autocollants 'cœur qui comprend'",
+          "Chanson illustrée de la compréhension"
+        ],
+        "visualSupports": "Progression visuelle observer→comprendre→être gentil, routine de fermeture chaleureuse, objets de rappel tangibles",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à choisir un geste gentil → l'aider en montrant les options avec les marionnettes et respecter son rythme",
+          "Si un élève ne veut pas d'autocollant → respecter son choix et proposer de dessiner un cœur sur sa main à la place",
+          "Si un élève veut continuer à pratiquer → l'encourager et permettre plus de temps avec les marionnettes et la boîte de gentillesse"
+        ],
+        "movementBreaks": [
+          "Geste final du cœur qui comprend ensemble",
+          "Caresser doucement l'autocollant cœur"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -601,14 +1247,39 @@
       },
       "realWorldConnection": "Understanding others helps us be better friends and makes everyone feel good",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur une seule émotion à la fois (content/triste) avec beaucoup de support visuel",
+          "Utiliser des gestes très simples et tangibles comme donner un cœur en feutrine",
+          "Permettre l'observation passive sans obligation d'interagir"
+        ],
+        "forAdvanced": [
+          "Explorer des émotions plus nuancées (inquiet, excité, déçu)",
+          "Encourager à guider leurs pairs dans l'identification des émotions",
+          "Discuter de différentes façons d'aider selon les émotions observées"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de gestuelle et d'expressions faciales exagérées",
+          "Permettre l'expression des émotions observées dans leur langue maternelle",
+          "Jumeler avec un pair francophone empathique"
+        ],
+        "forIEP": [
+          "Adapter les activités d'observation selon les capacités sensorielles",
+          "Utiliser des supports visuels personnalisés et des objets tactiles",
+          "Modifier les interactions sociales selon les besoins individuels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut identifier au moins une émotion chez les marionnettes",
+          "L'élève utilise les gestes d'observation (regarder, pointer)",
+          "L'élève peut offrir un geste gentil approprié",
+          "L'élève montre de l'intérêt pour comprendre les autres"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Observer si l'élève comprend le lien entre observer et comprendre",
+          "Fin de leçon: Vérifier quel geste gentil l'élève préfère et peut utiliser",
+          "Transition: Noter si l'élève applique ses nouvelles compétences d'observation avec ses pairs"
+        ]
       }
     },
     {
@@ -624,27 +1295,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle d'aide avec Émilie et Léa. Scénario: Léa pleure car elle a perdu son jouet préféré. Émilie montre comment aider: écouter, donner un câlin doux, dire 'Je suis là.' TPR: geste d'écouter (main à l'oreille) et geste de réconfort (bras ouverts). Chanson: 'Quand mon ami est triste, je peux l'aider.'",
+        "materials": [
+          "Émilie et Léa (marionnettes)",
+          "Petit jouet pour scénario de perte",
+          "Cartes d'actions d'aide (écouter, câlin, parler)",
+          "Mouchoirs doux pour consoler"
+        ],
+        "visualSupports": "Expressions faciales de tristesse et de réconfort, gestes d'aide très clairs, démonstration de console avec marionnettes",
+        "decisionPoints": [
+          "Si un élève devient triste en voyant Léa pleurer → offrir réconfort immédiat et rassurer que c'est juste un jeu pour apprendre",
+          "Si un élève ne comprend pas comment aider → utiliser Émilie pour modeler des gestes simples comme donner la main",
+          "Si un élève a peur des pleurs → commencer avec Léa moins triste et augmenter graduellement l'émotion"
+        ],
+        "movementBreaks": [
+          "Geste d'écouter (main à l'oreille)",
+          "Geste de câlin doux (bras croisés sur soi)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration des façons d'aider un ami triste. Émilie enseigne: écouter sans parler, offrir un mouchoir, dire 'Ça va aller mieux', chercher un adulte si nécessaire. Jeu 'SOS ami triste': élèves pratiquent consoler Léa avec différents scénarios. Création d'une trousse d'aide avec objets réconfortants pour la classe.",
+        "materials": [
+          "Mouchoirs, peluches douces, cartes de mots gentils",
+          "Trousse d'aide de classe décorée",
+          "Scénarios simples illustrés",
+          "Cartes 'Que puis-je faire?' avec images"
+        ],
+        "visualSupports": "Séquence visuelle 'ami triste→j'aide→ami mieux', options d'aide clairement illustrées, trousse visible et accessible",
+        "decisionPoints": [
+          "Si un élève donne une aide inappropriée → rediriger gentiment vers les options de la trousse et modeler avec Émilie",
+          "Si un élève ne veut pas participer → respecter ses limites et l'inviter à observer seulement",
+          "Si un élève partage sa propre tristesse → écouter avec empathie et utiliser les stratégies de la classe"
+        ],
+        "movementBreaks": [
+          "Distribution douce des objets de réconfort",
+          "Câlins de groupe optionnels"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léa maintenant souriante. Révision: 'Pour aider un ami triste: j'écoute, je console, je cherche de l'aide si besoin.' Chaque élève choisit un objet de la trousse d'aide. Chanson: 'Aider les amis, ça rend le cœur joyeux!' Message: 'Être un bon ami, c'est aider quand c'est difficile.'",
+        "materials": [
+          "Trousse d'aide complète pour la classe",
+          "Léa maintenant heureuse",
+          "Certificats 'Bon ami qui aide'",
+          "Chanson illustrée de l'amitié"
+        ],
+        "visualSupports": "Progression visuelle ami triste→aide→ami heureux, trousse d'aide toujours visible, routine de fermeture chaleureuse",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à choisir comment aider → lui montrer les options avec Léa et respecter son choix",
+          "Si un élève ne veut pas de certificat → respecter son choix et proposer un autocollant",
+          "Si un élève veut continuer à pratiquer → l'encourager et permettre plus de temps avec la trousse"
+        ],
+        "movementBreaks": [
+          "Geste final d'aide en groupe",
+          "Câlin collectif optionnel"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -656,14 +1363,39 @@
       },
       "realWorldConnection": "Helping sad friends makes them feel better and makes us good friends",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur une action d'aide simple avec beaucoup de modelage",
+          "Utiliser des objets tangibles et des gestes très clairs",
+          "Permettre l'aide par l'observation sans obligation d'agir"
+        ],
+        "forAdvanced": [
+          "Explorer différentes façons d'aider selon le type de tristesse",
+          "Encourager à devenir des leaders d'aide dans la classe",
+          "Discuter de quand chercher l'aide d'un adulte"
+        ],
+        "forELL": [
+          "Utiliser beaucoup d'actions physiques et d'objets manipulables",
+          "Permettre l'expression de réconfort dans leur langue maternelle",
+          "Jumeler avec un pair francophone compatissant"
+        ],
+        "forIEP": [
+          "Adapter les interactions sociales selon les capacités individuelles",
+          "Utiliser des supports visuels personnalisés",
+          "Modifier les attentes d'aide selon les objectifs du PEI"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie quand un ami a besoin d'aide",
+          "L'élève peut choisir une action d'aide appropriée",
+          "L'élève montre de la gentillesse envers les amis tristes",
+          "L'élève utilise les objets de réconfort de manière appropriée"
+        ],
+        "checkpoints": [
+          "Milieu: Observer si l'élève comprend le lien entre voir la tristesse et offrir de l'aide",
+          "Fin: Vérifier quelle stratégie d'aide l'élève préfère et peut utiliser",
+          "Transition: Noter si l'élève applique ses nouvelles compétences avec ses pairs"
+        ]
       }
     },
     {
@@ -682,7 +1414,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -690,7 +1426,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -698,7 +1438,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -737,7 +1481,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -745,7 +1493,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -753,7 +1505,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -788,7 +1544,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -796,7 +1556,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -804,7 +1568,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -879,7 +1647,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -887,7 +1659,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -895,7 +1671,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -970,7 +1750,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -978,7 +1762,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -986,7 +1774,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1061,7 +1853,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1069,7 +1865,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1077,7 +1877,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1152,7 +1956,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1160,7 +1968,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1168,7 +1980,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1243,7 +2059,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1251,7 +2071,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -1259,7 +2083,11 @@
         "activity": "",
         "materials": [],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a des difficultés → offrir support supplémentaire et adapter l'activité selon ses besoins",
+          "Si un élève ne participe pas → respecter son rythme et offrir des alternatives douces",
+          "Si un élève devient émotionnel → valider ses sentiments et offrir réconfort approprié"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

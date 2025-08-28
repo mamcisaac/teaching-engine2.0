@@ -2423,7 +2423,11 @@
           ]
         },
         "visualSupports": "Exemples d'art mathématique, techniques artistiques démontrées, poster: 'L'art raconte des histoires de nombres'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève dit 'Je ne sais pas dessiner' → rappeler que l'art mathématique accepte tous les styles",
+          "Si création sans addition visible → poser questions: 'Où sont tes nombres?'",
+          "Si perfectionnisme bloque → encourager l'expérimentation: 'Essaie et regarde!'"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2448,7 +2452,11 @@
           ]
         },
         "visualSupports": "Signalisation galerie, espace pour explications orales",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève gêné d'expliquer son art → commencer par dire une chose qu'il aime",
+          "Si explication trop longue → guider: 'Dis-nous juste où tu vois l'addition'",
+          "Si visiteur ne comprend pas → inviter l'artiste à montrer avec doigt"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2618,7 +2626,11 @@
           ]
         },
         "visualSupports": "Instructions visuelles des jeux, tableaux de scores, poster 'Règles du Bon Joueur'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève frustré par jeu difficile → offrir version simplifiée ou aide d'ami",
+          "Si disputes pendant jeu → rappeler règles du bon joueur avec bienveillance",
+          "Si élève veut toujours gagner → souligner le plaisir d'apprendre plutôt que victoire"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2637,7 +2649,11 @@
           "optional": []
         },
         "visualSupports": "Tableau d'honneur fair-play",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève déçu de ne pas être sur tableau → souligner ses gestes gentils observés",
+          "Si compétition pour être reconnu → rappeler que gentillesse n'est pas concours",
+          "Si élève ne comprend pas fair-play → donner exemples concrets vécus en classe"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2759,7 +2775,11 @@
           ]
         },
         "visualSupports": "Affiche 'Studio de Contes Mathématiques' avec exemples d'histoires courtes",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève bloqué pour inventer histoire → proposer débuts simples: 'Il y avait 3 oiseaux...'",
+          "Si histoire trop complexe → ramener à additions simples avec objets familiers",
+          "Si élève mélange les nombres → utiliser objets concrets pour vérifier l'histoire"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2805,7 +2825,11 @@
           ]
         },
         "visualSupports": "Amorces d'histoires, galerie de personnages, décors illustrés, structure narrative affichée",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève répète même histoire → encourager nouveaux personnages ou lieux",
+          "Si calcul incorrect dans histoire → faire vérifier avec objets ou doigts",
+          "Si élève intimidé devant groupe → commencer par raconter à un ami"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2830,7 +2854,11 @@
           ]
         },
         "visualSupports": "Programme du festival avec noms des conteurs",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève nerveux de présenter → offrir présentation avec un ami",
+          "Si oubli de l'histoire → avoir objets concrets pour aider à se rappeler",
+          "Si auditoire distrait → utiliser mouvements et gestes pour captiver"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2959,7 +2987,11 @@
           ]
         },
         "visualSupports": "Affiche 'Grand Magasin Mathématique' avec règles de politesse",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève confus sur rôle → modeler d'abord: 'Je veux acheter 3 pommes...'",
+          "Si disputes sur prix → rappeler que c'est un jeu et s'amuser",
+          "Si élève achète tout → limiter: maximum 2 objets par visite"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -3005,7 +3037,11 @@
           ]
         },
         "visualSupports": "Prix clairement étiquetés, tableaux de calcul affichés, exemples de transactions modèles",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si erreur de calcul → permettre utilisation de doigts ou objets pour compter",
+          "Si élève donne mauvais montant → compter ensemble lentement et gentiment",
+          "Si magasin trop occupé → créer système de file d'attente avec numéros"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -3024,7 +3060,11 @@
           "optional": []
         },
         "visualSupports": "Tableau récapitulatif: stratégies de calcul découvertes",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne trouve pas de stratégie → rappeler les jeux déjà joués: 'Qu'as-tu utilisé...?'",
+          "Si réflexion trop abstraite → utiliser dessins ou objets pour expliquer",
+          "Si élève découragé → célébrer même petites découvertes: 'Tu as appris à...'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -3146,7 +3186,11 @@
           ]
         },
         "visualSupports": "Affiche 'Agence Détectives de Données' avec questions possibles",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne comprend pas 'enquête' → expliquer: 'Chercher des réponses comme un détective'",
+          "Si question trop complexe → simplifier: 'Combien d'élèves aiment les pommes?'",
+          "Si élève veut tout faire seul → encourager travail en petite équipe"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -3192,7 +3236,11 @@
           ]
         },
         "visualSupports": "Tableaux de collecte organisés, modèles graphiques avec images, poster 'Étapes d'Enquête'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si données confuses → utiliser couleurs différentes pour chaque réponse",
+          "Si oubli de compter quelqu'un → vérifier avec liste de noms de classe",
+          "Si erreur d'addition → recompter ensemble avec objets visuels"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -3217,7 +3265,11 @@
           ]
         },
         "visualSupports": "Espace exposition organisé, résultats bien visibles",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève intimidé de présenter → commencer par montrer à un petit groupe",
+          "Si résultats peu clairs → ajouter dessins ou objets pour illustrer",
+          "Si auditoire ne comprend pas → poser questions simples: 'Que voyez-vous ici?'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -3346,7 +3398,11 @@
           ]
         },
         "visualSupports": "Bannière géante 'Festival de l'Addition', programme des activités",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève débordé par choix → commencer par une activité familière",
+          "Si trop d'excitation → prendre pause calme avant de continuer",
+          "Si élève veut tout faire → établir plan avec 2-3 activités maximum"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -3392,7 +3448,11 @@
           ]
         },
         "visualSupports": "Exposition organisée professionnellement, signalisation claire, démonstrations interactives attrayantes",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ne veut pas participer → offrir rôle d'observateur puis inviter gentiment",
+          "Si activité trop difficile → adapter avec matériel plus simple",
+          "Si groupe trop grand → créer rotations avec minuteur"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -3424,7 +3484,11 @@
           ]
         },
         "visualSupports": "Mise en scène cérémonielle, affichage des accomplissements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève ému ou timide → encourager par gestes et sourires bienveillants",
+          "Si oubli de ce qui a été appris → montrer portfolio ou travaux comme rappel",
+          "Si élève veut continuer → promettre nouvelles aventures mathématiques bientôt"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

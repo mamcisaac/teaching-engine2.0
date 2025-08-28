@@ -26,7 +26,11 @@
           "autumn background music"
         ],
         "visualSupports": "Wide arm gestures for community, pointing outward for neighborhood, heart hands for belonging",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne comprend pas ce qu'est une communauté → utiliser des exemples concrets comme 'l'école est notre communauté, notre quartier est aussi une communauté'",
+          "Si un élève a de la difficulté à voir la connexion école-communauté → montrer des exemples visuels comme les autobus qui viennent à l'école, les gens qui marchent près de l'école",
+          "Si un élève semble déconnecté de sa communauté scolaire → l'aider à identifier une chose qu'il aime sur son école ou un endroit spécial à l'école"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -57,9 +61,17 @@
       "closing": {
         "duration": 10,
         "activity": "Community belonging circle where students share one thing they like about their school being part of the community. End with group chant: 'Notre école fait partie de notre communauté!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cercle de partage visuel",
+          "autocollants de communauté",
+          "affiche du chant de groupe"
+        ],
+        "visualSupports": "Gestes de partage en cercle, expressions de fierté scolaire, mouvements de chant collectif",
+        "decisionPoints": [
+          "Si un élève ne trouve pas quelque chose qu'il aime → l'aider avec des suggestions douces comme 'la cour de récréation' ou 'nos amis'",
+          "Si un élève devient timide pour partager → offrir l'option de chuchoter sa réponse ou de montrer avec des gestes",
+          "Si le chant de groupe devient trop bruyant → utiliser des gestes pour modérer le volume et garder l'harmonie"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -68,14 +80,39 @@
       },
       "realWorldConnection": "Our school is connected to many community helpers and neighbors who work together in autumn",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des photos simples de l'école et du quartier pour aider la compréhension",
+          "Permettre de montrer avec les doigts ou pointer au lieu de parler",
+          "Offrir de l'aide individuelle pour identifier des connexions communauté-école"
+        ],
+        "forAdvanced": [
+          "Encourager à nommer des endroits spécifiques dans le quartier de l'école",
+          "Inviter à expliquer comment ils se rendent à l'école (transport communautaire)",
+          "Permettre de partager des détails sur les activités communautaires près de l'école"
+        ],
+        "forELL": [
+          "Fournir des mots-clés visuels en français et anglais si nécessaire",
+          "Encourager le mélange linguistique avec traduction pour 'communauté'",
+          "Utiliser des gestes et images pour appuyer la compréhension"
+        ],
+        "forIEP": [
+          "Adapter les outils de communication selon les besoins individuels",
+          "Offrir des options de participation alternatives (dessiner, pointer, observer)",
+          "Respecter les rythmes individuels de participation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie l'école comme faisant partie de la communauté",
+          "Élève utilise le mot 'communauté' de manière appropriée",
+          "Élève démontre une compréhension des connexions école-quartier",
+          "Élève exprime un sentiment d'appartenance à la communauté scolaire"
+        ],
+        "checkpoints": [
+          "Observation de la participation au cercle d'ouverture - engagement et compréhension",
+          "Documentation de l'activité d'affichage communautaire - qualité des connexions identifiées",
+          "Noter l'utilisation du vocabulaire communautaire pendant la leçon"
+        ]
       }
     },
     {
@@ -98,7 +135,11 @@
           "thank you phrases in French"
         ],
         "visualSupports": "Helping hands gestures, grateful expressions, pointing to helper photos with appreciation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît pas les noms des aides scolaires → commencer par les rôles avant les noms, comme 'la personne qui nettoie' avant 'le concierge'",
+          "Si un élève a peur d'un aide comme le directeur → expliquer comment chaque personne aide à rendre l'école sécuritaire et amusante",
+          "Si un élève ne voit pas pourquoi les aides sont importants → donner des exemples concrets comme 'sans le concierge, notre école serait sale'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -128,9 +169,17 @@
       "closing": {
         "duration": 10,
         "activity": "Helper appreciation circle where students share which school helper they'd like to thank and why. Practice saying 'Merci' to different school helpers they might see.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de remerciements",
+          "autocollants d'appréciation",
+          "phrases de gratitude en français"
+        ],
+        "visualSupports": "Gestes de gratitude, expressions de remerciement, sourires d'appréciation",
+        "decisionPoints": [
+          "Si un élève ne sait pas qui remercier → suggérer des aides qu'il a probablement vus aujourd'hui comme l'enseignante ou le concierge",
+          "Si un élève devient émotionnel en pensant aux aides → valider ces sentiments positifs et encourager l'expression de gratitude",
+          "Si un élève veut remercier quelqu'un qui n'est pas à l'école → accepter sa réponse et noter qu'on peut aussi remercier les aides de l'école"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -139,14 +188,39 @@
       },
       "realWorldConnection": "Many people work together to make our school a safe, clean, and welcoming place to learn",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des photos claires des aides scolaires avec leurs noms",
+          "Permettre de pointer ou faire des gestes au lieu de nommer verbalement",
+          "Offrir des visites courtes pour voir les aides au travail"
+        ],
+        "forAdvanced": [
+          "Encourager à décrire les tâches spécifiques de chaque aide",
+          "Inviter à expliquer pourquoi chaque rôle est important pour l'école",
+          "Permettre de poser des questions sur les formations des aides"
+        ],
+        "forELL": [
+          "Fournir les noms des métiers en français avec support visuel",
+          "Encourager l'utilisation de gestes pour décrire les rôles",
+          "Permettre la traduction si nécessaire pour la compréhension"
+        ],
+        "forIEP": [
+          "Adapter les activités selon les capacités de communication",
+          "Offrir des interactions directes avec les aides si approprié",
+          "Respecter les niveaux de confort social individuels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 aides scolaires différents",
+          "Élève explique comment un aide scolaire l'aide personnellement",
+          "Élève démontre de la gratitude envers les aides scolaires",
+          "Élève utilise le vocabulaire des métiers scolaires en français"
+        ],
+        "checkpoints": [
+          "Observation du livre des aides scolaires - précision des rôles identifiés",
+          "Documentation des expressions de gratitude pendant l'activité de clôture",
+          "Noter la participation active aux discussions sur les aides scolaires"
+        ]
       }
     },
     {
@@ -169,7 +243,11 @@
           "autumn leaves or props"
         ],
         "visualSupports": "Falling leaf gestures, cooler weather motions (rubbing arms), changing colors hand movements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève n'a pas encore remarqué les changements d'automne → faire une promenade d'observation ou regarder par les fenêtres ensemble",
+          "Si un élève confond l'automne avec d'autres saisons → utiliser des images claires des quatre saisons en comparaison",
+          "Si un élève vit des émotions face aux changements → expliquer que les changements sont naturels et beaux"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -199,9 +277,17 @@
       "closing": {
         "duration": 10,
         "activity": "Autumn appreciation circle where students share their favorite autumn change in the community. Practice saying 'J'aime l'automne parce que...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de phrases d'automne",
+          "feuilles d'automne décoratives",
+          "autocollants saisonniers"
+        ],
+        "visualSupports": "Gestes d'appréciation saisonnelle, expressions de joie automnale, mouvements de partage",
+        "decisionPoints": [
+          "Si un élève ne trouve pas quelque chose qu'il aime sur l'automne → l'aider avec des suggestions comme 'les belles couleurs' ou 'les feuilles qui tombent'",
+          "Si un élève est triste que l'été soit fini → valider ses sentiments et souligner les aspects positifs et amusants de l'automne",
+          "Si un élève partage des changements négatifs → rediriger gentiment vers les aspects positifs et naturels de l'automne"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -210,14 +296,39 @@
       },
       "realWorldConnection": "Autumn brings special changes that affect how our community looks, feels, and works together",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des photos avant/après simples des changements d'automne",
+          "Permettre d'observer plutôt que de décrire verbalement",
+          "Offrir de l'aide pour identifier les changements les plus évidents"
+        ],
+        "forAdvanced": [
+          "Encourager à expliquer pourquoi ces changements arrivent en automne",
+          "Inviter à comparer les changements locaux avec d'autres régions",
+          "Permettre de dessiner des détails précis des changements observés"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire d'automne avec des images claires",
+          "Encourager l'utilisation de gestes descriptifs",
+          "Permettre le mélange linguistique pour décrire les changements"
+        ],
+        "forIEP": [
+          "Adapter les activités d'observation selon les capacités sensorielles",
+          "Offrir des supports tactiles comme de vraies feuilles",
+          "Respecter les rythmes individuels d'observation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 changements d'automne dans la communauté",
+          "Élève utilise le vocabulaire saisonnier approprié",
+          "Élève démontre une appréciation pour les changements naturels",
+          "Élève relie les changements d'automne à sa communauté locale"
+        ],
+        "checkpoints": [
+          "Documentation du journal d'observation - précision des changements notés",
+          "Observation des discussions sur les changements saisonniers",
+          "Noter l'utilisation du vocabulaire d'automne pendant les activités"
+        ]
       }
     },
     {
@@ -240,7 +351,11 @@
           "protective equipment props"
         ],
         "visualSupports": "Protective gestures (shield motion), safety pointing (stop hand), grateful expressions for helpers",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur des policiers ou pompiers → expliquer leur rôle protecteur et amical, utiliser des exemples positifs comme aider les animaux",
+          "Si un élève ne connaît pas d'aides de sécurité → commencer par les aides visibles comme les brigadiers scolaires ou les chauffeurs d'autobus",
+          "Si un élève partage une expérience négative → valider ses sentiments et rediriger vers les aspects positifs et protecteurs des aides"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -270,9 +385,17 @@
       "closing": {
         "duration": 10,
         "activity": "Safety appreciation circle where students practice saying 'Merci de nous protéger' and share how safety helpers make them feel secure in their community.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de remerciement de sécurité",
+          "autocollants de protection",
+          "phrases de gratitude françaises"
+        ],
+        "visualSupports": "Gestes de protection et de gratitude, expressions de sécurité, sourires rassurants",
+        "decisionPoints": [
+          "Si un élève reste anxieux malgré les explications rassurantes → se concentrer sur les sentiments de sécurité à l'école et à la maison",
+          "Si un élève ne comprend pas pourquoi remercier les aides → expliquer avec des exemples concrets comment ils nous aident chaque jour",
+          "Si un élève veut partager trop de détails personnels → rediriger vers les remerciements généraux aux aides communautaires"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -281,14 +404,39 @@
       },
       "realWorldConnection": "Safety helpers work every day, including during autumn, to keep our community safe and secure",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des images positives et rassurantes des aides de sécurité",
+          "Permettre d'observer sans pression de participation verbale",
+          "Offrir des activités calmantes si l'anxiété se manifeste"
+        ],
+        "forAdvanced": [
+          "Encourager à expliquer les différents rôles des aides de sécurité",
+          "Inviter à discuter des situations où on pourrait avoir besoin d'aide",
+          "Permettre de poser des questions sur la formation des aides"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire de sécurité avec images claires",
+          "Encourager l'utilisation de gestes pour exprimer la sécurité",
+          "Permettre la traduction pour les concepts de sécurité complexes"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins émotionnels et sensoriels individuels",
+          "Offrir des pauses et du réconfort si nécessaire",
+          "Respecter les niveaux de confort avec les sujets de sécurité"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 types d'aides de sécurité communautaires",
+          "Élève explique comment les aides nous protègent",
+          "Élève démontre une attitude positive envers les aides de sécurité",
+          "Élève utilise le vocabulaire de sécurité de manière appropriée"
+        ],
+        "checkpoints": [
+          "Observation du tableau des aides de sécurité - précision des rôles identifiés",
+          "Documentation des expressions de gratitude et de sécurité",
+          "Noter les niveaux de confort avec les sujets de sécurité"
+        ]
       }
     },
     {
@@ -311,7 +459,11 @@
           "visitor etiquette reminders"
         ],
         "visualSupports": "Fire safety gestures (stop drop roll motions), respectful listening posture, question asking gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est trop excité pour la visite → canaliser son énergie vers la préparation de bonnes questions et de comportements respectueux",
+          "Si un élève a peur du pompier → expliquer que les pompiers sont gentils et viennent nous apprendre à être en sécurité",
+          "Si un élève ne sait pas quoi demander → suggérer des questions simples sur l'équipement ou comment devenir pompier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -340,9 +492,17 @@
       "closing": {
         "duration": 10,
         "activity": "Firefighter appreciation circle where students share what they learned and practice saying 'Merci, pompier!' End with commitment to fire safety rules.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats de sécurité incendie",
+          "autocollants de pompiers",
+          "affiche des règles de sécurité"
+        ],
+        "visualSupports": "Gestes de remerciement aux pompiers, expressions de fierté pour l'apprentissage, mouvements d'engagement",
+        "decisionPoints": [
+          "Si un élève reste trop excité après la visite → utiliser des techniques de calme et de retour au centre avec respiration profonde",
+          "Si un élève n'a pas pu poser sa question → l'encourager à dessiner sa question pour une discussion ultérieure",
+          "Si un élève ne veut pas s'engager aux règles → expliquer l'importance avec des exemples concrets et simples"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -351,14 +511,39 @@
       },
       "realWorldConnection": "Fire fighters help our community stay safe from fires and other emergencies all year long",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Préparer l'élève à la visite avec des photos et explications simples",
+          "Permettre d'observer sans pression de participation active",
+          "Offrir un endroit calme si la stimulation devient trop intense"
+        ],
+        "forAdvanced": [
+          "Encourager à poser des questions détaillées sur l'équipement",
+          "Inviter à expliquer les concepts de sécurité aux autres élèves",
+          "Permettre de dessiner des détails précis de l'équipement observé"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire de sécurité incendie avec images",
+          "Encourager les questions dans la langue maternelle avec traduction",
+          "Utiliser des gestes et démonstrations pour la compréhension"
+        ],
+        "forIEP": [
+          "Adapter selon les sensibilités sensorielles (bruits, lumières)",
+          "Offrir des supports de communication alternatifs",
+          "Respecter les besoins individuels de participation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension des rôles des pompiers",
+          "Élève apprend au moins 2 règles de sécurité incendie",
+          "Élève participe respectueusement à la visite du pompier",
+          "Élève utilise le vocabulaire de sécurité incendie approprié"
+        ],
+        "checkpoints": [
+          "Observation de l'engagement pendant la visite du pompier",
+          "Documentation de l'affiche de sécurité créée",
+          "Noter la rétention des règles de sécurité enseignées"
+        ]
       }
     },
     {
@@ -381,7 +566,11 @@
           "caring gesture demonstrations"
         ],
         "visualSupports": "Caring gestures (gentle hands), health checking motions (listening, looking), wellness expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur des docteurs ou infirmières → expliquer comment ils nous aident à être forts et en santé, utiliser des exemples positifs",
+          "Si un élève ne connaît pas d'aides de santé → commencer par l'infirmière scolaire ou les aides familiers comme le pharmacien",
+          "Si un élève partage des détails médicaux personnels → rediriger gentiment vers les rôles généraux des aides de santé"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -410,9 +599,17 @@
       "closing": {
         "duration": 10,
         "activity": "Health appreciation circle where students share ways to stay healthy and practice thanking healthcare helpers with 'Merci de prendre soin de nous!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de santé et bien-être",
+          "autocollants de santé",
+          "affiche des habitudes saines"
+        ],
+        "visualSupports": "Gestes de remerciement aux aides de santé, mouvements de bien-être, expressions de gratitude",
+        "decisionPoints": [
+          "Si un élève reste inquiet des visites médicales → se concentrer sur les aspects préventifs et positifs de la santé",
+          "Si un élève ne connaît pas de moyens de rester en santé → suggérer des idées simples comme se laver les mains et manger des fruits",
+          "Si un élève partage des problèmes de santé personnels → valider ses sentiments et rediriger vers l'appréciation des aides"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -421,14 +618,39 @@
       },
       "realWorldConnection": "Healthcare helpers work to keep everyone in our community healthy and strong",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des images simples et rassurantes des aides de santé",
+          "Permettre d'observer les activités sans pression de participation",
+          "Offrir des activités calmantes si l'anxiété médicale se manifeste"
+        ],
+        "forAdvanced": [
+          "Encourager à expliquer les différents rôles des professionnels de santé",
+          "Inviter à discuter des moyens de prévenir les maladies",
+          "Permettre de poser des questions sur la formation médicale"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire de santé avec images claires et gestes",
+          "Encourager l'utilisation de la langue maternelle pour exprimer les sentiments de santé",
+          "Utiliser des supports visuels pour les concepts de santé"
+        ],
+        "forIEP": [
+          "Adapter selon les expériences médicales personnelles de l'élève",
+          "Offrir des options de participation non-verbales",
+          "Respecter les sensibilités individuelles aux sujets de santé"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 types d'aides de santé communautaires",
+          "Élève démontre une attitude positive envers les professionnels de santé",
+          "Élève explique au moins 2 moyens de rester en santé",
+          "Élève utilise le vocabulaire de santé de manière appropriée"
+        ],
+        "checkpoints": [
+          "Observation du livre des aides de santé - précision des rôles identifiés",
+          "Documentation des stratégies de santé partagées",
+          "Noter les niveaux de confort avec les sujets de santé"
+        ]
       }
     },
     {
@@ -451,7 +673,11 @@
           "food appreciation gestures"
         ],
         "visualSupports": "Farm growing gestures, transportation motions, food sharing expressions, grateful eating motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne sait pas d'où vient sa nourriture → commencer par des exemples simples comme 'le lait vient des vaches' et 'les pommes poussent sur les arbres'",
+          "Si un élève pense que la nourriture vient seulement du magasin → expliquer le voyage depuis la ferme avec des images séquentielles",
+          "Si un élève partage des détails sur ses habitudes alimentaires → accepter ses partages et rediriger vers l'appréciation des fermiers"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -481,9 +707,17 @@
       "closing": {
         "duration": 10,
         "activity": "Food appreciation circle where students share their favorite autumn food and practice saying 'Merci aux fermiers!' for bringing food to community.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'aliments d'automne",
+          "autocollants de récolte",
+          "phrases de remerciement aux fermiers"
+        ],
+        "visualSupports": "Gestes de gratitude envers les fermiers, expressions de saveur, mouvements d'appréciation alimentaire",
+        "decisionPoints": [
+          "Si un élève ne connaît pas d'aliments d'automne → suggérer des exemples comme les pommes, les citrouilles, ou les maïs",
+          "Si un élève n'aime pas les légumes d'automne → se concentrer sur l'appréciation du travail des fermiers plutôt que sur les goûts",
+          "Si un élève veut parler de fast food → accepter sa réponse et connecter aux ingrédients qui viennent des fermes"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -492,14 +726,39 @@
       },
       "realWorldConnection": "Many helpers work together to bring fresh, healthy food to our community, especially during autumn harvest",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des images simples du voyage de la nourriture de la ferme au magasin",
+          "Permettre de pointer ou toucher les aliments plutôt que de nommer verbalement",
+          "Offrir des exemples concrets d'aliments familiers et leur origine"
+        ],
+        "forAdvanced": [
+          "Encourager à expliquer les étapes du transport de la nourriture",
+          "Inviter à discuter des différents types de fermes (légumes, fruits, animaux)",
+          "Permettre de poser des questions sur les saisons de récolte"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire alimentaire et agricole avec images claires",
+          "Encourager l'utilisation de noms d'aliments dans la langue maternelle",
+          "Utiliser des gestes et supports visuels pour les concepts agricoles"
+        ],
+        "forIEP": [
+          "Adapter selon les expériences alimentaires et sensibilités de l'élève",
+          "Offrir des options tactiles comme toucher de vrais fruits et légumes",
+          "Respecter les restrictions alimentaires individuelles"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 aides impliqus dans l'approvisionnement alimentaire",
+          "Élève explique le voyage simple de la nourriture de la ferme au magasin",
+          "Élève démontre de l'appréciation pour les fermiers et aides alimentaires",
+          "Élève identifie des aliments d'automne de sa communauté"
+        ],
+        "checkpoints": [
+          "Observation de l'affiche 'De la ferme à la table' - compréhension du processus",
+          "Documentation des expressions d'appréciation pour les fermiers",
+          "Noter la compréhension des connexions alimentaires communautaires"
+        ]
       }
     },
     {
@@ -522,7 +781,11 @@
           "observation question prompts"
         ],
         "visualSupports": "Shopping gestures, respectful observation postures, polite interaction expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est trop excité pour la sortie → canaliser son énergie vers la préparation d'observations spéciales et de questions polies",
+          "Si un élève a peur d'interagir avec les employés → expliquer que les travailleurs sont amicaux et aiment aider les enfants",
+          "Si un élève ne sait pas quoi observer → donner des idées simples comme compter les pommes ou regarder comment on fait la caisse"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -551,9 +814,17 @@
       "closing": {
         "duration": 10,
         "activity": "Grocery appreciation circle where students share what they observed and practice thanking store workers with 'Merci de nous servir!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'observation d'épicerie",
+          "autocollants de remerciement",
+          "photos de la visite"
+        ],
+        "visualSupports": "Gestes de remerciement aux employés, expressions d'observation, mouvements d'appréciation du service",
+        "decisionPoints": [
+          "Si un élève reste trop excité après la visite → utiliser le partage calme d'observations pour recentrer l'attention",
+          "Si un élève n'a pas bien observé pendant la visite → l'aider à se rappeler avec des questions guidées et des photos",
+          "Si un élève veut retourner immédiatement → expliquer qu'on peut visiter l'épicerie avec la famille aussi"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -562,14 +833,39 @@
       },
       "realWorldConnection": "Grocery stores are important community places where food helpers serve families every day",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Préparer l'élève avec des images de l'épicerie avant la visite",
+          "Permettre d'observer sans pression d'interaction sociale",
+          "Offrir un partenaire de soutien pendant l'exploration"
+        ],
+        "forAdvanced": [
+          "Encourager à poser des questions détaillées aux employés sur leurs tâches",
+          "Inviter à observer et expliquer l'organisation de l'épicerie",
+          "Permettre de calculer ou compter des produits pendant la visite"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire d'épicerie avec images des objets réels",
+          "Encourager l'utilisation de gestes et de pointage pour communiquer",
+          "Permettre l'utilisation de mots familiers dans la langue maternelle"
+        ],
+        "forIEP": [
+          "Adapter selon les sensibilités sensorielles (bruits, lumières, foules)",
+          "Offrir des pauses et espaces calmes si nécessaire",
+          "Respecter les niveaux de confort avec les interactions sociales"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 rôles différents d'employés d'épicerie",
+          "Élève démontre des comportements respectueux pendant la visite",
+          "Élève explique comment l'épicerie sert la communauté",
+          "Élève utilise le vocabulaire d'épicerie de manière appropriée"
+        ],
+        "checkpoints": [
+          "Observation du comportement pendant la visite d'épicerie",
+          "Documentation des observations partagées après la visite",
+          "Noter les interactions positives avec les employés d'épicerie"
+        ]
       }
     },
     {
@@ -592,7 +888,11 @@
           "environmental care gestures"
         ],
         "visualSupports": "Cleaning gestures (sweeping, picking up), environmental care motions, pride in clean spaces expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'il ne nettoie jamais → l'encourager avec des exemples simples comme ranger ses jouets ou jeter ses déchets dans la poubelle",
+          "Si un élève ne comprend pas pourquoi garder les espaces propres → expliquer avec des exemples concrets comme 'c'est plus beau' et 'les animaux sont plus heureux'",
+          "Si un élève partage trop de détails sur le ménage à la maison → rediriger vers les actions simples à l'école et dans la communauté"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -621,9 +921,17 @@
       "closing": {
         "duration": 10,
         "activity": "Clean community commitment circle where students share one way they'll help keep their community clean and practice saying 'Merci de garder notre communauté propre!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'engagement environnemental",
+          "autocollants de communauté propre",
+          "certificats d'aide communautaire"
+        ],
+        "visualSupports": "Gestes d'engagement à aider, expressions de fierté environnementale, mouvements d'action communautaire",
+        "decisionPoints": [
+          "Si un élève ne sait pas comment aider → suggérer des actions simples comme ne pas jeter par terre ou ramasser un déchet qu'il voit",
+          "Si un élève promet quelque chose de trop difficile → l'aider à choisir une action réaliste et appropriée pour son âge",
+          "Si un élève semble découragé par la saleté dans la communauté → souligner les petites actions qui font une grande différence"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -632,14 +940,39 @@
       },
       "realWorldConnection": "Keeping our community clean requires helpers working together and everyone doing their part",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des exemples visuels simples d'espaces propres vs sales",
+          "Permettre de montrer des actions de nettoyage plutôt que de les décrire",
+          "Offrir des tâches de nettoyage très simples et concrètes"
+        ],
+        "forAdvanced": [
+          "Encourager à expliquer l'impact environnemental du nettoyage communautaire",
+          "Inviter à organiser des plans de nettoyage pour la classe ou l'école",
+          "Permettre de calculer l'impact de petites actions répétées"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire de nettoyage avec démonstrations physiques",
+          "Encourager l'utilisation de gestes pour montrer les actions de nettoyage",
+          "Permettre d'utiliser des mots simples dans toute langue pour exprimer l'aide"
+        ],
+        "forIEP": [
+          "Adapter les tâches de nettoyage selon les capacités motrices individuelles",
+          "Offrir des rôles d'aide appropriés sans surcharge sensorielle",
+          "Respecter les sensibilités aux textures et odeurs de nettoyage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 aides qui gardent la communauté propre",
+          "Élève explique au moins une action personnelle pour aider la communauté",
+          "Élève démontre une appréciation pour les travailleurs de l'environnement",
+          "Élève montre une compréhension de la responsabilité collective"
+        ],
+        "checkpoints": [
+          "Observation du plan d'action communautaire créé",
+          "Documentation des engagements pris pour aider la communauté",
+          "Noter la compréhension des connexions entre actions individuelles et bien-être communautaire"
+        ]
       }
     },
     {
@@ -662,7 +995,11 @@
           "festive gesture demonstrations"
         ],
         "visualSupports": "Celebration gestures (clapping, cheering), autumn activity motions, community togetherness expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît pas d'activités d'automne → suggérer des exemples familiers comme ramasser les feuilles, porter des déguisements, ou manger des pommes",
+          "Si un élève partage seulement des activités intérieures → l'encourager à penser aux sorties d'automne comme les promenades ou les parcs",
+          "Si un élève semble triste de ne pas participer à certaines activités → souligner qu'il y a beaucoup de façons différentes de profiter de l'automne"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -691,9 +1028,17 @@
       "closing": {
         "duration": 10,
         "activity": "Autumn celebration circle where students share which community autumn activity they'd most like to try and practice saying 'J'aimerais participer!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "calendrier d'activités d'automne",
+          "autocollants de participation",
+          "cartes d'activités communautaires"
+        ],
+        "visualSupports": "Gestes d'intérêt et d'enthousiasme, expressions de participation, mouvements de célébration",
+        "decisionPoints": [
+          "Si un élève choisit une activité trop difficile ou coûteuse → l'aider à identifier des alternatives accessibles ou des façons simples de participer",
+          "Si un élève ne veut essayer aucune activité → l'encourager avec des options très simples comme regarder les feuilles d'automne",
+          "Si un élève devient très excité par toutes les activités → l'aider à choisir une activité spéciale pour commencer"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -702,14 +1047,39 @@
       },
       "realWorldConnection": "Autumn brings special opportunities for community members to celebrate and have fun together",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des photos simples d'activités d'automne accessibles",
+          "Permettre de choisir des activités très familiales et peu coûteuses",
+          "Offrir des options d'observation plutôt que de participation active"
+        ],
+        "forAdvanced": [
+          "Encourager à planifier une activité d'automne pour la classe",
+          "Inviter à expliquer comment organiser des événements communautaires",
+          "Permettre de rechercher des activités d'automne dans d'autres communautés"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire d'activités avec images et gestes",
+          "Encourager le partage d'activités d'automne de la culture d'origine",
+          "Utiliser des supports visuels pour les concepts de célébration"
+        ],
+        "forIEP": [
+          "Adapter selon les intérêts et capacités individuelles de participation",
+          "Offrir des rôles de participation appropriés aux besoins sensoriels",
+          "Respecter les préférences sociales pour les activités communautaires"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 activités d'automne de sa communauté",
+          "Élève démontre de l'intérêt pour les activités communautaires",
+          "Élève explique comment les activités rassemblent la communauté",
+          "Élève utilise le vocabulaire de célébration approprié"
+        ],
+        "checkpoints": [
+          "Observation du calendrier d'activités d'automne créé",
+          "Documentation des choix d'activités et justifications",
+          "Noter l'enthousiasme pour la participation communautaire"
+        ]
       }
     },
     {
@@ -732,7 +1102,11 @@
           "neighborhood exploration guidelines"
         ],
         "visualSupports": "Observation gestures (pointing, looking carefully), safety rule demonstrations, respectful neighbor interactions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève est trop excité pour la promenade → canaliser son énergie vers des observations spécifiques comme compter les maisons rouges ou chercher des chiens",
+          "Si un élève a peur de sortir ou d'observer → le rassurer sur la sécurité du groupe et lui donner un rôle spécial d'observation",
+          "Si un élève ne sait pas quoi observer → lui donner une liste simple d'observations comme les couleurs, les aides, et les changements d'automne"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -761,9 +1135,17 @@
       "closing": {
         "duration": 10,
         "activity": "Neighborhood discovery circle where students share their most interesting observation and practice saying 'J'ai découvert que...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "journal d'observations du quartier",
+          "autocollants de découverte",
+          "cartes de partage d'observations"
+        ],
+        "visualSupports": "Gestes d'excitation pour les découvertes, expressions de surprise positive, mouvements de partage enthousiaste",
+        "decisionPoints": [
+          "Si un élève n'a rien observé d'intéressant → l'aider avec des questions guidées sur ce qu'il a vu de différent ou nouveau",
+          "Si un élève veut partager trop de détails → l'encourager à choisir sa découverte la plus spéciale pour le groupe",
+          "Si un élève est fatigué après la promenade → permettre des réponses plus courtes ou des gestes plutôt que des mots"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -772,14 +1154,39 @@
       },
       "realWorldConnection": "Taking time to really look at our neighborhood helps us appreciate all the helpers around us",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir une liste d'observation très simple avec images",
+          "Permettre d'observer avec un partenaire pour le soutien",
+          "Offrir des pauses fréquentes pendant la promenade"
+        ],
+        "forAdvanced": [
+          "Encourager à poser des questions aux aides rencontrés",
+          "Inviter à dessiner une carte du quartier avec les découvertes",
+          "Permettre de compter ou mesurer des éléments observés"
+        ],
+        "forELL": [
+          "Fournir du vocabulaire d'observation avec images du quartier",
+          "Encourager l'utilisation de gestes pour décrire les observations",
+          "Permettre d'utiliser la langue maternelle pour les découvertes excitantes"
+        ],
+        "forIEP": [
+          "Adapter selon les capacités de marche et d'attention individuelles",
+          "Offrir des rôles d'observation appropriés aux intérêts",
+          "Respecter les besoins sensoriels pendant l'exploration extérieure"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre des compétences d'observation pendant la promenade",
+          "Élève identifie au moins 2 aides communautaires dans le quartier",
+          "Élève remarque des changements d'automne dans l'environnement",
+          "Élève utilise le vocabulaire d'observation approprié"
+        ],
+        "checkpoints": [
+          "Documentation du journal d'observations du quartier",
+          "Observation du comportement respectueux pendant la promenade",
+          "Noter la qualité des découvertes partagées"
+        ]
       }
     },
     {
@@ -802,7 +1209,11 @@
           "safety gesture demonstrations"
         ],
         "visualSupports": "Transportation motions (driving, walking, riding), safety rule gestures, grateful traveler expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît que sa propre façon de se déplacer → l'encourager à écouter et découvrir les autres modes de transport utilisés par ses amis",
+          "Si un élève a peur de certains transports comme l'autobus → expliquer comment les conducteurs sont formés pour la sécurité",
+          "Si un élève partage des détails sur des accidents de transport → rediriger vers les aspects positifs et sécuritaires du transport"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -831,9 +1242,17 @@
       "closing": {
         "duration": 10,
         "activity": "Transportation appreciation circle where students practice thanking transportation helpers with 'Merci de nous aider à voyager en sécurité!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de remerciement aux conducteurs",
+          "autocollants de transport sécuritaire",
+          "affiche des règles de sécurité"
+        ],
+        "visualSupports": "Gestes de remerciement aux aides de transport, expressions de sécurité, mouvements d'appréciation",
+        "decisionPoints": [
+          "Si un élève ne sait pas qui remercier → l'aider à penser aux aides qu'il voit régulièrement comme le chauffeur d'autobus ou le brigadier",
+          "Si un élève veut seulement remercier sa famille → accepter sa réponse et ajouter que les aides communautaires méritent aussi nos remerciements",
+          "Si un élève semble préoccupé par la sécurité transport → souligner comment les règles et les aides nous gardent tous en sécurité"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -842,14 +1261,39 @@
       },
       "realWorldConnection": "Transportation helpers make it possible for people to move safely around our community",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des images simples des modes de transport et leurs aides",
+          "Permettre de montrer ou mimer les transports plutôt que les nommer",
+          "Offrir des options de transport très familiers pour commencer"
+        ],
+        "forAdvanced": [
+          "Encourager à expliquer les rôles spécifiques de différents aides de transport",
+          "Inviter à comparer les transports en ville vs à la campagne",
+          "Permettre de dessiner un plan de transport pour l'école"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire de transport avec images et sons (vroum, beep)",
+          "Encourager l'utilisation de gestes pour décrire les mouvements",
+          "Permettre d'utiliser les noms de transport de la langue maternelle"
+        ],
+        "forIEP": [
+          "Adapter selon les expériences de transport individuelles",
+          "Offrir des activités qui respectent les sensibilités aux bruits de transport",
+          "Respecter les niveaux de confort avec différents modes de transport"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 aides de transport dans sa communauté",
+          "Élève explique comment les aides de transport gardent les gens en sécurité",
+          "Élève démontre une appréciation pour les services de transport",
+          "Élève utilise le vocabulaire de transport de manière appropriée"
+        ],
+        "checkpoints": [
+          "Observation de l'affiche de transport sécuritaire créée",
+          "Documentation des expressions d'appréciation pour les aides",
+          "Noter la compréhension des liens transport-sécurité communautaire"
+        ]
       }
     },
     {
@@ -872,7 +1316,11 @@
           "building gesture demonstrations"
         ],
         "visualSupports": "Building motions (hammering, measuring), repair gestures, community improvement expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne remarque rien qui a besoin de réparation → l'aider avec des exemples comme les routes à réparer ou les aires de jeux à améliorer",
+          "Si un élève a peur des bruits de construction → expliquer que les outils font du bruit pour nous aider à construire de belles choses",
+          "Si un élève partage des problèmes de sécurité avec la construction → souligner comment les travailleurs portent des casques pour rester en sécurité"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -901,9 +1349,17 @@
       "closing": {
         "duration": 10,
         "activity": "Builder appreciation circle where students share how construction helpers make their community better and practice saying 'Merci de construire notre communauté!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'appréciation pour constructeurs",
+          "autocollants d'outils de construction",
+          "certificats de remerciement"
+        ],
+        "visualSupports": "Gestes de construction et de création, expressions de gratitude pour les améliorations, mouvements d'appréciation",
+        "decisionPoints": [
+          "Si un élève ne voit pas comment la construction aide → utiliser des exemples concrets comme 'sans les constructeurs, nous n'aurions pas notre école'",
+          "Si un élève veut devenir constructeur → l'encourager et expliquer l'importance d'apprendre et d'être prudent",
+          "Si un élève reste préoccupé par les bruits → souligner les belles choses qui sont créées grâce au travail de construction"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -912,14 +1368,39 @@
       },
       "realWorldConnection": "Construction and repair workers help make our community stronger and better for everyone",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des images simples d'avant/après les constructions",
+          "Permettre d'observer et toucher des outils sécuritaires",
+          "Offrir des activités de construction avec blocs ou légos"
+        ],
+        "forAdvanced": [
+          "Encourager à expliquer les étapes de construction d'un bâtiment",
+          "Inviter à dessiner des plans d'amélioration pour l'école",
+          "Permettre de calculer ou mesurer des éléments de construction"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire de construction avec gestes et sons",
+          "Encourager l'utilisation de mouvements pour décrire la construction",
+          "Permettre d'utiliser les mots d'outils de la langue maternelle"
+        ],
+        "forIEP": [
+          "Adapter selon les sensibilités aux bruits et textures de construction",
+          "Offrir des rôles d'aide dans des projets de construction adaptés",
+          "Respecter les intérêts individuels pour les activités de construction"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 3 types de travailleurs de construction",
+          "Élève explique comment la construction améliore la communauté",
+          "Élève démontre une appréciation pour les travailleurs de construction",
+          "Élève utilise le vocabulaire de construction de manière appropriée"
+        ],
+        "checkpoints": [
+          "Observation du tableau d'appréciation des constructeurs créé",
+          "Documentation des améliorations communautaires identifiées",
+          "Noter la compréhension du lien construction-amélioration communautaire"
+        ]
       }
     },
     {
@@ -942,7 +1423,11 @@
           "helpful gesture demonstrations"
         ],
         "visualSupports": "Helping hand gestures, citizen pride expressions, community contribution motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'il n'aide jamais → l'encourager avec des exemples simples comme tenir la porte ou dire bonjour aux voisins",
+          "Si un élève ne comprend pas ce qu'est un citoyen → expliquer simplement que c'est quelqu'un qui vit dans la communauté et l'aide à être belle",
+          "Si un élève partage des exemples trop adult es d'aide → rediriger vers des actions appropriées pour son âge"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -971,9 +1456,17 @@
       "closing": {
         "duration": 10,
         "activity": "Young citizen commitment circle where students choose one way they'll help their community and practice saying 'Je vais aider ma communauté en...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats de jeune citoyen",
+          "autocollants d'aide communautaire",
+          "cartes d'engagement"
+        ],
+        "visualSupports": "Gestes d'engagement à aider, expressions de fierté citoyenne, mouvements d'action positive",
+        "decisionPoints": [
+          "Si un élève ne sait pas comment aider → suggérer des actions très simples comme ramasser un déchet ou sourire aux voisins",
+          "Si un élève choisit quelque chose de trop difficile → l'aider à adapter son idée à une action réalisable",
+          "Si un élève semble découragé par la grosseur des problèmes → souligner que les petites actions de beaucoup de personnes font de grands changements"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -982,14 +1475,39 @@
       },
       "realWorldConnection": "Even young people can make important contributions to help their community be better",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des exemples très simples d'aide comme tenir la porte",
+          "Permettre de choisir des actions familiales plutôt qu'individuelles",
+          "Offrir des options d'aide à l'école avant la communauté"
+        ],
+        "forAdvanced": [
+          "Encourager à planifier des projets d'aide plus complexes",
+          "Inviter à organiser une activité d'aide pour la classe",
+          "Permettre de rechercher des organisations d'aide communautaire"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire d'aide avec gestes et démonstrations",
+          "Encourager l'utilisation d'exemples d'aide de la culture d'origine",
+          "Utiliser des images pour illustrer les actions d'aide"
+        ],
+        "forIEP": [
+          "Adapter les suggestions d'aide selon les capacités individuelles",
+          "Offrir des rôles d'aide appropriés aux intérêts spéciaux",
+          "Respecter les niveaux de confort social pour les activités communautaires"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève identifie au moins 2 façons d'aider sa communauté",
+          "Élève démontre une compréhension de son rôle de jeune citoyen",
+          "Élève s'engage à une action d'aide réalisable",
+          "Élève exprime de la fierté pour sa contribution communautaire"
+        ],
+        "checkpoints": [
+          "Observation du plan d'action de jeune citoyen créé",
+          "Documentation des engagements pris pour aider la communauté",
+          "Noter la compréhension du concept de citoyenneté responsable"
+        ]
       }
     },
     {
@@ -1012,7 +1530,11 @@
           "directional gesture demonstrations"
         ],
         "visualSupports": "Directional pointing, map-reading gestures, location identification expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne connaît que sa maison et l'école → l'encourager à penser aux endroits entre les deux comme les magasins ou les parcs",
+          "Si un élève ne comprend pas ce qu'est une carte → utiliser la carte de classe ou de l'école comme exemple simple",
+          "Si un élève partage des endroits très loin de sa communauté → accepter sa réponse et rediriger vers les lieux du quartier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1042,9 +1564,17 @@
       "closing": {
         "duration": 10,
         "activity": "Map sharing circle where students show their community maps and practice describing locations with 'Sur ma carte, je vois...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "support d'affichage pour cartes",
+          "autocollants de cartographe",
+          "cartes de partage"
+        ],
+        "visualSupports": "Gestes de pointage sur la carte, expressions de fierté pour le travail, mouvements d'explication spatiale",
+        "decisionPoints": [
+          "Si un élève est gêné de montrer sa carte → l'encourager en soulignant quelque chose de spécial sur sa carte",
+          "Si un élève ne sait pas comment décrire sa carte → l'aider avec des questions guidées comme 'Qu'est-ce qui est près de ton école?'",
+          "Si un élève veut refaire sa carte → valoriser son travail actuel et expliquer qu'on peut toujours améliorer les cartes plus tard"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1053,14 +1583,39 @@
       },
       "realWorldConnection": "Making maps helps us understand how our community is organized and where helpers work",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des cartes partiellement remplies avec des points de repère",
+          "Permettre d'utiliser des autocollants plutôt que de dessiner",
+          "Offrir de l'aide individuelle pour l'organisation spatiale"
+        ],
+        "forAdvanced": [
+          "Encourager à ajouter des détails comme les noms de rues",
+          "Inviter à créer une légende pour leur carte",
+          "Permettre de faire une carte plus détaillée avec plusieurs quartiers"
+        ],
+        "forELL": [
+          "Fournir le vocabulaire de localisation avec gestes directionnels",
+          "Encourager l'utilisation d'images et symboles pour représenter les lieux",
+          "Permettre d'étiqueter en langue maternelle et français"
+        ],
+        "forIEP": [
+          "Adapter les outils de cartographie selon les capacités motrices",
+          "Offrir des options de représentation alternatives (coller vs dessiner)",
+          "Respecter les intérêts individuels pour les types de lieux à inclure"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève crée une carte reconnaissable de sa communauté",
+          "Élève inclut au moins 3 lieux importants sur sa carte",
+          "Élève identifie les emplacements des aides communautaires",
+          "Élève décrit sa carte en utilisant le vocabulaire spatial"
+        ],
+        "checkpoints": [
+          "Observation du processus de création de carte - compréhension spatiale",
+          "Documentation de la carte finale - précision et détail",
+          "Noter la capacité à décrire et expliquer la carte créée"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1123,7 +1678,11 @@
           "creative inspiration examples"
         ],
         "visualSupports": "Artistic creation gestures, helper appreciation expressions, creative celebration motions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne peut pas choisir un aide préféré → l'aider en demandant quel aide l'a le plus intéressé pendant nos leçons",
+          "Si un élève dit qu'il ne sait pas dessiner → l'encourager en expliquant que l'important est de montrer son appréciation, pas la perfection",
+          "Si un élève veut dessiner plusieurs aides → l'encourager à commencer par un aide spécial et ajouter d'autres s'il a le temps"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1154,9 +1713,17 @@
       "closing": {
         "duration": 10,
         "activity": "Artist appreciation circle where students share their helper artwork and practice describing with 'J'ai dessiné... parce que...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "galerie d'art temporaire",
+          "autocollants d'artiste",
+          "cadres de présentation"
+        ],
+        "visualSupports": "Gestes de présentation artistique, expressions de fierté créative, mouvements d'appréciation",
+        "decisionPoints": [
+          "Si un élève est gêné de montrer son dessin → l'encourager en soulignant les détails spéciaux qu'il a inclus",
+          "Si un élève critique son propre travail → rediriger vers les aspects positifs et l'effort d'appréciation montré",
+          "Si un élève ne peut pas expliquer son dessin → l'aider avec des questions sur les couleurs ou outils qu'il a choisis"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1165,14 +1732,39 @@
       },
       "realWorldConnection": "Creating art about community helpers helps us remember and appreciate their important work",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des modèles simples ou des contours à colorier",
+          "Permettre d'utiliser des autocollants ou collages",
+          "Offrir de l'aide pour tenir les outils d'art"
+        ],
+        "forAdvanced": [
+          "Encourager à ajouter des détails sur l'environnement de travail",
+          "Inviter à écrire un message de remerciement sur l'art",
+          "Permettre d'expérimenter avec différents matériaux artistiques"
+        ],
+        "forELL": [
+          "Permettre l'utilisation d'étiquettes visuelles pour identifier les outils",
+          "Encourager l'expression artistique sans pression linguistique",
+          "Utiliser l'art comme moyen de communication non-verbale"
+        ],
+        "forIEP": [
+          "Adapter les outils artistiques selon les capacités motrices",
+          "Offrir des options de création alternatives (collage, tampons)",
+          "Respecter les préférences sensorielles pour les textures d'art"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève crée une représentation artistique d'un aide communautaire",
+          "Élève démontre de l'appréciation à travers son art",
+          "Élève explique les détails inclus dans son œuvre",
+          "Élève utilise le vocabulaire artistique de manière appropriée"
+        ],
+        "checkpoints": [
+          "Observation du processus créatif et de l'engagement",
+          "Documentation de l'œuvre finale et de son contenu",
+          "Noter les explications données lors du partage artistique"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1235,7 +1827,11 @@
           "role-play vocabulary cards"
         ],
         "visualSupports": "Helper-specific gestures and movements, role-play demonstration techniques, respectful performance expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si plusieurs élèves veulent le même rôle → expliquer qu'on peut avoir plusieurs aides du même type dans notre communauté",
+          "Si un élève est timide pour jouer un rôle → lui offrir un rôle d'observateur spécial ou de partenaire discret",
+          "Si un élève ne se rappelle pas les actions de son aide choisi → l'aider avec des indices ou des photos de référence"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1265,9 +1861,17 @@
       "closing": {
         "duration": 10,
         "activity": "Role-play reflection circle where students share what they learned about helpers through acting and practice saying 'Maintenant je comprends que...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats d'acteur communautaire",
+          "autocollants de jeu de rôle",
+          "cartes de réflexion"
+        ],
+        "visualSupports": "Gestes de réflexion et de compréhension, expressions d'apprentissage, mouvements de partage",
+        "decisionPoints": [
+          "Si un élève reste dans son personnage après l'activité → l'aider à 'sortir' du rôle avec des questions sur sa vraie identité",
+          "Si un élève n'a pas appris quelque chose de nouveau → l'aider avec des questions guidées sur les actions qu'il a faites",
+          "Si un élève veut continuer à jouer → l'encourager et expliquer qu'on peut jouer à aider la communauté à la récréation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1276,14 +1880,39 @@
       },
       "realWorldConnection": "Playing community helper roles helps us understand what different helpers do every day",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des rôles avec actions très simples et familières",
+          "Permettre de jouer en paire pour le soutien",
+          "Offrir des accessoires concrets pour guider l'action"
+        ],
+        "forAdvanced": [
+          "Encourager à créer des scénarios plus complexes",
+          "Inviter à diriger d'autres élèves dans leurs rôles",
+          "Permettre d'improviser au-delà des scénarios donnés"
+        ],
+        "forELL": [
+          "Encourager l'utilisation d'actions plutôt que de paroles",
+          "Permettre le mélange linguistique si nécessaire pour la compréhension",
+          "Utiliser des accessoires pour appuyer la communication non-verbale"
+        ],
+        "forIEP": [
+          "Adapter les rôles selon les intérêts et capacités individuels",
+          "Offrir des options de participation appropriées aux besoins sociaux",
+          "Respecter les niveaux de confort avec les jeux de rôle"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève joue un rôle d'aide communautaire de manière appropriée",
+          "Élève démontre une compréhension des actions des aides",
+          "Élève interagit respectueusement pendant les jeux de rôle",
+          "Élève explique ce qu'il a appris sur les aides à travers le jeu"
+        ],
+        "checkpoints": [
+          "Observation de la participation aux jeux de rôle",
+          "Documentation des actions et interactions pendant l'activité",
+          "Noter les réflexions partagées sur l'apprentissage"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1346,7 +1975,11 @@
           "helper photo reminders"
         ],
         "visualSupports": "Letter writing gestures, gratitude expressions, appreciation demonstration techniques",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne sait pas à qui écrire → l'aider à choisir un aide qu'il a vu récemment ou qui l'a aidé personnellement",
+          "Si un élève dit qu'il ne sait pas écrire → expliquer qu'il peut dessiner ou dicter ses remerciements",
+          "Si un élève ne comprend pas pourquoi remercier → rappeler des exemples concrets de comment les aides nous aident chaque jour"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1376,9 +2009,17 @@
       "closing": {
         "duration": 10,
         "activity": "Letter sharing circle where students share portions of their letters and practice saying 'J'ai écrit pour remercier...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "boîte aux lettres spéciale",
+          "autocollants de gratitude",
+          "enveloppes décoratives"
+        ],
+        "visualSupports": "Gestes de partage de lettres, expressions de fierté d'écriture, mouvements de gratitude",
+        "decisionPoints": [
+          "Si un élève est gêné de partager sa lettre → lui permettre de partager juste une partie ou un dessin de sa lettre",
+          "Si un élève veut garder sa lettre privée → respecter son choix et l'encourager à dire à qui il a écrit",
+          "Si un élève demande si on va vraiment envoyer les lettres → expliquer le plan pour livrer ou envoyer les lettres aux aides"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1387,14 +2028,39 @@
       },
       "realWorldConnection": "Thanking community helpers shows appreciation and builds positive community relationships",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des modèles de lettres avec espaces à remplir",
+          "Permettre de dicter les lettres à un adulte",
+          "Encourager l'utilisation de dessins pour exprimer les remerciements"
+        ],
+        "forAdvanced": [
+          "Encourager à écrire des lettres plus détaillées avec des exemples spécifiques",
+          "Inviter à inclure des questions pour les aides communautaires",
+          "Permettre de créer des enveloppes décoratives pour leurs lettres"
+        ],
+        "forELL": [
+          "Encourager l'utilisation de dessins pour communiquer la gratitude",
+          "Permettre le mélange linguistique avec traduction si nécessaire",
+          "Fournir des phrases simples de remerciement en français"
+        ],
+        "forIEP": [
+          "Adapter les outils d'écriture selon les capacités motrices",
+          "Offrir des options alternatives comme les autocollants ou tampons",
+          "Respecter les préférences individuelles pour l'expression écrite"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève crée une lettre de remerciement pour un aide communautaire",
+          "Élève exprime de la gratitude de manière appropriée",
+          "Élève identifie des raisons spécifiques de remercier l'aide",
+          "Élève utilise le format de lettre de base"
+        ],
+        "checkpoints": [
+          "Documentation de la lettre de remerciement créée",
+          "Observation de l'expression de gratitude pendant l'activité",
+          "Noter la compréhension de l'importance de remercier les aides"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1457,7 +2123,11 @@
           "appreciation demonstration examples"
         ],
         "visualSupports": "Celebration gestures (clapping, cheering), planning motions, community appreciation expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont trop excités pour planifier → canaliser leur énergie vers des idées spécifiques de célébration et de remerciement",
+          "Si un élève ne comprend pas ce qu'est une célébration → expliquer avec des exemples familiers comme les anniversaires ou les fêtes",
+          "Si un élève ne veut pas participer à la planification → lui offrir un rôle d'observateur spécial ou de conseiller"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1487,9 +2157,17 @@
       "closing": {
         "duration": 10,
         "activity": "Celebration reflection circle where students share their favorite part of honoring helpers and practice saying 'Nous célébrons nos héros communautaires!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats de célébration",
+          "photos de la célébration",
+          "autocollants de héros communautaires"
+        ],
+        "visualSupports": "Gestes de célébration joyeuse, expressions de fierté collective, mouvements d'appréciation",
+        "decisionPoints": [
+          "Si un élève reste trop excité après la célébration → l'aider à se calmer avec des respirations profondes et des réflexions positives",
+          "Si un élève est émotionnel après avoir honoré les aides → valider ses sentiments et souligner la beauté de l'appréciation",
+          "Si un élève ne veut pas que la célébration finisse → expliquer qu'on peut continuer à célébrer les aides chaque jour"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1498,14 +2176,39 @@
       },
       "realWorldConnection": "Celebrating community helpers together shows our gratitude and builds community connections",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des rôles simples dans la célébration",
+          "Permettre de participer à son propre rythme",
+          "Offrir des espaces calmes si la stimulation devient intense"
+        ],
+        "forAdvanced": [
+          "Encourager à diriger des aspects de la célébration",
+          "Inviter à préparer des présentations spéciales",
+          "Permettre de créer des éléments de célébration originaux"
+        ],
+        "forELL": [
+          "Encourager la participation non-verbale avec gestes et actions",
+          "Permettre l'expression d'appréciation dans toute langue",
+          "Utiliser des éléments visuels pour appuyer la compréhension"
+        ],
+        "forIEP": [
+          "Adapter les rôles selon les intérêts et capacités individuels",
+          "Offrir des options de participation respectueuses des besoins sensoriels",
+          "Respecter les niveaux de confort avec les activités de groupe"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève participe activement à la célébration des aides communautaires",
+          "Élève démontre de l'appréciation genuine pour les aides",
+          "Élève contribue respectueusement aux activités de célébration",
+          "Élève exprime de la fierté pour honorer les héros communautaires"
+        ],
+        "checkpoints": [
+          "Observation de la participation à la planification et exécution",
+          "Documentation des éléments de célébration créés",
+          "Noter l'engagement et l'enthousiasme pour honorer les aides"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",
@@ -1568,7 +2271,11 @@
           "community connection demonstrations"
         ],
         "visualSupports": "Inclusive community gestures, belonging expressions, proud community member demonstrations",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne se souvient pas des aides appris → l'aider avec des photos ou des indices pour rafraîchir sa mémoire",
+          "Si un élève ne se sent pas comme membre de la communauté → souligner des exemples concrets de son appartenance comme fréquenter l'école et connaître les voisins",
+          "Si un élève semble triste que l'unité se termine → l'encourager en expliquant qu'il peut continuer à remarquer et apprécier les aides tous les jours"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1597,9 +2304,17 @@
       "closing": {
         "duration": 10,
         "activity": "Community pride circle where students share one thing they're proud to know about their community and practice saying 'Je suis fier de faire partie de ma communauté!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats de membre communautaire",
+          "autocollants de fierté communautaire",
+          "livre souvenir de l'unité"
+        ],
+        "visualSupports": "Gestes de fierté et d'appartenance, expressions de confiance communautaire, mouvements de célébration d'apprentissage",
+        "decisionPoints": [
+          "Si un élève ne trouve rien dont il est fier → l'aider en soulignant ses nouvelles connaissances et sa croissance pendant l'unité",
+          "Si un élève devient émotionnel en réfléchissant sur l'appartenance → valider ses sentiments et célébrer cette connexion profonde",
+          "Si un élève ne veut pas que l'unité finisse → l'encourager en expliquant que l'apprentissage sur la communauté continue toujours"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1608,14 +2323,39 @@
       },
       "realWorldConnection": "Understanding our community helps us feel proud to belong and excited to contribute as we grow",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des invites simples pour identifier les apprentissages",
+          "Permettre d'exprimer la fierté par des gestes ou dessins",
+          "Offrir des exemples concrets de leur appartenance communautaire"
+        ],
+        "forAdvanced": [
+          "Encourager à faire des connexions entre différents apprentissages",
+          "Inviter à planifier des actions futures pour la communauté",
+          "Permettre de réfléchir sur la croissance personnelle durant l'unité"
+        ],
+        "forELL": [
+          "Encourager l'expression de fierté dans toute langue",
+          "Utiliser des supports visuels pour appuyer la réflexion",
+          "Permettre le partage par des images ou gestes"
+        ],
+        "forIEP": [
+          "Adapter les activités de réflexion selon les capacités individuelles",
+          "Offrir des options de participation respectueuses des besoins",
+          "Respecter les styles individuels d'expression de fierté"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Élève démontre une compréhension de son rôle dans la communauté",
+          "Élève exprime de la fierté pour ses apprentissages sur la communauté",
+          "Élève articule des connexions entre lui-même et la communauté",
+          "Élève montre de l'enthousiasme pour son appartenance communautaire"
+        ],
+        "checkpoints": [
+          "Documentation du livre 'Mon apprentissage communautaire' créé",
+          "Observation des expressions de fierté et d'appartenance",
+          "Noter la compréhension de l'importance de chaque membre communautaire"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",

@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Grandir, changer et célébrer ensemble",
   "subject": "Formation personnelle et sociale",
   "grade": "1",
   "totalLessons": 20,
@@ -20,41 +20,102 @@
       "opening": {
         "duration": 8,
         "activity": "Welcome circle: Point to classroom growth chart. Ask 'Est-ce que vous grandissez?' Show height comparison from September photos.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Ruban de mesure de croissance de classe",
+          "Photos des élèves de septembre",
+          "Miroir incassable décoré",
+          "Autocollants de croissance (arbres, fleurs)"
+        ],
+        "visualSupports": "Tableau de croissance visuel affiché, photos avant/après, gestes pour 'grandir' (bras qui s'élèvent), expressions corporelles de croissance",
+        "decisionPoints": [
+          "Si un élève dit qu'il ne grandit pas → mesurer sa taille avec le ruban de croissance de la classe et comparer avec la mesure du début d'année",
+          "Si un élève semble inquiet des changements → utiliser les photos de septembre pour montrer ses progrès positifs et le rassurer",
+          "Si un élève ne participe pas aux gestes de croissance → l'inviter à observer d'abord puis proposer un geste plus petit comme lever un doigt"
+        ],
+        "movementBreaks": [
+          "Geste de croissance (bras qui s'élèvent lentement)",
+          "Marcher sur la pointe des pieds pour 'grandir'"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Growth exploration station: Students compare baby items (small shoes, bottles) with big kid items. Practice saying 'Je grandis' with growth gestures. Create simple growth timeline with pictures.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Objets de bébé (petits souliers, biberon, hochet)",
+          "Objets de grands (chaussures de sport, verre, livre)",
+          "Papier géant pour ligne de temps",
+          "Crayons et autocollants"
+        ],
+        "visualSupports": "Comparaisons visuelles bébé/grand, ligne de temps illustrée, démonstrations avec objets concrets, gestes pour 'Je grandis'",
+        "decisionPoints": [
+          "Si un élève ne comprend pas la différence bébé/grand → utiliser son propre corps comme exemple concret (ses mains maintenant vs mains de bébé)",
+          "Si un élève se sent triste de ne plus être bébé → valoriser tout ce qu'il peut faire maintenant et célébrer sa croissance",
+          "Si un élève ne peut pas créer sa ligne de temps → l'aider avec des dessins simples ou lui permettre de coller des autocollants seulement"
+        ],
+        "movementBreaks": [
+          "Ramper comme un bébé puis marcher comme un grand",
+          "Geste 'Je grandis' avec fierté (torse bombé)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Circle time: Each student says one thing they can do now that babies can't. End with growth chant: 'Je grandis, tu grandis, nous grandissons ensemble!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Tableau de fin de leçon",
+          "Autocollants d'accomplissement",
+          "Petit carnet personnel de chaque élève",
+          "Crayon de chacun"
+        ],
+        "visualSupports": "Geste de fierté pour le chant, formation de cercle bien visible, routine de fermeture prévisible avec mouvement",
+        "decisionPoints": [
+          "Si un élève ne trouve pas d'accomplissement à partager → lui rappeler des choses simples qu'il fait bien maintenant (marcher, parler, dessiner)",
+          "Si un élève compare négativement avec d'autres → rediriger vers sa propre croissance personnelle depuis septembre",
+          "Si un élève ne veut pas participer au chant → lui permettre d'écouter ou de faire juste les gestes sans chanter"
+        ],
+        "movementBreaks": [
+          "Chant avec gestes de croissance ensemble",
+          "Mouvement de cercle pour inclusion"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre le concept de grandir",
+        "then": "utiliser des comparaisons concrètes avec objets bébé vs grand, se concentrer sur une seule croissance évidente"
       },
       "realWorldConnection": "Students recognize daily changes in themselves (height, skills, knowledge)",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser uniquement des comparaisons visuelles très simples (petit vs grand)",
+          "Permettre la réponse par gestes plutôt que par mots",
+          "Se concentrer sur une seule évidence de croissance à la fois"
+        ],
+        "forAdvanced": [
+          "Encourager à mesurer et comparer des objets de la classe",
+          "Inviter à aider les pairs à identifier leur croissance",
+          "Proposer de créer des catégories de croissance (physique, apprentissage, social)"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels et d'objets concrets",
+          "Permettre l'expression dans leur langue maternelle au besoin",
+          "Jumeler avec un pair francophone pour support"
+        ],
+        "forIEP": [
+          "Adapter les mesures selon les capacités physiques",
+          "Utiliser des supports technologiques si approprié",
+          "Modifier les attentes selon les objectifs du PEI"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève pointe ou nomme des signes de croissance chez lui",
+          "L'élève participe aux gestes de croissance avec enthousiasme",
+          "L'élève compare positivement bébé et maintenant",
+          "L'élève exprime une fierté de grandir"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension de base de 'grandir'",
+          "Milieu: Observer l'engagement avec les comparaisons bébé/grand",
+          "Fermeture: Noter l'expression de fierté personnelle"
+        ]
       }
     },
     {
@@ -71,41 +132,103 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 1: Review growth chant. Show mystery box with 'special growth moments' cards inside.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Boîte mystère décorée",
+          "Cartes de moments spéciaux illustrées",
+          "Miroir de fierté (petit miroir décoré)",
+          "Autocollants d'étoiles dorées"
+        ],
+        "visualSupports": "Cartes visuelles des changements positifs, gestes de fierté (mains sur le cœur), expressions faciales de joie modelées",
+        "decisionPoints": [
+          "Si un élève ne comprend pas 'spécial' → utiliser des exemples concrets de ses réussites observables (dessins améliorés, nouveaux amis)",
+          "Si un élève se compare négativement aux autres → rediriger vers ses propres progrès uniques avec des exemples précis",
+          "Si un élève ne veut pas regarder dans la boîte mystère → lui permettre d'observer d'abord les autres puis proposer plus tard"
+        ],
+        "movementBreaks": [
+          "Geste de fierté (mains sur le cœur puis bras étendus)",
+          "Danse de joie spéciale sur place"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Special changes gallery walk: Students draw or bring photos showing something new they learned this year. Practice 'Je suis fier de...' with proud gesture. Create 'My Special Changes' book page.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Feuilles de galerie personnelles",
+          "Photos des élèves en action (optionnel)",
+          "Crayons de couleur et marqueurs",
+          "Livre collectif 'Nos changements spéciaux'",
+          "Modèles de phrases 'Je suis fier de...'"
+        ],
+        "visualSupports": "Exemples de changements affichés au mur, gestes pour exprimer la fierté, phrase modèle bien visible, galerie organisée",
+        "decisionPoints": [
+          "Si un élève ne trouve pas de changement spécial → l'aider en pointant ses progrès observés (meilleure écriture, plus de confiance, nouveaux mots)",
+          "Si un élève dessine quelque chose de très simple → valoriser son effort et l'aider à expliquer pourquoi c'est spécial pour lui",
+          "Si un élève ne veut pas partager publiquement → lui proposer de partager juste avec l'enseignant(e) ou un ami proche"
+        ],
+        "movementBreaks": [
+          "Marche fière autour de la galerie",
+          "Geste 'Je suis fier' avec pose de super-héros"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Proud parade: Students walk around room showing their change picture while others cheer. Practice proud feeling gesture together.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Dessins ou photos des élèves completés",
+          "Musique joyeuse et entraînant (optionnel)",
+          "Certificats de fierté personnalisés",
+          "Autocollants spéciaux pour reconnaissance"
+        ],
+        "visualSupports": "Parcours de parade bien défini, gestes d'encouragement modelés, applaudissements organisés, célébration collective visible",
+        "decisionPoints": [
+          "Si un élève est trop timide pour la parade → lui permettre de rester assis et montrer son dessin de sa place seulement",
+          "Si un élève devient trop excité pendant les applaudissements → utiliser un signal visuel pour calmer l'atmosphère",
+          "Si un élève pleure en voyant les autres élèves célébrés → le rassurer sur sa valeur unique et reporter sa célébration si nécessaire"
+        ],
+        "movementBreaks": [
+          "Parade célébratoire organisée",
+          "Gestes collectifs de fierté finale"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "identifier des changements personnels positifs",
+        "then": "utiliser des observations spécifiques de l'enseignant(e), se concentrer sur des progrès très concrets et observables"
       },
       "realWorldConnection": "Children recognize their own achievements (walking, talking, reading first words)",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des exemples très concrets de leurs progrès observés",
+          "Utiliser des photos comme support visuel plutôt que le dessin",
+          "Se limiter à un seul changement spécial très évident"
+        ],
+        "forAdvanced": [
+          "Encourager à créer des catégories de changements (physiques, intellectuels, sociaux)",
+          "Inviter à interviewer d'autres élèves sur leurs changements",
+          "Proposer de créer un livre collectif des changements de la classe"
+        ],
+        "forELL": [
+          "Permettre l'expression dans leur langue maternelle avec traduction",
+          "Utiliser beaucoup de supports visuels et de gestes",
+          "Jumeler avec un pair francophone pour soutien"
+        ],
+        "forIEP": [
+          "Adapter le format selon les capacités (oral, dessin, technologie)",
+          "Modifier les attentes selon les objectifs individuels",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie au moins un changement positif chez lui",
+          "L'élève exprime de la fierté face à ses progrès",
+          "L'élève participe à la célébration collective",
+          "L'élève utilise le vocabulaire de la fierté approprié"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension de 'spécial' et 'fier'",
+          "Milieu: Observer l'identification de changements personnels",
+          "Fermeture: Noter l'expression authentique de fierté"
+        ]
       }
     },
     {
@@ -121,42 +244,104 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "Builds on Lesson 2: Review proud feelings. Introduce celebration dance moves. Ask 'Comment votre famille célèbre?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Builds on Lesson 2: Review proud feelings. Introduce celebration dance moves. Ask 'Comment votre famille célébre?'",
+        "materials": [
+          "Cartes de célébrations familiales variées",
+          "Musique festive de différentes cultures",
+          "Chapeaux de fête colorés",
+          "Marionnette famille (optionnel)"
+        ],
+        "visualSupports": "Images de célébrations familiales diverses, mouvements de danse modelés, gestes pour 'célébrer' (bras en l'air)",
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne célèbre rien → l'aider à identifier des moments simples comme les repas ensemble ou les câlins",
+          "Si un élève semble triste à propos des célébrations familiales → valoriser sa famille unique et rediriger vers les célébrations de classe",
+          "Si un élève ne veut pas danser → lui permettre d'observer et de taper des mains ou bouger juste les épaules"
+        ],
+        "movementBreaks": [
+          "Mouvements de célébration joyeux (bras, épaules)",
+          "Danse simple de fête en cercle"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Family celebration stations: Students rotate through birthday station (party hats), holiday station (decorations), tradition station (cultural items). Practice celebration vocabulary with actions. Create family celebration card.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Station anniversaire: chapeaux, bougies factices, ballons",
+          "Station fêtes: décorations de diverses cultures",
+          "Station traditions: objets culturels variés",
+          "Cartes vierges pour création personnelle",
+          "Crayons et autocollants festifs"
+        ],
+        "visualSupports": "Stations bien définies visuellement, modèles de cartes de célébration, rotations indiquées par flèches",
+        "decisionPoints": [
+          "Si un élève reste trop longtemps à une station → utiliser un minuteur visuel et l'accompagner doucement vers la station suivante",
+          "Si un élève ne reconnaît aucune célébration culturelle → l'aider à créer sa propre tradition de classe avec les objets disponibles",
+          "Si un élève devient nostalgique de sa culture d'origine → célébrer sa richesse culturelle et l'inviter à partager avec la classe"
+        ],
+        "movementBreaks": [
+          "Rotation dancée entre les stations",
+          "Gestes de célébration à chaque station"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Celebration circle: Students share one family celebration using their card. End with group celebration dance combining all cultures represented.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de célébration personnalisées complétées",
+          "Espace de cercle préparé",
+          "Musique de célébration multiculturelle",
+          "Autocollants de reconnaissance culturelle"
+        ],
+        "visualSupports": "Formation de cercle inclusive, cartes personnelles visibles, gestes de partage modelés, routine de célébration positive",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager sa carte familiale → respecter son intimité et lui proposer de la garder privée ou la partager seulement avec l'enseignant(e)",
+          "Si un élève pleure en pensant à sa famille → offrir du réconfort et rediriger vers les aspects positifs de grandir avec l'amour familial",
+          "Si un élève dominate la conversation → utiliser un objet de parole pour structurer le partage équitable"
+        ],
+        "movementBreaks": [
+          "Danse de célébration culturelle collective",
+          "Gestes d'appréciation familiale"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les célébrations familiales diverses",
+        "then": "utiliser des exemples simples et universels comme les repas partagés, se concentrer sur l'amour familial plutôt que les traditions spécifiques"
       },
       "realWorldConnection": "Students connect to birthdays, holidays, and special family moments",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur des célébrations simples et universelles (repas ensemble)",
+          "Utiliser des images très claires plutôt que des explications complexes",
+          "Permettre la création de cartes très simples avec autocollants"
+        ],
+        "forAdvanced": [
+          "Encourager à partager les détails de leurs traditions culturelles",
+          "Inviter à enseigner une célébration à la classe",
+          "Proposer de créer un livre des traditions de la classe"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels de célébrations de leur culture",
+          "Permettre l'expression dans leur langue maternelle avec traduction",
+          "Valoriser leur richesse culturelle comme contribution à la classe"
+        ],
+        "forIEP": [
+          "Adapter les activités selon les capacités sensorielles",
+          "Modifier les attentes de participation selon les besoins",
+          "Utiliser des supports technologiques si approprié"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie au moins une façon dont sa famille célèbre",
+          "L'élève montre du respect pour les traditions des autres",
+          "L'élève participe aux activités de célébration collective",
+          "L'élève utilise le vocabulaire des célébrations approprié"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension de 'célébrer' et 'tradition'",
+          "Milieu: Observer la participation respectueuse aux stations",
+          "Fermeture: Noter l'expression de la fierté culturelle"
+        ]
       }
     },
     {
@@ -173,41 +358,103 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 3: Review family celebrations. Show baby doll and ask 'Qu'est-ce qu'un bébé peut faire?' vs. 'Qu'est-ce que vous pouvez faire?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos de bébés (génériques si nécessaire)",
+          "Poupée ou ours en peluche comme 'bébé'",
+          "Objets de comparaison bébé/grand visible",
+          "Tableau de questions guidées"
+        ],
+        "visualSupports": "Photos de bébés vs enfants affichées, objets de comparaison concrets, gestes pour 'avant/maintenant'",
+        "decisionPoints": [
+          "Si un élève n'a pas de photos de bébé → utiliser des photos génériques ou dessins, se concentrer sur les capacités universelles des bébés vs grands",
+          "Si un élève est adopté/situation familiale complexe → adapter l'activité pour célébrer son parcours unique de croissance",
+          "Si un élève trouve les comparaisons difficiles → simplifier avec juste 'avant j'étais petit, maintenant je suis plus grand'"
+        ],
+        "movementBreaks": [
+          "Mouvements de bébé vs mouvements de grand",
+          "Geste de croissance temporelle (petit à grand)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Then and now comparison: Students create two-column poster showing baby abilities vs. current abilities. Use baby items for tactile comparison. Practice time vocabulary with 'avant/maintenant' gestures. Photo storytelling with baby pictures.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Papier pour posters individuels",
+          "Images à découper (bébés et enfants)",
+          "Colle et ciseaux sécuritaires",
+          "Autocollants de capacités",
+          "Crayons de couleur"
+        ],
+        "visualSupports": "Modèles de posters affichés, comparaisons visuelles claires, séquence temporelle illustrée",
+        "decisionPoints": [
+          "Si un élève ne peut pas créer le poster → l'aider en utilisant des autocollants ou dessins très simples, se concentrer sur une seule comparaison",
+          "Si un élève devient nostalgique d'être bébé → valoriser les avantages d'être grand (plus de liberté, capacités, amitiés)",
+          "Si un élève partage des souvenirs tristes → rediriger doucement vers les aspects positifs de grandir et de devenir fort"
+        ],
+        "movementBreaks": [
+          "Étirements de croissance (petit à grand)",
+          "Actions de bébé puis actions de grand"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Growth appreciation circle: Each student shares one amazing thing they can do now. Celebrate with 'We've grown so much!' song with actions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Posters complétés des élèves",
+          "Chanson illustrée sur affiche",
+          "Certificats d'accomplissement",
+          "Espace cercle préparé"
+        ],
+        "visualSupports": "Posters disposés en cercle, chanson avec gestes visuels, célébration collective organisée",
+        "decisionPoints": [
+          "Si un élève ne trouve rien d'incroyable qu'il fait maintenant → l'aider avec des exemples concrets observés (marcher, parler, aider les amis)",
+          "Si un élève compare négativement avec d'autres → célébrer sa croissance unique depuis qu'il était bébé",
+          "Si un élève ne veut pas chanter → lui permettre d'écouter ou de faire juste les gestes"
+        ],
+        "movementBreaks": [
+          "Chanson avec actions de croissance",
+          "Célébration collective finale"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les changements depuis bébé",
+        "then": "utiliser des comparaisons très concrètes avec objets réels, se concentrer sur une seule capacité évidente comme marcher"
       },
       "realWorldConnection": "Students see baby photos and understand their incredible development journey",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser seulement des comparaisons très simples et évidentes",
+          "Permettre l'aide d'un pair pour créer le poster",
+          "Se concentrer sur une seule grande différence bébé/maintenant"
+        ],
+        "forAdvanced": [
+          "Encourager à créer une timeline détaillée de leur croissance",
+          "Inviter à interviewer leurs parents sur leur développement",
+          "Proposer de présenter leur croissance à une autre classe"
+        ],
+        "forELL": [
+          "Utiliser beaucoup d'images et d'objets concrets",
+          "Permettre la comparaison dans leur langue maternelle",
+          "Fournir des modèles de phrases simples en français"
+        ],
+        "forIEP": [
+          "Adapter selon les capacités développementales individuelles",
+          "Utiliser des supports technologiques pour la création",
+          "Modifier les attentes selon les objectifs personnels"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève identifie au moins deux différences bébé/maintenant",
+          "L'élève exprime une fierté de ses capacités actuelles",
+          "L'élève crée ou contribue à un poster comparatif",
+          "L'élève participe aux célébrations de croissance"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts temporels",
+          "Milieu: Observer la création du poster et les comparaisons",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -224,41 +471,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 4: Review individual growth. Play 'Spot the Changes' game with classroom photos from beginning of year.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos de classe du début d'année",
+          "Loupes factices pour 'détectives'",
+          "Carnet d'observation",
+          "Autocollants de changement"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 5, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève ne remarque aucun changement chez les amis → l'aider en pointant des changements observables comme de nouveaux intérêts ou compétences",
+          "Si un élève compare négativement les amis → rediriger vers la célébration de la diversité dans la croissance",
+          "Si un élève se concentre sur les apparences physiques → élargir vers les compétences et la personnalité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Friend growth detective: Students work in pairs with observation sheets, looking for positive changes in each other (skills, interests, height). Create 'My Friend is Growing' certificates. Practice compliment vocabulary with kind gesture.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Feuilles d'observation avec images",
+          "Certificats vierges à personnaliser",
+          "Crayons de couleur",
+          "Autocollants de compliments"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 5",
+        "decisionPoints": [
+          "Si un élève ne veut pas travailler en équipe → lui permettre d'observer d'abord puis proposer de rejoindre quand il se sent prêt",
+          "Si un élève fait des commentaires négatifs sur un ami → enseigner des façons respectueuses d'observer les différences",
+          "Si un élève ne peut pas remplir sa feuille d'observation → l'aider avec des questions guidées très simples"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Friend celebration: Students present certificates to partners. Group chant: 'We're all growing together!' with friendship hand gestures.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Certificats complétés",
+          "Boîte spéciale pour les ranger",
+          "Musique douce d'amitié",
+          "Gestes d'amitié illustrés"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 5",
+        "decisionPoints": [
+          "Si un élève ne veut pas donner son certificat → respecter sa timidité et proposer de le faire plus tard ou en privé",
+          "Si un élève devient jaloux des compliments des autres → lui rappeler ses propres qualités spéciales observées",
+          "Si un élève ne comprend pas le chant → l'aider en faisant juste les gestes ou en tapant des mains"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 5",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students notice friends' new skills, interests, and physical growth",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 5",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -275,41 +583,103 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 5: Review friend growth. Share teacher's childhood dream and current reality. Ask 'Quels sont vos rêves?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos du développement de l'enseignant(e)",
+          "Tableau des rêves illustré",
+          "Autocollants d'étoiles",
+          "Cartes de rêves exemples"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 6, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'a pas de rêves → l'aider avec des exemples simples comme apprendre quelque chose de nouveau ou aider quelqu'un",
+          "Si un élève partage un rêve irréalisable → valoriser son imagination tout en discutant de petits pas possibles",
+          "Si un élève semble anxieux face à l'avenir → rassurer que grandir se fait un jour à la fois"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Dream visualization: Students create dream boards with pictures/drawings of future goals. Practice dream vocabulary with reaching gestures. Share dreams in small groups. Create 'My Growth Dreams' journal page.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Magazines pour découper",
+          "Tableaux de vision individuels",
+          "Colle et ciseaux",
+          "Crayons et marqueurs",
+          "Autocollants motivants"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 6",
+        "decisionPoints": [
+          "Si un élève ne peut pas dessiner ses rêves → lui proposer de découper des images ou utiliser des autocollants",
+          "Si un élève partage des rêves inquiétants → rediriger doucement vers des rêves positifs et sécurisants",
+          "Si un élève devient trop excité par ses rêves → l'aider à se calmer avec des respirations profondes"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Dream circle: Students share one dream using 'Je veux...' sentence starter. End with dream-reaching dance (arms stretching up).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Tableaux de rêves complétés",
+          "Espace cercle préparé",
+          "Musique inspirante",
+          "Gestes de rêve (bras vers le ciel)"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 6",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager son rêve → respecter sa privacité et lui proposer de chuchoter à l'enseignant(e)",
+          "Si un élève rit des rêves des autres → enseigner le respect des aspirations de chacun",
+          "Si un élève oublie la danse → lui permettre de regarder ou de bouger à sa façon"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 6",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students think about what they want to learn or become",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 6",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -326,41 +696,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 6: Review dreams for growth. Show photos of current classroom traditions. Ask 'What makes our class special together?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos des traditions actuelles de classe",
+          "Cartes d'idées de traditions",
+          "Boîte de vote décorée",
+          "Exemples de traditions scolaires"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 7, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève ne reconnaît pas les traditions existantes → l'aider en pointant des routines quotidiennes positives de la classe",
+          "Si un élève suggère des traditions inappropriées → rediriger vers des idées sécuritaires et inclusives",
+          "Si un élève ne veut pas participer → lui permettre d'observer et de voter sans participer activement"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Tradition creation stations: Students rotate through greeting station (create special handshakes), celebration station (design class cheers), community helper station (establish helping traditions). Vote on favorites to implement daily.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Station salutations: cartes d'idées",
+          "Station célébrations: accessoires festifs",
+          "Station aide: pictogrammes d'entraide",
+          "Matériel de vote"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 7",
+        "decisionPoints": [
+          "Si un élève reste trop longtemps à une station → utiliser un minuteur visuel et l'accompagner doucement",
+          "Si un élève propose des idées qui excluent certains → guider vers l'inclusion et l'appartenance pour tous",
+          "Si un élève ne peut pas créer → l'aider avec des options plus simples ou le jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "New tradition inauguration: Practice chosen class tradition together. Create visual reminder poster for daily use.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Affiche de nouvelle tradition",
+          "Matériaux pour démonstration",
+          "Appareil photo pour documenter",
+          "Certificat inaugural"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 7",
+        "decisionPoints": [
+          "Si un élève n'aime pas la tradition choisie → rassurer que les traditions peuvent évoluer avec le temps",
+          "Si un élève oublie les nouveaux gestes → lui permettre de suivre les autres sans pression",
+          "Si un élève devient trop excité → utiliser la nouvelle tradition pour le calmer"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 7",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students participate in daily routines and special class celebrations",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 7",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -377,41 +808,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 7: Review class traditions. Show mystery box and explain time capsule concept with 'message to future you'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 8",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 8, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Time capsule creation: Students choose 3-4 items representing current self (drawing, photo, favorite item, letter to future self). Practice time vocabulary with past/present/future gestures. Seal items in individual containers.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 8",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 8",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Capsule ceremony: Students share one item from capsule before sealing. Plan opening date (end of Grade 1). Store ceremonially in special class location.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 8",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 8",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 8",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students preserve current memories and interests to revisit later",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 8",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -428,41 +920,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 8: Review time capsule excitement. Share teacher's family growth story with photos. Introduce listening posture and storytelling voice.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 9",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 9, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Family story sharing circle: Students take turns sharing family stories about milestones (first steps, birthdays, achievements). Use story props or photos if available. Practice listening skills with active listening gestures. Record special stories in class memory book.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 9",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 9",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Story appreciation: Students share favorite story they heard. Practice storytelling ending: 'Et voilà mon histoire!' with proud gesture.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 9",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 9",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 9",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students learn about family history and meaningful family moments",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 9",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -479,41 +1032,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 9: Review family stories. Demonstrate proud feeling with posture and expression. Ask 'When do you feel proud?'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 10",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 10, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Pride moment gallery: Students create pride moment displays showing times they felt proud of growth (learning to read, helping others, trying something new). Practice pride vocabulary with confident gestures. Create individual pride books with illustrations.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 10",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 10",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Pride celebration walk: Students walk proudly around room sharing one pride moment. Group cheer: 'We are proud of our growth!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 10",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 10",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 10",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students connect to learning to ride bikes, helping others, solving problems",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 10",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -530,41 +1144,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 10: Review individual pride moments. Take mini school walk, pointing out all the people who help students grow.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 11",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 11, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "School community appreciation: Students create thank you cards for different school helpers (teachers, principal, custodian, secretary). Practice support vocabulary with helping gestures. Role-play how different people help students learn and grow.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 11",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 11",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Helper appreciation: Students deliver thank you cards to school helpers if possible. Practice gratitude expression: 'Merci de m'aider à grandir!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 11",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 11",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 11",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students recognize teachers, principals, and peers who help them grow",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 11",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -581,41 +1256,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 11: Review school community support. Show student work samples from September vs. now. Celebrate obvious improvements.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 12",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 12, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Learning growth showcase: Students compare their work from beginning of year to current work in different subjects. Create learning progress posters showing improvement. Practice celebration vocabulary with achievement dances. Self-assessment using simple progress indicators.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 12",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 12",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Learning celebration parade: Students march around room holding progress posters. Group chant: 'Look how much we've learned!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 12",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 12",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 12",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students see improvement in reading, math, social skills, and independence",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 12",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -632,41 +1368,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 12: Review learning celebrations. Introduce portfolio concept as 'special collection of your growth journey'.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 13",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 13, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Portfolio assembly: Students select and organize work samples, photos, and reflections showing their year-long growth. Include items from time capsule activity, pride moments, and learning celebrations. Add reflection labels explaining growth shown in each item.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 13",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 13",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Portfolio preview: Students share one favorite portfolio item with a partner. Practice portfolio presentation vocabulary for next lesson.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 13",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 13",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 13",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students create a keepsake showing their journey from beginning to end of year",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 13",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -683,41 +1480,102 @@
       "opening": {
         "duration": 8,
         "activity": "Builds on Lesson 13: Review completed portfolios. Practice presentation voice and confident posture. Set up supportive audience expectations.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 14",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 14, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Growth journey presentations: Students present their portfolios to audience (family, other classes, or peers), sharing their growth story from beginning to end of year. Use presentation supports like sentence starters and visual cues. Audience practices appreciation responses.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 14",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 14",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Presentation celebration: Audience members share appreciations for each presenter. Students reflect on pride in sharing their growth journey.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 14",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 14",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 14",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students practice public speaking while celebrating personal achievements",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 14",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       }
     },
     {
@@ -730,41 +1588,102 @@
       "opening": {
         "duration": 8,
         "activity": "Extension activity building on all previous lessons through interactive vocabulary practice",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 15",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 15, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Growth vocabulary games rotation: Memory matching with growth concept cards, charades with growth actions, vocabulary bingo with unit terms, 'Simon Says' with growth movements. Students rotate through stations practicing key vocabulary from entire unit.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 15",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 15",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Game celebration: Students vote on favorite growth game. Practice all growth vocabulary with actions one final time.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 15",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 15",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 15",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students play games that reinforce learning in fun, social contexts",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 15",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -817,41 +1736,102 @@
       "opening": {
         "duration": 8,
         "activity": "Extension activity building on portfolio concept through artistic expression of growth",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 16",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 16, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Growth art creation: Students create artistic representations of their growth journey using various media (painting growth trees, collage timelines, sculpture of growth stages, handprint art showing progress). Focus on personal expression rather than technical skill.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 16",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 16",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Art gallery walk: Students display and appreciate each other's growth art. Practice art appreciation vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 16",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 16",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 16",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students use art to communicate feelings and experiences about growing up",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 16",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       },
       "extensionGuidance": {
         "category": "Exploration créative",
@@ -904,41 +1884,102 @@
       "opening": {
         "duration": 8,
         "activity": "Extension activity building on Lesson 3 and 9 through dramatic exploration of family traditions",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 17",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 17, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Family tradition theater: Students work in small groups to act out different family traditions (birthday celebrations, holiday customs, cultural ceremonies). Use simple costumes and props. Practice dramatic expression and cultural appreciation.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 17",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 17",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Tradition theater festival: Groups perform for each other. Audience practices respectful appreciation of all cultural traditions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 17",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 17",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 17",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students embody family celebrations and share cultural practices",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 17",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -991,41 +2032,102 @@
       "opening": {
         "duration": 8,
         "activity": "Extension activity combining elements from multiple lessons into a collaborative celebration",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 18",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 18, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Class book creation: Students work together to create a collective book about their class growth journey. Each student contributes a page showing their growth, plus group pages about class traditions, friendships, and shared learning. Combine text, drawings, and photos.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 18",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 18",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Book dedication ceremony: Students sign the completed class book and decide where it will be displayed or stored for future classes.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 18",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 18",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 18",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students create a lasting record of their shared classroom community growth",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 18",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1078,41 +2180,102 @@
       "opening": {
         "duration": 8,
         "activity": "Extension activity bringing together all unit concepts in a joyful community celebration",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 19",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 19, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Growth celebration festival: Students host a celebration including displays of growth portfolios, performance of class traditions, sharing of time capsule predictions, presentation of class book, and appreciation ceremony. Include music, food, and decorations representing class growth journey.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 19",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 19",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Celebration reflection: Students share favorite moments from celebration and express gratitude for growth journey together.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 19",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 19",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 19",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students experience the joy of shared celebration and community recognition",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 19",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1165,41 +2328,102 @@
       "opening": {
         "duration": 8,
         "activity": "Final extension activity helping students synthesize all learning and project forward",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux spécifiques pour leçon 20",
+          "Supports visuels appropriés",
+          "Objets de manipulation sécuritaires",
+          "Autocollants de motivation"
+        ],
+        "visualSupports": "Supports visuels clairs pour la leçon 20, gestes modelés, expressions faciales encourageantes, environnement sécurisant",
+        "decisionPoints": [
+          "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
+          "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+        ],
+        "movementBreaks": [
+          "Mouvement approprié au thème de croissance",
+          "Geste d'inclusion et d'appartenance"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Growth journey reflection: Students complete comprehensive reflection on their entire growth journey using pictures, words, and drawings. Create 'Future Me' vision including goals for Grade 2. Write letters to future selves. Practice gratitude for growth journey and excitement for continued growing.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux principaux pour leçon 20",
+          "Feuilles d'activité adaptées",
+          "Outils de création sécuritaires",
+          "Supports de différenciation"
+        ],
+        "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 20",
+        "decisionPoints": [
+          "Si un élève ne peut pas compléter l'activité principale → offrir des adaptations ou des alternatives plus simples",
+          "Si un élève termine trop rapidement → proposer des extensions enrichissantes liées au thème",
+          "Si un élève a besoin d'aide supplémentaire → fournir un soutien individuel ou jumeler avec un pair"
+        ],
+        "movementBreaks": [
+          "Pause active liée au thème de croissance",
+          "Mouvement collaboratif et inclusif"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Journey appreciation circle: Students share one favorite memory from the growth unit and one goal for future growth. End with final group chant: 'We grew, we learned, we celebrated together!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériaux de fermeture pour leçon 20",
+          "Créations des élèves complétées",
+          "Supports de célébration",
+          "Éléments de transition"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, célébration collective organisée, transition claire vers la suite pour la leçon 20",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager à la fermeture → respecter sa préférence et offrir des alternatives confortables",
+          "Si un élève devient émotionnel pendant la fermeture → offrir du soutien et utiliser des techniques d'apaisement",
+          "Si un élève perturbe la fermeture → rediriger positivement vers la participation appropriée"
+        ],
+        "movementBreaks": [
+          "Mouvement de célébration collectif",
+          "Geste de fermeture apaisant"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "comprendre les concepts de croissance de la leçon 20",
+        "then": "utiliser des exemples très concrets et des supports visuels adaptés, simplifier les attentes et offrir plus de soutien individuel"
       },
       "realWorldConnection": "Students understand that growth is ongoing and look forward to summer and Grade 2",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier les concepts avec des exemples très concrets",
+          "Utiliser plus de supports visuels et de manipulation",
+          "Réduire les attentes et offrir plus de temps"
+        ],
+        "forAdvanced": [
+          "Proposer des extensions et des défis supplémentaires",
+          "Encourager le leadership et l'aide aux pairs",
+          "Offrir des opportunités de créativité avancée"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels et des gestes",
+          "Permettre l'expression en langue maternelle au besoin",
+          "Jumeler avec un pair francophone"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels du PEI",
+          "Modifier les matériaux selon les besoins",
+          "Utiliser des supports technologiques appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève démontre une compréhension du thème de croissance de la leçon 20",
+          "L'élève participe aux activités avec engagement approprié",
+          "L'élève utilise le vocabulaire de croissance de manière appropriée",
+          "L'élève montre une fierté positive de son développement"
+        ],
+        "checkpoints": [
+          "Ouverture: Vérifier la compréhension des concepts de base",
+          "Milieu: Observer l'engagement et la participation",
+          "Fermeture: Noter l'expression de fierté et d'accomplissement"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",

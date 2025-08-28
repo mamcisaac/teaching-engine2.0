@@ -67,9 +67,18 @@
       "closing": {
         "duration": 10,
         "activity": "Circle share - students share one natural environment they found and how they are part of it",
-        "materials": [],
+        "materials": [
+          "speaking stone or talking object",
+          "circle carpet or floor markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves hésitent-ils à partager leurs observations?",
+            "ifYes": "Commencer par montrer un exemple personnel et encourager doucement",
+            "ifNo": "Inviter des détails supplémentaires sur comment ils se sentent connectés à l'environnement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -131,7 +140,18 @@
           "habitat picture cards"
         ],
         "visualSupports": "animal homes matching poster (bird-tree, fish-water, rabbit-burrow)",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre animaux et habitats?",
+            "ifYes": "Ajouter des questions sur pourquoi ces animaux vivent là",
+            "ifNo": "Utiliser des gestes et pointer vers les images pour aider"
+          },
+          {
+            "question": "Certains élèves semblent-ils inquiets pour les animaux?",
+            "ifYes": "Expliquer que les habitats sont des maisons sûres et confortables",
+            "ifNo": "Explorer comment nous pouvons protéger ces habitats"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -156,9 +176,23 @@
       "closing": {
         "duration": 10,
         "activity": "Habitat gallery walk - students present their dioramas and explain animal homes",
-        "materials": [],
+        "materials": [
+          "sticky notes for feedback",
+          "observation checklist"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils fiers de présenter leurs dioramas?",
+            "ifYes": "Encourager questions entre pairs et célébrer créativité",
+            "ifNo": "Offrir support en posant questions guidées sur leur travail"
+          },
+          {
+            "question": "Comprennent-ils pourquoi chaque animal a besoin d'un habitat spécifique?",
+            "ifYes": "Discuter comment nous partageons la planète avec les animaux",
+            "ifNo": "Utiliser comparaisons avec leurs propres maisons et besoins"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -220,7 +254,18 @@
           "plant identification guides"
         ],
         "visualSupports": "plant location preference chart (sun plants, shade plants, water plants)",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves observent-ils des différences entre les plantes?",
+            "ifYes": "Guider vers observation des préférences lumière/ombre",
+            "ifNo": "Montrer plantes côte à côte pour comparaison directe"
+          },
+          {
+            "question": "Veulent-ils toucher ou cueillir les plantes?",
+            "ifYes": "Enseigner observation respectueuse - regarder sans déranger",
+            "ifNo": "Féliciter leur respect et encourager observation détaillée"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -246,9 +291,18 @@
       "closing": {
         "duration": 10,
         "activity": "Plant placement predictions - students predict which planted seeds will grow best",
-        "materials": [],
+        "materials": [
+          "prediction cards",
+          "pencils"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des prédictions raisonnées?",
+            "ifYes": "Demander d'expliquer leur raisonnement sur besoins des plantes",
+            "ifNo": "Guider avec questions: 'Que pensez-vous que les plantes aiment?'"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -310,7 +364,18 @@
           "connection cards"
         ],
         "visualSupports": "nature connection web poster showing plant-animal relationships",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils les connexions nature?",
+            "ifYes": "Explorer connexions plus complexes - qui mange quoi, qui aide qui",
+            "ifNo": "Commencer par exemples simples - abeilles et fleurs, oiseaux et arbres"
+          },
+          {
+            "question": "Sont-ils engagés dans l'activité de la toile?",
+            "ifYes": "Ajouter plus de cartes de connexion pour étendre l'apprentissage",
+            "ifNo": "Simplifier en utilisant moins de cartes et mouvements plus actifs"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -335,9 +400,18 @@
       "closing": {
         "duration": 10,
         "activity": "Connection sharing circle - students share one nature connection they discovered",
-        "materials": [],
+        "materials": [
+          "speaking stone or talking object",
+          "circle carpet or floor markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves partagent-ils volontiers leurs découvertes?",
+            "ifYes": "Encourager détails sur pourquoi ces connexions sont importantes",
+            "ifNo": "Commencer par exemple personnel puis inviter participation douce"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -401,7 +475,13 @@
           "pet photos"
         ],
         "visualSupports": "water cycle poster, clean vs polluted water pictures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils l'importance de l'eau propre?",
+            "ifYes": "Explorer comment nos actions affectent la qualité de l'eau",
+            "ifNo": "Montrer exemples concrets - boire, laver, arroser plantes"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -427,9 +507,18 @@
       "closing": {
         "duration": 10,
         "activity": "Water protection pledges - students share one way they will help keep water clean",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils l'importance de l'eau propre?",
+            "ifYes": "Explorer comment nos actions affectent la qualité de l'eau",
+            "ifNo": "Montrer exemples concrets - boire, laver, arroser plantes"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -491,7 +580,13 @@
           "plants"
         ],
         "visualSupports": "air quality poster, trees cleaning air diagram",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre arbres et air pur?",
+            "ifYes": "Discuter comment nous pouvons protéger les arbres",
+            "ifNo": "Démontrer avec respiration profonde près des plantes"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -516,9 +611,18 @@
       "closing": {
         "duration": 10,
         "activity": "Fresh air appreciation walk - students take deep breaths and appreciate clean air",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre arbres et air pur?",
+            "ifYes": "Discuter comment nous pouvons protéger les arbres",
+            "ifNo": "Démontrer avec respiration profonde près des plantes"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -580,7 +684,13 @@
           "environmental care action cards"
         ],
         "visualSupports": "environmental care actions poster, 'Earth helpers' chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -604,9 +714,18 @@
       "closing": {
         "duration": 10,
         "activity": "Environmental care pledge ceremony - students make commitments to care for their environment",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -669,7 +788,13 @@
           "clipboards"
         ],
         "visualSupports": "waste reduction poster, 'less waste = happier Earth' chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -693,9 +818,18 @@
       "closing": {
         "duration": 10,
         "activity": "Waste reduction commitment ceremony - students choose one waste reduction action to practice",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -758,7 +892,13 @@
           "fabric scraps"
         ],
         "visualSupports": "reuse transformation examples poster, 'new life for old things' chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -783,9 +923,18 @@
       "closing": {
         "duration": 10,
         "activity": "Reuse creation showcase - students share their new creations and explain the transformation",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves participent-ils volontiers au partage?",
+            "ifYes": "Poser questions approfondissantes sur leurs observations",
+            "ifNo": "Commencer par exemple personnel et encourager doucement"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -849,7 +998,13 @@
           "screens"
         ],
         "visualSupports": "recycling process poster, 'from old to new' transformation chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -875,9 +1030,18 @@
       "closing": {
         "duration": 10,
         "activity": "Recycling transformation celebration - students share their recycled creations",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -940,7 +1104,13 @@
           "timer"
         ],
         "visualSupports": "recycling sorting guide poster, material identification chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -965,9 +1135,18 @@
       "closing": {
         "duration": 10,
         "activity": "Sorting expertise test - students demonstrate their sorting skills",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1029,7 +1208,13 @@
           "action prompt cards"
         ],
         "visualSupports": "3 Rs hierarchy poster showing order of preference, action reminder chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1053,9 +1238,18 @@
       "closing": {
         "duration": 10,
         "activity": "3 Rs pledge ceremony - students commit to using the 3 Rs strategy in their daily lives",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1118,7 +1312,13 @@
           "food scraps"
         ],
         "visualSupports": "composting process poster, 'from scraps to soil' transformation chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1144,9 +1344,18 @@
       "closing": {
         "duration": 10,
         "activity": "Compost care commitment ceremony - students sign up for compost monitoring duties",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1209,7 +1418,13 @@
           "camera"
         ],
         "visualSupports": "energy sources poster, energy conservation actions chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves observent-ils activement leur environnement?",
+            "ifYes": "Encourager questions sur ce qu'ils voient et pourquoi",
+            "ifNo": "Guider attention avec pointage et questions spécifiques"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1233,9 +1448,18 @@
       "closing": {
         "duration": 10,
         "activity": "Energy conservation pledge - students commit to specific energy-saving actions",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1298,7 +1522,13 @@
           "observation sheets"
         ],
         "visualSupports": "pollinator identification poster, flower-pollinator matching chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves observent-ils activement leur environnement?",
+            "ifYes": "Encourager questions sur ce qu'ils voient et pourquoi",
+            "ifNo": "Guider attention avec pointage et questions spécifiques"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1325,9 +1555,18 @@
       "closing": {
         "duration": 10,
         "activity": "Pollinator garden blessing ceremony - students make wishes for their flowers to help pollinators",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1430,7 +1669,13 @@
           "markers"
         ],
         "visualSupports": "clean transportation options poster, air quality comparison chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1455,9 +1700,18 @@
       "closing": {
         "duration": 10,
         "activity": "Green transportation pledge - students commit to using clean transportation when possible",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1560,7 +1814,13 @@
           "animal behavior cards"
         ],
         "visualSupports": "wildlife watching rules poster, respectful distance guidelines chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves observent-ils activement leur environnement?",
+            "ifYes": "Encourager questions sur ce qu'ils voient et pourquoi",
+            "ifNo": "Guider attention avec pointage et questions spécifiques"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1584,9 +1844,18 @@
       "closing": {
         "duration": 10,
         "activity": "Wildlife protection pledge ceremony - students commit to protecting local wildlife",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1688,7 +1957,13 @@
           "sharing scenario cards"
         ],
         "visualSupports": "fair sharing principles poster, environmental sharing examples chart",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre arbres et air pur?",
+            "ifYes": "Discuter comment nous pouvons protéger les arbres",
+            "ifNo": "Démontrer avec respiration profonde près des plantes"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1712,9 +1987,18 @@
       "closing": {
         "duration": 10,
         "activity": "Environmental sharing pledge - students commit to fair environmental sharing practices",
-        "materials": [],
+        "materials": [
+          "commitment cards",
+          "markers or pencils"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre arbres et air pur?",
+            "ifYes": "Discuter comment nous pouvons protéger les arbres",
+            "ifNo": "Démontrer avec respiration profonde près des plantes"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1816,7 +2100,13 @@
           "presentation planning sheets"
         ],
         "visualSupports": "teaching strategies poster, environmental knowledge showcase examples",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves participent-ils volontiers au partage?",
+            "ifYes": "Poser questions approfondissantes sur leurs observations",
+            "ifNo": "Commencer par exemple personnel et encourager doucement"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1840,9 +2130,18 @@
       "closing": {
         "duration": 10,
         "activity": "Ambassador commissioning ceremony - students receive environmental educator certificates",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1945,7 +2244,13 @@
           "reflection sheets"
         ],
         "visualSupports": "environmental learning journey timeline, student achievement showcase",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1969,9 +2274,18 @@
       "closing": {
         "duration": 10,
         "activity": "Environmental stewardship pledge renewal - students make commitments for continued environmental care",
-        "materials": [],
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Art environnemental printanier",
   "subject": "Arts visuels",
   "grade": "1",
   "totalLessons": 20,
@@ -20,46 +20,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Circle time with spring awakening sounds. Play recordings of birds, rain, wind through leaves. Ask 'Qu'est-ce que c'est?' Show spring vocabulary cards with actions: PRINTEMPS (stretch like growing plant), NATURE (open arms wide), OBSERVER (binocular hands).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire avec images",
+          "Enregistrements audio de sons printaniers",
+          "Haut-parleur ou appareil audio",
+          "Gestes visuels pour chaque mot"
+        ],
+        "visualSupports": "Photos géantes de printemps, cartes visuelles avec actions, tableau des saisons avec illustrations colorées",
+        "decisionPoints": [
+          "Si des élèves n'entendent pas bien les sons → rapprocher l'appareil audio et faire répéter les sons par les élèves",
+          "Si des élèves ont peur des nouveaux sons → commencer par des sons familiers comme les oiseaux et construire progressivement",
+          "Si des élèves ne participent pas aux gestes → les inviter à observer d'abord, puis les encourager doucement"
+        ],
+        "movementBreaks": [
+          "Étirements comme des plantes qui grandissent",
+          "Marcher sur place comme des animaux qui se réveillent"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Sortie d'observation printanière. En petits groupes avec clipboards, dessiner et noter les changements de printemps observés. Comparer avec photos d'hiver. Encourager l'usage du français: 'Je vois...', 'C'est vert!', 'Ça pousse!' Retour en classe pour partager découvertes.",
         "materials": [
           "Clipboards",
           "Pencils/crayons",
           "Simple observation journal pages",
           "Winter/spring comparison photos"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Photos comparatives hiver/printemps, affiches des mots de vocabulaire avec images, exemples de journaux d'observation",
+        "decisionPoints": [
+          "Si les élèves ne trouvent pas de changements dehors → pointer vers les bourgeons, l'herbe nouvelle, les premiers insectes",
+          "Si le temps ne permet pas de sortir → utiliser la fenêtre de classe et les plantes d'intérieur pour observer",
+          "Si des élèves ont fini rapidement → leur demander de dessiner plus de détails ou d'aider un ami"
+        ],
+        "movementBreaks": [
+          "Marche exploratoire lente et silencieuse",
+          "Pauses pour s'accroupir et observer de près"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Spring Gallery Walk. Post observation journals around room. Students walk quietly, looking at each other's spring discoveries. End with group celebration: everyone points outside and shouts 'Bonjour printemps!'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace mural pour affichage",
+          "Ruban adhésif ou punaises",
+          "Marqueurs pour annoter"
+        ],
+        "visualSupports": "Exemple de galerie d'art, étiquettes pour identifier les découvertes, support visuel pour 'Bonjour printemps!'",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par des observations en paires avant le grand groupe",
+          "Si la galerie devient bruyante → utiliser un signal de silence et rappeler les règles de la galerie",
+          "Si des élèves critiquent le travail des autres → rediriger vers des commentaires positifs avec des modèles"
+        ],
+        "movementBreaks": [
+          "Marche silencieuse entre les œuvres",
+          "Geste collectif final 'Bonjour printemps!'"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "dessiner ou identifier les changements de printemps",
         "then": "Indoor spring exploration: Use houseplants, spring picture books, or videos of spring scenes. Students can practice vocabulary while pointing to spring elements in pictures."
       },
       "realWorldConnection": "Noticing buds on trees, new flowers, changing weather, animals returning - encourage daily spring observation walks with family",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des images guides de printemps à copier",
+          "Jumeler avec un partenaire plus fort pour l'observation",
+          "Utiliser des indices visuels pour guider le dessin",
+          "Permettre l'usage de mots en anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter des détails scientifiques à leurs observations",
+          "Utiliser plus de vocabulaire français descriptif",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des comparaisons entre différentes plantes observées"
+        ],
+        "forELL": [
+          "Cartes visuelles des mots clés disponibles",
+          "Permission d'utiliser leur langue première pour clarifier",
+          "Gestes et pointage encouragés pour la communication",
+          "Travail en paires avec locuteur français plus fort"
+        ],
+        "forIEP": [
+          "Adapter les outils de dessin selon les besoins moteurs",
+          "Temps supplémentaire pour l'observation et le dessin",
+          "Support individuel pour rester concentré sur la tâche",
+          "Options alternatives comme photos au lieu de dessins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de printemps de façon appropriée",
+          "Identifie au moins 2-3 changements saisonniers",
+          "Dessine avec détails observés de la nature",
+          "Participe activement à la discussion de groupe"
+        ],
+        "checkpoints": [
+          "Observation pendant la sortie: engagement et découvertes",
+          "Qualité des dessins d'observation dans le journal",
+          "Participation au partage en grand groupe",
+          "Utilisation appropriée du vocabulaire français"
+        ]
       }
     },
     {
@@ -76,46 +136,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review spring vocabulary from Lesson 1 with actions. Introduce collecting vocabulary: RAMASSER (picking up gesture), FEUILLE (hold up leaf shape with hands), FLEUR (cup hands like flower). Practice 'gentle touch' - soft fingers for handling nature.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire de la Leçon 1",
+          "Nouvelles cartes: ramasser, feuille, fleur",
+          "Exemples de matériaux naturels",
+          "Plume ou tissu doux pour démontrer 'toucher gentil'"
+        ],
+        "visualSupports": "Cartes visuelles avec gestes, démonstration du toucher gentil, exemples de collection éthique",
+        "decisionPoints": [
+          "Si des élèves sont trop énergiques avec les matériaux → modéliser le toucher gentil plusieurs fois et pratiquer",
+          "Si des élèves ne se rappellent pas le vocabulaire de la Leçon 1 → réviser rapidement avec les gestes visuels",
+          "Si des élèves veulent garder les matériaux pour eux → expliquer le partage et la collection éthique"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire répétés avec mouvement",
+          "Pratique du 'toucher gentil' avec différents matériaux"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Sortie de collection guidée. Expliquer les règles: 'Prendre seulement ce qui est tombé', 'Une de chaque sorte', 'Laisser les plantes vivantes tranquilles'. Collecter en petits groupes avec supervision. Retour en classe pour trier par couleur, texture, taille. Utiliser les loupes pour examiner de près.",
         "materials": [
           "Small collection baskets",
           "Magnifying glasses",
           "Sorting trays or cloth",
           "Collection rule poster"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Affiche des règles de collection avec images, exemples de 'oui' et 'non' pour la collection, cartes de tri (couleur, taille, texture)",
+        "decisionPoints": [
+          "Si des élèves ramassent des plantes vivantes → rappeler doucement les règles et montrer des alternatives tombées au sol",
+          "Si des élèves ne trouvent rien → les guider vers les feuilles tombées, petites branches, roches intéressantes",
+          "Si des élèves remplissent trop leurs paniers → établir une limite de 'cinq trésors spéciaux' par personne"
+        ],
+        "movementBreaks": [
+          "Marche exploratoire lente pour chercher des trésors",
+          "Pauses accroupies pour examiner de près avec les loupes"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Treasure Museum. Each student chooses their favorite treasure to share. Hold it up saying 'Mon trésor spécial!' Others respond 'Merci, nature!' Practice vocabulary by describing color, size, or texture of special treasure.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace de présentation au centre du cercle",
+          "Cartes de vocabulaire descriptif (couleurs, textures)",
+          "Plateau ou tissu pour exposer les trésors"
+        ],
+        "visualSupports": "Cartes visuelles pour 'Mon trésor spécial!', exemples de descriptions (grand/petit, rugueux/lisse, vert/brun), réponse de groupe 'Merci, nature!'",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par les volontaires et encourager doucement les autres",
+          "Si des élèves parlent en même temps → utiliser un objet de parole (comme une belle feuille) pour tour de rôle",
+          "Si des élèves ne trouvent pas de mots pour décrire → offrir des choix de vocabulaire simple avec gestes"
+        ],
+        "movementBreaks": [
+          "Se lever pour montrer son trésor au centre",
+          "Gestes collectifs pour 'Merci, nature!'"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "collection éthique ou manipulation douce des matériaux naturels",
         "then": "Pre-collected nature materials: Use teacher collection of safe natural items. Students can still practice gentle handling, sorting, and vocabulary with provided materials."
       },
       "realWorldConnection": "Finding interesting leaves, stones, twigs in their yard or neighborhood - remind them of gentle collection rules at home",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir un panier pré-rempli avec des matériaux sûrs à trier",
+          "Travailler en équipe avec un partenaire plus expérimenté",
+          "Utiliser des images pour aider à identifier les matériaux",
+          "Se concentrer sur 2-3 matériaux au lieu de plusieurs"
+        ],
+        "forAdvanced": [
+          "Créer des catégories plus complexes pour le tri (texture, forme, origine)",
+          "Utiliser du vocabulaire scientifique pour décrire leurs trouvailles",
+          "Enseigner aux pairs les règles de collection éthique",
+          "Dessiner leurs découvertes avec détails précis"
+        ],
+        "forELL": [
+          "Cartes visuelles avec mots et images pour le vocabulaire clé",
+          "Permission d'expliquer en langue première puis traduire",
+          "Gestes et manipulation pour comprendre les concepts",
+          "Travail avec traducteur pair si disponible"
+        ],
+        "forIEP": [
+          "Adapter les outils de manipulation selon les besoins moteurs",
+          "Panier personnel plus petit pour éviter la surcharge",
+          "Support individuel pour maintenir l'attention sur la tâche",
+          "Options sensorielles alternatives pour explorer les textures"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Respecte les règles de collection éthique pendant la sortie",
+          "Manipule les matériaux naturels avec douceur et respect",
+          "Utilise le vocabulaire de collection approprié (ramasser, feuille, fleur)",
+          "Participe activement au tri et à la présentation des trésors"
+        ],
+        "checkpoints": [
+          "Observation des comportements éthiques pendant la collection",
+          "Qualité de la manipulation douce des matériaux",
+          "Participation au Musée des Trésors avec vocabulaire approprié",
+          "Capacité de trier et décrire les matériaux collectés"
+        ]
       }
     },
     {
@@ -132,30 +252,60 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Introduce 'temporaire' concept: Build a simple block tower, then gently knock it down. Say 'Art temporaire!' Show pictures of sand castles, chalk art, snow sculptures that don't last forever. Practice vocabulary with gestures.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Blocs de construction pour démonstration",
+          "Photos d'art temporaire (châteaux de sable, art de craie, sculptures de neige)",
+          "Cartes de vocabulaire: temporaire, arrangement, dehors",
+          "Matériaux naturels de la Leçon 2"
+        ],
+        "visualSupports": "Photos d'exemples d'art temporaire, cartes visuelles du vocabulaire avec gestes, démonstration physique avec blocs",
+        "decisionPoints": [
+          "Si des élèves sont tristes de détruire l'art → expliquer que c'est la beauté de l'art temporaire et prendre des photos souvenirs",
+          "Si des élèves ne comprennent pas 'temporaire' → donner plus d'exemples concrets comme empreintes dans le sable, dessins dans la buée",
+          "Si des élèves veulent garder leur art → discuter des photos et souvenirs au lieu de l'objet physique"
+        ],
+        "movementBreaks": [
+          "Construire et détruire des tours avec les blocs",
+          "Gestes pour chaque vocabulaire avec mouvement"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création d'art temporaire dehors. En petits groupes, créer des arrangements artistiques avec les matériaux naturels collectés. Expliquer qu'ils vont créer quelque chose de beau, le photographier, puis le laisser à la nature. Encourager la créativité: mandalas de feuilles, spirales de roches, lignes de branches.",
         "materials": [
           "Collected natural materials from Lesson 2",
           "Tablets/cameras for photos",
           "Optional: chalk for ground outlines"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Exemples d'art temporaire dans la nature, images de mandalas naturels, instructions visuelles pour arrangements simples",
+        "decisionPoints": [
+          "Si des élèves ne savent pas comment commencer → suggérer des formes simples comme cercles, lignes droites, ou cœurs",
+          "Si des élèves veulent utiliser des plantes vivantes → les rediriger vers les matériaux déjà tombés et collectés éthiquement",
+          "Si des élèves se disputent les matériaux → rappeler le partage et les aider à collaborer ou diviser l'espace"
+        ],
+        "movementBreaks": [
+          "Marche pour trouver l'emplacement parfait pour leur art",
+          "Déplacement libre pour arranger les matériaux créativement"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Photo Gallery Review. Look at photos taken of everyone's temporary art. Practice vocabulary: 'Mon art temporaire était dehors!' Celebrate the beauty of creating art that doesn't need to last forever.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Tablettes ou appareil pour visionner les photos",
+          "Espace de rassemblement pour regarder ensemble",
+          "Cartes de vocabulaire pour révision"
+        ],
+        "visualSupports": "Photos prises des créations d'art temporaire, phrases-modèles pour décrire l'art, célébration visuelle de l'art éphémère",
+        "decisionPoints": [
+          "Si les élèves sont déçus que leur art n'existe plus → souligner la beauté et la valeur des photos et des souvenirs",
+          "Si certains élèves n'apparaissent pas dans les photos → s'assurer de les inclure dans la prochaine activité photo",
+          "Si les élèves veulent retourner voir leur art → expliquer que c'est maintenant un cadeau à la nature"
+        ],
+        "movementBreaks": [
+          "Se rassembler en cercle pour regarder les photos",
+          "Gestes d'applaudissement pour célébrer chaque création"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -187,33 +337,63 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Show examples of large land art (photos) vs small land art they'll make. Practice vocabulary: PETIT (pinch fingers close), CERCLE (draw circle in air), SPIRALE (spiral finger motion from center out). Use arms for big, fingers for small.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos de grand land art (sculptures de roches, cercles géants)",
+          "Exemples de mini land art sur plateaux",
+          "Cartes de vocabulaire: petit, cercle, spirale",
+          "Matériaux naturels pour démonstration"
+        ],
+        "visualSupports": "Comparaison visuelle grand vs petit land art, cartes de vocabulaire avec gestes, démonstrations de formes avec les mains",
+        "decisionPoints": [
+          "Si des élèves ne comprennent pas la différence d'échelle → utiliser des objets familiers pour comparer grand/petit",
+          "Si des élèves veulent faire de l'art géant → expliquer que petit peut être aussi beau et plus détaillé",
+          "Si des élèves ont de la difficulté avec les spirales → commencer par des cercles simples puis ajouter le mouvement"
+        ],
+        "movementBreaks": [
+          "Gestes avec tout le corps pour 'grand' et mains pour 'petit'",
+          "Dessiner des cercles et spirales dans l'air avec les bras"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création de land art miniature. Chaque élève reçoit un petit espace (cadre de viseur) pour créer son land art. Utiliser les matériaux naturels triés pour faire des cercles, spirales, ou autres formes. Encourager la précision et les détails. Photographier chaque création avant de la défaire.",
         "materials": [
           "Small natural materials sorted by type",
           "Viewfinder frames (cardboard squares with holes)",
           "Optional cameras"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Instructions visuelles pour faire des cercles et spirales, exemples de mini compositions, démonstrations étape par étape",
+        "decisionPoints": [
+          "Si des élèves n'ont pas assez de matériaux → les encourager à partager et échanger avec leurs voisins",
+          "Si des élèves font des créations trop grandes → leur montrer le cadre de viseur pour garder l'échelle petite",
+          "Si des élèves terminent rapidement → les inviter à créer une deuxième œuvre ou aider leurs pairs"
+        ],
+        "movementBreaks": [
+          "Déplacement pour choisir l'emplacement parfait pour leur cadre",
+          "Mouvement libre des mains pour arranger délicatement les matériaux"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Scale Comparison. Compare their mini land art to photos of large land art. Discuss: 'Grand ou petit?' Practice size vocabulary. Celebrate that small art can be just as beautiful and meaningful as large art.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos de leur land art miniature",
+          "Photos de grand land art pour comparaison",
+          "Cartes de vocabulaire grand/petit"
+        ],
+        "visualSupports": "Comparaison côte à côte des photos grand vs petit art, vocabulaire visuel pour la taille, célébration de la beauté à petite échelle",
+        "decisionPoints": [
+          "Si des élèves pensent que grand c'est mieux → souligner les détails précieux visibles seulement dans le petit art",
+          "Si des élèves sont déçus de la taille → les aider à voir que petit permet plus de créativité et précision",
+          "Si des élèves ne participent pas à la discussion → leur poser des questions directes sur leur propre création"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer grand (bras ouverts) et petit (doigts pincés)",
+          "Se lever pour mieux voir les comparaisons d'images"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "manipulation de petits objets ou compréhension de l'échelle",
         "then": "Tabletop land art: Use natural materials on individual desk spaces, emphasizing small scale and pattern-making vocabulary."
       },
       "realWorldConnection": "Arranging shells at the beach, making fairy circles with acorns, creating small rock arrangements in gardens",
@@ -242,34 +422,65 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Spring color hunt in classroom. Look around and identify spring colors already present. Practice vocabulary: VERT (point to green items), ROSE (point to pink items), VIOLET (point to purple items). Use color cards to match what students find.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de couleurs de printemps (vert, rose, violet)",
+          "Objets colorés dans la classe à identifier",
+          "Loupes pour examiner les couleurs de près",
+          "Sac ou panier pour collecter les objets colorés"
+        ],
+        "visualSupports": "Cartes de couleurs géantes, roue de couleurs simple, exemples d'objets de chaque couleur dans la nature",
+        "decisionPoints": [
+          "Si des élèves confondent les couleurs → utiliser des objets très contrastés et revenir aux couleurs de base",
+          "Si des élèves ne trouvent pas certaines couleurs → les guider vers des objets moins évidents ou mélanger les couleurs",
+          "Si des élèves veulent garder les objets trouvés → expliquer qu'on les remet en place après l'activité"
+        ],
+        "movementBreaks": [
+          "Marche dans la classe pour chercher les couleurs",
+          "Gestes de pointage vers différents objets colorés"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création de palette de couleurs printanières. Utiliser les peintures pour mélanger et créer les couleurs de printemps trouvées. Peindre des bandes de couleurs sur papier. Comparer avec les couleurs naturelles trouvées. Créer des motifs simples avec les nouvelles couleurs.",
         "materials": [
           "Color matching cards in spring shades",
           "Paints in primary colors",
           "Small containers for mixing",
           "Paper strips for patterns"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Instructions visuelles pour mélanger les couleurs, exemples de palettes de printemps, démonstrations étape par étape",
+        "decisionPoints": [
+          "Si des élèves font des mélanges boueux → les guider pour utiliser moins de couleurs à la fois",
+          "Si des élèves n'arrivent pas à faire la couleur désirée → leur montrer comment ajouter petit à petit",
+          "Si des élèves renversent de la peinture → avoir des lingettes prêtes et rester calme"
+        ],
+        "movementBreaks": [
+          "Se lever pour changer l'eau de peinture",
+          "Mouvement des bras pour mélanger les couleurs"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Spring Color Gallery. Display color mixing results and patterns. Students walk around identifying colors: 'Je vois du vert!' Vote on 'most spring-like color' creation. Sing simple color song using spring vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace d'affichage pour les créations",
+          "Ruban adhésif pour accrocher les œuvres",
+          "Cartes de vote ou autocollants",
+          "Paroles de chanson sur les couleurs"
+        ],
+        "visualSupports": "Galerie d'art temporaire avec les créations, cartes visuelles pour identifier les couleurs, support pour la chanson",
+        "decisionPoints": [
+          "Si des élèves ne voient pas les couleurs dans les créations des autres → les aider en pointant et nommant",
+          "Si le vote crée des conflits → souligner que toutes les créations sont belles et spéciales",
+          "Si des élèves ne participent pas à la chanson → les encourager en commençant doucement"
+        ],
+        "movementBreaks": [
+          "Marche silencieuse dans la galerie",
+          "Gestes et mouvements pour accompagner la chanson"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "mélange de couleurs ou identification des couleurs de printemps",
         "then": "Indoor spring color exploration: Use magazines, colored paper, or picture books to identify and sort spring colors by vocabulary words."
       },
       "realWorldConnection": "Noticing new green grass, pink blossoms, purple crocuses on walks with family - creating a home color collection",
@@ -298,34 +509,65 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Texture mystery box: Students feel different natural textures (bark, smooth stone, soft moss) without looking. Describe what they feel. Introduce vocabulary: TEXTURE (run fingers across palm), RUGUEUX (rough scratching motion), LISSE (smooth stroking motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Boîte mystère avec différents matériaux texturés",
+          "Échantillons naturels (écorce, pierre lisse, mousse)",
+          "Cartes de vocabulaire: texture, rugueux, lisse",
+          "Lingettes pour nettoyer les mains"
+        ],
+        "visualSupports": "Cartes visuelles des textures avec gestes, démonstration tactile, exemples de surfaces rugueuses et lisses",
+        "decisionPoints": [
+          "Si des élèves ont peur de toucher dans la boîte → commencer par montrer les matériaux d'abord",
+          "Si des élèves ne trouvent pas les mots → offrir des choix de vocabulaire simple avec gestes",
+          "Si des élèves ne veulent pas participer → respecter et les inviter à observer les autres d'abord"
+        ],
+        "movementBreaks": [
+          "Gestes tactiles pour explorer les textures",
+          "Mouvements de frottement pour démontrer rugueux/lisse"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Exploration et frottage de textures naturelles. Sortir dehors pour trouver différentes textures (écorce d'arbre, pierre, feuilles). Faire des frottages en plaçant le papier sur la surface et frottant avec le crayon. Collecter des échantillons sûrs. Retour en classe pour comparer et classer les textures.",
         "materials": [
           "Thin paper for rubbings",
           "Unwrapped crayons",
           "Clipboards for outdoor work",
           "Collection bags for safe texture samples"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Démonstration de la technique de frottage, exemples de frottages de textures, instructions visuelles étape par étape",
+        "decisionPoints": [
+          "Si les frottages ne fonctionnent pas bien → ajuster la pression du crayon et vérifier le placement du papier",
+          "Si des élèves veulent frotter des surfaces dangereuses → les rediriger vers des surfaces sûres et appropriées",
+          "Si des élèves n'arrivent pas à voir les motifs → les aider en tenant le papier et guidant leur main"
+        ],
+        "movementBreaks": [
+          "Marche pour explorer différentes surfaces texturées",
+          "Mouvement de frottage répétitif avec les crayons"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Texture Museum. Display texture rubbings and samples. Students touch and identify: 'Cette texture est rugueuse!' Visitors (other students) can feel and guess textures. End with texture vocabulary song.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Tables pour exposer les frottages et échantillons",
+          "Étiquettes pour identifier les textures",
+          "Espace pour circuler dans le musée",
+          "Paroles de chanson sur les textures"
+        ],
+        "visualSupports": "Musée de textures organisé avec étiquettes, cartes visuelles du vocabulaire, support pour la chanson finale",
+        "decisionPoints": [
+          "Si des élèves touchent trop brusquement les échantillons → rappeler la manipulation douce et respectueuse",
+          "Si des élèves ne trouvent pas les mots pour décrire → leur offrir des choix de vocabulaire avec gestes",
+          "Si certains échantillons se cassent → utiliser cela comme opportunité d'apprentissage sur la fragilité"
+        ],
+        "movementBreaks": [
+          "Circulation libre dans le musée pour explorer",
+          "Gestes et mouvements pour accompagner la chanson des textures"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "identification des textures ou technique de frottage",
         "then": "Indoor texture exploration: Use classroom materials (sandpaper, fabric, plastic) and houseplants to practice texture vocabulary and create rubbings."
       },
       "realWorldConnection": "Feeling tree bark, smooth stones, soft moss, prickly pine cones - creating texture collections at home",
@@ -354,34 +596,65 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Show handprints and footprints as examples of 'empreintes.' Press hands in playdough, then lift to show print left behind. Introduce vocabulary: EMPREINTE (press hand then lift), FROTTER (rubbing motion), PAPIER (hold up paper sheets).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Pâte à modeler ou argile",
+          "Exemples d'empreintes (main, pied)",
+          "Cartes de vocabulaire: empreinte, frotter, papier",
+          "Matériaux naturels pour démonstration"
+        ],
+        "visualSupports": "Exemples d'empreintes diverses, cartes visuelles du vocabulaire avec gestes, démonstration étape par étape",
+        "decisionPoints": [
+          "Si des élèves ont peur de mettre les mains dans la pâte → commencer par observer et utiliser des outils d'abord",
+          "Si des élèves ne comprennent pas le concept d'empreinte → utiliser leurs propres mains et pieds pour démontrer",
+          "Si des élèves confondent empreinte et frottage → répéter les démonstrations avec gestes clairs"
+        ],
+        "movementBreaks": [
+          "Presser et lever les mains dans la pâte à modeler",
+          "Gestes de frottement et de pression pour le vocabulaire"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création d'empreintes naturelles. Utiliser les tampons de peinture pour faire des empreintes de feuilles, fleurs, et écorce sur différents papiers colorés. Explorer différentes pressions et angles. Comparer les résultats et discuter des détails visibles dans chaque empreinte.",
         "materials": [
           "Paint pads or shallow paint dishes",
           "Natural printing objects (leaves, bark, flowers)",
           "Paper in different colors",
           "Wet wipes for cleanup"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Démonstration de technique d'empreinte, exemples d'empreintes réussies, instructions visuelles étape par étape",
+        "decisionPoints": [
+          "Si les empreintes sont floues → ajuster la quantité de peinture et la pression appliquée",
+          "Si des élèves utilisent trop de peinture → montrer la technique du 'tampon léger'",
+          "Si des élèves se découragent avec leurs résultats → souligner les détails uniques et beaux dans chaque empreinte"
+        ],
+        "movementBreaks": [
+          "Mouvement de pression contrôlée pour faire les empreintes",
+          "Déplacement pour essayer différents matériaux naturels"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Print Gallery and Detective Game. Display prints around room. Students try to guess which natural object made each print. Point to print saying 'Cette empreinte vient de...' Celebrate successful detective work.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace d'affichage pour les empreintes",
+          "Matériaux naturels utilisés pour comparaison",
+          "Loupes pour examiner les détails",
+          "Autocollants ou prix pour les détectives"
+        ],
+        "visualSupports": "Galerie organisée avec empreintes et objets correspondants, cartes visuelles pour 'Cette empreinte vient de...', support pour le jeu de détective",
+        "decisionPoints": [
+          "Si des élèves ne trouvent pas les correspondances → leur donner des indices ou réduire les choix",
+          "Si le jeu devient trop compétitif → souligner que tous sont des détectives réussis",
+          "Si des élèves sont timides pour deviner → les encourager en commençant par des correspondances faciles"
+        ],
+        "movementBreaks": [
+          "Circulation libre dans la galerie pour explorer",
+          "Gestes d'enquête et de découverte pour le jeu de détective"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "technique d'empreinte ou manipulation des matériaux de peinture",
         "then": "Classroom object printing: Use textured classroom materials (sponges, textured blocks, stamps) to practice printing vocabulary and techniques."
       },
       "realWorldConnection": "Making leaf rubbings like they might do on nature walks with family, noticing animal tracks in mud or sand",
@@ -410,14 +683,26 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Show pictures of different gardens: vegetable gardens, flower gardens, artistic gardens with patterns. Discuss what makes a garden 'artistic.' Introduce vocabulary: JARDIN (sweeping arm gesture), PLANTER (digging and placing motion), GRANDIR (start small, grow tall with arms).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos de différents types de jardins",
+          "Cartes de vocabulaire: jardin, planter, grandir",
+          "Exemples de jardins artistiques",
+          "Matériaux pour gestes démonstratifs"
+        ],
+        "visualSupports": "Photos comparatives de jardins utilitaires vs artistiques, cartes visuelles du vocabulaire avec gestes, exemples d'arrangements esthétiques",
+        "decisionPoints": [
+          "Si des élèves ne voient pas la différence entre jardins → pointer les éléments artistiques comme couleurs, formes, motifs",
+          "Si des élèves pensent que tous les jardins sont identiques → montrer des exemples très contrastés",
+          "Si des élèves ne participent pas aux gestes → les inviter à observer puis imiter doucement"
+        ],
+        "movementBreaks": [
+          "Gestes amples pour 'jardin' avec les bras",
+          "Actions de planter et grandir avec tout le corps"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création de jardins artistiques miniatures. Dessiner un plan de jardin sur papier avec motifs et couleurs. Planter des graines ou petites plantes dans les contenants en suivant leur design artistique. Discuter des choix esthétiques: pourquoi cette couleur ici, pourquoi cette forme là.",
         "materials": [
           "Small planting containers",
           "Potting soil",
@@ -425,20 +710,39 @@
           "Garden design paper",
           "Small shovels/spoons"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Instructions visuelles pour la plantation, exemples de designs de jardins artistiques, démonstrations étape par étape",
+        "decisionPoints": [
+          "Si des élèves plantent trop profond ou peu profond → ajuster et expliquer la bonne profondeur pour chaque graine",
+          "Si des élèves ne suivent pas leur plan → les encourager à faire des choix intentionnels pour l'esthétique",
+          "Si des élèves renversent de la terre → avoir des outils de nettoyage prêts et rester calme"
+        ],
+        "movementBreaks": [
+          "Mouvements de plantation et de soins aux plantes",
+          "Déplacements pour voir les jardins des autres élèves"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Garden Gallery. Display mini gardens and design plans. Students explain their artistic choices: 'J'ai planté comme ça parce que...' Set up observation schedule to watch gardens grow over coming weeks.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Tables pour exposer les jardins et plans",
+          "Calendrier d'observation pour la croissance",
+          "Cartes pour noter les changements",
+          "Étiquettes avec noms des élèves"
+        ],
+        "visualSupports": "Galerie organisée avec jardins et plans correspondants, calendrier visuel pour l'observation, phrases-modèles pour expliquer les choix",
+        "decisionPoints": [
+          "Si des élèves sont timides pour expliquer leurs choix → commencer par des questions simples comme 'Quelle couleur as-tu choisie?'",
+          "Si des jardins ne ressemblent pas aux plans → célébrer les différences et l'adaptation créative",
+          "Si des élèves oublient de prendre soin de leurs jardins → mettre en place un système de rappel avec partenaires"
+        ],
+        "movementBreaks": [
+          "Circulation dans la galerie pour voir tous les jardins",
+          "Gestes pour mimer la croissance future des plantes"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "plantation ou concept de jardin artistique",
         "then": "Paper garden art: Create artistic garden designs using colored paper, stickers, or drawings, discussing how real gardens could be designed artistically."
       },
       "realWorldConnection": "Helping with family garden, choosing flowers for beauty and growth, creating mini gardens at home",
@@ -467,46 +771,107 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Demonstrate balance with simple balance scale or seesaw motion with arms. Show mobile examples moving in air currents. Introduce vocabulary: SUSPENDU (hang finger from other finger), ÉQUILIBRE (balance arms like scale), MOUVEMENT (gentle swaying motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Balance simple ou bascule pour démonstration",
+          "Exemples de mobiles ou photos de mobiles",
+          "Cartes de vocabulaire: suspendu, équilibre, mouvement",
+          "Ventilateur ou source d'air pour démontrer le mouvement"
+        ],
+        "visualSupports": "Exemples de mobiles en mouvement, cartes visuelles du vocabulaire avec gestes, démonstration d'équilibre avec balance",
+        "decisionPoints": [
+          "Si des élèves ont peur des objets suspendus → commencer par des démonstrations au sol avec équilibre simple",
+          "Si des élèves ne comprennent pas l'équilibre → utiliser leur propre corps pour démontrer l'équilibre",
+          "Si des élèves ne voient pas le mouvement → créer plus de courant d'air ou utiliser des objets plus légers"
+        ],
+        "movementBreaks": [
+          "Mouvements d'équilibre avec les bras comme une balance",
+          "Gestes de suspension et de balancement doux"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création de mobiles printaniers. Utiliser les matériaux naturels collectés pour créer des mobiles équilibrés. Attacher les éléments avec de la ficelle à des bâtons fins. Expérimenter avec différentes positions pour trouver l'équilibre. Tester le mouvement en créant des courants d'air doux.",
         "materials": [
           "Thin sticks or dowels",
           "String or thin yarn",
           "Collected natural materials from previous lessons",
           "Scissors (adult use)"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Instructions visuelles pour attacher les matériaux, exemples de mobiles équilibrés, démonstrations étape par étape de la création",
+        "decisionPoints": [
+          "Si les mobiles ne sont pas équilibrés → ajuster la position des éléments ou ajouter/enlever du poids",
+          "Si les ficelles se cassent → utiliser des ficelles plus solides ou réduire le poids des éléments",
+          "Si des élèves ont des difficultés avec l'équilibre → simplifier avec seulement 2-3 éléments d'abord"
+        ],
+        "movementBreaks": [
+          "Étirements en levant les bras comme des branches d'arbre",
+          "Mouvements de balancement doux pour imiter les mobiles"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Mobile Exhibition. Hang all mobiles in classroom where they can move freely. Students observe each other's work, describing what they see: 'Ce mobile a du mouvement!' Test different ways to create gentle movement.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Crochets ou supports pour suspendre les mobiles",
+          "Espace suffisant pour les mobiles en mouvement",
+          "Ventilateur ou moyen de créer du mouvement d'air",
+          "Cartes de vocabulaire pour la description"
+        ],
+        "visualSupports": "Exposition organisée des mobiles, cartes visuelles pour décrire le mouvement, espace sécuritaire pour l'observation",
+        "decisionPoints": [
+          "Si des mobiles s'entremêlent → espacer davantage et ajuster les hauteurs",
+          "Si des élèves ne voient pas le mouvement → créer des courants d'air plus doux et constants",
+          "Si des élèves touchent trop les mobiles → établir des règles d'observation respectueuse"
+        ],
+        "movementBreaks": [
+          "Marche silencieuse autour de l'exposition de mobiles",
+          "Mouvements d'imitation des mobiles en balancement doux"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "création d'équilibre ou manipulation des matériaux suspendus",
         "then": "Paper mobiles: Create mobiles using paper cutouts of natural shapes, focusing on balance and movement concepts without fragile natural materials."
       },
       "realWorldConnection": "Wind chimes on porches, things hanging from trees in wind, watching leaves and flowers move in breeze",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Mobile simplifié avec seulement 2-3 éléments légers",
+          "Assistance directe pour attacher les matériaux",
+          "Utiliser des matériaux plus faciles à manipuler",
+          "Permettre l'aide d'un partenaire pour l'équilibre"
+        ],
+        "forAdvanced": [
+          "Créer des mobiles à plusieurs niveaux avec équilibre complexe",
+          "Expérimenter avec différents types de mouvement",
+          "Aider les pairs avec leurs défis d'équilibre",
+          "Intégrer des principes scientifiques d'équilibre"
+        ],
+        "forELL": [
+          "Cartes visuelles du vocabulaire de mouvement et équilibre",
+          "Démonstrations physiques pour clarifier les concepts",
+          "Permission d'expliquer dans leur langue première",
+          "Travail en paires avec locuteur français plus fort"
+        ],
+        "forIEP": [
+          "Adapter les outils selon les besoins moteurs",
+          "Mobile plus simple avec moins d'éléments à équilibrer",
+          "Temps supplémentaire pour l'expérimentation",
+          "Support individuel pour maintenir la concentration"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de mouvement et d'équilibre approprié",
+          "Démontre une compréhension de base de l'équilibre",
+          "Crée un mobile fonctionnel avec des matériaux naturels",
+          "Participe activement à l'observation des mobiles des autres"
+        ],
+        "checkpoints": [
+          "Compréhension du concept d'équilibre pendant la création",
+          "Utilisation appropriée du vocabulaire suspendu/équilibre/mouvement",
+          "Qualité de la construction et fonctionnalité du mobile",
+          "Participation respectueuse à l'exposition de mobiles"
+        ]
       }
     },
     {
@@ -523,45 +888,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Look at photos of nature art from previous lessons. Discuss what makes a good photo vs bad photo. Introduce vocabulary: PHOTOGRAPHIER (camera holding gesture), ANGLE (tilt head/hands different ways), LUMIÈRE (point to light sources).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos d'art naturel des leçons précédentes",
+          "Exemples de bonnes et mauvaises photos",
+          "Cartes de vocabulaire: photographier, angle, lumière",
+          "Cadres de visée pour démonstrer les angles"
+        ],
+        "visualSupports": "Comparaison de photos de qualité différente, cartes visuelles du vocabulaire avec gestes, démonstration d'angles de prise de vue",
+        "decisionPoints": [
+          "Si des élèves ne voient pas la différence entre bonnes/mauvaises photos → utiliser des exemples très contrastés",
+          "Si des élèves ont peur des appareils photo → commencer par des cadres de visée en carton",
+          "Si des élèves ne comprennent pas les angles → utiliser leur corps pour démontrer les différentes positions"
+        ],
+        "movementBreaks": [
+          "Gestes pour tenir un appareil photo imaginaire",
+          "Mouvements pour changer d'angle: haut, bas, côté"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Session de photographie nature. Utiliser les appareils pour photographier les créations d'art naturel existantes ou nouvelles. Expérimenter avec différents angles et éclairage. Prendre plusieurs photos du même objet sous différents angles. Réviser immédiatement les photos pour discuter de la qualité.",
         "materials": [
           "Tablets, simple cameras, or smartphones",
           "Previously created nature art or materials for new art",
           "Photo review method (screen or prints)"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Instructions visuelles pour tenir l'appareil, exemples d'angles différents, guide de l'éclairage naturel",
+        "decisionPoints": [
+          "Si les photos sont floues → enseigner comment tenir l'appareil stable et utiliser les deux mains",
+          "Si l'éclairage est mauvais → montrer comment positionner l'art par rapport à la lumière naturelle",
+          "Si des élèves prennent trop de photos → établir une limite et encourager la réflexion avant chaque clic"
+        ],
+        "movementBreaks": [
+          "Déplacement pour trouver les meilleurs angles",
+          "Mouvement pour s'accroupir, se lever, se pencher pour les prises de vue"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Photography Exhibition Planning. Choose best photos for class exhibition. Practice describing photos using vocabulary: 'J'ai photographié avec cette lumière...' Plan how to share photos with families.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Écran ou méthode pour réviser les photos prises",
+          "Matériel pour sélectionner les meilleures photos",
+          "Cartes de vocabulaire pour décrire les photos",
+          "Plan de partage avec les familles"
+        ],
+        "visualSupports": "Galerie temporaire des meilleures photos, phrases-modèles pour décrire les techniques, plan visuel de partage",
+        "decisionPoints": [
+          "Si des élèves sont déçus que leurs photos ne soient pas choisies → souligner que toutes sont belles et spéciales",
+          "Si des élèves ne trouvent pas de mots pour décrire → offrir du vocabulaire simple avec des choix",
+          "Si la révision prend trop de temps → pré-sélectionner quelques photos par élève"
+        ],
+        "movementBreaks": [
+          "Se rassembler pour regarder les photos sur grand écran",
+          "Gestes pour décrire les angles et la lumière dans les photos"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "utilisation d'appareils photo ou compréhension des angles",
         "then": "Photography planning: Without cameras, use viewfinder frames to 'frame' shots and discuss angles and lighting, planning future photography sessions."
       },
       "realWorldConnection": "Taking pictures of their gardens, pets, special places outdoors - sharing nature photos with family",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Appareil photo simplifié ou assistance pour tenir l'appareil",
+          "Se concentrer sur 1-2 angles seulement d'abord",
+          "Travail en paires avec un partenaire plus expérimenté",
+          "Utiliser des cadres de visée en carton pour pratiquer"
+        ],
+        "forAdvanced": [
+          "Expérimenter avec des techniques plus avancées",
+          "Enseigner aux pairs les techniques de photographie",
+          "Créer une série de photos avec différents éclairages",
+          "Organiser les photos par thème ou technique"
+        ],
+        "forELL": [
+          "Cartes visuelles du vocabulaire de photographie",
+          "Démonstrations physiques des concepts d'angle et lumière",
+          "Permission d'expliquer en langue première puis traduire",
+          "Utiliser des gestes pour communiquer les techniques"
+        ],
+        "forIEP": [
+          "Adapter l'appareil photo selon les besoins moteurs",
+          "Temps supplémentaire pour expérimenter avec les angles",
+          "Support individuel pour manipuler l'équipement",
+          "Options alternatives si la photographie est difficile"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de photographie approprié (photographier, angle, lumière)",
+          "Démontre une compréhension des différents angles de prise de vue",
+          "Prend des photos qui montrent une attention à l'éclairage",
+          "Participe activement à la révision et sélection des photos"
+        ],
+        "checkpoints": [
+          "Qualité technique des photos prises (netteté, angle, éclairage)",
+          "Utilisation appropriée du vocabulaire lors de la description des photos",
+          "Participation constructive à la sélection des meilleures photos",
+          "Capacité d'expliquer ses choix d'angles et d'éclairage"
+        ]
       }
     },
     {
@@ -578,46 +1004,107 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review four seasons with pictures and actions. Discuss how nature changes through seasons. Introduce vocabulary: CYCLE (circular motion with arms), CHANGEMENT (transform gestures from one thing to another), SAISON (hold up 4 fingers, name each season).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Images des quatre saisons avec actions",
+          "Cartes de vocabulaire: cycle, changement, saison",
+          "Exemples de changements naturels saisonniers",
+          "Roue des saisons pour démonstrer le cycle"
+        ],
+        "visualSupports": "Roue des saisons interactive, cartes visuelles des changements naturels, gestes pour chaque vocabulaire",
+        "decisionPoints": [
+          "Si des élèves confondent les saisons → utiliser des indicateurs visuels clairs (neige=hiver, fleurs=printemps)",
+          "Si des élèves ne comprennent pas le concept de cycle → utiliser leur âge/anniversaire comme exemple familier",
+          "Si des élèves ne voient pas les changements → pointer des exemples spécifiques dans leur environnement"
+        ],
+        "movementBreaks": [
+          "Gestes circulaires pour démontrer le cycle des saisons",
+          "Mouvements de transformation d'une saison à l'autre"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Planification d'art saisonnier. Créer un projet d'art qui peut changer avec les saisons. Documenter l'état actuel (printemps) et prédire les changements futurs. Utiliser les matériaux saisonniers disponibles. Faire des connexions entre leur art et les cycles naturels observés.",
         "materials": [
           "Planning sheets with seasonal sections",
           "Art materials for current season documentation",
           "Cameras for documentation",
           "Seasonal prediction worksheets"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Feuilles de planification saisonnière avec images, exemples d'art qui change avec les saisons, timeline visuelle",
+        "decisionPoints": [
+          "Si des élèves ne peuvent pas prédire les changements → donner des exemples concrets de changements saisonniers",
+          "Si les projets sont trop ambitieux → simplifier en se concentrant sur 2 saisons seulement",
+          "Si des élèves manquent d'idées → fournir des suggestions basées sur les matériaux naturels disponibles"
+        ],
+        "movementBreaks": [
+          "Mouvements pour mimer les changements saisonniers",
+          "Déplacement pour observer les signes actuels du printemps"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Seasonal Art Calendar. Create simple calendar marking when to check seasonal art projects. Practice vocabulary: 'Le cycle des saisons change mon art!' Set reminders for future observations.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Calendrier simple avec sections saisonnières",
+          "Autocollants ou marqueurs pour marquer les dates",
+          "Cartes de rappel pour les observations futures",
+          "Phrases-modèles pour le vocabulaire"
+        ],
+        "visualSupports": "Calendrier visuel des saisons, exemples de projets d'art saisonnier, système de rappel visuel",
+        "decisionPoints": [
+          "Si des élèves oublient les dates importantes → créer des repères visuels simples",
+          "Si le calendrier est trop complexe → simplifier avec seulement les changements de saison principaux",
+          "Si des élèves ne participent pas à la planification → leur donner des choix simples entre 2-3 options"
+        ],
+        "movementBreaks": [
+          "Gestes pour marquer les dates sur le calendrier",
+          "Mouvement circulaire final pour célébrer le cycle complet"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "compréhension des cycles saisonniers ou planification à long terme",
         "then": "Seasonal art comparison: Use photos and examples to compare how the same art project would look different in each season, discussing vocabulary without long-term planning."
       },
       "realWorldConnection": "Watching their planted gardens grow, trees change through year, creating seasonal decorations at home",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 2 saisons seulement (actuelle et suivante)",
+          "Utiliser des images pour planifier au lieu d'écriture",
+          "Travail en paires pour le soutien dans la planification",
+          "Projets plus simples avec changements évidents"
+        ],
+        "forAdvanced": [
+          "Planifier des projets complexes sur toute l'année",
+          "Incorporer des éléments scientifiques sur les cycles",
+          "Aider les pairs avec leurs planifications",
+          "Créer des connexions entre différents cycles naturels"
+        ],
+        "forELL": [
+          "Cartes visuelles du vocabulaire saisonnier",
+          "Utiliser leur expérience culturelle des saisons",
+          "Permission d'expliquer en langue première",
+          "Gestes et images pour clarifier les concepts"
+        ],
+        "forIEP": [
+          "Adapter les outils de planification selon les besoins",
+          "Temps supplémentaire pour comprendre les cycles",
+          "Support individuel pour la planification",
+          "Options alternatives si la planification est difficile"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire des cycles saisonniers approprié",
+          "Démontre une compréhension des changements saisonniers",
+          "Planifie des projets d'art adaptés aux saisons",
+          "Fait des connexions entre l'art et les cycles naturels"
+        ],
+        "checkpoints": [
+          "Compréhension du concept de cycle saisonnier",
+          "Qualité de la planification d'art saisonnier",
+          "Utilisation appropriée du vocabulaire cycle/changement/saison",
+          "Capacité de prédire les changements futurs dans l'art"
+        ]
       }
     },
     {
@@ -634,46 +1121,107 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review smaller art projects from previous lessons. Discuss working together: what works well, what's challenging. Introduce vocabulary: ENSEMBLE (link arms with classmates), GRAND (stretch arms wide), COLLABORATION (shake hands, work together gestures).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos des projets d'art précédents",
+          "Cartes de vocabulaire: ensemble, grand, collaboration",
+          "Exemples d'installations collaboratives",
+          "Matériaux pour démontrer la collaboration"
+        ],
+        "visualSupports": "Images d'installations collaboratives, cartes visuelles du vocabulaire avec gestes, exemples de travail d'équipe",
+        "decisionPoints": [
+          "Si des élèves ont eu des conflits dans les projets précédents → discuter des stratégies de résolution",
+          "Si des élèves sont timides pour collaborer → commencer par de petits groupes de 2-3 élèves",
+          "Si des élèves ne comprennent pas 'grand' → utiliser l'espace de classe pour démontrer l'échelle"
+        ],
+        "movementBreaks": [
+          "Gestes de collaboration: se lier les bras, serrer les mains",
+          "Mouvements pour démontrer 'grand' avec tout le corps"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création d'une installation collaborative géante. Planifier ensemble un grand projet d'art environnemental. Assigner des rôles à chaque élève. Travailler ensemble pour créer quelque chose de plus grand que leurs projets individuels. Encourager la communication et le partage des idées.",
         "materials": [
           "Large quantity of natural materials",
           "Tools for arrangement (rakes, shovels if needed)",
           "Cameras for documentation",
           "Planning materials"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Plan visuel de l'installation, rôles assignés avec images, instructions étape par étape pour la collaboration",
+        "decisionPoints": [
+          "Si des élèves se disputent les matériaux → établir un système de partage équitable et surveiller",
+          "Si l'installation devient chaotique → pause pour réviser le plan et réorganiser les rôles",
+          "Si certains élèves ne participent pas → leur donner des tâches spécifiques adaptées à leurs intérêts"
+        ],
+        "movementBreaks": [
+          "Mouvements coordonnés pour transporter les gros matériaux",
+          "Pauses pour s'étirer et admirer le progrès ensemble"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Installation Celebration. Gather around completed installation. Each student says one word describing the collaboration: 'Magnifique!' 'Ensemble!' 'Grand!' Plan how to share installation with school community.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace pour se rassembler autour de l'installation",
+          "Cartes de mots positifs pour décrire le travail",
+          "Appareil photo pour documenter la célébration",
+          "Plan de partage avec la communauté scolaire"
+        ],
+        "visualSupports": "Installation terminée comme centre visuel, cartes de mots de célébration, plan de partage avec images",
+        "decisionPoints": [
+          "Si des élèves sont timides pour parler → commencer par des volontaires et encourager doucement",
+          "Si l'installation n'est pas terminée → célébrer le processus et planifier la finition",
+          "Si des élèves veulent détruire l'installation → discuter de la permanence vs temporaire"
+        ],
+        "movementBreaks": [
+          "Marche d'admiration autour de l'installation complète",
+          "Gestes de célébration collective et applaudissements"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "collaboration effective ou gestion de projet de groupe",
         "then": "Classroom collaborative installation: Create large-scale art installation indoors using collected natural materials, focusing on teamwork and vocabulary."
       },
       "realWorldConnection": "Working with neighbors on community gardens, school beautification projects, family art projects",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Rôles spécifiques et simples dans le projet collaboratif",
+          "Travail en petits sous-groupes avant l'assemblage final",
+          "Tâches adaptées à leurs forces et intérêts",
+          "Support supplémentaire pour la communication avec les pairs"
+        ],
+        "forAdvanced": [
+          "Prendre des rôles de leadership dans la planification",
+          "Aider à coordonner les différentes parties du projet",
+          "Résoudre les problèmes qui surviennent pendant la collaboration",
+          "Documenter le processus collaboratif pour les autres"
+        ],
+        "forELL": [
+          "Rôles qui permettent la communication non-verbale",
+          "Utiliser des gestes et des démonstrations",
+          "Travailler avec des traducteurs pairs si possible",
+          "Se concentrer sur l'action collaborative plus que les mots"
+        ],
+        "forIEP": [
+          "Adapter les rôles selon les capacités individuelles",
+          "Fournir des pauses supplémentaires si nécessaire",
+          "Support individuel pour participer au groupe",
+          "Options alternatives pour contribuer au projet"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Participe activement à la collaboration de groupe",
+          "Utilise le vocabulaire de collaboration approprié",
+          "Contribue de manière constructive au projet d'installation",
+          "Démontre des compétences de travail d'équipe"
+        ],
+        "checkpoints": [
+          "Qualité de la participation à la planification collaborative",
+          "Utilisation appropriée du vocabulaire ensemble/grand/collaboration",
+          "Contribution effective au projet d'installation finale",
+          "Capacité de travailler harmonieusement avec les pairs"
+        ]
       }
     },
     {
@@ -690,45 +1238,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Discuss how they've used nature in their art. What happened to natural materials? What stayed in nature? Introduce vocabulary: RESPECTER (gentle handling gesture), PROTÉGER (sheltering arms), RESPONSABLE (point to self, responsible gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Exemples de matériaux naturels utilisés dans les leçons",
+          "Photos de leurs projets d'art environnemental",
+          "Cartes de vocabulaire: respecter, protéger, responsable",
+          "Exemples de bons et mauvais comportements environnementaux"
+        ],
+        "visualSupports": "Comparaison avant/après des espaces naturels utilisés, cartes visuelles du vocabulaire avec gestes, exemples de responsabilité environnementale",
+        "decisionPoints": [
+          "Si des élèves ne voient pas l'impact de leurs actions → utiliser des exemples concrets et visuels",
+          "Si des élèves se sentent coupables → rassurer et se concentrer sur les actions positives futures",
+          "Si des élèves ne comprennent pas la responsabilité → utiliser des exemples de leur vie quotidienne"
+        ],
+        "movementBreaks": [
+          "Gestes doux pour démontrer 'respecter'",
+          "Mouvements protecteurs pour 'protéger' avec les bras"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Évaluation et restauration environnementale. Explorer les espaces où ils ont fait de l'art. Observer l'impact de leurs activités. Faire de petites actions de restauration si nécessaire. Créer des directives de classe pour l'art environnemental responsable. Discuter de leurs responsabilités comme artistes environnementaux.",
         "materials": [
           "Clipboards for environmental observations",
           "Materials for minor restoration (seeds, small plants, cleanup supplies)",
           "Poster materials for guidelines"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Liste de vérification pour l'évaluation environnementale, exemples d'actions de restauration, modèle de directives de classe",
+        "decisionPoints": [
+          "Si les espaces sont déjà en bon état → se concentrer sur la prévention et les bonnes pratiques",
+          "Si il y a des dommages → utiliser comme opportunité d'apprentissage pour la restauration",
+          "Si des élèves sont découragés → souligner leurs actions positives et l'apprentissage"
+        ],
+        "movementBreaks": [
+          "Marche d'observation respectueuse des espaces naturels",
+          "Mouvements de nettoyage et de restauration douce"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Environmental Promise. Students make personal promises about how they'll be responsible environmental artists. Share promises: 'Je promets de respecter...' Create display of class environmental art guidelines.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Feuilles pour écrire les promesses personnelles",
+          "Matériaux pour créer l'affichage des directives",
+          "Cartes de vocabulaire pour les promesses",
+          "Espace d'affichage pour les directives de classe"
+        ],
+        "visualSupports": "Modèles de promesses environnementales, affichage attractif des directives, phrases-modèles pour partager",
+        "decisionPoints": [
+          "Si des élèves ne trouvent pas de promesses à faire → offrir des exemples simples et concrets",
+          "Si les promesses sont irréalistes → aider à les rendre plus pratiques et réalisables",
+          "Si des élèves sont timides pour partager → permettre le partage en petits groupes d'abord"
+        ],
+        "movementBreaks": [
+          "Gestes solennels pour faire les promesses",
+          "Mouvement pour afficher les directives ensemble"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "compréhension de la responsabilité environnementale ou sentiment de culpabilité",
         "then": "Environmental art ethics discussion: Use photos and scenarios to discuss responsible environmental art practices without outdoor assessment."
       },
       "realWorldConnection": "Leaving nature spaces better than they found them, teaching family members about environmental responsibility",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 1-2 actions responsables simples",
+          "Utiliser des images pour comprendre l'impact",
+          "Promesses très concrètes et réalisables",
+          "Support pour comprendre la cause et l'effet"
+        ],
+        "forAdvanced": [
+          "Explorer des concepts de durabilité plus complexes",
+          "Devenir ambassadeurs environnementaux pour leurs pairs",
+          "Créer des solutions innovantes pour l'art responsable",
+          "Faire des connexions avec des enjeux environnementaux plus larges"
+        ],
+        "forELL": [
+          "Utiliser leur expérience culturelle de respect de la nature",
+          "Cartes visuelles du vocabulaire environnemental",
+          "Permettre l'expression en langue première puis traduire",
+          "Actions physiques pour démontrer la responsabilité"
+        ],
+        "forIEP": [
+          "Adapter les actions de restauration selon les capacités",
+          "Promesses adaptées aux objectifs individuels",
+          "Support supplémentaire pour comprendre les concepts abstraits",
+          "Options alternatives pour démontrer la responsabilité"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de responsabilité environnementale approprié",
+          "Démontre des comportements respectueux envers l'environnement",
+          "Participe activement aux discussions sur la responsabilité",
+          "Fait des promesses réalistes pour l'art environnemental responsable"
+        ],
+        "checkpoints": [
+          "Compréhension des concepts de respect et protection environnementale",
+          "Qualité des observations sur l'impact environnemental",
+          "Participation constructive à la création des directives de classe",
+          "Sincérité et réalisme des promesses environnementales personnelles"
+        ]
       }
     },
     {
@@ -745,45 +1354,106 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Check current weather conditions. Act out different weather: PLUIE (finger rain), SOLEIL (arms in circle overhead), VENT (swaying motion). Discuss how weather affects outdoor art. What art works in each weather?",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Fenêtre ou accès extérieur pour observer la météo",
+          "Cartes de vocabulaire météo: pluie, soleil, vent",
+          "Images d'art créé dans différentes conditions météo",
+          "Matériaux pour démonstrer les effets météo"
+        ],
+        "visualSupports": "Images d'art météorologique, cartes visuelles du vocabulaire avec gestes, exemples d'art adapté aux conditions",
+        "decisionPoints": [
+          "Si la météo est extrême (orage, froid intense) → adapter pour rester à l'intérieur en sécurité",
+          "Si des élèves ont peur de certaines conditions météo → rassurer et commencer par des simulations douces",
+          "Si la météo ne change pas → utiliser des photos et exemples d'autres conditions"
+        ],
+        "movementBreaks": [
+          "Gestes pour imiter différents types de météo",
+          "Mouvements corporels pour réagir aux conditions météo"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Création d'art météorologique. Adapter leur art aux conditions actuelles du jour. Utiliser la météo comme partenaire créatif. Si c'est ensoleillé: créer de l'art d'ombre. Si c'est venteux: utiliser des matériaux légers. Si c'est nuageux: explorer les couleurs douces. Documenter comment la météo influence leur création.",
         "materials": [
           "Weather-appropriate art materials (water-soluble paints for rain, light materials for wind, etc.)",
           "Protective gear if needed",
           "Flexible art supplies"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Guide visuel d'art pour chaque condition météo, instructions adaptées aux conditions actuelles, exemples de techniques météo",
+        "decisionPoints": [
+          "Si les matériaux ne fonctionnent pas avec la météo → adapter rapidement ou changer de technique",
+          "Si des élèves sont inconfortables dehors → créer des options à l'intérieur près des fenêtres",
+          "Si l'art est détruit par la météo → utiliser cela comme apprentissage sur l'art éphémère"
+        ],
+        "movementBreaks": [
+          "Mouvements pour s'adapter aux conditions (s'abriter, chercher l'ombre, etc.)",
+          "Pauses pour observer et apprécier les effets météo sur l'art"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Weather Art Documentation. Photograph art with weather conditions visible. Discuss how weather helped or challenged art-making. Practice vocabulary: 'Avec la pluie, mon art...' Plan weather art for different seasons.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Appareils photo pour documenter l'art et la météo",
+          "Cartes de phrases pour décrire l'expérience",
+          "Espace pour discuter en groupe",
+          "Matériaux pour planifier l'art météo futur"
+        ],
+        "visualSupports": "Photos de l'art créé avec conditions météo visibles, phrases-modèles pour décrire l'expérience, calendrier météo pour planification",
+        "decisionPoints": [
+          "Si les photos ne montrent pas bien les conditions météo → prendre des photos supplémentaires ou ajouter des descriptions",
+          "Si des élèves sont frustrés par les défis météo → souligner les découvertes et apprentissages uniques",
+          "Si la planification future est trop complexe → se concentrer sur la prochaine saison seulement"
+        ],
+        "movementBreaks": [
+          "Rassemblement en cercle pour partager les expériences",
+          "Gestes finaux pour célébrer l'art créé avec la météo du jour"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "adaptation aux conditions météorologiques ou peur de certaines conditions",
         "then": "Indoor weather art: Simulate weather conditions indoors (spray bottles for rain, fans for wind, lamps for sun) and practice weather vocabulary with art-making."
       },
       "realWorldConnection": "Puddle jumping, shadow play, flying kites, catching snowflakes - weather as natural art partner",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Rester plus près de l'intérieur pour plus de confort",
+          "Utiliser des matériaux plus simples et sûrs",
+          "Se concentrer sur une seule condition météo à la fois",
+          "Avoir des options de rechange si l'art ne fonctionne pas"
+        ],
+        "forAdvanced": [
+          "Expérimenter avec des techniques météo plus complexes",
+          "Prédire et planifier l'art pour différentes conditions",
+          "Aider les pairs à adapter leurs techniques",
+          "Documenter scientifiquement les effets météo sur l'art"
+        ],
+        "forELL": [
+          "Utiliser leur expérience culturelle de différentes météo",
+          "Se concentrer sur l'action plus que les mots",
+          "Gestes et démonstrations pour communiquer",
+          "Cartes visuelles du vocabulaire météorologique"
+        ],
+        "forIEP": [
+          "Adapter l'exposition aux conditions selon la sensibilité",
+          "Fournir des alternatives si les conditions sont difficiles",
+          "Support supplémentaire pour l'adaptation aux changements",
+          "Options d'art météo à l'intérieur si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire météorologique approprié (pluie, soleil, vent)",
+          "Adapte ses techniques artistiques aux conditions météo",
+          "Démontre de la flexibilité face aux défis météorologiques",
+          "Participe activement à la documentation de l'expérience météo"
+        ],
+        "checkpoints": [
+          "Capacité d'adaptation artistique aux conditions météorologiques",
+          "Utilisation appropriée du vocabulaire météo dans le contexte artistique",
+          "Qualité de la réflexion sur l'impact de la météo sur l'art",
+          "Participation constructive à la planification d'art météo futur"
+        ]
       }
     },
     {
@@ -800,46 +1470,107 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Review all environmental art created during unit. Look at photos, saved examples, documentation. Discuss what exhibition means. Introduce vocabulary: EXPOSITION (gesture showing display), PRÉSENTER (formal showing gesture), PARTAGER (giving/sharing motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Toute la documentation et œuvres préservées de l'unité",
+          "Photos de tous les projets d'art environnemental",
+          "Cartes de vocabulaire: exposition, présenter, partager",
+          "Exemples d'expositions d'art pour référence"
+        ],
+        "visualSupports": "Collection organisée de tous les travaux, cartes visuelles du vocabulaire d'exposition, exemples d'affichages professionnels",
+        "decisionPoints": [
+          "Si des élèves ont perdu ou oublié leurs œuvres → utiliser les photos et la documentation comme alternatives",
+          "Si des élèves sont intimidés par le concept d'exposition → commencer par de petits partages en paires",
+          "Si il y a trop d'œuvres à réviser → se concentrer sur les favoris ou les plus représentatifs"
+        ],
+        "movementBreaks": [
+          "Gestes formels pour 'présenter' comme dans une vraie galerie",
+          "Mouvements de partage et de don pour 'partager'"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Curation et installation de l'exposition. Sélectionner leurs meilleures œuvres d'art environnemental. Créer des étiquettes descriptives. Organiser l'espace d'exposition. Pratiquer leurs présentations. Préparer des explications sur leur processus créatif et leurs apprentissages.",
         "materials": [
           "All documentation and preserved work from unit",
           "Display materials (tables, boards, stands)",
           "Label-making supplies",
           "Exhibition space"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Instructions visuelles pour organiser une exposition, exemples d'étiquettes d'art, disposition suggérée de l'espace",
+        "decisionPoints": [
+          "Si l'espace d'exposition est trop petit → créer une exposition tournante ou multiple",
+          "Si des élèves ne savent pas quoi écrire sur les étiquettes → fournir des modèles simples",
+          "Si des élèves sont nerveux pour présenter → permettre les présentations en paires ou petits groupes"
+        ],
+        "movementBreaks": [
+          "Déplacement pour organiser physiquement l'exposition",
+          "Mouvements de présentation formelle et répétition"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Exhibition Opening. Invite other classes or family members if possible. Students present their work: 'Voici mon art environnemental!' Practice vocabulary while sharing. Celebrate growth and learning throughout unit.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Espace d'exposition organisé et prêt",
+          "Invitations ou annonces pour les visiteurs",
+          "Matériaux de célébration (ballons, bannières optionnels)",
+          "Cartes de présentation pour aider les élèves timides"
+        ],
+        "visualSupports": "Exposition complète comme centre visuel, panneaux d'accueil, phrases d'aide pour les présentations",
+        "decisionPoints": [
+          "Si peu de visiteurs viennent → célébrer entre eux et documenter pour partager plus tard",
+          "Si des élèves oublient leurs présentations → avoir des cartes d'aide disponibles",
+          "Si l'exposition devient chaotique → organiser un système de circulation ou de tours"
+        ],
+        "movementBreaks": [
+          "Marche de présentation professionnelle dans l'exposition",
+          "Mouvements de célébration finale de tous les apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
+        "ifStrugglingWith": "organisation d'exposition ou nervosité pour présenter",
         "then": "Virtual exhibition: Create digital exhibition using photos and recordings of student presentations, focusing on vocabulary use and reflection."
       },
       "realWorldConnection": "Sharing nature discoveries with family, creating outdoor displays at home, continuing environmental art exploration",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Rôles simples dans l'exposition (accueil, distribution)",
+          "Présentation en paires ou petits groupes pour plus de confiance",
+          "Étiquettes pré-remplies avec espaces à compléter",
+          "Se concentrer sur 1-2 œuvres favorites seulement"
+        ],
+        "forAdvanced": [
+          "Prendre des rôles de curateurs pour organiser l'exposition entière",
+          "Créer des présentations détaillées sur leurs processus artistiques",
+          "Aider les pairs avec leurs présentations",
+          "Organiser des visites guidées pour les visiteurs"
+        ],
+        "forELL": [
+          "Utiliser beaucoup d'images et de démonstrations physiques",
+          "Permettre les présentations dans leur langue première avec traduction",
+          "Se concentrer sur la fierté de montrer leur art plus que les mots",
+          "Cartes visuelles pour aider avec le vocabulaire d'exposition"
+        ],
+        "forIEP": [
+          "Adapter les rôles d'exposition selon les forces individuelles",
+          "Fournir des options de participation alternatives",
+          "Support supplémentaire pour gérer l'excitation de l'événement",
+          "Permettre des pauses si l'exposition devient surstimulante"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Sélectionne et organise ses œuvres d'art environnemental de manière réfléchie",
+          "Utilise le vocabulaire d'exposition approprié (exposition, présenter, partager)",
+          "Présente son travail avec fierté et clarté",
+          "Démontre une compréhension de son parcours d'apprentissage en art environnemental"
+        ],
+        "checkpoints": [
+          "Qualité de la curation et sélection des œuvres pour l'exposition",
+          "Utilisation appropriée du vocabulaire lors des présentations",
+          "Capacité de réflexion sur son apprentissage et croissance artistique",
+          "Participation constructive à la création d'une exposition de classe"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -881,6 +1612,591 @@
         ]
       },
       "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "core",
+      "title": "Art en mouvement naturel",
+      "oneGoal": "Students will create art that moves with natural forces like wind and water",
+      "duration": 45,
+      "keyVocabulary": [
+        "bouger",
+        "naturel",
+        "force"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Observe things moving naturally outside: leaves blowing, grass swaying, water flowing. Introduce vocabulary: BOUGER (move whole body), NATUREL (point to nature), FORCE (push hands forward with energy). Discuss how natural forces can be art partners.",
+        "materials": [
+          "Fenêtre ou accès extérieur pour observer le mouvement naturel",
+          "Cartes de vocabulaire: bouger, naturel, force",
+          "Exemples d'art en mouvement (photos de mobiles, kinetic art)",
+          "Matériaux légers pour démontrer le mouvement"
+        ],
+        "visualSupports": "Exemples d'art cinétique naturel, cartes visuelles du vocabulaire avec gestes, démonstration de forces naturelles",
+        "decisionPoints": [
+          "Si le vent n'est pas assez fort → utiliser un ventilateur ou créer des courants d'air artificiels",
+          "Si des élèves ont peur du mouvement → commencer par des mouvements très doux et prévisibles",
+          "Si des élèves ne voient pas les forces naturelles → pointer spécifiquement et exagérer les mouvements"
+        ],
+        "movementBreaks": [
+          "Imiter les mouvements des feuilles dans le vent",
+          "Gestes pour démontrer différentes forces naturelles"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Création d'art en mouvement. Utiliser des matériaux légers pour créer des œuvres qui bougent avec le vent ou l'eau. Expérimenter avec des rubans, plumes, papier fin. Tester différents emplacements pour maximiser le mouvement. Observer comment les forces naturelles transforment leur art.",
+        "materials": [
+          "Matériaux légers: rubans, plumes, papier de soie",
+          "Supports pour attacher: branches, piquets",
+          "Ficelle ou fil léger",
+          "Pinceaux pour appliquer de l'eau si désiré"
+        ],
+        "visualSupports": "Instructions pour créer des éléments mobiles, exemples d'art réagissant aux forces naturelles, guide de placement optimal",
+        "decisionPoints": [
+          "Si les créations ne bougent pas assez → utiliser des matériaux plus légers ou repositionner",
+          "Si les créations sont endommagées par trop de vent → adapter avec des matériaux plus résistants",
+          "Si des élèves sont frustrés par l'imprévisibilité → expliquer que c'est la beauté de l'art naturel"
+        ],
+        "movementBreaks": [
+          "Danser comme les créations qui bougent dans le vent",
+          "Pauses pour observer et apprécier le mouvement créé"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Celebration of Movement. Observe all moving artworks together. Describe movements: 'Mon art bouge doucement/rapidement!' Document the movement with video if possible. Plan how to use natural forces in future art.",
+        "materials": [
+          "Caméra pour capturer le mouvement",
+          "Cartes de vocabulaire pour décrire les mouvements",
+          "Espace pour rassemblement et observation",
+          "Matériaux pour planification future"
+        ],
+        "visualSupports": "Collection des arts en mouvement, vocabulaire descriptif, enregistrements du mouvement naturel",
+        "decisionPoints": [
+          "Si les mouvements sont difficiles à voir → utiliser des indicateurs visuels comme poudre ou bulles",
+          "Si certaines créations ne bougent plus → utiliser cela pour discuter de l'art temporaire",
+          "Si des élèves veulent emporter leurs créations → discuter comment préserver l'art mobile"
+        ],
+        "movementBreaks": [
+          "Marche silencieuse autour des créations en mouvement",
+          "Célébration finale avec mouvements comme les œuvres d'art"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "création d'art qui bouge ou compréhension des forces naturelles",
+        "then": "Indoor kinetic art: Create simple moving art indoors using fans, gentle air currents, or even breath to move lightweight materials."
+      },
+      "realWorldConnection": "Watching flags blow, seeing flowers sway, observing how rain moves leaves - natural movement everywhere",
+      "differentiation": {
+        "forStruggling": [
+          "Utiliser des matériaux très légers et faciles à manipuler",
+          "Se concentrer sur un seul type de mouvement à la fois",
+          "Assistance pour attacher et positionner les éléments mobiles",
+          "Commencer par observer le mouvement avant de créer"
+        ],
+        "forAdvanced": [
+          "Expérimenter avec différents types de forces naturelles",
+          "Créer des séquences de mouvement complexes",
+          "Aider les pairs avec leurs créations mobiles",
+          "Documenter scientifiquement les effets des forces"
+        ],
+        "forELL": [
+          "Se concentrer sur l'action et l'observation directe",
+          "Utiliser le mouvement corporel pour expliquer les concepts",
+          "Cartes visuelles du vocabulaire de mouvement",
+          "Permission d'expliquer en langue première"
+        ],
+        "forIEP": [
+          "Adapter les matériaux selon les besoins moteurs",
+          "Simplifier la manipulation avec outils adaptés",
+          "Temps supplémentaire pour observer et comprendre",
+          "Support individuel pour créer des éléments mobiles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Utilise le vocabulaire de mouvement naturel approprié",
+          "Crée des œuvres qui réagissent aux forces naturelles",
+          "Démontre une compréhension des forces comme partenaires artistiques",
+          "Observe et décrit le mouvement dans l'art avec précision"
+        ],
+        "checkpoints": [
+          "Qualité des créations mobiles et leur réaction aux forces",
+          "Utilisation appropriée du vocabulaire bouger/naturel/force",
+          "Participation active à l'observation du mouvement naturel",
+          "Compréhension des forces naturelles comme éléments artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "core",
+      "title": "Sculptures éphémères",
+      "oneGoal": "Students will build temporary 3D sculptures using natural materials",
+      "duration": 45,
+      "keyVocabulary": [
+        "sculpture",
+        "construire",
+        "équilibrer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Show examples of sculptures vs flat art. Build simple sculpture with blocks, then carefully balance additional pieces. Introduce vocabulary: SCULPTURE (shape with hands in 3D), CONSTRUIRE (stacking motions), ÉQUILIBRER (balance gestures). Discuss temporary vs permanent art.",
+        "materials": [
+          "Blocs ou objets pour démontrer la sculpture 3D",
+          "Photos de sculptures naturelles (cairns, équilibrages de roches)",
+          "Cartes de vocabulaire: sculpture, construire, équilibrer",
+          "Exemples de sculptures éphémères"
+        ],
+        "visualSupports": "Comparaison art 2D vs 3D, exemples de sculptures naturelles, démonstration d'équilibrage en direct",
+        "decisionPoints": [
+          "Si des élèves ne comprennent pas la différence 2D/3D → utiliser leurs propres corps et objets familiers",
+          "Si des élèves ont peur que leurs sculptures tombent → expliquer que c'est normal dans l'art éphémère",
+          "Si des élèves n'arrivent pas à équilibrer → commencer avec des bases plus larges et stables"
+        ],
+        "movementBreaks": [
+          "Gestes de construction avec les mains",
+          "Mouvements d'équilibrage avec tout le corps"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Construction de sculptures naturelles éphémères. Utiliser pierres, branches, feuilles pour créer des sculptures 3D équilibrées. Expérimenter avec différentes techniques d'équilibrage. Accepter que certaines sculptures tombent - c'est part de l'art éphémère. Photographier avant que les sculptures ne changent naturellement.",
+        "materials": [
+          "Collection de matériaux naturels variés (pierres, branches, etc.)",
+          "Appareils photo pour documenter les sculptures",
+          "Surfaces planes pour construction stable",
+          "Matériaux de nettoyage au besoin"
+        ],
+        "visualSupports": "Techniques d'équilibrage étape par étape, exemples de constructions réussies, guide de sélection des matériaux",
+        "decisionPoints": [
+          "Si les sculptures tombent constamment → enseigner des techniques de base d'équilibrage et choisir de meilleurs matériaux",
+          "Si des élèves sont frustrés par l'échec → célébrer le processus et l'apprentissage par l'essai-erreur",
+          "Si les matériaux ne sont pas appropriés → adapter avec ce qui est disponible et sécuritaire"
+        ],
+        "movementBreaks": [
+          "Mouvements précis et délicats pour placer les éléments",
+          "Étirements pour compenser les positions de construction"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Sculpture Gallery Walk. Tour all sculptures before they naturally change or fall. Each student explains one technique they learned: 'J'ai appris à équilibrer...' Celebrate both successful sculptures and beautiful failures as learning.",
+        "materials": [
+          "Parcours organisé pour visiter toutes les sculptures",
+          "Cartes d'aide pour expliquer les techniques",
+          "Appareils pour photos finales",
+          "Matériaux pour nettoyer l'espace après"
+        ],
+        "visualSupports": "Galerie temporaire des sculptures, phrases-modèles pour expliquer les techniques, célébration des apprentissages",
+        "decisionPoints": [
+          "Si des sculptures tombent pendant la visite → utiliser cela comme enseignement sur l'art éphémère",
+          "Si des élèves sont déçus que leurs sculptures ne tiennent pas → souligner l'apprentissage et l'effort",
+          "Si la visite prend trop de temps → raccourcir en se concentrant sur les techniques les plus réussies"
+        ],
+        "movementBreaks": [
+          "Marche respectueuse autour des sculptures fragiles",
+          "Gestes finaux pour démontrer les techniques apprises"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "équilibrage ou construction 3D avec matériaux naturels",
+        "then": "Indoor block sculptures: Practice 3D construction and balancing concepts using classroom blocks before working with natural materials."
+      },
+      "realWorldConnection": "Rock cairns on hiking trails, balanced stone sculptures at beaches, temporary snow sculptures in winter",
+      "differentiation": {
+        "forStruggling": [
+          "Commencer avec des matériaux plus faciles à équilibrer",
+          "Travailler en paires pour support et encouragement",
+          "Se concentrer sur des structures plus simples et stables",
+          "Célébrer chaque petit succès d'équilibrage"
+        ],
+        "forAdvanced": [
+          "Créer des sculptures plus complexes avec équilibrage défiant",
+          "Expérimenter avec différents matériaux et techniques",
+          "Enseigner les techniques d'équilibrage aux pairs",
+          "Documenter et expliquer leurs méthodes de construction"
+        ],
+        "forELL": [
+          "Se concentrer sur l'action physique de construction",
+          "Utiliser des gestes pour expliquer les techniques",
+          "Apprendre par observation et imitation",
+          "Vocabulaire avec démonstrations concrètes"
+        ],
+        "forIEP": [
+          "Adapter les outils et matériaux selon les besoins moteurs",
+          "Permettre des techniques de construction alternatives",
+          "Support supplémentaire pour la manipulation fine",
+          "Célébrer les tentatives autant que les réussites"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Utilise le vocabulaire de sculpture et construction approprié",
+          "Démontre des techniques d'équilibrage avec matériaux naturels",
+          "Comprend et accepte la nature éphémère de l'art temporaire",
+          "Persévère face aux défis de construction et d'équilibrage"
+        ],
+        "checkpoints": [
+          "Qualité des tentatives de sculpture et techniques utilisées",
+          "Utilisation appropriée du vocabulaire sculpture/construire/équilibrer",
+          "Attitude positive face aux défis et échecs constructifs",
+          "Capacité d'expliquer les techniques de construction apprises"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "core",
+      "title": "Cartes de la nature",
+      "oneGoal": "Students will create artistic maps of natural spaces using observation and symbols",
+      "duration": 45,
+      "keyVocabulary": [
+        "carte",
+        "symbole",
+        "espace"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look at simple maps of familiar spaces (classroom, playground). Discuss what maps show and how symbols represent real things. Introduce vocabulary: CARTE (draw rectangle, point to different areas), SYMBOLE (draw simple shapes for objects), ESPACE (spread arms to show area). Show how artists make nature maps.",
+        "materials": [
+          "Cartes simples de l'école ou du quartier",
+          "Exemples de cartes artistiques de la nature",
+          "Cartes de vocabulaire: carte, symbole, espace",
+          "Matériaux pour créer des symboles simples"
+        ],
+        "visualSupports": "Comparaison cartes géographiques vs cartes artistiques, légende de symboles simples, exemples de représentation d'espaces",
+        "decisionPoints": [
+          "Si des élèves n'ont pas d'expérience avec les cartes → commencer par mapper la classe ou un espace très familier",
+          "Si des élèves ne comprennent pas les symboles → utiliser des objets réels puis leur représentation symbolique",
+          "Si le concept d'espace est trop abstrait → utiliser le mouvement corporel pour définir les espaces"
+        ],
+        "movementBreaks": [
+          "Gestes pour dessiner des cartes imaginaires dans l'air",
+          "Mouvements pour définir différents espaces avec le corps"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Création de cartes artistiques de nature. Explorer un espace naturel et créer une carte artistique personnelle. Utiliser des symboles créatifs pour représenter arbres, fleurs, roches, chemins. Ajouter des éléments artistiques comme couleurs, textures, décorations. Créer une légende pour expliquer leurs symboles uniques.",
+        "materials": [
+          "Papier et matériaux de dessin",
+          "Clipboards pour dessiner dehors",
+          "Crayons de couleur ou marqueurs",
+          "Règles ou guides pour dessiner"
+        ],
+        "visualSupports": "Exemples de cartes nature artistiques, guide de symboles pour éléments naturels, template de légende simple",
+        "decisionPoints": [
+          "Si l'espace naturel est trop grand → définir une zone plus petite et gérable pour mapper",
+          "Si des élèves ne savent pas par où commencer → fournir un point de départ central et travailler vers l'extérieur",
+          "Si les symboles sont difficiles à créer → simplifier avec des formes de base et permettre la créativité"
+        ],
+        "movementBreaks": [
+          "Marche d'exploration pour observer l'espace à mapper",
+          "Pauses pour s'orienter et vérifier la position sur la carte"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Map Exhibition and Navigation. Display all nature maps. Students try to 'read' each other's maps and guess the locations. Practice vocabulary: 'Sur ma carte, ce symbole représente...' Discuss how art and maps can tell stories about places.",
+        "materials": [
+          "Espace d'affichage pour toutes les cartes",
+          "Étiquettes pour identifier les créateurs",
+          "Cartes de phrases pour expliquer les symboles",
+          "Matériaux pour créer une exposition organisée"
+        ],
+        "visualSupports": "Exposition des cartes nature avec légendes, phrases-modèles pour expliquer les symboles, comparaison des différentes interprétations",
+        "decisionPoints": [
+          "Si les cartes sont difficiles à 'lire' → encourager les créateurs à expliquer leurs choix artistiques",
+          "Si des élèves critiquent les cartes des autres → rediriger vers des commentaires constructifs et curieux",
+          "Si l'activité de navigation devient confuse → simplifier en se concentrant sur quelques cartes seulement"
+        ],
+        "movementBreaks": [
+          "Marche d'exploration dans l'exposition de cartes",
+          "Gestes pour suivre les chemins tracés sur les cartes"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "création de cartes ou compréhension des symboles",
+        "then": "Classroom mapping: Create artistic maps of familiar indoor spaces, practicing symbols and spatial representation with known environments."
+      },
+      "realWorldConnection": "Family hiking maps, treasure hunt maps, drawing maps to favorite outdoor places, GPS and digital maps",
+      "differentiation": {
+        "forStruggling": [
+          "Commencer avec un espace très petit et familier",
+          "Fournir des symboles pré-dessinés à utiliser",
+          "Travailler en paires avec un partenaire plus expérimenté",
+          "Se concentrer sur quelques éléments principaux seulement"
+        ],
+        "forAdvanced": [
+          "Créer des cartes plus détaillées avec échelle et orientation",
+          "Inventer des systèmes de symboles créatifs et complexes",
+          "Aider les pairs avec leurs techniques de cartographie",
+          "Créer des cartes narratives qui racontent des histoires"
+        ],
+        "forELL": [
+          "Utiliser leur connaissance d'espaces familiers",
+          "Se concentrer sur les symboles visuels plus que les mots écrits",
+          "Permettre l'explication en langue première",
+          "Utiliser des gestes pour expliquer la navigation"
+        ],
+        "forIEP": [
+          "Adapter les outils de dessin selon les besoins moteurs",
+          "Simplifier la complexité spatiale au besoin",
+          "Fournir du temps supplémentaire pour l'observation",
+          "Options alternatives pour représenter l'espace"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Utilise le vocabulaire cartographique approprié (carte, symbole, espace)",
+          "Crée des représentations artistiques cohérentes d'espaces naturels",
+          "Développe et utilise des symboles personnels créatifs",
+          "Démontre une compréhension spatiale à travers l'art"
+        ],
+        "checkpoints": [
+          "Qualité et créativité de la carte nature créée",
+          "Utilisation appropriée du vocabulaire dans l'explication de la carte",
+          "Cohérence des symboles et de la légende développée",
+          "Capacité de 'lire' et interpréter les cartes des autres"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "core",
+      "title": "Art de gratitude nature",
+      "oneGoal": "Students will create art expressing gratitude for the natural world",
+      "duration": 45,
+      "keyVocabulary": [
+        "merci",
+        "gratitude",
+        "apprécier"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Reflection on all the gifts nature has given them during this unit. Share what they're thankful for in nature. Introduce vocabulary: MERCI (hands to heart, bow slightly), GRATITUDE (arms open wide, embracing), APPRÉCIER (gentle touching gesture, mindful observation). Discuss how art can be a thank-you to nature.",
+        "materials": [
+          "Collection de tous les matériaux naturels utilisés dans l'unité",
+          "Photos de tous leurs projets nature",
+          "Cartes de vocabulaire: merci, gratitude, apprécier",
+          "Exemples d'art de remerciement"
+        ],
+        "visualSupports": "Rétrospective visuelle de l'unité, cartes d'expression de gratitude, exemples d'art de remerciement à la nature",
+        "decisionPoints": [
+          "Si des élèves ont du mal à identifier ce qu'ils apprécient → pointer spécifiquement des éléments qu'ils ont utilisés",
+          "Si des élèves ne comprennent pas la gratitude → utiliser des exemples de leur vie quotidienne",
+          "Si des élèves sont timides pour partager → commencer par des partages en petits groupes"
+        ],
+        "movementBreaks": [
+          "Gestes de gratitude avec les mains sur le cœur",
+          "Mouvements d'ouverture et d'appréciation avec tout le corps"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Création d'art de gratitude. Créer une œuvre d'art spéciale comme remerciement à la nature. Utiliser leurs techniques préférées de l'unité. Incorporer des éléments de tous leurs projets précédents si possible. Ajouter des mots de remerciement en français. Créer quelque chose qui exprime leur appréciation personnelle.",
+        "materials": [
+          "Tous types de matériaux artistiques utilisés dans l'unité",
+          "Matériaux naturels préservés des leçons précédentes",
+          "Papiers spéciaux ou supports pour l'art final",
+          "Matériaux d'écriture pour ajouter des mots"
+        ],
+        "visualSupports": "Exemples d'art de gratitude, guide de techniques apprises dans l'unité, mots et phrases de remerciement en français",
+        "decisionPoints": [
+          "Si des élèves ne savent pas quoi créer → leur rappeler leurs techniques préférées de l'unité",
+          "Si des élèves veulent tout inclure → les aider à choisir 2-3 éléments principaux",
+          "Si des élèves bloquent sur l'expression de gratitude → offrir des phrases simples ou permettre des dessins"
+        ],
+        "movementBreaks": [
+          "Pauses contemplatives pour réfléchir à leur gratitude",
+          "Mouvements créatifs inspirés par leurs sentiments de reconnaissance"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Circle of Gratitude. Sit in circle with finished gratitude art. Each student shares one thing: 'Je dis merci à la nature pour...' Place all art in center as offering of thanks. Moment of quiet appreciation for nature and learning journey together.",
+        "materials": [
+          "Espace de cercle confortable pour le partage",
+          "Centre du cercle pour placer les œuvres d'art",
+          "Cartes d'aide pour exprimer la gratitude",
+          "Ambiance calme et respectueuse"
+        ],
+        "visualSupports": "Cercle d'art de gratitude au centre, phrases-modèles pour exprimer les remerciements, atmosphère de célébration tranquille",
+        "decisionPoints": [
+          "Si des élèves sont émotionnels → respecter leurs sentiments et offrir du réconfort",
+          "Si des élèves ne veulent pas partager → respecter et permettre la participation silencieuse",
+          "Si le moment devient trop sentimental → équilibrer avec la célébration des apprentissages"
+        ],
+        "movementBreaks": [
+          "Mouvement lent pour placer l'art au centre du cercle",
+          "Gestes de gratitude collective en fin d'activité"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "expression de gratitude ou concept abstrait d'appréciation",
+        "then": "Gratitude through action: Express thanks to nature through gentle care actions like watering plants or careful cleanup, focusing on actions over words."
+      },
+      "realWorldConnection": "Saying thank you to gardens that feed us, appreciating trees that give shade, taking care of outdoor spaces",
+      "differentiation": {
+        "forStruggling": [
+          "Utiliser leurs techniques artistiques les plus réussies de l'unité",
+          "Exprimer la gratitude par des actions plutôt que des mots",
+          "Créer des œuvres simples mais sincères",
+          "Support pour identifier des éléments spécifiques à apprécier"
+        ],
+        "forAdvanced": [
+          "Créer des œuvres complexes incorporant plusieurs techniques",
+          "Rédiger des poèmes ou textes de gratitude en français",
+          "Aider les pairs à exprimer leur appréciation",
+          "Réfléchir profondément sur leur relation avec la nature"
+        ],
+        "forELL": [
+          "Exprimer la gratitude dans leur langue première puis traduire",
+          "Utiliser l'art visuel comme langage principal",
+          "Gestes et actions pour montrer l'appréciation",
+          "Phrases simples et répétitives pour les remerciements"
+        ],
+        "forIEP": [
+          "Adapter l'expression de gratitude selon les capacités de communication",
+          "Permettre différentes façons d'exprimer l'appréciation",
+          "Support émotionnel pour le processus réflexif",
+          "Célébrer chaque effort d'expression de gratitude"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Exprime de la gratitude envers la nature de manière authentique",
+          "Utilise le vocabulaire d'appréciation approprié (merci, gratitude, apprécier)",
+          "Crée de l'art qui reflète sincèrement son appréciation personnelle",
+          "Démontre une connexion émotionnelle avec la nature à travers l'art"
+        ],
+        "checkpoints": [
+          "Sincérité et réflexion dans l'expression de gratitude",
+          "Qualité artistique de l'œuvre de remerciement créée",
+          "Utilisation appropriée du vocabulaire de gratitude",
+          "Participation respectueuse au cercle de gratitude collective"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "core",
+      "title": "Célébration de l'art environnemental",
+      "oneGoal": "Students will celebrate their environmental art journey and plan future nature-art connections",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébrer",
+        "parcours",
+        "avenir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Grand retrospective of the entire unit. Look through all photos, artwork, documentation from lessons 1-19. Celebrate growth and learning. Introduce vocabulary: CÉLÉBRER (clapping, joyful gestures), PARCOURS (path motion showing journey), AVENIR (pointing forward to future). Prepare for final celebration.",
+        "materials": [
+          "Toute la documentation de l'unité organisée chronologiquement",
+          "Photos de tous les projets et activités",
+          "Cartes de vocabulaire: célébrer, parcours, avenir",
+          "Matériaux pour décorer la célébration"
+        ],
+        "visualSupports": "Timeline visuelle de tout le parcours d'apprentissage, comparaison début/fin de l'unité, préparatifs de célébration",
+        "decisionPoints": [
+          "Si des élèves ne se souviennent pas des premières leçons → utiliser les photos et documentation pour rafraîchir la mémoire",
+          "Si des élèves sont nostalgiques que l'unité se termine → rassurer sur les connexions futures avec la nature",
+          "Si la rétrospective prend trop de temps → se concentrer sur les moments les plus marquants"
+        ],
+        "movementBreaks": [
+          "Gestes de célébration joyeux",
+          "Mouvements pour revivre des moments favoris de l'unité"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Célébration créative finale. Organiser une fête d'art environnemental. Chaque élève présente son projet ou moment préféré de l'unité. Créer ensemble une installation collaborative finale using techniques from all lessons. Plan future nature-art adventures. Create classroom commitment to continued environmental art awareness.",
+        "materials": [
+          "Tous les matériaux et œuvres conservées de l'unité",
+          "Matériaux pour installation collaborative finale",
+          "Décorations pour la célébration",
+          "Matériaux pour planifier l'avenir"
+        ],
+        "visualSupports": "Espace de célébration organisé, installation collaborative en cours, plans d'avenir visuels",
+        "decisionPoints": [
+          "Si des élèves sont trop excités → canaliser l'énergie dans l'installation collaborative",
+          "Si des élèves ne savent pas quoi présenter → les aider à choisir un moment significatif",
+          "Si l'installation collaborative devient chaotique → assigner des rôles spécifiques à chacun"
+        ],
+        "movementBreaks": [
+          "Danse de célébration inspirée par la nature",
+          "Mouvements collaboratifs pour créer l'installation finale"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Circle of Commitment. Final sharing circle where students commit to continuing their connection with nature through art. Share one thing they'll do differently now: 'Maintenant, je vais...' Group promise to be nature-art ambassadors. Celebration cheer for environmental art learning!",
+        "materials": [
+          "Cercle confortable pour partage final",
+          "Cartes d'engagement pour l'avenir",
+          "Installation collaborative complétée comme centre visuel",
+          "Matériaux pour célébration finale"
+        ],
+        "visualSupports": "Cercle de célébration avec installation au centre, engagements d'avenir affichés, ambiance de fierté et accomplissement",
+        "decisionPoints": [
+          "Si des élèves ne veulent pas s'engager pour l'avenir → respecter et célébrer ce qu'ils ont déjà accompli",
+          "Si des élèves sont tristes que l'unité se termine → souligner que leur apprentissage continue",
+          "Si la célébration devient trop bruyante → canaliser l'énergie positivement"
+        ],
+        "movementBreaks": [
+          "Mouvements de célébration collective",
+          "Gestes finaux d'engagement envers la nature et l'art"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "réflexion sur le parcours ou engagement pour l'avenir",
+        "then": "Celebration focus: Concentrate on celebrating achievements and positive memories without pressure for future commitments, ending on a joyful note."
+      },
+      "realWorldConnection": "Continuing to notice and create art with nature at home, sharing knowledge with family, becoming nature-art ambassadors in community",
+      "differentiation": {
+        "forStruggling": [
+          "Se concentrer sur leurs plus grandes réussites de l'unité",
+          "Engagements très simples et réalisables pour l'avenir",
+          "Célébrer chaque petit progrès et apprentissage",
+          "Support pour identifier leurs moments de fierté"
+        ],
+        "forAdvanced": [
+          "Rôles de leadership dans l'organisation de la célébration",
+          "Engagements plus ambitieux pour continuer l'art environnemental",
+          "Aider à inspirer et motiver leurs pairs",
+          "Réflexions profondes sur leur transformation par l'art nature"
+        ],
+        "forELL": [
+          "Célébrer leurs progrès en français à travers l'art",
+          "Utiliser leur culture d'origine pour enrichir les perspectives",
+          "Permettre l'expression dans leur langue première",
+          "Reconnaissance de leur contribution unique au groupe"
+        ],
+        "forIEP": [
+          "Célébrer les réussites selon les objectifs individuels",
+          "Adapter la participation à la célébration selon les besoins",
+          "Reconnaître tous les types de progrès et apprentissages",
+          "Support pour participer confortablement à la célébration"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Articule sa croissance et apprentissages de l'unité",
+          "Utilise le vocabulaire de célébration et d'avenir approprié",
+          "Participe activement à la célébration collaborative",
+          "Démontre un engagement continu envers l'art environnemental"
+        ],
+        "checkpoints": [
+          "Qualité de la réflexion sur le parcours d'apprentissage",
+          "Participation constructive à la célébration et installation finale",
+          "Utilisation appropriée du vocabulaire célébrer/parcours/avenir",
+          "Authenticité des engagements futurs envers l'art environnemental"
+        ]
+      }
     }
   ],
   "assessmentTools": {

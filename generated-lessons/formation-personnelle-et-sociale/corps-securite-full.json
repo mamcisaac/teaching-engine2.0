@@ -19,27 +19,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de bienvenue avec marionnette Sécurité Sophie. Comptine: 'Mon corps est spécial, unique et important!' Montrer différentes parties du corps avec des gestes doux. TPR: toucher délicatement sa tête, ses bras, dire 'Voici mon corps spécial!' Explorer un livre d'images corporelles positives.",
+        "materials": [
+          "Marionnette Sophie (poupée douce représentant diversité)",
+          "Livre d'images 'Mon corps grandit' (illustrations positives)",
+          "Cartes visuelles des parties du corps (tête, bras, corps)",
+          "Miroir incassable pour auto-observation"
+        ],
+        "visualSupports": "Cartes corporelles colorées, gestes doux de l'enseignant(e), expressions faciales rassurantes, environnement calme et sécurisé",
+        "decisionPoints": [
+          "Si un élève semble mal à l'aise de toucher son corps → utiliser uniquement Sophie la marionnette pour explorer, sans pression personnelle",
+          "Si un élève pose des questions sur les différences corporelles → célébrer la diversité avec 'Chaque corps est spécial et différent, comme les fleurs dans un jardin'",
+          "Si un élève ne veut pas participer aux gestes → l'inviter à observer Sophie et pointer les parties sur les cartes visuelles seulement"
+        ],
+        "movementBreaks": [
+          "Gestes doux d'auto-appréciation (caresser ses bras)",
+          "Étirements corporels positifs avec Sophie"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration corporelle avec Sophie. Jeu 'Nomme et montre': Sophie pointe une partie de son corps, élèves trouvent la même sur eux. Création d'un dessin corporel positif: 'Dessine ton corps spécial!' Sophie raconte: 'Mon corps m'aide à courir, sauter, câliner!' Chanson interactive: 'Tête, épaules, genoux et pieds' avec mouvements doux.",
+        "materials": [
+          "Papier de grande taille pour dessins corporels",
+          "Crayons de couleur variés (tons de peau diversifiés)",
+          "Cartes de mouvement corporel positif",
+          "Chanson illustrée 'Tête, épaules, genoux et pieds'"
+        ],
+        "visualSupports": "Démonstrations corporelles douces, dessins d'exemple inclusifs, cartes séquentielles de mouvements, expressions encourageantes",
+        "decisionPoints": [
+          "Si un élève dessine son corps de façon inquiétante → explorer avec curiosité bienveillante et noter pour discussion ultérieure avec parents/counselor",
+          "Si un élève refuse de dessiner → proposer de dessiner Sophie ou utiliser autocollants sur silhouette pré-dessinée",
+          "Si un élève mentionne des parties privées → rediriger positivement vers 'Nous parlons des parties que nous voyons habituellement comme la tête et les mains'"
+        ],
+        "movementBreaks": [
+          "Chanson avec gestes corporels doux",
+          "Respiration corporelle (sentir son ventre bouger)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle d'appréciation corporelle. Sophie dit: 'Remercions nos corps spéciaux!' Chaque élève dit une chose qu'il aime de son corps ou montre un mouvement qu'il peut faire. Chanson de fermeture: 'Mon corps est à moi, je le garde précieux!' Câlins doux avec Sophie pour terminer.",
+        "materials": [
+          "Cercle de tapis pour rassemblement",
+          "Chanson de fermeture illustrée",
+          "Sophie la marionnette pour câlins",
+          "Autocollants de cœur pour célébration"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, gestes d'appréciation modélisés, expressions faciales chaleureuses, cercle visuel de sécurité",
+        "decisionPoints": [
+          "Si un élève ne trouve rien d'positif à dire → Sophie peut suggérer 'Tes yeux clignent comme des étoiles!' ou d'autres observations bienveillantes",
+          "Si un élève ne veut pas de câlin → offrir alternatives comme tape dans la main, signe de cœur, ou simple sourire",
+          "Si un élève semble préoccupé → rester quelques minutes après avec Sophie pour discussion calme et rassurante"
+        ],
+        "movementBreaks": [
+          "Câlins auto-réconfortants (se serrer dans ses bras)",
+          "Gestes d'appréciation corporelle douce"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -51,14 +87,39 @@
       },
       "realWorldConnection": "We use words for our body parts when we talk to doctors, parents, and teachers",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser uniquement 'corps', 'tête', et 'bras' avec beaucoup de support visuel",
+          "Permettre la réponse par gestes plutôt que par mots",
+          "Offrir plus de temps avec Sophie en individuel"
+        ],
+        "forAdvanced": [
+          "Introduire parties du corps supplémentaires comme 'coudes', 'épaules'",
+          "Encourager à aider leurs pairs à identifier les parties du corps",
+          "Permettre de créer des histoires plus complexes sur le corps"
+        ],
+        "forELL": [
+          "Utiliser des supports visuels très clairs et répétés",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec un pair francophone pour le soutien"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins sensoriels individuels",
+          "Utiliser des aides technologiques si approprié",
+          "Modifier les attentes selon les objectifs du PEI"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève pointe ou nomme 'tête' quand Sophie le demande",
+          "L'élève touche doucement ses propres bras quand guidé",
+          "L'élève participe aux activités corporelles avec Sophie",
+          "L'élève montre du respect pour son corps et celui des autres"
+        ],
+        "checkpoints": [
+          "Début: Vérifier le confort avec l'exploration corporelle et ajuster",
+          "Milieu: Observer si l'élève peut identifier au moins 2 parties du corps",
+          "Fin: Noter l'attitude de l'élève envers son corps (positive, neutre, inquiétude)"
+        ]
       }
     },
     {
@@ -74,27 +135,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Révision avec Sophie: rappel des parties apprises. Nouveau défi: 'Découvrons nos jambes, pieds et ventre!' Sophie montre comment ses jambes l'aident à marcher. Jeu d'exploration: marcher doucement, sentir nos pieds sur le sol, respirer avec notre ventre. TPR pour chaque nouvelle partie.",
+        "materials": [
+          "Sophie la marionnette de sécurité",
+          "Cartes corporelles des nouvelles parties (jambes, pieds, ventre)",
+          "Tapis texturés pour sentir avec les pieds",
+          "Livre d'activités corporelles 'Bouger et grandir'"
+        ],
+        "visualSupports": "Cartes séquentielles de mouvement, démonstrations avec Sophie, environnement sécurisé pour l'exploration physique",
+        "decisionPoints": [
+          "Si un élève refuse d'enlever ses chaussures pour les tapis → respecter son confort et explorer les sensations avec les chaussures ou utiliser les mains",
+          "Si un élève a des difficultés motrices → adapter les mouvements à ses capacités et célébrer ce qu'il peut faire",
+          "Si un élève semble gêné de montrer ses jambes → utiliser des pantalons longs et se concentrer sur les mouvements plutôt que l'observation"
+        ],
+        "movementBreaks": [
+          "Marche douce sur place",
+          "Respiration ventrale avec les mains sur le ventre"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration des nouvelles parties avec Sophie. Jeu 'Que peuvent faire mes jambes?' - marcher, sauter doucement, s'asseoir. 'Mes pieds magiques' - sentir différentes textures. 'Mon ventre qui respire' - observer comment il bouge. Création d'un collage des mouvements corporels avec images découpées.",
+        "materials": [
+          "Images de mouvements corporels pour collage",
+          "Ciseaux à bout rond et colle",
+          "Feuilles de construction colorées",
+          "Objets texturés sécuritaires (velours, papier sablonneux doux)"
+        ],
+        "visualSupports": "Exemples de collages, instructions visuelles étape par étape, démonstrations de mouvements sécuritaires",
+        "decisionPoints": [
+          "Si un élève a peur des textures → commencer avec Sophie qui touche en premier, puis proposer sans insister",
+          "Si un élève coupe des images inappropriées → rediriger doucement vers les images corporelles positives et saines",
+          "Si un élève mentionne des douleurs corporelles → écouter avec empathie et diriger vers le personnel de santé scolaire au besoin"
+        ],
+        "movementBreaks": [
+          "Sautillements doux sur place",
+          "Massage doux des pieds (auto-massage)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Sophie. Partage: 'Quelle nouvelle partie préférez-vous?' Récapitulation avec gestes: jambes pour marcher, pieds pour sentir, ventre pour respirer. Chanson: 'Mes jambes, mes pieds, mon ventre, tout mon corps grandit!' Rangement en étant conscient des mouvements.",
+        "materials": [
+          "Cercle de rassemblement",
+          "Chanson corporelle avec paroles et gestes",
+          "Sophie pour démonstration finale",
+          "Boîte de rangement décorée"
+        ],
+        "visualSupports": "Gestes de récapitulation, routine de rangement visuelle, expressions d'encouragement, cadre calme et prévisible",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager sa partie préférée → Sophie peut partager pour lui ou il peut simplement écouter les autres",
+          "Si un élève reste agité après les mouvements → offrir quelques minutes de respiration calme avec Sophie",
+          "Si un élève demande de continuer l'activité → promettre de continuer demain et offrir un petit défi à essayer à la maison"
+        ],
+        "movementBreaks": [
+          "Respiration finale avec gestes doux",
+          "Salutation corporelle avec Sophie"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -106,14 +203,39 @@
       },
       "realWorldConnection": "When we hurt our jambes, pieds, or ventre, we can tell adults exactly where it hurts",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer uniquement sur 'jambes' et 'pieds' avec mouvements très simples",
+          "Utiliser Sophie pour toutes les démonstrations difficiles",
+          "Permettre d'observer sans participer activement aux mouvements"
+        ],
+        "forAdvanced": [
+          "Ajouter le vocabulaire de mouvements: 'marcher', 'courir', 'sauter'",
+          "Encourager à guider d'autres élèves dans les explorations",
+          "Inviter à créer des séquences de mouvements plus complexes"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de mime et de gestes plutôt que de mots",
+          "Permettre de nommer dans leur langue maternelle puis répéter en français",
+          "Fournir des cartes visuelles avec mots dans les deux langues si possible"
+        ],
+        "forIEP": [
+          "Adapter les mouvements selon les capacités motrices individuelles",
+          "Modifier les textures selon les besoins sensoriels",
+          "Utiliser des supports alternatifs si les supports tactiles ne conviennent pas"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève montre ses jambes quand Sophie le demande",
+          "L'élève bouge ses pieds quand invité à sentir les textures",
+          "L'élève place ses mains sur son ventre pour la respiration",
+          "L'élève participe aux activités de mouvement adaptées à ses capacités"
+        ],
+        "checkpoints": [
+          "Début: Vérifier la sécurité et le confort avec les activités physiques",
+          "Milieu: Observer l'engagement dans au moins une activité sensorielle",
+          "Fin: Noter les préférences d'apprentissage et suggestions pour activités futures"
+        ]
       }
     },
     {
@@ -129,27 +251,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration sensorielle avec Sophie: 'Nos parties du corps ont des tâches spéciales!' Sophie montre ses yeux pour voir, sa bouche pour parler, ses mains pour toucher. Jeu sensoriel doux: regarder, parler doucement, toucher des objets sécuritaires. Comptine: 'Mes yeux voient, ma bouche parle, mes mains caressent!'",
+        "materials": [
+          "Sophie la marionnette avec parties du visage mobiles",
+          "Objets sécuritaires à toucher (doux, rugueux, lisse)",
+          "Cartes d'activités sensorielles (voir, parler, toucher)",
+          "Petit miroir sécuritaire pour observer ses propres parties"
+        ],
+        "visualSupports": "Démonstrations sensorielles avec Sophie, cartes visuelles des fonctions corporelles, expressions faciales engageantes",
+        "decisionPoints": [
+          "Si un élève a des difficultés visuelles → mettre l'accent sur les autres sens et utiliser des objets aux contrastes marqués",
+          "Si un élève ne veut pas toucher les objets → permettre d'observer les autres et décrire ce que Sophie ressent",
+          "Si un élève couvre ses yeux ou sa bouche par gêne → rassurer qu'il peut garder ses mains là et observer Sophie seulement"
+        ],
+        "movementBreaks": [
+          "Cligner des yeux doucement",
+          "Mouvements doux des mains (vagues)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Découverte des fonctions corporelles avec Sophie. Station 'Mes yeux': regarder des images colorées, observer la nature par la fenêtre. Station 'Ma bouche': chanter doucement, faire des sourires. Station 'Mes mains': créer avec pâte à modeler, caresser tissus doux. Chaque élève visite les stations à son rythme.",
+        "materials": [
+          "Images colorées et attrayantes pour observation",
+          "Pâte à modeler non-toxique et douce",
+          "Tissus de textures variées (velours, soie, coton)",
+          "Cartes de chansons douces avec illustrations"
+        ],
+        "visualSupports": "Stations clairement délimitées, instructions visuelles pour chaque activité, modélisation avec Sophie",
+        "decisionPoints": [
+          "Si un élève reste trop longtemps à une station → Sophie peut l'inviter à découvrir une nouvelle aventure ailleurs",
+          "Si un élève refuse une station complètement → respecter son choix et lui permettre d'observer ou d'aider Sophie à la place",
+          "Si un élève met des matériaux dans sa bouche → rediriger doucement avec 'Nos mains touchent, notre bouche parle' et offrir alternative"
+        ],
+        "movementBreaks": [
+          "Massage doux des mains (auto-massage)",
+          "Exercices de bouche (sourires, moues douces)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration des capacités corporelles. Sophie demande: 'Qu'est-ce que tes yeux ont vu de beau? Qu'est-ce que tes mains ont ressenti?' Création d'un livre collectif: 'Nos parties spéciales.' Chanson finale: 'Merci mes yeux, merci ma bouche, merci mes mains!' Câlin collectif avec Sophie.",
+        "materials": [
+          "Cahier collectif pour livre de classe",
+          "Autocollants d'étoiles pour célébration",
+          "Chanson de remerciement avec gestes",
+          "Sophie pour câlins finaux"
+        ],
+        "visualSupports": "Livre en cours de création, gestes de remerciement, cercle de célébration, expressions de fierté",
+        "decisionPoints": [
+          "Si un élève ne veut pas contribuer au livre → lui permettre de regarder les contributions des autres et applaudir",
+          "Si un élève devient émotionnel pendant les remerciements → valider ses sentiments et offrir du réconfort avec Sophie",
+          "Si un élève ne veut pas du câlin collectif → offrir de faire un signe de cœur ou un sourire spécial à Sophie"
+        ],
+        "movementBreaks": [
+          "Gestes de remerciement corporel",
+          "Câlin auto-réconfortant"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -161,14 +319,39 @@
       },
       "realWorldConnection": "Understanding what our body parts do helps us take good care of them and use them safely",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur 'yeux voient' et 'mains touchent' seulement avec gestes très simples",
+          "Utiliser Sophie pour modéliser toutes les fonctions avant participation",
+          "Permettre l'observation passive si participation active difficile"
+        ],
+        "forAdvanced": [
+          "Ajouter 'nez sent' et 'oreilles entendent' aux fonctions corporelles",
+          "Encourager à expliquer les fonctions aux autres élèves",
+          "Inviter à créer des démonstrations créatives des fonctions"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de démonstrations physiques et de mime",
+          "Associer chaque fonction à des objets concrets (yeux-images, mains-objets)",
+          "Permettre l'expression bilingue pendant l'apprentissage"
+        ],
+        "forIEP": [
+          "Adapter selon les capacités sensorielles individuelles",
+          "Modifier les matériaux sensoriels selon les besoins",
+          "Utiliser des supports technologiques adaptés si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève pointe ses yeux quand Sophie parle de voir",
+          "L'élève ouvre et ferme sa bouche pour montrer la fonction",
+          "L'élève utilise ses mains pour explorer les objets fournis",
+          "L'élève fait des connexions simples entre parties et fonctions"
+        ],
+        "checkpoints": [
+          "Début: Évaluer la compréhension préalable des fonctions corporelles",
+          "Milieu: Observer l'engagement sensoriel approprié et sécurisé",
+          "Fin: Noter quelle fonction corporelle l'élève préfère explorer et pourquoi"
+        ]
       }
     },
     {
@@ -184,27 +367,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Introduction de l'espace personnel avec Sophie et des cerceaux de gym. Sophie explique: 'Chaque personne a son espace spécial!' Démonstration avec cerceaux: 'Voici mon espace confortable.' Jeu de découverte: se tenir dans son cerceau, sentir son espace personnel. Toucher doux et sécuritaire de ses propres mains, bras.",
+        "materials": [
+          "Cerceaux de gym colorés (un par élève)",
+          "Sophie la marionnette dans son propre petit cerceau",
+          "Cartes visuelles de l'espace personnel (bulles, cercles)",
+          "Livre 'Mon espace à moi' avec illustrations positives"
+        ],
+        "visualSupports": "Cerceaux comme limites visuelles claires, démonstrations avec Sophie, cartes de l'espace personnel, langage corporel respectueux",
+        "decisionPoints": [
+          "Si un élève ne comprend pas 'espace personnel' → utiliser les cerceaux de gym pour montrer physiquement l'espace de chacun",
+          "Si un élève envahit l'espace des autres → rediriger gentiment avec 'Sophie nous montre comment rester dans notre cerceau magique'",
+          "Si un élève semble anxieux dans son espace → permettre de partager l'espace avec Sophie ou ajuster la taille du cerceau"
+        ],
+        "movementBreaks": [
+          "Mouvements doux dans son espace personnel",
+          "Respiration dans son cerceau spécial"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration du toucher approprié avec Sophie. Jeu 'Sophie demande permission': Sophie demande avant de toucher (tape dans la main, câlin). Les élèves pratiquent: 'Puis-je te serrer la main?' Création d'affiches 'Toucher confortable' vs 'Demander d'abord' avec images et dessins.",
+        "materials": [
+          "Grandes feuilles pour affiches",
+          "Images de toucher positif (poignée de main, câlin avec permission)",
+          "Marqueurs et crayons de couleur",
+          "Autocollants de cœur et de mains pour décoration"
+        ],
+        "visualSupports": "Exemples d'affiches, séquences visuelles de demander permission, expressions faciales confortables vs inconfortables",
+        "decisionPoints": [
+          "Si un élève touche les autres sans permission → pratiquer avec Sophie d'abord: 'Sophie, puis-je te tenir la main?'",
+          "Si un élève refuse tout contact → célébrer son droit de dire non et montrer d'autres façons d'être amical (sourire, signe de la main)",
+          "Si un élève dessine des scènes préoccupantes → explorer doucement et documenter pour discussion avec counselor scolaire"
+        ],
+        "movementBreaks": [
+          "Poignée de main avec Sophie",
+          "Mouvements d'espace personnel (bras étendus)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Pratique du 'cercle de permission' avec Sophie. Chaque élève peut choisir comment saluer: poignée de main, câlin, ou signe de cœur. Sophie rappelle: 'Votre corps vous appartient!' Chanson: 'Mon espace, mes choix, je dis oui ou non avec ma voix!' Rangement des cerceaux en respectant l'espace de chacun.",
+        "materials": [
+          "Chanson de l'espace personnel avec gestes",
+          "Cartes de choix de salutation (main, câlin, signe)",
+          "Sophie pour modéliser les choix",
+          "Autocollants 'Mon choix' pour célébrer"
+        ],
+        "visualSupports": "Options de salutation clairement illustrées, routine de rangement respectueuse, messages positifs sur les choix personnels",
+        "decisionPoints": [
+          "Si un élève se sent pressé de câliner → rappeler que 'non' est toujours acceptable et modéliser avec Sophie qui refuse parfois aussi",
+          "Si un élève devient possessif de son cerceau → expliquer que nous partageons les matériaux mais gardons notre espace personnel",
+          "Si un élève semble confus sur les limites → revenir aux cerceaux visuels et pratiquer encore avec Sophie"
+        ],
+        "movementBreaks": [
+          "Salutations choisies avec respect",
+          "Mouvements finaux dans son espace personnel"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -239,27 +458,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie présente les 'touches qui aident'. Démonstration avec poupée: comment maman aide avec un pansement, comment le docteur écoute le cœur. Jeu de rôle: Sophie est malade, comment l'aider? Introduction des personnes qui nous aident: parents, docteur, infirmière. Comptine: 'Des mains qui aident, des cœurs qui soignent!'",
+        "materials": [
+          "Poupée pour démonstration de soins",
+          "Trousse de docteur jouet (stéthoscope, pansements factices)",
+          "Images de professionnels de la santé (docteur, infirmière)",
+          "Sophie la marionnette avec petit bandage"
+        ],
+        "visualSupports": "Démonstrations de soins doux avec poupée, images positives de professionnels aidants, expressions rassurantes",
+        "decisionPoints": [
+          "Si un élève a peur du matériel médical → commencer par Sophie qui se fait soigner d'abord, sans pression pour l'élève",
+          "Si un élève partage une expérience médicale difficile → valider ses sentiments et rediriger vers les aspects positifs des soins",
+          "Si un élève confond soins nécessaires et toucher inapproprié → expliquer que les adultes de confiance demandent toujours permission et expliquent pourquoi"
+        ],
+        "movementBreaks": [
+          "Gestes de soins doux (caresser doucement)",
+          "Respiration de guérison avec Sophie"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Centres d'exploration des soins. Station 'Hôpital': soigner les poupées avec douceur. Station 'Famille': comment les parents aident (bandage, câlin de consolation). Station 'Dessin': dessiner des moments où on reçoit des soins. Sophie visite chaque station et modèle les soins respectueux.",
+        "materials": [
+          "Plusieurs poupées de différentes ethnicités",
+          "Vrais pansements doux et sécuritaires",
+          "Images de familles donnant des soins (diverses structures familiales)",
+          "Papier et crayons pour dessins de soins"
+        ],
+        "visualSupports": "Stations clairement identifiées, exemples de soins positifs affichés, modélisation constante avec Sophie",
+        "decisionPoints": [
+          "Si un élève joue de façon agressive avec les poupées → rediriger vers des soins très doux et modéliser avec Sophie",
+          "Si un élève dessine des scènes de soins inquiétantes → explorer avec curiosité bienveillante et documenter pour consultation",
+          "Si un élève refuse de participer aux jeux de soin → permettre d'observer et d'aider Sophie à donner les soins à sa place"
+        ],
+        "movementBreaks": [
+          "Massage doux des mains (simulation de soins)",
+          "Mouvements de consolation avec Sophie"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de partage des soins. Sophie demande: 'Comment vous sentez-vous quand quelqu'un vous aide?' Récapitulation: qui nous aide? Comment savoir si c'est un soin qui aide? Chanson de gratitude: 'Merci aux mains qui soignent!' Promesse collective: nous prenons soin les uns des autres.",
+        "materials": [
+          "Cercle de discussion avec coussins",
+          "Chanson de gratitude illustrée",
+          "Images de moments de soins positifs",
+          "Sophie pour la promesse collective"
+        ],
+        "visualSupports": "Images de soins positifs, gestes de gratitude, expressions d'empathie et de soin mutuel",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager d'expérience de soin → respecter son silence et permettre d'écouter seulement",
+          "Si un élève devient émotionnel en parlant de soins → offrir réconfort avec Sophie et valider ses émotions",
+          "Si un élève semble confus sur les types de toucher → revenir aux exemples concrets avec Sophie et répéter les concepts de base"
+        ],
+        "movementBreaks": [
+          "Câlins réconfortants auto-administrés",
+          "Gestes de promesse collective douce"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -294,27 +549,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie apprend à dire 'non' clairement! Démonstration: Sophie ne veut pas qu'on touche ses oreilles - elle dit 'Non merci!' Pratique avec voix forte et gestes clairs. Jeu des signaux: lever la main pour 'arrête', secouer la tête pour 'non'. Comptine empouvoirante: 'Mon non est important, mon non est fort!'",
+        "materials": [
+          "Sophie la marionnette avec différentes expressions",
+          "Cartes visuelles de signaux (main levée, tête qui secoue)",
+          "Miroir pour pratiquer les expressions fermes",
+          "Livre 'Mon droit de dire non' avec images positives"
+        ],
+        "visualSupports": "Expressions faciales fermes mais non effrayantes, gestes clairs de 'non' et 'arrête', langage corporel confident",
+        "decisionPoints": [
+          "Si un élève a peur de dire non → commencer très doucement avec Sophie qui dit non pour des choses simples (pas de légumes verts)",
+          "Si un élève crie trop fort pendant la pratique → modéliser une voix ferme mais non agressive avec Sophie",
+          "Si un élève semble désemparé par le concept → rassurer que dire non nous aide à rester sécurisés et confortables"
+        ],
+        "movementBreaks": [
+          "Gestes de 'arrête' avec les mains",
+          "Mouvements de confiance (se tenir droit)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Pratique du 'non' dans différentes situations avec Sophie. Jeu de rôle: Sophie demande des câlins, parfois on dit oui, parfois non - les deux sont corrects! Création d'une affiche 'Mes droits': droit de dire non, droit d'être écouté. Pratique de situations adaptées à l'âge (partager jouets, etc.).",
+        "materials": [
+          "Cartes de scénarios adaptés à Grade 1",
+          "Grande affiche 'Mes droits' à décorer",
+          "Autocollants d'étoiles et de cœurs pour décoration",
+          "Marionnettes supplémentaires pour jeux de rôle"
+        ],
+        "visualSupports": "Cartes scénarios avec images positives, exemples d'affiche des droits, expressions de fierté et de confiance",
+        "decisionPoints": [
+          "Si un élève refuse de pratiquer dire non → permettre d'observer Sophie et les autres sans pression de participation",
+          "Si un élève devient agressif en disant non → enseigner des façons polies mais fermes: 'Non merci' plutôt que cris",
+          "Si un élève mentionne des situations préoccupantes à la maison → écouter avec empathie et documenter pour consultation professionnelle"
+        ],
+        "movementBreaks": [
+          "Postures de confiance (mains sur les hanches)",
+          "Respiration de courage avec Sophie"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration du courage de dire non. Chaque élève reçoit un certificat 'Courage de dire non' personnalisé. Sophie rappelle: 'Votre non est toujours respecté ici!' Pratique finale: dire non à quelque chose de simple et recevoir des encouragements. Chanson finale: 'Fort et fier, je peux dire non!'",
+        "materials": [
+          "Certificats 'Courage de dire non' pré-imprimés",
+          "Crayons pour personnaliser les certificats",
+          "Chanson du courage avec gestes",
+          "Sophie avec sa propre médaille de courage"
+        ],
+        "visualSupports": "Certificats colorés et positifs, démonstrations de fierté saine, environnement célébratoire et sécurisé",
+        "decisionPoints": [
+          "Si un élève ne veut pas de certificat → respecter son choix et offrir de le garder pour plus tard ou de le donner à Sophie",
+          "Si un élève semble dépassé par l'attention → offrir célébration plus discrète avec Sophie seulement",
+          "Si un élève a des difficultés avec le concept final → simplifier: 'Tu peux toujours dire non si tu n'es pas à l'aise'"
+        ],
+        "movementBreaks": [
+          "Mouvements de célébration (bras en l'air)",
+          "Câlin de courage avec soi-même"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -349,27 +640,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie présente sa 'famille de confiance'. Montrer des photos des adultes qui aident Sophie: maman, papa, enseignante, grand-maman. Discussion: 'Qui sont vos adultes de confiance?' Reconnaissance des adultes à l'école: enseignant(e), directeur/directrice, secrétaire. Comptine: 'Des adultes qui m'aiment, des adultes qui m'aident!'",
+        "materials": [
+          "Photos d'adultes diversifiés dans rôles de confiance",
+          "Sophie avec mini-photos de sa 'famille de confiance'",
+          "Images du personnel scolaire (avec permission)",
+          "Livre 'Mes adultes spéciaux' avec diverses structures familiales"
+        ],
+        "visualSupports": "Photos réelles et positives d'adultes aidants, expressions chaleureuses, représentation de diverses familles et cultures",
+        "decisionPoints": [
+          "Si un élève n'a pas d'adulte de confiance à nommer → suggérer des adultes à l'école et rassurer que c'est normal d'avoir des listes différentes",
+          "Si un élève mentionne des problèmes avec des adultes à la maison → écouter avec empathie et orienter vers les adultes de confiance à l'école",
+          "Si un élève semble avoir peur des adultes en général → commencer par Sophie qui présente doucement un adulte à la fois"
+        ],
+        "movementBreaks": [
+          "Gestes d'amour (mains sur le cœur)",
+          "Salutations respectueuses aux adultes"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création du 'Cercle de confiance' personnel. Chaque élève dessine ou colle des photos de ses adultes de confiance dans un cercle. Sophie aide à identifier les qualités: 'Ils m'écoutent', 'Ils me protègent', 'Je peux leur parler'. Jeu d'identification: qui appeler dans différentes situations (bobo, peur, besoin d'aide).",
+        "materials": [
+          "Cercles de carton pré-découpés pour chaque élève",
+          "Photos stock d'adultes aidants (diverses ethnicités)",
+          "Crayons de couleur et marqueurs",
+          "Autocollants de cœur et d'étoiles"
+        ],
+        "visualSupports": "Exemple de cercle de confiance complet, cartes de qualités d'adultes de confiance, scénarios visuels simples",
+        "decisionPoints": [
+          "Si un élève dessine des adultes de façon préoccupante → explorer doucement les raisons et documenter pour consultation",
+          "Si un élève refuse de faire l'activité → permettre d'aider Sophie à faire son cercle ou simplement observer",
+          "Si un élève inclut des enfants dans son cercle → expliquer gentiment que nous cherchons des adultes qui peuvent nous aider"
+        ],
+        "movementBreaks": [
+          "Mouvements en cercle (tourner doucement)",
+          "Gestes de protection (bras qui entourent)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration des cercles de confiance. Chaque élève peut partager un adulte de son cercle s'il le souhaite. Sophie rappelle: 'Ces adultes veulent vous aider!' Promesse collective: nous pouvons toujours trouver un adulte de confiance. Chanson: 'Dans mon cercle de confiance, j'ai des cœurs qui m'aiment!'",
+        "materials": [
+          "Cercles de confiance terminés pour partage",
+          "Chanson du cercle de confiance illustrée",
+          "Sophie avec son cercle de confiance",
+          "Enveloppes pour rapporter les cercles à la maison"
+        ],
+        "visualSupports": "Cercles colorés et positifs, gestes d'amour et de sécurité, expressions rassurantes et chaleureuses",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager son cercle → respecter sa vie privée et permettre d'écouter les autres seulement",
+          "Si un élève devient émotionnel en parlant d'adultes → offrir réconfort et rappeler que Sophie est là aussi",
+          "Si un élève ne veut pas rapporter son cercle à la maison → respecter son choix et offrir de le garder à l'école en sécurité"
+        ],
+        "movementBreaks": [
+          "Câlins de sécurité (se serrer dans ses bras)",
+          "Mouvements de gratitude vers les adultes"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -404,27 +731,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie apprend à demander de l'aide! Démonstration: Sophie a un problème (elle ne peut pas ouvrir sa boîte) - elle demande: 'Peux-tu m'aider s'il te plaît?' Pratique des phrases magiques: 'J'ai besoin d'aide', 'Peux-tu m'aider?', 'Je me sens inquiet'. Comptine: 'Demander de l'aide, c'est intelligent et fort!'",
+        "materials": [
+          "Sophie avec une boîte difficile à ouvrir",
+          "Cartes des phrases magiques illustrées",
+          "Images de situations où demander de l'aide",
+          "Livre 'Demander de l'aide' avec scénarios adaptés"
+        ],
+        "visualSupports": "Cartes visuelles des phrases d'aide, expressions faciales encourageantes, gestes d'ouverture et de demande",
+        "decisionPoints": [
+          "Si un élève a peur de déranger les adultes → rassurer avec Sophie que les adultes veulent aider et sont contents qu'on leur demande",
+          "Si un élève a de la difficulté à parler fort → pratiquer avec Sophie en chuchotant d'abord, puis plus fort progressivement",
+          "Si un élève semble avoir peur de certains adultes → respecter ses sentiments et l'orienter vers les adultes avec qui il est à l'aise"
+        ],
+        "movementBreaks": [
+          "Gestes d'ouverture (tendre les mains)",
+          "Postures confiantes pour demander de l'aide"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Jeux de rôle pour demander de l'aide avec Sophie. Scénarios adaptés: jouet cassé, se sentir triste, être perdu à l'école, avoir mal quelque part. Création d'un 'Guide de l'aide' avec dessins: quand demander aide? À qui? Comment? Sophie modèle chaque scénario d'abord.",
+        "materials": [
+          "Cartes de scénarios positifs et adaptés à l'âge",
+          "Cahiers individuels pour 'Guide de l'aide'",
+          "Crayons et autocollants pour décorer",
+          "Téléphones jouets pour pratiquer demander de l'aide"
+        ],
+        "visualSupports": "Cartes scénarios avec solutions positives, exemples de guides complétés, démonstrations étape par étape",
+        "decisionPoints": [
+          "Si un élève ne veut pas participer aux jeux de rôle → permettre d'observer et d'être le 'conseiller' de Sophie",
+          "Si un élève dessine des situations préoccupantes → explorer avec sensibilité et documenter pour consultation professionnelle",
+          "Si un élève a de la difficulté avec les concepts → simplifier à 'Trouve un adulte de confiance et dis ton problème'"
+        ],
+        "movementBreaks": [
+          "Mouvements de marche vers l'aide (simulation)",
+          "Respiration courageuse avec Sophie"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Pratique finale avec Sophie: 'Comment demanderiez-vous de l'aide maintenant?' Chaque élève peut pratiquer une phrase d'aide. Sophie rappelle: 'Demander de l'aide vous rend forts!' Célébration des guides terminés. Chanson finale: 'Je suis fort, je demande de l'aide!'",
+        "materials": [
+          "Guides de l'aide terminés",
+          "Certificats 'Héros de l'aide'",
+          "Chanson de force avec gestes",
+          "Sophie avec son propre guide de l'aide"
+        ],
+        "visualSupports": "Guides colorés et personnalisés, gestes de force et de confiance, expressions de fierté saine",
+        "decisionPoints": [
+          "Si un élève ne veut pas pratiquer à voix haute → permettre de chuchoter à Sophie ou de faire les gestes seulement",
+          "Si un élève semble anxieux à propos de demander de l'aide → rassurer que les adultes de confiance sont là pour ça",
+          "Si un élève ne veut pas de certificat → respecter son choix et offrir de le donner à Sophie à sa place"
+        ],
+        "movementBreaks": [
+          "Mouvements de force (flex des bras)",
+          "Câlins de courage avec soi-même"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -459,27 +822,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie nous présente sa maison sécuritaire! Visite de la maison de poupée avec Sophie: chambre sécuritaire, cuisine sécuritaire, salon sécuritaire. Introduction des règles douces: 'Nous gardons les objets pointus avec les adultes', 'Nous marchons doucement dans la maison'. Comptine: 'Ma maison, mon refuge, pleine d'amour et de sécurité!'",
+        "materials": [
+          "Maison de poupée équipée avec mobilier",
+          "Sophie et famille de poupées diverses",
+          "Cartes visuelles des règles de sécurité à la maison",
+          "Livre 'Ma maison sécuritaire' avec illustrations rassurantes"
+        ],
+        "visualSupports": "Maison de poupée colorée et accueillante, cartes de règles positives, expressions de sécurité et de confort",
+        "decisionPoints": [
+          "Si un élève mentionne une maison peu sécuritaire → écouter avec empathie, se concentrer sur les espaces sécuritaires qu'il connaît, et noter pour consultation",
+          "Si un élève a peur du mot 'danger' → utiliser 'faire attention' ou 'demander à un adulte d'abord' à la place",
+          "Si un élève partage des règles de famille très différentes → respecter les différences culturelles et se concentrer sur la sécurité universelle"
+        ],
+        "movementBreaks": [
+          "Mouvements de 'marcher doucement' dans la classe",
+          "Gestes de protection de sa maison (bras qui entourent)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration des espaces sécuritaires avec Sophie. Création d'une carte de sa propre maison avec zones sécuritaires marquées d'étoiles. Jeu 'Où va Sophie quand...?': se cacher durant l'orage (dans sa chambre), se laver (salle de bain), manger (cuisine). Accent sur les espaces de réconfort et de sécurité.",
+        "materials": [
+          "Feuilles avec plan de maison simple à personnaliser",
+          "Autocollants d'étoiles et de cœurs pour marquer zones sûres",
+          "Crayons de couleur pour décorer les maisons",
+          "Cartes de scénarios positifs à la maison"
+        ],
+        "visualSupports": "Exemples de cartes de maisons sécuritaires, cartes scénarios avec solutions positives, atmosphère chaleureuse et rassurante",
+        "decisionPoints": [
+          "Si un élève dessine sa maison avec inquiétude → explorer doucement ce qui l'aiderait à se sentir plus sécurisé et noter pour consultation",
+          "Si un élève n'a pas d'espace personnel à la maison → l'aider à identifier des espaces sécuritaires même petits (coin du lit, chaise préférée)",
+          "Si un élève refuse de dessiner sa maison → permettre de dessiner la maison de Sophie ou une maison imaginaire sécuritaire"
+        ],
+        "movementBreaks": [
+          "Simulation de se déplacer dans différentes pièces",
+          "Gestes de confort (câlins à soi-même)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration des maisons sécuritaires. Partage optionnel: 'Quel est votre endroit préféré à la maison?' Sophie montre sa chambre préférée. Promesse: 'Chacun mérite une maison sécuritaire et aimante.' Chanson finale: 'Dans ma maison, je suis en sécurité, entouré d'amour et de bonté!'",
+        "materials": [
+          "Cartes de maisons terminées pour partage optionnel",
+          "Chanson de la maison sécuritaire avec gestes",
+          "Sophie dans sa petite maison de poupée",
+          "Autocollants de maison pour célébrer"
+        ],
+        "visualSupports": "Cartes de maisons colorées et positives, gestes de sécurité et d'amour familial, expressions de contentement",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager d'espace préféré → respecter sa vie privée et permettre d'écouter les autres seulement",
+          "Si un élève devient triste en parlant de maison → offrir réconfort avec Sophie et rappeler les espaces sécuritaires à l'école",
+          "Si un élève ne semble pas avoir de maison stable → mettre l'accent sur l'école comme espace sécuritaire et noter pour services de soutien"
+        ],
+        "movementBreaks": [
+          "Câlins de sécurité domestique (serrer un coussin)",
+          "Mouvements de gratitude vers sa maison"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -514,27 +913,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Tour de l'école sécuritaire avec Sophie! Identifier les adultes aidants: enseignant(e), directeur/directrice, secrétaire, concierge. Sophie présente les règles douces de l'école: 'Nous restons avec notre groupe', 'Nous demandons avant de partir'. Découverte des espaces sécuritaires: bureau, bibliothèque, infirmerie.",
+        "materials": [
+          "Photos du personnel scolaire (avec permissions)",
+          "Plan simple de l'école avec espaces sécuritaires marqués",
+          "Sophie avec badge d'identification de l'école",
+          "Cartes visuelles des règles scolaires positives"
+        ],
+        "visualSupports": "Photos réelles et souriantes du personnel, plan coloré et simple de l'école, signes visuels des règles",
+        "decisionPoints": [
+          "Si un élève a peur de certains adultes de l'école → respecter ses sentiments et commencer par présenter les adultes avec qui il est déjà à l'aise",
+          "Si un élève se sent perdu dans l'école → pratiquer les chemins familiers avec Sophie et identifier des repères visuels",
+          "Si un élève mentionne des problèmes à l'école → écouter avec empathie et orienter vers les adultes de confiance identifiés"
+        ],
+        "movementBreaks": [
+          "Marche sécuritaire dans la classe (simuler couloirs)",
+          "Salutations polies aux adultes (pratiquer)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création du 'Passeport de sécurité scolaire' avec Sophie. Carte d'identité avec photo et nom de classe. Visite des stations: bureau (où aller si perdu), bibliothèque (espace calme), toilettes (règles de propreté). Jeu de localisation: 'Où va Sophie quand elle a besoin d'aide?' avec cartes scénarios.",
+        "materials": [
+          "Cartes de passeport à personnaliser avec photos",
+          "Autocollants et décorations pour passeports",
+          "Cartes scénarios scolaires positifs",
+          "Plan d'école simplifié pour chaque élève"
+        ],
+        "visualSupports": "Passeports colorés et officiels, cartes scénarios avec solutions visuelles, atmosphère de fierté scolaire",
+        "decisionPoints": [
+          "Si un élève ne veut pas être photografié → permettre de dessiner son autoportrait ou utiliser un autocollant symbolique",
+          "Si un élève a de la difficulté avec la géographie de l'école → simplifier aux 2-3 endroits les plus importants avec repères visuels",
+          "Si un élève semble anxieux à propos de l'école → mettre l'accent sur tous les adultes bienveillants et les espaces accueillants"
+        ],
+        "movementBreaks": [
+          "Mouvements de navigation (pointer directions)",
+          "Postures confiantes d'élève (se tenir droit)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Serment du passeport de sécurité avec Sophie. Chaque élève reçoit son passeport officiel. Sophie guide la promesse: 'Je connaîs les adultes qui m'aident à l'école!' Célébration de l'école comme deuxième maison sécuritaire. Chanson: 'Mon école, mon refuge, pleine d'amis et d'apprentissages!'",
+        "materials": [
+          "Passeports officiels complétés et laminés",
+          "Certificats d'appartenance à l'école",
+          "Chanson de l'école avec gestes",
+          "Sophie avec son propre passeport scolaire"
+        ],
+        "visualSupports": "Passeports professionnels et personnalisés, cérémonie de remise respectueuse, expressions de fierté d'appartenance",
+        "decisionPoints": [
+          "Si un élève ne veut pas participer au serment → respecter son rythme et permettre d'observer la cérémonie seulement",
+          "Si un élève perd son passeport → rassurer qu'on peut toujours en faire un nouveau et que sa sécurité ne dépend pas du papier",
+          "Si un élève ne se sent pas à sa place à l'école → souligner spécifiquement sa valeur et sa place importante dans la classe"
+        ],
+        "movementBreaks": [
+          "Mouvements de fierté scolaire (lever passeport)",
+          "Câlins d'appartenance à l'école"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -569,27 +1004,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie présente les héros de la communauté! Visite virtuelle avec images des métiers aidants: police (ils aident), pompiers (ils sauvent), paramédicaux (ils soignent). Focus sur l'aide qu'ils apportent. Sophie montre comment ces héros ont des uniformes spéciaux. Comptine: 'Dans ma communauté, des héros veillent sur moi!'",
+        "materials": [
+          "Images positives des services d'urgence au travail",
+          "Costumes d'héros communautaires pour habiller Sophie",
+          "Véhicules jouets (voiture police, camion pompier, ambulance)",
+          "Livre 'Les héros de ma communauté' avec scènes d'aide"
+        ],
+        "visualSupports": "Images d'héros en action positive, uniformes colorés et rassurants, véhicules attrayants et non menaçants",
+        "decisionPoints": [
+          "Si un élève a peur de la police → montrer des images de policiers aidant les enfants, donnant des directions, sauvant des animaux",
+          "Si un élève partage une expérience négative avec services d'urgence → valider ses sentiments et souligner que ces personnes veulent aider",
+          "Si un élève est effrayé par les sirenes → expliquer que c'est leur façon de dire 'On arrive pour aider!' et pratiquer à voix douce"
+        ],
+        "movementBreaks": [
+          "Mouvements d'héros (marcher avec confiance)",
+          "Simulation d'aider les autres (gestes doux)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Centres des héros communautaires avec Sophie. Station Police: aider à retrouver objets perdus. Station Pompiers: éteindre feux imaginaires avec sécurité. Station Paramédicaux: soigner les poupées. Création d'un livre 'Mes héros' avec dessins et histoires d'aide.",
+        "materials": [
+          "Stations de jeu sécuritaires pour chaque métier",
+          "Accessoires doux et sécuritaires (badges, chapeaux)",
+          "Poupées pour soins paramédicaux doux",
+          "Cahiers pour livre 'Mes héros' personnel"
+        ],
+        "visualSupports": "Stations clairement étiquetées avec images positives, jeux de rôle structurés, atmosphère d'admiration et de respect",
+        "decisionPoints": [
+          "Si un élève joue de façon agressive aux héros → rediriger vers les aspects d'aide et de soin avec Sophie comme modèle",
+          "Si un élève ne veut pas participer au jeu de rôle → permettre d'être le 'dispatcher' qui appelle les héros pour aider",
+          "Si un élève dessine des scènes violence avec héros → rediriger vers scènes d'aide et noter pour consultation"
+        ],
+        "movementBreaks": [
+          "Mouvements de service communautaire (aider, nettoyer)",
+          "Gestes de salutation respectueuse aux héros"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration des héros communautaires. Partage des livres 'Mes héros' avec Sophie. Promesse collective: 'Nous respectons les héros qui nous aident!' Création d'une carte de remerciement collective pour les services locaux. Chanson: 'Merci à tous les héros, qui gardent notre communauté en sécurité!'",
+        "materials": [
+          "Livres 'Mes héros' terminés",
+          "Grande carte de remerciement à décorer collectivement",
+          "Chanson des héros avec gestes de gratitude",
+          "Sophie avec sa propre cape de héros"
+        ],
+        "visualSupports": "Livres colorés et créatifs, carte géante et festive, gestes de remerciement respectueux",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager son livre → respecter sa création privée et permettre de montrer juste à Sophie",
+          "Si un élève devient émotionnel en parlant d'héros → offrir réconfort et explorer ce qui l'aide à se sentir en sécurité",
+          "Si un élève ne veut pas signer la carte → permettre de décorer seulement ou de faire un dessin sans signature"
+        ],
+        "movementBreaks": [
+          "Mouvements de gratitude (mains sur le cœur)",
+          "Salut respectueux aux héros (main à la tête)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -624,27 +1095,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie apprend les numéros magiques! Introduction douce: parfois les adultes ont besoin d'aide aussi. Sophie explique: '911 est un numéro spécial pour les grandes urgences.' Accent sur TOUJOURS trouver un adulte d'abord. Démonstration avec téléphone jouet: Sophie appelle pour aider quelqu'un. Comptine: 'Trouve un adulte, dis le problème, ensemble nous trouvons l'aide!'",
+        "materials": [
+          "Téléphones jouets colorés et rassurants",
+          "Sophie avec son propre petit téléphone",
+          "Cartes visuelles: '1. Trouve un adulte' en gros",
+          "Livre 'Les numéros qui aident' (très simple)"
+        ],
+        "visualSupports": "Cartes étape par étape simples, téléphones non-menaçants, accent visuel sur ADULTE D'ABORD",
+        "decisionPoints": [
+          "Si un élève semble effrayé par le concept d'urgence → rassurer que les urgences sont rares et qu'il y a toujours des adultes pour aider",
+          "Si un élève veut composer 911 pour s'amuser → expliquer que c'est SEULEMENT pour les vraies urgences et pratiquer avec numéros factices",
+          "Si un élève partage une expérience traumatisante → offrir réconfort immediatement et noter pour intervention professionnelle"
+        ],
+        "movementBreaks": [
+          "Mouvements de chercher un adulte (regarder autour)",
+          "Gestes calmes et rassurés avec le téléphone"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Pratique TRÈS douce avec Sophie et scénarios adaptés. Étape 1: Toujours trouver un adulte. Étape 2: L'adulte peut appeler si nécessaire. Jeu de rôle: Sophie a besoin d'aide, elle trouve un adulte en premier. Création d'un aide-mémoire visuel: images d'adultes de confiance avec leurs numéros (parents, famille).",
+        "materials": [
+          "Cartes scénarios TRÈS doux (chat dans arbre, égratignure)",
+          "Aide-mémoire vierges à personnaliser",
+          "Autocollants de téléphone et de cœur",
+          "Téléphones factices avec numéros faux pour pratique"
+        ],
+        "visualSupports": "Scénarios avec solutions heureuses, aide-mémoire colorés et personnalisables, étapes clairement numérotées",
+        "decisionPoints": [
+          "Si un élève a peur de pratiquer avec le téléphone → permettre d'observer Sophie seulement et rassurer que c'est juste pour apprendre",
+          "Si un élève mentionne des numéros de famille inquiétants → valider respectueusement et s'assurer qu'il connaît les adultes de l'école",
+          "Si un élève semble confus sur quand appeler → simplifier: 'Un adulte de confiance décide toujours si c'est une urgence'"
+        ],
+        "movementBreaks": [
+          "Pratique de mouvements calmes au téléphone",
+          "Respiration de courage avec Sophie"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Résumé rassurant avec Sophie. Message principal: 'Les adultes sont là pour vous aider!' Chaque élève reçoit son aide-mémoire personnel avec numéros de famille (non-urgence). Sophie rappelle: 'Vous êtes en sécurité, entourés d'adultes qui vous aiment!' Chanson finale très rassurante.",
+        "materials": [
+          "Aide-mémoire personnalisés complétés",
+          "Enveloppes décorées pour rapporter à la maison",
+          "Chanson de sécurité douce et rassurante",
+          "Sophie avec cœur de sécurité"
+        ],
+        "visualSupports": "Aide-mémoire positifs et non-effrayants, enveloppes colorées et sécurisantes, expressions très rassurantes",
+        "decisionPoints": [
+          "Si un élève ne veut pas rapporter l'aide-mémoire à la maison → respecter son choix et offrir de le garder dans son pupitre à l'école",
+          "Si un élève semble anxieux après la leçon → passer du temps individuel avec Sophie pour rassurer et évaluer le besoin de soutien",
+          "Si un élève pose des questions sur des urgences spécifiques → rediriger vers 'les adultes de confiance savent quoi faire' et noter pour discussion parentale"
+        ],
+        "movementBreaks": [
+          "Câlins de sécurité finaux avec Sophie",
+          "Mouvements apaisants et rassurants"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -679,27 +1186,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie présente le 'baromètre des sentiments'. Explorer comment nos sentiments nous aident à rester en sécurité. Sophie montre: se sentir content = tout va bien, se sentir inquiet = peut-être demander de l'aide. Introduction de l'écoute de son 'ventre magique' - les sensations corporelles qui nous alertent. Comptine: 'Mon cœur me parle, mon ventre me dit, j'écoute mes sentiments pour rester en sécurité!'",
+        "materials": [
+          "Baromètre des sentiments visuel (content à inquiet)",
+          "Sophie avec différentes expressions émotionnelles",
+          "Miroirs pour observer ses propres expressions",
+          "Livre 'Mon ventre magique' sur l'intuition des enfants"
+        ],
+        "visualSupports": "Baromètre coloré et facile à comprendre, expressions claires de Sophie, miroirs sécuritaires pour auto-observation",
+        "decisionPoints": [
+          "Si un élève ne reconnaît pas ses propres sentiments → commencer avec Sophie qui modèle 'Je me sens content parce que...' très simplement",
+          "Si un élève partage des sentiments préoccupants → valider immédiatement et orienter vers adultes de confiance, noter pour consultation",
+          "Si un élève confond les sentiments → utiliser le baromètre physiquement et faire pointer Sophie vers le bon endroit"
+        ],
+        "movementBreaks": [
+          "Respiration pour sentir son ventre",
+          "Gestes d'écoute de soi (mains sur le cœur)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration des 'signaux de sécurité' avec Sophie. Jeu 'Comment Sophie se sent-elle?': cartes de situations, Sophie montre sur le baromètre. Création d'un journal des sentiments: dessiner des moments contents et des moments où demander de l'aide. Pratique de l'écoute intuitive: 'Que dit ton ventre magique?'",
+        "materials": [
+          "Cartes situations adaptées et positives",
+          "Journaux des sentiments individuels",
+          "Crayons émotions (couleurs associées aux sentiments)",
+          "Autocollants de cœur et de nuage pour décorer"
+        ],
+        "visualSupports": "Cartes situations avec solutions claires, journaux avec cadres pour dessins, couleurs associées aux émotions",
+        "decisionPoints": [
+          "Si un élève dessine des situations dangereuses dans son journal → explorer doucement et documenter pour intervention professionnelle",
+          "Si un élève dit que son ventre lui dit toujours des choses inquiétantes → écouter avec empathie et orienter vers counselor scolaire",
+          "Si un élève refuse de parler de ses sentiments → respecter totalement et permettre d'observer Sophie et de décorer son journal seulement"
+        ],
+        "movementBreaks": [
+          "Mouvements d'écoute intérieure (pause, écoute)",
+          "Respiration de vérification des sentiments"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration de l'écoute de soi avec Sophie. Partage optionnel: 'Mon ventre magique m'aide à...' Sophie rappelle: 'Vos sentiments sont vos amis et vous protègent!' Promesse collective: nous écoutons nos sentiments et demandons de l'aide si nécessaire. Chanson finale: 'J'écoute mon cœur, j'écoute mon ventre, mes sentiments me gardent en sécurité!'",
+        "materials": [
+          "Journaux des sentiments terminés",
+          "Certificats 'Gardien de mes sentiments'",
+          "Chanson de l'écoute intérieure avec gestes",
+          "Sophie avec son propre journal émotionnel"
+        ],
+        "visualSupports": "Journaux colorés et personnels, certificats valorisants, gestes d'écoute de soi modélisés",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager son expérience du ventre magique → respecter sa vie privée et permettre d'écouter seulement",
+          "Si un élève semble préoccupé par ses sentiments → rester après la classe pour discussion rassurante avec Sophie",
+          "Si un élève ne veut pas emporter son journal → offrir de le garder en sécurité à l'école pour qu'il puisse y accéder"
+        ],
+        "movementBreaks": [
+          "Câlins d'auto-valorisation (se serrer doucement)",
+          "Mouvements de gratitude vers ses sentiments"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -734,27 +1277,63 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie présente son 'livre des fierts' - son portfolio de sécurité! Révision de tout ce qu'on a appris: mon corps spécial, dire non, adultes de confiance, mes sentiments. Sophie montre comment rassembler ses apprentissages dans un beau livre. Introduction de la célébration de nos progrès. Comptine: 'J'ai appris, j'ai grandi, je montre mes fierts aujourd'hui!'",
+        "materials": [
+          "Portfolio exemple de Sophie (petit livre coloré)",
+          "Cartes de révision des apprentissages visuelles",
+          "Dossiers personnels avec travaux accumulés",
+          "Livre 'Mes progrès en sécurité' comme modèle"
+        ],
+        "visualSupports": "Portfolio exemple attrayant et complet, cartes récapitulatives visuelles, travaux précédents des élèves organisés",
+        "decisionPoints": [
+          "Si un élève ne se souvient plus des apprentissages précédents → utiliser Sophie pour revoir doucement chaque concept avec des indices visuels",
+          "Si un élève est gêné de montrer ses travaux → rassurer qu'il peut choisir ce qu'il veut inclure et garder certaines choses privées",
+          "Si un élève dit qu'il n'a rien appris → avec Sophie, pointer spécifiquement ses progrès observés et célébrer petites réussites"
+        ],
+        "movementBreaks": [
+          "Mouvements de fierté (se tenir droit, sourire)",
+          "Gestes de rassemblement (mains qui collectent)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Création du portfolio personnel de sécurité avec Sophie. Sélection des meilleurs travaux: dessins du corps, cercle de confiance, guides d'aide. Décoration de la couverture personnalisée. Ajout d'une page 'Ce dont je suis fier' écrite/dessinée. Organisation logique avec Sophie comme guide.",
+        "materials": [
+          "Cartables ou dossiers décoratifs pour portfolios",
+          "Tous les travaux accumulés des leçons précédentes",
+          "Matériel de décoration (autocollants, crayons, paillettes douces)",
+          "Pages 'Ce dont je suis fier' pré-préparées"
+        ],
+        "visualSupports": "Organisation visuelle claire du portfolio, étapes de création illustrées, exemple de pages de fierté complétées",
+        "decisionPoints": [
+          "Si un élève a perdu certains travaux précédents → l'aider à recréer rapidement ou utiliser photos des activités faites",
+          "Si un élève veut inclure des travaux non-liés à la sécurité → célébrer sa créativité mais guider vers les travaux de sécurité pour ce portfolio spécifique",
+          "Si un élève est perfectionniste avec la décoration → rassurer que le contenu est plus important que la beauté, avec encouragement de Sophie"
+        ],
+        "movementBreaks": [
+          "Mouvements d'organisation (trier, classer)",
+          "Pauses créatives (s'étirer, regarder ses progrès)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration officielle des portfolios avec Sophie. Chaque élève reçoit un certificat de complétion 'Expert en sécurité Grade 1'. Tour de cercle optionnel: montrer une chose préférée du portfolio. Sophie rappelle: 'Vous êtes maintenant des experts en sécurité!' Chanson finale: 'Mon portfolio, ma fierté, j'ai appris à me protéger!'",
+        "materials": [
+          "Certificats 'Expert en sécurité' personnalisés",
+          "Portfolios complétés et beaux",
+          "Chanson de célébration finale avec gestes",
+          "Sophie avec sa propre médaille d'expert"
+        ],
+        "visualSupports": "Certificats officiels et colorés, portfolios finis et attrayants, atmosphère de réussite et de célébration",
+        "decisionPoints": [
+          "Si un élève ne veut pas montrer son portfolio au groupe → respecter son choix et permettre de le montrer seulement à Sophie en privé",
+          "Si un élève semble déçu de son portfolio → avec Sophie, souligner spécifiquement ses forces et progrès uniques",
+          "Si un élève ne veut pas emporter son portfolio à la maison → offrir de le garder à l'école comme option et explorer les raisons doucement"
+        ],
+        "movementBreaks": [
+          "Mouvements de célébration (lever portfolios en l'air)",
+          "Câlins de fierté personnelle"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -782,30 +1361,66 @@
       "title": "Jeux de rôle sécurité",
       "oneGoal": "Students will practice safety scenarios through role-play",
       "duration": "45 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["jeu", "pratiquer", "sécurisé"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie présente le théâtre de sécurité! Introduction des jeux de rôle adaptés aux besoins. Scénarios très doux: Sophie ne veut pas partager son jouet (dire non poliment), Sophie se perd à l'école (chercher adulte), Sophie a mal (demander aide). Accent sur la pratique sécurisée et le plaisir d'apprendre.",
+        "materials": [
+          "Sophie et marionnettes supplémentaires diverses",
+          "Scénarios adaptés par niveau (simples et complexes)",
+          "Costumes/accessoires simples et sécuritaires",
+          "Cartes de choix d'activités pour différents styles"
+        ],
+        "visualSupports": "Scénarios illustrés clairement, costumes attrayants mais non-intimidants, choix visuels pour différents niveaux",
+        "decisionPoints": [
+          "Si un élève a peur du jeu de rôle → commencer par être spectateur et aider Sophie depuis les coulisses",
+          "Si un élève est trop enthousiaste/dramatique → canaliser son énergie vers aider les plus timides et modéliser la douceur",
+          "Si un élève crée des scénarios inappropriés → rediriger vers les scénarios préparés avec Sophie comme guide"
+        ],
+        "movementBreaks": [
+          "Échauffements de théâtre doux",
+          "Mouvements de confiance (se préparer à jouer)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Théâtre interactif de sécurité avec différents niveaux. Niveau 1: Observer Sophie jouer. Niveau 2: Participer avec Sophie. Niveau 3: Créer ses propres scénarios sécuritaires. Rotation flexible selon confort et capacités. Accent sur le choix personnel et le rythme individuel.",
+        "materials": [
+          "Stations de théâtre avec niveaux différents",
+          "Supports visuels adaptés (images, cartes, objets)",
+          "Chronomètres pour rotations flexibles",
+          "Carnet d'observation pour noter progrès individuels"
+        ],
+        "visualSupports": "Stations clairement étiquetées par niveau, supports adaptés aux différents styles d'apprentissage, progression visible",
+        "decisionPoints": [
+          "Si un élève reste bloqué à un niveau → célébrer sa zone de confort et offrir petits défis optionnels avec Sophie",
+          "Si un élève veut sauter des niveaux → vérifier que les bases sont solides avant de permettre l'avancement",
+          "Si un élève se décourage → revenir à un niveau plus facile avec beaucoup d'encouragement et Sophie comme partenaire"
+        ],
+        "movementBreaks": [
+          "Pauses de réflexion (penser à ce qu'on vit)",
+          "Mouvements de transition entre niveaux"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration de la diversité d'apprentissage avec Sophie. Reconnaissance que chacun apprend différemment et c'est parfait! Partage optionnel: 'Comment préférez-vous pratiquer?' Sophie modèle l'acceptation des différences. Promesse: respecter le rythme de chacun.",
+        "materials": [
+          "Certificats personnalisés selon niveau atteint",
+          "Tableau de célébration de la diversité",
+          "Sophie avec différents symboles de réussite",
+          "Chanson de l'acceptation des différences"
+        ],
+        "visualSupports": "Certificats adaptés et valorisants pour tous, tableau inclusif et positif, modélisation de l'acceptation par Sophie",
+        "decisionPoints": [
+          "Si un élève compare ses résultats aux autres → Sophie explique que chaque jardin grandit différemment et c'est beau",
+          "Si un élève se sent inférieur → souligner spécifiquement ses forces uniques et progrès personnels avec Sophie",
+          "Si un élève refuse son certificat → respecter et offrir de le garder pour quand il se sentira prêt à le recevoir"
+        ],
+        "movementBreaks": [
+          "Câlins d'acceptation de soi",
+          "Mouvements de célébration inclusive"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -873,30 +1488,66 @@
       "title": "Histoires de sécurité",
       "oneGoal": "Students will explore safety concepts through storytelling",
       "duration": "45 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["histoire", "héros", "brave"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie devient conteuse! Présentation du 'Livre magique des héros courageux' avec histoires de sécurité adaptées. Sophie raconte comment les personnages utilisent leurs apprentissages: dire non, chercher des adultes, écouter leurs sentiments. Introduction interactive: que ferait Sophie dans cette histoire?",
+        "materials": [
+          "Grand livre d'histoires illustré coloré",
+          "Sophie déguisée en conteuse avec accessoires",
+          "Histoires adaptées par niveau de lecture",
+          "Images séquentielles pour soutenir la compréhension"
+        ],
+        "visualSupports": "Livre aux illustrations attrayantes, Sophie transformée en personnage, images séquentielles pour suivre l'histoire",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à suivre l'histoire → utiliser images séquentielles et demander à Sophie de ralentir ou répéter",
+          "Si un élève fait des connexions personnelles préoccupantes → valider doucement et noter pour discussion privée après",
+          "Si un élève a peur des éléments de l'histoire → rassurer que les histoires se finissent toujours bien et que Sophie est là"
+        ],
+        "movementBreaks": [
+          "Mouvements d'écoute active (pencher l'oreille)",
+          "Gestes de courage (poing sur le cœur)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration multi-sensorielle des histoires de sécurité. Station 1: Écoute d'histoires avec Sophie. Station 2: Création d'illustrations pour histoires. Station 3: Inventer sa propre fin d'histoire de sécurité. Adaptation selon capacités: simple écoute, participation interactive, ou création autonome.",
+        "materials": [
+          "Sélection d'histoires à différents niveaux",
+          "Matériel d'illustration (crayons, feuilles, autocollants)",
+          "Histoires à compléter avec fins ouvertes",
+          "Support audio pour élèves ayant besoin d'aide auditive"
+        ],
+        "visualSupports": "Stations clairement délimitées, histoires avec supports visuels variés, options pour différents styles d'apprentissage",
+        "decisionPoints": [
+          "Si un élève crée des fins d'histoire inquiétantes → explorer ses préoccupations avec Sophie et rediriger vers fins positives",
+          "Si un élève ne peut pas suivre à une station → adapter le niveau ou jumeler avec un ami pour soutien",
+          "Si un élève devient trop stimulé par les histoires → offrir pause calme avec Sophie et activité plus tranquille"
+        ],
+        "movementBreaks": [
+          "Mouvements de transition entre stations",
+          "Gestes d'illustration (dessiner dans l'air)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de partage des histoires créées avec Sophie. Célébration de la créativité et du courage des personnages. Sophie rappelle: 'Vous êtes tous des héros dans vos propres histoires!' Promesse finale: utiliser nos apprentissages comme les héros des histoires.",
+        "materials": [
+          "Créations artistiques des élèves",
+          "Livre collectif des histoires de classe",
+          "Sophie avec couronne de héros",
+          "Chanson des héros de sécurité"
+        ],
+        "visualSupports": "Créations affichées de manière valorisante, livre collectif attrayant, Sophie transformée en héros",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager sa création → respecter son choix et permettre de montrer seulement à Sophie",
+          "Si un élève se sent inférieur à propos de son travail → souligner les aspects uniques et créatifs avec enthousiasme",
+          "Si un élève veut continuer les histoires → célébrer son intérêt et suggérer des activités d'extension optionnelles"
+        ],
+        "movementBreaks": [
+          "Mouvements de héros (cape qui vole)",
+          "Câlins d'histoire (serrer son livre)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -964,30 +1615,66 @@
       "title": "Art corporel positif",
       "oneGoal": "Students will create art celebrating body diversity and self-acceptance",
       "duration": "45 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["beau", "unique", "créer"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie devient artiste! Présentation de l'atelier 'Chaque corps est une œuvre d'art'. Sophie montre des exemples d'art corporel positif: dessins de familles diverses, autoportraits heureux, sculptures de cœurs. Accent sur la beauté de la différence et l'unicité de chaque personne. Introduction des matériaux créatifs.",
+        "materials": [
+          "Sophie avec palette d'artiste et béret",
+          "Exemples d'art corporel positif et inclusif",
+          "Variété de matériaux créatifs (peinture, collage, argile douce)",
+          "Miroirs pour inspiration de soi"
+        ],
+        "visualSupports": "Exemples d'art célébrant la diversité, palette de couleurs incluant tous les tons de peau, atmosphere créative et accueillante",
+        "decisionPoints": [
+          "Si un élève exprime de la négativité envers son corps → Sophie modèle l'acceptation et souligne les aspects positifs sans insister",
+          "Si un élève a peur de créer → commencer par observer Sophie créer et offrir de l'aide très simple comme choisir couleurs",
+          "Si un élève fait des commentaires négatifs sur les autres → rediriger avec Sophie vers la célébration des différences"
+        ],
+        "movementBreaks": [
+          "Mouvements d'artiste (gestes créatifs)",
+          "Postures d'admiration de soi (se regarder avec appréciation)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Atelier créatif multi-stations avec Sophie. Station Peinture: autoportraits joyeux. Station Collage: corps de magazine transformés en œuvres positives. Station Sculpture: créer des formes qui représentent ses forces corporelles. Chaque station adaptée aux capacités et confort individuels.",
+        "materials": [
+          "Peintures lavables de tous les tons de peau",
+          "Magazines avec images corporelles positives pré-sélectionnées",
+          "Argile/pâte à modeler douce et coloree",
+          "Tabliers et protection pour vêtements"
+        ],
+        "visualSupports": "Stations clairement organisées, exemples d'œuvres terminées positives, instructions visuelles pour chaque technique",
+        "decisionPoints": [
+          "Si un élève crée de l'art corporel inquiétant → explorer doucement ses sentiments et offrir alternative plus positive avec Sophie",
+          "Si un élève refuse de représenter des corps → permettre de créer des œuvres abstraites sur le thème 'ce qui me rend fort'",
+          "Si un élève devient perfecionniste ou frustré → Sophie rappelle que l'art vient du cœur, pas de la perfection"
+        ],
+        "movementBreaks": [
+          "Pauses créatives (étirer les mains d'artiste)",
+          "Mouvements d'inspiration (regarder son œuvre)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exposition d'art 'Corps magnifiques' avec Sophie comme guide de musée. Chaque œuvre est célébrée pour sa beauté unique. Sophie souligne les messages positifs dans chaque création. Cérémonie de signature des artistes. Promesse: voir la beauté en soi et chez les autres.",
+        "materials": [
+          "Support d'exposition pour afficher les œuvres",
+          "Certificats d'artiste personnalisés",
+          "Sophie avec canne de guide de musée",
+          "Livre d'or pour commentaires positifs"
+        ],
+        "visualSupports": "Exposition artistique professionnelle et valorisante, certificats beaux et officiels, atmosphère de musée respectueuse",
+        "decisionPoints": [
+          "Si un élève ne veut pas exposer son œuvre → respecter totalement et offrir de la montrer seulement à Sophie en privé",
+          "Si un élève critique l'œuvre d'un autre → Sophie redirige vers trouver quelque chose de beau dans chaque création",
+          "Si un élève est déçu de son travail → Sophie souligne les aspects uniques et l'effort, pas seulement le résultat"
+        ],
+        "movementBreaks": [
+          "Mouvements de visite de musée (marcher et admirer)",
+          "Applaudissements artistiques pour tous"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -1055,30 +1742,66 @@
       "title": "Chansons de sécurité",
       "oneGoal": "Students will learn and create songs about safety concepts",
       "duration": "45 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["chanter", "mélodie", "ensemble"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie devient chef d'orchestre! Présentation du concert de sécurité avec mélodies familiers adaptées. Chansons simples sur les apprentissages: 'Mon corps à moi' (sur l'air de 'Frère Jacques'), 'Dire non c'est correct' (sur une comptine connue). Échauffement vocal doux et mouvements rythmiques.",
+        "materials": [
+          "Sophie avec baguette de chef d'orchestre",
+          "Paroles des chansons avec illustrations",
+          "Instruments simples (maracas, clochettes douces)",
+          "Enregistrements audio des mélodies familiers"
+        ],
+        "visualSupports": "Paroles illustrées et grandes, Sophie en chef d'orchestre, instruments attrayants et accessibles",
+        "decisionPoints": [
+          "Si un élève ne veut pas chanter → permettre de jouer instruments ou simplement écouter et bouger avec la musique",
+          "Si un élève chante trop fort ou de façon dérangeante → Sophie modèle une voix douce et harmonieuse",
+          "Si un élève a des difficultés avec les paroles → se concentrer sur la mélodie et quelques mots-clés seulement"
+        ],
+        "movementBreaks": [
+          "Échauffements vocaux doux",
+          "Mouvements rythmiques simples"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Atelier de création musicale avec Sophie. Station Karaoké: chanter les chansons de sécurité. Station Composition: créer de nouveaux couplets sur leurs apprentissages. Station Orchestre: accompagner avec instruments. Adaptation selon confort et capacités vocales/musicales.",
+        "materials": [
+          "Microphones jouets pour karaoké",
+          "Cahiers de paroles à compléter",
+          "Instruments variés adaptés à Grade 1",
+          "Enregistreur pour capturer leurs créations"
+        ],
+        "visualSupports": "Stations musicales accueillantes, exemples de couplets créés, partition visuelle simple",
+        "decisionPoints": [
+          "Si un élève crée des paroles inappropriées → rediriger vers les messages de sécurité positifs avec Sophie",
+          "Si un élève devient trop excité avec les instruments → pause calme et règles douces de respect musical",
+          "Si un élève se sent timide pour créer → jumeler avec Sophie ou ami encourageant, participation minimale acceptable"
+        ],
+        "movementBreaks": [
+          "Pauses de silence musical (apprécier le calme)",
+          "Mouvements de chef d'orchestre"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Concert final 'Les voix de la sécurité' avec Sophie comme animatrice. Présentation des créations musicales devant public imaginé. Enregistrement de la chanson collective finale. Célébration de la musique comme moyen de se souvenir des apprentissages importants.",
+        "materials": [
+          "Scène improvisée pour concert",
+          "Enregistreur pour chanson collective",
+          "Programmes de concert fait à la main",
+          "Sophie avec micro d'animatrice"
+        ],
+        "visualSupports": "Scène festive, programmes de concert personnalisés, atmosphère de célébration artistique",
+        "decisionPoints": [
+          "Si un élève a le trac pour le concert → offrir de chanter avec Sophie ou depuis les coulisses",
+          "Si un élève oublie les paroles pendant la performance → rassurer que c'est normal et continuer avec Sophie",
+          "Si un élève ne veut pas être enregistré → respecter son choix et permettre de participer sans enregistrement"
+        ],
+        "movementBreaks": [
+          "Saluts de concert (révérences polies)",
+          "Applaudissements de groupe"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -1146,30 +1869,66 @@
       "title": "Famille et sécurité",
       "oneGoal": "Students will explore how different families talk about and practice safety",
       "duration": "45 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["famille", "traditions", "partager"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie présente sa famille diversifiée! Exploration respectueuse des différentes structures familiales et comment chaque famille garde ses membres en sécurité. Sophie montre des photos de différents types de familles pratiquant la sécurité: familles monoparentales, grands-parents, familles adoptées, etc. Accent sur l'amour et la protection universels.",
+        "materials": [
+          "Photos de familles diverses et inclusives",
+          "Sophie avec album familial personnel",
+          "Livre 'Toutes sortes de familles' illustré",
+          "Cartes de différentes traditions familiales de sécurité"
+        ],
+        "visualSupports": "Photos représentant diversité ethnique, culturelle, et structures familiales, atmosphere chaleureuse et inclusive",
+        "decisionPoints": [
+          "Si un élève mentionne une structure familiale difficile → valider que toutes les familles sont différentes et se concentrer sur les adultes qui l'aiment",
+          "Si un élève fait des commentaires négatifs sur d'autres familles → Sophie explique que chaque famille est spéciale à sa manière",
+          "Si un élève semble gêné de sa famille → rassurer avec Sophie que sa famille l'aime et c'est ce qui compte le plus"
+        ],
+        "movementBreaks": [
+          "Câlins familiaux (se serrer dans ses bras)",
+          "Gestes d'amour familial (mains sur le cœur)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration des traditions familiales de sécurité avec Sophie. Création d'un arbre généalogique de sécurité montrant qui nous protège dans la famille. Partage optionnel des règles familiales spéciales. Création collective d'un livre 'Comment nos familles nous gardent en sécurité' avec dessins et histoires.",
+        "materials": [
+          "Modèles d'arbres généalogiques vierges",
+          "Photos de famille apportées ou dessins",
+          "Cahier collectif pour livre de classe",
+          "Autocollants de cœurs et d'étoiles familiales"
+        ],
+        "visualSupports": "Exemples d'arbres généalogiques de différentes structures, book collectif en cours, ambiance respectueuse des différences",
+        "decisionPoints": [
+          "Si un élève n'a pas de photos de famille → l'encourager à dessiner ou utiliser l'imagination, Sophie peut l'aider",
+          "Si un élève partage des détails préoccupants sur sa famille → écouter avec empathie, noter discrètement, orienter vers positif",
+          "Si un élève dit qu'il n'a pas de famille → élargir la définition pour inclure tous les adultes qui prennent soin de lui"
+        ],
+        "movementBreaks": [
+          "Mouvements de connection familiale (tendre la main)",
+          "Respiration de gratitude familiale"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Célébration de toutes les familles avec Sophie. Présentation du livre collectif terminé. Sophie rappelle: 'Chaque famille a sa façon spéciale d'aimer et de protéger!' Promesse: respecter toutes les familles et être reconnaissant pour ceux qui nous aiment. Chanson finale inclusive sur les familles.",
+        "materials": [
+          "Livre collectif des familles complété",
+          "Arbres généalogiques finis pour emporter",
+          "Chanson des familles diverses avec gestes",
+          "Sophie avec sa propre famille de marionnettes"
+        ],
+        "visualSupports": "Livre collectif attrayant et inclusif, arbres généalogiques colorés, atmosphère de célébration familiale",
+        "decisionPoints": [
+          "Si un élève ne veut pas emporter son arbre à la maison → respecter et offrir de le garder à l'école en sécurité",
+          "Si un élève devient émotionnel en pensant à sa famille → offrir réconfort avec Sophie et valider ses sentiments",
+          "Si un élève exprime de la tristesse familiale → rappeler les adultes de l'école qui forment aussi sa famille étendue"
+        ],
+        "movementBreaks": [
+          "Câlins de gratitude familiale",
+          "Mouvements de bénédiction vers toutes les familles"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -1237,30 +1996,66 @@
       "title": "Célébration de sécurité",
       "oneGoal": "Students will celebrate their safety learning and commit to ongoing safety practices",
       "duration": "45 minutes",
-      "keyVocabulary": [],
+      "keyVocabulary": ["célébrer", "fier", "promesse"],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Sophie organise la grande fête de la sécurité! Préparation de la cérémonie de diplôme 'Gardiens de la Sécurité Grade 1'. Révision célébratoire de tout le chemin parcouru: du corps spécial aux portfolios, des adultes de confiance aux sentiments protecteurs. Sophie avec toge et mortier de diplômée!",
+        "materials": [
+          "Sophie en costume de remise de diplômes",
+          "Décorations festives de sécurité (banderoles, ballons)",
+          "Affichage de tous les apprentissages de l'unité",
+          "Diplômes officiels 'Gardien de la Sécurité' personnalisés"
+        ],
+        "visualSupports": "Environnement festif et célébratoire, affichage visuel des progrès, Sophie en tenue officielle",
+        "decisionPoints": [
+          "Si un élève se sent dépassé par l'attention célébratoire → offrir participation plus discrète avec Sophie en soutien",
+          "Si un élève ne se souvient pas des apprentissages → utiliser les affichages visuels et Sophie pour revoir doucement",
+          "Si un élève ne se sent pas digne de célébration → Sophie souligne spécifiquement ses progrès uniques et sa valeur"
+        ],
+        "movementBreaks": [
+          "Mouvements de préparation célébratoire",
+          "Postures de fierté (se tenir droit avec confiance)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cérémonie officielle 'Gardiens de la Sécurité' avec Sophie comme présidente. Chaque élève reçoit son diplôme personnalisé. Discours de Sophie sur leurs réussites. Signature collective du 'Pacte des Gardiens': promesse de continuer à utiliser leurs apprentissages. Photos souvenirs et autographes de Sophie.",
+        "materials": [
+          "Diplômes individuels avec noms et réussites spécifiques",
+          "Pacte des Gardiens sur parchemin décoratif",
+          "Appareil photo pour immortaliser le moment",
+          "Livre d'autographes de Sophie pour souvenirs"
+        ],
+        "visualSupports": "Cérémonie digne et respectueuse, diplômes beaux et officiels, pacte impressionnant et meaningful",
+        "decisionPoints": [
+          "Si un élève a le trac pour recevoir son diplôme → Sophie l'accompagne ou permet réception en privé",
+          "Si un élève ne veut pas signer le pacte → respecter son choix et offrir d'autres façons de participer",
+          "Si un élève devient émotionnel de fierté → célébrer ses émotions comme preuve de sa croissance"
+        ],
+        "movementBreaks": [
+          "Marche cérémonielle pour recevoir diplômes",
+          "Mouvements de promesse (main sur le cœur)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Finale spectaculaire avec Sophie! Chant collectif de l'hymne 'Nous sommes les Gardiens de la Sécurité'. Promesse finale: porter nos apprentissages partout où nous allons. Adieux émotionnels à Sophie qui reste toujours dans nos cœurs. Distribution de badges 'Gardien Diplomé' à porter fièrement.",
+        "materials": [
+          "Badges 'Gardien Diplomé' officiels à épingler",
+          "Hymne final avec paroles et musique",
+          "Message d'adieu émouvant de Sophie",
+          "Enveloppes souvenir avec photo de classe"
+        ],
+        "visualSupports": "Badges brillants et attractifs, ceremonie de clôture digne, atmosphere de réussite et de continuité",
+        "decisionPoints": [
+          "Si un élève est triste de dire au revoir à Sophie → rassurer qu'elle reste dans leurs apprentissages et leur cœur",
+          "Si un élève ne veut pas porter son badge → respecter et permettre de le garder dans son bureau ou sac",
+          "Si un élève oublie les promesses finales → Sophie répète doucement: 'Tu es en sécurité, tu es aimé, tu es fort'"
+        ],
+        "movementBreaks": [
+          "Câlins d'adieu avec Sophie",
+          "Mouvements de fierté finale (lever badges en l'air)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",

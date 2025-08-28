@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Notre galerie d'art française",
   "subject": "Arts visuels",
   "grade": "1",
   "totalLessons": 20,
@@ -20,31 +20,61 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Virtual gallery tour using photos or videos of famous galleries. Compare to other spaces students know: stores, libraries, theaters. Introduce vocabulary: GALERIE (showcase gesture), EXPOSITION (displaying motion), VISITEUR (walking/looking gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Photos de galeries célèbres françaises",
+          "Cartes de vocabulaire avec gestes",
+          "Projecteur ou écran pour visite virtuelle",
+          "Exemples de différents espaces (magasin, bibliothèque, théâtre)"
+        ],
+        "visualSupports": "Photos géantes de galeries, cartes visuelles de vocabulaire avec actions, comparaisons visuelles d'espaces différents",
+        "decisionPoints": [
+          "Si des élèves confondent galerie et magasin → montrer les différences: on regarde vs on achète, art vs produits",
+          "Si des élèves ne comprennent pas 'visiteur' → faire des jeux de rôle simples d'accueil et de visite",
+          "Si des élèves ont peur des nouveaux mots → commencer par des gestes familiers et construire le vocabulaire graduellement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Marcher comme des visiteurs silencieux dans la 'galerie'"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Transformation de la classe en galerie. En équipes, les élèves arrangent l'espace avec les meubles pour créer une galerie simple. Afficher les œuvres d'art/affiches. Créer les règles de la galerie avec pictogrammes. Pratiquer: 'Dans une galerie, on...'",
         "materials": [
           "Classroom furniture for space creation",
           "Gallery photos for reference",
           "Simple artworks or posters for display",
           "Gallery rules poster materials"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Photos de galeries réelles comme référence, pictogrammes pour règles de galerie, exemples d'arrangement d'espace",
+        "decisionPoints": [
+          "Si des élèves font trop de bruit en arrangeant → établir des signaux silencieux et des rôles spécifiques",
+          "Si l'espace devient chaotique → diviser en plus petites équipes et assigner des zones précises",
+          "Si des élèves ne participent pas → leur donner des tâches simples comme tenir ou pointer"
+        ],
+        "movementBreaks": [
+          "Déplacements organisés par équipes",
+          "Pauses pour admirer le progrès de l'aménagement"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Gallery Visitor Practice. Students take turns being visitors in their mock gallery. Practice appropriate behavior and vocabulary: 'Je visite la galerie.' 'Je regarde l'exposition.' Discuss what makes a good gallery experience.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Étiquettes pour identifier les espaces",
+          "Matériel pour créer les règles visuelles",
+          "Exemples de comportement de galerie"
+        ],
+        "visualSupports": "Affiches des règles de galerie avec pictogrammes, exemples de visiteurs polis, guide visuel du comportement approprié",
+        "decisionPoints": [
+          "Si des élèves oublient les règles → utiliser des rappels visuels et des gestes",
+          "Si des élèves sont trop excités → faire des pratiques calmes de respiration et de mouvement silencieux",
+          "Si la célébration finale devient bruyante → structurer avec des phrases chorales organisées"
+        ],
+        "movementBreaks": [
+          "Pratique de marche silencieuse de galerie",
+          "Geste collectif final 'Bonjour galerie!'"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -52,14 +82,43 @@
       },
       "realWorldConnection": "Visiting museums, art shows, looking at displays in libraries or community centers",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Fournir des cartes visuelles constantes du vocabulaire",
+          "Jumeler avec un partenaire pour l'exploration",
+          "Utiliser des gestes simples pour chaque nouveau mot",
+          "Permettre l'usage de l'anglais au besoin pour clarifier"
+        ],
+        "forAdvanced": [
+          "Ajouter des détails sur les galeries françaises célèbres",
+          "Devenir aide-enseignant pour vocabulaire",
+          "Créer des connections avec d'autres espaces culturels",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie une galerie visuellement",
+          "Utilise le vocabulaire galerie/exposition/visiteur avec gestes",
+          "Montre un comportement approprié de visiteur",
+          "Participe aux activités de groupe"
+        ],
+        "checkpoints": [
+          "Peut pointer vers une galerie sur photo",
+          "Répète le vocabulaire avec gestes appropriés",
+          "Marche silencieusement dans l'espace galerie"
+        ]
       }
     },
     {
@@ -76,30 +135,60 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Role-play different gallery jobs using simple props. Show what each person does. Introduce vocabulary: CONSERVATEUR (organizing/selecting gesture), GUIDE (leading/explaining motion), ARTISTE (creating gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Accessoires simples pour jeux de rôles",
+          "Photos de personnes dans différents rôles de galerie",
+          "Cartes visuelles des métiers",
+          "Objets symboliques (pinceau, badge, clipboard)"
+        ],
+        "visualSupports": "Affiches visuelles des trois rôles avec actions, photos de vrais professionnels, cartes de vocabulaire avec gestes",
+        "decisionPoints": [
+          "Si des élèves confondent les rôles → faire des démonstrations claires avec accessoires distincts",
+          "Si des élèves sont timides pour jouer un rôle → commencer par des gestes simples en groupe",
+          "Si le jeu devient chaotique → établir des règles claires et des tours organisés"
+        ],
+        "movementBreaks": [
+          "Gestes de chaque métier en grand groupe",
+          "Mini-improvisations silencieuses"
+        ]
       },
       "main": {
         "duration": "~27 min",
-        "activity": "",
+        "activity": "Stations de rôles rotatifs. Établir 3 stations: Station Conservateur (trier/organiser des images d'art), Station Guide (éxpliquer des œuvres à des 'visiteurs'), Station Artiste (créer de l'art simple). Les élèves rotent entre les stations, pratiquent le vocabulaire: 'Je suis...' 'Mon travail est de...'",
         "materials": [
           "Role-play props (clipboard for curator, badge for guide, art supplies for artist)",
           "Job matching cards",
           "Role assignment charts"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Instructions visuelles pour chaque station, exemples de tâches par rôle, minuterie visuelle pour rotations",
+        "decisionPoints": [
+          "Si des élèves ne veulent pas changer de station → utiliser une minuterie et des signaux visuels clairs",
+          "Si certains élèves dominent une station → assigner des rôles spécifiques et des tours",
+          "Si des élèves ne comprennent pas leur tâche → modéliser chaque action avec des exemples concrets"
+        ],
+        "movementBreaks": [
+          "Transition organisée entre les stations",
+          "Gestes de rôle à chaque rotation"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Gallery Team Introduction. Students introduce themselves in their chosen gallery roles: 'Je suis conservateur/guide/artiste.' Explain what their job will be in classroom gallery. Practice professional vocabulary.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Badges ou étiquettes d'identité pour rôles",
+          "Micro factice pour présentations",
+          "Tableau d'organisation des équipes"
+        ],
+        "visualSupports": "Modèles de phrases pour introductions, affiches des responsabilités par rôle, guide visuel de présentation",
+        "decisionPoints": [
+          "Si des élèves sont nerveux pour se présenter → commencer par des présentations en paires",
+          "Si tous veulent le même rôle → expliquer que chaque rôle est important et organiser une rotation",
+          "Si des élèves oublient le vocabulaire → afficher les phrases modèles et permettre l'aide des pairs"
+        ],
+        "movementBreaks": [
+          "Position debout pour présentations",
+          "Applaudissements organisés pour chaque présentation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -107,14 +196,43 @@
       },
       "realWorldConnection": "Understanding different jobs people do, like teachers, doctors, store workers",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Choisir un seul rôle préféré pour se concentrer",
+          "Utiliser plus d'accessoires visuels pour comprendre",
+          "Partenaire pour modéliser les actions",
+          "Phrases simples pré-écrites pour présentations"
+        ],
+        "forAdvanced": [
+          "Expliquer les connections entre les rôles",
+          "Ajouter des détails sur les formations requises",
+          "Devenir mentors pour d'autres élèves",
+          "Improviser des scénarios de galerie"
+        ],
+        "forELL": [
+          "Cartes visuelles des actions pour chaque rôle",
+          "Démonstrations physiques sans mots d'abord",
+          "Jumeler avec francophone pour modéliser",
+          "Utiliser L1 pour clarifier concepts au besoin"
+        ],
+        "forIEP": [
+          "Adapter rôles selon capacités individuelles",
+          "Permettre participation non-verbale si nécessaire",
+          "Modifier attentes de présentation",
+          "Support sensoriel selon besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Identifie les trois rôles visuellement",
+          "Utilise le vocabulaire conservateur/guide/artiste",
+          "Démontre actions appropriées pour chaque rôle",
+          "Participe aux jeux de rôle avec confiance"
+        ],
+        "checkpoints": [
+          "Peut mimer les actions de chaque rôle",
+          "Se présente dans son rôle choisi avec aide si besoin",
+          "Reconnaît les responsabilités de base de chaque rôle"
+        ]
       }
     },
     {
@@ -131,10 +249,22 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Present large collection of student artwork from previous units. Discuss how to choose which pieces to display. Introduce vocabulary: SÉLECTIONNER (choosing gesture), QUALITÉ (thumbs up quality), THÈME (grouping gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Collection d'œuvres d'élèves variées",
+          "Cartes de vocabulaire avec gestes",
+          "Exemples de choix (bons/moins bons)",
+          "Matériel pour trier et grouper"
+        ],
+        "visualSupports": "Critères visuels de qualité, exemples de thèmes, guide de sélection avec images",
+        "decisionPoints": [
+          "Si des élèves veulent choisir seulement leurs propres œuvres → expliquer l'objectivité et la variété",
+          "Si des élèves critiquent le travail des autres → enseigner le respect et les commentaires constructifs",
+          "Si des élèves ne comprennent pas 'thème' → utiliser des exemples concrets comme 'couleurs' ou 'animaux'"
+        ],
+        "movementBreaks": [
+          "Gestes de sélection et de tri",
+          "Déplacements pour examiner toutes les œuvres"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -145,17 +275,35 @@
           "Theme organization materials",
           "Curatorial decision sheets"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Sélection d'œuvres, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Curatorial Presentations. Student curators present their selections and explain choices: 'J'ai sélectionné ces œuvres parce qu'elles montrent...' Discuss different curatorial approaches.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Sélection d'œuvres, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -163,14 +311,43 @@
       },
       "realWorldConnection": "Choosing photos for albums, selecting clothes to wear, picking favorite books",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -187,10 +364,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Compare well-displayed art to poorly displayed art using examples. Discuss how presentation affects viewing experience. Introduce vocabulary: AFFICHER (hanging/displaying motion), CADRE (frame outline gesture), ÉCLAIRAGE (light gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Présentation et affichage, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -201,17 +389,35 @@
           "Different light sources",
           "Artwork for display practice"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Présentation et affichage, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Display Quality Assessment. Students evaluate different artwork displays and suggest improvements. Practice vocabulary: 'Cet affichage pourrait être amélioré avec...' Focus on helpful, constructive suggestions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Présentation et affichage, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -219,14 +425,43 @@
       },
       "realWorldConnection": "Arranging their bedroom, setting table for dinner, organizing school supplies",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -243,10 +478,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Examine labels from various contexts: food labels, museum labels, store signs. Discuss what makes labels helpful vs confusing. Introduce vocabulary: ÉTIQUETTE (label pointing), DESCRIPTION (explaining gesture), INFORMATION (sharing knowledge motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Étiquettes et information, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -257,17 +503,35 @@
           "Example artworks for labeling",
           "Design materials for label creation"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Étiquettes et information, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Label Testing. Students read each other's labels and provide feedback: 'Cette étiquette m'aide à comprendre...' Test label clarity and helpfulness from visitor perspective.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Étiquettes et information, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -275,14 +539,43 @@
       },
       "realWorldConnection": "Reading labels in stores, signs at zoo, instructions for games",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -299,10 +592,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Walk through classroom following different pathways. Notice how route affects experience. Introduce vocabulary: PARCOURS (pathway tracing), SÉQUENCE (ordering gesture), FLUX (flowing movement).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Parcours de visite, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -313,17 +617,35 @@
           "Gallery space layout materials",
           "Pathway testing supplies"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Parcours de visite, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Pathway Testing. Students follow designed pathways and evaluate visitor experience. Practice vocabulary: 'Ce parcours crée une bonne séquence parce que...' Make adjustments based on testing.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Parcours de visite, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -331,14 +653,43 @@
       },
       "realWorldConnection": "Following paths in parks, routes through stores, order of activities in their day",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -355,10 +706,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Learn about gallery opening traditions. Show photos of vernissages and art openings. Introduce vocabulary: VERNISSAGE (celebration gesture), INVITÉ (welcoming gesture), CÉLÉBRATION (party/joy motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Vernissage et inauguration, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -369,17 +731,35 @@
           "Gallery setup supplies",
           "Welcome area materials"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Vernissage et inauguration, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Opening Event Rehearsal. Practice welcoming guests, explaining gallery, conducting opening ceremony. Practice vocabulary: 'Bienvenue à notre vernissage!' Prepare for actual opening.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Vernissage et inauguration, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -387,14 +767,43 @@
       },
       "realWorldConnection": "Birthday parties, school concerts, family gatherings",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -411,10 +820,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Experience difference between self-guided and guided gallery visits. Practice basic tour guide techniques. Introduce vocabulary: GUIDE (leading gesture), EXPLIQUER (explanation motion), PRÉSENTER (presentation gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Visite guidée, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -425,17 +845,35 @@
           "Gallery tour route maps",
           "Feedback forms for tour evaluation"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Visite guidée, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Tour Guide Evaluation. Students evaluate each other's tours using constructive feedback. Practice vocabulary: 'Ce guide explique bien parce que...' Plan improvements for real visitor tours.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Visite guidée, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -443,14 +881,43 @@
       },
       "realWorldConnection": "Showing friends their room, explaining games to others, teaching family members new things",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -467,10 +934,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Discuss difference between helpful criticism and hurtful comments. Practice giving and receiving constructive feedback. Introduce vocabulary: CRITIQUE (analytical thinking), AMÉLIORATION (improvement gesture), FEEDBACK (response/sharing motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Critique et évaluation, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -481,17 +959,35 @@
           "Gallery evaluation checklists",
           "Improvement planning sheets"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Critique et évaluation, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Improvement Implementation. Begin implementing planned improvements based on feedback. Practice vocabulary: 'Grâce à la critique, nous améliorons...' Celebrate willingness to grow and improve.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Critique et évaluation, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -499,14 +995,43 @@
       },
       "realWorldConnection": "Getting suggestions from friends, teacher feedback on work, family advice",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -523,10 +1048,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Introduce famous French artists and artworks using reproductions. Compare to student artwork in their gallery. Introduce vocabulary: CÉLÈBRE (fame gesture), FRANÇAIS (France connection), PATRIMOINE (heritage/treasure gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Art français célèbre, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -537,17 +1073,35 @@
           "Cultural heritage examples",
           "Comparison activity sheets"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Art français célèbre, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "French Art Appreciation. Students choose favorite French artwork and explain why it appeals to them. Practice vocabulary: 'J'aime cet art français célèbre parce que...' Connect to their gallery.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Art français célèbre, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -555,14 +1109,43 @@
       },
       "realWorldConnection": "Learning about their country's history, famous people from their area",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -579,10 +1162,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Explore traditional French art techniques: impressionist brushwork, pastels, simple printmaking. Connect to famous French artists studied. Introduce vocabulary: TRADITIONNEL (heritage gesture), TECHNIQUE (skill demonstration), HÉRITAGE (passing down motion).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Techniques françaises traditionnelles, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -593,17 +1187,35 @@
           "Traditional technique reference materials",
           "Cultural connection worksheets"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Techniques françaises traditionnelles, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Traditional Technique Showcase. Students present artwork created using traditional French techniques. Practice vocabulary: 'J'ai utilisé cette technique traditionnelle pour créer...' Connect to cultural heritage.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Techniques françaises traditionnelles, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -611,14 +1223,43 @@
       },
       "realWorldConnection": "Learning traditional recipes, games, or crafts from their own family",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -635,10 +1276,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Explore virtual galleries online. Compare virtual to physical gallery experiences. Introduce vocabulary: VIRTUEL (digital gesture), NUMÉRIQUE (technology motion), DOCUMENTATION (recording/saving gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Galerie virtuelle, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -649,17 +1301,35 @@
           "Digital organization templates",
           "Audio recording equipment if available"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Galerie virtuelle, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Virtual Gallery Sharing. Present digital gallery to others. Discuss how virtual galleries can reach more people. Practice vocabulary: 'Notre documentation numérique permet de partager...'",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Galerie virtuelle, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -667,14 +1337,43 @@
       },
       "realWorldConnection": "Taking photos to share with family, video calls with distant relatives",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -691,10 +1390,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Discuss how museums and galleries collaborate and share exhibitions. Plan connections with other classrooms or local art spaces. Introduce vocabulary: ÉCHANGE (exchange/sharing gesture), PARTAGER (giving/sharing motion), COLLABORATION (working together gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Échange avec d'autres galeries, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -705,17 +1415,35 @@
           "Demonstration materials",
           "Communication tools for collaboration"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Échange avec d'autres galeries, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Exchange Reflection. Reflect on what was learned through exchange or collaboration. Practice vocabulary: 'Grâce à cet échange, nous avons appris...' Plan future collaborations.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Échange avec d'autres galeries, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -723,14 +1451,43 @@
       },
       "realWorldConnection": "Pen pals, visiting other classrooms, community connections",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -747,10 +1504,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Discuss how galleries change over time: new exhibitions, growing collections, facility improvements. Plan gallery future. Introduce vocabulary: ÉVOLUTION (growth/change motion), CHANGEMENT (transformation gesture), CROISSANCE (expansion gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Évolution de la galerie, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -761,17 +1529,35 @@
           "Sustainability planning guides",
           "Student leadership training materials"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Évolution de la galerie, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Gallery Future Presentation. Students present plans for gallery evolution and growth. Practice vocabulary: 'Pour l'évolution future, nous planifions...' Commit to realistic next steps.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Évolution de la galerie, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -779,14 +1565,43 @@
       },
       "realWorldConnection": "How their room changes as they grow, family traditions that evolve",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       }
     },
     {
@@ -803,10 +1618,21 @@
       "opening": {
         "duration": "~8 min",
         "activity": "Reflect on gallery journey from first lesson to final exhibition. Celebrate growth and achievements. Introduce vocabulary: CÉLÉBRATION (celebration gesture), ACCOMPLISSEMENT (achievement motion), FUTUR (forward-looking gesture).",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Cartes de vocabulaire visuelles",
+          "Supports visuels pour introduction",
+          "Matériel de démonstration"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Célébration finale, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves ont du mal avec le nouveau vocabulaire → utiliser plus de gestes et de répétitions",
+          "Si des élèves sont distraits au début → capter l'attention avec des supports visuels attrayants",
+          "Si des élèves ne participent pas aux gestes → les encourager doucement et modéliser clairement"
+        ],
+        "movementBreaks": [
+          "Gestes de vocabulaire en grand groupe",
+          "Étirements ou mouvements simples liés au thème"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -817,17 +1643,35 @@
           "Celebration event supplies",
           "Recognition certificates or awards"
         ],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "visualSupports": "Supports visuels appropriés pour Célébration finale, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si l'activité devient trop bruyante → établir des signaux de silence et des règles claires",
+          "Si des élèves finissent rapidement → fournir des extensions ou les jumeler pour aider d'autres",
+          "Si des élèves ont des difficultés → simplifier la tâche et offrir un support individuel"
+        ],
+        "movementBreaks": [
+          "Transitions organisées entre activités",
+          "Pauses actives selon les besoins"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Future Artistic Commitment. Students commit to continuing artistic growth beyond gallery project. Practice 'futur' vocabulary: 'Dans le futur, je continuerai l'art en...' Connect to lifelong learning.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": [
+          "Matériel de présentation",
+          "Outils d'évaluation formative",
+          "Supports pour partage"
+        ],
+        "visualSupports": "Supports visuels appropriés pour Célébration finale, cartes de vocabulaire, démonstrations visuelles",
+        "decisionPoints": [
+          "Si des élèves sont timides pour partager → commencer par de petits groupes ou des paires",
+          "Si le temps manque → adapter l'activité pour se concentrer sur l'essentiel",
+          "Si des élèves perdent l'attention → utiliser des mouvements ou des chansons pour terminer"
+        ],
+        "movementBreaks": [
+          "Mouvement pour rassemblement final",
+          "Gestes de célébration ou récapitulation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",
@@ -835,14 +1679,43 @@
       },
       "realWorldConnection": "Graduation ceremonies, end-of-season celebrations, family milestones",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Réduire le vocabulaire à 2-3 mots essentiels",
+          "Utiliser plus de supports visuels et de gestes",
+          "Jumeler avec un partenaire plus fort",
+          "Permettre l'usage de l'anglais au besoin"
+        ],
+        "forAdvanced": [
+          "Ajouter du vocabulaire supplémentaire lié au thème",
+          "Devenir aide-enseignant pour leurs pairs",
+          "Créer des connections avec d'autres apprentissages",
+          "Utiliser des phrases plus complexes"
+        ],
+        "forELL": [
+          "Cartes visuelles bilingues disponibles",
+          "Gestes et pointage encouragés pour communication",
+          "Permission d'utiliser L1 pour clarifier concepts",
+          "Partenaire francophone pour modéliser"
+        ],
+        "forIEP": [
+          "Adapter selon les objectifs individuels",
+          "Modifier les attentes de participation",
+          "Utiliser supports sensoriels au besoin",
+          "Temps supplémentaire pour traitement"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "Utilise le vocabulaire de la leçon avec support visuel au besoin",
+          "Participe activement aux activités de groupe",
+          "Démontre une compréhension de base des concepts",
+          "Montre des progrès dans l'expression en français"
+        ],
+        "checkpoints": [
+          "Peut identifier les concepts clés visuellement",
+          "Répète le vocabulaire avec aide si nécessaire",
+          "Participe aux activités selon ses capacités"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",

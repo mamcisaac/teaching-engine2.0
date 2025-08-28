@@ -1204,10 +1204,25 @@
       "opening": {
         "duration": 8,
         "activity": "Show completed portfolios with pride. Explain that we will 'partager' with 'famille'. Show 'montrer' with presentation gestures.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "materials": ["Portfolios complétés avec fierté", "Tableau d'affichage des réussites", "Certificats d'accomplissement"],
+        "visualSupports": "Portfolios magnifiquement présentés, affichage des progrès depuis septembre, gestes de fierté et d'accomplissement",
+        "decisionPoints": [
+          {
+            "moment": "Si un élève manque de confiance pour montrer son portfolio",
+            "options": [
+              "Souligner ses progrès spécifiques depuis septembre",
+              "Permettre de montrer d'abord à un ami proche"
+            ]
+          },
+          {
+            "moment": "Si les portfolios sont de qualités très différentes",
+            "options": [
+              "Célébrer les efforts individuels plutôt que les résultats",
+              "Souligner les progrès uniques de chaque élève"
+            ]
+          }
+        ],
+        "movementBreaks": ["Préparation fière des portfolios et gestes d'accomplissement (5 min)"]
       },
       "main": {
         "duration": 27,
@@ -1514,7 +1529,29 @@
         "activity": "Game Station Carnival - Set up 4 stations: 1) Memory matching with year's vocabulary, 2) Charades with French actions, 3) Musical French freeze dance, 4) Simple French bingo. Rotate every 6-7 minutes.",
         "materials": ["Station 1: Cartes mémoire vocabulaire", "Station 2: Cartes charades", "Station 3: Musique française", "Station 4: Cartes bingo", "Minuteur pour rotation"],
         "visualSupports": "Stations clairement identifiées, instructions visuelles pour chaque jeu, signal de rotation",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves deviennent trop excités par les jeux rotatifs",
+            "options": [
+              "Utiliser des signaux calmes pour recentrer l'attention",
+              "Faire une pause respiratoire entre les rotations"
+            ]
+          },
+          {
+            "moment": "Si certains élèves dominent les jeux de groupe",
+            "options": [
+              "Rappeler que chacun mérite son tour de briller",
+              "Créer des rôles spécifiques pour chaque participant"
+            ]
+          },
+          {
+            "moment": "Si les niveaux de français sont trop variés pour un jeu",
+            "options": [
+              "Adapter les règles pour inclure tous les niveaux",
+              "Permettre le soutien par partenariat"
+            ]
+          }
+        ],
         "movementBreaks": ["Rotation active entre stations ludiques (activité principale)"]
       },
       "closing": {
@@ -1522,7 +1559,22 @@
         "activity": "Game Champions Circle - Everyone gets appreciation for game participation. Vote on favorite game to play again tomorrow.",
         "materials": ["Cercle de célébration", "Autocollants de vote"],
         "visualSupports": "Cercle de champions, vote visuel pour le jeu favori, appréciation et encouragements",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves ne veulent pas voter ou participer au choix",
+            "options": [
+              "Permettre l'observation sans pression de participation",
+              "Offrir des moyens alternatifs d'exprimer leurs préférences"
+            ]
+          },
+          {
+            "moment": "Si le vote crée des disputes ou de la déception",
+            "options": [
+              "Souligner que tous les jeux étaient fantastiques",
+              "Promettre de jouer aux autres jeux une autre fois"
+            ]
+          }
+        ],
         "movementBreaks": ["Formation du cercle et vote (8 min)"]
       },
       "troubleshooting": {
@@ -1622,7 +1674,22 @@
         "activity": "Set up performance area like a talent show. Explain 'spectacle' with stage gestures and 'talent' by pointing to students with pride.",
         "materials": ["Espace scène aménagé", "Chaises pour public", "Micro factice (optionnel)", "Rideau ou fond de scène"],
         "visualSupports": "Espace performance délimité, gestes théâtraux pour 'spectacle', pointage fier vers les élèves",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève est très nerveux pour la performance scénique",
+            "options": [
+              "Offrir de performer avec un partenaire pour le soutien",
+              "Permettre une performance plus simple ou un rôle d'assistant"
+            ]
+          },
+          {
+            "moment": "Si l'espace performance devient chaotique",
+            "options": [
+              "Établir des règles simples de public respectueux",
+              "Utiliser un signal pour organiser l'attention"
+            ]
+          }
+        ],
         "movementBreaks": ["Gestes théâtraux et préparation de scène (5 min)"]
       },
       "main": {
@@ -1630,7 +1697,22 @@
         "activity": "French Talent Showcase - Students choose how to showcase their French: singing, reciting, storytelling, demonstrating vocabulary, or simple conversations. Everyone performs something, however small.",
         "materials": ["Menu d'options de spectacle", "Accessoires simples (chapeaux, écharpes)", "Cartes de vocabulaire pour démonstrations"],
         "visualSupports": "Options de performance affichées, accessoires pour encourager la créativité, scène accueillante",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves deviennent trop compétitifs pendant les performances",
+            "options": [
+              "Rappeler que c'est une célébration, pas une compétition",
+              "Souligner le courage de chacun pour avoir essayé"
+            ]
+          },
+          {
+            "moment": "Si une performance ne se passe pas comme prévu",
+            "options": [
+              "Applaudir l'effort et encourager à continuer",
+              "Transformer l'erreur en moment d'apprentissage joyeux"
+            ]
+          }
+        ],
         "movementBreaks": ["Performances actives et applaudissements (activité principale)"]
       },
       "closing": {
@@ -1638,7 +1720,22 @@
         "activity": "Standing Ovation - After all performances, everyone stands for appreciation of courage and French growth shown by all participants.",
         "materials": ["Certificats de participation au spectacle (optionnel)"],
         "visualSupports": "Ovation debout coordonnée, applaudissements enthousiastes, reconnaissance du courage",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves sont trop émotionnels pour applaudir calmement",
+            "options": [
+              "Permettre des expressions d'appréciation diverses",
+              "Modéler des applaudissements respectueux et chaleureux"
+            ]
+          },
+          {
+            "moment": "Si l'émotion du moment devient trop intense",
+            "options": [
+              "Prendre un moment de respiration collective",
+              "Valider les émotions tout en gardant un cadre sécurisant"
+            ]
+          }
+        ],
         "movementBreaks": ["Ovation debout finale (8 min)"]
       },
       "troubleshooting": {
@@ -1738,7 +1835,22 @@
         "activity": "Show example of a letter. Explain writing to 'futur' self - the student they will be in Grade 2. Show timeline extending into next year.",
         "materials": ["Exemple de lettre au futur soi", "Ligne de temps vers Grade 2", "Enveloppes spéciales"],
         "visualSupports": "Lettre modèle, ligne de temps prolongée, image de soi futur en Grade 2",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les élèves ont du mal à comprendre le concept de 'futur soi'",
+            "options": [
+              "Utiliser des photos d'eux depuis septembre pour montrer le changement",
+              "Parler de ce qu'ils aimeraient dire à leur ami futur"
+            ]
+          },
+          {
+            "moment": "Si certains élèves semblent anxieux à l'idée d'écrire",
+            "options": [
+              "Rassurer qu'ils peuvent utiliser l'anglais au besoin",
+              "Offrir de dicter leurs idées s'ils préfèrent"
+            ]
+          }
+        ],
         "movementBreaks": ["Gestes d'écriture et de temps futur (3 min)"]
       },
       "main": {
@@ -1746,7 +1858,29 @@
         "activity": "Future Self Letters - Students write simple letters to their Grade 2 selves about French learning: what they learned, what they're proud of, advice for continuing. Use mix of French phrases and English as needed.",
         "materials": ["Papier à lettre spécial", "Templates avec phrases de départ", "Crayons colorés", "Autocollants décoratifs"],
         "visualSupports": "Templates avec exemples de phrases, images pour inspirer les idées, modèle de lettre complétée",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève ne sait pas quoi écrire à son futur soi",
+            "options": [
+              "Suggérer des questions simples comme 'Qu'as-tu appris?'",
+              "Encourager les dessins avec quelques mots si l'écriture est difficile"
+            ]
+          },
+          {
+            "moment": "Si l'écriture devient émotionnelle ou nostalgique",
+            "options": [
+              "Valider les émotions comme signe de beaux souvenirs",
+              "Recentrer sur les aspects positifs et les fiertés"
+            ]
+          },
+          {
+            "moment": "Si certains élèves terminent beaucoup plus rapidement",
+            "options": [
+              "Inviter à décorer davantage ou ajouter des dessins",
+              "Permettre de commencer une deuxième lettre courte"
+            ]
+          }
+        ],
         "movementBreaks": ["Création réfléchie des lettres (activité principale)"]
       },
       "closing": {
@@ -1754,7 +1888,22 @@
         "activity": "Letter Sealing Ceremony - Students seal letters in special envelopes to be opened at start of Grade 2 (with teacher coordination).",
         "materials": ["Enveloppes spéciales", "Cire ou autocollants de scellement", "Boîte de conservation"],
         "visualSupports": "Cérémonie solennelle de scellement, boîte spéciale pour conservation, promesse de réouverture",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves deviennent trop excités par la cérémonie",
+            "options": [
+              "Modéler le côté solennel et spécial du moment",
+              "Faire chuchoter les commentaires pour garder l'ambiance"
+            ]
+          },
+          {
+            "moment": "Si un élève change d'avis et veut rouvrir sa lettre",
+            "options": [
+              "Expliquer doucement que c'est la magie de garder la surprise",
+              "Rassurer que l'ouverture en Grade 2 sera très spéciale"
+            ]
+          }
+        ],
         "movementBreaks": ["Cérémonie de scellement (8 min)"]
       },
       "troubleshooting": {
@@ -1854,7 +2003,22 @@
         "activity": "Discuss how scary but exciting starting Grade 1 French was. Show 'cadeau' with giving gesture and explain creating something special for new students.",
         "materials": ["Matériaux créatifs variés", "Exemples de cadeaux d'aide", "Photos des premiers jours"],
         "visualSupports": "Photos des débuts d'année, geste généreux pour 'cadeau', images d'entraide",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves ne se souviennent pas de leurs débuts difficiles",
+            "options": [
+              "Utiliser les photos de septembre pour réveiller les souvenirs",
+              "Partager des exemples généraux de défis des débutants"
+            ]
+          },
+          {
+            "moment": "Si les élèves deviennent trop concentrés sur leurs propres difficultés passées",
+            "options": [
+              "Recentrer sur leurs progrès et succès actuels",
+              "Orienter vers comment ils peuvent aider les autres maintenant"
+            ]
+          }
+        ],
         "movementBreaks": ["Gestes de don et préparation créative (5 min)"]
       },
       "main": {
@@ -1862,7 +2026,22 @@
         "activity": "Gift Creation Workshop - Students create welcome gifts for new Grade 1 French students: advice cards, welcome posters, recorded messages, or simple French phrase books. Focus on encouragement and support.",
         "materials": ["Cartons colorés", "Marqueurs et crayons", "Autocollants encourageants", "Templates de cartes", "Enregistreur audio (optionnel)"],
         "visualSupports": "Exemples de cadeaux d'aide, templates créatifs, focus sur l'encouragement et l'accueil",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève ne trouve rien qu'il aime dans les choix offerts",
+            "options": [
+              "Explorer ensemble ce qui pourrait l'intéresser",
+              "Permettre d'adapter une activité à ses préférences"
+            ]
+          },
+          {
+            "moment": "Si les centres deviennent surchargés ou déséquilibrés",
+            "options": [
+              "Suggérer doucement des alternatives moins occupées",
+              "Utiliser un système simple de rotation si nécessaire"
+            ]
+          }
+        ],
         "movementBreaks": ["Atelier créatif actif (activité principale)"]
       },
       "closing": {
@@ -1870,7 +2049,22 @@
         "activity": "Gift Presentation - Students show their gifts and explain how they will help new French learners feel welcome and confident.",
         "materials": ["Cadeaux créés", "Espace d'exposition"],
         "visualSupports": "Exposition des cadeaux créés, présentations fières, focus sur l'aide aux autres",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si le partage des créations devient trop long ou répétitif",
+            "options": [
+              "Utiliser des partages rapides par paires d'abord",
+              "Célébrer la diversité sans que chacun doive tout expliquer"
+            ]
+          },
+          {
+            "moment": "Si un élève n'a pas terminé sa création ou n'a rien à montrer",
+            "options": [
+              "Valoriser le processus d'exploration plutôt que le produit",
+              "Permettre de partager son expérience d'apprentissage"
+            ]
+          }
+        ],
         "movementBreaks": ["Présentation et partage des cadeaux (8 min)"]
       },
       "troubleshooting": {
@@ -1970,7 +2164,22 @@
         "activity": "Show choice menu of French activities. Explain 'temps libre' - time to choose what they want to do in French. Show 'intérêt' by asking about preferences.",
         "materials": ["Menu visuel des choix d'activités", "Centres d'activités préparés", "Matériaux variés"],
         "visualSupports": "Menu coloré des options, centres clairement identifiés, geste de choix libre avec les mains",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève ne trouve rien qu'il aime dans les choix offerts",
+            "options": [
+              "Explorer ensemble ce qui pourrait l'intéresser",
+              "Permettre d'adapter une activité à ses préférences"
+            ]
+          },
+          {
+            "moment": "Si les centres deviennent surchargés ou déséquilibrés",
+            "options": [
+              "Suggérer doucement des alternatives moins occupées",
+              "Utiliser un système simple de rotation si nécessaire"
+            ]
+          }
+        ],
         "movementBreaks": ["Exploration du menu et des centres (5 min)"]
       },
       "main": {
@@ -1978,7 +2187,29 @@
         "activity": "French Choice Time - Students choose from: French books, drawing with French labels, singing French songs, playing French games, or creating with French materials. Teacher supports all choices.",
         "materials": ["Livres français variés", "Matériaux de dessin avec étiquettes", "Instruments et chansons", "Jeux français", "Matériaux créatifs"],
         "visualSupports": "Centres bien organisés avec matériaux accessibles, instructions visuelles pour chaque centre",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves changent constamment d'activité sans approfondir",
+            "options": [
+              "Encourager doucement à explorer plus profondément",
+              "Offrir un rappel du temps pour bien profiter de chaque choix"
+            ]
+          },
+          {
+            "moment": "Si un élève monopolise les matériaux d'un centre",
+            "options": [
+              "Rappeler le partage et l'inclusion de tous",
+              "Suggérer un système de tour ou de collaboration"
+            ]
+          },
+          {
+            "moment": "Si les élèves ont du mal à utiliser le français dans leurs choix libres",
+            "options": [
+              "Modéler l'usage du français de façon naturelle",
+              "Accepter le mélange langagier tout en encourageant le français"
+            ]
+          }
+        ],
         "movementBreaks": ["Activités libres choisies (activité principale)"]
       },
       "closing": {
@@ -1986,7 +2217,22 @@
         "activity": "Choice Reflection - Students share what they chose and why. Appreciate the variety of interests and ways to enjoy French.",
         "materials": ["Créations ou travaux des élèves"],
         "visualSupports": "Partage des créations, célébration de la diversité des intérêts, appréciation mutuelle",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si le partage des créations devient trop long ou répétitif",
+            "options": [
+              "Utiliser des partages rapides par paires d'abord",
+              "Célébrer la diversité sans que chacun doive tout expliquer"
+            ]
+          },
+          {
+            "moment": "Si un élève n'a pas terminé sa création ou n'a rien à montrer",
+            "options": [
+              "Valoriser le processus d'exploration plutôt que le produit",
+              "Permettre de partager son expérience d'apprentissage"
+            ]
+          }
+        ],
         "movementBreaks": ["Partage et nettoyage des centres (8 min)"]
       },
       "troubleshooting": {
@@ -2086,7 +2332,22 @@
         "activity": "Gather in celebration circle. Explain this is 'au revoir' to Grade 1 French but 'à bientôt' because French learning continues. Show excitement for future.",
         "materials": ["Cercle célébration final", "Banniere 'Au revoir et à bientôt'", "Musique douce"],
         "visualSupports": "Cercle final décoré, geste d'au revoir et de futur rapproché, ambiance à la fois célébratoire et nostalgique",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si les émotions de fin d'année deviennent très intenses",
+            "options": [
+              "Valider toutes les émotions comme normales et importantes",
+              "Offrir des moments de calme pour ceux qui en ont besoin"
+            ]
+          },
+          {
+            "moment": "Si certains élèves résistent à l'idée de 'au revoir'",
+            "options": [
+              "Souligner que c'est 'à bientôt' et que l'apprentissage continue",
+              "Parler des nouvelles aventures qui les attendent"
+            ]
+          }
+        ],
         "movementBreaks": ["Formation du cercle célébration (5 min)"]
       },
       "main": {
@@ -2094,7 +2355,29 @@
         "activity": "Final Celebration Festival - Multiple stations: memory book signing, photo taking, favorite activity reprises, future preview, and appreciation circle. End with group performance of favorite French song.",
         "materials": ["Livre de souvenirs à signer", "Appareil photo", "Matériaux pour activités préférées", "Cahier de chansons"],
         "visualSupports": "Stations festives organisées, livre de souvenirs magnifique, révision des moments forts de l'année",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si certains élèves deviennent très nostalgiques durant le festival",
+            "options": [
+              "Permettre et honorer la nostalgie comme marque de beaux souvenirs",
+              "Équilibrer avec l'excitation pour les futures aventures"
+            ]
+          },
+          {
+            "moment": "Si les stations du festival deviennent désorganisées",
+            "options": [
+              "Utiliser des guides étudiants pour aider à l'organisation",
+              "Simplifier les rotations selon les besoins du moment"
+            ]
+          },
+          {
+            "moment": "Si la performance finale de chanson devient chaotique",
+            "options": [
+              "Se concentrer sur la joie de chanter ensemble plutôt que la perfection",
+              "Permettre différents niveaux de participation"
+            ]
+          }
+        ],
         "movementBreaks": ["Festival de célébration avec rotations (activité principale)"]
       },
       "closing": {
@@ -2102,7 +2385,22 @@
         "activity": "Final Circle - Everyone shares one word describing their Grade 1 French experience. End with group hug and 'À bientôt!' rather than goodbye.",
         "materials": ["Cercle final confortable"],
         "visualSupports": "Cercle émotionnel et bienveillant, câlin de groupe chaleureux, 'À bientôt!' plein d'espoir",
-        "decisionPoints": [],
+        "decisionPoints": [
+          {
+            "moment": "Si un élève devient trop émotionnel pour partager son mot final",
+            "options": [
+              "Permettre de passer son tour sans pression",
+              "Offrir de chuchoter son mot à l'enseignante"
+            ]
+          },
+          {
+            "moment": "Si le câlin de groupe devient trop intense ou inconfortable",
+            "options": [
+              "Respecter les limites de confort de chacun",
+              "Offrir des alternatives comme des applaudissements ou des sourires"
+            ]
+          }
+        ],
         "movementBreaks": ["Cercle final et câlin de groupe (8 min)"]
       },
       "troubleshooting": {

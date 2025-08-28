@@ -19,42 +19,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle d'amitié avec la marionnette Léo. Comptine: 'Bonjour mes amis, comment allez-vous?' Présentation de Léo qui cherche des amis. Discussion: Qu'est-ce qui rend quelqu'un un bon ami? Montrer des images d'enfants qui jouent ensemble, partagent et s'aident.",
+        "materials": [
+          "Marionnette Léo (petit lapin en peluche)",
+          "Images d'amitié (partager, jouer, aider)",
+          "Livre illustré 'Léo cherche des amis'",
+          "Miroir de l'amitié décoré"
+        ],
+        "visualSupports": "Cartes visuelles des comportements amicaux, gestes TPR pour 'ami', 'gentil', 'partager', expressions faciales chaleureuses",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'a pas d'amis → l'aider à identifier une personne qui lui sourit ou partage avec lui, même si ce n'est pas un 'meilleur ami'",
+          "Si un élève ne comprend pas 'ami' → utiliser Léo pour montrer concrètement: 'Léo partage ses carottes, Léo aide ses amis'",
+          "Si un élève semble timide → permettre qu'il chuchote sa réponse à Léo plutôt qu'au groupe entier"
+        ],
+        "movementBreaks": [
+          "Geste de l'amitié (serrer la main doucement)",
+          "Mouvement du partage (offrir avec les deux mains)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo raconte ses aventures d'amitié. Histoire interactive: 'Léo au parc' - comment il a rencontré ses amis en partageant sa balle. Élèves identifient les comportements amicaux dans l'histoire. Jeu du miroir de l'amitié: regarder son reflet et dire une qualité d'ami qu'on a.",
+        "materials": [
+          "Histoire illustrée de Léo",
+          "Balles colorées pour démonstration",
+          "Miroir de l'amitié",
+          "Cartes des qualités d'amis"
+        ],
+        "visualSupports": "Séquences d'images de l'histoire, démonstrations concrètes du partage, expressions faciales positives constantes",
+        "decisionPoints": [
+          "Si un élève ne peut pas nommer une qualité d'ami → offrir des choix visuels: 'Es-tu gentil ou serviable?'",
+          "Si un élève mentionne des difficultés d'amitié → valider ses sentiments et rediriger vers les solutions de Léo",
+          "Si le groupe devient agité → faire une pause 'Léo se cache' jusqu'à ce que le calme revienne"
+        ],
+        "movementBreaks": [
+          "Étirement des bras 'accueillir un ami'",
+          "Marche sur place 'aller vers un ami'"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Question réflexive: 'Quelle façon d'être un bon ami veux-tu essayer aujourd'hui?' Chaque élève choisit une carte-objectif d'amitié. Chanson finale: 'Les amis, c'est précieux dans mon cœur!' Câlin de groupe amical.",
+        "materials": [
+          "Cartes-objectifs d'amitié",
+          "Léo la marionnette",
+          "Tableau des intentions d'amitié",
+          "Carte de chanson illustrée"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, gestes pour la chanson, tableau visuel des objectifs d'amitié",
+        "decisionPoints": [
+          "Si un élève ne peut pas choisir un objectif → proposer deux choix concrets: 'partager' ou 'aider'",
+          "Si un élève choisit un objectif trop difficile → l'aider à simplifier: 'Comment peux-tu aider juste un petit peu?'",
+          "Si un élève refuse le câlin de groupe → offrir une alternative: serrer la main de Léo"
+        ],
+        "movementBreaks": [
+          "Geste du cœur précieux",
+          "Mouvement de câlin doux"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté à comprendre le concept d'ami",
+        "then": "Utiliser des exemples très concrets avec la marionnette et des gestes simples"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Savoir ce qu'est un ami aide les élèves à créer des liens positifs dans la classe, à la récréation et à la maison",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser uniquement les concepts de base: gentil, partager, jouer",
+          "Permettre la réponse par gestes ou pointage plutôt que par mots",
+          "Offrir plus de temps avec Léo en interaction individuelle"
+        ],
+        "forAdvanced": [
+          "Introduire des qualités d'amis plus nuancées: loyal, compréhensif",
+          "Encourager à donner des exemples personnels d'amitié",
+          "Inviter à aider les pairs à identifier les qualités d'amis"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels et de démonstrations",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec un pair francophone pour le soutien"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins sociaux individuels",
+          "Utiliser des supports sensoriels appropriés",
+          "Modifier les attentes selon les objectifs du PEI"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'histoire de Léo",
+          "L'élève pointe ou nomme des comportements amicaux dans les images",
+          "L'élève participe aux gestes d'amitié avec plaisir",
+          "L'élève choisit une qualité d'ami dans le miroir"
+        ],
+        "checkpoints": [
+          "Début de leçon: Observer l'engagement avec la marionnette Léo",
+          "Milieu: Vérifier la compréhension des comportements amicaux",
+          "Fin: Noter le choix d'objectif d'amitié de chaque élève"
+        ]
       }
     },
     {
@@ -70,42 +131,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Révision avec Léo qui présente son coffre aux trésors des qualités d'amis. Comptine: 'Moi aussi j'ai des qualités, dans mon cœur elles brillent!' Léo montre fièrement ses qualités: 'Je suis serviable, je partage mes carottes.' Préparation à découvrir nos propres trésors.",
+        "materials": [
+          "Coffre aux trésors décoré",
+          "Léo la marionnette",
+          "Cartes de qualités brillantes",
+          "Miroir magique des qualités"
+        ],
+        "visualSupports": "Coffre coloré et attrayant, cartes scintillantes des qualités, gestes TPR pour 'qualité', 'bon', 'spécial'",
+        "decisionPoints": [
+          "Si un élève dit 'Je n'ai pas de qualités' → Léo chuchote à l'oreille: 'Moi je vois que tu es gentil quand tu souris'",
+          "Si un élève ne comprend pas 'qualité' → utiliser 'chose spéciale que tu fais bien' avec exemples concrets",
+          "Si un élève est timide → permettre qu'il chuchote sa qualité à Léo en premier"
+        ],
+        "movementBreaks": [
+          "Geste du trésor (mains en coupe)",
+          "Mouvement du cœur qui brille (mains sur le cœur)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration personnelle des qualités. Chaque élève reçoit son propre petit miroir pour découvrir ses qualités d'ami. Léo aide: 'Regarde-toi, qu'est-ce que tu fais bien avec tes amis?' Création d'un collier de qualités personnalisé avec des perles colorées représentant chaque qualité identifiée.",
+        "materials": [
+          "Petits miroirs individuels",
+          "Perles colorées et ficelles",
+          "Images de qualités d'amis",
+          "Tableau des découvertes personnelles"
+        ],
+        "visualSupports": "Code couleur pour les qualités (rouge=gentil, bleu=serviable, etc.), démonstrations concrètes avec Léo, photos d'enfants montrant diverses qualités",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à voir ses qualités → pointer des comportements observés: 'Hier tu as aidé Marie avec son crayon'",
+          "Si un élève nomme seulement des qualités physiques → rediriger: 'Et dans ton cœur, comment aides-tu tes amis?'",
+          "Si un élève devient frustré avec le collier → offrir de l'aide d'un pair ou simplifier avec moins de perles"
+        ],
+        "movementBreaks": [
+          "Étirement 'je grandis avec mes qualités'",
+          "Danse douce avec le collier"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de partage des qualités. Chaque élève montre fièrement son collier et dit une qualité qu'il a découverte. Léo applaudit chaque partage. Engagement: 'Cette semaine, je vais utiliser ma qualité spéciale pour être un bon ami.' Chanson: 'Mes qualités brillent, mes qualités grandissent!'",
+        "materials": [
+          "Colliers de qualités complétés",
+          "Tableau d'engagement hebdomadaire",
+          "Léo la marionnette",
+          "Carte de chanson des qualités"
+        ],
+        "visualSupports": "Routine de partage structurée, applaudissements encourageants, tableau visuel des engagements",
+        "decisionPoints": [
+          "Si un élève refuse de partager → offrir de montrer seulement son collier sans parler",
+          "Si un élève se compare négativement → rappeler que 'chaque personne a des qualités différentes et spéciales'",
+          "Si un élève oublie sa qualité → Léo chuchote un rappel discret"
+        ],
+        "movementBreaks": [
+          "Geste de fierté (bras croisés, sourire)",
+          "Mouvement de croissance (étirer vers le haut)"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté à identifier ses propres qualités",
+        "then": "Pointer concrètement des comportements positifs observés chez l'élève"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Connaître ses qualités aide les élèves à avoir confiance en eux et à construire des amitiés positives",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer par une seule qualité simple et concrète",
+          "Utiliser des photos de l'élève en action positive",
+          "Permettre l'aide d'un pair pour identifier les qualités"
+        ],
+        "forAdvanced": [
+          "Explorer des qualités plus abstraites comme 'compréhensif' ou 'patient'",
+          "Encourager à donner des exemples spécifiques de leurs qualités",
+          "Inviter à aider les autres à découvrir leurs qualités"
+        ],
+        "forELL": [
+          "Utiliser des images et des gestes pour chaque qualité",
+          "Permettre l'expression dans leur langue maternelle",
+          "Offrir un vocabulaire visuel des qualités de base"
+        ],
+        "forIEP": [
+          "Adapter les matériaux (collier plus simple, moins de perles)",
+          "Modifier les attentes selon les capacités individuelles",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève regarde attentivement dans le miroir des qualités",
+          "L'élève identifie au moins une qualité positive en lui",
+          "L'élève participe activement à la création de son collier",
+          "L'élève montre de la fierté lors du partage final"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement avec le coffre aux trésors",
+          "Milieu: Vérifier si l'élève peut nommer une qualité personnelle",
+          "Fin: Noter la participation au partage et l'engagement pris"
+        ]
       }
     },
     {
@@ -121,42 +243,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo arrive avec son sac à dos d'aventures sociales. Comptine: 'Pour faire un ami, que dois-je faire? Saluer, sourire et partager!' Léo montre comment il approche les nouveaux amis. Démonstration: les bonnes façons de dire bonjour et de commencer à jouer.",
+        "materials": [
+          "Sac à dos d'aventures sociales",
+          "Léo la marionnette",
+          "Cartes des stratégies d'amitié",
+          "Tableau des étapes pour faire des amis"
+        ],
+        "visualSupports": "Séquence visuelle des étapes (1. Saluer 2. Sourire 3. Demander de jouer), gestes TPR pour chaque étape, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève dit qu'il est trop timide → pratiquer d'abord avec Léo: 'Dis bonjour à Léo, il est gentil'",
+          "Si un élève ne comprend pas 'saluer' → démontrer concrètement: main levée, sourire, dire 'Bonjour!'",
+          "Si un élève mentionne des échecs passés → valider et rediriger: 'Parfois ça marche, parfois non, c'est normal'"
+        ],
+        "movementBreaks": [
+          "Geste de salutation (main levée)",
+          "Mouvement du sourire (mains sur les joues)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Atelier pratique des stratégies d'amitié. Léo présente ses 'super pouvoirs d'amitié': 1) Regarder dans les yeux 2) Sourire 3) Dire quelque chose de gentil 4) Proposer de jouer ensemble. Jeux de rôle en paires: pratiquer chaque stratégie avec un partenaire différent.",
+        "materials": [
+          "Cartes des super pouvoirs d'amitié",
+          "Accessoires de jeu de rôle (chapeaux, jouets)",
+          "Tableau de suivi des pratiques",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations visuelles de chaque étape, modèles de phrases à utiliser ('Veux-tu jouer avec moi?'), langage corporel positif",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux jeux de rôle → permettre d'observer d'abord, puis de pratiquer avec Léo seulement",
+          "Si un élève utilise des stratégies inappropriées → rediriger doucement: 'Léo montre une façon plus douce'",
+          "Si un élève se décourage → célébrer chaque petit effort: 'Ça c'est un super essai!'"
+        ],
+        "movementBreaks": [
+          "Marche confiante vers un nouvel ami",
+          "Étirement 'j'ouvre mes bras pour accueillir'"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de réflexion avec Léo. Chaque élève choisit sa stratégie d'amitié préférée pour essayer cette semaine. Création d'un 'passeport d'amitié' personnel avec sa stratégie choisie. Chanson: 'Je peux faire des amis, je sais comment m'y prendre!'",
+        "materials": [
+          "Passeports d'amitié vierges",
+          "Crayons et autocollants",
+          "Tableau des engagements de la semaine",
+          "Chanson illustrée"
+        ],
+        "visualSupports": "Passeport coloré et attrayant, routine de choix individuel, célébration de chaque engagement pris",
+        "decisionPoints": [
+          "Si un élève ne peut pas choisir une stratégie → proposer la plus simple: 'sourire et dire bonjour'",
+          "Si un élève choisit toutes les stratégies → l'aider à se concentrer: 'Laquelle veux-tu essayer en premier?'",
+          "Si un élève exprime des doutes → rappeler ses succès en classe: 'Tu es déjà gentil avec tes camarades'"
+        ],
+        "movementBreaks": [
+          "Geste de confiance (pouce levé)",
+          "Mouvement de célébration douce"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté à approcher les autres enfants",
+        "then": "Commencer par des interactions guidées avec l'adulte, puis progresser vers les pairs"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Ces stratégies aident les élèves à créer des liens à la récréation, dans de nouveaux groupes et activités",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur une seule stratégie à la fois (commencer par le sourire)",
+          "Utiliser plus de modélage avec l'adulte avant la pratique entre pairs",
+          "Offrir des scripts visuels: 'Bonjour, comment tu t'appelles?'"
+        ],
+        "forAdvanced": [
+          "Explorer des stratégies plus complexes: trouver des intérêts communs",
+          "Encourager à aider les pairs plus timides dans leurs approches",
+          "Discuter de l'adaptation des stratégies selon différentes personnes"
+        ],
+        "forELL": [
+          "Enseigner des phrases simples dans les deux langues si nécessaire",
+          "Utiliser beaucoup de démonstrations non verbales",
+          "Jumeler avec un pair bienveillant pour la pratique"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins sociaux (certains peuvent préférer les jeux parallèles)",
+          "Utiliser des supports visuels personnalisés",
+          "Modifier les attentes selon les capacités d'interaction sociale"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement les stratégies présentées par Léo",
+          "L'élève participe aux jeux de rôle avec intérêt",
+          "L'élève démontre au moins une stratégie d'approche sociale",
+          "L'élève choisit une stratégie pour son passeport d'amitié"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement avec les démonstrations de Léo",
+          "Milieu: Vérifier la participation aux jeux de rôle et la compréhension",
+          "Fin: Noter la stratégie choisie et le niveau de confiance exprimé"
+        ]
       }
     },
     {
@@ -172,42 +355,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo arrive avec une belle pomme rouge qu'il veut partager. Comptine: 'Partager, partager, c'est donner avec son cœur!' Démonstration: Léo coupe sa pomme en morceaux pour tous ses amis. Discussion: Pourquoi est-ce que partager rend tout le monde content?",
+        "materials": [
+          "Pomme factice sécable",
+          "Léo la marionnette",
+          "Plateau de partage",
+          "Images d'enfants qui partagent"
+        ],
+        "visualSupports": "Démonstration concrète du partage, images séquentielles (avant/après partage), gestes TPR pour 'partager', 'tour', 'ensemble'",
+        "decisionPoints": [
+          "Si un élève dit 'Je ne veux pas partager' → Léo comprend: 'C'est difficile parfois, on peut commencer petit'",
+          "Si un élève ne comprend pas pourquoi partager → montrer les visages contents quand Léo partage sa pomme",
+          "Si un élève mentionne qu'on ne lui rend jamais → valider et enseigner: 'Parfois on donne, parfois on reçoit'"
+        ],
+        "movementBreaks": [
+          "Geste du partage (diviser avec les mains)",
+          "Mouvement du cœur content (mains sur le cœur)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Station d'exploration du partage. Léo guide trois activités: 1) Partage de jouets (chacun son tour avec les blocs) 2) Partage de matériaux d'art (crayons et papier) 3) Partage d'idées (construire ensemble). Pratique du 'tour de rôle' avec minuteur visuel.",
+        "materials": [
+          "Blocs de construction variés",
+          "Matériaux d'art à partager",
+          "Minuteur visuel coloré",
+          "Cartes 'C'est ton tour'"
+        ],
+        "visualSupports": "Minuteur visuel pour les tours, cartes de rappel du partage, démonstrations de Léo à chaque station",
+        "decisionPoints": [
+          "Si un élève refuse de donner son tour → utiliser le minuteur: 'Regarde, quand ça sonne, c'est le tour de ton ami'",
+          "Si un élève accapare tous les matériaux → rediriger avec Léo: 'Léo dit qu'il y en a pour tout le monde'",
+          "Si un conflit éclate sur le partage → arrêter et modéler: 'Léo montre comment demander gentiment'"
+        ],
+        "movementBreaks": [
+          "Danse du partage (passer des objets imaginaires)",
+          "Étirement 'mes bras s'ouvrent pour donner'"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de réflexion sur le partage. Léo demande: 'Comment vous sentez-vous quand vous partagez?' et 'Comment vous sentez-vous quand quelqu'un partage avec vous?' Création d'un 'contrat de partage' de classe avec des dessins simples.",
+        "materials": [
+          "Grande affiche 'Notre contrat de partage'",
+          "Crayons et autocollants",
+          "Cartes d'émotions (content, fier)",
+          "Léo la marionnette"
+        ],
+        "visualSupports": "Affiche colorée du contrat, cartes d'émotions pour exprimer les sentiments, dessins simples pour représenter les accords",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à exprimer ses sentiments → utiliser les cartes d'émotions: 'Montre-nous avec cette carte'",
+          "Si un élève refuse de signer le contrat → respecter et proposer: 'Tu peux juste dessiner quelque chose'",
+          "Si un élève veut partager une expérience personnelle difficile → écouter puis rediriger: 'Parlons avec Léo après'"
+        ],
+        "movementBreaks": [
+          "Geste de signature fière",
+          "Mouvement de célébration du groupe"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Résistance à partager ses affaires personnelles",
+        "then": "Commencer par partager des objets de classe, puis progresser graduellement"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Le partage aide à créer une atmosphère positive à la maison, à l'école et dans les jeux avec les amis",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer par des objets moins précieux ou en double",
+          "Utiliser un minuteur très court au début (30 secondes)",
+          "Offrir beaucoup d'encouragement pour chaque petit partage"
+        ],
+        "forAdvanced": [
+          "Explorer le concept de partage d'idées et de solutions",
+          "Encourager à aider les autres dans leurs difficultés de partage",
+          "Discuter des différents types de partage (temps, attention, aide)"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de démonstrations visuelles et de gestes",
+          "Enseigner des phrases clés: 'Peux-tu partager?' 'C'est ton tour'",
+          "Permettre l'usage de leur langue maternelle pour exprimer les émotions"
+        ],
+        "forIEP": [
+          "Adapter selon les capacités sensorielles (certains enfants peuvent avoir des objets réconfortants)",
+          "Modifier les attentes selon les besoins individuels",
+          "Utiliser des supports visuels personnalisés pour la séquence de partage"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève observe attentivement la démonstration de partage de Léo",
+          "L'élève participe à au moins une activité de partage",
+          "L'élève respecte le tour des autres avec le minuteur",
+          "L'élève exprime ses sentiments sur le partage (verbalement ou visuellement)"
+        ],
+        "checkpoints": [
+          "Début: Observer la réaction à la démonstration de partage",
+          "Milieu: Vérifier la participation aux stations et l'usage du minuteur",
+          "Fin: Noter la contribution au contrat de partage et l'expression des sentiments"
+        ]
       }
     },
     {
@@ -223,42 +467,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente ses amis les oursons qui veulent construire une maison ensemble. Comptine: 'À plusieurs c'est plus amusant, tous ensemble on est gagnant!' Démonstration: comment les oursons s'entraident - un tient, l'autre colle, le troisième décore.",
+        "materials": [
+          "Famille d'oursons en peluche",
+          "Petite maison à construire (blocs)",
+          "Léo la marionnette",
+          "Images de travail d'équipe"
+        ],
+        "visualSupports": "Démonstration concrète avec les oursons, gestes TPR pour 'coopérer', 'équipe', 'aider', séquence visuelle de la construction",
+        "decisionPoints": [
+          "Si un élève dit 'Je préfère jouer tout seul' → Léo comprend: 'Parfois c'est vrai, et parfois c'est amusant à plusieurs'",
+          "Si un élève ne comprend pas 'coopérer' → montrer avec les oursons: 'Regarde, ils travaillent ensemble!'",
+          "Si un élève mentionne des conflits de jeu → valider: 'C'est difficile parfois, Léo va nous montrer des trucs'"
+        ],
+        "movementBreaks": [
+          "Geste de l'équipe (mains jointes au centre)",
+          "Mouvement d'entraide (tendre la main)"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Ateliers de jeu coopératif guidés par Léo. Station 1: Construction collective d'une tour (chacun ajoute un bloc). Station 2: Peinture de groupe (chacun peint une partie). Station 3: Puzzle géant (chacun place des pièces). Accent sur l'encouragement mutuel et la célébration des succès d'équipe.",
+        "materials": [
+          "Blocs de construction variés",
+          "Papier géant et pinceaux",
+          "Puzzle géant simple (12 pièces)",
+          "Autocollants d'équipe"
+        ],
+        "visualSupports": "Instructions visuelles pour chaque station, minuteur pour la rotation, modèles d'encouragement ('Bravo!', 'Super travail d'équipe!')",
+        "decisionPoints": [
+          "Si un élève domine l'activité → rediriger gentiment: 'Léo rappelle que chacun a son tour d'aider'",
+          "Si un élève refuse de participer → offrir un rôle d'observateur encourageant: 'Tu peux applaudir l'équipe'",
+          "Si une dispute éclate dans l'équipe → arrêter et modéler: 'Léo montre comment on peut résoudre ça ensemble'"
+        ],
+        "movementBreaks": [
+          "Danse de l'équipe (mouvement synchronisé)",
+          "Étirement 'on se soutient' (en paires)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de célébration des réussites d'équipe. Léo félicite chaque groupe et demande: 'Qu'est-ce qui a bien marché quand vous avez joué ensemble?' Création d'un tableau de 'Nos succès d'équipe' avec dessins et mots.",
+        "materials": [
+          "Tableau 'Nos succès d'équipe'",
+          "Crayons colorés",
+          "Autocollants de félicitations",
+          "Léo la marionnette"
+        ],
+        "visualSupports": "Tableau coloré et invitant, routine de célébration positive, modèles de phrases pour décrire les succès",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier un succès → pointer quelque chose de précis: 'Tu as aidé ton équipe en tenant le papier'",
+          "Si un élève critique son équipe → rediriger positivement: 'Qu'est-ce que ton équipe pourrait essayer la prochaine fois?'",
+          "Si un élève veut dessiner seul plutôt qu'au tableau → respecter et proposer: 'Tu peux dessiner et Léo l'ajoutera au tableau'"
+        ],
+        "movementBreaks": [
+          "Applaudissements d'équipe",
+          "Mouvement de fierté collective"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté à partager le contrôle ou les rôles",
+        "then": "Assigner des rôles spécifiques et les faire tourner avec un minuteur"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Le jeu coopératif aide dans les sports d'équipe, les projets familiaux et les activités de classe",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Commencer par des groupes de 2 plutôt que plus grands",
+          "Donner des rôles très spécifiques et simples",
+          "Offrir plus de soutien de l'adulte pendant les activités"
+        ],
+        "forAdvanced": [
+          "Introduire des défis plus complexes nécessitant plus de planification",
+          "Encourager à être des leaders positifs dans leur équipe",
+          "Discuter de stratégies d'entraide et de résolution de problèmes"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de démonstrations et de modélage",
+          "Enseigner des phrases d'encouragement simples: 'Bon travail!', 'Continue!'",
+          "Jumeler avec des pairs bienveillants et patients"
+        ],
+        "forIEP": [
+          "Adapter les activités selon les capacités motrices et sensorielles",
+          "Modifier les attentes selon les besoins sociaux individuels",
+          "Utiliser des supports visuels personnalisés pour les étapes de coopération"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève observe attentivement la démonstration avec les oursons",
+          "L'élève participe positivement à au moins une activité d'équipe",
+          "L'élève montre des signes d'encouragement envers ses coéquipiers",
+          "L'élève contribue au tableau des succès d'équipe"
+        ],
+        "checkpoints": [
+          "Début: Observer l'intérêt pour la démonstration de coopération",
+          "Milieu: Vérifier la participation aux stations et les interactions positives",
+          "Fin: Noter la capacité à identifier et célébrer les succès d'équipe"
+        ]
       }
     },
     {
@@ -274,42 +579,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente sa collection d'amis: un chat, un oiseau, un poisson. Comptine: 'Différents mais amis, c'est ça la magie!' Discussion: Comment ses amis sont-ils différents? Comment sont-ils semblables? Pourquoi Léo les aime tous?",
+        "materials": [
+          "Marionnettes variées (chat, oiseau, poisson)",
+          "Léo la marionnette",
+          "Images de familles diverses",
+          "Miroir de la diversité"
+        ],
+        "visualSupports": "Collection visuelle d'amis différents, gestes TPR pour 'différent', 'unique', 'accepter', images de diversité positive",
+        "decisionPoints": [
+          "Si un élève fait des commentaires négatifs sur les différences → Léo redirige: 'Regarde comme c'est intéressant d'être différent!'",
+          "Si un élève ne comprend pas 'différent' → montrer concrètement: 'Le chat miaule, l'oiseau chante, tous sont spéciaux'",
+          "Si un élève se sent exclu par ses différences → valider et célébrer: 'Léo dit que c'est ça qui te rend spécial'"
+        ],
+        "movementBreaks": [
+          "Mouvement du chat, de l'oiseau, du poisson",
+          "Geste de célébration de la diversité"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration des différences célébrées. Station 1: 'Nos cheveux différents' (observer et dessiner). Station 2: 'Nos langues différentes' (écouter des salutations). Station 3: 'Nos talents différents' (montrer une habileté spéciale). Léo guide et célèbre chaque découverte.",
+        "materials": [
+          "Miroirs individuels",
+          "Papier et crayons colorés",
+          "Enregistrements de salutations multilingues",
+          "Cartes de talents spéciaux"
+        ],
+        "visualSupports": "Photos de diversité positive, cartes visuelles des différents talents, démonstrations de Léo célébrant chaque différence",
+        "decisionPoints": [
+          "Si un élève se compare négativement → Léo intervient: 'Chacun a quelque chose de spécial et différent'",
+          "Si un élève rit des différences des autres → rediriger avec empathie: 'Comment te sentirais-tu si on riait de toi?'",
+          "Si un élève refuse de partager ses différences → respecter et offrir: 'Tu peux observer les autres aujourd'hui'"
+        ],
+        "movementBreaks": [
+          "Danse des différences (chacun son mouvement)",
+          "Étirement 'je suis unique' (pose personnelle)"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Cercle de célébration de l'unicité. Léo demande: 'Qu'est-ce qui rend tes amis spéciaux et différents?' Création d'un collage de classe: 'Nous sommes tous différents et c'est merveilleux!' Chant: 'Vive nos différences!'",
+        "materials": [
+          "Grande toile pour collage",
+          "Photos ou dessins des élèves",
+          "Matériaux de collage variés",
+          "Chanson illustrée"
+        ],
+        "visualSupports": "Collage coloré et inclusif, routine de célébration positive, modèles de phrases pour décrire les différences positivement",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à célébrer les différences → commencer par les similitudes: 'Vous aimez tous jouer!'",
+          "Si un élève se sent différent de façon négative → Léo chuchote: 'C'est ça qui te rend intéressant et précieux'",
+          "Si un élève ne veut pas participer au collage → offrir une alternative: 'Tu peux choisir où coller ta partie'"
+        ],
+        "movementBreaks": [
+          "Applaudissements pour la diversité",
+          "Mouvement de groupe inclusif"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté à accepter ou célébrer les différences",
+        "then": "Commencer par de petites différences positives et élargir graduellement"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Accepter les différences aide à créer un monde plus inclusif à l'école, dans la famille et la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Se concentrer sur des différences simples et observables (couleurs de cheveux, taille)",
+          "Utiliser beaucoup de modélage positif de la part de l'adulte",
+          "Célébrer chaque petit pas vers l'acceptation"
+        ],
+        "forAdvanced": [
+          "Explorer des concepts plus complexes comme les cultures et traditions",
+          "Encourager à être des ambassadeurs de l'inclusion",
+          "Discuter de comment aider quelqu'un qui se sent différent"
+        ],
+        "forELL": [
+          "Célébrer spécifiquement leur multilinguisme comme une richesse",
+          "Utiliser leur expertise culturelle comme un atout pour la classe",
+          "Permettre de partager des éléments de leur culture d'origine"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels sans souligner les différences",
+          "Célébrer leurs forces uniques et contributions spéciales",
+          "Utiliser leurs intérêts particuliers comme ponts vers l'inclusion"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute respectueusement la présentation des amis différents de Léo",
+          "L'élève participe positivement aux stations d'exploration des différences",
+          "L'élève montre du respect pour les différences des autres",
+          "L'élève contribue au collage de célébration de la diversité"
+        ],
+        "checkpoints": [
+          "Début: Observer l'ouverture aux amis différents de Léo",
+          "Milieu: Vérifier les interactions respectueuses aux stations",
+          "Fin: Noter la participation positive au collage et à la célébration"
+        ]
       }
     },
     {
@@ -325,42 +691,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente pingouin et introduit inclure tout le monde. Comptine thématique. Discussion: Comment pouvons-nous inviter les autres à jouer? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "pingouin (marionnette/peluche)",
+          "Livre illustré 'inclure tout le monde'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour inclure tout le monde, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et pingouin pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour inclure",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de inclure tout le monde avec Léo. Activités pratiques pour inviter les autres à jouer. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour inviter les autres à jouer",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour inviter les autres à jouer, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à inclure tout le monde",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur inclure tout le monde?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur inclure tout le monde",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur inclure tout le monde, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec inclure tout le monde",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre inclure tout le monde aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier inclure tout le monde avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir inclure tout le monde avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour inclure tout le monde",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de inclure tout le monde",
+          "L'élève participe activement aux activités de inviter les autres à jouer",
+          "L'élève démontre une compréhension de inclure tout le monde par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de inclure tout le monde",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       }
     },
     {
@@ -376,42 +803,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente ourson triste et introduit reconnaître les émotions des amis. Comptine thématique. Discussion: Comment pouvons-nous observer les sentiments? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "ourson triste (marionnette/peluche)",
+          "Livre illustré 'reconnaître les émotions des amis'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour reconnaître les émotions des amis, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et ourson triste pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour sentiments",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de reconnaître les émotions des amis avec Léo. Activités pratiques pour observer les sentiments. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour observer les sentiments",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour observer les sentiments, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à reconnaître les émotions des amis",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur reconnaître les émotions des amis?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur reconnaître les émotions des amis",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur reconnaître les émotions des amis, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec reconnaître les émotions des amis",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre reconnaître les émotions des amis aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier reconnaître les émotions des amis avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir reconnaître les émotions des amis avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour reconnaître les émotions des amis",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de reconnaître les émotions des amis",
+          "L'élève participe activement aux activités de observer les sentiments",
+          "L'élève démontre une compréhension de reconnaître les émotions des amis par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de reconnaître les émotions des amis",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       }
     },
     {
@@ -427,42 +915,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente lapine qui pleure et introduit consoler et aider. Comptine thématique. Discussion: Comment pouvons-nous réconforter un ami? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "lapine qui pleure (marionnette/peluche)",
+          "Livre illustré 'consoler et aider'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour consoler et aider, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et lapine qui pleure pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour consoler",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de consoler et aider avec Léo. Activités pratiques pour réconforter un ami. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour réconforter un ami",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour réconforter un ami, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à consoler et aider",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur consoler et aider?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur consoler et aider",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur consoler et aider, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec consoler et aider",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre consoler et aider aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier consoler et aider avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir consoler et aider avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour consoler et aider",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de consoler et aider",
+          "L'élève participe activement aux activités de réconforter un ami",
+          "L'élève démontre une compréhension de consoler et aider par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de consoler et aider",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       }
     },
     {
@@ -478,42 +1027,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente deux écureuils en conflit et introduit résoudre les petits problèmes. Comptine thématique. Discussion: Comment pouvons-nous trouver des solutions ensemble? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "deux écureuils en conflit (marionnette/peluche)",
+          "Livre illustré 'résoudre les petits problèmes'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour résoudre les petits problèmes, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et deux écureuils en conflit pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour problème",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de résoudre les petits problèmes avec Léo. Activités pratiques pour trouver des solutions ensemble. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour trouver des solutions ensemble",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour trouver des solutions ensemble, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à résoudre les petits problèmes",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur résoudre les petits problèmes?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur résoudre les petits problèmes",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur résoudre les petits problèmes, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec résoudre les petits problèmes",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre résoudre les petits problèmes aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier résoudre les petits problèmes avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir résoudre les petits problèmes avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour résoudre les petits problèmes",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de résoudre les petits problèmes",
+          "L'élève participe activement aux activités de trouver des solutions ensemble",
+          "L'élève démontre une compréhension de résoudre les petits problèmes par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de résoudre les petits problèmes",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       }
     },
     {
@@ -529,42 +1139,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente renard repentant et introduit présenter des excuses sincères. Comptine thématique. Discussion: Comment pouvons-nous dire je suis désolé? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "renard repentant (marionnette/peluche)",
+          "Livre illustré 'présenter des excuses sincères'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour présenter des excuses sincères, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et renard repentant pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour désolé",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de présenter des excuses sincères avec Léo. Activités pratiques pour dire je suis désolé. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour dire je suis désolé",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour dire je suis désolé, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à présenter des excuses sincères",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur présenter des excuses sincères?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur présenter des excuses sincères",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur présenter des excuses sincères, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec présenter des excuses sincères",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre présenter des excuses sincères aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier présenter des excuses sincères avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir présenter des excuses sincères avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour présenter des excuses sincères",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de présenter des excuses sincères",
+          "L'élève participe activement aux activités de dire je suis désolé",
+          "L'élève démontre une compréhension de présenter des excuses sincères par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de présenter des excuses sincères",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       }
     },
     {
@@ -580,42 +1251,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente hibou sage et introduit pardonner aux amis. Comptine thématique. Discussion: Comment pouvons-nous laisser aller la colère? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "hibou sage (marionnette/peluche)",
+          "Livre illustré 'pardonner aux amis'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour pardonner aux amis, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et hibou sage pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour pardonner",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de pardonner aux amis avec Léo. Activités pratiques pour laisser aller la colère. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour laisser aller la colère",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour laisser aller la colère, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à pardonner aux amis",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur pardonner aux amis?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur pardonner aux amis",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur pardonner aux amis, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec pardonner aux amis",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre pardonner aux amis aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier pardonner aux amis avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir pardonner aux amis avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour pardonner aux amis",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de pardonner aux amis",
+          "L'élève participe activement aux activités de laisser aller la colère",
+          "L'élève démontre une compréhension de pardonner aux amis par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de pardonner aux amis",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       }
     },
     {
@@ -631,42 +1363,103 @@
       ],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente Léo archiviste et introduit démontrer ses apprentissages. Comptine thématique. Discussion: Comment pouvons-nous créer son portfolio d'amitié? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "Léo archiviste (marionnette/peluche)",
+          "Livre illustré 'démontrer ses apprentissages'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour démontrer ses apprentissages, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et Léo archiviste pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour portfolio",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de démontrer ses apprentissages avec Léo. Activités pratiques pour créer son portfolio d'amitié. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour créer son portfolio d'amitié",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour créer son portfolio d'amitié, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à démontrer ses apprentissages",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur démontrer ses apprentissages?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur démontrer ses apprentissages",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur démontrer ses apprentissages, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec démontrer ses apprentissages",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre démontrer ses apprentissages aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier démontrer ses apprentissages avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir démontrer ses apprentissages avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour démontrer ses apprentissages",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de démontrer ses apprentissages",
+          "L'élève participe activement aux activités de créer son portfolio d'amitié",
+          "L'élève démontre une compréhension de démontrer ses apprentissages par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de démontrer ses apprentissages",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       }
     },
     {
@@ -678,42 +1471,103 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente tous les amis ensemble et introduit renforcer les compétences par le jeu. Comptine thématique. Discussion: Comment pouvons-nous jeux coopératifs de célébration? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "tous les amis ensemble (marionnette/peluche)",
+          "Livre illustré 'renforcer les compétences par le jeu'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour renforcer les compétences par le jeu, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et tous les amis ensemble pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour amitié",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de renforcer les compétences par le jeu avec Léo. Activités pratiques pour jeux coopératifs de célébration. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour jeux coopératifs de célébration",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour jeux coopératifs de célébration, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à renforcer les compétences par le jeu",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur renforcer les compétences par le jeu?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur renforcer les compétences par le jeu",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur renforcer les compétences par le jeu, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec renforcer les compétences par le jeu",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre renforcer les compétences par le jeu aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier renforcer les compétences par le jeu avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir renforcer les compétences par le jeu avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour renforcer les compétences par le jeu",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de renforcer les compétences par le jeu",
+          "L'élève participe activement aux activités de jeux coopératifs de célébration",
+          "L'élève démontre une compréhension de renforcer les compétences par le jeu par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de renforcer les compétences par le jeu",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       }
     },
     {
@@ -725,42 +1579,103 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente troupe de théâtre et introduit explorer l'amitié par le théâtre. Comptine thématique. Discussion: Comment pouvons-nous jeux dramatiques? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "troupe de théâtre (marionnette/peluche)",
+          "Livre illustré 'explorer l'amitié par le théâtre'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour explorer l'amitié par le théâtre, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et troupe de théâtre pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour amitié",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de explorer l'amitié par le théâtre avec Léo. Activités pratiques pour jeux dramatiques. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour jeux dramatiques",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour jeux dramatiques, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à explorer l'amitié par le théâtre",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur explorer l'amitié par le théâtre?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur explorer l'amitié par le théâtre",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur explorer l'amitié par le théâtre, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec explorer l'amitié par le théâtre",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre explorer l'amitié par le théâtre aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier explorer l'amitié par le théâtre avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir explorer l'amitié par le théâtre avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour explorer l'amitié par le théâtre",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de explorer l'amitié par le théâtre",
+          "L'élève participe activement aux activités de jeux dramatiques",
+          "L'élève démontre une compréhension de explorer l'amitié par le théâtre par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de explorer l'amitié par le théâtre",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -812,42 +1727,103 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente Léo auteur et introduit créer une ressource d'amitié. Comptine thématique. Discussion: Comment pouvons-nous écrire et illustrer? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "Léo auteur (marionnette/peluche)",
+          "Livre illustré 'créer une ressource d'amitié'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour créer une ressource d'amitié, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et Léo auteur pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour amitié",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de créer une ressource d'amitié avec Léo. Activités pratiques pour écrire et illustrer. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour écrire et illustrer",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour écrire et illustrer, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à créer une ressource d'amitié",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur créer une ressource d'amitié?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur créer une ressource d'amitié",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur créer une ressource d'amitié, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec créer une ressource d'amitié",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre créer une ressource d'amitié aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier créer une ressource d'amitié avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir créer une ressource d'amitié avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour créer une ressource d'amitié",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de créer une ressource d'amitié",
+          "L'élève participe activement aux activités de écrire et illustrer",
+          "L'élève démontre une compréhension de créer une ressource d'amitié par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de créer une ressource d'amitié",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -899,42 +1875,103 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente familles variées et introduit amitié dans différents contextes. Comptine thématique. Discussion: Comment pouvons-nous explorer la diversité familiale? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "familles variées (marionnette/peluche)",
+          "Livre illustré 'amitié dans différents contextes'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour amitié dans différents contextes, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et familles variées pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour amitié",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de amitié dans différents contextes avec Léo. Activités pratiques pour explorer la diversité familiale. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour explorer la diversité familiale",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour explorer la diversité familiale, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à amitié dans différents contextes",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur amitié dans différents contextes?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur amitié dans différents contextes",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur amitié dans différents contextes, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec amitié dans différents contextes",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre amitié dans différents contextes aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier amitié dans différents contextes avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir amitié dans différents contextes avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour amitié dans différents contextes",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de amitié dans différents contextes",
+          "L'élève participe activement aux activités de explorer la diversité familiale",
+          "L'élève démontre une compréhension de amitié dans différents contextes par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de amitié dans différents contextes",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -986,42 +2023,103 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente amis du quartier et introduit amitié dans la communauté. Comptine thématique. Discussion: Comment pouvons-nous identifier les amitiés locales? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "amis du quartier (marionnette/peluche)",
+          "Livre illustré 'amitié dans la communauté'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour amitié dans la communauté, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et amis du quartier pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour amitié",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de amitié dans la communauté avec Léo. Activités pratiques pour identifier les amitiés locales. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour identifier les amitiés locales",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour identifier les amitiés locales, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à amitié dans la communauté",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur amitié dans la communauté?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur amitié dans la communauté",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur amitié dans la communauté, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec amitié dans la communauté",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre amitié dans la communauté aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier amitié dans la communauté avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir amitié dans la communauté avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour amitié dans la communauté",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de amitié dans la communauté",
+          "L'élève participe activement aux activités de identifier les amitiés locales",
+          "L'élève démontre une compréhension de amitié dans la communauté par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de amitié dans la communauté",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1073,42 +2171,103 @@
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Léo présente tout le groupe classe et introduit célébrer la croissance en amitié. Comptine thématique. Discussion: Comment pouvons-nous fête finale des apprentissages? Démonstration avec les marionnettes.",
+        "materials": [
+          "Léo la marionnette",
+          "tout le groupe classe (marionnette/peluche)",
+          "Livre illustré 'célébrer la croissance en amitié'",
+          "Cartes visuelles du thème"
+        ],
+        "visualSupports": "Supports visuels pour célébrer la croissance en amitié, gestes TPR pour le vocabulaire clé, expressions faciales démonstratrices",
+        "decisionPoints": [
+          "Si un élève semble anxieux face au thème → permettre qu'il observe d'abord avec Léo sans pression de participation",
+          "Si un élève ne comprend pas le concept principal → utiliser Léo et tout le groupe classe pour démontrer concrètement",
+          "Si un élève partage une expérience personnelle difficile → valider avec empathie et rediriger vers les solutions de Léo"
+        ],
+        "movementBreaks": [
+          "Geste thématique pour amitié",
+          "Mouvement d'expression du thème principal"
+        ]
       },
       "main": {
         "duration": 27,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Exploration active de célébrer la croissance en amitié avec Léo. Activités pratiques pour fête finale des apprentissages. Stations d'apprentissage thématiques avec manipulation et interaction sociale guidée.",
+        "materials": [
+          "Matériaux d'activité pour fête finale des apprentissages",
+          "Supports visuels thématiques",
+          "Tableau d'exploration du thème",
+          "Autocollants de réussite"
+        ],
+        "visualSupports": "Démonstrations concrètes, séquences d'images pour fête finale des apprentissages, modélage constant de Léo",
+        "decisionPoints": [
+          "Si un élève refuse de participer aux activités → offrir un rôle d'observateur encourageant ou d'aide à Léo",
+          "Si un conflit éclate pendant l'activité → arrêter et modéler avec Léo: 'Regardons comment résoudre ça ensemble'",
+          "Si un élève se décourage ou pleure → L'accompagner avec Léo: 'C'est normal de trouver ça difficile, essayons ensemble'"
+        ],
+        "movementBreaks": [
+          "Étirement thématique lié à célébrer la croissance en amitié",
+          "Mouvement coopératif de groupe"
+        ]
       },
       "closing": {
         "duration": 10,
-        "activity": "",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "activity": "Retour au cercle avec Léo. Réflexion: 'Qu'avez-vous appris sur célébrer la croissance en amitié?' Partage des découvertes et engagement personnel pour la semaine. Chanson de fermeture thématique.",
+        "materials": [
+          "Cartes de réflexion sur célébrer la croissance en amitié",
+          "Tableau des apprentissages",
+          "Léo la marionnette",
+          "Matériaux pour engagement personnel"
+        ],
+        "visualSupports": "Routine de fermeture prévisible, supports visuels pour la réflexion sur célébrer la croissance en amitié, tableau des engagements",
+        "decisionPoints": [
+          "Si un élève ne peut pas exprimer ce qu'il a appris → utiliser des cartes visuelles ou laisser Léo parler pour lui",
+          "Si un élève prend un engagement trop ambitieux → l'aider à simplifier: 'Commencer petit, c'est parfait'",
+          "Si un élève refuse de participer à la conclusion → respecter et offrir une alternative: 'Tu peux dessiner pour Léo'"
+        ],
+        "movementBreaks": [
+          "Geste de réflexion personnelle",
+          "Mouvement de célébration des apprentissages"
+        ]
       },
       "troubleshooting": {
-        "ifStrugglingWith": "",
-        "then": ""
+        "ifStrugglingWith": "Difficulté avec célébrer la croissance en amitié",
+        "then": "Simplifier le concept avec plus de modélage concret et de soutien individuel"
       },
-      "realWorldConnection": "",
+      "realWorldConnection": "Comprendre célébrer la croissance en amitié aide dans les relations à l'école, à la maison et dans la communauté",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Simplifier célébrer la croissance en amitié avec des exemples très concrets",
+          "Permettre plus de temps et de soutien individuel",
+          "Utiliser des supports visuels additionnels et des gestes"
+        ],
+        "forAdvanced": [
+          "Approfondir célébrer la croissance en amitié avec des nuances et des applications étendues",
+          "Encourager à aider leurs pairs dans leurs apprentissages",
+          "Explorer des connexions plus complexes avec d'autres concepts"
+        ],
+        "forELL": [
+          "Utiliser beaucoup de supports visuels pour célébrer la croissance en amitié",
+          "Permettre l'expression dans leur langue maternelle si nécessaire",
+          "Jumeler avec des pairs francophones bienveillants"
+        ],
+        "forIEP": [
+          "Adapter selon les besoins individuels spécifiques",
+          "Modifier les matériaux et les attentes selon les capacités",
+          "Utiliser des supports sensoriels appropriés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève écoute attentivement l'introduction de célébrer la croissance en amitié",
+          "L'élève participe activement aux activités de fête finale des apprentissages",
+          "L'élève démontre une compréhension de célébrer la croissance en amitié par ses actions",
+          "L'élève engage dans la réflexion finale et prend un engagement personnel"
+        ],
+        "checkpoints": [
+          "Début: Observer l'engagement initial avec le thème présenté",
+          "Milieu: Vérifier la participation et la compréhension de célébrer la croissance en amitié",
+          "Fin: Noter la qualité de la réflexion et l'engagement personnel pris"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",

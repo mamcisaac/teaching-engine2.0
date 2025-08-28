@@ -1894,7 +1894,11 @@
           ]
         },
         "visualSupports": "Affichage de tous travaux familiaux, gestes de célébration joyeux, ambiance d'honneur et respect",
-        "decisionPoints": []
+        "decisionPoints": [
+          "Si les élèves semblent nerveux pour les présentations → commencer par des applaudissements d'encouragement",
+          "Si l'installation prend trop de temps → impliquer les élèves dans la décoration",
+          "Si certains élèves sont absents → garder leur travail pour célébration ultérieure"
+        ]
         "movementBreaks": []
       },
       "main": {
@@ -1947,7 +1951,11 @@
           "optional": []
         },
         "visualSupports": "Gestes collectifs de célébration, expressions de joie partagée, validation universelle",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont timides pour présenter → offrir la présentation en paires",
+          "Si les présentations sont trop longues → limiter à 2 minutes par élève",
+          "Si les élèves oublient leurs mots français → utiliser les images comme aide-mémoire"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2059,7 +2067,11 @@
           "optional": []
         },
         "visualSupports": "Gestes d'applaudissement théâtral, expressions d'appréciation créative",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont épuisés après les jeux → permettre le partage en cercle assis",
+          "Si certains élèves n'ont pas de mot à partager → offrir des suggestions du vocabulaire familial",
+          "Si trop d'enthousiasme pour partager → utiliser un minuteur de 30 secondes par élève"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2170,7 +2182,11 @@
           "optional": []
         },
         "visualSupports": "Gestes de préciosité et mémoire, expressions d'admiration pour souvenirs",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont trop curieux des photos personnelles → expliquer le respect des souvenirs privés",
+          "Si certains élèves n'ont pas d'albums familiaux → valoriser tous types de souvenirs (dessins, objets)",
+          "Si émotions délicates avec photos (deuil) → rediriger vers les 'beaux souvenirs qu'on garde dans le cœur'"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2203,7 +2219,11 @@
           "optional": []
         },
         "visualSupports": "Banque mots famille affichée, modèles de légendes simples, exemples de mise en page",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté à écrire les légendes → offrir aide individuelle ou banque de phrases",
+          "Si certains terminent rapidement → encourager la décoration et l'ajout de détails",
+          "Si frustration avec l'organisation des photos → fournir des suggestions de séquence chronologique"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2222,7 +2242,11 @@
           "optional": []
         },
         "visualSupports": "Expressions d'appréciation pour mémoires partagées, gestes de respect pour histoires familiales",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont timides pour partager → permettre de montrer sans expliquer ou partager en paires",
+          "Si les légendes françaises sont difficiles à lire → aider discrètement avec la prononciation",
+          "Si des élèves n'ont pas terminé leur album → célébrer le processus et les efforts"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2333,7 +2357,11 @@
           "optional": []
         },
         "visualSupports": "Gestes d'intonation interrogative, expressions curieuses respectueuses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves posent des questions trop personnelles → rediriger vers les questions générales appropriées",
+          "Si manque d'engagement pour les questions → modeler avec enthousiasme les questions simples",
+          "Si trop de questions simultanées → utiliser la règle 'une question à la fois' avec gestes"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2352,7 +2380,11 @@
           "optional": []
         },
         "visualSupports": "Guide questions affiché, modèles d'intonation, encouragements pour tentatives",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves répètent les mêmes questions → encourager la variété avec le guide affiché",
+          "Si les réponses sont trop courtes → modeler des réponses plus complètes",
+          "Si difficulté avec la prononciation des questions → pratiquer en écho avec la classe"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2363,7 +2395,11 @@
           "optional": []
         },
         "visualSupports": "Gestes d'encouragement, validation des tentatives linguistiques",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont trop timides pour jouer les journalistes → commencer par des questions en duo",
+          "Si certains dominent la conversation → assurer la rotation équitable avec un minuteur",
+          "Si les questions deviennent répétitives → introduire de nouveaux exemples spontanément"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2481,7 +2517,11 @@
           "optional": []
         },
         "visualSupports": "Gestes d'ouverture mondiale, expressions de curiosité respectueuse, célébration diversité",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves font des commentaires non respectueux → rediriger vers la beauté des différences",
+          "Si manque d'engagement pour les cultures diverses → partager avec enthousiasme personnel",
+          "Si certains élèves se sentent exclus → valoriser explicitement leur propre héritage familial"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2506,7 +2546,11 @@
           ]
         },
         "visualSupports": "Images positives et respectueuses, gestes d'inclusion, expressions d'admiration culturelle",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves posent des questions délicates sur les différences → répondre avec simplicité et respect",
+          "Si certains élèves dominent avec leurs histoires → assurer que chacun peut partager",
+          "Si manque de diversité dans les exemples disponibles → créer ou dessiner des exemples supplémentaires"
+        ],
         "movementBreaks": []
       },
       "closing": {
@@ -2525,7 +2569,11 @@
           "optional": []
         },
         "visualSupports": "Gestes inclusifs vers toutes directions, expressions d'unité mondiale",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves sont fatigués après l'activité culturelle → permettre un moment de calme avant le cercle",
+          "Si difficulté à exprimer leurs apprentissages → fournir des phrases modèles simples",
+          "Si certains n'ont pas bien compris les différences culturelles → reprendre avec des exemples concrets"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2642,7 +2690,11 @@
           ]
         },
         "visualSupports": "Paroles avec images vocabulaire, gestes musicaux, expressions de joie musicale",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté avec la mélodie → chanter plus lentement ou utiliser seulement le rythme",
+          "Si certains sont timides pour chanter → permettre seulement les gestes ou chantonner",
+          "Si trop d'excitation musicale → alterner entre moments calmes et énergiques"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2689,7 +2741,11 @@
           "optional": []
         },
         "visualSupports": "Gestes d'encouragement musical, expressions de fierté artistique",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si les élèves se sentent jugés sur leurs performances → encourager l'effort plutôt que la perfection",
+          "Si certains créent des gestes inappropriés → rediriger vers des mouvements respectueux",
+          "Si trop de compétition entre groupes → souligner la collaboration et le plaisir partagé"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2813,7 +2869,11 @@
           ]
         },
         "visualSupports": "Signalisation d'exposition, guide de parcours, ambiance célébratoire",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si l'installation prend trop de temps → impliquer les élèves comme assistants organisateurs",
+          "Si l'espace est insuffisant → adapter avec une exposition murale ou rotation",
+          "Si certains travaux sont fragiles → créer des zones de protection avec cordons ou supports"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -2872,7 +2932,11 @@
           ]
         },
         "visualSupports": "Vue panoramique de tous accomplissements, expressions de fierté collective",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si certains élèves sont surexcités par l'exposition → créer des moments de calme entre les visites",
+          "Si les familles posent des questions en anglais → répondre avec bienveillance en français simple",
+          "Si certains élèves sont fatigués ou émotionnels → permettre des pauses ou un rôle d'observateur"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

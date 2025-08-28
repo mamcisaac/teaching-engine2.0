@@ -909,7 +909,10 @@
           ]
         },
         "visualSupports": "Bannière 'Détectives Mathématiques Diplômés', affiche du serment détective",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève récite le serment sans confiance → l'encourager avec 'Tu es un vrai détective!' et applaudir",
+          "Si émotions fortes à la remise → permettre moments individuels et valoriser chaque accomplissement"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1087,7 +1090,10 @@
           ]
         },
         "visualSupports": "Bannière 'Galerie des Artistes-Mathématiciens de 1ère année', certificat 'Artiste du Jour'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève timide hésite à présenter son travail → proposer présentation avec un ami ou montrer silencieusement",
+          "Si œuvre contient erreurs mathématiques → valoriser créativité puis suggérer 'améliorations détectives'"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1266,7 +1272,10 @@
           ]
         },
         "visualSupports": "Bannière 'Félicitations Experts 0-5', tableau d'honneur avec photos des diplômés",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève déçu de ne pas être 'parfait' → rappeler ses progrès personnels et célébrer effort",
+          "Si surexcitation lors des démonstrations → utiliser signal calme et pauses respiratoires"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1445,7 +1454,10 @@
           ]
         },
         "visualSupports": "Affiche paroles en développement, pictogrammes pour accompagner gestes de chanson",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élèves confondent paroles et gestes → ralentir tempo et modéliser chaque mouvement clairement",
+          "Si certains ne participent pas à la chanson → permettre participation par écoute active et battements de mains"
+        ],
         "movementBreaks": ["Défilé musical final avec toute la classe (dernières 3 minutes)"]
       },
       "troubleshooting": {
@@ -1636,7 +1648,10 @@
           ]
         },
         "visualSupports": "Tableau résultats vote avec pictogrammes, bannière 'Félicitations Champions!'",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si déception chez élèves dont jeu n'a pas gagné → expliquer que tous les jeux étaient excellents",
+          "Si disputes sur les votes → rappeler respect des opinions et célébrer diversité des choix"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2195,7 +2210,10 @@
           ]
         },
         "visualSupports": "Bannière 'Félicitations à nos Mini-Professeurs!', photos Polaroid de chaque élève enseignant",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si nervosité avant la photo → utiliser blagues mathématiques pour détendre l'atmosphère",
+          "Si élève perfectionniste veut refaire présentation → valoriser premier essai et rappeler que apprendre c'est essayer"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2386,7 +2404,10 @@
           ]
         },
         "visualSupports": "Grande bannière 'Félicitations Experts en Soustraction!', mur photos du parcours d'apprentissage",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève anxieux face aux défis finaux → rassurer en rappelant tout ce qu'il sait déjà faire",
+          "Si émotion forte en voyant chemin parcouru → accueillir sentiments et partager fierté collective"
+        ],
         "movementBreaks": ["Parade finale de célébration avec certificats (dernières 2 minutes)"]
       },
       "troubleshooting": {
@@ -2558,7 +2579,10 @@
           ]
         },
         "visualSupports": "Bannière 'Première Mondiale: Nos Problèmes de Soustraction', affiche auteurs de la classe",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève frustré par problème trop difficile → ajuster ensemble pour le rendre accessible",
+          "Si fièreté excessive d'un élève → rediriger vers célébration collective des créations"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2729,7 +2753,10 @@
           ]
         },
         "visualSupports": "Techniques artistiques affichées, palette couleurs suggérées, exemples œuvres terminées",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si perfectionnisme bloque la créativité → encourager 'art d'essai' et valoriser tentatives courageuses",
+          "Si découragement face au matériel → simplifier outils et se concentrer sur expression des idées"
+        ],
         "movementBreaks": [
           "Étirements d'artiste avec gestes créatifs (minute 15)",
           "Déambulation pour admirer œuvres en cours (transitions naturelles)"
@@ -2767,7 +2794,10 @@
           ]
         },
         "visualSupports": "Bannière 'Vernissage: Art et Mathématiques', programme officiel du vernissage",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si timidité lors du vernissage → créer groupes de soutien et permettre présentations à deux",
+          "Si comparaisons entre œuvres → rediriger attention vers l'unique contribution de chaque artiste"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -2952,7 +2982,10 @@
           ]
         },
         "visualSupports": "Bannière 'Félicitations nos jeunes enseignants!', affichage des qualités d'un bon enseignant",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si élève se compare négativement aux autres → souligner ses forces personnelles d'enseignant",
+          "Si excitation excessive perturbe l'écoute → utiliser signaux visuels pour maintenir attention respectueuse"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -3135,7 +3168,10 @@
           ]
         },
         "visualSupports": "Bannière 'Champions Mathématiques!', affichage des différentes catégories de médailles",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si compétition crée tensions → rappeler que tous sont gagnants et célébrer efforts de chacun",
+          "Si élève boude car n'a pas gagné → l'asseoir près d'amis bienveillants et valoriser sa participation"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -3318,7 +3354,10 @@
           ]
         },
         "visualSupports": "Affiche 'Comment présenter': 1. Montrer 2. Expliquer 3. Partager ce qu'on aime",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si blocage lors de la présentation → offrir choix entre présentation orale ou démonstration silencieuse",
+          "Si projet inachevé cause gêne → valoriser processus créatif et intentions plutôt que résultat final"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -3507,7 +3546,10 @@
           ]
         },
         "visualSupports": "Bannière 'Classe des Maîtres Soustraction 2024!', arrière-plan décoratif pour photo",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si nostalgie de fin d'unité crée tristesse → honorer sentiments puis orienter vers futures découvertes",
+          "Si agitation lors de la photo finale → créer rituel calme avant pose pour capturer moment précieux"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {

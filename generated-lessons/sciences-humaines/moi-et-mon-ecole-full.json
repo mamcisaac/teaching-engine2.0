@@ -26,7 +26,11 @@
           "feeling faces cards"
         ],
         "visualSupports": "Big smile gestures, welcoming arms, photos of happy children at school",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur de la nouvelle école → utiliser des mots rassurants et montrer des photos d'enfants heureux à l'école",
+          "Si un élève ne veut pas entrer dans l'école → rester avec lui à l'entrée et identifier quelque chose d'accueillant ensemble",
+          "Si un élève pleure en arrivant → offrir un objet réconfortant et parler doucement de ce qu'on va faire de amusant"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -56,9 +60,17 @@
       "closing": {
         "duration": 10,
         "activity": "Share one thing that makes our school special. Create class commitment to taking care of our special school.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificat de bienvenue personnalisé",
+          "autocollant étoile d'élève spécial",
+          "livre photo de la classe précédente"
+        ],
+        "visualSupports": "Gestes de célébration pour être élève, badge d'identité sur le cœur, sourires d'encouragement",
+        "decisionPoints": [
+          "Si un élève ne trouve rien de spécial à dire sur l'école → l'aider en pointant vers des éléments positifs visibles",
+          "Si un élève dit qu'il n'aime pas l'école → valider ses sentiments et chercher un petit aspect qu'il pourrait apprécier",
+          "Si un élève veut rentrer chez lui → rappeler que l'école est un endroit sécuritaire où on apprend et s'amuse ensemble"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -67,14 +79,38 @@
       },
       "realWorldConnection": "Every person belongs to communities like school, family, and neighborhood",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser plus d'images et moins de mots parlés",
+          "Permettre des réponses par gestes ou dessins",
+          "Offrir un buddy pour la sécurité émotionnelle"
+        ],
+        "forAdvanced": [
+          "Demander de décrire pourquoi l'école est spéciale avec plus de détails",
+          "Encourager à aider un ami qui a peur",
+          "Inviter à dessiner un plan simple de l'école"
+        ],
+        "forELL": [
+          "Montrer des objets réels en nommant en français",
+          "Utiliser gestes et images pour expliquer 'école'",
+          "Permettre réponses en langue maternelle au début"
+        ],
+        "forIEP": [
+          "Adapter selon besoins sensoriels (lumière, bruit)",
+          "Offrir pauses si nécessaire",
+          "Utiliser support visuel personnalisé"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève participe au cercle de bienvenue",
+          "L'élève montre des signes de confort dans l'espace scolaire",
+          "L'élève peut identifier une chose spéciale sur l'école"
+        ],
+        "checkpoints": [
+          "Participation volontaire dans les activités de groupe",
+          "Expression faciale positive pendant la visite d'école",
+          "Contribution personnelle au tableau 'Notre école est spéciale'"
+        ]
       }
     },
     {
@@ -97,7 +133,11 @@
           "photos of students learning"
         ],
         "visualSupports": "Point to self proudly, student badge gestures, learning action poses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève refuse de se regarder dans le miroir → utiliser un miroir plus grand pour toute la classe et se regarder ensemble",
+          "Si un élève dit qu'il n'est pas vraiment un élève → valider qu'il est en apprentissage pour devenir un excellent élève",
+          "Si un élève a honte d'être à l'école → célébrer tous les élèves et expliquer que c'est formidable d'apprendre"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -127,9 +167,17 @@
       "closing": {
         "duration": 10,
         "activity": "Student identity celebration where each child receives recognition for being an important student in our class.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificat 'Je suis un élève spécial'",
+          "crayons de couleur pour personnaliser",
+          "autocollants de célébration"
+        ],
+        "visualSupports": "Gestes de fierté personnelle, applaudissements d'encouragement, sourires de célébration",
+        "decisionPoints": [
+          "Si un élève ne veut pas être reconnu publiquement → offrir une reconnaissance privée avec un sourire et un mot doux",
+          "Si un élève dit qu'il n'est pas important → utiliser des exemples concrets de comment il contribue à la classe",
+          "Si un élève compare ses capacités aux autres → rediriger vers ses propres forces et progrès uniques"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -138,14 +186,38 @@
       },
       "realWorldConnection": "Being a student is an important role with special rights and responsibilities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des gestes simples pour montrer 'droits' et 'responsabilités'",
+          "Se concentrer sur un seul concept à la fois",
+          "Utiliser des exemples très concrets de la classe"
+        ],
+        "forAdvanced": [
+          "Encourager à donner des exemples de droits et responsabilités",
+          "Inviter à aider un camarade à comprendre les concepts",
+          "Poser des questions sur comment être un bon élève"
+        ],
+        "forELL": [
+          "Montrer images pour 'élève', 'droits', 'responsabilités'",
+          "Utiliser leur nom souvent pour renforcer identité d'élève",
+          "Permettre expression dans langue maternelle puis traduire"
+        ],
+        "forIEP": [
+          "Utiliser supports visuels personnalisés",
+          "Offrir choix de participation (verbal, gestuel, écrit)",
+          "Respecter leur rythme d'apprentissage individuel"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève se reconnaît et accepte son identité d'élève",
+          "L'élève peut nommer un droit ou une responsabilité d'élève",
+          "L'élève participe aux jeux de rôle avec confiance"
+        ],
+        "checkpoints": [
+          "Utilisation du vocabulaire 'élève', 'droits', 'responsabilités'",
+          "Participation active dans les discussions sur l'identité",
+          "Démonstration de fierté personnelle comme élève"
+        ]
       }
     },
     {
@@ -168,7 +240,11 @@
           "exploration clipboards"
         ],
         "visualSupports": "Detective gestures, pointing to different areas, questioning expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne comprend pas le concept d'espace d'apprentissage → montrer physiquement comment on utilise chaque coin de la classe",
+          "Si un élève a peur d'explorer certains espaces → rester avec lui et explorer ensemble lentement",
+          "Si un élève veut explorer seulement son bureau → encourager doucement à découvrir d'autres espaces intéressants"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -198,9 +274,17 @@
       "closing": {
         "duration": 10,
         "activity": "Classroom space commitment circle. Students share how they will take care of different classroom areas.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'engagement pour chaque espace",
+          "crayon effaçable pour signatures",
+          "affiche des règles de classe"
+        ],
+        "visualSupports": "Gestes de promesse, mains sur le cœur, sourires de responsabilité",
+        "decisionPoints": [
+          "Si un élève ne sait pas comment prendre soin d'un espace → donner des exemples concrets comme ranger les livres ou essuyer les tables",
+          "Si un élève promet quelque chose d'irréaliste → l'aider à choisir une action simple qu'il peut vraiment faire",
+          "Si un élève ne veut pas s'engager → respecter et suggérer qu'il peut juste observer les autres aujourd'hui"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -209,14 +293,38 @@
       },
       "realWorldConnection": "All learning spaces are designed to help people work, learn, and be together",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Utiliser des points de référence familiers dans la classe",
+          "Permettre mapping avec dessins simples plutôt que mots",
+          "Travailler en petit groupe avec support constant"
+        ],
+        "forAdvanced": [
+          "Encourager à inclure des détails sur la fonction de chaque espace",
+          "Inviter à suggérer des améliorations pour l'organisation",
+          "Demander de comparer avec d'autres salles de classe visitées"
+        ],
+        "forELL": [
+          "Étiqueter physiquement les espaces en français avec images",
+          "Utiliser gestes et mouvements pour expliquer chaque espace",
+          "Permettre collaboration avec un partenaire francophone"
+        ],
+        "forIEP": [
+          "Offrir choix de matériaux pour créer la carte (numérique, tactile)",
+          "Respecter besoins sensoriels lors des déplacements",
+          "Utiliser supports visuels personnalisés selon les besoins"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut identifier différents espaces dans la classe",
+          "L'élève comprend la fonction de base de chaque espace",
+          "L'élève montre du respect pour les espaces d'apprentissage"
+        ],
+        "checkpoints": [
+          "Participation active dans l'exploration des espaces",
+          "Création d'une carte simple mais claire de la classe",
+          "Expression d'engagement pour prendre soin des espaces"
+        ]
       }
     },
     {
@@ -239,7 +347,11 @@
           "questioning gestures cards"
         ],
         "visualSupports": "Point to photos clearly, use wondering gestures, prediction thinking poses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève reconnaît un espace mais ne comprend pas sa fonction → utiliser des questions simples comme 'Qu'est-ce qu'on fait ici?'",
+          "Si un élève a peur d'un espace (comme le bureau du directeur) → rassurer que ces espaces sont là pour nous aider",
+          "Si un élève ne participe pas aux prédictions → l'encourager en validant toute réponse comme intéressante"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -269,9 +381,17 @@
       "closing": {
         "duration": 10,
         "activity": "School spaces appreciation circle. Share discoveries about how different spaces help our school community.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "photos prises pendant la visite",
+          "certificats d'explorateur d'école",
+          "carte des espaces découverts"
+        ],
+        "visualSupports": "Gestes d'appréciation pour chaque espace, sourires de découverte, pointage vers les photos",
+        "decisionPoints": [
+          "Si un élève n'a rien à partager sur la visite → l'aider en pointant vers une photo et demander ce qu'il a vu",
+          "Si un élève est déçu de ne pas avoir visité un espace particulier → planifier une mini-visite de cet espace bientôt",
+          "Si un élève veut retourner visiter tout de suite → expliquer qu'on reviendra et noter son intérêt spécial"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -280,14 +400,38 @@
       },
       "realWorldConnection": "Different spaces in our community serve different purposes for different people",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "forStruggling": [
+          "Visiter seulement 2-3 espaces pour éviter la surcharge",
+          "Utiliser un buddy system pendant les déplacements",
+          "Se concentrer sur les espaces les plus familiers d'abord"
+        ],
+        "forAdvanced": [
+          "Encourager à poser des questions aux adultes rencontrés",
+          "Demander de comparer les espaces scolaires avec ceux d'autres lieux",
+          "Inviter à suggérer des améliorations pour certains espaces"
+        ],
+        "forELL": [
+          "Pré-enseigner le vocabulaire des espaces avec images",
+          "Utiliser gestes pour expliquer l'utilité de chaque espace",
+          "Permettre l'utilisation de la langue maternelle pour exprimer les découvertes"
+        ],
+        "forIEP": [
+          "Préparer l'élève à l'avance avec des photos des espaces",
+          "Offrir des pauses durant la visite si nécessaire",
+          "Adapter selon les besoins sensoriels (bruit, foule)"
+        ]
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève peut nommer au moins 3 espaces différents de l'école",
+          "L'élève comprend la fonction de base de chaque espace visité",
+          "L'élève montre du respect durant les visites d'espaces"
+        ],
+        "checkpoints": [
+          "Participation active pendant la visite des espaces",
+          "Utilisation appropriée du vocabulaire des espaces scolaires",
+          "Expression de découvertes personnelles sur les espaces visités"
+        ]
       }
     },
     {
@@ -310,7 +454,11 @@
           "office props (toy phone, papers)"
         ],
         "visualSupports": "Clear job action gestures, office work motions, helping others poses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur du directeur → expliquer que le directeur est là pour aider et protéger les élèves",
+          "Si un élève ne comprend pas les rôles d'autorité → utiliser des comparaisons avec les parents à la maison",
+          "Si un élève veut jouer seulement aux jeux de devinette → connecter le jeu aux vrais rôles dans l'école"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -339,9 +487,17 @@
       "closing": {
         "duration": 10,
         "activity": "Thank you card creation for principal and secretary. Share appreciation for how they help our school community.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes vierges colorées",
+          "crayons de couleur et marqueurs",
+          "autocollants de remerciement"
+        ],
+        "visualSupports": "Gestes de gratitude, cœur avec les mains, sourires de remerciement",
+        "decisionPoints": [
+          "Si un élève ne sait pas quoi écrire dans la carte → suggérer des phrases simples comme 'Merci de nous aider'",
+          "Si un élève dit qu'il n'aime pas le directeur → rediriger vers une chose positive qu'il fait pour l'école",
+          "Si un élève veut faire une carte très élaborée → encourager sa créativité tout en gardant le message simple"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -380,7 +536,11 @@
           "photos of teachers helping students"
         ],
         "visualSupports": "Caring gestures, helping hand motions, learning support actions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit que son enseignant est méchant → rediriger vers les moments où l'enseignant l'a aidé à apprendre",
+          "Si un élève ne participe pas à la discussion → l'encourager en mentionnant quelque chose de positif qu'il fait en classe",
+          "Si un élève compare les enseignants négativement → rappeler que chaque enseignant aide de façon différente"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -409,9 +569,17 @@
       "closing": {
         "duration": 10,
         "activity": "Teacher appreciation creation. Make thank you notes or drawings expressing gratitude for how teachers support learning.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "papier de construction coloré",
+          "crayons et marqueurs",
+          "autocollants de remerciement"
+        ],
+        "visualSupports": "Gestes artistiques, expressions de gratitude, création avec amour",
+        "decisionPoints": [
+          "Si un élève ne sait pas quoi dessiner pour son enseignant → suggérer de dessiner une activité qu'il aime faire en classe",
+          "Si un élève veut donner sa création tout de suite → expliquer qu'on va les présenter ensemble plus tard",
+          "Si un élève dit qu'il n'a rien à remercier → l'aider à identifier une petite chose que l'enseignant fait pour lui"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -450,7 +618,11 @@
           "work action cards"
         ],
         "visualSupports": "Work action gestures, appreciation expressions, community helper poses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne respecte pas le travail du concierge → expliquer combien c'est important de garder l'école propre pour tous",
+          "Si un élève trouve le travail de support 'pas important' → montrer comment l'école ne fonctionnerait pas sans ces personnes",
+          "Si un élève veut seulement parler des enseignants → rediriger vers toutes les personnes qui rendent l'école possible"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -479,9 +651,17 @@
       "closing": {
         "duration": 10,
         "activity": "Support staff thank you project. Create appreciation gifts or notes recognizing essential work of custodial and kitchen staff.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de remerciement spéciales",
+          "matériaux d'artisanat",
+          "rubans et décorations"
+        ],
+        "visualSupports": "Gestes de gratitude pour le travail bien fait, remerciements sincères, création avec intention",
+        "decisionPoints": [
+          "Si un élève ne veut pas faire de cadeau pour le concierge → expliquer que même un petit merci fait plaisir à quelqu'un",
+          "Si un élève veut donner quelque chose de chez lui → expliquer qu'un cadeau fait en classe montre l'effort du groupe",
+          "Si un élève pense que c'est inutile → montrer comment les remerciements rendent les gens heureux dans leur travail"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -520,7 +700,11 @@
           "rule examples chart"
         ],
         "visualSupports": "Safety gestures, problem-solving expressions, community cooperation poses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'il n'aime pas les règles → expliquer que les règles nous aident tous à nous sentir en sécurité",
+          "Si un élève ne comprend pas pourquoi on a des règles → utiliser des exemples concrets comme traverser la rue ou jouer ensemble",
+          "Si un élève veut désobéir aux règles → demander comment il se sentirait si quelqu'un ne suivait pas les règles avec lui"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -549,9 +733,17 @@
       "closing": {
         "duration": 10,
         "activity": "Rule commitment ceremony. Students share how they will follow school rules to help everyone feel safe and included.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats d'engagement aux règles",
+          "autocollants de bon comportement",
+          "livre des règles de classe"
+        ],
+        "visualSupports": "Gestes de promesse solennelle, mains sur le cœur, expressions de responsabilité",
+        "decisionPoints": [
+          "Si un élève ne veut pas s'engager à suivre les règles → lui demander quelle règle lui semble la plus importante pour lui",
+          "Si un élève promet des choses irréalistes → l'aider à choisir une ou deux règles simples à pratiquer",
+          "Si un élève a peur de briser les règles → rassurer que tout le monde fait des erreurs et qu'on apprend ensemble"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -590,7 +782,11 @@
           "thinking poses cards"
         ],
         "visualSupports": "Thinking gestures, problem-solving expressions, solution discovery actions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'il n'a jamais de problèmes → valider que c'est bien et expliquer qu'on apprend pour aider les autres",
+          "Si un élève partage un vrai problème personnel → l'écouter avec empathie et rediriger vers comment on peut l'aider",
+          "Si un élève propose des solutions violentes → rediriger vers des solutions qui aident tout le monde à se sentir mieux"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -620,9 +816,17 @@
       "closing": {
         "duration": 10,
         "activity": "Problem-solving commitment circle. Students share one problem-solving strategy they will try when conflicts arise.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "stratégies de résolution poster",
+          "cartes de rappel personnelles",
+          "autocollants de succès"
+        ],
+        "visualSupports": "Gestes de calme et de réflexion, expressions de détermination, sourires d'encouragement",
+        "decisionPoints": [
+          "Si un élève ne peut pas choisir une stratégie → l'aider en suggérant de commencer par respirer calmement",
+          "Si un élève veut utiliser des stratégies inappropriées → rediriger vers des approches qui aident tout le monde",
+          "Si un élève a peur d'essayer les stratégies → rassurer qu'on pratique ensemble et que c'est normal de faire des erreurs"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -661,7 +865,11 @@
           "celebration symbols"
         ],
         "visualSupports": "Story gestures, celebration actions, tradition demonstration poses",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne comprend pas ce qu'est une tradition → utiliser des exemples familiaux comme les fêtes d'anniversaire ou Noël",
+          "Si un élève dit que sa famille n'a pas de traditions → l'aider à identifier des petites choses spéciales qu'ils font ensemble",
+          "Si un élève a hâte à une tradition scolaire → encourager son enthousiasme et parler de ce qui rend ces moments spéciaux"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -691,9 +899,17 @@
       "closing": {
         "duration": 10,
         "activity": "Tradition appreciation circle. Students share excitement about school traditions they want to participate in.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "calendrier des traditions scolaires",
+          "photos des célébrations passées",
+          "cartes d'anticipation joyeuse"
+        ],
+        "visualSupports": "Gestes d'excitation et d'anticipation, sourires de bonheur, expressions de joie communautaire",
+        "decisionPoints": [
+          "Si un élève ne se sent pas inclus dans une tradition → expliquer comment chaque personne rend les traditions plus spéciales",
+          "Si un élève préfère les traditions de sa famille → célébrer que les deux types de traditions sont importantes",
+          "Si un élève a peur de participer aux traditions → rassurer qu'on apprendra ensemble et que c'est amusant"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -732,7 +948,11 @@
           "treasure map props"
         ],
         "visualSupports": "Map reading gestures, direction pointing, navigation actions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne comprend pas ce qu'est une carte → commencer avec une carte au trésor simple et amusante",
+          "Si un élève a peur de se perdre à l'école → rassurer qu'une carte nous aide à toujours trouver notre chemin",
+          "Si un élève trouve les cartes trop compliquées → montrer des cartes très simples avec juste quelques éléments"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -763,9 +983,17 @@
       "closing": {
         "duration": 10,
         "activity": "Map gallery walk. Students display maps and explain special features they included. Appreciate different mapping perspectives.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "supports d'affichage pour cartes",
+          "autocollants d'appréciation",
+          "cartes de commentaires positifs"
+        ],
+        "visualSupports": "Gestes d'exploration et de découverte, pointage respectueux vers les cartes, expressions d'admiration",
+        "decisionPoints": [
+          "Si un élève est gêné de montrer sa carte → valider que chaque carte est unique et spéciale",
+          "Si un élève critique la carte d'un autre → rediriger vers ce qui est intéressant et créatif dans chaque carte",
+          "Si un élève ne veut pas expliquer sa carte → respecter et inviter les autres à deviner les éléments spéciaux"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -804,7 +1032,11 @@
           "appreciation gesture guides"
         ],
         "visualSupports": "Question asking gestures, careful listening poses, note-taking actions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur de poser des questions aux adultes → commencer par pratiquer avec l'enseignant et utiliser des questions très simples",
+          "Si un élève ne sait pas quoi demander → fournir une liste de questions de base comme 'Quel est votre travail?'",
+          "Si un élève parle trop vite ou fort → pratiquer un ton de voix respectueux et calme pour les interviews"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -834,9 +1066,17 @@
       "closing": {
         "duration": 10,
         "activity": "Interview discovery sharing. Students share interesting things they learned about school staff and their contributions to school community.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "notes d'interview des élèves",
+          "tableau de découvertes",
+          "certificats de remerciement pour le personnel"
+        ],
+        "visualSupports": "Gestes de partage et de découverte, expressions de surprise positive, pointage vers les découvertes",
+        "decisionPoints": [
+          "Si un élève n'a pas eu d'interview réussie → l'aider à partager une chose qu'il a observée sur la personne",
+          "Si un élève veut critiquer quelqu'un qu'il a rencontré → rediriger vers les aspects positifs de ce que cette personne fait",
+          "Si un élève est trop excité par ses découvertes → canaliser son enthousiasme en encourageant un partage organisé"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -875,7 +1115,11 @@
           "want examples"
         ],
         "visualSupports": "Essential need gestures, want desire expressions, sorting actions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne comprend pas la différence entre besoin et désir → utiliser des exemples très concrets comme manger (besoin) vs bonbon (désir)",
+          "Si un élève dit que tout est un besoin → demander 'Est-ce qu'on peut vivre sans ça?' pour l'aider à réfléchir",
+          "Si un élève se sent mal de vouloir des choses → expliquer que c'est normal d'avoir des désirs, mais qu'on satisfait les besoins en premier"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -905,9 +1149,17 @@
       "closing": {
         "duration": 10,
         "activity": "School needs commitment circle. Students choose one school need they want to help address and share their commitment.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes d'engagement personnel",
+          "tableau des besoins identifiés",
+          "autocollants de promesse"
+        ],
+        "visualSupports": "Gestes d'engagement personnel, expressions de détermination, mains sur le cœur pour les promesses",
+        "decisionPoints": [
+          "Si un élève ne sait pas comment aider → suggérer des actions simples comme garder la classe propre ou être gentil",
+          "Si un élève promet quelque chose de trop grand → l'aider à choisir une action réaliste qu'il peut vraiment faire",
+          "Si un élève ne veut pas s'engager → respecter et suggérer qu'il peut juste observer comment les autres aident"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -946,7 +1198,11 @@
           "contribution examples chart"
         ],
         "visualSupports": "Helping action demonstrations, appreciation expressions, contribution celebration gestures",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève dit qu'il n'aide jamais → l'aider à identifier des petites choses qu'il fait déjà comme ranger ses affaires",
+          "Si un élève se vante de tout ce qu'il fait → célébrer ses contributions et encourager les autres à partager aussi",
+          "Si un élève ne veut pas aider → respecter ses sentiments et expliquer qu'on peut commencer par de très petites choses"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -976,9 +1232,17 @@
       "closing": {
         "duration": 10,
         "activity": "Contribution celebration circle. Students share how it felt to help school community and plan continued contributions.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats de contribution",
+          "tableau des actions accomplies",
+          "plans d'actions futures"
+        ],
+        "visualSupports": "Gestes de fierté personnelle, célébration des accomplissements, sourires de satisfaction",
+        "decisionPoints": [
+          "Si un élève se sent mal de ne pas avoir assez aidé → souligner que chaque petite action compte et qu'on peut continuer à apprendre",
+          "Si un élève veut faire quelque chose de trop grand → l'aider à décomposer en petites étapes réalisables",
+          "Si un élève ne veut plus aider → respecter et suggérer qu'il peut juste observer les autres pour l'instant"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1017,7 +1281,11 @@
           "community location cards"
         ],
         "visualSupports": "Map pointing gestures, location identification actions, neighborhood connection expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne reconnaît pas son quartier → utiliser des points de repère familiers comme sa maison ou le trajet à l'école",
+          "Si un élève a peur de sortir de l'école → rassurer qu'on reste en sécurité et qu'on observe juste depuis les fenêtres",
+          "Si un élève ne comprend pas ce qu'est un quartier → comparer avec sa propre rue et les maisons autour de chez lui"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1047,9 +1315,17 @@
       "closing": {
         "duration": 10,
         "activity": "School-community appreciation circle. Students share connections they discovered between school and neighborhood.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes des connexions découvertes",
+          "photos du quartier prises",
+          "tableau des liens communautaires"
+        ],
+        "visualSupports": "Gestes de connexion entre l'école et le quartier, sourires de découverte, expressions d'appartenance",
+        "decisionPoints": [
+          "Si un élève n'a pas remarqué de connexions → l'aider en pointant vers quelque chose de simple qu'il a observé",
+          "Si un élève partage des informations personnelles sur son quartier → valider ses observations tout en gardant la confidentialité",
+          "Si un élève ne se sent pas connecté au quartier → expliquer que faire partie de l'école nous connecte déjà à la communauté"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1128,7 +1404,11 @@
           "then/now comparison cards"
         ],
         "visualSupports": "Time passage gestures, historical comparison expressions, then/now demonstration actions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne comprend pas le concept 'avant' → utiliser des exemples personnels comme quand il était bébé vs maintenant",
+          "Si un élève trouve les écoles d'avant 'bizarres' → expliquer que c'était normal pour cette époque, comme nos écoles sont normales aujourd'hui",
+          "Si un élève veut aller à l'école d'avant → célébrer sa curiosité et parler de ce qui était spécial dans chaque époque"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1158,9 +1438,17 @@
       "closing": {
         "duration": 10,
         "activity": "Time appreciation circle. Students share what they appreciate about schools today and what was interesting about schools in the past.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "photos alors/maintenant côte à côte",
+          "cartes d'appréciation temporelle",
+          "ligne du temps simple"
+        ],
+        "visualSupports": "Gestes d'appréciation pour le passé et le présent, expressions de gratitude, sourires de découverte historique",
+        "decisionPoints": [
+          "Si un élève préfère tout du passé → célébrer sa curiosité et mentionner aussi de bonnes choses d'aujourd'hui",
+          "Si un élève dit que le passé était 'nul' → l'aider à trouver quelque chose d'intéressant ou d'amusant dans les écoles d'avant",
+          "Si un élève se sent confus par les changements → rassurer que les changements sont normaux et que notre école continue d'évoluer"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1239,7 +1527,11 @@
           "collaboration planning tools"
         ],
         "visualSupports": "Brainstorming thinking gestures, collaboration planning actions, project excitement expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève veut faire un projet trop grand → l'aider à décomposer en petites étapes réalisables",
+          "Si un élève ne veut pas collaborer → respecter et offrir un rôle d'observation ou de petite contribution individuelle",
+          "Si un élève a peur que le projet ne marche pas → rassurer qu'on apprend ensemble et que chaque effort compte"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1268,9 +1560,17 @@
       "closing": {
         "duration": 10,
         "activity": "Project completion celebration. Admire completed project and discuss how collaboration made improvement possible.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats de projet accompli",
+          "photos avant/après du projet",
+          "tableau des contributions de chacun"
+        ],
+        "visualSupports": "Gestes de fierté collective, expressions de satisfaction d'accomplissement, sourires de célébration d'équipe",
+        "decisionPoints": [
+          "Si un élève ne voit pas l'impact du projet → l'aider à identifier des changements concrets, même petits",
+          "Si un élève revendique tout le mérite → rediriger vers comment chaque personne a contribué au succès",
+          "Si un élève est déçu du résultat → souligner l'effort d'équipe et ce qu'on a appris en travaillant ensemble"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1349,7 +1649,11 @@
           "confidence building activities"
         ],
         "visualSupports": "Confident presentation postures, welcoming gestures, information sharing actions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève a peur de présenter → commencer par pratiquer avec un seul ami, puis élargir graduellement le groupe",
+          "Si un élève ne sait pas quoi dire sur l'école → l'aider à choisir une chose qu'il aime vraiment et à commencer par ça",
+          "Si un élève veut critiquer l'école → rediriger vers les aspects positifs et ce qui rend l'école spéciale"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1379,9 +1683,17 @@
       "closing": {
         "duration": 10,
         "activity": "Ambassador appreciation circle. Celebrate student success in representing their school community and sharing their knowledge.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats d'ambassadeur de l'école",
+          "badge d'expert de l'école",
+          "photos des présentations"
+        ],
+        "visualSupports": "Gestes de fierté d'ambassadeur, expressions de confiance en soi, sourires de réussite personnelle",
+        "decisionPoints": [
+          "Si un élève est déçu de sa présentation → souligner ses efforts et identifier une chose qu'il a bien faite",
+          "Si un élève ne veut plus être ambassadeur → respecter et expliquer qu'il peut être fier de ce qu'il a déjà partagé",
+          "Si un élève veut présenter encore → encourager son enthousiasme et planifier d'autres occasions de partage"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1460,7 +1772,11 @@
           "planning materials"
         ],
         "visualSupports": "Celebration planning gestures, joyful expressions, community appreciation actions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne veut pas célébrer → respecter ses sentiments et offrir un rôle d'observation confortable",
+          "Si un élève veut une célébration trop élaborée → l'aider à choisir des éléments simples mais significatifs",
+          "Si un élève ne comprend pas pourquoi célébrer → expliquer que c'est pour dire merci à tous ceux qui nous aident"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1489,9 +1805,17 @@
       "closing": {
         "duration": 10,
         "activity": "Celebration reflection circle. Share feelings about celebration and appreciation for school community relationships.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "cartes de réflexion sur la célébration",
+          "photos de la célébration",
+          "livre de souvenirs communautaires"
+        ],
+        "visualSupports": "Expressions de gratitude et de bonheur, gestes de célébration réussie, sourires de satisfaction communautaire",
+        "decisionPoints": [
+          "Si un élève a trouvé la célébration ennuyante → l'aider à identifier un moment qu'il a aimé ou une personne heureuse qu'il a vue",
+          "Si un élève veut célébrer encore → encourager son enthousiasme et parler d'autres occasions de reconnaissance dans l'année",
+          "Si un élève se sent émotionnel après la célébration → valider ses sentiments et expliquer que c'est normal d'être touché par tant d'amour communautaire"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
@@ -1570,7 +1894,11 @@
           "journey timeline materials"
         ],
         "visualSupports": "Growth demonstration gestures, journey reflection actions, learning appreciation expressions",
-        "decisionPoints": [],
+        "decisionPoints": [
+          "Si un élève ne voit pas ses progrès → l'aider en pointant vers des exemples concrets de ce qu'il a appris sur l'école",
+          "Si un élève se sent triste que l'unité se termine → célébrer tous les apprentissages et rappeler qu'il continue à grandir comme membre de l'école",
+          "Si un élève ne comprend pas le concept de citoyen → expliquer simplement que c'est être une bonne personne qui aide les autres dans sa communauté"
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1600,9 +1928,17 @@
       "closing": {
         "duration": 10,
         "activity": "School citizenship commitment ceremony. Students make commitments to continued positive school community membership and receive recognition as valued school citizens.",
-        "materials": [],
-        "visualSupports": "",
-        "decisionPoints": [],
+        "materials": [
+          "certificats de citoyen de l'école",
+          "cartes d'engagement personnel",
+          "portfolio complet de l'unité"
+        ],
+        "visualSupports": "Gestes de fierté de citoyenneté, expressions d'engagement personnel, sourires de réussite complète",
+        "decisionPoints": [
+          "Si un élève ne veut pas s'engager pour le futur → respecter et souligner qu'il a déjà été un bon membre de la communauté",
+          "Si un élève promet des choses irréalistes → l'aider à choisir un ou deux petits gestes qu'il peut vraiment faire",
+          "Si un élève se sent émotionnel en recevant sa reconnaissance → valider ses sentiments et célébrer qu'il mérite vraiment cette fierté"
+        ],
         "movementBreaks": []
       },
       "troubleshooting": {
