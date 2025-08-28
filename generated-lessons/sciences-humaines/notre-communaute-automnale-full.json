@@ -80,22 +80,22 @@
       },
       "realWorldConnection": "Our school is connected to many community helpers and neighbors who work together in autumn",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des photos simples de l'école et du quartier pour aider la compréhension",
           "Permettre de montrer avec les doigts ou pointer au lieu de parler",
           "Offrir de l'aide individuelle pour identifier des connexions communauté-école"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à nommer des endroits spécifiques dans le quartier de l'école",
           "Inviter à expliquer comment ils se rendent à l'école (transport communautaire)",
           "Permettre de partager des détails sur les activités communautaires près de l'école"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir des mots-clés visuels en français et anglais si nécessaire",
           "Encourager le mélange linguistique avec traduction pour 'communauté'",
           "Utiliser des gestes et images pour appuyer la compréhension"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les outils de communication selon les besoins individuels",
           "Offrir des options de participation alternatives (dessiner, pointer, observer)",
           "Respecter les rythmes individuels de participation"
@@ -159,7 +159,7 @@
             "ifNo": "Introduce helpers through photos and explain how they help students even if not seen daily"
           },
           {
-            "question": "Should we include volunteers or focus only on staff?",
+            "question": "Si on inclut les bénévoles ou si on se concentre seulement sur le personnel?",
             "ifYes": "Include parent volunteers and reading helpers to show broader school community",
             "ifNo": "Focus on consistent staff helpers that students see regularly"
           }
@@ -188,22 +188,22 @@
       },
       "realWorldConnection": "Many people work together to make our school a safe, clean, and welcoming place to learn",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des photos claires des aides scolaires avec leurs noms",
           "Permettre de pointer ou faire des gestes au lieu de nommer verbalement",
           "Offrir des visites courtes pour voir les aides au travail"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à décrire les tâches spécifiques de chaque aide",
           "Inviter à expliquer pourquoi chaque rôle est important pour l'école",
           "Permettre de poser des questions sur les formations des aides"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir les noms des métiers en français avec support visuel",
           "Encourager l'utilisation de gestes pour décrire les rôles",
           "Permettre la traduction si nécessaire pour la compréhension"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les activités selon les capacités de communication",
           "Offrir des interactions directes avec les aides si approprié",
           "Respecter les niveaux de confort social individuels"
@@ -267,7 +267,7 @@
             "ifNo": "Use photos of typical autumn changes and help students look for subtle local changes"
           },
           {
-            "question": "Should we focus on natural changes or community activity changes?",
+            "question": "Si on se concentre sur les changements naturels ou les changements d'activités communautaires?",
             "ifYes": "Balance both natural changes (leaves, weather) and community changes (harvest festivals, preparation activities)",
             "ifNo": "Start with natural changes students can see, then connect to community activity changes"
           }
@@ -296,22 +296,22 @@
       },
       "realWorldConnection": "Autumn brings special changes that affect how our community looks, feels, and works together",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des photos avant/après simples des changements d'automne",
           "Permettre d'observer plutôt que de décrire verbalement",
           "Offrir de l'aide pour identifier les changements les plus évidents"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à expliquer pourquoi ces changements arrivent en automne",
           "Inviter à comparer les changements locaux avec d'autres régions",
           "Permettre de dessiner des détails précis des changements observés"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire d'automne avec des images claires",
           "Encourager l'utilisation de gestes descriptifs",
           "Permettre le mélange linguistique pour décrire les changements"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les activités d'observation selon les capacités sensorielles",
           "Offrir des supports tactiles comme de vraies feuilles",
           "Respecter les rythmes individuels d'observation"
@@ -370,7 +370,7 @@
         "visualSupports": "Helper-specific gestures (traffic directing for crossing guard, siren sounds for emergency helpers), safety expressions",
         "decisionPoints": [
           {
-            "question": "Are students comfortable discussing safety without creating fear?",
+            "question": "Si les élèves sont à l'aise de discuter de la sécurité sans créer de la peur?",
             "ifYes": "Focus on positive safety helper roles and how they help community feel secure",
             "ifNo": "Emphasize helper friendliness and community service rather than emergency situations"
           },
@@ -404,22 +404,22 @@
       },
       "realWorldConnection": "Safety helpers work every day, including during autumn, to keep our community safe and secure",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des images positives et rassurantes des aides de sécurité",
           "Permettre d'observer sans pression de participation verbale",
           "Offrir des activités calmantes si l'anxiété se manifeste"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à expliquer les différents rôles des aides de sécurité",
           "Inviter à discuter des situations où on pourrait avoir besoin d'aide",
           "Permettre de poser des questions sur la formation des aides"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire de sécurité avec images claires",
           "Encourager l'utilisation de gestes pour exprimer la sécurité",
           "Permettre la traduction pour les concepts de sécurité complexes"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les besoins émotionnels et sensoriels individuels",
           "Offrir des pauses et du réconfort si nécessaire",
           "Respecter les niveaux de confort avec les sujets de sécurité"
@@ -511,22 +511,22 @@
       },
       "realWorldConnection": "Fire fighters help our community stay safe from fires and other emergencies all year long",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Préparer l'élève à la visite avec des photos et explications simples",
           "Permettre d'observer sans pression de participation active",
           "Offrir un endroit calme si la stimulation devient trop intense"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à poser des questions détaillées sur l'équipement",
           "Inviter à expliquer les concepts de sécurité aux autres élèves",
           "Permettre de dessiner des détails précis de l'équipement observé"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire de sécurité incendie avec images",
           "Encourager les questions dans la langue maternelle avec traduction",
           "Utiliser des gestes et démonstrations pour la compréhension"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les sensibilités sensorielles (bruits, lumières)",
           "Offrir des supports de communication alternatifs",
           "Respecter les besoins individuels de participation"
@@ -584,7 +584,7 @@
         "visualSupports": "Helper-specific gestures (stethoscope listening, gentle care motions), health and wellness expressions",
         "decisionPoints": [
           {
-            "question": "Should we include mental health helpers or focus on physical health?",
+            "question": "Si on inclut les aides en santé mentale ou si on se concentre sur la santé physique?",
             "ifYes": "Include school counselors and explain how they help with feelings and worries",
             "ifNo": "Focus on familiar physical health helpers that students encounter regularly"
           },
@@ -618,22 +618,22 @@
       },
       "realWorldConnection": "Healthcare helpers work to keep everyone in our community healthy and strong",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des images simples et rassurantes des aides de santé",
           "Permettre d'observer les activités sans pression de participation",
           "Offrir des activités calmantes si l'anxiété médicale se manifeste"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à expliquer les différents rôles des professionnels de santé",
           "Inviter à discuter des moyens de prévenir les maladies",
           "Permettre de poser des questions sur la formation médicale"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire de santé avec images claires et gestes",
           "Encourager l'utilisation de la langue maternelle pour exprimer les sentiments de santé",
           "Utiliser des supports visuels pour les concepts de santé"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les expériences médicales personnelles de l'élève",
           "Offrir des options de participation non-verbales",
           "Respecter les sensibilités individuelles aux sujets de santé"
@@ -692,7 +692,7 @@
         "visualSupports": "Sequential gestures for food journey, harvest celebration motions, food sharing expressions",
         "decisionPoints": [
           {
-            "question": "Should we focus on local farmers or include broader food supply chain?",
+            "question": "Si on se concentre sur les agriculteurs locaux ou si on inclut la chaîne d'approvisionnement alimentaire plus large?",
             "ifYes": "Emphasize local autumn harvest and nearby farms that supply community stores",
             "ifNo": "Include broader food system while highlighting autumn harvest and seasonal foods"
           },
@@ -726,22 +726,22 @@
       },
       "realWorldConnection": "Many helpers work together to bring fresh, healthy food to our community, especially during autumn harvest",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des images simples du voyage de la nourriture de la ferme au magasin",
           "Permettre de pointer ou toucher les aliments plutôt que de nommer verbalement",
           "Offrir des exemples concrets d'aliments familiers et leur origine"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à expliquer les étapes du transport de la nourriture",
           "Inviter à discuter des différents types de fermes (légumes, fruits, animaux)",
           "Permettre de poser des questions sur les saisons de récolte"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire alimentaire et agricole avec images claires",
           "Encourager l'utilisation de noms d'aliments dans la langue maternelle",
           "Utiliser des gestes et supports visuels pour les concepts agricoles"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les expériences alimentaires et sensibilités de l'élève",
           "Offrir des options tactiles comme toucher de vrais fruits et légumes",
           "Respecter les restrictions alimentaires individuelles"
@@ -833,22 +833,22 @@
       },
       "realWorldConnection": "Grocery stores are important community places where food helpers serve families every day",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Préparer l'élève avec des images de l'épicerie avant la visite",
           "Permettre d'observer sans pression d'interaction sociale",
           "Offrir un partenaire de soutien pendant l'exploration"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à poser des questions détaillées aux employés sur leurs tâches",
           "Inviter à observer et expliquer l'organisation de l'épicerie",
           "Permettre de calculer ou compter des produits pendant la visite"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire d'épicerie avec images des objets réels",
           "Encourager l'utilisation de gestes et de pointage pour communiquer",
           "Permettre l'utilisation de mots familiers dans la langue maternelle"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les sensibilités sensorielles (bruits, lumières, foules)",
           "Offrir des pauses et espaces calmes si nécessaire",
           "Respecter les niveaux de confort avec les interactions sociales"
@@ -906,7 +906,7 @@
         "visualSupports": "Environmental helper gestures, recycling motions, community cooperation expressions",
         "decisionPoints": [
           {
-            "question": "Should we include environmental helpers beyond garbage collection?",
+            "question": "Si on inclut les aides environnementales au-delà de la collecte des ordures?",
             "ifYes": "Include park maintenance, recycling workers, and environmental protection helpers",
             "ifNo": "Focus on most visible sanitation workers and explain their daily community contributions"
           },
@@ -940,22 +940,22 @@
       },
       "realWorldConnection": "Keeping our community clean requires helpers working together and everyone doing their part",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des exemples visuels simples d'espaces propres vs sales",
           "Permettre de montrer des actions de nettoyage plutôt que de les décrire",
           "Offrir des tâches de nettoyage très simples et concrètes"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à expliquer l'impact environnemental du nettoyage communautaire",
           "Inviter à organiser des plans de nettoyage pour la classe ou l'école",
           "Permettre de calculer l'impact de petites actions répétées"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire de nettoyage avec démonstrations physiques",
           "Encourager l'utilisation de gestes pour montrer les actions de nettoyage",
           "Permettre d'utiliser des mots simples dans toute langue pour exprimer l'aide"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les tâches de nettoyage selon les capacités motrices individuelles",
           "Offrir des rôles d'aide appropriés sans surcharge sensorielle",
           "Respecter les sensibilités aux textures et odeurs de nettoyage"
@@ -1018,7 +1018,7 @@
             "ifNo": "Introduce variety of typical autumn community activities and help students identify local versions"
           },
           {
-            "question": "Should we focus on organized events or informal community gatherings?",
+            "question": "Si on se concentre sur les événements organisés ou les rassemblements communautaires informels?",
             "ifYes": "Include both formal events and informal activities like neighborhood leaf raking or outdoor play",
             "ifNo": "Focus on organized community events that families can easily participate in together"
           }
@@ -1047,22 +1047,22 @@
       },
       "realWorldConnection": "Autumn brings special opportunities for community members to celebrate and have fun together",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des photos simples d'activités d'automne accessibles",
           "Permettre de choisir des activités très familiales et peu coûteuses",
           "Offrir des options d'observation plutôt que de participation active"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à planifier une activité d'automne pour la classe",
           "Inviter à expliquer comment organiser des événements communautaires",
           "Permettre de rechercher des activités d'automne dans d'autres communautés"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire d'activités avec images et gestes",
           "Encourager le partage d'activités d'automne de la culture d'origine",
           "Utiliser des supports visuels pour les concepts de célébration"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les intérêts et capacités individuelles de participation",
           "Offrir des rôles de participation appropriés aux besoins sensoriels",
           "Respecter les préférences sociales pour les activités communautaires"
@@ -1154,22 +1154,22 @@
       },
       "realWorldConnection": "Taking time to really look at our neighborhood helps us appreciate all the helpers around us",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir une liste d'observation très simple avec images",
           "Permettre d'observer avec un partenaire pour le soutien",
           "Offrir des pauses fréquentes pendant la promenade"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à poser des questions aux aides rencontrés",
           "Inviter à dessiner une carte du quartier avec les découvertes",
           "Permettre de compter ou mesurer des éléments observés"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir du vocabulaire d'observation avec images du quartier",
           "Encourager l'utilisation de gestes pour décrire les observations",
           "Permettre d'utiliser la langue maternelle pour les découvertes excitantes"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les capacités de marche et d'attention individuelles",
           "Offrir des rôles d'observation appropriés aux intérêts",
           "Respecter les besoins sensoriels pendant l'exploration extérieure"
@@ -1227,7 +1227,7 @@
         "visualSupports": "Helper-specific motions, safety demonstration gestures, weather-appropriate transportation expressions",
         "decisionPoints": [
           {
-            "question": "Should we include public transportation or focus on school transportation?",
+            "question": "Si on inclut le transport en commun ou si on se concentre sur le transport scolaire?",
             "ifYes": "Include both school buses and public transportation to show full range of community transportation",
             "ifNo": "Focus on school transportation helpers that students interact with most regularly"
           },
@@ -1261,22 +1261,22 @@
       },
       "realWorldConnection": "Transportation helpers make it possible for people to move safely around our community",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des images simples des modes de transport et leurs aides",
           "Permettre de montrer ou mimer les transports plutôt que les nommer",
           "Offrir des options de transport très familiers pour commencer"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à expliquer les rôles spécifiques de différents aides de transport",
           "Inviter à comparer les transports en ville vs à la campagne",
           "Permettre de dessiner un plan de transport pour l'école"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire de transport avec images et sons (vroum, beep)",
           "Encourager l'utilisation de gestes pour décrire les mouvements",
           "Permettre d'utiliser les noms de transport de la langue maternelle"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les expériences de transport individuelles",
           "Offrir des activités qui respectent les sensibilités aux bruits de transport",
           "Respecter les niveaux de confort avec différents modes de transport"
@@ -1334,7 +1334,7 @@
         "visualSupports": "Construction motions, seasonal preparation gestures, community strength expressions",
         "decisionPoints": [
           {
-            "question": "Should we focus on new construction or maintenance and repair work?",
+            "question": "Si on se concentre sur les nouvelles constructions ou les travaux de maintenance et de réparation?",
             "ifYes": "Balance both new building projects and ongoing maintenance that keeps community functioning",
             "ifNo": "Focus on maintenance and repair work that students can observe in their daily community experience"
           },
@@ -1368,22 +1368,22 @@
       },
       "realWorldConnection": "Construction and repair workers help make our community stronger and better for everyone",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des images simples d'avant/après les constructions",
           "Permettre d'observer et toucher des outils sécuritaires",
           "Offrir des activités de construction avec blocs ou légos"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à expliquer les étapes de construction d'un bâtiment",
           "Inviter à dessiner des plans d'amélioration pour l'école",
           "Permettre de calculer ou mesurer des éléments de construction"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire de construction avec gestes et sons",
           "Encourager l'utilisation de mouvements pour décrire la construction",
           "Permettre d'utiliser les mots d'outils de la langue maternelle"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les sensibilités aux bruits et textures de construction",
           "Offrir des rôles d'aide dans des projets de construction adaptés",
           "Respecter les intérêts individuels pour les activités de construction"
@@ -1446,7 +1446,7 @@
             "ifNo": "Brainstorm with students and provide examples of age-appropriate community contributions"
           },
           {
-            "question": "Should we focus on individual actions or group community projects?",
+            "question": "Si on se concentre sur les actions individuelles ou les projets communautaires de groupe?",
             "ifYes": "Include both individual kindness actions and simple group projects like card-making for helpers",
             "ifNo": "Focus on individual actions students can take immediately in their daily community interactions"
           }
@@ -1475,22 +1475,22 @@
       },
       "realWorldConnection": "Even young people can make important contributions to help their community be better",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des exemples très simples d'aide comme tenir la porte",
           "Permettre de choisir des actions familiales plutôt qu'individuelles",
           "Offrir des options d'aide à l'école avant la communauté"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à planifier des projets d'aide plus complexes",
           "Inviter à organiser une activité d'aide pour la classe",
           "Permettre de rechercher des organisations d'aide communautaire"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire d'aide avec gestes et démonstrations",
           "Encourager l'utilisation d'exemples d'aide de la culture d'origine",
           "Utiliser des images pour illustrer les actions d'aide"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les suggestions d'aide selon les capacités individuelles",
           "Offrir des rôles d'aide appropriés aux intérêts spéciaux",
           "Respecter les niveaux de confort social pour les activités communautaires"
@@ -1549,7 +1549,7 @@
         "visualSupports": "Map-making motions, spatial organization gestures, community pride expressions",
         "decisionPoints": [
           {
-            "question": "Should maps focus on helper locations or general community landmarks?",
+            "question": "Si les cartes se concentrent sur les emplacements des aides ou les monuments communautaires généraux?",
             "ifYes": "Balance both helper workplaces and general landmarks to show complete community picture",
             "ifNo": "Focus on helper locations while including key landmarks that students recognize"
           },
@@ -1583,22 +1583,22 @@
       },
       "realWorldConnection": "Making maps helps us understand how our community is organized and where helpers work",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des cartes partiellement remplies avec des points de repère",
           "Permettre d'utiliser des autocollants plutôt que de dessiner",
           "Offrir de l'aide individuelle pour l'organisation spatiale"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à ajouter des détails comme les noms de rues",
           "Inviter à créer une légende pour leur carte",
           "Permettre de faire une carte plus détaillée avec plusieurs quartiers"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir le vocabulaire de localisation avec gestes directionnels",
           "Encourager l'utilisation d'images et symboles pour représenter les lieux",
           "Permettre d'étiqueter en langue maternelle et français"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les outils de cartographie selon les capacités motrices",
           "Offrir des options de représentation alternatives (coller vs dessiner)",
           "Respecter les intérêts individuels pour les types de lieux à inclure"
@@ -1635,10 +1635,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1698,7 +1698,7 @@
         "visualSupports": "Artistic demonstration techniques, detailed observation gestures, creative expression encouragement",
         "decisionPoints": [
           {
-            "question": "Should students choose their favorite helper or draw multiple helpers?",
+            "question": "Si les élèves choisissent leur aide préférée ou dessinent plusieurs aides?",
             "ifYes": "Allow choice of favorite helper to ensure personal connection and artistic motivation",
             "ifNo": "Assign specific helpers to ensure variety across classroom while allowing artistic interpretation"
           },
@@ -1732,22 +1732,22 @@
       },
       "realWorldConnection": "Creating art about community helpers helps us remember and appreciate their important work",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des modèles simples ou des contours à colorier",
           "Permettre d'utiliser des autocollants ou collages",
           "Offrir de l'aide pour tenir les outils d'art"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à ajouter des détails sur l'environnement de travail",
           "Inviter à écrire un message de remerciement sur l'art",
           "Permettre d'expérimenter avec différents matériaux artistiques"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre l'utilisation d'étiquettes visuelles pour identifier les outils",
           "Encourager l'expression artistique sans pression linguistique",
           "Utiliser l'art comme moyen de communication non-verbale"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les outils artistiques selon les capacités motrices",
           "Offrir des options de création alternatives (collage, tampons)",
           "Respecter les préférences sensorielles pour les textures d'art"
@@ -1784,10 +1784,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1851,7 +1851,7 @@
             "ifNo": "Include variety of helpers and let students explore different roles throughout activity"
           },
           {
-            "question": "Should students choose their own roles or rotate through different helpers?",
+            "question": "Si les élèves choisissent leurs propres rôles ou font une rotation à travers différentes aides?",
             "ifYes": "Allow role choice to ensure engagement while encouraging some role rotation for variety",
             "ifNo": "Assign roles to ensure variety and give all students opportunity to explore different helpers"
           }
@@ -1880,22 +1880,22 @@
       },
       "realWorldConnection": "Playing community helper roles helps us understand what different helpers do every day",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des rôles avec actions très simples et familières",
           "Permettre de jouer en paire pour le soutien",
           "Offrir des accessoires concrets pour guider l'action"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à créer des scénarios plus complexes",
           "Inviter à diriger d'autres élèves dans leurs rôles",
           "Permettre d'improviser au-delà des scénarios donnés"
         ],
-        "forELL": [
+        "pourLangue": [
           "Encourager l'utilisation d'actions plutôt que de paroles",
           "Permettre le mélange linguistique si nécessaire pour la compréhension",
           "Utiliser des accessoires pour appuyer la communication non-verbale"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les rôles selon les intérêts et capacités individuels",
           "Offrir des options de participation appropriées aux besoins sociaux",
           "Respecter les niveaux de confort avec les jeux de rôle"
@@ -1932,10 +1932,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2028,22 +2028,22 @@
       },
       "realWorldConnection": "Thanking community helpers shows appreciation and builds positive community relationships",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des modèles de lettres avec espaces à remplir",
           "Permettre de dicter les lettres à un adulte",
           "Encourager l'utilisation de dessins pour exprimer les remerciements"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à écrire des lettres plus détaillées avec des exemples spécifiques",
           "Inviter à inclure des questions pour les aides communautaires",
           "Permettre de créer des enveloppes décoratives pour leurs lettres"
         ],
-        "forELL": [
+        "pourLangue": [
           "Encourager l'utilisation de dessins pour communiquer la gratitude",
           "Permettre le mélange linguistique avec traduction si nécessaire",
           "Fournir des phrases simples de remerciement en français"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les outils d'écriture selon les capacités motrices",
           "Offrir des options alternatives comme les autocollants ou tampons",
           "Respecter les préférences individuelles pour l'expression écrite"
@@ -2080,10 +2080,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2142,7 +2142,7 @@
         "visualSupports": "Celebration preparation actions, appreciation demonstration techniques, festive community expressions",
         "decisionPoints": [
           {
-            "question": "Should we invite real community helpers to our celebration?",
+            "question": "Si on invite de vrais aides communautaires à notre célébration?",
             "ifYes": "Invite available local helpers to attend and receive student appreciation in person",
             "ifNo": "Create celebration that honors helpers symbolically and prepares students to express appreciation in community"
           },
@@ -2176,22 +2176,22 @@
       },
       "realWorldConnection": "Celebrating community helpers together shows our gratitude and builds community connections",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des rôles simples dans la célébration",
           "Permettre de participer à son propre rythme",
           "Offrir des espaces calmes si la stimulation devient intense"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à diriger des aspects de la célébration",
           "Inviter à préparer des présentations spéciales",
           "Permettre de créer des éléments de célébration originaux"
         ],
-        "forELL": [
+        "pourLangue": [
           "Encourager la participation non-verbale avec gestes et actions",
           "Permettre l'expression d'appréciation dans toute langue",
           "Utiliser des éléments visuels pour appuyer la compréhension"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les rôles selon les intérêts et capacités individuels",
           "Offrir des options de participation respectueuses des besoins sensoriels",
           "Respecter les niveaux de confort avec les activités de groupe"
@@ -2228,10 +2228,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2294,7 +2294,7 @@
             "ifNo": "Provide sentence starters and visual prompts to help students express learning and community understanding"
           },
           {
-            "question": "Should reflection focus on helper appreciation or student community belonging?",
+            "question": "Si la réflexion se concentre sur l'appréciation des aides ou l'appartenance communautaire des élèves?",
             "ifYes": "Balance both helper appreciation and student recognition of their own community membership and contribution potential",
             "ifNo": "Focus primarily on student community belonging while acknowledging helper learning throughout unit"
           }
@@ -2323,22 +2323,22 @@
       },
       "realWorldConnection": "Understanding our community helps us feel proud to belong and excited to contribute as we grow",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des invites simples pour identifier les apprentissages",
           "Permettre d'exprimer la fierté par des gestes ou dessins",
           "Offrir des exemples concrets de leur appartenance communautaire"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à faire des connexions entre différents apprentissages",
           "Inviter à planifier des actions futures pour la communauté",
           "Permettre de réfléchir sur la croissance personnelle durant l'unité"
         ],
-        "forELL": [
+        "pourLangue": [
           "Encourager l'expression de fierté dans toute langue",
           "Utiliser des supports visuels pour appuyer la réflexion",
           "Permettre le partage par des images ou gestes"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les activités de réflexion selon les capacités individuelles",
           "Offrir des options de participation respectueuses des besoins",
           "Respecter les styles individuels d'expression de fierté"
@@ -2375,10 +2375,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }

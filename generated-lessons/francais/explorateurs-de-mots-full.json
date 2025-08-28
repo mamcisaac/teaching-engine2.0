@@ -24,11 +24,11 @@
         "visualSupports": "Visual schedule showing lesson flow, Word detective poster with magnifying glass image",
         "decisionPoints": [
           {
-            "moment": "If students are very excited about exploring",
+            "question": "If students are very excited about exploring",
             "choice": "Extend the room tour by 2 minutes or channel energy into discovery game"
           },
           {
-            "moment": "If some students seem hesitant to participate",
+            "question": "If some students seem hesitant to participate",
             "choice": "Start with familiar English words first, then transition to French"
           }
         ],
@@ -41,15 +41,15 @@
         "visualSupports": "Word discovery chart with pictures, Visual instructions for word hunt",
         "decisionPoints": [
           {
-            "moment": "If students find many words quickly",
+            "question": "If students find many words quickly",
             "choice": "Add categorizing activity (colors, animals, etc.) or extend to hallway hunt"
           },
           {
-            "moment": "If students struggle to find words",
+            "question": "If students struggle to find words",
             "choice": "Guide them to specific locations or provide picture clues for word matching"
           },
           {
-            "moment": "If chart becomes too full",
+            "question": "If chart becomes too full",
             "choice": "Create multiple charts by category or focus on 5-7 most interesting words"
           }
         ],
@@ -62,11 +62,11 @@
         "visualSupports": "Three chosen words with clear pictures, Class motto poster",
         "decisionPoints": [
           {
-            "moment": "If students want to share more words",
+            "question": "If students want to share more words",
             "choice": "Allow 1-2 additional shares or promise to continue tomorrow"
           },
           {
-            "moment": "If energy is low at closing",
+            "question": "If energy is low at closing",
             "choice": "Add action chant or celebration dance with the motto"
           }
         ],
@@ -78,10 +78,10 @@
       },
       "realWorldConnection": "People use words to communicate every day in French - in stores, on signs, in conversations",
       "differentiation": {
-        "forStruggling": ["Partner with confident peer", "Use more picture supports", "Focus on 2-3 simple words only", "Allow pointing instead of verbal responses"],
-        "forAdvanced": ["Count syllables in discovered words", "Find words that start with same sound", "Help teach words to classmates", "Create own word categories"],
-        "forELL": ["Connect to home language cognates when possible", "Use extra visual and gesture supports", "Allow code-switching during discovery", "Pair with bilingual buddy"],
-        "forIEP": ["Modify activity length as needed", "Provide sensory supports (fidgets during circle)", "Use communication device if needed", "Celebrate any participation level"]
+        "pourDifficultés": ["Partner with confident peer", "Use more picture supports", "Focus on 2-3 simple words only", "Allow pointing instead of verbal responses"],
+        "pourAvancés": ["Count syllables in discovered words", "Find words that start with same sound", "Help teach words to classmates", "Create own word categories"],
+        "pourLangue": ["Connect to home language cognates when possible", "Use extra visual and gesture supports", "Allow code-switching during discovery", "Pair with bilingual buddy"],
+        "pourPEI": ["Modify activity length as needed", "Provide sensory supports (fidgets during circle)", "Use communication device if needed", "Celebrate any participation level"]
       },
       "assessmentCriteria": {
         "observable": ["Points to French words when directed", "Repeats French words with approximation", "Shows curiosity about word exploration", "Participates in group activities"],
@@ -106,11 +106,11 @@
         "visualSupports": "Yesterday's word discovery chart, Sound symbols poster, Listening ear visual cue",
         "decisionPoints": [
           {
-            "moment": "If students remember many words from yesterday",
+            "question": "If students remember many words from yesterday",
             "choice": "Spend extra time on sound exploration or move faster to new activity"
           },
           {
-            "moment": "If students need more review of discovered words",
+            "question": "If students need more review of discovered words",
             "choice": "Add picture matching or extend review with actions"
           }
         ],
@@ -123,15 +123,15 @@
         "visualSupports": "Vowel sound posters with mouth positions, Picture-word cards, Floor letter spaces marked clearly",
         "decisionPoints": [
           {
-            "moment": "If students master vowel identification quickly",
+            "question": "If students master vowel identification quickly",
             "choice": "Add consonant sounds (M, P, T) or increase word complexity"
           },
           {
-            "moment": "If movement becomes too chaotic",
+            "question": "If movement becomes too chaotic",
             "choice": "Switch to seated pointing activity or smaller groups"
           },
           {
-            "moment": "If students struggle with sound isolation",
+            "question": "If students struggle with sound isolation",
             "choice": "Exaggerate mouth movements, slow down speech, add visual cues"
           }
         ],
@@ -144,7 +144,7 @@
         "visualSupports": "Gesture poster for each vowel sound, Sound-symbol connections chart",
         "decisionPoints": [
           {
-            "moment": "If students want to repeat gestures many times",
+            "question": "If students want to repeat gestures many times",
             "choice": "Make it into a fun rhythm or song, or save energy for tomorrow"
           }
         ],
@@ -156,10 +156,10 @@
       },
       "realWorldConnection": "Reading signs, labels, and books requires knowing letter sounds - like the letters on the bathroom doors or lunch menu",
       "differentiation": {
-        "forStruggling": ["Focus on 2-3 vowels only", "Use extra visual mouth position cues", "Allow approximations of sounds", "Pair with strong phonics peer"],
-        "forAdvanced": ["Identify beginning AND ending sounds", "Find multiple words with same vowel", "Help demonstrate sounds to classmates", "Try blending simple sounds"],
-        "forELL": ["Compare to home language vowel sounds", "Use extra gesture and visual supports", "Allow native language sound approximations", "Practice with familiar English cognates first"],
-        "forIEP": ["Modify movement expectations", "Use alternative communication methods", "Provide sensory supports for sound work", "Celebrate any sound approximation"]
+        "pourDifficultés": ["Focus on 2-3 vowels only", "Use extra visual mouth position cues", "Allow approximations of sounds", "Pair with strong phonics peer"],
+        "pourAvancés": ["Identify beginning AND ending sounds", "Find multiple words with same vowel", "Help demonstrate sounds to classmates", "Try blending simple sounds"],
+        "pourLangue": ["Compare to home language vowel sounds", "Use extra gesture and visual supports", "Allow native language sound approximations", "Practice with familiar English cognates first"],
+        "pourPEI": ["Modify movement expectations", "Use alternative communication methods", "Provide sensory supports for sound work", "Celebrate any sound approximation"]
       },
       "assessmentCriteria": {
         "observable": ["Attempts to imitate French vowel sounds", "Connects letter symbols to sounds", "Participates in movement activities", "Shows listening engagement"],
@@ -184,11 +184,11 @@
         "visualSupports": "Vowel sound poster, Family concept visual showing people grouped together",
         "decisionPoints": [
           {
-            "moment": "If students want to share about their own families",
+            "question": "If students want to share about their own families",
             "choice": "Allow 2-3 brief shares or save family discussion for social studies"
           },
           {
-            "moment": "If vowel review takes longer than expected",
+            "question": "If vowel review takes longer than expected",
             "choice": "Quick review of 3 vowels only or extend by 2 minutes"
           }
         ],
@@ -201,15 +201,15 @@
         "visualSupports": "Sound family house posters, Sorting demonstration chart, Picture-word connection cards",
         "decisionPoints": [
           {
-            "moment": "If students sort quickly and accurately",
+            "question": "If students sort quickly and accurately",
             "choice": "Add more sound families (M, T) or have them create new categories"
           },
           {
-            "moment": "If students struggle with sound discrimination",
+            "question": "If students struggle with sound discrimination",
             "choice": "Focus on 2 families only, exaggerate beginning sounds, use more modeling"
           },
           {
-            "moment": "If cards get mixed up or lost",
+            "question": "If cards get mixed up or lost",
             "choice": "Switch to whole-group sorting or use larger demo cards"
           }
         ],
@@ -222,11 +222,11 @@
         "visualSupports": "Sound family banners or signs, Marching route visual",
         "decisionPoints": [
           {
-            "moment": "If students are very energetic about parading",
+            "question": "If students are very energetic about parading",
             "choice": "Extend parade or channel energy into organized chanting"
           },
           {
-            "moment": "If some students don't want to march",
+            "question": "If some students don't want to march",
             "choice": "Allow seated participation or assign as 'parade watchers'"
           }
         ],
@@ -238,10 +238,10 @@
       },
       "realWorldConnection": "Grouping similar things helps us organize our thoughts and learning - like putting all the books together or all the toys together",
       "differentiation": {
-        "forStruggling": ["Work with 2 sound families only", "Use extra picture supports", "Allow peer helpers for sorting", "Focus on most distinct sounds (B vs M)"],
-        "forAdvanced": ["Sort by ending sounds too", "Create their own sound family", "Help explain sorting to peers", "Find objects in room for each family"],
-        "forELL": ["Connect to similar sounds in home language", "Use extra visual cues and gestures", "Allow sorting with home language words", "Provide one-on-one sound practice"],
-        "forIEP": ["Modify sorting expectations", "Use larger materials for easier manipulation", "Allow alternative participation in parade", "Celebrate any grouping attempt"]
+        "pourDifficultés": ["Work with 2 sound families only", "Use extra picture supports", "Allow peer helpers for sorting", "Focus on most distinct sounds (B vs M)"],
+        "pourAvancés": ["Sort by ending sounds too", "Create their own sound family", "Help explain sorting to peers", "Find objects in room for each family"],
+        "pourLangue": ["Connect to similar sounds in home language", "Use extra visual cues and gestures", "Allow sorting with home language words", "Provide one-on-one sound practice"],
+        "pourPEI": ["Modify sorting expectations", "Use larger materials for easier manipulation", "Allow alternative participation in parade", "Celebrate any grouping attempt"]
       },
       "assessmentCriteria": {
         "observable": ["Groups words by beginning sound", "Identifies 'same' vs 'different' sounds", "Participates in sorting activities", "Shows understanding of family concept"],
@@ -266,11 +266,11 @@
         "visualSupports": "Sound family poster, Visual showing word beginning vs. ending, Listening ear pointing to end",
         "decisionPoints": [
           {
-            "moment": "If students want to continue with beginning sounds",
+            "question": "If students want to continue with beginning sounds",
             "choice": "Quick game with beginning sounds or emphasize transition to endings"
           },
           {
-            "moment": "If concept of 'end' seems unclear",
+            "question": "If concept of 'end' seems unclear",
             "choice": "Use physical demonstrations (end of line, end of book) or extend explanation"
           }
         ],
@@ -283,15 +283,15 @@
         "visualSupports": "Rhyming word pairs poster, Rhythm pattern chart, Visual cue for clapping timing",
         "decisionPoints": [
           {
-            "moment": "If students catch onto rhyming quickly",
+            "question": "If students catch onto rhyming quickly",
             "choice": "Add more rhyme pairs or let students suggest their own rhymes"
           },
           {
-            "moment": "If rhythm sticks become distracting",
+            "question": "If rhythm sticks become distracting",
             "choice": "Switch to hand clapping or collect instruments"
           },
           {
-            "moment": "If students struggle to hear rhymes",
+            "question": "If students struggle to hear rhymes",
             "choice": "Exaggerate ending sounds, slow down, use fewer examples"
           }
         ],
@@ -304,11 +304,11 @@
         "visualSupports": "Circle sitting arrangement visual, Rhyme pairs reference chart, Turn-taking cues",
         "decisionPoints": [
           {
-            "moment": "If some students can't remember rhyme partners",
+            "question": "If some students can't remember rhyme partners",
             "choice": "Provide visual cues or allow peers to help"
           },
           {
-            "moment": "If ball passing becomes chaotic",
+            "question": "If ball passing becomes chaotic",
             "choice": "Switch to pointing/calling names or teacher-controlled passing"
           }
         ],
@@ -320,10 +320,10 @@
       },
       "realWorldConnection": "Rhymes help us remember songs, poems, and make language fun - like the songs we sing or the books we enjoy",
       "differentiation": {
-        "forStruggling": ["Use simple one-syllable rhymes only", "Provide visual ending cues", "Allow English rhyme practice first", "Work with partner for support"],
-        "forAdvanced": ["Create new rhymes with given words", "Find rhymes beyond the lesson examples", "Help teach rhyming concept to peers", "Try three-word rhyme families"],
-        "forELL": ["Connect to rhymes in home language", "Use familiar English rhymes as bridge", "Extra visual and gestural supports", "Allow approximate rhyming attempts"],
-        "forIEP": ["Modify participation as needed", "Use alternative communication for rhymes", "Focus on rhythm rather than exact rhymes", "Celebrate any sound pattern recognition"]
+        "pourDifficultés": ["Use simple one-syllable rhymes only", "Provide visual ending cues", "Allow English rhyme practice first", "Work with partner for support"],
+        "pourAvancés": ["Create new rhymes with given words", "Find rhymes beyond the lesson examples", "Help teach rhyming concept to peers", "Try three-word rhyme families"],
+        "pourLangue": ["Connect to rhymes in home language", "Use familiar English rhymes as bridge", "Extra visual and gestural supports", "Allow approximate rhyming attempts"],
+        "pourPEI": ["Modify participation as needed", "Use alternative communication for rhymes", "Focus on rhythm rather than exact rhymes", "Celebrate any sound pattern recognition"]
       },
       "assessmentCriteria": {
         "observable": ["Recognizes when words rhyme", "Claps appropriately for rhyming patterns", "Participates in rhyme games", "Shows understanding of word endings"],
@@ -348,11 +348,11 @@
         "visualSupports": "Short vs long comparison poster, Arm gesture demonstration chart, Rhyme reminder cards",
         "decisionPoints": [
           {
-            "moment": "If students want to continue rhyming games",
+            "question": "If students want to continue rhyming games",
             "choice": "Quick rhyme round or transition with rhyming short/long words"
           },
           {
-            "moment": "If short/long concept needs more demonstration",
+            "question": "If short/long concept needs more demonstration",
             "choice": "Use classroom objects or extend physical demonstrations"
           }
         ],
@@ -365,15 +365,15 @@
         "visualSupports": "Word length comparison chart, Sorting box labels with symbols, Finger-counting guide",
         "decisionPoints": [
           {
-            "moment": "If students categorize accurately and quickly",
+            "question": "If students categorize accurately and quickly",
             "choice": "Add more challenging words or introduce syllable counting"
           },
           {
-            "moment": "If students disagree on word length",
+            "question": "If students disagree on word length",
             "choice": "Demonstrate syllable clapping or use visual letter counting"
           },
           {
-            "moment": "If sorting becomes disorganized",
+            "question": "If sorting becomes disorganized",
             "choice": "Switch to whole-group sorting or use floor sorting areas"
           }
         ],
@@ -386,11 +386,11 @@
         "visualSupports": "Length ordering example, Name length comparison chart, Visual line-up guide",
         "decisionPoints": [
           {
-            "moment": "If students struggle with name ordering",
+            "question": "If students struggle with name ordering",
             "choice": "Use name cards or simplify to just short vs long groups"
           },
           {
-            "moment": "If line-up is successful quickly",
+            "question": "If line-up is successful quickly",
             "choice": "Try ordering other classroom words or extend to syllable discussion"
           }
         ],
@@ -402,10 +402,10 @@
       },
       "realWorldConnection": "Long and short words appear in books, signs, and everyday writing - like short words on stop signs and long words on street signs",
       "differentiation": {
-        "forStruggling": ["Use very distinct length differences", "Allow visual letter counting", "Work with 2-3 examples at a time", "Pair with confident partner"],
-        "forAdvanced": ["Count exact letters or syllables", "Find patterns in long vs short words", "Help explain length concept to peers", "Create own word length categories"],
-        "forELL": ["Use familiar words from home language for comparison", "Extra visual supports for length concept", "Allow approximate length judgments", "Connect to English word length patterns"],
-        "forIEP": ["Modify length comparison expectations", "Use alternative methods for measuring", "Allow flexible participation in line-up", "Celebrate any categorization attempt"]
+        "pourDifficultés": ["Use very distinct length differences", "Allow visual letter counting", "Work with 2-3 examples at a time", "Pair with confident partner"],
+        "pourAvancés": ["Count exact letters or syllables", "Find patterns in long vs short words", "Help explain length concept to peers", "Create own word length categories"],
+        "pourLangue": ["Use familiar words from home language for comparison", "Extra visual supports for length concept", "Allow approximate length judgments", "Connect to English word length patterns"],
+        "pourPEI": ["Modify length comparison expectations", "Use alternative methods for measuring", "Allow flexible participation in line-up", "Celebrate any categorization attempt"]
       },
       "assessmentCriteria": {
         "observable": ["Distinguishes between short and long words", "Uses appropriate gestures for word length", "Participates in sorting activities", "Shows understanding of comparison concept"],
@@ -430,7 +430,7 @@
         "visualSupports": "Syllable clapping demonstration poster, Name broken into parts visually",
         "decisionPoints": [
           {
-            "moment": "If students immediately understand clapping concept",
+            "question": "If students immediately understand clapping concept",
             "choice": "Move quickly to name activity or add more complex examples"
           }
         ],
@@ -443,11 +443,11 @@
         "visualSupports": "Circle arrangement guide, Syllable counting visual aids, Picture-word syllable charts",
         "decisionPoints": [
           {
-            "moment": "If instruments become too distracting",
+            "question": "If instruments become too distracting",
             "choice": "Switch to hand clapping or collect instruments for focus time"
           },
           {
-            "moment": "If students struggle with syllable identification",
+            "question": "If students struggle with syllable identification",
             "choice": "Use chin-tapping method or slow down demonstration"
           }
         ],
@@ -460,7 +460,7 @@
         "visualSupports": "'Au re-voir' broken into syllables visually, Conductor gestures guide",
         "decisionPoints": [
           {
-            "moment": "If students want to try other goodbye phrases",
+            "question": "If students want to try other goodbye phrases",
             "choice": "Try 'À bientôt' or stick with practiced phrase for success"
           }
         ],
@@ -472,10 +472,10 @@
       },
       "realWorldConnection": "Breaking words into parts helps us read and spell new words - like when we sound out unfamiliar words in books",
       "differentiation": {
-        "forStruggling": ["Start with simple 1-2 syllable words", "Use physical chin support for syllables", "Allow approximation of clapping rhythm", "Pair with strong syllable counter"],
-        "forAdvanced": ["Try 4+ syllable words", "Count syllables in sentences", "Create rhythms for syllable patterns", "Help demonstrate to struggling peers"],
-        "forELL": ["Connect to rhythm patterns in home language", "Use familiar words for practice", "Allow approximate syllable identification", "Focus on rhythm rather than perfect counting"],
-        "forIEP": ["Modify clapping expectations (allow any rhythm participation)", "Use alternative movement patterns", "Focus on participation rather than accuracy", "Provide quiet instruments if needed"]
+        "pourDifficultés": ["Start with simple 1-2 syllable words", "Use physical chin support for syllables", "Allow approximation of clapping rhythm", "Pair with strong syllable counter"],
+        "pourAvancés": ["Try 4+ syllable words", "Count syllables in sentences", "Create rhythms for syllable patterns", "Help demonstrate to struggling peers"],
+        "pourLangue": ["Connect to rhythm patterns in home language", "Use familiar words for practice", "Allow approximate syllable identification", "Focus on rhythm rather than perfect counting"],
+        "pourPEI": ["Modify clapping expectations (allow any rhythm participation)", "Use alternative movement patterns", "Focus on participation rather than accuracy", "Provide quiet instruments if needed"]
       },
       "assessmentCriteria": {
         "observable": ["Claps along with syllable patterns", "Identifies word parts through clapping", "Participates in rhythm activities", "Shows awareness of syllable concept"],
@@ -500,7 +500,7 @@
         "visualSupports": "Magic words concept poster with stars, Syllable breakdown cards from lesson 6",
         "decisionPoints": [
           {
-            "moment": "If students are very excited about magic theme",
+            "question": "If students are very excited about magic theme",
             "choice": "Extend magic introduction or channel enthusiasm into word hunt"
           }
         ],
@@ -513,11 +513,11 @@
         "visualSupports": "High-frequency word poster, Counting tally chart, Magic word reference cards",
         "decisionPoints": [
           {
-            "moment": "If students find words very quickly",
+            "question": "If students find words very quickly",
             "choice": "Add more magic words (un, une, je) or extend hunt to classroom environment"
           },
           {
-            "moment": "If students struggle to locate words in text",
+            "question": "If students struggle to locate words in text",
             "choice": "Use larger text books or guide them to specific pages with many examples"
           }
         ],
@@ -530,7 +530,7 @@
         "visualSupports": "Spell-casting gesture guide, Magic words with visual cues",
         "decisionPoints": [
           {
-            "moment": "If students want to create more magic spells",
+            "question": "If students want to create more magic spells",
             "choice": "Allow creative spell variations or focus on the three target words"
           }
         ],
@@ -542,10 +542,10 @@
       },
       "realWorldConnection": "These 'magic words' help us read books, signs, and messages faster - they're like keys that unlock reading",
       "differentiation": {
-        "forStruggling": ["Focus on one magic word at a time", "Use finger tracking for word recognition", "Provide word cards for matching", "Allow peer support for hunting"],
-        "forAdvanced": ["Learn additional high-frequency words", "Count total occurrences across multiple books", "Help teach recognition strategies to peers", "Notice patterns in word usage"],
-        "forELL": ["Connect to similar function words in English", "Use visual word shapes and patterns", "Allow bilingual word recognition strategies", "Practice with familiar simple texts"],
-        "forIEP": ["Modify word recognition expectations", "Use larger text or different materials", "Allow alternative participation in spell-casting", "Focus on engagement rather than accuracy"]
+        "pourDifficultés": ["Focus on one magic word at a time", "Use finger tracking for word recognition", "Provide word cards for matching", "Allow peer support for hunting"],
+        "pourAvancés": ["Learn additional high-frequency words", "Count total occurrences across multiple books", "Help teach recognition strategies to peers", "Notice patterns in word usage"],
+        "pourLangue": ["Connect to similar function words in English", "Use visual word shapes and patterns", "Allow bilingual word recognition strategies", "Practice with familiar simple texts"],
+        "pourPEI": ["Modify word recognition expectations", "Use larger text or different materials", "Allow alternative participation in spell-casting", "Focus on engagement rather than accuracy"]
       },
       "assessmentCriteria": {
         "observable": ["Recognizes high-frequency words in text", "Points to target words when found", "Participates in magic word activities", "Shows understanding of 'everywhere' concept"],
@@ -570,7 +570,7 @@
         "visualSupports": "Construction worker poster, Word building demonstration chart, Magic words reference",
         "decisionPoints": [
           {
-            "moment": "If students quickly spot all magic words",
+            "question": "If students quickly spot all magic words",
             "choice": "Add challenge to find them in books or move quickly to building activity"
           }
         ],
@@ -583,11 +583,11 @@
         "visualSupports": "Word building steps poster, Letter-sound reference chart, Target word picture cards",
         "decisionPoints": [
           {
-            "moment": "If students build words quickly and accurately",
+            "question": "If students build words quickly and accurately",
             "choice": "Introduce 4-letter words or let them try free building"
           },
           {
-            "moment": "If letter manipulation is difficult",
+            "question": "If letter manipulation is difficult",
             "choice": "Use larger letters, focus on 2-letter combinations, or provide more guidance"
           }
         ],
@@ -600,7 +600,7 @@
         "visualSupports": "Show and tell format guide, Celebration clapping poster",
         "decisionPoints": [
           {
-            "moment": "If many students want to share multiple words",
+            "question": "If many students want to share multiple words",
             "choice": "Allow extra shares or save additional words for tomorrow's review"
           }
         ],
@@ -612,10 +612,10 @@
       },
       "realWorldConnection": "Writers create new words by putting letters and sounds together - just like we do when we write shopping lists or messages",
       "differentiation": {
-        "forStruggling": ["Start with 2-letter combinations", "Use picture cues for target words", "Allow letter copying rather than independent building", "Work with partner for support"],
-        "forAdvanced": ["Try 4+ letter words", "Build word families", "Create rhyming words", "Help demonstrate building process to peers"],
-        "forELL": ["Use familiar words for building practice", "Connect to English spelling patterns where helpful", "Allow sound approximations", "Use extra visual supports for letter-sound connections"],
-        "forIEP": ["Modify fine motor expectations", "Use larger letters or different materials", "Focus on letter recognition rather than building", "Celebrate any letter manipulation attempts"]
+        "pourDifficultés": ["Start with 2-letter combinations", "Use picture cues for target words", "Allow letter copying rather than independent building", "Work with partner for support"],
+        "pourAvancés": ["Try 4+ letter words", "Build word families", "Create rhyming words", "Help demonstrate building process to peers"],
+        "pourLangue": ["Use familiar words for building practice", "Connect to English spelling patterns where helpful", "Allow sound approximations", "Use extra visual supports for letter-sound connections"],
+        "pourPEI": ["Modify fine motor expectations", "Use larger letters or different materials", "Focus on letter recognition rather than building", "Celebrate any letter manipulation attempts"]
       },
       "assessmentCriteria": {
         "observable": ["Manipulates letters to form words", "Shows understanding of letter-sound connections", "Attempts to build new words", "Participates in word construction activities"],
@@ -640,7 +640,7 @@
         "visualSupports": "Word families explanation chart, 'Chat' building demonstration, Family connection visual",
         "decisionPoints": [
           {
-            "moment": "If students build 'chat' quickly",
+            "question": "If students build 'chat' quickly",
             "choice": "Try building 'rat' immediately or spend more time on family concept explanation"
           }
         ],
@@ -653,11 +653,11 @@
         "visualSupports": "Word family house posters, Sorting demonstration chart, Picture-word connection cards for difficult vocabulary",
         "decisionPoints": [
           {
-            "moment": "If students sort accurately and quickly",
+            "question": "If students sort accurately and quickly",
             "choice": "Add more word families (-et, -on) or have them generate new family members"
           },
           {
-            "moment": "If students confuse similar endings",
+            "question": "If students confuse similar endings",
             "choice": "Focus on two families only or use more distinct ending patterns"
           }
         ],
@@ -670,7 +670,7 @@
         "visualSupports": "Family chant format poster, Ending pattern visual cues",
         "decisionPoints": [
           {
-            "moment": "If students create elaborate chants spontaneously",
+            "question": "If students create elaborate chants spontaneously",
             "choice": "Allow creative extensions or focus on the target pattern"
           }
         ],
@@ -682,10 +682,10 @@
       },
       "realWorldConnection": "Word families help us predict how to read and spell similar words - like if you know 'cat', you can figure out 'hat' and 'bat'",
       "differentiation": {
-        "forStruggling": ["Work with one word family at a time", "Use picture cues for all words", "Allow peer support for sorting", "Focus on most obvious patterns"],
-        "forAdvanced": ["Find additional words for each family", "Create new word families", "Help explain patterns to classmates", "Try families with different vowel patterns"],
-        "forELL": ["Connect to word patterns in home language", "Use extra visual and picture supports", "Allow discussion of pattern recognition in both languages", "Focus on sound patterns over spelling"],
-        "forIEP": ["Modify sorting expectations", "Use fewer word families", "Allow flexible participation in group activities", "Celebrate pattern recognition at any level"]
+        "pourDifficultés": ["Work with one word family at a time", "Use picture cues for all words", "Allow peer support for sorting", "Focus on most obvious patterns"],
+        "pourAvancés": ["Find additional words for each family", "Create new word families", "Help explain patterns to classmates", "Try families with different vowel patterns"],
+        "pourLangue": ["Connect to word patterns in home language", "Use extra visual and picture supports", "Allow discussion of pattern recognition in both languages", "Focus on sound patterns over spelling"],
+        "pourPEI": ["Modify sorting expectations", "Use fewer word families", "Allow flexible participation in group activities", "Celebrate pattern recognition at any level"]
       },
       "assessmentCriteria": {
         "observable": ["Groups words by ending patterns", "Identifies word family connections", "Participates in sorting activities", "Shows understanding of pattern concept"],
@@ -710,7 +710,7 @@
         "visualSupports": "Detective poster, Word family reference chart, Hunting/searching visual cues",
         "decisionPoints": [
           {
-            "moment": "If students are very excited about detective role-play",
+            "question": "If students are very excited about detective role-play",
             "choice": "Extend detective character building or move quickly to text hunting"
           }
         ],
@@ -723,11 +723,11 @@
         "visualSupports": "Target words poster, Detective investigation process chart, Counting/tally visual guides",
         "decisionPoints": [
           {
-            "moment": "If students find target words very easily",
+            "question": "If students find target words very easily",
             "choice": "Add more challenging words or extend hunt to classroom environment"
           },
           {
-            "moment": "If students struggle to locate words in text",
+            "question": "If students struggle to locate words in text",
             "choice": "Use texts with larger print, guide to specific paragraphs, or provide word location clues"
           }
         ],
@@ -740,7 +740,7 @@
         "visualSupports": "Detective report format poster, Celebration applause guide",
         "decisionPoints": [
           {
-            "moment": "If many pairs want to report multiple discoveries",
+            "question": "If many pairs want to report multiple discoveries",
             "choice": "Allow extended sharing time or save additional reports for tomorrow"
           }
         ],
@@ -752,10 +752,10 @@
       },
       "realWorldConnection": "We search for specific words when reading recipes, instructions, or finding information - like looking for ingredients on a food package",
       "differentiation": {
-        "forStruggling": ["Use larger text materials", "Focus on 2-3 target words only", "Provide word cards for matching rather than free searching", "Work with stronger reading partner"],
-        "forAdvanced": ["Hunt for additional word types (action words, describing words)", "Count and compare frequency of different words", "Help struggling pairs with their searches", "Use more complex texts"],
-        "forELL": ["Use texts with familiar vocabulary", "Allow searching for cognates or English-French connections", "Provide picture supports for target words", "Focus on word recognition over text comprehension"],
-        "forIEP": ["Modify search expectations", "Use highlighting instead of circling if easier", "Allow verbal reporting of found words", "Celebrate any word recognition in text"]
+        "pourDifficultés": ["Use larger text materials", "Focus on 2-3 target words only", "Provide word cards for matching rather than free searching", "Work with stronger reading partner"],
+        "pourAvancés": ["Hunt for additional word types (action words, describing words)", "Count and compare frequency of different words", "Help struggling pairs with their searches", "Use more complex texts"],
+        "pourLangue": ["Use texts with familiar vocabulary", "Allow searching for cognates or English-French connections", "Provide picture supports for target words", "Focus on word recognition over text comprehension"],
+        "pourPEI": ["Modify search expectations", "Use highlighting instead of circling if easier", "Allow verbal reporting of found words", "Celebrate any word recognition in text"]
       },
       "assessmentCriteria": {
         "observable": ["Locates specific words in text", "Uses search strategies effectively", "Participates in collaborative word hunting", "Shows persistence in searching tasks"],
@@ -780,7 +780,7 @@
         "visualSupports": "Sentence building concept poster, Building blocks metaphor chart, Found words reference",
         "decisionPoints": [
           {
-            "moment": "If students remember many hunting discoveries",
+            "question": "If students remember many hunting discoveries",
             "choice": "Use their found words in today's sentences or stick to prepared word cards"
           }
         ],
@@ -793,11 +793,11 @@
         "visualSupports": "French sentence pattern poster, Word order guide, Picture-word connection charts",
         "decisionPoints": [
           {
-            "moment": "If students create sentences easily",
+            "question": "If students create sentences easily",
             "choice": "Add describing words or encourage longer sentences"
           },
           {
-            "moment": "If word order causes confusion",
+            "question": "If word order causes confusion",
             "choice": "Provide sentence frames or focus on 2-word combinations first"
           }
         ],
@@ -810,7 +810,7 @@
         "visualSupports": "Sentence sharing format poster, Circle time arrangement visual",
         "decisionPoints": [
           {
-            "moment": "If students create many sentences to share",
+            "question": "If students create many sentences to share",
             "choice": "Allow multiple shares per pair or save extras for display wall"
           }
         ],
@@ -822,10 +822,10 @@
       },
       "realWorldConnection": "We combine words to share our thoughts, feelings, and ideas with others - like when we tell someone what we want for lunch",
       "differentiation": {
-        "forStruggling": ["Use 2-word combinations only", "Provide sentence frames with blanks", "Use picture cues for word meaning", "Allow copying successful patterns"],
-        "forAdvanced": ["Create multiple sentences", "Use connecting words like 'et'", "Try different sentence types", "Help explain sentence building to peers"],
-        "forELL": ["Compare to English sentence patterns", "Use familiar vocabulary in sentences", "Allow approximate French word order", "Focus on meaning over perfect grammar"],
-        "forIEP": ["Modify sentence length expectations", "Use visual sentence building supports", "Allow alternative communication methods", "Celebrate any word combination attempts"]
+        "pourDifficultés": ["Use 2-word combinations only", "Provide sentence frames with blanks", "Use picture cues for word meaning", "Allow copying successful patterns"],
+        "pourAvancés": ["Create multiple sentences", "Use connecting words like 'et'", "Try different sentence types", "Help explain sentence building to peers"],
+        "pourLangue": ["Compare to English sentence patterns", "Use familiar vocabulary in sentences", "Allow approximate French word order", "Focus on meaning over perfect grammar"],
+        "pourPEI": ["Modify sentence length expectations", "Use visual sentence building supports", "Allow alternative communication methods", "Celebrate any word combination attempts"]
       },
       "assessmentCriteria": {
         "observable": ["Combines words into meaningful sequences", "Shows understanding of sentence concept", "Participates in collaborative sentence building", "Attempts French word patterns"],
@@ -850,7 +850,7 @@
         "visualSupports": "Favorite words concept poster, Heart shape for preference, Class word collection display",
         "decisionPoints": [
           {
-            "moment": "If class sentence building is very successful",
+            "question": "If class sentence building is very successful",
             "choice": "Create multiple sentences or move to favorites with enthusiasm built up"
           }
         ],
@@ -863,11 +863,11 @@
         "visualSupports": "All unit vocabulary displayed, 'J'aime... parce que...' sentence frame, Favorite word examples",
         "decisionPoints": [
           {
-            "moment": "If students struggle to choose only 3 words",
+            "question": "If students struggle to choose only 3 words",
             "choice": "Allow 4-5 favorites or help narrow down with guided questions"
           },
           {
-            "moment": "If explanation in French is too challenging",
+            "question": "If explanation in French is too challenging",
             "choice": "Allow English explanations or use simple picture reasons"
           }
         ],
@@ -880,7 +880,7 @@
         "visualSupports": "Show-and-tell format guide, Class response poster",
         "decisionPoints": [
           {
-            "moment": "If many students want to share all their favorites",
+            "question": "If many students want to share all their favorites",
             "choice": "Allow extended sharing time or create gallery walk for tomorrow"
           }
         ],
@@ -892,10 +892,10 @@
       },
       "realWorldConnection": "Having favorite words makes reading and writing more personal and enjoyable - like having a favorite song or color",
       "differentiation": {
-        "forStruggling": ["Choose from limited word selection", "Use picture reasons instead of verbal explanations", "Allow teacher scribing for word writing", "Focus on 1-2 favorites instead of 3"],
-        "forAdvanced": ["Write simple sentences about why they like words", "Choose favorites from different word categories", "Help peers explain their choices", "Create word recommendation for classmates"],
-        "forELL": ["Allow connection to home language favorites", "Use pictures and gestures for explanations", "Compare favorite sounds across languages", "Support with bilingual word connections"],
-        "forIEP": ["Modify writing/drawing expectations", "Allow alternative ways to show favorites", "Support choice-making with visual aids", "Celebrate any word preference expression"]
+        "pourDifficultés": ["Choose from limited word selection", "Use picture reasons instead of verbal explanations", "Allow teacher scribing for word writing", "Focus on 1-2 favorites instead of 3"],
+        "pourAvancés": ["Write simple sentences about why they like words", "Choose favorites from different word categories", "Help peers explain their choices", "Create word recommendation for classmates"],
+        "pourLangue": ["Allow connection to home language favorites", "Use pictures and gestures for explanations", "Compare favorite sounds across languages", "Support with bilingual word connections"],
+        "pourPEI": ["Modify writing/drawing expectations", "Allow alternative ways to show favorites", "Support choice-making with visual aids", "Celebrate any word preference expression"]
       },
       "assessmentCriteria": {
         "observable": ["Selects favorite words from learned vocabulary", "Expresses preferences about words", "Shares word choices with others", "Shows personal connection to French vocabulary"],
@@ -920,7 +920,7 @@
         "visualSupports": "Dictionary concept poster, Organization example chart, Picture dictionary sample pages",
         "decisionPoints": [
           {
-            "moment": "If students are fascinated by the real dictionary",
+            "question": "If students are fascinated by the real dictionary",
             "choice": "Allow brief exploration time or channel interest into their own dictionary making"
           }
         ],
@@ -933,11 +933,11 @@
         "visualSupports": "Alphabet organization guide, Picture drawing examples, Dictionary page layout model",
         "decisionPoints": [
           {
-            "moment": "If alphabetical order is too complex",
+            "question": "If alphabetical order is too complex",
             "choice": "Organize by themes (animals, actions, etc.) or by lesson sequence"
           },
           {
-            "moment": "If students finish their dictionaries quickly",
+            "question": "If students finish their dictionaries quickly",
             "choice": "Add more words or help decorate covers"
           }
         ],
@@ -950,7 +950,7 @@
         "visualSupports": "Dictionary celebration format, Applause and appreciation cues",
         "decisionPoints": [
           {
-            "moment": "If students want to share multiple pages",
+            "question": "If students want to share multiple pages",
             "choice": "Allow extended sharing or save dictionaries for ongoing reference"
           }
         ],
@@ -962,10 +962,10 @@
       },
       "realWorldConnection": "Dictionaries help us find and remember words when reading and writing - like when we don't know what a word means in a story",
       "differentiation": {
-        "forStruggling": ["Use fewer words (5-8 only)", "Provide pre-drawn pictures to match with words", "Allow simple copying of words", "Focus on personal meaningful words"],
-        "forAdvanced": ["Include word definitions in simple French", "Add more vocabulary beyond lesson words", "Create themed dictionary sections", "Help peers organize their dictionaries"],
-        "forELL": ["Include home language translations if desired", "Use familiar words as dictionary foundation", "Allow creative organization systems", "Focus on visual representation over text"],
-        "forIEP": ["Modify fine motor expectations for drawing", "Use alternative organization methods", "Allow collaborative dictionary creation", "Focus on word collection rather than perfect organization"]
+        "pourDifficultés": ["Use fewer words (5-8 only)", "Provide pre-drawn pictures to match with words", "Allow simple copying of words", "Focus on personal meaningful words"],
+        "pourAvancés": ["Include word definitions in simple French", "Add more vocabulary beyond lesson words", "Create themed dictionary sections", "Help peers organize their dictionaries"],
+        "pourLangue": ["Include home language translations if desired", "Use familiar words as dictionary foundation", "Allow creative organization systems", "Focus on visual representation over text"],
+        "pourPEI": ["Modify fine motor expectations for drawing", "Use alternative organization methods", "Allow collaborative dictionary creation", "Focus on word collection rather than perfect organization"]
       },
       "assessmentCriteria": {
         "observable": ["Organizes words in logical sequences", "Creates visual representations of vocabulary", "Shows understanding of dictionary concept", "Takes pride in personal word collection"],
@@ -990,7 +990,7 @@
         "visualSupports": "Explorer sharing concept poster, Scientist presentation model, Discovery sharing examples",
         "decisionPoints": [
           {
-            "moment": "If students are eager to share immediately",
+            "question": "If students are eager to share immediately",
             "choice": "Allow quick preview sharing or build anticipation for main activity"
           }
         ],
@@ -1003,11 +1003,11 @@
         "visualSupports": "Presentation format guide, Audience participation cues, 'Good presenter' behavior chart",
         "decisionPoints": [
           {
-            "moment": "If presentations take longer than expected",
+            "question": "If presentations take longer than expected",
             "choice": "Allow extended time or continue presentations tomorrow"
           },
           {
-            "moment": "If some students are nervous to present",
+            "question": "If some students are nervous to present",
             "choice": "Allow partner presentations or very brief sharing"
           }
         ],
@@ -1020,7 +1020,7 @@
         "visualSupports": "Class motto display, Celebration format guide, Unit learning journey visual",
         "decisionPoints": [
           {
-            "moment": "If students want to continue celebrating discoveries",
+            "question": "If students want to continue celebrating discoveries",
             "choice": "Extend celebration or plan future sharing opportunities"
           }
         ],
@@ -1032,10 +1032,10 @@
       },
       "realWorldConnection": "Sharing what we learn helps others and strengthens our own understanding - like when we teach our family a new game or skill",
       "differentiation": {
-        "forStruggling": ["Allow very brief presentations (1 word)", "Provide presentation sentence frames", "Allow picture-only sharing", "Pair with confident presenter"],
-        "forAdvanced": ["Present more words or create teaching activities", "Help facilitate classmate presentations", "Add explanations about why words are interesting", "Lead class in response activities"],
-        "forELL": ["Allow explanations in home language if needed", "Use visual supports heavily", "Focus on pronunciation practice rather than explanation", "Celebrate multilingual word knowledge"],
-        "forIEP": ["Modify presentation expectations", "Allow alternative sharing methods", "Provide extra processing time", "Focus on participation rather than performance"]
+        "pourDifficultés": ["Allow very brief presentations (1 word)", "Provide presentation sentence frames", "Allow picture-only sharing", "Pair with confident presenter"],
+        "pourAvancés": ["Present more words or create teaching activities", "Help facilitate classmate presentations", "Add explanations about why words are interesting", "Lead class in response activities"],
+        "pourLangue": ["Allow explanations in home language if needed", "Use visual supports heavily", "Focus on pronunciation practice rather than explanation", "Celebrate multilingual word knowledge"],
+        "pourPEI": ["Modify presentation expectations", "Allow alternative sharing methods", "Provide extra processing time", "Focus on participation rather than performance"]
       },
       "assessmentCriteria": {
         "observable": ["Shares vocabulary with classmates", "Shows pride in word learning", "Listens respectfully to others' presentations", "Participates in class learning community"],
@@ -1060,11 +1060,11 @@
         "visualSupports": "Game station preview poster, Celebration of learning visual, Word games excitement chart",
         "decisionPoints": [
           {
-            "moment": "Si les élèves sont très excités par l'idée des jeux de mots",
+            "question": "Si les élèves sont très excités par l'idée des jeux de mots",
             "choice": "Canaliser l'énergie avec une mini-démonstration ou commencer par un jeu calme"
           },
           {
-            "moment": "Si certains élèves semblent inquiets des jeux compétitifs",
+            "question": "Si certains élèves semblent inquiets des jeux compétitifs",
             "choice": "Rassurer que tous les jeux sont pour s'amuser ensemble, pas pour gagner"
           }
         ],
@@ -1077,7 +1077,7 @@
         "visualSupports": "Station instruction posters, Rotation schedule visual, Game rules charts for each station",
         "decisionPoints": [
           {
-            "moment": "If students want to stay longer at favorite stations",
+            "question": "If students want to stay longer at favorite stations",
             "choice": "Allow flexible timing or promise return visits"
           }
         ],
@@ -1090,11 +1090,11 @@
         "visualSupports": "Circle sharing format, Game reflection guide, Champion celebration visual",
         "decisionPoints": [
           {
-            "moment": "Si trop d'élèves veulent partager en même temps",
+            "question": "Si trop d'élèves veulent partager en même temps",
             "choice": "Utiliser le bâton de parole ou limiter à une phrase par élève"
           },
           {
-            "moment": "Si un élève n'a pas aimé les jeux",
+            "question": "Si un élève n'a pas aimé les jeux",
             "choice": "Valider ses sentiments et demander ce qu'il a préféré dans la leçon"
           }
         ],
@@ -1106,10 +1106,10 @@
       },
       "realWorldConnection": "Playing with words makes language learning fun and memorable - like word games families play in the car or at home",
       "differentiation": {
-        "forStruggling": ["Provide game partners for support", "Use simpler word sets", "Allow longer time at stations", "Focus on participation rather than game success"],
-        "forAdvanced": ["Add challenge variations to games", "Help facilitate game stations", "Create new game rules", "Support struggling players"],
-        "forELL": ["Allow use of familiar words from any language", "Pair with bilingual support", "Focus on fun rather than perfect French", "Use visual game supports"],
-        "forIEP": ["Modify game participation as needed", "Provide sensory supports if needed", "Allow alternative ways to participate", "Focus on enjoyment of word play"]
+        "pourDifficultés": ["Provide game partners for support", "Use simpler word sets", "Allow longer time at stations", "Focus on participation rather than game success"],
+        "pourAvancés": ["Add challenge variations to games", "Help facilitate game stations", "Create new game rules", "Support struggling players"],
+        "pourLangue": ["Allow use of familiar words from any language", "Pair with bilingual support", "Focus on fun rather than perfect French", "Use visual game supports"],
+        "pourPEI": ["Modify game participation as needed", "Provide sensory supports if needed", "Allow alternative ways to participate", "Focus on enjoyment of word play"]
       },
       "assessmentCriteria": {
         "observable": ["Participates enthusiastically in word games", "Uses learned vocabulary during play", "Shows enjoyment of French word activities", "Collaborates well in game situations"],
@@ -1133,10 +1133,10 @@
           ],
           "assessment": "Documenter le processus d'exploration et les découvertes",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1174,11 +1174,11 @@
         "visualSupports": "Story structure poster (beginning-middle-end), Word collection display, Picture book example",
         "decisionPoints": [
           {
-            "moment": "Si les élèves sont distraits par le livre d'images",
+            "question": "Si les élèves sont distraits par le livre d'images",
             "choice": "Permettre quelques minutes d'exploration libre avant de commencer l'activité"
           },
           {
-            "moment": "Si les élèves ne comprennent pas le concept d'histoire",
+            "question": "Si les élèves ne comprennent pas le concept d'histoire",
             "choice": "Utiliser des exemples familiers comme leurs histoires de famille ou de vacances"
           }
         ],
@@ -1191,7 +1191,7 @@
         "visualSupports": "Story template example, Beginning-middle-end visual guide, Sentence starter poster",
         "decisionPoints": [
           {
-            "moment": "If students struggle to create story sequences",
+            "question": "If students struggle to create story sequences",
             "choice": "Provide story picture prompts or allow simple word lists with pictures"
           }
         ],
@@ -1204,11 +1204,11 @@
         "visualSupports": "Story time format poster, Audience response guide, Story sharing celebration visual",
         "decisionPoints": [
           {
-            "moment": "Si un élève est trop nerveux pour partager son histoire",
+            "question": "Si un élève est trop nerveux pour partager son histoire",
             "choice": "Offrir de la lire avec lui ou permettre de montrer seulement les dessins"
           },
           {
-            "moment": "Si une histoire est très longue ou confuse",
+            "question": "Si une histoire est très longue ou confuse",
             "choice": "Remercier chaleureusement et aider à identifier la partie préférée"
           }
         ],
@@ -1220,10 +1220,10 @@
       },
       "realWorldConnection": "Stories help us share experiences and connect with others - like telling family about our day or sharing favorite memories",
       "differentiation": {
-        "forStruggling": ["Use 2-3 words only", "Allow picture-only stories", "Provide story templates with blanks", "Work with partner support"],
-        "forAdvanced": ["Create longer stories with multiple sentences", "Add dialogue or character emotions", "Help peers develop their stories", "Create story illustrations with detail"],
-        "forELL": ["Allow bilingual storytelling", "Use familiar story patterns from home culture", "Focus on visual storytelling with some French words", "Connect to known story structures"],
-        "forIEP": ["Modify story length expectations", "Allow alternative story formats", "Use visual supports extensively", "Focus on creative expression over structure"]
+        "pourDifficultés": ["Use 2-3 words only", "Allow picture-only stories", "Provide story templates with blanks", "Work with partner support"],
+        "pourAvancés": ["Create longer stories with multiple sentences", "Add dialogue or character emotions", "Help peers develop their stories", "Create story illustrations with detail"],
+        "pourLangue": ["Allow bilingual storytelling", "Use familiar story patterns from home culture", "Focus on visual storytelling with some French words", "Connect to known story structures"],
+        "pourPEI": ["Modify story length expectations", "Allow alternative story formats", "Use visual supports extensively", "Focus on creative expression over structure"]
       },
       "assessmentCriteria": {
         "observable": ["Creates simple narratives using French vocabulary", "Shows understanding of story structure", "Uses learned words in creative contexts", "Shares creative work with confidence"],
@@ -1247,10 +1247,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1288,11 +1288,11 @@
         "visualSupports": "School layout visual, Word treasure hunt concept poster, French in our environment examples",
         "decisionPoints": [
           {
-            "moment": "Si les élèves sont très excités par la chasse aux mots",
+            "question": "Si les élèves sont très excités par la chasse aux mots",
             "choice": "Établir des règles claires de marche silencieuse avant de quitter la classe"
           },
           {
-            "moment": "Si certains élèves ont peur d'explorer l'école",
+            "question": "Si certains élèves ont peur d'explorer l'école",
             "choice": "Rassurer qu'on reste ensemble et visiter les endroits familiers d'abord"
           }
         ],
@@ -1305,7 +1305,7 @@
         "visualSupports": "Safari collection sheet, Word identification guide, School location map",
         "decisionPoints": [
           {
-            "moment": "If students find more words than expected",
+            "question": "If students find more words than expected",
             "choice": "Extend hunt time or focus on most interesting discoveries"
           }
         ],
@@ -1318,11 +1318,11 @@
         "visualSupports": "School French words chart, Safari debrief format, Word discovery celebration poster",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ont trouvé beaucoup trop de mots pour tous les partager",
+            "question": "Si les élèves ont trouvé beaucoup trop de mots pour tous les partager",
             "choice": "Choisir les 5 plus intéressants ou créer plusieurs affiches par catégorie"
           },
           {
-            "moment": "Si un élève n'a trouvé aucun mot pendant la chasse",
+            "question": "Si un élève n'a trouvé aucun mot pendant la chasse",
             "choice": "L'encourager à partager un endroit qu'il a aimé visiter dans l'école"
           }
         ],
@@ -1334,10 +1334,10 @@
       },
       "realWorldConnection": "French words surround us in our daily environment at school and beyond - on signs, in books, and in conversations",
       "differentiation": {
-        "forStruggling": ["Work with confident partner", "Focus on familiar French words only", "Use visual cues to identify French", "Allow participation without recording"],
-        "forAdvanced": ["Record word locations and contexts", "Help identify less obvious French words", "Support struggling pairs", "Create categories for found words"],
-        "forELL": ["Connect to multilingual signs in school", "Focus on universal symbols with French labels", "Allow recognition of cognates", "Use home language knowledge to identify French"],
-        "forIEP": ["Modify walking distance as needed", "Allow flexible participation in hunt", "Use alternative recording methods", "Focus on exploration rather than collection"]
+        "pourDifficultés": ["Work with confident partner", "Focus on familiar French words only", "Use visual cues to identify French", "Allow participation without recording"],
+        "pourAvancés": ["Record word locations and contexts", "Help identify less obvious French words", "Support struggling pairs", "Create categories for found words"],
+        "pourLangue": ["Connect to multilingual signs in school", "Focus on universal symbols with French labels", "Allow recognition of cognates", "Use home language knowledge to identify French"],
+        "pourPEI": ["Modify walking distance as needed", "Allow flexible participation in hunt", "Use alternative recording methods", "Focus on exploration rather than collection"]
       },
       "assessmentCriteria": {
         "observable": ["Identifies French words in environmental print", "Shows curiosity about French in school environment", "Participates actively in exploration", "Shares discoveries with classmates"],
@@ -1361,10 +1361,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1402,11 +1402,11 @@
         "visualSupports": "Poetry concept poster, Rhythm and rhyme examples, Simple poem format guide",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ne comprennent pas ce qu'est un poème",
+            "question": "Si les élèves ne comprennent pas ce qu'est un poème",
             "choice": "Comparer aux chansons qu'ils connaissent ou aux comptines de maternelle"
           },
           {
-            "moment": "Si les élèves veulent réciter le poème plusieurs fois",
+            "question": "Si les élèves veulent réciter le poème plusieurs fois",
             "choice": "Permettre la répétition et ajouter des gestes ou des instruments"
           }
         ],
@@ -1419,7 +1419,7 @@
         "visualSupports": "Poetry template example, Rhyming words reference, Simple poem structure guide",
         "decisionPoints": [
           {
-            "moment": "If students struggle with rhyming or rhythm",
+            "question": "If students struggle with rhyming or rhythm",
             "choice": "Focus on repetitive phrases or allow free-form word play"
           }
         ],
@@ -1432,11 +1432,11 @@
         "visualSupports": "Poetry café setup visual, Audience appreciation guide, Poetry sharing format",
         "decisionPoints": [
           {
-            "moment": "Si un élève est trop timide pour lire son poème",
+            "question": "Si un élève est trop timide pour lire son poème",
             "choice": "Offrir de le lire ensemble ou permettre à un ami de l'aider"
           },
           {
-            "moment": "Si les applaudissements deviennent trop bruyants",
+            "question": "Si les applaudissements deviennent trop bruyants",
             "choice": "Enseigner les applaudissements silencieux du café (remuer les doigts)"
           }
         ],
@@ -1448,10 +1448,10 @@
       },
       "realWorldConnection": "Poetry helps us express feelings and appreciate the beauty of language - like songs we love or beautiful words that make us happy",
       "differentiation": {
-        "forStruggling": ["Use simple word repetition patterns", "Allow picture poems with few words", "Provide sentence frames to complete", "Focus on favorite word lists rather than structured poems"],
-        "forAdvanced": ["Create longer or more complex poems", "Experiment with different poetic forms", "Help peers with poem creation", "Add detailed illustrations to poems"],
-        "forELL": ["Allow bilingual poetry creation", "Use familiar rhythm patterns from home language", "Focus on sound play over complex meaning", "Connect to cultural poetry traditions"],
-        "forIEP": ["Modify poetry length and complexity", "Allow alternative creative expression", "Use visual and tactile supports", "Focus on creative enjoyment over structure"]
+        "pourDifficultés": ["Use simple word repetition patterns", "Allow picture poems with few words", "Provide sentence frames to complete", "Focus on favorite word lists rather than structured poems"],
+        "pourAvancés": ["Create longer or more complex poems", "Experiment with different poetic forms", "Help peers with poem creation", "Add detailed illustrations to poems"],
+        "pourLangue": ["Allow bilingual poetry creation", "Use familiar rhythm patterns from home language", "Focus on sound play over complex meaning", "Connect to cultural poetry traditions"],
+        "pourPEI": ["Modify poetry length and complexity", "Allow alternative creative expression", "Use visual and tactile supports", "Focus on creative enjoyment over structure"]
       },
       "assessmentCriteria": {
         "observable": ["Creates simple poetic expressions using French words", "Shows appreciation for language sounds and rhythms", "Participates in creative language play", "Shares creative work confidently"],
@@ -1475,10 +1475,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1516,11 +1516,11 @@
         "visualSupports": "Friendly spelling celebration poster, 'Everyone wins' concept visual, Spelling celebration format",
         "decisionPoints": [
           {
-            "moment": "Si les élèves semblent anxieux à propos de l'orthographe",
+            "question": "Si les élèves semblent anxieux à propos de l'orthographe",
             "choice": "Rassurer que c'est pour célébrer ce qu'ils savent, pas pour les tester"
           },
           {
-            "moment": "Si certains élèves ne veulent pas participer au 'concours'",
+            "question": "Si certains élèves ne veulent pas participer au 'concours'",
             "choice": "Expliquer que c'est un jeu d'équipe où tout le monde s'aide"
           }
         ],
@@ -1533,7 +1533,7 @@
         "visualSupports": "Team spelling challenge stations, Encouragement phrases poster, Spelling celebration rules",
         "decisionPoints": [
           {
-            "moment": "If competition becomes too intense or stressful",
+            "question": "If competition becomes too intense or stressful",
             "choice": "Switch to collaborative spelling or emphasize teamwork over competition"
           }
         ],
@@ -1546,11 +1546,11 @@
         "visualSupports": "Spelling champions ceremony format, Growth and effort celebration poster, Certificate presentation visual",
         "decisionPoints": [
           {
-            "moment": "Si un élève se compare négativement aux autres",
+            "question": "Si un élève se compare négativement aux autres",
             "choice": "Souligner ses progrès personnels et ses efforts pendant l'unité"
           },
           {
-            "moment": "Si la cérémonie devient trop longue",
+            "question": "Si la cérémonie devient trop longue",
             "choice": "Donner tous les certificats ensemble avec un gros applaudissement"
           }
         ],
@@ -1562,10 +1562,10 @@
       },
       "realWorldConnection": "Correct spelling helps others understand our writing clearly - like when we write notes to family or friends",
       "differentiation": {
-        "forStruggling": ["Use simple words only", "Allow letter card building instead of writing", "Provide peer support within teams", "Focus on letter recognition rather than complete spelling"],
-        "forAdvanced": ["Include challenging vocabulary words", "Help facilitate team activities", "Support struggling team members", "Try spelling words from multiple lessons"],
-        "forELL": ["Use familiar vocabulary for spelling", "Allow sound-based spelling attempts", "Connect to home language spelling patterns", "Focus on effort over accuracy"],
-        "forIEP": ["Modify spelling expectations", "Allow alternative participation methods", "Use supportive team environments", "Celebrate any spelling attempt"]
+        "pourDifficultés": ["Use simple words only", "Allow letter card building instead of writing", "Provide peer support within teams", "Focus on letter recognition rather than complete spelling"],
+        "pourAvancés": ["Include challenging vocabulary words", "Help facilitate team activities", "Support struggling team members", "Try spelling words from multiple lessons"],
+        "pourLangue": ["Use familiar vocabulary for spelling", "Allow sound-based spelling attempts", "Connect to home language spelling patterns", "Focus on effort over accuracy"],
+        "pourPEI": ["Modify spelling expectations", "Allow alternative participation methods", "Use supportive team environments", "Celebrate any spelling attempt"]
       },
       "assessmentCriteria": {
         "observable": ["Attempts to spell learned vocabulary words", "Shows growth in French spelling awareness", "Participates positively in team activities", "Supports classmates in spelling challenges"],
@@ -1589,10 +1589,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1630,11 +1630,11 @@
         "visualSupports": "Unit celebration poster, Word explorer journey timeline, Achievement celebration visual",
         "decisionPoints": [
           {
-            "moment": "Si les élèves sont trop excités par les décorations",
+            "question": "Si les élèves sont trop excités par les décorations",
             "choice": "Permettre quelques minutes d'admiration avant de commencer les activités"
           },
           {
-            "moment": "Si un élève semble triste que l'unité se termine",
+            "question": "Si un élève semble triste que l'unité se termine",
             "choice": "Rassurer qu'ils continueront à explorer les mots dans d'autres unités"
           }
         ],
@@ -1647,15 +1647,15 @@
         "visualSupports": "Celebration stations guide, Memory gallery display, Future goals prompts, Learning journey celebration chart",
         "decisionPoints": [
           {
-            "moment": "Si les élèves veulent rester trop longtemps à une station",
+            "question": "Si les élèves veulent rester trop longtemps à une station",
             "choice": "Donner un avertissement de 2 minutes avant la rotation"
           },
           {
-            "moment": "Si un élève ne trouve pas ses travaux dans l'exposition",
+            "question": "Si un élève ne trouve pas ses travaux dans l'exposition",
             "choice": "L'aider à chercher ou célébrer sa participation aux activités de groupe"
           },
           {
-            "moment": "Si les élèves ont de la difficulté avec les objectifs futurs",
+            "question": "Si les élèves ont de la difficulté avec les objectifs futurs",
             "choice": "Suggérer des idées simples comme 'apprendre plus de mots d'animaux'"
           }
         ],
@@ -1668,11 +1668,11 @@
         "visualSupports": "Explorer pledge visual, Class motto poster, Unit completion celebration chart",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ont de la difficulté à mémoriser la promesse d'explorateur",
+            "question": "Si les élèves ont de la difficulté à mémoriser la promesse d'explorateur",
             "choice": "La réciter phrase par phrase et ajouter des gestes pour aider la mémorisation"
           },
           {
-            "moment": "Si l'énergie devient trop intense pendant les acclamations",
+            "question": "Si l'énergie devient trop intense pendant les acclamations",
             "choice": "Diriger vers des gestes de célébration plus calmes mais enthousiastes"
           }
         ],
@@ -1684,10 +1684,10 @@
       },
       "realWorldConnection": "Celebrating our learning motivates us to continue growing and exploring - like when we feel proud of learning to ride a bike and want to go further",
       "differentiation": {
-        "forStruggling": ["Focus on personal growth rather than comparisons", "Highlight individual achievements", "Allow flexible participation in stations", "Celebrate effort and progress"],
-        "forAdvanced": ["Help facilitate celebration stations", "Support peers in reflecting on growth", "Share leadership in class activities", "Contribute ideas for future learning goals"],
-        "forELL": ["Celebrate bilingual learning strengths", "Allow sharing in comfortable language", "Highlight cultural contributions to class learning", "Connect to home language learning experiences"],
-        "forIEP": ["Modify celebration participation as needed", "Focus on individual meaningful achievements", "Allow alternative ways to participate", "Celebrate all forms of learning progress"]
+        "pourDifficultés": ["Focus on personal growth rather than comparisons", "Highlight individual achievements", "Allow flexible participation in stations", "Celebrate effort and progress"],
+        "pourAvancés": ["Help facilitate celebration stations", "Support peers in reflecting on growth", "Share leadership in class activities", "Contribute ideas for future learning goals"],
+        "pourLangue": ["Celebrate bilingual learning strengths", "Allow sharing in comfortable language", "Highlight cultural contributions to class learning", "Connect to home language learning experiences"],
+        "pourPEI": ["Modify celebration participation as needed", "Focus on individual meaningful achievements", "Allow alternative ways to participate", "Celebrate all forms of learning progress"]
       },
       "assessmentCriteria": {
         "observable": ["Reflects positively on learning journey", "Shows pride in French word exploration achievements", "Expresses excitement about continued learning", "Participates meaningfully in celebration activities"],
@@ -1711,10 +1711,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }

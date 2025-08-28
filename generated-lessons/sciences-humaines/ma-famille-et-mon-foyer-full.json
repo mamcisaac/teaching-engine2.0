@@ -27,7 +27,7 @@
         ],
         "visualSupports": "Open arms for inclusion, heart gestures for love, smiling faces for celebration",
         "decisionPoints": [
-          "Si un élève dit qu'il n'a pas de famille traditionnelle → célébrer que toutes les familles sont différentes et spéciales, utiliser des exemples variés de structures familiales",
+          "Si un élève dit qu'il n'a pas de famille traditionnelle → célébrer que toutes les familles sont différentes et spéciales, utiliser des exemples variés de ma famille",
           "Si un élève semble gêné de sa situation familiale → rassurer que chaque famille est parfaite comme elle est, rediriger vers les aspects positifs",
           "Si un élève ne veut pas partager → respecter sa confidentialité et offrir l'option d'écouter seulement"
         ],
@@ -80,10 +80,10 @@
       },
       "realWorldConnection": "Every person belongs to a family that loves and cares for them in their own special way",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -164,22 +164,22 @@
       },
       "realWorldConnection": "Being proud of our family helps us feel confident and secure in who we are",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des photos de familles simples pour modéliser",
           "Permettre le dessin libre au lieu de structures complexes",
           "Offrir de l'aide individuelle pour l'expression"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager l'ajout de détails sur les relations familiales",
           "Inviter à expliquer les rôles spéciaux dans leur famille",
           "Permettre de partager des histoires familiales"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir du vocabulaire de membres familiaux en français",
           "Utiliser des images pour appuyer la compréhension",
           "Encourager le mélange linguistique avec traduction"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les outils de représentation familiale",
           "Offrir des options de communication alternatives",
           "Respecter les besoins individuels de participation"
@@ -273,22 +273,22 @@
       },
       "realWorldConnection": "Each family member has a special place and important role in the family",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des images simples de relations familiales",
           "Offrir des phrases modèles pour décrire les membres familiaux",
           "Permettre le dessin au lieu de l'arbre généalogique traditionnel"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager l'explication des rôles spéciaux dans leur famille",
-          "Inviter à comparer les structures familiales avec respect",
+          "Inviter à comparer les ma famille avec respect",
           "Permettre de créer des arbres familiaux complexes"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir du vocabulaire familial bilingue avec images",
           "Utiliser des gestes pour renforcer les relations",
           "Encourager l'utilisation de la langue maternelle avec traduction"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les outils de cartographie selon les capacités",
           "Offrir des supports visuels personnalisés",
           "Respecter les besoins de communication individuels"
@@ -299,7 +299,7 @@
           "Élève identifie les membres de sa famille",
           "Élève décrit des relations familiales positives",
           "Élève montre de la compréhension des liens familiaux",
-          "Élève respecte la diversité des structures familiales"
+          "Élève respecte la diversité des ma famille"
         ],
         "checkpoints": [
           "Observation pendant la création de l'arbre familial",
@@ -382,22 +382,22 @@
       },
       "realWorldConnection": "Families work best when everyone helps and contributes in their own special way",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des exemples concrets de travaux familiaux simples",
           "Permettre de montrer l'aide au lieu de l'expliquer",
           "Offrir des images de tâches familiales pour modéliser"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager la discussion sur l'équité des tâches familiales",
           "Inviter à proposer des améliorations pour le travail d'équipe familial",
           "Permettre de créer des horaires de contribution familiale"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir du vocabulaire de tâches familiales en français",
           "Utiliser des gestes pour démontrer les activités familiales",
           "Encourager le partage dans les deux langues avec traduction"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les tâches selon les capacités individuelles",
           "Offrir des outils visuels personnalisés pour l'organisation",
           "Respecter les rôles familiaux individuels"
@@ -491,22 +491,22 @@
       },
       "realWorldConnection": "Being cared for by family helps us grow strong, healthy, and confident",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des exemples concrets de soins familiaux simples",
           "Permettre l'expression par le dessin au lieu des mots",
           "Offrir des phrases modèles pour exprimer la gratitude"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager la discussion sur différents types de soins familiaux",
           "Inviter à réfléchir sur comment montrer de la gratitude à la famille",
           "Permettre de créer des cartes de remerciement détaillées"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir du vocabulaire de soins familiaux en français",
           "Utiliser des gestes pour démontrer les soins reçus",
           "Encourager l'expression dans les deux langues avec traduction"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les besoins de communication individuels",
           "Utiliser des supports visuels personnalisés pour les soins",
           "Respecter les façons individuelles de recevoir et d'exprimer l'amour"
@@ -600,22 +600,22 @@
       },
       "realWorldConnection": "Even young people have important ways to help and support their families",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des exemples très simples d'aide familiale",
           "Permettre l'expression par l'action au lieu des mots",
           "Offrir des images de helpers familiaux pour modéliser"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager la réflexion sur l'impact de leur aide sur la famille",
           "Inviter à proposer de nouvelles façons d'aider",
           "Permettre de créer un plan d'aide familiale personnalisé"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir du vocabulaire d'aide familiale en français",
           "Utiliser des gestes pour démontrer les contributions",
           "Encourager le partage bilingue avec traduction"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les tâches d'aide selon les capacités individuelles",
           "Utiliser des supports visuels personnalisés pour les contributions",
           "Respecter les façons individuelles de contribuer à la famille"
@@ -709,22 +709,22 @@
       },
       "realWorldConnection": "Learning about different families helps us understand and appreciate our community better",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des images de différentes familles pour faciliter la compréhension",
           "Permettre l'expression par le dessin au lieu de la discussion",
           "Offrir des exemples concrets de diversité familiale positive"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager la discussion sur les avantages de la diversité familiale",
           "Inviter à réfléchir sur les similitudes entre différentes familles",
           "Permettre de créer un projet sur l'appréciation de la diversité"
         ],
-        "forELL": [
+        "pourLangue": [
           "Fournir du vocabulaire de diversité familiale en français",
           "Utiliser des gestes pour renforcer l'inclusion",
-          "Encourager le partage bilingue sur les structures familiales"
+          "Encourager le partage bilingue sur les ma famille"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les besoins de compréhension sociale",
           "Utiliser des supports visuels personnalisés pour la diversité",
           "Respecter les niveaux individuels de participation sociale"
@@ -734,7 +734,7 @@
         "observable": [
           "Élève montre de l'appréciation pour la diversité familiale",
           "Élève démontre de la curiosité positive envers différentes familles",
-          "Élève respecte les différences dans les structures familiales",
+          "Élève respecte les différences dans les ma famille",
           "Élève contribue positivement aux discussions sur la diversité"
         ],
         "checkpoints": [
@@ -818,10 +818,10 @@
       },
       "realWorldConnection": "Family traditions help us remember who we are and stay connected to our family history",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -902,10 +902,10 @@
       },
       "realWorldConnection": "Celebrating together helps families feel close and creates happy memories to treasure",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -986,10 +986,10 @@
       },
       "realWorldConnection": "Sharing food is one of the ways families show love and stay connected every day",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1070,10 +1070,10 @@
       },
       "realWorldConnection": "Having a safe place to live with family helps us feel secure and ready to learn and grow",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1154,10 +1154,10 @@
       },
       "realWorldConnection": "Special family spaces help us feel connected to our family and hold our important memories",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1238,10 +1238,10 @@
       },
       "realWorldConnection": "Good communication helps families solve problems, share love, and stay close to each other",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1322,10 +1322,10 @@
       },
       "realWorldConnection": "Families are stronger when they connect with other families and help their community",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1406,10 +1406,10 @@
       },
       "realWorldConnection": "Creating family stories helps us remember and share what makes our family special",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1433,10 +1433,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1530,10 +1530,10 @@
       },
       "realWorldConnection": "Sharing our family stories helps others understand and appreciate different ways of being a family",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1557,10 +1557,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1654,10 +1654,10 @@
       },
       "realWorldConnection": "Playing family roles helps us understand different perspectives and practice family relationships",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1681,10 +1681,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1778,10 +1778,10 @@
       },
       "realWorldConnection": "Telling family members how we feel about them helps strengthen family relationships",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1805,10 +1805,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1902,10 +1902,10 @@
       },
       "realWorldConnection": "Celebrating families together helps us appreciate that all families are important and valuable",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1929,10 +1929,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2026,10 +2026,10 @@
       },
       "realWorldConnection": "Being proud of our family gives us confidence and helps us appreciate other families too",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -2053,10 +2053,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }

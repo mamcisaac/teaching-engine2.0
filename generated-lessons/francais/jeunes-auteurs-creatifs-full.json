@@ -53,10 +53,10 @@
       "troubleshooting": "If vocabulary is too hard, just use 'livre' and gestures for writing",
       "realWorldConnection": "Authors write the books we read every day - just like the ones in our classroom",
       "differentiation": {
-        "forStruggling": ["Utiliser des livres avec images très claires d'auteurs", "Permettre pointer sans dire le mot", "Travailler en tandem avec un élève plus fort", "Réduire à un seul livre familier"],
-        "forAdvanced": ["Chercher auteurs ET illustrateurs", "Comparer différents styles d'auteurs", "Aider les élèves en difficulté", "Créer une liste personnelle d'auteurs préférés"],
-        "forELL": ["Utiliser la L1 pour expliquer 'auteur' au début", "Gestes exagérés pour tous les concepts", "Images visuelles claires pour chaque action", "Permettre réponses en L1 + français mélangé"],
-        "forIEP": ["Adapter selon les besoins sensoriels (lumière, bruit)", "Utiliser supports tactiles si nécessaire", "Temps de traitement supplémentaire", "Communication alternative si besoin (pointage, pictogrammes)"]
+        "pourDifficultés": ["Utiliser des livres avec images très claires d'auteurs", "Permettre pointer sans dire le mot", "Travailler en tandem avec un élève plus fort", "Réduire à un seul livre familier"],
+        "pourAvancés": ["Chercher auteurs ET illustrateurs", "Comparer différents styles d'auteurs", "Aider les élèves en difficulté", "Créer une liste personnelle d'auteurs préférés"],
+        "pourLangue": ["Utiliser la L1 pour expliquer 'auteur' au début", "Gestes exagérés pour tous les concepts", "Images visuelles claires pour chaque action", "Permettre réponses en L1 + français mélangé"],
+        "pourPEI": ["Adapter selon les besoins sensoriels (lumière, bruit)", "Utiliser supports tactiles si nécessaire", "Temps de traitement supplémentaire", "Communication alternative si besoin (pointage, pictogrammes)"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève montre un livre et dit ou pointe l'auteur", "L'élève fait le geste d'écrire quand on dit 'auteur'", "L'élève répète le mot 'auteur' avec approximation acceptable", "L'élève montre de l'intérêt pour les livres et les auteurs"],
@@ -110,10 +110,10 @@
       "troubleshooting": "If no ideas come, start with 'Qu'est-ce que tu aimes?' and accept any response",
       "realWorldConnection": "Everyone has special ideas worth sharing - just like when we tell family about our day",
       "differentiation": {
-        "forStruggling": ["Commencer par des questions très concrètes ('Ton jouet préféré?')", "Accepter des dessins simples ou pointer des images", "Travailler avec un partenaire", "Utiliser moins d'options d'images"],
-        "forAdvanced": ["Encourager des idées plus complexes ou originales", "Combiner plusieurs images pour une idée", "Aider d'autres élèves à trouver des idées", "Commencer à organiser leurs idées par catégories"],
-        "forELL": ["Permettre d'expliquer l'idée dans la L1 d'abord", "Utiliser beaucoup d'images et gestes", "Accepter un mélange de langues", "Donner du temps supplémentaire pour traiter"],
-        "forIEP": ["Adapter les supports selon les besoins (taille, contraste)", "Offrir des choix limités si les options multiples sont accablantes", "Utiliser communication alternative au besoin", "Respecter les temps de traitement individuels"]
+        "pourDifficultés": ["Commencer par des questions très concrètes ('Ton jouet préféré?')", "Accepter des dessins simples ou pointer des images", "Travailler avec un partenaire", "Utiliser moins d'options d'images"],
+        "pourAvancés": ["Encourager des idées plus complexes ou originales", "Combiner plusieurs images pour une idée", "Aider d'autres élèves à trouver des idées", "Commencer à organiser leurs idées par catégories"],
+        "pourLangue": ["Permettre d'expliquer l'idée dans la L1 d'abord", "Utiliser beaucoup d'images et gestes", "Accepter un mélange de langues", "Donner du temps supplémentaire pour traiter"],
+        "pourPEI": ["Adapter les supports selon les besoins (taille, contraste)", "Offrir des choix limités si les options multiples sont accablantes", "Utiliser communication alternative au besoin", "Respecter les temps de traitement individuels"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève identifie une idée par pointage, dessin ou mots", "L'élève montre de l'intérêt pour partager ses pensées", "L'élève comprend le concept d'idée (montré par gestes ou réactions)", "L'élève fait des connexions entre images et ses expériences"],
@@ -167,10 +167,10 @@
       "troubleshooting": "If perfectionism blocks drawing, model 'good enough' drawing yourself",
       "realWorldConnection": "Pictures help us tell stories when words are hard - like when we draw for family",
       "differentiation": {
-        "forStruggling": ["Offrir du papier plus petit pour moins intimider", "Commencer par des formes simples (cercle = visage)", "Permettre dessin très simple (bonhommes allumettes acceptables)", "Offrir des modèles de base à adapter"],
-        "forAdvanced": ["Encourager l'ajout de détails et d'arrière-plan", "Leur demander d'expliquer leur processus créatif", "Les inviter à essayer différents matériaux", "Encourager à raconter une séquence avec plusieurs images"],
-        "forELL": ["Accepter que l'élève nomme son dessin dans sa L1", "Utiliser beaucoup de gestes encourageants", "Montrer appréciation non-verbale", "Connecter visuellement à des expériences universelles"],
-        "forIEP": ["Adapter les outils de dessin selon les besoins moteurs", "Offrir différentes tailles de papier", "Respecter les preferences sensorielles (textures, couleurs)", "Permettre des pauses si nécessaire"]
+        "pourDifficultés": ["Offrir du papier plus petit pour moins intimider", "Commencer par des formes simples (cercle = visage)", "Permettre dessin très simple (bonhommes allumettes acceptables)", "Offrir des modèles de base à adapter"],
+        "pourAvancés": ["Encourager l'ajout de détails et d'arrière-plan", "Leur demander d'expliquer leur processus créatif", "Les inviter à essayer différents matériaux", "Encourager à raconter une séquence avec plusieurs images"],
+        "pourLangue": ["Accepter que l'élève nomme son dessin dans sa L1", "Utiliser beaucoup de gestes encourageants", "Montrer appréciation non-verbale", "Connecter visuellement à des expériences universelles"],
+        "pourPEI": ["Adapter les outils de dessin selon les besoins moteurs", "Offrir différentes tailles de papier", "Respecter les preferences sensorielles (textures, couleurs)", "Permettre des pauses si nécessaire"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève produit un dessin qui représente son idée", "L'élève peut expliquer son dessin par gestes, mots ou pointage", "L'élève montre de l'engagement dans le processus créatif", "L'élève respecte le travail des autres lors de la galerie"],
@@ -224,10 +224,10 @@
       "troubleshooting": "If students are silent, let them point to word cards instead of speaking",
       "realWorldConnection": "We use words to help others understand our pictures - like when we explain our drawings to family",
       "differentiation": {
-        "forStruggling": ["Commencer par 1 seul mot au lieu de 2-3", "Permettre pointer les cartes au lieu de parler", "Utiliser des mots très concrets (couleurs, animaux)", "Travailler directement avec l'enseignant"],
-        "forAdvanced": ["Encourager 4-5 mots ou même des phrases simples", "Essayer d'écrire quelques mots", "Aider les camarades à trouver des mots", "Créer des combinaisons plus créatives"],
-        "forELL": ["Permettre mélange L1-français au début", "Utiliser traduction visuelle quand possible", "Accepter approximations de prononciation", "Valoriser tout effort de communication en français"],
-        "forIEP": ["Adapter les supports selon les besoins (taille, contraste)", "Permettre communication alternative (pointage, gestes)", "Respecter le rythme individuel", "Offrir choix limités si besoin"]
+        "pourDifficultés": ["Commencer par 1 seul mot au lieu de 2-3", "Permettre pointer les cartes au lieu de parler", "Utiliser des mots très concrets (couleurs, animaux)", "Travailler directement avec l'enseignant"],
+        "pourAvancés": ["Encourager 4-5 mots ou même des phrases simples", "Essayer d'écrire quelques mots", "Aider les camarades à trouver des mots", "Créer des combinaisons plus créatives"],
+        "pourLangue": ["Permettre mélange L1-français au début", "Utiliser traduction visuelle quand possible", "Accepter approximations de prononciation", "Valoriser tout effort de communication en français"],
+        "pourPEI": ["Adapter les supports selon les besoins (taille, contraste)", "Permettre communication alternative (pointage, gestes)", "Respecter le rythme individuel", "Offrir choix limités si besoin"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève identifie 1-3 mots liés à son dessin", "L'élève tente de prononcer ou pointer des mots français", "L'élève fait des connexions entre son dessin et les mots", "L'élève écoute et apprécie les mots des autres"],
@@ -281,10 +281,10 @@
       "troubleshooting": "If story is too complex, just focus on pictures and ask 'Qu'est-ce que tu vois?'",
       "realWorldConnection": "We learn by listening to stories around us - just like when family tells us stories",
       "differentiation": {
-        "forStruggling": ["Se concentrer sur une seule question (QUI) au lieu de trois", "Utiliser seulement les images sans texte d'abord", "Permettre réponses par pointage des cartes", "Relire les passages au besoin"],
-        "forAdvanced": ["Élargir aux questions QUAND et POURQUOI", "Les inviter à prédire ce qui va arriver", "Comparer avec d'autres histoires connues", "Aider à poser des questions aux autres"],
-        "forELL": ["Pré-voir les images avant de lire", "Utiliser beaucoup d'intonation et gestes", "Accepter réponses dans L1 au début", "Connecter aux expériences universelles"],
-        "forIEP": ["Ajuster le volume et la vitesse de lecture", "Offrir des supports tactiles (livre à toucher)", "Permettre différentes positions d'écoute", "Utiliser supports visuels supplémentaires au besoin"]
+        "pourDifficultés": ["Se concentrer sur une seule question (QUI) au lieu de trois", "Utiliser seulement les images sans texte d'abord", "Permettre réponses par pointage des cartes", "Relire les passages au besoin"],
+        "pourAvancés": ["Élargir aux questions QUAND et POURQUOI", "Les inviter à prédire ce qui va arriver", "Comparer avec d'autres histoires connues", "Aider à poser des questions aux autres"],
+        "pourLangue": ["Pré-voir les images avant de lire", "Utiliser beaucoup d'intonation et gestes", "Accepter réponses dans L1 au début", "Connecter aux expériences universelles"],
+        "pourPEI": ["Ajuster le volume et la vitesse de lecture", "Offrir des supports tactiles (livre à toucher)", "Permettre différentes positions d'écoute", "Utiliser supports visuels supplémentaires au besoin"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève écoute l'histoire avec attention soutenue", "L'élève répond aux questions par gestes, mots ou pointage", "L'élève identifie au moins un élément de l'histoire (qui, où ou quoi)", "L'élève montre de l'intérêt pour écouter des histoires en français"],
@@ -336,10 +336,10 @@
       "troubleshooting": "If students are stuck on names, let them use their own name or favorite toy's name",
       "realWorldConnection": "Stories need characters just like our lives have people - family, friends, pets",
       "differentiation": {
-        "forStruggling": ["Utiliser des templates prêt-à-décorer plutôt que dessiner de zéro", "Offrir une liste courte de noms faciles à choisir", "Permettre d'utiliser leur propre nom ou nom d'animal familial", "Accepter personnages très simples (bonhomme allumette avec nom)"],
-        "forAdvanced": ["Encourager à ajouter des détails sur la personnalité du personnage", "Créer plusieurs personnages ou une famille de personnages", "Inventer des noms originaux", "Aider les autres à développer leurs personnages"],
-        "forELL": ["Accepter noms dans toute langue au début", "Utiliser beaucoup d'exemples visuels", "Permettre d'expliquer le personnage dans la L1 si nécessaire", "Connecter aux personnages de leur culture"],
-        "forIEP": ["Adapter les outils de création selon les besoins moteurs", "Offrir choix entre dessiner ou utiliser templates", "Respecter les préférences sensorielles pour les matériaux", "Permettre communication alternative pour présenter"]
+        "pourDifficultés": ["Utiliser des templates prêt-à-décorer plutôt que dessiner de zéro", "Offrir une liste courte de noms faciles à choisir", "Permettre d'utiliser leur propre nom ou nom d'animal familial", "Accepter personnages très simples (bonhomme allumette avec nom)"],
+        "pourAvancés": ["Encourager à ajouter des détails sur la personnalité du personnage", "Créer plusieurs personnages ou une famille de personnages", "Inventer des noms originaux", "Aider les autres à développer leurs personnages"],
+        "pourLangue": ["Accepter noms dans toute langue au début", "Utiliser beaucoup d'exemples visuels", "Permettre d'expliquer le personnage dans la L1 si nécessaire", "Connecter aux personnages de leur culture"],
+        "pourPEI": ["Adapter les outils de création selon les besoins moteurs", "Offrir choix entre dessiner ou utiliser templates", "Respecter les préférences sensorielles pour les matériaux", "Permettre communication alternative pour présenter"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève crée une représentation visuelle d'un personnage", "L'élève attribue un nom à son personnage", "L'élève peut présenter son personnage d'une façon ou d'une autre", "L'élève comprend le concept de personnage dans une histoire"],
@@ -391,10 +391,10 @@
       "troubleshooting": "If students get frustrated with drawing, use place cards they can choose and point to",
       "realWorldConnection": "Everything happens somewhere - stories need places too, just like where we live and play",
       "differentiation": {
-        "forStruggling": ["Utiliser cartes de lieux prêt-à-décorer au lieu de dessiner", "Commencer par coller leur personnage sur une carte de lieu", "Backgrounds très simples (juste une couleur de fond)", "Choisir parmi 3-4 options de lieux seulement"],
-        "forAdvanced": ["Créer des décors détaillés avec plusieurs éléments", "Imaginer des lieux originaux ou fantastiques", "Ajouter des éléments qui montrent pourquoi le personnage aime cet endroit", "Aider les autres avec leurs décors"],
-        "forELL": ["Utiliser images et gestes pour expliquer les lieux", "Connecter aux lieux familiers de leur culture", "Permettre de nommer les lieux dans leur L1 aussi", "Utiliser beaucoup de modélisation visuelle"],
-        "forIEP": ["Adapter les outils de dessin selon les besoins moteurs", "Offrir templates ou cartes prêt-à-utiliser si le dessin libre est difficile", "Respecter les préférences pour l'organisation spatiale", "Permettre différentes façons de représenter les lieux"]
+        "pourDifficultés": ["Utiliser cartes de lieux prêt-à-décorer au lieu de dessiner", "Commencer par coller leur personnage sur une carte de lieu", "Backgrounds très simples (juste une couleur de fond)", "Choisir parmi 3-4 options de lieux seulement"],
+        "pourAvancés": ["Créer des décors détaillés avec plusieurs éléments", "Imaginer des lieux originaux ou fantastiques", "Ajouter des éléments qui montrent pourquoi le personnage aime cet endroit", "Aider les autres avec leurs décors"],
+        "pourLangue": ["Utiliser images et gestes pour expliquer les lieux", "Connecter aux lieux familiers de leur culture", "Permettre de nommer les lieux dans leur L1 aussi", "Utiliser beaucoup de modélisation visuelle"],
+        "pourPEI": ["Adapter les outils de dessin selon les besoins moteurs", "Offrir templates ou cartes prêt-à-utiliser si le dessin libre est difficile", "Respecter les préférences pour l'organisation spatiale", "Permettre différentes façons de représenter les lieux"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève choisit un lieu pour son personnage", "L'élève crée une représentation visuelle du lieu (même très simple)", "L'élève peut identifier où vit/se trouve son personnage", "L'élève comprend que les histoires se passent dans des endroits"],
@@ -446,10 +446,10 @@
       "troubleshooting": "If students can't think of actions, start with basic ones they know: walk, eat, sleep",
       "realWorldConnection": "People do things - our characters should too, just like how we do different activities all day",
       "differentiation": {
-        "forStruggling": ["Choisir parmi 3-4 actions simples seulement (marcher, manger, dormir)", "Utiliser beaucoup de mime et gestes", "Accepter actions très basiques", "Permettre de copier l'action d'un ami si nécessaire"],
-        "forAdvanced": ["Encourager des actions plus complexes ou créatives", "Ajouter des émotions à l'action (courir joyeusement)", "Créer une séquence d'actions", "Aider les autres à développer leurs actions"],
-        "forELL": ["Commencer par des actions universelles (manger, dormir)", "Utiliser beaucoup de modélisation physique", "Permettre de nommer l'action dans la L1 aussi", "Connecter aux actions familières de leur culture"],
-        "forIEP": ["Adapter les actions selon les capacités motrices", "Offrir actions compatibles avec les besoins sensoriels", "Permettre différentes façons d'exprimer l'action", "Respecter les limites physiques individuelles"]
+        "pourDifficultés": ["Choisir parmi 3-4 actions simples seulement (marcher, manger, dormir)", "Utiliser beaucoup de mime et gestes", "Accepter actions très basiques", "Permettre de copier l'action d'un ami si nécessaire"],
+        "pourAvancés": ["Encourager des actions plus complexes ou créatives", "Ajouter des émotions à l'action (courir joyeusement)", "Créer une séquence d'actions", "Aider les autres à développer leurs actions"],
+        "pourLangue": ["Commencer par des actions universelles (manger, dormir)", "Utiliser beaucoup de modélisation physique", "Permettre de nommer l'action dans la L1 aussi", "Connecter aux actions familières de leur culture"],
+        "pourPEI": ["Adapter les actions selon les capacités motrices", "Offrir actions compatibles avec les besoins sensoriels", "Permettre différentes façons d'exprimer l'action", "Respecter les limites physiques individuelles"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève choisit une action pour son personnage", "L'élève peut mimer ou démontrer l'action", "L'élève ajoute visuellement l'action à son histoire (dessin, geste, ou description)", "L'élève participe au cercle d'actions avec enthousiasme"],
@@ -501,10 +501,10 @@
       "troubleshooting": "If perfectionism stops progress, remind students that first drafts don't need to be perfect",
       "realWorldConnection": "Every book starts with the first page - just like how we start anything new step by step",
       "differentiation": {
-        "forStruggling": ["Permettre dessin très simple et phrase dictée", "Utiliser étiquettes-mots au lieu d'écriture libre", "Accepter combinaisons très basiques des éléments", "Support individuel constant"],
-        "forAdvanced": ["Encourager phrases plus complexes ou multiples", "Ajouter des détails riches au dessin", "Commencer à planifier page 2", "Aider d'autres élèves avec leurs pages"],
-        "forELL": ["Permettre phrases dans L1 + quelques mots français", "Utiliser supports visuels maximum", "Accepter écriture phonétique approximative", "Valoriser tout effort de communication"],
-        "forIEP": ["Adapter outils d'écriture selon besoins moteurs", "Offrir alternatives à l'écriture (dictée, étiquettes)", "Respecter rythme individuel", "Célébrer selon préférences sensorielles"]
+        "pourDifficultés": ["Permettre dessin très simple et phrase dictée", "Utiliser étiquettes-mots au lieu d'écriture libre", "Accepter combinaisons très basiques des éléments", "Support individuel constant"],
+        "pourAvancés": ["Encourager phrases plus complexes ou multiples", "Ajouter des détails riches au dessin", "Commencer à planifier page 2", "Aider d'autres élèves avec leurs pages"],
+        "pourLangue": ["Permettre phrases dans L1 + quelques mots français", "Utiliser supports visuels maximum", "Accepter écriture phonétique approximative", "Valoriser tout effort de communication"],
+        "pourPEI": ["Adapter outils d'écriture selon besoins moteurs", "Offrir alternatives à l'écriture (dictée, étiquettes)", "Respecter rythme individuel", "Célébrer selon préférences sensorielles"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève crée une page combinant ses éléments d'histoire", "L'élève produit un texte (dicté, copié, ou écrit)", "L'élève montre de la fierté pour sa création", "L'élève comprend qu'il a créé une vraie page d'histoire"],
@@ -556,10 +556,10 @@
       "troubleshooting": "If students are too nervous to share, let them just show their picture without words",
       "realWorldConnection": "Authors share their work so others can enjoy it - just like when we show family our artwork",
       "differentiation": {
-        "forStruggling": ["Permettre de montrer seulement l'image sans lire", "Jumeler avec un partenaire bienveillant et patient", "Encourager toute tentative de communication", "Permettre l'aide de l'enseignant pour lire"],
-        "forAdvanced": ["Encourager à poser des questions sur les histoires des autres", "Donner des commentaires constructifs", "Aider les camarades timides à partager", "Partager avec plusieurs partenaires"],
-        "forELL": ["Accepter partage dans L1 avec quelques mots français", "Encourager communication gestuelle", "Valoriser tout effort de partage", "Utiliser beaucoup de support visuel et encouragement"],
-        "forIEP": ["Respecter les préférences de communication", "Adapter le volume et l'environnement au besoin", "Permettre différentes façons de partager", "Offrir pauses si nécessaire"]
+        "pourDifficultés": ["Permettre de montrer seulement l'image sans lire", "Jumeler avec un partenaire bienveillant et patient", "Encourager toute tentative de communication", "Permettre l'aide de l'enseignant pour lire"],
+        "pourAvancés": ["Encourager à poser des questions sur les histoires des autres", "Donner des commentaires constructifs", "Aider les camarades timides à partager", "Partager avec plusieurs partenaires"],
+        "pourLangue": ["Accepter partage dans L1 avec quelques mots français", "Encourager communication gestuelle", "Valoriser tout effort de partage", "Utiliser beaucoup de support visuel et encouragement"],
+        "pourPEI": ["Respecter les préférences de communication", "Adapter le volume et l'environnement au besoin", "Permettre différentes façons de partager", "Offrir pauses si nécessaire"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève participe au partage d'une façon ou d'une autre", "L'élève écoute respectueusement les autres", "L'élève montre sa création avec fierté", "L'élève démontre comprension que son travail intéresse les autres"],
@@ -611,10 +611,10 @@
       "troubleshooting": "If students are resistant to changes, frame it as 'adding' rather than 'fixing'",
       "realWorldConnection": "We can always make our work a little better - just like when we tidy our room or improve our bike riding",
       "differentiation": {
-        "forStruggling": ["Commencer par ajouter une couleur simple", "Utiliser autocollants au lieu de dessiner", "L'enseignant peut écrire le mot de détail dicté", "Choisir parmi 2-3 options seulement"],
-        "forAdvanced": ["Ajouter plusieurs types de détails", "Créer des détails originaux pas sur les cartes", "Aider les autres à choisir de bons détails", "Expliquer pourquoi leur détail améliore l'histoire"],
-        "forELL": ["Utiliser détails visuels (couleurs) avant les détails abstraits (émotions)", "Permettre détails dans L1 avec traduction", "Beaucoup de modélisation visuelle", "Accepter approximations créatives"],
-        "forIEP": ["Choisir détails compatibles avec capacités motrices", "Offrir alternatives tactiles ou visuelles", "Respecter le rythme individuel", "Célébrer tout effort d'amélioration"]
+        "pourDifficultés": ["Commencer par ajouter une couleur simple", "Utiliser autocollants au lieu de dessiner", "L'enseignant peut écrire le mot de détail dicté", "Choisir parmi 2-3 options seulement"],
+        "pourAvancés": ["Ajouter plusieurs types de détails", "Créer des détails originaux pas sur les cartes", "Aider les autres à choisir de bons détails", "Expliquer pourquoi leur détail améliore l'histoire"],
+        "pourLangue": ["Utiliser détails visuels (couleurs) avant les détails abstraits (émotions)", "Permettre détails dans L1 avec traduction", "Beaucoup de modélisation visuelle", "Accepter approximations créatives"],
+        "pourPEI": ["Choisir détails compatibles avec capacités motrices", "Offrir alternatives tactiles ou visuelles", "Respecter le rythme individuel", "Célébrer tout effort d'amélioration"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève ajoute au moins un élément à son travail existant", "L'élève reconnaît la différence après son ajout", "L'élève montre de la fierté pour son amélioration", "L'élève comprend que les auteurs améliorent leurs histoires"],
@@ -666,10 +666,10 @@
       "troubleshooting": "If continuing is too hard, let students create a second scene with same character in different activity",
       "realWorldConnection": "Stories continue - there's always more to tell, just like our day has many different parts",
       "differentiation": {
-        "forStruggling": ["Utiliser même personnage dans nouvelle situation simple", "Accepter répétition de la première page avec petit changement", "Utiliser étiquettes-mots pour 'Et puis...'", "Dessins très simples acceptables"],
-        "forAdvanced": ["Créer vraie continuation avec développement de l'intrigue", "Ajouter plusieurs phrases ou détails", "Planifier une troisième page", "Aider les autres avec leurs continuations"],
-        "forELL": ["Permettre continuation dans L1 avec quelques mots français", "Utiliser beaucoup d'images pour la continuation", "Accepter 'mélange' de langues créatif", "Valoriser toute tentative de séquence"],
-        "forIEP": ["Respecter le rythme individuel pour la création", "Offrir support supplémentaire pour l'organisation séquentielle", "Adapter outils selon besoins moteurs", "Célébrer toute forme de continuation"]
+        "pourDifficultés": ["Utiliser même personnage dans nouvelle situation simple", "Accepter répétition de la première page avec petit changement", "Utiliser étiquettes-mots pour 'Et puis...'", "Dessins très simples acceptables"],
+        "pourAvancés": ["Créer vraie continuation avec développement de l'intrigue", "Ajouter plusieurs phrases ou détails", "Planifier une troisième page", "Aider les autres avec leurs continuations"],
+        "pourLangue": ["Permettre continuation dans L1 avec quelques mots français", "Utiliser beaucoup d'images pour la continuation", "Accepter 'mélange' de langues créatif", "Valoriser toute tentative de séquence"],
+        "pourPEI": ["Respecter le rythme individuel pour la création", "Offrir support supplémentaire pour l'organisation séquentielle", "Adapter outils selon besoins moteurs", "Célébrer toute forme de continuation"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève crée une deuxième page liée à la première", "L'élève comprend le concept de continuation d'histoire", "L'élève utilise des mots de transition (aidé ou indépendant)", "L'élève montre fierté d'avoir un livre de deux pages"],
@@ -721,10 +721,10 @@
       "troubleshooting": "If students freeze up, let them just show their pictures and tell one thing about their story",
       "realWorldConnection": "Authors share their finished work with audiences - just like when musicians perform or artists show paintings",
       "differentiation": {
-        "forStruggling": ["Permettre de s'asseoir dans la chaise sans obligation de lire", "L'enseignant peut lire pour eux s'ils le souhaitent", "Accepter un seul mot ou geste sur leur histoire", "Jumeler avec un ami pour support"],
-        "forAdvanced": ["Encourager à ajouter des détails à leur présentation", "Les inviter à poser des questions aux autres auteurs", "Leur demander de donner des commentaires constructifs", "Partager ce qu'ils ont appris en étant auteurs"],
-        "forELL": ["Accepter présentation dans L1 avec quelques mots français", "Utiliser beaucoup de support gestuel", "Valoriser tout effort de communication", "Célébrer leur courage de partager"],
-        "forIEP": ["Adapter la chaise ou position selon besoins physiques", "Respecter préférences sensorielles pour l'environnement", "Offrir alternatives à la présentation orale", "Célébrer selon préférences individuelles"]
+        "pourDifficultés": ["Permettre de s'asseoir dans la chaise sans obligation de lire", "L'enseignant peut lire pour eux s'ils le souhaitent", "Accepter un seul mot ou geste sur leur histoire", "Jumeler avec un ami pour support"],
+        "pourAvancés": ["Encourager à ajouter des détails à leur présentation", "Les inviter à poser des questions aux autres auteurs", "Leur demander de donner des commentaires constructifs", "Partager ce qu'ils ont appris en étant auteurs"],
+        "pourLangue": ["Accepter présentation dans L1 avec quelques mots français", "Utiliser beaucoup de support gestuel", "Valoriser tout effort de communication", "Célébrer leur courage de partager"],
+        "pourPEI": ["Adapter la chaise ou position selon besoins physiques", "Respecter préférences sensorielles pour l'environnement", "Offrir alternatives à la présentation orale", "Célébrer selon préférences individuelles"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève participe à l'expérience de la chaise d'auteur", "L'élève partage son histoire d'une façon ou d'une autre", "L'élève montre de la fierté pour son travail d'auteur", "L'élève démontre comprension qu'il est maintenant un 'vrai' auteur"],
@@ -776,10 +776,10 @@
       "troubleshooting": "If perfectionism delays completion, remind students that published authors also revise after first books",
       "realWorldConnection": "Finished books have covers and titles like real books - now their book can sit with other books on the shelf",
       "differentiation": {
-        "forStruggling": ["Utiliser templates de couverture prêt-à-décorer", "Aider avec l'assemblage physique", "Permettre titres très simples ou aidés", "Célébrer toute tentative de création de couverture"],
-        "forAdvanced": ["Encourager couvertures détaillées et créatives", "Ajouter résumé simple au dos", "Créer page de dédicace", "Aider d'autres avec l'assemblage de leurs livres"],
-        "forELL": ["Permettre titres dans toute langue", "Utiliser beaucoup de support visuel pour assemblage", "Célébrer diversité culturelle dans les créations", "Accepter approximations créatives"],
-        "forIEP": ["Adapter outils d'assemblage selon capacités motrices", "Offrir aide physique pour manipulation", "Respecter préférences tactiles pour matériaux", "Célébrer accomplissement selon besoins individuels"]
+        "pourDifficultés": ["Utiliser templates de couverture prêt-à-décorer", "Aider avec l'assemblage physique", "Permettre titres très simples ou aidés", "Célébrer toute tentative de création de couverture"],
+        "pourAvancés": ["Encourager couvertures détaillées et créatives", "Ajouter résumé simple au dos", "Créer page de dédicace", "Aider d'autres avec l'assemblage de leurs livres"],
+        "pourLangue": ["Permettre titres dans toute langue", "Utiliser beaucoup de support visuel pour assemblage", "Célébrer diversité culturelle dans les créations", "Accepter approximations créatives"],
+        "pourPEI": ["Adapter outils d'assemblage selon capacités motrices", "Offrir aide physique pour manipulation", "Respecter préférences tactiles pour matériaux", "Célébrer accomplissement selon besoins individuels"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève crée une couverture pour son livre", "L'élève assemble physiquement un livre complet", "L'élève montre fierté extrême pour son livre fini", "L'élève comprend qu'il a créé quelque chose de durable et spécial"],
@@ -836,10 +836,10 @@
       "troubleshooting": "If students can't think of new ideas, let them modify their original character into new situation",
       "realWorldConnection": "There are many different types of stories to create - just like there are different types of games and activities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -863,10 +863,10 @@
           ],
           "assessment": "Documenter le processus d'exploration et les découvertes",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -934,10 +934,10 @@
       "troubleshooting": "If students are afraid to 'mess up' good paper, remind them that artists make many drafts",
       "realWorldConnection": "Some people specialize in making pictures for books - their art helps stories come alive",
       "differentiation": {
-        "forStruggling": ["Commencer par techniques simples (contours, couleurs de base)", "Utiliser gabarits pour formes difficiles", "Accepter et célébrer tout effort artistique", "Permettre collaboration avec d'autres artistes"],
-        "forAdvanced": ["Expérimenter techniques avancées (mélange, ombrage)", "Créer séries d'illustrations", "Enseigner techniques aux autres", "Explorer différents styles artistiques"],
-        "forELL": ["Se concentrer sur expression visuelle plutôt que verbale", "Utiliser art comme communication universelle", "Connecter aux traditions artistiques de leur culture", "Célébrer diversité de styles et approches"],
-        "forIEP": ["Adapter outils artistiques selon capacités motrices", "Offrir différentes textures et matériaux", "Respecter préférences sensorielles", "Célébrer expression artistique unique"]
+        "pourDifficultés": ["Commencer par techniques simples (contours, couleurs de base)", "Utiliser gabarits pour formes difficiles", "Accepter et célébrer tout effort artistique", "Permettre collaboration avec d'autres artistes"],
+        "pourAvancés": ["Expérimenter techniques avancées (mélange, ombrage)", "Créer séries d'illustrations", "Enseigner techniques aux autres", "Explorer différents styles artistiques"],
+        "pourLangue": ["Se concentrer sur expression visuelle plutôt que verbale", "Utiliser art comme communication universelle", "Connecter aux traditions artistiques de leur culture", "Célébrer diversité de styles et approches"],
+        "pourPEI": ["Adapter outils artistiques selon capacités motrices", "Offrir différentes textures et matériaux", "Respecter préférences sensorielles", "Célébrer expression artistique unique"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève expérimente avec détails et techniques artistiques", "L'élève montre attention aux éléments visuels", "L'élève apprécie le travail artistique des autres", "L'élève comprend le rôle spécial des illustrateurs"],
@@ -961,10 +961,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1032,10 +1032,10 @@
       "troubleshooting": "If collaboration is too challenging, let students work in pairs instead of larger groups",
       "realWorldConnection": "Sometimes authors work together to create stories - just like how families work together on projects",
       "differentiation": {
-        "forStruggling": ["Groupes de 2 au lieu de 3-4", "Rôles très clairs et simples", "Support adult constant", "Tâches réduites et concrètes"],
-        "forAdvanced": ["Leadership dans facilitation du groupe", "Création d'histoires plus complexes", "Aide aux groupes qui ont des difficultés", "Intégration créative de toutes les idées"],
-        "forELL": ["Groupes avec au moins un élève francophone fort", "Utilisation maximale de supports visuels", "Acceptation du mélange de langues créatif", "Valorisation de perspectives culturelles diverses"],
-        "forIEP": ["Groupes formés en tenant compte des affinités", "Rôles adaptés aux forces individuelles", "Support supplémentaire pour navigation sociale", "Célébration des contributions uniques"]
+        "pourDifficultés": ["Groupes de 2 au lieu de 3-4", "Rôles très clairs et simples", "Support adult constant", "Tâches réduites et concrètes"],
+        "pourAvancés": ["Leadership dans facilitation du groupe", "Création d'histoires plus complexes", "Aide aux groupes qui ont des difficultés", "Intégration créative de toutes les idées"],
+        "pourLangue": ["Groupes avec au moins un élève francophone fort", "Utilisation maximale de supports visuels", "Acceptation du mélange de langues créatif", "Valorisation de perspectives culturelles diverses"],
+        "pourPEI": ["Groupes formés en tenant compte des affinités", "Rôles adaptés aux forces individuelles", "Support supplémentaire pour navigation sociale", "Célébration des contributions uniques"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève contribue aux discussions de groupe", "L'élève écoute et respecte les idées des autres", "L'élève participe à la création collaborative", "L'élève célèbre le succès d'équipe"],
@@ -1059,10 +1059,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1132,10 +1132,10 @@
       "troubleshooting": "If students are protective of their books, start with just displaying them before implementing checkout",
       "realWorldConnection": "Libraries collect books so everyone can read them - now classmates can enjoy each other's stories",
       "differentiation": {
-        "forStruggling": ["Tâches d'organisation simples et concrètes", "Aide pour comprendre le système d'emprunt", "Choisir parmi livres plus simples pour premier emprunt", "Support pour navigation dans la nouvelle organisation"],
-        "forAdvanced": ["Leadership dans organisation de catégories", "Création de système d'emprunt sophistiqué", "Formation d'autres à utiliser la bibliothèque", "Suggestions d'améliorations futures"],
-        "forELL": ["Utilisation de supports visuels maximum pour organisation", "Catégories illustrées plutôt que seulement textuelles", "Aide pour comprendre concept de bibliothèque si nouveau", "Célébration de diversité culturelle dans collection"],
-        "forIEP": ["Tâches adaptées selon capacités organisationnelles", "Support supplémentaire pour navigation spatiale", "Adaptation du système selon besoins individuels", "Participation à niveau de confort personnel"]
+        "pourDifficultés": ["Tâches d'organisation simples et concrètes", "Aide pour comprendre le système d'emprunt", "Choisir parmi livres plus simples pour premier emprunt", "Support pour navigation dans la nouvelle organisation"],
+        "pourAvancés": ["Leadership dans organisation de catégories", "Création de système d'emprunt sophistiqué", "Formation d'autres à utiliser la bibliothèque", "Suggestions d'améliorations futures"],
+        "pourLangue": ["Utilisation de supports visuels maximum pour organisation", "Catégories illustrées plutôt que seulement textuelles", "Aide pour comprendre concept de bibliothèque si nouveau", "Célébration de diversité culturelle dans collection"],
+        "pourPEI": ["Tâches adaptées selon capacités organisationnelles", "Support supplémentaire pour navigation spatiale", "Adaptation du système selon besoins individuels", "Participation à niveau de confort personnel"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève participe à l'organisation collective", "L'élève comprend le concept de bibliothèque partagée", "L'élève montre intérêt pour lire les créations des autres", "L'élève respecte le système d'emprunt établi"],
@@ -1159,10 +1159,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1232,10 +1232,10 @@
       "troubleshooting": "If reading aloud is too challenging, let students just show pictures and tell story in simple words",
       "realWorldConnection": "Older students can share stories with younger ones - just like how family members read to each other",
       "differentiation": {
-        "forStruggling": ["Pratiquer avec toutous au lieu de vrais enfants", "Se concentrer sur montrer les images plutôt que lire", "Travailler en paire avec élève plus fort", "Utiliser histoires très simples pour commencer"],
-        "forAdvanced": ["Ajouter voix et effets dramatiques à leur lecture", "Aider d'autres à préparer leurs présentations", "Créer activités interactives avec leurs histoires", "Mentor plusieurs petits enfants"],
-        "forELL": ["Encourager lecture dans L1 si plus à l'aise", "Se concentrer sur communication gestuelle et visuelle", "Utiliser histoires avec beaucoup d'images", "Célébrer courage de partager en langue seconde"],
-        "forIEP": ["Adapter format de partage selon préférences sociales", "Permettre lecture individuelle ou en petit groupe", "Utiliser supports technologiques si bénéfiques", "Respecter rythme et style de communication"]
+        "pourDifficultés": ["Pratiquer avec toutous au lieu de vrais enfants", "Se concentrer sur montrer les images plutôt que lire", "Travailler en paire avec élève plus fort", "Utiliser histoires très simples pour commencer"],
+        "pourAvancés": ["Ajouter voix et effets dramatiques à leur lecture", "Aider d'autres à préparer leurs présentations", "Créer activités interactives avec leurs histoires", "Mentor plusieurs petits enfants"],
+        "pourLangue": ["Encourager lecture dans L1 si plus à l'aise", "Se concentrer sur communication gestuelle et visuelle", "Utiliser histoires avec beaucoup d'images", "Célébrer courage de partager en langue seconde"],
+        "pourPEI": ["Adapter format de partage selon préférences sociales", "Permettre lecture individuelle ou en petit groupe", "Utiliser supports technologiques si bénéfiques", "Respecter rythme et style de communication"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève pratique la lecture à voix haute", "L'élève montre patience et bienveillance", "L'élève comprend son rôle de mentor/enseignant", "L'élève réfléchit sur l'impact de partager ses créations"],
@@ -1259,10 +1259,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1332,10 +1332,10 @@
       "troubleshooting": "If some students feel their work isn't good enough, emphasize effort and growth over perfection",
       "realWorldConnection": "Authors celebrate when they finish their work - just like any accomplishment deserves recognition",
       "differentiation": {
-        "forStruggling": ["Souligner spécifiquement leurs progrès uniques", "Célébrer leur courage et efforts", "Utiliser exemples concrets de leur croissance", "Reconnaissance adaptée à leurs accomplissements"],
-        "forAdvanced": ["Rôle de leadership dans organisation de célébration", "Partage de leurs stratégies d'auteur avec autres", "Réflexion sur prochaines étapes créatives", "Mentors pour futurs jeunes auteurs"],
-        "forELL": ["Célébration de courage d'écrire en langue seconde", "Reconnaissance de perspectives culturelles uniques", "Valorisation du mélange créatif de langues", "Fierté de communication multilingue"],
-        "forIEP": ["Célébration adaptée aux préférences sensorielles", "Reconnaissance de leurs contributions uniques", "Formats de célébration respectueux des besoins individuels", "Fierté pour accomplissements personnalisés"]
+        "pourDifficultés": ["Souligner spécifiquement leurs progrès uniques", "Célébrer leur courage et efforts", "Utiliser exemples concrets de leur croissance", "Reconnaissance adaptée à leurs accomplissements"],
+        "pourAvancés": ["Rôle de leadership dans organisation de célébration", "Partage de leurs stratégies d'auteur avec autres", "Réflexion sur prochaines étapes créatives", "Mentors pour futurs jeunes auteurs"],
+        "pourLangue": ["Célébration de courage d'écrire en langue seconde", "Reconnaissance de perspectives culturelles uniques", "Valorisation du mélange créatif de langues", "Fierté de communication multilingue"],
+        "pourPEI": ["Célébration adaptée aux préférences sensorielles", "Reconnaissance de leurs contributions uniques", "Formats de célébration respectueux des besoins individuels", "Fierté pour accomplissements personnalisés"]
       },
       "assessmentCriteria": {
         "observable": ["L'élève reconnaît sa croissance comme auteur", "L'élève exprime fierté pour son parcours créatif", "L'élève célèbre accomplissements collectifs", "L'élève comprend qu'il est maintenant officiellement un auteur"],
@@ -1359,10 +1359,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }

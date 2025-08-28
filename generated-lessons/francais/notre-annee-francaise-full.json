@@ -24,14 +24,14 @@
         "visualSupports": "Photos séquentielles du calendrier scolaire, images des premiers jours vs maintenant, geste de 'voyager' avec les mains",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ont du mal à se souvenir des mois précédents",
+            "question": "Si les élèves ont du mal à se souvenir des mois précédents",
             "options": [
               "Utiliser des photos spécifiques de chaque mois pour déclencher la mémoire",
               "Chanter une chanson des mois pour aider à se rappeler la séquence"
             ]
           },
           {
-            "moment": "Si certains élèves dominent le partage",
+            "question": "Si certains élèves dominent le partage",
             "options": [
               "Utiliser un bâton de parole pour donner à chacun son tour",
               "Faire des petits groupes puis partager avec la classe"
@@ -47,14 +47,14 @@
         "visualSupports": "Ligne de temps physique au sol, photos d'activités de chaque mois, artefacts d'apprentissage placés chronologiquement",
         "decisionPoints": [
           {
-            "moment": "Si l'espace de classe est trop petit pour la ligne de temps",
+            "question": "Si l'espace de classe est trop petit pour la ligne de temps",
             "options": [
               "Utiliser le couloir ou le gymnase si disponible",
               "Créer une ligne de temps plus petite sur une table"
             ]
           },
           {
-            "moment": "Si les élèves veulent tous parler en même temps",
+            "question": "Si les élèves veulent tous parler en même temps",
             "options": [
               "Établir un système de tour (lever la main)",
               "Permettre le chuchotement entre partenaires d'abord"
@@ -70,7 +70,7 @@
         "visualSupports": "Cercle de partage organisé, tableau des souvenirs partagés, gestes d'encouragement",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne veut pas partager",
+            "question": "Si un élève ne veut pas partager",
             "options": [
               "Permettre de 'passer' son tour sans pression",
               "Offrir de dessiner au lieu de parler"
@@ -85,22 +85,22 @@
       },
       "realWorldConnection": "People look back on their year to see how much they've grown and learned - like looking through photo albums with family",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des images pour aider à se souvenir",
           "Permettre l'expression en anglais si nécessaire",
           "Offrir des phrases de départ: 'En septembre j'ai...' "
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager l'utilisation de phrases complètes en français",
           "Demander de faire des comparaisons entre les mois",
           "Inviter à aider les camarades avec le vocabulaire"
         ],
-        "forELL": [
+        "pourLangue": [
           "Utiliser beaucoup de supports visuels",
           "Permettre l'usage de la langue maternelle pour les concepts complexes",
           "Jumeler avec un partenaire bilingue"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les attentes selon les besoins individuels",
           "Utiliser des supports tactiles si approprié",
           "Permettre des réponses non-verbales (dessins, gestes)"
@@ -138,14 +138,14 @@
         "visualSupports": "Ligne de temps visuelle, geste du doigt pour 'premier', applaudissements pour 'célébrer', pointage vers septembre",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ne se rappellent pas leurs premiers mots",
+            "question": "Si les élèves ne se rappellent pas leurs premiers mots",
             "options": [
               "Montrer des cartes visuelles des premiers mots appris",
               "Chanter 'Bonjour' ensemble pour déclencher la mémoire"
             ]
           },
           {
-            "moment": "Si les élèves sont timides pour répondre",
+            "question": "Si les élèves sont timides pour répondre",
             "options": [
               "Commencer par dire les mots ensemble comme groupe",
               "Utiliser des supports visuels pour éliminer la pression orale"
@@ -161,14 +161,14 @@
         "visualSupports": "Cartes cachées avec images et mots, affiche 'Temple de la renommée' visuelle, gestes originaux pour chaque mot",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves trouvent toutes les cartes rapidement",
+            "question": "Si certains élèves trouvent toutes les cartes rapidement",
             "options": [
               "Les inviter à aider les camarades à chercher",
               "Leur demander de démontrer les gestes pour chaque mot trouvé"
             ]
           },
           {
-            "moment": "Si des élèves ont du mal à trouver des cartes",
+            "question": "Si des élèves ont du mal à trouver des cartes",
             "options": [
               "Donner des indices directionnels (chaud/froid)",
               "Faire travailler en équipes de deux"
@@ -184,7 +184,7 @@
         "visualSupports": "Affichage des premiers mots, gestes coordonnés de groupe, expression de fierté collective",
         "decisionPoints": [
           {
-            "moment": "Si les élèves oublient les gestes originaux",
+            "question": "Si les élèves oublient les gestes originaux",
             "options": [
               "Encourager l'improvisation de nouveaux gestes",
               "Demander à d'autres élèves d'aider à se rappeler"
@@ -199,22 +199,22 @@
       },
       "realWorldConnection": "We remember our 'firsts' - first words, first steps, first day of school - they're special milestones",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des cartes avec images et mots écrits",
           "Permettre le travail en équipe pour le soutien",
           "Accepter les tentatives même si la prononciation n'est pas parfaite"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à utiliser les premiers mots dans des phrases",
           "Demander de créer de nouveaux gestes ou actions",
           "Inviter à enseigner les mots aux camarades"
         ],
-        "forELL": [
+        "pourLangue": [
           "Utiliser des supports visuels pour tous les mots",
           "Permettre la traduction en langue maternelle si nécessaire",
           "Encourager les connexions entre langues (cognates)"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les attentes de participation selon les capacités",
           "Utiliser des supports tactiles ou auditifs selon les besoins",
           "Permettre différentes façons de montrer la compréhension"
@@ -252,14 +252,14 @@
         "visualSupports": "Images représentant différentes chansons, geste de chanter pour 'chanson', applaudissements rythmiques pour 'comptine'",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ne reconnaissent pas la chanson fredonnée",
+            "question": "Si les élèves ne reconnaissent pas la chanson fredonnée",
             "options": [
               "Ajouter des paroles ou des gestes familiers pour aider",
               "Choisir une chanson plus populaire ou récente"
             ]
           },
           {
-            "moment": "Si les élèves sont trop excités par la musique",
+            "question": "Si les élèves sont trop excités par la musique",
             "options": [
               "Canaliser l'énergie avec des mouvements structurés",
               "Utiliser des signaux calmes pour recentrer l'attention"
@@ -275,14 +275,14 @@
         "visualSupports": "Liste visuelle des chansons avec images, système de vote avec autocollants, démonstration des mouvements originaux",
         "decisionPoints": [
           {
-            "moment": "Si le vote crée des disputes ou de la déception",
+            "question": "Si le vote crée des disputes ou de la déception",
             "options": [
               "Expliquer que toutes les chansons sont spéciales, même si non sélectionnées",
               "Promettre de chanter les autres favorites une autre fois"
             ]
           },
           {
-            "moment": "Si les élèves oublient les paroles ou mouvements",
+            "question": "Si les élèves oublient les paroles ou mouvements",
             "options": [
               "Encourager l'improvisation et la créativité",
               "Faire participer ceux qui se souviennent comme guides"
@@ -298,7 +298,7 @@
         "visualSupports": "Cercle organisé pour le partage, encouragements visuels, liste des favorites affichée",
         "decisionPoints": [
           {
-            "moment": "Si un élève est trop timide pour chanter",
+            "question": "Si un élève est trop timide pour chanter",
             "options": [
               "Permettre de fredonner seulement ou de faire les gestes",
               "Inviter à choisir une chanson pour que le groupe chante"
@@ -313,22 +313,22 @@
       },
       "realWorldConnection": "Music helps us remember and connects us to happy memories - like family songs or lullabies from childhood",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre la participation par gestes seulement si nécessaire",
           "Offrir des supports visuels pour les paroles",
           "Encourager le fredonnement ou les sons approximatifs"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Inviter à enseigner des chansons aux camarades",
           "Encourager l'ajout de nouveaux vers ou variations",
           "Demander de diriger le groupe dans une chanson"
         ],
-        "forELL": [
+        "pourLangue": [
           "Se concentrer sur la mélodie et le rythme plutôt que les paroles exactes",
           "Permettre les connexions avec des chansons dans la langue maternelle",
           "Utiliser beaucoup de gestes et mouvements"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter la participation selon les capacités (visuelle, auditive, kinesthesique)",
           "Permettre différents niveaux de participation vocale",
           "Utiliser des instruments simples pour la participation non-vocale"
@@ -366,14 +366,14 @@
         "visualSupports": "Livres displayés visuellement, couvertures colorées, geste du cœur sur la poitrine pour 'aimer'",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ne se rappellent pas des histoires spécifiques",
+            "question": "Si les élèves ne se rappellent pas des histoires spécifiques",
             "options": [
               "Montrer les couvertures pour déclencher la mémoire",
               "Raconter brèvement le début de quelques histoires populaires"
             ]
           },
           {
-            "moment": "Si plusieurs élèves crient leur livre préféré en même temps",
+            "question": "Si plusieurs élèves crient leur livre préféré en même temps",
             "options": [
               "Demander de lever la main pour partager",
               "Permettre le chuchotement à un partenaire d'abord"
@@ -389,14 +389,14 @@
         "visualSupports": "Stations clairement identifiées, livres ouverts aux pages intéressantes, système de vote visuel avec autocollants",
         "decisionPoints": [
           {
-            "moment": "Si les élèves se concentrent trop longtemps à une station",
+            "question": "Si les élèves se concentrent trop longtemps à une station",
             "options": [
               "Donner un signal de rotation (clochette douce)",
               "Encourager la découverte de toutes les stations"
             ]
           },
           {
-            "moment": "Si le vote pour le livre favori crée des désaccords",
+            "question": "Si le vote pour le livre favori crée des désaccords",
             "options": [
               "Expliquer que tous les livres sont spéciaux",
               "Promettre de lire d'autres favoris plus tard"
@@ -412,7 +412,7 @@
         "visualSupports": "Cercle confortable, livre ouvert pour montrer les pages, encouragements pour partager",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne veut pas partager sa page favorite",
+            "question": "Si un élève ne veut pas partager sa page favorite",
             "options": [
               "Permettre de montrer seulement sans expliquer",
               "Inviter à pointer vers une image intéressante"
@@ -427,22 +427,22 @@
       },
       "realWorldConnection": "Favorite stories stay with us and shape how we see the world - like bedtime stories that become lifelong memories",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer sur les images plutôt que le texte",
           "Permettre des réponses courtes ou des pointages",
           "Offrir des phrases de départ: 'J'aime cette histoire parce que...'"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à raconter des parties de l'histoire en français",
           "Demander de faire des connexions entre différentes histoires",
           "Inviter à créer leur propre fin alternative"
         ],
-        "forELL": [
+        "pourLangue": [
           "Utiliser beaucoup de supports visuels",
           "Permettre les explications dans la langue maternelle",
           "Se concentrer sur la compréhension visuelle des histoires"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les besoins de communication individuels",
           "Utiliser différents modes d'expression (visuel, tactile)",
           "Permettre la participation à différents niveaux"
@@ -480,21 +480,21 @@
         "visualSupports": "Comparaison côte à côte des travaux, photos du progrès des élèves, posture fière démontrée avec grand sourire",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves ne voient pas leurs propres progrès",
+            "question": "Si certains élèves ne voient pas leurs propres progrès",
             "options": [
               "Pointer spécifiquement les améliorations observées",
               "Demander aux camarades de partager ce qu'ils ont remarqué"
             ]
           },
           {
-            "moment": "Si les élèves se comparent négativement aux autres",
+            "question": "Si les élèves se comparent négativement aux autres",
             "options": [
               "Rappeler que chacun grandit à son propre rythme",
               "Se concentrer sur les progrès personnels individuels"
             ]
           },
           {
-            "moment": "Si les élèves sont trop critiques de leurs premiers travaux",
+            "question": "Si les élèves sont trop critiques de leurs premiers travaux",
             "options": [
               "Valoriser l'effort et le courage d'essayer au début",
               "Expliquer que les débuts sont importants pour apprendre"
@@ -510,14 +510,14 @@
         "visualSupports": "Galerie organisée des travaux, étoiles dorées pour marquer la fierté, parcours de visite structuré",
         "decisionPoints": [
           {
-            "moment": "Si les élèves mettent tous leurs autocollants sur les mêmes travaux",
+            "question": "Si les élèves mettent tous leurs autocollants sur les mêmes travaux",
             "options": [
               "Encourager à chercher différents types de réussites",
               "Limiter le nombre d'autocollants par élève pour encourager la réflexion"
             ]
           },
           {
-            "moment": "Si un élève ne veut pas mettre d'autocollant sur son propre travail",
+            "question": "Si un élève ne veut pas mettre d'autocollant sur son propre travail",
             "options": [
               "L'aider à identifier une petite amélioration ou effort",
               "Inviter un camarade à pointer quelque chose de positif"
@@ -533,7 +533,7 @@
         "visualSupports": "Cercle de partage accueillant, réponses chorales coordonnées, applaudissements enthousiastes",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne trouve rien dont être fier",
+            "question": "Si un élève ne trouve rien dont être fier",
             "options": [
               "L'aider avec des suggestions spécifiques observées",
               "Permettre de dire ce qu'un camarade a bien fait"
@@ -548,22 +548,22 @@
       },
       "realWorldConnection": "Recognizing our achievements helps build confidence and motivation - like celebrating learning to ride a bike or swim",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Fournir des exemples spécifiques de leurs progrès",
           "Se concentrer sur l'effort plutôt que la perfection",
           "Utiliser des comparaisons temporelles simples et claires"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à identifier des défis qu'ils ont surmontés",
           "Demander de réfléchir à leurs stratégies d'apprentissage",
           "Inviter à aider d'autres élèves à voir leurs réussites"
         ],
-        "forELL": [
+        "pourLangue": [
           "Utiliser des supports visuels pour montrer les progrès",
           "Permettre l'expression de la fierté dans différentes langues",
           "Célébrer les progrès dans l'acquisition du français spécifiquement"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les critères de réussite aux objectifs individuels",
           "Utiliser différentes façons de montrer les progrès",
           "Célébrer tous les types d'accomplissements"
@@ -601,14 +601,14 @@
         "visualSupports": "Images des défis d'écoute/prononciation, geste de barrière pour 'défi', mouvement d'éscalade pour 'surmonter'",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ne se rappellent pas des défis spécifiques",
+            "question": "Si les élèves ne se rappellent pas des défis spécifiques",
             "options": [
               "Donner des exemples concrets comme la période silencieuse",
               "Utiliser des photos des premières semaines pour stimuler la mémoire"
             ]
           },
           {
-            "moment": "Si certains élèves se sentent découragés en repensant aux défis",
+            "question": "Si certains élèves se sentent découragés en repensant aux défis",
             "options": [
               "Se concentrer immédiatement sur comment ils les ont surmontés",
               "Célébrer le courage qu'ils ont montré en essayant"
@@ -624,7 +624,7 @@
         "visualSupports": "Affiche des champions visible, images des stratégies de soutien, exemples de défis avec solutions",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ont du mal à identifier comment ils ont été aidés",
+            "question": "Si les élèves ont du mal à identifier comment ils ont été aidés",
             "options": [
               "Donner des exemples de soutien observé en classe",
               "Encourager les camarades à partager comment ils ont aidé"
@@ -640,7 +640,7 @@
         "visualSupports": "Cercle de partage positif, affichage des stratégies créé, encouragements pour le partage",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne peut pas penser à une façon d'avoir aidé",
+            "question": "Si un élève ne peut pas penser à une façon d'avoir aidé",
             "options": [
               "Suggérer des exemples simples comme écouter ou encourager",
               "Permettre de mentionner comment ils se sont aidés eux-mêmes"
@@ -655,22 +655,22 @@
       },
       "realWorldConnection": "Everyone faces challenges, and overcoming them makes us stronger - like learning to ride a bike or make new friends",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer sur de petits défis qu'ils ont certainement surmontés",
           "Valoriser tout effort et tentative, même imparfaite",
           "Permettre l'expression en anglais si nécessaire"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à identifier des stratégies spécifiques utilisées",
           "Demander comment ils pourraient aider d'autres avec des défis similaires",
           "Réfléchir sur l'évolution de leurs stratégies d'apprentissage"
         ],
-        "forELL": [
+        "pourLangue": [
           "Reconnaître les défis uniques de l'apprentissage multilingue",
           "Célébrer les progrès dans la troisième langue (français)",
           "Utiliser des supports visuels pour discuter des stratégies"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les défis discutés aux expériences individuelles",
           "Célébrer tous les types de progrès et de résilience",
           "Utiliser différentes modalités pour le partage"
@@ -708,7 +708,7 @@
         "visualSupports": "Photos des élèves travaillant ensemble, geste de cœur avec les mains pour 'spécial', sourires et connexions positives",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves disent qu'ils n'ont pas d'amis en français",
+            "question": "Si certains élèves disent qu'ils n'ont pas d'amis en français",
             "options": [
               "Rediriger vers les moments de collaboration ou d'aide mutuelle",
               "Souligner que toute la classe est une équipe d'apprentissage"
@@ -724,7 +724,7 @@
         "visualSupports": "Cercle confortable pour partager, cartes de souvenirs décorées, exemples de moments spéciaux",
         "decisionPoints": [
           {
-            "moment": "Si un élève a du mal à penser à un moment spécial",
+            "question": "Si un élève a du mal à penser à un moment spécial",
             "options": [
               "Suggérer des moments simples comme rire ensemble ou s'entraider",
               "Permettre de dessiner au lieu d'expliquer verbalement"
@@ -740,7 +740,7 @@
         "visualSupports": "Phrases modèles pour remercier, cercle d'appréciation positive, gestes d'encouragement",
         "decisionPoints": [
           {
-            "moment": "Si les élèves sont timides pour donner des compliments",
+            "question": "Si les élèves sont timides pour donner des compliments",
             "options": [
               "Commencer par des exemples de l'enseignant",
               "Permettre les compliments écrits ou dessins si préféré"
@@ -755,22 +755,22 @@
       },
       "realWorldConnection": "Learning is more meaningful when we share it with friends - like playing games or exploring new places together",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre l'expression par le dessin ou gestes",
           "Offrir des idées de moments simples (sourire, s'asseoir ensemble)",
           "Accepter les réponses courtes et les tentatives"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à utiliser des phrases complètes en français",
           "Demander d'aider à traduire pour les camarades",
           "Inviter à créer des cartes de remerciement détaillées"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre les explications dans plusieurs langues",
           "Se concentrer sur les sentiments plutôt que les mots exacts",
           "Utiliser des supports visuels pour exprimer la gratitude"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les modalités d'expression aux capacités individuelles",
           "Permettre différents niveaux de participation sociale",
           "Célébrer toutes les formes de connexion positive"
@@ -808,7 +808,7 @@
         "visualSupports": "Galerie organisée des créations, présentation attrayante des travaux, posture fière démontrée",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves sont critiques de leurs anciennes créations",
+            "question": "Si certains élèves sont critiques de leurs anciennes créations",
             "options": [
               "Souligner les efforts et l'apprentissage qui ont eu lieu",
               "Montrer comment chaque création représente une étape importante"
@@ -824,7 +824,7 @@
         "visualSupports": "Galerie bien organisée, parcours de visite clair, cartes pour aider à présenter",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne peut pas choisir sa création préférée",
+            "question": "Si un élève ne peut pas choisir sa création préférée",
             "options": [
               "L'aider en soulignant les points forts de différentes créations",
               "Permettre de présenter deux créations s'il le souhaite"
@@ -840,7 +840,7 @@
         "visualSupports": "Cercle de célébration, applaudissements coordonnés, cri de groupe enthousiaste",
         "decisionPoints": [
           {
-            "moment": "Si un élève est timide pour présenter",
+            "question": "Si un élève est timide pour présenter",
             "options": [
               "Permettre de montrer seulement sans parler",
               "Inviter la classe à faire des observations positives"
@@ -855,22 +855,22 @@
       },
       "realWorldConnection": "Artists and creators look back at their work to see their journey - like looking through a photo album or memory book",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer sur l'effort et le processus créatif",
           "Permettre des présentations très simples",
           "Valoriser toute forme d'expression créative"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à expliquer leur processus créatif",
           "Demander de comparer différentes créations",
           "Inviter à donner des conseils créatifs aux camarades"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre les explications dans toutes les langues",
           "Se concentrer sur l'expression visuelle et gestuelle",
           "Valoriser la créativité multiculturelle"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les modalités de présentation aux capacités",
           "Célébrer toutes les formes de créativité",
           "Permettre la participation à différents niveaux"
@@ -908,7 +908,7 @@
         "visualSupports": "Portfolio modèle, démonstration du tri par catégories, geste d'organisation avec les mains",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ne comprennent pas le concept de portfolio",
+            "question": "Si les élèves ne comprennent pas le concept de portfolio",
             "options": [
               "Comparer à un album photo spécial ou livre de souvenirs",
               "Montrer des exemples concrets de différents types de travaux"
@@ -924,7 +924,7 @@
         "visualSupports": "Catégories visuelles identifiées, exemples d'organisation, aide-mémoire du processus",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ont trop de difficultés à décider où classer certains travaux",
+            "question": "Si les élèves ont trop de difficultés à décider où classer certains travaux",
             "options": [
               "Créer des catégories flexibles ou mixtes",
               "Permettre que certains travaux aillent dans plusieurs catégories"
@@ -940,7 +940,7 @@
         "visualSupports": "Exemples de différents systèmes d'organisation, encouragement pour le partage",
         "decisionPoints": [
           {
-            "moment": "Si un élève est timide pour expliquer son système",
+            "question": "Si un élève est timide pour expliquer son système",
             "options": [
               "Permettre de montrer seulement sans expliquer",
               "Aider avec des questions guidées simples"
@@ -955,22 +955,22 @@
       },
       "realWorldConnection": "People create portfolios to show their best work and growth over time - like photo albums or memory books",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser moins de catégories pour simplifier l'organisation",
           "Fournir une aide individuelle pour les décisions",
           "Accepter l'organisation imparfaite comme début"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à créer des sous-catégories détaillées",
           "Demander d'aider les camarades avec l'organisation",
           "Inviter à réfléchir sur leurs critères d'organisation"
         ],
-        "forELL": [
+        "pourLangue": [
           "Utiliser des supports visuels pour expliquer les catégories",
           "Permettre l'étiquetage dans plusieurs langues",
           "Se concentrer sur l'organisation plutôt que l'explication verbale"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter le processus aux capacités d'organisation individuelles",
           "Utiliser des supports visuels et tactiles selon les besoins",
           "Permettre différents niveaux de complétion"
@@ -1008,7 +1008,7 @@
         "visualSupports": "Gestes de sélection avec les mains, critères visuels pour 'meilleur' (effort, progression, fierté)",
         "decisionPoints": [
           {
-            "moment": "Si les élèves veulent tout garder ou rien garder",
+            "question": "Si les élèves veulent tout garder ou rien garder",
             "options": [
               "Expliquer qu'un portfolio montre les 'meilleurs exemples', pas tout",
               "Aider à identifier des critères personnels de sélection"
@@ -1024,7 +1024,7 @@
         "visualSupports": "Critères affichés avec icônes, exemples de 'meilleur travail', processus de sélection étape par étape",
         "decisionPoints": [
           {
-            "moment": "Si un élève a du mal à choisir entre plusieurs travaux similaires",
+            "question": "Si un élève a du mal à choisir entre plusieurs travaux similaires",
             "options": [
               "L'aider à identifier celui qui montre le plus d'apprentissage",
               "Permettre d'inclure deux exemples s'ils montrent différentes forces"
@@ -1040,7 +1040,7 @@
         "visualSupports": "Portfolios organisés et complétés, phrases d'aide pour expliquer les choix",
         "decisionPoints": [
           {
-            "moment": "Si un élève a du mal à expliquer ses choix",
+            "question": "Si un élève a du mal à expliquer ses choix",
             "options": [
               "Offrir des phrases de départ: 'J'ai choisi ceci parce que...'",
               "Permettre de pointer vers les critères affichés"
@@ -1055,22 +1055,22 @@
       },
       "realWorldConnection": "We choose our best examples when applying for jobs or showing our abilities - like when we show our best drawings to family",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Réduire le nombre de critères à 1-2 simples",
           "Fournir une aide directe pour les décisions difficiles",
           "Accepter des sélections basées sur la préférence personnelle"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à utiliser tous les critères de façon réfléchie",
           "Demander de justifier leurs choix avec des exemples spécifiques",
           "Inviter à créer leurs propres critères additionnels"
         ],
-        "forELL": [
+        "pourLangue": [
           "Utiliser des supports visuels pour expliquer les critères",
           "Permettre l'explication des choix dans plusieurs langues",
           "Se concentrer sur l'identification plutôt que l'explication verbale"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les critères aux objectifs d'apprentissage individuels",
           "Utiliser des supports visuels ou tactiles selon les besoins",
           "Permettre différentes façons de montrer la réflexion"
@@ -1108,7 +1108,7 @@
         "visualSupports": "Portfolios comme support visuel, gestes de narration, séquence d'images d'apprentissage",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ne comprennent pas comment raconter leur apprentissage",
+            "question": "Si les élèves ne comprennent pas comment raconter leur apprentissage",
             "options": [
               "Montrer un exemple simple avec chronologie: début, milieu, maintenant",
               "Utiliser les portfolios pour déclencher les souvenirs d'apprentissage"
@@ -1124,7 +1124,7 @@
         "visualSupports": "Template visuel avec étapes, images pour stimuler les idées, exemples de phrases de départ",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne sait pas quoi mettre dans 'Au début'",
+            "question": "Si un élève ne sait pas quoi mettre dans 'Au début'",
             "options": [
               "L'aider à regarder ses premiers travaux du portfolio",
               "Poser des questions guidées: Comment te sentais-tu en septembre?"
@@ -1140,7 +1140,7 @@
         "visualSupports": "Cercle de partage, encouragement pour l'écoute attentive, appréciation positive",
         "decisionPoints": [
           {
-            "moment": "Si les élèves veulent tous partager en même temps",
+            "question": "Si les élèves veulent tous partager en même temps",
             "options": [
               "Promettre que d'autres pourront partager demain",
               "Utiliser un système de sélection aléatoire équitable"
@@ -1155,22 +1155,22 @@
       },
       "realWorldConnection": "Everyone has a learning story - how we grew and changed over time - like telling family about school or sharing adventures",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre l'expression par dessins avec légendes simples",
           "Offrir des phrases de départ pré-écrites pour chaque section",
           "Accepter des histoires très courtes et simples"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager des détails spécifiques et des réflexions profondes",
           "Demander d'inclure des stratégies d'apprentissage découvertes",
           "Inviter à aider les camarades à structurer leurs histoires"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre l'utilisation de plusieurs langues dans l'histoire",
           "Se concentrer sur la séquence plutôt que la langue parfaite",
           "Utiliser des supports visuels pour structurer la narration"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter le format selon les capacités de communication",
           "Utiliser différents modes d'expression (oral, visuel, gestuel)",
           "Permettre des histoires avec différents niveaux de compléxité"
@@ -1208,14 +1208,14 @@
         "visualSupports": "Portfolios magnifiquement présentés, affichage des progrès depuis septembre, gestes de fierté et d'accomplissement",
         "decisionPoints": [
           {
-            "moment": "Si un élève manque de confiance pour montrer son portfolio",
+            "question": "Si un élève manque de confiance pour montrer son portfolio",
             "options": [
               "Souligner ses progrès spécifiques depuis septembre",
               "Permettre de montrer d'abord à un ami proche"
             ]
           },
           {
-            "moment": "Si les portfolios sont de qualités très différentes",
+            "question": "Si les portfolios sont de qualités très différentes",
             "options": [
               "Célébrer les efforts individuels plutôt que les résultats",
               "Souligner les progrès uniques de chaque élève"
@@ -1231,7 +1231,7 @@
         "visualSupports": "Phrases clés affichées avec pronunciations, exemple de présentation modèle, gestes pour accompagner",
         "decisionPoints": [
           {
-            "moment": "Si un élève oublie les phrases françaises pendant la pratique",
+            "question": "Si un élève oublie les phrases françaises pendant la pratique",
             "options": [
               "Rassurer que c'est normal et qu'il peut utiliser l'anglais au besoin",
               "Encourager à utiliser les supports visuels comme aide-mémoire"
@@ -1247,7 +1247,7 @@
         "visualSupports": "Partenaires organisés pour pratique mutuelle, encouragements positifs modelés",
         "decisionPoints": [
           {
-            "moment": "Si la pratique en partenaires devient trop bruyante",
+            "question": "Si la pratique en partenaires devient trop bruyante",
             "options": [
               "Utiliser un signal pour baisser les voix",
               "Alterner entre présentateur et auditeur plus strictement"
@@ -1262,22 +1262,22 @@
       },
       "realWorldConnection": "We share our achievements and growth with people who care about us - like showing report cards or art projects at home",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre des présentations très courtes avec supports visuels",
           "Accepter l'anglais si le français est trop difficile",
           "Offrir des phrases pré-écrites qu'ils peuvent lire"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager des présentations plus détaillées en français",
           "Demander d'expliquer leurs stratégies d'apprentissage",
           "Inviter à poser des questions à leurs familles sur leurs expériences d'apprentissage"
         ],
-        "forELL": [
+        "pourLangue": [
           "Célébrer l'apprentissage multilingue comme un atout",
           "Permettre la traduction ou l'explication dans la langue maternelle",
           "Encourager les familles à partager leurs propres histoires d'apprentissage"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter le format de présentation aux capacités de communication",
           "Utiliser différents modes de partage selon les besoins",
           "Célébrer tous les types de croissance et d'apprentissage"
@@ -1315,7 +1315,7 @@
         "visualSupports": "Classe décorée festive, geste de croissance avec les mains, ambiance joyeuse et célébratoire",
         "decisionPoints": [
           {
-            "moment": "Si les élèves sont trop excités par les décorations",
+            "question": "Si les élèves sont trop excités par les décorations",
             "options": [
               "Canaliser l'excitation vers l'activité célébratoire structurée",
               "Prendre un moment calme pour apprécier ensemble les décorations"
@@ -1331,7 +1331,7 @@
         "visualSupports": "Stations clairement identifiées, parcours célébration organisé, certificats beaux et personnalisés",
         "decisionPoints": [
           {
-            "moment": "Si les familles ne peuvent pas assister",
+            "question": "Si les familles ne peuvent pas assister",
             "options": [
               "Créer une vidéo de la célébration à partager",
               "Organiser une célébration spéciale entre élèves seulement"
@@ -1347,7 +1347,7 @@
         "visualSupports": "Grand cercle inclusif, moment photo mémorable, expressions d'appréciation mutuelle",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves ou familles sont timides pour la photo",
+            "question": "Si certains élèves ou familles sont timides pour la photo",
             "options": [
               "Respecter les préférences et permettre l'observation",
               "Prendre plusieurs photos pour inclure différentes préférences"
@@ -1362,22 +1362,22 @@
       },
       "realWorldConnection": "Celebrations mark important milestones and achievements in our lives - like birthdays, graduations, or family accomplishments",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre la participation à leur niveau de confort",
           "Offrir des rôles simples dans la célébration",
           "Célébrer tout progrès, même petit"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Inviter à aider avec l'organisation de la célébration",
           "Encourager à présenter en français aux familles",
           "Demander d'aider les camarades à se sentir à l'aise"
         ],
-        "forELL": [
+        "pourLangue": [
           "Célébrer spécifiquement leurs progrès multilingues",
           "Permettre l'expression dans toutes leurs langues",
           "Inviter les familles à partager leurs propres traditions célébrations"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter la participation selon les besoins sensoriels et sociaux",
           "Offrir différentes façons de participer à la célébration",
           "Respecter les différents niveaux de confort avec l'attention"
@@ -1415,7 +1415,7 @@
         "visualSupports": "Ligne de temps prolongée vers l'avenir, pointage vers l'avant pour 'avenir', geste d'espoir vers le haut",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves sont tristes à l'idée que l'année se termine",
+            "question": "Si certains élèves sont tristes à l'idée que l'année se termine",
             "options": [
               "Recadrer comme une transition excitante vers de nouveaux apprentissages",
               "Souligner que l'apprentissage du français continue et grandit"
@@ -1431,7 +1431,7 @@
         "visualSupports": "Templates avec phrases de départ, images d'activités françaises futures, exemples de buts simples",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne peut pas penser à des buts pour l'année prochaine",
+            "question": "Si un élève ne peut pas penser à des buts pour l'année prochaine",
             "options": [
               "Offrir des suggestions simples: continuer à chanter, lire des histoires",
               "L'encourager à dessiner quelque chose qu'il aimerait faire en français"
@@ -1447,7 +1447,7 @@
         "visualSupports": "Cercle positif et encourageant, buts affichés, réponses enthousiastes de l'enseignant",
         "decisionPoints": [
           {
-            "moment": "Si un élève est trop timide pour partager son espoir",
+            "question": "Si un élève est trop timide pour partager son espoir",
             "options": [
               "Permettre de montrer son dessin ou écrit seulement",
               "L'inviter à chuchoter son espoir à l'enseignant"
@@ -1462,22 +1462,22 @@
       },
       "realWorldConnection": "Setting goals helps us continue growing and reaching for new achievements - like planning summer activities or dreaming about what we want to be when we grow up",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Offrir des buts très simples et concrets",
           "Accepter les dessins comme expression des espoirs",
           "Se concentrer sur la positivité plutôt que la spécificité"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager des buts détaillés et des étapes spécifiques",
           "Demander de réfléchir aux stratégies pour atteindre leurs buts",
           "Inviter à encourager les camarades dans leurs rêves"
         ],
-        "forELL": [
+        "pourLangue": [
           "Célébrer leurs buts multilingues et multiculturels",
           "Permettre l'expression dans toutes leurs langues",
           "Encourager les connexions entre leurs expériences linguistiques"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les buts aux capacités et intérêts individuels",
           "Utiliser différents modes d'expression pour les espoirs",
           "Célébrer tous les types d'aspirations d'apprentissage"
@@ -1515,7 +1515,7 @@
         "visualSupports": "Matériaux de jeux colorés et attrayants, grand sourire pour 'amusant', gestes ludiques et enjoués",
         "decisionPoints": [
           {
-            "moment": "Si les élèves sont trop excités par la perspective des jeux",
+            "question": "Si les élèves sont trop excités par la perspective des jeux",
             "options": [
               "Canaliser l'excitation en expliquant les règles calmement",
               "Commencer par des jeux plus calmes pour établir le ton"
@@ -1531,21 +1531,21 @@
         "visualSupports": "Stations clairement identifiées, instructions visuelles pour chaque jeu, signal de rotation",
         "decisionPoints": [
           {
-            "moment": "Si les élèves deviennent trop excités par les jeux rotatifs",
+            "question": "Si les élèves deviennent trop excités par les jeux rotatifs",
             "options": [
               "Utiliser des signaux calmes pour recentrer l'attention",
               "Faire une pause respiratoire entre les rotations"
             ]
           },
           {
-            "moment": "Si certains élèves dominent les jeux de groupe",
+            "question": "Si certains élèves dominent les jeux de groupe",
             "options": [
               "Rappeler que chacun mérite son tour de briller",
               "Créer des rôles spécifiques pour chaque participant"
             ]
           },
           {
-            "moment": "Si les niveaux de français sont trop variés pour un jeu",
+            "question": "Si les niveaux de français sont trop variés pour un jeu",
             "options": [
               "Adapter les règles pour inclure tous les niveaux",
               "Permettre le soutien par partenariat"
@@ -1561,14 +1561,14 @@
         "visualSupports": "Cercle de champions, vote visuel pour le jeu favori, appréciation et encouragements",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves ne veulent pas voter ou participer au choix",
+            "question": "Si certains élèves ne veulent pas voter ou participer au choix",
             "options": [
               "Permettre l'observation sans pression de participation",
               "Offrir des moyens alternatifs d'exprimer leurs préférences"
             ]
           },
           {
-            "moment": "Si le vote crée des disputes ou de la déception",
+            "question": "Si le vote crée des disputes ou de la déception",
             "options": [
               "Souligner que tous les jeux étaient fantastiques",
               "Promettre de jouer aux autres jeux une autre fois"
@@ -1583,22 +1583,22 @@
       },
       "realWorldConnection": "Playing games with what we've learned makes knowledge stick and brings joy - like family game nights or playground games",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Simplifier les règles des jeux au besoin",
           "Permettre le travail en équipe pour le soutien",
           "Se concentrer sur la participation plutôt que la performance"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Inviter à aider avec l'animation des jeux",
           "Encourager à utiliser uniquement le français",
           "Leur donner des rôles de leader dans les équipes"
         ],
-        "forELL": [
+        "pourLangue": [
           "Utiliser beaucoup d'indices visuels et gestuels",
           "Permettre les traductions si nécessaire",
           "Jumeler avec des partenaires bilingues"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les jeux aux capacités sensorielles et motrices",
           "Offrir différents niveaux de participation",
           "Permettre des pauses si la stimulation devient trop intense"
@@ -1635,10 +1635,10 @@
           ],
           "assessment": "Observer les progrès dans la maîtrise des concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1676,14 +1676,14 @@
         "visualSupports": "Espace performance délimité, gestes théâtraux pour 'spectacle', pointage fier vers les élèves",
         "decisionPoints": [
           {
-            "moment": "Si un élève est très nerveux pour la performance scénique",
+            "question": "Si un élève est très nerveux pour la performance scénique",
             "options": [
               "Offrir de performer avec un partenaire pour le soutien",
               "Permettre une performance plus simple ou un rôle d'assistant"
             ]
           },
           {
-            "moment": "Si l'espace performance devient chaotique",
+            "question": "Si l'espace performance devient chaotique",
             "options": [
               "Établir des règles simples de public respectueux",
               "Utiliser un signal pour organiser l'attention"
@@ -1699,14 +1699,14 @@
         "visualSupports": "Options de performance affichées, accessoires pour encourager la créativité, scène accueillante",
         "decisionPoints": [
           {
-            "moment": "Si les élèves deviennent trop compétitifs pendant les performances",
+            "question": "Si les élèves deviennent trop compétitifs pendant les performances",
             "options": [
               "Rappeler que c'est une célébration, pas une compétition",
               "Souligner le courage de chacun pour avoir essayé"
             ]
           },
           {
-            "moment": "Si une performance ne se passe pas comme prévu",
+            "question": "Si une performance ne se passe pas comme prévu",
             "options": [
               "Applaudir l'effort et encourager à continuer",
               "Transformer l'erreur en moment d'apprentissage joyeux"
@@ -1722,14 +1722,14 @@
         "visualSupports": "Ovation debout coordonnée, applaudissements enthousiastes, reconnaissance du courage",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves sont trop émotionnels pour applaudir calmement",
+            "question": "Si certains élèves sont trop émotionnels pour applaudir calmement",
             "options": [
               "Permettre des expressions d'appréciation diverses",
               "Modéler des applaudissements respectueux et chaleureux"
             ]
           },
           {
-            "moment": "Si l'émotion du moment devient trop intense",
+            "question": "Si l'émotion du moment devient trop intense",
             "options": [
               "Prendre un moment de respiration collective",
               "Valider les émotions tout en gardant un cadre sécurisant"
@@ -1744,22 +1744,22 @@
       },
       "realWorldConnection": "Talent shows let us share our abilities and celebrate what makes each person special - like school concerts or family performances",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre des performances très courtes ou simples",
           "Offrir la possibilité de performer en équipe",
           "Célébrer toute tentative, même non-verbale"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager des performances plus élaborées en français",
           "Inviter à aider comme maîtres de cérémonies",
           "Demander d'encourager et soutenir les camarades plus timides"
         ],
-        "forELL": [
+        "pourLangue": [
           "Célébrer leurs talents multilingues comme atouts uniques",
           "Permettre des performances qui mélangent les langues",
           "Valoriser leurs perspectives culturelles diverses"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les performances aux capacités et intérêts individuels",
           "Offrir différents formats de participation",
           "Respecter les niveaux de confort avec l'attention publique"
@@ -1796,10 +1796,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1837,14 +1837,14 @@
         "visualSupports": "Lettre modèle, ligne de temps prolongée, image de soi futur en Grade 2",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ont du mal à comprendre le concept de 'futur soi'",
+            "question": "Si les élèves ont du mal à comprendre le concept de 'futur soi'",
             "options": [
               "Utiliser des photos d'eux depuis septembre pour montrer le changement",
               "Parler de ce qu'ils aimeraient dire à leur ami futur"
             ]
           },
           {
-            "moment": "Si certains élèves semblent anxieux à l'idée d'écrire",
+            "question": "Si certains élèves semblent anxieux à l'idée d'écrire",
             "options": [
               "Rassurer qu'ils peuvent utiliser l'anglais au besoin",
               "Offrir de dicter leurs idées s'ils préfèrent"
@@ -1860,21 +1860,21 @@
         "visualSupports": "Templates avec exemples de phrases, images pour inspirer les idées, modèle de lettre complétée",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne sait pas quoi écrire à son futur soi",
+            "question": "Si un élève ne sait pas quoi écrire à son futur soi",
             "options": [
               "Suggérer des questions simples comme 'Qu'as-tu appris?'",
               "Encourager les dessins avec quelques mots si l'écriture est difficile"
             ]
           },
           {
-            "moment": "Si l'écriture devient émotionnelle ou nostalgique",
+            "question": "Si l'écriture devient émotionnelle ou nostalgique",
             "options": [
               "Valider les émotions comme signe de beaux souvenirs",
               "Recentrer sur les aspects positifs et les fiertés"
             ]
           },
           {
-            "moment": "Si certains élèves terminent beaucoup plus rapidement",
+            "question": "Si certains élèves terminent beaucoup plus rapidement",
             "options": [
               "Inviter à décorer davantage ou ajouter des dessins",
               "Permettre de commencer une deuxième lettre courte"
@@ -1890,14 +1890,14 @@
         "visualSupports": "Cérémonie solennelle de scellement, boîte spéciale pour conservation, promesse de réouverture",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves deviennent trop excités par la cérémonie",
+            "question": "Si certains élèves deviennent trop excités par la cérémonie",
             "options": [
               "Modéler le côté solennel et spécial du moment",
               "Faire chuchoter les commentaires pour garder l'ambiance"
             ]
           },
           {
-            "moment": "Si un élève change d'avis et veut rouvrir sa lettre",
+            "question": "Si un élève change d'avis et veut rouvrir sa lettre",
             "options": [
               "Expliquer doucement que c'est la magie de garder la surprise",
               "Rassurer que l'ouverture en Grade 2 sera très spéciale"
@@ -1912,22 +1912,22 @@
       },
       "realWorldConnection": "Writing to our future selves helps us remember important moments and lessons - like time capsules or diary entries",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre des lettres très courtes avec dessins",
           "Offrir des phrases pré-écrites à compléter",
           "Accepter l'expression principalement en anglais"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager des lettres détaillées avec plus de français",
           "Demander d'inclure des conseils spécifiques d'apprentissage",
           "Inviter à faire des prédictions sur leurs progrès futurs"
         ],
-        "forELL": [
+        "pourLangue": [
           "Célébrer l'utilisation de toutes leurs langues dans la lettre",
           "Permettre les réflexions sur l'expérience multilingue",
           "Encourager les connexions culturelles dans leurs messages"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter le format de la lettre aux capacités de communication",
           "Utiliser différents modes d'expression (dessin, oral enregistré)",
           "Permettre des lettres avec différents niveaux de compléxité"
@@ -1964,10 +1964,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2005,14 +2005,14 @@
         "visualSupports": "Photos des débuts d'année, geste généreux pour 'cadeau', images d'entraide",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves ne se souviennent pas de leurs débuts difficiles",
+            "question": "Si certains élèves ne se souviennent pas de leurs débuts difficiles",
             "options": [
               "Utiliser les photos de septembre pour réveiller les souvenirs",
               "Partager des exemples généraux de défis des débutants"
             ]
           },
           {
-            "moment": "Si les élèves deviennent trop concentrés sur leurs propres difficultés passées",
+            "question": "Si les élèves deviennent trop concentrés sur leurs propres difficultés passées",
             "options": [
               "Recentrer sur leurs progrès et succès actuels",
               "Orienter vers comment ils peuvent aider les autres maintenant"
@@ -2028,14 +2028,14 @@
         "visualSupports": "Exemples de cadeaux d'aide, templates créatifs, focus sur l'encouragement et l'accueil",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne trouve rien qu'il aime dans les choix offerts",
+            "question": "Si un élève ne trouve rien qu'il aime dans les choix offerts",
             "options": [
               "Explorer ensemble ce qui pourrait l'intéresser",
               "Permettre d'adapter une activité à ses préférences"
             ]
           },
           {
-            "moment": "Si les centres deviennent surchargés ou déséquilibrés",
+            "question": "Si les centres deviennent surchargés ou déséquilibrés",
             "options": [
               "Suggérer doucement des alternatives moins occupées",
               "Utiliser un système simple de rotation si nécessaire"
@@ -2051,14 +2051,14 @@
         "visualSupports": "Exposition des cadeaux créés, présentations fières, focus sur l'aide aux autres",
         "decisionPoints": [
           {
-            "moment": "Si le partage des créations devient trop long ou répétitif",
+            "question": "Si le partage des créations devient trop long ou répétitif",
             "options": [
               "Utiliser des partages rapides par paires d'abord",
               "Célébrer la diversité sans que chacun doive tout expliquer"
             ]
           },
           {
-            "moment": "Si un élève n'a pas terminé sa création ou n'a rien à montrer",
+            "question": "Si un élève n'a pas terminé sa création ou n'a rien à montrer",
             "options": [
               "Valoriser le processus d'exploration plutôt que le produit",
               "Permettre de partager son expérience d'apprentissage"
@@ -2073,22 +2073,22 @@
       },
       "realWorldConnection": "Helping others who are starting their journey is a way to give back and show growth - like big siblings helping little ones",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Offrir des templates simples à décorer",
           "Permettre la collaboration pour créer des cadeaux de groupe",
           "Se concentrer sur l'intention bienveillante plutôt que la compléxité"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager des cadeaux plus détaillés ou interactifs",
           "Demander d'inclure des conseils spécifiques d'apprentissage",
           "Inviter à organiser et coordonner les efforts du groupe"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre l'utilisation de plusieurs langues dans les cadeaux",
           "Célébrer leur perspective unique sur l'apprentissage des langues",
           "Encourager le partage de stratégies multilingues"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les types de cadeaux aux capacités créatives individuelles",
           "Utiliser différents modes d'expression artistique",
           "Valoriser toutes les formes de contribution à l'entraide"
@@ -2125,10 +2125,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2166,14 +2166,14 @@
         "visualSupports": "Menu coloré des options, centres clairement identifiés, geste de choix libre avec les mains",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne trouve rien qu'il aime dans les choix offerts",
+            "question": "Si un élève ne trouve rien qu'il aime dans les choix offerts",
             "options": [
               "Explorer ensemble ce qui pourrait l'intéresser",
               "Permettre d'adapter une activité à ses préférences"
             ]
           },
           {
-            "moment": "Si les centres deviennent surchargés ou déséquilibrés",
+            "question": "Si les centres deviennent surchargés ou déséquilibrés",
             "options": [
               "Suggérer doucement des alternatives moins occupées",
               "Utiliser un système simple de rotation si nécessaire"
@@ -2189,21 +2189,21 @@
         "visualSupports": "Centres bien organisés avec matériaux accessibles, instructions visuelles pour chaque centre",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves changent constamment d'activité sans approfondir",
+            "question": "Si certains élèves changent constamment d'activité sans approfondir",
             "options": [
               "Encourager doucement à explorer plus profondément",
               "Offrir un rappel du temps pour bien profiter de chaque choix"
             ]
           },
           {
-            "moment": "Si un élève monopolise les matériaux d'un centre",
+            "question": "Si un élève monopolise les matériaux d'un centre",
             "options": [
               "Rappeler le partage et l'inclusion de tous",
               "Suggérer un système de tour ou de collaboration"
             ]
           },
           {
-            "moment": "Si les élèves ont du mal à utiliser le français dans leurs choix libres",
+            "question": "Si les élèves ont du mal à utiliser le français dans leurs choix libres",
             "options": [
               "Modéler l'usage du français de façon naturelle",
               "Accepter le mélange langagier tout en encourageant le français"
@@ -2219,14 +2219,14 @@
         "visualSupports": "Partage des créations, célébration de la diversité des intérêts, appréciation mutuelle",
         "decisionPoints": [
           {
-            "moment": "Si le partage des créations devient trop long ou répétitif",
+            "question": "Si le partage des créations devient trop long ou répétitif",
             "options": [
               "Utiliser des partages rapides par paires d'abord",
               "Célébrer la diversité sans que chacun doive tout expliquer"
             ]
           },
           {
-            "moment": "Si un élève n'a pas terminé sa création ou n'a rien à montrer",
+            "question": "Si un élève n'a pas terminé sa création ou n'a rien à montrer",
             "options": [
               "Valoriser le processus d'exploration plutôt que le produit",
               "Permettre de partager son expérience d'apprentissage"
@@ -2241,22 +2241,22 @@
       },
       "realWorldConnection": "Having choices about what we do helps us feel ownership and enjoyment - like choosing what games to play or books to read",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Offrir des activités avec niveaux de difficulté variés",
           "Fournir un soutien individuel selon les besoins",
           "Permettre la collaboration avec des pairs"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager l'exploration d'activités plus complexes",
           "Inviter à aider et guider les camarades",
           "Offrir des défis additionnels dans leur centre choisi"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre l'usage de supports visuels et traductions",
           "Encourager les connexions avec leurs langues maternelles",
           "Valoriser leurs perspectives culturelles diverses"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les centres aux préférences et capacités sensorielles",
           "Offrir différents formats de participation",
           "Respecter les rythmes et intérêts individuels"
@@ -2293,10 +2293,10 @@
           ],
           "assessment": "Documenter le processus d'exploration et les découvertes",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2334,14 +2334,14 @@
         "visualSupports": "Cercle final décoré, geste d'au revoir et de futur rapproché, ambiance à la fois célébratoire et nostalgique",
         "decisionPoints": [
           {
-            "moment": "Si les émotions de fin d'année deviennent très intenses",
+            "question": "Si les émotions de fin d'année deviennent très intenses",
             "options": [
               "Valider toutes les émotions comme normales et importantes",
               "Offrir des moments de calme pour ceux qui en ont besoin"
             ]
           },
           {
-            "moment": "Si certains élèves résistent à l'idée de 'au revoir'",
+            "question": "Si certains élèves résistent à l'idée de 'au revoir'",
             "options": [
               "Souligner que c'est 'à bientôt' et que l'apprentissage continue",
               "Parler des nouvelles aventures qui les attendent"
@@ -2357,21 +2357,21 @@
         "visualSupports": "Stations festives organisées, livre de souvenirs magnifique, révision des moments forts de l'année",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves deviennent très nostalgiques durant le festival",
+            "question": "Si certains élèves deviennent très nostalgiques durant le festival",
             "options": [
               "Permettre et honorer la nostalgie comme marque de beaux souvenirs",
               "Équilibrer avec l'excitation pour les futures aventures"
             ]
           },
           {
-            "moment": "Si les stations du festival deviennent désorganisées",
+            "question": "Si les stations du festival deviennent désorganisées",
             "options": [
               "Utiliser des guides étudiants pour aider à l'organisation",
               "Simplifier les rotations selon les besoins du moment"
             ]
           },
           {
-            "moment": "Si la performance finale de chanson devient chaotique",
+            "question": "Si la performance finale de chanson devient chaotique",
             "options": [
               "Se concentrer sur la joie de chanter ensemble plutôt que la perfection",
               "Permettre différents niveaux de participation"
@@ -2387,14 +2387,14 @@
         "visualSupports": "Cercle émotionnel et bienveillant, câlin de groupe chaleureux, 'À bientôt!' plein d'espoir",
         "decisionPoints": [
           {
-            "moment": "Si un élève devient trop émotionnel pour partager son mot final",
+            "question": "Si un élève devient trop émotionnel pour partager son mot final",
             "options": [
               "Permettre de passer son tour sans pression",
               "Offrir de chuchoter son mot à l'enseignante"
             ]
           },
           {
-            "moment": "Si le câlin de groupe devient trop intense ou inconfortable",
+            "question": "Si le câlin de groupe devient trop intense ou inconfortable",
             "options": [
               "Respecter les limites de confort de chacun",
               "Offrir des alternatives comme des applaudissements ou des sourires"
@@ -2409,22 +2409,22 @@
       },
       "realWorldConnection": "Saying goodbye to one chapter means we're ready to start the next adventure - like finishing a good book and looking for the next one",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre différents niveaux de participation émotionnelle",
           "Offrir des façons simples de contribuer aux célébrations",
           "Célébrer tous leurs progrès, même petits"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Inviter à aider avec l'organisation de la célébration finale",
           "Encourager à partager des réflexions détaillées sur l'année",
           "Demander de soutenir les camarades plus émus ou timides"
         ],
-        "forELL": [
+        "pourLangue": [
           "Célébrer spécifiquement leurs accomplissements multilingues",
           "Permettre l'expression dans toutes leurs langues pour cette leçon spéciale",
           "Honorer leur courage d'apprendre dans une troisième langue"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter la participation aux besoins sensoriels et émotionnels",
           "Offrir des alternatives au câlin de groupe si nécessaire",
           "Célébrer tous les types de croissance et d'accomplissements"
@@ -2461,10 +2461,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }

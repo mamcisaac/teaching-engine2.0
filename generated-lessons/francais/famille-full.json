@@ -62,7 +62,7 @@
               "item": "Photos de familles diversifiées",
               "quantity": "25-30 photos diversifiées",
               "source": "Banque d'images pédagogiques - bibliothèque scolaire",
-              "preparation": "Sélectionner images respectueuses de structures familiales diverses, plastifier",
+              "preparation": "Sélectionner images respectueuses de ma famille diverses, plastifier",
               "alternatives": ["Photos d'exemples de magazines familiaux", "Dessins de familles par les élèves", "Images de livres pour enfants"]
             }
           ],
@@ -108,25 +108,25 @@
       },
       "realWorldConnection": "Everyone has a family and can talk about who lives at home",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser seulement des gestes sans pression de parler",
           "Permettre de pointer vers les photos sans nommer",
           "Offrir des images simples et claires de familles",
           "Donner plus de temps pour observer avant de partager"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager l'ajout de détails: 'Dans ma famille il y a...'",
           "Inviter à nommer d'autres membres de la famille (tante, oncle)",
           "Demander de compter les personnes dans leur famille",
           "Permettre d'aider leurs camarades timides à partager"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre l'usage de la langue première pour identifier les membres",
           "Utiliser des photos très claires avec gestes exagérés",
           "Accepter le mélange des langues pendant l'apprentissage",
           "Fournir des cartes visuelles avec mots et images"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon les besoins de communication (gestes, images, technologie)",
           "Modifier les attentes de participation selon les capacités",
           "Utiliser supports sensoriels si appropriés (textures, sons)",
@@ -156,7 +156,7 @@
       "keyVocabulary": [
         "frère",
         "sœur",
-        "grand-maman"
+        "mémère"
       ],
       "opening": {
         "duration": "~8 min",
@@ -195,7 +195,7 @@
           "required": [
             {
               "item": "Cartes de tri famille",
-              "quantity": "60 cartes (20 par station: maman, papa, frère, sœur, grand-maman)",
+              "quantity": "60 cartes (20 par station: maman, papa, frère, sœur, mémère)",
               "source": "Matériel pédagogique - création enseignante",
               "preparation": "Plastifier, organiser en 3 paquets identiques pour stations",
               "alternatives": ["Photos découpées de magazines", "Dessins simple des élèves"]
@@ -216,7 +216,7 @@
             }
           ]
         },
-        "visualSupports": "Gestes distincts pour chaque membre: bercement (maman), force (papa), hauteur (frère/sœur), geste d'honneur (grand-maman)",
+        "visualSupports": "Gestes distincts pour chaque membre: bercement (maman), force (papa), hauteur (frère/sœur), geste d'honneur (mémère)",
         "decisionPoints": [
           "Si stations trop chaotiques → réduire à 2 stations avec plus d'élèves par station",
           "Si élèves terminent trop rapidement → ajouter défi de compter les membres",
@@ -252,25 +252,25 @@
       },
       "realWorldConnection": "Children can describe who lives in their house",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer seulement sur 'frère' ou 'sœur' selon leur famille",
           "Utiliser plus de gestes et moins de mots",
           "Permettre de pointer sans nommer au début",
           "Offrir support d'un partenaire pendant les stations"
         ],
-        "forAdvanced": [
-          "Ajouter 'grand-papa' s'ils maîtrisent le vocabulaire de base",
+        "pourAvancés": [
+          "Ajouter 'pépère' s'ils maîtrisent le vocabulaire de base",
           "Encourager des phrases: 'J'ai un frère' ou 'Je n'ai pas de sœur'",
           "Inviter à compter les frères et sœurs dans les photos",
           "Aider à enseigner aux camarades qui ont des difficultés"
         ],
-        "forELL": [
+        "pourLangue": [
           "Connecter avec les mots frère/sœur dans leur langue première",
           "Utiliser gestes très clairs et répétition",
           "Permettre mélange linguistique temporairement",
           "Fournir support visuel constant avec cartes"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter les stations selon capacités motrices (assis vs debout)",
           "Modifier attentes selon besoins communicatifs",
           "Utiliser supports alternatifs (images, technologie)",
@@ -298,24 +298,24 @@
       "oneGoal": "Students can point to and name their family members in photos or drawings",
       "duration": 45,
       "keyVocabulary": [
-        "grand-papa",
+        "pépère",
         "mon",
         "ma"
       ],
       "opening": {
         "duration": "~8 min",
-        "activity": "Réunion familiale: Revoir tous nos amis famille avec chanson cumulative. 'Maman, papa, frère, sœur, grand-maman!' Nouveau grand-ami: 'grand-papa' avec geste de respect.",
+        "activity": "Réunion familiale: Revoir tous nos amis famille avec chanson cumulative. 'Maman, papa, frère, sœur, mémère!' Nouveau grand-ami: 'pépère' avec geste de respect.",
         "materials": {
           "required": [
             {
               "item": "Toutes les cartes famille des Leçons 1-2",
               "quantity": "Collection complète (15-20 cartes)",
               "source": "Matériel accumulé des leçons précédentes",
-              "preparation": "Organiser par ordre d'introduction, ajouter grand-papa",
+              "preparation": "Organiser par ordre d'introduction, ajouter pépère",
               "alternatives": ["Dessins au tableau", "Affichage numérique"]
             },
             {
-              "item": "Nouvelles cartes grand-papa",
+              "item": "Nouvelles cartes pépère",
               "quantity": "4-5 images de grands-pères divers",
               "source": "Banque d'images respectueuses des aînés",
               "preparation": "Images positives montrant vitalité et diversité culturelle",
@@ -324,7 +324,7 @@
           ],
           "optional": []
         },
-        "visualSupports": "Geste de respect pour grand-papa (légère inclination), pointer vers soi pour 'mon/ma'",
+        "visualSupports": "Geste de respect pour pépère (légère inclination), pointer vers soi pour 'mon/ma'",
         "decisionPoints": [
           "Si émotions profondes avec grands-parents (décès, distance) → adapter avec tendresse, parler des souvenirs heureux",
           "Si confusion 'mon' vs 'ma' → simplifier à 'ma famille' seulement",
@@ -410,25 +410,25 @@
       },
       "realWorldConnection": "Children show family photos and talk about them",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Accepter pointage simple sans mots",
           "Utiliser seulement 'ma famille' sans distinction mon/ma",
           "Permettre aide pour création d'affiche",
           "Offrir choix limités d'images pré-sélectionnées"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager phrases complètes: 'Voici mon papa'",
           "Inviter à compter les membres sur leur affiche",
           "Ajouter détails: âges, activités préférées",
           "Aider camarades à présenter leurs affiches"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre description dans langue première puis en français",
           "Utiliser gestures expressifs avec chaque mot",
           "Accepter mélange linguistique temporaire",
           "Fournir phrases modèles visuelles"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter outils de création (gros crayons, aide physique)",
           "Modifier format de présentation selon capacités",
           "Utiliser support technologique si approprié",
@@ -520,7 +520,7 @@
         },
         "visualSupports": "Collection diversifiée montrant: parents seuls, grands-parents, familles adoptives, cultures variées, tailles différentes - toutes positives",
         "decisionPoints": [
-          "Si questions sur des structures familiales non-traditionnelles → expliquer simplement que l'amour crée les familles",
+          "Si questions sur des ma famille non-traditionnelles → expliquer simplement que l'amour crée les familles",
           "Si comparaisons négatives entre familles → rediriger vers ce qui rend chaque famille unique et précieuse",
           "Si sur-stimulation avec tant d'images → réduire à quelques exemples et approfondir la discussion"
         ],
@@ -560,25 +560,25 @@
       },
       "realWorldConnection": "Families come in many forms - single parents, grandparents, step-families, adopted families",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser seulement geste du cœur sans mots si nécessaire",
           "Se concentrer sur 'spécial' seulement comme concept",
           "Permettre observation sans participation active",
           "Offrir support individuel pour identifier aspects positifs"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager identification de plusieurs différences belles",
           "Inviter à expliquer pourquoi leur famille est spéciale",
           "Demander d'aider camarades à voir beauté de leur famille",
           "Créer des connexions entre différentes familles"
         ],
-        "forELL": [
+        "pourLangue": [
           "Utiliser images et gestes principalement",
           "Permettre expression dans langue première puis traduire",
-          "Connecter avec structures familiales de leur culture d'origine",
+          "Connecter avec ma famille de leur culture d'origine",
           "Utiliser support visuel constant pour nouveaux concepts"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon besoins émotionnels spécifiques",
           "Utiliser supports alternatifs si difficultés de traitement visuel",
           "Permettre expression alternative (dessin, mouvement)",
@@ -716,25 +716,25 @@
       },
       "realWorldConnection": "Families eat meals together, play games, watch movies",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer sur une seule activité à la fois",
           "Permettre imitation simple sans production de mots",
           "Utiliser objets concrets pour soutenir compréhension",
           "Offrir choix limité entre deux activités seulement"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager phrases complètes: 'Ma famille aime manger ensemble'",
           "Inviter à décrire quand ils font ces activités",
           "Ajouter détails: où, avec qui, comment",
           "Créer nouvelles combinaisons d'activités"
         ],
-        "forELL": [
+        "pourLangue": [
           "Connecter activités avec mots de langue première",
           "Utiliser objets et actions réels pour clarifier",
           "Permettre description dans L1 puis tentative en français",
           "Utiliser support visuel constant avec gestes"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter participation aux capacités motrices (gestes modifiés)",
           "Utiliser supports technologiques si approprié",
           "Permettre observation active sans performance",
@@ -856,25 +856,25 @@
       },
       "realWorldConnection": "Families live in houses, apartments, different types of homes",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer seulement sur 'maison' sans les pièces spécifiques",
           "Utiliser plan très simple avec seulement 2 pièces",
           "Permettre collage d'étiquettes au lieu d'écriture",
           "Offrir aide individuelle pour création du plan"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Ajouter plus de pièces: bureau, garage, sous-sol",
           "Encourager description: 'Dans ma cuisine, nous mangeons'",
           "Inviter à comparer avec maisons des camarades",
           "Créer plan plus détaillé avec fenêtres, portes"
         ],
-        "forELL": [
+        "pourLangue": [
           "Connecter pièces avec mots de langue première",
           "Utiliser images très claires pour chaque pièce",
           "Permettre explication dans L1 puis tentative française",
           "Support visuel constant avec vocabulaire affiché"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter outils de dessin selon capacités motrices",
           "Utiliser plan pré-dessiné à décorer seulement",
           "Permettre création en 3D avec blocs si approprié",
@@ -995,25 +995,25 @@
       },
       "realWorldConnection": "Families celebrate birthdays, holidays, have special meals and customs",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Accepter dessins très simples ou abstraits",
           "Permettre description orale au lieu de dessin",
           "Utiliser traditions universelles (anniversaires, repas)",
           "Offrir aide pour identifier une tradition familiale"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager détails sur comment ils célèbrent",
           "Inviter à comparer traditions avec camarades",
           "Ajouter éléments textuels à leur dessin",
           "Aider à organiser le livre collectif"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre explication dans langue première puis français",
           "Connecter avec traditions de culture d'origine",
           "Utiliser dessins comme communication principale",
           "Support pour vocabulaire spécifique aux traditions"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter outils de dessin selon capacités",
           "Permettre représentation alternative (collage, 3D)",
           "Respecter sensibilités culturelles ou familiales",
@@ -1127,25 +1127,25 @@
       },
       "realWorldConnection": "People tell stories about their families and share memories",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer sur 'aujourd'hui' seulement",
           "Utiliser dessins très simples ou collage",
           "Permettre aide pour idées d'histoires",
           "Accepter représentation non-verbale"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Ajouter page 'demain' avec projections",
           "Encourager détails narratifs: qui, quand, où",
           "Inviter à aider camarades avec leurs histoires",
           "Créer séquences plus complexes"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre mélange linguistique dans narration",
           "Utiliser images comme support principal",
           "Connecter avec histoires de culture d'origine",
           "Support gestuel constant pour vocabulaire temporel"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter format de livre selon capacités motrices",
           "Utiliser supports technologiques si approprié",
           "Permettre narration alternative (gestes, sons)",
@@ -1259,25 +1259,25 @@
       },
       "realWorldConnection": "When we talk about family, we describe what they look like and how they act",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer sur un seul mot: 'gentil' pour tous",
           "Utiliser dessins très simples ou autocollants",
           "Permettre aide pour écriture des mots",
           "Accepter pointage vers qualités sans verbalisation"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager multiple qualités par personne",
           "Ajouter explications: pourquoi cette qualité?",
           "Créer cartes pour plus de membres famille",
           "Aider camarades à identifier qualités positives"
         ],
-        "forELL": [
+        "pourLangue": [
           "Connecter qualités avec langue première",
           "Utiliser gestes expressifs pour chaque qualité",
           "Permettre descriptions dans L1 puis français",
           "Support visuel constant avec images-mots"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter création selon capacités motrices",
           "Utiliser format alternatif (oral, technologique)",
           "Respecter sensibilités émotionnelles familiales",
@@ -1398,25 +1398,25 @@
       },
       "realWorldConnection": "Families make us feel loved, happy, safe, and sometimes other emotions too",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Se concentrer sur une émotion: 'aimé' ou 'heureux'",
           "Utiliser dessins simples au lieu de mots",
           "Permettre expression non-verbale (étreinte, sourire)",
           "Offrir soutien émotionnel supplémentaire"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager vocabulaire émotionnel plus riche",
           "Inviter à expliquer pourquoi ils ressentent ces émotions",
           "Ajouter nuances: très heureux, un peu content",
           "Aider camarades à identifier leurs émotions"
         ],
-        "forELL": [
+        "pourLangue": [
           "Connecter émotions avec langue première",
           "Utiliser expressions faciales comme communication principale",
           "Permettre description dans L1 puis français",
           "Support gestuel constant pour vocabulaire émotionnel"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon besoins émotionnels spécifiques",
           "Utiliser supports alternatifs pour expression",
           "Respecter difficultés de régulation émotionnelle",
@@ -1537,25 +1537,25 @@
       },
       "realWorldConnection": "People create photo albums and books to remember and share family memories",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Réduire à 3-4 pages simples",
           "Permettre plus de dessins, moins d'écriture",
           "Offrir templates pré-formatés à compléter",
           "Aide individuelle pour planification et organisation"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager plus de pages et détails",
           "Inviter à ajouter phrases complètes",
           "Permettre expérimentation avec formats créatifs",
           "Aider camarades avec techniques artistiques"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre mélange linguistique dans création",
           "Utiliser plus d'images, moins de texte",
           "Support avec copie de mots français",
           "Connecter avec traditions de livres de culture d'origine"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter outils selon capacités motrices",
           "Permettre collaboration avec assistant ou pair",
           "Utiliser technologie d'assistance si appropriée",
@@ -1683,25 +1683,25 @@
       },
       "realWorldConnection": "Family trees help people understand how family members are related",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser format très simple (cercle avec élève au centre)",
           "Se concentrer sur qui vit à la maison seulement",
           "Permettre collage simple sans écriture",
           "Aide individuelle pour organisation spatiale"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Ajouter générations supplémentaires si connues",
           "Inclure animaux domestiques comme membres famille",
           "Ajouter descriptions ou qualités près de chaque membre",
           "Créer légende ou code couleur pour relations"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre étiquettes dans langue première aussi",
           "Utiliser dessins comme communication principale",
           "Support pour vocabulaire de relations familiales",
-          "Connecter avec structures familiales de culture d'origine"
+          "Connecter avec ma famille de culture d'origine"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter format selon capacités de traitement spatial",
           "Utiliser supports technologiques si appropriés",
           "Permettre création collaborative avec aide",
@@ -1713,7 +1713,7 @@
           "Élève comprend concept de relations familiales",
           "Élève crée représentation visuelle de sa structure familiale",
           "Élève utilise vocabulaire: arbre, parents, enfant",
-          "Élève respecte et apprécie diversité des structures familiales"
+          "Élève respecte et apprécie diversité des ma famille"
         ],
         "checkpoints": [
           "Pendant création: Observer compréhension des relations et organisation spatiale",
@@ -1815,25 +1815,25 @@
       },
       "realWorldConnection": "People enjoy sharing and learning about each other's families",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Réduire à phrase simple: 'Voici ma famille'",
           "Permettre pointage avec support minimal oral",
           "Présentation en très petit groupe d'amis",
           "Utiliser supports visuels comme aide-mémoire"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager détails et descriptions enrichies",
           "Inviter questions de l'audience et réponses",
           "Ajouter éléments narratifs ou anecdotes",
           "Aider à animer présentations d'autres élèves"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre mélange linguistique si nécessaire",
           "Utiliser supports visuels comme communication principale",
           "Support gestuel constant et encouragement",
           "Accepter tentatives même avec erreurs linguistiques"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter format selon besoins communicatifs",
           "Utiliser supports technologiques si appropriés",
           "Permettre présentation alternative (dessin, mouvement)",
@@ -1964,25 +1964,25 @@
       },
       "realWorldConnection": "Communities celebrate diversity and the importance of families",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Permettre présentation très courte ou simple monter d'objet",
           "Support d'un ami ou enseignant pendant présentation",
           "Participation alternative (applaudir, aider à organiser)",
           "Célébration de participation à tout niveau"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager présentations détaillées et interactives",
           "Inviter à animer ou aider autres présentations",
           "Ajouter éléments créatifs (chanson, poème)",
           "Prendre rôle de leadership dans célébration"
         ],
-        "forELL": [
+        "pourLangue": [
           "Accepter présentations multilingues avec tentatives françaises",
           "Support gestuel et visuel maximal",
           "Célébrer efforts linguistiques quel que soit niveau",
           "Permettre traduction par pairs si nécessaire"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter format de présentation selon besoins individuels",
           "Utiliser supports technologiques ou alternatifs",
           "Respecter besoins sensoriels et émotionnels",
@@ -2080,25 +2080,25 @@
       },
       "realWorldConnection": "Playing family helps children understand family roles and relationships",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Commencer par observation avant participation active",
           "Offrir rôles simples et concrets",
           "Support d'un partenaire pour initiation au jeu",
           "Accepter participation non-verbale (gestes, actions)"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager leadership dans organisation du jeu",
           "Inviter création de scénarios plus complexes",
           "Ajouter éléments narratifs au jeu",
           "Utiliser vocabulaire enrichi et phrases complètes"
         ],
-        "forELL": [
+        "pourLangue": [
           "Permettre mélange linguistique dans jeu créatif",
           "Utiliser gestes et actions comme communication principale",
           "Support par pairs bilingues si disponible",
           "Encourager tentatives sans pression de perfection"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter rôles selon capacités sociales et communicatives",
           "Offrir espaces de jeu calmes si besoin sensoriel",
           "Permettre participation observer ou assistant",
@@ -2136,10 +2136,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2255,25 +2255,25 @@
       },
       "realWorldConnection": "Family photo albums preserve memories and help tell family stories",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Légendes d'un mot seulement",
           "Plus de dessins, moins de photos",
           "Aide pour organisation et écriture",
           "Format album simplifié (3-4 pages)"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Légendes détaillées en phrases complètes",
           "Organisation thématique ou chronologique",
           "Éléments artistiques et décoratifs avancés",
           "Aide aux camarades avec techniques de création"
         ],
-        "forELL": [
+        "pourLangue": [
           "Légendes bilingues acceptées",
           "Support visuel prioritaire sur textuel",
           "Aide avec vocabulaire français spécifique",
           "Encouragement tentatives sans pression perfection"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adaptation outils selon capacités motrices",
           "Support technologique si approprié",
           "Format alternatif (collage, compilation)",
@@ -2311,10 +2311,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2408,25 +2408,25 @@
       },
       "realWorldConnection": "People ask questions to learn more about their family history and members",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Questions d'un mot: 'Qui?', 'Quoi?'",
           "Répétition après enseignant",
           "Pointage au lieu de questions verbales",
           "Participation comme interviewé plutôt que journaliste"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Création de questions originales",
           "Questions de suivi selon réponses",
           "Animation du jeu d'interview",
           "Aide aux camarades avec formulation"
         ],
-        "forELL": [
+        "pourLangue": [
           "Mélange linguistique accepté dans questions",
           "Support gestuel avec questions",
           "Questions dans L1 puis tentative française",
           "Focus sur intonation plus que vocabulaire"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adaptation selon besoins communicatifs",
           "Questions écrites si expression orale difficile",
           "Participation observateur si nécessaire",
@@ -2464,10 +2464,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2582,25 +2582,25 @@
       },
       "realWorldConnection": "Families exist in every culture with both universal and unique characteristics",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus sur similitudes plutôt que différences",
           "Images très claires et évidentes",
           "Concepts simples: familles mangent, jouent, s'aiment",
           "Participation par observation principalement"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager questions réfléchies sur cultures",
           "Connections avec leur propre héritage culturel",
           "Comparaisons respectueuses entre traditions",
           "Aide à expliquer concepts aux camarades"
         ],
-        "forELL": [
+        "pourLangue": [
           "Connecter avec culture d'origine avec fierté",
           "Permettre partage de traditions familiales",
           "Utiliser langue première pour enrichir discussion",
           "Validation de diversité linguistique comme atout"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon capacités de traitement culturel",
           "Utiliser supports visuels comme priorité",
           "Respecter sensibilités à nouveaux concepts",
@@ -2638,10 +2638,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2754,25 +2754,25 @@
       },
       "realWorldConnection": "Songs and rhymes are traditional ways families share language and culture",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Participation par gestes plutôt que chant",
           "Répétition de mots-clés seulement",
           "Accompagnement instrumental simple",
           "Encouragement sans pression performance"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Leadership dans enseignement aux camarades",
           "Création de couplets additionnels",
           "Accompagnement instrumental plus complexe",
           "Performance solo pour démonstration"
         ],
-        "forELL": [
+        "pourLangue": [
           "Focus sur rythme et mélodie avant paroles parfaites",
           "Acceptation approximations phonetiques",
           "Connection avec musique de culture d'origine",
           "Support gestuel maximal"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adaptation selon capacités sensorielles et de traitement",
           "Participation observateur si nécessaire",
           "Volume et stimulation ajustés",
@@ -2810,10 +2810,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2945,25 +2945,25 @@
       },
       "realWorldConnection": "Museums and exhibitions help people learn about and celebrate different families and cultures",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Célébrer chaque contribution sans comparaison",
           "Permettre rôle observateur avec validation",
           "Reconnaissance de progrès individuels uniques",
           "Support pour identifier leurs accomplissements personnels"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Rôle leadership comme guide d'exposition",
           "Synthèse et connexions entre apprentissages",
           "Aide à animer réflexions de camarades",
           "Planification extensions futures possibles"
         ],
-        "forELL": [
+        "pourLangue": [
           "Célébration spéciale de croissance linguistique",
           "Reconnaissance de bilinguisme comme atout",
           "Permettre fierté dans toutes langues maîtrisées",
           "Support pour expression dans langue la plus confortable"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Célébration adaptée aux capacités individuelles",
           "Reconnaissance de contributions uniques",
           "Support pour participation confortable",
@@ -3001,10 +3001,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -3309,25 +3309,25 @@
         ]
       },
       {
-        "word": "grand-maman",
+        "word": "mémère",
         "lesson": 2,
         "context": "Qui est dans ma famille?",
         "practiceIdeas": [
-          "Pointez l'objet en disant \"grand-maman\"",
-          "Utilisez \"grand-maman\" dans une phrase simple",
-          "Trouvez des images représentant \"grand-maman\"",
-          "Faites des gestes pour \"grand-maman\""
+          "Pointez l'objet en disant \"mémère\"",
+          "Utilisez \"mémère\" dans une phrase simple",
+          "Trouvez des images représentant \"mémère\"",
+          "Faites des gestes pour \"mémère\""
         ]
       },
       {
-        "word": "grand-papa",
+        "word": "pépère",
         "lesson": 3,
         "context": "Ma famille à moi",
         "practiceIdeas": [
-          "Pointez l'objet en disant \"grand-papa\"",
-          "Utilisez \"grand-papa\" dans une phrase simple",
-          "Trouvez des images représentant \"grand-papa\"",
-          "Faites des gestes pour \"grand-papa\""
+          "Pointez l'objet en disant \"pépère\"",
+          "Utilisez \"pépère\" dans une phrase simple",
+          "Trouvez des images représentant \"pépère\"",
+          "Faites des gestes pour \"pépère\""
         ]
       },
       {

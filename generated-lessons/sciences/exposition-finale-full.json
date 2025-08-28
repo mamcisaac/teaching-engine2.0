@@ -47,17 +47,17 @@
         "visualSupports": "Visual timeline with unit icons and key vocabulary cards",
         "decisionPoints": [
           {
-            "question": "What science topics were most memorable for students this year?",
+            "question": "Si les sujets de science les plus mémorables pour les élèves cette année",
             "ifYes": "Focus on those topics for deeper recall and connection",
             "ifNo": "Use visual prompts and peer sharing to activate memories"
           },
           {
-            "question": "Should we use a timeline format or topic-by-topic review?",
+            "question": "Si on utilise une ligne du temps ou une révision par sujets",
             "ifYes": "Continue with chronological timeline approach",
             "ifNo": "Switch to thematic groupings of similar concepts"
           },
           {
-            "question": "Are students ready to make connections between different science units?",
+            "question": "Si les élèves sont prêts à faire des liens entre différentes unités",
             "ifYes": "Guide students to find links between units",
             "ifNo": "Focus on individual unit recall before making connections"
           }
@@ -89,22 +89,22 @@
       },
       "realWorldConnection": "Reflecting on learning helps us understand how much we've grown, like looking at photos from the beginning of the year",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide picture cards showing different science activities to help trigger memories",
           "Allow students to work with a partner to recall science experiences together",
           "Use simple yes/no questions about science topics rather than open-ended recall"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to make connections between different science units they studied",
           "Ask students to identify their favorite science concept and explain why it was interesting",
           "Challenge students to think about science questions they still wonder about"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide visual vocabulary cards with science terms in both French and home language",
           "Use gestures and actions when reviewing different science activities",
           "Allow students to draw their science memories instead of only using words"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Break the review into smaller chunks with breaks between topics",
           "Provide a visual schedule showing the order of science units reviewed",
           "Use concrete objects from science activities to help trigger specific memories"
@@ -165,7 +165,7 @@
         "visualSupports": "Sentence starters and emotion words display",
         "decisionPoints": [
           {
-            "question": "Should students share discoveries individually or in small groups?",
+            "question": "Si les élèves partagent leurs découvertes individuellement ou en petits groupes",
             "ifYes": "Use individual presentation format with audience",
             "ifNo": "Keep to small group sharing for comfort and time management"
           },
@@ -175,7 +175,7 @@
             "ifNo": "Use peer partnerships to help generate ideas together"
           },
           {
-            "question": "Are students ready to explain their thinking or should we focus on sharing experiences?",
+            "question": "Si les élèves peuvent expliquer leur pensée ou se concentrer sur le partage d'expériences",
             "ifYes": "Include 'why' questions in sharing prompts",
             "ifNo": "Focus on describing what happened and how it felt"
           }
@@ -207,22 +207,22 @@
       },
       "realWorldConnection": "Scientists often share their most exciting discoveries with others, just like we share exciting news with friends",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide a choice between 2-3 specific discoveries with visual reminders",
           "Allow students to point to pictures instead of describing with words",
           "Use partner support to help recall and share discovery experiences"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to explain WHY their discovery was exciting using science reasoning",
           "Ask students to connect their discovery to how it relates to the real world",
           "Challenge students to think about what questions their discovery raised for them"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide discovery vocabulary cards with visual supports",
           "Allow students to use gestures and demonstrations alongside French words",
           "Offer sentence frames: 'Ma découverte préférée était...' 'C'était excitant parce que...'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Pre-select 2-3 appropriate discoveries for students to choose from",
           "Use concrete materials from past activities to help recall experiences",
           "Allow alternative ways to show excitement (drawing, acting, simple words)"
@@ -283,7 +283,7 @@
         "visualSupports": "Simple flowchart showing: Learn → Practice → Share → Celebrate",
         "decisionPoints": [
           {
-            "question": "Should we show examples of science fairs or focus on simple sharing concepts?",
+            "question": "Si on montre des exemples d'expo-sciences ou se concentre sur des concepts simples",
             "ifYes": "Use carefully selected, age-appropriate science fair videos",
             "ifNo": "Focus on familiar sharing experiences like show-and-tell"
           },
@@ -293,7 +293,7 @@
             "ifNo": "Break down the concept into very small, concrete steps"
           },
           {
-            "question": "Are students ready to understand audience or should we focus on showing work?",
+            "question": "Si les élèves comprennent le public ou se concentrent sur montrer leur travail",
             "ifYes": "Include discussion about who comes to see science work",
             "ifNo": "Focus mainly on the act of showing what we've learned"
           }
@@ -325,22 +325,22 @@
       },
       "realWorldConnection": "Understanding how people share their best work at art shows, school concerts, or sports games",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus on familiar sharing experiences like show-and-tell or sharing toys",
           "Use concrete examples: 'showing your drawings to grandparents' instead of abstract concepts",
           "Provide simple picture cards showing different ways people share their work"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Introduce the idea that scientists share discoveries to help other people learn",
           "Discuss different ways scientists share their work (books, videos, teaching)",
           "Connect science sharing to how students can teach others what they've learned"
         ],
-        "forELL": [
+        "pourLangue": [
           "Use visual supports showing: montrer (show), partager (share), exposition (display)",
           "Practice key vocabulary with gestures and real examples in the classroom",
           "Allow students to connect concept to sharing traditions from their home culture"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Break the concept into single steps: Learn something → Show it to others",
           "Use role-play with concrete props rather than discussing abstract concepts",
           "Focus on the celebration aspect of sharing rather than formal presentation"
@@ -402,7 +402,7 @@
         "visualSupports": "Decision-making criteria poster: Safe, Fun, I Know It Well",
         "decisionPoints": [
           {
-            "question": "Should students choose individually or work in small groups?",
+            "question": "Si les élèves choisissent individuellement ou travaillent en petits groupes",
             "ifYes": "Allow individual choice with option for partnerships",
             "ifNo": "Organize into predetermined small groups with shared choices"
           },
@@ -412,7 +412,7 @@
             "ifNo": "Focus primarily on student interest and engagement level"
           },
           {
-            "question": "Are students ready for independent choice or need guided options?",
+            "question": "Si les élèves sont prêts pour un choix indépendant ou ont besoin d'options guidées",
             "ifYes": "Provide full menu of year's topics for selection",
             "ifNo": "Pre-select 4-5 most appropriate options for students to choose from"
           }
@@ -444,22 +444,22 @@
       },
       "realWorldConnection": "Making choices about what to share, like picking our best artwork for a family display",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Limit choices to 2-3 pre-selected appropriate science topics",
           "Use visual reminders showing students doing each activity successfully",
           "Provide teacher conference support to talk through each option"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to choose topics they can extend or teach in new ways",
           "Allow students to combine two related science topics if appropriate",
           "Challenge students to think about what aspect of their topic was most interesting"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide topic cards with both French labels and visual representations",
           "Allow students to discuss choices in partner talk before individual decision",
           "Use simple vocabulary: 'J'aime...', 'Je suis bon à...', 'Je veux montrer...'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Pre-select 2 topics that the student had clear success with during the year",
           "Use concrete materials from activities to help recall experiences",
           "Allow selection through pointing, drawing, or simple words rather than complex reasoning"
@@ -522,7 +522,7 @@
         "visualSupports": "Step-by-step planning process poster and sample completed plans",
         "decisionPoints": [
           {
-            "question": "Should we provide planning templates or encourage creative formats?",
+            "question": "Si on fournit des modèles de planification ou encourage les formats créatifs",
             "ifYes": "Provide basic template but allow creative additions",
             "ifNo": "Start with completely open-ended planning approach"
           },
@@ -532,7 +532,7 @@
             "ifNo": "Focus on just the main idea and one key step"
           },
           {
-            "question": "Are students ready for thinking about audience needs or focus on their own presentation?",
+            "question": "Si les élèves pensent aux besoins du public ou se concentrent sur leur présentation",
             "ifYes": "Include 'What will visitors see?' in planning",
             "ifNo": "Focus on 'What will I do?' for now"
           }
@@ -564,22 +564,22 @@
       },
       "realWorldConnection": "Planning how to explain something to others, like teaching a game to a younger child",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide a very simple template with pictures: First I will..., Then I will..., Last I will...",
           "Focus on just 2 steps: What I will show and What I will say",
           "Use partner support to help think through the planning process"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to think about what questions visitors might ask",
           "Include planning for how to make the demonstration interactive for the audience",
           "Challenge students to plan for different age audiences (other Grade 1s vs. older students)"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide planning vocabulary with visual supports: d'abord (first), puis (then), finalement (finally)",
           "Allow drawings with simple French labels instead of full sentences",
           "Use sentence frames: 'Je vais montrer...' 'Les visiteurs vont voir...' 'J'ai besoin de...'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Break planning into one step at a time with visual supports for each",
           "Use concrete props to help student physically plan out their demonstration",
           "Focus on the main action: 'I will show...' with support to add details later"
@@ -646,12 +646,12 @@
             "ifNo": "Restrict to pre-approved safe materials list only"
           },
           {
-            "question": "Should we focus on simple materials or allow more complex tools with supervision?",
+            "question": "Si on utilise des matériaux simples ou permet des outils complexes avec supervision",
             "ifYes": "Include some yellow-category materials with adult helper assigned",
             "ifNo": "Stick to simple, completely safe materials students can handle alone"
           },
           {
-            "question": "Are students ready for material responsibility or need teacher-prepared sets?",
+            "question": "Si les élèves sont prêts pour la responsabilité du matériel ou ont besoin d'ensembles préparés",
             "ifYes": "Have students gather and organize their own materials",
             "ifNo": "Pre-prepare material sets with student input on arrangement"
           }
@@ -678,22 +678,22 @@
       },
       "realWorldConnection": "Getting ready for activities by gathering what we need, like packing for a trip or preparing for cooking",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide pre-made material lists specific to each student's chosen demonstration",
           "Use picture cards showing each needed material instead of written lists",
           "Partner students with material organization helpers"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to think about backup materials in case something breaks",
           "Include students in making safety decisions about their material choices",
           "Challenge students to organize materials for efficient setup and cleanup"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide material vocabulary cards with French labels and pictures",
           "Practice key phrases: 'J'ai besoin de...', 'C'est sécuritaire', 'C'est fragile'",
           "Use hands-on material exploration with vocabulary practice"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Focus on 3-4 essential materials rather than comprehensive lists",
           "Use concrete materials handling practice before list-making",
           "Provide step-by-step visual sequence for material gathering"
@@ -755,7 +755,7 @@
         "visualSupports": "Word choice helper chart: hard words → easy words",
         "decisionPoints": [
           {
-            "question": "Should students practice with peers or adults first?",
+            "question": "Si les élèves pratiquent avec des pairs ou des adultes d'abord",
             "ifYes": "Start with peer practice for comfort level",
             "ifNo": "Begin with adult practice for immediate feedback"
           },
@@ -765,7 +765,7 @@
             "ifNo": "Model simple language and have students repeat"
           },
           {
-            "question": "Are students ready for feedback on their explanations or need encouragement first?",
+            "question": "Si les élèves sont prêts pour la rétroaction ou ont besoin d'encouragement d'abord",
             "ifYes": "Include gentle, specific feedback with encouragement",
             "ifNo": "Focus purely on positive reinforcement and building confidence"
           }
@@ -792,22 +792,22 @@
       },
       "realWorldConnection": "Learning to explain things clearly so others understand, like telling someone how to play our favorite game",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide sentence starters: 'D'abord...', 'Puis...', 'C'est important parce que...'",
           "Use props and visual aids to support verbal explanations",
           "Practice with very patient partners who encourage rather than correct"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to explain the 'why' behind their science topic, not just the 'what'",
           "Challenge students to think of questions their audience might ask",
           "Practice explaining the same concept in different ways for different audiences"
         ],
-        "forELL": [
+        "pourLangue": [
           "Allow mixing of gestures, drawing, and simple French words during explanations",
           "Practice key explanation vocabulary with visual supports",
           "Pair with French-speaking partners for modeling and support"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Focus on explaining just one key point clearly rather than comprehensive explanations",
           "Use concrete objects and hands-on demonstration instead of abstract explanations",
           "Allow alternative communication methods (drawing, pointing, demonstrating)"
@@ -877,12 +877,12 @@
             "ifNo": "Focus on drawings with labels as the primary format"
           },
           {
-            "question": "Should we focus on drawings, simple posters, or 3D models?",
+            "question": "Si on se concentre sur des dessins, affiches simples, ou modèles 3D",
             "ifYes": "Offer all three options based on student project needs",
             "ifNo": "Standardize on one format for consistency and time management"
           },
           {
-            "question": "Are students ready for independent creation or need guided templates?",
+            "question": "Si les élèves créent indépendamment ou ont besoin de modèles guidés",
             "ifYes": "Provide optional templates but encourage creative additions",
             "ifNo": "Use structured templates with specific areas for student input"
           }
@@ -909,22 +909,22 @@
       },
       "realWorldConnection": "Using pictures and displays to help explain ideas, like showing photos when telling about vacation",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide simple templates or pre-drawn outlines for visual displays",
           "Focus on one key concept rather than comprehensive displays",
           "Use partner support for planning and organizing visual elements"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to create interactive elements for their visual display",
           "Include multiple ways to show the same concept (drawing, diagram, model)",
           "Challenge students to design displays that teach others step-by-step"
         ],
-        "forELL": [
+        "pourLangue": [
           "Use visual vocabulary cards with French labels for display creation",
           "Allow combination of drawings and simple French words/phrases",
           "Practice key vocabulary: 'affichage', 'montrer', 'expliquer', 'intéressant'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Focus on creating one clear visual element rather than complex displays",
           "Use concrete materials and hands-on creation over abstract planning",
           "Provide step-by-step visual guides for display creation process"
@@ -991,12 +991,12 @@
             "ifNo": "Focus on general curiosity questions regardless of age"
           },
           {
-            "question": "Should we practice specific questions or general question-answering skills?",
+            "question": "Si on pratique des questions spécifiques ou des compétences générales de réponse",
             "ifYes": "Create specific question bank for each project type",
             "ifNo": "Focus on general questioning strategies and comfort building"
           },
           {
-            "question": "Are students ready for unknown questions or should we stick to predictable ones?",
+            "question": "Si les élèves sont prêts pour des questions inconnues ou prévisibles"
             "ifYes": "Include some surprise questions in practice",
             "ifNo": "Practice only with predictable, prepared questions"
           }
@@ -1023,22 +1023,22 @@
       },
       "realWorldConnection": "Being ready to answer questions about things we know well, like explaining our favorite books or toys",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Pre-practice with 2-3 simple, predictable questions about their topic",
           "Use visual cue cards to remind students of key answer points",
           "Practice with very supportive peer partners who ask gentle questions"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to think of follow-up questions visitors might ask",
           "Practice explaining their topic in different ways if first explanation unclear",
           "Challenge students to connect their topic to visitors' own experiences"
         ],
-        "forELL": [
+        "pourLangue": [
           "Practice key question-answer vocabulary: 'Qu'est-ce que...?', 'Comment...?', 'Pourquoi...?'",
           "Use sentence frames for answers: 'C'est...', 'Ça marche parce que...', 'J'aime ça parce que...'",
           "Allow use of gestures and props to support verbal answers"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Focus on understanding and answering just one type of question well",
           "Use concrete examples and hands-on demonstrations rather than abstract explanations",
           "Practice with familiar adults before peer or visitor interactions"
@@ -1105,12 +1105,12 @@
             "ifNo": "Concentrate on basic personal safety and space organization"
           },
           {
-            "question": "Should we focus on material safety or visitor safety protocols?",
+            "question": "Si on se concentre sur la sécurité du matériel ou des visiteurs",
             "ifYes": "Include both with emphasis on visitor safety",
             "ifNo": "Prioritize material safety as the foundation"
           },
           {
-            "question": "Are students ready for safety leadership or need adult supervision reminders?",
+            "question": "Si les élèves sont prêts pour la responsabilité sécuritaire ou ont besoin de rappels",
             "ifYes": "Practice student safety leadership with backup adult support",
             "ifNo": "Focus on recognizing when to call for adult help"
           }
@@ -1137,22 +1137,22 @@
       },
       "realWorldConnection": "Being responsible for safety when showing others our activities, like teaching someone to ride a bike safely",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus on 2-3 most important safety rules rather than comprehensive lists",
           "Use visual safety symbols and pictures rather than word-based rules",
           "Practice safety scenarios with adult guidance and support"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Include students in creating safety plans for the entire classroom exhibition",
           "Encourage students to think about visitor safety as well as material safety",
           "Challenge students to become safety helpers for peers during demonstrations"
         ],
-        "forELL": [
+        "pourLangue": [
           "Teach key safety vocabulary with actions: 'attention' (careful), 'sécuritaire' (safe), 'aide' (help)",
           "Use universal safety symbols alongside French vocabulary",
           "Practice safety phrases: 'C'est sécuritaire', 'J'ai besoin d'aide', 'Attention'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Use concrete practice with actual demonstration materials in safe environment",
           "Create personalized safety reminder cards with pictures",
           "Focus on recognition of when to ask for adult help rather than complex safety reasoning"
@@ -1216,7 +1216,7 @@
         "visualSupports": "Audience job chart: Listen, Look, Think of kind words",
         "decisionPoints": [
           {
-            "question": "Should students present individually or in small groups?",
+            "question": "Si les élèves présentent individuellement ou en petits groupes",
             "ifYes": "Use individual presentations with small audience rotation",
             "ifNo": "Organize small group presentations with larger audiences"
           },
@@ -1226,7 +1226,7 @@
             "ifNo": "Focus purely on encouragement and celebration of efforts"
           },
           {
-            "question": "Are students ready for peer feedback or should we focus on teacher observation?",
+            "question": "Si les élèves sont prêts pour la rétroaction des pairs ou l'observation de l'enseignant",
             "ifYes": "Include guided peer feedback with kind word focus",
             "ifNo": "Have teacher provide all feedback while peers practice audience skills"
           }
@@ -1253,22 +1253,22 @@
       },
       "realWorldConnection": "Practicing performances before the real event, like rehearsing for a school play or music concert",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide a very supportive audience of just 2-3 classmates for first practice",
           "Allow students to practice with notes or visual reminders if needed",
           "Focus on celebrating effort and enthusiasm rather than perfection"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to practice handling questions or interruptions gracefully",
           "Include timing awareness and pacing in their practice sessions",
           "Challenge students to adapt their presentation for different audience reactions"
         ],
-        "forELL": [
+        "pourLangue": [
           "Allow use of key props or visual aids to support French vocabulary during practice",
           "Provide patient peer partners who focus on encouragement",
           "Practice key presentation phrases: 'Regardez', 'Voici', 'C'est intéressant parce que...'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Allow shorter practice sessions with breaks to prevent overwhelm",
           "Use familiar audience members (teacher, educational assistant, close friend) for comfort",
           "Focus on one aspect of presentation at a time (voice, showing materials, eye contact)"
@@ -1330,7 +1330,7 @@
         "visualSupports": "Improvement areas chart: Louder voice, Clearer words, Better showing",
         "decisionPoints": [
           {
-            "question": "Should improvements focus on content clarity or presentation skills?",
+            "question": "Si les améliorations portent sur la clarté du contenu ou les compétences de présentation",
             "ifYes": "Allow student choice between content and delivery improvements",
             "ifNo": "Focus primarily on presentation skills as more immediately achievable"
           },
@@ -1340,7 +1340,7 @@
             "ifNo": "Guide students to very specific, single-focus improvements"
           },
           {
-            "question": "Are students ready for self-reflection or need guided improvement suggestions?",
+            "question": "Si les élèves sont prêts pour l'autoréflexion ou ont besoin de suggestions guidées",
             "ifYes": "Start with self-reflection then confirm with teacher guidance",
             "ifNo": "Provide teacher-identified improvements with student input"
           }
@@ -1367,22 +1367,22 @@
       },
       "realWorldConnection": "Making things better through practice and changes, like improving at sports or drawing",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus on just one specific improvement area (louder voice, clearer showing, etc.)",
           "Use peer feedback focused on positive observations only",
           "Practice improvements in low-pressure, supportive environment"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to seek feedback on multiple aspects of their presentation",
           "Include students in helping peers identify improvement opportunities",
           "Challenge students to practice their improvements until they become automatic"
         ],
-        "forELL": [
+        "pourLangue": [
           "Focus on improvement vocabulary: 'mieux', 'plus fort', 'plus clair', 'améliorer'",
           "Use visual guides showing good presentation behaviors",
           "Practice improvement phrases: 'Je peux faire mieux', 'Maintenant c'est plus clair'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Use concrete, specific feedback rather than general improvement suggestions",
           "Focus on one small, achievable improvement at a time",
           "Provide multiple practice opportunities with consistent support"
@@ -1449,12 +1449,12 @@
             "ifNo": "Concentrate only on positive encouragement and celebration"
           },
           {
-            "question": "Should we focus on positive comments or specific suggestions?",
+            "question": "Si on se concentre sur les commentaires positifs ou suggestions spécifiques",
             "ifYes": "Balance positive comments with one gentle suggestion",
             "ifNo": "Emphasize positive comments with optional suggestions"
           },
           {
-            "question": "Are students ready for peer evaluation or should we model supportive language?",
+            "question": "Si les élèves sont prêts pour l'évaluation par les pairs ou modéliser le langage de soutien",
             "ifYes": "Allow guided peer evaluation with supportive language frames",
             "ifNo": "Have teacher model supportive language while students practice listening"
           }
@@ -1481,22 +1481,22 @@
       },
       "realWorldConnection": "Helping friends get better at things they're working on, like cheering each other on during games",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus on giving positive encouragement rather than specific feedback",
           "Use structured sentence frames for supportive comments",
           "Practice listening skills and kind audience behaviors"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to give specific, helpful suggestions to peers",
           "Include students in helping solve presentation challenges collaboratively",
           "Challenge students to ask thoughtful questions that help others improve"
         ],
-        "forELL": [
+        "pourLangue": [
           "Practice encouragement vocabulary: 'Bon travail!', 'C'est intéressant!', 'J'aime...'",
           "Use simple comment frames: 'Tu expliques bien...', 'Ton projet montre...'",
           "Focus on positive observation rather than complex feedback"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Focus on being a good audience member (listening, looking, staying quiet)",
           "Use concrete ways to help (holding materials, being practice audience)",
           "Practice giving one positive comment rather than detailed feedback"
@@ -1559,7 +1559,7 @@
         "visualSupports": "Invitation checklist: Who, What, When, Where, Why",
         "decisionPoints": [
           {
-            "question": "Should invitations include specific details about student demonstrations?",
+            "question": "Si les invitations incluent des détails sur les démonstrations des élèves",
             "ifYes": "Include brief description of student's project on invitation",
             "ifNo": "Keep invitations general with focus on celebration aspect"
           },
@@ -1569,7 +1569,7 @@
             "ifNo": "Use simple universal language about 'special people' instead of specific family terms"
           },
           {
-            "question": "Are students ready for writing invitations or should we use templates/dictation?",
+            "question": "Si les élèves écrivent les invitations ou utilisent des modèles/dictée",
             "ifYes": "Provide writing templates with student choice in personalization",
             "ifNo": "Use teacher/student dictated text with student art additions"
           }
@@ -1596,22 +1596,22 @@
       },
       "realWorldConnection": "Inviting people we care about to see our special work, like asking grandparents to come to graduation",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide simple invitation template with blanks to fill in key information",
           "Focus on drawing and decorating rather than extensive writing",
           "Use dictation with adult help for writing invitation text"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to include specific details about what visitors will see and learn",
           "Include students in thinking about accessibility and comfort for all visitors",
           "Challenge students to create invitations in multiple languages if appropriate"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide invitation vocabulary with visual supports: invitation, venir, voir, célébrer",
           "Use simple sentence frames: 'Venez voir', 'Je vais montrer', 'À bientôt'",
           "Allow incorporation of home language elements in invitation design"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Use very simple invitation format focusing on essential information only",
           "Provide hands-on decoration materials (stickers, stamps) rather than complex art tasks",
           "Focus on personal connection: drawing family members or special people to invite"
@@ -1680,12 +1680,12 @@
             "ifNo": "Provide structured setup tasks with adult support available"
           },
           {
-            "question": "Should we focus on individual spaces or collaborative classroom setup?",
+            "question": "Si on organise des espaces individuels ou une disposition collaborative",
             "ifYes": "Organize individual spaces within collaborative room setup",
             "ifNo": "Focus on individual spaces with minimal room-wide coordination"
           },
           {
-            "question": "Are students ready for independent organization or need step-by-step guidance?",
+            "question": "Si les élèves organisent indépendamment ou ont besoin de guidance étape par étape",
             "ifYes": "Provide setup checklist and allow independent organization",
             "ifNo": "Use step-by-step guided setup with teacher direction"
           }
@@ -1712,22 +1712,22 @@
       },
       "realWorldConnection": "Getting ready for special events by organizing our space, like setting up for a birthday party",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus on organizing just 3-4 essential items in their demonstration space",
           "Use pictorial setup guides showing where each item should go",
           "Practice setup with teacher guidance before independent organization"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Include students in overall classroom layout planning for visitor flow",
           "Encourage students to think about visitor comfort (seating, viewing angles, space to move)",
           "Challenge students to create backup plans in case materials are moved or broken"
         ],
-        "forELL": [
+        "pourLangue": [
           "Teach key organization vocabulary: ici (here), là (there), à côté (beside), devant (in front)",
           "Use directional gestures and physical modeling for space organization concepts",
           "Practice key phrases: 'Voici ma place', 'Mes matériaux sont ici', 'Bienvenue à mon espace'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Use concrete visual markers (tape, signs) to define the student's demonstration space clearly",
           "Focus on one organization task at a time with clear success criteria",
           "Provide consistent adult support for setup and cleanup routines"
@@ -1765,10 +1765,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1830,7 +1830,7 @@
         "visualSupports": "Performance flow chart and timing guidelines",
         "decisionPoints": [
           {
-            "question": "Should the dress rehearsal include other classes as audience?",
+            "question": "Si la répétition générale inclut d'autres classes comme public",
             "ifYes": "Invite other classes for authentic audience experience",
             "ifNo": "Use classroom-only rehearsal to maintain comfort level"
           },
@@ -1840,7 +1840,7 @@
             "ifNo": "Focus on positive reinforcement and confidence building"
           },
           {
-            "question": "Are students ready for independent performance or need support reminders?",
+            "question": "Si les élèves performent indépendamment ou ont besoin de rappels de soutien",
             "ifYes": "Allow independent performance with minimal prompting",
             "ifNo": "Provide discrete support cues and encouragement throughout"
           }
@@ -1874,22 +1874,22 @@
       },
       "realWorldConnection": "Final practice before important events to make sure everything goes smoothly, like rehearsing before performing",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus on completing their presentation from start to finish without perfection pressure",
           "Provide extra encouragement and positive reinforcement during practice",
           "Allow for shorter presentation length if full demonstration feels overwhelming"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Include practicing with timing and pacing for efficient presentations",
           "Encourage students to practice handling unexpected situations or questions",
           "Challenge students to help support classmates during their final practice"
         ],
-        "forELL": [
+        "pourLangue": [
           "Allow use of visual cues and props to support verbal presentation",
           "Practice key transition phrases: 'D'abord', 'Maintenant', 'Finalement', 'Merci'",
           "Focus on clear communication over perfect French pronunciation"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Provide calm, supportive environment with familiar audience members",
           "Allow breaks between presentation components if needed",
           "Focus on celebrating completion and effort rather than performance evaluation"
@@ -1927,10 +1927,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1997,7 +1997,7 @@
             "ifNo": "Use peer buddy system and confident student helpers"
           },
           {
-            "question": "Should students rotate as both presenters and audience members?",
+            "question": "Si les élèves alternent entre présentateurs et membres du public",
             "ifYes": "Plan rotation schedule for students to see other presentations",
             "ifNo": "Keep students focused on their own demonstrations throughout"
           },
@@ -2036,22 +2036,22 @@
       },
       "realWorldConnection": "Sharing our learning and hard work with others in a special celebration of what we've accomplished",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Provide adult support nearby for encouragement and assistance if needed",
           "Allow flexibility in presentation length based on student comfort and energy",
           "Focus on celebrating participation and effort rather than performance perfection"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to engage visitors with questions and interactive elements",
           "Include students in helping welcome and guide visitors around the classroom",
           "Challenge students to make connections between their topic and visitors' experiences"
         ],
-        "forELL": [
+        "pourLangue": [
           "Allow use of all available supports (visual aids, props, gestures) during presentation",
           "Provide patient adult or peer support for language assistance if needed",
           "Celebrate communication success regardless of language perfection"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Ensure familiar, supportive adults are available during presentation time",
           "Allow alternative presentation formats if traditional format becomes overwhelming",
           "Focus on student's comfort and success rather than standardized presentation expectations"
@@ -2089,10 +2089,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2153,7 +2153,7 @@
         "visualSupports": "Growth comparison charts and accomplishment celebration display",
         "decisionPoints": [
           {
-            "question": "Should celebration focus on individual achievements or collective success?",
+            "question": "Si la célébration porte sur les réussites individuelles ou collectives",
             "ifYes": "Balance individual recognition with group celebration",
             "ifNo": "Focus primarily on collective class accomplishment"
           },
@@ -2163,7 +2163,7 @@
             "ifNo": "Focus on general feelings of accomplishment and pride"
           },
           {
-            "question": "Are students ready for formal reflection or should we use informal sharing?",
+            "question": "Si les élèves sont prêts pour une réflexion formelle ou un partage informel",
             "ifYes": "Use guided reflection activities with sharing opportunities",
             "ifNo": "Keep to informal celebration and story sharing"
           }
@@ -2197,22 +2197,22 @@
       },
       "realWorldConnection": "Feeling proud of accomplishments and recognizing how much we've learned and grown",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Help students identify specific positive moments from their exposition experience",
           "Use visual supports to help students recall and share their success stories",
           "Focus on effort and participation achievements rather than performance comparisons"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to reflect on their learning journey and growth throughout the unit",
           "Include students in recognizing and celebrating classmates' achievements and efforts",
           "Challenge students to set science learning goals for future exploration"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide celebration vocabulary: réussir, fier, accomplissement, félicitations",
           "Use sentence frames for reflection: 'Je suis fier de...', 'J'ai appris...', 'C'était amusant quand...'",
           "Allow expression of pride and accomplishment in ways that feel natural to student"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Focus on concrete, specific achievements that student can easily recognize",
           "Use photos or props from the exposition to help trigger positive memories",
           "Celebrate individual growth and participation in ways meaningful to the student"
@@ -2250,10 +2250,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2314,7 +2314,7 @@
         "visualSupports": "Learning from others chart and appreciation sentence starters",
         "decisionPoints": [
           {
-            "question": "Should we structure learning observations or allow free exploration?",
+            "question": "Si on structure les observations d'apprentissage ou permet l'exploration libre",
             "ifYes": "Provide guided observation questions with free sharing time",
             "ifNo": "Use completely open sharing about interesting discoveries"
           },
@@ -2324,7 +2324,7 @@
             "ifNo": "Allow general sharing of positive reactions and feelings"
           },
           {
-            "question": "Are students ready for comparing approaches or should we focus on appreciation?",
+            "question": "Si les élèves comparent les approches ou se concentrent sur l'appréciation",
             "ifYes": "Include gentle comparisons about different ways to show science",
             "ifNo": "Focus purely on appreciation and positive observations"
           }
@@ -2358,22 +2358,22 @@
       },
       "realWorldConnection": "Learning new things from friends and family, discovering that everyone has interesting knowledge to share",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus on identifying just one interesting thing learned from others' presentations",
           "Use visual supports showing different classmates' topics to help trigger memories",
           "Allow simple expressions of interest: 'J'ai aimé...', 'C'était cool...'"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to make connections between different classmates' science topics",
           "Include students in thinking about questions they still have after seeing others' work",
           "Challenge students to identify science topics they'd like to explore further"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide vocabulary for expressing interest: intéressant, nouveau, surprenant, cool",
           "Use sentence frames: 'J'ai appris que...', 'Je ne savais pas que...', 'Maintenant je comprends...'",
           "Allow students to draw or point to express their learning from others"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Focus on concrete, observable things from classmates' presentations",
           "Use photos or materials from other presentations to help recall specific learning",
           "Celebrate the student's attention and interest in others' work"
@@ -2411,10 +2411,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -2480,12 +2480,12 @@
             "ifNo": "Provide extensive activity options with clear safety guidelines"
           },
           {
-            "question": "Should we focus on observation activities or simple experiments?",
+            "question": "Si on se concentre sur les activités d'observation ou expériences simples",
             "ifYes": "Balance observation with very simple, safe experimental activities",
             "ifNo": "Concentrate on observation and discovery activities"
           },
           {
-            "question": "Are students ready for independent science thinking or need structured suggestions?",
+            "question": "Si les élèves pensent scientifiquement indépendamment ou ont besoin de suggestions structurées"
             "ifYes": "Encourage independent wondering with family support structure",
             "ifNo": "Provide specific, structured activity suggestions to follow"
           }
@@ -2519,22 +2519,22 @@
       },
       "realWorldConnection": "Continuing to explore and discover during summer through nature walks, backyard observations, and safe family experiments",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Focus on simple, safe science activities available at home (water play, nature observation)",
           "Use picture cards showing safe summer science activities",
           "Connect to familiar summer activities that already have science elements"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourage students to plan specific science investigations they could do over summer",
           "Include thinking about questions they want to explore further",
           "Challenge students to consider sharing summer discoveries with family or friends"
         ],
-        "forELL": [
+        "pourLangue": [
           "Provide summer science vocabulary: été, explorer, découvrir, observer, sécuritaire",
           "Use visual supports showing summer science activities",
           "Practice phrases: 'Cet été je vais...', 'Je peux observer...', 'C'est sécuritaire de...'"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Focus on very simple, concrete summer activities with science connections",
           "Use familiar summer routines and activities as starting points for science thinking",
           "Emphasize safety and adult supervision for any summer science exploration"
@@ -2572,10 +2572,10 @@
           ],
           "assessment": "Documenter le processus d'exploration et les découvertes",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }

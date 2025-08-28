@@ -79,22 +79,22 @@
       },
       "realWorldConnection": "Every person belongs to communities like school, family, and neighborhood",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser plus d'images et moins de mots parlés",
           "Permettre des réponses par gestes ou dessins",
           "Offrir un buddy pour la sécurité émotionnelle"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Demander de décrire pourquoi l'école est spéciale avec plus de détails",
           "Encourager à aider un ami qui a peur",
           "Inviter à dessiner un plan simple de l'école"
         ],
-        "forELL": [
+        "pourLangue": [
           "Montrer des objets réels en nommant en français",
           "Utiliser gestes et images pour expliquer 'école'",
           "Permettre réponses en langue maternelle au début"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Adapter selon besoins sensoriels (lumière, bruit)",
           "Offrir pauses si nécessaire",
           "Utiliser support visuel personnalisé"
@@ -152,7 +152,7 @@
         "visualSupports": "Acting gestures for scenarios, thumbs up for rights, helping hands for responsibilities",
         "decisionPoints": [
           {
-            "question": "Are students ready to discuss responsibilities or should we focus on rights first?",
+            "question": "Si les élèves sont prêts à discuter des responsabilités ou si on se concentre d'abord sur les droits?",
             "ifYes": "Balance rights and responsibilities equally in discussion",
             "ifNo": "Focus heavily on rights first, then gently introduce responsibilities"
           },
@@ -186,22 +186,22 @@
       },
       "realWorldConnection": "Being a student is an important role with special rights and responsibilities",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des gestes simples pour montrer 'droits' et 'responsabilités'",
           "Se concentrer sur un seul concept à la fois",
           "Utiliser des exemples très concrets de la classe"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à donner des exemples de droits et responsabilités",
           "Inviter à aider un camarade à comprendre les concepts",
           "Poser des questions sur comment être un bon élève"
         ],
-        "forELL": [
+        "pourLangue": [
           "Montrer images pour 'élève', 'droits', 'responsabilités'",
           "Utiliser leur nom souvent pour renforcer identité d'élève",
           "Permettre expression dans langue maternelle puis traduire"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Utiliser supports visuels personnalisés",
           "Offrir choix de participation (verbal, gestuel, écrit)",
           "Respecter leur rythme d'apprentissage individuel"
@@ -264,7 +264,7 @@
             "ifNo": "Guide exploration to ensure all functional areas are understood"
           },
           {
-            "question": "Should we create a classroom map together or individually?",
+            "question": "Si on crée une carte de classe ensemble ou individuellement?",
             "ifYes": "Create individual maps first, then combine into class map",
             "ifNo": "Work together on one large class map with everyone contributing"
           }
@@ -293,22 +293,22 @@
       },
       "realWorldConnection": "All learning spaces are designed to help people work, learn, and be together",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Utiliser des points de référence familiers dans la classe",
           "Permettre mapping avec dessins simples plutôt que mots",
           "Travailler en petit groupe avec support constant"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à inclure des détails sur la fonction de chaque espace",
           "Inviter à suggérer des améliorations pour l'organisation",
           "Demander de comparer avec d'autres salles de classe visitées"
         ],
-        "forELL": [
+        "pourLangue": [
           "Étiqueter physiquement les espaces en français avec images",
           "Utiliser gestes et mouvements pour expliquer chaque espace",
           "Permettre collaboration avec un partenaire francophone"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Offrir choix de matériaux pour créer la carte (numérique, tactile)",
           "Respecter besoins sensoriels lors des déplacements",
           "Utiliser supports visuels personnalisés selon les besoins"
@@ -371,7 +371,7 @@
             "ifNo": "Include spaces students rarely see (boiler room, storage) for broader understanding"
           },
           {
-            "question": "Should we take a walking tour or use photos and maps?",
+            "question": "Si on fait une visite à pied ou si on utilise des photos et des cartes?",
             "ifYes": "Combine walking tour with photo documentation for later reference",
             "ifNo": "Use virtual tour approach with photos, videos, and maps"
           }
@@ -400,22 +400,22 @@
       },
       "realWorldConnection": "Different spaces in our community serve different purposes for different people",
       "differentiation": {
-        "forStruggling": [
+        "pourDifficultés": [
           "Visiter seulement 2-3 espaces pour éviter la surcharge",
           "Utiliser un buddy system pendant les déplacements",
           "Se concentrer sur les espaces les plus familiers d'abord"
         ],
-        "forAdvanced": [
+        "pourAvancés": [
           "Encourager à poser des questions aux adultes rencontrés",
           "Demander de comparer les espaces scolaires avec ceux d'autres lieux",
           "Inviter à suggérer des améliorations pour certains espaces"
         ],
-        "forELL": [
+        "pourLangue": [
           "Pré-enseigner le vocabulaire des espaces avec images",
           "Utiliser gestes pour expliquer l'utilité de chaque espace",
           "Permettre l'utilisation de la langue maternelle pour exprimer les découvertes"
         ],
-        "forIEP": [
+        "pourPEI": [
           "Préparer l'élève à l'avance avec des photos des espaces",
           "Offrir des pauses durant la visite si nécessaire",
           "Adapter selon les besoins sensoriels (bruit, foule)"
@@ -477,7 +477,7 @@
             "ifNo": "Use more structured interview format with prepared questions"
           },
           {
-            "question": "Should we visit the office or invite guests to our classroom?",
+            "question": "Si on visite le bureau ou si on invite des invités à notre classe?",
             "ifYes": "Office visit gives authentic context for understanding their work",
             "ifNo": "Classroom visit might feel safer and more controlled for students"
           }
@@ -506,10 +506,10 @@
       },
       "realWorldConnection": "Every community has leaders who help organize and support everyone",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -559,7 +559,7 @@
             "ifNo": "Focus primarily on professional roles and classroom responsibilities"
           },
           {
-            "question": "Should we interview teachers or observe them in action?",
+            "question": "Si on interviewe les enseignants ou si on les observe en action?",
             "ifYes": "Combine interviews with classroom observation of teaching in action",
             "ifNo": "Focus on interview format to encourage personal connection"
           }
@@ -588,10 +588,10 @@
       },
       "realWorldConnection": "Teachers and helpers exist in many community settings, not just schools",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -641,7 +641,7 @@
             "ifNo": "Focus primarily on appreciation without discussing role value comparisons"
           },
           {
-            "question": "Should we observe work in action or have conversations with staff?",
+            "question": "Si on observe le travail en action ou si on a des conversations avec le personnel?",
             "ifYes": "Combine observation with conversation for full understanding",
             "ifNo": "Focus on conversation to build personal connections with staff"
           }
@@ -670,10 +670,10 @@
       },
       "realWorldConnection": "Every community depends on people who maintain spaces and provide services",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -718,12 +718,12 @@
         "visualSupports": "Rule reading gestures, safety demonstrations, community agreement actions",
         "decisionPoints": [
           {
-            "question": "Are students ready to discuss rule purposes or should we focus on examples first?",
+            "question": "Si les élèves sont prêts à discuter des buts des règles ou si on se concentre d'abord sur les exemples?",
             "ifYes": "Explore both what rules are and why they exist",
             "ifNo": "Focus on identifying and understanding existing rules first"
           },
           {
-            "question": "Should we create new class rules or explore existing school rules?",
+            "question": "Si on crée de nouvelles règles de classe ou si on explore les règles d'école existantes?",
             "ifYes": "Combine exploration of existing rules with collaborative creation of class agreements",
             "ifNo": "Focus on understanding and appreciating existing school rule system"
           }
@@ -752,10 +752,10 @@
       },
       "realWorldConnection": "All communities have agreements that help people live and work together safely",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -806,7 +806,7 @@
             "ifNo": "Use hypothetical scenarios to introduce problem-solving concepts"
           },
           {
-            "question": "Should we role-play solutions or discuss real classroom situations?",
+            "question": "Si on joue les rôles des solutions ou si on discute de situations réelles de la classe?",
             "ifYes": "Carefully address real situations that have occurred with sensitivity",
             "ifNo": "Use role-play scenarios to practice skills without personalizing conflicts"
           }
@@ -835,10 +835,10 @@
       },
       "realWorldConnection": "Learning to solve problems peacefully helps in all relationships and communities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -889,7 +889,7 @@
             "ifNo": "Include broader school traditions to build comprehensive understanding"
           },
           {
-            "question": "Should we focus on current year traditions or school history?",
+            "question": "Si on se concentre sur les traditions de l'année actuelle ou l'histoire de l'école?",
             "ifYes": "Balance current traditions students will experience with historical context",
             "ifNo": "Focus primarily on traditions students will directly participate in this year"
           }
@@ -918,10 +918,10 @@
       },
       "realWorldConnection": "Traditions help communities remember their values and celebrate together",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -968,12 +968,12 @@
         "visualSupports": "Bird's eye view demonstrations, mapping motions, symbol explanation gestures",
         "decisionPoints": [
           {
-            "question": "Are students ready for bird's-eye view mapping or should we use floor-level perspective?",
+            "question": "Si les élèves sont prêts pour la cartographie à vue d'oiseau ou si on utilise une perspective au niveau du sol?",
             "ifYes": "Introduce bird's eye view with physical demonstrations and examples",
             "ifNo": "Start with floor-level perspective and gradually introduce aerial view concepts"
           },
           {
-            "question": "Should maps focus on favorite spaces or all school areas?",
+            "question": "Si les cartes se concentrent sur les espaces préférés ou toutes les zones de l'école?",
             "ifYes": "Encourage personal mapping with favorite spaces highlighted",
             "ifNo": "Provide structure for comprehensive school area mapping"
           }
@@ -1002,10 +1002,10 @@
       },
       "realWorldConnection": "Maps help us understand and navigate all the communities we belong to",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1056,7 +1056,7 @@
             "ifNo": "Prepare staff in advance and provide structured interview formats"
           },
           {
-            "question": "Should interviews be structured with prepared questions or more conversational?",
+            "question": "Si les interviews sont structurées avec des questions préparées ou plus conversationnelles?",
             "ifYes": "Use structured questions to build student confidence and focus",
             "ifNo": "Encourage natural conversation with question prompts available"
           }
@@ -1085,10 +1085,10 @@
       },
       "realWorldConnection": "Asking questions and listening to answers helps us understand our community better",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1139,7 +1139,7 @@
             "ifNo": "Accept broader interpretation of needs and focus on community cooperation"
           },
           {
-            "question": "Should we focus on material needs or emotional/social needs first?",
+            "question": "Si on se concentre d'abord sur les besoins matériels ou les besoins émotionnels/sociaux?",
             "ifYes": "Start with tangible material needs, then explore social/emotional community needs",
             "ifNo": "Integrate both types of needs as equally important for school community"
           }
@@ -1168,10 +1168,10 @@
       },
       "realWorldConnection": "All communities have needs that are met when people work together",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1222,7 +1222,7 @@
             "ifNo": "Start with simple, manageable helping tasks to build confidence"
           },
           {
-            "question": "Should we focus on individual contributions or group projects?",
+            "question": "Si on se concentre sur les contributions individuelles ou les projets de groupe?",
             "ifYes": "Balance individual choice with collaborative group helping projects",
             "ifNo": "Focus on group projects to build community cooperation skills"
           }
@@ -1251,10 +1251,10 @@
       },
       "realWorldConnection": "Everyone, including children, can make important contributions to their communities",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1305,7 +1305,7 @@
             "ifNo": "Provide foundational orientation to immediate school neighborhood"
           },
           {
-            "question": "Should we explore through windows, walks, or maps and photos?",
+            "question": "Si on explore par les fenêtres, les promenades, ou les cartes et photos?",
             "ifYes": "Combine multiple exploration methods for comprehensive understanding",
             "ifNo": "Choose safest and most practical exploration method for student group"
           }
@@ -1334,10 +1334,10 @@
       },
       "realWorldConnection": "Schools are part of larger communities with connections to many other places and people",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1361,10 +1361,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1428,7 +1428,7 @@
             "ifNo": "Include broader historical context about education and community changes"
           },
           {
-            "question": "Should we use photos, artifacts, or stories from older community members?",
+            "question": "Si on utilise des photos, des artefacts, ou des histoires des membres plus âgés de la communauté?",
             "ifYes": "Combine multiple sources for rich historical understanding",
             "ifNo": "Focus on most engaging and accessible historical source for student group"
           }
@@ -1457,10 +1457,10 @@
       },
       "realWorldConnection": "All communities have histories that help us understand how they became what they are today",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1484,10 +1484,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1550,7 +1550,7 @@
             "ifNo": "Select simpler project that ensures success and builds confidence in community contribution"
           },
           {
-            "question": "Should the project focus on classroom, school, or neighborhood improvement?",
+            "question": "Si le projet se concentre sur l'amélioration de la classe, de l'école, ou du quartier?",
             "ifYes": "Choose scope that allows students to see direct impact of their work",
             "ifNo": "Focus on immediate school community for most meaningful and visible results"
           }
@@ -1579,10 +1579,10 @@
       },
       "realWorldConnection": "Working together on projects is how communities solve problems and create positive changes",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1606,10 +1606,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1673,7 +1673,7 @@
             "ifNo": "Present to classmates or teachers if external audience isn't available"
           },
           {
-            "question": "Should presentations be formal or conversational, individual or group?",
+            "question": "Si les présentations sont formelles ou conversationnelles, individuelles ou de groupe?",
             "ifYes": "Match presentation format to student comfort levels and learning goals",
             "ifNo": "Use group presentations to provide mutual support and shared responsibility"
           }
@@ -1702,10 +1702,10 @@
       },
       "realWorldConnection": "Being able to describe and represent our communities helps others understand and appreciate them",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1729,10 +1729,10 @@
           ],
           "assessment": "Évaluer la capacité à faire des liens entre les concepts",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1795,7 +1795,7 @@
             "ifNo": "Focus on simple appreciation format that ensures everyone feels included"
           },
           {
-            "question": "Should celebration focus on students, staff, or the whole school community?",
+            "question": "Si la célébration se concentre sur les élèves, le personnel, ou toute la communauté scolaire?",
             "ifYes": "Include whole school community to emphasize interconnected relationships",
             "ifNo": "Focus on group that would be most meaningful and manageable for Grade 1 students"
           }
@@ -1824,10 +1824,10 @@
       },
       "realWorldConnection": "Celebrations help communities appreciate their shared experiences and values",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1851,10 +1851,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1918,7 +1918,7 @@
             "ifNo": "Focus on current understanding and abilities rather than change over time"
           },
           {
-            "question": "Should reflection focus on personal growth or community contribution?",
+            "question": "Si la réflexion se concentre sur la croissance personnelle ou la contribution communautaire?",
             "ifYes": "Balance both personal learning and community impact in reflection",
             "ifNo": "Focus on area that feels most meaningful and achievable for student group"
           }
@@ -1947,10 +1947,10 @@
       },
       "realWorldConnection": "Being a good community member is a lifelong journey of learning, contributing, and growing",
       "differentiation": {
-        "forStruggling": [],
-        "forAdvanced": [],
-        "forELL": [],
-        "forIEP": []
+        "pourDifficultés": [],
+        "pourAvancés": [],
+        "pourLangue": [],
+        "pourPEI": []
       },
       "assessmentCriteria": {
         "observable": [],
@@ -1974,10 +1974,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }

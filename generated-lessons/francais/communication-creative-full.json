@@ -24,11 +24,11 @@
         "visualSupports": "Images des parties du corps (gorge, bouche) pour expliquer la voix",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves sont timides avec leur voix",
+            "question": "Si certains élèves sont timides avec leur voix",
             "options": ["Commencer par chuchoter ensemble", "Utiliser des marionnettes", "Faire des sons avec la bouche fermée"]
           },
           {
-            "moment": "Si les élèves deviennent trop bruyants",
+            "question": "Si les élèves deviennent trop bruyants",
             "options": ["Signal de silence avec la main", "Jeu du volume (1-5)", "Pause respiratoire calme"]
           }
         ],
@@ -41,11 +41,11 @@
         "visualSupports": "Affiche des différents types de voix (forte, douce, aiguë, grave)",
         "decisionPoints": [
           {
-            "moment": "Si la technologie n'est pas disponible",
+            "question": "Si la technologie n'est pas disponible",
             "options": ["Utiliser écho en classe", "Partenaires s'enregistrent mutuellement", "Imitation en temps réel"]
           },
           {
-            "moment": "Si certains élèves monopolisent",
+            "question": "Si certains élèves monopolisent",
             "options": ["Chronomètre de 30 secondes", "Tour de rôle structuré", "Partenaires changent"]
           }
         ],
@@ -58,11 +58,11 @@
         "visualSupports": "Cercle de partage au sol avec coussin spécial pour le partage",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne veut pas partager",
+            "question": "Si un élève ne veut pas partager",
             "options": ["Partage optionnel", "Partage avec l'enseignant(e) seulement", "Écoute active seulement"]
           },
           {
-            "moment": "Si le temps manque",
+            "question": "Si le temps manque",
             "options": ["Un mot par élève seulement", "Petits groupes de 3-4", "Continuer demain"]
           }
         ],
@@ -71,10 +71,10 @@
       "troubleshooting": "If voice exploration feels uncomfortable, use familiar songs or chants as starting point",
       "realWorldConnection": "We use our voices every day to talk to family and friends - our voice is special and unique",
       "differentiation": {
-        "forStruggling": ["Commencer par des sons familiers (animaux)", "Support en petit groupe", "Imiter d'abord avant créer"],
-        "forAdvanced": ["Expérimenter avec accents différents", "Créer des histoires avec voix", "Diriger l'exploration du groupe"],
-        "forELL": ["Support visuel avec gestes", "Encourager mélange L1/français", "Partenaire francophone"],
-        "forIEP": ["Volume personnalisé selon confort", "Support technologique si nécessaire", "Temps additionnel"]
+        "pourDifficultés": ["Commencer par des sons familiers (animaux)", "Support en petit groupe", "Imiter d'abord avant créer"],
+        "pourAvancés": ["Expérimenter avec accents différents", "Créer des histoires avec voix", "Diriger l'exploration du groupe"],
+        "pourLangue": ["Support visuel avec gestes", "Encourager mélange L1/français", "Partenaire francophone"],
+        "pourPEI": ["Volume personnalisé selon confort", "Support technologique si nécessaire", "Temps additionnel"]
       },
       "assessmentCriteria": {
         "observable": ["Participe à l'exploration vocale", "Démontre confort avec sa voix", "Respecte les autres voix"],
@@ -99,11 +99,11 @@
         "visualSupports": "Phrases de départ sur affiche : 'Voici...', 'J'aime...', 'C'est important parce que...'",
         "decisionPoints": [
           {
-            "moment": "Si élève oublie d'apporter quelque chose",
+            "question": "Si élève oublie d'apporter quelque chose",
             "options": ["Choisir objet de classe", "Dessiner objet spécial", "Partager souvenir sans objet"]
           },
           {
-            "moment": "Si présentation trop longue",
+            "question": "Si présentation trop longue",
             "options": ["Chronomètre de 2 minutes", "3 phrases maximum", "Signal gentil de temps"]
           }
         ],
@@ -116,11 +116,11 @@
         "visualSupports": "Modèles de phrases : 'Voici mon/ma...', 'J'aime ça parce que...'",
         "decisionPoints": [
           {
-            "moment": "Si élève très nerveux",
+            "question": "Si élève très nerveux",
             "options": ["Présenter à un ami d'abord", "Enseignant(e) aide", "Présentation assise"]
           },
           {
-            "moment": "Si participation inégale",
+            "question": "Si participation inégale",
             "options": ["Petits groupes", "Partenaires", "Présentation volontaire seulement"]
           }
         ],
@@ -133,7 +133,7 @@
         "visualSupports": "Questions de réflexion au tableau : 'Qu'est-ce que j'ai appris?', 'Qu'est-ce qui m'a surpris?'",
         "decisionPoints": [
           {
-            "moment": "Si élèves ont de la difficulté à réfléchir",
+            "question": "Si élèves ont de la difficulté à réfléchir",
             "options": ["Questions plus spécifiques", "Partage en paires", "Dessiner ce qu'ils ont appris"]
           }
         ],
@@ -142,10 +142,10 @@
       "troubleshooting": "If students are nervous about presenting, let them share with just teacher or one friend first",
       "realWorldConnection": "Show and tell helps us share what's important to us - just like telling family about special things",
       "differentiation": {
-        "forStruggling": ["Support pour choisir objet simple", "Phrases pré-écrites disponibles", "Présentation avec aide"],
-        "forAdvanced": ["Phrases complexes", "Questions du public", "Histoire derrière l'objet"],
-        "forELL": ["Support visuel pour phrases", "Mélange de langues accepté", "Traduction si nécessaire"],
-        "forIEP": ["Format adapté aux besoins", "Temps flexible", "Support technologique"]
+        "pourDifficultés": ["Support pour choisir objet simple", "Phrases pré-écrites disponibles", "Présentation avec aide"],
+        "pourAvancés": ["Phrases complexes", "Questions du public", "Histoire derrière l'objet"],
+        "pourLangue": ["Support visuel pour phrases", "Mélange de langues accepté", "Traduction si nécessaire"],
+        "pourPEI": ["Format adapté aux besoins", "Temps flexible", "Support technologique"]
       },
       "assessmentCriteria": {
         "observable": ["Partage objet personnel", "Utilise phrases françaises", "Écoute respectueusement"],
@@ -170,11 +170,11 @@
         "visualSupports": "Affiche des gestes de base : bonjour, au revoir, content, triste",
         "decisionPoints": [
           {
-            "moment": "Si concept des gestes est trop abstrait",
+            "question": "Si concept des gestes est trop abstrait",
             "options": ["Commencer par gestes évidents (saluer)", "Utiliser des objets", "Gestes en paires"]
           },
           {
-            "moment": "Si élèves deviennent agités",
+            "question": "Si élèves deviennent agités",
             "options": ["Gestes plus calmes", "Assis pour certains gestes", "Pause réflexion"]
           }
         ],
@@ -187,11 +187,11 @@
         "visualSupports": "Exemples visuels des gestes communs dans notre culture",
         "decisionPoints": [
           {
-            "moment": "Si jeux deviennent compétitifs",
+            "question": "Si jeux deviennent compétitifs",
             "options": ["Accent sur collaboration", "Pas de 'gagnants'", "Célébrer toutes tentatives"]
           },
           {
-            "moment": "Si certains gestes semblent inappropriés",
+            "question": "Si certains gestes semblent inappropriés",
             "options": ["Rediriger vers gestes positifs", "Discussion sur respect", "Gestes de classe seulement"]
           }
         ],
@@ -204,7 +204,7 @@
         "visualSupports": "Liste des gestes appris pour référence",
         "decisionPoints": [
           {
-            "moment": "Si communication silencieuse est difficile",
+            "question": "Si communication silencieuse est difficile",
             "options": ["Commencer par gestes simples", "Permettre quelques mots", "Gestes en équipe"]
           }
         ],
@@ -213,10 +213,10 @@
       "troubleshooting": "If gesture communication feels abstract, use familiar actions like waving, clapping, pointing",
       "realWorldConnection": "Our bodies help us communicate even without words - like waving hello or pointing to things we want",
       "differentiation": {
-        "forStruggling": ["Gestes simples et évidents", "Imitation d'abord", "Support en petit groupe"],
-        "forAdvanced": ["Gestes complexes et créatifs", "Séquences de gestes", "Enseigner aux autres"],
-        "forELL": ["Gestes universels d'abord", "Comparaison avec culture d'origine", "Support visuel constant"],
-        "forIEP": ["Gestes adaptés aux capacités", "Support physique si nécessaire", "Alternative communication"]
+        "pourDifficultés": ["Gestes simples et évidents", "Imitation d'abord", "Support en petit groupe"],
+        "pourAvancés": ["Gestes complexes et créatifs", "Séquences de gestes", "Enseigner aux autres"],
+        "pourLangue": ["Gestes universels d'abord", "Comparaison avec culture d'origine", "Support visuel constant"],
+        "pourPEI": ["Gestes adaptés aux capacités", "Support physique si nécessaire", "Alternative communication"]
       },
       "assessmentCriteria": {
         "observable": ["Utilise gestes pour communiquer", "Comprend gestes des autres", "Respecte différents styles de communication"],
@@ -241,11 +241,11 @@
         "visualSupports": "Affiche des signes d'un bon auditeur : yeux, oreilles, bouche fermée",
         "decisionPoints": [
           {
-            "moment": "Si concept d'écoute est abstrait",
+            "question": "Si concept d'écoute est abstrait",
             "options": ["Démonstration exagérée bonne/mauvaise écoute", "Jeu du téléphone", "Écoute de sons mystères"]
           },
           {
-            "moment": "Si élèves ont du mal à se concentrer",
+            "question": "Si élèves ont du mal à se concentrer",
             "options": ["Séances d'écoute plus courtes", "Support visuel pendant écoute", "Position d'écoute spéciale"]
           }
         ],
@@ -258,11 +258,11 @@
         "visualSupports": "Exemples de bonnes questions : 'Qu'est-ce que...?', 'Pourquoi...?'",
         "decisionPoints": [
           {
-            "moment": "Si questions trop difficiles à formuler",
+            "question": "Si questions trop difficiles à formuler",
             "options": ["Commencer par 'Qu'est-ce que...?'", "Questions en français/anglais", "Montrer plutôt que demander"]
           },
           {
-            "moment": "Si un partenaire domine",
+            "question": "Si un partenaire domine",
             "options": ["Chronomètre strict", "Changer partenaires", "Rôles clairement définis"]
           }
         ],
@@ -275,7 +275,7 @@
         "visualSupports": "Critères d'écoute affichés : attention, questions, respect",
         "decisionPoints": [
           {
-            "moment": "Si réflexion sur écoute difficile",
+            "question": "Si réflexion sur écoute difficile",
             "options": ["Questions spécifiques", "Exemples concrets", "Dessiner bon auditeur"]
           }
         ],
@@ -284,10 +284,10 @@
       "troubleshooting": "If listening skills are challenging, use structured turn-taking with clear signals for speaker/listener roles",
       "realWorldConnection": "Good communication means both talking and listening - like how family members take turns sharing",
       "differentiation": {
-        "forStruggling": ["Écoute en petits groupes", "Support visuel pour questions", "Modèles de questions simples"],
-        "forAdvanced": ["Questions complexes et de suivi", "Aide aux pairs", "Résumé de ce qu'ils entendent"],
-        "forELL": ["Questions en français et anglais OK", "Support visuel pour compréhension", "Partenaire patient"],
-        "forIEP": ["Format adapté aux besoins auditifs", "Support technologique", "Temps flexible"]
+        "pourDifficultés": ["Écoute en petits groupes", "Support visuel pour questions", "Modèles de questions simples"],
+        "pourAvancés": ["Questions complexes et de suivi", "Aide aux pairs", "Résumé de ce qu'ils entendent"],
+        "pourLangue": ["Questions en français et anglais OK", "Support visuel pour compréhension", "Partenaire patient"],
+        "pourPEI": ["Format adapté aux besoins auditifs", "Support technologique", "Temps flexible"]
       },
       "assessmentCriteria": {
         "observable": ["Démontre écoute active", "Pose questions appropriées", "Respecte temps de parole"],
@@ -312,11 +312,11 @@
         "visualSupports": "Mots de séquence sur affiche : 'D'abord', 'Ensuite', 'Finalement'",
         "decisionPoints": [
           {
-            "moment": "Si concept de séquence difficile",
+            "question": "Si concept de séquence difficile",
             "options": ["Utiliser routine de classe comme exemple", "Actions physiques pour séquence", "Images séquentielles"]
           },
           {
-            "moment": "Si élèves n'ont pas d'aventures à partager",
+            "question": "Si élèves n'ont pas d'aventures à partager",
             "options": ["Aventures de classe récentes", "Aventures imaginaires OK", "Aventures simples (jouer dehors)"]
           }
         ],
@@ -329,11 +329,11 @@
         "visualSupports": "Support visuel avec images pour 'D'abord', 'Ensuite', 'Finalement'",
         "decisionPoints": [
           {
-            "moment": "Si histoires deviennent très longues",
+            "question": "Si histoires deviennent très longues",
             "options": ["3 étapes maximum", "Minuteur discret", "Signal pour conclusion"]
           },
           {
-            "moment": "Si certains élèves dominent",
+            "question": "Si certains élèves dominent",
             "options": ["Tour de rôle strict", "Bâton de parole", "Petits groupes"]
           }
         ],
@@ -346,7 +346,7 @@
         "visualSupports": "Mots de séquence restent affichés pour référence",
         "decisionPoints": [
           {
-            "moment": "Si pratique groupe difficile",
+            "question": "Si pratique groupe difficile",
             "options": ["Pratique individuelle d'abord", "Séquence avec gestes", "Chanson de séquence"]
           }
         ],
@@ -355,10 +355,10 @@
       "troubleshooting": "If sequence concepts are difficult, use familiar classroom routine as practice for 'first, then, last'",
       "realWorldConnection": "We tell family about our adventures and experiences - sharing stories helps us remember and connect",
       "differentiation": {
-        "forStruggling": ["Support visuel constant pour séquence", "Aventures très simples", "Aide pour structurer récit"],
-        "forAdvanced": ["Plus d'étapes dans séquence", "Détails riches", "Questions du public encouragées"],
-        "forELL": ["Mélange séquence en deux langues OK", "Support visuel fort", "Partenaire pour aider"],
-        "forIEP": ["Format adapté (dessin, gestes)", "Support technologique", "Temps flexible"]
+        "pourDifficultés": ["Support visuel constant pour séquence", "Aventures très simples", "Aide pour structurer récit"],
+        "pourAvancés": ["Plus d'étapes dans séquence", "Détails riches", "Questions du public encouragées"],
+        "pourLangue": ["Mélange séquence en deux langues OK", "Support visuel fort", "Partenaire pour aider"],
+        "pourPEI": ["Format adapté (dessin, gestes)", "Support technologique", "Temps flexible"]
       },
       "assessmentCriteria": {
         "observable": ["Utilise mots de séquence", "Raconte aventure personnelle", "Structure histoire logiquement"],
@@ -383,7 +383,7 @@
         "visualSupports": "Affiche des types de personnages avec leurs voix",
         "decisionPoints": [
           {
-            "moment": "Si travail de personnage trop complexe",
+            "question": "Si travail de personnage trop complexe",
             "options": ["Commencer par voix d'animaux", "Personnages très simples", "Imitation en groupe"]
           }
         ],
@@ -396,7 +396,7 @@
         "visualSupports": "Exemples visuels : grand/petit, rapide/lent, content/triste",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves sont timides",
+            "question": "Si certains élèves sont timides",
             "options": ["Travail en paires", "Derrière un rideau", "Personnages assis"]
           }
         ],
@@ -409,11 +409,11 @@
         "visualSupports": "Espace désigné pour la parade",
         "decisionPoints": [
           {
-            "moment": "Si les élèves hésitent à faire la parade",
+            "question": "Si les élèves hésitent à faire la parade",
             "options": ["Commencer par un seul élève volontaire", "Faire la parade en petits groupes", "Permettre d'observer d'abord"]
           },
           {
-            "moment": "Si certains personnages sont trop bruyants",
+            "question": "Si certains personnages sont trop bruyants",
             "options": ["Chuchoter les voix de personnages", "Utiliser gestes sans voix", "Signal pour contrôler volume"]
           }
         ],
@@ -422,10 +422,10 @@
       "troubleshooting": "If character work feels too complex, start with familiar animals or family member voices",
       "realWorldConnection": "We change our voices when we pretend to be different people - like when playing with toys or telling stories",
       "differentiation": {
-        "forStruggling": ["Personnages très familiers", "Voix simples seulement", "Support en petit groupe"],
-        "forAdvanced": ["Personnages complexes", "Combinaison voix-mouvement", "Improvisation de scènes"],
-        "forELL": ["Personnages universels", "Support visuel pour caractéristiques", "Expression non-verbale encouragée"],
-        "forIEP": ["Personnages adaptés aux capacités", "Modifications physiques au besoin", "Participation à son niveau"]
+        "pourDifficultés": ["Personnages très familiers", "Voix simples seulement", "Support en petit groupe"],
+        "pourAvancés": ["Personnages complexes", "Combinaison voix-mouvement", "Improvisation de scènes"],
+        "pourLangue": ["Personnages universels", "Support visuel pour caractéristiques", "Expression non-verbale encouragée"],
+        "pourPEI": ["Personnages adaptés aux capacités", "Modifications physiques au besoin", "Participation à son niveau"]
       },
       "assessmentCriteria": {
         "observable": ["Expérimente avec voix différentes", "Ajoute mouvement aux personnages", "Partage créations avec confiance"],
@@ -450,7 +450,7 @@
         "visualSupports": "Roue des émotions avec expressions faciales",
         "decisionPoints": [
           {
-            "moment": "Si sujet des émotions semble difficile",
+            "question": "Si sujet des émotions semble difficile",
             "options": ["Commencer par content/triste seulement", "Utiliser marionnettes", "Imitation en groupe"]
           }
         ],
@@ -463,7 +463,7 @@
         "visualSupports": "Affiche des émotions principales avec mots français",
         "decisionPoints": [
           {
-            "moment": "Si certains élèves deviennent bouleversés",
+            "question": "Si certains élèves deviennent bouleversés",
             "options": ["Retour aux émotions positives", "Pause réconfortante", "Discussion sur sécurité émotionnelle"]
           }
         ],
@@ -476,11 +476,11 @@
         "visualSupports": "Thermomètre des émotions pour auto-évaluation",
         "decisionPoints": [
           {
-            "moment": "Si un élève ne veut pas partager ses émotions",
+            "question": "Si un élève ne veut pas partager ses émotions",
             "options": ["Utiliser marionnette pour exprimer", "Choisir émotion d'un livre", "Écouter seulement aujourd'hui"]
           },
           {
-            "moment": "Si les émotions deviennent trop intenses",
+            "question": "Si les émotions deviennent trop intenses",
             "options": ["Respiration calme ensemble", "Passer à émotion plus légère", "Pause réconfortante"]
           }
         ],
@@ -489,10 +489,10 @@
       "troubleshooting": "If emotion work feels too personal, use characters or stuffed animals to explore emotional expression",
       "realWorldConnection": "Our faces and voices show how we feel - helping others understand our emotions",
       "differentiation": {
-        "forStruggling": ["Émotions de base seulement", "Support avec objets", "Expression non-verbale prioritaire"],
-        "forAdvanced": ["Émotions complexes", "Nuances d'expression", "Aide aux pairs pour reconnaissance"],
-        "forELL": ["Émotions universelles d'abord", "Support visuel constant", "Comparaison interculturelle"],
-        "forIEP": ["Adaptations pour confort émotionnel", "Expression au niveau de capacité", "Soutien supplémentaire si nécessaire"]
+        "pourDifficultés": ["Émotions de base seulement", "Support avec objets", "Expression non-verbale prioritaire"],
+        "pourAvancés": ["Émotions complexes", "Nuances d'expression", "Aide aux pairs pour reconnaissance"],
+        "pourLangue": ["Émotions universelles d'abord", "Support visuel constant", "Comparaison interculturelle"],
+        "pourPEI": ["Adaptations pour confort émotionnel", "Expression au niveau de capacité", "Soutien supplémentaire si nécessaire"]
       },
       "assessmentCriteria": {
         "observable": ["Exprime émotions avec visage", "Change voix selon émotion", "Reconnaît émotions chez autrui"],
@@ -517,7 +517,7 @@
         "visualSupports": "Exemples de scènes à jouer avec illustrations",
         "decisionPoints": [
           {
-            "moment": "Si travail en paires difficile",
+            "question": "Si travail en paires difficile",
             "options": ["Groupes de trois", "Enseignant(e) comme partenaire", "Scènes individuelles"]
           }
         ],
@@ -530,7 +530,7 @@
         "visualSupports": "Guide visuel pour expressions faciales et gestes",
         "decisionPoints": [
           {
-            "moment": "Si scènes deviennent désorganisées",
+            "question": "Si scènes deviennent désorganisées",
             "options": ["Structure plus claire", "Rôles précis", "Pause pour réorganiser"]
           }
         ],
@@ -543,11 +543,11 @@
         "visualSupports": "Espace de performance désigné",
         "decisionPoints": [
           {
-            "moment": "Si peu de paires veulent partager",
+            "question": "Si peu de paires veulent partager",
             "options": ["Commencer par enseignant et élève", "Partage optionnel seulement", "Un élève raconte pour le groupe"]
           },
           {
-            "moment": "Si les performances sont très courtes",
+            "question": "Si les performances sont très courtes",
             "options": ["Célébrer chaque effort", "Poser une question douce", "Applaudir avec enthousiasme"]
           }
         ],
@@ -556,10 +556,10 @@
       "troubleshooting": "If partner work is challenging, let students work individually or provide very structured role assignments",
       "realWorldConnection": "We act out different situations in our daily play - practicing helps us in real situations",
       "differentiation": {
-        "forStruggling": ["Scénarios très simples", "Rôles précis assignés", "Support constant"],
-        "forAdvanced": ["Scénarios complexes", "Improvisation libre", "Leadership dans groupes"],
-        "forELL": ["Scénarios universels", "Gestes prioritaires", "Support de partenaire francophone"],
-        "forIEP": ["Adaptations pour interactions sociales", "Rôles selon forces", "Support pour anxiité sociale"]
+        "pourDifficultés": ["Scénarios très simples", "Rôles précis assignés", "Support constant"],
+        "pourAvancés": ["Scénarios complexes", "Improvisation libre", "Leadership dans groupes"],
+        "pourLangue": ["Scénarios universels", "Gestes prioritaires", "Support de partenaire francophone"],
+        "pourPEI": ["Adaptations pour interactions sociales", "Rôles selon forces", "Support pour anxiité sociale"]
       },
       "assessmentCriteria": {
         "observable": ["Collabore avec partenaire", "Intègre voix et mouvement", "Joue scène avec confiance"],
@@ -584,7 +584,7 @@
         "visualSupports": "Phrases pour présenter : 'J'ai fait...', 'J'aime ça parce que...'",
         "decisionPoints": [
           {
-            "moment": "Si élèves n'ont pas de créations",
+            "question": "Si élèves n'ont pas de créations",
             "options": ["Dessin rapide sur place", "Projet imaginé", "Création de classe"]
           }
         ],
@@ -597,7 +597,7 @@
         "visualSupports": "Guide des mots descriptifs : couleurs, formes, sentiments",
         "decisionPoints": [
           {
-            "moment": "Si anxiiété de présentation haute",
+            "question": "Si anxiiété de présentation haute",
             "options": ["Présentation assise", "Avec un ami", "Juste à l'enseignant(e)"]
           }
         ],
@@ -610,11 +610,11 @@
         "visualSupports": "Phrases de félicitations : 'Bravo!', 'J'aime...', 'C'est beau!'",
         "decisionPoints": [
           {
-            "moment": "Si les commentaires sont trop critiques",
+            "question": "Si les commentaires sont trop critiques",
             "options": ["Modeler phrases positives", "Règle: toujours dire quelque chose de beau", "Guide vers compliments spécifiques"]
           },
           {
-            "moment": "Si certains élèves dominent les commentaires",
+            "question": "Si certains élèves dominent les commentaires",
             "options": ["Tour de rôle structuré", "Chacun dit une chose", "Temps de réflexion avant partage"]
           }
         ],
@@ -623,10 +623,10 @@
       "troubleshooting": "If presentation anxiety is high, let students practice explanation with just teacher before group presentation",
       "realWorldConnection": "Artists explain their work to help others understand - sharing our creations spreads joy",
       "differentiation": {
-        "forStruggling": ["Créations très simples OK", "Phrases courtes suffisantes", "Support pour expliquer"],
-        "forAdvanced": ["Détails complexes", "Questions techniques", "Aide aux pairs presenters"],
-        "forELL": ["Description en deux langues OK", "Support visuel pour mots", "Focus sur fierté plutôt que perfection"],
-        "forIEP": ["Format adapté aux forces", "Présentation modifiée", "Soutien émotionnel"]
+        "pourDifficultés": ["Créations très simples OK", "Phrases courtes suffisantes", "Support pour expliquer"],
+        "pourAvancés": ["Détails complexes", "Questions techniques", "Aide aux pairs presenters"],
+        "pourLangue": ["Description en deux langues OK", "Support visuel pour mots", "Focus sur fierté plutôt que perfection"],
+        "pourPEI": ["Format adapté aux forces", "Présentation modifiée", "Soutien émotionnel"]
       },
       "assessmentCriteria": {
         "observable": ["Présente sa création", "Utilise vocabulaire descriptif", "Démontre fierté dans travail"],
@@ -651,7 +651,7 @@
         "visualSupports": "Exemples de bonnes questions sur affiche",
         "decisionPoints": [
           {
-            "moment": "Si concept de poser questions difficile",
+            "question": "Si concept de poser questions difficile",
             "options": ["Modéliser beaucoup", "Questions simples oui/non d'abord", "Questions en équipe"]
           }
         ],
@@ -664,7 +664,7 @@
         "visualSupports": "Guide visuel des types de questions",
         "decisionPoints": [
           {
-            "moment": "Si questions répétitives ou inappropriées",
+            "question": "Si questions répétitives ou inappropriées",
             "options": ["Reformuler ensemble", "Banque de questions variées", "Enseignant modèle questions"]
           }
         ],
@@ -677,11 +677,11 @@
         "visualSupports": "Collection des meilleures questions de la journée",
         "decisionPoints": [
           {
-            "moment": "Si les élèves posent questions trop personnelles",
+            "question": "Si les élèves posent questions trop personnelles",
             "options": ["Rappeler questions respectueuses", "Rediriger vers sujets légers", "Modeler questions appropriées"]
           },
           {
-            "moment": "Si quelqu'un ne veut pas répondre",
+            "question": "Si quelqu'un ne veut pas répondre",
             "options": ["Droit de passer respecté", "Question plus simple", "Réponse en privé plus tard"]
           }
         ],
@@ -690,10 +690,10 @@
       "troubleshooting": "If questioning feels awkward, use familiar topics and model enthusiastic curiosity about simple things",
       "realWorldConnection": "Asking questions shows we're interested in others - curiosity helps us learn and make friends",
       "differentiation": {
-        "forStruggling": ["Questions très simples", "Aide pour formuler", "Questions oui/non OK"],
-        "forAdvanced": ["Questions détaillées", "Questions de suivi", "Aide à formuler questions complexes"],
-        "forELL": ["Questions dans deux langues OK", "Support visuel pour structure", "Modèles concrets"],
-        "forIEP": ["Questions adaptées aux capacités", "Support pour interaction sociale", "Temps additionnel"]
+        "pourDifficultés": ["Questions très simples", "Aide pour formuler", "Questions oui/non OK"],
+        "pourAvancés": ["Questions détaillées", "Questions de suivi", "Aide à formuler questions complexes"],
+        "pourLangue": ["Questions dans deux langues OK", "Support visuel pour structure", "Modèles concrets"],
+        "pourPEI": ["Questions adaptées aux capacités", "Support pour interaction sociale", "Temps additionnel"]
       },
       "assessmentCriteria": {
         "observable": ["Pose questions aux pairs", "Montre curiosité authentique", "Écoute réponses avec attention"],
@@ -718,7 +718,7 @@
         "visualSupports": "Guide des mots d'instruction : 'D'abord', 'Ensuite', 'Finalement'",
         "decisionPoints": [
           {
-            "moment": "Si donner instructions trop difficile",
+            "question": "Si donner instructions trop difficile",
             "options": ["Instructions très courtes", "Avec démonstration", "En paires"]
           }
         ],
@@ -731,7 +731,7 @@
         "visualSupports": "Modèles d'instructions avec images",
         "decisionPoints": [
           {
-            "moment": "Si instructions pas claires",
+            "question": "Si instructions pas claires",
             "options": ["Redémontrer", "Simplifier étapes", "Aide d'un pair"]
           }
         ],
@@ -744,11 +744,11 @@
         "visualSupports": "Critères d'instructions claires affichés",
         "decisionPoints": [
           {
-            "moment": "Si les instructions sont confuses",
+            "question": "Si les instructions sont confuses",
             "options": ["Démonstration avec gestes", "Répéter plus lentement", "Élève aide à expliquer"]
           },
           {
-            "moment": "Si certains ne suivent pas les instructions",
+            "question": "Si certains ne suivent pas les instructions",
             "options": ["Vérifier compréhension individuellement", "Support visuel supplémentaire", "Partenaire guide"]
           }
         ],
@@ -757,10 +757,10 @@
       "troubleshooting": "If instruction-giving is overwhelming, start with very familiar activities like hand-washing or line-up procedures",
       "realWorldConnection": "We give instructions to help others learn new things - like teaching friends games or showing family how to do something",
       "differentiation": {
-        "forStruggling": ["Instructions en 2 étapes maximum", "Avec démonstration physique", "Aide pour organiser idées"],
-        "forAdvanced": ["Instructions multi-étapes", "Enseigner activités complexes", "Aider pairs avec instructions"],
-        "forELL": ["Instructions avec gestes", "Support visuel fort", "Mélange langues pour clarté"],
-        "forIEP": ["Instructions adaptées capacités", "Support pour séquencer", "Temps flexible"]
+        "pourDifficultés": ["Instructions en 2 étapes maximum", "Avec démonstration physique", "Aide pour organiser idées"],
+        "pourAvancés": ["Instructions multi-étapes", "Enseigner activités complexes", "Aider pairs avec instructions"],
+        "pourLangue": ["Instructions avec gestes", "Support visuel fort", "Mélange langues pour clarté"],
+        "pourPEI": ["Instructions adaptées capacités", "Support pour séquencer", "Temps flexible"]
       },
       "assessmentCriteria": {
         "observable": ["Donne instructions dans ordre logique", "Utilise gestes pour clarifier", "Vérifie compréhension"],
@@ -785,7 +785,7 @@
         "visualSupports": "Mots descriptifs par catégorie : couleur, taille, forme, texture",
         "decisionPoints": [
           {
-            "moment": "Si descriptions très simples",
+            "question": "Si descriptions très simples",
             "options": ["Commencer par couleurs seulement", "Phrases courtes OK", "Support en paires"]
           }
         ],
@@ -798,7 +798,7 @@
         "visualSupports": "Banque de mots sensoriels avec images",
         "decisionPoints": [
           {
-            "moment": "Si descriptions manquent de détails",
+            "question": "Si descriptions manquent de détails",
             "options": ["Questions guides", "Exploration sensorielle d'abord", "Modéliser descriptions riches"]
           }
         ],
@@ -811,11 +811,11 @@
         "visualSupports": "Règles du jeu de devinettes affichées",
         "decisionPoints": [
           {
-            "moment": "Si les descriptions manquent de détails",
+            "question": "Si les descriptions manquent de détails",
             "options": ["Poser questions guides: couleur? taille?", "Utiliser les sens: toucher, odeur", "Exemple avec objet familier"]
           },
           {
-            "moment": "Si le jeu devient trop facile",
+            "question": "Si le jeu devient trop facile",
             "options": ["Objets moins évidents", "Descriptions sans regarder", "Catégories spécifiques"]
           }
         ],
@@ -824,10 +824,10 @@
       "troubleshooting": "If descriptive language feels difficult, start with familiar objects and use sensory exploration",
       "realWorldConnection": "Good descriptions help others picture what we're talking about - like describing a movie to someone who hasn't seen it",
       "differentiation": {
-        "forStruggling": ["Un détail à la fois", "Objets très familiers", "Support pour trouver mots"],
-        "forAdvanced": ["Descriptions multi-sensorielles", "Métaphores simples", "Descriptions d'émotions aussi"],
-        "forELL": ["Support visuel pour vocabulaire", "Descriptions bilingues OK", "Gestes pour expliquer"],
-        "forIEP": ["Descriptions adaptées aux forces", "Supports sensoriels", "Temps flexible"]
+        "pourDifficultés": ["Un détail à la fois", "Objets très familiers", "Support pour trouver mots"],
+        "pourAvancés": ["Descriptions multi-sensorielles", "Métaphores simples", "Descriptions d'émotions aussi"],
+        "pourLangue": ["Support visuel pour vocabulaire", "Descriptions bilingues OK", "Gestes pour expliquer"],
+        "pourPEI": ["Descriptions adaptées aux forces", "Supports sensoriels", "Temps flexible"]
       },
       "assessmentCriteria": {
         "observable": ["Utilise mots descriptifs variés", "Aide autres à visualiser", "Améliore descriptions avec pratique"],
@@ -852,7 +852,7 @@
         "visualSupports": "Menu des options de performance",
         "decisionPoints": [
           {
-            "moment": "Si anxiiété de performance",
+            "question": "Si anxiiété de performance",
             "options": ["Performances optionnelles", "En paires pour soutien", "Audience réduite"]
           }
         ],
@@ -865,7 +865,7 @@
         "visualSupports": "Espace de scène désigné",
         "decisionPoints": [
           {
-            "moment": "Si performances trop longues ou courtes",
+            "question": "Si performances trop longues ou courtes",
             "options": ["Temps flexible selon élève", "Signal doux pour temps", "Encouragement pour continuer"]
           }
         ],
@@ -878,11 +878,11 @@
         "visualSupports": "Certificats de participation",
         "decisionPoints": [
           {
-            "moment": "Si les élèves sont trop nerveux pour performer",
+            "question": "Si les élèves sont trop nerveux pour performer",
             "options": ["Performance en duo", "Public plus petit d'abord", "Présentation assise au lieu debout"]
           },
           {
-            "moment": "Si l'attention du public se disperse",
+            "question": "Si l'attention du public se disperse",
             "options": ["Performances plus courtes", "Activité interactive pour audience", "Pause mouvement rapide"]
           }
         ],
@@ -891,10 +891,10 @@
       "troubleshooting": "If performance anxiety is high, make it optional or offer alternative ways to showcase learning",
       "realWorldConnection": "Performers share their talents with audiences - celebrating what we've learned makes us proud",
       "differentiation": {
-        "forStruggling": ["Performance très courte OK", "Avec support d'ami", "Montrer plutôt que dire"],
-        "forAdvanced": ["Performances élaborées", "Combinaison plusieurs compétences", "Leadership pour organiser"],
-        "forELL": ["Performance dans langue confortable", "Gestes et actions prioritaires", "Célébration de la participation"],
-        "forIEP": ["Performance adaptée aux forces", "Soutien selon besoins", "Célébration individualisée"]
+        "pourDifficultés": ["Performance très courte OK", "Avec support d'ami", "Montrer plutôt que dire"],
+        "pourAvancés": ["Performances élaborées", "Combinaison plusieurs compétences", "Leadership pour organiser"],
+        "pourLangue": ["Performance dans langue confortable", "Gestes et actions prioritaires", "Célébration de la participation"],
+        "pourPEI": ["Performance adaptée aux forces", "Soutien selon besoins", "Célébration individualisée"]
       },
       "assessmentCriteria": {
         "observable": ["Participe selon ses capacités", "Démontre compétences apprises", "Célèbre avec fierté"],
@@ -919,7 +919,7 @@
         "visualSupports": "Chronologie des leçons apprises",
         "decisionPoints": [
           {
-            "moment": "Si élèves ne voient pas progrès",
+            "question": "Si élèves ne voient pas progrès",
             "options": ["Comparer travail début/fin", "Célébrer petits progrès", "Demander aux pairs ce qu'ils ont remarqué"]
           }
         ],
@@ -932,7 +932,7 @@
         "visualSupports": "Questions de réflexion guidée avec images",
         "decisionPoints": [
           {
-            "moment": "Si réflexion abstraite difficile",
+            "question": "Si réflexion abstraite difficile",
             "options": ["Dessiner progrès", "Comparer photos début/fin", "Questions très concrètes"]
           }
         ],
@@ -945,11 +945,11 @@
         "visualSupports": "Cercle de fierté avec coussins spéciaux",
         "decisionPoints": [
           {
-            "moment": "Si la réflexion semble difficile",
+            "question": "Si la réflexion semble difficile",
             "options": ["Photos du début de l'année", "Exemples concrets de progrès", "Aide de camarades"]
           },
           {
-            "moment": "Si certains ne voient pas leur croissance",
+            "question": "Si certains ne voient pas leur croissance",
             "options": ["Rappeler moments spécifiques", "Portfolio avec preuves", "Compliments des pairs"]
           }
         ],
@@ -958,10 +958,10 @@
       "troubleshooting": "If reflection feels abstract, use concrete examples like 'remember when you were shy to speak, now you love presenting!'",
       "realWorldConnection": "We can see how much better we've become at sharing ideas - like looking at old photos to see how we've grown",
       "differentiation": {
-        "forStruggling": ["Portfolio très simple", "Support pour identifier progrès", "Focus sur réussites"],
-        "forAdvanced": ["Réflexion approfondie", "Objectifs futurs détaillés", "Aide pairs à voir progrès"],
-        "forELL": ["Portfolio bilingue OK", "Images pour montrer progrès", "Célébration courage linguistique"],
-        "forIEP": ["Portfolio adapté aux forces", "Méthodes variées de réflexion", "Soutien pour autoesteem"]
+        "pourDifficultés": ["Portfolio très simple", "Support pour identifier progrès", "Focus sur réussites"],
+        "pourAvancés": ["Réflexion approfondie", "Objectifs futurs détaillés", "Aide pairs à voir progrès"],
+        "pourLangue": ["Portfolio bilingue OK", "Images pour montrer progrès", "Célébration courage linguistique"],
+        "pourPEI": ["Portfolio adapté aux forces", "Méthodes variées de réflexion", "Soutien pour autoesteem"]
       },
       "assessmentCriteria": {
         "observable": ["Reconnaît son progrès", "Exprime fierté d'apprentissage", "Identifie compétences acquises"],
@@ -986,11 +986,11 @@
         "visualSupports": "Structure d'histoire : début, milieu, fin",
         "decisionPoints": [
           {
-            "moment": "Si les élèves manquent d'inspiration",
+            "question": "Si les élèves manquent d'inspiration",
             "options": ["Images provocatrices", "Début d'histoire fourni", "Histoires familières réinventées"]
           },
           {
-            "moment": "Si les histoires deviennent trop longues",
+            "question": "Si les histoires deviennent trop longues",
             "options": ["Limite de temps douce", "Signal à mi-parcours", "Focus sur une partie préférée"]
           }
         ],
@@ -1003,7 +1003,7 @@
         "visualSupports": "Galerie de personnages possibles avec voix",
         "decisionPoints": [
           {
-            "moment": "Si histoires trop complexes ou confuses",
+            "question": "Si histoires trop complexes ou confuses",
             "options": ["Retour à structure simple", "Aide pour organiser idées", "Focus sur un personnage principal"]
           }
         ],
@@ -1016,11 +1016,11 @@
         "visualSupports": "Modèles de compliments spécifiques",
         "decisionPoints": [
           {
-            "moment": "Si les histoires manquent de structure",
+            "question": "Si les histoires manquent de structure",
             "options": ["Guide: qui, quoi, où", "Images séquence pour support", "Histoire à tour de rôle"]
           },
           {
-            "moment": "Si l'audience perd intérêt",
+            "question": "Si l'audience perd intérêt",
             "options": ["Questions d'engagement", "Gestes pour maintenir attention", "Conteur change de place"]
           }
         ],
@@ -1029,10 +1029,10 @@
       "troubleshooting": "If elaborate storytelling feels overwhelming, let students adapt familiar stories with their own creative twists",
       "realWorldConnection": "Storytellers entertain people with creative tales - sharing stories brings joy to listeners",
       "differentiation": {
-        "forStruggling": ["Histoires courtes et simples", "Un personnage principal", "Structure guidée"],
-        "forAdvanced": ["Histoires complexes multi-personnages", "Techniques narratives avancées", "Mentorship d'autres conteurs"],
-        "forELL": ["Mélange narratif bilingue OK", "Gestes pour enrichir histoire", "Histoires de culture d'origine"],
-        "forIEP": ["Format narratif adapté", "Support pour séquencer", "Célébration de créativité unique"]
+        "pourDifficultés": ["Histoires courtes et simples", "Un personnage principal", "Structure guidée"],
+        "pourAvancés": ["Histoires complexes multi-personnages", "Techniques narratives avancées", "Mentorship d'autres conteurs"],
+        "pourLangue": ["Mélange narratif bilingue OK", "Gestes pour enrichir histoire", "Histoires de culture d'origine"],
+        "pourPEI": ["Format narratif adapté", "Support pour séquencer", "Célébration de créativité unique"]
       },
       "assessmentCriteria": {
         "observable": ["Crée histoire originale", "Intègre compétences multiples", "Captive audience avec narration"],
@@ -1056,10 +1056,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1097,11 +1097,11 @@
         "visualSupports": "Format de nouvelles : Qui, Quoi, Où, Quand",
         "decisionPoints": [
           {
-            "moment": "Si les sujets de nouvelles manquent",
+            "question": "Si les sujets de nouvelles manquent",
             "options": ["Tour de l'école pour inspiration", "Événements de la semaine", "Nouvelles de la classe"]
           },
           {
-            "moment": "Si l'information est insuffisante",
+            "question": "Si l'information est insuffisante",
             "options": ["Questions de base: qui, quoi, quand", "Interview rapide", "Observation directe"]
           }
         ],
@@ -1114,7 +1114,7 @@
         "visualSupports": "Structure de rapport de nouvelles avec exemples",
         "decisionPoints": [
           {
-            "moment": "Si format nouvelles trop formel",
+            "question": "Si format nouvelles trop formel",
             "options": ["Nouvelles très simples", "Format conversation", "Nouvelles amusantes OK"]
           }
         ],
@@ -1127,11 +1127,11 @@
         "visualSupports": "Décor 'télévision' simple",
         "decisionPoints": [
           {
-            "moment": "Si les présentations sont trop courtes",
+            "question": "Si les présentations sont trop courtes",
             "options": ["Une question de suivi", "Détail supplémentaire demandé", "Support visuel ajouté"]
           },
           {
-            "moment": "Si le format télé intimide",
+            "question": "Si le format télé intimide",
             "options": ["Conversation naturelle d'abord", "Micro invisible", "Partenaire co-présentateur"]
           }
         ],
@@ -1140,10 +1140,10 @@
       "troubleshooting": "If news reporting feels too formal, start with sharing simple announcements or describing class activities",
       "realWorldConnection": "Reporters tell people about important events - sharing information helps our community stay connected",
       "differentiation": {
-        "forStruggling": ["Nouvelles très courtes", "Avec aide pour organiser infos", "Focus sur un fait simple"],
-        "forAdvanced": ["Rapports détaillés", "Interviews avec questions", "Production nouvelles complexes"],
-        "forELL": ["Nouvelles bilingues OK", "Support visuel pour structure", "Nouvelles sur culture d'origine"],
-        "forIEP": ["Format adapté aux forces", "Support pour organiser informations", "Rôle selon préférences"]
+        "pourDifficultés": ["Nouvelles très courtes", "Avec aide pour organiser infos", "Focus sur un fait simple"],
+        "pourAvancés": ["Rapports détaillés", "Interviews avec questions", "Production nouvelles complexes"],
+        "pourLangue": ["Nouvelles bilingues OK", "Support visuel pour structure", "Nouvelles sur culture d'origine"],
+        "pourPEI": ["Format adapté aux forces", "Support pour organiser informations", "Rôle selon préférences"]
       },
       "assessmentCriteria": {
         "observable": ["Partage information factuelle", "Utilise format nouvelles", "Communique clairement avec audience"],
@@ -1167,10 +1167,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1208,11 +1208,11 @@
         "visualSupports": "Phrases respectueuses : 'Je pense que...', 'Tu as raison aussi'",
         "decisionPoints": [
           {
-            "moment": "Si les opinions deviennent conflictuelles",
+            "question": "Si les opinions deviennent conflictuelles",
             "options": ["Rappel des règles de respect", "Pause pour respirer", "Retour aux exemples neutres"]
           },
           {
-            "moment": "Si certains évitent de donner opinions",
+            "question": "Si certains évitent de donner opinions",
             "options": ["Commencer par préférences simples", "Vote anonyme d'abord", "Expression par dessin"]
           }
         ],
@@ -1225,7 +1225,7 @@
         "visualSupports": "Règles du débat respectueux affichées",
         "decisionPoints": [
           {
-            "moment": "Si désaccord devient tendu",
+            "question": "Si désaccord devient tendu",
             "options": ["Pause rappel respect", "Changement de sujet", "Focus sur écouter plutôt que convaincre"]
           }
         ],
@@ -1238,11 +1238,11 @@
         "visualSupports": "Leçons sur diversité d'opinions affichées",
         "decisionPoints": [
           {
-            "moment": "Si les élèves se sentent mal à l'aise",
+            "question": "Si les élèves se sentent mal à l'aise",
             "options": ["Célébrer toutes différences", "Rappeler que différent = intéressant", "Partage volontaire seulement"]
           },
           {
-            "moment": "Si peu d'élèves participent",
+            "question": "Si peu d'élèves participent",
             "options": ["Commencer par l'enseignant", "Partage en petits groupes", "Questions guidées spécifiques"]
           }
         ],
@@ -1251,10 +1251,10 @@
       "troubleshooting": "If debate concept is too challenging, focus on sharing preferences and asking 'why do you think that?'",
       "realWorldConnection": "People can have different ideas and still be friends - listening to different opinions helps us learn",
       "differentiation": {
-        "forStruggling": ["Partage préférences simples", "Sujets très familiers", "Pas de pression argumenter"],
-        "forAdvanced": ["Argmentation avec raisons", "Questions de suivi", "Médiation entre opinions"]
-, "forELL": ["Opinions culturelles valorisées", "Support pour exprimer idées", "Comparaisons interculturelles"],
-        "forIEP": ["Participation selon confort social", "Support pour interaction respectueuse", "Alternatives à débat oral"]
+        "pourDifficultés": ["Partage préférences simples", "Sujets très familiers", "Pas de pression argumenter"],
+        "pourAvancés": ["Argmentation avec raisons", "Questions de suivi", "Médiation entre opinions"]
+, "pourLangue": ["Opinions culturelles valorisées", "Support pour exprimer idées", "Comparaisons interculturelles"],
+        "pourPEI": ["Participation selon confort social", "Support pour interaction respectueuse", "Alternatives à débat oral"]
       },
       "assessmentCriteria": {
         "observable": ["Exprime opinion personnelle", "Respecte opinions différentes", "Écoute sans interrompre"],
@@ -1278,10 +1278,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1319,11 +1319,11 @@
         "visualSupports": "Qualités d'un bon enseignant affichées",
         "decisionPoints": [
           {
-            "moment": "Si l'expertise semble limitée",
+            "question": "Si l'expertise semble limitée",
             "options": ["Valoriser savoirs simples", "Enseigner par démonstration", "Passions personnelles acceptées"]
           },
           {
-            "moment": "Si les explications sont confuses",
+            "question": "Si les explications sont confuses",
             "options": ["Questions clarifiantes douces", "Reformulation par enseignant", "Support visuel improvisé"]
           }
         ],
@@ -1336,7 +1336,7 @@
         "visualSupports": "Guide de planification de leçon simple",
         "decisionPoints": [
           {
-            "moment": "Si difficulté à choisir sujet d'expertise",
+            "question": "Si difficulté à choisir sujet d'expertise",
             "options": ["Suggérer compétences observées", "Compétences de classe OK", "Travail en équipes enseignantes"]
           }
         ],
@@ -1349,11 +1349,11 @@
         "visualSupports": "Célébration des enseignants du jour",
         "decisionPoints": [
           {
-            "moment": "Si les élèves hésitent à partager culture",
+            "question": "Si les élèves hésitent à partager culture",
             "options": ["Commencer par nourriture favorite", "Photos de famille", "Histoires simples"]
           },
           {
-            "moment": "Si certaines cultures dominent discussion",
+            "question": "Si certaines cultures dominent discussion",
             "options": ["Temps égal pour tous", "Focus sur points communs", "Célébration de chaque unicité"]
           }
         ],
@@ -1362,10 +1362,10 @@
       "troubleshooting": "If teaching concept is too abstract, let students demonstrate rather than formally teach",
       "realWorldConnection": "We can teach others what we've learned - sharing knowledge helps everyone grow",
       "differentiation": {
-        "forStruggling": ["Démonstration simple", "Sujet très familier", "Co-enseignement avec ami"],
-        "forAdvanced": ["Enseignement structuré", "Adaptation à différents apprenants", "Création matériel pédagogique"],
-        "forELL": ["Enseignement bilingue valorisé", "Partage expertise culturelle", "Démonstration prioritaire"],
-        "forIEP": ["Enseignement selon forces uniques", "Support pour planification", "Format adapté aux capacités"]
+        "pourDifficultés": ["Démonstration simple", "Sujet très familier", "Co-enseignement avec ami"],
+        "pourAvancés": ["Enseignement structuré", "Adaptation à différents apprenants", "Création matériel pédagogique"],
+        "pourLangue": ["Enseignement bilingue valorisé", "Partage expertise culturelle", "Démonstration prioritaire"],
+        "pourPEI": ["Enseignement selon forces uniques", "Support pour planification", "Format adapté aux capacités"]
       },
       "assessmentCriteria": {
         "observable": ["Partage expertise authentique", "Adapte enseignement à audience", "Montre fierté dans savoir partagé"],
@@ -1389,10 +1389,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1430,11 +1430,11 @@
         "visualSupports": "Carte du monde pour localiser cultures",
         "decisionPoints": [
           {
-            "moment": "Si les élèves hésitent à partager culture",
+            "question": "Si les élèves hésitent à partager culture",
             "options": ["Commencer par nourriture favorite", "Photos de famille", "Histoires simples"]
           },
           {
-            "moment": "Si certaines cultures dominent discussion",
+            "question": "Si certaines cultures dominent discussion",
             "options": ["Temps égal pour tous", "Focus sur points communs", "Célébration de chaque unicité"]
           }
         ],
@@ -1447,7 +1447,7 @@
         "visualSupports": "Galerie de diversité culturelle de classe",
         "decisionPoints": [
           {
-            "moment": "Si partage culturel inconfortable",
+            "question": "Si partage culturel inconfortable",
             "options": ["Traditions très générales OK", "Culture de classe/école aussi", "Soutien pour tous types familles"]
           }
         ],
@@ -1460,11 +1460,11 @@
         "visualSupports": "Mosaïque de diversité créée ensemble",
         "decisionPoints": [
           {
-            "moment": "Si les familles ne sont pas représentées",
-            "options": ["Diversité de structures familiales", "Focus sur amour et soin", "Inclusion de tous types de familles"]
+            "question": "Si les familles ne sont pas représentées",
+            "options": ["Diversité de ma famille", "Focus sur amour et soin", "Inclusion de tous types de familles"]
           },
           {
-            "moment": "Si l'appréciation manque de spécificité",
+            "question": "Si l'appréciation manque de spécificité",
             "options": ["Questions guides pour détails", "Ce qui vous a surpris?", "Modeler commentaires précis"]
           }
         ],
@@ -1473,10 +1473,10 @@
       "troubleshooting": "If cultural sharing feels uncomfortable, focus on simple family traditions like holiday celebrations or favorite foods",
       "realWorldConnection": "We can share our family traditions with others - learning about different cultures makes our community richer",
       "differentiation": {
-        "forStruggling": ["Tradition très simple", "Avec support familial", "Objets pour montrer plutôt que expliquer"],
-        "forAdvanced": ["Présentation culturelle détaillée", "Comparaisons interculturelles", "Leadership pour célébration diversité"],
-        "forELL": ["Expertise culturelle valorisée", "Partage dans langue d'origine encourage", "Traduction pour classe"],
-        "forIEP": ["Partage selon niveau confort", "Toutes formes de partage valorisées", "Soutien pour participation sociale"]
+        "pourDifficultés": ["Tradition très simple", "Avec support familial", "Objets pour montrer plutôt que expliquer"],
+        "pourAvancés": ["Présentation culturelle détaillée", "Comparaisons interculturelles", "Leadership pour célébration diversité"],
+        "pourLangue": ["Expertise culturelle valorisée", "Partage dans langue d'origine encourage", "Traduction pour classe"],
+        "pourPEI": ["Partage selon niveau confort", "Toutes formes de partage valorisées", "Soutien pour participation sociale"]
       },
       "assessmentCriteria": {
         "observable": ["Partage aspect de sa culture", "Respecte cultures d'autrui", "Contribue à appréciation diversité"],
@@ -1500,10 +1500,10 @@
           ],
           "assessment": "Utiliser des critères adaptés aux objectifs individuels",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
@@ -1541,11 +1541,11 @@
         "visualSupports": "Ligne de temps des apprentissages avec photos",
         "decisionPoints": [
           {
-            "moment": "Si les élèves ont du mal à voir leurs progrès",
+            "question": "Si les élèves ont du mal à voir leurs progrès",
             "options": ["Vidéos du début d'année", "Portfolio avec preuves", "Témoignages des pairs"]
           },
           {
-            "moment": "Si l'émotion devient trop forte",
+            "question": "Si l'émotion devient trop forte",
             "options": ["Pause pour respirer ensemble", "Focus sur fierté calme", "Célébration douce"]
           }
         ],
@@ -1558,7 +1558,7 @@
         "visualSupports": "Galerie de réussites et progrès affichés",
         "decisionPoints": [
           {
-            "moment": "Si élèves ne reconnaissent pas progrès",
+            "question": "Si élèves ne reconnaissent pas progrès",
             "options": ["Rappels spécifiques de croissance", "Témoignages de pairs", "Comparaison concrète début/maintenant"]
           }
         ],
@@ -1571,11 +1571,11 @@
         "visualSupports": "Phrase de complétion affichée",
         "decisionPoints": [
           {
-            "moment": "Si les phrases sont difficiles à compléter",
+            "question": "Si les phrases sont difficiles à compléter",
             "options": ["Exemples multiples donnés", "Aide d'un ami", "Phrases plus simples"]
           },
           {
-            "moment": "Si l'émotion empêche participation",
+            "question": "Si l'émotion empêche participation",
             "options": ["Expression non-verbale acceptée", "Geste ou sourire suffit", "Moment privé avec enseignant"]
           }
         ],
@@ -1584,10 +1584,10 @@
       "troubleshooting": "If students don't recognize their progress, use before/after examples from beginning of unit",
       "realWorldConnection": "Confident communicators can share ideas with anyone - our voices can now reach the French-speaking world!",
       "differentiation": {
-        "forStruggling": ["Célébration de tout progrès", "Reconnaissance efforts plutôt que résultats", "Soutien pour identifier forces"],
-        "forAdvanced": ["Réflexion approfondie sur apprentissage", "Plans futurs détaillés", "Mentorship pour célébration collective"],
-        "forELL": ["Célébration courage linguistique", "Fierté identité multilingue", "Progrès dans toutes langues valorisés"],
-        "forIEP": ["Célébration personnalisée aux réussites uniques", "Reconnaissance de tous types progrès", "Soutien pour confiance en soi"]
+        "pourDifficultés": ["Célébration de tout progrès", "Reconnaissance efforts plutôt que résultats", "Soutien pour identifier forces"],
+        "pourAvancés": ["Réflexion approfondie sur apprentissage", "Plans futurs détaillés", "Mentorship pour célébration collective"],
+        "pourLangue": ["Célébration courage linguistique", "Fierté identité multilingue", "Progrès dans toutes langues valorisés"],
+        "pourPEI": ["Célébration personnalisée aux réussites uniques", "Reconnaissance de tous types progrès", "Soutien pour confiance en soi"]
       },
       "assessmentCriteria": {
         "observable": ["Exprime fierté d'apprentissage", "Reconnaît progrès personnel", "Célèbre avec communauté classe"],
@@ -1611,10 +1611,10 @@
           ],
           "assessment": "Célébrer les accomplissements sans évaluation formelle",
           "adaptation": {
-            "forStruggling": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
-            "forAdvanced": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
-            "forELL": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
-            "forIEP": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
             "timeShort": "Réduire à l'activité principale, éliminer les extensions",
             "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
           }
