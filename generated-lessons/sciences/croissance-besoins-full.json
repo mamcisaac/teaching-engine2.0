@@ -27,8 +27,14 @@
           "tableau d'affichage pour classification"
         ],
         "visualSupports": "living vs non-living chart with pictures",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond vivant et non-vivant → Montrer qu'un animal bouge seul, pas un jouet",
+          "Si l'élève ne participe pas à la chasse → L'inviter à pointer avec son doigt d'abord"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux : marcher comme un chat, voler comme un oiseau (2 minutes)",
+          "Grandir comme une plante : s'accroupir puis s'étirer vers le soleil (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -59,15 +65,24 @@
             "ifNo": "Revenir aux exemples les plus évidents avec plus de support visuel"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Mime des besoins : boire de l'eau, chercher la lumière, respirer l'air (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Circle sharing - each student shares one living thing they found",
-        "materials": [],
+        "materials": [
+          "tableau d'affichage pour résultats (1 grand tableau)",
+          "autocollants pour récompenser la participation (30 autocollants)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne comprend pas le partage → Modéliser en montrant son propre exemple"
+        ],
+        "movementBreaks": [
+          "Cercle magique : se passer un objet spécial pour parler (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "distinguishing living from non-living",
@@ -135,8 +150,14 @@
           "lampe de croissance ou lampe de bureau"
         ],
         "visualSupports": "plant needs poster with sun, water drop, and air symbols",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne voit pas les besoins des plantes → Montrer une plante fanée vs une plante saine",
+          "Si l'élève dit que les plantes n'ont pas besoin d'eau → Faire toucher la terre sèche"
+        ],
+        "movementBreaks": [
+          "Devenir une plante assoiffée : se pencher et avoir l'air fatigué (2 minutes)",
+          "Être arrosé : se redresser et sourire au soleil (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -166,15 +187,24 @@
             "ifNo": "Faire des exercices de respiration pour montrer l'importance de l'air"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Créer un jardin humain : chacun est une plante qui pousse vers la fenêtre (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Plant needs song - singing about water, sun, and air while doing actions",
-        "materials": [],
+        "materials": [
+          "carnets d'observation personnels (25 carnets)",
+          "étiquettes pour identifier nos plantes (15 étiquettes)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève dessine mal → L'encourager, l'important est l'observation pas l'art"
+        ],
+        "movementBreaks": [
+          "Dessiner dans l'air : tracer les formes des plantes avec les bras (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding invisible needs like air",
@@ -242,8 +272,13 @@
           "calendrier d'observation classe"
         ],
         "visualSupports": "experiment setup diagram showing two plants",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève prédit mal → Dire que c'est une bonne hypothèse, on va voir ensemble",
+          "Si l'élève ne veut pas toucher la terre → Respecter et lui donner une cuillère"
+        ],
+        "movementBreaks": [
+          "Faire les gestes d'arroser : tenir un arrosoir imaginaire et verser doucement (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -274,15 +309,24 @@
             "ifNo": "Fournir des choix multiples avec images pour leurs prédictions"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Danse de la croissance : partir petit, grandir lentement avec la musique (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Initial observations recording - drawing what both plants look like today",
-        "materials": [],
+        "materials": [
+          "feuilles d'expérience avec dessins simples (25 feuilles)",
+          "crayons gras pour dessiner les changements (ensembles de classe)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne voit pas de changement → L'aider à comparer avec une photo d'avant"
+        ],
+        "movementBreaks": [
+          "Résultats de science : lever le pouce pour 'pousse bien', baisser pour 'pas bien' (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding experiment concept",
@@ -348,8 +392,13 @@
           "classroom plants"
         ],
         "visualSupports": "light source identification chart",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève dit que la plante ne change pas → Montrer la différence avec une règle",
+          "Si l'élève veut changer d'expérience → Expliquer qu'on doit rester patient en science"
+        ],
+        "movementBreaks": [
+          "Être des scientifiques : tenir une loupe imaginaire et regarder partout (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -378,15 +427,24 @@
             "ifNo": "Montrer des plantes pâles dans des endroits sombres vs vertes au soleil"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Tourner vers la lumière : comme un tournesol qui suit le soleil (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Light needs discussion - sharing observations about plant placement and light",
-        "materials": [],
+        "materials": [
+          "lampe de bureau pour démonstration (1 lampe)",
+          "plantes en pot pour tourner (3-4 petites plantes)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève pense que les plantes ne bougent pas → Montrer une vidéo de croissance rapide"
+        ],
+        "movementBreaks": [
+          "Expérience de lumière : fermer les yeux, ouvrir vers la 'lumière' (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "connecting light to plant health",
@@ -452,8 +510,13 @@
           "stuffed animals"
         ],
         "visualSupports": "animal needs poster with food, water, shelter, air symbols",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève dit que les animaux n'ont pas les mêmes besoins → Comparer avec notre hamster de classe",
+          "Si l'élève ne comprend pas les besoins → Demander ce qu'il mange au déjeuner"
+        ],
+        "movementBreaks": [
+          "Imiter les besoins des animaux : manger, boire, dormir comme différents animaux (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -482,15 +545,24 @@
             "ifNo": "Utiliser des exemples concrets d'animaux affamés, assoiffés, ou froids"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Chercher de la nourriture : ramper comme une chenille qui mange (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Animal needs role play - acting out feeding, watering, and sheltering pets",
-        "materials": [],
+        "materials": [
+          "images d'animaux avec leurs bébés (20-25 images)",
+          "tableau de comparaison parent-bébé (1 grand tableau)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne voit pas la ressemblance parent-bébé → Montrer les mêmes couleurs ou formes"
+        ],
+        "movementBreaks": [
+          "Grandir d'un bébé : commencer petit et grandir jusqu'à la taille adulte (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding shelter needs",
@@ -556,8 +628,13 @@
           "growth sequence cards"
         ],
         "visualSupports": "animal growth timeline display",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève dit qu'un bébé chat ressemble à un chien → Regarder les oreilles et la queue ensemble",
+          "Si l'élève ne comprend pas 'grandir' → Montrer photos de lui-même bébé vs maintenant"
+        ],
+        "movementBreaks": [
+          "Famille d'animaux : faire des groupes parent-enfant et imiter leurs cris (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -575,15 +652,24 @@
             "ifNo": "Comparer à comment ils avaient besoin de plus de soins quand ils étaient bébés"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Chaîne de croissance : se mettre en ordre de bébé à adulte pour différents animaux (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Growth story telling - each student shares about an animal baby growing up",
-        "materials": [],
+        "materials": [
+          "cartes de séquence de croissance (sets de 4-5 images par animal)",
+          "autocollants en forme d'animaux pour récompenser (30 autocollants)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève met les images dans le désordre → Demander 'lequel est le plus petit?'"
+        ],
+        "movementBreaks": [
+          "Histoire vivante : mimer l'histoire de croissance d'un animal choisi (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding growth takes time",
@@ -650,8 +736,13 @@
           "plant care tools"
         ],
         "visualSupports": "plant care checklist with pictures",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne sait pas comment soigner → Montrer avec la plante de classe d'abord",
+          "Si l'élève verse trop d'eau → Dire 'un petit peu comme pour se laver le visage'"
+        ],
+        "movementBreaks": [
+          "Jardiniers en action : faire les gestes d'arroser, tailler, observer (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -675,15 +766,24 @@
             "ifNo": "Montrer des exemples visuels de plantes saines vs malades"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Plantes heureuses : s'étirer et sourire comme une plante bien soignée (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Care commitment ceremony - students promise to care for their plants daily",
-        "materials": [],
+        "materials": [
+          "petits arrosoirs pour enfants (8-10 arrosoirs)",
+          "chiffons doux pour nettoyer les feuilles (15 chiffons)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève a peur de faire mal à la plante → Montrer que les plantes aiment être touchées doucement"
+        ],
+        "movementBreaks": [
+          "Routine de soins : chantonner une petite chanson en prenant soin des plantes (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "remembering daily care tasks",
@@ -749,8 +849,13 @@
           "helping action cards"
         ],
         "visualSupports": "animal helping poster with safe and unsafe examples",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne comprend pas comment aider → Donner des exemples simples comme donner de l'eau",
+          "Si l'élève a peur des animaux → Commencer par parler d'animaux mignons comme les lapins"
+        ],
+        "movementBreaks": [
+          "Aider les animaux : mimer donner à manger, caresser, construire un abri (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -775,15 +880,24 @@
             "ifNo": "Utiliser des exemples concrets comme laisser de l'eau propre pour les oiseaux"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Animaux reconnaissants : remuer la queue, ronronner, chanter pour dire merci (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Animal helper pledge - promising to help animals safely and kindly",
-        "materials": [],
+        "materials": [
+          "images d'animaux dans différentes saisons (30 images)",
+          "matériaux pour construire des abris miniatures (brindilles, tissus, boîtes)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève construit un abri trop petit → Demander si l'animal peut s'y cacher complètement"
+        ],
+        "movementBreaks": [
+          "Test d'abri : se cacher dans un coin comme un animal dans son abri (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding why we don't touch wild animals",
@@ -850,8 +964,13 @@
           "seed packets"
         ],
         "visualSupports": "seed to plant growth chart, garden planning poster",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève plante trop profond → Montrer que la graine doit juste être couverte un petit peu",
+          "Si l'élève ne veut pas se salir les mains → Offrir des gants ou une petite pelle"
+        ],
+        "movementBreaks": [
+          "Préparation de jardin : creuser, planter, arroser avec de grands gestes (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -877,15 +996,24 @@
             "ifNo": "Comparer visuellement des grosses et petites graines côte à côte"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Graines magiques : s'accroupir comme une graine, puis pousser lentement (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Garden blessing ceremony - students share hopes for their plants' growth",
-        "materials": [],
+        "materials": [
+          "étiquettes pour marquer nos plantations (25 étiquettes)",
+          "crayons de cire pour écrire sur les étiquettes (ensembles de classe)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève écrit mal son nom → L'aider en tenant sa main pour former les lettres"
+        ],
+        "movementBreaks": [
+          "Célébration de plantation : danser autour du jardin comme une fête (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding how seeds become plants",
@@ -952,8 +1080,13 @@
           "rulers"
         ],
         "visualSupports": "plant growth observation chart with measurement examples",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne voit aucun changement → L'aider à regarder de plus près avec une loupe",
+          "Si l'élève est déçu de la croissance lente → Expliquer que les plantes prennent leur temps"
+        ],
+        "movementBreaks": [
+          "Croissance observable : commencer accroupi, grandir très lentement (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -978,15 +1111,24 @@
             "ifNo": "Utiliser des photos 'avant/après' pour rendre les changements plus évidents"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Détectives de croissance : chercher des indices avec une loupe imaginaire (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Growth celebration - sharing exciting observations and measurements with the class",
-        "materials": [],
+        "materials": [
+          "cahier d'observations avec photos d'avant (25 cahiers)",
+          "règles simples pour mesurer (10 règles)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne comprend pas comment mesurer → Montrer avec ses doigts d'abord"
+        ],
+        "movementBreaks": [
+          "Comparaison de taille : se comparer aux plantes, plus grand ou plus petit (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "accurate measurement techniques",
@@ -1052,8 +1194,13 @@
           "needs sorting cards"
         ],
         "visualSupports": "human needs poster matching plant and animal needs layout",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne comprend pas ses besoins → Demander ce qu'il faut quand il a faim",
+          "Si l'élève dit qu'il n'a pas besoin d'air → Lui faire retenir son souffle quelques secondes"
+        ],
+        "movementBreaks": [
+          "Besoins humains : mimer manger, boire, dormir, respirer (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1077,15 +1224,24 @@
             "ifNo": "Se concentrer d'abord sur les besoins universels (eau, air)"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Comparer avec les plantes : faire les mêmes gestes qu'une plante (se pencher vers la lumière) (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Living things connection circle - students share one way they're similar to plants or animals",
-        "materials": [],
+        "materials": [
+          "diagramme de Venn géant pour comparer (1 grand diagramme sur le sol)",
+          "images de besoins humains et de plantes (40 images mélangées)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève place mal les images → Demander 'est-ce que les plantes ont besoin de vêtements?'"
+        ],
+        "movementBreaks": [
+          "Tri vivant : sauter dans la bonne section selon ce qu'on nomme (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "making connections between different living things",
@@ -1151,8 +1307,13 @@
           "small creature photos"
         ],
         "visualSupports": "habitat examples poster showing different animal homes",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève fait un habitat trop petit → Demander si la créature peut bouger à l'aise",
+          "Si l'élève utilise des matériaux dangereux → Orienter vers des matériaux doux et sécuritaires"
+        ],
+        "movementBreaks": [
+          "Test d'habitat : ramper et explorer l'habitat qu'on a créé (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1174,15 +1335,24 @@
             "ifNo": "Guide them through creature needs checklist before building"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Présentation fière : faire un défilé de mode avec nos créations d'habitat (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Habitat showcase - students present their habitat and explain design choices",
-        "materials": [],
+        "materials": [
+          "étiquettes pour identifier les habitats (20 étiquettes)",
+          "feutres pour décorer les étiquettes (ensembles de classe)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne sait pas quoi écrire → Suggérer le nom de l'animal qui y habiterait"
+        ],
+        "movementBreaks": [
+          "Visite d'habitat : visiter les créations des amis comme des touristes (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding what makes a good habitat",
@@ -1249,8 +1419,13 @@
           "plant health checklist"
         ],
         "visualSupports": "healthy vs unhealthy plant comparison chart",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne voit toujours pas de grands changements → Comparer avec des photos du début",
+          "Si l'élève veut ramener sa plante à la maison → Expliquer comment continuer à en prendre soin"
+        ],
+        "movementBreaks": [
+          "Mesure de croissance : s'étirer pour montrer la croissance de nos plantes (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1269,15 +1444,24 @@
             "ifNo": "Guide them through systematic comparison of care practices"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Livre photo vivant : mimer les étapes de croissance en séquence (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Plant care wisdom sharing - students offer advice based on their experiences",
-        "materials": [],
+        "materials": [
+          "appareil photo ou tablette pour documenter (1 appareil)",
+          "album photo simple pour la classe (1 album)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne se rappelle pas du début → Montrer les premières photos ensemble"
+        ],
+        "movementBreaks": [
+          "Ligne du temps vivante : se placer en ordre chronologique des photos (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "connecting care actions to plant outcomes",
@@ -1344,8 +1528,13 @@
           "learning journals"
         ],
         "visualSupports": "unit learning journey timeline poster",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne sait pas quoi célébrer → Rappeler tout ce qu'on a appris sur les êtres vivants",
+          "Si l'élève est timide pour présenter → L'encourager à montrer juste une chose qu'il aime"
+        ],
+        "movementBreaks": [
+          "Célébration de la vie : danser comme tous les êtres vivants qu'on connaît (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1366,15 +1555,24 @@
             "ifNo": "Provide sentence starters and visual cues to support sharing"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Applaudissements spéciaux : applaudir comme la pluie pour les plantes (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Learning celebration - students share their favorite discovery about living things",
-        "materials": [],
+        "materials": [
+          "certificats de 'gardien des êtres vivants' (25 certificats)",
+          "autocollants spéciaux pour décorer les certificats (100 autocollants)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne se sent pas comme un 'gardien' → Rappeler toutes les plantes qu'il a aidées"
+        ],
+        "movementBreaks": [
+          "Marche des gardiens : marcher fièrement en tenant son certificat (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "organizing their learning for presentation",
@@ -1440,8 +1638,13 @@
           "seasonal pictures"
         ],
         "visualSupports": "seasonal changes poster showing plant and animal adaptations",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne voit pas les changements saisonniers → Comparer les arbres en été vs en hiver",
+          "Si l'élève ne comprend pas l'adaptation → Demander comment il s'habille en hiver vs en été"
+        ],
+        "movementBreaks": [
+          "Saisons en mouvement : mimer les activités de chaque saison (nager, skier, ramasser des feuilles) (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1460,15 +1663,24 @@
             "ifNo": "Focus on how living things still need food, water, shelter in all seasons"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Animaux saisonniers : hiberner comme un ours, migrer comme un oiseau (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Seasonal needs discussion - sharing observations about how living things change with seasons",
-        "materials": [],
+        "materials": [
+          "images des quatre saisons avec des êtres vivants (40 images)",
+          "cercle saisonnier pour trier les activités (1 grand cercle divisé)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève mélange les saisons → Associer chaque saison à une fête qu'il connaît"
+        ],
+        "movementBreaks": [
+          "Roue des saisons : tourner en cercle en mimant chaque saison (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding seasonal change concept",
@@ -1545,8 +1757,13 @@
           "environmental action pictures"
         ],
         "visualSupports": "helpful vs harmful human actions poster",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne comprend pas 'protéger' → Expliquer comme 'prendre soin de' notre maison",
+          "Si l'élève dit que c'est trop difficile → Donner des exemples simples comme ne pas jeter de déchets"
+        ],
+        "movementBreaks": [
+          "Actions de protection : mimer ramasser des déchets, planter, arroser (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1564,15 +1781,24 @@
             "ifNo": "Focus on basic concepts like not littering and being gentle with nature"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Super héros de l'environnement : voler à la rescousse des habitats en danger (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Habitat protector pledge - students commit to specific actions to help living things",
-        "materials": [],
+        "materials": [
+          "badges de 'protecteur d'habitat' (25 badges)",
+          "liste d'actions simples à cocher (25 listes)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne peut pas penser à une action → Suggérer de commencer par être gentil avec les insectes"
+        ],
+        "movementBreaks": [
+          "Serment des protecteurs : lever la main droite et répéter ensemble (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding how individual actions help",
@@ -1649,8 +1875,13 @@
           "daily life photos"
         ],
         "visualSupports": "living things helpers poster with examples and benefits",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne voit pas comment les plantes aident → Parler de la nourriture et de l'oxygène qu'elles donnent",
+          "Si l'élève pense que seuls les humains aident → Montrer comment les abeilles aident les fleurs"
+        ],
+        "movementBreaks": [
+          "Chaîne d'aide : chacun mime comment il aide quelqu'un d'autre (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1669,15 +1900,24 @@
             "ifNo": "Focus on obvious examples like pets helping families feel happy"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Web de connexions : se tenir par la main et montrer les liens entre tous les vivants (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Gratitude circle - students thank different living things for their help",
-        "materials": [],
+        "materials": [
+          "cartes de remerciement à décorer (25 cartes)",
+          "autocollants d'animaux et de plantes (100 autocollants)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne sait pas quoi dire → Suggérer 'merci aux arbres pour l'oxygène'"
+        ],
+        "movementBreaks": [
+          "Remerciements en action : applaudir trois fois pour chaque être vivant nommé (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "understanding mutual help concept",
@@ -1755,8 +1995,13 @@
           "demonstration tools"
         ],
         "visualSupports": "teaching tips poster, expert knowledge checklist",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève manque de confiance pour enseigner → Commencer par lui faire répéter avec un ami",
+          "Si l'élève ne se souvient plus des leçons → L'aider à consulter son journal d'apprentissage"
+        ],
+        "movementBreaks": [
+          "Pose d'expert : se tenir droit et fier comme quelqu'un qui sait beaucoup de choses (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1776,15 +2021,24 @@
             "ifNo": "Provide structured teaching scripts and visual aids for support"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Pratique d'enseignement : mimer comment expliquer quelque chose avec les gestes (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Expert certification ceremony - celebrating students as living things care experts",
-        "materials": [],
+        "materials": [
+          "diplomes d'expert en soins des vivants (25 diplômes)",
+          "chapeaux ou badges d'expert (25 chapeaux ou badges)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne se sent pas comme un expert → Énumérer tout ce qu'il a appris depuis le début"
+        ],
+        "movementBreaks": [
+          "Cérémonie de graduation : marcher fièrement pour recevoir son diplôme (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "confidence in teaching others",
@@ -1862,8 +2116,13 @@
           "organizing materials"
         ],
         "visualSupports": "book organization chart, chapter planning template",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne sait pas comment organiser ses idées → L'aider à classer par thème (plantes, animaux, soins)",
+          "Si l'élève n'a pas assez de matériel → L'encourager à dessiner ses souvenirs d'apprentissage"
+        ],
+        "movementBreaks": [
+          "Organisation en mouvement : se déplacer pour regrouper les idées similaires (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1883,15 +2142,24 @@
             "ifNo": "Provide book structure template with clear sections for different topics"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Auteurs fièrs : présenter son travail comme un vrai écrivain (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Book dedication ceremony - dedicating the class book to all living things they've learned to care for",
-        "materials": [],
+        "materials": [
+          "livre de classe terminé (1 livre relié)",
+          "plume spéciale pour signer les dédicaces (1 plume décorative)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne sait pas quoi écrire dans la dédicace → Suggérer de remercier les plantes et animaux"
+        ],
+        "movementBreaks": [
+          "Signature d'auteur : signer fièrement le livre comme de vrais auteurs (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "organizing complex learning into book format",
@@ -1970,8 +2238,13 @@
           "celebration decorations"
         ],
         "visualSupports": "celebration setup guide, display arrangement examples",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève est nerveux pour la présentation → L'assurer que sa famille sera fière de ses progrès",
+          "Si l'élève ne sait pas comment organiser son espace → L'aider à mettre sa plus belle plante au centre"
+        ],
+        "movementBreaks": [
+          "Préparation de fête : danser en décorant et en arrangeant l'espace (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1990,15 +2263,24 @@
             "ifNo": "Provide prompting questions to help them share their accomplishments"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébration finale : lever les bras en victoire pour tout ce qu'on a appris (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Guardian commitment renewal - students pledge to continue caring for living things beyond the classroom",
-        "materials": [],
+        "materials": [
+          "certificats de gardien de la vie à vie (25 certificats spéciaux)",
+          "petites plantes à rapporter à la maison (25 petites plantes en pot)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève promet mais semble incertain → Lui rappeler qu'il peut commencer petit avec une seule plante"
+        ],
+        "movementBreaks": [
+          "Engagement solennel : placer la main sur le cœur et prononcer la promesse ensemble (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "sharing accomplishments with confidence",

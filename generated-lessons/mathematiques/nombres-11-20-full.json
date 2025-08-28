@@ -51,7 +51,10 @@
           "Si confusion avec les quantités → utiliser groupement physique avec contenants de 10",
           "Si certains élèves maîtrisent déjà → poser le défi d'estimer combien d'objets au-delà de 10"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -94,7 +97,10 @@
           "Si confusion entre 'onze' et 'douze' dans la prononciation → utiliser chansons et rimes pour ancrer, associer à images mnémotechniques",
           "Si certains élèves maîtrisent déjà ces concepts → les faire devenir tuteurs pour leurs pairs et donner défis d'extension avec 13-15"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
@@ -118,8 +124,15 @@
           ]
         },
         "visualSupports": "Cercle marqué au sol pour rassemblement, récapitulatif visuel des apprentissages au tableau",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Distinction entre 11 et 12",
@@ -212,7 +225,10 @@
           "Si les élèves ont oublié 11-12 → reprendre manipulation concrète et révision guidée",
           "Si maîtrise rapide de la révision → introduire immédiatement le défi des nombres suivants"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -272,7 +288,10 @@
             "ifNo": "Procéder aux activités d'application et de transfert"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
@@ -296,8 +315,15 @@
           ]
         },
         "visualSupports": "Ligne de base tracée au tableau pour placer les cartes, espace pour jeu 'nombre caché', affichage de rappel des représentations 10+n",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond onze et douze → Utiliser les doigts: montrer 10 + 1, puis 10 + 2",
+          "Si l'élève compte en anglais → Rappeler gentiment de compter en français avec modélisation",
+          "Si difficulté avec les mots 'onze' et 'douze' → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Faire 11 sauts sur place, puis 12 sauts ensemble (3 minutes)",
+          "Compter en marchant: 11 pas à droite, 12 pas à gauche (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Mémorisation de la séquence",
@@ -368,8 +394,15 @@
           "Ligne numérique 1-15 affichée",
           "espace vide pour 16-19"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence après 12 → Revenir aux objets concrets et recompter",
+          "Si confusion entre treize et trente → Utiliser des blocs de base dix pour montrer la différence",
+          "Si l'élève mélange les mots → Faire répéter chaque nombre lentement avec pause"
+        ],
+        "movementBreaks": [
+          "Compter en tapant des pieds: 11, 12, 13, 14 (2 minutes)",
+          "Lever les bras 13 fois, baisser 14 fois en comptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -403,15 +436,29 @@
             "ifNo": "Procéder à l'ensemble 16-19 et aux activités d'extension"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer les bras 16 fois en comptant à voix haute (2 minutes)",
+          "Tourner sur soi-même en comptant de 11 à 16 (3 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Jeu de séquence: les élèves se placent en ordre avec des cartes numériques 11-19. Récitation collective de la séquence complète.",
-        "materials": [],
+        "materials": [
+          "objets à compter (collections de 20-30 items)",
+          "cartes de nombres 11-20 (2 jeux par classe)",
+          "blocs de base dix (ensembles complets)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Confusion entre seize et six",
@@ -482,8 +529,15 @@
           "Représentation visuelle de 19",
           "espace pour montrer la transformation"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -517,15 +571,29 @@
             "ifNo": "Consolider la compréhension de 20 comme 2 groupes de 10"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Création collective de différentes représentations de 20. Chaque élève montre 20 d'une façon différente (objets, dessins, groupes).",
-        "materials": [],
+        "materials": [
+          "tableau des nombres 1-20 (affiche murale)",
+          "cubes à encastrer (200-250 cubes)",
+          "jetons colorés pour comptage (250 jetons)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Concept de groupement par dizaines",
@@ -595,8 +663,15 @@
           "Stations d'activités visuellement marquées",
           "ligne numérique complète 1-20"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -630,15 +705,29 @@
             "ifNo": "Maintenir le focus sur la consolidation des acquis 11-20"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Partage des réussites de chaque station. Auto-évaluation: les élèves montrent avec leurs doigts leur niveau de confiance pour chaque nombre 11-20.",
-        "materials": [],
+        "materials": [
+          "feuilles d'exercices plastifiées (25 copies)",
+          "crayons effaçables (25 marqueurs)",
+          "contenants de tri (bacs individuels)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Mémorisation de l'ordre des nombres",
@@ -708,8 +797,15 @@
         "visualSupports": [
           "Objets disposés en désordre vs objets groupés par 10"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -743,15 +839,29 @@
             "ifNo": "Maintenir le soutien pour le groupe et consolider les acquis"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Création d'une chanson de classe pour compter par 10. Démonstration finale de l'efficacité: compter 30 objets par 1 vs par 10.",
-        "materials": [],
+        "materials": [
+          "ligne numérique au sol (ruban adhésif)",
+          "objets à compter (collections de 20-30 items)",
+          "cartes de nombres 11-20 (2 jeux par classe)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Compréhension des bonds",
@@ -790,8 +900,15 @@
         "visualSupports": [
           "Exemple de représentations multiples pour un nombre plus petit"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -825,15 +942,29 @@
             "ifNo": "Fournir plus de modèles et de structure pour les représentations"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Galerie de représentations: les élèves circulent pour voir les différentes façons de représenter les nombres et expliquent leurs favoris.",
-        "materials": [],
+        "materials": [
+          "blocs de base dix (ensembles complets)",
+          "tableau des nombres 1-20 (affiche murale)",
+          "cubes à encastrer (200-250 cubes)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Compréhension de la décomposition dizaines-unités",
@@ -873,8 +1004,15 @@
           "Ligne numérique 11-20",
           "cartes avec vocabulaire de comparaison"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -907,15 +1045,29 @@
             "ifNo": "Maintenir le focus sur le vocabulaire oral et les comparaisons visuelles"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Jeu de classement humain: les élèves se placent en ordre croissant ou décroissant avec leurs cartes numériques. Discussion sur les stratégies utilisées.",
-        "materials": [],
+        "materials": [
+          "jetons colorés pour comptage (250 jetons)",
+          "feuilles d'exercices plastifiées (25 copies)",
+          "crayons effaçables (25 marqueurs)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Confusion entre plus grand et plus petit",
@@ -955,8 +1107,15 @@
           "Pattern affiché en grand",
           "espace pour continuer le pattern"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -990,15 +1149,29 @@
             "ifNo": "Fournir plus de modèles et de structure pour la création de patterns"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Galerie de patterns: présentation des créations des élèves. Jeu de prédiction: compléter les patterns créés par les pairs.",
-        "materials": [],
+        "materials": [
+          "contenants de tri (bacs individuels)",
+          "ligne numérique au sol (ruban adhésif)",
+          "objets à compter (collections de 20-30 items)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Reconnaissance des patterns",
@@ -1038,8 +1211,15 @@
           "Histoire illustrée",
           "représentation de la situation"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1072,15 +1252,29 @@
             "ifNo": "Maintenir le focus sur l'addition de base avec support concret"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Création collective d'une histoire mathématique de classe. Les élèves proposent des éléments et résolvent ensemble le problème d'addition.",
-        "materials": [],
+        "materials": [
+          "cartes de nombres 11-20 (2 jeux par classe)",
+          "blocs de base dix (ensembles complets)",
+          "tableau des nombres 1-20 (affiche murale)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Concept d'addition",
@@ -1120,8 +1314,15 @@
           "Représentation visuelle du problème",
           "espace pour tester les solutions"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1154,15 +1355,29 @@
             "ifNo": "Maintenir le soutien avec des problèmes bien structurés et du matériel adapté"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Partage des stratégies utilisées. Création d'un 'mur de stratégies' avec les différentes approches découvertes par les élèves.",
-        "materials": [],
+        "materials": [
+          "cubes à encastrer (200-250 cubes)",
+          "jetons colorés pour comptage (250 jetons)",
+          "feuilles d'exercices plastifiées (25 copies)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Compréhension des énoncés de problèmes",
@@ -1202,8 +1417,15 @@
           "timer visible",
           "tableau de rotation"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1238,15 +1460,29 @@
             "ifNo": "Ajuster les jeux pour qu'ils soient plus attrayants et motivants"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Cercle de partage: chaque groupe partage son jeu préféré et explique pourquoi. Planification des jeux favoris pour les temps libres.",
-        "materials": [],
+        "materials": [
+          "crayons effaçables (25 marqueurs)",
+          "contenants de tri (bacs individuels)",
+          "ligne numérique au sol (ruban adhésif)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Compréhension des règles de jeu",
@@ -1286,8 +1522,15 @@
           "Référentiels visuels (groupes de 10, 15, 20)",
           "échelle d'estimation"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1320,15 +1563,29 @@
             "ifNo": "Maintenir le focus sur l'estimation de quantités avec plus de pratique"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Création du 'guide d'estimation de classe' avec les meilleures stratégies découvertes. Test final d'estimation avec un nouveau bocal mystère.",
-        "materials": [],
+        "materials": [
+          "objets à compter (collections de 20-30 items)",
+          "cartes de nombres 11-20 (2 jeux par classe)",
+          "blocs de base dix (ensembles complets)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Concept d'estimation vs comptage exact",
@@ -1367,8 +1624,15 @@
           "File physique d'élèves",
           "cartes ordinales 1er-10e"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1402,15 +1666,29 @@
             "ifNo": "Maintenir la pratique de base avec des activités concrètes et répétitives"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Jeu final: 'Course aux positions'. Les élèves doivent se placer selon les positions ordinales appelées. Récapitulatif du vocabulaire appris.",
-        "materials": [],
+        "materials": [
+          "tableau des nombres 1-20 (affiche murale)",
+          "cubes à encastrer (200-250 cubes)",
+          "jetons colorés pour comptage (250 jetons)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Différence entre cardinal et ordinal",
@@ -1450,8 +1728,15 @@
           "Résumé visuel des apprentissages",
           "liste des concepts clés"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1484,15 +1769,29 @@
             "ifNo": "Maintenir l'approche actuelle avec des ajustements mineurs"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Célébration des progrès. Chaque élève reçoit un certificat personnalisé mentionnant ses forces avec les nombres 11-20. Planification des prochaines aventures mathématiques.",
-        "materials": [],
+        "materials": [
+          "feuilles d'exercices plastifiées (25 copies)",
+          "crayons effaçables (25 marqueurs)",
+          "contenants de tri (bacs individuels)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Anxiété face à l'évaluation",
@@ -1572,8 +1871,15 @@
           "Représentation claire de 20",
           "espace pour explorer 21+"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1606,15 +1912,29 @@
             "ifNo": "Maintenir le focus sur 21-25 avec plus de pratique et de consolidation"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Création d'une ligne numérique collective 20-25. Chaque élève contribue en plaçant un nombre et en expliquant sa structure (2 dizaines + unités).",
-        "materials": [],
+        "materials": [
+          "ligne numérique au sol (ruban adhésif)",
+          "objets à compter (collections de 20-30 items)",
+          "cartes de nombres 11-20 (2 jeux par classe)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Compréhension de la continuation après 20",
@@ -1695,8 +2015,15 @@
           "Exemples de questions d'exploration",
           "stations d'exploration marquées"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1730,15 +2057,29 @@
             "ifNo": "Maintenir l'exploration dans la gamme 20-30 avec plus de soutien"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Cercle de partage des découvertes. Chaque élève ou groupe partage une chose intéressante qu'il a découverte. Création d'un 'mur des découvertes'.",
-        "materials": [],
+        "materials": [
+          "blocs de base dix (ensembles complets)",
+          "tableau des nombres 1-20 (affiche murale)",
+          "cubes à encastrer (200-250 cubes)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Manque de direction dans l'exploration libre",
@@ -1819,8 +2160,15 @@
           "exemples de présentations finales",
           "critères de réussite"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1853,15 +2201,29 @@
             "ifNo": "Fournir plus de soutien individuel et de modèles à suivre"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Préparation finale des présentations. Les élèves pratiquent leurs présentations avec un partenaire et reçoivent des encouragements pour la séance de partage.",
-        "materials": [],
+        "materials": [
+          "jetons colorés pour comptage (250 jetons)",
+          "feuilles d'exercices plastifiées (25 copies)",
+          "crayons effaçables (25 marqueurs)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Choix ou organisation de la collection",
@@ -1942,8 +2304,15 @@
           "exemples de progrès",
           "documentation visuelle du parcours"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -1975,15 +2344,29 @@
             "ifNo": "Adapter le format pour rendre les présentations plus interactives"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Cercle de célébration finale. Chaque élève reçoit des commentaires positifs. Photo de groupe avec les collections. Planification des prochaines aventures mathématiques.",
-        "materials": [],
+        "materials": [
+          "contenants de tri (bacs individuels)",
+          "ligne numérique au sol (ruban adhésif)",
+          "objets à compter (collections de 20-30 items)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève confond les nombres → Revenir aux objets concrets et compter ensemble",
+          "Si l'élève compte en anglais → Rappeler gentiment d'utiliser les mots français",
+          "Si difficulté avec la prononciation → Répéter lentement avec gestes visuels"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Anxiété de performance devant public",
@@ -2063,8 +2446,15 @@
           "comparaisons avant/après",
           "portfolios individuels"
         ],
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève oublie la séquence → Utiliser la comptine numérique avec actions",
+          "Si confusion entre nombres similaires → Montrer avec blocs de base dix",
+          "Si fatigue ou découragement → Encourager et faire pause si nécessaire"
+        ],
+        "movementBreaks": [
+          "Compter en sautant sur place de 11 à 20 (2 minutes)",
+          "Lever les bras en comptant, baisser en décomptant (3 minutes)"
+        ]
       },
       "main": {
         "duration": "~27 min",
@@ -2097,15 +2487,29 @@
             "ifNo": "Renforcer la confiance et créer des associations positives avec les mathématiques"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher et compter: faire des pas correspondant aux nombres (2 minutes)",
+          "Taper des mains en comptant par groupes de 10 (2 minutes)"
+        ]
       },
       "closing": {
         "duration": "~10 min",
         "activity": "Création d'un 'arbre des apprentissages' collectif où chaque élève ajoute une feuille représentant un apprentissage important. Engagement pour l'aventure mathématique continue.",
-        "materials": [],
+        "materials": [
+          "cartes de nombres 11-20 (2 jeux par classe)",
+          "blocs de base dix (ensembles complets)",
+          "tableau des nombres 1-20 (affiche murale)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève maîtrise rapidement → Proposer défis supplémentaires adaptés",
+          "Si l'élève aide les autres → Encourager le tutorat par les pairs",
+          "Si l'élève veut continuer → Planifier enrichissement pour après"
+        ],
+        "movementBreaks": [
+          "Tourner en comptant, changer de direction à chaque dizaine (3 minutes)",
+          "Compter en touchant différentes parties du corps (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Capacité de réflexion sur les apprentissages",

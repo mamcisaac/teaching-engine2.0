@@ -16,26 +16,62 @@
       "opening": {
         "duration": 8,
         "activity": "",
-        "materials": [],
+        "materials": [
+          "grandes affiches d'exemples de motifs (3-4 affiches)",
+          "objets avec motifs visibles (tissus, papier peint, 5-6 échantillons)",
+          "tapis de rassemblement"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne comprend pas ce qu'est un motif → Pointer des exemples concrets sur les vêtements ou dans la classe",
+          "Si l'élève semble distrait → Utiliser des objets familiers avec motifs (chaussettes rayées, chemise à carreaux)",
+          "Si l'élève a de la difficulté à voir les répétitions → Tracer avec le doigt pour montrer la répétition"
+        ],
+        "movementBreaks": [
+          "Marcher en répétant des motifs : pas-pas-saut, pas-pas-saut autour du tapis (2 minutes)",
+          "Faire des gestes répétitifs avec les mains : taper-claquer-taper-claquer (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "",
-        "materials": [],
+        "materials": [
+          "tampons en mousse de formes simples (8-10 tampons différents)",
+          "encre à l'eau non-toxique (6-8 couleurs vives)",
+          "papier épais pour impression (50 feuilles, 21cm x 28cm)",
+          "lingettes humides pour nettoyer les tampons (1 paquet)",
+          "tabliers ou vieux chandails (30 tabliers)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève met trop d'encre sur son tampon → Montrer comment tamponner légèrement sur un papier brouillon d'abord",
+          "Si l'élève ne voit pas son motif se former → Utiliser des couleurs contrastantes et compter ensemble : un, deux, trois impressions",
+          "Si l'élève est frustré avec son impression → L'encourager en disant que chaque impression est spéciale et unique"
+        ],
+        "movementBreaks": [
+          "Faire des gestes d'impression dans l'air : appuyer doucement, soulever, déplacer, appuyer (2 minutes)",
+          "Étirer nos mains et doigts comme des tampons qui se préparent (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "",
-        "materials": [],
+        "materials": [
+          "bacs pour ranger les tampons (4-5 bacs)",
+          "serviettes en papier pour nettoyer (2 rouleaux)",
+          "espace d'affichage ou corde à linge pour sécher (installation)",
+          "lingettes désinfectantes pour les tables (1 paquet)"
+        ],
         "visualSupports": "",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": [
+          "Si l'élève ne veut pas partager son travail → Respecter son choix et offrir de le garder privé pour aujourd'hui",
+          "Si l'élève veut continuer à imprimer → Rappeler gentiment que c'est le temps de ranger, mais qu'on continuera demain",
+          "Si l'élève a de l'encre sur les mains → Montrer où se laver et l'accompagner si nécessaire"
+        ],
+        "movementBreaks": [
+          "Célébrer nos créations en dansant comme nos motifs : mouvements répétitifs et joyeux (3 minutes)",
+          "Étirer nos bras et dos après avoir été penchés sur notre travail (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "",

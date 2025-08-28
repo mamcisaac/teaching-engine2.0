@@ -148,12 +148,12 @@
       "closing": {
         "duration": 10,
         "activity": "Visite du musée des constructions : tour de la classe pour admirer et commenter les créations. Voter pour la plus stable.",
-        "materials": [],
+        "materials": ["Étiquettes de nom pour les constructions", "Autocollants dorés pour les gagnants"],
         "visualSupports": "Critères d'évaluation : 'La plus haute', 'La plus créative', 'La plus stable'",
         "decisionPoints": [
           "Si comparaisons négatives : se concentrer sur les aspects positifs de chaque construction"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Faire une parade de nos constructions en marchant autour (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "faire tenir les constructions",
@@ -263,7 +263,7 @@
         "decisionPoints": [
           "Si timides : permettre de juste montrer sans présenter"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Mimer les animaux créés avec tout le corps (3 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "assembler les parties de l'animal",
@@ -318,7 +318,7 @@
         "decisionPoints": [
           "Si mobiles ne bougent pas : créer un courant d'air doux"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Danser doucement comme un mobile qui bouge au vent (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "faire tenir le mobile en équilibre",
@@ -373,7 +373,7 @@
         "decisionPoints": [
           "Si réticents à détruire : expliquer la beauté de l'art temporaire"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Marcher en procession pour admirer toutes les sculptures naturelles (3 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "faire tenir les matériaux naturels ensemble",
@@ -428,7 +428,7 @@
         "decisionPoints": [
           "Si inconfortable de porter : tenir devant le visage ou juste présenter"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Défiler avec nos masques en faisant des mouvements théâtraux (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "faire coller les éléments en relief",
@@ -483,7 +483,7 @@
         "decisionPoints": [
           "Si difficile d'expliquer : poser des questions simples sur leur construction"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Applaudir et célébrer comme des architectes fiers de leurs bâtiments (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "créer des structures stables",
@@ -538,7 +538,7 @@
         "decisionPoints": [
           "Si difficile de raconter : aider avec des questions guide"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Jouer les personnages de nos histoires sculptées (3 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "représenter des personnages en 3D",
@@ -592,7 +592,7 @@
         "decisionPoints": [
           "Si certains ne veulent pas parler : permettre à d'autres de représenter l'équipe"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Se congratuler en équipe avec une danse de victoire collaborative (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "travailler ensemble harmonieusement",
@@ -647,7 +647,7 @@
         "decisionPoints": [
           "Si difficulté à expliquer : aider avec des démonstrations"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Jouer avec les ombres de nos mains sur le mur (3 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "voir les ombres clairement",
@@ -702,7 +702,7 @@
         "decisionPoints": [
           "Si peu conscients de l'environnement : expliquer simplement les bénéfices"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Danse de la transformation : bouger comme nos objets recyclés (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "voir le potentiel des matériaux recyclés",
@@ -757,7 +757,7 @@
         "decisionPoints": [
           "Si nerveux pour présenter : permettre des présentations plus courtes"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Marcher solennellement comme dans une vraie galerie d'art (3 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "choisir et organiser ses œuvres",
@@ -811,7 +811,7 @@
         "decisionPoints": [
           "Si sculptures ne bougent pas bien : célébrer l'effort et les idées"
         ],
-        "movementBreaks": []
+        "movementBreaks": ["Bouger nos corps comme nos sculptures cinétiques (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "créer un mouvement stable",
@@ -861,8 +861,8 @@
         "activity": "Musée de mathématiques : présenter les sculptures en expliquant les formes et motifs utilisés. Compter et mesurer ensemble.",
         "materials": ["Sculptures géométriques", "Outils de mesure"],
         "visualSupports": "Vocabulaire mathématique pour décrire les formes",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": ["Si difficile de voir les formes → Utiliser des objets plus gros et contrastés"],
+        "movementBreaks": ["Faire des formes géométriques géantes avec plusieurs élèves (3 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "comprendre les concepts géométriques",
@@ -912,8 +912,8 @@
         "activity": "Concert de sculptures : présenter les instruments créés en jouant une petite mélodie ou rythme. Orchestre de classe.",
         "materials": ["Instruments-sculptures créés"],
         "visualSupports": "Signes de chef d'orchestre simple",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": ["Si le volume devient trop fort → Utiliser le geste 'piano' pour diminuer le son"],
+        "movementBreaks": ["Chef d'orchestre : diriger la classe dans une symphonie de sculptures (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "produire des sons clairs",
@@ -943,7 +943,7 @@
         "activity": "Découverte d'installations : observer des photos d'installations artistiques. Discuter de l'effet sur les spectateurs.",
         "materials": ["Images d'installations artistiques", "Videos courtes"],
         "visualSupports": "Exemples d'installations adaptées aux enfants",
-        "decisionPoints": [],
+        "decisionPoints": ["Si les élèves ne comprennent pas le concept → Montrer des exemples simples d'espaces transformés"],
         "movementBreaks": ["Se déplacer pour imaginer être dans l'installation"]
       },
       "main": {
@@ -952,7 +952,8 @@
         "materials": ["Tissus", "Sculptures précédentes", "Lumières colorées", "Matériaux sensoriels"],
         "visualSupports": "Plan simple pour organiser l'espace",
         "decisionPoints": [
-          "Si espace limité : adapter à un plus petit coin"
+          "Si espace limité : adapter à un plus petit coin",
+          "Si l'installation semble trop simple → Encourager l'ajout d'éléments sensoriels"
         ],
         "movementBreaks": ["Installer et réarranger les éléments", "Tester l'expérience"]
       },
@@ -961,8 +962,8 @@
         "activity": "Inauguration d'installation : inviter les autres à expérimenter l'installation créée. Recueillir les réactions.",
         "materials": ["Installation complète"],
         "visualSupports": "Questions pour les visiteurs : 'Que ressens-tu ici ?'",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": ["Si les visiteurs sont timides → Modeler comment explorer une installation avec respect"],
+        "movementBreaks": ["Explorer l'installation en bougeant comme des visiteurs curieux (3 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "conceptualiser l'installation",
@@ -992,7 +993,7 @@
         "activity": "Découverte d'art numérique : observer des créations 3D réalisées sur ordinateur. Comparer avec l'art physique.",
         "materials": ["Tablettes/ordinateurs", "Exemples d'art numérique 3D"],
         "visualSupports": "Comparaison art traditionnel vs numérique",
-        "decisionPoints": [],
+        "decisionPoints": ["Si intimidés par la technologie → Commencer par des outils très simples et amusants"],
         "movementBreaks": ["Gestes de sculpture dans l'air"]
       },
       "main": {
@@ -1010,8 +1011,8 @@
         "activity": "Galerie virtuelle : partager les créations numériques sur grand écran. Discuter des différences avec l'art physique.",
         "materials": ["Projecteur/grand écran", "Créations numériques"],
         "visualSupports": "Questions de comparaison : 'Qu'est-ce qui est différent ? Pareil ?'",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": ["Si frustrés avec les outils → Rappeler que c'est normal d'apprendre étape par étape"],
+        "movementBreaks": ["Étirements numériques : bouger les doigts comme si on sculptait dans l'air (2 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "utiliser les outils numériques",
@@ -1041,7 +1042,7 @@
         "activity": "Rétrospective : revoir toutes les créations 3D réalisées pendant l'unité. Identifier les progrès et moments de fierté.",
         "materials": ["Portfolio de créations", "Photos du parcours"],
         "visualSupports": "Chronologie visuelle de l'unité avec photos",
-        "decisionPoints": [],
+        "decisionPoints": ["Si difficile d'identifier les progrès → Utiliser les photos du début de l'unité pour comparer"],
         "movementBreaks": ["Circuler pour revoir toutes les créations"]
       },
       "main": {
@@ -1049,7 +1050,7 @@
         "activity": "Musée des réussites : organiser une exposition finale avec toutes les meilleures créations. Préparer des présentations de fierté.",
         "materials": ["Toutes les créations de l'unité", "Matériaux d'exposition", "Cértificats d'artiste"],
         "visualSupports": "Modèles de réflexion : 'J'ai appris...', 'Je suis fier de...'",
-        "decisionPoints": [],
+        "decisionPoints": ["Si timides pour présenter → Permettre de présenter en duo ou simplement montrer"],
         "movementBreaks": ["Organiser l'exposition", "Répéter les présentations"]
       },
       "closing": {
@@ -1057,8 +1058,8 @@
         "activity": "Cérémonie de remise : présenter les certificats d'artiste 3D. Partager les rêves artistiques futurs. Applaudissements de célébration.",
         "materials": ["Certificats personnalisés", "Exposition finale"],
         "visualSupports": "Messages d'encouragement pour l'avenir artistique",
-        "decisionPoints": [],
-        "movementBreaks": []
+        "decisionPoints": ["Si émotionnels lors de la célébration → Rappeler que c'est normal d'être fier de ses réussites"],
+        "movementBreaks": ["Grande célébration finale : applaudissements, danses de joie et high-fives artistiques (3 minutes)"]
       },
       "troubleshooting": {
         "ifStrugglingWith": "identifier ses progrès",
