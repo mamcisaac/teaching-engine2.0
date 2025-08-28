@@ -30,6 +30,8 @@ import { prisma } from './prisma';
 import { router as activityCollectionsRoutes } from './routes/activity-collections';
 import { router as aiActivityGenerationRoutes } from './routes/ai-activity-generation';
 import { router as aiPlanningRoutes } from './routes/ai-planning';
+import { router as analyticsRoutes } from './routes/analytics';
+import { router as artifactsRoutes } from './routes/artifacts';
 import { router as authEndpoints } from './routes/authEndpoints';
 import { router as cacheRoutes } from './routes/cache';
 import { router as calendarEventRoutes } from './routes/calendar-events';
@@ -37,21 +39,26 @@ import { router as curriculumExpectationRoutes } from './routes/curriculum-expec
 import { router as curriculumImportRoutes } from './routes/curriculumImport';
 import { router as dashboardMetricsRoutes } from './routes/dashboard-metrics';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
+import evidenceExportRoutes from './routes/evidenceExport';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as etfoProgressRoutes } from './routes/etfo-progress';
-import lessonGenerationRoutes from './routes/lesson-generation';
+// import lessonGenerationRoutes from './routes/lesson-generation'; // Commented out - missing route file
 import { router as longRangePlanRoutes } from './routes/long-range-plans';
+import { router as masteryTrackingRoutes } from './routes/masteryTracking';
 import { router as metricsRoutes } from './routes/metrics';
 import { router as monitoringRoutes } from './routes/monitoring';
 import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
 import { router as recentPlansRoutes } from './routes/recent-plans';
+import reportsRoutes from './routes/reports';
+import studentsRoutes from './routes/students';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
 import { userRoutes } from './routes/user';
 import { errorReportingService } from './services/monitoring/errorReportingService';
+import { initializeServices } from './services/initializeServices';
 import {
   structuredLogger,
   correlationMiddleware,
@@ -208,7 +215,17 @@ app.use('/api/notifications', asyncMiddleware(authenticate), rateLimiters.api, n
 
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
-// Student endpoints removed - app does not store student data
+
+// ETFO Student Assessment Routes (conditionally enabled)
+if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
+  log('Mounting student assessment routes...');
+  app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentsRoutes);
+  app.use('/api/artifacts', asyncMiddleware(authenticate), rateLimiters.write, userCache, artifactsRoutes);
+  app.use('/api/mastery', asyncMiddleware(authenticate), rateLimiters.api, userCache, masteryTrackingRoutes);
+  app.use('/api/reports', asyncMiddleware(authenticate), rateLimiters.api, userCache, reportsRoutes);
+  app.use('/api/analytics', asyncMiddleware(authenticate), rateLimiters.api, userCache, analyticsRoutes);
+  app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
+}
 
 // Key Teacher Features
 app.use('/api/newsletters', asyncMiddleware(authenticate), rateLimiters.write, newsletterRoutes);
@@ -241,7 +258,7 @@ app.use(
   etfoLessonPlanRoutes,
 );
 app.use('/api/daybook-entries', asyncMiddleware(authenticate), rateLimiters.write, userCache, daybookEntryRoutes);
-app.use('/api/lesson-generation', asyncMiddleware(authenticate), rateLimiters.write, lessonGenerationRoutes);
+// app.use('/api/lesson-generation', asyncMiddleware(authenticate), rateLimiters.write, lessonGenerationRoutes); // Commented out - missing route file
 app.use('/api/etfo', asyncMiddleware(authenticate), rateLimiters.read, etfoProgressRoutes);
 
 // State Management Routes
@@ -342,6 +359,10 @@ async function initializeApp(): Promise<express.Application> {
   // Initialize error reporting service first
   log('Initializing error reporting service...');
   errorReportingService.init();
+
+  // Initialize background services (queues, cleanup, etc.)
+  log('Initializing background services...');
+  await initializeServices();
 
   // Initialize OpenTelemetry before anything else
   log('Initializing OpenTelemetry...');

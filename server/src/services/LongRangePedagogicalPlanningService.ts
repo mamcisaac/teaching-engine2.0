@@ -9,7 +9,7 @@ import { EssentialQuestionsEngine } from './EssentialQuestionsEngine';
 import { StandardsVerificationService } from './StandardsVerificationService';
 import { CrossCurricularEngineService } from './CrossCurricularEngineService';
 import { DataDrivenAnalysisEngine } from './DataDrivenAnalysisEngine';
-import { WHERETOFrameworkService } from './WHERETOFrameworkService';
+// import { WHERETOFrameworkService } from './WHERETOFrameworkService'; // Commented out - missing service
 import { DifferentiationAlgorithmService } from './DifferentiationAlgorithmService';
 
 export interface YearlyPlanRequest {
@@ -292,7 +292,7 @@ export class LongRangePedagogicalPlanningService extends BaseService {
   private standardsVerification: StandardsVerificationService;
   private crossCurricular: CrossCurricularEngineService;
   private dataAnalysis: DataDrivenAnalysisEngine;
-  private wheretoFramework: WHERETOFrameworkService;
+  // private wheretoFramework: WHERETOFrameworkService; // Commented out - missing service
   private differentiation: DifferentiationAlgorithmService;
 
   constructor(prisma: PrismaClient) {
@@ -305,7 +305,7 @@ export class LongRangePedagogicalPlanningService extends BaseService {
     this.standardsVerification = new StandardsVerificationService(prisma);
     this.crossCurricular = new CrossCurricularEngineService(prisma);
     this.dataAnalysis = new DataDrivenAnalysisEngine(prisma);
-    this.wheretoFramework = new WHERETOFrameworkService(prisma);
+    // this.wheretoFramework = new WHERETOFrameworkService(prisma); // Commented out - missing service
     this.differentiation = new DifferentiationAlgorithmService(prisma);
   }
 

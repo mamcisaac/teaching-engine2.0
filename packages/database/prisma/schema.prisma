@@ -59,6 +59,10 @@ model User {
   unavailableBlocks        UnavailableBlock[]
   unitPlans                UnitPlan[]
   weeklyPlannerState       WeeklyPlannerState?
+  // ETFO Student Assessment Relations
+  students                 Student[]
+  studentArtifacts         StudentArtifact[]
+  studentOutcomeProgress   StudentOutcomeProgress[]
 }
 
 model Notification {
@@ -197,6 +201,9 @@ model CurriculumExpectation {
   lessonPlans    ETFOLessonPlanExpectation[]
   longRangePlans LongRangePlanExpectation[]
   unitPlans      UnitPlanExpectation[]
+  // ETFO Student Assessment Relations
+  artifactOutcomes   StudentArtifactOutcome[]    @relation("StudentArtifactOutcome")
+  studentProgress    StudentOutcomeProgress[]    @relation("StudentOutcomeProgress")
 
   @@index([subject, grade])
   @@index([code])
@@ -858,4 +865,129 @@ model UnitPlanTransferSkill {
   unitPlan        UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
 
   @@id([unitPlanId, transferSkillId])
+}
+
+// ETFO-Aligned Student Assessment Models
+
+model Student {
+  id                     String                  @id @default(cuid())
+  userId                 Int                     // Teacher who created the student record
+  firstName              String
+  lastName               String
+  studentNumber          String?                 // Optional school-assigned number
+  grade                  Int
+  homeroom               String?
+  specialNeeds           String?                 // IEP, accommodations, etc.
+  parentContact          Json?                   // Emergency contact info
+  enrollmentDate         DateTime                @default(now())
+  withdrawalDate         DateTime?
+  isActive               Boolean                 @default(true)
+  notes                  String?                 // General teacher notes
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  user                   User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  artifacts              StudentArtifact[]
+  outcomeProgress        StudentOutcomeProgress[]
+
+  @@index([userId])
+  @@index([userId, isActive])
+  @@index([userId, grade])
+  @@index([grade, isActive])
+  @@index([studentNumber])
+}
+
+model StudentArtifact {
+  id                String                      @id @default(cuid())
+  studentId         String
+  userId            Int                         // Teacher who uploaded the artifact
+  artifactType      String                      // PHOTO, VIDEO, AUDIO, DOCUMENT, NOTE
+  title             String
+  description       String?
+  filePath          String?                     // Path to uploaded file (if applicable)
+  fileName          String?                     // Original filename
+  fileSize          Int?                        // File size in bytes
+  mimeType          String?                     // MIME type for files
+  textContent       String?                     // For text-based artifacts or notes
+  metadata          Json?                       // Additional metadata (dimensions, duration, etc.)
+  checksum          String?                     // SHA-256 hash for duplicate detection
+  thumbnailPath     String?                     // Path to generated thumbnail
+  thumbnailUrl      String?                     // Public URL for thumbnail
+  collectionContext String?                     // When/where was this collected (lesson plan, activity, etc.)
+  dateCollected     DateTime                    @default(now())
+  isPrivate         Boolean                     @default(false)
+  isArchived        Boolean                     @default(false)     // For archiving old artifacts
+  tags              Json?                       // Flexible tagging system
+  processingStatus  String                      @default("PENDING")   // PENDING, PROCESSING, COMPLETED, FAILED
+  processingError   String?
+  processingCompletedAt DateTime?                // When processing finished
+  lastAssessedDate  DateTime?                   // Last time this was used in assessment
+  createdAt         DateTime                    @default(now())
+  updatedAt         DateTime                    @updatedAt
+  student           Student                     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  user              User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  outcomes          StudentArtifactOutcome[]
+
+  @@index([studentId])
+  @@index([userId])
+  @@index([studentId, dateCollected])
+  @@index([artifactType])
+  @@index([userId, dateCollected])
+  @@index([processingStatus])
+  @@index([studentId, artifactType])
+  @@index([checksum])
+  @@index([isArchived])
+  @@index([studentId, userId, checksum])
+}
+
+model StudentArtifactOutcome {
+  artifactId            String
+  outcomeId             String                 // References CurriculumExpectation.id
+  evidenceType          String                 // OBSERVATION, CONVERSATION, PRODUCT (triangulation)
+  teacherNote           String?                // Teacher's professional judgment note
+  confidenceLevel       String                 @default("MEDIUM") // LOW, MEDIUM, HIGH
+  contextualFactors     String?                // Environmental factors affecting performance
+  dateAssessed          DateTime               @default(now())
+  artifact              StudentArtifact        @relation(fields: [artifactId], references: [id], onDelete: Cascade)
+  outcome               CurriculumExpectation  @relation("StudentArtifactOutcome", fields: [outcomeId], references: [id], onDelete: Cascade)
+
+  @@id([artifactId, outcomeId])
+  @@index([outcomeId])
+  @@index([evidenceType])
+  @@index([dateAssessed])
+  @@index([confidenceLevel])
+}
+
+model StudentOutcomeProgress {
+  id                    String                 @id @default(cuid())
+  studentId             String
+  outcomeId             String                 // References CurriculumExpectation.id
+  userId                Int                    // Teacher making the assessment
+  currentLevel          String                 @default("NOT_YET") // ETFO 4-level: NOT_YET, APPROACHING, MEETING, EXCEEDING
+  previousLevel         String?                // Track progression
+  lastAssessmentDate    DateTime               @default(now())
+  lastAssessedDate      DateTime?              // Alias for compatibility
+  totalEvidencePieces   Int                    @default(0)
+  strongestEvidence     Json?                  // Reference to most compelling artifact
+  areasForGrowth        String?                // Teacher notes on next steps
+  strengths             String?                // What the student does well
+  teacherNotes          String?                // General assessment notes
+  parentShared          Boolean                @default(false)     // Has this been shared with parents?
+  parentShareDate       DateTime?
+  isArchived            Boolean                @default(false)
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  student               Student                @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  outcome               CurriculumExpectation  @relation("StudentOutcomeProgress", fields: [outcomeId], references: [id], onDelete: Cascade)
+  user                  User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, outcomeId])
+  @@index([studentId])
+  @@index([outcomeId])
+  @@index([userId])
+  @@index([currentLevel])
+  @@index([lastAssessmentDate])
+  @@index([studentId, currentLevel])
+  @@index([outcomeId, currentLevel])
+  @@index([userId, lastAssessmentDate])
+  @@index([parentShared])
 }
