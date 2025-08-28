@@ -27,7 +27,11 @@
               "item": "Cubes emboîtables colorés",
               "quantity": "10 cubes par élève (250 pour classe de 25)",
               "preparation": "Organiser par couleur dans bacs étiquetés, vérifier que tous s'emboîtent bien",
-              "alternatives": ["Blocs de bois colorés", "Jetons de comptage bicolores", "Boutons assortis"]
+              "alternatives": [
+                "Blocs de bois colorés",
+                "Jetons de comptage bicolores",
+                "Boutons assortis"
+              ]
             }
           ],
           "optional": [
@@ -44,7 +48,10 @@
           "Si difficulté avec 'il reste' → compter ensemble ce qui reste après manipulation",
           "Si perte d'attention → permettre manipulation libre des cubes avant activité dirigée"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ],
         "mathTalk": [
           "Que veut dire 'enlever' selon toi?",
           "Comment peux-tu me montrer ce qui reste?"
@@ -59,13 +66,21 @@
               "item": "Collections variées pour manipuler",
               "quantity": "150 objets total (jetons, boutons, cailloux naturels)",
               "preparation": "Organiser en 6 stations de 25 objets chacune, placer dans contenants étiquetés",
-              "alternatives": ["Cubes uniquement", "Haricots lima et boutons", "Blocs de différentes formes"]
+              "alternatives": [
+                "Cubes uniquement",
+                "Haricots lima et boutons",
+                "Blocs de différentes formes"
+              ]
             },
             {
               "item": "Contenants de tri pour stations",
               "quantity": "18 contenants (3 par station de 4-5 élèves)",
               "preparation": "Étiqueter: 'Au début', 'Enlevés', 'Il reste'",
-              "alternatives": ["Assiettes de papier colorées", "Cercles tracés sur tables", "Tapis de tri individuels"]
+              "alternatives": [
+                "Assiettes de papier colorées",
+                "Cercles tracés sur tables",
+                "Tapis de tri individuels"
+              ]
             }
           ],
           "optional": [
@@ -100,7 +115,10 @@
               "item": "Tapis de rassemblement",
               "quantity": "1 grand tapis ou cercle marqué au sol",
               "preparation": "S'assurer espace suffisant pour tous avec objets",
-              "alternatives": ["Marqueurs au sol avec ruban", "Chaises en demi-cercle"]
+              "alternatives": [
+                "Marqueurs au sol avec ruban",
+                "Chaises en demi-cercle"
+              ]
             }
           ],
           "optional": [
@@ -115,7 +133,10 @@
         "decisionPoints": [
           "Si élèves hésitent à partager → modéliser avec propre exemple concret"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si confusion sur concept 'enlever': utiliser situations familières (manger biscuits, ranger jouets). Si erreurs de comptage: rester avec nombres 0-3 et compter très lentement.",
@@ -184,7 +205,10 @@
               "item": "Bandes numériques 0-10 affichées",
               "quantity": "1 grande bande pour classe + 25 individuelles",
               "preparation": "Laminer bandes, placer une au mur à hauteur des élèves",
-              "alternatives": ["Échelle numérique dessinée au tableau", "Marches numérotées au sol"]
+              "alternatives": [
+                "Échelle numérique dessinée au tableau",
+                "Marches numérotées au sol"
+              ]
             }
           ],
           "optional": [
@@ -201,7 +225,10 @@
           "Si difficulté avec rebours → commencer seulement 3-2-1-0 puis étendre",
           "Si fatigue physique → alterner positions debout/assis"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ],
         "mathTalk": [
           "Que se passe-t-il quand on descend les marches?",
           "Qu'est-ce qui change quand on compte à rebours?"
@@ -216,13 +243,21 @@
               "item": "Ligne numérique géante au sol",
               "quantity": "1 ligne de 3m avec nombres 0-10",
               "preparation": "Marquer au ruban coloré, s'assurer anti-dérapant",
-              "alternatives": ["Marelles numérotées", "Cercles numérotés au sol", "Tapis de yoga avec étiquettes"]
+              "alternatives": [
+                "Marelles numérotées",
+                "Cercles numérotés au sol",
+                "Tapis de yoga avec étiquettes"
+              ]
             },
             {
               "item": "Oiseaux miniatures ou images",
               "quantity": "5 oiseaux par groupe (125 total pour 25 élèves)",
               "preparation": "Organiser dans contenants par groupes de 5",
-              "alternatives": ["Papillons en papier", "Avions en papier", "Feuilles d'automne"]
+              "alternatives": [
+                "Papillons en papier",
+                "Avions en papier",
+                "Feuilles d'automne"
+              ]
             }
           ],
           "optional": [
@@ -257,7 +292,10 @@
               "item": "Grande affiche vierge pour comptine",
               "quantity": "1 affiche ou tableau effacement à sec",
               "preparation": "Préparer marqueurs colorés lavables",
-              "alternatives": ["Tableau noir et craie", "Feuilles géantes et crayons feutres"]
+              "alternatives": [
+                "Tableau noir et craie",
+                "Feuilles géantes et crayons feutres"
+              ]
             }
           ],
           "optional": [
@@ -272,7 +310,10 @@
         "decisionPoints": [
           "Si création trop complexe → utiliser comptine connue et l'adapter à rebours"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si confusion avec direction rebours: utiliser escalier réel ou monter/descendre chaise. Si oubli séquence numérique: pratiquer seulement 3-2-1 puis étendre graduellement.",
@@ -341,13 +382,20 @@
               "item": "Carottes miniatures ou images réalistes",
               "quantity": "8 carottes par élève (200 total)",
               "preparation": "Nettoyer si vraies, plastifier si images, organiser en paniers",
-              "alternatives": ["Images d'autres légumes", "Cubes orange", "Jetons carotte-couleur"]
+              "alternatives": [
+                "Images d'autres légumes",
+                "Cubes orange",
+                "Jetons carotte-couleur"
+              ]
             },
             {
               "item": "Paniers ou contenants lapins",
               "quantity": "25 petits paniers décorés",
               "preparation": "Décorer avec oreilles de lapin ou autocollants",
-              "alternatives": ["Boîtes décorées", "Assiettes avec dessins lapins"]
+              "alternatives": [
+                "Boîtes décorées",
+                "Assiettes avec dessins lapins"
+              ]
             }
           ],
           "optional": [
@@ -364,7 +412,10 @@
           "Si élèves veulent manger carottes → rappeler que c'est matériel mathématique",
           "Si difficulté à visualiser histoire → jouer scène avec élèves volontaires"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ],
         "mathTalk": [
           "Que fait Madame Lapine avec ses carottes?",
           "Comment pouvons-nous résoudre ce problème?"
@@ -379,19 +430,29 @@
               "item": "Collections d'objets pour histoires",
               "quantity": "50 biscuits jouets, 30 petits jouets, 25 fleurs plastique",
               "preparation": "Organiser par type dans boîtes étiquetées pour chaque station",
-              "alternatives": ["Images plastifiées d'objets", "Dessins faits par élèves", "Objets de recyclage décorés"]
+              "alternatives": [
+                "Images plastifiées d'objets",
+                "Dessins faits par élèves",
+                "Objets de recyclage décorés"
+              ]
             },
             {
               "item": "Livret 'Nos histoires mathématiques'",
               "quantity": "1 grand livret pour classe + feuilles vierges",
               "preparation": "Préparer couverture décorative, perforer feuilles",
-              "alternatives": ["Boîte à histoires décorée", "Affichage mural des histoires"]
+              "alternatives": [
+                "Boîte à histoires décorée",
+                "Affichage mural des histoires"
+              ]
             },
             {
               "item": "Cartes de rôles théâtre",
               "quantity": "25 cartes avec rôles simples (maman, bébé, ami, animal)",
               "preparation": "Plastifier cartes, attacher cordons pour porter",
-              "alternatives": ["Chapeaux ou accessoires simples", "Autocollants de rôles"]
+              "alternatives": [
+                "Chapeaux ou accessoires simples",
+                "Autocollants de rôles"
+              ]
             }
           ],
           "optional": [
@@ -426,13 +487,19 @@
               "item": "Papier tri-plié pour séquences",
               "quantity": "25 feuilles pliées en 3 sections",
               "preparation": "Plier et marquer sections: Avant/Pendant/Après",
-              "alternatives": ["Feuilles avec 3 boîtes dessinées", "3 feuilles séparées par élève"]
+              "alternatives": [
+                "Feuilles avec 3 boîtes dessinées",
+                "3 feuilles séparées par élève"
+              ]
             },
             {
               "item": "Crayons de couleur courts",
               "quantity": "8 couleurs par élève (200 crayons total)",
               "preparation": "Tailler, organiser dans contenants par table",
-              "alternatives": ["Marqueurs à pointe large", "Crayons de cire"]
+              "alternatives": [
+                "Marqueurs à pointe large",
+                "Crayons de cire"
+              ]
             }
           ],
           "optional": [
@@ -447,7 +514,10 @@
         "decisionPoints": [
           "Si perfectionnisme bloque → rappeler que dessins simples sont parfaits"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si difficulté à créer histoires: utiliser modèles d'histoires simples (cookies mangés, jouets rangés). Si timidité pour théâtre: permettre narration avec objets seulement.",
@@ -516,13 +586,20 @@
               "item": "Cubes tactiles texturés",
               "quantity": "15 cubes par élève (375 total)",
               "preparation": "Sélectionner cubes avec textures intéressantes, nettoyer",
-              "alternatives": ["Blocs de bois rugueux", "Pierres lisses naturelles", "Objets texturés variés"]
+              "alternatives": [
+                "Blocs de bois rugueux",
+                "Pierres lisses naturelles",
+                "Objets texturés variés"
+              ]
             },
             {
               "item": "Bandeaux ou foulards doux",
               "quantity": "25 bandeaux propres",
               "preparation": "Laver et vérifier propreté, organiser dans panier",
-              "alternatives": ["Demander aux élèves de fermer yeux", "Boites opaques pour exploration"]
+              "alternatives": [
+                "Demander aux élèves de fermer yeux",
+                "Boites opaques pour exploration"
+              ]
             }
           ],
           "optional": [
@@ -539,7 +616,10 @@
           "Si difficulté tactile → commencer avec yeux ouverts puis réduire vision graduellement",
           "Si distraction → créer espaces individuels calmes"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ],
         "mathTalk": [
           "Que sens-tu quand tu touches les cubes?",
           "Comment sais-tu combien il en reste sans regarder?"
@@ -554,7 +634,10 @@
               "item": "Matériaux pour 5 stations",
               "quantity": "Pâte à modeler, 500 jetons, 300 boutons, 100 billes, 200 cailloux",
               "preparation": "Organiser chaque station avec contenants et instructions visuelles",
-              "alternatives": ["Remplacer par objets de récupération", "Utiliser éléments naturels collectés"]
+              "alternatives": [
+                "Remplacer par objets de récupération",
+                "Utiliser éléments naturels collectés"
+              ]
             }
           ],
           "optional": [
@@ -588,7 +671,10 @@
               "item": "Plateau de présentation",
               "quantity": "1 grand plateau décoratif",
               "preparation": "Nettoyer, placer au centre du cercle",
-              "alternatives": ["Nappe colorée au sol", "Cerceau décoratif"]
+              "alternatives": [
+                "Nappe colorée au sol",
+                "Cerceau décoratif"
+              ]
             }
           ],
           "optional": [
@@ -603,7 +689,10 @@
         "decisionPoints": [
           "Si hésitation à partager → commencer par montrer plutôt que parler"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si hyperstimulation sensorielle: offrir station calme avec moins d'objets. Si difficulté fine moteure: utiliser objets plus gros et faciles à manipuler.",
@@ -672,13 +761,21 @@
               "item": "Objets 'magiques' colorés",
               "quantity": "10 objets par élève (250 total) - jetons, coquillages, boutons",
               "preparation": "Choisir objets intéressants et 'spéciaux', nettoyer et organiser",
-              "alternatives": ["Cubes brillants", "Pierres colorées", "Jetons décoratifs"]
+              "alternatives": [
+                "Cubes brillants",
+                "Pierres colorées",
+                "Jetons décoratifs"
+              ]
             },
             {
               "item": "Baguette ou accessoire magique",
               "quantity": "1 baguette décorative pour enseignant",
               "preparation": "Décorer baguette simple pour effet théâtral",
-              "alternatives": ["Foulard coloré", "Chapeau de magicien", "Geste théâtral"]
+              "alternatives": [
+                "Foulard coloré",
+                "Chapeau de magicien",
+                "Geste théâtral"
+              ]
             }
           ],
           "optional": [
@@ -695,7 +792,10 @@
           "Si confusion sur concept → répéter démonstration avec nombres plus petits",
           "Si scepticisme sur 'magie' → expliquer que vraie magie est dans les mathématiques"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ],
         "mathTalk": [
           "Qu'est-ce qui est 'magique' dans ce que nous venons de faire?",
           "Pourquoi sommes-nous revenus au nombre du début?"
@@ -710,7 +810,10 @@
               "item": "Boîte machine magique",
               "quantity": "6 boîtes décorées (une par groupe de 4-5)",
               "preparation": "Décorer avec compartiments + et -, instructions visuelles",
-              "alternatives": ["Plateaux avec zones marquées", "Cercles + et - au sol"]
+              "alternatives": [
+                "Plateaux avec zones marquées",
+                "Cercles + et - au sol"
+              ]
             }
           ],
           "optional": []
@@ -737,7 +840,9 @@
               "item": "Affiche paroles chanson",
               "quantity": "1 grande affiche",
               "preparation": "Préparer canevas simple pour chanson collective",
-              "alternatives": ["Tableau noir avec paroles"]
+              "alternatives": [
+                "Tableau noir avec paroles"
+              ]
             }
           ],
           "optional": []
@@ -746,7 +851,10 @@
         "decisionPoints": [
           "Si création chanson trop complexe → utiliser mélodie connue et adapter paroles"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si confusion sur inverse: utiliser mouvements corporels concrets (ouvrir/fermer, monter/descendre). Si difficulté abstract: rester avec objets concrets plus longtemps.",
@@ -814,7 +922,11 @@
               "item": "Cubes emboîtables colorés",
               "quantity": "8 cubes par élève (200 pour classe de 25)",
               "preparation": "Organiser en paires de couleurs contrastées, vérifier emboîtement",
-              "alternatives": ["Jetons bicolores", "Boutons de 2 couleurs", "Blocs de bois assortis"]
+              "alternatives": [
+                "Jetons bicolores",
+                "Boutons de 2 couleurs",
+                "Blocs de bois assortis"
+              ]
             }
           ],
           "optional": [
@@ -830,7 +942,10 @@
           "Si confusion sur 'vérifier' → utiliser analogie détective qui vérifie indices",
           "Si difficulté avec addition inverse → montrer avec objets physiques très lentement"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ],
         "mathTalk": [
           "Comment un détective vérifie-t-il ses indices?",
           "Que peux-tu faire pour être sûr de ta réponse?"
@@ -845,19 +960,31 @@
               "item": "Cartes problèmes soustraction",
               "quantity": "30 cartes avec soustractions 0-5 (6 stations de 5 cartes)",
               "preparation": "Laminer cartes, inclure réponses correctes et incorrectes à vérifier",
-              "alternatives": ["Problèmes écrits au tableau", "Cartes faites maison", "Objets réels à compter"]
+              "alternatives": [
+                "Problèmes écrits au tableau",
+                "Cartes faites maison",
+                "Objets réels à compter"
+              ]
             },
             {
               "item": "Loupes jouets pour détectives",
               "quantity": "25 loupes (1 par élève)",
               "preparation": "Nettoyer, vérifier que toutes fonctionnent",
-              "alternatives": ["Cercles de carton", "Mains formant loupes", "Lunettes de lecture jouets"]
+              "alternatives": [
+                "Cercles de carton",
+                "Mains formant loupes",
+                "Lunettes de lecture jouets"
+              ]
             },
             {
               "item": "Cahiers détectives",
               "quantity": "25 cahiers (feuilles agrafées)",
               "preparation": "Préparer pages avec espaces pour soustraction et vérification",
-              "alternatives": ["Feuilles simples", "Mini-tableaux blancs", "Ardoises"]
+              "alternatives": [
+                "Feuilles simples",
+                "Mini-tableaux blancs",
+                "Ardoises"
+              ]
             }
           ],
           "optional": [
@@ -891,13 +1018,21 @@
               "item": "Certificats détective imprimés",
               "quantity": "25 certificats personnalisés",
               "preparation": "Imprimer sur papier coloré, écrire nom de chaque élève",
-              "alternatives": ["Certificates faits main", "Autocollants spéciaux", "Tampons de félicitations"]
+              "alternatives": [
+                "Certificates faits main",
+                "Autocollants spéciaux",
+                "Tampons de félicitations"
+              ]
             },
             {
               "item": "Tapis de rassemblement",
               "quantity": "1 grand tapis circulaire",
               "preparation": "Vérifier propreté, disposer en cercle de cérémonie",
-              "alternatives": ["Chaises en cercle", "Marquage au sol", "Couverture de classe"]
+              "alternatives": [
+                "Chaises en cercle",
+                "Marquage au sol",
+                "Couverture de classe"
+              ]
             }
           ],
           "optional": [
@@ -913,7 +1048,10 @@
           "Si un élève récite le serment sans confiance → l'encourager avec 'Tu es un vrai détective!' et applaudir",
           "Si émotions fortes à la remise → permettre moments individuels et valoriser chaque accomplissement"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si confusion entre soustraction originale et vérification par addition: utiliser couleurs différentes (rouge pour enlever, vert pour vérifier). Si erreurs persistantes de calcul: revenir aux nombres 0-3 avec manipulation concrète.",
@@ -983,13 +1121,21 @@
               "item": "Images grandes pour démonstration",
               "quantity": "3 images plastifiées 40x30 cm (papillons, pommes, voitures)",
               "preparation": "Laminer, prévoir marqueurs effaçables pour barrer",
-              "alternatives": ["Dessins au tableau", "Images projetées", "Flanelle avec objets amovibles"]
+              "alternatives": [
+                "Dessins au tableau",
+                "Images projetées",
+                "Flanelle avec objets amovibles"
+              ]
             },
             {
               "item": "Marqueurs effaçables colorés",
               "quantity": "3 marqueurs (rouge, bleu, vert) pour démonstration",
               "preparation": "Tester que marquage s'efface bien des images",
-              "alternatives": ["Craies de couleur", "Post-it colorés", "Autocollants amovibles"]
+              "alternatives": [
+                "Craies de couleur",
+                "Post-it colorés",
+                "Autocollants amovibles"
+              ]
             }
           ],
           "optional": [
@@ -1005,7 +1151,10 @@
           "Si élèves ne voient pas clairement les objets → agrandir images ou utiliser projecteur",
           "Si confusion sur 'barrer' → montrer avec X très visible sur objets qui partent"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ],
         "mathTalk": [
           "Que vois-tu sur cette image?",
           "Comment peux-tu montrer que des objets sont partis?"
@@ -1020,25 +1169,41 @@
               "item": "Images de soustraction pour stations",
               "quantity": "36 cartes images (6 par station, 6 stations de 4 élèves)",
               "preparation": "Laminer cartes, organiser par station avec nombres 0-5",
-              "alternatives": ["Photos imprimées", "Dessins faits main", "Images découpées magazines"]
+              "alternatives": [
+                "Photos imprimées",
+                "Dessins faits main",
+                "Images découpées magazines"
+              ]
             },
             {
               "item": "Marqueurs fins effaçables",
               "quantity": "25 marqueurs (1 par élève)",
               "preparation": "Tester effaçage, organiser dans contenants par couleur",
-              "alternatives": ["Crayons de couleur", "Feutres lavables", "Craies grasses"]
+              "alternatives": [
+                "Crayons de couleur",
+                "Feutres lavables",
+                "Craies grasses"
+              ]
             },
             {
               "item": "Papier de dessin",
               "quantity": "50 feuilles (2 par élève)",
               "preparation": "Pré-découper format approprié, prévoir crayons de couleur",
-              "alternatives": ["Ardoises blanches", "Tablettes de dessin", "Papier recyclé"]
+              "alternatives": [
+                "Ardoises blanches",
+                "Tablettes de dessin",
+                "Papier recyclé"
+              ]
             },
             {
               "item": "Contenants organisateurs",
               "quantity": "6 bacs pour stations + 1 bac matériel dessin",
               "preparation": "Étiqueter chaque station, vérifier contenu complet",
-              "alternatives": ["Plateaux", "Boîtes à chaussures", "Sacs ziploc"]
+              "alternatives": [
+                "Plateaux",
+                "Boîtes à chaussures",
+                "Sacs ziploc"
+              ]
             }
           ],
           "optional": [
@@ -1072,13 +1237,21 @@
               "item": "Mur ou panneau d'exposition",
               "quantity": "1 espace mural ou grand panneau d'affichage",
               "preparation": "Préparer punaises ou attaches, nettoyer surface",
-              "alternatives": ["Cordes à linge avec pinces", "Tableaux d'affichage", "Réfrigérateur de classe"]
+              "alternatives": [
+                "Cordes à linge avec pinces",
+                "Tableaux d'affichage",
+                "Réfrigérateur de classe"
+              ]
             },
             {
               "item": "Autocollants de félicitation",
               "quantity": "25 autocollants variés (1 par élève)",
               "preparation": "Choisir autocollants attrayants, organiser distribution",
-              "alternatives": ["Tampons encreurs", "Étoiles dorées", "Dessins de félicitations"]
+              "alternatives": [
+                "Tampons encreurs",
+                "Étoiles dorées",
+                "Dessins de félicitations"
+              ]
             }
           ],
           "optional": [
@@ -1094,7 +1267,10 @@
           "Si élève timide hésite à présenter son travail → proposer présentation avec un ami ou montrer silencieusement",
           "Si œuvre contient erreurs mathématiques → valoriser créativité puis suggérer 'améliorations détectives'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si difficultés à identifier objets dans images complexes: utiliser images très simples avec objets identiques clairement séparés. Si erreurs de comptage après barrage: enseigner à compter uniquement objets NON barrés.",
@@ -1164,13 +1340,21 @@
               "item": "Gants colorés ou marionnettes doigts",
               "quantity": "25 gants (1 par élève) ou 125 marionnettes (5 par élève)",
               "preparation": "Choisir couleurs vives, vérifier tailles appropriées",
-              "alternatives": ["Doigts nus avec autocollants", "Gants de jardinage enfant", "Dessins sur doigts"]
+              "alternatives": [
+                "Doigts nus avec autocollants",
+                "Gants de jardinage enfant",
+                "Dessins sur doigts"
+              ]
             },
             {
               "item": "Affichage numérique 0-5",
               "quantity": "1 grande bande numérique pour classe",
               "preparation": "Plastifier, installer à hauteur des élèves",
-              "alternatives": ["Écriture au tableau", "Cartes nombres géantes", "Projections numériques"]
+              "alternatives": [
+                "Écriture au tableau",
+                "Cartes nombres géantes",
+                "Projections numériques"
+              ]
             }
           ],
           "optional": [
@@ -1186,7 +1370,10 @@
           "Si élèves confondent doigts cachés/visibles → utiliser gants de couleurs contrastées",
           "Si difficultés avec zéro → expliquer 'plus rien de visible' = 0"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ],
         "mathTalk": [
           "Combien de doigts vois-tu maintenant?",
           "Que se passe-t-il quand je cache tous mes doigts?"
@@ -1201,25 +1388,41 @@
               "item": "Collections d'objets par station",
               "quantity": "125 objets total (25 par station: cubes, jetons, boutons, cailloux, haricots)",
               "preparation": "Organiser par type dans bacs étiquetés, vérifier quantités exactes",
-              "alternatives": ["Un seul type d'objet pour toutes stations", "Objets recyclés assortis", "Matériel naturel"]
+              "alternatives": [
+                "Un seul type d'objet pour toutes stations",
+                "Objets recyclés assortis",
+                "Matériel naturel"
+              ]
             },
             {
               "item": "Cartes défis d'expert",
               "quantity": "25 cartes (5 par station) avec soustractions 0-5",
               "preparation": "Laminer, créer niveaux progressifs, réponses au verso",
-              "alternatives": ["Défis écrits au tableau", "Cartes faites main", "Instructions orales"]
+              "alternatives": [
+                "Défis écrits au tableau",
+                "Cartes faites main",
+                "Instructions orales"
+              ]
             },
             {
               "item": "Diplômes 'Expert 0-5'",
               "quantity": "25 diplômes personnalisés",
               "preparation": "Imprimer sur papier spécial, écrire noms d'élèves",
-              "alternatives": ["Certificats simples", "Autocollants spéciaux", "Badges temporaires"]
+              "alternatives": [
+                "Certificats simples",
+                "Autocollants spéciaux",
+                "Badges temporaires"
+              ]
             },
             {
               "item": "Chronomètre visuel",
               "quantity": "1 minuterie colorée pour défis",
               "preparation": "Tester fonctionnement, régler sur 2-3 minutes par défi",
-              "alternatives": ["Chronomètre simple", "Comptage rythmé", "Musique temporisée"]
+              "alternatives": [
+                "Chronomètre simple",
+                "Comptage rythmé",
+                "Musique temporisée"
+              ]
             }
           ],
           "optional": [
@@ -1254,13 +1457,21 @@
               "item": "Podium ou estrade pour démonstrations",
               "quantity": "1 petite estrade ou tapis spécial",
               "preparation": "Installer dans espace visible de tous, décorer",
-              "alternatives": ["Chaise spéciale", "Marquage au sol", "Simple espace désigné"]
+              "alternatives": [
+                "Chaise spéciale",
+                "Marquage au sol",
+                "Simple espace désigné"
+              ]
             },
             {
               "item": "Tapis de cérémonie",
               "quantity": "1 grand tapis pour rassemblement",
               "preparation": "Nettoyer, disposer en demi-cercle face au podium",
-              "alternatives": ["Chaises en demi-cercle", "Marquages au sol", "Couverture festive"]
+              "alternatives": [
+                "Chaises en demi-cercle",
+                "Marquages au sol",
+                "Couverture festive"
+              ]
             }
           ],
           "optional": [
@@ -1276,7 +1487,10 @@
           "Si élève déçu de ne pas être 'parfait' → rappeler ses progrès personnels et célébrer effort",
           "Si surexcitation lors des démonstrations → utiliser signal calme et pauses respiratoires"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si erreurs persistantes avec 0 comme résultat: utiliser objets qui 'disparaissent complètement' (dans sac, sous tissu). Si confusions entre nombres: se concentrer sur 2-3 soustractions seulement.",
@@ -1346,13 +1560,21 @@
               "item": "Gants ou mitaines colorées",
               "quantity": "50 gants (2 par élève - couleurs différentes par main)",
               "preparation": "Organiser en paires contrastées (ex: rouge/bleu), vérifier tailles",
-              "alternatives": ["Doigts nus avec bracelets colorés", "Autocollants sur doigts", "Peinture lavable temporaire"]
+              "alternatives": [
+                "Doigts nus avec bracelets colorés",
+                "Autocollants sur doigts",
+                "Peinture lavable temporaire"
+              ]
             },
             {
               "item": "Affichage numérique 6-10",
               "quantity": "1 grande bande numérique pour classe",
               "preparation": "Plastifier, installer à hauteur des élèves, highlighting 6-10",
-              "alternatives": ["Tableau numérique interactif", "Cartes géantes", "Projections"]
+              "alternatives": [
+                "Tableau numérique interactif",
+                "Cartes géantes",
+                "Projections"
+              ]
             }
           ],
           "optional": [
@@ -1368,7 +1590,10 @@
           "Si élèves ont du mal avec 10 doigts → commencer avec 6-8 doigts seulement",
           "Si confusions entre mains → utiliser couleurs très contrastées pour chaque main"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ],
         "mathTalk": [
           "Combien de doigts vois-tu sur mes deux mains?",
           "Que se passe-t-il si je cache une main complète?"
@@ -1383,25 +1608,41 @@
               "item": "Objets manipulation grands nombres",
               "quantity": "250 objets (cubes, blocs, jetons) pour 25 élèves",
               "preparation": "Organiser en groupes de 10 dans contenants transparents",
-              "alternatives": ["Objets recyclés comptés", "Matériel naturel", "Boutons/haricots"]
+              "alternatives": [
+                "Objets recyclés comptés",
+                "Matériel naturel",
+                "Boutons/haricots"
+              ]
             },
             {
               "item": "Cartes défis 6-10",
               "quantity": "20 cartes défis avec illustrations visuelles",
               "preparation": "Laminer, créer niveaux progressifs, inclure supports visuels",
-              "alternatives": ["Défis écrits au tableau", "Cartes faites main", "Instructions orales illustrées"]
+              "alternatives": [
+                "Défis écrits au tableau",
+                "Cartes faites main",
+                "Instructions orales illustrées"
+              ]
             },
             {
               "item": "Parcours d'aventure marqué",
               "quantity": "4 stations avec marquage au sol",
               "preparation": "Utiliser ruban coloré, installer signalisation claire",
-              "alternatives": ["Cercles dessinés", "Tapis distincts", "Simple organisation spatiale"]
+              "alternatives": [
+                "Cercles dessinés",
+                "Tapis distincts",
+                "Simple organisation spatiale"
+              ]
             },
             {
               "item": "Tableaux de score d'équipe",
               "quantity": "2 grandes affiches pour scores",
               "preparation": "Préparer colonnes pour points, fournir marqueurs",
-              "alternatives": ["Tableau noir traditionnel", "Papier simple", "Comptage oral"]
+              "alternatives": [
+                "Tableau noir traditionnel",
+                "Papier simple",
+                "Comptage oral"
+              ]
             }
           ],
           "optional": [
@@ -1436,13 +1677,21 @@
               "item": "Grand papier pour écriture collective",
               "quantity": "1 affiche géante pour chanson",
               "preparation": "Installer support visible de tous, prévoir marqueurs larges",
-              "alternatives": ["Tableau traditionnel", "Papier kraft", "Surface d'écriture disponible"]
+              "alternatives": [
+                "Tableau traditionnel",
+                "Papier kraft",
+                "Surface d'écriture disponible"
+              ]
             },
             {
               "item": "Instruments rythmiques simples",
               "quantity": "25 instruments (shakers, claves, tambourins)",
               "preparation": "Organiser distribution, tester son de chacun",
-              "alternatives": ["Mains frappées", "Objets de classe comme percussion", "Claquements rythmés"]
+              "alternatives": [
+                "Mains frappées",
+                "Objets de classe comme percussion",
+                "Claquements rythmés"
+              ]
             }
           ],
           "optional": [
@@ -1458,7 +1707,9 @@
           "Si élèves confondent paroles et gestes → ralentir tempo et modéliser chaque mouvement clairement",
           "Si certains ne participent pas à la chanson → permettre participation par écoute active et battements de mains"
         ],
-        "movementBreaks": ["Défilé musical final avec toute la classe (dernières 3 minutes)"]
+        "movementBreaks": [
+          "Défilé musical final avec toute la classe (dernières 3 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si difficultés persistantes avec nombres au-dessus de 5: rester focalisé sur 6-8 uniquement cette leçon. Si erreurs de comptage avec grands nombres: enseigner groupage par 5 (une main) puis compter reste.",
@@ -1528,13 +1779,21 @@
               "item": "Chapeau de magicien ou boîte décorative",
               "quantity": "1 chapeau pour démonstrations classe",
               "preparation": "Décorer, s'assurer ouverture facile pour manipulations",
-              "alternatives": ["Sac opaque décoré", "Boîte à surprises", "Simple contenant couvert"]
+              "alternatives": [
+                "Sac opaque décoré",
+                "Boîte à surprises",
+                "Simple contenant couvert"
+              ]
             },
             {
               "item": "Petits jouets ou objets 'magiques'",
               "quantity": "15 objets identiques (lapins, étoiles, cubes colorés)",
               "preparation": "Choisir objets attrayants, faciles à manipuler",
-              "alternatives": ["Jetons colorés", "Cartes imagées", "Blocs de construction"]
+              "alternatives": [
+                "Jetons colorés",
+                "Cartes imagées",
+                "Blocs de construction"
+              ]
             }
           ],
           "optional": [
@@ -1550,7 +1809,10 @@
           "Si élèves distraits par aspect magique → simplifier présentation, focus sur mathématiques",
           "Si confusions sur objets cachés vs enlevés → montrer clairement objets retirés"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ],
         "mathTalk": [
           "Comment le magicien fait-il disparaître les objets?",
           "Peux-tu prédire combien il en restera?"
@@ -1565,31 +1827,51 @@
               "item": "Matériel station Bowling",
               "quantity": "10 bouteilles plastique + 2 balles souples",
               "preparation": "Numéroter bouteilles 1-10, tester stabilité, prévoir espace sécuritaire",
-              "alternatives": ["Cubes empilables", "Contenants recyclés", "Quilles improvisées"]
+              "alternatives": [
+                "Cubes empilables",
+                "Contenants recyclés",
+                "Quilles improvisées"
+              ]
             },
             {
               "item": "Matériel station Course aux Trésors",
               "quantity": "30 cartes trésors + 4 contenants 'coffres'",
               "preparation": "Cartes avec soustractions visuelles, coffres étiquetés par niveau",
-              "alternatives": ["Cartes faites main", "Objets cachés réels", "Images découpées"]
+              "alternatives": [
+                "Cartes faites main",
+                "Objets cachés réels",
+                "Images découpées"
+              ]
             },
             {
               "item": "Matériel station Dés Magiques",
               "quantity": "6 dés géants (mousse ou carton) + feuilles score",
               "preparation": "Numéroter faces 0-5, créer feuilles score adaptées",
-              "alternatives": ["Dés normaux agrandis", "Cartes nombres", "Roulette numérique"]
+              "alternatives": [
+                "Dés normaux agrandis",
+                "Cartes nombres",
+                "Roulette numérique"
+              ]
             },
             {
               "item": "Matériel station Mémoire",
               "quantity": "24 cartes mémoire (12 paires: soustraction + réponse)",
               "preparation": "Plastifier cartes, créer design attrayant uniforme",
-              "alternatives": ["Cartes faites main", "Images imprimées", "Objets réels appairés"]
+              "alternatives": [
+                "Cartes faites main",
+                "Images imprimées",
+                "Objets réels appairés"
+              ]
             },
             {
               "item": "Tableaux de score et marqueurs",
               "quantity": "4 tableaux (1 par station) + 8 marqueurs",
               "preparation": "Format simple pour encouragement, pas compétition stressante",
-              "alternatives": ["Papier simple", "Ardoises", "Comptage oral"]
+              "alternatives": [
+                "Papier simple",
+                "Ardoises",
+                "Comptage oral"
+              ]
             }
           ],
           "optional": [
@@ -1624,19 +1906,31 @@
               "item": "Bulletins de vote illustrés",
               "quantity": "25 bulletins avec images des 4 jeux",
               "preparation": "Dessiner ou coller images claires de chaque station",
-              "alternatives": ["Vote à main levée", "Jetons de vote", "Autocollants colorés"]
+              "alternatives": [
+                "Vote à main levée",
+                "Jetons de vote",
+                "Autocollants colorés"
+              ]
             },
             {
               "item": "Médailles 'Champion Jeux Math'",
               "quantity": "25 médailles en carton ou plastique",
               "preparation": "Personnaliser avec nom de chaque élève, rubans colorés",
-              "alternatives": ["Autocollants spéciaux", "Certificats", "Badges temporaires"]
+              "alternatives": [
+                "Autocollants spéciaux",
+                "Certificats",
+                "Badges temporaires"
+              ]
             },
             {
               "item": "Urne de vote décorative",
               "quantity": "1 boîte décorée pour bulletins",
               "preparation": "Décorer festivement, prévoir fente assez large",
-              "alternatives": ["Simple boîte", "Sac opaque", "Contenant transparent"]
+              "alternatives": [
+                "Simple boîte",
+                "Sac opaque",
+                "Contenant transparent"
+              ]
             }
           ],
           "optional": [
@@ -1652,7 +1946,10 @@
           "Si déception chez élèves dont jeu n'a pas gagné → expliquer que tous les jeux étaient excellents",
           "Si disputes sur les votes → rappeler respect des opinions et célébrer diversité des choix"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si difficultés avec règles complexes: simplifier jeux, utiliser versions guidées. Si frustrations sociales: ajuster groupes, enseigner stratégies de coopération.",
@@ -1722,13 +2019,21 @@
               "item": "Vraie nourriture pour démonstration",
               "quantity": "10 biscuits ou craquelins identiques",
               "preparation": "Choisir aliments sains, vérifier allergies, prévoir napkins",
-              "alternatives": ["Images de nourriture plastifiées", "Jouets alimentaires", "Cartes imagées"]
+              "alternatives": [
+                "Images de nourriture plastifiées",
+                "Jouets alimentaires",
+                "Cartes imagées"
+              ]
             },
             {
               "item": "Boîte à lunch d'enseignant(e)",
               "quantity": "1 vraie boîte à lunch",
               "preparation": "Nettoyer, décorer si désiré pour rendre attrayante",
-              "alternatives": ["Sac papier", "Contenant alimentaire", "Panier décoratif"]
+              "alternatives": [
+                "Sac papier",
+                "Contenant alimentaire",
+                "Panier décoratif"
+              ]
             }
           ],
           "optional": [
@@ -1744,7 +2049,10 @@
           "Si élèves distraits par nourriture → utiliser quantités très petites",
           "Si difficultés à identifier le problème mathématique → souligner mots-clés 'j'avais', 'j'ai mangé'"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ],
         "mathTalk": [
           "As-tu déjà vécu une situation comme celle-là?",
           "Où utilises-tu 'enlever' dans ta vraie vie?"
@@ -1759,31 +2067,51 @@
               "item": "Scénarios 'À la maison'",
               "quantity": "6 cartes avec situations familiales (jouets, vêtements, nourriture)",
               "preparation": "Illustrer clairement, utiliser vocabulaire Grade 1",
-              "alternatives": ["Scénarios oraux", "Photos de famille", "Dessins simples"]
+              "alternatives": [
+                "Scénarios oraux",
+                "Photos de famille",
+                "Dessins simples"
+              ]
             },
             {
               "item": "Scénarios 'À l'école'",
               "quantity": "6 cartes avec situations scolaires (crayons, livres, amis)",
               "preparation": "Refléter vraie vie de classe, nombres appropriés",
-              "alternatives": ["Situations observées en classe", "Exemples spontanés", "Photos école"]
+              "alternatives": [
+                "Situations observées en classe",
+                "Exemples spontanés",
+                "Photos école"
+              ]
             },
             {
               "item": "Scénarios 'Au parc'",
               "quantity": "6 cartes avec jeux extérieurs (balançoires, toboggans)",
               "preparation": "Choisir équipements familiers aux élèves",
-              "alternatives": ["Descriptions orales", "Images parc local", "Souvenirs communs"]
+              "alternatives": [
+                "Descriptions orales",
+                "Images parc local",
+                "Souvenirs communs"
+              ]
             },
             {
               "item": "Objets de manipulation réalistes",
               "quantity": "150 objets divers (jouets, fournitures, répliques alimentaires)",
               "preparation": "Organiser par centre thématique dans contenants étiquetés",
-              "alternatives": ["Objets réels de classe", "Images découpées", "Dessins élèves"]
+              "alternatives": [
+                "Objets réels de classe",
+                "Images découpées",
+                "Dessins élèves"
+              ]
             },
             {
               "item": "Costumes/accessoires simples",
               "quantity": "15 accessoires pour théâtre (chapeaux, foulards)",
               "preparation": "Nettoyer, organiser par type d'accessoire",
-              "alternatives": ["Gestes seulement", "Objets improvisés", "Imagination pure"]
+              "alternatives": [
+                "Gestes seulement",
+                "Objets improvisés",
+                "Imagination pure"
+              ]
             }
           ],
           "optional": [
@@ -1818,19 +2146,31 @@
               "item": "Grande reliure ou cartable classe",
               "quantity": "1 reliure décorative pour livre collectif",
               "preparation": "Décorer couverture, prévoir système d'ajout de pages",
-              "alternatives": ["Cahier spiralé géant", "Classeur simple", "Pages agrafées"]
+              "alternatives": [
+                "Cahier spiralé géant",
+                "Classeur simple",
+                "Pages agrafées"
+              ]
             },
             {
               "item": "Feuilles pour problèmes individuels",
               "quantity": "25 feuilles pré-formatées avec espace dessin/texte",
               "preparation": "Créer format: 'Mon problème:', 'Ma solution:', 'Mon dessin:'",
-              "alternatives": ["Papier blanc simple", "Pages lignées", "Format libre"]
+              "alternatives": [
+                "Papier blanc simple",
+                "Pages lignées",
+                "Format libre"
+              ]
             },
             {
               "item": "Crayons de couleur/marqueurs",
               "quantity": "75 crayons (3 couleurs par élève minimum)",
               "preparation": "Organiser par couleur, vérifier pointes",
-              "alternatives": ["Crayons plomb seulement", "Feutres lavables", "Craies grasses"]
+              "alternatives": [
+                "Crayons plomb seulement",
+                "Feutres lavables",
+                "Craies grasses"
+              ]
             }
           ],
           "optional": [
@@ -1845,7 +2185,10 @@
         "decisionPoints": [
           "Si élèves en panne d'inspiration → suggérer routines familières"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si difficulté à identifier problèmes mathématiques dans situations réelles: souligner mots-clés, utiliser gestes pour 'avant'/'après'. Si problèmes trop complexes: simplifier scénarios, rester avec objets familiers.",
@@ -1915,13 +2258,21 @@
               "item": "Cubes emboîtables multicolores",
               "quantity": "200 cubes (8 par élève) organisés par couleur",
               "preparation": "Séparer en couleurs distinctes, vérifier assemblage facile",
-              "alternatives": ["Jetons bicolores", "Boutons assortis", "Blocs de bois colorés"]
+              "alternatives": [
+                "Jetons bicolores",
+                "Boutons assortis",
+                "Blocs de bois colorés"
+              ]
             },
             {
               "item": "Bande numérique géante 0-10",
               "quantity": "1 grande bande affichée + 25 bandes individuelles",
               "preparation": "Plastifier, installer à hauteur élèves, distribuer copies personnelles",
-              "alternatives": ["Règle graduée géante", "Marches numériques", "Cartes nombres"]
+              "alternatives": [
+                "Règle graduée géante",
+                "Marches numériques",
+                "Cartes nombres"
+              ]
             }
           ],
           "optional": [
@@ -1937,7 +2288,10 @@
           "Si élèves se fixent sur une seule méthode → encourager expérimentation des autres",
           "Si confusion entre les méthodes → les nommer clairement et distinctement"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ],
         "mathTalk": [
           "Quelle méthode trouves-tu la plus facile?",
           "Pourquoi ces méthodes donnent-elles la même réponse?"
@@ -1952,25 +2306,41 @@
               "item": "Kiosque 1: Objets manipulatifs variés",
               "quantity": "100 objets divers (cubes, jetons, haricots, boutons)",
               "preparation": "Organiser par type dans contenants étiquetés",
-              "alternatives": ["Objets recyclés", "Matériel naturel", "Fournitures scolaires"]
+              "alternatives": [
+                "Objets recyclés",
+                "Matériel naturel",
+                "Fournitures scolaires"
+              ]
             },
             {
               "item": "Kiosque 2: Supports pour doigts",
               "quantity": "25 gants colorés ou autocollants doigts",
               "preparation": "Organiser par tailles, choisir couleurs vives",
-              "alternatives": ["Marionnettes doigts", "Dessins sur doigts", "Doigts naturels"]
+              "alternatives": [
+                "Marionnettes doigts",
+                "Dessins sur doigts",
+                "Doigts naturels"
+              ]
             },
             {
               "item": "Kiosque 3: Lignes numériques",
               "quantity": "25 lignes plastifiées + marqueurs effaçables",
               "preparation": "Laminer solidement, tester marqueurs effaçables",
-              "alternatives": ["Bandes papier", "Lignes au sol", "Règles adaptées"]
+              "alternatives": [
+                "Bandes papier",
+                "Lignes au sol",
+                "Règles adaptées"
+              ]
             },
             {
               "item": "Kiosque 4: Matériel dessin",
               "quantity": "100 feuilles + 75 crayons (3 couleurs par élève)",
               "preparation": "Pré-découper feuilles, organiser crayons par couleur",
-              "alternatives": ["Ardoises blanches", "Tablettes de dessin", "Papier recyclé"]
+              "alternatives": [
+                "Ardoises blanches",
+                "Tablettes de dessin",
+                "Papier recyclé"
+              ]
             }
           ],
           "optional": [
@@ -2005,19 +2375,31 @@
               "item": "Affiches individuelles pour stratégies",
               "quantity": "25 affiches format A4 avec titre 'Ma Stratégie Préférée'",
               "preparation": "Pré-écrire titre, prévoir espace pour dessin/explication",
-              "alternatives": ["Feuilles simples", "Pages de cahier", "Format libre"]
+              "alternatives": [
+                "Feuilles simples",
+                "Pages de cahier",
+                "Format libre"
+              ]
             },
             {
               "item": "Matériel affichage mural",
               "quantity": "Punaises/attaches pour 25 affiches",
               "preparation": "Délimiter espace mural approprié, nettoyer surface",
-              "alternatives": ["Cordes à linge", "Panneaux mobiles", "Tables d'exposition"]
+              "alternatives": [
+                "Cordes à linge",
+                "Panneaux mobiles",
+                "Tables d'exposition"
+              ]
             },
             {
               "item": "Bulletins de vote illustrés",
               "quantity": "25 bulletins avec pictogrammes des 4 stratégies",
               "preparation": "Dessiner clairement chaque méthode, prévoir cases vote",
-              "alternatives": ["Vote à main levée", "Autocollants colorés", "Jetons vote"]
+              "alternatives": [
+                "Vote à main levée",
+                "Autocollants colorés",
+                "Jetons vote"
+              ]
             }
           ],
           "optional": [
@@ -2032,7 +2414,10 @@
         "decisionPoints": [
           "Si difficulté à choisir une préférée → encourager à expliquer pourquoi hésitation"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si résistance à essayer nouvelles stratégies: commencer avec variations de leur méthode préférée. Si confusion entre les méthodes: utiliser toujours même problème simple (5-2) pour comparaisons.",
@@ -2102,13 +2487,21 @@
               "item": "Objets de démonstration grande taille",
               "quantity": "10 objets très visibles (cubes géants, balles colorées)",
               "preparation": "Choisir objets assez grands pour être vus du fond de classe",
-              "alternatives": ["Aimants géants sur tableau", "Marionnettes", "Objets du quotidien géants"]
+              "alternatives": [
+                "Aimants géants sur tableau",
+                "Marionnettes",
+                "Objets du quotidien géants"
+              ]
             },
             {
               "item": "Affichage étapes résolution",
               "quantity": "1 poster avec étapes: 1.Lire 2.Représenter 3.Enlever 4.Compter 5.Vérifier",
               "preparation": "Créer visuels clairs, numéroter étapes, plastifier",
-              "alternatives": ["Écriture au tableau", "Cartes étapes", "Projections séquentielles"]
+              "alternatives": [
+                "Écriture au tableau",
+                "Cartes étapes",
+                "Projections séquentielles"
+              ]
             }
           ],
           "optional": [
@@ -2124,7 +2517,10 @@
           "Si élèves distraits par objets → utiliser objets plus neutres",
           "Si incompréhension séquence → répéter avec problème plus simple"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ],
         "mathTalk": [
           "Qu'est-ce que j'ai fait en premier?",
           "Comment saviez-vous ce que j'allais faire ensuite?"
@@ -2139,25 +2535,41 @@
               "item": "Cartes problèmes pour enseignement",
               "quantity": "50 cartes avec problèmes simples 0-10",
               "preparation": "Sélectionner problèmes appropriés, laminer pour durabilité",
-              "alternatives": ["Problèmes écrits au tableau", "Situations orales", "Cartes faites main"]
+              "alternatives": [
+                "Problèmes écrits au tableau",
+                "Situations orales",
+                "Cartes faites main"
+              ]
             },
             {
               "item": "Matériel manipulation pour démonstrations",
               "quantity": "200 objets divers organisés en kits de 25",
               "preparation": "Créer kits identiques, organiser dans boîtes étiquetées",
-              "alternatives": ["Objets de classe disponibles", "Matériel recyclé", "Dessins et images"]
+              "alternatives": [
+                "Objets de classe disponibles",
+                "Matériel recyclé",
+                "Dessins et images"
+              ]
             },
             {
               "item": "Accessoires mini-professeurs",
               "quantity": "12 paires lunettes jouets + 12 pointeurs improvisés",
               "preparation": "Nettoyer accessoires, créer pointeurs avec règles/bâtons",
-              "alternatives": ["Gestes naturels seulement", "Objets du quotidien", "Accessoires improvisés"]
+              "alternatives": [
+                "Gestes naturels seulement",
+                "Objets du quotidien",
+                "Accessoires improvisés"
+              ]
             },
             {
               "item": "Tableaux individuels ou ardoises",
               "quantity": "25 mini-tableaux ou ardoises effaçables",
               "preparation": "Nettoyer surfaces, vérifier marqueurs/craies disponibles",
-              "alternatives": ["Feuilles de papier", "Dos d'enveloppes", "Tables surfaces effaçables"]
+              "alternatives": [
+                "Feuilles de papier",
+                "Dos d'enveloppes",
+                "Tables surfaces effaçables"
+              ]
             }
           ],
           "optional": [
@@ -2192,13 +2604,21 @@
               "item": "Diplômes Mini-Professeur personnalisés",
               "quantity": "25 diplômes avec nom de chaque élève",
               "preparation": "Imprimer sur papier spécial, écrire noms individuellement",
-              "alternatives": ["Certificats simples", "Cartes de félicitation", "Autocollants spéciaux"]
+              "alternatives": [
+                "Certificats simples",
+                "Cartes de félicitation",
+                "Autocollants spéciaux"
+              ]
             },
             {
               "item": "Espace cérémonie organisé",
               "quantity": "1 espace avec sièges en demi-cercle face podium",
               "preparation": "Organiser sièges, créer 'podium' même simple",
-              "alternatives": ["Cercle au sol", "Arrangement informel", "Positions debout"]
+              "alternatives": [
+                "Cercle au sol",
+                "Arrangement informel",
+                "Positions debout"
+              ]
             }
           ],
           "optional": [
@@ -2214,7 +2634,10 @@
           "Si nervosité avant la photo → utiliser blagues mathématiques pour détendre l'atmosphère",
           "Si élève perfectionniste veut refaire présentation → valoriser premier essai et rappeler que apprendre c'est essayer"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si difficulté à séquencer explication: utiliser phrases-cadres très structurées. Si timidité excessive: permettre explications à voix basse ou par gestes seulement.",
@@ -2284,13 +2707,21 @@
               "item": "Bâton de parole décoratif",
               "quantity": "1 bâton coloré ou objet spécial pour prendre parole",
               "preparation": "Décorer joliment, s'assurer facile à tenir pour petites mains",
-              "alternatives": ["Microphone jouet", "Peluche mascotte", "Objet classe spécial"]
+              "alternatives": [
+                "Microphone jouet",
+                "Peluche mascotte",
+                "Objet classe spécial"
+              ]
             },
             {
               "item": "Tapis de cercle festif",
               "quantity": "1 grand tapis coloré pour rassemblement",
               "preparation": "Nettoyer, disposer en cercle accueillant",
-              "alternatives": ["Chaises en cercle", "Marquage au sol", "Couverture colorée"]
+              "alternatives": [
+                "Chaises en cercle",
+                "Marquage au sol",
+                "Couverture colorée"
+              ]
             }
           ],
           "optional": [
@@ -2306,7 +2737,10 @@
           "Si élèves hésitent à partager → modéliser avec ses propres fiertés d'enseignant(e)",
           "Si certains élèves dominent temps → utiliser minuteur doux pour équité"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ],
         "mathTalk": [
           "De quoi es-tu le plus fier dans tes apprentissages?",
           "Qu'est-ce qui était difficile au début et qui est plus facile maintenant?"
@@ -2321,31 +2755,51 @@
               "item": "Kiosque 1: Défis avec objets",
               "quantity": "50 objets + 20 cartes défis gradués",
               "preparation": "Organiser défis du plus simple au plus complexe",
-              "alternatives": ["Objets variés disponibles", "Matériel recyclé", "Fournitures classe"]
+              "alternatives": [
+                "Objets variés disponibles",
+                "Matériel recyclé",
+                "Fournitures classe"
+              ]
             },
             {
               "item": "Kiosque 2: Images à résoudre",
               "quantity": "30 images problèmes plastifiées + marqueurs",
               "preparation": "Choisir images claires, tester marqueurs effaçables",
-              "alternatives": ["Dessins simples", "Photos imprimées", "Illustrations maison"]
+              "alternatives": [
+                "Dessins simples",
+                "Photos imprimées",
+                "Illustrations maison"
+              ]
             },
             {
               "item": "Kiosque 3: Jeux rapides",
               "quantity": "Dés, cartes, jetons pour 3 jeux différents",
               "preparation": "Installer jeux des leçons préférées identifiées",
-              "alternatives": ["Jeux improvisés", "Matériel simple", "Activités orales"]
+              "alternatives": [
+                "Jeux improvisés",
+                "Matériel simple",
+                "Activités orales"
+              ]
             },
             {
               "item": "Kiosque 4: Scénarios vraie vie",
               "quantity": "25 cartes situations réelles + objets manipulation",
               "preparation": "Sélectionner situations familières aux élèves",
-              "alternatives": ["Situations orales", "Roleplay simple", "Objets réels"]
+              "alternatives": [
+                "Situations orales",
+                "Roleplay simple",
+                "Objets réels"
+              ]
             },
             {
               "item": "Portfolios individuels décorés",
               "quantity": "25 portfolios/dossiers personnalisés avec nom élève",
               "preparation": "Décorer avec couleurs vives, écrire noms clairement",
-              "alternatives": ["Chemises simples", "Enveloppes décorées", "Sacs personnalisés"]
+              "alternatives": [
+                "Chemises simples",
+                "Enveloppes décorées",
+                "Sacs personnalisés"
+              ]
             }
           ],
           "optional": [
@@ -2380,19 +2834,31 @@
               "item": "Certificats 'Expert Soustraction' personnalisés",
               "quantity": "25 certificats luxueux avec nom de chaque élève",
               "preparation": "Imprimer sur papier épais, calligraphier noms, ajouter rubans",
-              "alternatives": ["Certificats simples", "Diplômes faits main", "Cartes félicitations"]
+              "alternatives": [
+                "Certificats simples",
+                "Diplômes faits main",
+                "Cartes félicitations"
+              ]
             },
             {
               "item": "Podium ou espace cérémonie décoré",
               "quantity": "1 espace spécial avec décorations festives",
               "preparation": "Décorer avec banderoles, ballons, créer atmosphere solennelle",
-              "alternatives": ["Espace simple désigné", "Cercle spécial", "Arrangement informel"]
+              "alternatives": [
+                "Espace simple désigné",
+                "Cercle spécial",
+                "Arrangement informel"
+              ]
             },
             {
               "item": "Médailles ou badges commémoratifs",
               "quantity": "25 médailles 'Je sais soustraire!'",
               "preparation": "Créer ou acheter médailles spéciales, attacher rubans",
-              "alternatives": ["Autocollants spéciaux", "Badges faits main", "Bracelets célébration"]
+              "alternatives": [
+                "Autocollants spéciaux",
+                "Badges faits main",
+                "Bracelets célébration"
+              ]
             }
           ],
           "optional": [
@@ -2408,7 +2874,9 @@
           "Si élève anxieux face aux défis finaux → rassurer en rappelant tout ce qu'il sait déjà faire",
           "Si émotion forte en voyant chemin parcouru → accueillir sentiments et partager fierté collective"
         ],
-        "movementBreaks": ["Parade finale de célébration avec certificats (dernières 2 minutes)"]
+        "movementBreaks": [
+          "Parade finale de célébration avec certificats (dernières 2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si anxiété face à l'évaluation: rappeler constamment l'aspect célébration et progrès. Si élève sent qu'il n'a pas bien réussi: valoriser effort et progrès personnels plutôt que performance absolue.",
@@ -2478,13 +2946,21 @@
               "item": "Figurines ou images personnages variés",
               "quantity": "30 personnages différents (animaux, personnes, objets)",
               "preparation": "Organiser personnages attrayants, vérifier qu'ils inspirent histoires",
-              "alternatives": ["Dessins simples", "Cartes imagées", "Marionnettes doigts"]
+              "alternatives": [
+                "Dessins simples",
+                "Cartes imagées",
+                "Marionnettes doigts"
+              ]
             },
             {
               "item": "Tableau création collective",
               "quantity": "1 grand tableau pour modéliser processus création",
               "preparation": "Préparer format: Personnages → Situation → Calcul → Question",
-              "alternatives": ["Papier géant", "Surface effaçable", "Présentation numérique"]
+              "alternatives": [
+                "Papier géant",
+                "Surface effaçable",
+                "Présentation numérique"
+              ]
             }
           ],
           "optional": [
@@ -2500,7 +2976,10 @@
           "Si élèves submergés par choix → limiter à 3-4 personnages",
           "Si difficultés créatives → fournir débuts d'histoires à compléter"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ],
         "mathTalk": [
           "Quel personnage veux-tu utiliser dans ton histoire?",
           "Comment vas-tu faire enlever quelque chose dans ton histoire?"
@@ -2515,19 +2994,31 @@
               "item": "Cahiers d'auteur personnalisés",
               "quantity": "25 cahiers décorés avec nom de chaque élève",
               "preparation": "Décorer couvertures, prévoir pages format problèmes",
-              "alternatives": ["Feuilles spéciales", "Carnets simples", "Pages agrafées"]
+              "alternatives": [
+                "Feuilles spéciales",
+                "Carnets simples",
+                "Pages agrafées"
+              ]
             },
             {
               "item": "Matériel illustration varié",
               "quantity": "100 crayons couleurs + 50 feutres + 25 crayons plomb",
               "preparation": "Organiser par couleur, vérifier pointes, prévoir taille-crayons",
-              "alternatives": ["Crayons de base seulement", "Pastels", "Matériel disponible"]
+              "alternatives": [
+                "Crayons de base seulement",
+                "Pastels",
+                "Matériel disponible"
+              ]
             },
             {
               "item": "Banque d'inspiration",
               "quantity": "50 cartes inspiration (lieux, situations, nombres)",
               "preparation": "Créer cartes avec idées démarreurs pour élèves en panne",
-              "alternatives": ["Liste au tableau", "Suggestions orales", "Images magazines"]
+              "alternatives": [
+                "Liste au tableau",
+                "Suggestions orales",
+                "Images magazines"
+              ]
             }
           ],
           "optional": [
@@ -2561,13 +3052,21 @@
               "item": "Espace lecture théâtral",
               "quantity": "1 coin lecture avec fauteuil spécial",
               "preparation": "Créer ambiance librairie, installer éclairage doux",
-              "alternatives": ["Chaise décorée", "Coussin spécial", "Espace désigné"]
+              "alternatives": [
+                "Chaise décorée",
+                "Coussin spécial",
+                "Espace désigné"
+              ]
             },
             {
               "item": "Livre de classe compilé",
               "quantity": "1 reliure pour rassembler toutes créations",
               "preparation": "Préparer belle reliure, titre attractif",
-              "alternatives": ["Classeur décoré", "Cahier géant", "Portfolio classe"]
+              "alternatives": [
+                "Classeur décoré",
+                "Cahier géant",
+                "Portfolio classe"
+              ]
             }
           ],
           "optional": [
@@ -2583,7 +3082,10 @@
           "Si élève frustré par problème trop difficile → ajuster ensemble pour le rendre accessible",
           "Si fièreté excessive d'un élève → rediriger vers célébration collective des créations"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si blocage créatif: offrir choix multiples plutôt que création libre. Si problèmes trop simples ou complexes: guider vers nombres 0-10 avec situations familières.",
@@ -2693,13 +3195,21 @@
               "item": "Exemples d'art mathématique",
               "quantity": "5-6 illustrations inspirantes montrant soustraction",
               "preparation": "Sélectionner images claires, colorées, mathématiquement correctes",
-              "alternatives": ["Dessins faits maison", "Images internet", "Créations d'années précédentes"]
+              "alternatives": [
+                "Dessins faits maison",
+                "Images internet",
+                "Créations d'années précédentes"
+              ]
             },
             {
               "item": "Matériel démonstration artistique",
               "quantity": "Papier géant + marqueurs couleurs pour démonstration live",
               "preparation": "Installer chevalet ou support visible, organiser couleurs",
-              "alternatives": ["Tableau et craies colorées", "Surface numérique", "Papier au mur"]
+              "alternatives": [
+                "Tableau et craies colorées",
+                "Surface numérique",
+                "Papier au mur"
+              ]
             }
           ],
           "optional": [
@@ -2714,7 +3224,10 @@
         "decisionPoints": [
           "Si élèves se focalisent sur beauté plutôt que mathématiques → rappeler équilibre art + calcul"
         ],
-        "movementBreaks": [],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ],
         "mathTalk": [
           "Comment cette œuvre raconte-t-elle une soustraction?",
           "Quels couleurs et formes vas-tu utiliser?"
@@ -2729,19 +3242,31 @@
               "item": "Papier art de qualité",
               "quantity": "50 feuilles format A3 (2 par élève)",
               "preparation": "Choisir papier épais, découper format approprié",
-              "alternatives": ["Papier construction coloré", "Carton léger", "Papier disponible"]
+              "alternatives": [
+                "Papier construction coloré",
+                "Carton léger",
+                "Papier disponible"
+              ]
             },
             {
               "item": "Matériel artistique varié",
               "quantity": "Crayons, feutres, pastels, colle, ciseaux pour 25 élèves",
               "preparation": "Organiser par type, vérifier pointes et fonctionnement",
-              "alternatives": ["Crayons et papier seulement", "Matériel recyclé", "Fournitures disponibles"]
+              "alternatives": [
+                "Crayons et papier seulement",
+                "Matériel recyclé",
+                "Fournitures disponibles"
+              ]
             },
             {
               "item": "Supports inspiration mathématique",
               "quantity": "25 cartes avec soustractions simples à illustrer",
               "preparation": "Préparer problèmes 0-10 motivants à transformer en art",
-              "alternatives": ["Suggestions au tableau", "Choix libre", "Problèmes oraux"]
+              "alternatives": [
+                "Suggestions au tableau",
+                "Choix libre",
+                "Problèmes oraux"
+              ]
             }
           ],
           "optional": [
@@ -2776,13 +3301,21 @@
               "item": "Espace galerie organisé",
               "quantity": "Murs ou panneaux pour exposer 25 œuvres",
               "preparation": "Préparer accrochage, numéroter emplacements",
-              "alternatives": ["Tables d'exposition", "Sol avec organisation", "Présentation individuelle"]
+              "alternatives": [
+                "Tables d'exposition",
+                "Sol avec organisation",
+                "Présentation individuelle"
+              ]
             },
             {
               "item": "Étiquettes œuvres d'art",
               "quantity": "25 étiquettes 'Artiste: ___, Œuvre: ___'",
               "preparation": "Format professionnel, espaces pour noms et titres",
-              "alternatives": ["Étiquettes simples", "Écriture directe", "Présentation orale seulement"]
+              "alternatives": [
+                "Étiquettes simples",
+                "Écriture directe",
+                "Présentation orale seulement"
+              ]
             }
           ],
           "optional": [
@@ -2798,7 +3331,10 @@
           "Si timidité lors du vernissage → créer groupes de soutien et permettre présentations à deux",
           "Si comparaisons entre œuvres → rediriger attention vers l'unique contribution de chaque artiste"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si perfectionnisme artistique paralyse: encourager expression libre, valoriser tentatives. Si difficultés à intégrer mathématiques: suggérer méthodes simples (barrer objets, utiliser couleurs pour grouper).",
@@ -2888,13 +3424,13 @@
     },
     {
       "lessonNumber": 17,
-      "lessonType": "extension", 
+      "lessonType": "extension",
       "title": "Enseigner à un ami",
       "oneGoal": "Expliquer la soustraction à un partenaire ou à la classe",
       "duration": "45 minutes",
       "keyVocabulary": [
         "enseigner",
-        "aide", 
+        "aide",
         "patient",
         "enlever",
         "expliquer"
@@ -2908,7 +3444,11 @@
               "item": "Travaux des élèves de la leçon 16",
               "quantity": "1 création par élève (25 travaux)",
               "preparation": "Disposer les créations de la galerie précédente",
-              "alternatives": ["Photos des travaux", "Dessins simples", "Exemples d'enseignant"]
+              "alternatives": [
+                "Photos des travaux",
+                "Dessins simples",
+                "Exemples d'enseignant"
+              ]
             }
           ],
           "optional": [
@@ -2923,7 +3463,10 @@
         "decisionPoints": [
           "Si élèves timides pour enseigner → commencer par démonstration en duo avec enseignant"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
       },
       "main": {
         "duration": "27 minutes",
@@ -2934,13 +3477,21 @@
               "item": "Matériel de manipulation pour enseignement",
               "quantity": "100 objets variés (cubes, jetons, boutons)",
               "preparation": "Organiser en kits d'enseignement pour chaque paire",
-              "alternatives": ["Objets de classe existants", "Matériel récupéré", "Dessins sur papier"]
+              "alternatives": [
+                "Objets de classe existants",
+                "Matériel récupéré",
+                "Dessins sur papier"
+              ]
             },
             {
               "item": "Cartes problèmes simples",
               "quantity": "15 cartes avec soustractions 0-5",
               "preparation": "Illustrer clairement avec images et nombres",
-              "alternatives": ["Problèmes oraux", "Situations inventées", "Objets réels"]
+              "alternatives": [
+                "Problèmes oraux",
+                "Situations inventées",
+                "Objets réels"
+              ]
             }
           ],
           "optional": [
@@ -2970,7 +3521,11 @@
               "item": "Certificats 'Jeune Enseignant' personnalisés",
               "quantity": "25 certificats avec noms des élèves",
               "preparation": "Remplir les noms à l'avance, prévoir crayons pour signature",
-              "alternatives": ["Autocollants spéciaux", "Badges temporaires", "Médailles en carton"]
+              "alternatives": [
+                "Autocollants spéciaux",
+                "Badges temporaires",
+                "Médailles en carton"
+              ]
             }
           ],
           "optional": [
@@ -2986,7 +3541,10 @@
           "Si élève se compare négativement aux autres → souligner ses forces personnelles d'enseignant",
           "Si excitation excessive perturbe l'écoute → utiliser signaux visuels pour maintenir attention respectueuse"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si élèves trop timides pour enseigner: permettre enseignement en trio ou avec support adulte. Si explications confuses: utiliser plus de gestes et moins de mots.",
@@ -3094,7 +3652,11 @@
               "item": "Certificats de jeune enseignant de la leçon 17",
               "quantity": "25 certificats des élèves",
               "preparation": "Afficher fièrement les certificats obtenus",
-              "alternatives": ["Photos des élèves enseignants", "Liste des accomplissements", "Badges temporaires"]
+              "alternatives": [
+                "Photos des élèves enseignants",
+                "Liste des accomplissements",
+                "Badges temporaires"
+              ]
             }
           ],
           "optional": [
@@ -3109,7 +3671,10 @@
         "decisionPoints": [
           "Si élèves surstimulés par compétition → rappeler l'esprit sportif et la collaboration"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
       },
       "main": {
         "duration": "27 minutes",
@@ -3120,13 +3685,21 @@
               "item": "Jeux mathématiques variés (dés, cartes, plateau)",
               "quantity": "6 jeux différents pour rotation",
               "preparation": "Installer stations avec règles simplifiées affichées",
-              "alternatives": ["Jeux faits maison", "Adaptations de jeux existants", "Jeux numériques"]
+              "alternatives": [
+                "Jeux faits maison",
+                "Adaptations de jeux existants",
+                "Jeux numériques"
+              ]
             },
             {
               "item": "Matériel de comptage pour scores",
               "quantity": "50 jetons ou cubes pour compter les points",
               "preparation": "Préparer contenants pour chaque équipe",
-              "alternatives": ["Papier et crayons", "Ardoises", "Bâtons de comptage"]
+              "alternatives": [
+                "Papier et crayons",
+                "Ardoises",
+                "Bâtons de comptage"
+              ]
             }
           ],
           "optional": [
@@ -3156,7 +3729,11 @@
               "item": "Médailles de championnat personnalisées",
               "quantity": "25 médailles (différentes catégories: effort, fairplay, créativité)",
               "preparation": "Personnaliser avec noms et catégories spéciales",
-              "alternatives": ["Certificats colorés", "Autocollants spéciaux", "Badges en carton"]
+              "alternatives": [
+                "Certificats colorés",
+                "Autocollants spéciaux",
+                "Badges en carton"
+              ]
             }
           ],
           "optional": [
@@ -3172,7 +3749,10 @@
           "Si compétition crée tensions → rappeler que tous sont gagnants et célébrer efforts de chacun",
           "Si élève boude car n'a pas gagné → l'asseoir près d'amis bienveillants et valoriser sa participation"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si frustration avec jeux complexes: simplifier règles et utiliser nombres plus petits. Si compétition cause stress: mettre accent sur participation plutôt que victoire.",
@@ -3280,7 +3860,11 @@
               "item": "Médailles de championnat de la leçon 18",
               "quantity": "25 médailles des élèves",
               "preparation": "Encourager élèves à porter leurs médailles avec fierté",
-              "alternatives": ["Photos des champions", "Diplômes affichés", "Autocollants de réussite"]
+              "alternatives": [
+                "Photos des champions",
+                "Diplômes affichés",
+                "Autocollants de réussite"
+              ]
             }
           ],
           "optional": [
@@ -3295,7 +3879,10 @@
         "decisionPoints": [
           "Si élèves intimidés par mot 'projet' → expliquer comme 'création spéciale' ou 'cadeau mathématique'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
       },
       "main": {
         "duration": "27 minutes",
@@ -3306,13 +3893,21 @@
               "item": "Matériaux d'arts et créativité",
               "quantity": "Papiers colorés, crayons, autocollants, colle (matériel varié)",
               "preparation": "Organiser stations créatives avec matériaux accessibles",
-              "alternatives": ["Matériel récupéré", "Fournitures de base seulement", "Matériel numérique"]
+              "alternatives": [
+                "Matériel récupéré",
+                "Fournitures de base seulement",
+                "Matériel numérique"
+              ]
             },
             {
               "item": "Objets de manipulation mathématique",
               "quantity": "200 objets variés (cubes, jetons, boutons, cailloux)",
               "preparation": "Placer dans contenants facilement accessibles",
-              "alternatives": ["Matériel classe existant", "Objets naturels", "Dessins d'objets"]
+              "alternatives": [
+                "Matériel classe existant",
+                "Objets naturels",
+                "Dessins d'objets"
+              ]
             }
           ],
           "optional": [
@@ -3342,7 +3937,11 @@
               "item": "Carnets de planification ou papier",
               "quantity": "25 feuilles pour notes de présentation",
               "preparation": "Préparer template simple: 'Mon projet + Ce que j'ai appris + Ce que j'aime le plus'",
-              "alternatives": ["Discussion orale seulement", "Dessins de planification", "Enregistrements vocaux"]
+              "alternatives": [
+                "Discussion orale seulement",
+                "Dessins de planification",
+                "Enregistrements vocaux"
+              ]
             }
           ],
           "optional": [
@@ -3358,7 +3957,10 @@
           "Si blocage lors de la présentation → offrir choix entre présentation orale ou démonstration silencieuse",
           "Si projet inachevé cause gêne → valoriser processus créatif et intentions plutôt que résultat final"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si paralysie créative ou perfectionnisme: offrir projets avec étapes guidées. Si frustration avec matériel: simplifier et se concentrer sur l'idée plutôt que l'exécution.",
@@ -3466,7 +4068,11 @@
               "item": "Projets créatifs de la leçon 19",
               "quantity": "25 projets des élèves",
               "preparation": "Disposer artistiquement sur tables ou murs pour exposition",
-              "alternatives": ["Photos des projets si originaux fragiles", "Présentations numériques", "Projets en cours d'achèvement"]
+              "alternatives": [
+                "Photos des projets si originaux fragiles",
+                "Présentations numériques",
+                "Projets en cours d'achèvement"
+              ]
             }
           ],
           "optional": [
@@ -3481,7 +4087,10 @@
         "decisionPoints": [
           "Si certains projets non terminés → célébrer effort et processus plutôt que produit fini"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
       },
       "main": {
         "duration": "27 minutes",
@@ -3492,13 +4101,21 @@
               "item": "Tous les travaux et créations de l'unité",
               "quantity": "Portfolio complet de chaque élève (20 leçons d'apprentissages)",
               "preparation": "Organiser chronologiquement pour montrer progression",
-              "alternatives": ["Sélection des meilleurs travaux", "Photos chronologiques", "Échantillons représentatifs"]
+              "alternatives": [
+                "Sélection des meilleurs travaux",
+                "Photos chronologiques",
+                "Échantillons représentatifs"
+              ]
             },
             {
               "item": "Certificats de réussite personnalisés",
               "quantity": "25 certificats 'Maître de la Soustraction!'",
               "preparation": "Personnaliser avec noms et accomplissements spéciaux",
-              "alternatives": ["Diplômes faits main", "Médailles", "Autocollants de reconnaissance"]
+              "alternatives": [
+                "Diplômes faits main",
+                "Médailles",
+                "Autocollants de reconnaissance"
+              ]
             }
           ],
           "optional": [
@@ -3528,13 +4145,21 @@
               "item": "Appareil photo ou caméra",
               "quantity": "1 pour capturer moment spécial",
               "preparation": "Tester fonctionnement, prévoir arrière-plan festif",
-              "alternatives": ["Téléphone avec caméra", "Tablette", "Demande aide collègue photographe"]
+              "alternatives": [
+                "Téléphone avec caméra",
+                "Tablette",
+                "Demande aide collègue photographe"
+              ]
             },
             {
               "item": "Cartes de promesses mathématiques",
               "quantity": "25 cartes 'Je promets de continuer à apprendre!'",
               "preparation": "Préparer cartes avec espace pour engagement personnel",
-              "alternatives": ["Papier simple", "Engagement oral", "Dessins de promesses"]
+              "alternatives": [
+                "Papier simple",
+                "Engagement oral",
+                "Dessins de promesses"
+              ]
             }
           ],
           "optional": [
@@ -3550,7 +4175,10 @@
           "Si nostalgie de fin d'unité crée tristesse → honorer sentiments puis orienter vers futures découvertes",
           "Si agitation lors de la photo finale → créer rituel calme avant pose pour capturer moment précieux"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Si tristesse de fin d'unité: reconnaître sentiments normaux et promettre nouvelles aventures mathématiques. Si surstimulation émotionnelle: créer moments calmes de réflexion.",

@@ -1,5 +1,5 @@
 {
-  "unitTitle": "",
+  "unitTitle": "Créons des motifs magiques",
   "subject": "Arts visuels",
   "grade": "1",
   "totalLessons": 20,
@@ -9,13 +9,13 @@
     {
       "lessonNumber": 1,
       "lessonType": "core",
-      "title": "",
+      "title": "Découvrons les motifs autour de nous",
       "oneGoal": "",
       "duration": 45,
       "keyVocabulary": [],
       "opening": {
         "duration": 8,
-        "activity": "",
+        "activity": "Introduction à la leçon : Découvrons les motifs autour de nous",
         "materials": [
           "grandes affiches d'exemples de motifs (3-4 affiches)",
           "objets avec motifs visibles (tissus, papier peint, 5-6 échantillons)",
@@ -34,7 +34,7 @@
       },
       "main": {
         "duration": 27,
-        "activity": "",
+        "activity": "Activité principale : exploration pratique et créative",
         "materials": [
           "tampons en mousse de formes simples (8-10 tampons différents)",
           "encre à l'eau non-toxique (6-8 couleurs vives)",
@@ -55,7 +55,7 @@
       },
       "closing": {
         "duration": 10,
-        "activity": "",
+        "activity": "Consolidation : partage et réflexion sur nos apprentissages",
         "materials": [
           "bacs pour ranger les tampons (4-5 bacs)",
           "serviettes en papier pour nettoyer (2 rouleaux)",
@@ -79,10 +79,26 @@
       },
       "realWorldConnection": "",
       "differentiation": {
-        "pourDifficultés": [],
-        "pourAvancés": [],
-        "pourLangue": [],
-        "pourPEI": []
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Proposer des textes plus complexes avec vocabulaire étendu"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
       },
       "assessmentCriteria": {
         "observable": [

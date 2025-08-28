@@ -412,10 +412,26 @@
       },
       "realWorldConnection": "",
       "differentiation": {
-        "pourDifficultés": [],
-        "pourAvancés": [],
-        "pourLangue": [],
-        "pourPEI": []
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Proposer des textes plus complexes avec vocabulaire étendu"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Fournir des instructions simples, une étape à la fois",
+          "Utiliser des minuteurs visuels pour structurer le temps"
+        ]
       },
       "assessmentCriteria": {
         "observable": [

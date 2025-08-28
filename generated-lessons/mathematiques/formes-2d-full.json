@@ -27,7 +27,10 @@
               "quantity": "1 jeu de 12 formes (4 cercles, 4 carrés, 4 triangles) format 20x20 cm",
               "source": "Matériel pédagogique - armoire mathématiques",
               "preparation": "Plastifier si nécessaire, préparer pour affichage au tableau",
-              "alternatives": ["Découper dans carton coloré", "Formes magnétiques"]
+              "alternatives": [
+                "Découper dans carton coloré",
+                "Formes magnétiques"
+              ]
             }
           ],
           "optional": [
@@ -43,7 +46,10 @@
           "Si les élèves confondent les noms des formes → utiliser des gestes spécifiques (cercle = mouvement rond, carré = tracer les angles)",
           "Si manque d'engagement pendant la chanson → permettre aux élèves de tenir des petites formes pendant qu'ils chantent"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -55,14 +61,20 @@
               "quantity": "1 jeu de 60 pièces (20 cercles, 20 carrés, 20 triangles)",
               "source": "Kit manipulatifs mathématiques - armoire B",
               "preparation": "Organiser par forme dans bacs étiquetés",
-              "alternatives": ["Formes en plastique", "Formes découpées en carton épais"]
+              "alternatives": [
+                "Formes en plastique",
+                "Formes découpées en carton épais"
+              ]
             },
             {
               "item": "Étiquettes autocollantes rondes",
               "quantity": "30 étiquettes (10 par couleur - rouge, bleu, vert)",
               "source": "Fournitures de bureau - tiroir étiquettes",
               "preparation": "Préparer 1 couleur par forme pour système de tri",
-              "alternatives": ["Papier coloré et colle", "Marqueurs colorés"]
+              "alternatives": [
+                "Papier coloré et colle",
+                "Marqueurs colorés"
+              ]
             }
           ],
           "optional": [
@@ -79,7 +91,10 @@
           "Si trop d'excitation pendant la promenade → diviser la classe en groupes de 5 avec stations spécifiques",
           "Si confusion entre les formes similaires → utiliser le vocabulaire tactile (le carré a des coins pointus, le cercle est tout rond)"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -98,7 +113,10 @@
         "decisionPoints": [
           "Si les élèves sont timides pour partager → commencer par montrer l'objet seulement, puis encourager le nom de la forme"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Reconnaître les formes dans les objets réels",
@@ -166,14 +184,20 @@
               "quantity": "2-3 sacs pour permettre rotation par groupes",
               "source": "Matériel de classe - boîtes sensorielles",
               "preparation": "Vérifier que les sacs sont propres et assez grands pour manipulation",
-              "alternatives": ["Boîtes avec couvercles", "Sacs en papier brun épais"]
+              "alternatives": [
+                "Boîtes avec couvercles",
+                "Sacs en papier brun épais"
+              ]
             },
             {
               "item": "Formes géométriques en bois texturées",
               "quantity": "12 formes (4 cercles, 4 carrés, 4 triangles) d'au moins 8 cm",
               "source": "Kit manipulatifs sensoriels - armoire C",
               "preparation": "Nettoyer et vérifier l'absence d'échards ou bords tranchants",
-              "alternatives": ["Formes en plastique épais", "Formes en mousse dense"]
+              "alternatives": [
+                "Formes en plastique épais",
+                "Formes en mousse dense"
+              ]
             }
           ],
           "optional": [
@@ -189,7 +213,10 @@
           "Si les élèves sont anxieux de mettre la main dans le sac → démontrer d'abord avec des objets familiers et rassurer sur le contenu",
           "Si les formes sont trop difficiles à distinguer au toucher → utiliser d'abord des formes très contrastées (cercle vs carré seulement)"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -201,21 +228,30 @@
               "quantity": "18 formes (6 cercles, 6 carrés, 6 triangles) de 15 cm",
               "source": "Fournitures artistiques - papier texturé ou fabriquer avec papier sablé fin",
               "preparation": "Découper et coller sur carton pour rigidité",
-              "alternatives": ["Papier crépon froissé et collé", "Formes recouvertes de sable collé"]
+              "alternatives": [
+                "Papier crépon froissé et collé",
+                "Formes recouvertes de sable collé"
+              ]
             },
             {
               "item": "Formes en velours (texture douce)",
               "quantity": "18 formes identiques aux papiers sablés",
               "source": "Fournitures de couture ou tissu recyclé",
               "preparation": "Découper et coller sur carton, vérifier que les bords ne s'effilochent pas",
-              "alternatives": ["Feutre épais", "Coton ouate collé"]
+              "alternatives": [
+                "Feutre épais",
+                "Coton ouate collé"
+              ]
             },
             {
               "item": "Formes en plastique lisse (texture standard)",
               "quantity": "18 formes identiques pour comparaison",
               "source": "Kit manipulatifs standard - armoire A",
               "preparation": "Nettoyer et organiser par texture dans bacs séparés",
-              "alternatives": ["Formes en carton plastifié", "Formes en bois lisse"]
+              "alternatives": [
+                "Formes en carton plastifié",
+                "Formes en bois lisse"
+              ]
             }
           ],
           "optional": [
@@ -232,7 +268,10 @@
           "Si surcharge sensorielle avec trop de textures → limiter à 2 textures (rugueux et doux) pour cette leçon",
           "Si les élèves veulent seulement toucher et pas identifier → respecter le besoin d'exploration libre avant la catégorisation"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -251,7 +290,10 @@
         "decisionPoints": [
           "Si les élèves manquent de vocabulaire pour décrire → modéliser avec des phrases simples ('C'est rugueux comme...')"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Distinguer les formes par le toucher",
@@ -319,7 +361,9 @@
               "quantity": "Zone dégagée de 3x3 m devant le tableau",
               "source": "Réorganiser l'espace classe temporairement",
               "preparation": "Déplacer chaises et tables pour créer l'espace de démonstration",
-              "alternatives": ["Couloir ou gymnase si classe trop petite"]
+              "alternatives": [
+                "Couloir ou gymnase si classe trop petite"
+              ]
             }
           ],
           "optional": [
@@ -334,7 +378,10 @@
         "decisionPoints": [
           "Si les élèves ont de la difficulté avec les grands mouvements → commencer par tracer dans l'air avec tout le corps, puis diminuer l'amplitude"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -346,14 +393,21 @@
               "quantity": "5 kg (200g par bac pour 25 élèves)",
               "source": "Sable de bac à sable ou sable d'aquarium (propre)",
               "preparation": "Tamiser pour enlever gros débris, répartir dans bacs individuels",
-              "alternatives": ["Farine tout usage", "Sel fin de table", "Semoule fine"]
+              "alternatives": [
+                "Farine tout usage",
+                "Sel fin de table",
+                "Semoule fine"
+              ]
             },
             {
               "item": "Bâtonnets de bois (type popsicle)",
               "quantity": "50 bâtonnets (2 par élève)",
               "source": "Fournitures artistiques - boîte de bricolage",
               "preparation": "Vérifier l'absence d'échardes, nettoyer si nécessaire",
-              "alternatives": ["Crayons sans mine", "Doigts seulement"]
+              "alternatives": [
+                "Crayons sans mine",
+                "Doigts seulement"
+              ]
             }
           ],
           "optional": [
@@ -370,19 +424,29 @@
           "Si difficulté à tracer des formes reconnaissables → commencer par des lignes droites et courbes simples avant les formes complètes",
           "Si certains préfèrent utiliser les doigts aux bâtonnets → respecter la préférence sensorielle, les deux méthodes sont valides"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Galerie d'observation : les élèves visitent les créations de leurs pairs dans le sable",
-        "materials": [],
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "chemises individuelles (30 chemises)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
         "visualSupports": "",
         "decisionPoints": [
           "Si un élève hésite à partager sa création → encourager en montrant une caractéristique positive 'Regarde ce beau carré!'",
           "Si les explications sont trop complexes → guider avec des questions simples 'Quelle forme vois-tu ici?'",
           "Si certains enfants sont timides → permettre de montrer sans parler d'abord"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Contrôler les mouvements de traçage",
@@ -450,7 +514,10 @@
               "quantity": "150 blocs variés (carrés, triangles, cercles, rectangles) dans bacs organisés",
               "source": "Kit manipulatifs construction - armoire principale",
               "preparation": "Organiser par forme et taille dans bacs transparents",
-              "alternatives": ["Blocs en plastique dur", "Formes en carton épais"]
+              "alternatives": [
+                "Blocs en plastique dur",
+                "Formes en carton épais"
+              ]
             }
           ],
           "optional": [
@@ -465,7 +532,10 @@
         "decisionPoints": [
           "Si les élèves se dispersent ou jouent sans objectif → fournir des défis simples comme 'Faites une tour de 5 blocs'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -477,21 +547,30 @@
               "quantity": "50 blocs (variété de tailles : 20 petits, 20 moyens, 10 grands)",
               "source": "Kit géométrique - section triangles",
               "preparation": "Vérifier stabilité et absence de bords tranchants",
-              "alternatives": ["Triangles découpés dans mousse", "Blocs prismes triangulaires"]
+              "alternatives": [
+                "Triangles découpés dans mousse",
+                "Blocs prismes triangulaires"
+              ]
             },
             {
               "item": "Blocs carrés de construction",
               "quantity": "60 blocs (20 petits, 25 moyens, 15 grands)",
               "source": "Kit géométrique - section carrés",
               "preparation": "Organiser par taille dans bacs séparés",
-              "alternatives": ["Cubes en bois", "Carrés en carton épais"]
+              "alternatives": [
+                "Cubes en bois",
+                "Carrés en carton épais"
+              ]
             },
             {
               "item": "Blocs cylindriques (cercles 3D)",
               "quantity": "40 cylindres (20 petits, 15 moyens, 5 grands)",
               "source": "Kit formes 3D - section cylindres",
               "preparation": "Vérifier que les bases sont plates pour stabilité",
-              "alternatives": ["Rouleaux en carton décorés", "Contenants cylindriques vides"]
+              "alternatives": [
+                "Rouleaux en carton décorés",
+                "Contenants cylindriques vides"
+              ]
             }
           ],
           "optional": [
@@ -508,18 +587,28 @@
           "Si partage difficile des matériaux → instaurer des règles claires (chacun commence avec 10 blocs, puis échange)",
           "Si manque de créativité ou blocage → proposer des défis progressifs ('tour la plus haute', 'pont le plus long')"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Présentation des constructions : chaque élève explique ce qu'il a construit",
-        "materials": [],
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
         "visualSupports": "",
         "decisionPoints": [
           "Si un élève présente trop rapidement → dire 'Montre-nous d'abord, puis explique'",
           "Si les constructions tombent → rassurer 'C'est normal, on apprend!' et aider à reconstruire"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Créer des structures stables",
@@ -587,21 +676,30 @@
               "quantity": "25 carnets format A5 avec pages quadrillées",
               "source": "Fournitures pédagogiques - armoire papeterie",
               "preparation": "Préparer une page avec images des 3 formes de base et cases à cocher",
-              "alternatives": ["Feuilles agrafées maison", "Tablettes effaçables"]
+              "alternatives": [
+                "Feuilles agrafées maison",
+                "Tablettes effaçables"
+              ]
             },
             {
               "item": "Crayons de couleur courts",
               "quantity": "25 crayons (rouge, bleu, vert pour codage des formes)",
               "source": "Fournitures de classe - bac crayons",
               "preparation": "Tailler et attacher ficelle pour éviter les pertes",
-              "alternatives": ["Feutres lavables", "Crayons de cire"]
+              "alternatives": [
+                "Feutres lavables",
+                "Crayons de cire"
+              ]
             },
             {
               "item": "Planchettes à pince robustes",
               "quantity": "25 planchettes format A5 avec pince métallique",
               "source": "Matériel d'écriture - rangement bureau",
               "preparation": "Vérifier que les pinces fonctionnent bien",
-              "alternatives": ["Livres épais comme support", "Cartables rigides"]
+              "alternatives": [
+                "Livres épais comme support",
+                "Cartables rigides"
+              ]
             }
           ],
           "optional": [
@@ -617,7 +715,10 @@
           "Si les élèves sont excités par la sortie → établir un signal calme (main levée) avant de partir",
           "Si certains oublient les formes à chercher → afficher les 3 formes sur la planchette comme aide-mémoire"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -629,21 +730,30 @@
               "quantity": "6 appareils pour groupes de 4 élèves",
               "source": "Équipement technologique de l'école - bureau principal",
               "preparation": "Charger batteries, nettoyer écrans, vérifier fonctionnement",
-              "alternatives": ["Tablettes avec appareil photo", "Dessins sur carnets si pas de technologie"]
+              "alternatives": [
+                "Tablettes avec appareil photo",
+                "Dessins sur carnets si pas de technologie"
+              ]
             },
             {
               "item": "Autocollants géométriques colorés",
               "quantity": "150 autocollants (50 cercles rouges, 50 carrés bleus, 50 triangles verts)",
               "source": "Fournitures créatives - tiroir autocollants",
               "preparation": "Organiser par forme dans petits contenants étiquetés",
-              "alternatives": ["Étiquettes dessinées à la main", "Tampons encreurs avec formes"]
+              "alternatives": [
+                "Étiquettes dessinées à la main",
+                "Tampons encreurs avec formes"
+              ]
             },
             {
               "item": "Sacs de collecte transparents",
               "quantity": "6 sacs ziplock grande taille pour échantillons non fixés",
               "source": "Fournitures générales - armoire organisation",
               "preparation": "Étiqueter chaque sac avec nom du groupe",
-              "alternatives": ["Boîtes en plastique", "Paniers de collecte légers"]
+              "alternatives": [
+                "Boîtes en plastique",
+                "Paniers de collecte légers"
+              ]
             }
           ],
           "optional": [
@@ -667,7 +777,10 @@
             "ifNo": "Restez dans le corridor près de la classe"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -679,14 +792,20 @@
               "quantity": "1 affichage format A1 ou tableau",
               "source": "Plan de l'école du bureau - plastifier si papier",
               "preparation": "Marquer clairement la classe et zones visitées",
-              "alternatives": ["Dessiner plan simple au tableau", "Utiliser plan existant de la classe"]
+              "alternatives": [
+                "Dessiner plan simple au tableau",
+                "Utiliser plan existant de la classe"
+              ]
             },
             {
               "item": "Gommettes repositionnables",
               "quantity": "75 gommettes (25 par forme) de couleurs vives",
               "source": "Fournitures bureau - boîte gommettes",
               "preparation": "Préparer sur planche pour distribution rapide",
-              "alternatives": ["Dessiner directement sur la carte", "Épingler petites formes en papier"]
+              "alternatives": [
+                "Dessiner directement sur la carte",
+                "Épingler petites formes en papier"
+              ]
             }
           ],
           "optional": [
@@ -701,7 +820,10 @@
         "decisionPoints": [
           "Si les élèves ont trouvé trop d'exemples à partager → choisir 2-3 découvertes les plus surprenantes par groupe"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Voir les formes dans l'environnement architectural",
@@ -770,21 +892,30 @@
               "quantity": "200 formes par forme de base (600 total) en 4 tailles différentes",
               "source": "Papier de bricolage - armoire arts créatifs",
               "preparation": "Découper à l'avance, organiser par forme et taille dans bacs étiquetés",
-              "alternatives": ["Formes en mousse adhésive", "Modèles à tracer pour élèves"]
+              "alternatives": [
+                "Formes en mousse adhésive",
+                "Modèles à tracer pour élèves"
+              ]
             },
             {
               "item": "Bâtons de colle lavable non-toxique",
               "quantity": "25 bâtons individuels de 10g chacun",
               "source": "Fournitures de bricolage - tiroir colle",
               "preparation": "Vérifier que les bouchons ferment bien pour éviter dessèchement",
-              "alternatives": ["Colle liquide avec petits pinceaux", "Bâtons de colle partagés par groupe"]
+              "alternatives": [
+                "Colle liquide avec petits pinceaux",
+                "Bâtons de colle partagés par groupe"
+              ]
             },
             {
               "item": "Papier de construction format A4",
               "quantity": "30 feuilles (25 pour élèves + 5 extras) en couleurs claires",
               "source": "Papeterie - pile papier couleur",
               "preparation": "Choisir couleurs qui contrastent avec les formes prédécoupées",
-              "alternatives": ["Papier blanc standard", "Carton léger coloré"]
+              "alternatives": [
+                "Papier blanc standard",
+                "Carton léger coloré"
+              ]
             }
           ],
           "optional": [
@@ -800,7 +931,10 @@
           "Si les élèves veulent imiter exactement les exemples → encourager leurs propres idées créatives d'abord",
           "Si confusion sur comment assembler les formes → démontrer avec grandes formes au tableau magnétique"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -812,21 +946,30 @@
               "quantity": "300 formes supplémentaires en 3 tailles (petite, moyenne, grande)",
               "source": "Complément du matériel d'ouverture - mêmes bacs organisés",
               "preparation": "S'assurer d'avoir suffisamment de chaque forme pour tous les projets créatifs",
-              "alternatives": ["Modèles pour que les élèves découpent eux-mêmes", "Formes en feutre adhésif"]
+              "alternatives": [
+                "Modèles pour que les élèves découpent eux-mêmes",
+                "Formes en feutre adhésif"
+              ]
             },
             {
               "item": "Ciseaux de sécurité bout rond",
               "quantity": "25 paires adaptées aux mains de Grade 1",
               "source": "Matériel de découpage - casiers d'arts",
               "preparation": "Vérifier que les lames coupent bien et nettoyer",
-              "alternatives": ["Ciseaux à ressort pour faciliter l'usage", "Cutter de sécurité pour enseignant"]
+              "alternatives": [
+                "Ciseaux à ressort pour faciliter l'usage",
+                "Cutter de sécurité pour enseignant"
+              ]
             },
             {
               "item": "Feutres lavables pointe fine",
               "quantity": "6 boîtes de 8 couleurs partagées entre groupes",
               "source": "Fournitures artistiques - tiroir feutres",
               "preparation": "Vérifier que les bouchons ferment et les pointes ne sont pas sèches",
-              "alternatives": ["Crayons de couleur", "Craies de cire"]
+              "alternatives": [
+                "Crayons de couleur",
+                "Craies de cire"
+              ]
             }
           ],
           "optional": [
@@ -843,7 +986,10 @@
           "Si certains élèves collent trop rapidement sans planifier → encourager à essayer d'abord sans coller",
           "Si difficulté à assembler les formes → démontrer étape par étape avec formes magnétiques au tableau"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -855,14 +1001,20 @@
               "quantity": "30 pinces pour accrocher les œuvres",
               "source": "Fournitures bureau ou buanderie",
               "preparation": "Installer corde ou fil entre deux supports pour créer ligne d'exposition",
-              "alternatives": ["Pâte adhésive repositionnable", "Aimants si tableau magnétique disponible"]
+              "alternatives": [
+                "Pâte adhésive repositionnable",
+                "Aimants si tableau magnétique disponible"
+              ]
             },
             {
               "item": "Petites étiquettes autocollantes",
               "quantity": "25 étiquettes pour identifier les artistes",
               "source": "Fournitures bureau - rouleau étiquettes",
               "preparation": "Pré-écrire les noms des élèves si nécessaire",
-              "alternatives": ["Papier et colle", "Marquage direct sur œuvre"]
+              "alternatives": [
+                "Papier et colle",
+                "Marquage direct sur œuvre"
+              ]
             }
           ],
           "optional": [
@@ -877,7 +1029,10 @@
         "decisionPoints": [
           "Si les élèves sont timides pour présenter → commencer par faire décrire seulement les formes utilisées"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Visualiser comment assembler les formes",
@@ -946,21 +1101,30 @@
               "quantity": "150 formes mélangées (50 cercles, 50 carrés, 50 triangles) de tailles variées",
               "source": "Kit de manipulation géométrique - armoire mathématiques",
               "preparation": "Mélanger toutes les formes dans grand contenant pour activité de tri",
-              "alternatives": ["Formes découpées en carton épais", "Objets réels de formes variées"]
+              "alternatives": [
+                "Formes découpées en carton épais",
+                "Objets réels de formes variées"
+              ]
             },
             {
               "item": "Bacs de tri en plastique transparent",
               "quantity": "6 bacs moyens avec couvercles amovibles (2 par critère de tri)",
               "source": "Matériel d'organisation - rangement classe",
               "preparation": "Nettoyer et étiqueter temporairement selon critères de tri",
-              "alternatives": ["Assiettes en carton solide", "Cercles tracés au sol avec ruban"]
+              "alternatives": [
+                "Assiettes en carton solide",
+                "Cercles tracés au sol avec ruban"
+              ]
             },
             {
               "item": "Étiquettes visuelles pictographiques",
               "quantity": "8 étiquettes grand format (4x2 critères contraires)",
               "source": "Créer avec imprimante ou dessiner à la main",
               "preparation": "Plastifier pour réutilisation, magnets au dos si tableau métallique",
-              "alternatives": ["Dessins simples au tableau", "Formes modèles collées sur cartons"]
+              "alternatives": [
+                "Dessins simples au tableau",
+                "Formes modèles collées sur cartons"
+              ]
             }
           ],
           "optional": [
@@ -976,7 +1140,10 @@
           "Si les élèves confondent les critères → démontrer avec une forme en la plaçant dans le bon bac",
           "Si le tri va trop lentement → diviser en équipes et créer compétition amicale"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -988,21 +1155,30 @@
               "quantity": "200 formes au total (25 de chaque combinaison forme/couleur/taille)",
               "source": "Kit avancé de formes géométriques - armoire manipulation",
               "preparation": "Organiser par stations avec différents défis de tri",
-              "alternatives": ["Formes faites maison en carton coloré", "Objets du quotidien triés par critères"]
+              "alternatives": [
+                "Formes faites maison en carton coloré",
+                "Objets du quotidien triés par critères"
+              ]
             },
             {
               "item": "Cercles de tri en tissu ou plastic",
               "quantity": "12 cercles de différentes couleurs (30cm de diamètre)",
               "source": "Matériel d'organisation - ou créer avec cerceaux ou corde",
               "preparation": "Disposer sur tables ou au sol selon l'espace disponible",
-              "alternatives": ["Cercles dessinés à la craie", "Assiettes en carton grand format"]
+              "alternatives": [
+                "Cercles dessinés à la craie",
+                "Assiettes en carton grand format"
+              ]
             },
             {
               "item": "Pinces de préhension géantes",
               "quantity": "8 pinces adaptées aux petites mains",
               "source": "Matériel de motricité fine - casier développement",
               "preparation": "Vérifier le bon fonctionnement et nettoyer",
-              "alternatives": ["Baguettes ou cuillères pour ramasser", "Manipulation directe avec les mains"]
+              "alternatives": [
+                "Baguettes ou cuillères pour ramasser",
+                "Manipulation directe avec les mains"
+              ]
             }
           ],
           "optional": [
@@ -1018,7 +1194,10 @@
           "Si les élèves proposent des critères inhabituels → encourager et tester leurs idées créatives",
           "Si difficulté à justifier leurs choix → poser questions orientées (pourquoi cette forme va avec celle-là?)"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -1030,14 +1209,21 @@
               "quantity": "1 objet pour désigner le tour de parole",
               "source": "Matériel de communication - ou improviser avec objet spécial",
               "preparation": "Choisir objet attrayant que les élèves aimeront tenir",
-              "alternatives": ["Peluche de classe", "Bâton décoré", "Simplement lever la main"]
+              "alternatives": [
+                "Peluche de classe",
+                "Bâton décoré",
+                "Simplement lever la main"
+              ]
             },
             {
               "item": "Tableau de synthèse des découvertes",
               "quantity": "1 grande feuille ou section de tableau",
               "source": "Papier affichage ou utiliser tableau de classe",
               "preparation": "Diviser en sections pour différents critères de tri",
-              "alternatives": ["Cartons plus petits assemblés", "Documentation photographique"]
+              "alternatives": [
+                "Cartons plus petits assemblés",
+                "Documentation photographique"
+              ]
             }
           ],
           "optional": [
@@ -1052,7 +1238,10 @@
         "decisionPoints": [
           "Si les élèves parlent tous en même temps → utiliser signal visuel (main levée) pour demander le silence"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Comprendre les critères de regroupement",
@@ -1075,7 +1264,7 @@
         "pourLangue": [
           "Associer chaque critère à geste et mot répété (rond=mouvement circulaire+'rond')",
           "Utiliser étiquettes visuelles avec mots et images pour tous les critères",
-          "Encourager description simple : \u00e7a va ensemble parce que... c'est pareil",
+          "Encourager description simple : ça va ensemble parce que... c'est pareil",
           "Permettre démonstration non-verbale avant explication orale"
         ],
         "pourPEI": [
@@ -1121,21 +1310,30 @@
               "quantity": "9 formes (3 cercles, 3 carrés, 3 triangles) de 40cm minimum",
               "source": "Carton de récupération ou acheter - découper à l'avance",
               "preparation": "Renforcer les bords, plastifier si possible, ajouter support au dos pour tenue",
-              "alternatives": ["Formes en mousse épaisse", "Formes magnétiques géantes"]
+              "alternatives": [
+                "Formes en mousse épaisse",
+                "Formes magnétiques géantes"
+              ]
             },
             {
               "item": "Pointeurs ou bâguettes colorés",
               "quantity": "6 pointeurs de couleurs variées avec bouts sécuritaires",
               "source": "Matériel de présentation - ou fabriquer avec bâtons et pompons",
               "preparation": "Vérifier sécurité des bouts, attacher ficelle pour éviter perte",
-              "alternatives": ["Doigt de l'enseignant", "Règles colorées"]
+              "alternatives": [
+                "Doigt de l'enseignant",
+                "Règles colorées"
+              ]
             },
             {
               "item": "Tableau de comptage grand format",
               "quantity": "1 affichage A1 avec colonnes forme/côtés/coins",
               "source": "Papier affichage ou tableau à feuilles mobiles",
               "preparation": "Dessiner grille claire avec pictogrammes des formes",
-              "alternatives": ["Section de tableau de classe", "Cartons assemblés"]
+              "alternatives": [
+                "Section de tableau de classe",
+                "Cartons assemblés"
+              ]
             }
           ],
           "optional": [
@@ -1151,7 +1349,10 @@
           "Si les élèves confondent côtés et coins → utiliser gestes exagérés (tracer=doigt, pointer=index)",
           "Si difficulté à suivre la chanson → ralentir le tempo et répéter phrase par phrase"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1163,21 +1364,30 @@
               "quantity": "75 formes (25 de chaque type) avec bords tactiles prononcés",
               "source": "Matériel sensoriel - ou créer avec carton et colle texture",
               "preparation": "Vérifier que les bords sont nets et safe au toucher",
-              "alternatives": ["Formes en bois avec bords marqués", "Formes en plastique épais"]
+              "alternatives": [
+                "Formes en bois avec bords marqués",
+                "Formes en plastique épais"
+              ]
             },
             {
               "item": "Jetons de comptage colorés assortis",
               "quantity": "200 jetons (100 rouges pour côtés, 100 bleus pour coins)",
               "source": "Matériel de manipulation mathématique - bacs comptage",
               "preparation": "Organiser par couleur dans contenants séparés clairement étiquetés",
-              "alternatives": ["Haricots colorés", "Boutons de deux couleurs"]
+              "alternatives": [
+                "Haricots colorés",
+                "Boutons de deux couleurs"
+              ]
             },
             {
               "item": "Ficelles ou rubans colorés assortis",
               "quantity": "25 longueurs de 30cm (rouge pour tracer côtés)",
               "source": "Fournitures de bricolage - ou couper ficelle ordinaire",
               "preparation": "Couper longueurs pré-mesurées et nouer une extrémité pour repère",
-              "alternatives": ["Cordons de souliers colorés", "Chenilles de bricolage"]
+              "alternatives": [
+                "Cordons de souliers colorés",
+                "Chenilles de bricolage"
+              ]
             }
           ],
           "optional": [
@@ -1201,7 +1411,10 @@
             "ifNo": "Utilisez la correspondance un-à-un avec des jetons ou autocollants"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -1213,21 +1426,30 @@
               "quantity": "1 affichage A0 ou section de tableau avec colonnes preparées",
               "source": "Papier affichage ou utiliser tableau de classe permanent",
               "preparation": "Dessiner grille : Forme | Côtés | Coins avec pictogrammes",
-              "alternatives": ["Plusieurs cartons assemblés", "Tableau numérique projecté"]
+              "alternatives": [
+                "Plusieurs cartons assemblés",
+                "Tableau numérique projecté"
+              ]
             },
             {
               "item": "Marqueurs épais de couleur vive",
               "quantity": "3 marqueurs (rouge pour côtés, bleu pour coins, noir pour formes)",
               "source": "Fournitures de présentation - vérifier encre",
               "preparation": "Tester que les marqueurs écrivent bien et choisir couleurs contrastées",
-              "alternatives": ["Craies colorées si tableau noir", "Crayons gras"]
+              "alternatives": [
+                "Craies colorées si tableau noir",
+                "Crayons gras"
+              ]
             },
             {
               "item": "Autocollants numériques ou chiffres magnétiques",
               "quantity": "Chiffres 0-4 en plusieurs exemplaires",
               "source": "Matériel mathématique - ou créer sur cartons",
               "preparation": "S'assurer d'avoir suffisamment de chaque chiffre pour le tableau",
-              "alternatives": ["Écrire directement les chiffres", "Jetons avec points"]
+              "alternatives": [
+                "Écrire directement les chiffres",
+                "Jetons avec points"
+              ]
             }
           ],
           "optional": [
@@ -1242,7 +1464,10 @@
         "decisionPoints": [
           "Si désaccord sur le nombre → recompter ensemble en pointant chaque élément"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Distinguer les côtés des coins",
@@ -1311,21 +1536,30 @@
               "quantity": "15 cartes (5 de chaque forme) format A4 minimum",
               "source": "Créer et plastifier ou acheter cartes pédagogiques",
               "preparation": "Plastifier pour durabilité, ajouter magnets au dos si tableau métallique",
-              "alternatives": ["Dessiner formes géantes au tableau", "Formes en mousse à tenir"]
+              "alternatives": [
+                "Dessiner formes géantes au tableau",
+                "Formes en mousse à tenir"
+              ]
             },
             {
               "item": "Sablier visuel ou minuteur",
               "quantity": "1 minuteur 2-3 minutes visible de tous",
               "source": "Matériel de gestion du temps - ou smartphone avec affichage",
               "preparation": "Tester le fonctionnement et choisir durée appropriée",
-              "alternatives": ["Compter lentement jusqu'à 20", "Chanson de durée connue"]
+              "alternatives": [
+                "Compter lentement jusqu'à 20",
+                "Chanson de durée connue"
+              ]
             },
             {
               "item": "Boîte mystère opaque avec ouverture",
               "quantity": "1 boîte assez grande pour manipulation à l'intérieur",
               "source": "Boîte de chaussures décorée ou contenant opaque",
               "preparation": "Découper ouverture pour la main, décorer pour attirer attention",
-              "alternatives": ["Sac en tissu opaque", "Boîte avec couvercle amovible"]
+              "alternatives": [
+                "Sac en tissu opaque",
+                "Boîte avec couvercle amovible"
+              ]
             }
           ],
           "optional": [
@@ -1341,7 +1575,10 @@
           "Si les élèves ont de la difficulté avec les règles → démontrer chaque mouvement lentement d'abord",
           "Si trop d'excitation → faire une pause calme avec respirations profondes"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1353,21 +1590,30 @@
               "quantity": "8 planches différentes avec 6-9 formes chacune",
               "source": "Créer avec carton et images collées ou imprimer modèles",
               "preparation": "Plastifier pour durabilité, créer cartes correspondantes",
-              "alternatives": ["Grilles dessinées sur papier", "Version numérique sur tablette"]
+              "alternatives": [
+                "Grilles dessinées sur papier",
+                "Version numérique sur tablette"
+              ]
             },
             {
               "item": "Jeu de cartes mémoire géométriques",
               "quantity": "24 cartes (12 paires de formes) format standard",
               "source": "Créer avec carton coloré ou acheter jeu commercial",
               "preparation": "S'assurer que les paires sont identiques, plastifier",
-              "alternatives": ["Formes réelles cachées sous gobelets", "Cartes à jouer modifiées"]
+              "alternatives": [
+                "Formes réelles cachées sous gobelets",
+                "Cartes à jouer modifiées"
+              ]
             },
             {
               "item": "Sacs tactiles avec formes variées",
               "quantity": "6 sacs opaques avec 5 formes différentes chacun",
               "source": "Sacs en tissu ou plastique avec formes en bois ou plastique dur",
               "preparation": "Vérifier que les formes sont bien distinctes au toucher",
-              "alternatives": ["Boîtes avec couvercles", "Taies d'oreiller avec formes"]
+              "alternatives": [
+                "Boîtes avec couvercles",
+                "Taies d'oreiller avec formes"
+              ]
             }
           ],
           "optional": [
@@ -1383,7 +1629,10 @@
           "Si les élèves finissent rapidement leurs jeux → introduire variantes plus complexes ou nouvelles formes",
           "Si confusion dans les rotations → utiliser minuteur et signal sonore pour changements"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -1395,14 +1644,20 @@
               "quantity": "1 grand tapis ou espace délimité au sol",
               "source": "Matériel de classe ou marquer cercle avec ruban",
               "preparation": "S'assurer que tous les élèves peuvent s'asseoir confortablement",
-              "alternatives": ["Chaises en cercle", "Marquage au sol temporaire"]
+              "alternatives": [
+                "Chaises en cercle",
+                "Marquage au sol temporaire"
+              ]
             },
             {
               "item": "Jetons ou autocollants de récompense",
               "quantity": "25 récompenses symboliques pour participation",
               "source": "Fournitures motivationnelles - ou fabriquer avec papier coloré",
               "preparation": "Préparer récompenses à distribuer pour encourager partage",
-              "alternatives": ["Applaudissements", "Points sur tableau de classe"]
+              "alternatives": [
+                "Applaudissements",
+                "Points sur tableau de classe"
+              ]
             }
           ],
           "optional": [
@@ -1417,7 +1672,10 @@
         "decisionPoints": [
           "Si les élèves sont timides pour partager → commencer par questions simples oui/non"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Suivre les règles des jeux",
@@ -1486,21 +1744,30 @@
               "quantity": "50+ objets : feuilles, câilloux, coquillages, graines, fleurs séchées",
               "source": "Collecte extérieure ou demande aux familles - vérifier sécurité",
               "preparation": "Nettoyer, trier par forme approximative, éliminer objets dangereux",
-              "alternatives": ["Photos haute qualité d'objets naturels", "Vidéos de nature"]
+              "alternatives": [
+                "Photos haute qualité d'objets naturels",
+                "Vidéos de nature"
+              ]
             },
             {
               "item": "Loupes de qualité pour enfants",
               "quantity": "12 loupes avec grossissement 3x minimum",
               "source": "Matériel scientifique - vérifier état des lentilles",
               "preparation": "Nettoyer lentilles, attacher cordes pour éviter chutes",
-              "alternatives": ["Verres grossissants improvisés", "Observation à l'œil nu"]
+              "alternatives": [
+                "Verres grossissants improvisés",
+                "Observation à l'œil nu"
+              ]
             },
             {
               "item": "Carnets d'observation avec pages structées",
               "quantity": "25 carnets A5 avec grilles et espaces de dessin",
               "source": "Créer avec agrafage de feuilles ou acheter carnets",
               "preparation": "Préparer pages avec cadres pour dessins et lignes pour notes",
-              "alternatives": ["Feuilles simples dans planchettes", "Tablettes numériques"]
+              "alternatives": [
+                "Feuilles simples dans planchettes",
+                "Tablettes numériques"
+              ]
             }
           ],
           "optional": [
@@ -1516,7 +1783,10 @@
           "Si les élèves ont difficulté à voir les formes → utiliser doigt pour tracer contours sur photos",
           "Si manque d'intérêt pour observation → créer mystique avec 'chasse au trésor géométrique'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1528,28 +1798,40 @@
               "quantity": "40+ feuilles de différents arbres (rondes, ovales, triangulaires)",
               "source": "Collecte saisonnière ou conservation de spécimens",
               "preparation": "Presser entre livres si sèches, plastifier les plus fragiles",
-              "alternatives": ["Images haute résolution de feuilles", "Moulages en plâtre"]
+              "alternatives": [
+                "Images haute résolution de feuilles",
+                "Moulages en plâtre"
+              ]
             },
             {
               "item": "Coquillages variés en formes et tailles",
               "quantity": "25+ coquillages avec formes distinctes (spirales, éventails, cônes)",
               "source": "Achat en magasin de loisirs ou collecte plage",
               "preparation": "Nettoyer soigneusement, vérifier absence de bords tranchants",
-              "alternatives": ["Répliques en plastique", "Photos 3D de coquillages"]
+              "alternatives": [
+                "Répliques en plastique",
+                "Photos 3D de coquillages"
+              ]
             },
             {
               "item": "Pierres et minéraux aux formes intéressantes",
               "quantity": "20+ pierres variées (rondes, cubiques, triangulaires)",
               "source": "Collecte extérieure sécuritaire ou achat éducatif",
               "preparation": "Sélectionner formes claires, nettoyer, éliminer pierres dangereuses",
-              "alternatives": ["Géodes artificielles", "Blocs de construction colorés"]
+              "alternatives": [
+                "Géodes artificielles",
+                "Blocs de construction colorés"
+              ]
             },
             {
               "item": "Fleurs fraîches ou séchées variées",
               "quantity": "15+ spécimens avec formes géométriques claires",
               "source": "Jardin de l'école ou dons de parents",
               "preparation": "Vérifier absence d'allergies, préparer conservation temporaire",
-              "alternatives": ["Fleurs artificielles réalistes", "Photos macro de fleurs"]
+              "alternatives": [
+                "Fleurs artificielles réalistes",
+                "Photos macro de fleurs"
+              ]
             }
           ],
           "optional": [
@@ -1565,7 +1847,10 @@
           "Si les élèves ne voient pas les formes dans objets naturels → utiliser cadre en carton pour isoler sections",
           "Si fascination excessive pour objets naturels → rappeler focus sur formes géométriques"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -1577,21 +1862,30 @@
               "quantity": "3-4 surfaces pour créer zones d'exposition thématiques",
               "source": "Tables de classe ou planches sur supports",
               "preparation": "Couvrir de nappe ou papier pour créer fond uni",
-              "alternatives": ["Tapis au sol", "Cartons grands formats posés"]
+              "alternatives": [
+                "Tapis au sol",
+                "Cartons grands formats posés"
+              ]
             },
             {
               "item": "Étiquettes et marqueurs pour identification",
               "quantity": "30 petites étiquettes + 3 marqueurs de couleurs",
               "source": "Fournitures bureau - préparer étiquettes blanches",
               "preparation": "Pré-découper étiquettes de taille uniforme",
-              "alternatives": ["Autocollants réutilisables", "Petits cartons pliés"]
+              "alternatives": [
+                "Autocollants réutilisables",
+                "Petits cartons pliés"
+              ]
             },
             {
               "item": "Loupes fixes ou sur supports pour musée",
               "quantity": "4 loupes disponibles pour visiteurs du musée",
               "source": "Même matériel que l'exploration mais réorganisé",
               "preparation": "Placer stratégiquement pour observation détaillée",
-              "alternatives": ["Loupes partagées en circulation", "Observation directe seulement"]
+              "alternatives": [
+                "Loupes partagées en circulation",
+                "Observation directe seulement"
+              ]
             }
           ],
           "optional": [
@@ -1606,7 +1900,10 @@
         "decisionPoints": [
           "Si désordre durant installation → assigner rôles spécifiques (conservateur, guide, organisateur)"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Voir les formes abstraites dans les objets naturels",
@@ -1675,21 +1972,30 @@
               "quantity": "18 solides (6 cubes, 6 sphères, 6 cylindres) de taille manipulable",
               "source": "Kit de géométrie 3D - armoire matériel mathématique",
               "preparation": "Vérifier état du bois, poncer si nécessaire pour sécurité",
-              "alternatives": ["Solides en plastique dur", "Objets quotidiens de formes correspondantes"]
+              "alternatives": [
+                "Solides en plastique dur",
+                "Objets quotidiens de formes correspondantes"
+              ]
             },
             {
               "item": "Formes plates 2D correspondantes aux solides",
               "quantity": "18 formes plates (carrés, cercles, rectangles) même taille que faces",
               "source": "Découper dans carton épais ou utiliser formes existantes",
               "preparation": "S'assurer que dimensions correspondent aux faces des solides",
-              "alternatives": ["Dessins au tableau", "Formes magnétiques plates"]
+              "alternatives": [
+                "Dessins au tableau",
+                "Formes magnétiques plates"
+              ]
             },
             {
               "item": "Boîte mystère tactile améliorée",
               "quantity": "1 grande boîte avec compartiments pour exploration tactile",
               "source": "Boîte de chaussures décorée avec ouvertures pour mains",
               "preparation": "Découper ouvertures, lisser bords, décorer de manière attrayante",
-              "alternatives": ["Sac opaque résistant", "Contenant avec couvercle amovible"]
+              "alternatives": [
+                "Sac opaque résistant",
+                "Contenant avec couvercle amovible"
+              ]
             }
           ],
           "optional": [
@@ -1704,7 +2010,10 @@
         "decisionPoints": [
           "Si les élèves ne comprennent pas la différence 2D/3D → utiliser analogie de l'ombre projetée au mur"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1716,21 +2025,30 @@
               "quantity": "15 cubes (petit=3cm, moyen=5cm, grand=8cm) - 5 de chaque taille",
               "source": "Kit de construction ou matériel de manipulation",
               "preparation": "Vérifier surfaces lisses et arrêtes sécuritaires",
-              "alternatives": ["Boites cubiques vides", "Dés géants en mousse"]
+              "alternatives": [
+                "Boites cubiques vides",
+                "Dés géants en mousse"
+              ]
             },
             {
               "item": "Sphères/balles de matériaux différents",
               "quantity": "12 sphères variées (caoutchouc, bois, plastique, mousse)",
               "source": "Collection de balles de sport, billes géantes, sphères pédagogiques",
               "preparation": "S'assurer sécurité (pas trop petites pour éviter étouffement)",
-              "alternatives": ["Oranges/pommes comme sphères naturelles", "Balles de tennis"]
+              "alternatives": [
+                "Oranges/pommes comme sphères naturelles",
+                "Balles de tennis"
+              ]
             },
             {
               "item": "Cylindres en matériaux robustes",
               "quantity": "10 cylindres (tubes carton, boîtes conserve vides, rondins bois)",
               "source": "Récupération sécurisée ou achat matériel pédagogique",
               "preparation": "Recouvrir bords métalliques, poncer surfaces rugueuses",
-              "alternatives": ["Rouleaux papier toilette renforcés", "Tubes PVC courts"]
+              "alternatives": [
+                "Rouleaux papier toilette renforcés",
+                "Tubes PVC courts"
+              ]
             }
           ],
           "optional": [
@@ -1745,7 +2063,10 @@
         "decisionPoints": [
           "Si le concept 3D est trop abstrait → se concentrer sur manipulation et noms seulement (cube, sphère, cylindre)"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -1757,14 +2078,20 @@
               "quantity": "12 photos plastifiées (boîtes, balles, canettes, etc.)",
               "source": "Imprimer photos ou dessiner illustrations claires",
               "preparation": "Plastifier pour durabilité, choisir objets très reconnaissables",
-              "alternatives": ["Objets réels apportés en classe", "Dessins simples au tableau"]
+              "alternatives": [
+                "Objets réels apportés en classe",
+                "Dessins simples au tableau"
+              ]
             },
             {
               "item": "Tapis ou espace délimité pour jeu",
               "quantity": "1 grande surface pour disposer solides et photos",
               "source": "Tapis de classe ou marquer zone avec ruban",
               "preparation": "Délimiter clairement espace de jeu pour organisation",
-              "alternatives": ["Tables réorganisées", "Sol libre avec élèves assis en cercle"]
+              "alternatives": [
+                "Tables réorganisées",
+                "Sol libre avec élèves assis en cercle"
+              ]
             }
           ],
           "optional": [
@@ -1779,7 +2106,10 @@
         "decisionPoints": [
           "Si élèves ont difficulté à faire correspondances → commencer par associations les plus évidentes"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Comprendre la tridimensionnalité",
@@ -1848,21 +2178,30 @@
               "quantity": "1 rampe 60cm minimum avec supports réglables",
               "source": "Matériel scientifique ou construire avec planche et cales",
               "preparation": "Vérifier stabilité, ajuster angle modéré pour sécurité",
-              "alternatives": ["Planche appuyée sur chaise", "Rampe de jeu extérieur"]
+              "alternatives": [
+                "Planche appuyée sur chaise",
+                "Rampe de jeu extérieur"
+              ]
             },
             {
               "item": "Collection d'objets aux propriétés variées",
               "quantity": "12 objets : sphères, cubes, cylindres, objets irréguliers",
               "source": "Solides géométriques + objets quotidiens sécuritaires",
               "preparation": "Sélectionner objets de taille similaire pour comparaison équitable",
-              "alternatives": ["Jouets de formes variées", "Objets de la classe"]
+              "alternatives": [
+                "Jouets de formes variées",
+                "Objets de la classe"
+              ]
             },
             {
               "item": "Feuilles de prédictions illustrées",
               "quantity": "25 feuilles avec pictogrammes simples (rouler/glisser/rester)",
               "source": "Créer avec dessins ou imprimer modèles",
               "preparation": "Prévoir colonnes claires pour prédictions et résultats",
-              "alternatives": ["Ardoises individuelles", "Section du tableau de classe"]
+              "alternatives": [
+                "Ardoises individuelles",
+                "Section du tableau de classe"
+              ]
             }
           ],
           "optional": [
@@ -1877,7 +2216,10 @@
         "decisionPoints": [
           "Si les élèves prédisent tout au hasard → démontrer avec un exemple évident d'abord"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -1889,21 +2231,30 @@
               "quantity": "3 rampes ou 1 rampe avec 3 réglages (doux, moyen, raide)",
               "source": "Extension du matériel d'ouverture ou construire variants",
               "preparation": "Marquer angles clairement, sécuriser fixations",
-              "alternatives": ["Utiliser livres pour créer angles différents", "Rampe unique avec tests répétés"]
+              "alternatives": [
+                "Utiliser livres pour créer angles différents",
+                "Rampe unique avec tests répétés"
+              ]
             },
             {
               "item": "Surfaces de texture contrastée",
               "quantity": "4 types : tapis rugueux, surface lisse, sable fin, surface collante",
               "source": "Tapis de classe, plateau lisse, bac à sable, surface antidérapante",
               "preparation": "Délimiter zones clairement, sécuriser surfaces au sol",
-              "alternatives": ["Papiers de textures variées", "Surfaces improviser avec matériaux classe"]
+              "alternatives": [
+                "Papiers de textures variées",
+                "Surfaces improviser avec matériaux classe"
+              ]
             },
             {
               "item": "Matériel de mesure simple",
               "quantity": "Règles ou rubans pour mesurer distances parcourues",
               "source": "Matériel de mathématiques ou improviser avec ficelles",
               "preparation": "Marquer unités simples adaptées à l'âge",
-              "alternatives": ["Compter pas pour mesurer", "Observation qualitative seulement"]
+              "alternatives": [
+                "Compter pas pour mesurer",
+                "Observation qualitative seulement"
+              ]
             }
           ],
           "optional": [
@@ -1927,18 +2278,28 @@
             "ifNo": "Concentrez-vous sur l'observation et la description simple"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Discussion des découvertes et création d'un tableau de classification des mouvements",
-        "materials": [],
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
         "visualSupports": "",
         "decisionPoints": [
           "Si les élèves confondent rouler et glisser → faire la démonstration avec son corps 'Je roule comme une balle'",
           "Si la discussion devient chaotique → utiliser un objet-parole (forme en carton) pour organiser les tours"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Comprendre pourquoi les formes bougent différemment",
@@ -2007,14 +2368,20 @@
               "quantity": "1 ensemble de 36 pièces (12 cubes, 12 cylindres, 12 sphères) en bois massif",
               "source": "Kit manipulatifs mathématiques 3D - armoire D",
               "preparation": "Trier par type de solide dans bacs étiquetés avec images",
-              "alternatives": ["Solides en plastique dur", "Boîtes et contenants recyclés de formes appropriées"]
+              "alternatives": [
+                "Solides en plastique dur",
+                "Boîtes et contenants recyclés de formes appropriées"
+              ]
             },
             {
               "item": "Pâte adhésive réutilisable",
               "quantity": "8 paquets de 50g (couleurs variées)",
               "source": "Fournitures artistiques - tiroir matériaux collants",
               "preparation": "Diviser en portions individuelles dans petits contenants",
-              "alternatives": ["Pâte à modeler", "Cure-dents et bouchons"]
+              "alternatives": [
+                "Pâte à modeler",
+                "Cure-dents et bouchons"
+              ]
             }
           ],
           "optional": [
@@ -2030,7 +2397,10 @@
           "Si les élèves manquent d'inspiration → montrer techniques d'assemblage simple (empiler, connecter avec pâte adhésive)",
           "Si préoccupations de sécurité avec petites pièces → utiliser solides plus gros ou supervision renforcée"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -2042,21 +2412,30 @@
               "quantity": "120 pièces (40 cubes variés, 40 cylindres différentes tailles, 40 sphères/demi-sphères)",
               "source": "Kit construction géométrique - grande armoire construction",
               "preparation": "Organiser par station de 4-5 élèves avec variété équilibrée de formes",
-              "alternatives": ["Blocs en mousse dense", "Contenants recyclés propres et sécuritaires"]
+              "alternatives": [
+                "Blocs en mousse dense",
+                "Contenants recyclés propres et sécuritaires"
+              ]
             },
             {
               "item": "Cylindres en carton robuste",
               "quantity": "25 cylindres (tubes papier toilette, essuie-tout) différentes hauteurs",
               "source": "Recyclage classe - collecte sur 2 semaines",
               "preparation": "Nettoyer, renforcer avec ruban adhésif si nécessaire",
-              "alternatives": ["Cylindres en plastique", "Bouteilles cylindriques vides"]
+              "alternatives": [
+                "Cylindres en plastique",
+                "Bouteilles cylindriques vides"
+              ]
             },
             {
               "item": "Sphères en polystyrène",
               "quantity": "30 sphères de 3 tailles différentes (5cm, 7cm, 10cm)",
               "source": "Matériel artistique - boîte formes 3D",
               "preparation": "Vérifier intégrité, retirer si cassées ou friables",
-              "alternatives": ["Balles de tennis/ping-pong", "Boules de pâte à modeler durcie"]
+              "alternatives": [
+                "Balles de tennis/ping-pong",
+                "Boules de pâte à modeler durcie"
+              ]
             }
           ],
           "optional": [
@@ -2072,7 +2451,10 @@
           "Si les élèves ont des difficultés d'équilibre → démontrer technique de base large et centre de gravité",
           "Si constructions s'effondrent fréquemment → encourager planification préalable et tests d'assemblage"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -2091,7 +2473,10 @@
         "decisionPoints": [
           "Si élèves timides pour présenter → permettre présentation à un partenaire puis à plus grand groupe"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Créer des structures stables",
@@ -2160,14 +2545,20 @@
               "quantity": "8 blocs de 200g (couleurs variées pour différencier les stations)",
               "source": "Fournitures artistiques - vérifier fraîcheur avant utilisation",
               "preparation": "Pétrir pour assouplir, diviser en portions égales dans contenants",
-              "alternatives": ["Argile naturelle humide", "Pâte à sel maison"]
+              "alternatives": [
+                "Argile naturelle humide",
+                "Pâte à sel maison"
+              ]
             },
             {
               "item": "Solides géométriques variésàfaces distinctes",
               "quantity": "30 solides (10 cubes, 10 cylindres, 10 prismes rectangulaires) tailles moyennes",
               "source": "Collection manipulatifs 3D - nettoyer avant usage",
               "preparation": "Sélectionner solides avec faces bien définies et surfaces lisses",
-              "alternatives": ["Objets du quotidien (boîtes, canettes, dés)", "Solides imprimés 3D"]
+              "alternatives": [
+                "Objets du quotidien (boîtes, canettes, dés)",
+                "Solides imprimés 3D"
+              ]
             }
           ],
           "optional": [
@@ -2183,7 +2574,10 @@
           "Si pâte trop dure pour empreintes claires → réchauffer entre les mains ou ajouter un peu d'eau",
           "Si élèves ont difficulté à deviner → montrer l'objet sur différents côtés avant l'empreinte"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -2195,21 +2589,30 @@
               "quantity": "8 tampons de couleurs variées (4 couleurs x 2 tampons)",
               "source": "Fournitures artistiques - vérifier humidité des tampons",
               "preparation": "Humidifier si nécessaire, choisir couleurs contrastantes avec papier",
-              "alternatives": ["Peinture dans assiettes avec éponges", "Crayons gras pour frottage"]
+              "alternatives": [
+                "Peinture dans assiettes avec éponges",
+                "Crayons gras pour frottage"
+              ]
             },
             {
               "item": "Papier cartonné épais blanc",
               "quantity": "75 feuilles format A4 (3 par élève pour expériences multiples)",
               "source": "Papeterie - grammage 200g minimum pour éviter transpercement",
               "preparation": "Découper en sections si trop grandes, numéroter par élève",
-              "alternatives": ["Papier journal pour brouillons", "Carton léger recyclé"]
+              "alternatives": [
+                "Papier journal pour brouillons",
+                "Carton léger recyclé"
+              ]
             },
             {
               "item": "Pâte à modeler fraîche supplémentaire",
               "quantity": "5 blocs de rechange pour compléter empreintes profondes",
               "source": "Réserve fournitures artistiques",
               "preparation": "Maintenir souplesse dans contenants hermétiques",
-              "alternatives": ["Sable humide dans bacs", "Argile malaxable"]
+              "alternatives": [
+                "Sable humide dans bacs",
+                "Argile malaxable"
+              ]
             }
           ],
           "optional": [
@@ -2225,7 +2628,10 @@
           "Si empreintes pas assez nettes → augmenter pression ou vérifier humidité tampon",
           "Si confusion sur correspondance 2D/3D → faire empreinte en direct devant groupe"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -2237,7 +2643,10 @@
               "quantity": "1 grand panneau ou section de mur",
               "source": "Utiliser tableau d'affichage existant ou mur classe",
               "preparation": "Organiser espace pour afficher toutes les empreintes clairement",
-              "alternatives": ["Cordes avec pinces pour suspendre", "Sol délimité pour exposition"]
+              "alternatives": [
+                "Cordes avec pinces pour suspendre",
+                "Sol délimité pour exposition"
+              ]
             }
           ],
           "optional": [
@@ -2252,7 +2661,10 @@
         "decisionPoints": [
           "Si difficultés d'association → permettre manipulation directe: placer solide sur empreinte pour vérifier"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Comprendre comment un solide peut faire plusieurs formes",
@@ -2321,14 +2733,20 @@
               "quantity": "Station multiple: peinture (8 couleurs), colle, ciseaux, crayons, marqueurs",
               "source": "Fournitures artistiques complètes - vérifier stocks avant leçon",
               "preparation": "Organiser en stations accessibles avec matériel visible et à portée",
-              "alternatives": ["Matériaux naturels collectés", "Matériaux recyclés colorés et propres"]
+              "alternatives": [
+                "Matériaux naturels collectés",
+                "Matériaux recyclés colorés et propres"
+              ]
             },
             {
               "item": "Collection complète formes 2D et solides 3D",
               "quantity": "Tous les manipulatifs utilisés dans l'unité pour référence et inspiration",
               "source": "Rassembler tous les matériaux géométriques de l'unité",
               "preparation": "Nettoyer et organiser par type dans bacs étiquetés et accessibles",
-              "alternatives": ["Photos des formes si objets indisponibles", "Dessins de référence des formes"]
+              "alternatives": [
+                "Photos des formes si objets indisponibles",
+                "Dessins de référence des formes"
+              ]
             }
           ],
           "optional": [
@@ -2344,7 +2762,10 @@
           "Si les élèves sont intimidés par les œuvres d'art → dire 'Vous pouvez faire quelque chose de beau aussi!'",
           "Si l'attention se disperse → pointer une forme spécifique 'Qui voit un cercle rouge ici?'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -2356,21 +2777,30 @@
               "quantity": "30 pinceaux (petits, moyens, gros) + gobelets d'eau",
               "source": "Kit peinture classe - nettoyer avant usage",
               "preparation": "Vérifier état des poils, préparer eau de rinçage, serviettes",
-              "alternatives": ["Brosses à dents pour textures", "Tampons en mousse"]
+              "alternatives": [
+                "Brosses à dents pour textures",
+                "Tampons en mousse"
+              ]
             },
             {
               "item": "Peinture tempera lavable",
               "quantity": "8 couleurs principales en tubes ou pots partageables",
               "source": "Fournitures artistiques - vérifier fluidité et quantités",
               "preparation": "Préparer palettes ou assiettes pour mélange, diluer si nécessaire",
-              "alternatives": ["Peinture à l'eau maison", "Crayons aquarellables"]
+              "alternatives": [
+                "Peinture à l'eau maison",
+                "Crayons aquarellables"
+              ]
             },
             {
               "item": "Papier support grand format",
               "quantity": "25 feuilles A3 ou plus grand (carton léger ou papier épais)",
               "source": "Papeterie - choisir grammage adapté pour peinture",
               "preparation": "Prédécouper si besoin, préparer espace séchage",
-              "alternatives": ["Cartons de récupération propres", "Toiles en tissu simple"]
+              "alternatives": [
+                "Cartons de récupération propres",
+                "Toiles en tissu simple"
+              ]
             }
           ],
           "optional": [
@@ -2385,7 +2815,10 @@
         "decisionPoints": [
           "Si élèves manquent d'inspiration artistique → proposer thèmes simples (maison, paysage, animal) utilisant les formes apprises"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -2397,7 +2830,10 @@
               "quantity": "Murs, cordes ou panneaux pour afficher toutes les œuvres",
               "source": "Utiliser murs classe ou couloir, installer supports temporaires",
               "preparation": "Organiser parcours de visite, numéroter ou nommer les œuvres",
-              "alternatives": ["Sol délimité pour exposition", "Tables d'exposition"]
+              "alternatives": [
+                "Sol délimité pour exposition",
+                "Tables d'exposition"
+              ]
             }
           ],
           "optional": [
@@ -2413,7 +2849,10 @@
           "Si un élève est déçu de son œuvre → valoriser un aspect positif 'J'aime ton cercle bleu!'",
           "Si les commentaires deviennent négatifs → rediriger 'Disons ce qui est beau dans chaque œuvre'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Intégrer les formes dans une création artistique",
@@ -2522,14 +2961,20 @@
               "quantity": "12-15 images plastifiées format A4 montrant géométrie dans métiers",
               "source": "Banque d'images pédagogiques ou impression couleur",
               "preparation": "Sélectionner images représentant diversité genres et cultures, plastifier",
-              "alternatives": ["Vidéos courtes de professionnels", "Inviter parents à présenter leur métier"]
+              "alternatives": [
+                "Vidéos courtes de professionnels",
+                "Inviter parents à présenter leur métier"
+              ]
             },
             {
               "item": "Outils de construction et métiers miniatures",
               "quantity": "Collection: marteau jouet, règle, emporte-pièces, outils de dessin",
               "source": "Jouets éducatifs - coin jeu symbolique",
               "preparation": "Nettoyer et organiser par métier dans paniers étiquetés",
-              "alternatives": ["Objets réels sécuritaires", "Images d'outils si objets indisponibles"]
+              "alternatives": [
+                "Objets réels sécuritaires",
+                "Images d'outils si objets indisponibles"
+              ]
             }
           ],
           "optional": [
@@ -2545,7 +2990,10 @@
           "Si les élèves ne voient pas les formes dans les métiers → pointer directement 'Regarde la roue ronde de ce vélo'",
           "Si certains ne connaissent pas ces métiers → expliquer simplement 'L'architecte fait des maisons'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -2557,21 +3005,30 @@
               "quantity": "60-80 pièces (cubes, cylindres, prismes) pour construction architecturale",
               "source": "Collection manipulatifs - rassembler toutes formes disponibles",
               "preparation": "Organiser par station de 4-5 élèves avec variété équilibrée",
-              "alternatives": ["Blocs Lego ou similaires", "Cartons de recyclage propres"]
+              "alternatives": [
+                "Blocs Lego ou similaires",
+                "Cartons de recyclage propres"
+              ]
             },
             {
               "item": "Emporte-pièces géométriques",
               "quantity": "12-15 emporte-pièces de formes variées + pâte à modeler",
               "source": "Fournitures culinaires pédagogiques",
               "preparation": "Nettoyer, vérifier sécurité, préparer pâte en portions",
-              "alternatives": ["Formes à découper en carton", "Gabarits à tracer"]
+              "alternatives": [
+                "Formes à découper en carton",
+                "Gabarits à tracer"
+              ]
             },
             {
               "item": "Outils de mesure adaptés aux enfants",
               "quantity": "8 règles souples, mètres ruban, équerres en plastique",
               "source": "Matériel mathématique - sélectionner outils sécuritaires",
               "preparation": "Vérifier état, nettoyer, organiser dans boîte outils",
-              "alternatives": ["Ficelles pour mesurer", "Pas comme unité de mesure"]
+              "alternatives": [
+                "Ficelles pour mesurer",
+                "Pas comme unité de mesure"
+              ]
             }
           ],
           "optional": [
@@ -2586,7 +3043,10 @@
         "decisionPoints": [
           "Si élèves ont difficulté à faire liens métiers-formes → démontrer concrètement (architecte dessine carrés pour fenêtres)"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
@@ -2598,7 +3058,10 @@
               "quantity": "Espace d'affichage pour consigner idées des élèves",
               "source": "Tableau classe ou grande feuille",
               "preparation": "Préparer colonnes: Métier | Formes utilisées",
-              "alternatives": ["Cartes mobiles à organiser", "Discussion orale sans affichage"]
+              "alternatives": [
+                "Cartes mobiles à organiser",
+                "Discussion orale sans affichage"
+              ]
             }
           ],
           "optional": [
@@ -2614,7 +3077,10 @@
           "Si un élève mélange les métiers et les formes → reprendre calmement 'Le cercle, c'est pour quelle job?'",
           "Si plusieurs parlent en même temps → utiliser la règle 'Une personne, on écoute'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Voir comment les formes sont utilisées dans les métiers",
@@ -2723,7 +3189,10 @@
               "quantity": "Playlist 15-20 minutes de musiques variées",
               "source": "Système audio classe ou portable",
               "preparation": "Tester volume et sélectionner rythmes appropriés",
-              "alternatives": ["Chant a cappella", "Instruments simples en classe"]
+              "alternatives": [
+                "Chant a cappella",
+                "Instruments simples en classe"
+              ]
             }
           ],
           "optional": [
@@ -2739,7 +3208,10 @@
           "Si les élèves génèrent trop d'énergie → ralentir le rythme 'Faisons les mouvements comme au ralenti'",
           "Si certains sont gênés de bouger → encourager 'Chacun bouge à sa manière!'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -2761,18 +3233,28 @@
             "ifNo": "Donnez des instructions spécifiques : rond = tourner, carré = mouvements saccadés"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Performance finale : présentation des danses de formes devant la classe",
-        "materials": [],
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
         "visualSupports": "",
         "decisionPoints": [
           "Si un élève refuse de présenter → proposer 'Tu peux juste regarder cette fois'",
           "Si la performance devient chaotique → rappeler 'Une forme à la fois, les autres regardent'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Exprimer les formes par le mouvement",
@@ -2884,7 +3366,10 @@
           "Si un élève oublie de se laver les mains → rappeler gentiment 'Les mains propres avant de cuisiner!'",
           "Si l'emporte-pièce ne fonctionne pas bien → aider à appuyer plus fort ou changer l'outil"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -2908,18 +3393,28 @@
             "ifNo": "Pointez activement les formes créées à chaque étape"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Dégustation géométrique : savourer les créations en nommant les formes",
-        "materials": [],
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
         "visualSupports": "",
         "decisionPoints": [
           "Si un élève n'aime pas sa création → encourager 'Goute juste un petit morceau'",
           "Si certains mangent trop vite → rappeler 'Mange lentement pour bien gouter ta forme'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Utiliser les emporte-pièces correctement",
@@ -3031,7 +3526,10 @@
           "Si les élèves ont peur des formes qui parlent → rassurer 'C'est comme un dessin animé, c'est amusant!'",
           "Si l'histoire devient trop longue → faire participer en demandant 'Que va faire le triangle maintenant?'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -3054,18 +3552,28 @@
             "ifNo": "Suggérez des défis basés sur les propriétés des formes"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Théâtre de formes : représentation des histoires devant un public",
-        "materials": [],
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)"
+        ],
         "visualSupports": "",
         "decisionPoints": [
           "Si un élève oublie son rôle → souffler discrètement 'Tu es le cercle qui roule'",
           "Si le public devient bruyant → lever la main pour demander le silence respectueux"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Créer des histoires avec des formes",
@@ -3177,7 +3685,10 @@
           "Si les élèves se perdent entre les stations → utiliser un système de couleurs pour guider",
           "Si une station est trop populaire → proposer 'On va essayer une autre activité d'abord'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
       },
       "main": {
         "duration": 27,
@@ -3201,18 +3712,28 @@
             "ifNo": "Ajustez pour inclure plus d'options kinesthésiques ou visuelles"
           }
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Cercle de fierté : chaque élève partage sa découverte préférée sur les formes",
-        "materials": [],
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)"
+        ],
         "visualSupports": "",
         "decisionPoints": [
           "Si un élève dit 'Je n'ai rien appris' → l'aider avec 'Te souviens-tu du carré rouge?'",
           "Si certains répètent les mêmes idées → encourager 'Peux-tu penser à autre chose?'"
         ],
-        "movementBreaks": []
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Articuler leurs apprentissages",

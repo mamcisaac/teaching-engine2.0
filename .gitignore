@@ -208,6 +208,7 @@ pact-logs/
 
 # Backup files and temporary files
 *.bak
+*.backup
 *.tmp
 *.temp
 *.swp
