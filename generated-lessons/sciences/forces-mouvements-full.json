@@ -226,7 +226,9 @@
         "activity": "Surface feeling exploration (5 min): Students feel different surfaces around classroom with hands - smooth desk, rough carpet, bumpy wall. Predict which surfaces would be easiest for sliding objects across. Introduce vocabulary: 'surface lisse' (smooth) and 'surface rugueuse' (rough).",
         "materials": ["Acc\u00e8s aux diff\u00e9rentes surfaces de la classe", "\u00c9chantillons de surfaces vari\u00e9es"],
         "visualSupports": "Affiche 'lisse vs rugueux', images des diff\u00e9rentes surfaces, gestes tactiles",
-        "decisionPoints": [\"Si certains \u00e9l\u00e8ves ne veulent pas toucher certaines surfaces \u2192 respecter et utiliser observation visuelle\", \"Si les pr\u00e9dictions sont toutes identiques \u2192 encourager diff\u00e9rentes id\u00e9es\", \"Si l'exploration devient trop bruyante \u2192 rappeler l'exploration calme\"],\n        \"movementBreaks\": [\"Gestes pour 'lisse' (caresser) et 'rugueux' (tapoter) (2 min)\", \"Marcher sur diff\u00e9rentes surfaces (3 min)\"]\n      },
+        "decisionPoints": ["Si certains élèves ne veulent pas toucher certaines surfaces → respecter et utiliser observation visuelle", "Si les prédictions sont toutes identiques → encourager différentes idées", "Si l'exploration devient trop bruyante → rappeler l'exploration calme"],
+        "movementBreaks": ["Gestes pour 'lisse' (caresser) et 'rugueux' (tapoter) (2 min)", "Marcher sur différentes surfaces (3 min)"]
+      },
       "main": {
         "duration": 27,
         "activity": "Surface testing investigation (25 min): Students test sliding same object (wooden block) across different surfaces. Surface 1: Smooth table - observe how easily block slides. Surface 2: Carpet - notice increased difficulty. Surface 3: Sandpaper or rough surface - observe very difficult sliding. Surface 4: Wax paper - observe very easy sliding. Students push with same gentle force on each surface and observe differences. Create surface comparison chart showing easy vs hard sliding surfaces.",
@@ -275,7 +277,9 @@
         "activity": "Wheel wonder introduction (5 min): Show toy car and identical box without wheels. Try pushing both across table. Ask: 'Lequel bouge plus facilement?' Introduce: wheels are special tools called 'machines' that help us move things easily.",
         "materials": ["Voiture jouet", "Bo\u00eete identique sans roues", "Table pour d\u00e9monstration"],
         "visualSupports": "Comparaison c\u00f4te \u00e0 c\u00f4te, affiche 'avec roues/sans roues', introduction visuelle des machines simples",
-        "decisionPoints": ["Si la diff\u00e9rence n'est pas \u00e9vidente \u2192 utiliser des objets plus lourds", "Si les \u00e9l\u00e8ves deviennent trop excit\u00e9s \u2192 canaliser vers l'observation calme"],\n        \"movementBreaks\": [\"Faire rouler les bras comme des roues (2 min)\", \"Marcher vs rouler sur place (2 min)\"]\n      },
+        "decisionPoints": ["Si la différence n'est pas évidente → utiliser des objets plus lourds", "Si les élèves deviennent trop excités → canaliser vers l'observation calme"],
+        "movementBreaks": ["Faire rouler les bras comme des roues (2 min)", "Marcher vs rouler sur place (2 min)"]
+      },
       "main": {
         "duration": 27,
         "activity": "Wheel exploration and comparison (25 min): Students examine various wheeled objects: toy cars, rolling carts, wheeled backpacks, office chairs. Try moving objects with wheels vs similar objects without wheels. Create experiment: attach wheels to small box, compare pushing effort needed with and without wheels. Go on classroom 'wheel hunt' to find all the wheels that help us daily. Create class chart showing 'Objects with wheels' vs 'Objects without wheels' and discuss which are easier to move.",

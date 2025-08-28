@@ -150,6 +150,11 @@
             "question": "Certains élèves semblent-ils inquiets pour les animaux?",
             "ifYes": "Expliquer que les habitats sont des maisons sûres et confortables",
             "ifNo": "Explorer comment nous pouvons protéger ces habitats"
+          },
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
           }
         ],
         "movementBreaks": []
@@ -161,7 +166,8 @@
           "small boxes",
           "natural materials (twigs, leaves, sand)",
           "animal figures",
-          "blue fabric"
+          "blue fabric",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "habitat examples poster, step-by-step diorama instructions",
         "decisionPoints": [
@@ -2264,7 +2270,7 @@
         "visualSupports": "student work displays, environmental action evidence board",
         "decisionPoints": [
           {
-            "question": "Si les élèves peuvent exprimer leurs apprentissages environnementaux"
+            "question": "Si les élèves peuvent exprimer leurs apprentissages environnementaux",
             "ifYes": "Focus celebration on student-led demonstrations and teaching",
             "ifNo": "Provide structured ways for students to share their learning"
           }

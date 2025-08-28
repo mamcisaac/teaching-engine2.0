@@ -20,7 +20,11 @@
       "opening": {
         "duration": 8,
         "activity": "Welcome circle - Show magnifying glass and say 'Nous sommes des explorateurs!' Use TPR to mime looking and discovering. Point to French words around the room.",
-        "materials": ["Magnifying glass (real or toy)", "French word labels around room", "Explorer hat (optional)"],
+        "materials": [
+          "Magnifying glass (real or toy)",
+          "French word labels around room",
+          "Explorer hat (optional)"
+        ],
         "visualSupports": "Visual schedule showing lesson flow, Word detective poster with magnifying glass image",
         "decisionPoints": [
           {
@@ -32,12 +36,21 @@
             "choice": "Start with familiar English words first, then transition to French"
           }
         ],
-        "movementBreaks": ["Standing and walking around room", "TPR gestures for discovering"]
+        "movementBreaks": [
+          "Standing and walking around room",
+          "TPR gestures for discovering"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Word Detective Walk - Take students around the room to 'discover' French words on labels, posters, books. Students point and teacher names each word clearly. Create a simple chart of discovered words with pictures.",
-        "materials": ["Chart paper and markers", "Clipboards (10-12 for pairs)", "Pencils/crayons", "Stickers for discovered words", "Simple picture cards for common words"],
+        "materials": [
+          "Chart paper and markers",
+          "Clipboards (10-12 for pairs)",
+          "Pencils/crayons",
+          "Stickers for discovered words",
+          "Simple picture cards for common words"
+        ],
         "visualSupports": "Word discovery chart with pictures, Visual instructions for word hunt",
         "decisionPoints": [
           {
@@ -53,12 +66,20 @@
             "choice": "Create multiple charts by category or focus on 5-7 most interesting words"
           }
         ],
-        "movementBreaks": ["Walking around classroom", "Pointing and reaching gestures", "Clapping for each discovery"]
+        "movementBreaks": [
+          "Walking around classroom",
+          "Pointing and reaching gestures",
+          "Clapping for each discovery"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Circle back - Show three discovered words with pictures. Students repeat after teacher. End with 'Nous sommes des explorateurs de mots!'",
-        "materials": ["Word cards from activity", "Picture supports", "Explorer badges/stickers"],
+        "materials": [
+          "Word cards from activity",
+          "Picture supports",
+          "Explorer badges/stickers"
+        ],
         "visualSupports": "Three chosen words with clear pictures, Class motto poster",
         "decisionPoints": [
           {
@@ -70,7 +91,10 @@
             "choice": "Add action chant or celebration dance with the motto"
           }
         ],
-        "movementBreaks": ["Standing for motto chant", "Action gestures with exploring theme"]
+        "movementBreaks": [
+          "Standing for motto chant",
+          "Action gestures with exploring theme"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students having difficulty distinguishing French from English words",
@@ -78,14 +102,43 @@
       },
       "realWorldConnection": "People use words to communicate every day in French - in stores, on signs, in conversations",
       "differentiation": {
-        "pourDifficultés": ["Partner with confident peer", "Use more picture supports", "Focus on 2-3 simple words only", "Allow pointing instead of verbal responses"],
-        "pourAvancés": ["Count syllables in discovered words", "Find words that start with same sound", "Help teach words to classmates", "Create own word categories"],
-        "pourLangue": ["Connect to home language cognates when possible", "Use extra visual and gesture supports", "Allow code-switching during discovery", "Pair with bilingual buddy"],
-        "pourPEI": ["Modify activity length as needed", "Provide sensory supports (fidgets during circle)", "Use communication device if needed", "Celebrate any participation level"]
+        "pourDifficultés": [
+          "Partner with confident peer",
+          "Use more picture supports",
+          "Focus on 2-3 simple words only",
+          "Allow pointing instead of verbal responses"
+        ],
+        "pourAvancés": [
+          "Count syllables in discovered words",
+          "Find words that start with same sound",
+          "Help teach words to classmates",
+          "Create own word categories"
+        ],
+        "pourLangue": [
+          "Connect to home language cognates when possible",
+          "Use extra visual and gesture supports",
+          "Allow code-switching during discovery",
+          "Pair with bilingual buddy"
+        ],
+        "pourPEI": [
+          "Modify activity length as needed",
+          "Provide sensory supports (fidgets during circle)",
+          "Use communication device if needed",
+          "Celebrate any participation level"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Points to French words when directed", "Repeats French words with approximation", "Shows curiosity about word exploration", "Participates in group activities"],
-        "checkpoints": ["Can they identify that French has words we can explore?", "Do they show engagement with the exploration concept?", "Are they beginning to distinguish French sounds?"]
+        "observable": [
+          "Points to French words when directed",
+          "Repeats French words with approximation",
+          "Shows curiosity about word exploration",
+          "Participates in group activities"
+        ],
+        "checkpoints": [
+          "Can they identify that French has words we can explore?",
+          "Do they show engagement with the exploration concept?",
+          "Are they beginning to distinguish French sounds?"
+        ]
       }
     },
     {
@@ -102,7 +155,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review yesterday's discovered words from chart. Point to each word and have students repeat the sounds they hear.",
-        "materials": ["Word chart from lesson 1", "Pointer", "Picture cards for vocabulary words"],
+        "materials": [
+          "Word chart from lesson 1",
+          "Pointer",
+          "Picture cards for vocabulary words"
+        ],
         "visualSupports": "Yesterday's word discovery chart, Sound symbols poster, Listening ear visual cue",
         "decisionPoints": [
           {
@@ -114,12 +171,20 @@
             "choice": "Add picture matching or extend review with actions"
           }
         ],
-        "movementBreaks": ["Pointing to words on chart", "Cupping ears for listening"]
+        "movementBreaks": [
+          "Pointing to words on chart",
+          "Cupping ears for listening"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Sound Matching Game - Show large letter cards A, E, I, O, U. Say simple French words (ami, eau, etc.) and students listen for the vowel sounds. Use picture cards to support meaning. Students move to the letter they hear.",
-        "materials": ["Large letter cards A,E,I,O,U (25 sets)", "Picture cards for French words", "Masking tape for floor letters", "Small vowel cards for each student"],
+        "materials": [
+          "Large letter cards A,E,I,O,U (25 sets)",
+          "Picture cards for French words",
+          "Masking tape for floor letters",
+          "Small vowel cards for each student"
+        ],
         "visualSupports": "Vowel sound posters with mouth positions, Picture-word cards, Floor letter spaces marked clearly",
         "decisionPoints": [
           {
@@ -135,12 +200,19 @@
             "choice": "Exaggerate mouth movements, slow down speech, add visual cues"
           }
         ],
-        "movementBreaks": ["Moving to different letter stations", "Hand gestures for vowel sounds", "Stretching between rounds"]
+        "movementBreaks": [
+          "Moving to different letter stations",
+          "Hand gestures for vowel sounds",
+          "Stretching between rounds"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Sound Circle - Everyone sits and practices the 5 vowel sounds with hand gestures: A (arms wide), E (hands by ears), I (point up), O (make circle), U (pucker lips).",
-        "materials": ["Vowel gesture reminder cards", "Mirror (optional for mouth positions)"],
+        "materials": [
+          "Vowel gesture reminder cards",
+          "Mirror (optional for mouth positions)"
+        ],
         "visualSupports": "Gesture poster for each vowel sound, Sound-symbol connections chart",
         "decisionPoints": [
           {
@@ -148,7 +220,10 @@
             "choice": "Make it into a fun rhythm or song, or save energy for tomorrow"
           }
         ],
-        "movementBreaks": ["All vowel gestures with full body movement", "Standing for final vowel chant"]
+        "movementBreaks": [
+          "All vowel gestures with full body movement",
+          "Standing for final vowel chant"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students confusing French vowel sounds with English ones",
@@ -156,14 +231,43 @@
       },
       "realWorldConnection": "Reading signs, labels, and books requires knowing letter sounds - like the letters on the bathroom doors or lunch menu",
       "differentiation": {
-        "pourDifficultés": ["Focus on 2-3 vowels only", "Use extra visual mouth position cues", "Allow approximations of sounds", "Pair with strong phonics peer"],
-        "pourAvancés": ["Identify beginning AND ending sounds", "Find multiple words with same vowel", "Help demonstrate sounds to classmates", "Try blending simple sounds"],
-        "pourLangue": ["Compare to home language vowel sounds", "Use extra gesture and visual supports", "Allow native language sound approximations", "Practice with familiar English cognates first"],
-        "pourPEI": ["Modify movement expectations", "Use alternative communication methods", "Provide sensory supports for sound work", "Celebrate any sound approximation"]
+        "pourDifficultés": [
+          "Focus on 2-3 vowels only",
+          "Use extra visual mouth position cues",
+          "Allow approximations of sounds",
+          "Pair with strong phonics peer"
+        ],
+        "pourAvancés": [
+          "Identify beginning AND ending sounds",
+          "Find multiple words with same vowel",
+          "Help demonstrate sounds to classmates",
+          "Try blending simple sounds"
+        ],
+        "pourLangue": [
+          "Compare to home language vowel sounds",
+          "Use extra gesture and visual supports",
+          "Allow native language sound approximations",
+          "Practice with familiar English cognates first"
+        ],
+        "pourPEI": [
+          "Modify movement expectations",
+          "Use alternative communication methods",
+          "Provide sensory supports for sound work",
+          "Celebrate any sound approximation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Attempts to imitate French vowel sounds", "Connects letter symbols to sounds", "Participates in movement activities", "Shows listening engagement"],
-        "checkpoints": ["Can they hear differences between vowel sounds?", "Do they attempt to match sounds to letters?", "Are they engaging with phonetic exploration?"]
+        "observable": [
+          "Attempts to imitate French vowel sounds",
+          "Connects letter symbols to sounds",
+          "Participates in movement activities",
+          "Shows listening engagement"
+        ],
+        "checkpoints": [
+          "Can they hear differences between vowel sounds?",
+          "Do they attempt to match sounds to letters?",
+          "Are they engaging with phonetic exploration?"
+        ]
       }
     },
     {
@@ -175,12 +279,17 @@
       "keyVocabulary": [
         "même",
         "commence",
-        "famille"
+        "famille",
+        "unique"
       ],
       "opening": {
         "duration": 8,
         "activity": "Sound Review - Practice vowel sounds from yesterday with gestures. Then show family photo and explain 'famille' - people who belong together.",
-        "materials": ["Vowel gesture cards from lesson 2", "Family photo (teacher's or stock photo)", "Visual family concept card"],
+        "materials": [
+          "Vowel gesture cards from lesson 2",
+          "Family photo (teacher's or stock photo)",
+          "Visual family concept card"
+        ],
         "visualSupports": "Vowel sound poster, Family concept visual showing people grouped together",
         "decisionPoints": [
           {
@@ -190,14 +299,28 @@
           {
             "question": "If vowel review takes longer than expected",
             "choice": "Quick review of 3 vowels only or extend by 2 minutes"
+          },
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
           }
         ],
-        "movementBreaks": ["Vowel gestures with full body", "Pointing to family members in photo"]
+        "movementBreaks": [
+          "Vowel gestures with full body",
+          "Pointing to family members in photo"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Sound Family Sorting - Give students picture cards (ballon, bébé, bateau / chat, chien, chaussure / pain, papa, poisson). Students sort cards by beginning sound into labeled circles. Teacher models first few.",
-        "materials": ["Picture cards for B, CH, P sounds (6-8 per family, 5-6 sets)", "Sorting circles or hula hoops (3 per group)", "Letter labels B, CH, P", "Demonstration cards for modeling"],
+        "materials": [
+          "Picture cards for B, CH, P sounds (6-8 per family, 5-6 sets)",
+          "Sorting circles or hula hoops (3 per group)",
+          "Letter labels B, CH, P",
+          "Demonstration cards for modeling",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
         "visualSupports": "Sound family house posters, Sorting demonstration chart, Picture-word connection cards",
         "decisionPoints": [
           {
@@ -213,12 +336,19 @@
             "choice": "Switch to whole-group sorting or use larger demo cards"
           }
         ],
-        "movementBreaks": ["Moving between sorting circles", "Acting out picture card meanings", "Marching to place cards"]
+        "movementBreaks": [
+          "Moving between sorting circles",
+          "Acting out picture card meanings",
+          "Marching to place cards"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Family Parade - Each sound family group stands up and says their sound together, then marches around showing their pictures.",
-        "materials": ["Picture cards from activity", "Optional: simple musical instrument for marching"],
+        "materials": [
+          "Picture cards from activity",
+          "Optional: simple musical instrument for marching"
+        ],
         "visualSupports": "Sound family banners or signs, Marching route visual",
         "decisionPoints": [
           {
@@ -230,7 +360,10 @@
             "choice": "Allow seated participation or assign as 'parade watchers'"
           }
         ],
-        "movementBreaks": ["Full marching parade around classroom", "Sound family chants with actions"]
+        "movementBreaks": [
+          "Full marching parade around classroom",
+          "Sound family chants with actions"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students mixing up similar beginning sounds (B/P, CH sounds)",
@@ -238,14 +371,43 @@
       },
       "realWorldConnection": "Grouping similar things helps us organize our thoughts and learning - like putting all the books together or all the toys together",
       "differentiation": {
-        "pourDifficultés": ["Work with 2 sound families only", "Use extra picture supports", "Allow peer helpers for sorting", "Focus on most distinct sounds (B vs M)"],
-        "pourAvancés": ["Sort by ending sounds too", "Create their own sound family", "Help explain sorting to peers", "Find objects in room for each family"],
-        "pourLangue": ["Connect to similar sounds in home language", "Use extra visual cues and gestures", "Allow sorting with home language words", "Provide one-on-one sound practice"],
-        "pourPEI": ["Modify sorting expectations", "Use larger materials for easier manipulation", "Allow alternative participation in parade", "Celebrate any grouping attempt"]
+        "pourDifficultés": [
+          "Work with 2 sound families only",
+          "Use extra picture supports",
+          "Allow peer helpers for sorting",
+          "Focus on most distinct sounds (B vs M)"
+        ],
+        "pourAvancés": [
+          "Sort by ending sounds too",
+          "Create their own sound family",
+          "Help explain sorting to peers",
+          "Find objects in room for each family"
+        ],
+        "pourLangue": [
+          "Connect to similar sounds in home language",
+          "Use extra visual cues and gestures",
+          "Allow sorting with home language words",
+          "Provide one-on-one sound practice"
+        ],
+        "pourPEI": [
+          "Modify sorting expectations",
+          "Use larger materials for easier manipulation",
+          "Allow alternative participation in parade",
+          "Celebrate any grouping attempt"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Groups words by beginning sound", "Identifies 'same' vs 'different' sounds", "Participates in sorting activities", "Shows understanding of family concept"],
-        "checkpoints": ["Can they hear when words start with the same sound?", "Do they understand the concept of sound families?", "Are they beginning to categorize by phonetic features?"]
+        "observable": [
+          "Groups words by beginning sound",
+          "Identifies 'same' vs 'different' sounds",
+          "Participates in sorting activities",
+          "Shows understanding of family concept"
+        ],
+        "checkpoints": [
+          "Can they hear when words start with the same sound?",
+          "Do they understand the concept of sound families?",
+          "Are they beginning to categorize by phonetic features?"
+        ]
       }
     },
     {
@@ -262,7 +424,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review sound families from yesterday by having students make the B, P, and CH sounds. Explain that today we listen to the END of words.",
-        "materials": ["Sound family cards from lesson 3", "Pointer for word endings", "Visual cue for 'end' concept"],
+        "materials": [
+          "Sound family cards from lesson 3",
+          "Pointer for word endings",
+          "Visual cue for 'end' concept"
+        ],
         "visualSupports": "Sound family poster, Visual showing word beginning vs. ending, Listening ear pointing to end",
         "decisionPoints": [
           {
@@ -274,12 +440,20 @@
             "choice": "Use physical demonstrations (end of line, end of book) or extend explanation"
           }
         ],
-        "movementBreaks": ["Making B, P, CH sounds with gestures", "Pointing to beginnings and endings"]
+        "movementBreaks": [
+          "Making B, P, CH sounds with gestures",
+          "Pointing to beginnings and endings"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Rhyme Time - Teach simple rhyme 'Chat, rat, chocolat!' with rhythm sticks. Show picture cards that rhyme (chat/rat, pain/main, eau/bateau). Students clap when they hear rhyming words.",
-        "materials": ["Rhythm sticks (25 sets)", "Rhyming picture cards (chat/rat, pain/main, eau/bateau)", "Chart with rhyme written out", "Clapping rhythm visual guide"],
+        "materials": [
+          "Rhythm sticks (25 sets)",
+          "Rhyming picture cards (chat/rat, pain/main, eau/bateau)",
+          "Chart with rhyme written out",
+          "Clapping rhythm visual guide"
+        ],
         "visualSupports": "Rhyming word pairs poster, Rhythm pattern chart, Visual cue for clapping timing",
         "decisionPoints": [
           {
@@ -295,12 +469,20 @@
             "choice": "Exaggerate ending sounds, slow down, use fewer examples"
           }
         ],
-        "movementBreaks": ["Rhythm stick playing", "Clapping for rhymes", "Standing to act out rhyming words"]
+        "movementBreaks": [
+          "Rhythm stick playing",
+          "Clapping for rhymes",
+          "Standing to act out rhyming words"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Rhyme Circle - Students sit in circle and pass a ball. When they catch it, they say one word from today's rhymes and everyone else says the rhyming partner.",
-        "materials": ["Soft ball for passing", "Rhyme reminder cards (visual supports)", "Optional: timer for turn-taking"],
+        "materials": [
+          "Soft ball for passing",
+          "Rhyme reminder cards (visual supports)",
+          "Optional: timer for turn-taking"
+        ],
         "visualSupports": "Circle sitting arrangement visual, Rhyme pairs reference chart, Turn-taking cues",
         "decisionPoints": [
           {
@@ -312,7 +494,10 @@
             "choice": "Switch to pointing/calling names or teacher-controlled passing"
           }
         ],
-        "movementBreaks": ["Arm movements for ball passing", "Standing to celebrate good rhymes"]
+        "movementBreaks": [
+          "Arm movements for ball passing",
+          "Standing to celebrate good rhymes"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students having difficulty hearing rhyming endings",
@@ -320,14 +505,43 @@
       },
       "realWorldConnection": "Rhymes help us remember songs, poems, and make language fun - like the songs we sing or the books we enjoy",
       "differentiation": {
-        "pourDifficultés": ["Use simple one-syllable rhymes only", "Provide visual ending cues", "Allow English rhyme practice first", "Work with partner for support"],
-        "pourAvancés": ["Create new rhymes with given words", "Find rhymes beyond the lesson examples", "Help teach rhyming concept to peers", "Try three-word rhyme families"],
-        "pourLangue": ["Connect to rhymes in home language", "Use familiar English rhymes as bridge", "Extra visual and gestural supports", "Allow approximate rhyming attempts"],
-        "pourPEI": ["Modify participation as needed", "Use alternative communication for rhymes", "Focus on rhythm rather than exact rhymes", "Celebrate any sound pattern recognition"]
+        "pourDifficultés": [
+          "Use simple one-syllable rhymes only",
+          "Provide visual ending cues",
+          "Allow English rhyme practice first",
+          "Work with partner for support"
+        ],
+        "pourAvancés": [
+          "Create new rhymes with given words",
+          "Find rhymes beyond the lesson examples",
+          "Help teach rhyming concept to peers",
+          "Try three-word rhyme families"
+        ],
+        "pourLangue": [
+          "Connect to rhymes in home language",
+          "Use familiar English rhymes as bridge",
+          "Extra visual and gestural supports",
+          "Allow approximate rhyming attempts"
+        ],
+        "pourPEI": [
+          "Modify participation as needed",
+          "Use alternative communication for rhymes",
+          "Focus on rhythm rather than exact rhymes",
+          "Celebrate any sound pattern recognition"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Recognizes when words rhyme", "Claps appropriately for rhyming patterns", "Participates in rhyme games", "Shows understanding of word endings"],
-        "checkpoints": ["Can they identify rhyming word pairs?", "Do they understand that rhymes sound similar at the end?", "Are they developing phonological awareness?"]
+        "observable": [
+          "Recognizes when words rhyme",
+          "Claps appropriately for rhyming patterns",
+          "Participates in rhyme games",
+          "Shows understanding of word endings"
+        ],
+        "checkpoints": [
+          "Can they identify rhyming word pairs?",
+          "Do they understand that rhymes sound similar at the end?",
+          "Are they developing phonological awareness?"
+        ]
       }
     },
     {
@@ -344,7 +558,10 @@
       "opening": {
         "duration": 8,
         "activity": "Practice rhyming from yesterday with 'Chat, rat, chocolat!' Then show arms for 'court' (close together) and 'long' (far apart).",
-        "materials": ["Rhyme cards from lesson 4", "Visual demonstration props for short/long"],
+        "materials": [
+          "Rhyme cards from lesson 4",
+          "Visual demonstration props for short/long"
+        ],
         "visualSupports": "Short vs long comparison poster, Arm gesture demonstration chart, Rhyme reminder cards",
         "decisionPoints": [
           {
@@ -356,12 +573,21 @@
             "choice": "Use classroom objects or extend physical demonstrations"
           }
         ],
-        "movementBreaks": ["Rhyme chanting with gestures", "Short and long arm movements"]
+        "movementBreaks": [
+          "Rhyme chanting with gestures",
+          "Short and long arm movements"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Word Measuring - Show word cards (la, éléphant, chat, ordinateur). Students use arms or fingers to show if words are 'court' or 'long'. Sort cards into two boxes labeled with visual symbols.",
-        "materials": ["Word cards with varied lengths (30-40 cards)", "Two sorting boxes", "Short/long symbol labels", "Measuring tape or ruler (demonstration)", "Student finger-counting cards"],
+        "materials": [
+          "Word cards with varied lengths (30-40 cards)",
+          "Two sorting boxes",
+          "Short/long symbol labels",
+          "Measuring tape or ruler (demonstration)",
+          "Student finger-counting cards"
+        ],
         "visualSupports": "Word length comparison chart, Sorting box labels with symbols, Finger-counting guide",
         "decisionPoints": [
           {
@@ -377,12 +603,20 @@
             "choice": "Switch to whole-group sorting or use floor sorting areas"
           }
         ],
-        "movementBreaks": ["Arm stretching for word lengths", "Moving between sorting boxes", "Acting out long and short with whole body"]
+        "movementBreaks": [
+          "Arm stretching for word lengths",
+          "Moving between sorting boxes",
+          "Acting out long and short with whole body"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Length Line-up - Students stand and arrange themselves in order from shortest to longest names, with teacher support for pronunciation.",
-        "materials": ["Name cards for visual support", "Tape for floor line (optional)", "Number line for reference"],
+        "materials": [
+          "Name cards for visual support",
+          "Tape for floor line (optional)",
+          "Number line for reference"
+        ],
         "visualSupports": "Length ordering example, Name length comparison chart, Visual line-up guide",
         "decisionPoints": [
           {
@@ -394,7 +628,10 @@
             "choice": "Try ordering other classroom words or extend to syllable discussion"
           }
         ],
-        "movementBreaks": ["Standing and moving in line", "Celebrating with length gestures"]
+        "movementBreaks": [
+          "Standing and moving in line",
+          "Celebrating with length gestures"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students inconsistent in judging word length (letters vs syllables vs sounds)",
@@ -402,14 +639,43 @@
       },
       "realWorldConnection": "Long and short words appear in books, signs, and everyday writing - like short words on stop signs and long words on street signs",
       "differentiation": {
-        "pourDifficultés": ["Use very distinct length differences", "Allow visual letter counting", "Work with 2-3 examples at a time", "Pair with confident partner"],
-        "pourAvancés": ["Count exact letters or syllables", "Find patterns in long vs short words", "Help explain length concept to peers", "Create own word length categories"],
-        "pourLangue": ["Use familiar words from home language for comparison", "Extra visual supports for length concept", "Allow approximate length judgments", "Connect to English word length patterns"],
-        "pourPEI": ["Modify length comparison expectations", "Use alternative methods for measuring", "Allow flexible participation in line-up", "Celebrate any categorization attempt"]
+        "pourDifficultés": [
+          "Use very distinct length differences",
+          "Allow visual letter counting",
+          "Work with 2-3 examples at a time",
+          "Pair with confident partner"
+        ],
+        "pourAvancés": [
+          "Count exact letters or syllables",
+          "Find patterns in long vs short words",
+          "Help explain length concept to peers",
+          "Create own word length categories"
+        ],
+        "pourLangue": [
+          "Use familiar words from home language for comparison",
+          "Extra visual supports for length concept",
+          "Allow approximate length judgments",
+          "Connect to English word length patterns"
+        ],
+        "pourPEI": [
+          "Modify length comparison expectations",
+          "Use alternative methods for measuring",
+          "Allow flexible participation in line-up",
+          "Celebrate any categorization attempt"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Distinguishes between short and long words", "Uses appropriate gestures for word length", "Participates in sorting activities", "Shows understanding of comparison concept"],
-        "checkpoints": ["Can they identify which words are longer or shorter?", "Do they understand the concept of measuring words?", "Are they developing word awareness skills?"]
+        "observable": [
+          "Distinguishes between short and long words",
+          "Uses appropriate gestures for word length",
+          "Participates in sorting activities",
+          "Shows understanding of comparison concept"
+        ],
+        "checkpoints": [
+          "Can they identify which words are longer or shorter?",
+          "Do they understand the concept of measuring words?",
+          "Are they developing word awareness skills?"
+        ]
       }
     },
     {
@@ -426,7 +692,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review long and short words with arm gestures. Introduce clapping by clapping your name slowly: 'Ma-da-me Smith' (3 claps).",
-        "materials": ["Long/short word cards from lesson 5", "Demonstration name card", "Optional: drum for rhythm"],
+        "materials": [
+          "Long/short word cards from lesson 5",
+          "Demonstration name card",
+          "Optional: drum for rhythm"
+        ],
         "visualSupports": "Syllable clapping demonstration poster, Name broken into parts visually",
         "decisionPoints": [
           {
@@ -434,12 +704,20 @@
             "choice": "Move quickly to name activity or add more complex examples"
           }
         ],
-        "movementBreaks": ["Arm gestures for long/short words", "Clapping demonstration with full body"]
+        "movementBreaks": [
+          "Arm gestures for long/short words",
+          "Clapping demonstration with full body"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Name Clapping Circle - Students sit in circle with instruments. Each student claps their name syllables and everyone repeats. Then try picture words: 'é-lé-phant', 'chat', 'cho-co-lat'.",
-        "materials": ["Rhythm instruments (sticks, shakers) - 25 sets", "Picture cards for target words", "Visual syllable breakdown cards", "Name cards for students"],
+        "materials": [
+          "Rhythm instruments (sticks, shakers) - 25 sets",
+          "Picture cards for target words",
+          "Visual syllable breakdown cards",
+          "Name cards for students"
+        ],
         "visualSupports": "Circle arrangement guide, Syllable counting visual aids, Picture-word syllable charts",
         "decisionPoints": [
           {
@@ -451,12 +729,19 @@
             "choice": "Use chin-tapping method or slow down demonstration"
           }
         ],
-        "movementBreaks": ["Playing rhythm instruments", "Moving around circle for turns", "Acting out picture words"]
+        "movementBreaks": [
+          "Playing rhythm instruments",
+          "Moving around circle for turns",
+          "Acting out picture words"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Syllable Symphony - Whole class claps 'Au re-voir' (3 claps) together to end the lesson.",
-        "materials": ["'Au revoir' visual card", "Optional: conductor's baton for teacher"],
+        "materials": [
+          "'Au revoir' visual card",
+          "Optional: conductor's baton for teacher"
+        ],
         "visualSupports": "'Au re-voir' broken into syllables visually, Conductor gestures guide",
         "decisionPoints": [
           {
@@ -464,7 +749,10 @@
             "choice": "Try 'À bientôt' or stick with practiced phrase for success"
           }
         ],
-        "movementBreaks": ["Standing for symphony performance", "Dramatic conducting gestures"]
+        "movementBreaks": [
+          "Standing for symphony performance",
+          "Dramatic conducting gestures"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students clapping too fast or not matching syllable breaks",
@@ -472,14 +760,43 @@
       },
       "realWorldConnection": "Breaking words into parts helps us read and spell new words - like when we sound out unfamiliar words in books",
       "differentiation": {
-        "pourDifficultés": ["Start with simple 1-2 syllable words", "Use physical chin support for syllables", "Allow approximation of clapping rhythm", "Pair with strong syllable counter"],
-        "pourAvancés": ["Try 4+ syllable words", "Count syllables in sentences", "Create rhythms for syllable patterns", "Help demonstrate to struggling peers"],
-        "pourLangue": ["Connect to rhythm patterns in home language", "Use familiar words for practice", "Allow approximate syllable identification", "Focus on rhythm rather than perfect counting"],
-        "pourPEI": ["Modify clapping expectations (allow any rhythm participation)", "Use alternative movement patterns", "Focus on participation rather than accuracy", "Provide quiet instruments if needed"]
+        "pourDifficultés": [
+          "Start with simple 1-2 syllable words",
+          "Use physical chin support for syllables",
+          "Allow approximation of clapping rhythm",
+          "Pair with strong syllable counter"
+        ],
+        "pourAvancés": [
+          "Try 4+ syllable words",
+          "Count syllables in sentences",
+          "Create rhythms for syllable patterns",
+          "Help demonstrate to struggling peers"
+        ],
+        "pourLangue": [
+          "Connect to rhythm patterns in home language",
+          "Use familiar words for practice",
+          "Allow approximate syllable identification",
+          "Focus on rhythm rather than perfect counting"
+        ],
+        "pourPEI": [
+          "Modify clapping expectations (allow any rhythm participation)",
+          "Use alternative movement patterns",
+          "Focus on participation rather than accuracy",
+          "Provide quiet instruments if needed"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Claps along with syllable patterns", "Identifies word parts through clapping", "Participates in rhythm activities", "Shows awareness of syllable concept"],
-        "checkpoints": ["Can they hear separate syllables in words?", "Do they understand that words have parts?", "Are they developing phonological awareness through rhythm?"]
+        "observable": [
+          "Claps along with syllable patterns",
+          "Identifies word parts through clapping",
+          "Participates in rhythm activities",
+          "Shows awareness of syllable concept"
+        ],
+        "checkpoints": [
+          "Can they hear separate syllables in words?",
+          "Do they understand that words have parts?",
+          "Are they developing phonological awareness through rhythm?"
+        ]
       }
     },
     {
@@ -496,7 +813,11 @@
       "opening": {
         "duration": 8,
         "activity": "Practice syllable clapping with 'Bon-jour' and 'Au re-voir'. Show magic wand and explain these are 'mots magiques' that appear everywhere.",
-        "materials": ["Magic wand (decorative or toy)", "Sparkly stars or magic props", "'Bon-jour' and 'Au revoir' syllable cards"],
+        "materials": [
+          "Magic wand (decorative or toy)",
+          "Sparkly stars or magic props",
+          "'Bon-jour' and 'Au revoir' syllable cards"
+        ],
         "visualSupports": "Magic words concept poster with stars, Syllable breakdown cards from lesson 6",
         "decisionPoints": [
           {
@@ -504,12 +825,21 @@
             "choice": "Extend magic introduction or channel enthusiasm into word hunt"
           }
         ],
-        "movementBreaks": ["Clapping syllables with magic gestures", "Waving magic wand movements"]
+        "movementBreaks": [
+          "Clapping syllables with magic gestures",
+          "Waving magic wand movements"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Magic Word Hunt - Show 3 high-frequency words (le, la, et) on large cards. Look through simple French books together to find these 'magic words'. Students point and count how many times they appear.",
-        "materials": ["Large magic word cards (le, la, et)", "Simple French books (20-25 copies)", "Magnifying glasses", "Tally counters or pencils", "Stickers for found words"],
+        "materials": [
+          "Large magic word cards (le, la, et)",
+          "Simple French books (20-25 copies)",
+          "Magnifying glasses",
+          "Tally counters or pencils",
+          "Stickers for found words"
+        ],
         "visualSupports": "High-frequency word poster, Counting tally chart, Magic word reference cards",
         "decisionPoints": [
           {
@@ -521,12 +851,19 @@
             "choice": "Use larger text books or guide them to specific pages with many examples"
           }
         ],
-        "movementBreaks": ["Moving around to share books", "Pointing and reaching to find words", "Victory gestures for discoveries"]
+        "movementBreaks": [
+          "Moving around to share books",
+          "Pointing and reaching to find words",
+          "Victory gestures for discoveries"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Magic Word Spell - Students stand and 'cast spells' by saying each magic word while waving imaginary wands: 'le!', 'la!', 'et!'",
-        "materials": ["Magic word cards for reference", "Optional: craft stick wands for each student"],
+        "materials": [
+          "Magic word cards for reference",
+          "Optional: craft stick wands for each student"
+        ],
         "visualSupports": "Spell-casting gesture guide, Magic words with visual cues",
         "decisionPoints": [
           {
@@ -534,7 +871,10 @@
             "choice": "Allow creative spell variations or focus on the three target words"
           }
         ],
-        "movementBreaks": ["Standing and wand-waving gestures", "Dramatic spell-casting movements"]
+        "movementBreaks": [
+          "Standing and wand-waving gestures",
+          "Dramatic spell-casting movements"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students confusing 'le' and 'la' or not recognizing these small words",
@@ -542,14 +882,43 @@
       },
       "realWorldConnection": "These 'magic words' help us read books, signs, and messages faster - they're like keys that unlock reading",
       "differentiation": {
-        "pourDifficultés": ["Focus on one magic word at a time", "Use finger tracking for word recognition", "Provide word cards for matching", "Allow peer support for hunting"],
-        "pourAvancés": ["Learn additional high-frequency words", "Count total occurrences across multiple books", "Help teach recognition strategies to peers", "Notice patterns in word usage"],
-        "pourLangue": ["Connect to similar function words in English", "Use visual word shapes and patterns", "Allow bilingual word recognition strategies", "Practice with familiar simple texts"],
-        "pourPEI": ["Modify word recognition expectations", "Use larger text or different materials", "Allow alternative participation in spell-casting", "Focus on engagement rather than accuracy"]
+        "pourDifficultés": [
+          "Focus on one magic word at a time",
+          "Use finger tracking for word recognition",
+          "Provide word cards for matching",
+          "Allow peer support for hunting"
+        ],
+        "pourAvancés": [
+          "Learn additional high-frequency words",
+          "Count total occurrences across multiple books",
+          "Help teach recognition strategies to peers",
+          "Notice patterns in word usage"
+        ],
+        "pourLangue": [
+          "Connect to similar function words in English",
+          "Use visual word shapes and patterns",
+          "Allow bilingual word recognition strategies",
+          "Practice with familiar simple texts"
+        ],
+        "pourPEI": [
+          "Modify word recognition expectations",
+          "Use larger text or different materials",
+          "Allow alternative participation in spell-casting",
+          "Focus on engagement rather than accuracy"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Recognizes high-frequency words in text", "Points to target words when found", "Participates in magic word activities", "Shows understanding of 'everywhere' concept"],
-        "checkpoints": ["Can they identify the three magic words?", "Do they understand these words appear frequently?", "Are they developing sight word recognition?"]
+        "observable": [
+          "Recognizes high-frequency words in text",
+          "Points to target words when found",
+          "Participates in magic word activities",
+          "Shows understanding of 'everywhere' concept"
+        ],
+        "checkpoints": [
+          "Can they identify the three magic words?",
+          "Do they understand these words appear frequently?",
+          "Are they developing sight word recognition?"
+        ]
       }
     },
     {
@@ -566,7 +935,12 @@
       "opening": {
         "duration": 8,
         "activity": "Review magic words 'le', 'la', 'et' by having students spot them on the word wall. Show letter tiles and explain we're going to BUILD words like construction workers.",
-        "materials": ["Word wall with magic words", "Letter tiles/magnetic letters", "Construction worker hat (optional)", "Building blocks for demonstration"],
+        "materials": [
+          "Word wall with magic words",
+          "Letter tiles/magnetic letters",
+          "Construction worker hat (optional)",
+          "Building blocks for demonstration"
+        ],
         "visualSupports": "Construction worker poster, Word building demonstration chart, Magic words reference",
         "decisionPoints": [
           {
@@ -574,12 +948,21 @@
             "choice": "Add challenge to find them in books or move quickly to building activity"
           }
         ],
-        "movementBreaks": ["Pointing to words on wall", "Construction worker movements and gestures"]
+        "movementBreaks": [
+          "Pointing to words on wall",
+          "Construction worker movements and gestures"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Letter Construction - Give students magnetic letters. Start with simple 3-letter words (pot, ami, eau). Teacher builds first word together, then students try to copy and build new ones with guidance.",
-        "materials": ["Magnetic letters (full alphabet sets for pairs)", "Magnetic boards or cookie sheets", "Word building cards for reference", "Letter sound cards", "Picture cards for target words"],
+        "materials": [
+          "Magnetic letters (full alphabet sets for pairs)",
+          "Magnetic boards or cookie sheets",
+          "Word building cards for reference",
+          "Letter sound cards",
+          "Picture cards for target words"
+        ],
         "visualSupports": "Word building steps poster, Letter-sound reference chart, Target word picture cards",
         "decisionPoints": [
           {
@@ -591,12 +974,20 @@
             "choice": "Use larger letters, focus on 2-letter combinations, or provide more guidance"
           }
         ],
-        "movementBreaks": ["Reaching and placing letters", "Standing to share built words", "Acting out word meanings"]
+        "movementBreaks": [
+          "Reaching and placing letters",
+          "Standing to share built words",
+          "Acting out word meanings"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Word Builders' Show - Students hold up one word they built and say it proudly. Everyone claps for the 'constructors'.",
-        "materials": ["Built words from activity", "Applause cue cards", "Optional: construction badges/stickers"],
+        "materials": [
+          "Built words from activity",
+          "Applause cue cards",
+          "Optional: construction badges/stickers"
+        ],
         "visualSupports": "Show and tell format guide, Celebration clapping poster",
         "decisionPoints": [
           {
@@ -604,7 +995,10 @@
             "choice": "Allow extra shares or save additional words for tomorrow's review"
           }
         ],
-        "movementBreaks": ["Standing to show words", "Enthusiastic clapping and cheering"]
+        "movementBreaks": [
+          "Standing to show words",
+          "Enthusiastic clapping and cheering"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students mixing up letter order or sounds when building",
@@ -612,14 +1006,43 @@
       },
       "realWorldConnection": "Writers create new words by putting letters and sounds together - just like we do when we write shopping lists or messages",
       "differentiation": {
-        "pourDifficultés": ["Start with 2-letter combinations", "Use picture cues for target words", "Allow letter copying rather than independent building", "Work with partner for support"],
-        "pourAvancés": ["Try 4+ letter words", "Build word families", "Create rhyming words", "Help demonstrate building process to peers"],
-        "pourLangue": ["Use familiar words for building practice", "Connect to English spelling patterns where helpful", "Allow sound approximations", "Use extra visual supports for letter-sound connections"],
-        "pourPEI": ["Modify fine motor expectations", "Use larger letters or different materials", "Focus on letter recognition rather than building", "Celebrate any letter manipulation attempts"]
+        "pourDifficultés": [
+          "Start with 2-letter combinations",
+          "Use picture cues for target words",
+          "Allow letter copying rather than independent building",
+          "Work with partner for support"
+        ],
+        "pourAvancés": [
+          "Try 4+ letter words",
+          "Build word families",
+          "Create rhyming words",
+          "Help demonstrate building process to peers"
+        ],
+        "pourLangue": [
+          "Use familiar words for building practice",
+          "Connect to English spelling patterns where helpful",
+          "Allow sound approximations",
+          "Use extra visual supports for letter-sound connections"
+        ],
+        "pourPEI": [
+          "Modify fine motor expectations",
+          "Use larger letters or different materials",
+          "Focus on letter recognition rather than building",
+          "Celebrate any letter manipulation attempts"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Manipulates letters to form words", "Shows understanding of letter-sound connections", "Attempts to build new words", "Participates in word construction activities"],
-        "checkpoints": ["Can they combine letters to make recognizable words?", "Do they understand that letters create words?", "Are they developing beginning spelling awareness?"]
+        "observable": [
+          "Manipulates letters to form words",
+          "Shows understanding of letter-sound connections",
+          "Attempts to build new words",
+          "Participates in word construction activities"
+        ],
+        "checkpoints": [
+          "Can they combine letters to make recognizable words?",
+          "Do they understand that letters create words?",
+          "Are they developing beginning spelling awareness?"
+        ]
       }
     },
     {
@@ -631,25 +1054,44 @@
       "keyVocabulary": [
         "famille",
         "appartenir",
-        "groupe"
+        "groupe",
+        "unique"
       ],
       "opening": {
         "duration": 8,
         "activity": "Review word building by having students build 'chat' with letters. Show family photo again and explain word families - words that look and sound similar at the end.",
-        "materials": ["Magnetic letters for 'chat'", "Family photo from lesson 3", "Word family concept poster"],
+        "materials": [
+          "Magnetic letters for 'chat'",
+          "Family photo from lesson 3",
+          "Word family concept poster"
+        ],
         "visualSupports": "Word families explanation chart, 'Chat' building demonstration, Family connection visual",
         "decisionPoints": [
           {
             "question": "If students build 'chat' quickly",
             "choice": "Try building 'rat' immediately or spend more time on family concept explanation"
+          },
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
           }
         ],
-        "movementBreaks": ["Building letters with hands", "Pointing to family photo connections"]
+        "movementBreaks": [
+          "Building letters with hands",
+          "Pointing to family photo connections"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Word Family Houses - Set up three 'houses' (sorting mats) for -at, -an, -in families. Students sort word cards (chat, rat, chocolat / plan, Jean, maman / fin, pain, main) into correct family houses.",
-        "materials": ["Three house sorting mats or hula hoops", "Word cards for each family (30+ cards total)", "Family ending labels (-at, -an, -in)", "Picture supports for vocabulary words"],
+        "materials": [
+          "Three house sorting mats or hula hoops",
+          "Word cards for each family (30+ cards total)",
+          "Family ending labels (-at, -an, -in)",
+          "Picture supports for vocabulary words",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
         "visualSupports": "Word family house posters, Sorting demonstration chart, Picture-word connection cards for difficult vocabulary",
         "decisionPoints": [
           {
@@ -661,12 +1103,19 @@
             "choice": "Focus on two families only or use more distinct ending patterns"
           }
         ],
-        "movementBreaks": ["Moving between family houses", "Acting out word meanings", "Placing cards with dramatic gestures"]
+        "movementBreaks": [
+          "Moving between family houses",
+          "Acting out word meanings",
+          "Placing cards with dramatic gestures"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Family Reunion - Each word family group stands together and chants their family ending: '-at, -at, we're the -at family!'",
-        "materials": ["Family ending banners or signs", "Optional: simple instruments for chanting rhythm"],
+        "materials": [
+          "Family ending banners or signs",
+          "Optional: simple instruments for chanting rhythm"
+        ],
         "visualSupports": "Family chant format poster, Ending pattern visual cues",
         "decisionPoints": [
           {
@@ -674,7 +1123,10 @@
             "choice": "Allow creative extensions or focus on the target pattern"
           }
         ],
-        "movementBreaks": ["Standing in family groups", "Chanting with full body movement and gestures"]
+        "movementBreaks": [
+          "Standing in family groups",
+          "Chanting with full body movement and gestures"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students not hearing or recognizing similar word endings",
@@ -682,14 +1134,43 @@
       },
       "realWorldConnection": "Word families help us predict how to read and spell similar words - like if you know 'cat', you can figure out 'hat' and 'bat'",
       "differentiation": {
-        "pourDifficultés": ["Work with one word family at a time", "Use picture cues for all words", "Allow peer support for sorting", "Focus on most obvious patterns"],
-        "pourAvancés": ["Find additional words for each family", "Create new word families", "Help explain patterns to classmates", "Try families with different vowel patterns"],
-        "pourLangue": ["Connect to word patterns in home language", "Use extra visual and picture supports", "Allow discussion of pattern recognition in both languages", "Focus on sound patterns over spelling"],
-        "pourPEI": ["Modify sorting expectations", "Use fewer word families", "Allow flexible participation in group activities", "Celebrate pattern recognition at any level"]
+        "pourDifficultés": [
+          "Work with one word family at a time",
+          "Use picture cues for all words",
+          "Allow peer support for sorting",
+          "Focus on most obvious patterns"
+        ],
+        "pourAvancés": [
+          "Find additional words for each family",
+          "Create new word families",
+          "Help explain patterns to classmates",
+          "Try families with different vowel patterns"
+        ],
+        "pourLangue": [
+          "Connect to word patterns in home language",
+          "Use extra visual and picture supports",
+          "Allow discussion of pattern recognition in both languages",
+          "Focus on sound patterns over spelling"
+        ],
+        "pourPEI": [
+          "Modify sorting expectations",
+          "Use fewer word families",
+          "Allow flexible participation in group activities",
+          "Celebrate pattern recognition at any level"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Groups words by ending patterns", "Identifies word family connections", "Participates in sorting activities", "Shows understanding of pattern concept"],
-        "checkpoints": ["Can they identify words that end the same way?", "Do they understand the word family concept?", "Are they recognizing sound and spelling patterns?"]
+        "observable": [
+          "Groups words by ending patterns",
+          "Identifies word family connections",
+          "Participates in sorting activities",
+          "Shows understanding of pattern concept"
+        ],
+        "checkpoints": [
+          "Can they identify words that end the same way?",
+          "Do they understand the word family concept?",
+          "Are they recognizing sound and spelling patterns?"
+        ]
       }
     },
     {
@@ -706,7 +1187,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review word families by chanting '-at, -an, -in' with actions. Put on detective hats/magnifying glasses and explain we're going hunting for words in real books.",
-        "materials": ["Detective hats or headbands", "Magnifying glasses (real or toy)", "Word family chant cards from lesson 9"],
+        "materials": [
+          "Detective hats or headbands",
+          "Magnifying glasses (real or toy)",
+          "Word family chant cards from lesson 9"
+        ],
         "visualSupports": "Detective poster, Word family reference chart, Hunting/searching visual cues",
         "decisionPoints": [
           {
@@ -714,12 +1199,21 @@
             "choice": "Extend detective character building or move quickly to text hunting"
           }
         ],
-        "movementBreaks": ["Word family chanting with actions", "Putting on detective gear with drama"]
+        "movementBreaks": [
+          "Word family chanting with actions",
+          "Putting on detective gear with drama"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Text Detective Work - Give pairs of students simple French texts. Have them hunt for previously learned words (le, la, et, words from families). Students circle or highlight words they find and keep count.",
-        "materials": ["Simple French texts (25+ copies)", "Highlighters or pencils for circling", "Word hunt checklist cards", "Magnifying glasses", "Tally sheets for counting"],
+        "materials": [
+          "Simple French texts (25+ copies)",
+          "Highlighters or pencils for circling",
+          "Word hunt checklist cards",
+          "Magnifying glasses",
+          "Tally sheets for counting"
+        ],
         "visualSupports": "Target words poster, Detective investigation process chart, Counting/tally visual guides",
         "decisionPoints": [
           {
@@ -731,12 +1225,20 @@
             "choice": "Use texts with larger print, guide to specific paragraphs, or provide word location clues"
           }
         ],
-        "movementBreaks": ["Moving around to work with different pairs", "Acting out detective searching behaviors", "Celebrating discoveries with gestures"]
+        "movementBreaks": [
+          "Moving around to work with different pairs",
+          "Acting out detective searching behaviors",
+          "Celebrating discoveries with gestures"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Detective Report - Each pair reports one interesting word they found. Class celebrates all discoveries with detective applause.",
-        "materials": ["Detective reporting format card", "Found word examples", "Celebration applause cue cards"],
+        "materials": [
+          "Detective reporting format card",
+          "Found word examples",
+          "Celebration applause cue cards"
+        ],
         "visualSupports": "Detective report format poster, Celebration applause guide",
         "decisionPoints": [
           {
@@ -744,7 +1246,10 @@
             "choice": "Allow extended sharing time or save additional reports for tomorrow"
           }
         ],
-        "movementBreaks": ["Standing for detective reports", "Special detective applause gestures"]
+        "movementBreaks": [
+          "Standing for detective reports",
+          "Special detective applause gestures"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students having difficulty locating specific words within continuous text",
@@ -752,14 +1257,43 @@
       },
       "realWorldConnection": "We search for specific words when reading recipes, instructions, or finding information - like looking for ingredients on a food package",
       "differentiation": {
-        "pourDifficultés": ["Use larger text materials", "Focus on 2-3 target words only", "Provide word cards for matching rather than free searching", "Work with stronger reading partner"],
-        "pourAvancés": ["Hunt for additional word types (action words, describing words)", "Count and compare frequency of different words", "Help struggling pairs with their searches", "Use more complex texts"],
-        "pourLangue": ["Use texts with familiar vocabulary", "Allow searching for cognates or English-French connections", "Provide picture supports for target words", "Focus on word recognition over text comprehension"],
-        "pourPEI": ["Modify search expectations", "Use highlighting instead of circling if easier", "Allow verbal reporting of found words", "Celebrate any word recognition in text"]
+        "pourDifficultés": [
+          "Use larger text materials",
+          "Focus on 2-3 target words only",
+          "Provide word cards for matching rather than free searching",
+          "Work with stronger reading partner"
+        ],
+        "pourAvancés": [
+          "Hunt for additional word types (action words, describing words)",
+          "Count and compare frequency of different words",
+          "Help struggling pairs with their searches",
+          "Use more complex texts"
+        ],
+        "pourLangue": [
+          "Use texts with familiar vocabulary",
+          "Allow searching for cognates or English-French connections",
+          "Provide picture supports for target words",
+          "Focus on word recognition over text comprehension"
+        ],
+        "pourPEI": [
+          "Modify search expectations",
+          "Use highlighting instead of circling if easier",
+          "Allow verbal reporting of found words",
+          "Celebrate any word recognition in text"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Locates specific words in text", "Uses search strategies effectively", "Participates in collaborative word hunting", "Shows persistence in searching tasks"],
-        "checkpoints": ["Can they find target words in continuous text?", "Do they understand the concept of word hunting?", "Are they developing text scanning skills?"]
+        "observable": [
+          "Locates specific words in text",
+          "Uses search strategies effectively",
+          "Participates in collaborative word hunting",
+          "Shows persistence in searching tasks"
+        ],
+        "checkpoints": [
+          "Can they find target words in continuous text?",
+          "Do they understand the concept of word hunting?",
+          "Are they developing text scanning skills?"
+        ]
       }
     },
     {
@@ -776,7 +1310,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review word hunting by showing some words they found yesterday. Explain that now we'll put words together to create messages, like building with blocks.",
-        "materials": ["Word cards from lesson 10 hunts", "Building blocks for demonstration", "Message/communication visual"],
+        "materials": [
+          "Word cards from lesson 10 hunts",
+          "Building blocks for demonstration",
+          "Message/communication visual"
+        ],
         "visualSupports": "Sentence building concept poster, Building blocks metaphor chart, Found words reference",
         "decisionPoints": [
           {
@@ -784,12 +1322,20 @@
             "choice": "Use their found words in today's sentences or stick to prepared word cards"
           }
         ],
-        "movementBreaks": ["Building block stacking gestures", "Pointing to remembered hunt words"]
+        "movementBreaks": [
+          "Building block stacking gestures",
+          "Pointing to remembered hunt words"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Sentence Building Workshop - Provide word cards (le, chat, et, petit, grand, la, maison). Students work in pairs to arrange 3-4 words into simple sentences like 'Le chat et la maison'. Teacher circulates to help with word order.",
-        "materials": ["Word card sets for each pair (40-50 cards per set)", "Sentence building mats", "Picture supports for vocabulary", "Sentence pattern guide cards"],
+        "materials": [
+          "Word card sets for each pair (40-50 cards per set)",
+          "Sentence building mats",
+          "Picture supports for vocabulary",
+          "Sentence pattern guide cards"
+        ],
         "visualSupports": "French sentence pattern poster, Word order guide, Picture-word connection charts",
         "decisionPoints": [
           {
@@ -801,12 +1347,19 @@
             "choice": "Provide sentence frames or focus on 2-word combinations first"
           }
         ],
-        "movementBreaks": ["Moving word cards around on mats", "Standing to share progress with teacher", "Acting out sentence meanings"]
+        "movementBreaks": [
+          "Moving word cards around on mats",
+          "Standing to share progress with teacher",
+          "Acting out sentence meanings"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Sentence Share Circle - Students take turns showing their sentence creations. Class repeats each sentence together.",
-        "materials": ["Created sentences from activity", "Sharing circle arrangement guide"],
+        "materials": [
+          "Created sentences from activity",
+          "Sharing circle arrangement guide"
+        ],
         "visualSupports": "Sentence sharing format poster, Circle time arrangement visual",
         "decisionPoints": [
           {
@@ -814,7 +1367,10 @@
             "choice": "Allow multiple shares per pair or save extras for display wall"
           }
         ],
-        "movementBreaks": ["Standing to share sentences", "Gestures and actions while reading sentences"]
+        "movementBreaks": [
+          "Standing to share sentences",
+          "Gestures and actions while reading sentences"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students creating word sequences that don't follow French sentence patterns",
@@ -822,14 +1378,43 @@
       },
       "realWorldConnection": "We combine words to share our thoughts, feelings, and ideas with others - like when we tell someone what we want for lunch",
       "differentiation": {
-        "pourDifficultés": ["Use 2-word combinations only", "Provide sentence frames with blanks", "Use picture cues for word meaning", "Allow copying successful patterns"],
-        "pourAvancés": ["Create multiple sentences", "Use connecting words like 'et'", "Try different sentence types", "Help explain sentence building to peers"],
-        "pourLangue": ["Compare to English sentence patterns", "Use familiar vocabulary in sentences", "Allow approximate French word order", "Focus on meaning over perfect grammar"],
-        "pourPEI": ["Modify sentence length expectations", "Use visual sentence building supports", "Allow alternative communication methods", "Celebrate any word combination attempts"]
+        "pourDifficultés": [
+          "Use 2-word combinations only",
+          "Provide sentence frames with blanks",
+          "Use picture cues for word meaning",
+          "Allow copying successful patterns"
+        ],
+        "pourAvancés": [
+          "Create multiple sentences",
+          "Use connecting words like 'et'",
+          "Try different sentence types",
+          "Help explain sentence building to peers"
+        ],
+        "pourLangue": [
+          "Compare to English sentence patterns",
+          "Use familiar vocabulary in sentences",
+          "Allow approximate French word order",
+          "Focus on meaning over perfect grammar"
+        ],
+        "pourPEI": [
+          "Modify sentence length expectations",
+          "Use visual sentence building supports",
+          "Allow alternative communication methods",
+          "Celebrate any word combination attempts"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Combines words into meaningful sequences", "Shows understanding of sentence concept", "Participates in collaborative sentence building", "Attempts French word patterns"],
-        "checkpoints": ["Can they create simple word combinations?", "Do they understand that words make sentences?", "Are they experimenting with French sentence structure?"]
+        "observable": [
+          "Combines words into meaningful sequences",
+          "Shows understanding of sentence concept",
+          "Participates in collaborative sentence building",
+          "Attempts French word patterns"
+        ],
+        "checkpoints": [
+          "Can they create simple word combinations?",
+          "Do they understand that words make sentences?",
+          "Are they experimenting with French sentence structure?"
+        ]
       }
     },
     {
@@ -846,7 +1431,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review sentence building by having class create one sentence together. Show heart shape and explain everyone has 'mots préférés' - favorite words that they like best.",
-        "materials": ["Word cards from previous lessons", "Large heart shape prop", "Favorite concept visual aids"],
+        "materials": [
+          "Word cards from previous lessons",
+          "Large heart shape prop",
+          "Favorite concept visual aids"
+        ],
         "visualSupports": "Favorite words concept poster, Heart shape for preference, Class word collection display",
         "decisionPoints": [
           {
@@ -854,12 +1443,21 @@
             "choice": "Create multiple sentences or move to favorites with enthusiasm built up"
           }
         ],
-        "movementBreaks": ["Building class sentence with gestures", "Heart shape hand movements"]
+        "movementBreaks": [
+          "Building class sentence with gestures",
+          "Heart shape hand movements"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Favorite Word Gallery - Students choose 3 favorite French words from all those learned. They write/draw each word on heart-shaped paper and explain why they like it: 'J'aime... parce que...' (with teacher support).",
-        "materials": ["Heart-shaped paper (75+ pieces)", "Crayons/markers", "Word reference charts from all lessons", "Reason sentence starters", "Glue sticks for pictures"],
+        "materials": [
+          "Heart-shaped paper (75+ pieces)",
+          "Crayons/markers",
+          "Word reference charts from all lessons",
+          "Reason sentence starters",
+          "Glue sticks for pictures"
+        ],
         "visualSupports": "All unit vocabulary displayed, 'J'aime... parce que...' sentence frame, Favorite word examples",
         "decisionPoints": [
           {
@@ -871,12 +1469,19 @@
             "choice": "Allow English explanations or use simple picture reasons"
           }
         ],
-        "movementBreaks": ["Moving around to reference word charts", "Sharing choices with neighbors", "Acting out word meanings"]
+        "movementBreaks": [
+          "Moving around to reference word charts",
+          "Sharing choices with neighbors",
+          "Acting out word meanings"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Favorite Word Show-and-Tell - Students share one favorite word and show their heart. Class says 'C'est beau!' after each share.",
-        "materials": ["Completed heart word papers", "'C'est beau!' response card for class"],
+        "materials": [
+          "Completed heart word papers",
+          "'C'est beau!' response card for class"
+        ],
         "visualSupports": "Show-and-tell format guide, Class response poster",
         "decisionPoints": [
           {
@@ -884,7 +1489,11 @@
             "choice": "Allow extended sharing time or create gallery walk for tomorrow"
           }
         ],
-        "movementBreaks": ["Standing to share", "Holding up heart papers", "Clapping and celebrating responses"]
+        "movementBreaks": [
+          "Standing to share",
+          "Holding up heart papers",
+          "Clapping and celebrating responses"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students unable to explain why they like certain words",
@@ -892,14 +1501,43 @@
       },
       "realWorldConnection": "Having favorite words makes reading and writing more personal and enjoyable - like having a favorite song or color",
       "differentiation": {
-        "pourDifficultés": ["Choose from limited word selection", "Use picture reasons instead of verbal explanations", "Allow teacher scribing for word writing", "Focus on 1-2 favorites instead of 3"],
-        "pourAvancés": ["Write simple sentences about why they like words", "Choose favorites from different word categories", "Help peers explain their choices", "Create word recommendation for classmates"],
-        "pourLangue": ["Allow connection to home language favorites", "Use pictures and gestures for explanations", "Compare favorite sounds across languages", "Support with bilingual word connections"],
-        "pourPEI": ["Modify writing/drawing expectations", "Allow alternative ways to show favorites", "Support choice-making with visual aids", "Celebrate any word preference expression"]
+        "pourDifficultés": [
+          "Choose from limited word selection",
+          "Use picture reasons instead of verbal explanations",
+          "Allow teacher scribing for word writing",
+          "Focus on 1-2 favorites instead of 3"
+        ],
+        "pourAvancés": [
+          "Write simple sentences about why they like words",
+          "Choose favorites from different word categories",
+          "Help peers explain their choices",
+          "Create word recommendation for classmates"
+        ],
+        "pourLangue": [
+          "Allow connection to home language favorites",
+          "Use pictures and gestures for explanations",
+          "Compare favorite sounds across languages",
+          "Support with bilingual word connections"
+        ],
+        "pourPEI": [
+          "Modify writing/drawing expectations",
+          "Allow alternative ways to show favorites",
+          "Support choice-making with visual aids",
+          "Celebrate any word preference expression"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Selects favorite words from learned vocabulary", "Expresses preferences about words", "Shares word choices with others", "Shows personal connection to French vocabulary"],
-        "checkpoints": ["Can they identify favorite words from their learning?", "Do they show personal connection to French vocabulary?", "Are they developing word awareness and preferences?"]
+        "observable": [
+          "Selects favorite words from learned vocabulary",
+          "Expresses preferences about words",
+          "Shares word choices with others",
+          "Shows personal connection to French vocabulary"
+        ],
+        "checkpoints": [
+          "Can they identify favorite words from their learning?",
+          "Do they show personal connection to French vocabulary?",
+          "Are they developing word awareness and preferences?"
+        ]
       }
     },
     {
@@ -916,7 +1554,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review favorite words by having a few students share. Show a real dictionary and explain it's a book that organizes all words - we'll make our own with pictures.",
-        "materials": ["Real French dictionary (picture dictionary ideal)", "Favorite word hearts from lesson 12", "Dictionary concept visual aids"],
+        "materials": [
+          "Real French dictionary (picture dictionary ideal)",
+          "Favorite word hearts from lesson 12",
+          "Dictionary concept visual aids"
+        ],
         "visualSupports": "Dictionary concept poster, Organization example chart, Picture dictionary sample pages",
         "decisionPoints": [
           {
@@ -924,12 +1566,22 @@
             "choice": "Allow brief exploration time or channel interest into their own dictionary making"
           }
         ],
-        "movementBreaks": ["Sharing favorite word hearts", "Flipping through real dictionary pages"]
+        "movementBreaks": [
+          "Sharing favorite word hearts",
+          "Flipping through real dictionary pages"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Dictionary Makers - Students create personal picture dictionaries by sorting their learned words and drawing pictures for each. Start with simple alphabetical order (A words together, B words together, etc.).",
-        "materials": ["Small booklets or folded paper (25 sets)", "Word lists from all lessons", "Crayons/colored pencils", "Alphabet reference strips", "Picture idea cards", "Stapler for booklet assembly"],
+        "materials": [
+          "Small booklets or folded paper (25 sets)",
+          "Word lists from all lessons",
+          "Crayons/colored pencils",
+          "Alphabet reference strips",
+          "Picture idea cards",
+          "Stapler for booklet assembly"
+        ],
         "visualSupports": "Alphabet organization guide, Picture drawing examples, Dictionary page layout model",
         "decisionPoints": [
           {
@@ -941,12 +1593,19 @@
             "choice": "Add more words or help decorate covers"
           }
         ],
-        "movementBreaks": ["Moving around to reference alphabet charts", "Standing to share progress", "Acting out words while drawing"]
+        "movementBreaks": [
+          "Moving around to reference alphabet charts",
+          "Standing to share progress",
+          "Acting out words while drawing"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Dictionary Celebration - Students flip through their dictionaries and share one page they're proud of. Class applauds each mini-dictionary.",
-        "materials": ["Completed student dictionaries", "Celebration applause cue"],
+        "materials": [
+          "Completed student dictionaries",
+          "Celebration applause cue"
+        ],
         "visualSupports": "Dictionary celebration format, Applause and appreciation cues",
         "decisionPoints": [
           {
@@ -954,7 +1613,11 @@
             "choice": "Allow extended sharing or save dictionaries for ongoing reference"
           }
         ],
-        "movementBreaks": ["Standing to share dictionaries", "Flipping through pages", "Celebratory applause movements"]
+        "movementBreaks": [
+          "Standing to share dictionaries",
+          "Flipping through pages",
+          "Celebratory applause movements"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students overwhelming themselves with too many words or struggling with organization",
@@ -962,14 +1625,43 @@
       },
       "realWorldConnection": "Dictionaries help us find and remember words when reading and writing - like when we don't know what a word means in a story",
       "differentiation": {
-        "pourDifficultés": ["Use fewer words (5-8 only)", "Provide pre-drawn pictures to match with words", "Allow simple copying of words", "Focus on personal meaningful words"],
-        "pourAvancés": ["Include word definitions in simple French", "Add more vocabulary beyond lesson words", "Create themed dictionary sections", "Help peers organize their dictionaries"],
-        "pourLangue": ["Include home language translations if desired", "Use familiar words as dictionary foundation", "Allow creative organization systems", "Focus on visual representation over text"],
-        "pourPEI": ["Modify fine motor expectations for drawing", "Use alternative organization methods", "Allow collaborative dictionary creation", "Focus on word collection rather than perfect organization"]
+        "pourDifficultés": [
+          "Use fewer words (5-8 only)",
+          "Provide pre-drawn pictures to match with words",
+          "Allow simple copying of words",
+          "Focus on personal meaningful words"
+        ],
+        "pourAvancés": [
+          "Include word definitions in simple French",
+          "Add more vocabulary beyond lesson words",
+          "Create themed dictionary sections",
+          "Help peers organize their dictionaries"
+        ],
+        "pourLangue": [
+          "Include home language translations if desired",
+          "Use familiar words as dictionary foundation",
+          "Allow creative organization systems",
+          "Focus on visual representation over text"
+        ],
+        "pourPEI": [
+          "Modify fine motor expectations for drawing",
+          "Use alternative organization methods",
+          "Allow collaborative dictionary creation",
+          "Focus on word collection rather than perfect organization"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Organizes words in logical sequences", "Creates visual representations of vocabulary", "Shows understanding of dictionary concept", "Takes pride in personal word collection"],
-        "checkpoints": ["Can they organize words in meaningful ways?", "Do they understand the purpose of dictionaries?", "Are they developing personal vocabulary ownership?"]
+        "observable": [
+          "Organizes words in logical sequences",
+          "Creates visual representations of vocabulary",
+          "Shows understanding of dictionary concept",
+          "Takes pride in personal word collection"
+        ],
+        "checkpoints": [
+          "Can they organize words in meaningful ways?",
+          "Do they understand the purpose of dictionaries?",
+          "Are they developing personal vocabulary ownership?"
+        ]
       }
     },
     {
@@ -986,7 +1678,11 @@
       "opening": {
         "duration": 8,
         "activity": "Students get their dictionaries from yesterday. Explain that good explorers share their discoveries with others - like scientists or treasure hunters.",
-        "materials": ["Student dictionaries from lesson 13", "Explorer/scientist visual aids", "Treasure hunter props"],
+        "materials": [
+          "Student dictionaries from lesson 13",
+          "Explorer/scientist visual aids",
+          "Treasure hunter props"
+        ],
         "visualSupports": "Explorer sharing concept poster, Scientist presentation model, Discovery sharing examples",
         "decisionPoints": [
           {
@@ -994,12 +1690,20 @@
             "choice": "Allow quick preview sharing or build anticipation for main activity"
           }
         ],
-        "movementBreaks": ["Getting dictionaries from storage", "Explorer discovery gestures"]
+        "movementBreaks": [
+          "Getting dictionaries from storage",
+          "Explorer discovery gestures"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Word Explorer Presentations - Each student chooses 2-3 words from their dictionary to present to the class. They show the word, picture, and teach it to classmates. Audience repeats each new word.",
-        "materials": ["Student dictionaries", "Presentation space/chair", "Optional: microphone prop", "Audience response cue cards"],
+        "materials": [
+          "Student dictionaries",
+          "Presentation space/chair",
+          "Optional: microphone prop",
+          "Audience response cue cards"
+        ],
         "visualSupports": "Presentation format guide, Audience participation cues, 'Good presenter' behavior chart",
         "decisionPoints": [
           {
@@ -1011,12 +1715,20 @@
             "choice": "Allow partner presentations or very brief sharing"
           }
         ],
-        "movementBreaks": ["Standing for presentations", "Moving to presentation area", "Audience participation gestures"]
+        "movementBreaks": [
+          "Standing for presentations",
+          "Moving to presentation area",
+          "Audience participation gestures"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Explorer Celebration - Give each presenter a 'Word Explorer' sticker. Class chants 'Nous sommes des explorateurs de mots!' to celebrate everyone's learning journey.",
-        "materials": ["Word Explorer stickers (25+)", "Class motto poster", "Celebration props"],
+        "materials": [
+          "Word Explorer stickers (25+)",
+          "Class motto poster",
+          "Celebration props"
+        ],
         "visualSupports": "Class motto display, Celebration format guide, Unit learning journey visual",
         "decisionPoints": [
           {
@@ -1024,7 +1736,10 @@
             "choice": "Extend celebration or plan future sharing opportunities"
           }
         ],
-        "movementBreaks": ["Standing for sticker ceremony", "Class motto chanting with actions"]
+        "movementBreaks": [
+          "Standing for sticker ceremony",
+          "Class motto chanting with actions"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students too nervous to present or struggling to explain their words",
@@ -1032,14 +1747,43 @@
       },
       "realWorldConnection": "Sharing what we learn helps others and strengthens our own understanding - like when we teach our family a new game or skill",
       "differentiation": {
-        "pourDifficultés": ["Allow very brief presentations (1 word)", "Provide presentation sentence frames", "Allow picture-only sharing", "Pair with confident presenter"],
-        "pourAvancés": ["Present more words or create teaching activities", "Help facilitate classmate presentations", "Add explanations about why words are interesting", "Lead class in response activities"],
-        "pourLangue": ["Allow explanations in home language if needed", "Use visual supports heavily", "Focus on pronunciation practice rather than explanation", "Celebrate multilingual word knowledge"],
-        "pourPEI": ["Modify presentation expectations", "Allow alternative sharing methods", "Provide extra processing time", "Focus on participation rather than performance"]
+        "pourDifficultés": [
+          "Allow very brief presentations (1 word)",
+          "Provide presentation sentence frames",
+          "Allow picture-only sharing",
+          "Pair with confident presenter"
+        ],
+        "pourAvancés": [
+          "Present more words or create teaching activities",
+          "Help facilitate classmate presentations",
+          "Add explanations about why words are interesting",
+          "Lead class in response activities"
+        ],
+        "pourLangue": [
+          "Allow explanations in home language if needed",
+          "Use visual supports heavily",
+          "Focus on pronunciation practice rather than explanation",
+          "Celebrate multilingual word knowledge"
+        ],
+        "pourPEI": [
+          "Modify presentation expectations",
+          "Allow alternative sharing methods",
+          "Provide extra processing time",
+          "Focus on participation rather than performance"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Shares vocabulary with classmates", "Shows pride in word learning", "Listens respectfully to others' presentations", "Participates in class learning community"],
-        "checkpoints": ["Can they share their word learning with others?", "Do they show ownership of their vocabulary development?", "Are they building confidence as French learners?"]
+        "observable": [
+          "Shares vocabulary with classmates",
+          "Shows pride in word learning",
+          "Listens respectfully to others' presentations",
+          "Participates in class learning community"
+        ],
+        "checkpoints": [
+          "Can they share their word learning with others?",
+          "Do they show ownership of their vocabulary development?",
+          "Are they building confidence as French learners?"
+        ]
       }
     },
     {
@@ -1056,7 +1800,11 @@
       "opening": {
         "duration": 8,
         "activity": "Celebrate completing the core lessons! Explain that now we get to PLAY with all the words we've learned. Show game materials and build excitement.",
-        "materials": ["Game station materials preview", "Celebration banners", "Core lessons completion certificate"],
+        "materials": [
+          "Game station materials preview",
+          "Celebration banners",
+          "Core lessons completion certificate"
+        ],
         "visualSupports": "Game station preview poster, Celebration of learning visual, Word games excitement chart",
         "decisionPoints": [
           {
@@ -1068,12 +1816,21 @@
             "choice": "Rassurer que tous les jeux sont pour s'amuser ensemble, pas pour gagner"
           }
         ],
-        "movementBreaks": ["Celebration gestures", "Preview of game movements"]
+        "movementBreaks": [
+          "Celebration gestures",
+          "Preview of game movements"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Word Game Stations - Set up 3 game stations: 1) Word Bingo with learned words, 2) Musical Words (walk around, when music stops grab a word card), 3) Word Memory matching game. Students rotate every 8 minutes.",
-        "materials": ["Bingo cards and markers (Station 1)", "Music player and word cards (Station 2)", "Memory matching card sets (Station 3)", "Timer for rotations", "Station instruction cards"],
+        "materials": [
+          "Bingo cards and markers (Station 1)",
+          "Music player and word cards (Station 2)",
+          "Memory matching card sets (Station 3)",
+          "Timer for rotations",
+          "Station instruction cards"
+        ],
         "visualSupports": "Station instruction posters, Rotation schedule visual, Game rules charts for each station",
         "decisionPoints": [
           {
@@ -1081,12 +1838,20 @@
             "choice": "Allow flexible timing or promise return visits"
           }
         ],
-        "movementBreaks": ["Moving between stations", "Active participation in all games", "Dancing during musical words"]
+        "movementBreaks": [
+          "Moving between stations",
+          "Active participation in all games",
+          "Dancing during musical words"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Game Champions Circle - Everyone sits and shares which game was most fun. Give everyone a 'Word Game Champion' sticker because everyone played well.",
-        "materials": ["Word Game Champion stickers (25+)", "Circle sitting arrangement", "Game reflection prompts"],
+        "materials": [
+          "Word Game Champion stickers (25+)",
+          "Circle sitting arrangement",
+          "Game reflection prompts"
+        ],
         "visualSupports": "Circle sharing format, Game reflection guide, Champion celebration visual",
         "decisionPoints": [
           {
@@ -1098,7 +1863,10 @@
             "choice": "Valider ses sentiments et demander ce qu'il a préféré dans la leçon"
           }
         ],
-        "movementBreaks": ["Moving to circle formation", "Standing for champion sticker ceremony"]
+        "movementBreaks": [
+          "Moving to circle formation",
+          "Standing for champion sticker ceremony"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students getting overwhelmed by game choices or competitive feelings",
@@ -1106,14 +1874,43 @@
       },
       "realWorldConnection": "Playing with words makes language learning fun and memorable - like word games families play in the car or at home",
       "differentiation": {
-        "pourDifficultés": ["Provide game partners for support", "Use simpler word sets", "Allow longer time at stations", "Focus on participation rather than game success"],
-        "pourAvancés": ["Add challenge variations to games", "Help facilitate game stations", "Create new game rules", "Support struggling players"],
-        "pourLangue": ["Allow use of familiar words from any language", "Pair with bilingual support", "Focus on fun rather than perfect French", "Use visual game supports"],
-        "pourPEI": ["Modify game participation as needed", "Provide sensory supports if needed", "Allow alternative ways to participate", "Focus on enjoyment of word play"]
+        "pourDifficultés": [
+          "Provide game partners for support",
+          "Use simpler word sets",
+          "Allow longer time at stations",
+          "Focus on participation rather than game success"
+        ],
+        "pourAvancés": [
+          "Add challenge variations to games",
+          "Help facilitate game stations",
+          "Create new game rules",
+          "Support struggling players"
+        ],
+        "pourLangue": [
+          "Allow use of familiar words from any language",
+          "Pair with bilingual support",
+          "Focus on fun rather than perfect French",
+          "Use visual game supports"
+        ],
+        "pourPEI": [
+          "Modify game participation as needed",
+          "Provide sensory supports if needed",
+          "Allow alternative ways to participate",
+          "Focus on enjoyment of word play"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Participates enthusiastically in word games", "Uses learned vocabulary during play", "Shows enjoyment of French word activities", "Collaborates well in game situations"],
-        "checkpoints": ["Are they enjoying playing with French words?", "Do they use learned vocabulary in game contexts?", "Are they developing positive associations with French learning?"]
+        "observable": [
+          "Participates enthusiastically in word games",
+          "Uses learned vocabulary during play",
+          "Shows enjoyment of French word activities",
+          "Collaborates well in game situations"
+        ],
+        "checkpoints": [
+          "Are they enjoying playing with French words?",
+          "Do they use learned vocabulary in game contexts?",
+          "Are they developing positive associations with French learning?"
+        ]
       },
       "extensionGuidance": {
         "category": "Exploration créative",
@@ -1170,7 +1967,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review favorite word games from yesterday. Show a simple picture book and explain that stories are made with words - we can make stories with OUR words.",
-        "materials": ["Simple French picture book", "Game memories chart from lesson 15", "Story concept visual aids"],
+        "materials": [
+          "Simple French picture book",
+          "Game memories chart from lesson 15",
+          "Story concept visual aids"
+        ],
         "visualSupports": "Story structure poster (beginning-middle-end), Word collection display, Picture book example",
         "decisionPoints": [
           {
@@ -1182,12 +1983,21 @@
             "choice": "Utiliser des exemples familiers comme leurs histoires de famille ou de vacances"
           }
         ],
-        "movementBreaks": ["Acting out favorite games", "Page-turning gestures with picture book"]
+        "movementBreaks": [
+          "Acting out favorite games",
+          "Page-turning gestures with picture book"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Mini Story Creators - Students choose 4-5 words from their collection and create a simple story. They can draw pictures and use simple sentences like 'Le chat et le chien...' Template: Beginning, middle, end with pictures.",
-        "materials": ["Story template papers (folded in thirds)", "Student word collections/dictionaries", "Crayons/markers", "Simple sentence starter cards", "Story idea picture prompts"],
+        "materials": [
+          "Story template papers (folded in thirds)",
+          "Student word collections/dictionaries",
+          "Crayons/markers",
+          "Simple sentence starter cards",
+          "Story idea picture prompts"
+        ],
         "visualSupports": "Story template example, Beginning-middle-end visual guide, Sentence starter poster",
         "decisionPoints": [
           {
@@ -1195,12 +2005,20 @@
             "choice": "Provide story picture prompts or allow simple word lists with pictures"
           }
         ],
-        "movementBreaks": ["Moving around to gather word materials", "Acting out story ideas", "Drawing movements for illustrations"]
+        "movementBreaks": [
+          "Moving around to gather word materials",
+          "Acting out story ideas",
+          "Drawing movements for illustrations"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Story Time Circle - 3-4 volunteers share their mini stories. Class responds with 'C'est une belle histoire!' after each one.",
-        "materials": ["Student created stories", "Class response cue card", "Cozy story circle setup"],
+        "materials": [
+          "Student created stories",
+          "Class response cue card",
+          "Cozy story circle setup"
+        ],
         "visualSupports": "Story time format poster, Audience response guide, Story sharing celebration visual",
         "decisionPoints": [
           {
@@ -1212,7 +2030,11 @@
             "choice": "Remercier chaleureusement et aider à identifier la partie préférée"
           }
         ],
-        "movementBreaks": ["Moving to story circle", "Story sharing gestures", "Appreciative response movements"]
+        "movementBreaks": [
+          "Moving to story circle",
+          "Story sharing gestures",
+          "Appreciative response movements"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students creating disconnected word lists rather than story sequences",
@@ -1220,14 +2042,43 @@
       },
       "realWorldConnection": "Stories help us share experiences and connect with others - like telling family about our day or sharing favorite memories",
       "differentiation": {
-        "pourDifficultés": ["Use 2-3 words only", "Allow picture-only stories", "Provide story templates with blanks", "Work with partner support"],
-        "pourAvancés": ["Create longer stories with multiple sentences", "Add dialogue or character emotions", "Help peers develop their stories", "Create story illustrations with detail"],
-        "pourLangue": ["Allow bilingual storytelling", "Use familiar story patterns from home culture", "Focus on visual storytelling with some French words", "Connect to known story structures"],
-        "pourPEI": ["Modify story length expectations", "Allow alternative story formats", "Use visual supports extensively", "Focus on creative expression over structure"]
+        "pourDifficultés": [
+          "Use 2-3 words only",
+          "Allow picture-only stories",
+          "Provide story templates with blanks",
+          "Work with partner support"
+        ],
+        "pourAvancés": [
+          "Create longer stories with multiple sentences",
+          "Add dialogue or character emotions",
+          "Help peers develop their stories",
+          "Create story illustrations with detail"
+        ],
+        "pourLangue": [
+          "Allow bilingual storytelling",
+          "Use familiar story patterns from home culture",
+          "Focus on visual storytelling with some French words",
+          "Connect to known story structures"
+        ],
+        "pourPEI": [
+          "Modify story length expectations",
+          "Allow alternative story formats",
+          "Use visual supports extensively",
+          "Focus on creative expression over structure"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Creates simple narratives using French vocabulary", "Shows understanding of story structure", "Uses learned words in creative contexts", "Shares creative work with confidence"],
-        "checkpoints": ["Can they use their vocabulary in creative storytelling?", "Do they understand basic story structure?", "Are they expressing creativity through French words?"]
+        "observable": [
+          "Creates simple narratives using French vocabulary",
+          "Shows understanding of story structure",
+          "Uses learned words in creative contexts",
+          "Shares creative work with confidence"
+        ],
+        "checkpoints": [
+          "Can they use their vocabulary in creative storytelling?",
+          "Do they understand basic story structure?",
+          "Are they expressing creativity through French words?"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1284,7 +2135,11 @@
       "opening": {
         "duration": 8,
         "activity": "Share a few mini stories from yesterday. Show school map and explain that our school is FULL of French words - we're going on a word treasure hunt around the building.",
-        "materials": ["Mini stories from lesson 16", "Simple school map or layout", "Treasure hunt props (magnifying glasses)"],
+        "materials": [
+          "Mini stories from lesson 16",
+          "Simple school map or layout",
+          "Treasure hunt props (magnifying glasses)"
+        ],
         "visualSupports": "School layout visual, Word treasure hunt concept poster, French in our environment examples",
         "decisionPoints": [
           {
@@ -1296,12 +2151,21 @@
             "choice": "Rassurer qu'on reste ensemble et visiter les endroits familiers d'abord"
           }
         ],
-        "movementBreaks": ["Story sharing gestures", "Map exploration movements"]
+        "movementBreaks": [
+          "Story sharing gestures",
+          "Map exploration movements"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "School Word Safari - Take students on guided walk through school (library, office, cafeteria, gym). Students identify and record French words on signs, posters, labels. Work in pairs with clipboards.",
-        "materials": ["Clipboards (12-15)", "Pencils/pens", "Word collection sheets", "Magnifying glasses (optional)", "Camera for teacher documentation"],
+        "materials": [
+          "Clipboards (12-15)",
+          "Pencils/pens",
+          "Word collection sheets",
+          "Magnifying glasses (optional)",
+          "Camera for teacher documentation"
+        ],
         "visualSupports": "Safari collection sheet, Word identification guide, School location map",
         "decisionPoints": [
           {
@@ -1309,12 +2173,20 @@
             "choice": "Extend hunt time or focus on most interesting discoveries"
           }
         ],
-        "movementBreaks": ["Walking throughout school building", "Pointing and reaching to identify words", "Collaborative searching movements"]
+        "movementBreaks": [
+          "Walking throughout school building",
+          "Pointing and reaching to identify words",
+          "Collaborative searching movements"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Safari Debrief - Back in classroom, share the most interesting words found. Create a class list of 'School French Words' on chart paper.",
-        "materials": ["Chart paper and markers", "Word collection sheets from hunt", "Safari celebration props"],
+        "materials": [
+          "Chart paper and markers",
+          "Word collection sheets from hunt",
+          "Safari celebration props"
+        ],
         "visualSupports": "School French words chart, Safari debrief format, Word discovery celebration poster",
         "decisionPoints": [
           {
@@ -1326,7 +2198,11 @@
             "choice": "L'encourager à partager un endroit qu'il a aimé visiter dans l'école"
           }
         ],
-        "movementBreaks": ["Returning to classroom", "Sharing discoveries with enthusiasm", "Chart creation participation"]
+        "movementBreaks": [
+          "Returning to classroom",
+          "Sharing discoveries with enthusiasm",
+          "Chart creation participation"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students having difficulty distinguishing French words from English in school environment",
@@ -1334,14 +2210,43 @@
       },
       "realWorldConnection": "French words surround us in our daily environment at school and beyond - on signs, in books, and in conversations",
       "differentiation": {
-        "pourDifficultés": ["Work with confident partner", "Focus on familiar French words only", "Use visual cues to identify French", "Allow participation without recording"],
-        "pourAvancés": ["Record word locations and contexts", "Help identify less obvious French words", "Support struggling pairs", "Create categories for found words"],
-        "pourLangue": ["Connect to multilingual signs in school", "Focus on universal symbols with French labels", "Allow recognition of cognates", "Use home language knowledge to identify French"],
-        "pourPEI": ["Modify walking distance as needed", "Allow flexible participation in hunt", "Use alternative recording methods", "Focus on exploration rather than collection"]
+        "pourDifficultés": [
+          "Work with confident partner",
+          "Focus on familiar French words only",
+          "Use visual cues to identify French",
+          "Allow participation without recording"
+        ],
+        "pourAvancés": [
+          "Record word locations and contexts",
+          "Help identify less obvious French words",
+          "Support struggling pairs",
+          "Create categories for found words"
+        ],
+        "pourLangue": [
+          "Connect to multilingual signs in school",
+          "Focus on universal symbols with French labels",
+          "Allow recognition of cognates",
+          "Use home language knowledge to identify French"
+        ],
+        "pourPEI": [
+          "Modify walking distance as needed",
+          "Allow flexible participation in hunt",
+          "Use alternative recording methods",
+          "Focus on exploration rather than collection"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Identifies French words in environmental print", "Shows curiosity about French in school environment", "Participates actively in exploration", "Shares discoveries with classmates"],
-        "checkpoints": ["Can they recognize French words in their school environment?", "Do they show awareness of French around them?", "Are they developing environmental print awareness?"]
+        "observable": [
+          "Identifies French words in environmental print",
+          "Shows curiosity about French in school environment",
+          "Participates actively in exploration",
+          "Shares discoveries with classmates"
+        ],
+        "checkpoints": [
+          "Can they recognize French words in their school environment?",
+          "Do they show awareness of French around them?",
+          "Are they developing environmental print awareness?"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1398,7 +2303,11 @@
       "opening": {
         "duration": 8,
         "activity": "Review school words found yesterday. Read a simple French poem or chant with rhythm and rhyme. Explain that poems are special ways to play with words and sounds.",
-        "materials": ["School words chart from lesson 17", "Simple French poem book or chant card", "Rhythm instruments (optional)"],
+        "materials": [
+          "School words chart from lesson 17",
+          "Simple French poem book or chant card",
+          "Rhythm instruments (optional)"
+        ],
         "visualSupports": "Poetry concept poster, Rhythm and rhyme examples, Simple poem format guide",
         "decisionPoints": [
           {
@@ -1410,12 +2319,21 @@
             "choice": "Permettre la répétition et ajouter des gestes ou des instruments"
           }
         ],
-        "movementBreaks": ["Rhythmic movements while reading poem", "Sound and rhythm exploration gestures"]
+        "movementBreaks": [
+          "Rhythmic movements while reading poem",
+          "Sound and rhythm exploration gestures"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Young Poets Workshop - Students create simple 4-line poems using rhyming words from their collection. Template: 'Dans l'école je vois... / Dans l'école j'entends...' Encourage rhythm and repetition.",
-        "materials": ["Poetry template papers", "Student word collections", "Rhyming word cards", "Crayons for illustrations", "Poem starter phrase cards"],
+        "materials": [
+          "Poetry template papers",
+          "Student word collections",
+          "Rhyming word cards",
+          "Crayons for illustrations",
+          "Poem starter phrase cards"
+        ],
         "visualSupports": "Poetry template example, Rhyming words reference, Simple poem structure guide",
         "decisionPoints": [
           {
@@ -1423,12 +2341,20 @@
             "choice": "Focus on repetitive phrases or allow free-form word play"
           }
         ],
-        "movementBreaks": ["Moving around to gather word materials", "Acting out poem ideas", "Rhythmic movements while composing"]
+        "movementBreaks": [
+          "Moving around to gather word materials",
+          "Acting out poem ideas",
+          "Rhythmic movements while composing"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Poetry Café - Students sit in circle and share poems like a coffee shop poetry reading. Soft snaps or finger wiggles for applause after each poem.",
-        "materials": ["Student created poems", "Cozy circle setup", "Optional: coffee shop props"],
+        "materials": [
+          "Student created poems",
+          "Cozy circle setup",
+          "Optional: coffee shop props"
+        ],
         "visualSupports": "Poetry café setup visual, Audience appreciation guide, Poetry sharing format",
         "decisionPoints": [
           {
@@ -1440,7 +2366,11 @@
             "choice": "Enseigner les applaudissements silencieux du café (remuer les doigts)"
           }
         ],
-        "movementBreaks": ["Moving to poetry circle", "Gentle applause movements", "Poetry performance gestures"]
+        "movementBreaks": [
+          "Moving to poetry circle",
+          "Gentle applause movements",
+          "Poetry performance gestures"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students feeling pressure to create 'perfect' poems or struggling with French rhyme patterns",
@@ -1448,14 +2378,43 @@
       },
       "realWorldConnection": "Poetry helps us express feelings and appreciate the beauty of language - like songs we love or beautiful words that make us happy",
       "differentiation": {
-        "pourDifficultés": ["Use simple word repetition patterns", "Allow picture poems with few words", "Provide sentence frames to complete", "Focus on favorite word lists rather than structured poems"],
-        "pourAvancés": ["Create longer or more complex poems", "Experiment with different poetic forms", "Help peers with poem creation", "Add detailed illustrations to poems"],
-        "pourLangue": ["Allow bilingual poetry creation", "Use familiar rhythm patterns from home language", "Focus on sound play over complex meaning", "Connect to cultural poetry traditions"],
-        "pourPEI": ["Modify poetry length and complexity", "Allow alternative creative expression", "Use visual and tactile supports", "Focus on creative enjoyment over structure"]
+        "pourDifficultés": [
+          "Use simple word repetition patterns",
+          "Allow picture poems with few words",
+          "Provide sentence frames to complete",
+          "Focus on favorite word lists rather than structured poems"
+        ],
+        "pourAvancés": [
+          "Create longer or more complex poems",
+          "Experiment with different poetic forms",
+          "Help peers with poem creation",
+          "Add detailed illustrations to poems"
+        ],
+        "pourLangue": [
+          "Allow bilingual poetry creation",
+          "Use familiar rhythm patterns from home language",
+          "Focus on sound play over complex meaning",
+          "Connect to cultural poetry traditions"
+        ],
+        "pourPEI": [
+          "Modify poetry length and complexity",
+          "Allow alternative creative expression",
+          "Use visual and tactile supports",
+          "Focus on creative enjoyment over structure"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Creates simple poetic expressions using French words", "Shows appreciation for language sounds and rhythms", "Participates in creative language play", "Shares creative work confidently"],
-        "checkpoints": ["Are they experimenting creatively with French words and sounds?", "Do they show appreciation for the beauty of language?", "Are they expressing themselves through French poetry?"]
+        "observable": [
+          "Creates simple poetic expressions using French words",
+          "Shows appreciation for language sounds and rhythms",
+          "Participates in creative language play",
+          "Shares creative work confidently"
+        ],
+        "checkpoints": [
+          "Are they experimenting creatively with French words and sounds?",
+          "Do they show appreciation for the beauty of language?",
+          "Are they expressing themselves through French poetry?"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1512,7 +2471,11 @@
       "opening": {
         "duration": 8,
         "activity": "Share a few poems from yesterday's poetry café. Explain that today we celebrate how well we can spell our learned words - like a friendly contest where everyone wins.",
-        "materials": ["Poems from lesson 18", "Friendly competition concept visual", "Celebration props"],
+        "materials": [
+          "Poems from lesson 18",
+          "Friendly competition concept visual",
+          "Celebration props"
+        ],
         "visualSupports": "Friendly spelling celebration poster, 'Everyone wins' concept visual, Spelling celebration format",
         "decisionPoints": [
           {
@@ -1524,12 +2487,21 @@
             "choice": "Expliquer que c'est un jeu d'équipe où tout le monde s'aide"
           }
         ],
-        "movementBreaks": ["Poetry sharing gestures", "Celebration anticipation movements"]
+        "movementBreaks": [
+          "Poetry sharing gestures",
+          "Celebration anticipation movements"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Friendly Spelling Celebration - Divide class into mixed-ability teams. Use learned words for team spelling challenges: letter building, word completion, and oral spelling. Focus on encouragement and team support.",
-        "materials": ["Letter tiles or cards (multiple sets)", "Word completion worksheets", "Team identification materials", "Encouragement prompt cards", "Timer for activities"],
+        "materials": [
+          "Letter tiles or cards (multiple sets)",
+          "Word completion worksheets",
+          "Team identification materials",
+          "Encouragement prompt cards",
+          "Timer for activities"
+        ],
         "visualSupports": "Team spelling challenge stations, Encouragement phrases poster, Spelling celebration rules",
         "decisionPoints": [
           {
@@ -1537,12 +2509,20 @@
             "choice": "Switch to collaborative spelling or emphasize teamwork over competition"
           }
         ],
-        "movementBreaks": ["Moving between spelling stations", "Team huddle movements", "Celebratory gestures for all efforts"]
+        "movementBreaks": [
+          "Moving between spelling stations",
+          "Team huddle movements",
+          "Celebratory gestures for all efforts"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Spelling Champions Ceremony - Every student receives a 'Spelling Star' certificate. Celebrate growth and effort rather than perfect spelling.",
-        "materials": ["Spelling Star certificates (25+)", "Ceremony music (optional)", "Celebration props"],
+        "materials": [
+          "Spelling Star certificates (25+)",
+          "Ceremony music (optional)",
+          "Celebration props"
+        ],
         "visualSupports": "Spelling champions ceremony format, Growth and effort celebration poster, Certificate presentation visual",
         "decisionPoints": [
           {
@@ -1554,7 +2534,11 @@
             "choice": "Donner tous les certificats ensemble avec un gros applaudissement"
           }
         ],
-        "movementBreaks": ["Standing for certificate ceremony", "Applause for all participants", "Victory celebration gestures"]
+        "movementBreaks": [
+          "Standing for certificate ceremony",
+          "Applause for all participants",
+          "Victory celebration gestures"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students becoming discouraged about spelling accuracy or competitive feelings",
@@ -1562,14 +2546,43 @@
       },
       "realWorldConnection": "Correct spelling helps others understand our writing clearly - like when we write notes to family or friends",
       "differentiation": {
-        "pourDifficultés": ["Use simple words only", "Allow letter card building instead of writing", "Provide peer support within teams", "Focus on letter recognition rather than complete spelling"],
-        "pourAvancés": ["Include challenging vocabulary words", "Help facilitate team activities", "Support struggling team members", "Try spelling words from multiple lessons"],
-        "pourLangue": ["Use familiar vocabulary for spelling", "Allow sound-based spelling attempts", "Connect to home language spelling patterns", "Focus on effort over accuracy"],
-        "pourPEI": ["Modify spelling expectations", "Allow alternative participation methods", "Use supportive team environments", "Celebrate any spelling attempt"]
+        "pourDifficultés": [
+          "Use simple words only",
+          "Allow letter card building instead of writing",
+          "Provide peer support within teams",
+          "Focus on letter recognition rather than complete spelling"
+        ],
+        "pourAvancés": [
+          "Include challenging vocabulary words",
+          "Help facilitate team activities",
+          "Support struggling team members",
+          "Try spelling words from multiple lessons"
+        ],
+        "pourLangue": [
+          "Use familiar vocabulary for spelling",
+          "Allow sound-based spelling attempts",
+          "Connect to home language spelling patterns",
+          "Focus on effort over accuracy"
+        ],
+        "pourPEI": [
+          "Modify spelling expectations",
+          "Allow alternative participation methods",
+          "Use supportive team environments",
+          "Celebrate any spelling attempt"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Attempts to spell learned vocabulary words", "Shows growth in French spelling awareness", "Participates positively in team activities", "Supports classmates in spelling challenges"],
-        "checkpoints": ["Are they attempting to spell French words?", "Do they show growth in spelling awareness?", "Are they enjoying spelling as a learning activity?"]
+        "observable": [
+          "Attempts to spell learned vocabulary words",
+          "Shows growth in French spelling awareness",
+          "Participates positively in team activities",
+          "Supports classmates in spelling challenges"
+        ],
+        "checkpoints": [
+          "Are they attempting to spell French words?",
+          "Do they show growth in spelling awareness?",
+          "Are they enjoying spelling as a learning activity?"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1626,7 +2639,11 @@
       "opening": {
         "duration": 8,
         "activity": "Show spelling certificates from yesterday. Set up celebration atmosphere with decorations. Announce that today we celebrate our amazing journey as word explorers!",
-        "materials": ["Spelling certificates from lesson 19", "Celebration decorations (streamers, banners)", "Unit journey display materials"],
+        "materials": [
+          "Spelling certificates from lesson 19",
+          "Celebration decorations (streamers, banners)",
+          "Unit journey display materials"
+        ],
         "visualSupports": "Unit celebration poster, Word explorer journey timeline, Achievement celebration visual",
         "decisionPoints": [
           {
@@ -1638,12 +2655,21 @@
             "choice": "Rassurer qu'ils continueront à explorer les mots dans d'autres unités"
           }
         ],
-        "movementBreaks": ["Admiring certificates together", "Setting up celebration space"]
+        "movementBreaks": [
+          "Admiring certificates together",
+          "Setting up celebration space"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Explorer Celebration Festival - Set up stations: 1) Memory gallery of all unit work, 2) Favorite moment sharing circle, 3) Future goals setting ('Next I want to learn...'). Students rotate and celebrate their growth.",
-        "materials": ["All unit work samples for display", "Sharing circle setup", "Future goals recording sheets", "Celebration station signs", "Rotation timer"],
+        "materials": [
+          "All unit work samples for display",
+          "Sharing circle setup",
+          "Future goals recording sheets",
+          "Celebration station signs",
+          "Rotation timer"
+        ],
         "visualSupports": "Celebration stations guide, Memory gallery display, Future goals prompts, Learning journey celebration chart",
         "decisionPoints": [
           {
@@ -1659,12 +2685,20 @@
             "choice": "Suggérer des idées simples comme 'apprendre plus de mots d'animaux'"
           }
         ],
-        "movementBreaks": ["Rotating between celebration stations", "Sharing and admiring work displays", "Celebrating achievements with gestures"]
+        "movementBreaks": [
+          "Rotating between celebration stations",
+          "Sharing and admiring work displays",
+          "Celebrating achievements with gestures"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Explorer Pledge - Class stands together and recites: 'We are word explorers! We discover, we learn, we share, we grow!' End with group cheer and applause.",
-        "materials": ["Explorer pledge poster", "Class celebration props", "Final unit achievement certificates (optional)"],
+        "materials": [
+          "Explorer pledge poster",
+          "Class celebration props",
+          "Final unit achievement certificates (optional)"
+        ],
         "visualSupports": "Explorer pledge visual, Class motto poster, Unit completion celebration chart",
         "decisionPoints": [
           {
@@ -1676,7 +2710,11 @@
             "choice": "Diriger vers des gestes de célébration plus calmes mais enthousiastes"
           }
         ],
-        "movementBreaks": ["Standing together for pledge", "Group cheer with full body movement", "Celebration applause and cheering"]
+        "movementBreaks": [
+          "Standing together for pledge",
+          "Group cheer with full body movement",
+          "Celebration applause and cheering"
+        ]
       },
       "troubleshooting": {
         "ifStrugglingWith": "Students feeling overwhelmed by celebration activities or sad about unit ending",
@@ -1684,14 +2722,43 @@
       },
       "realWorldConnection": "Celebrating our learning motivates us to continue growing and exploring - like when we feel proud of learning to ride a bike and want to go further",
       "differentiation": {
-        "pourDifficultés": ["Focus on personal growth rather than comparisons", "Highlight individual achievements", "Allow flexible participation in stations", "Celebrate effort and progress"],
-        "pourAvancés": ["Help facilitate celebration stations", "Support peers in reflecting on growth", "Share leadership in class activities", "Contribute ideas for future learning goals"],
-        "pourLangue": ["Celebrate bilingual learning strengths", "Allow sharing in comfortable language", "Highlight cultural contributions to class learning", "Connect to home language learning experiences"],
-        "pourPEI": ["Modify celebration participation as needed", "Focus on individual meaningful achievements", "Allow alternative ways to participate", "Celebrate all forms of learning progress"]
+        "pourDifficultés": [
+          "Focus on personal growth rather than comparisons",
+          "Highlight individual achievements",
+          "Allow flexible participation in stations",
+          "Celebrate effort and progress"
+        ],
+        "pourAvancés": [
+          "Help facilitate celebration stations",
+          "Support peers in reflecting on growth",
+          "Share leadership in class activities",
+          "Contribute ideas for future learning goals"
+        ],
+        "pourLangue": [
+          "Celebrate bilingual learning strengths",
+          "Allow sharing in comfortable language",
+          "Highlight cultural contributions to class learning",
+          "Connect to home language learning experiences"
+        ],
+        "pourPEI": [
+          "Modify celebration participation as needed",
+          "Focus on individual meaningful achievements",
+          "Allow alternative ways to participate",
+          "Celebrate all forms of learning progress"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["Reflects positively on learning journey", "Shows pride in French word exploration achievements", "Expresses excitement about continued learning", "Participates meaningfully in celebration activities"],
-        "checkpoints": ["Do they recognize their growth as French word explorers?", "Are they excited about continued French learning?", "Have they developed confidence as French language learners?"]
+        "observable": [
+          "Reflects positively on learning journey",
+          "Shows pride in French word exploration achievements",
+          "Expresses excitement about continued learning",
+          "Participates meaningfully in celebration activities"
+        ],
+        "checkpoints": [
+          "Do they recognize their growth as French word explorers?",
+          "Are they excited about continued French learning?",
+          "Have they developed confidence as French language learners?"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",

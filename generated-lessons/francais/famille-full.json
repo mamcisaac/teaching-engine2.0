@@ -15,7 +15,8 @@
       "keyVocabulary": [
         "famille",
         "maman",
-        "papa"
+        "papa",
+        "unique"
       ],
       "opening": {
         "duration": "~8 min",
@@ -27,7 +28,11 @@
               "quantity": "12-15 photos grand format (8x10 pouces)",
               "source": "Banque d'images scolaire - bibliothèque",
               "preparation": "Plastifier, organiser par diversité (tailles, cultures, structures)",
-              "alternatives": ["Images projetées", "Dessins de familles au tableau", "Livres illustrés sur les familles"]
+              "alternatives": [
+                "Images projetées",
+                "Dessins de familles au tableau",
+                "Livres illustrés sur les familles"
+              ]
             }
           ],
           "optional": [
@@ -56,14 +61,22 @@
               "quantity": "1 espace pour 25 élèves assis",
               "source": "Matériel de classe - coin lecture",
               "preparation": "Installer avant la leçon, vérifier l'espace suffisant",
-              "alternatives": ["Chaises en cercle", "Marqueurs visuels au sol", "Couverture étendue"]
+              "alternatives": [
+                "Chaises en cercle",
+                "Marqueurs visuels au sol",
+                "Couverture étendue"
+              ]
             },
             {
               "item": "Photos de familles diversifiées",
               "quantity": "25-30 photos diversifiées",
               "source": "Banque d'images pédagogiques - bibliothèque scolaire",
               "preparation": "Sélectionner images respectueuses de ma famille diverses, plastifier",
-              "alternatives": ["Photos d'exemples de magazines familiaux", "Dessins de familles par les élèves", "Images de livres pour enfants"]
+              "alternatives": [
+                "Photos d'exemples de magazines familiaux",
+                "Dessins de familles par les élèves",
+                "Images de livres pour enfants"
+              ]
             }
           ],
           "optional": [
@@ -168,14 +181,20 @@
               "quantity": "12-15 cartes réutilisées",
               "source": "Matériel de la leçon précédente",
               "preparation": "Réinstaller au tableau, ajouter nouvelles cartes frère/sœur",
-              "alternatives": ["Redessiner rapidement", "Utiliser tableau numérique"]
+              "alternatives": [
+                "Redessiner rapidement",
+                "Utiliser tableau numérique"
+              ]
             },
             {
               "item": "Nouvelles cartes: frère et sœur",
               "quantity": "4-6 images diverses (frères/sœurs de différents âges)",
               "source": "Banque d'images - bibliothèque pédagogique",
               "preparation": "Plastifier, montrer la diversité (bébés, adolescents, adoptés)",
-              "alternatives": ["Dessins simples au tableau", "Images de livres d'enfants"]
+              "alternatives": [
+                "Dessins simples au tableau",
+                "Images de livres d'enfants"
+              ]
             }
           ],
           "optional": []
@@ -184,7 +203,12 @@
         "decisionPoints": [
           "Si certains élèves n'ont pas de frères/sœurs → expliquer que c'est normal, certains sont enfants uniques",
           "Si confusion entre frère/sœur → utiliser des indices visuels clairs (cheveux, vêtements)",
-          "Si oubli du vocabulaire de la Leçon 1 → faire une révision rapide avec gestes"
+          "Si oubli du vocabulaire de la Leçon 1 → faire une révision rapide avec gestes",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -198,14 +222,21 @@
               "quantity": "60 cartes (20 par station: maman, papa, frère, sœur, mémère)",
               "source": "Matériel pédagogique - création enseignante",
               "preparation": "Plastifier, organiser en 3 paquets identiques pour stations",
-              "alternatives": ["Photos découpées de magazines", "Dessins simple des élèves"]
+              "alternatives": [
+                "Photos découpées de magazines",
+                "Dessins simple des élèves"
+              ]
             },
             {
               "item": "3 boîtes de tri",
               "quantity": "3 boîtes étiquetées par station",
               "source": "Matériel de recyclage - boîtes de chaussures",
               "preparation": "Décorer, étiqueter clairement avec images et mots",
-              "alternatives": ["Paniers", "Plateaux de cafetéria", "Cercles dessinés au sol"]
+              "alternatives": [
+                "Paniers",
+                "Plateaux de cafetéria",
+                "Cercles dessinés au sol"
+              ]
             }
           ],
           "optional": [
@@ -234,7 +265,10 @@
               "quantity": "Toutes les cartes de l'activité principale",
               "source": "Matériel déjà préparé",
               "preparation": "Afficher au mur à hauteur d'enfant",
-              "alternatives": ["Disposer sur tables", "Tenir en main"]
+              "alternatives": [
+                "Disposer sur tables",
+                "Tenir en main"
+              ]
             }
           ],
           "optional": []
@@ -312,14 +346,20 @@
               "quantity": "Collection complète (15-20 cartes)",
               "source": "Matériel accumulé des leçons précédentes",
               "preparation": "Organiser par ordre d'introduction, ajouter pépère",
-              "alternatives": ["Dessins au tableau", "Affichage numérique"]
+              "alternatives": [
+                "Dessins au tableau",
+                "Affichage numérique"
+              ]
             },
             {
               "item": "Nouvelles cartes pépère",
               "quantity": "4-5 images de grands-pères divers",
               "source": "Banque d'images respectueuses des aînés",
               "preparation": "Images positives montrant vitalité et diversité culturelle",
-              "alternatives": ["Photos personnelles anonymes", "Illustrations de livres"]
+              "alternatives": [
+                "Photos personnelles anonymes",
+                "Illustrations de livres"
+              ]
             }
           ],
           "optional": []
@@ -328,7 +368,12 @@
         "decisionPoints": [
           "Si émotions profondes avec grands-parents (décès, distance) → adapter avec tendresse, parler des souvenirs heureux",
           "Si confusion 'mon' vs 'ma' → simplifier à 'ma famille' seulement",
-          "Si chanson trop longue → raccourcir aux mots principaux seulement"
+          "Si chanson trop longue → raccourcir aux mots principaux seulement",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -342,21 +387,31 @@
               "quantity": "25 feuilles 11x17 ou cartons",
               "source": "Matériel artistique - armoire arts plastiques",
               "preparation": "Préparer avec titre 'MA FAMILLE' déjà écrit en haut",
-              "alternatives": ["Papier construction grand format", "Dos de boîtes de céréales"]
+              "alternatives": [
+                "Papier construction grand format",
+                "Dos de boîtes de céréales"
+              ]
             },
             {
               "item": "Colle en bâton",
               "quantity": "12-15 bâtons pour partager",
               "source": "Matériel de classe standard",
               "preparation": "Vérifier qu'ils fonctionnent, prévoir partage",
-              "alternatives": ["Colle liquide en petites bouteilles", "Bandes adhésives"]
+              "alternatives": [
+                "Colle liquide en petites bouteilles",
+                "Bandes adhésives"
+              ]
             },
             {
               "item": "Images de familles ou alternatives créatives",
               "quantity": "Collection pour chaque élève (25 ensembles)",
               "source": "Banque d'images pédagogiques et matériel de classe",
               "preparation": "Prévoir options variées pour tous les élèves, respecter diversité familiale",
-              "alternatives": ["Dessins créés par les élèves", "Images de magazines familiaux", "Photos de familles diverses de la bibliothèque"]
+              "alternatives": [
+                "Dessins créés par les élèves",
+                "Images de magazines familiaux",
+                "Photos de familles diverses de la bibliothèque"
+              ]
             }
           ],
           "optional": [
@@ -385,7 +440,9 @@
               "quantity": "25 affiches personnalisées",
               "source": "Travaux créés pendant l'activité principale",
               "preparation": "Aider à finaliser si nécessaire",
-              "alternatives": ["Partage des travaux en cours"]
+              "alternatives": [
+                "Partage des travaux en cours"
+              ]
             }
           ],
           "optional": [
@@ -470,14 +527,19 @@
               "quantity": "25 affiches créées par les élèves",
               "source": "Travaux de la leçon précédente",
               "preparation": "Afficher à hauteur d'enfant, créer une 'galerie de familles'",
-              "alternatives": ["Photos dans des albums", "Affichage numérique rotatif"]
+              "alternatives": [
+                "Photos dans des albums",
+                "Affichage numérique rotatif"
+              ]
             },
             {
               "item": "Nouvelles images: familles diverses",
               "quantity": "15-20 photos supplémentaires",
               "source": "Collection soigneusement sélectionnée - diversité inclusive",
               "preparation": "Familles monoparentales, adoptives, culturellement diverses, différentes tailles",
-              "alternatives": ["Livres d'images sur la diversité familiale"]
+              "alternatives": [
+                "Livres d'images sur la diversité familiale"
+              ]
             }
           ],
           "optional": []
@@ -486,7 +548,12 @@
         "decisionPoints": [
           "Si un élève fait un commentaire négatif sur une famille → rediriger gentiment vers les aspects positifs et beaux",
           "Si question sur pourquoi les familles sont différentes → expliquer simplement que c'est naturel et merveilleux",
-          "Si émotion difficile (comparaison, tristesse) → valider et rappeler que chaque famille est parfaite pour ses membres"
+          "Si émotion difficile (comparaison, tristesse) → valider et rappeler que chaque famille est parfaite pour ses membres",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -500,14 +567,20 @@
               "quantity": "30-40 images soigneusement sélectionnées",
               "source": "Ressources pédagogiques inclusives - bibliothèque",
               "preparation": "Organiser par thèmes: tailles, cultures, structures, générations",
-              "alternatives": ["Livres d'images sur la diversité", "Vidéos courtes appropriées"]
+              "alternatives": [
+                "Livres d'images sur la diversité",
+                "Vidéos courtes appropriées"
+              ]
             },
             {
               "item": "Tableau de célébration",
               "quantity": "1 grand tableau ou affiche",
               "source": "Création enseignante - carton ou tableau",
               "preparation": "Titre: 'Toutes les familles sont BELLES!' avec espaces pour coller",
-              "alternatives": ["Mur d'affichage temporaire", "Nappe sur table"]
+              "alternatives": [
+                "Mur d'affichage temporaire",
+                "Nappe sur table"
+              ]
             }
           ],
           "optional": [
@@ -536,7 +609,9 @@
               "quantity": "25 affiches des élèves",
               "source": "Créations de la Leçon 3",
               "preparation": "Redéployer pour être accessibles à chaque élève",
-              "alternatives": ["Photos de famille alternatives si affiches indisponibles"]
+              "alternatives": [
+                "Photos de famille alternatives si affiches indisponibles"
+              ]
             }
           ],
           "optional": [
@@ -620,7 +695,10 @@
               "quantity": "12-15 cartes illustrées",
               "source": "Banque d'images activités quotidiennes - ressources pédagogiques",
               "preparation": "Sélectionner activités universelles et positives",
-              "alternatives": ["Objets réels pour mimer", "Dessins rapides au tableau"]
+              "alternatives": [
+                "Objets réels pour mimer",
+                "Dessins rapides au tableau"
+              ]
             }
           ],
           "optional": [
@@ -649,21 +727,30 @@
               "quantity": "Dinette miniature ou images de nourriture (30 pièces)",
               "source": "Coin jeu de la classe ou matériel dramatique",
               "preparation": "Organiser dans panier avec nappe pour 'pique-nique'",
-              "alternatives": ["Images plastifiées de repas", "Boîtes de nourriture vides"]
+              "alternatives": [
+                "Images plastifiées de repas",
+                "Boîtes de nourriture vides"
+              ]
             },
             {
               "item": "Matériel Station 2 (Jouer)",
               "quantity": "Jeux simples (dominos, blocs, balles souples) - 20 pièces",
               "source": "Ludothèque de classe ou emprunt",
               "preparation": "Sélectionner jeux sécuritaires pour manipulation",
-              "alternatives": ["Cartes de jeu imaginées", "Objets de texture variée"]
+              "alternatives": [
+                "Cartes de jeu imaginées",
+                "Objets de texture variée"
+              ]
             },
             {
               "item": "Matériel Station 3 (Regarder)",
               "quantity": "Albums photos ou livres d'images (8-10 livres)",
               "source": "Bibliothèque de classe - section familles",
               "preparation": "Choisir images positives de familles en activités",
-              "alternatives": ["Magazines familiaux appropriés", "Images numériques sur tablette"]
+              "alternatives": [
+                "Magazines familiaux appropriés",
+                "Images numériques sur tablette"
+              ]
             }
           ],
           "optional": [
@@ -692,7 +779,10 @@
               "quantity": "3 grandes cartes visuelles",
               "source": "Matériel utilisé pendant la leçon",
               "preparation": "Afficher visiblement pour support pendant spectacle",
-              "alternatives": ["Dessins au tableau", "Gestes de rappel seulement"]
+              "alternatives": [
+                "Dessins au tableau",
+                "Gestes de rappel seulement"
+              ]
             }
           ],
           "optional": [
@@ -776,14 +866,22 @@
               "quantity": "15-20 photos représentatives",
               "source": "Banque d'images architecture - bibliothèque pédagogique",
               "preparation": "Sélectionner diversité: maisons, appartements, condos, maisons mobiles",
-              "alternatives": ["Dessins simples au tableau", "Images numériques projetées"]
+              "alternatives": [
+                "Dessins simples au tableau",
+                "Images numériques projetées"
+              ]
             }
           ],
           "optional": []
         },
         "visualSupports": "Geste de toit avec les mains pour 'maison', bras ouverts pour accueil chaleureux",
         "decisionPoints": [
-          "Si un élève exprime gêne de son type d'habitation → souligner que l'amour rend toute maison spéciale"
+          "Si un élève exprime gêne de son type d'habitation → souligner que l'amour rend toute maison spéciale",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -797,21 +895,30 @@
               "quantity": "25 feuilles avec contour basic 4 pièces",
               "source": "Création enseignante ou modèles pédagogiques",
               "preparation": "Dessiner contours simples: cuisine, salon, chambre, salle de bain",
-              "alternatives": ["Boîtes à décorer comme pièces", "Dessin libre sur papier blanc"]
+              "alternatives": [
+                "Boîtes à décorer comme pièces",
+                "Dessin libre sur papier blanc"
+              ]
             },
             {
               "item": "Étiquettes pièces en français",
               "quantity": "100 étiquettes (4 mots x 25 élèves)",
               "source": "Création enseignante ou matériel prêfabriqué",
               "preparation": "'CUISINE', 'SALON', 'CHAMBRE', 'SALLE DE BAIN' en grosses lettres",
-              "alternatives": ["Les élèves copient les mots", "Utiliser autocollants avec images"]
+              "alternatives": [
+                "Les élèves copient les mots",
+                "Utiliser autocollants avec images"
+              ]
             },
             {
               "item": "Images activités-pièces",
               "quantity": "40 petites cartes à matcher",
               "source": "Matériel de la Leçon 5 adapté",
               "preparation": "Activités familières: manger/cuisine, regarder/salon, dormir/chambre",
-              "alternatives": ["Dessins rapides par les élèves", "Mime sans cartes"]
+              "alternatives": [
+                "Dessins rapides par les élèves",
+                "Mime sans cartes"
+              ]
             }
           ],
           "optional": [
@@ -838,7 +945,9 @@
               "quantity": "25 créations d'élèves",
               "source": "Travaux de l'activité principale",
               "preparation": "Aider à terminer si nécessaire",
-              "alternatives": ["Présentation des travaux en cours"]
+              "alternatives": [
+                "Présentation des travaux en cours"
+              ]
             }
           ],
           "optional": []
@@ -916,7 +1025,10 @@
               "quantity": "20-25 photos diverses et inclusives",
               "source": "Banque d'images respectueuses - ressources multiculturelles",
               "preparation": "Sélectionner: Noël, Hanukkah, Eid, Diwali, Nouvel An chinois, anniversaires, etc.",
-              "alternatives": ["Livres sur les fêtes du monde", "Images numériques culturelles"]
+              "alternatives": [
+                "Livres sur les fêtes du monde",
+                "Images numériques culturelles"
+              ]
             }
           ],
           "optional": []
@@ -937,21 +1049,30 @@
               "quantity": "25 feuilles format lettre",
               "source": "Matériel artistique standard",
               "preparation": "Préparer avec titre: 'Une tradition de ma famille'",
-              "alternatives": ["Pages pré-formatées avec cadres", "Carton plus solide"]
+              "alternatives": [
+                "Pages pré-formatées avec cadres",
+                "Carton plus solide"
+              ]
             },
             {
               "item": "Crayons de couleur variés",
               "quantity": "Sets complets pour partage",
               "source": "Matériel artistique de classe",
               "preparation": "Organiser en stations partagées",
-              "alternatives": ["Feutres lavables", "Crayons cire"]
+              "alternatives": [
+                "Feutres lavables",
+                "Crayons cire"
+              ]
             },
             {
               "item": "Grand album ou cartable pour collection",
               "quantity": "1 reliure de classe",
               "source": "Matériel de bureau ou création",
               "preparation": "Décorer couverture: 'Nos traditions familiales'",
-              "alternatives": ["Agrafage simple", "Présentation sur mur"]
+              "alternatives": [
+                "Agrafage simple",
+                "Présentation sur mur"
+              ]
             }
           ],
           "optional": [
@@ -978,7 +1099,9 @@
               "quantity": "1 collection de classe",
               "source": "Travaux créés pendant l'activité",
               "preparation": "Commencer à assembler pour montrer",
-              "alternatives": ["Affichage temporaire des dessins"]
+              "alternatives": [
+                "Affichage temporaire des dessins"
+              ]
             }
           ],
           "optional": []
@@ -1055,7 +1178,10 @@
               "quantity": "10 paires d'images séquentielles",
               "source": "Matériel pédagogique temporel",
               "preparation": "Images avant/après: bébé/enfant, petit/grand, etc.",
-              "alternatives": ["Dessins au tableau", "Photos personnelles anonymes"]
+              "alternatives": [
+                "Dessins au tableau",
+                "Photos personnelles anonymes"
+              ]
             }
           ],
           "optional": []
@@ -1076,14 +1202,20 @@
               "quantity": "25 livrets 3-4 pages",
               "source": "Création enseignante - papier plié et agrafé",
               "preparation": "Préparer format: HIER / AUJOURD'HUI / (DEMAIN)",
-              "alternatives": ["Feuilles simples à plier", "Pages séparées à assembler"]
+              "alternatives": [
+                "Feuilles simples à plier",
+                "Pages séparées à assembler"
+              ]
             },
             {
               "item": "Crayons et matériel de dessin",
               "quantity": "Sets complets pour création",
               "source": "Matériel artistique standard",
               "preparation": "Organiser en stations accessibles",
-              "alternatives": ["Collage avec images pré-découpées", "Combinaison dessin-collage"]
+              "alternatives": [
+                "Collage avec images pré-découpées",
+                "Combinaison dessin-collage"
+              ]
             }
           ],
           "optional": [
@@ -1110,7 +1242,9 @@
               "quantity": "25 mini-livres d'histoires",
               "source": "Travaux de l'activité principale",
               "preparation": "Aider à finaliser si nécessaire",
-              "alternatives": ["Partage des pages en cours"]
+              "alternatives": [
+                "Partage des pages en cours"
+              ]
             }
           ],
           "optional": []
@@ -1187,14 +1321,22 @@
               "quantity": "15 cartes avec images et mots",
               "source": "Matériel pédagogique - vocabulaire descriptif",
               "preparation": "Sélectionner termes positifs: grand, petit, gentil, joyeux, aimant",
-              "alternatives": ["Dessins au tableau avec gestes", "Images de magazines positives"]
+              "alternatives": [
+                "Dessins au tableau avec gestes",
+                "Images de magazines positives"
+              ]
             }
           ],
           "optional": []
         },
         "visualSupports": "Gestes respectueux pour taille (mains en hauteur), cœur pour gentillesse, sourires bienveillants",
         "decisionPoints": [
-          "Si commentaires inappropriés sur apparence → rediriger vers qualités intérieures et respect"
+          "Si commentaires inappropriés sur apparence → rediriger vers qualités intérieures et respect",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1208,14 +1350,19 @@
               "quantity": "50 cartes (2 per élève pour 2 membres famille)",
               "source": "Carton découpé ou cartes index",
               "preparation": "Format: IMAGE + MOT DESCRIPTIF + NOM",
-              "alternatives": ["Papier découpé format carte", "Feuilles pliées en cartes"]
+              "alternatives": [
+                "Papier découpé format carte",
+                "Feuilles pliées en cartes"
+              ]
             },
             {
               "item": "Matériel artistique pour décoration",
               "quantity": "Crayons, autocollants, matériel de base",
               "source": "Matériel créatif de classe",
               "preparation": "Organiser en stations d'accès facile",
-              "alternatives": ["Crayons seulement pour simplifier"]
+              "alternatives": [
+                "Crayons seulement pour simplifier"
+              ]
             }
           ],
           "optional": [
@@ -1242,7 +1389,9 @@
               "quantity": "Collection de cartes familiales",
               "source": "Travaux de l'activité principale",
               "preparation": "Aider à finaliser pour présentation",
-              "alternatives": ["Présentation des travaux en cours"]
+              "alternatives": [
+                "Présentation des travaux en cours"
+              ]
             }
           ],
           "optional": []
@@ -1319,14 +1468,22 @@
               "quantity": "12 cartes avec visages expressifs",
               "source": "Matériel pédagogique - émotions",
               "preparation": "Sélectionner: heureux, content, aimé, en sécurité, fiér",
-              "alternatives": ["Dessins d'émotions au tableau", "Miroir pour faire faces"]
+              "alternatives": [
+                "Dessins d'émotions au tableau",
+                "Miroir pour faire faces"
+              ]
             }
           ],
           "optional": []
         },
         "visualSupports": "Expressions faciales très claires, gestes du cœur pour 'aimé', sourire pour 'heureux', bras croisés pour 'content'",
         "decisionPoints": [
-          "Si émotions difficiles mentionnées → valider et rediriger vers moments heureux, offrir soutien individuel au besoin"
+          "Si émotions difficiles mentionnées → valider et rediriger vers moments heureux, offrir soutien individuel au besoin",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1340,21 +1497,28 @@
               "quantity": "25 modèles avec centre + 5-6 pétales",
               "source": "Création enseignante - carton découpé",
               "preparation": "Prédécouper formes, centre = 'MA FAMILLE', pétales = émotions",
-              "alternatives": ["Dessin de fleurs simples", "Soleil avec rayons au lieu de fleur"]
+              "alternatives": [
+                "Dessin de fleurs simples",
+                "Soleil avec rayons au lieu de fleur"
+              ]
             },
             {
               "item": "Matériel de décoration coloré",
               "quantity": "Crayons, feutres, autocollants joyeux",
               "source": "Matériel artistique de classe",
               "preparation": "Privilégier couleurs vives et positives",
-              "alternatives": ["Crayons de couleur seulement"]
+              "alternatives": [
+                "Crayons de couleur seulement"
+              ]
             },
             {
               "item": "Mots d'émotions pré-écrits",
               "quantity": "125 étiquettes (5 mots x 25 élèves)",
               "source": "Préparation enseignante",
               "preparation": "'HEUREUX', 'CONTENT', 'AIMÉ', 'EN SÉCURITÉ', 'FIER'",
-              "alternatives": ["Les élèves dessinent émotions au lieu d'écrire"]
+              "alternatives": [
+                "Les élèves dessinent émotions au lieu d'écrire"
+              ]
             }
           ],
           "optional": [
@@ -1381,7 +1545,9 @@
               "quantity": "25 créations d'élèves",
               "source": "Travaux de l'activité principale",
               "preparation": "Aider à finaliser pour célébration",
-              "alternatives": ["Partage des travaux en cours"]
+              "alternatives": [
+                "Partage des travaux en cours"
+              ]
             }
           ],
           "optional": []
@@ -1458,14 +1624,22 @@
               "quantity": "5-6 modèles variés",
               "source": "Créations d'élèves précédents ou création enseignante",
               "preparation": "Variété de styles: dessins, photos, collages, différentes tailles",
-              "alternatives": ["Livres commerciaux sur les familles", "Création d'exemple simple"]
+              "alternatives": [
+                "Livres commerciaux sur les familles",
+                "Création d'exemple simple"
+              ]
             }
           ],
           "optional": []
         },
         "visualSupports": "Gestes d'écriture et création, expressions d'excitement créatif, modèles inspirants",
         "decisionPoints": [
-          "Si les élèves semblent intimidés par la complexité → souligner que chaque livre sera unique et parfait"
+          "Si les élèves semblent intimidés par la complexité → souligner que chaque livre sera unique et parfait",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1479,21 +1653,29 @@
               "quantity": "25 cahiers de 8-10 pages ou équivalent en feuilles",
               "source": "Matériel scolaire - fournitures de base",
               "preparation": "Préparer format livre: couverture + 6-8 pages intérieures",
-              "alternatives": ["Feuilles agrafées", "Cahiers de brouillon réutilisés"]
+              "alternatives": [
+                "Feuilles agrafées",
+                "Cahiers de brouillon réutilisés"
+              ]
             },
             {
               "item": "Matériel d'écriture et art",
               "quantity": "Crayons, feutres, colle, ciseaux sécuritaires",
               "source": "Matériel artistique standard de classe",
               "preparation": "Organiser en stations d'accès facile et sécuritaire",
-              "alternatives": ["Crayons et papier seulement pour simplifier"]
+              "alternatives": [
+                "Crayons et papier seulement pour simplifier"
+              ]
             },
             {
               "item": "Banque de mots famille en français",
               "quantity": "25 feuilles de référence",
               "source": "Création enseignante - compilation vocabulaire unité",
               "preparation": "Tous mots appris: famille, maman, papa, frère, sœur, etc.",
-              "alternatives": ["Affichage mural des mots", "Cartes à copier"]
+              "alternatives": [
+                "Affichage mural des mots",
+                "Cartes à copier"
+              ]
             }
           ],
           "optional": [
@@ -1520,7 +1702,9 @@
               "quantity": "25 projets d'élèves",
               "source": "Travaux de l'activité principale",
               "preparation": "Aider à finaliser couvertures pour présentation",
-              "alternatives": ["Présentation des projets en cours même incomplets"]
+              "alternatives": [
+                "Présentation des projets en cours même incomplets"
+              ]
             }
           ],
           "optional": []
@@ -1597,14 +1781,19 @@
               "quantity": "1 grand exemple visuel",
               "source": "Plante de classe ou grande image d'arbre",
               "preparation": "Pointer branches (parents) et nouvelles pousses (enfants)",
-              "alternatives": ["Dessin d'arbre au tableau", "Gestes avec bras comme branches"]
+              "alternatives": [
+                "Dessin d'arbre au tableau",
+                "Gestes avec bras comme branches"
+              ]
             },
             {
               "item": "Exemple d'arbre généalogique simple",
               "quantity": "1 modèle de démonstration",
               "source": "Création enseignante - famille fictive",
               "preparation": "3 niveaux maximum: grands-parents, parents, enfants",
-              "alternatives": ["Arbre très simple avec formes au tableau"]
+              "alternatives": [
+                "Arbre très simple avec formes au tableau"
+              ]
             }
           ],
           "optional": []
@@ -1625,21 +1814,29 @@
               "quantity": "25 modèles variés",
               "source": "Création enseignante - différents formats",
               "preparation": "Formats: arbre traditionnel, soleil avec rayons, fleur, maison",
-              "alternatives": ["Feuilles vierges pour dessin libre", "Formes géométriques à connecter"]
+              "alternatives": [
+                "Feuilles vierges pour dessin libre",
+                "Formes géométriques à connecter"
+              ]
             },
             {
               "item": "Photos ou dessins de membres famille",
               "quantity": "Collection pour chaque élève",
               "source": "Contributions familiales ou dessins d'élèves",
               "preparation": "Tailles adaptées pour collage sur templates",
-              "alternatives": ["Dessins directs sur template", "Formes découpées à décorer"]
+              "alternatives": [
+                "Dessins directs sur template",
+                "Formes découpées à décorer"
+              ]
             },
             {
               "item": "Matériel de décoration",
               "quantity": "Colle, crayons, autocollants",
               "source": "Matériel artistique standard",
               "preparation": "Organiser pour accès facile et partage",
-              "alternatives": ["Crayons seulement pour simplifier"]
+              "alternatives": [
+                "Crayons seulement pour simplifier"
+              ]
             }
           ],
           "optional": [
@@ -1666,7 +1863,9 @@
               "quantity": "25 créations d'élèves",
               "source": "Travaux de l'activité principale",
               "preparation": "Aider à finaliser pour exposition temporaire",
-              "alternatives": ["Présentation en cercle avec arbres"]
+              "alternatives": [
+                "Présentation en cercle avec arbres"
+              ]
             }
           ],
           "optional": []
@@ -1743,14 +1942,22 @@
               "quantity": "1 démonstration enseignante",
               "source": "Création enseignante - famille fictive ou personnelle",
               "preparation": "Préparer courte présentation modèle avec supports visuels",
-              "alternatives": ["Vidéo d'élève de l'année précédente", "Marionnette présentant sa famille"]
+              "alternatives": [
+                "Vidéo d'élève de l'année précédente",
+                "Marionnette présentant sa famille"
+              ]
             }
           ],
           "optional": []
         },
         "visualSupports": "Gestes de présentation clairs, posture confiante, expressions engageantes",
         "decisionPoints": [
-          "Si anxiété visible chez certains élèves → rassurer sur support et acceptation de toutes tentatives"
+          "Si anxiété visible chez certains élèves → rassurer sur support et acceptation de toutes tentatives",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1764,14 +1971,19 @@
               "quantity": "Collection des projets créés (affiches, livres, arbres)",
               "source": "Travaux accumulés des leçons précédentes",
               "preparation": "Rassembler tous travaux, permettre choix de ce à présenter",
-              "alternatives": ["Un seul type de travail si autres non disponibles"]
+              "alternatives": [
+                "Un seul type de travail si autres non disponibles"
+              ]
             },
             {
               "item": "Phrases d'aide pour présentation",
               "quantity": "25 cartes de référence",
               "source": "Création enseignante",
               "preparation": "'Voici ma famille', 'Je vais vous montrer', 'Ma famille est spéciale parce que'",
-              "alternatives": ["Affichage mural de phrases modèles", "Support oral seulement"]
+              "alternatives": [
+                "Affichage mural de phrases modèles",
+                "Support oral seulement"
+              ]
             }
           ],
           "optional": [
@@ -1798,7 +2010,10 @@
               "quantity": "1 grand affichage 'VOICI MA FAMILLE!'",
               "source": "Création enseignante",
               "preparation": "Affichage visible et encourageant",
-              "alternatives": ["Écriture au tableau", "Gestes seulement sans texte"]
+              "alternatives": [
+                "Écriture au tableau",
+                "Gestes seulement sans texte"
+              ]
             }
           ],
           "optional": []
@@ -1875,14 +2090,20 @@
               "quantity": "Banderoles, ballons, ou éléments festifs simples",
               "source": "Matériel de fête de classe ou création simple",
               "preparation": "Installer avant arrêvée des élèves pour surprise",
-              "alternatives": ["Décoration minimale avec travaux d'élèves", "Ambiance spéciale sans décoration"]
+              "alternatives": [
+                "Décoration minimale avec travaux d'élèves",
+                "Ambiance spéciale sans décoration"
+              ]
             },
             {
               "item": "Chaise ou espace présentateur spécial",
               "quantity": "1 espace mis en valeur",
               "source": "Chaise de classe décorée ou coussin spécial",
               "preparation": "Créer espace honoré pour présentations",
-              "alternatives": ["Tapis spécial", "Marquage au sol coloré"]
+              "alternatives": [
+                "Tapis spécial",
+                "Marquage au sol coloré"
+              ]
             }
           ],
           "optional": [
@@ -1897,8 +2118,13 @@
         "decisionPoints": [
           "Si les élèves semblent nerveux pour les présentations → commencer par des applaudissements d'encouragement",
           "Si l'installation prend trop de temps → impliquer les élèves dans la décoration",
-          "Si certains élèves sont absents → garder leur travail pour célébration ultérieure"
-        ]
+          "Si certains élèves sont absents → garder leur travail pour célébration ultérieure",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
         "movementBreaks": []
       },
       "main": {
@@ -1911,14 +2137,18 @@
               "quantity": "Collection complète des créations d'unité",
               "source": "Accumulation de toutes les leçons",
               "preparation": "Organiser pour accès facile et choix d'élèves",
-              "alternatives": ["Sélection de meilleurs travaux si trop nombreux"]
+              "alternatives": [
+                "Sélection de meilleurs travaux si trop nombreux"
+              ]
             },
             {
               "item": "Système d'encouragement",
               "quantity": "Applaudissements organisés, phrases d'encouragement",
               "source": "Animation enseignante et participation classe",
               "preparation": "Préparer atmosphère bienveillante et célébration positive",
-              "alternatives": ["Gestes silencieux si niveau sonore problématique"]
+              "alternatives": [
+                "Gestes silencieux si niveau sonore problématique"
+              ]
             }
           ],
           "optional": [
@@ -1945,7 +2175,9 @@
               "quantity": "1 grande banderole ou affichage",
               "source": "Création pour célébration",
               "preparation": "'NOS FAMILLES SONT BELLES ET SPÉCIALES!'",
-              "alternatives": ["Répétition orale sans support visuel"]
+              "alternatives": [
+                "Répétition orale sans support visuel"
+              ]
             }
           ],
           "optional": []
@@ -2020,7 +2252,10 @@
               "quantity": "Collection variée: chapeaux, foulards, sacs, lunettes",
               "source": "Coin dramatique de classe ou contributions",
               "preparation": "Organiser en stations d'accès facile, vérifier sécurité",
-              "alternatives": ["Accessoires improvisorés", "Jeu imaginaire sans props"]
+              "alternatives": [
+                "Accessoires improvisorés",
+                "Jeu imaginaire sans props"
+              ]
             }
           ],
           "optional": []
@@ -2041,14 +2276,18 @@
               "quantity": "3-4 zones: cuisine, salon, chambre, jardin (imaginaires)",
               "source": "Réorganisation temporaire de classe",
               "preparation": "Délimiter espaces avec tapis ou marquage au sol",
-              "alternatives": ["Jeu en cercle sans espaces spécifiques"]
+              "alternatives": [
+                "Jeu en cercle sans espaces spécifiques"
+              ]
             },
             {
               "item": "Cartes scénario famille optionnelles",
               "quantity": "10-15 suggestions d'activités familiales",
               "source": "Création enseignante",
               "preparation": "'Préparer le souper', 'Lire une histoire', 'Jouer ensemble'",
-              "alternatives": ["Jeu complètement libre sans scénarios"]
+              "alternatives": [
+                "Jeu complètement libre sans scénarios"
+              ]
             }
           ],
           "optional": []
@@ -2176,7 +2415,10 @@
               "quantity": "3-4 modèles variés",
               "source": "Albums personnels enseignant ou empruntés respectueusement",
               "preparation": "Sélectionner exemples appropriés et inspirants",
-              "alternatives": ["Albums créés comme exemples", "Images d'albums en ligne"]
+              "alternatives": [
+                "Albums créés comme exemples",
+                "Images d'albums en ligne"
+              ]
             }
           ],
           "optional": []
@@ -2199,21 +2441,29 @@
               "quantity": "25 livrets ou ensembles de pages",
               "source": "Matériel créatif ou cahiers simples",
               "preparation": "Format permettant insertion photos et écriture légendes",
-              "alternatives": ["Feuilles cartonnées assemblées", "Cahiers de brouillon repurposés"]
+              "alternatives": [
+                "Feuilles cartonnées assemblées",
+                "Cahiers de brouillon repurposés"
+              ]
             },
             {
               "item": "Photos familiales ou alternatives",
               "quantity": "Collection pour chaque élève",
               "source": "Contributions familiales ou images génériques appropriees",
               "preparation": "Assurer accès équitable et respectueux pour tous",
-              "alternatives": ["Dessins par élèves au lieu photos", "Combinaison photos-dessins"]
+              "alternatives": [
+                "Dessins par élèves au lieu photos",
+                "Combinaison photos-dessins"
+              ]
             },
             {
               "item": "Matériel d'art et écriture",
               "quantity": "Colle, crayons, feutres pour décoration",
               "source": "Matériel artistique standard",
               "preparation": "Organiser en stations d'accès facile",
-              "alternatives": ["Matériel minimal: crayons et colle seulement"]
+              "alternatives": [
+                "Matériel minimal: crayons et colle seulement"
+              ]
             }
           ],
           "optional": []
@@ -2236,7 +2486,9 @@
               "quantity": "25 projets d'élèves",
               "source": "Travaux de l'activité principale",
               "preparation": "Aider à sélectionner page à partager",
-              "alternatives": ["Partage de travaux en cours même incomplets"]
+              "alternatives": [
+                "Partage de travaux en cours même incomplets"
+              ]
             }
           ],
           "optional": []
@@ -2351,7 +2603,10 @@
               "quantity": "10-12 questions simples en français",
               "source": "Création enseignante",
               "preparation": "'Qui est dans ta famille?', 'Qu'est-ce que tu aimes faire ensemble?'",
-              "alternatives": ["Questions écrites au tableau", "Questions mémorisées"]
+              "alternatives": [
+                "Questions écrites au tableau",
+                "Questions mémorisées"
+              ]
             }
           ],
           "optional": []
@@ -2360,7 +2615,12 @@
         "decisionPoints": [
           "Si les élèves posent des questions trop personnelles → rediriger vers les questions générales appropriées",
           "Si manque d'engagement pour les questions → modeler avec enthousiasme les questions simples",
-          "Si trop de questions simultanées → utiliser la règle 'une question à la fois' avec gestes"
+          "Si trop de questions simultanées → utiliser la règle 'une question à la fois' avec gestes",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -2374,7 +2634,9 @@
               "quantity": "Carnets, 'micros' improvisorés (bouteilles, rouleaux)",
               "source": "Matériel recyclable ou coin dramatique",
               "preparation": "Créer ambiance professionnelle ludique",
-              "alternatives": ["Jeu imaginaire sans accessoires"]
+              "alternatives": [
+                "Jeu imaginaire sans accessoires"
+              ]
             }
           ],
           "optional": []
@@ -2504,14 +2766,21 @@
               "quantity": "1 grande carte visible",
               "source": "Matériel géographique de classe",
               "preparation": "Afficher à hauteur d'élèves, préparer marquage de pays",
-              "alternatives": ["Dessin au tableau", "Globe terrestre", "Images de pays"]
+              "alternatives": [
+                "Dessin au tableau",
+                "Globe terrestre",
+                "Images de pays"
+              ]
             },
             {
               "item": "Photos familles multiculturelles",
               "quantity": "15-20 images diverses et respectueuses",
               "source": "Ressources pédagogiques multiculturelles",
               "preparation": "Sélectionner représentations positives de cultures variées",
-              "alternatives": ["Livres sur familles du monde", "Ressources numériques"]
+              "alternatives": [
+                "Livres sur familles du monde",
+                "Ressources numériques"
+              ]
             }
           ],
           "optional": []
@@ -2520,7 +2789,12 @@
         "decisionPoints": [
           "Si les élèves font des commentaires non respectueux → rediriger vers la beauté des différences",
           "Si manque d'engagement pour les cultures diverses → partager avec enthousiasme personnel",
-          "Si certains élèves se sentent exclus → valoriser explicitement leur propre héritage familial"
+          "Si certains élèves se sentent exclus → valoriser explicitement leur propre héritage familial",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -2534,7 +2808,10 @@
               "quantity": "Variété représentant continents et traditions",
               "source": "Ressources éducatives respectueuses",
               "preparation": "Organiser par thèmes: repas, célébrations, maisons, vêtements",
-              "alternatives": ["Livres illustrés multiculturels", "Vidéos courtes appropriées"]
+              "alternatives": [
+                "Livres illustrés multiculturels",
+                "Vidéos courtes appropriées"
+              ]
             }
           ],
           "optional": [
@@ -2563,7 +2840,9 @@
               "quantity": "Affichage central pour activité",
               "source": "Matériel de l'ouverture",
               "preparation": "Accessible pour pointage collectif",
-              "alternatives": ["Gestes vers directions géographiques"]
+              "alternatives": [
+                "Gestes vers directions géographiques"
+              ]
             }
           ],
           "optional": []
@@ -2678,7 +2957,10 @@
               "quantity": "1-2 chansons courtes avec supports visuels",
               "source": "Ressources musicales éducatives françaises",
               "preparation": "Sélectionner mélodies simples avec vocabulaire familial",
-              "alternatives": ["Adaptation de chansons connues", "Création collective simple"]
+              "alternatives": [
+                "Adaptation de chansons connues",
+                "Création collective simple"
+              ]
             }
           ],
           "optional": [
@@ -2707,14 +2989,19 @@
               "quantity": "Source musicale pour modélage",
               "source": "Enregistrements ou compétence vocale enseignant",
               "preparation": "Préparer mélodies et rythmes accessibles",
-              "alternatives": ["Chant a cappella", "Rythme seulement avec percussions"]
+              "alternatives": [
+                "Chant a cappella",
+                "Rythme seulement avec percussions"
+              ]
             },
             {
               "item": "Cartes mouvements et gestes",
               "quantity": "Actions correspondant aux paroles",
               "source": "Création enseignante",
               "preparation": "Gestes simples pour vocabulary: famille, maman, papa, etc.",
-              "alternatives": ["Improvisation collective de mouvements"]
+              "alternatives": [
+                "Improvisation collective de mouvements"
+              ]
             }
           ],
           "optional": []
@@ -2735,7 +3022,9 @@
               "quantity": "Support visuel pour performance",
               "source": "Matériel de l'activité principale",
               "preparation": "Affichage visible pour tous",
-              "alternatives": ["Performance mémorisée sans support"]
+              "alternatives": [
+                "Performance mémorisée sans support"
+              ]
             }
           ],
           "optional": []
@@ -2850,14 +3139,19 @@
               "quantity": "Collection complète: affiches, livres, arbres, albums, etc.",
               "source": "Accumulation de toutes les 19 leçons précédentes",
               "preparation": "Organiser chronologiquement ou thématiquement pour exposition",
-              "alternatives": ["Sélection des meilleurs travaux si trop volumineux"]
+              "alternatives": [
+                "Sélection des meilleurs travaux si trop volumineux"
+              ]
             },
             {
               "item": "Matériel exposition",
               "quantity": "Tables, tableaux d'affichage, supports présentation",
               "source": "Mobilier de classe réorganisé",
               "preparation": "Créer espaces d'exposition accessibles et attrayants",
-              "alternatives": ["Affichage mural simple", "Organisation au sol sur tapis"]
+              "alternatives": [
+                "Affichage mural simple",
+                "Organisation au sol sur tapis"
+              ]
             }
           ],
           "optional": [
@@ -2872,7 +3166,12 @@
         "decisionPoints": [
           "Si l'installation prend trop de temps → impliquer les élèves comme assistants organisateurs",
           "Si l'espace est insuffisant → adapter avec une exposition murale ou rotation",
-          "Si certains travaux sont fragiles → créer des zones de protection avec cordons ou supports"
+          "Si certains travaux sont fragiles → créer des zones de protection avec cordons ou supports",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -2886,14 +3185,18 @@
               "quantity": "Circuit logique à travers travaux et apprentissages",
               "source": "Organisation enseignante avec aide élèves",
               "preparation": "Créer progression narrative de l'unité",
-              "alternatives": ["Exploration libre sans parcours structuré"]
+              "alternatives": [
+                "Exploration libre sans parcours structuré"
+              ]
             },
             {
               "item": "Timeline vocabulaire appris",
               "quantity": "Affichage montrant progression linguistique",
               "source": "Compilation de tout vocabulaire de l'unité",
               "preparation": "Organiser par leçons ou thèmes",
-              "alternatives": ["Récitation collective sans support visuel"]
+              "alternatives": [
+                "Récitation collective sans support visuel"
+              ]
             }
           ],
           "optional": [
@@ -2920,7 +3223,9 @@
               "quantity": "Zone pour réflexion collective",
               "source": "Cercle ou espace central de classe",
               "preparation": "Espace permettant vue d'ensemble de l'exposition",
-              "alternatives": ["Réflexion en mouvement à travers exposition"]
+              "alternatives": [
+                "Réflexion en mouvement à travers exposition"
+              ]
             }
           ],
           "optional": [

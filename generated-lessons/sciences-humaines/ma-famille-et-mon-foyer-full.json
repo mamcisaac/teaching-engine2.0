@@ -15,7 +15,8 @@
       "keyVocabulary": [
         "famille",
         "différent",
-        "spécial"
+        "spécial",
+        "unique"
       ],
       "opening": {
         "duration": 8,
@@ -29,7 +30,12 @@
         "decisionPoints": [
           "Si un élève dit qu'il n'a pas de famille traditionnelle → célébrer que toutes les familles sont différentes et spéciales, utiliser des exemples variés de ma famille",
           "Si un élève semble gêné de sa situation familiale → rassurer que chaque famille est parfaite comme elle est, rediriger vers les aspects positifs",
-          "Si un élève ne veut pas partager → respecter sa confidentialité et offrir l'option d'écouter seulement"
+          "Si un élève ne veut pas partager → respecter sa confidentialité et offrir l'option d'écouter seulement",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -40,7 +46,8 @@
           "diverse family books",
           "family structure photos",
           "gallery wall space",
-          "art supplies"
+          "art supplies",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Pointing to different family types with equal celebration, diversity hand gestures, appreciation expressions",
         "decisionPoints": [
@@ -86,8 +93,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       }
     },
     {
@@ -113,7 +130,12 @@
         "decisionPoints": [
           "Si un élève a de la difficulté à dire qu'il est fier de sa famille → l'encourager à commencer par 'J'aime ma famille' comme alternative",
           "Si un élève semble inquiet de sa situation familiale → rappeler que toutes les familles sont différentes et spéciales",
-          "Si un élève ne veut pas utiliser le miroir → respecter son choix et offrir de faire l'activité sans miroir"
+          "Si un élève ne veut pas utiliser le miroir → respecter son choix et offrir de faire l'activité sans miroir",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -124,7 +146,8 @@
           "art supplies",
           "family template options",
           "puppet materials",
-          "story-sharing space"
+          "story-sharing space",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Creative expression gestures, family love symbols, celebration movements",
         "decisionPoints": [
@@ -222,7 +245,12 @@
         "decisionPoints": [
           "Si un élève n'a pas certains membres familiaux traditionnels → encourager à montrer les personnes qui s'occupent de lui avec amour",
           "Si un élève semble confus par les rôles familiaux → expliquer que chaque famille organise les rôles différemment",
-          "Si un élève ne veut pas participer aux mouvements → l'inviter à être le devineur spécial"
+          "Si un élève ne veut pas participer aux mouvements → l'inviter à être le devineur spécial",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -233,7 +261,8 @@
           "family tree templates",
           "relationship circles",
           "photo spaces",
-          "connecting lines"
+          "connecting lines",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Connection gestures, relationship pointing, family bond symbols",
         "decisionPoints": [
@@ -331,7 +360,12 @@
         "decisionPoints": [
           "Si un élève dit que sa famille ne fait pas de travaux traditionnels → élargir la définition pour inclure jouer, parler, et prendre soin l'un de l'autre",
           "Si un élève semble gêné par les tâches de sa famille → souligner que chaque famille organise les responsabilités différemment",
-          "Si un élève ne veut pas agir certaines activités → lui offrir le rôle de devineur spécial ou d'encourageur"
+          "Si un élève ne veut pas agir certaines activités → lui offrir le rôle de devineur spécial ou d'encourageur",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -342,7 +376,8 @@
           "wheel templates",
           "contribution examples",
           "family work pictures",
-          "celebration stickers"
+          "celebration stickers",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Circular motion for wheel, helping gestures, appreciation movements",
         "decisionPoints": [
@@ -440,7 +475,12 @@
         "decisionPoints": [
           "Si un élève a de la difficulté à identifier des soins reçus → l'aider avec des exemples universels comme manger ensemble ou dormir en sécurité",
           "Si un élève devient émotionnel en pensant aux soins familiaux → offrir du réconfort et valider que se sentir aimé est important",
-          "Si un élève semble inquiet de sa situation → rappeler que chaque famille montre l'amour à sa façon spéciale"
+          "Si un élève semble inquiet de sa situation → rappeler que chaque famille montre l'amour à sa façon spéciale",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -451,7 +491,8 @@
           "care category cards",
           "mapping materials",
           "care symbols",
-          "appreciation materials"
+          "appreciation materials",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Care-giving motions, protection gestures, love symbols",
         "decisionPoints": [
@@ -549,7 +590,12 @@
         "decisionPoints": [
           "Si un élève dit qu'il n'aide pas sa famille → l'aider à identifier des petites façons comme sourire, obéir, ou être gentil",
           "Si un élève se sent trop petit pour aider → souligner que même les plus petits membres de famille sont des helpers importants",
-          "Si un élève ne veut pas faire la pose de super-héros → lui offrir d'autres façons de montrer sa fierté d'être un helper"
+          "Si un élève ne veut pas faire la pose de super-héros → lui offrir d'autres façons de montrer sa fierté d'être un helper",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -560,7 +606,8 @@
           "contribution books",
           "helper examples",
           "family impact pictures",
-          "celebration materials"
+          "celebration materials",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Helping hand gestures, contribution movements, impact symbols",
         "decisionPoints": [
@@ -658,7 +705,12 @@
         "decisionPoints": [
           "Si un élève fait des commentaires négatifs sur la famille d'un ami → rediriger doucement vers la curiosité et rappeler que toutes les familles sont spéciales",
           "Si un élève semble jaloux des familles de ses amis → valider ses sentiments et rappeler ce qui rend sa propre famille unique",
-          "Si un élève ne veut pas parler des familles de ses amis → respecter sa préférence et l'inviter à simplement écouter avec appréciation"
+          "Si un élève ne veut pas parler des familles de ses amis → respecter sa préférence et l'inviter à simplement écouter avec appréciation",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -669,7 +721,8 @@
           "anonymous sharing system",
           "diversity chart",
           "celebration materials",
-          "variety symbols"
+          "variety symbols",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Diversity gestures, celebration movements, inclusion symbols",
         "decisionPoints": [
@@ -767,7 +820,12 @@
         "decisionPoints": [
           "Si un élève dit que sa famille n'a pas de traditions → l'aider à identifier des petites habitudes comme les repas ensemble ou les histoires avant le coucher",
           "Si un élève semble gêné par les traditions de sa famille → souligner que chaque famille crée ses propres façons spéciales de faire les choses",
-          "Si un élève ne veut pas partager ses traditions → respecter sa confidentialité et l'inviter à simplement écouter les autres"
+          "Si un élève ne veut pas partager ses traditions → respecter sa confidentialité et l'inviter à simplement écouter les autres",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -778,7 +836,8 @@
           "tradition creation materials",
           "gallery space",
           "tradition categories",
-          "celebration supplies"
+          "celebration supplies",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Tradition gestures, celebration movements, memory symbols",
         "decisionPoints": [
@@ -824,8 +883,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       }
     },
     {
@@ -851,7 +920,12 @@
         "decisionPoints": [
           "Si un élève ne veut pas danser ou célébrer → respecter son style et l'inviter à bouger doucement ou à regarder avec appréciation",
           "Si un élève dit que sa famille ne célèbre jamais → l'aider à identifier de petits moments de joie comme rire ensemble",
-          "Si un élève devient trop excité par la célébration → offrir un moment de calme et de respiration profonde"
+          "Si un élève devient trop excité par la célébration → offrir un moment de calme et de respiration profonde",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -862,7 +936,8 @@
           "celebration creation materials",
           "showcase space",
           "joy symbols",
-          "family celebration examples"
+          "family celebration examples",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Celebration movements, joy expressions, family happiness symbols",
         "decisionPoints": [
@@ -908,8 +983,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       }
     },
     {
@@ -935,7 +1020,12 @@
         "decisionPoints": [
           "Si un élève a des restrictions alimentaires ou ne mange pas certains aliments → célébrer la diversité alimentaire et se concentrer sur le partage",
           "Si un élève semble gêné par sa nourriture familiale → souligner que toutes les traditions alimentaires sont spéciales et délicieuses",
-          "Si un élève ne mange pas souvent en famille → élargir la définition pour inclure tout moment de partage de nourriture"
+          "Si un élève ne mange pas souvent en famille → élargir la définition pour inclure tout moment de partage de nourriture",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -946,7 +1036,8 @@
           "food tradition materials",
           "family meal examples",
           "sharing symbols",
-          "cultural food pictures"
+          "cultural food pictures",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Food sharing gestures, cultural appreciation movements, family meal symbols",
         "decisionPoints": [
@@ -992,8 +1083,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       }
     },
     {
@@ -1019,7 +1120,12 @@
         "decisionPoints": [
           "Si un élève semble gêné par sa situation de logement → souligner que l'amour familial fait un vrai foyer, peu importe l'endroit",
           "Si un élève compare sa maison négativement aux autres → rappeler que ce qui compte c'est la famille qui s'aime, pas le bâtiment",
-          "Si un élève ne veut pas parler de son foyer → respecter sa confidentialité et se concentrer sur les sentiments universels de sécurité"
+          "Si un élève ne veut pas parler de son foyer → respecter sa confidentialité et se concentrer sur les sentiments universels de sécurité",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1030,7 +1136,8 @@
           "home creation materials",
           "feeling symbols",
           "family space examples",
-          "belonging representations"
+          "belonging representations",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Home comfort gestures, family space symbols, belonging movements",
         "decisionPoints": [
@@ -1076,8 +1183,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       }
     },
     {
@@ -1103,7 +1220,12 @@
         "decisionPoints": [
           "Si un élève n'a pas d'espace spécial fixe → l'aider à identifier n'importe quel endroit où sa famille se sent unie, même temporaire",
           "Si un élève semble gêné par ses espaces familiaux → rappeler que l'amour familial rend n'importe quel espace spécial",
-          "Si un élève ne veut pas partager ses espaces → respecter sa confidentialité et l'inviter à penser silencieusement à des souvenirs heureux"
+          "Si un élève ne veut pas partager ses espaces → respecter sa confidentialité et l'inviter à penser silencieusement à des souvenirs heureux",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1114,7 +1236,8 @@
           "space creation materials",
           "memory symbols",
           "family togetherness examples",
-          "connection representations"
+          "connection representations",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Family togetherness gestures, memory symbols, special space movements",
         "decisionPoints": [
@@ -1160,8 +1283,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       }
     },
     {
@@ -1187,7 +1320,12 @@
         "decisionPoints": [
           "Si un élève dit que sa famille ne communique pas beaucoup → l'aider à identifier des petites façons comme les regards, sourires ou gestes",
           "Si un élève semble inquiet de la communication familiale → souligner que chaque famille a sa propre façon de montrer l'amour",
-          "Si un élève ne veut pas pratiquer la communication → respecter son choix et l'inviter à observer les autres avec appréciation"
+          "Si un élève ne veut pas pratiquer la communication → respecter son choix et l'inviter à observer les autres avec appréciation",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1198,7 +1336,8 @@
           "communication creation materials",
           "expression examples",
           "family connection symbols",
-          "sharing representations"
+          "sharing representations",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Communication gestures, family connection movements, sharing symbols",
         "decisionPoints": [
@@ -1244,8 +1383,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       }
     },
     {
@@ -1271,7 +1420,12 @@
         "decisionPoints": [
           "Si un élève dit que sa famille ne connaît personne dans la communauté → rappeler que l'école est une communauté et que les connexions grandissent avec le temps",
           "Si un élève semble gêné par l'isolement de sa famille → souligner que chaque famille commence quelque part et crée des connexions à son rythme",
-          "Si un élève ne veut pas parler de sa communauté → respecter sa confidentialité et se concentrer sur l'idée générale de communauté"
+          "Si un élève ne veut pas parler de sa communauté → respecter sa confidentialité et se concentrer sur l'idée générale de communauté",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1282,7 +1436,8 @@
           "community web materials",
           "connection symbols",
           "family contribution examples",
-          "community strength representations"
+          "community strength representations",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Web connection gestures, community building movements, contribution symbols",
         "decisionPoints": [
@@ -1328,8 +1483,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       }
     },
     {
@@ -1355,7 +1520,12 @@
         "decisionPoints": [
           "Si un élève dit que son histoire familiale n'est pas intéressante → souligner que chaque famille a une histoire unique et précieuse à célébrer",
           "Si un élève semble inquiet de créer son livre → rassurer qu'il n'y a pas de mauvaise façon de raconter l'histoire de sa famille",
-          "Si un élève ne veut pas partager son histoire → respecter sa confidentialité et lui permettre de créer un livre privé"
+          "Si un élève ne veut pas partager son histoire → respecter sa confidentialité et lui permettre de créer un livre privé",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1366,7 +1536,8 @@
           "book creation materials",
           "family celebration pages",
           "story organization tools",
-          "decoration supplies"
+          "decoration supplies",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Book creation gestures, family celebration movements, story organization symbols",
         "decisionPoints": [
@@ -1412,8 +1583,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1479,7 +1660,12 @@
         "decisionPoints": [
           "Si un élève ne veut pas partager son livre en public → respecter sa confidentialité et lui offrir un rôle de spectateur appréciatif",
           "Si un élève semble nerveux de présenter → offrir du soutien et rappeler que chaque famille mérite d'être célébrée",
-          "Si un élève fait des commentaires inappropriés sur les familles des autres → rediriger doucement vers l'appréciation et le respect"
+          "Si un élève fait des commentaires inappropriés sur les familles des autres → rediriger doucement vers l'appréciation et le respect",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1490,7 +1676,8 @@
           "gallery display space",
           "sharing organization",
           "appreciation materials",
-          "family celebration symbols"
+          "family celebration symbols",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Gallery sharing gestures, family appreciation movements, diversity celebration symbols",
         "decisionPoints": [
@@ -1536,8 +1723,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",
@@ -1603,7 +1800,12 @@
         "decisionPoints": [
           "Si un élève ne veut pas jouer de rôles → respecter son choix et lui offrir des rôles d'observateur ou d'assistant",
           "Si un élève semble mal à l'aise avec certains rôles familiaux → lui permettre de choisir des rôles avec lesquels il se sent confortable",
-          "Si un élève veut seulement jouer sa propre structure familiale → célébrer son choix tout en encourageant doucement l'exploration"
+          "Si un élève veut seulement jouer sa propre structure familiale → célébrer son choix tout en encourageant doucement l'exploration",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1614,7 +1816,8 @@
           "family scenario materials",
           "role-play space",
           "family interaction examples",
-          "vocabulary practice tools"
+          "vocabulary practice tools",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Family interaction gestures, role-play movements, vocabulary practice symbols",
         "decisionPoints": [
@@ -1660,8 +1863,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1727,7 +1940,12 @@
         "decisionPoints": [
           "Si un élève ne sait pas quoi écrire à sa famille → l'aider avec des phrases simples comme 'Je t'aime' ou 'Merci de prendre soin de moi'",
           "Si un élève semble émotionnel en pensant à sa famille → valider ses sentiments et rappeler que l'amour peut être fort et beau",
-          "Si un élève ne veut pas écrire une lettre → respecter son choix et offrir des alternatives comme dessiner ou faire un câlin symbolique"
+          "Si un élève ne veut pas écrire une lettre → respecter son choix et offrir des alternatives comme dessiner ou faire un câlin symbolique",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1738,7 +1956,8 @@
           "letter writing materials",
           "appreciation templates",
           "decoration supplies",
-          "expression tools"
+          "expression tools",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Writing gestures, appreciation movements, love expression symbols",
         "decisionPoints": [
@@ -1784,8 +2003,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",
@@ -1851,7 +2080,12 @@
         "decisionPoints": [
           "Si un élève ne sait pas comment célébrer sa famille → l'aider avec des idées simples comme faire des dessins ou dire des mots gentils",
           "Si un élève semble gêné de célébrer sa famille publiquement → offrir des façons plus privées de participer à la célébration",
-          "Si un élève a trop d'idées pour la célébration → canaliser son enthousiasme en l'aidant à choisir les meilleures idées"
+          "Si un élève a trop d'idées pour la célébration → canaliser son enthousiasme en l'aidant à choisir les meilleures idées",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1862,7 +2096,8 @@
           "celebration creation materials",
           "family honor supplies",
           "diversity celebration tools",
-          "inclusive activity materials"
+          "inclusive activity materials",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Celebration preparation gestures, family honor movements, diversity celebration symbols",
         "decisionPoints": [
@@ -1908,8 +2143,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",
@@ -1975,7 +2220,12 @@
         "decisionPoints": [
           "Si un élève a de la difficulté à ressentir de la fierté pour sa famille → l'aider à identifier même de très petites choses positives sur sa famille",
           "Si un élève ne se souvient pas de ce qu'il a appris → l'aider avec des rappels doux sur les activités familiales qu'on a explorées",
-          "Si un élève semble émotionnel en réfléchissant à sa famille → valider ses sentiments et rappeler que l'amour familial peut être très fort"
+          "Si un élève semble émotionnel en réfléchissant à sa famille → valider ses sentiments et rappeler que l'amour familial peut être très fort",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": []
       },
@@ -1986,7 +2236,8 @@
           "culmination creation materials",
           "pride expression tools",
           "learning reflection supplies",
-          "family appreciation symbols"
+          "family appreciation symbols",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Pride expressions, reflection gestures, family appreciation movements",
         "decisionPoints": [
@@ -2032,8 +2283,18 @@
         "pourPEI": []
       },
       "assessmentCriteria": {
-        "observable": [],
-        "checkpoints": []
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
       },
       "extensionGuidance": {
         "category": "Intégration",

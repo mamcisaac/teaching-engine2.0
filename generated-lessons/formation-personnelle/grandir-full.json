@@ -240,7 +240,8 @@
       "keyVocabulary": [
         "famille",
         "célébrer",
-        "tradition"
+        "tradition",
+        "unique"
       ],
       "opening": {
         "duration": 8,
@@ -255,7 +256,12 @@
         "decisionPoints": [
           "Si un élève dit que sa famille ne célèbre rien → l'aider à identifier des moments simples comme les repas ensemble ou les câlins",
           "Si un élève semble triste à propos des célébrations familiales → valoriser sa famille unique et rediriger vers les célébrations de classe",
-          "Si un élève ne veut pas danser → lui permettre d'observer et de taper des mains ou bouger juste les épaules"
+          "Si un élève ne veut pas danser → lui permettre d'observer et de taper des mains ou bouger juste les épaules",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": [
           "Mouvements de célébration joyeux (bras, épaules)",
@@ -930,7 +936,12 @@
         "decisionPoints": [
           "Si un élève a de la difficulté avec le concept principal → utiliser des exemples concrets et des supports visuels adaptés",
           "Si un élève ne participe pas à l'ouverture → lui permettre d'observer et proposer une participation minimale",
-          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité"
+          "Si un élève semble anxieux → utiliser des techniques d'apaisement et rassurer sur la sécurité de l'activité",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
         ],
         "movementBreaks": [
           "Mouvement approprié au thème de croissance",
@@ -944,7 +955,8 @@
           "Matériaux principaux pour leçon 9",
           "Feuilles d'activité adaptées",
           "Outils de création sécuritaires",
-          "Supports de différenciation"
+          "Supports de différenciation",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
         ],
         "visualSupports": "Démonstrations claires, étapes illustrées, modèles visibles, organisation spatiale claire pour la leçon 9",
         "decisionPoints": [
