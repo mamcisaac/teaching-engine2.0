@@ -1,0 +1,87 @@
+{
+  "unitTitle": "Régularités et relations",
+  "designRationale": "Cette unité développe la pensée algébrique précoce à travers l'exploration de motifs, séquences et classifications. L'approche progressive va du concret à l'abstrait, utilisant des manipulatives, le mouvement et l'expression créative pour ancrer les concepts fondamentaux.",
+  
+  "learningProgression": {
+    "phase1_Foundation": {
+      "lessons": [1, 2, 3, 4],
+      "focus": "Exploration sensorielle et reconnaissance de motifs simples",
+      "keySkills": ["Reconnaître des motifs visuels", "Continuer des séquences AB", "Trier par un attribut", "Identifier le 'même' et 'différent'"],
+      "materials": ["Blocs colorés", "Objets variés", "Musique rythmée", "Matériel naturel"],
+      "assessment": "Observation directe des manipulations et choix"
+    },
+    
+    "phase2_Building": {
+      "lessons": [5, 6, 7, 8, 9, 10],
+      "focus": "Construction active de motifs et développement du vocabulaire",
+      "keySkills": ["Créer des motifs ABC", "Prédire la suite", "Trier par deux attributs", "Décrire les régularités", "Comparer des motifs"],
+      "materials": ["Perles à enfiler", "Formes géométriques", "Instruments musicaux", "Tampons et peinture"],
+      "assessment": "Créations personnelles et explications orales"
+    },
+    
+    "phase3_Application": {
+      "lessons": [11, 12, 13, 14],
+      "focus": "Application créative et résolution de problèmes",
+      "keySkills": ["Résoudre des motifs incomplets", "Inventer des motifs complexes", "Reconnaître des motifs dans l'environnement", "Représenter des motifs de multiples façons"],
+      "materials": ["Matériaux artistiques", "Appareils photo", "Carnets de création", "Objets de la nature"],
+      "assessment": "Portfolio de motifs et auto-évaluation"
+    },
+    
+    "extensions": {
+      "lessons": [15, 16, 17, 18, 19, 20],
+      "focus": "Enrichissement par l'art, la musique et les connexions interdisciplinaires",
+      "keySkills": ["Motifs dans l'art", "Rythmes et motifs musicaux", "Motifs temporels", "Motifs dans les histoires", "Recherche de motifs", "Célébration créative"],
+      "materials": ["Instruments variés", "Matériaux artistiques", "Livres d'images", "Éléments naturels"],
+      "assessment": "Présentations créatives et réflexions"
+    }
+  },
+  
+  "coreConcepts": {
+    "motifs": {
+      "simples": "AB (rouge-bleu-rouge-bleu)",
+      "complexes": "ABC, AABB, ABB",
+      "exemples": "Couleurs, formes, sons, mouvements"
+    },
+    "sequences": {
+      "croissante": "1, 2, 3, 4...",
+      "répétitive": "Clap, clap, stomp, clap, clap, stomp",
+      "prédictive": "Quel vient ensuite?"
+    },
+    "classification": {
+      "unAttribut": "Couleur, forme, taille",
+      "deuxAttributs": "Rouge ET rond",
+      "relations": "Plus grand que, plus petit que"
+    }
+  },
+  
+  "vocabulaireEssentiel": [
+    "motif", "répéter", "suivant", "même", "différent",
+    "trier", "groupe", "règle", "continue", "prévoir",
+    "avant", "après", "entre", "ordre", "séquence"
+  ],
+  
+  "strategiesDifferentiation": {
+    "debutants": "Motifs simples AB, tri par couleur, beaucoup de modélisation",
+    "avances": "Motifs complexes, création libre, défis de résolution",
+    "tactiles": "Objets texturés, matériaux sensoriels",
+    "visuels": "Couleurs vives, affiches, démonstrations",
+    "auditifs": "Motifs musicaux, chansons, descriptions verbales",
+    "kinesthesiques": "Motifs corporels, mouvement, construction"
+  },
+  
+  "connexionsRealistes": {
+    "maison": "Motifs sur les vêtements, dans la cuisine, sur les jouets",
+    "nature": "Feuilles, fleurs, coquillages, nuages",
+    "musique": "Chansons, rythmes, danses",
+    "art": "Dessins, peintures, sculptures",
+    "vie": "Routines quotidiennes, horaires, calendriers"
+  },
+  
+  "evaluationCriteres": {
+    "reconnaissance": "Identifie correctement des motifs simples",
+    "creation": "Construit des motifs avec du matériel",
+    "prediction": "Prédit l'élément suivant dans une séquence",
+    "description": "Explique sa règle de motif",
+    "application": "Trouve des motifs dans de nouveaux contextes"
+  }
+}

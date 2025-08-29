@@ -1,0 +1,283 @@
+{
+  "unitDesign": {
+    "title": "Textures et matériaux",
+    "subject": "Arts visuels",
+    "grade": "1re année",
+    "duration": "15 heures",
+    "totalLessons": 20,
+    "coreLessons": 14,
+    "extensionLessons": 6,
+    "bigIdeas": "Explorer et créer avec de nouveaux concepts artistiques",
+    "essentialQuestions": [
+      "Comment explorer ce concept?",
+      "Que peux-tu créer?",
+      "Pourquoi est-ce important?"
+    ],
+    "expectations": [
+      {
+        "code": "AV1",
+        "description": "Reconnaître la valeur de son environnement visuel"
+      },
+      {
+        "code": "AV2",
+        "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+      },
+      {
+        "code": "AV3",
+        "description": "Utiliser une variété d'outils, de matériaux, de styles et de techniques"
+      }
+    ],
+    "thematicFocus": "Tactile exploration, texture rubbings, collage, natural materials",
+    "lessonProgression": [
+      {
+        "lessonNumber": 1,
+        "type": "core",
+        "title": "Découverte tactile: Qu'est-ce qu'une texture?",
+        "focus": "Introduction aux concepts de base",
+        "keyActivities": ["Exploration tactile guidée", "Vocabulaire des textures", "Boîte mystère tactile"],
+        "materials": ["Tissus variés", "Objets naturels", "Papiers texturés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 2,
+        "type": "core",
+        "title": "Chasse aux textures dans notre environnement",
+        "focus": "Observation et reconnaissance",
+        "keyActivities": ["Exploration de l'école", "Documentation visuelle", "Création d'un répertoire"],
+        "materials": ["Appareils photo", "Carnets", "Crayons"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 3,
+        "type": "core",
+        "title": "Premiers frottages: Technique de base",
+        "focus": "Introduction aux frottages",
+        "keyActivities": ["Démonstration technique", "Frottages simples", "Expérimentation"],
+        "materials": ["Papier fin", "Crayons à la cire", "Surfaces texturées"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 4,
+        "type": "core",
+        "title": "Frottages créatifs: Exploration avancée",
+        "focus": "Développement de la technique",
+        "keyActivities": ["Frottages multiples", "Superpositions", "Compositions créatives"],
+        "materials": ["Papiers variés", "Crayons colorés", "Objets texturés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 5,
+        "type": "core",
+        "title": "Matériaux naturels: Découverte et collection",
+        "focus": "Exploration de la nature",
+        "keyActivities": ["Collecte extérieure", "Tri et classification", "Observation détaillée"],
+        "materials": ["Sacs de collecte", "Loupes", "Plateaux de tri"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 6,
+        "type": "core",
+        "title": "Art avec la nature: Créations éphémères",
+        "focus": "Création avec matériaux naturels",
+        "keyActivities": ["Arrangements temporaires", "Land art simple", "Documentation photographique"],
+        "materials": ["Matériaux naturels collectés", "Appareils photo"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 7,
+        "type": "core",
+        "title": "Introduction au collage: Techniques de base",
+        "focus": "Apprentissage du collage",
+        "keyActivities": ["Techniques d'adhésion", "Compositions simples", "Expérimentation"],
+        "materials": ["Colle", "Papiers variés", "Ciseaux", "Supports"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 8,
+        "type": "core",
+        "title": "Collage texturé: Intégration des matériaux",
+        "focus": "Combinaison texture et collage",
+        "keyActivities": ["Collages mixtes", "Ajout de textures", "Expérimentation créative"],
+        "materials": ["Matériaux texturés", "Colle", "Supports variés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 9,
+        "type": "core",
+        "title": "Palette de textures: Organisation et présentation",
+        "focus": "Documentation et organisation",
+        "keyActivities": ["Création de répertoires", "Classement", "Présentation"],
+        "materials": ["Carnets", "Échantillons", "Matériel de classement"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 10,
+        "type": "core",
+        "title": "Projet personnel: Planification",
+        "focus": "Conception de projet",
+        "keyActivities": ["Choix du thème", "Planification", "Sélection des matériaux"],
+        "materials": ["Papier de planification", "Échantillons de matériaux"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 11,
+        "type": "core",
+        "title": "Projet personnel: Création (Partie 1)",
+        "focus": "Réalisation du projet",
+        "keyActivities": ["Préparation des matériaux", "Début de création", "Application des techniques"],
+        "materials": ["Matériaux sélectionnés", "Outils de création"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 12,
+        "type": "core",
+        "title": "Projet personnel: Création (Partie 2)",
+        "focus": "Finalisation du projet",
+        "keyActivities": ["Continuation", "Finitions", "Révision"],
+        "materials": ["Projets en cours", "Matériaux supplémentaires"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 13,
+        "type": "core",
+        "title": "Présentation et partage",
+        "focus": "Communication artistique",
+        "keyActivities": ["Présentation des œuvres", "Partage d'expériences", "Écoute active"],
+        "materials": ["Œuvres finalisées", "Espace de présentation"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 14,
+        "type": "core",
+        "title": "Réflexion et évaluation de l'unité",
+        "focus": "Synthèse et évaluation",
+        "keyActivities": ["Auto-évaluation", "Réflexion sur l'apprentissage", "Planification future"],
+        "materials": ["Portfolios", "Grilles d'évaluation"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 15,
+        "type": "extension",
+        "title": "Textures dans l'art: Étude d'œuvres célèbres",
+        "focus": "Appréciation artistique",
+        "keyActivities": ["Observation d'œuvres", "Discussion", "Analyse"],
+        "materials": ["Reproductions d'œuvres", "Loupes"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 16,
+        "type": "extension",
+        "title": "Techniques avancées de frottage",
+        "focus": "Perfectionnement technique",
+        "keyActivities": ["Techniques complexes", "Effets spéciaux", "Expérimentation"],
+        "materials": ["Outils spécialisés", "Supports variés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 17,
+        "type": "extension",
+        "title": "Collage 3D: Volume et relief",
+        "focus": "Dimension et relief",
+        "keyActivities": ["Techniques 3D", "Création de relief", "Expérimentation"],
+        "materials": ["Matériaux volumiques", "Supports épais"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 18,
+        "type": "extension",
+        "title": "Textures artificielles: Création et simulation",
+        "focus": "Innovation et créativité",
+        "keyActivities": ["Création de textures", "Techniques innovantes", "Expérimentation"],
+        "materials": ["Matériaux de création", "Outils variés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 19,
+        "type": "extension",
+        "title": "Projet collaboratif: Murale texturée",
+        "focus": "Collaboration et grande échelle",
+        "keyActivities": ["Planification collective", "Création collaborative", "Coordination"],
+        "materials": ["Grand support", "Matériaux partagés"],
+        "duration": "45 minutes"
+      },
+      {
+        "lessonNumber": 20,
+        "type": "extension",
+        "title": "Exposition et célébration",
+        "focus": "Présentation publique",
+        "keyActivities": ["Préparation d'exposition", "Présentation publique", "Célébration"],
+        "materials": ["Œuvres finalisées", "Matériel d'exposition"],
+        "duration": "45 minutes"
+      }
+    ],
+    "assessmentStrategies": {
+      "formative": [
+        "Observation continue pendant les activités",
+        "Auto-évaluation guidée",
+        "Discussions en groupe",
+        "Documentation du processus créatif"
+      ],
+      "summative": [
+        "Portfolio de textures",
+        "Projet personnel final",
+        "Présentation orale",
+        "Évaluation par les pairs"
+      ]
+    },
+    "differentiationStrategies": {
+      "structure": "14 leçons essentielles couvrant les concepts fondamentaux, 6 leçons d'extension pour l'approfondissement",
+      "supports": [
+        "Guides visuels pour les techniques",
+        "Matériaux adaptés aux besoins individuels",
+        "Partenariats et travail en équipe",
+        "Choix dans les projets et matériaux"
+      ],
+      "extensions": [
+        "Techniques avancées pour les élèves rapides",
+        "Projets de recherche supplémentaires",
+        "Rôles de mentorat avec les pairs",
+        "Défis créatifs supplémentaires"
+      ]
+    },
+    "materialsList": {
+      "essential": [
+        "Papiers de différentes textures",
+        "Crayons à la cire et crayons de couleur",
+        "Colle et ciseaux",
+        "Tissus et matériaux texturés",
+        "Objets naturels (feuilles, écorces, cailloux)",
+        "Loupes et appareils photo",
+        "Carnets et portfolios"
+      ],
+      "optional": [
+        "Matériaux de recyclage",
+        "Outils spécialisés pour textures",
+        "Supports variés (carton, bois)",
+        "Matériel d'exposition"
+      ]
+    },
+    "learningProgression": {
+      "beginning": "Découverte et exploration tactile des textures",
+      "developing": "Application des techniques de frottage et collage",
+      "proficient": "Création personnelle intégrant diverses techniques",
+      "extending": "Innovation et collaboration dans des projets complexes"
+    },
+    "connections": {
+      "science": "Observation et classification des matériaux naturels",
+      "mathematics": "Patterns et géométrie dans les textures",
+      "language": "Vocabulaire descriptif des textures",
+      "socialStudies": "Matériaux et techniques de différentes cultures"
+    }
+  },
+  "generationMetadata": {
+    "timestamp": "2025-08-21",
+    "focusAreas": [
+      "Tactile exploration",
+      "Texture rubbings", 
+      "Collage techniques",
+      "Natural materials"
+    ],
+    "pedagogicalApproach": "Experiential learning with progressive skill development",
+    "ageAppropriate": "Grade 1 developmental considerations integrated"
+  }
+}

@@ -1,0 +1,3312 @@
+{
+  "unitTitle": "Égalité et célébration mathématique",
+  "subject": "Mathématiques",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Introduction à l'équilibre",
+      "oneGoal": "Les élèves découvrent le concept d'équilibre avec des objets simples et leur corps",
+      "duration": 45,
+      "keyVocabulary": [
+        "équilibre",
+        "égal",
+        "balance"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu d'équilibre corporel - tenir sur un pied, marcher en ligne droite",
+        "materials": [
+          "lignes de masquage au sol",
+          "musique douce"
+        ],
+        "visualSupports": "Images d'animaux en équilibre (flamant, équilibriste)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves maintiennent-ils leur équilibre corporel?",
+            "ifYes": "Ajouter défis comme fermer les yeux ou surfaces inégales",
+            "ifNo": "Revenir aux exercices plus simples avec soutien"
+          },
+          {
+            "question": "Les élèves comprennent-ils le vocabulaire 'équilibre'?",
+            "ifYes": "Introduire 'balance' et 'égal'",
+            "ifNo": "Utiliser plus de démonstrations visuelles"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Exploration libre avec balance simple et objets identiques (blocs, crayons)",
+        "materials": [
+          "balance à plateaux",
+          "blocs uniformes",
+          "crayons",
+          "livres identiques"
+        ],
+        "visualSupports": "Affiche montrant balance équilibrée vs déséquilibrée",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils le concept physique d'équilibre?",
+            "ifYes": "Passer à des objets différents pour comparer",
+            "ifNo": "Utiliser plus d'exemples corporels et objets identiques"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cercle de partage - qu'est-ce qui était en équilibre aujourd'hui?",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "certificats d'encouragement (30 copies)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "Images de réussites d'équilibre et célébration",
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils partagé quelque chose?",
+            "ifYes": "Permettre discussions prolongées sur découvertes",
+            "ifNo": "Encourager avec questions guidées simples"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Concept abstrait d'équilibre",
+        "then": "Utiliser des exemples corporels concrets (balançoire, vélo)"
+      },
+      "realWorldConnection": "Balancer sur un pied, balançoire dans la cour, plateau équilibré sur la tête",
+      "differentiation": {
+        "pourDifficultés": [
+          "Fournir soutien physique pour équilibre",
+          "Utiliser surfaces plus larges et stables",
+          "Permettre utilisation d'un mur comme appui",
+          "Réduire la durée d'équilibre demandée"
+        ],
+        "pourAvancés": [
+          "Défis d'équilibre plus complexes (yeux fermés)",
+          "Créer propres parcours d'équilibre",
+          "Enseigner l'équilibre à un camarade",
+          "Explorer équilibre avec objets sur la tête"
+        ],
+        "pourLangue": [
+          "Cartes visuelles avec mots équilibre/balance/égal",
+          "Gestes et démonstrations pour chaque mot",
+          "Traductions simples si nécessaire",
+          "Apprentissage par imitation et répétition"
+        ],
+        "pourPEI": [
+          "Adaptations motrices selon besoins individuels",
+          "Équipement d'assistance si requis",
+          "Objectifs modifiés selon capacités",
+          "Support individuel constant si nécessaire"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Maintient équilibre sur un pied pendant 5 secondes",
+          "Marche en ligne droite sans sortir",
+          "Utilise vocabulaire 'équilibre' correctement",
+          "Fait connexion entre équilibre corporel et objets"
+        ],
+        "checkpoints": [
+          "Début: Peut-il tenir debout sur un pied?",
+          "Milieu: Comprend-il le concept d'équilibre?",
+          "Fin: Peut-il expliquer ce qu'est l'équilibre?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Balances et objets égaux",
+      "oneGoal": "Les élèves utilisent une balance simple pour découvrir quand deux groupes d'objets sont égaux",
+      "duration": 45,
+      "keyVocabulary": [
+        "balance",
+        "même",
+        "différent"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Révision - imiter des objets en équilibre (balançoire, balance)",
+        "materials": [
+          "images de balances",
+          "gestes corporels"
+        ],
+        "visualSupports": "Photos de balances dans différents contextes (cuisine, magasin)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils le lien entre équilibre corporel et balance?",
+            "ifYes": "Passer directement à la manipulation de vraies balances",
+            "ifNo": "Plus de démonstrations avec imitations corporelles"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Manipulation guidée de balance avec groupes d'objets identiques puis différents",
+        "materials": [
+          "balance à plateaux",
+          "cubes uniformes",
+          "billes",
+          "jetons",
+          "petits jouets"
+        ],
+        "visualSupports": "Cartes visuelles montrant groupes égaux/inégaux",
+        "decisionPoints": [
+          {
+            "question": "Les élèves manipulent-ils la balance correctement?",
+            "ifYes": "Introduire objets de tailles différentes",
+            "ifNo": "Démonstration guidée avec aide physique"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Prédiction - deviner si deux groupes vont s'équilibrer avant de tester",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "Affichage des meilleures prédictions et résultats",
+        "decisionPoints": [
+          {
+            "question": "Les prédictions des élèves s'améliorent-elles?",
+            "ifYes": "Introduire objets plus complexes à prédire",
+            "ifNo": "Revenir aux comparaisons visuelles simples"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Manipulation de la balance",
+        "then": "Travail en paires avec un élève plus habile"
+      },
+      "realWorldConnection": "Peser des ingrédients en cuisine, balances au magasin",
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer avec objets très différents (gros vs petit)",
+          "Aide physique pour placer objets sur balance",
+          "Utiliser balance avec plateaux colorés",
+          "Travailler en paire avec élève plus habile"
+        ],
+        "pourAvancés": [
+          "Estimer poids avant de vérifier",
+          "Créer des défis d'équilibrage pour amis",
+          "Utiliser plus d'objets à la fois",
+          "Explorer balance avec précision plus fine"
+        ],
+        "pourLangue": [
+          "Cartes visuelles: lourd/léger, plus/moins",
+          "Démonstrations claires avec gestes",
+          "Vocabulaire avec images et objets réels",
+          "Répétition du nouveau vocabulaire"
+        ],
+        "pourPEI": [
+          "Balance adaptée ou plus grande si nécessaire",
+          "Support individuel pour manipulation",
+          "Objectifs adaptés selon capacités motrices",
+          "Temps supplémentaire pour exploration"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Place objets correctement sur plateaux de balance",
+          "Observe et commente résultats de balance",
+          "Utilise vocabulaire 'même' et 'différent'",
+          "Fait prédictions avant d'utiliser balance"
+        ],
+        "checkpoints": [
+          "Début: Peut-il manipuler une balance simple?",
+          "Milieu: Comprend-il quand objets sont égaux?",
+          "Fin: Peut-il prédire résultats de balance?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Groupes égaux avec manipulatives",
+      "oneGoal": "Les élèves créent des groupes égaux d'objets sans utiliser de balance",
+      "duration": 45,
+      "keyVocabulary": [
+        "groupe",
+        "pareil",
+        "autant"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu de partage - distribuer des objets équitablement entre poupées",
+        "materials": [
+          "petites poupées",
+          "bonbons en plastique",
+          "assiettes"
+        ],
+        "visualSupports": "Images de partage équitable (pizza, gâteau)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils le partage équitable?",
+            "ifYes": "Augmenter nombre d'objets à partager",
+            "ifNo": "Utiliser seulement 2 poupées avec objets identiques"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création libre de groupes égaux avec divers manipulatives, vérification visuelle",
+        "materials": [
+          "ours compteurs",
+          "blocs",
+          "jetons",
+          "crayons",
+          "plateaux"
+        ],
+        "visualSupports": "Tapis avec cercles pour organiser les groupes",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils naturellement des groupes égaux?",
+            "ifYes": "Défier avec des nombres plus grands",
+            "ifNo": "Modéliser le processus étape par étape"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Galerie d'exposition - admirer les groupes égaux créés par chacun",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "Panneaux d'encouragement et de célébration",
+        "decisionPoints": [
+          {
+            "question": "Chaque élève a-t-il créé quelque chose à partager?",
+            "ifYes": "Permettre temps pour expliquer leurs créations",
+            "ifNo": "Aider à terminer ou adapter activité"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Reconnaissance visuelle d'égalité",
+        "then": "Utiliser correspondance un-à-un avec lignes ou colonnes"
+      },
+      "realWorldConnection": "Partager équitablement des collations, distribuer des crayons",
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer avec seulement 2 groupes identiques",
+          "Utiliser objets très similaires (tous pareils)",
+          "Aide visuelle avec lignes ou cercles",
+          "Correspondance un-à-un guidée"
+        ],
+        "pourAvancés": [
+          "Créer 3 ou 4 groupes égaux",
+          "Mélanger différents types d'objets",
+          "Expliquer stratégies à d'autres élèves",
+          "Inventer nouveaux défis d'égalité"
+        ],
+        "pourLangue": [
+          "Vocabulaire visuel: groupe, pareil, autant",
+          "Gestes pour montrer 'pareil' et 'différent'",
+          "Modèles concrets avant vocabulaire",
+          "Répétition avec support visuel"
+        ],
+        "pourPEI": [
+          "Objets plus gros et faciles à manipuler",
+          "Support individuel pour organisation",
+          "Objectifs modifiés selon capacités",
+          "Temps flexible pour compléter tâche"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Crée groupes avec même nombre d'objets",
+          "Vérifie égalité visuellement ou par comptage",
+          "Utilise vocabulaire 'groupe', 'pareil', 'autant'",
+          "Montre fiertié dans créations d'groupes égaux"
+        ],
+        "checkpoints": [
+          "Début: Comprend-il ce qu'est un groupe?",
+          "Milieu: Peut-il faire des groupes égaux?",
+          "Fin: Reconnaît-il l'égalité sans compter?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Dessiner l'égalité",
+      "oneGoal": "Les élèves représentent visuellement l'égalité en dessinant des groupes égaux",
+      "duration": 45,
+      "keyVocabulary": [
+        "dessiner",
+        "montrer",
+        "égalité"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu de mime - représenter des objets égaux avec gestes",
+        "materials": [
+          "cartes d'objets pairés",
+          "espace pour bouger"
+        ],
+        "visualSupports": "Exemples de paires dans la nature (yeux, oreilles)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils le concept de 'paires'?",
+            "ifYes": "Passer aux gestes pour représenter groupes égaux",
+            "ifNo": "Plus d'exemples de paires évidentes (mains, pieds)"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Dessin guidé puis libre de groupes égaux, progression du simple au complexe",
+        "materials": [
+          "papier",
+          "crayons",
+          "marqueurs",
+          "tampons",
+          "règles"
+        ],
+        "visualSupports": "Modèles de dessins montrant l'égalité clairement",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils représenter l'égalité sans objets concrets?",
+            "ifYes": "Encourager la créativité dans les représentations",
+            "ifNo": "Fournir objets concrets comme référence"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Présentation - expliquer son dessin d'égalité à un partenaire",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Galerie d'art mathématique des créations",
+        "decisionPoints": [
+          {
+            "question": "Chaque élève peut-il expliquer son dessin?",
+            "ifYes": "Encourager explications détaillées et créatives",
+            "ifNo": "Poser questions guidées simples"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Représentation claire de l'égalité",
+        "then": "Utiliser tampons ou autocollants pour uniformité"
+      },
+      "realWorldConnection": "Dessiner des paires (chaussettes, gants), illustrer des partages équitables",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser tampons ou autocollants pour uniformité",
+          "Fournir modèles à compléter ou tracer",
+          "Commencer avec formes simples identiques",
+          "Support individuel pour tenir crayon/marqueur"
+        ],
+        "pourAvancés": [
+          "Créer scènes complexes montrant égalité",
+          "Ajouter nombres ou équations à leurs dessins",
+          "Inventer histoires pour accompagner dessins",
+          "Enseigner techniques de dessin à amis"
+        ],
+        "pourLangue": [
+          "Vocabulaire visuel: dessiner, montrer, égalité",
+          "Modèles visuels clairs à imiter",
+          "Permettre explications avec gestes",
+          "Partenariat avec élève francophone"
+        ],
+        "pourPEI": [
+          "Outils d'aide pour dessiner (guides, gabarits)",
+          "Papier adapté (plus grand, lignes guidées)",
+          "Temps flexible pour compléter",
+          "Alternatives au dessin (collage, manipulation)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Dessine groupes avec même nombre d'éléments",
+          "Représente visuellement concept d'égalité",
+          "Explique son dessin à un partenaire",
+          "Utilise vocabulaire dessiner/montrer/égalité"
+        ],
+        "checkpoints": [
+          "Début: Peut-il représenter objets identiques?",
+          "Milieu: Dessine-t-il groupes égaux clairement?",
+          "Fin: Peut-il expliquer l'égalité dans son dessin?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Le signe égal mystérieux",
+      "oneGoal": "Les élèves découvrent et explorent le symbole = comme pont entre deux groupes égaux",
+      "duration": 45,
+      "keyVocabulary": [
+        "signe",
+        "égal",
+        "pont"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Chasse au trésor - trouver le symbole = dans la classe",
+        "materials": [
+          "cartes avec =",
+          "loupes",
+          "carnet d'exploration"
+        ],
+        "visualSupports": "Symbole = géant coloré affiché",
+        "decisionPoints": [
+          {
+            "question": "Les élèves trouvent-ils le symbole = dans la classe?",
+            "ifYes": "Les laisser chercher d'autres symboles mathématiques",
+            "ifNo": "Pointer et montrer où chercher"
+          },
+          {
+            "question": "Comprennent-ils que = est un symbole spécial?",
+            "ifYes": "Introduire idée de 'pont' ou 'lien'",
+            "ifNo": "Plus d'exploration libre du symbole physique"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Construction de 'ponts égaux' avec objets, puis introduction du symbole =",
+        "materials": [
+          "blocs",
+          "= en carton géant",
+          "objets divers",
+          "cartes symboles"
+        ],
+        "visualSupports": "Diagramme montrant = comme pont entre deux côtés",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils que = relie deux choses égales?",
+            "ifYes": "Permettre manipulation libre du symbole",
+            "ifNo": "Utiliser métaphore du pont plus concrètement"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Jeu du symbole magique - placer = entre groupes égaux",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "certificats d'encouragement (30 copies)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Collection de trouvailles avec = placé correctement",
+        "decisionPoints": [
+          "Si un élève place = entre groupes inégaux → compter ensemble les objets de chaque côté pour vérifier",
+          "Si les élèves comprennent bien le symbole = → introduire le défi de créer leurs propres égalités",
+          "Si confusion sur l'orientation du symbole = → montrer que = reste pareil même tourné"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Compréhension du symbole abstrait",
+        "then": "Utiliser = physique manipulable et coloré"
+      },
+      "realWorldConnection": "Voir le signe = sur une calculatrice, dans des livres",
+      "differentiation": {
+        "pourDifficultés": [
+          "Symbole = très grand et tactile à manipuler",
+          "Couleurs vives pour attirer attention",
+          "Association avec geste corporel ('pont' avec bras)",
+          "Répétition avec objets concrets d'abord"
+        ],
+        "pourAvancés": [
+          "Chercher = dans livres et documents variés",
+          "Créer leurs propres = décoratifs",
+          "Expliquer idée de 'pont' à autres élèves",
+          "Inventer jeux avec symbole ="
+        ],
+        "pourLangue": [
+          "Mot 'égal' avec symbole = côte à côte",
+          "Gestes pour 'signe', 'égal', 'pont'",
+          "Pratique prononciation 'signe égal'",
+          "Support visuel constant"
+        ],
+        "pourPEI": [
+          "Symbole = adapté pour manipulation",
+          "Exploration sensorielle (texture, poids)",
+          "Temps flexible pour découverte",
+          "Support individuel pour compréhension"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Reconnaît symbole = quand présenté",
+          "Place = entre deux groupes égaux",
+          "Utilise vocabulaire 'signe', 'égal', 'pont'",
+          "Montre compréhension que = relie deux côtés"
+        ],
+        "checkpoints": [
+          "Début: Reconnaît-il le symbole = visuellement?",
+          "Milieu: Comprend-il que = va entre choses égales?",
+          "Fin: Peut-il utiliser = correctement?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Équations avec objets",
+      "oneGoal": "Les élèves créent leurs premières équations simples en utilisant objets et symboles",
+      "duration": 45,
+      "keyVocabulary": [
+        "équation",
+        "nombre",
+        "symbole"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Histoire mathématique - raconter avec objets (3 ours = 3 ours)",
+        "materials": [
+          "ours compteurs",
+          "cartes numériques",
+          "="
+        ],
+        "visualSupports": "Livre d'images montrant équations simples",
+        "decisionPoints": [
+          {
+            "question": "Les élèves suivent-ils l'histoire mathématique?",
+            "ifYes": "Les laisser créer leurs propres histoires",
+            "ifNo": "Simplifier avec moins d'objets et plus de répétition"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Construction d'équations concrètes puis ajout des symboles numériques",
+        "materials": [
+          "manipulatives divers",
+          "cartes numériques 1-10",
+          "= géants",
+          "plateaux"
+        ],
+        "visualSupports": "Modèle d'équation avec images et nombres",
+        "decisionPoints": [
+          {
+            "question": "Les élèves relient-ils les objets aux nombres dans l'équation?",
+            "ifYes": "Encourager création d'équations personnalisées",
+            "ifNo": "Pratiquer correspondance un-à-un objet-nombre"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Lecture d'équations - 'raconter l'histoire' de chaque équation créée",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "Histoires créées par les élèves affichées",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à raconter son histoire → l'encourager avec questions guidées simples",
+          "Si les histoires sont très créatives → célébrer et afficher les plus originales",
+          "Si élève dit que son équation n'a pas d'histoire → modéliser comment 3 = 3 peut raconter l'égalité parfaite"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Lien entre objets et nombres",
+        "then": "Compter ensemble en pointant chaque objet"
+      },
+      "realWorldConnection": "Compter ses jouets et écrire le nombre, recettes de cuisine simples",
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer avec nombres 1-3 seulement",
+          "Correspondance un-à-un guidée avec doigt",
+          "Objets et nombres très grands et clairs",
+          "Beaucoup de répétition et pratique"
+        ],
+        "pourAvancés": [
+          "Utiliser nombres jusqu'à 10",
+          "Créer équations avec objets variés",
+          "Inventer histoires d'équations pour amis",
+          "Explorer différentes façons de montrer même nombre"
+        ],
+        "pourLangue": [
+          "Vocabulaire visuel: équation, nombre, symbole",
+          "Nombres en français et anglais côte à côte",
+          "Gestes pour 'compter' et 'montrer'",
+          "Répétition orale du vocabulaire"
+        ],
+        "pourPEI": [
+          "Cartes numériques grandes et tactiles",
+          "Support pour manipulation d'objets",
+          "Temps flexible pour construction",
+          "Objectifs adaptés selon capacités"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Construit équations avec objets concrets",
+          "Relie nombres aux quantités d'objets",
+          "Place symboles dans bon ordre",
+          "Raconte l'histoire de son équation"
+        ],
+        "checkpoints": [
+          "Début: Peut-il compter objets jusqu'à 5?",
+          "Milieu: Associe-t-il nombres aux objets?",
+          "Fin: Peut-il lire sa propre équation?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Balances numériques",
+      "oneGoal": "Les élèves utilisent des balances avec nombres pour explorer l'égalité mathématique",
+      "duration": 45,
+      "keyVocabulary": [
+        "numérique",
+        "balance",
+        "vrai"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu de prédiction - deviner si des cartes numériques s'équilibreront",
+        "materials": [
+          "cartes numériques grandes",
+          "balance visible"
+        ],
+        "visualSupports": "Balance avec poches pour insérer cartes numériques",
+        "decisionPoints": [
+          {
+            "question": "Les prédictions des élèves sont-elles réalistes?",
+            "ifYes": "Encourager prédictions plus précises et détaillées",
+            "ifNo": "Revenir aux objets concrets pour comprendre"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Expérimentation avec balance numérique et vérification avec objets",
+        "materials": [
+          "balance numérique",
+          "cartes numériques",
+          "objets pour vérifier",
+          "feuilles d'enregistrement"
+        ],
+        "visualSupports": "Tableau de correspondance nombre-quantité",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils que les nombres peuvent être 'pesés'?",
+            "ifYes": "Introduire nombres plus grands (jusqu'à 10)",
+            "ifNo": "Revenir aux objets concrets pour chaque nombre"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Prédictions réussies - célébrer les bonnes prédictions d'équilibre",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Tableau de réussite des prédictions",
+        "decisionPoints": [
+          "Si un élève fait une prédiction incorrecte → encourager en montrant que c'est normal d'apprendre",
+          "Si plusieurs élèves réussissent leurs prédictions → organiser une mini-célébration avec applaudissements",
+          "Si élève hésite à faire une prédiction → l'encourager en disant qu'il n'y a pas de mauvaise réponse"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Concept abstrait des 'nombres pesés'",
+        "then": "Toujours montrer avec objets concrets d'abord"
+      },
+      "realWorldConnection": "Calculatrices qui vérifient l'égalité, jeux de nombres équilibrés",
+      "differentiation": {
+        "pourDifficultés": [
+          "Nombres 1-5 seulement",
+          "Toujours vérifier avec objets concrets",
+          "Balance visuelle très claire",
+          "Une prédiction à la fois"
+        ],
+        "pourAvancés": [
+          "Nombres jusqu'à 10 ou plus",
+          "Prédictions multiples avant vérification",
+          "Expliquer pourquoi nombres s'équilibrent",
+          "Créer défis pour autres élèves"
+        ],
+        "pourLangue": [
+          "Vocabulaire: numérique, balance, vrai",
+          "Gestes pour prédiction et vérification",
+          "Support visuel constant",
+          "Association objets-nombres claire"
+        ],
+        "pourPEI": [
+          "Balance adaptée si nécessaire",
+          "Cartes numériques grandes",
+          "Support individuel",
+          "Temps flexible"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Fait prédictions sur équilibre numérique",
+          "Vérifie avec objets concrets",
+          "Comprend lien nombre-quantité",
+          "Célèbre prédictions réussies"
+        ],
+        "checkpoints": [
+          "Début: Fait-il des prédictions?",
+          "Milieu: Ses prédictions sont-elles plus précises?",
+          "Fin: Comprend-il que nombres ont du 'poids'?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Vrai ou faux - équations simples",
+      "oneGoal": "Les élèves déterminent si des équations simples sont vraies ou fausses",
+      "duration": 45,
+      "keyVocabulary": [
+        "vrai",
+        "faux",
+        "vérifier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu de mouvement - lever la main si c'est vrai, s'accroupir si c'est faux",
+        "materials": [
+          "cartes équations simples",
+          "musique"
+        ],
+        "visualSupports": "Panneaux VRAI (vert) et FAUX (rouge)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves participent-ils activement aux mouvements?",
+            "ifYes": "Accélérer le rythme pour plus de défi",
+            "ifNo": "Simplifier mouvements ou donner plus de temps"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Investigation d'équations avec matériel de vérification disponible",
+        "materials": [
+          "cartes équations",
+          "manipulatives pour vérifier",
+          "balance",
+          "panneaux vrai/faux"
+        ],
+        "visualSupports": "Stratégies de vérification illustrées",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils justifier leurs réponses?",
+            "ifYes": "Présenter équations plus complexes",
+            "ifNo": "Encourager utilisation d'objets pour expliquer"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Détective mathématique - expliquer comment on a découvert si c'était vrai ou faux",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "Stratégies de détective mathématique",
+        "decisionPoints": [
+          "Si un élève ne peut pas expliquer sa stratégie → l'aider avec des questions comme 'Comment as-tu su?'",
+          "Si élève utilise une stratégie créative → la partager avec la classe comme exemple",
+          "Si confusion entre vrai et faux → recompter ensemble pour clarifier"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Justification des réponses",
+        "then": "Modéliser le processus de pensée à voix haute"
+      },
+      "realWorldConnection": "Vérifier si on a le bon nombre d'assiettes pour les invités",
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer avec équations très simples (2=2)",
+          "Utiliser objets pour vérifier chaque équation",
+          "Support visuel constant",
+          "Questions guidées pour justification"
+        ],
+        "pourAvancés": [
+          "Équations plus complexes (3+1=4)",
+          "Expliquer stratégies aux autres",
+          "Créer leurs propres équations vrai/faux",
+          "Justifications détaillées"
+        ],
+        "pourLangue": [
+          "Vocabulaire: vrai, faux, vérifier",
+          "Gestes clairs pour vrai/faux",
+          "Répétition orale du vocabulaire",
+          "Support visuel avec couleurs"
+        ],
+        "pourPEI": [
+          "Cartes équations grandes et claires",
+          "Temps flexible pour vérification",
+          "Support individuel pour manipulation",
+          "Objectifs adaptés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Identifie équations vraies et fausses",
+          "Utilise matériel pour vérifier réponses",
+          "Justifie décisions avec explications",
+          "Utilise vocabulaire vrai/faux/vérifier"
+        ],
+        "checkpoints": [
+          "Début: Comprend-il vrai vs faux?",
+          "Milieu: Vérifie-t-il ses réponses?",
+          "Fin: Peut-il expliquer son raisonnement?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Construire des équations vraies",
+      "oneGoal": "Les élèves créent leurs propres équations vraies en utilisant nombres et objets",
+      "duration": 45,
+      "keyVocabulary": [
+        "construire",
+        "créer",
+        "inventer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Inspiration créative - regarder des équations artistiques colorées",
+        "materials": [
+          "équations décorées",
+          "exemples créatifs"
+        ],
+        "visualSupports": "Galerie d'équations créatives d'autres classes",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils inspirés par les exemples?",
+            "ifYes": "Les encourager à dépasser les modèles",
+            "ifNo": "Simplifier exemples ou donner plus de structure"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Atelier de création libre d'équations avec vérification par les pairs",
+        "materials": [
+          "cartes numériques",
+          "= multiples",
+          "objets variés",
+          "papier coloré",
+          "marqueurs"
+        ],
+        "visualSupports": "Guide de création d'équations étape par étape",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils créatifs dans leurs équations?",
+            "ifYes": "Encourager équations avec leur nom, âge, etc.",
+            "ifNo": "Fournir cadres d'équations à compléter"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Exposition d'équations - présenter sa création favorite",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Exposition fière des créations originales",
+        "decisionPoints": [
+          "Si un élève est timide pour présenter → permettre de présenter avec un ami ou en petit groupe",
+          "Si élève très fier de sa création → encourager à expliquer pourquoi il l'aime tant",
+          "Si création contient une erreur → valoriser l'effort et corriger gentiment ensemble"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créativité dans les équations",
+        "then": "Partir de leurs intérêts (animaux, couleurs préférées)"
+      },
+      "realWorldConnection": "Inventer des défis mathématiques pour la famille",
+      "differentiation": {
+        "pourDifficultés": [
+          "Cadres d'équations à compléter",
+          "Nombres 1-3 seulement",
+          "Support individuel pour idées",
+          "Validation fréquente des réussites"
+        ],
+        "pourAvancés": [
+          "Créer équations avec leur âge, nombre de famille",
+          "Décorer équations artistiquement",
+          "Enseigner processus créatif aux autres",
+          "Inventer thèmes pour équations"
+        ],
+        "pourLangue": [
+          "Vocabulaire: construire, créer, inventer",
+          "Partir d'intérêts personnels",
+          "Support visuel pour inspiration",
+          "Encouragement à utiliser L1 si nécessaire"
+        ],
+        "pourPEI": [
+          "Matériaux adaptés pour création",
+          "Support pour organisation d'idées",
+          "Temps flexible",
+          "Célébrer tous efforts créatifs"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Crée équations vraies originales",
+          "Vérifie exactitude de ses créations",
+          "Fait preuve de créativité",
+          "Présente création avec fierté"
+        ],
+        "checkpoints": [
+          "Début: A-t-il des idées créatives?",
+          "Milieu: Ses équations sont-elles correctes?",
+          "Fin: Peut-il expliquer sa création?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Égalité avec addition simple",
+      "oneGoal": "Les élèves explorent l'égalité dans des situations d'addition avec petits nombres",
+      "duration": 45,
+      "keyVocabulary": [
+        "addition",
+        "ajouter",
+        "total"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Histoire d'addition - conter avec objets (2 oiseaux + 1 oiseau = 3 oiseaux)",
+        "materials": [
+          "petits animaux",
+          "livret d'histoire",
+          "cartes +"
+        ],
+        "visualSupports": "Images séquentielles d'histoires d'addition",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils l'histoire d'addition?",
+            "ifYes": "Les laisser créer leurs propres histoires",
+            "ifNo": "Répéter avec objets plus familiers"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Manipulation d'additions simples avec vérification d'égalité",
+        "materials": [
+          "objets comptables",
+          "cartes +",
+          "cartes =",
+          "cartes numériques 1-5",
+          "balance"
+        ],
+        "visualSupports": "Modèle visuel d'addition (groupe + groupe = total)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils que 2+1 peut égaler 3?",
+            "ifYes": "Expérimenter avec différentes combinaisons pour même total",
+            "ifNo": "Pratiquer addition concrète sans égalité d'abord"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Partage de découvertes - quelle addition était la plus intéressante?",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "certificats d'encouragement (30 copies)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne trouve aucune addition intéressante → l'aider en rappelant les activités du jour",
+          "Si élève partage une découverte unique → demander à la classe si d'autres ont remarqué la même chose",
+          "Si confusion sur ce qui rend une addition 'intéressante' → donner des exemples concrets"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Addition compliquant l'égalité",
+        "then": "Séparer apprentissage addition et égalité temporairement"
+      },
+      "realWorldConnection": "Ajouter des éléments à une collection et compter le nouveau total",
+      "differentiation": {
+        "pourDifficultés": [
+          "Addition avec 1 seulement (2+1=3)",
+          "Objets concrets toujours présents",
+          "Séparer apprentissage addition et égalité",
+          "Une étape à la fois"
+        ],
+        "pourAvancés": [
+          "Différentes combinaisons pour même total",
+          "Additions jusqu'à 5+5",
+          "Créer histoires complexes",
+          "Explorer commutativité (2+3=3+2)"
+        ],
+        "pourLangue": [
+          "Vocabulaire: addition, ajouter, total",
+          "Gestes pour 'ajouter' et 'total'",
+          "Histoires simples et visuelles",
+          "Répétition du processus"
+        ],
+        "pourPEI": [
+          "Objets faciles à manipuler",
+          "Support pour compter",
+          "Temps flexible",
+          "Objectifs adaptés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Manipule additions simples concrètement",
+          "Comprend que addition donne total",
+          "Vérifie égalité dans addition",
+          "Raconte histoires d'addition"
+        ],
+        "checkpoints": [
+          "Début: Comprend-il 'ajouter'?",
+          "Milieu: Trouve-t-il le total correct?",
+          "Fin: Voit-il égalité dans 2+1=3?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Patterns d'égalité",
+      "oneGoal": "Les élèves découvrent des régularités et patterns dans les équations égales",
+      "duration": 45,
+      "keyVocabulary": [
+        "pattern",
+        "régularité",
+        "suite"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Chasse aux patterns - trouver des régularités dans la classe",
+        "materials": [
+          "objets avec patterns",
+          "loupes",
+          "carnet d'observation"
+        ],
+        "visualSupports": "Exemples de patterns mathématiques colorés",
+        "decisionPoints": [
+          {
+            "question": "Les élèves voient-ils patterns dans l'environnement?",
+            "ifYes": "Passer aux patterns mathématiques abstraits",
+            "ifNo": "Plus d'exemples de patterns visuels évidents"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Exploration de séquences d'équations avec patterns évidents",
+        "materials": [
+          "cartes équations en séquence",
+          "objets pour construire patterns",
+          "papier quadrillé"
+        ],
+        "visualSupports": "Exemples de patterns d'équations (1=1, 2=2, 3=3...)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves voient-ils les patterns dans les équations?",
+            "ifYes": "Les laisser créer leurs propres séquences de patterns",
+            "ifNo": "Utiliser couleurs et formes pour rendre patterns plus visibles"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Prédiction de pattern - deviner la prochaine équation dans la séquence",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "certificats d'encouragement (30 copies)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne voit pas le pattern → montrer les deux premières équations en les comparant",
+          "Si élève identifie le pattern rapidement → le défier avec une séquence plus complexe",
+          "Si prédictions sont incorrectes → revoir ensemble ce qui change d'une équation à l'autre"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Reconnaissance de patterns",
+        "then": "Commencer avec patterns très simples et visuels"
+      },
+      "realWorldConnection": "Patterns dans la nature qui montrent l'équilibre et la symétrie",
+      "differentiation": {
+        "pourDifficultés": [
+          "Patterns très simples (1=1, 2=2)",
+          "Couleurs pour rendre patterns visibles",
+          "Un pattern à la fois",
+          "Support visuel constant"
+        ],
+        "pourAvancés": [
+          "Créer propres séquences de patterns",
+          "Patterns plus complexes",
+          "Expliquer règles de patterns",
+          "Prédire plusieurs éléments suivants"
+        ],
+        "pourLangue": [
+          "Vocabulaire: pattern, régularité, suite",
+          "Patterns visuels avant vocabulaire",
+          "Gestes pour 'suivant' et 'répéter'",
+          "Support avec objets concrets"
+        ],
+        "pourPEI": [
+          "Patterns tactiles si approprié",
+          "Objets manipulables",
+          "Temps flexible pour reconnaissance",
+          "Support individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Reconnaît patterns dans équations",
+          "Prédit prochaine équation dans séquence",
+          "Utilise vocabulaire pattern/régularité",
+          "Crée propres patterns simples"
+        ],
+        "checkpoints": [
+          "Début: Voit-il patterns évidents?",
+          "Milieu: Peut-il continuer pattern?",
+          "Fin: Crée-t-il ses propres patterns?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Équilibrer des équations",
+      "oneGoal": "Les élèves apprennent à 'réparer' des équations déséquilibrées en ajoutant ou enlevant",
+      "duration": 45,
+      "keyVocabulary": [
+        "réparer",
+        "équilibrer",
+        "ajuster"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu du réparateur - identifier ce qui est 'cassé' dans des images",
+        "materials": [
+          "images d'objets déséquilibrés",
+          "outils de jouet"
+        ],
+        "visualSupports": "Avant/après de réparations simples",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils concept de réparation?",
+            "ifYes": "Passer aux équations mathématiques à réparer",
+            "ifNo": "Plus d'exemples d'objets cassés/réparés"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Manipulation d'équations déséquilibrées avec matériel pour les 'réparer'",
+        "materials": [
+          "équations déséquilibrées",
+          "objets à ajouter/enlever",
+          "balance",
+          "cartes numériques"
+        ],
+        "visualSupports": "Guide de réparation d'équations illustré",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils comment équilibrer une équation?",
+            "ifYes": "Présenter équations nécessitant plusieurs ajustements",
+            "ifNo": "Se concentrer sur ajustements d'un seul objet/nombre"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Célébration des réparations - montrer les équations réparées",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève n'arrive pas à réparer son équation → l'aider en identifiant ensemble le problème",
+          "Si élève répare rapidement → lui demander d'expliquer sa stratégie de réparation",
+          "Si réparation crée une nouvelle erreur → célébrer l'effort et recommencer calmement"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Concept de réparation d'équations",
+        "then": "Utiliser balance physique pour démonstration concrète"
+      },
+      "realWorldConnection": "Ajuster une recette pour avoir la bonne quantité",
+      "differentiation": {
+        "pourDifficultés": [
+          "Une seule modification à la fois",
+          "Balance physique pour démonstration",
+          "Équations très simples (3=?)",
+          "Support visuel constant"
+        ],
+        "pourAvancés": [
+          "Plusieurs ajustements nécessaires",
+          "Expliquer process de réparation",
+          "Créer équations brisées pour amis",
+          "Différentes façons de réparer"
+        ],
+        "pourLangue": [
+          "Vocabulaire: réparer, équilibrer, ajuster",
+          "Gestes pour chaque action",
+          "Exemples concrets de réparation",
+          "Support visuel étape par étape"
+        ],
+        "pourPEI": [
+          "Matériel adapté",
+          "Support individuel",
+          "Temps flexible",
+          "Célébrer chaque réussite"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Identifie équations déséquilibrées",
+          "Ajoute ou enlève pour équilibrer",
+          "Vérifie réparation avec matériel",
+          "Explique comment il a réparé"
+        ],
+        "checkpoints": [
+          "Début: Voit-il le problème?",
+          "Milieu: Sait-il quoi ajouter/enlever?",
+          "Fin: Peut-il réparer de façon indépendante?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Jeux d'égalité",
+      "oneGoal": "Les élèves pratiquent les concepts d'égalité à travers des jeux coopératifs et compétitifs",
+      "duration": 45,
+      "keyVocabulary": [
+        "jeu",
+        "équipe",
+        "gagner"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Échauffement ludique - jeu de rapidité avec cartes égales",
+        "materials": [
+          "cartes équations",
+          "minuteur",
+          "cloche"
+        ],
+        "visualSupports": "Règles de jeu illustrées simplement",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils les règles rapidement?",
+            "ifYes": "Ajouter variations plus défiantes",
+            "ifNo": "Simplifier ou démonstration supplémentaire"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Rotation entre 3 jeux d'égalité : mémoire, dominos d'équations, course aux balances",
+        "materials": [
+          "jeux de cartes",
+          "dominos équations",
+          "balances miniatures",
+          "objets comptables",
+          "sabliers"
+        ],
+        "visualSupports": "Instructions visuelles pour chaque station de jeu",
+        "decisionPoints": [
+          {
+            "question": "Les jeux engagent-ils tous les élèves?",
+            "ifYes": "Ajouter variations plus complexes",
+            "ifNo": "Ajuster règles pour inclusion de tous"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cercle de réflexion - quel jeu a été le plus amusant et pourquoi?",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève dit qu'aucun jeu n'était amusant → explorer ce qui rendrait les mathématiques plus amusantes pour lui",
+          "Si élève explique clairement pourquoi il a aimé un jeu → demander aux autres s'ils sont d'accord",
+          "Si réponses très courtes → encourager avec questions comme 'Qu'est-ce qui t'a fait sourire?'"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Compétition stressante",
+        "then": "Emphasiser la collaboration et l'apprentissage mutuel"
+      },
+      "realWorldConnection": "Jeux de société familiaux qui impliquent l'égalité",
+      "differentiation": {
+        "pourDifficultés": [
+          "Jeux coopératifs plutôt que compétitifs",
+          "Règles simplifiées",
+          "Partenaire pour support",
+          "Focus sur plaisir d'apprendre"
+        ],
+        "pourAvancés": [
+          "Variations plus complexes",
+          "Rôle de meneur de jeu",
+          "Créer nouveaux jeux d'égalité",
+          "Enseigner stratégies aux autres"
+        ],
+        "pourLangue": [
+          "Instructions visuelles claires",
+          "Partenaire francophone",
+          "Focus sur manipulation plutôt que verbal",
+          "Encouragement à participer"
+        ],
+        "pourPEI": [
+          "Jeux adaptés aux capacités",
+          "Rôle valorisant pour chacun",
+          "Temps flexible",
+          "Modifications des règles si nécessaire"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Participe activement aux jeux",
+          "Applique concepts d'égalité en jouant",
+          "Coopère bien avec équipiers",
+          "Montre compréhension ludique des mathématiques"
+        ],
+        "checkpoints": [
+          "Début: Comprend-il les règles?",
+          "Milieu: Applique-t-il concepts d'égalité?",
+          "Fin: Préfère-t-il certains jeux? Pourquoi?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Art de l'égalité",
+      "oneGoal": "Les élèves créent des œuvres artistiques qui représentent l'équilibre et l'égalité",
+      "duration": 45,
+      "keyVocabulary": [
+        "art",
+        "symétrie",
+        "beauté"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Galerie d'art mathématique - observer des œuvres avec symétrie et équilibre",
+        "materials": [
+          "reproductions d'art",
+          "loupes",
+          "carnet d'artiste"
+        ],
+        "visualSupports": "Œuvres célèbres montrant équilibre et symétrie",
+        "decisionPoints": [
+          {
+            "question": "Les élèves voient-ils équilibre dans les œuvres d'art?",
+            "ifYes": "Les encourager à analyser plus en détail",
+            "ifNo": "Pointer éléments symétriques évidents"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Création artistique libre incorporant concepts d'égalité et équilibre",
+        "materials": [
+          "papier varié",
+          "peinture",
+          "pinceaux",
+          "tampons",
+          "règles",
+          "compas simple",
+          "miroirs"
+        ],
+        "visualSupports": "Techniques artistiques pour créer équilibre et symétrie",
+        "decisionPoints": [
+          {
+            "question": "Les élèves intègrent-ils naturellement les concepts mathématiques?",
+            "ifYes": "Encourager expérimentation avec techniques avancées",
+            "ifNo": "Fournir gabarits et guides pour structure"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Vernissage - présenter son œuvre et expliquer l'égalité qu'elle montre",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne peut pas expliquer l'égalité → l'aider en comptant ensemble les éléments de son œuvre",
+          "Si présentation très créative → encourager les autres à poser des questions sur l'œuvre",
+          "Si élève timide pour présenter → permettre de chuchoter à l'enseignant qui répète à la classe"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Intégration art-mathématiques",
+        "then": "Commencer par symétrie simple avec peinture miroir"
+      },
+      "realWorldConnection": "Observer la symétrie dans l'art et l'architecture",
+      "differentiation": {
+        "pourDifficultés": [
+          "Symétrie simple avec peinture miroir",
+          "Gabarits et guides pour structure",
+          "Focus sur plaisir créatif",
+          "Matériaux faciles à manipuler"
+        ],
+        "pourAvancés": [
+          "Techniques artistiques avancées",
+          "Intégration naturelle math-art",
+          "Expérimentation libre",
+          "Création d'œuvres complexes"
+        ],
+        "pourLangue": [
+          "Vocabulaire: art, symétrie, beauté",
+          "Focus sur création plutôt que verbal",
+          "Exemples visuels clairs",
+          "Expression artistique universelle"
+        ],
+        "pourPEI": [
+          "Outils adaptés pour création",
+          "Techniques alternatives",
+          "Support individuel",
+          "Valorisation de toute création"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Crée œuvre montrant équilibre",
+          "Intègre concepts mathématiques artistiquement",
+          "Explique égalité/symétrie dans son art",
+          "Montre appréciation esthétique des mathématiques"
+        ],
+        "checkpoints": [
+          "Début: Voit-il équilibre dans l'art?",
+          "Milieu: Intègre-t-il mathématiques naturellement?",
+          "Fin: Peut-il expliquer mathématiques dans son art?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Équations mystère",
+      "oneGoal": "Les élèves résolvent des équations simples avec un élément manquant (?)",
+      "duration": 45,
+      "keyVocabulary": [
+        "mystère",
+        "manquant",
+        "résoudre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Jeu du détective - trouver l'objet caché dans une boîte mystère",
+        "materials": [
+          "boîtes opaques",
+          "objets familiers",
+          "loupes de détective"
+        ],
+        "visualSupports": "Badges de détective et indices visuels",
+        "decisionPoints": [
+          "Si un élève devine trop rapidement → ajouter des indices plus subtils pour maintenir le mystère",
+          "Si élève frustré de ne pas deviner → donner des indices progressifs",
+          "Si trop d'élèves devinent en même temps → organiser en petits groupes de détectives"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Résolution d'équations avec ? à différentes positions, utilisation d'objets pour découvrir",
+        "materials": [
+          "cartes équations avec ?",
+          "objets comptables",
+          "balance",
+          "cartes numériques"
+        ],
+        "visualSupports": "Guide de résolution d'équations mystère étape par étape",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils qu'un nombre est caché?",
+            "ifYes": "Varier position du ? dans l'équation",
+            "ifNo": "Utiliser boîtes physiques pour cacher objets d'abord"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Partage de stratégies - comment avez-vous trouvé le nombre mystère?",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne peut pas expliquer sa stratégie → l'aider en retraçant ses étapes ensemble",
+          "Si stratégie très originale → la faire démontrer à la classe",
+          "Si élève dit avoir juste deviné → explorer s'il y avait vraiment des indices qu'il a utilisés"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Concept d'inconnue",
+        "then": "Utiliser jeux de cache-cache avec objets avant symboles"
+      },
+      "realWorldConnection": "Résoudre des énigmes et mystères dans la vie quotidienne",
+      "differentiation": {
+        "pourDifficultés": [
+          "Jeux cache-cache avec objets avant symboles",
+          "? toujours à la fin de l'équation",
+          "Nombres 1-3 seulement",
+          "Beaucoup de support visuel et concret"
+        ],
+        "pourAvancés": [
+          "? à différentes positions dans équation",
+          "Nombres plus grands",
+          "Créer équations mystère pour amis",
+          "Expliquer stratégies de résolution"
+        ],
+        "pourLangue": [
+          "Vocabulaire: mystère, manquant, résoudre",
+          "Jeux concrets avant symboles abstraits",
+          "Support visuel pour stratégies",
+          "Apprentissage par découverte"
+        ],
+        "pourPEI": [
+          "Boîtes physiques pour cacher nombres",
+          "Support individuel pour résolution",
+          "Temps flexible",
+          "Célébrer chaque découverte"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Comprend qu'un nombre est caché",
+          "Utilise objets pour découvrir nombre manquant",
+          "Explique comment il a trouvé réponse",
+          "Montre persévérance dans résolution"
+        ],
+        "checkpoints": [
+          "Début: Comprend-il concept de caché/manquant?",
+          "Milieu: Peut-il résoudre avec objets concrets?",
+          "Fin: Partage-t-il ses stratégies?"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Balance familiale",
+      "oneGoal": "Les élèves explorent l'égalité dans le contexte familial et les relations",
+      "duration": 45,
+      "keyVocabulary": [
+        "famille",
+        "partage",
+        "juste"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Partage de photos - montrer sa famille et parler de partage équitable",
+        "materials": [
+          "photos de famille apportées",
+          "album de classe"
+        ],
+        "visualSupports": "Images diverses de familles partageant équitablement",
+        "decisionPoints": [
+          "Si un élève n'a pas apporté de photo → utiliser les photos de l'album de classe ou créer un dessin rapide",
+          "Si élève partage histoire émouvante sur sa famille → valider ses sentiments et remercier le partage",
+          "Si concept de partage équitable pas clair → utiliser exemples concrets comme diviser des collations"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Jeux de rôle sur partage équitable et résolution de problèmes familiaux d'égalité",
+        "materials": [
+          "poupées représentant famille",
+          "objets à partager",
+          "balance",
+          "cartes de situations"
+        ],
+        "visualSupports": "Scénarios illustrés de partage familial équitable",
+        "decisionPoints": [
+          {
+            "question": "Les élèves connectent-ils l'égalité mathématique à l'équité sociale?",
+            "ifYes": "Explorer situations plus complexes de fairness",
+            "ifNo": "Se concentrer sur partages simples et concrets"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Promesses de partage - comment vais-je partager équitablement à la maison?",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne trouve pas d'idées de partage → suggérer des exemples simples comme partager ses jouets",
+          "Si promesses très ambitieuses → encourager tout en gardant réaliste pour un enfant de 6-7 ans",
+          "Si élève semble triste à propos de sa situation familiale → offrir réconfort et alternatives adaptées"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Connexion égalité-équité sociale",
+        "then": "Utiliser exemples très concrets (partage de collation)"
+      },
+      "realWorldConnection": "Partager équitablement dans la famille, prendre des tours",
+      "differentiation": {
+        "pourDifficultés": [
+          "Partages très simples et concrets (collation)",
+          "Focus sur fairness évidente",
+          "Situations familiales familitières",
+          "Support émotionnel pour concepts sociaux"
+        ],
+        "pourAvancés": [
+          "Situations complexes de fairness",
+          "Discussion sur équité vs égalité",
+          "Rôle de médiateur dans conflits",
+          "Créer scénarios pour résolution"
+        ],
+        "pourLangue": [
+          "Vocabulaire: famille, partage, juste",
+          "Scénarios visuels et concrets",
+          "Jeux de rôle avec support",
+          "Connexions culturelles personnelles"
+        ],
+        "pourPEI": [
+          "Scénarios adaptés à expérience personnelle",
+          "Support émotionnel si nécessaire",
+          "Rôles adaptés dans jeux",
+          "Focus sur succès social"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Connecte égalité mathématique à équité sociale",
+          "Participe activement aux jeux de rôle",
+          "Propose solutions de partage équitable",
+          "Montre empathie dans situations familiales"
+        ],
+        "checkpoints": [
+          "Début: Comprend-il partage équitable?",
+          "Milieu: Fait-il lien égalité-équité?",
+          "Fin: Peut-il résoudre conflits de partage?"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Égalité dans la nature",
+      "oneGoal": "Les élèves découvrent l'équilibre et l'égalité dans le monde naturel",
+      "duration": 45,
+      "keyVocabulary": [
+        "nature",
+        "équilibre",
+        "harmonie"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Observation de la nature - regarder des images d'éléments naturels symétriques",
+        "materials": [
+          "photos de nature",
+          "loupes",
+          "carnet d'explorateur"
+        ],
+        "visualSupports": "Collection d'images de symétrie naturelle (feuilles, papillons)",
+        "decisionPoints": [
+          "Si un élève ne voit pas la symétrie → tracer une ligne imaginaire au milieu et comparer les côtés",
+          "Si élèves très intéressés par les détails → encourager à utiliser les loupes pour observer de plus près",
+          "Si connexion avec les mathématiques pas claire → expliquer que la nature aime l'égalité aussi"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Exploration extérieure ou observation d'éléments naturels, création d'équations basées sur observations",
+        "materials": [
+          "objets naturels collectés",
+          "règles",
+          "papier",
+          "crayons",
+          "balance"
+        ],
+        "visualSupports": "Guide d'observation de patterns naturels",
+        "decisionPoints": [
+          {
+            "question": "Les élèves voient-ils les patterns d'égalité dans la nature?",
+            "ifYes": "Les encourager à mesurer et quantifier leurs observations",
+            "ifNo": "Pointer explicitement la symétrie dans objets naturels"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Musée de nature - présenter sa découverte d'égalité naturelle favorite",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "certificats d'encouragement (30 copies)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève hésite à présenter → permettre de montrer silencieusement ou avec l'aide d'un ami",
+          "Si présentation très détaillée → encourager les questions du public",
+          "Si connexion à l'égalité pas évidente → aider à identifier les éléments égaux des deux côtés"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Connexion nature-mathématiques",
+        "then": "Commencer par symétrie très évidente (visage, papillon)"
+      },
+      "realWorldConnection": "Observer la symétrie des feuilles, l'équilibre des écosystèmes",
+      "differentiation": {
+        "pourDifficultés": [
+          "Symétrie très évidente (visage, papillon)",
+          "Objets naturels simples",
+          "Focus sur observation plutôt que quantification",
+          "Support visuel constant"
+        ],
+        "pourAvancés": [
+          "Mesurer et quantifier observations",
+          "Connexions plus profondes nature-mathématiques",
+          "Recherche indépendante d'éléments symétriques",
+          "Création d'un guide de symétrie naturelle"
+        ],
+        "pourLangue": [
+          "Vocabulaire: nature, équilibre, harmonie",
+          "Observation directe avant vocabulaire",
+          "Images claires et exemples concrets",
+          "Connexion avec nature de leur culture"
+        ],
+        "pourPEI": [
+          "Exploration sensorielle variée",
+          "Objets naturels adaptés",
+          "Temps flexible pour observation",
+          "Différentes façons d'exprimer découvertes"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Identifie patterns d'égalité dans la nature",
+          "Crée équations basées sur observations",
+          "Montre appréciation pour harmonie naturelle",
+          "Fait connexions entre mathématiques et nature"
+        ],
+        "checkpoints": [
+          "Début: Voit-il symétrie dans objets naturels?",
+          "Milieu: Peut-il quantifier ses observations?",
+          "Fin: Explique-t-il mathématiques dans la nature?"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Défis d'égalité",
+      "oneGoal": "Les élèves relèvent des défis mathématiques progressifs liés à l'égalité",
+      "duration": 45,
+      "keyVocabulary": [
+        "défi",
+        "difficile",
+        "persévérer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Échauffement de confiance - rappeler toutes nos réussites en égalité",
+        "materials": [
+          "portfolio de travaux",
+          "autocollants de réussite"
+        ],
+        "visualSupports": "Affichage des progrès et accomplissements de la classe",
+        "decisionPoints": [
+          "Si un élève ne se souvient pas de ses réussites → l'aider en feuilletant son portfolio ensemble",
+          "Si élève très fier de ses progrès → l'inviter à partager sa fierté avec la classe",
+          "Si manque de confiance apparent → souligner des progrès spécifiques et concrets observés"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Centres de défis progressifs avec choix personnel du niveau de difficulté",
+        "materials": [
+          "défis à plusieurs niveaux",
+          "matériel de manipulation",
+          "sabliers",
+          "carnets de progression"
+        ],
+        "visualSupports": "Système de niveaux colorés et choix d'autonomie",
+        "decisionPoints": [
+          {
+            "question": "Les défis sont-ils appropriés au niveau des élèves?",
+            "ifYes": "Ajouter éléments de créativité aux défis",
+            "ifNo": "Ajuster difficultés et fournir plus de support"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Célébration des efforts - reconnaître persévérance et strategies utilisées",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève n'a pas persévéré → célébrer ses tentatives et encourager pour la prochaine fois",
+          "Si stratégies très variées dans la classe → faire un tour de table pour partager les différentes approches",
+          "Si émotion forte de réussite → permettre célébration spontanée et authentique"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Frustration devant difficulté",
+        "then": "Emphasiser processus d'apprentissage plutôt que résultat"
+      },
+      "realWorldConnection": "Résoudre des problèmes de la vie réelle avec patience",
+      "differentiation": {
+        "pourDifficultés": [
+          "Défis adaptés au niveau individuel",
+          "Support émotionnel pour frustration",
+          "Célébrer efforts plutôt que résultats",
+          "Partenaire de soutien"
+        ],
+        "pourAvancés": [
+          "Éléments créatifs ajoutés aux défis",
+          "Défis auto-sélectionnés",
+          "Rôle de mentor pour autres élèves",
+          "Création de nouveaux défis"
+        ],
+        "pourLangue": [
+          "Défis plus visuels et concrets",
+          "Vocabulaire: défi, difficile, persévérer",
+          "Support en L1 si nécessaire",
+          "Célébration culturelle des efforts"
+        ],
+        "pourPEI": [
+          "Défis totalement adaptés",
+          "Support individuel constant",
+          "Définition personnalisée de succès",
+          "Flexibilité complète"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Choisit défis appropriés à son niveau",
+          "Montre persévérance face aux difficultés",
+          "Célèbre efforts et progrès",
+          "Utilise stratégies variées pour résoudre"
+        ],
+        "checkpoints": [
+          "Début: Évalue-t-il son niveau de confort?",
+          "Milieu: Persévère-t-il malgré les défis?",
+          "Fin: Reconnaît-il sa croissance?"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Portfolio d'égalité",
+      "oneGoal": "Les élèves compilent et présentent leurs apprentissages sur l'égalité mathématique",
+      "duration": 45,
+      "keyVocabulary": [
+        "portfolio",
+        "montrer",
+        "fier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Voyage dans le temps - regarder tous nos travaux depuis la première leçon",
+        "materials": [
+          "tous les travaux précédents",
+          "photos de activités"
+        ],
+        "visualSupports": "Chronologie visuelle de notre parcours d'apprentissage",
+        "decisionPoints": [
+          "Si un élève ne reconnaît pas ses propres travaux → l'aider en rappelant le contexte de chaque activité",
+          "Si émotion en voyant les progrès → valider les sentiments et célébrer le chemin parcouru",
+          "Si difficulté à voir l'évolution → pointer des éléments spécifiques qui montrent la croissance"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Organisation et décoration de portfolio personnel, préparation de présentation",
+        "materials": [
+          "cartables",
+          "papier coloré",
+          "autocollants",
+          "photos",
+          "marqueurs",
+          "rubans"
+        ],
+        "visualSupports": "Exemples de portfolios organisés et créatifs",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils expliquer leurs apprentissages?",
+            "ifYes": "Les encourager à enseigner à un camarade",
+            "ifNo": "Pratiquer explication avec support visuel"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Répétition de présentation - s'entraîner à présenter son apprentissage favori",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne sait pas quoi choisir comme apprentissage favori → l'aider en réfléchissant à ce qui l'a fait sourire",
+          "Si présentation très bien préparée → encourager à ajouter des détails personnels",
+          "Si nervosité avant la présentation → pratiquer des techniques de respiration et se rappeler que c'est juste pour s'amuser"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Explication de ses apprentissages",
+        "then": "Utiliser questions guidées et support visuel"
+      },
+      "realWorldConnection": "Partager ses apprentissages avec la famille",
+      "differentiation": {
+        "pourDifficultés": [
+          "Questions guidées pour expliquer apprentissages",
+          "Support visuel pour présentation",
+          "Portfolio simplifié avec éléments essentiels",
+          "Pratique avec partenaire avant présentation"
+        ],
+        "pourAvancés": [
+          "Présentation détaillée et réfléchie",
+          "Enseignement à d'autres élèves",
+          "Portfolio créatif et personnalisé",
+          "Réflexion métacognitive sur apprentissages"
+        ],
+        "pourLangue": [
+          "Support visuel pour communication",
+          "Présentation mixte L1/L2 si nécessaire",
+          "Focus sur démonstration plutôt que verbal",
+          "Célébration de tous efforts de communication"
+        ],
+        "pourPEI": [
+          "Format de présentation adapté",
+          "Objectifs personnalisés pour portfolio",
+          "Support individuel pour organisation",
+          "Multiple façons de démontrer apprentissage"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Organise portfolio de façon significative",
+          "Explique apprentissages avec exemples",
+          "Montre fierté dans réalisations",
+          "Démontre croissance depuis début d'unité"
+        ],
+        "checkpoints": [
+          "Début: Peut-il identifier ses travaux favoris?",
+          "Milieu: Organise-t-il portfolio logiquement?",
+          "Fin: Explique-t-il ce qu'il a appris?"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Grande célébration mathématique",
+      "oneGoal": "Les élèves célèbrent leurs apprentissages et découvertes en égalité mathématique",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "réussite",
+        "mathématiques"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Cérémonie d'ouverture - chanson ou poème sur l'égalité mathématique",
+        "materials": [
+          "paroles de chanson",
+          "décorations festives",
+          "appareils photo"
+        ],
+        "visualSupports": "Bannières et décorations célébrant les mathématiques",
+        "decisionPoints": [
+          "Si élèves très excités par la célébration → canaliser l'énergie avec gestes et mouvements",
+          "Si timidité pour chanter → permettre de participer en tapant des mains ou hochant la tête",
+          "Si chanson trop difficile → se concentrer sur les refrains simples et répétitifs"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Présentation de portfolios, démonstrations d'apprentissages, jeux favoris revisités",
+        "materials": [
+          "portfolios complétés",
+          "stations d'activités favorites",
+          "matériel de toutes les leçons"
+        ],
+        "visualSupports": "Exposition de tous les travaux et créations de l'année",
+        "decisionPoints": [
+          {
+            "question": "La célébration honore-t-elle tous les types d'apprentissages?",
+            "ifYes": "Capturer moments spéciaux pour mémoires",
+            "ifNo": "Ajuster pour inclure contributions de chaque élève"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Cercle de gratitude - remercier et partager nos moments mathématiques favoris",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "tampons motivants avec encreur (5 tampons)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne trouve pas de moment favori → l'aider en suggérant des moments observés où il souriait",
+          "Si partages très émotifs → permettre l'expression et valider l'importance de ces moments",
+          "Si difficile de terminer car trop de partages → promouvoir continuation informelle et créer un livre de souvenirs"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Émotion ou timidité pendant célébration",
+        "then": "Créer atmosphere bienveillante et options de participation variées"
+      },
+      "realWorldConnection": "Célébrer les réussites et partager la joie d'apprendre",
+      "differentiation": {
+        "pourDifficultés": [
+          "Options de participation variées",
+          "Atmosphère bienveillante et soutenante",
+          "Célébration de tous efforts",
+          "Rôles adaptés dans célébration"
+        ],
+        "pourAvancés": [
+          "Rôles de leadership dans célébration",
+          "Présentations détaillées de portfolios",
+          "Mentorship d'autres élèves",
+          "Documentation des accomplissements"
+        ],
+        "pourLangue": [
+          "Participation non-verbale encouragée",
+          "Traduction familiale si souhaitée",
+          "Célébration universelle de joie",
+          "Focus sur partage d'émotions positives"
+        ],
+        "pourPEI": [
+          "Participation totalement adaptée",
+          "Célébration personnalisée",
+          "Support émotionnel si nécessaire",
+          "Reconnaissance de tous accomplissements"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Participe à célébration selon ses capacités",
+          "Partage fierté dans apprentissages",
+          "Démontre joie d'apprendre mathématiques",
+          "Exprime gratitude pour parcours d'apprentissage"
+        ],
+        "checkpoints": [
+          "Début: Se sent-il à l'aise dans célébration?",
+          "Milieu: Partage-t-il ses réussites?",
+          "Fin: Exprime-t-il des émotions positives?"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Résolution de problèmes",
+        "items": [
+          "Démontre une compréhension de base en résolution de problèmes",
+          "Participe activement aux activités de résolution de problèmes",
+          "Montre du progrès dans résolution de problèmes",
+          "Applique les apprentissages de résolution de problèmes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Manipulation",
+        "items": [
+          "Démontre une compréhension de base en manipulation",
+          "Participe activement aux activités de manipulation",
+          "Montre du progrès dans manipulation",
+          "Applique les apprentissages de manipulation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Vocabulaire mathématique",
+        "items": [
+          "Démontre une compréhension de base en vocabulaire mathématique",
+          "Participe activement aux activités de vocabulaire mathématique",
+          "Montre du progrès dans vocabulaire mathématique",
+          "Applique les apprentissages de vocabulaire mathématique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Représentation",
+        "items": [
+          "Démontre une compréhension de base en représentation",
+          "Participe activement aux activités de représentation",
+          "Montre du progrès dans représentation",
+          "Applique les apprentissages de représentation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Résolution de problèmes",
+        "Manipulation",
+        "Vocabulaire mathématique",
+        "Représentation"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "✓",
+          "~",
+          "?"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en mathématiques\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nIntroduction à l'équilibre, Balances et objets égaux, Groupes égaux avec manipulatives, Dessiner l'égalité, Le signe égal mystérieux\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nUtilisez les moments quotidiens pour pratiquer les mathématiques (compter, mesurer, etc.)\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLes mathématiques sont partout dans notre vie quotidienne!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Mathématiques en cuisine",
+        "description": "Comptez, mesurez et comparez en préparant des collations",
+        "timeRequired": "Pendant la préparation des repas",
+        "materials": "Ingrédients de cuisine",
+        "frenchSupport": "Utilisez les nombres en français si possible"
+      },
+      {
+        "title": "Jeux de société mathématiques",
+        "description": "Jouez à des jeux impliquant compter, additionner ou reconnaître des formes",
+        "timeRequired": "20 minutes",
+        "materials": "Jeux de société, dés, cartes",
+        "frenchSupport": "Comptez ensemble en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "équilibre",
+        "lesson": 1,
+        "context": "Introduction à l'équilibre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"équilibre\"",
+          "Utilisez \"équilibre\" dans une phrase simple",
+          "Trouvez des images représentant \"équilibre\"",
+          "Faites des gestes pour \"équilibre\""
+        ]
+      },
+      {
+        "word": "égal",
+        "lesson": 1,
+        "context": "Introduction à l'équilibre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"égal\"",
+          "Utilisez \"égal\" dans une phrase simple",
+          "Trouvez des images représentant \"égal\"",
+          "Faites des gestes pour \"égal\""
+        ]
+      },
+      {
+        "word": "balance",
+        "lesson": 1,
+        "context": "Introduction à l'équilibre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"balance\"",
+          "Utilisez \"balance\" dans une phrase simple",
+          "Trouvez des images représentant \"balance\"",
+          "Faites des gestes pour \"balance\""
+        ]
+      },
+      {
+        "word": "même",
+        "lesson": 2,
+        "context": "Balances et objets égaux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"même\"",
+          "Utilisez \"même\" dans une phrase simple",
+          "Trouvez des images représentant \"même\"",
+          "Faites des gestes pour \"même\""
+        ]
+      },
+      {
+        "word": "différent",
+        "lesson": 2,
+        "context": "Balances et objets égaux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"différent\"",
+          "Utilisez \"différent\" dans une phrase simple",
+          "Trouvez des images représentant \"différent\"",
+          "Faites des gestes pour \"différent\""
+        ]
+      },
+      {
+        "word": "groupe",
+        "lesson": 3,
+        "context": "Groupes égaux avec manipulatives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"groupe\"",
+          "Utilisez \"groupe\" dans une phrase simple",
+          "Trouvez des images représentant \"groupe\"",
+          "Faites des gestes pour \"groupe\""
+        ]
+      },
+      {
+        "word": "pareil",
+        "lesson": 3,
+        "context": "Groupes égaux avec manipulatives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pareil\"",
+          "Utilisez \"pareil\" dans une phrase simple",
+          "Trouvez des images représentant \"pareil\"",
+          "Faites des gestes pour \"pareil\""
+        ]
+      },
+      {
+        "word": "autant",
+        "lesson": 3,
+        "context": "Groupes égaux avec manipulatives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"autant\"",
+          "Utilisez \"autant\" dans une phrase simple",
+          "Trouvez des images représentant \"autant\"",
+          "Faites des gestes pour \"autant\""
+        ]
+      },
+      {
+        "word": "dessiner",
+        "lesson": 4,
+        "context": "Dessiner l'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dessiner\"",
+          "Utilisez \"dessiner\" dans une phrase simple",
+          "Trouvez des images représentant \"dessiner\"",
+          "Faites des gestes pour \"dessiner\""
+        ]
+      },
+      {
+        "word": "montrer",
+        "lesson": 4,
+        "context": "Dessiner l'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"montrer\"",
+          "Utilisez \"montrer\" dans une phrase simple",
+          "Trouvez des images représentant \"montrer\"",
+          "Faites des gestes pour \"montrer\""
+        ]
+      },
+      {
+        "word": "égalité",
+        "lesson": 4,
+        "context": "Dessiner l'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"égalité\"",
+          "Utilisez \"égalité\" dans une phrase simple",
+          "Trouvez des images représentant \"égalité\"",
+          "Faites des gestes pour \"égalité\""
+        ]
+      },
+      {
+        "word": "signe",
+        "lesson": 5,
+        "context": "Le signe égal mystérieux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"signe\"",
+          "Utilisez \"signe\" dans une phrase simple",
+          "Trouvez des images représentant \"signe\"",
+          "Faites des gestes pour \"signe\""
+        ]
+      },
+      {
+        "word": "pont",
+        "lesson": 5,
+        "context": "Le signe égal mystérieux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pont\"",
+          "Utilisez \"pont\" dans une phrase simple",
+          "Trouvez des images représentant \"pont\"",
+          "Faites des gestes pour \"pont\""
+        ]
+      },
+      {
+        "word": "équation",
+        "lesson": 6,
+        "context": "Équations avec objets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"équation\"",
+          "Utilisez \"équation\" dans une phrase simple",
+          "Trouvez des images représentant \"équation\"",
+          "Faites des gestes pour \"équation\""
+        ]
+      },
+      {
+        "word": "nombre",
+        "lesson": 6,
+        "context": "Équations avec objets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nombre\"",
+          "Utilisez \"nombre\" dans une phrase simple",
+          "Trouvez des images représentant \"nombre\"",
+          "Faites des gestes pour \"nombre\""
+        ]
+      },
+      {
+        "word": "symbole",
+        "lesson": 6,
+        "context": "Équations avec objets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"symbole\"",
+          "Utilisez \"symbole\" dans une phrase simple",
+          "Trouvez des images représentant \"symbole\"",
+          "Faites des gestes pour \"symbole\""
+        ]
+      },
+      {
+        "word": "numérique",
+        "lesson": 7,
+        "context": "Balances numériques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"numérique\"",
+          "Utilisez \"numérique\" dans une phrase simple",
+          "Trouvez des images représentant \"numérique\"",
+          "Faites des gestes pour \"numérique\""
+        ]
+      },
+      {
+        "word": "vrai",
+        "lesson": 7,
+        "context": "Balances numériques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vrai\"",
+          "Utilisez \"vrai\" dans une phrase simple",
+          "Trouvez des images représentant \"vrai\"",
+          "Faites des gestes pour \"vrai\""
+        ]
+      },
+      {
+        "word": "faux",
+        "lesson": 8,
+        "context": "Vrai ou faux - équations simples",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"faux\"",
+          "Utilisez \"faux\" dans une phrase simple",
+          "Trouvez des images représentant \"faux\"",
+          "Faites des gestes pour \"faux\""
+        ]
+      },
+      {
+        "word": "vérifier",
+        "lesson": 8,
+        "context": "Vrai ou faux - équations simples",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vérifier\"",
+          "Utilisez \"vérifier\" dans une phrase simple",
+          "Trouvez des images représentant \"vérifier\"",
+          "Faites des gestes pour \"vérifier\""
+        ]
+      },
+      {
+        "word": "construire",
+        "lesson": 9,
+        "context": "Construire des équations vraies",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"construire\"",
+          "Utilisez \"construire\" dans une phrase simple",
+          "Trouvez des images représentant \"construire\"",
+          "Faites des gestes pour \"construire\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 9,
+        "context": "Construire des équations vraies",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "inventer",
+        "lesson": 9,
+        "context": "Construire des équations vraies",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"inventer\"",
+          "Utilisez \"inventer\" dans une phrase simple",
+          "Trouvez des images représentant \"inventer\"",
+          "Faites des gestes pour \"inventer\""
+        ]
+      },
+      {
+        "word": "addition",
+        "lesson": 10,
+        "context": "Égalité avec addition simple",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"addition\"",
+          "Utilisez \"addition\" dans une phrase simple",
+          "Trouvez des images représentant \"addition\"",
+          "Faites des gestes pour \"addition\""
+        ]
+      },
+      {
+        "word": "ajouter",
+        "lesson": 10,
+        "context": "Égalité avec addition simple",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ajouter\"",
+          "Utilisez \"ajouter\" dans une phrase simple",
+          "Trouvez des images représentant \"ajouter\"",
+          "Faites des gestes pour \"ajouter\""
+        ]
+      },
+      {
+        "word": "total",
+        "lesson": 10,
+        "context": "Égalité avec addition simple",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"total\"",
+          "Utilisez \"total\" dans une phrase simple",
+          "Trouvez des images représentant \"total\"",
+          "Faites des gestes pour \"total\""
+        ]
+      },
+      {
+        "word": "pattern",
+        "lesson": 11,
+        "context": "Patterns d'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pattern\"",
+          "Utilisez \"pattern\" dans une phrase simple",
+          "Trouvez des images représentant \"pattern\"",
+          "Faites des gestes pour \"pattern\""
+        ]
+      },
+      {
+        "word": "régularité",
+        "lesson": 11,
+        "context": "Patterns d'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"régularité\"",
+          "Utilisez \"régularité\" dans une phrase simple",
+          "Trouvez des images représentant \"régularité\"",
+          "Faites des gestes pour \"régularité\""
+        ]
+      },
+      {
+        "word": "suite",
+        "lesson": 11,
+        "context": "Patterns d'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"suite\"",
+          "Utilisez \"suite\" dans une phrase simple",
+          "Trouvez des images représentant \"suite\"",
+          "Faites des gestes pour \"suite\""
+        ]
+      },
+      {
+        "word": "réparer",
+        "lesson": 12,
+        "context": "Équilibrer des équations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réparer\"",
+          "Utilisez \"réparer\" dans une phrase simple",
+          "Trouvez des images représentant \"réparer\"",
+          "Faites des gestes pour \"réparer\""
+        ]
+      },
+      {
+        "word": "équilibrer",
+        "lesson": 12,
+        "context": "Équilibrer des équations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"équilibrer\"",
+          "Utilisez \"équilibrer\" dans une phrase simple",
+          "Trouvez des images représentant \"équilibrer\"",
+          "Faites des gestes pour \"équilibrer\""
+        ]
+      },
+      {
+        "word": "ajuster",
+        "lesson": 12,
+        "context": "Équilibrer des équations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ajuster\"",
+          "Utilisez \"ajuster\" dans une phrase simple",
+          "Trouvez des images représentant \"ajuster\"",
+          "Faites des gestes pour \"ajuster\""
+        ]
+      },
+      {
+        "word": "jeu",
+        "lesson": 13,
+        "context": "Jeux d'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jeu\"",
+          "Utilisez \"jeu\" dans une phrase simple",
+          "Trouvez des images représentant \"jeu\"",
+          "Faites des gestes pour \"jeu\""
+        ]
+      },
+      {
+        "word": "équipe",
+        "lesson": 13,
+        "context": "Jeux d'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"équipe\"",
+          "Utilisez \"équipe\" dans une phrase simple",
+          "Trouvez des images représentant \"équipe\"",
+          "Faites des gestes pour \"équipe\""
+        ]
+      },
+      {
+        "word": "gagner",
+        "lesson": 13,
+        "context": "Jeux d'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"gagner\"",
+          "Utilisez \"gagner\" dans une phrase simple",
+          "Trouvez des images représentant \"gagner\"",
+          "Faites des gestes pour \"gagner\""
+        ]
+      },
+      {
+        "word": "art",
+        "lesson": 14,
+        "context": "Art de l'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"art\"",
+          "Utilisez \"art\" dans une phrase simple",
+          "Trouvez des images représentant \"art\"",
+          "Faites des gestes pour \"art\""
+        ]
+      },
+      {
+        "word": "symétrie",
+        "lesson": 14,
+        "context": "Art de l'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"symétrie\"",
+          "Utilisez \"symétrie\" dans une phrase simple",
+          "Trouvez des images représentant \"symétrie\"",
+          "Faites des gestes pour \"symétrie\""
+        ]
+      },
+      {
+        "word": "beauté",
+        "lesson": 14,
+        "context": "Art de l'égalité",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"beauté\"",
+          "Utilisez \"beauté\" dans une phrase simple",
+          "Trouvez des images représentant \"beauté\"",
+          "Faites des gestes pour \"beauté\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

@@ -1,0 +1,2934 @@
+{
+  "unitTitle": "Exploration de textes",
+  "subject": "Français (Immersion)",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Qu'est-ce qu'un texte?",
+      "oneGoal": "Students identify different types of texts around them",
+      "duration": 45,
+      "keyVocabulary": [
+        "texte",
+        "livre",
+        "écrit"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look around classroom and point to different texts. Use gestures: point and say 'texte', 'livre', 'écrit'. Make discovery exciting!",
+        "materials": [
+          "Grande variété de textes affichés dans la classe",
+          "Cartes visuelles des mots vocabulaire"
+        ],
+        "visualSupports": "Gestes pour 'texte', 'livre', 'écrit', affiche avec images des types de textes",
+        "decisionPoints": [
+          "Si les élèves confondent 'texte' et 'image': clarifier avec exemples concrets",
+          "Si certains ne participent pas: commencer par textes familiers (leur nom)"
+        ],
+        "movementBreaks": [
+          "Marcher dans la classe pour découvrir"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Text hunt around school - students find and point to different texts with teacher. Practice saying 'C'est un texte!' Use magnifying glasses for fun detective work.",
+        "materials": [
+          "Loupes ou verres grossissants (25)",
+          "Liste de vérification simple",
+          "Paniers pour collecter découvertes"
+        ],
+        "visualSupports": "Phrase modèle 'C'est un texte!' affichée, cartes vocabulaire portables",
+        "decisionPoints": [
+          "Si trop de stimulation: limiter à une zone de l'école",
+          "Si difficulté à identifier: donner indices spécifiques"
+        ],
+        "movementBreaks": [
+          "Marche exploratoire dans l'école"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share discoveries in circle. Count how many different texts we found. Preview tomorrow's picture exploration.",
+        "materials": [
+          "Tableau de compte simple",
+          "Découvertes collectées"
+        ],
+        "visualSupports": "Tableau visuel pour compter les découvertes, aperçu imagé de demain",
+        "decisionPoints": [
+          "Si partage prend trop de temps: limiter à 2-3 découvertes chacun"
+        ],
+        "movementBreaks": [
+          "S'asseoir en cercle au sol"
+        ]
+      },
+      "troubleshooting": "If concept is too abstract, start with familiar books and gradually add other text types",
+      "realWorldConnection": "Texts are all around us - signs help us find places, books tell stories, labels tell us what things are",
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer avec des textes très familiers (noms des élèves, mots de routine)",
+          "Utiliser plus de supports visuels et de gestes",
+          "Permettre de montrer au lieu de nommer verbalement"
+        ],
+        "pourAvancés": [
+          "Identifier des caractéristiques spécifiques des textes trouvés",
+          "Classer les textes par catégorie",
+          "Expliquer la fonction de chaque texte découvert"
+        ],
+        "pourLangue": [
+          "Permettre l'usage de la L1 pour expliquer les découvertes",
+          "Jumeler avec élèves francophones",
+          "Utiliser des textes bilingues si disponibles"
+        ],
+        "pourPEI": [
+          "Utiliser des textes à contraste élevé si nécessaire",
+          "Permettre le mouvement pendant l'exploration",
+          "Utiliser supports visuels agrandis selon besoins visuels",
+          "Permettre réponses par pointage ou sélection d'images"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève pointe et nomme différents textes",
+          "Élève participe activement à la chasse aux textes",
+          "Élève comprend que les textes donnent de l'information"
+        ],
+        "checkpoints": [
+          "Peut identifier au moins 3 types de textes différents",
+          "Utilise le vocabulaire 'texte', 'livre', 'écrit' correctement",
+          "Montre de l'enthousiasme pour découvrir les textes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Images parlent aussi",
+      "oneGoal": "Students understand that pictures give information just like words",
+      "duration": 45,
+      "keyVocabulary": [
+        "image",
+        "information",
+        "comprendre"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review yesterday's text hunt. Show book with only pictures. 'Est-ce que c'est un texte? Les images peuvent parler!'",
+        "materials": [
+          "Livres sans mots (25 copies ou grandes images)",
+          "Images du récapitulatif d'hier"
+        ],
+        "visualSupports": "Cartes vocabulaire pour 'image', 'information', 'comprendre', livre sans mots agrandi",
+        "decisionPoints": [
+          "Si élèves insistent que ce n'est pas un 'vrai' texte: utiliser exemples concrets (panneaux routiers)",
+          "Si confusion: comparer livre avec mots vs livre avec images seulement"
+        ],
+        "movementBreaks": [
+          "Gestes pour 'parler' et 'comprendre'"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Explore wordless books together. Students 'read' pictures and tell what they see. Practice getting information from images without words.",
+        "materials": [
+          "Collection de livres sans mots (25)",
+          "Grandes images séquentielles",
+          "Tableaux pour enregistrer observations"
+        ],
+        "visualSupports": "Phrases modèles 'Je vois...', 'L'image dit...', bulles de pensée",
+        "decisionPoints": [
+          "Si difficulté à 'lire' les images: donner questions guides ('Qui?', 'Quoi?')",
+          "Si trop de silence: modéliser la lecture d'images avec enthousiasme"
+        ],
+        "movementBreaks": [
+          "Mimer les actions vues dans les images"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share one thing they learned from pictures today. Introduce tomorrow's prediction activity.",
+        "materials": [
+          "Images de récapitulatif",
+          "Aperçu visuel de demain"
+        ],
+        "visualSupports": "Tableau 'Ce que j'ai appris des images', images preview de prédiction",
+        "decisionPoints": [
+          "Si difficulté à partager: utiliser images pour déclencher les souvenirs"
+        ],
+        "movementBreaks": [
+          "Cercle assis au sol pour partager"
+        ]
+      },
+      "troubleshooting": "If students insist pictures aren't 'real reading', use familiar signs and symbols as examples",
+      "realWorldConnection": "Pictures help us understand when we can't read all the words - like bathroom signs or traffic lights",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser images très simples avec éléments familiers",
+          "Permettre de montrer au lieu de verbaliser",
+          "Fournir phrases de départ ('Je vois...')"
+        ],
+        "pourAvancés": [
+          "Décrire les émotions des personnages dans les images",
+          "Prédire ce qui pourrait arriver ensuite",
+          "Comparer différents styles d'illustration"
+        ],
+        "pourLangue": [
+          "Permettre descriptions dans L1 puis traduire ensemble",
+          "Utiliser gestes pour clarifier vocabulaire",
+          "Jumeler avec élèves plus forts en français"
+        ],
+        "pourPEI": [
+          "Adapter images selon capacités visuelles",
+          "Permettre manipulation d'objets physiques",
+          "Utiliser images plus contrastantes si nécessaire"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève 'lit' activement les images",
+          "Élève comprend que les images donnent de l'information",
+          "Élève utilise le nouveau vocabulaire"
+        ],
+        "checkpoints": [
+          "Peut décrire au moins un élément vu dans une image",
+          "Reconnaît que les images 'parlent'",
+          "Montre de l'engagement avec les livres sans mots"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Prédire avec les images",
+      "oneGoal": "Students make predictions about stories using cover pictures",
+      "duration": 45,
+      "keyVocabulary": [
+        "prédire",
+        "penser",
+        "deviner"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review how pictures give information. Today we use pictures to guess what might happen. Model with familiar book cover.",
+        "materials": [
+          "Couvertures de livres familiers (grandes versions)",
+          "Cartes vocabulaire nouvelles"
+        ],
+        "visualSupports": "Gestes pour 'prédire', 'penser', 'deviner', bulle de pensée géante",
+        "decisionPoints": [
+          "Si concept de prédiction trop abstrait: utiliser exemples concrets (prédire la météo)",
+          "Si élèves hésitent: encourager toutes les idées comme 'bonnes suppositions'"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer la 'réflexion'"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Show various book covers. Students make predictions based on pictures. Record predictions on chart. Use 'Je pense que...' sentence starter.",
+        "materials": [
+          "Variété de couvertures de livres (25)",
+          "Grand tableau de prédictions",
+          "Marqueurs"
+        ],
+        "visualSupports": "Phrase de départ 'Je pense que...', icônes pour indices visuels, tableau de prédictions",
+        "decisionPoints": [
+          "Si élèves ne peuvent pas prédire: poser questions guides ('Que vois-tu?')",
+          "Si prédictions trop similaires: encourager la diversité des idées"
+        ],
+        "movementBreaks": [
+          "Se lever pour regarder de plus près les couvertures"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Choose one book to read tomorrow to check predictions. Students excited to see if they were right!",
+        "materials": [
+          "Livre choisi pour demain",
+          "Prédictions enregistrées"
+        ],
+        "visualSupports": "Aperçu visuel du livre choisi, rappel des prédictions faites",
+        "decisionPoints": [
+          "Si désaccord sur le livre: voter démocratiquement avec jetons"
+        ],
+        "movementBreaks": [
+          "Applaudissements pour toutes les bonnes prédictions"
+        ]
+      },
+      "troubleshooting": "If students can't make predictions, ask guided questions about what they see in pictures",
+      "realWorldConnection": "We guess what might happen based on clues we see - like predicting weather from clouds",
+      "differentiation": {
+        "pourDifficultés": [
+          "Fournir options de prédiction simples (heureux/triste)",
+          "Utiliser images très évidentes",
+          "Permettre de dessiner leurs prédictions"
+        ],
+        "pourAvancés": [
+          "Expliquer les indices qui justifient leurs prédictions",
+          "Prédire des détails spécifiques",
+          "Comparer leurs prédictions avec celles des autres"
+        ],
+        "pourLangue": [
+          "Accepter prédictions en L1 puis aider à traduire",
+          "Utiliser gestes et dessins",
+          "Jumeler avec élèves bilingues"
+        ],
+        "pourPEI": [
+          "Adapter selon capacités de communication",
+          "Utiliser supports visuels additionnels",
+          "Permettre réponses non-verbales"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève examine attentivement les images",
+          "Élève fait des prédictions logiques",
+          "Élève utilise le vocabulaire de prédiction"
+        ],
+        "checkpoints": [
+          "Peut faire au moins une prédiction basée sur une image",
+          "Comprend le concept de prédire",
+          "Montre de l'excitation pour vérifier ses prédictions"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Écouter et découvrir",
+      "oneGoal": "Students listen to a simple story and check their predictions",
+      "duration": 45,
+      "keyVocabulary": [
+        "écouter",
+        "découvrir",
+        "vérifier"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review yesterday's predictions. Put on 'listening ears' to check if guesses were right.",
+        "materials": [
+          "Tableau des prédictions d'hier",
+          "Accessoires 'oreilles d'écoute' (25)"
+        ],
+        "visualSupports": "Gestes pour 'écouter', 'découvrir', 'vérifier', oreilles géantes pour 'écouter'",
+        "decisionPoints": [
+          "Si élèves ont oublié les prédictions: les relire avec enthousiasme",
+          "Si impatience: expliquer qu'on va découvrir bientôt"
+        ],
+        "movementBreaks": [
+          "Geste de mettre les 'oreilles d'écoute'"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Read chosen story with expression and pictures. Stop periodically to check predictions. Celebrate both correct and incorrect predictions as good thinking.",
+        "materials": [
+          "Livre choisi hier",
+          "Tableau de comparaison prédictions/réalité",
+          "Autocollants ou tampons de célébration"
+        ],
+        "visualSupports": "Images du livre agrandies, symboles pour 'correct' et 'différent mais intelligent'",
+        "decisionPoints": [
+          "Si élèves déçus de prédictions incorrectes: célébrer la 'bonne pensée'",
+          "Si histoire trop longue: raccourcir avec focus sur éléments prédits"
+        ],
+        "movementBreaks": [
+          "Applaudissements pour bonnes prédictions",
+          "Mimer des actions de l'histoire"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Compare predictions to actual story. Discuss what surprised them. Preview tomorrow's retelling activity.",
+        "materials": [
+          "Récapitulatif visuel des comparaisons",
+          "Aperçu de l'activité de demain"
+        ],
+        "visualSupports": "Tableau comparatif final, images de reconter des histoires",
+        "decisionPoints": [
+          "Si difficulté à se rappeler les surprises: utiliser images du livre comme rappels"
+        ],
+        "movementBreaks": [
+          "Cercle de partage au sol"
+        ]
+      },
+      "troubleshooting": "If students can't follow story, use more gestures and pause for picture discussions",
+      "realWorldConnection": "Sometimes our guesses are right, sometimes we learn something new - both help us understand better",
+      "differentiation": {
+        "pourDifficultés": [
+          "Pauses plus fréquentes pour vérifier compréhension",
+          "Supports visuels additionnels",
+          "Répéter les parties importantes"
+        ],
+        "pourAvancés": [
+          "Prédire ce qui va arriver ensuite pendant l'histoire",
+          "Analyser pourquoi certaines prédictions étaient bonnes",
+          "Faire des connexions avec d'autres histoires"
+        ],
+        "pourLangue": [
+          "Paraphraser en mots plus simples",
+          "Utiliser plus de gestes et expressions",
+          "Vérifier compréhension fréquemment"
+        ],
+        "pourPEI": [
+          "Adapter la durée d'écoute selon capacités",
+          "Utiliser supports tactiles si bénéfique",
+          "Permettre mouvement pendant l'écoute"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève écoute attentivement l'histoire",
+          "Élève compare prédictions à l'histoire",
+          "Élève célèbre les découvertes"
+        ],
+        "checkpoints": [
+          "Peut comparer au moins une prédiction à l'histoire réelle",
+          "Comprend que prédictions incorrectes sont aussi de bonnes pensées",
+          "Montre engagement durant l'écoute"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Reconter ensemble",
+      "oneGoal": "Students retell story parts using simple words and gestures",
+      "duration": 45,
+      "keyVocabulary": [
+        "reconter",
+        "partie",
+        "expliquer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review yesterday's story briefly. 'Maintenant, nous recontons l'histoire ensemble!'",
+        "materials": [
+          "Livre d'hier",
+          "Accessoires ou marionnettes simples"
+        ],
+        "visualSupports": "Gestes pour 'reconter', 'partie', 'expliquer', séquence d'images de l'histoire",
+        "decisionPoints": [
+          "Si élèves ont oublié l'histoire: relire rapidement les parties principales",
+          "Si hésitation à reconter: commencer par enseignant qui modèle"
+        ],
+        "movementBreaks": [
+          "Gestes expressifs pour 'reconter ensemble'"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students retell story parts in sequence. Use props, gestures, and simple French words. Support with 'D'abord... Ensuite... Finalement...'",
+        "materials": [
+          "Accessoires simples pour l'histoire",
+          "Cartes séquences",
+          "Mots de transition affichés"
+        ],
+        "visualSupports": "Cartes 'D'abord', 'Ensuite', 'Finalement', images séquentielles de l'histoire",
+        "decisionPoints": [
+          "Si reconter trop difficile: permettre de montrer et dire un mot par image",
+          "Si élèves mélangent l'ordre: utiliser cartes séquences visuelles"
+        ],
+        "movementBreaks": [
+          "Se lever pour 'jouer' les parties de l'histoire"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Whole group retelling with everyone contributing. Celebrate successful storytelling.",
+        "materials": [
+          "Certificats ou badges de 'conteur'",
+          "L'histoire complète remontée"
+        ],
+        "visualSupports": "Histoire entière en séquence, célébrations visuelles",
+        "decisionPoints": [
+          "Si certains élèves dominent: s'assurer que tous contribuent une partie"
+        ],
+        "movementBreaks": [
+          "Applaudissements et célébrations debout"
+        ]
+      },
+      "troubleshooting": "If retelling is too challenging, let students just point to pictures and say one word about each",
+      "realWorldConnection": "We tell family about stories and movies we enjoyed - sharing helps us remember and enjoy more",
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre de montrer et dire un seul mot par image",
+          "Utiliser supports visuels très clairs",
+          "Jumeler avec partenaires plus forts"
+        ],
+        "pourAvancés": [
+          "Ajouter détails et émotions au récit",
+          "Utiliser vocabulaire plus riche",
+          "Aider les autres à reconter"
+        ],
+        "pourLangue": [
+          "Accepter mélange de langues au début",
+          "Fournir phrases de départ simples",
+          "Encourager gestes pour communiquer"
+        ],
+        "pourPEI": [
+          "Adapter longueur de participation selon capacités",
+          "Utiliser supports tactiles ou visuels spéciaux",
+          "Permettre communication non-verbale"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève participe au récit collectif",
+          "Élève utilise gestes et mots pour reconter",
+          "Élève comprend l'ordre séquentiel"
+        ],
+        "checkpoints": [
+          "Peut contribuer au moins une partie de l'histoire",
+          "Utilise mots de transition ou gestes appropriés",
+          "Montre fierté de reconter des histoires"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Textes différents partout",
+      "oneGoal": "Students explore different types of texts (signs, lists, letters)",
+      "duration": 45,
+      "keyVocabulary": [
+        "différent",
+        "sorte",
+        "type"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review that we've been reading stories. 'Il y a d'autres sortes de textes aussi!' Show variety of examples.",
+        "materials": [
+          "Collection de différents types de textes réels",
+          "Boîte mystère"
+        ],
+        "visualSupports": "Cartes catégories de textes avec images, gestes pour 'différent', 'sorte', 'type'",
+        "decisionPoints": [
+          "Si concept trop abstrait: commencer par textes très familiers de leur quotidien"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer 'différents' types"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Explore different text types - shopping lists, signs, letters, recipes. Discuss purpose of each type. Sort into categories.",
+        "materials": [
+          "Listes d'épicerie réelles",
+          "Panneaux/affiches",
+          "Lettres/cartes",
+          "Recettes simples",
+          "Boîtes de tri"
+        ],
+        "visualSupports": "Tableau de tri avec icônes, exemples de chaque type de texte agrandis",
+        "decisionPoints": [
+          "Si tri difficile: commencer avec seulement 2 catégories claires"
+        ],
+        "movementBreaks": [
+          "Se déplacer pour examiner différents textes"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share different text types they found. Discuss which ones they see at home.",
+        "materials": [
+          "Textes triés en catégories"
+        ],
+        "visualSupports": "Affichage des catégories créées, connexions maison-école",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves veulent partager encore plus de types de textes",
+            "choice": "Permettre 2-3 partages supplémentaires ou créer liste pour demain"
+          }
+        ],
+        "movementBreaks": [
+          "Cercle de partage assis"
+        ]
+      },
+      "troubleshooting": "If concept is too abstract, use texts from their daily life - lunch menus, name tags, etc.",
+      "realWorldConnection": "Different texts help us in different ways - signs tell us where to go, lists help us remember things",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser seulement 2-3 types de textes très différents",
+          "Fournir supports visuels clairs pour chaque type",
+          "Permettre travail en paires"
+        ],
+        "pourAvancés": [
+          "Identifier la fonction spécifique de chaque type de texte",
+          "Créer leurs propres exemples",
+          "Expliquer pourquoi différents textes existent"
+        ],
+        "pourLangue": [
+          "Utiliser textes bilingues si disponibles",
+          "Connecter avec textes de leur culture d'origine",
+          "Permettre explications en L1"
+        ],
+        "pourPEI": [
+          "Adapter nombre de catégories selon capacités",
+          "Utiliser manipulation physique pour trier",
+          "Permettre participation non-verbale"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève reconnaît différents types de textes",
+          "Élève participe au tri",
+          "Élève fait des connexions avec sa vie"
+        ],
+        "checkpoints": [
+          "Peut identifier au moins 2 types différents de textes",
+          "Comprend que les textes ont différents buts",
+          "Fait des liens entre école et maison"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Lire les indices",
+      "oneGoal": "Students use context clues to understand unfamiliar words",
+      "duration": 45,
+      "keyVocabulary": [
+        "indice",
+        "contexte",
+        "deviner"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Become detectives! When we don't know a word, we look for clues. Model with obvious picture-word connection.",
+        "materials": [
+          "Chapeaux ou badges de détectives (25)",
+          "Loupes",
+          "Exemple évident mot-image"
+        ],
+        "visualSupports": "Icônes de détective, gestes pour 'indice', 'contexte', 'deviner', exemple visuel clair",
+        "decisionPoints": [
+          "Si concept trop abstrait: utiliser jeu de devinettes avec objets physiques"
+        ],
+        "movementBreaks": [
+          "Mimer être des détectives"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Practice finding clues in pictures and context when encountering unknown words. Use detective approach - what clues help us guess meaning?",
+        "materials": [
+          "Textes avec mots inconnus mais images claires",
+          "Tableau 'Indices trouvés'",
+          "Autocollants de découvertes"
+        ],
+        "visualSupports": "Questions guides visuelles ('Que vois-tu?', 'Qu'est-ce qui t'aide?')",
+        "decisionPoints": [
+          "Si recherche d'indices trop difficile: commencer par correspondances évidentes image-mot"
+        ],
+        "movementBreaks": [
+          "Chercher physiquement des indices dans la classe"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share best clues they found today. Remind them they can be word detectives with any text.",
+        "materials": [
+          "Collection des meilleurs indices"
+        ],
+        "visualSupports": "Badge 'Détective de mots' pour chaque élève",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves veulent partager tous leurs indices trouvés",
+            "choice": "Permettre 2-3 partages supplémentaires ou créer mur d'indices"
+          }
+        ],
+        "movementBreaks": [
+          "Célébration des découvertes"
+        ]
+      },
+      "troubleshooting": "If clue-finding is too difficult, start with very obvious picture-word matches",
+      "realWorldConnection": "We figure out new words by looking at pictures and other clues - like learning new things from context",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser correspondances très évidentes image-mot",
+          "Donner indices supplémentaires si nécessaire",
+          "Travailler en paires avec élèves plus forts"
+        ],
+        "pourAvancés": [
+          "Chercher plusieurs indices pour un même mot",
+          "Expliquer leur processus de déduction",
+          "Aider autres élèves à trouver indices"
+        ],
+        "pourLangue": [
+          "Permettre utilisation de L1 pour expliquer indices",
+          "Connecter avec stratégies déjà utilisées en L1",
+          "Utiliser gestes pour clarifier"
+        ],
+        "pourPEI": [
+          "Adapter complexité des indices selon capacités",
+          "Utiliser supports tactiles si bénéfique",
+          "Permettre temps supplémentaire pour observation"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève examine images pour trouver indices",
+          "Élève fait des tentatives logiques de devinette",
+          "Élève utilise stratégie de détective"
+        ],
+        "checkpoints": [
+          "Peut identifier au moins un indice visuel",
+          "Fait des suppositions raisonnables sur mots inconnus",
+          "Comprend l'idée de chercher des indices"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Questions importantes",
+      "oneGoal": "Students ask 'who, what, where' questions about texts",
+      "duration": 45,
+      "keyVocabulary": [
+        "question",
+        "qui",
+        "quoi"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review being text detectives. 'Les détectives posent des questions!' Introduce question words with gestures.",
+        "materials": [
+          "Cartes de mots questions (25 jeux)",
+          "Point d'interrogation géant"
+        ],
+        "visualSupports": "Gestes pour 'question', 'qui', 'quoi', affiches des mots questions avec images",
+        "decisionPoints": [
+          "Si concept de questions trop abstrait: modéliser avec questions sur élèves eux-mêmes"
+        ],
+        "movementBreaks": [
+          "Gestes expressifs pour chaque mot question"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Practice asking 'Qui?' 'Quoi?' 'Où?' questions about familiar texts. Use question words cards as supports.",
+        "materials": [
+          "Textes familiers agrandis",
+          "Cartes mots questions",
+          "Microphone jouet pour poser questions"
+        ],
+        "visualSupports": "Exemples de questions affichées, images pour aider à formuler questions",
+        "decisionPoints": [
+          "Si formulation difficile: fournir débuts de phrases ('Qui est...?')"
+        ],
+        "movementBreaks": [
+          "Se lever pour être 'journalistes' et interviewer"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share best questions they asked. Explain how questions help us understand stories better.",
+        "materials": [
+          "Collection des meilleures questions"
+        ],
+        "visualSupports": "Tableau 'Nos meilleures questions', connexions questions-compréhension",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves confondent les types de questions (qui/quoi/où)",
+            "choice": "Utiliser gestes distinctifs pour chaque type ou revenir aux exemples visuels"
+          }
+        ],
+        "movementBreaks": [
+          "Célébration des bons questionneurs"
+        ]
+      },
+      "troubleshooting": "If questioning is too abstract, use familiar story and model each question type with clear examples",
+      "realWorldConnection": "Asking questions helps us understand better - like asking questions when learning something new",
+      "differentiation": {
+        "pourDifficultés": [
+          "Fournir débuts de questions ('Qui est...?')",
+          "Utiliser images pour aider à formuler",
+          "Accepter questions très simples"
+        ],
+        "pourAvancés": [
+          "Poser questions plus complexes ('Pourquoi?', 'Comment?')",
+          "Aider autres à améliorer leurs questions",
+          "Expliquer pourquoi leurs questions sont bonnes"
+        ],
+        "pourLangue": [
+          "Permettre questions en L1 puis traduire",
+          "Utiliser structure de question simple",
+          "Modéliser beaucoup avant de demander"
+        ],
+        "pourPEI": [
+          "Adapter complexité selon capacités",
+          "Permettre questions non-verbales (pointer)",
+          "Utiliser supports visuels pour structure"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève pose des questions sur les textes",
+          "Élève utilise mots questions appropriés",
+          "Élève comprend le but des questions"
+        ],
+        "checkpoints": [
+          "Peut poser au moins une question simple sur un texte",
+          "Utilise 'qui', 'quoi' ou gestes appropriés",
+          "Comprend que questions aident à comprendre"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Mes livres préférés",
+      "oneGoal": "Students share favorite books and explain why they like them",
+      "duration": 45,
+      "keyVocabulary": [
+        "préféré",
+        "aimer",
+        "choisir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Everyone has favorite books! Share teacher's favorite and explain why. Model simple reasons.",
+        "materials": [
+          "Livre préféré de l'enseignant",
+          "Coeurs ou étoiles pour montrer 'préféré'"
+        ],
+        "visualSupports": "Gestes pour 'préféré', 'aimer', 'choisir', phrases simples modelès 'J'aime parce que...'",
+        "decisionPoints": [
+          "Si élèves n'ont pas de préférences: leur laisser choisir parmi livres de classe"
+        ],
+        "movementBreaks": [
+          "Gestes du coeur pour montrer 'aimer'"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students share favorite books with partners and simple reasons why they like them. Use 'J'aime... parce que...' structure with supports.",
+        "materials": [
+          "Sélection de livres de classe",
+          "Cartes de raisons simples (images)",
+          "Feuilles de partage"
+        ],
+        "visualSupports": "Structure 'J'aime... parce que...' affichée, cartes raisons avec images",
+        "decisionPoints": [
+          "Si difficulté à expliquer pourquoi: offrir choix de raisons simples avec images"
+        ],
+        "movementBreaks": [
+          "Se déplacer pour trouver partenaires"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Few students share favorites with whole class. Create class list of favorite books.",
+        "materials": [
+          "Grand tableau pour liste de classe"
+        ],
+        "visualSupports": "Liste visuelle des favoris de la classe avec couvertures si possible",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont de la difficulté à poser leurs propres questions",
+            "choice": "Utiliser phrases-modèles ou questions guidées avec supports visuels"
+          }
+        ],
+        "movementBreaks": [
+          "Applaudissements pour chaque partage"
+        ]
+      },
+      "troubleshooting": "If students don't have book preferences yet, let them choose from classroom books they've enjoyed",
+      "realWorldConnection": "Everyone has different favorite books and stories - just like having favorite foods or activities",
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre de montrer livre sans explication verbale",
+          "Offrir choix de raisons simples avec images",
+          "Accepter raisons très basiques"
+        ],
+        "pourAvancés": [
+          "Donner raisons multiples pour leurs choix",
+          "Recommander livres aux autres",
+          "Comparer différents livres qu'ils aiment"
+        ],
+        "pourLangue": [
+          "Accepter explications en L1 puis traduire ensemble",
+          "Utiliser beaucoup de supports visuels",
+          "Jumeler avec élèves bilingues"
+        ],
+        "pourPEI": [
+          "Adapter selon capacités de communication",
+          "Permettre choix non-verbaux",
+          "Utiliser livres avec supports tactiles si bénéfique"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève identifie un livre préféré",
+          "Élève partage avec partenaire",
+          "Élève donne une raison simple pour son choix"
+        ],
+        "checkpoints": [
+          "Peut identifier au moins un livre aimé",
+          "Participe au partage avec support",
+          "Comprend que chacun a des préférences différentes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Comparer les histoires",
+      "oneGoal": "Students compare two simple stories and find similarities/differences",
+      "duration": 45,
+      "keyVocabulary": [
+        "comparer",
+        "même",
+        "différent"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review favorite books. Today we compare two stories to see what's the same and different.",
+        "materials": [
+          "Deux livres simples pour comparaison",
+          "Balance visuelle pour comparer"
+        ],
+        "visualSupports": "Gestes pour 'comparer', 'même', 'différent', diagramme de Venn simple",
+        "decisionPoints": [
+          "Si concept trop abstrait: commencer par comparer objets physiques familiers"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer 'pareil' et 'différent'"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Read/review two simple stories. Use chart to record what's the same and what's different. Support with visual comparisons.",
+        "materials": [
+          "Deux histoires simples",
+          "Tableau de comparaison géant",
+          "Images des éléments à comparer"
+        ],
+        "visualSupports": "Diagramme de Venn simple, images des personnages et éléments des histoires",
+        "decisionPoints": [
+          "Si comparaison difficile: se concentrer sur un seul élément (personnages ou lieux)"
+        ],
+        "movementBreaks": [
+          "Bouger vers différentes sections du tableau pour comparer"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Discuss what they learned from comparing stories. Some stories share ideas but tell them differently.",
+        "materials": [
+          "Tableau de comparaison terminé"
+        ],
+        "visualSupports": "Récapitulatif visuel des découvertes de comparaison",
+        "decisionPoints": [
+          {
+            "question": "Si l'histoire semble trop longue pour l'attention des élèves",
+            "choice": "Faire pause interactive au milieu ou raccourcir à l'essentiel"
+          }
+        ],
+        "movementBreaks": [
+          "Cercle de discussion finale"
+        ]
+      },
+      "troubleshooting": "If comparing is too abstract, use familiar stories with clear visual similarities",
+      "realWorldConnection": "Some stories are similar to our own experiences - we can connect new stories to ones we know",
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur une seule similitude/différence évidente",
+          "Utiliser objets physiques pour modéliser comparaison",
+          "Travailler en petits groupes avec soutien"
+        ],
+        "pourAvancés": [
+          "Trouver similitudes et différences multiples",
+          "Expliquer pourquoi les différences existent",
+          "Faire des connexions avec d'autres histoires connues"
+        ],
+        "pourLangue": [
+          "Utiliser beaucoup d'images pour soutenir comparaisons",
+          "Permettre explications en L1",
+          "Modéliser beaucoup avant de demander participation"
+        ],
+        "pourPEI": [
+          "Adapter nombre d'éléments à comparer",
+          "Utiliser supports tactiles si approprié",
+          "Permettre participation non-verbale"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève identifie au moins un élément similaire ou différent",
+          "Élève participe à l'activité de comparaison",
+          "Élève comprend le concept de comparer"
+        ],
+        "checkpoints": [
+          "Peut trouver une similitude ou différence entre deux histoires",
+          "Utilise vocabulaire 'même' ou 'différent'",
+          "Comprend que histoires peuvent avoir éléments en commun"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Textes informatifs",
+      "oneGoal": "Students explore non-fiction texts about familiar topics",
+      "duration": 45,
+      "keyVocabulary": [
+        "informatif",
+        "apprendre",
+        "vrai"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review story books. 'Certains livres nous enseignent des choses vraies!' Show non-fiction examples.",
+        "materials": [
+          "Livres d'histoires vs livres informatifs",
+          "Objets réels mentionnés dans livres informatifs"
+        ],
+        "visualSupports": "Gestes pour 'informatif', 'apprendre', 'vrai', comparaison visuelle fiction vs non-fiction",
+        "decisionPoints": [
+          "Si distinction fiction/non-fiction difficile: utiliser exemples très évidents (livre sur les chats vs histoire de chat qui parle)"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer 'apprendre' des choses nouvelles"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Explore simple non-fiction texts about animals, families, or familiar topics. Discuss how these teach real facts.",
+        "materials": [
+          "Livres informatifs simples sur animaux/familles",
+          "Tableau 'Faits appris'",
+          "Objets réels pour connections"
+        ],
+        "visualSupports": "Images des sujets explorés, tableau pour enregistrer nouveaux faits",
+        "decisionPoints": [
+          "Si concepts trop complexes: se concentrer sur un seul livre avec faits très simples"
+        ],
+        "movementBreaks": [
+          "Mimer les animaux ou sujets appris"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share one new fact they learned today. Discuss difference between learning facts and enjoying stories.",
+        "materials": [
+          "Tableau des faits appris rempli"
+        ],
+        "visualSupports": "Comparaison visuelle entre 'faits' et 'histoires imaginaires'",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves veulent réécouter certaines parties de l'histoire",
+            "choice": "Relire sections favorites ou promettre de reprendre demain"
+          }
+        ],
+        "movementBreaks": [
+          "Célébration des nouvelles connaissances"
+        ]
+      },
+      "troubleshooting": "If fiction/non-fiction distinction is unclear, use familiar examples they know are real or pretend",
+      "realWorldConnection": "Some books teach us true facts about the world - like how animals live or how things work",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser livres avec beaucoup d'images et peu de texte",
+          "Se concentrer sur un seul fait simple",
+          "Permettre de montrer au lieu de verbaliser"
+        ],
+        "pourAvancés": [
+          "Poser questions plus approfondies sur les faits",
+          "Faire connexions entre différents faits",
+          "Partager connaissances préalables sur sujets"
+        ],
+        "pourLangue": [
+          "Utiliser livres bilingues si disponibles",
+          "Connecter avec connaissances de leur culture",
+          "Utiliser beaucoup de supports visuels"
+        ],
+        "pourPEI": [
+          "Adapter selon intérêts et capacités",
+          "Utiliser livres tactiles si approprié",
+          "Permettre exploration à leur rythme"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève explore activement les textes informatifs",
+          "Élève identifie des faits réels",
+          "Élève comprend la différence avec histoires imaginaires"
+        ],
+        "checkpoints": [
+          "Peut identifier au moins un fait appris",
+          "Comprend que certains livres enseignent des choses vraies",
+          "Montre intérêt pour apprendre de nouveaux faits"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Lire ensemble fort",
+      "oneGoal": "Students participate in shared reading with expression",
+      "duration": 45,
+      "keyVocabulary": [
+        "ensemble",
+        "voix",
+        "expression"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review different types of texts. Today we read together with strong voices! Model expressive reading.",
+        "materials": [
+          "Livre grand format pour lecture partagée",
+          "Microphone jouet ou amplificateur voix"
+        ],
+        "visualSupports": "Gestes pour 'ensemble', 'voix', 'expression', symboles pour différentes émotions",
+        "decisionPoints": [
+          "Si élèves hésitent à utiliser voix forte: commencer par chuchoter puis augmenter graduellement"
+        ],
+        "movementBreaks": [
+          "Exercices d'échauffement vocal"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Shared reading of familiar text with expression. Students join in on repeated phrases, practice different voices for characters.",
+        "materials": [
+          "Texte familier en grand format",
+          "Cartes d'émotions",
+          "Accessoires pour personnages"
+        ],
+        "visualSupports": "Texte projeté ou très grand, cartes émotions pour guider expression",
+        "decisionPoints": [
+          "Si participation faible: encourager même si pas parfait, célébrer toute tentative"
+        ],
+        "movementBreaks": [
+          "Gestes corporels pour accompagner lecture"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Discuss how reading with expression makes stories more fun. Practice reading one sentence with different emotions.",
+        "materials": [
+          "Phrase simple écrite pour pratiquer",
+          "Cartes émotions"
+        ],
+        "visualSupports": "Démonstration visuelle de différentes expressions faciales",
+        "decisionPoints": [
+          {
+            "question": "Si les prédictions des élèves sont très créatives mais loin du texte",
+            "choice": "Célébrer créativité puis orienter vers indices dans le texte"
+          }
+        ],
+        "movementBreaks": [
+          "Mimer différentes émotions en lisant"
+        ]
+      },
+      "troubleshooting": "If shared reading is challenging, use very familiar songs or chants in text form",
+      "realWorldConnection": "Reading aloud helps us understand and enjoy stories more - like how family reads bedtime stories",
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre participation même si pas parfaite",
+          "Utiliser textes très familiers ou chansons",
+          "Encourager gestes au lieu de mots si nécessaire"
+        ],
+        "pourAvancés": [
+          "Prendre rôles de leader dans lecture",
+          "Expérimenter avec différents styles de voix",
+          "Aider autres à améliorer expression"
+        ],
+        "pourLangue": [
+          "Permettre imitation plutôt que prononciation parfaite",
+          "Utiliser beaucoup de modélage",
+          "Célébrer toute participation"
+        ],
+        "pourPEI": [
+          "Adapter selon capacités vocales",
+          "Permettre participation non-verbale avec gestes",
+          "Utiliser supports visuels additionnels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève participe à la lecture partagée",
+          "Élève essaie d'utiliser expression",
+          "Élève montre plaisir à lire ensemble"
+        ],
+        "checkpoints": [
+          "Participe à la lecture partagée d'une façon ou d'une autre",
+          "Essaie d'ajuster sa voix selon le texte",
+          "Comprend que lecture expressive rend histoires plus amusantes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Création de questions",
+      "oneGoal": "Students create their own questions about a familiar text",
+      "duration": 45,
+      "keyVocabulary": [
+        "créer",
+        "questionner",
+        "curiosité"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review asking questions about texts. Today students become the question creators! Model making questions.",
+        "materials": [
+          "Couronne ou chapeau 'Créateur de questions'",
+          "Cartes mots questions"
+        ],
+        "visualSupports": "Gestes pour 'créer', 'questionner', 'curiosité', exemples de bonnes questions affichées",
+        "decisionPoints": [
+          "Si création de questions difficile: offrir débuts de questions à compléter"
+        ],
+        "movementBreaks": [
+          "Gestes créatifs pour 'faire' des questions"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students create their own questions about familiar text using question word prompts. Support with sentence frames and encouragement.",
+        "materials": [
+          "Texte familier",
+          "Cartes de débuts de questions",
+          "Feuilles pour écrire/dessiner questions"
+        ],
+        "visualSupports": "Cadres de phrases ('Qui est...?', 'Où va...?'), banque de mots questions",
+        "decisionPoints": [
+          "Si trop difficile: permettre de choisir parmi questions pré-écrites appropriees"
+        ],
+        "movementBreaks": [
+          "Se lever pour partager questions avec différents partenaires"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students ask their questions to partners. Celebrate being good questioners who help others think.",
+        "materials": [
+          "Questions créées par les élèves"
+        ],
+        "visualSupports": "Certificats 'Excellent questionneur', mur des bonnes questions",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves n'osent pas faire de prédictions",
+            "choice": "Commencer par questions simples 'oui/non' ou travail en paires"
+          }
+        ],
+        "movementBreaks": [
+          "Célébration des créateurs de questions"
+        ]
+      },
+      "troubleshooting": "If question creation is too difficult, let students choose from pre-made question options to ask",
+      "realWorldConnection": "Good readers ask questions to understand better - questioning shows we're thinking about what we read",
+      "differentiation": {
+        "pourDifficultés": [
+          "Fournir débuts de questions à compléter",
+          "Permettre questions très simples",
+          "Travailler en paires pour support"
+        ],
+        "pourAvancés": [
+          "Créer questions plus complexes ('Pourquoi...?')",
+          "Créer plusieurs questions différentes",
+          "Aider autres à améliorer leurs questions"
+        ],
+        "pourLangue": [
+          "Accepter questions en L1 puis traduire",
+          "Utiliser beaucoup d'images pour inspiration",
+          "Modéliser beaucoup avant participation"
+        ],
+        "pourPEI": [
+          "Adapter selon capacités de communication",
+          "Permettre questions non-verbales (pointer)",
+          "Utiliser supports visuels pour structure"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève crée au moins une question sur le texte",
+          "Élève pose sa question à un partenaire",
+          "Élève comprend que questions aident à penser"
+        ],
+        "checkpoints": [
+          "Peut créer ou compléter au moins une question appropriée",
+          "Partage sa question avec autres",
+          "Comprend l'importance de questionner pour comprendre"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Portfolio de lecture",
+      "oneGoal": "Students compile favorite texts and explain their reading journey",
+      "duration": 45,
+      "keyVocabulary": [
+        "portfolio",
+        "voyage",
+        "progrès"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look back at all the texts and skills from this unit. 'Regardez tout ce que nous avons appris sur les textes!'",
+        "materials": [
+          "Collection des travaux de l'unité",
+          "Photos des activités passées"
+        ],
+        "visualSupports": "Gestes pour 'portfolio', 'voyage', 'progrès', chronologie visuelle de l'unité",
+        "decisionPoints": [
+          "Si difficulté à se rappeler: utiliser photos et travaux concrets pour déclencher mémoires"
+        ],
+        "movementBreaks": [
+          "Gestes pour montrer croissance et voyage d'apprentissage"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students create reading portfolio with favorite texts, pictures of learning activities, and simple reflections on their growth.",
+        "materials": [
+          "Dossiers/pochettes pour portfolios (25)",
+          "Photos d'activités",
+          "Exemples de travaux",
+          "Autocollants décoratifs"
+        ],
+        "visualSupports": "Modèle de portfolio, prompts de réflexion avec images",
+        "decisionPoints": [
+          "Si réflexion difficile: utiliser photos pour déclencher souvenirs spécifiques"
+        ],
+        "movementBreaks": [
+          "Se déplacer pour collectionner matériaux de portfolio"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Students share one thing they learned about texts. Celebrate growth as text explorers and readers.",
+        "materials": [
+          "Portfolios terminés"
+        ],
+        "visualSupports": "Certificat d'explorateur de textes, photos de célébration",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont des difficultés à identifier le début/milieu/fin",
+            "choice": "Utiliser gestes physiques ou ligne du temps très simple"
+          }
+        ],
+        "movementBreaks": [
+          "Célébration debout des accomplissements"
+        ]
+      },
+      "troubleshooting": "If reflection is too abstract, use concrete examples of what they can do now that they couldn't before",
+      "realWorldConnection": "We can look back and see how much we've learned - like looking at baby photos to see how we've grown",
+      "differentiation": {
+        "pourDifficultés": [
+          "Portfolio plus simple avec moins d'éléments",
+          "Utiliser dessins au lieu de mots",
+          "Support individuel pour organisation"
+        ],
+        "pourAvancés": [
+          "Portfolio plus détaillé avec réflexions écrites",
+          "Inclure objectifs pour apprentissages futurs",
+          "Aider autres à organiser portfolios"
+        ],
+        "pourLangue": [
+          "Permettre réflexions en L1",
+          "Utiliser beaucoup d'images et moins de texte",
+          "Support pour vocabulaire de réflexion"
+        ],
+        "pourPEI": [
+          "Adapter format selon capacités",
+          "Portfolio peut être plus visuel/tactile",
+          "Inclure accommodations utilisées"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève sélectionne éléments pour portfolio",
+          "Élève montre fierté de ses apprentissages",
+          "Élève peut identifier au moins une chose apprise"
+        ],
+        "checkpoints": [
+          "Crée un portfolio personnalisé avec aide",
+          "Partage au moins un apprentissage sur les textes",
+          "Démontre fierté de son parcours d'explorateur"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Explorateurs de genres",
+      "oneGoal": "Students explore poetry, fairy tales, and other genres through play",
+      "duration": 45,
+      "keyVocabulary": [
+        "genre",
+        "poésie",
+        "conte"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review all different text types learned. Today explore special kinds of stories - poetry, fairy tales, etc.",
+        "materials": [
+          "Collection de livres de différents genres (5-6 livres)",
+          "Affiches visuelles des genres (poésie, conte, histoire vraie)",
+          "Cartes vocabulaire illustrées pour chaque genre"
+        ],
+        "visualSupports": "Affiches colorées montrant caractéristiques de chaque genre",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves confondent les genres de textes",
+            "choice": "Revenir aux caractéristiques visuelles ou utiliser gestes distinctifs"
+          }
+        ],
+        "movementBreaks": [
+          "Se déplacer pour explorer différents coins de lecture"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Playful exploration of different genres through listening, acting, and simple identification games. Focus on enjoyment over analysis.",
+        "materials": [
+          "Livre de poésie illustré pour enfants",
+          "Livre de contes traditionnels",
+          "Histoire vraie simple avec photos",
+          "CD ou enregistrement audio de poèmes",
+          "Costumes simples ou accessoires pour jouer les genres"
+        ],
+        "visualSupports": "Images des personnages de contes, exemples de rimes visuelles",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves préfèrent beaucoup un genre et rejettent les autres",
+            "choice": "Respecter préférences mais explorer doucement les autres aussi"
+          }
+        ],
+        "movementBreaks": [
+          "Jouer des personnages, réciter poèmes avec gestes"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share which genre was most interesting today. Discuss how many different ways there are to tell stories.",
+        "materials": [
+          "Exemples des genres explorés",
+          "Tableaux simples pour noter préférences",
+          "Autocollants ou tampons pour marquer favoris"
+        ],
+        "visualSupports": "Tableau de préférences avec symboles pour chaque genre",
+        "decisionPoints": [
+          {
+            "question": "Si les discussions sur les préférences prennent trop de temps",
+            "choice": "Limiter à un partage par élève ou continuer demain"
+          }
+        ],
+        "movementBreaks": [
+          "Cercle de partage avec gestes pour favoris"
+        ]
+      },
+      "troubleshooting": "If genre concept is too complex, focus on obvious features like 'stories that rhyme' vs. 'regular stories'",
+      "realWorldConnection": "There are many different kinds of stories and texts to enjoy - like different types of games or music",
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Diviser les tâches longues en étapes plus petites et gérables"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Ajuster l'éclairage et réduire les distractions visuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève utilise 3 nouveaux mots français dans ses phrases",
+          "L'élève prononce clairement les sons français ciblés",
+          "L'élève comprend les instructions avec les nouveaux mots",
+          "L'élève fait les gestes associés aux mots appris"
+        ],
+        "checkpoints": [
+          "Reconnaît les mots à l'oral sans aide visuelle",
+          "Peut répéter les mots avec la bonne prononciation",
+          "Utilise les mots en contexte approprié",
+          "Montre compréhension par actions ou réponses"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Détectives de mots",
+      "oneGoal": "Students hunt for familiar words in new texts",
+      "duration": 45,
+      "keyVocabulary": [
+        "détective",
+        "chercher",
+        "trouver"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Return to detective theme! Today hunt for words we know in new places. Model finding familiar word in new text.",
+        "materials": [
+          "Chapeaux de détectives (25)",
+          "Loupes",
+          "Exemple de mot familier dans nouveau texte"
+        ],
+        "visualSupports": "Rappels visuels des mots familiers, gestes de détectives",
+        "decisionPoints": [
+          "Si élèves frustrés par mots inconnus: rappeler qu'on cherche seulement mots déjà connus"
+        ],
+        "movementBreaks": [
+          "Gestes de détectives"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Word hunting game in new texts - students search for and collect familiar words they can recognize and understand.",
+        "materials": [
+          "Nouveaux textes avec mots familiers inclus",
+          "Paniers de collection",
+          "Autocollants pour marquer trouvailles"
+        ],
+        "visualSupports": "Banque de mots familiers affichée, cartes pour collection",
+        "decisionPoints": [
+          {
+            "question": "Si l'activité de remise en ordre prend plus de temps prévu",
+            "choice": "Faire en grand groupe plutôt qu'individuellement"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement libre pour chasser les mots"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share word hunting successes. Discuss how knowing some words helps us read new things.",
+        "materials": [
+          "Collection des mots trouvés"
+        ],
+        "visualSupports": "Tableau des succès de chasse aux mots",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves veulent ajouter leurs propres détails aux histoires",
+            "choice": "Encourager créativité en petits groupes ou noter pour activité future"
+          }
+        ],
+        "movementBreaks": [
+          "Célébration des découvertes"
+        ]
+      },
+      "troubleshooting": "If students frustrated by unknown words, remind them they're looking for words they already know",
+      "realWorldConnection": "Finding words we know helps us read new things - like recognizing friend's names in new places",
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève utilise 3 nouveaux mots français dans ses phrases",
+          "L'élève prononce clairement les sons français ciblés",
+          "L'élève comprend les instructions avec les nouveaux mots",
+          "L'élève fait les gestes associés aux mots appris"
+        ],
+        "checkpoints": [
+          "Reconnaît les mots à l'oral sans aide visuelle",
+          "Peut répéter les mots avec la bonne prononciation",
+          "Utilise les mots en contexte approprié",
+          "Montre compréhension par actions ou réponses"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Théâtre des histoires",
+      "oneGoal": "Students act out favorite stories to show comprehension",
+      "duration": 45,
+      "keyVocabulary": [
+        "théâtre",
+        "jouer",
+        "montrer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review favorite stories from unit. Today we become actors and show stories with our bodies and voices!",
+        "materials": [
+          "Histoires préférées de l'unité",
+          "Accessoires simples (chapeaux, foulards)"
+        ],
+        "visualSupports": "Gestes pour 'théâtre', 'jouer', 'montrer', exemples d'expressions dramatiques",
+        "decisionPoints": [
+          "Si jeu théâtral trop intimidant: permettre de montrer juste une scène ou action"
+        ],
+        "movementBreaks": [
+          "Exercices d'échauffement dramatique"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students choose familiar stories to act out in small groups. Focus on showing understanding through movement and simple dialogue.",
+        "materials": [
+          "Sélection d'histoires familiers",
+          "Accessoires de théâtre simples",
+          "Espace pour représentations"
+        ],
+        "visualSupports": "Images des histoires pour inspiration, conseils simples pour jeu dramatique",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves sont intimidés par l'idée de 'créer' une histoire",
+            "choice": "Commencer par compléter une histoire ensemble ou utiliser images guidées"
+          }
+        ],
+        "movementBreaks": [
+          "Jeu dramatique continu"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Mini performances for class. Celebrate how acting helps us understand and remember stories better.",
+        "materials": [
+          "Scène simple pour performances"
+        ],
+        "visualSupports": "Applaudimètre visuel, certificats d'acteur",
+        "decisionPoints": [
+          {
+            "question": "Si les histoires créées sont très courtes ou simples",
+            "choice": "Célébrer tous les efforts et aider à ajouter un détail si désiré"
+          }
+        ],
+        "movementBreaks": [
+          "Applaudissements et célébrations debout"
+        ]
+      },
+      "troubleshooting": "If acting is too challenging, let students just show one scene or character action from story",
+      "realWorldConnection": "Acting out stories helps us understand characters and events - like how we act out games we play",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève utilise 3 nouveaux mots français dans ses phrases",
+          "L'élève prononce clairement les sons français ciblés",
+          "L'élève comprend les instructions avec les nouveaux mots",
+          "L'élève fait les gestes associés aux mots appris"
+        ],
+        "checkpoints": [
+          "Reconnaît les mots à l'oral sans aide visuelle",
+          "Peut répéter les mots avec la bonne prononciation",
+          "Utilise les mots en contexte approprié",
+          "Montre compréhension par actions ou réponses"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Bibliothécaires experts",
+      "oneGoal": "Students recommend books to classmates based on interests",
+      "duration": 45,
+      "keyVocabulary": [
+        "recommander",
+        "expert",
+        "suggestion"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss how librarians help people find good books. Today students become book experts who help friends!",
+        "materials": [
+          "Badges 'Expert bibliothécaire' (25)",
+          "Sélection de livres de classe"
+        ],
+        "visualSupports": "Gestes pour 'recommander', 'expert', 'suggestion', images de bibliothécaires au travail",
+        "decisionPoints": [
+          "Si processus de recommandation complexe: laisser simplement partager livres préférés avec raisons"
+        ],
+        "movementBreaks": [
+          "Se déplacer comme vrais bibliothécaires"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students interview classmates about interests, then recommend books from classroom library. Practice giving simple reasons for recommendations.",
+        "materials": [
+          "Feuilles d'interview simples",
+          "Bibliothèque de classe organisée",
+          "Cartes de recommandation"
+        ],
+        "visualSupports": "Questions d'interview affichées, structure 'Je recommande... parce que...'",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont des difficultés à identifier les personnages principaux",
+            "choice": "Utiliser images du livre ou dessins simples pour clarifier"
+          }
+        ],
+        "movementBreaks": [
+          "Circulation pour interviews et recommandations"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Share successful recommendations made today. Discuss how helping others find good books makes reading more fun.",
+        "materials": [
+          "Recommandations faites pendant la leçon"
+        ],
+        "visualSupports": "Tableau des bonnes recommandations, connexions lecture-amitié",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves veulent dessiner leurs parties préférées",
+            "choice": "Permettre quelques minutes de dessin rapide ou garder pour activité séparée"
+          }
+        ],
+        "movementBreaks": [
+          "Cercle de partage final"
+        ]
+      },
+      "troubleshooting": "If recommendation process is complex, let students just share favorite books with reasons they like them",
+      "realWorldConnection": "Librarians and friends help us find books we'll enjoy - sharing good books spreads the fun of reading",
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Inviter à créer un livre illustré pour les plus jeunes"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois",
+          "Ajuster l'éclairage et réduire les distractions visuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève utilise 3 nouveaux mots français dans ses phrases",
+          "L'élève prononce clairement les sons français ciblés",
+          "L'élève comprend les instructions avec les nouveaux mots",
+          "L'élève fait les gestes associés aux mots appris"
+        ],
+        "checkpoints": [
+          "Reconnaît les mots à l'oral sans aide visuelle",
+          "Peut répéter les mots avec la bonne prononciation",
+          "Utilise les mots en contexte approprié",
+          "Montre compréhension par actions ou réponses"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Textes de chez nous",
+      "oneGoal": "Students explore texts from their own cultures and families",
+      "duration": 45,
+      "keyVocabulary": [
+        "culture",
+        "famille",
+        "tradition"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Discuss how every family and culture has special stories and texts. Invite sharing about texts from home.",
+        "materials": [
+          "Carte du monde ou globe",
+          "Photos de familles diverses"
+        ],
+        "visualSupports": "Gestes pour 'culture', 'famille', 'tradition', images de différentes cultures et textes",
+        "decisionPoints": [
+          "Si élèves ne connectent pas avec aspect culturel: se concentrer sur histoires de famille spéciales"
+        ],
+        "movementBreaks": [
+          "Gestes pour représenter différentes cultures"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students share texts, stories, or traditions from their families/cultures. Celebrate diversity and different ways of telling stories.",
+        "materials": [
+          "Objets ou images apportés de la maison",
+          "Espace de partage confortable"
+        ],
+        "visualSupports": "Affichage célébrant la diversité, support pour structures de partage",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves n'arrivent pas à expliquer pourquoi ils aiment une histoire",
+            "choice": "Utiliser questions guidées simples ('Qui préfères-tu?', 'Quelle partie?')"
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement pour montrer différentes traditions"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflect on how many different types of stories and texts exist in our classroom community.",
+        "materials": [
+          "Collection des partages de la journée"
+        ],
+        "visualSupports": "Mur de la diversité des textes et cultures de la classe",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves veulent en savoir plus sur les cultures des autres",
+            "choice": "Planifier une séance spéciale de partage culturel ou inviter familles"
+          }
+        ],
+        "movementBreaks": [
+          "Cercle de réflexion assis ensemble"
+        ]
+      },
+      "troubleshooting": "If students don't connect with cultural aspect, focus on any family stories or special books from home",
+      "realWorldConnection": "Every family and culture has special stories and texts - like recipes, songs, or bedtime stories",
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Ajuster l'éclairage et réduire les distractions visuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève utilise 3 nouveaux mots français dans ses phrases",
+          "L'élève prononce clairement les sons français ciblés",
+          "L'élève comprend les instructions avec les nouveaux mots",
+          "L'élève fait les gestes associés aux mots appris"
+        ],
+        "checkpoints": [
+          "Reconnaît les mots à l'oral sans aide visuelle",
+          "Peut répéter les mots avec la bonne prononciation",
+          "Utilise les mots en contexte approprié",
+          "Montre compréhension par actions ou réponses"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration de lecteurs",
+      "oneGoal": "Students celebrate their growth as text explorers and readers",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébrer",
+        "lecteur",
+        "explorer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look back at journey from Lesson 1 to now. 'Vous êtes maintenant des explorateurs de textes experts!'",
+        "materials": [
+          "Chronologie visuelle de l'unité",
+          "Travaux des élèves du début à maintenant"
+        ],
+        "visualSupports": "Gestes pour 'célébrer', 'lecteur', 'explorer', parcours visuel d'apprentissage",
+        "decisionPoints": [
+          "Si élèves ne reconnaissent pas leur croissance: utiliser exemples spécifiques de compétences acquises"
+        ],
+        "movementBreaks": [
+          "Gestes célébratoires"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Celebration of reading growth with sharing of portfolios, presentation of certificates, and reflection on favorite discoveries.",
+        "materials": [
+          "Portfolios de lecture créés",
+          "Certificats d'explorateur de textes (25)",
+          "Décorations de célébration"
+        ],
+        "visualSupports": "Affichage des accomplissements de la classe, photos du parcours d'apprentissage",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves sont timides pour partager leurs portfolios",
+            "choice": "Permettre partage en petits groupes ou avec un ami seulement"
+          }
+        ],
+        "movementBreaks": [
+          "Marche fière pour recevoir certificats"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Final circle: each student completes 'Je suis un explorateur de textes parce que...' Group celebration photo.",
+        "materials": [
+          "Phrase à compléter affichée",
+          "Appareil photo pour photo de groupe"
+        ],
+        "visualSupports": "Structure de phrase compléter, accessoires pour photo célébratoire",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves ont difficulté à compléter la phrase de célébration",
+            "choice": "Offrir choix de phrases simples ou permettre dessin au lieu de mots"
+          }
+        ],
+        "movementBreaks": [
+          "Positionnement pour photo de groupe finale"
+        ]
+      },
+      "troubleshooting": "If students don't recognize their growth, use specific examples of skills they've gained during unit",
+      "realWorldConnection": "Readers celebrate discovering new worlds through texts - every text they explore makes them stronger readers",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève utilise 3 nouveaux mots français dans ses phrases",
+          "L'élève prononce clairement les sons français ciblés",
+          "L'élève comprend les instructions avec les nouveaux mots",
+          "L'élève fait les gestes associés aux mots appris"
+        ],
+        "checkpoints": [
+          "Reconnaît les mots à l'oral sans aide visuelle",
+          "Peut répéter les mots avec la bonne prononciation",
+          "Utilise les mots en contexte approprié",
+          "Montre compréhension par actions ou réponses"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Vocabulaire",
+        "items": [
+          "Démontre une compréhension de base en vocabulaire",
+          "Participe activement aux activités de vocabulaire",
+          "Montre du progrès dans vocabulaire",
+          "Applique les apprentissages de vocabulaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Communication orale",
+        "items": [
+          "Démontre une compréhension de base en communication orale",
+          "Participe activement aux activités de communication orale",
+          "Montre du progrès dans communication orale",
+          "Applique les apprentissages de communication orale dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Participation",
+        "items": [
+          "Démontre une compréhension de base en participation",
+          "Participe activement aux activités de participation",
+          "Montre du progrès dans participation",
+          "Applique les apprentissages de participation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Compréhension",
+        "items": [
+          "Démontre une compréhension de base en compréhension",
+          "Participe activement aux activités de compréhension",
+          "Montre du progrès dans compréhension",
+          "Applique les apprentissages de compréhension dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - Exploration de textes",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Vocabulaire",
+        "Communication orale",
+        "Participation",
+        "Compréhension"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "😊",
+          "😐",
+          "😟"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Exploration de textes\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en français\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nQu'est-ce qu'un texte?, Images parlent aussi, Prédire avec les images, Écouter et découvrir, Reconter ensemble\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nIl est normal et bénéfique que votre enfant mélange les langues à la maison.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nMerci pour votre soutien continu dans l'apprentissage du français!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Lecture ensemble",
+        "description": "Lisez des livres en français ou en anglais sur le thème de l'unité",
+        "timeRequired": "15 minutes",
+        "materials": "Livres de la bibliothèque",
+        "frenchSupport": "Les livres bilingues sont excellents!"
+      },
+      {
+        "title": "Jeu de mots",
+        "description": "Jouez à des jeux simples avec les nouveaux mots (mémoire, devinettes)",
+        "timeRequired": "10 minutes",
+        "materials": "Cartes de vocabulaire maison",
+        "frenchSupport": "Mélanger les langues est normal et utile"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "texte",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'un texte?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"texte\"",
+          "Utilisez \"texte\" dans une phrase simple",
+          "Trouvez des images représentant \"texte\"",
+          "Faites des gestes pour \"texte\""
+        ]
+      },
+      {
+        "word": "livre",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'un texte?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"livre\"",
+          "Utilisez \"livre\" dans une phrase simple",
+          "Trouvez des images représentant \"livre\"",
+          "Faites des gestes pour \"livre\""
+        ]
+      },
+      {
+        "word": "écrit",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'un texte?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écrit\"",
+          "Utilisez \"écrit\" dans une phrase simple",
+          "Trouvez des images représentant \"écrit\"",
+          "Faites des gestes pour \"écrit\""
+        ]
+      },
+      {
+        "word": "image",
+        "lesson": 2,
+        "context": "Images parlent aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"image\"",
+          "Utilisez \"image\" dans une phrase simple",
+          "Trouvez des images représentant \"image\"",
+          "Faites des gestes pour \"image\""
+        ]
+      },
+      {
+        "word": "information",
+        "lesson": 2,
+        "context": "Images parlent aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"information\"",
+          "Utilisez \"information\" dans une phrase simple",
+          "Trouvez des images représentant \"information\"",
+          "Faites des gestes pour \"information\""
+        ]
+      },
+      {
+        "word": "comprendre",
+        "lesson": 2,
+        "context": "Images parlent aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"comprendre\"",
+          "Utilisez \"comprendre\" dans une phrase simple",
+          "Trouvez des images représentant \"comprendre\"",
+          "Faites des gestes pour \"comprendre\""
+        ]
+      },
+      {
+        "word": "prédire",
+        "lesson": 3,
+        "context": "Prédire avec les images",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"prédire\"",
+          "Utilisez \"prédire\" dans une phrase simple",
+          "Trouvez des images représentant \"prédire\"",
+          "Faites des gestes pour \"prédire\""
+        ]
+      },
+      {
+        "word": "penser",
+        "lesson": 3,
+        "context": "Prédire avec les images",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"penser\"",
+          "Utilisez \"penser\" dans une phrase simple",
+          "Trouvez des images représentant \"penser\"",
+          "Faites des gestes pour \"penser\""
+        ]
+      },
+      {
+        "word": "deviner",
+        "lesson": 3,
+        "context": "Prédire avec les images",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"deviner\"",
+          "Utilisez \"deviner\" dans une phrase simple",
+          "Trouvez des images représentant \"deviner\"",
+          "Faites des gestes pour \"deviner\""
+        ]
+      },
+      {
+        "word": "écouter",
+        "lesson": 4,
+        "context": "Écouter et découvrir",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écouter\"",
+          "Utilisez \"écouter\" dans une phrase simple",
+          "Trouvez des images représentant \"écouter\"",
+          "Faites des gestes pour \"écouter\""
+        ]
+      },
+      {
+        "word": "découvrir",
+        "lesson": 4,
+        "context": "Écouter et découvrir",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"découvrir\"",
+          "Utilisez \"découvrir\" dans une phrase simple",
+          "Trouvez des images représentant \"découvrir\"",
+          "Faites des gestes pour \"découvrir\""
+        ]
+      },
+      {
+        "word": "vérifier",
+        "lesson": 4,
+        "context": "Écouter et découvrir",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vérifier\"",
+          "Utilisez \"vérifier\" dans une phrase simple",
+          "Trouvez des images représentant \"vérifier\"",
+          "Faites des gestes pour \"vérifier\""
+        ]
+      },
+      {
+        "word": "reconter",
+        "lesson": 5,
+        "context": "Reconter ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"reconter\"",
+          "Utilisez \"reconter\" dans une phrase simple",
+          "Trouvez des images représentant \"reconter\"",
+          "Faites des gestes pour \"reconter\""
+        ]
+      },
+      {
+        "word": "partie",
+        "lesson": 5,
+        "context": "Reconter ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"partie\"",
+          "Utilisez \"partie\" dans une phrase simple",
+          "Trouvez des images représentant \"partie\"",
+          "Faites des gestes pour \"partie\""
+        ]
+      },
+      {
+        "word": "expliquer",
+        "lesson": 5,
+        "context": "Reconter ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expliquer\"",
+          "Utilisez \"expliquer\" dans une phrase simple",
+          "Trouvez des images représentant \"expliquer\"",
+          "Faites des gestes pour \"expliquer\""
+        ]
+      },
+      {
+        "word": "différent",
+        "lesson": 6,
+        "context": "Textes différents partout",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"différent\"",
+          "Utilisez \"différent\" dans une phrase simple",
+          "Trouvez des images représentant \"différent\"",
+          "Faites des gestes pour \"différent\""
+        ]
+      },
+      {
+        "word": "sorte",
+        "lesson": 6,
+        "context": "Textes différents partout",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sorte\"",
+          "Utilisez \"sorte\" dans une phrase simple",
+          "Trouvez des images représentant \"sorte\"",
+          "Faites des gestes pour \"sorte\""
+        ]
+      },
+      {
+        "word": "type",
+        "lesson": 6,
+        "context": "Textes différents partout",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"type\"",
+          "Utilisez \"type\" dans une phrase simple",
+          "Trouvez des images représentant \"type\"",
+          "Faites des gestes pour \"type\""
+        ]
+      },
+      {
+        "word": "indice",
+        "lesson": 7,
+        "context": "Lire les indices",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"indice\"",
+          "Utilisez \"indice\" dans une phrase simple",
+          "Trouvez des images représentant \"indice\"",
+          "Faites des gestes pour \"indice\""
+        ]
+      },
+      {
+        "word": "contexte",
+        "lesson": 7,
+        "context": "Lire les indices",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"contexte\"",
+          "Utilisez \"contexte\" dans une phrase simple",
+          "Trouvez des images représentant \"contexte\"",
+          "Faites des gestes pour \"contexte\""
+        ]
+      },
+      {
+        "word": "question",
+        "lesson": 8,
+        "context": "Questions importantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"question\"",
+          "Utilisez \"question\" dans une phrase simple",
+          "Trouvez des images représentant \"question\"",
+          "Faites des gestes pour \"question\""
+        ]
+      },
+      {
+        "word": "qui",
+        "lesson": 8,
+        "context": "Questions importantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"qui\"",
+          "Utilisez \"qui\" dans une phrase simple",
+          "Trouvez des images représentant \"qui\"",
+          "Faites des gestes pour \"qui\""
+        ]
+      },
+      {
+        "word": "quoi",
+        "lesson": 8,
+        "context": "Questions importantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"quoi\"",
+          "Utilisez \"quoi\" dans une phrase simple",
+          "Trouvez des images représentant \"quoi\"",
+          "Faites des gestes pour \"quoi\""
+        ]
+      },
+      {
+        "word": "préféré",
+        "lesson": 9,
+        "context": "Mes livres préférés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"préféré\"",
+          "Utilisez \"préféré\" dans une phrase simple",
+          "Trouvez des images représentant \"préféré\"",
+          "Faites des gestes pour \"préféré\""
+        ]
+      },
+      {
+        "word": "aimer",
+        "lesson": 9,
+        "context": "Mes livres préférés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aimer\"",
+          "Utilisez \"aimer\" dans une phrase simple",
+          "Trouvez des images représentant \"aimer\"",
+          "Faites des gestes pour \"aimer\""
+        ]
+      },
+      {
+        "word": "choisir",
+        "lesson": 9,
+        "context": "Mes livres préférés",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"choisir\"",
+          "Utilisez \"choisir\" dans une phrase simple",
+          "Trouvez des images représentant \"choisir\"",
+          "Faites des gestes pour \"choisir\""
+        ]
+      },
+      {
+        "word": "comparer",
+        "lesson": 10,
+        "context": "Comparer les histoires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"comparer\"",
+          "Utilisez \"comparer\" dans une phrase simple",
+          "Trouvez des images représentant \"comparer\"",
+          "Faites des gestes pour \"comparer\""
+        ]
+      },
+      {
+        "word": "même",
+        "lesson": 10,
+        "context": "Comparer les histoires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"même\"",
+          "Utilisez \"même\" dans une phrase simple",
+          "Trouvez des images représentant \"même\"",
+          "Faites des gestes pour \"même\""
+        ]
+      },
+      {
+        "word": "informatif",
+        "lesson": 11,
+        "context": "Textes informatifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"informatif\"",
+          "Utilisez \"informatif\" dans une phrase simple",
+          "Trouvez des images représentant \"informatif\"",
+          "Faites des gestes pour \"informatif\""
+        ]
+      },
+      {
+        "word": "apprendre",
+        "lesson": 11,
+        "context": "Textes informatifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"apprendre\"",
+          "Utilisez \"apprendre\" dans une phrase simple",
+          "Trouvez des images représentant \"apprendre\"",
+          "Faites des gestes pour \"apprendre\""
+        ]
+      },
+      {
+        "word": "vrai",
+        "lesson": 11,
+        "context": "Textes informatifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vrai\"",
+          "Utilisez \"vrai\" dans une phrase simple",
+          "Trouvez des images représentant \"vrai\"",
+          "Faites des gestes pour \"vrai\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 12,
+        "context": "Lire ensemble fort",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "voix",
+        "lesson": 12,
+        "context": "Lire ensemble fort",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voix\"",
+          "Utilisez \"voix\" dans une phrase simple",
+          "Trouvez des images représentant \"voix\"",
+          "Faites des gestes pour \"voix\""
+        ]
+      },
+      {
+        "word": "expression",
+        "lesson": 12,
+        "context": "Lire ensemble fort",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expression\"",
+          "Utilisez \"expression\" dans une phrase simple",
+          "Trouvez des images représentant \"expression\"",
+          "Faites des gestes pour \"expression\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 13,
+        "context": "Création de questions",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "questionner",
+        "lesson": 13,
+        "context": "Création de questions",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"questionner\"",
+          "Utilisez \"questionner\" dans une phrase simple",
+          "Trouvez des images représentant \"questionner\"",
+          "Faites des gestes pour \"questionner\""
+        ]
+      },
+      {
+        "word": "curiosité",
+        "lesson": 13,
+        "context": "Création de questions",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"curiosité\"",
+          "Utilisez \"curiosité\" dans une phrase simple",
+          "Trouvez des images représentant \"curiosité\"",
+          "Faites des gestes pour \"curiosité\""
+        ]
+      },
+      {
+        "word": "portfolio",
+        "lesson": 14,
+        "context": "Portfolio de lecture",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"portfolio\"",
+          "Utilisez \"portfolio\" dans une phrase simple",
+          "Trouvez des images représentant \"portfolio\"",
+          "Faites des gestes pour \"portfolio\""
+        ]
+      },
+      {
+        "word": "voyage",
+        "lesson": 14,
+        "context": "Portfolio de lecture",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voyage\"",
+          "Utilisez \"voyage\" dans une phrase simple",
+          "Trouvez des images représentant \"voyage\"",
+          "Faites des gestes pour \"voyage\""
+        ]
+      },
+      {
+        "word": "progrès",
+        "lesson": 14,
+        "context": "Portfolio de lecture",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"progrès\"",
+          "Utilisez \"progrès\" dans une phrase simple",
+          "Trouvez des images représentant \"progrès\"",
+          "Faites des gestes pour \"progrès\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

@@ -20,41 +20,87 @@
       "opening": {
         "duration": 8,
         "activity": "Force discovery circle (5 min): Students stand and demonstrate pushing air with hands, then pulling imaginary rope. Name actions: 'Nous poussons!' and 'Nous tirons!' Introduce: these are called 'forces' - pushes and pulls that make things move.",
-        "materials": ["Espace ouvert pour le mouvement", "Objets variés pour manipulation"],
+        "materials": [
+          "Espace ouvert pour le mouvement",
+          "Objets variés pour manipulation"
+        ],
         "visualSupports": "Affiche avec images de pousser/tirer, gestes pour chaque action, démonstration physique",
-        "decisionPoints": ["Si les élèves confondent pousser/tirer → faire la démonstration ensemble", "Si certains n'osent pas participer → commencer par des gestes simples", "Si l'énergie est trop élevée → canaliser avec des gestes contrôlés"],
-        "movementBreaks": ["Lever les bras pour 'pousser' l'air (3 min)", "Marche sur place avec gestes de tirer (2 min)"]
+        "decisionPoints": [
+          "Si les élèves confondent pousser/tirer → faire la démonstration ensemble",
+          "Si certains n'osent pas participer → commencer par des gestes simples",
+          "Si l'énergie est trop élevée → canaliser avec des gestes contrôlés"
+        ],
+        "movementBreaks": [
+          "Lever les bras pour 'pousser' l'air (3 min)",
+          "Marche sur place avec gestes de tirer (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Push and pull exploration stations (25 min): Station 1: Push toy cars across table, observe movement. Station 2: Pull scarves or ribbons, feel resistance. Station 3: Push classroom door open, pull it closed. Station 4: Push and pull same object (box with rope) to compare. Students practice vocabulary: 'Je pousse la voiture' and 'Je tire la corde.' Create class chart showing push actions vs pull actions with drawings.",
-        "materials": ["Voitures jouets (25)", "Foulards ou rubans (25)", "Boîte avec corde attachée", "Papier grand format", "Crayons"],
+        "materials": [
+          "Voitures jouets (25)",
+          "Foulards ou rubans (25)",
+          "Boîte avec corde attachée",
+          "Papier grand format",
+          "Crayons"
+        ],
         "visualSupports": "Stations de démonstration, affiches visuelles pousser/tirer, graphique de classe à compléter",
-        "decisionPoints": ["Si les objets roulent trop loin → délimiter l'espace de travail", "Si les élèves tirent trop fort sur les foulards → rappeler la sécurité"],
-        "movementBreaks": ["Étirements des bras entre les stations (2 min)"]
+        "decisionPoints": [
+          "Si les objets roulent trop loin → délimiter l'espace de travail",
+          "Si les élèves tirent trop fort sur les foulards → rappeler la sécurité"
+        ],
+        "movementBreaks": [
+          "Étirements des bras entre les stations (2 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Push-pull parade (10 min): Students march around room demonstrating push and pull actions while chanting: 'Pousser, tirer, c'est une force! Pousser, tirer, ça fait bouger!' End by having students show one push and one pull.",
-        "materials": ["Espace pour marcher et bouger"],
+        "materials": [
+          "Espace pour marcher et bouger"
+        ],
         "visualSupports": "Gestuelles pour 'pousser' et 'tirer', affiche récapitulative",
-        "decisionPoints": ["Si certains élèves marchent trop vite → ralentir le rythme ensemble"],
-        "movementBreaks": ["La parade inclut déjà le mouvement physique"]
+        "decisionPoints": [
+          "Si certains élèves marchent trop vite → ralentir le rythme ensemble"
+        ],
+        "movementBreaks": [
+          "La parade inclut déjà le mouvement physique"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre la différence entre pousser et tirer",
-        "then": "Utiliser des objets familiers comme une porte (pousser pour ouvrir, tirer pour fermer) et pratiquer avec des gestes exagérés"
-      },
-      "realWorldConnection": "Students recognize push and pull forces they use every day: pushing doors, pulling drawers, pushing swings, pulling wagons",
       "differentiation": {
-        "pourDifficultés": ["Démonstrations répétées avec support physique", "Travail avec partenaire expérimenté", "Utiliser objets plus grands et faciles à manipuler"],
-        "pourAvancés": ["Explorer pousser ET tirer sur le même objet", "Aider à enseigner aux autres", "Prédire ce qui arrivera avant de tester"],
-        "pourLangue": ["Images visuelles claires pour chaque action", "Répétition du vocabulaire avec gestes", "Utilisation de la langue maternelle si nécessaire"],
-        "pourPEI": ["Adaptation des objets selon les besoins moteurs", "Temps supplémentaire pour explorer", "Support individuel selon le plan"]
+        "pourDifficultés": [
+          "Démonstrations répétées avec support physique",
+          "Travail avec partenaire expérimenté",
+          "Utiliser objets plus grands et faciles à manipuler"
+        ],
+        "pourAvancés": [
+          "Explorer pousser ET tirer sur le même objet",
+          "Aider à enseigner aux autres",
+          "Prédire ce qui arrivera avant de tester"
+        ],
+        "pourLangue": [
+          "Images visuelles claires pour chaque action",
+          "Répétition du vocabulaire avec gestes",
+          "Utilisation de la langue maternelle si nécessaire"
+        ],
+        "pourPEI": [
+          "Adaptation des objets selon les besoins moteurs",
+          "Temps supplémentaire pour explorer",
+          "Support individuel selon le plan"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève démontre physiquement pousser et tirer", "L'élève utilise le vocabulaire 'pousser', 'tirer', 'force'", "L'élève identifie des exemples de chaque action"],
-        "checkpoints": ["Peut montrer 'pousser' avec son corps", "Peut montrer 'tirer' avec son corps", "Peut dire si une action est pousser ou tirer"]
+        "observable": [
+          "L'élève démontre physiquement pousser et tirer",
+          "L'élève utilise le vocabulaire 'pousser', 'tirer', 'force'",
+          "L'élève identifie des exemples de chaque action"
+        ],
+        "checkpoints": [
+          "Peut montrer 'pousser' avec son corps",
+          "Peut montrer 'tirer' avec son corps",
+          "Peut dire si une action est pousser ou tirer"
+        ]
       }
     },
     {
@@ -71,41 +117,87 @@
       "opening": {
         "duration": 8,
         "activity": "Strong and gentle demonstration (5 min): Teacher demonstrates gentle push on toy car (moves slowly) then strong push (moves quickly/far). Students practice gentle and strong pushes in air. Introduce vocabulary: 'force forte' and 'force faible'.",
-        "materials": ["Voiture jouet pour démonstration", "Espace ouvert pour les gestes"],
+        "materials": [
+          "Voiture jouet pour démonstration",
+          "Espace ouvert pour les gestes"
+        ],
         "visualSupports": "Affiche 'force forte' vs 'force faible', gestes avec bras pour montrer la différence",
-        "decisionPoints": ["Si les élèves poussent trop fort dès le début → modéliser la force douce d'abord", "Si certains ne voient pas la différence → répéter avec objets plus gros", "Si l'énergie devient trop élevée → faire une pause calme"],
-        "movementBreaks": ["Gestes doux avec les bras (2 min)", "Gestes forts contrôlés (2 min)"]
+        "decisionPoints": [
+          "Si les élèves poussent trop fort dès le début → modéliser la force douce d'abord",
+          "Si certains ne voient pas la différence → répéter avec objets plus gros",
+          "Si l'énergie devient trop élevée → faire une pause calme"
+        ],
+        "movementBreaks": [
+          "Gestes doux avec les bras (2 min)",
+          "Gestes forts contrôlés (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Force strength investigation (25 min): Students test strong vs gentle forces on same objects. Push balls gently (short roll) vs strongly (long roll). Pull scarves gently vs strongly. Use playground balls to show how force strength affects bounce height. Create 'force strength chart' showing gentle force results vs strong force results with drawings and measurements (using non-standard units like hand spans).",
-        "materials": ["Balles variées (25)", "Foulards (25)", "Papier grand format", "Crayons", "Règles ou bâtons pour mesurer"],
+        "materials": [
+          "Balles variées (25)",
+          "Foulards (25)",
+          "Papier grand format",
+          "Crayons",
+          "Règles ou bâtons pour mesurer"
+        ],
         "visualSupports": "Graphique de force avec colonnes 'fort/faible', images des résultats, démonstration visuelle",
-        "decisionPoints": ["Si les balles roulent vers d'autres élèves → délimiter zones de travail", "Si certains élèves ne contrôlent pas leur force → pratiquer ensemble d'abord"],
-        "movementBreaks": ["Étirements entre les tests (3 min)"]
+        "decisionPoints": [
+          "Si les balles roulent vers d'autres élèves → délimiter zones de travail",
+          "Si certains élèves ne contrôlent pas leur force → pratiquer ensemble d'abord"
+        ],
+        "movementBreaks": [
+          "Étirements entre les tests (3 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Force strength song and movement (10 min): Sing simple song about strong and gentle forces with corresponding movements. Students demonstrate 'force forte' with big arm movements and 'force faible' with small gentle movements. Practice saying: 'Une force forte fait bouger beaucoup, une force faible fait bouger un peu.'",
-        "materials": ["Espace pour bouger"],
+        "materials": [
+          "Espace pour bouger"
+        ],
         "visualSupports": "Gestuelles grandes et petites, affiche récapitulative des apprentissages",
-        "decisionPoints": ["Si les mouvements deviennent trop énergiques → guider vers des gestes contrôlés"],
-        "movementBreaks": ["La chanson inclut déjà le mouvement"]
+        "decisionPoints": [
+          "Si les mouvements deviennent trop énergiques → guider vers des gestes contrôlés"
+        ],
+        "movementBreaks": [
+          "La chanson inclut déjà le mouvement"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Distinguer entre force forte et force faible",
-        "then": "Utiliser des exemples corporels : caresser doucement vs serrer fort, puis transférer aux objets"
-      },
-      "realWorldConnection": "Students understand why they use gentle touches with pets and strong pushes to move heavy playground equipment",
       "differentiation": {
-        "pourDifficultés": ["Commencer avec des objets légers et évidents", "Démonstrations répétées côte à côte", "Support physique pour sentir la différence"],
-        "pourAvancés": ["Prédire les résultats avant de tester", "Mesurer les distances avec unités non-standards", "Expliquer pourquoi les résultats diffèrent"],
-        "pourLangue": ["Gestes clairs pour 'fort' et 'faible'", "Comparaisons visuelles évidentes", "Répétition du vocabulaire avec actions"],
-        "pourPEI": ["Adapter les objets aux capacités motrices", "Temps supplémentaire pour explorer", "Support sensoriel si nécessaire"]
+        "pourDifficultés": [
+          "Commencer avec des objets légers et évidents",
+          "Démonstrations répétées côte à côte",
+          "Support physique pour sentir la différence"
+        ],
+        "pourAvancés": [
+          "Prédire les résultats avant de tester",
+          "Mesurer les distances avec unités non-standards",
+          "Expliquer pourquoi les résultats diffèrent"
+        ],
+        "pourLangue": [
+          "Gestes clairs pour 'fort' et 'faible'",
+          "Comparaisons visuelles évidentes",
+          "Répétition du vocabulaire avec actions"
+        ],
+        "pourPEI": [
+          "Adapter les objets aux capacités motrices",
+          "Temps supplémentaire pour explorer",
+          "Support sensoriel si nécessaire"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève démontre la différence entre force forte et faible", "L'élève prédit les effets de différentes forces", "L'élève utilise le vocabulaire 'fort', 'faible', 'mouvement'"],
-        "checkpoints": ["Peut montrer force forte avec son corps", "Peut montrer force faible avec son corps", "Peut dire quel type de force produit quel effet"]
+        "observable": [
+          "L'élève démontre la différence entre force forte et faible",
+          "L'élève prédit les effets de différentes forces",
+          "L'élève utilise le vocabulaire 'fort', 'faible', 'mouvement'"
+        ],
+        "checkpoints": [
+          "Peut montrer force forte avec son corps",
+          "Peut montrer force faible avec son corps",
+          "Peut dire quel type de force produit quel effet"
+        ]
       }
     },
     {
@@ -122,41 +214,90 @@
       "opening": {
         "duration": 8,
         "activity": "Round shape exploration (5 min): Students examine different shapes - some round, some square/flat. Try rolling each type. Discover only round objects roll well. Practice vocabulary: 'C'est rond, ça roule!' Show how push direction affects rolling direction.",
-        "materials": ["Objets ronds variés (balles, cylindres)", "Objets carrés/plats (blocs, livres)", "Espace de démonstration"],
+        "materials": [
+          "Objets ronds variés (balles, cylindres)",
+          "Objets carrés/plats (blocs, livres)",
+          "Espace de démonstration"
+        ],
         "visualSupports": "Collection d'objets ronds vs non-ronds, affiche avec formes et flèches de direction",
-        "decisionPoints": ["Si les objets non-ronds bougent quand même → expliquer la différence entre rouler et glisser", "Si certains ne voient pas la différence → faire la démonstration côte à côte", "Si les objets roulent trop loin → utiliser un espace délimité"],
-        "movementBreaks": ["Faire rouler les bras comme des cylindres (2 min)", "Marcher en rond comme une balle (2 min)"]
+        "decisionPoints": [
+          "Si les objets non-ronds bougent quand même → expliquer la différence entre rouler et glisser",
+          "Si certains ne voient pas la différence → faire la démonstration côte à côte",
+          "Si les objets roulent trop loin → utiliser un espace délimité"
+        ],
+        "movementBreaks": [
+          "Faire rouler les bras comme des cylindres (2 min)",
+          "Marcher en rond comme une balle (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Rolling investigation stations (25 min): Station 1: Roll balls at different speeds using gentle vs strong pushes. Station 2: Roll cylinders (paper towel tubes) and observe how they move differently than balls. Station 3: Try rolling non-round objects (blocks) vs round objects - compare ease of movement. Station 4: Rolling target practice - push balls toward specific targets to control direction. Create rolling observation chart showing what rolls well vs what doesn't roll.",
-        "materials": ["Balles variées (25)", "Cylindres en carton (tubes vides)", "Blocs de construction", "Cônes ou cibles", "Papier pour graphique", "Crayons"],
+        "materials": [
+          "Balles variées (25)",
+          "Cylindres en carton (tubes vides)",
+          "Blocs de construction",
+          "Cônes ou cibles",
+          "Papier pour graphique",
+          "Crayons"
+        ],
         "visualSupports": "Stations clairement identifiées, graphique de roulement à compléter, flèches directionnelles",
-        "decisionPoints": ["Si les objets sortent des zones de travail → créer des barrières", "Si les élèves se concentrent trop sur la compétition → rappeler l'observation scientifique"],
-        "movementBreaks": ["Rotation entre les stations avec étirements (3 min)"]
+        "decisionPoints": [
+          "Si les objets sortent des zones de travail → créer des barrières",
+          "Si les élèves se concentrent trop sur la compétition → rappeler l'observation scientifique"
+        ],
+        "movementBreaks": [
+          "Rotation entre les stations avec étirements (3 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Rolling race and reflection (10 min): Students choose their favorite rolling object and have gentle rolling races. Discuss: 'Pourquoi les objets ronds roulent-ils mieux?' Practice directional vocabulary: 'à droite', 'à gauche', 'tout droit'.",
-        "materials": ["Objets roulants préférés des élèves", "Espace délimité pour les courses"],
+        "materials": [
+          "Objets roulants préférés des élèves",
+          "Espace délimité pour les courses"
+        ],
         "visualSupports": "Flèches directionnelles au sol, affiche des conclusions sur le roulement",
-        "decisionPoints": ["Si les courses deviennent trop compétitives → se concentrer sur l'observation et le plaisir"],
-        "movementBreaks": ["Les courses incluent déjà le mouvement actif"]
+        "decisionPoints": [
+          "Si les courses deviennent trop compétitives → se concentrer sur l'observation et le plaisir"
+        ],
+        "movementBreaks": [
+          "Les courses incluent déjà le mouvement actif"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre pourquoi certains objets roulent mieux que d'autres",
-        "then": "Utiliser des objets très différents (balle vs livre) et laisser l'élève découvrir par l'expérience directe"
-      },
-      "realWorldConnection": "Students understand why balls work for sports, why car wheels are round, and how to aim when rolling toys to friends",
       "differentiation": {
-        "pourDifficultés": ["Commencer avec des objets très différents (balle vs livre)", "Guider physiquement les premiers essais", "Utiliser objets plus gros et plus évidents"],
-        "pourAvancés": ["Prédire quelle forme roulera le mieux", "Tester des formes intermédiaires (ovales)", "Expliquer pourquoi la forme affecte le roulement"],
-        "pourLangue": ["Démonstrations visuelles claires", "Gestes pour 'rond' et 'rouler'", "Comparaisons concrètes évidentes"],
-        "pourPEI": ["Adapter les objets aux capacités de préhension", "Espace de travail adapté", "Support pour les observations"]
+        "pourDifficultés": [
+          "Commencer avec des objets très différents (balle vs livre)",
+          "Guider physiquement les premiers essais",
+          "Utiliser objets plus gros et plus évidents"
+        ],
+        "pourAvancés": [
+          "Prédire quelle forme roulera le mieux",
+          "Tester des formes intermédiaires (ovales)",
+          "Expliquer pourquoi la forme affecte le roulement"
+        ],
+        "pourLangue": [
+          "Démonstrations visuelles claires",
+          "Gestes pour 'rond' et 'rouler'",
+          "Comparaisons concrètes évidentes"
+        ],
+        "pourPEI": [
+          "Adapter les objets aux capacités de préhension",
+          "Espace de travail adapté",
+          "Support pour les observations"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève identifie les objets qui roulent bien", "L'élève contrôle la direction du roulement", "L'élève utilise le vocabulaire 'rouler', 'rond', 'direction'"],
-        "checkpoints": ["Peut choisir un objet qui roule bien", "Peut faire rouler un objet vers une cible", "Peut expliquer pourquoi les objets ronds roulent mieux"]
+        "observable": [
+          "L'élève identifie les objets qui roulent bien",
+          "L'élève contrôle la direction du roulement",
+          "L'élève utilise le vocabulaire 'rouler', 'rond', 'direction'"
+        ],
+        "checkpoints": [
+          "Peut choisir un objet qui roule bien",
+          "Peut faire rouler un objet vers une cible",
+          "Peut expliquer pourquoi les objets ronds roulent mieux"
+        ]
       }
     },
     {
@@ -173,41 +314,89 @@
       "opening": {
         "duration": 8,
         "activity": "Experiment scientist preparation (5 min): Students put on 'scientist thinking caps' (real or imaginary). Introduce experiment question: 'How does push strength affect how far a ball rolls?' Show prediction sheet with gentle push vs strong push sections.",
-        "materials": ["Chapeaux de scientifique (optionnel)", "Feuilles de prédiction", "Balle pour démonstration"],
+        "materials": [
+          "Chapeaux de scientifique (optionnel)",
+          "Feuilles de prédiction",
+          "Balle pour démonstration"
+        ],
         "visualSupports": "Question d'expérience écrite, feuille de prédiction avec images, affiche du processus scientifique",
-        "decisionPoints": ["Si les élèves devinent au lieu de prédire → expliquer la différence avec des exemples", "Si certains ont peur de se tromper → rassurer que toutes les prédictions sont bonnes", "Si l'excitation est trop élevée → rappeler le calme du scientifique"],
-        "movementBreaks": ["Geste de 'réfléchir' comme un scientifique (2 min)", "Étirements pour préparer l'expérience (2 min)"]
+        "decisionPoints": [
+          "Si les élèves devinent au lieu de prédire → expliquer la différence avec des exemples",
+          "Si certains ont peur de se tromper → rassurer que toutes les prédictions sont bonnes",
+          "Si l'excitation est trop élevée → rappeler le calme du scientifique"
+        ],
+        "movementBreaks": [
+          "Geste de 'réfléchir' comme un scientifique (2 min)",
+          "Étirements pour préparer l'expérience (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Rolling experiment (25 min): Students work in pairs to test ball rolling. First, predict whether gentle or strong push will make ball roll farther. Then test: one partner pushes ball gently, measure distance (using non-standard units like footsteps). Next, same partner pushes ball strongly, measure distance again. Record results with drawings and simple numbers on experiment sheet. Compare predictions with actual results. Repeat experiment three times for consistency.",
-        "materials": ["Balles identiques (13 paires)", "Feuilles d'expérience", "Crayons", "Règles ou bâtons pour mesurer", "Espace long pour rouler"],
+        "materials": [
+          "Balles identiques (13 paires)",
+          "Feuilles d'expérience",
+          "Crayons",
+          "Règles ou bâtons pour mesurer",
+          "Espace long pour rouler"
+        ],
         "visualSupports": "Feuille d'expérience illustrée, exemple de mesure avec pas, tableau pour enregistrer résultats",
-        "decisionPoints": ["Si les balles vont dans tous les sens → créer des couloirs de roulement", "Si les mesures sont trop difficiles → simplifier avec 'près/loin'"],
-        "movementBreaks": ["Pause étirements entre les essais (3 min)"]
+        "decisionPoints": [
+          "Si les balles vont dans tous les sens → créer des couloirs de roulement",
+          "Si les mesures sont trop difficiles → simplifier avec 'près/loin'"
+        ],
+        "movementBreaks": [
+          "Pause étirements entre les essais (3 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Scientist sharing circle (10 min): Students share experiment results: 'Mon expérience montre que...' Create class results chart showing whether gentle or strong pushes made balls roll farther. Discuss: why do stronger pushes usually make things go farther?",
-        "materials": ["Graphique de classe pour résultats", "Feuilles d'expérience complétées"],
+        "materials": [
+          "Graphique de classe pour résultats",
+          "Feuilles d'expérience complétées"
+        ],
         "visualSupports": "Cercle de partage, graphique collectif des résultats, images des conclusions",
-        "decisionPoints": ["Si tous veulent parler en même temps → utiliser un objet de parole"],
-        "movementBreaks": ["Position assise confortable dans le cercle"]
+        "decisionPoints": [
+          "Si tous veulent parler en même temps → utiliser un objet de parole"
+        ],
+        "movementBreaks": [
+          "Position assise confortable dans le cercle"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre que les résultats peuvent différer des prédictions",
-        "then": "Montrer que c'est normal en science - les expériences nous apprennent de nouvelles choses, même quand on se trompe"
-      },
-      "realWorldConnection": "Students understand why they need to throw balls harder to reach distant friends and why bowling requires controlled force",
       "differentiation": {
-        "pourDifficultés": ["Partenaire expérimenté pour le support", "Simplifier le processus de mesure", "Utiliser des termes simples comme 'proche/loin'"],
-        "pourAvancés": ["Prédire les distances exactes", "Tester avec différents objets", "Expliquer pourquoi les résultats varient"],
-        "pourLangue": ["Images claires du processus", "Vocabulaire scientifique avec gestes", "Support visuel pour enregistrer résultats"],
-        "pourPEI": ["Adapter les outils de mesure", "Temps supplémentaire pour l'expérience", "Support pour l'enregistrement des données"]
+        "pourDifficultés": [
+          "Partenaire expérimenté pour le support",
+          "Simplifier le processus de mesure",
+          "Utiliser des termes simples comme 'proche/loin'"
+        ],
+        "pourAvancés": [
+          "Prédire les distances exactes",
+          "Tester avec différents objets",
+          "Expliquer pourquoi les résultats varient"
+        ],
+        "pourLangue": [
+          "Images claires du processus",
+          "Vocabulaire scientifique avec gestes",
+          "Support visuel pour enregistrer résultats"
+        ],
+        "pourPEI": [
+          "Adapter les outils de mesure",
+          "Temps supplémentaire pour l'expérience",
+          "Support pour l'enregistrement des données"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève suit le processus d'expérience", "L'élève enregistre ses observations", "L'élève compare prédictions et résultats"],
-        "checkpoints": ["Peut faire une prédiction simple", "Peut tester sa prédiction", "Peut partager ce qu'il a découvert"]
+        "observable": [
+          "L'élève suit le processus d'expérience",
+          "L'élève enregistre ses observations",
+          "L'élève compare prédictions et résultats"
+        ],
+        "checkpoints": [
+          "Peut faire une prédiction simple",
+          "Peut tester sa prédiction",
+          "Peut partager ce qu'il a découvert"
+        ]
       }
     },
     {
@@ -224,41 +413,87 @@
       "opening": {
         "duration": 8,
         "activity": "Surface feeling exploration (5 min): Students feel different surfaces around classroom with hands - smooth desk, rough carpet, bumpy wall. Predict which surfaces would be easiest for sliding objects across. Introduce vocabulary: 'surface lisse' (smooth) and 'surface rugueuse' (rough).",
-        "materials": ["Acc\u00e8s aux diff\u00e9rentes surfaces de la classe", "\u00c9chantillons de surfaces vari\u00e9es"],
-        "visualSupports": "Affiche 'lisse vs rugueux', images des diff\u00e9rentes surfaces, gestes tactiles",
-        "decisionPoints": ["Si certains élèves ne veulent pas toucher certaines surfaces → respecter et utiliser observation visuelle", "Si les prédictions sont toutes identiques → encourager différentes idées", "Si l'exploration devient trop bruyante → rappeler l'exploration calme"],
-        "movementBreaks": ["Gestes pour 'lisse' (caresser) et 'rugueux' (tapoter) (2 min)", "Marcher sur différentes surfaces (3 min)"]
+        "materials": [
+          "Accès aux différentes surfaces de la classe",
+          "Échantillons de surfaces variées"
+        ],
+        "visualSupports": "Affiche 'lisse vs rugueux', images des différentes surfaces, gestes tactiles",
+        "decisionPoints": [
+          "Si certains élèves ne veulent pas toucher certaines surfaces → respecter et utiliser observation visuelle",
+          "Si les prédictions sont toutes identiques → encourager différentes idées",
+          "Si l'exploration devient trop bruyante → rappeler l'exploration calme"
+        ],
+        "movementBreaks": [
+          "Gestes pour 'lisse' (caresser) et 'rugueux' (tapoter) (2 min)",
+          "Marcher sur différentes surfaces (3 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Surface testing investigation (25 min): Students test sliding same object (wooden block) across different surfaces. Surface 1: Smooth table - observe how easily block slides. Surface 2: Carpet - notice increased difficulty. Surface 3: Sandpaper or rough surface - observe very difficult sliding. Surface 4: Wax paper - observe very easy sliding. Students push with same gentle force on each surface and observe differences. Create surface comparison chart showing easy vs hard sliding surfaces.",
-        "materials": ["Blocs de bois identiques (25)", "Surfaces variées (table, tapis, papier sablé, papier ciré)", "Graphique de comparaison", "Crayons"],
+        "materials": [
+          "Blocs de bois identiques (25)",
+          "Surfaces variées (table, tapis, papier sablé, papier ciré)",
+          "Graphique de comparaison",
+          "Crayons"
+        ],
         "visualSupports": "Stations de test clairement identifiées, graphique 'facile/difficile', exemples visuels des résultats",
-        "decisionPoints": ["Si certains élèves poussent trop fort → modéliser la force douce constante", "Si les blocs tombent des surfaces → ajuster les zones de test"],
-        "movementBreaks": ["Rotation entre les surfaces avec étirements (3 min)"]
+        "decisionPoints": [
+          "Si certains élèves poussent trop fort → modéliser la force douce constante",
+          "Si les blocs tombent des surfaces → ajuster les zones de test"
+        ],
+        "movementBreaks": [
+          "Rotation entre les surfaces avec étirements (3 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Surface sliding demonstrations (10 min): Students demonstrate easiest and hardest sliding surfaces for class. Practice vocabulary: 'C'est facile de glisser sur...', 'C'est difficile de glisser sur...' Discuss why some surfaces make sliding easier than others.",
-        "materials": ["Objets pour démonstration", "Surfaces de test"],
+        "materials": [
+          "Objets pour démonstration",
+          "Surfaces de test"
+        ],
         "visualSupports": "Résultats du graphique de classe, exemples concrets, gestes pour 'facile/difficile'",
-        "decisionPoints": ["Si trop d'élèves veulent démontrer → organiser en petits groupes"],
-        "movementBreaks": ["Démonstrations incluent le mouvement naturel"]
+        "decisionPoints": [
+          "Si trop d'élèves veulent démontrer → organiser en petits groupes"
+        ],
+        "movementBreaks": [
+          "Démonstrations incluent le mouvement naturel"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre pourquoi le glissement varie selon les surfaces",
-        "then": "Utiliser l'analogie des chaussettes sur différents sols - facile sur bois lisse, difficile sur tapis"
-      },
-      "realWorldConnection": "Students understand why socks slide on smooth floors, why cars need good tires on wet roads, and why sleds work on snow",
       "differentiation": {
-        "pourDifficultés": ["Utiliser seulement 2 surfaces très différentes d'abord", "Support physique pour sentir la différence", "Vocabulaire simplifié: 'glisse bien/glisse mal'"],
-        "pourAvancés": ["Tester une variété de surfaces et classer par ordre", "Prédire et expliquer les résultats", "Faire des connexions avec le monde réel"],
-        "pourLangue": ["Démonstrations tactiles claires", "Vocabulaire avec gestes et images", "Comparaisons visuelles évidentes"],
-        "pourPEI": ["Adapter les objets à la capacité de manipulation", "Surfaces sécuritaires et appropriées", "Support pour les observations"]
+        "pourDifficultés": [
+          "Utiliser seulement 2 surfaces très différentes d'abord",
+          "Support physique pour sentir la différence",
+          "Vocabulaire simplifié: 'glisse bien/glisse mal'"
+        ],
+        "pourAvancés": [
+          "Tester une variété de surfaces et classer par ordre",
+          "Prédire et expliquer les résultats",
+          "Faire des connexions avec le monde réel"
+        ],
+        "pourLangue": [
+          "Démonstrations tactiles claires",
+          "Vocabulaire avec gestes et images",
+          "Comparaisons visuelles évidentes"
+        ],
+        "pourPEI": [
+          "Adapter les objets à la capacité de manipulation",
+          "Surfaces sécuritaires et appropriées",
+          "Support pour les observations"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève teste le glissement sur différentes surfaces", "L'élève identifie les surfaces faciles et difficiles", "L'élève utilise le vocabulaire 'glisser', 'surface', 'facile'"],
-        "checkpoints": ["Peut sentir la différence entre surfaces lisses et rugueuses", "Peut prédire quelle surface sera plus facile", "Peut expliquer pourquoi certaines surfaces font mieux glisser"]
+        "observable": [
+          "L'élève teste le glissement sur différentes surfaces",
+          "L'élève identifie les surfaces faciles et difficiles",
+          "L'élève utilise le vocabulaire 'glisser', 'surface', 'facile'"
+        ],
+        "checkpoints": [
+          "Peut sentir la différence entre surfaces lisses et rugueuses",
+          "Peut prédire quelle surface sera plus facile",
+          "Peut expliquer pourquoi certaines surfaces font mieux glisser"
+        ]
       }
     },
     {
@@ -275,41 +510,88 @@
       "opening": {
         "duration": 8,
         "activity": "Wheel wonder introduction (5 min): Show toy car and identical box without wheels. Try pushing both across table. Ask: 'Lequel bouge plus facilement?' Introduce: wheels are special tools called 'machines' that help us move things easily.",
-        "materials": ["Voiture jouet", "Bo\u00eete identique sans roues", "Table pour d\u00e9monstration"],
-        "visualSupports": "Comparaison c\u00f4te \u00e0 c\u00f4te, affiche 'avec roues/sans roues', introduction visuelle des machines simples",
-        "decisionPoints": ["Si la différence n'est pas évidente → utiliser des objets plus lourds", "Si les élèves deviennent trop excités → canaliser vers l'observation calme"],
-        "movementBreaks": ["Faire rouler les bras comme des roues (2 min)", "Marcher vs rouler sur place (2 min)"]
+        "materials": [
+          "Voiture jouet",
+          "Boîte identique sans roues",
+          "Table pour démonstration"
+        ],
+        "visualSupports": "Comparaison côte à côte, affiche 'avec roues/sans roues', introduction visuelle des machines simples",
+        "decisionPoints": [
+          "Si la différence n'est pas évidente → utiliser des objets plus lourds",
+          "Si les élèves deviennent trop excités → canaliser vers l'observation calme"
+        ],
+        "movementBreaks": [
+          "Faire rouler les bras comme des roues (2 min)",
+          "Marcher vs rouler sur place (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Wheel exploration and comparison (25 min): Students examine various wheeled objects: toy cars, rolling carts, wheeled backpacks, office chairs. Try moving objects with wheels vs similar objects without wheels. Create experiment: attach wheels to small box, compare pushing effort needed with and without wheels. Go on classroom 'wheel hunt' to find all the wheels that help us daily. Create class chart showing 'Objects with wheels' vs 'Objects without wheels' and discuss which are easier to move.",
-        "materials": ["Objets à roues variés (voitures, chaises, sacs)", "Objets similaires sans roues", "Petites boîtes", "Roues détachables ou bouchons ronds", "Graphique de classe", "Crayons"],
+        "materials": [
+          "Objets à roues variés (voitures, chaises, sacs)",
+          "Objets similaires sans roues",
+          "Petites boîtes",
+          "Roues détachables ou bouchons ronds",
+          "Graphique de classe",
+          "Crayons"
+        ],
         "visualSupports": "Collections d'objets à comparer, graphique 'avec/sans roues', chasse aux roues avec liste visuelle",
-        "decisionPoints": ["Si la chasse aux roues devient trop bruyante → établir des règles d'exploration calme"],
-        "movementBreaks": ["Exploration active dans la classe inclut le mouvement naturel"]
+        "decisionPoints": [
+          "Si la chasse aux roues devient trop bruyante → établir des règles d'exploration calme"
+        ],
+        "movementBreaks": [
+          "Exploration active dans la classe inclut le mouvement naturel"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Wheel appreciation circle (10 min): Students share their favorite wheeled object and explain how wheels help. Practice saying: 'Les roues nous aident à bouger les choses facilement.' Introduce concept: wheels are 'machines simples' - tools that make work easier.",
-        "materials": ["Objets à roues découverts", "Cercle de partage"],
+        "materials": [
+          "Objets à roues découverts",
+          "Cercle de partage"
+        ],
         "visualSupports": "Affiche 'machines simples', objets de démonstration, phrase clé affichée",
-        "decisionPoints": ["Si tous veulent partager en même temps → utiliser tour de parole structuré"],
-        "movementBreaks": ["Position assise confortable dans le cercle"]
+        "decisionPoints": [
+          "Si tous veulent partager en même temps → utiliser tour de parole structuré"
+        ],
+        "movementBreaks": [
+          "Position assise confortable dans le cercle"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre comment les roues aident le mouvement",
-        "then": "Faire l'expérience directe: essayer de tirer un sac lourd sans roues, puis avec roues - sentir la différence d'effort"
-      },
-      "realWorldConnection": "Students recognize how shopping carts, strollers, wheelchairs, and bikes use wheels to help people move things easily",
       "differentiation": {
-        "pourDifficultés": ["Commencer avec des exemples très évidents (voiture vs boîte)", "Support physique pour sentir la différence d'effort", "Vocabulaire simplifié: 'plus facile'"],
-        "pourAvancés": ["Chercher des roues cachées ou inhabituelles", "Expliquer pourquoi les roues rendent le mouvement plus facile", "Dessiner leur propre invention avec roues"],
-        "pourLangue": ["Images claires d'objets avec et sans roues", "Gestes pour 'rouler' et 'aider'", "Exemples concrets de leur environnement"],
-        "pourPEI": ["Objets adaptés à leur capacité de manipulation", "Participation selon leurs moyens", "Support visuel pour comprendre le concept"]
+        "pourDifficultés": [
+          "Commencer avec des exemples très évidents (voiture vs boîte)",
+          "Support physique pour sentir la différence d'effort",
+          "Vocabulaire simplifié: 'plus facile'"
+        ],
+        "pourAvancés": [
+          "Chercher des roues cachées ou inhabituelles",
+          "Expliquer pourquoi les roues rendent le mouvement plus facile",
+          "Dessiner leur propre invention avec roues"
+        ],
+        "pourLangue": [
+          "Images claires d'objets avec et sans roues",
+          "Gestes pour 'rouler' et 'aider'",
+          "Exemples concrets de leur environnement"
+        ],
+        "pourPEI": [
+          "Objets adaptés à leur capacité de manipulation",
+          "Participation selon leurs moyens",
+          "Support visuel pour comprendre le concept"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève identifie des objets avec roues", "L'élève comprend que les roues facilitent le mouvement", "L'élève utilise le vocabulaire 'roues', 'aider', 'machine'"],
-        "checkpoints": ["Peut trouver des roues dans la classe", "Peut expliquer comment les roues aident", "Peut dire que les roues sont des machines simples"]
+        "observable": [
+          "L'élève identifie des objets avec roues",
+          "L'élève comprend que les roues facilitent le mouvement",
+          "L'élève utilise le vocabulaire 'roues', 'aider', 'machine'"
+        ],
+        "checkpoints": [
+          "Peut trouver des roues dans la classe",
+          "Peut expliquer comment les roues aident",
+          "Peut dire que les roues sont des machines simples"
+        ]
       }
     },
     {
@@ -326,41 +608,86 @@
       "opening": {
         "duration": 8,
         "activity": "Effort prediction activity (5 min): Show students two identical boxes - one with wheels, one without. Ask them to predict which will be easier to move. Have students demonstrate 'easy push' (gentle arm movement) vs 'hard push' (strong arm movement).",
-        "materials": ["Deux boîtes identiques (une avec roues, une sans)", "Espace pour démonstration"],
+        "materials": [
+          "Deux boîtes identiques (une avec roues, une sans)",
+          "Espace pour démonstration"
+        ],
         "visualSupports": "Feuille de prédiction, gestes pour 'facile' vs 'difficile', images effort",
-        "decisionPoints": ["Si les élèves ne voient pas de différence → utiliser des objets plus lourds", "Si les prédictions sont unanimes → encourager des idées variées"],
-        "movementBreaks": ["Gestes de poussée facile et difficile (2 min)", "Simulation de l'effort avec tout le corps (2 min)"]
+        "decisionPoints": [
+          "Si les élèves ne voient pas de différence → utiliser des objets plus lourds",
+          "Si les prédictions sont unanimes → encourager des idées variées"
+        ],
+        "movementBreaks": [
+          "Gestes de poussée facile et difficile (2 min)",
+          "Simulation de l'effort avec tout le corps (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Wheels vs no-wheels experiment (25 min): Students work in pairs to test effort needed. First, push/pull box without wheels across table or floor - notice how much effort needed. Then push/pull identical box with wheels - observe effort difference. Students record observations using simple drawings and effort scale (easy/medium/hard). Test with different weights inside boxes. Create class comparison chart showing effort needed with and without wheels. Discuss findings: 'Avec les roues, c'est plus facile!'",
-        "materials": ["Boîtes identiques avec et sans roues (13 paires)", "Objets pour ajouter du poids", "Feuilles d'observation", "Crayons", "Échelle d'effort illustrée"],
+        "materials": [
+          "Boîtes identiques avec et sans roues (13 paires)",
+          "Objets pour ajouter du poids",
+          "Feuilles d'observation",
+          "Crayons",
+          "Échelle d'effort illustrée"
+        ],
         "visualSupports": "Feuilles d'expérience avec échelle effort, graphique de classe, exemples de résultats",
-        "decisionPoints": ["Si certains élèves utilisent trop de force → modéliser la force contrôlée"],
-        "movementBreaks": ["Pause étirements entre les tests (3 min)"]
+        "decisionPoints": [
+          "Si certains élèves utilisent trop de force → modéliser la force contrôlée"
+        ],
+        "movementBreaks": [
+          "Pause étirements entre les tests (3 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Effort comparison sharing (10 min): Students demonstrate easy vs hard pushing for class. Share experiment results: 'Sans roues, c'est difficile. Avec les roues, c'est facile!' Practice effort vocabulary and introduce: wheels are machines that help reduce effort.",
-        "materials": ["Boîtes d'expérience", "Résultats de classe"],
+        "materials": [
+          "Boîtes d'expérience",
+          "Résultats de classe"
+        ],
         "visualSupports": "Démonstrations visuelles, résultats compilés, affiche 'machines réduisent effort'",
-        "decisionPoints": ["Si trop veulent démontrer → sélectionner quelques volontaires représentatifs"],
-        "movementBreaks": ["Démonstrations actives incluent le mouvement"]
+        "decisionPoints": [
+          "Si trop veulent démontrer → sélectionner quelques volontaires représentatifs"
+        ],
+        "movementBreaks": [
+          "Démonstrations actives incluent le mouvement"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Sentir la différence d'effort avec et sans roues",
-        "then": "Utiliser des objets plus lourds et encourager l'élève à vraiment sentir la résistance avec ses muscles"
-      },
-      "realWorldConnection": "Students understand why people use wheelchairs instead of carrying people, and why luggage has wheels for easy transport",
       "differentiation": {
-        "pourDifficultés": ["Partenaire fort pour aider avec les objets lourds", "Commencer avec des différences très évidentes", "Support pour enregistrer observations"],
-        "pourAvancés": ["Tester avec différents poids et surfaces", "Mesurer l'effort avec une échelle détaillée", "Expliquer pourquoi les roues réduisent l'effort"],
-        "pourLangue": ["Vocabulaire effort avec gestes clairs", "Comparaisons visuelles évidentes", "Support pour exprimer observations"],
-        "pourPEI": ["Adapter les objets aux capacités physiques", "Support pour les manipulations", "Temps supplémentaire pour les tests"]
+        "pourDifficultés": [
+          "Partenaire fort pour aider avec les objets lourds",
+          "Commencer avec des différences très évidentes",
+          "Support pour enregistrer observations"
+        ],
+        "pourAvancés": [
+          "Tester avec différents poids et surfaces",
+          "Mesurer l'effort avec une échelle détaillée",
+          "Expliquer pourquoi les roues réduisent l'effort"
+        ],
+        "pourLangue": [
+          "Vocabulaire effort avec gestes clairs",
+          "Comparaisons visuelles évidentes",
+          "Support pour exprimer observations"
+        ],
+        "pourPEI": [
+          "Adapter les objets aux capacités physiques",
+          "Support pour les manipulations",
+          "Temps supplémentaire pour les tests"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève compare l'effort avec et sans roues", "L'élève enregistre ses observations", "L'élève utilise le vocabulaire 'avec', 'sans', 'effort'"],
-        "checkpoints": ["Peut sentir que les roues réduisent l'effort", "Peut exprimer la différence observée", "Peut expliquer comment les roues aident"]
+        "observable": [
+          "L'élève compare l'effort avec et sans roues",
+          "L'élève enregistre ses observations",
+          "L'élève utilise le vocabulaire 'avec', 'sans', 'effort'"
+        ],
+        "checkpoints": [
+          "Peut sentir que les roues réduisent l'effort",
+          "Peut exprimer la différence observée",
+          "Peut expliquer comment les roues aident"
+        ]
       }
     },
     {
@@ -377,41 +704,90 @@
       "opening": {
         "duration": 8,
         "activity": "Lever introduction demonstration (5 min): Teacher demonstrates trying to lift heavy book with hands (difficult) vs using ruler as lever with block fulcrum (easier). Ask students: 'Why is the stick method easier?' Introduce vocabulary: 'levier' (lever) - a stick that helps us lift things.",
-        "materials": ["Livre lourd", "Règle ou bâton", "Bloc pour point d'appui", "Table pour démonstration"],
+        "materials": [
+          "Livre lourd",
+          "Règle ou bâton",
+          "Bloc pour point d'appui",
+          "Table pour démonstration"
+        ],
         "visualSupports": "Démonstration étape par étape, affiche levier avec parties nommées, schéma simple du levier",
-        "decisionPoints": ["Si les élèves ne voient pas la différence → exagérer l'effort avec expressions faciales", "Si la démonstration ne fonctionne pas bien → ajuster la position du point d'appui"],
-        "movementBreaks": ["Gestes de soulever difficile vs facile (2 min)", "Mouvement de levier avec les bras (2 min)"]
+        "decisionPoints": [
+          "Si les élèves ne voient pas la différence → exagérer l'effort avec expressions faciales",
+          "Si la démonstration ne fonctionne pas bien → ajuster la position du point d'appui"
+        ],
+        "movementBreaks": [
+          "Gestes de soulever difficile vs facile (2 min)",
+          "Mouvement de levier avec les bras (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Lever exploration and experimentation (25 min): Students build simple levers using rulers (lever arm) and blocks (fulcrum). Practice lifting various objects: erasers, books, small toys. Compare effort needed to lift with hands vs with lever. Try different fulcrum positions - closer to object vs farther from object - observe lifting differences. Students create lever observation drawings showing what they lifted and how the lever helped. Explore classroom for lever examples: scissors (handles are levers), bottle opener.",
-        "materials": ["Règles ou bâtons (25)", "Blocs pour point d'appui (25)", "Petits objets à soulever (gommes, livres, jouets)", "Papier pour dessins", "Crayons", "Ciseaux pour exemples"],
+        "materials": [
+          "Règles ou bâtons (25)",
+          "Blocs pour point d'appui (25)",
+          "Petits objets à soulever (gommes, livres, jouets)",
+          "Papier pour dessins",
+          "Crayons",
+          "Ciseaux pour exemples"
+        ],
         "visualSupports": "Stations de construction de leviers, exemples de leviers dans la classe, guide visuel des positions du point d'appui",
-        "decisionPoints": ["Si les leviers se cassent → montrer comment positionner correctement le point d'appui", "Si certains ne réussissent pas → ajuster la charge ou la position"],
-        "movementBreaks": ["Rotation entre activités avec étirements (3 min)"]
+        "decisionPoints": [
+          "Si les leviers se cassent → montrer comment positionner correctement le point d'appui",
+          "Si certains ne réussissent pas → ajuster la charge ou la position"
+        ],
+        "movementBreaks": [
+          "Rotation entre activités avec étirements (3 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Lever demonstration circle (10 min): Students demonstrate their best lever creation and explain how it helps: 'Mon levier m'aide à soulever...' Practice lever vocabulary and connect to simple machines concept: levers make lifting easier like wheels make moving easier.",
-        "materials": ["Leviers construits par les élèves", "Objets pour démonstration"],
+        "materials": [
+          "Leviers construits par les élèves",
+          "Objets pour démonstration"
+        ],
         "visualSupports": "Cercle de démonstration, affiche machines simples mise à jour, phrase modèle affichée",
-        "decisionPoints": ["Si tous veulent démontrer → limiter à quelques exemples représentatifs"],
-        "movementBreaks": ["Démonstrations actives dans le cercle"]
+        "decisionPoints": [
+          "Si tous veulent démontrer → limiter à quelques exemples représentatifs"
+        ],
+        "movementBreaks": [
+          "Démonstrations actives dans le cercle"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre comment un levier aide à soulever",
-        "then": "Utiliser l'analogie du tire-bouchon ou de la balançoire: montrer que le bâton donne plus de force à nos bras"
-      },
-      "realWorldConnection": "Students understand how playground seesaws work, why bottle openers make opening easier, and how crowbars help move heavy objects",
       "differentiation": {
-        "pourDifficultés": ["Commencer avec des objets très légers", "Support pour construire le levier", "Démonstration guidée étape par étape"],
-        "pourAvancés": ["Tester différentes positions du point d'appui", "Construire des leviers plus complexes", "Trouver plus d'exemples de leviers dans l'école"],
-        "pourLangue": ["Vocabulaire avec actions physiques claires", "Schémas visuels des parties du levier", "Exemples concrets familiars"],
-        "pourPEI": ["Adapter les outils selon les capacités motrices", "Support individuel pour construction", "Objets appropriés à soulever"]
+        "pourDifficultés": [
+          "Commencer avec des objets très légers",
+          "Support pour construire le levier",
+          "Démonstration guidée étape par étape"
+        ],
+        "pourAvancés": [
+          "Tester différentes positions du point d'appui",
+          "Construire des leviers plus complexes",
+          "Trouver plus d'exemples de leviers dans l'école"
+        ],
+        "pourLangue": [
+          "Vocabulaire avec actions physiques claires",
+          "Schémas visuels des parties du levier",
+          "Exemples concrets familiars"
+        ],
+        "pourPEI": [
+          "Adapter les outils selon les capacités motrices",
+          "Support individuel pour construction",
+          "Objets appropriés à soulever"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève construit un levier simple", "L'élève comprend que le levier aide à soulever", "L'élève utilise le vocabulaire 'levier', 'soulever', 'bâton'"],
-        "checkpoints": ["Peut utiliser un levier pour soulever un objet", "Peut expliquer comment le levier aide", "Peut identifier des leviers autour d'eux"]
+        "observable": [
+          "L'élève construit un levier simple",
+          "L'élève comprend que le levier aide à soulever",
+          "L'élève utilise le vocabulaire 'levier', 'soulever', 'bâton'"
+        ],
+        "checkpoints": [
+          "Peut utiliser un levier pour soulever un objet",
+          "Peut expliquer comment le levier aide",
+          "Peut identifier des leviers autour d'eux"
+        ]
       }
     },
     {
@@ -428,41 +804,88 @@
       "opening": {
         "duration": 8,
         "activity": "Lever scientist preparation (5 min): Students review lever parts using hand gestures: fulcrum (make triangle with hands), lever arm (extend arm straight), load (pretend to hold heavy object). Set up experiment question: 'Do levers really make lifting easier?'",
-        "materials": ["Affiche avec parties du levier", "Question d'expérience écrite"],
+        "materials": [
+          "Affiche avec parties du levier",
+          "Question d'expérience écrite"
+        ],
         "visualSupports": "Gestes pour chaque partie du levier, question d'expérience affichée, processus scientifique",
-        "decisionPoints": ["Si les gestes ne sont pas clairs → utiliser objets physiques pour démontrer", "Si certains oublient les parties → répéter avec support visuel"],
-        "movementBreaks": ["Gestes des parties du levier (3 min)", "Préparation mentale du scientifique (2 min)"]
+        "decisionPoints": [
+          "Si les gestes ne sont pas clairs → utiliser objets physiques pour démontrer",
+          "Si certains oublient les parties → répéter avec support visuel"
+        ],
+        "movementBreaks": [
+          "Gestes des parties du levier (3 min)",
+          "Préparation mentale du scientifique (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Lever effectiveness experiment (25 min): Students systematically test lever effectiveness. First, try lifting object (book) with hands only - rate effort as easy/medium/hard. Then, set up lever (ruler and block) and lift same object using lever - rate effort again. Test different lever setups: fulcrum close to object vs far from object. Record results on experiment sheet with drawings and effort ratings. Try lifting different objects with same lever setup. Create class results chart comparing hand lifting vs lever lifting efforts.",
-        "materials": ["Livres et objets variés à soulever", "Règles (25)", "Blocs pour point d'appui (25)", "Feuilles d'expérience", "Crayons", "Échelle d'effort illustrée"],
+        "materials": [
+          "Livres et objets variés à soulever",
+          "Règles (25)",
+          "Blocs pour point d'appui (25)",
+          "Feuilles d'expérience",
+          "Crayons",
+          "Échelle d'effort illustrée"
+        ],
         "visualSupports": "Feuilles d'expérience avec échelle effort, guide des positions du levier, graphique de classe",
-        "decisionPoints": ["Si les résultats ne sont pas évidents → utiliser objets plus lourds", "Si les leviers ne fonctionnent pas → ajuster positions"],
-        "movementBreaks": ["Pause étirements entre expériences (3 min)"]
+        "decisionPoints": [
+          "Si les résultats ne sont pas évidents → utiliser objets plus lourds",
+          "Si les leviers ne fonctionnent pas → ajuster positions"
+        ],
+        "movementBreaks": [
+          "Pause étirements entre expériences (3 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Lever experiment conclusions (10 min): Students share their findings: 'Les leviers rendent le soulèvement plus facile!' Discuss why levers help: the stick gives us better push power. Connect to daily life: when do we use lever-like tools to make lifting easier?",
-        "materials": ["Résultats d'expériences", "Graphique de classe complété"],
+        "materials": [
+          "Résultats d'expériences",
+          "Graphique de classe complété"
+        ],
         "visualSupports": "Conclusion affichée, résultats de classe, exemples de leviers quotidiens",
-        "decisionPoints": ["Si les élèves ont des résultats différents → discuter pourquoi c'est normal en science"],
-        "movementBreaks": ["Position confortable pour la discussion"]
+        "decisionPoints": [
+          "Si les élèves ont des résultats différents → discuter pourquoi c'est normal en science"
+        ],
+        "movementBreaks": [
+          "Position confortable pour la discussion"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Enregistrer les résultats d'expérience",
-        "then": "Simplifier avec dessins simples et utiliser partenaire pour aider à noter les observations"
-      },
-      "realWorldConnection": "Students verify that tools like bottle openers, scissors, and pry bars really do make difficult tasks easier through lever action",
       "differentiation": {
-        "pourDifficultés": ["Partenaire pour aider avec l'enregistrement", "Objets plus légers pour commencer", "Processus simplifié étape par étape"],
-        "pourAvancés": ["Tester plusieurs positions de point d'appui", "Calculer quelle position est la plus efficace", "Prédire les résultats avant de tester"],
-        "pourLangue": ["Feuille d'expérience avec images", "Vocabulaire effort avec gestes", "Support pour exprimer les résultats"],
-        "pourPEI": ["Adapter les outils selon les capacités", "Support individuel pour l'expérience", "Temps supplémentaire au besoin"]
+        "pourDifficultés": [
+          "Partenaire pour aider avec l'enregistrement",
+          "Objets plus légers pour commencer",
+          "Processus simplifié étape par étape"
+        ],
+        "pourAvancés": [
+          "Tester plusieurs positions de point d'appui",
+          "Calculer quelle position est la plus efficace",
+          "Prédire les résultats avant de tester"
+        ],
+        "pourLangue": [
+          "Feuille d'expérience avec images",
+          "Vocabulaire effort avec gestes",
+          "Support pour exprimer les résultats"
+        ],
+        "pourPEI": [
+          "Adapter les outils selon les capacités",
+          "Support individuel pour l'expérience",
+          "Temps supplémentaire au besoin"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève suit le processus d'expérience avec leviers", "L'élève compare l'effort avec et sans levier", "L'élève utilise le vocabulaire 'expérience', 'comparer', 'efficace'"],
-        "checkpoints": ["Peut tester un levier de façon systématique", "Peut identifier que les leviers réduisent l'effort", "Peut expliquer pourquoi les leviers aident"]
+        "observable": [
+          "L'élève suit le processus d'expérience avec leviers",
+          "L'élève compare l'effort avec et sans levier",
+          "L'élève utilise le vocabulaire 'expérience', 'comparer', 'efficace'"
+        ],
+        "checkpoints": [
+          "Peut tester un levier de façon systématique",
+          "Peut identifier que les leviers réduisent l'effort",
+          "Peut expliquer pourquoi les leviers aident"
+        ]
       }
     },
     {
@@ -479,41 +902,88 @@
       "opening": {
         "duration": 8,
         "activity": "Ramp discovery challenge (5 min): Show students a toy car and a 'mountain' (stack of books). Challenge: 'How can we get the car to the top without picking it up?' Let students suggest solutions. Introduce: ramps (rampes) help things go up easily.",
-        "materials": ["Voiture jouet", "Pile de livres (montagne)", "Planches ou cartons pour rampes"],
+        "materials": [
+          "Voiture jouet",
+          "Pile de livres (montagne)",
+          "Planches ou cartons pour rampes"
+        ],
         "visualSupports": "Défi visuel avec montagne de livres, exemples de solutions possibles, introduction rampes",
-        "decisionPoints": ["Si personne ne suggère de rampe → donner des indices subtils", "Si tous suggèrent la même solution → encourager d'autres idées"],
-        "movementBreaks": ["Geste de monter avec les mains (2 min)", "Simulation de pousser vers le haut (2 min)"]
+        "decisionPoints": [
+          "Si personne ne suggère de rampe → donner des indices subtils",
+          "Si tous suggèrent la même solution → encourager d'autres idées"
+        ],
+        "movementBreaks": [
+          "Geste de monter avec les mains (2 min)",
+          "Simulation de pousser vers le haut (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Ramp exploration and comparison (25 min): Students build ramps using boards and books at different heights. Test moving toy cars up ramps vs trying to place them directly on top. Compare effort: pushing car up gentle ramp vs steep ramp vs lifting straight up. Students test different ramp materials: smooth board vs textured surface. Create ramp effectiveness chart showing which ramps work best for different objects. Explore school for real ramps: wheelchair ramps, loading dock ramps.",
-        "materials": ["Planches variées (25)", "Livres pour différentes hauteurs", "Voitures jouets (25)", "Surfaces texturées", "Graphique d'efficacité", "Crayons"],
+        "materials": [
+          "Planches variées (25)",
+          "Livres pour différentes hauteurs",
+          "Voitures jouets (25)",
+          "Surfaces texturées",
+          "Graphique d'efficacité",
+          "Crayons"
+        ],
         "visualSupports": "Stations de construction rampes, graphique de comparaison, images des rampes à l'école",
-        "decisionPoints": ["Si les rampes sont trop raides → ajuster la hauteur ou longueur", "Si l'exploration à l'école devient bruyante → établir règles d'observation calme"],
-        "movementBreaks": ["Exploration active dans l'école inclut le mouvement naturel"]
+        "decisionPoints": [
+          "Si les rampes sont trop raides → ajuster la hauteur ou longueur",
+          "Si l'exploration à l'école devient bruyante → établir règles d'observation calme"
+        ],
+        "movementBreaks": [
+          "Exploration active dans l'école inclut le mouvement naturel"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Ramp appreciation discussion (10 min): Students share where they've seen ramps and how they help people. Practice saying: 'Les rampes nous aident à monter les choses facilement.' Connect ramps to simple machines family: wheels help move sideways, levers help lift up, ramps help go up slopes.",
-        "materials": ["Exemples de rampes observés"],
+        "materials": [
+          "Exemples de rampes observés"
+        ],
         "visualSupports": "Affiche famille machines simples mise à jour, exemples rampes quotidiennes, phrase clé",
-        "decisionPoints": ["Si peu d'élèves ont des exemples → donner des indices sur rampes communes"],
-        "movementBreaks": ["Position confortable pour discussion"]
+        "decisionPoints": [
+          "Si peu d'élèves ont des exemples → donner des indices sur rampes communes"
+        ],
+        "movementBreaks": [
+          "Position confortable pour discussion"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre pourquoi les rampes facilitent le mouvement vers le haut",
-        "then": "Utiliser l'analogie d'escaliers vs rampe douce - plus facile de monter graduellement que tout d'un coup"
-      },
-      "realWorldConnection": "Students understand why wheelchair ramps exist, how moving trucks use ramps, and why mountain roads wind up gradually instead of going straight up",
       "differentiation": {
-        "pourDifficultés": ["Commencer avec des rampes très douces", "Support pour construire la rampe", "Objets légers pour tester"],
-        "pourAvancés": ["Tester différents angles de rampes", "Mesurer les distances et efforts", "Concevoir la rampe optimale pour une tâche"],
-        "pourLangue": ["Vocabulaire avec gestes directionnels clairs", "Démonstrations visuelles évidentes", "Exemples concrets de leur environnement"],
-        "pourPEI": ["Rampes adaptées aux capacités motrices", "Support pour les constructions", "Objets appropriés à manipuler"]
+        "pourDifficultés": [
+          "Commencer avec des rampes très douces",
+          "Support pour construire la rampe",
+          "Objets légers pour tester"
+        ],
+        "pourAvancés": [
+          "Tester différents angles de rampes",
+          "Mesurer les distances et efforts",
+          "Concevoir la rampe optimale pour une tâche"
+        ],
+        "pourLangue": [
+          "Vocabulaire avec gestes directionnels clairs",
+          "Démonstrations visuelles évidentes",
+          "Exemples concrets de leur environnement"
+        ],
+        "pourPEI": [
+          "Rampes adaptées aux capacités motrices",
+          "Support pour les constructions",
+          "Objets appropriés à manipuler"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève construit des rampes simples", "L'élève comprend que les rampes facilitent le mouvement vers le haut", "L'élève utilise le vocabulaire 'rampe', 'pente', 'monter'"],
-        "checkpoints": ["Peut utiliser une rampe pour faire monter un objet", "Peut expliquer pourquoi la rampe aide", "Peut identifier des rampes dans leur environnement"]
+        "observable": [
+          "L'élève construit des rampes simples",
+          "L'élève comprend que les rampes facilitent le mouvement vers le haut",
+          "L'élève utilise le vocabulaire 'rampe', 'pente', 'monter'"
+        ],
+        "checkpoints": [
+          "Peut utiliser une rampe pour faire monter un objet",
+          "Peut expliquer pourquoi la rampe aide",
+          "Peut identifier des rampes dans leur environnement"
+        ]
       }
     },
     {
@@ -530,41 +1000,89 @@
       "opening": {
         "duration": 8,
         "activity": "Ramp experiment setup (5 min): Students predict which ramp will be easiest for moving toy car to top: gentle ramp (supported by 1 book) or steep ramp (supported by 3 books). Introduce experiment vocabulary: we will 'test' different ramps to find the most 'effective' one.",
-        "materials": ["Planches pour rampes", "Livres (1 et 3 pour hauteurs)", "Voiture pour démonstration", "Feuille de prédiction"],
+        "materials": [
+          "Planches pour rampes",
+          "Livres (1 et 3 pour hauteurs)",
+          "Voiture pour démonstration",
+          "Feuille de prédiction"
+        ],
         "visualSupports": "Comparaison rampe douce vs raide, feuille de prédiction illustrée, vocabulaire expérience",
-        "decisionPoints": ["Si les prédictions sont unanimes → questionner pour encourager différentes hypothèses"],
-        "movementBreaks": ["Gestes pour rampe douce vs raide (2 min)", "Simulation de pousser sur différents angles (2 min)"]
+        "decisionPoints": [
+          "Si les prédictions sont unanimes → questionner pour encourager différentes hypothèses"
+        ],
+        "movementBreaks": [
+          "Gestes pour rampe douce vs raide (2 min)",
+          "Simulation de pousser sur différents angles (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Systematic ramp testing (25 min): Students set up three different ramp angles using 1, 2, and 3 books as supports. Test pushing same toy car up each ramp, rating effort as easy/medium/hard. Test rolling balls down ramps to see speed differences. Experiment with different ramp surfaces: smooth paper vs sandpaper vs fabric. Record results on ramp experiment sheet with drawings and effort ratings. Create class comparison showing which ramp angles work best for different purposes.",
-        "materials": ["Planches (25)", "Livres pour supports (1,2,3 par élève)", "Voitures et balles", "Surfaces variées (papier, tissu, etc.)", "Feuilles d'expérience", "Crayons"],
+        "materials": [
+          "Planches (25)",
+          "Livres pour supports (1,2,3 par élève)",
+          "Voitures et balles",
+          "Surfaces variées (papier, tissu, etc.)",
+          "Feuilles d'expérience",
+          "Crayons"
+        ],
         "visualSupports": "Feuille d'expérience avec échelle effort, guide des angles de rampe, graphique de comparaison",
-        "decisionPoints": ["Si les rampes glissent → sécuriser avec ruban adhésif", "Si les résultats ne sont pas clairs → répéter les tests"],
-        "movementBreaks": ["Rotation entre configurations avec étirements (3 min)"]
+        "decisionPoints": [
+          "Si les rampes glissent → sécuriser avec ruban adhésif",
+          "Si les résultats ne sont pas clairs → répéter les tests"
+        ],
+        "movementBreaks": [
+          "Rotation entre configurations avec étirements (3 min)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Ramp experiment conclusions (10 min): Students share findings: 'La rampe douce est plus facile' or 'La rampe raide est plus rapide.' Discuss: why might people choose different ramp steepness for different jobs? Connect to real world: why are wheelchair ramps gentle but waterslides steep?",
-        "materials": ["Résultats d'expériences", "Graphique de classe"],
+        "materials": [
+          "Résultats d'expériences",
+          "Graphique de classe"
+        ],
         "visualSupports": "Conclusions affichées, exemples du monde réel, comparaisons rampes douces/raides",
-        "decisionPoints": ["Si la discussion devient confuse → revenir aux observations concrètes"],
-        "movementBreaks": ["Discussion en cercle confortable"]
+        "decisionPoints": [
+          "Si la discussion devient confuse → revenir aux observations concrètes"
+        ],
+        "movementBreaks": [
+          "Discussion en cercle confortable"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre pourquoi différents angles de rampe donnent différents résultats",
-        "then": "Utiliser analogie de monter escalier vs colline douce - même destination mais effort différent"
-      },
-      "realWorldConnection": "Students understand why some ramps are steep (for speed) while others are gentle (for ease), and how this applies to slides, roads, and accessibility ramps",
       "differentiation": {
-        "pourDifficultés": ["Commencer avec seulement 2 angles très différents", "Support pour noter observations", "Processus simplifié étape par étape"],
-        "pourAvancés": ["Tester plus d'angles intermédiaires", "Mesurer distances et vitesses", "Prédire le meilleur angle pour différentes tâches"],
-        "pourLangue": ["Feuille avec images des différents angles", "Vocabulaire avec démonstrations physiques", "Support visuel pour enregistrer"],
-        "pourPEI": ["Adapter les rampes selon capacités motrices", "Support individuel pour expérience", "Objets appropriés à manipuler"]
+        "pourDifficultés": [
+          "Commencer avec seulement 2 angles très différents",
+          "Support pour noter observations",
+          "Processus simplifié étape par étape"
+        ],
+        "pourAvancés": [
+          "Tester plus d'angles intermédiaires",
+          "Mesurer distances et vitesses",
+          "Prédire le meilleur angle pour différentes tâches"
+        ],
+        "pourLangue": [
+          "Feuille avec images des différents angles",
+          "Vocabulaire avec démonstrations physiques",
+          "Support visuel pour enregistrer"
+        ],
+        "pourPEI": [
+          "Adapter les rampes selon capacités motrices",
+          "Support individuel pour expérience",
+          "Objets appropriés à manipuler"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève teste systématiquement différents angles", "L'élève enregistre ses observations", "L'élève utilise le vocabulaire 'angle', 'efficace', 'tester'"],
-        "checkpoints": ["Peut comparer différents angles de rampe", "Peut identifier quel angle fonctionne mieux pour quelle tâche", "Peut expliquer ses résultats d'expérience"]
+        "observable": [
+          "L'élève teste systématiquement différents angles",
+          "L'élève enregistre ses observations",
+          "L'élève utilise le vocabulaire 'angle', 'efficace', 'tester'"
+        ],
+        "checkpoints": [
+          "Peut comparer différents angles de rampe",
+          "Peut identifier quel angle fonctionne mieux pour quelle tâche",
+          "Peut expliquer ses résultats d'expérience"
+        ]
       }
     },
     {
@@ -581,41 +1099,86 @@
       "opening": {
         "duration": 8,
         "activity": "Pulley magic demonstration (5 min): Teacher demonstrates lifting object by pulling up (difficult) vs using simple pulley system to pull down and lift object up (easier/different). Ask: 'How did pulling down make the object go up?' Introduce: this 'magic' tool is called a pulley.",
-        "materials": ["Poulie simple ou bobine avec corde", "Objet à soulever", "Support pour suspendre poulie"],
+        "materials": [
+          "Poulie simple ou bobine avec corde",
+          "Objet à soulever",
+          "Support pour suspendre poulie"
+        ],
         "visualSupports": "Démonstration 'magique' étape par étape, schéma simple poulie, flèches directionnelles",
-        "decisionPoints": ["Si la poulie ne fonctionne pas bien → vérifier installation et lubrification", "Si certains ne voient pas la différence → exagérer les directions de tirage"],
-        "movementBreaks": ["Gestes tirer vers le haut vs vers le bas (2 min)", "Mouvement de poulie avec les bras (2 min)"]
+        "decisionPoints": [
+          "Si la poulie ne fonctionne pas bien → vérifier installation et lubrification",
+          "Si certains ne voient pas la différence → exagérer les directions de tirage"
+        ],
+        "movementBreaks": [
+          "Gestes tirer vers le haut vs vers le bas (2 min)",
+          "Mouvement de poulie avec les bras (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Pulley exploration and construction (25 min): Students examine simple pulley systems (if available) or watch teacher demonstrations. Try lifting small objects by pulling straight up vs using pulley to pull down. Students create simple pulleys using thread spools, string, and small objects (erasers, toy cars). Test their pulley systems: does pulling down lift the object up? Compare effort needed and direction of pull with and without pulley. Explore school for pulley examples: flag poles, window blinds.",
-        "materials": ["Bobines de fil ou poulies simples (25)", "Ficelle (rouleaux)", "Petits objets à soulever (gommes, jouets)", "Supports pour suspendre poulies"],
+        "materials": [
+          "Bobines de fil ou poulies simples (25)",
+          "Ficelle (rouleaux)",
+          "Petits objets à soulever (gommes, jouets)",
+          "Supports pour suspendre poulies"
+        ],
         "visualSupports": "Guide de construction poulie simple, exemples de poulies dans l'école, comparaisons avec/sans poulie",
-        "decisionPoints": ["Si les cordes s'emmêlent → aider à démêler et montrer technique", "Si certaines poulies ne tournent pas → ajuster l'installation"],
-        "movementBreaks": ["Exploration active dans l'école inclut mouvement naturel"]
+        "decisionPoints": [
+          "Si les cordes s'emmêlent → aider à démêler et montrer technique",
+          "Si certaines poulies ne tournent pas → ajuster l'installation"
+        ],
+        "movementBreaks": [
+          "Exploration active dans l'école inclut mouvement naturel"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Pulley appreciation circle (10 min): Students demonstrate their pulleys and explain: 'Ma poulie change la direction de ma force.' Practice pulley vocabulary and add to simple machines collection: wheels help move sideways, levers help lift, ramps help go up slopes, pulleys help lift by pulling down.",
-        "materials": ["Poulies construites par les élèves"],
+        "materials": [
+          "Poulies construites par les élèves"
+        ],
         "visualSupports": "Affiche famille machines simples complète, démonstrations des poulies, phrase modèle",
-        "decisionPoints": ["Si tous veulent démontrer → sélectionner quelques exemples variés"],
-        "movementBreaks": ["Démonstrations actives dans le cercle"]
+        "decisionPoints": [
+          "Si tous veulent démontrer → sélectionner quelques exemples variés"
+        ],
+        "movementBreaks": [
+          "Démonstrations actives dans le cercle"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Comprendre comment une poulie change la direction de la force",
-        "then": "Utiliser analogie de tourner un coin avec une corde - la poulie 'tourne le coin' de notre tirage"
-      },
-      "realWorldConnection": "Students understand how flagpoles work, why construction cranes use pulleys, and how window blinds let us pull down to raise the blind up",
       "differentiation": {
-        "pourDifficultés": ["Poulie pré-installée pour se concentrer sur le concept", "Objects très légers à soulever", "Support pour comprendre changement direction"],
-        "pourAvancés": ["Construire système avec plusieurs poulies", "Tester différents poids avec leur poulie", "Chercher poulies cachées ou complexes dans l'école"],
-        "pourLangue": ["Démonstration avec flèches directionnelles claires", "Vocabulaire avec actions physiques", "Images des poulies quotidiennes"],
-        "pourPEI": ["Poulies adaptées aux capacités motrices", "Support pour manipulation des cordes", "Objects appropriés pour soulever"]
+        "pourDifficultés": [
+          "Poulie pré-installée pour se concentrer sur le concept",
+          "Objects très légers à soulever",
+          "Support pour comprendre changement direction"
+        ],
+        "pourAvancés": [
+          "Construire système avec plusieurs poulies",
+          "Tester différents poids avec leur poulie",
+          "Chercher poulies cachées ou complexes dans l'école"
+        ],
+        "pourLangue": [
+          "Démonstration avec flèches directionnelles claires",
+          "Vocabulaire avec actions physiques",
+          "Images des poulies quotidiennes"
+        ],
+        "pourPEI": [
+          "Poulies adaptées aux capacités motrices",
+          "Support pour manipulation des cordes",
+          "Objects appropriés pour soulever"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève utilise une poulie simple", "L'élève comprend le changement de direction", "L'élève utilise le vocabulaire 'poulie', 'corde', 'soulever'"],
-        "checkpoints": ["Peut utiliser une poulie pour soulever un objet", "Peut expliquer que la poulie change direction de force", "Peut identifier des poulies dans leur environnement"]
+        "observable": [
+          "L'élève utilise une poulie simple",
+          "L'élève comprend le changement de direction",
+          "L'élève utilise le vocabulaire 'poulie', 'corde', 'soulever'"
+        ],
+        "checkpoints": [
+          "Peut utiliser une poulie pour soulever un objet",
+          "Peut expliquer que la poulie change direction de force",
+          "Peut identifier des poulies dans leur environnement"
+        ]
       }
     },
     {
@@ -632,41 +1195,84 @@
       "opening": {
         "duration": 8,
         "activity": "Simple machines review game (5 min): Students use body actions to show each simple machine learned: wheels (rolling arms), levers (seesaw motion), ramps (slanted hands), pulleys (pull down/up motions). Challenge: 'Let's find these machines hiding around our school!'",
-        "materials": ["Affiche récapitulative machines simples", "Espace pour les gestes"],
+        "materials": [
+          "Affiche récapitulative machines simples",
+          "Espace pour les gestes"
+        ],
         "visualSupports": "Affiche avec 4 machines simples et gestes associés, défi de chasse visuel",
-        "decisionPoints": ["Si certains gestes ne sont pas clairs → démontrer à nouveau ensemble", "Si l'excitation est trop élevée → canaliser vers exploration calme"],
-        "movementBreaks": ["Les gestes corporels constituent déjà le mouvement (5 min)"]
+        "decisionPoints": [
+          "Si certains gestes ne sont pas clairs → démontrer à nouveau ensemble",
+          "Si l'excitation est trop élevée → canaliser vers exploration calme"
+        ],
+        "movementBreaks": [
+          "Les gestes corporels constituent déjà le mouvement (5 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Simple machines scavenger hunt (25 min): Students work in pairs with simple machines identification sheets. Search classroom and accessible school areas for examples: wheels (on chairs, carts, toys), levers (scissors, door handles, staplers), ramps (wheelchair ramps, entrance ramps), pulleys (flagpoles, blinds). Students draw or check off machines they find and write/dictate how each helps people. Create class 'Simple Machines Around Us' display with drawings and photos of discovered machines.",
-        "materials": ["Feuilles d'identification machines simples (13 copies)", "Crayons", "Tablettes à pince", "App photo (optionnel)"],
+        "materials": [
+          "Feuilles d'identification machines simples (13 copies)",
+          "Crayons",
+          "Tablettes à pince",
+          "App photo (optionnel)"
+        ],
         "visualSupports": "Feuilles avec images des 4 types de machines, zones de recherche identifiées, affichage collectif",
-        "decisionPoints": ["Si certaines zones sont trop bruyantes → établir règles d'exploration respectueuse"],
-        "movementBreaks": ["Exploration active dans l'école constitue l'activité physique"]
+        "decisionPoints": [
+          "Si certaines zones sont trop bruyantes → établir règles d'exploration respectueuse"
+        ],
+        "movementBreaks": [
+          "Exploration active dans l'école constitue l'activité physique"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Simple machines sharing celebration (10 min): Each pair presents their favorite discovered simple machine and demonstrates how it helps: 'Nous avons trouvé une roue sur... Elle nous aide à...' Celebrate how many simple machines help us every day without us noticing!",
-        "materials": ["Machines découvertes ou photos", "Feuilles d'identification complétées"],
+        "materials": [
+          "Machines découvertes ou photos",
+          "Feuilles d'identification complétées"
+        ],
         "visualSupports": "Phrase modèle affichée, célébration visuelle des découvertes, affichage collectif",
-        "decisionPoints": ["Si tous veulent présenter → limiter à une machine par équipe"],
-        "movementBreaks": ["Présentations actives debout"]
+        "decisionPoints": [
+          "Si tous veulent présenter → limiter à une machine par équipe"
+        ],
+        "movementBreaks": [
+          "Présentations actives debout"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Identifier le type de machine simple",
-        "then": "Revenir aux gestes corporels pour chaque type et comparer physiquement avec l'objet trouvé"
-      },
-      "realWorldConnection": "Students realize simple machines are everywhere helping people: at home, at school, in cars, and in playgrounds",
       "differentiation": {
-        "pourDifficultés": ["Partenaire expérimenté pour guidance", "Commencer avec exemples très évidents", "Feuille simplifiée avec moins d'options"],
-        "pourAvancés": ["Chercher machines simples cachées ou complexes", "Expliquer comment chaque machine aide", "Dessiner leurs propres exemples"],
-        "pourLangue": ["Feuille avec images claires", "Support pour exprimer leurs découvertes", "Utilisation L1 si nécessaire pour expliquer"],
-        "pourPEI": ["Zones de recherche adaptées aux capacités", "Support pour noter les découvertes", "Participation selon leurs moyens"]
+        "pourDifficultés": [
+          "Partenaire expérimenté pour guidance",
+          "Commencer avec exemples très évidents",
+          "Feuille simplifiée avec moins d'options"
+        ],
+        "pourAvancés": [
+          "Chercher machines simples cachées ou complexes",
+          "Expliquer comment chaque machine aide",
+          "Dessiner leurs propres exemples"
+        ],
+        "pourLangue": [
+          "Feuille avec images claires",
+          "Support pour exprimer leurs découvertes",
+          "Utilisation L1 si nécessaire pour expliquer"
+        ],
+        "pourPEI": [
+          "Zones de recherche adaptées aux capacités",
+          "Support pour noter les découvertes",
+          "Participation selon leurs moyens"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève identifie des exemples de chaque type de machine", "L'élève explique comment les machines aident", "L'élève utilise le vocabulaire 'identifier', 'exemple', 'environnement'"],
-        "checkpoints": ["Peut trouver au moins un exemple de chaque machine simple", "Peut expliquer comment une machine aide", "Peut utiliser le bon nom pour chaque type de machine"]
+        "observable": [
+          "L'élève identifie des exemples de chaque type de machine",
+          "L'élève explique comment les machines aident",
+          "L'élève utilise le vocabulaire 'identifier', 'exemple', 'environnement'"
+        ],
+        "checkpoints": [
+          "Peut trouver au moins un exemple de chaque machine simple",
+          "Peut expliquer comment une machine aide",
+          "Peut utiliser le bon nom pour chaque type de machine"
+        ]
       }
     },
     {
@@ -683,41 +1289,85 @@
       "opening": {
         "duration": 8,
         "activity": "Engineer introduction ceremony (5 min): Students receive 'engineer badges' (real or imaginary) and learn that engineers are people who build machines to solve problems. Today they become engineers building simple machines to help with classroom tasks.",
-        "materials": ["Badges d'ingénieur (autocollants ou imaginés)", "Liste des problèmes de classe"],
+        "materials": [
+          "Badges d'ingénieur (autocollants ou imaginés)",
+          "Liste des problèmes de classe"
+        ],
         "visualSupports": "Cérémonie des badges, affiche 'Que font les ingénieurs?', liste des défis à résoudre",
-        "decisionPoints": ["Si certains n'aiment pas les badges → respecter et se concentrer sur le rôle d'ingénieur"],
-        "movementBreaks": ["Geste de construction avec les mains (2 min)", "Marche d'ingénieur autour de la classe (2 min)"]
+        "decisionPoints": [
+          "Si certains n'aiment pas les badges → respecter et se concentrer sur le rôle d'ingénieur"
+        ],
+        "movementBreaks": [
+          "Geste de construction avec les mains (2 min)",
+          "Marche d'ingénieur autour de la classe (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Simple machine construction workshop (25 min): Students choose a classroom problem to solve: moving books across room, lifting objects to high shelf, getting toy car up to desk level, lifting flag to top of pole. Design and build simple machine solution using available materials: cardboard ramps, wheel attachments, lever systems, pulley setups. Students work individually or in pairs, with teacher support for construction challenges. Test their machines to see if they solve the chosen problem. Make adjustments as needed.",
-        "materials": ["Matériaux de construction variés (carton, bâtons, ficelle)", "Roues détachables", "Bobines", "Petits objets à manipuler", "Ruban adhésif"],
+        "materials": [
+          "Matériaux de construction variés (carton, bâtons, ficelle)",
+          "Roues détachables",
+          "Bobines",
+          "Petits objets à manipuler",
+          "Ruban adhésif"
+        ],
         "visualSupports": "Station de matériaux organisés, exemples de problèmes illustrés, guide de construction simple",
-        "decisionPoints": ["Si les constructions ne fonctionnent pas → encourager ajustements et essais multiples", "Si certains sont frustrés → simplifier le défi ou offrir aide"],
-        "movementBreaks": ["Construction active constitue l'activité physique"]
+        "decisionPoints": [
+          "Si les constructions ne fonctionnent pas → encourager ajustements et essais multiples",
+          "Si certains sont frustrés → simplifier le défi ou offrir aide"
+        ],
+        "movementBreaks": [
+          "Construction active constitue l'activité physique"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Engineer showcase (10 min): Students present their built machines and demonstrate how they solve problems: 'Mon machine aide à...' Celebrate engineering success and discuss what they learned about building: some ideas work, some need changes, engineers keep trying until solutions work.",
-        "materials": ["Machines construites par les élèves"],
+        "materials": [
+          "Machines construites par les élèves"
+        ],
         "visualSupports": "Espace de présentation, phrase modèle affichée, célébration des succès d'ingénierie",
-        "decisionPoints": ["Si certaines machines ne fonctionnent pas → célébrer les tentatives et l'apprentissage"],
-        "movementBreaks": ["Démonstrations actives debout"]
+        "decisionPoints": [
+          "Si certaines machines ne fonctionnent pas → célébrer les tentatives et l'apprentissage"
+        ],
+        "movementBreaks": [
+          "Démonstrations actives debout"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Construire une machine qui fonctionne",
-        "then": "Simplifier le défi, offrir un partenaire, ou se concentrer sur une partie du processus (design OU construction)"
-      },
-      "realWorldConnection": "Students experience how real engineers design machines to solve problems, just like the simple machines they built help with classroom tasks",
       "differentiation": {
-        "pourDifficultés": ["Problème simplifié à résoudre", "Partenaire pour la construction", "Modèle ou exemple à suivre"],
-        "pourAvancés": ["Défi plus complexe avec multiple machines simples", "Améliorer les designs des autres", "Créer instructions pour leur machine"],
-        "pourLangue": ["Instructions visuelles pour construction", "Vocabulaire construction avec gestes", "Support pour expliquer leur création"],
-        "pourPEI": ["Matériaux adaptés aux capacités motrices", "Support individuel pour construction", "Participation selon les forces individuelles"]
+        "pourDifficultés": [
+          "Problème simplifié à résoudre",
+          "Partenaire pour la construction",
+          "Modèle ou exemple à suivre"
+        ],
+        "pourAvancés": [
+          "Défi plus complexe avec multiple machines simples",
+          "Améliorer les designs des autres",
+          "Créer instructions pour leur machine"
+        ],
+        "pourLangue": [
+          "Instructions visuelles pour construction",
+          "Vocabulaire construction avec gestes",
+          "Support pour expliquer leur création"
+        ],
+        "pourPEI": [
+          "Matériaux adaptés aux capacités motrices",
+          "Support individuel pour construction",
+          "Participation selon les forces individuelles"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève conçoit une solution simple", "L'élève construit avec les matériaux disponibles", "L'élève utilise le vocabulaire 'construire', 'concevoir', 'résoudre'"],
-        "checkpoints": ["Peut choisir un problème à résoudre", "Peut construire quelque chose pour aider", "Peut expliquer comment leur machine aide"]
+        "observable": [
+          "L'élève conçoit une solution simple",
+          "L'élève construit avec les matériaux disponibles",
+          "L'élève utilise le vocabulaire 'construire', 'concevoir', 'résoudre'"
+        ],
+        "checkpoints": [
+          "Peut choisir un problème à résoudre",
+          "Peut construire quelque chose pour aider",
+          "Peut expliquer comment leur machine aide"
+        ]
       }
     },
     {
@@ -734,41 +1384,87 @@
       "opening": {
         "duration": 8,
         "activity": "Machine testing laboratory setup (5 min): Transform classroom into 'testing laboratory' where engineers test their inventions. Review testing process: try the machine, see if it works, decide if it helps make the job easier.",
-        "materials": ["Panneaux 'Laboratoire de test'", "Machines construites précédemment", "Processus de test affiché"],
+        "materials": [
+          "Panneaux 'Laboratoire de test'",
+          "Machines construites précédemment",
+          "Processus de test affiché"
+        ],
         "visualSupports": "Ambiance laboratoire, étapes du processus de test, critères d'évaluation simples",
-        "decisionPoints": ["Si certaines machines sont cassées → encourager réparations simples ou se concentrer sur le concept"],
-        "movementBreaks": ["Préparation active du laboratoire avec déplacement (3 min)"]
+        "decisionPoints": [
+          "Si certaines machines sont cassées → encourager réparations simples ou se concentrer sur le concept"
+        ],
+        "movementBreaks": [
+          "Préparation active du laboratoire avec déplacement (3 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Systematic machine testing (25 min): Students test their built machines systematically. First, try completing their chosen task without the machine - observe effort and success. Then, use their machine to complete same task - compare effort and results. Students rate their machines: works great/works okay/needs fixing. For machines that don't work well, students identify problems and try simple modifications. Create class testing results chart showing which types of machines worked best and what problems were discovered.",
-        "materials": ["Machines des élèves", "Feuilles d'évaluation simples", "Matériaux pour ajustements", "Graphique de résultats collectifs"],
+        "materials": [
+          "Machines des élèves",
+          "Feuilles d'évaluation simples",
+          "Matériaux pour ajustements",
+          "Graphique de résultats collectifs"
+        ],
         "visualSupports": "Échelle d'évaluation visuelle (bien/okay/à réparer), processus de test étape par étape, graphique de succès",
-        "decisionPoints": ["Si une machine ne fonctionne pas du tout → encourager l'élève et identifier ensemble une petite partie qui marche", "Si les élèves se découragent avec leurs résultats → rappeler que les vrais ingénieurs font plusieurs essais", "Si certains testent trop énergiquement → modéliser des tests doux et contrôlés"],
-        "movementBreaks": ["Tests actifs avec manipulation des machines"]
+        "decisionPoints": [
+          "Si une machine ne fonctionne pas du tout → encourager l'élève et identifier ensemble une petite partie qui marche",
+          "Si les élèves se découragent avec leurs résultats → rappeler que les vrais ingénieurs font plusieurs essais",
+          "Si certains testent trop énergiquement → modéliser des tests doux et contrôlés"
+        ],
+        "movementBreaks": [
+          "Tests actifs avec manipulation des machines"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Testing results sharing (10 min): Students share testing outcomes: 'Ma machine marche bien parce que...' or 'Ma machine a besoin d'amélioration parce que...' Discuss: real engineers test their machines many times and keep making improvements.",
-        "materials": ["Résultats de tests", "Machines pour démonstration"],
+        "materials": [
+          "Résultats de tests",
+          "Machines pour démonstration"
+        ],
         "visualSupports": "Phrases modèles pour partage, graphique des résultats collectifs, message sur processus ingénierie",
-        "decisionPoints": ["Si certains hésitent à partager leurs échecs → célébrer les tentatives et montrer que c'est normal", "Si les présentations durent trop longtemps → utiliser minuteur de 1 minute par élève"],
-        "movementBreaks": ["Présentations debout actives"]
+        "decisionPoints": [
+          "Si certains hésitent à partager leurs échecs → célébrer les tentatives et montrer que c'est normal",
+          "Si les présentations durent trop longtemps → utiliser minuteur de 1 minute par élève"
+        ],
+        "movementBreaks": [
+          "Présentations debout actives"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Accepter qu'une machine ne fonctionne pas parfaitement",
-        "then": "Expliquer que même les vrais ingénieurs ont des échecs et que c'est comme ça qu'on apprend"
-      },
-      "realWorldConnection": "Students learn that real inventors and engineers test their machines carefully and improve designs based on testing results",
       "differentiation": {
-        "pourDifficultés": ["Se concentrer sur une seule étape de test", "Support pour identifier ce qui marche/ne marche pas", "Vocabulaire simplifié pour évaluation"],
-        "pourAvancés": ["Tester machines des autres aussi", "Suggérer améliorations spécifiques", "Documenter résultats avec détails"],
-        "pourLangue": ["Support visuel pour exprimer évaluation", "Utilisation L1 si besoin pour expliquer", "Gestes pour montrer succès/problèmes"],
-        "pourPEI": ["Test adapté aux capacités individuelles", "Focus sur les réussites", "Support pour participation active"]
+        "pourDifficultés": [
+          "Se concentrer sur une seule étape de test",
+          "Support pour identifier ce qui marche/ne marche pas",
+          "Vocabulaire simplifié pour évaluation"
+        ],
+        "pourAvancés": [
+          "Tester machines des autres aussi",
+          "Suggérer améliorations spécifiques",
+          "Documenter résultats avec détails"
+        ],
+        "pourLangue": [
+          "Support visuel pour exprimer évaluation",
+          "Utilisation L1 si besoin pour expliquer",
+          "Gestes pour montrer succès/problèmes"
+        ],
+        "pourPEI": [
+          "Test adapté aux capacités individuelles",
+          "Focus sur les réussites",
+          "Support pour participation active"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève teste sa machine de façon systématique", "L'élève compare avec et sans machine", "L'élève exprime ses résultats clairement"],
-        "checkpoints": ["Peut évaluer si sa machine aide ou non", "Peut identifier ce qui marche bien", "Peut suggérer une amélioration simple"]
+        "observable": [
+          "L'élève teste sa machine de façon systématique",
+          "L'élève compare avec et sans machine",
+          "L'élève exprime ses résultats clairement"
+        ],
+        "checkpoints": [
+          "Peut évaluer si sa machine aide ou non",
+          "Peut identifier ce qui marche bien",
+          "Peut suggérer une amélioration simple"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -825,41 +1521,86 @@
       "opening": {
         "duration": 8,
         "activity": "Improvement engineers meeting (5 min): Students review their machine testing results and identify what worked well vs what needs improvement. Introduce: engineers always make their inventions better - this process is called 'improving' or 'modifying' designs.",
-        "materials": ["Résultats de tests précédents", "Machines à améliorer"],
+        "materials": [
+          "Résultats de tests précédents",
+          "Machines à améliorer"
+        ],
         "visualSupports": "Processus d'amélioration illustré, exemples avant/après, vocabulaire ingénierie",
-        "decisionPoints": ["Si élèves découragés par échecs → souligner que c'est normal et nécessaire"],
-        "movementBreaks": ["Gestes d'amélioration avec les mains (2 min)"]
+        "decisionPoints": [
+          "Si élèves découragés par échecs → souligner que c'est normal et nécessaire"
+        ],
+        "movementBreaks": [
+          "Gestes d'amélioration avec les mains (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Machine improvement workshop (25 min): Students work to improve their machines based on testing feedback. Possible improvements: make ramps less steep, add more wheels, strengthen lever fulcrums, adjust pulley positions, reinforce weak joints. Students may also get new ideas from seeing other students' successful machines. Test improved machines and compare results to original versions. Some students may choose to build completely new machines if original designs need major changes.",
-        "materials": ["Machines existantes", "Matériaux supplémentaires pour améliorations", "Outils de fixation", "Espace de travail organisé"],
+        "materials": [
+          "Machines existantes",
+          "Matériaux supplémentaires pour améliorations",
+          "Outils de fixation",
+          "Espace de travail organisé"
+        ],
         "visualSupports": "Guide d'améliorations possibles, exemples de modifications, comparaisons avant/après",
-        "decisionPoints": ["Si les améliorations proposées sont trop complexes → suggérer un seul changement simple à la fois", "Si un élève veut tout recommencer → l'encourager à garder ce qui fonctionnait déjà", "Si manque de matériaux pour améliorations → encourager partage et réutilisation créative"],
-        "movementBreaks": ["Travail actif de construction et amélioration"]
+        "decisionPoints": [
+          "Si les améliorations proposées sont trop complexes → suggérer un seul changement simple à la fois",
+          "Si un élève veut tout recommencer → l'encourager à garder ce qui fonctionnait déjà",
+          "Si manque de matériaux pour améliorations → encourager partage et réutilisation créative"
+        ],
+        "movementBreaks": [
+          "Travail actif de construction et amélioration"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Improvement celebration (10 min): Students present their improved machines and explain changes made: 'J'ai amélioré ma machine en...' Discuss how making improvements is normal part of engineering - even professional engineers redesign their inventions many times.",
-        "materials": ["Machines améliorées", "Versions originales pour comparaison"],
+        "materials": [
+          "Machines améliorées",
+          "Versions originales pour comparaison"
+        ],
         "visualSupports": "Phrase modèle pour présentation, célébration des améliorations, message sur processus itératif",
-        "decisionPoints": ["Si certains élèves sont déçus de leurs améliorations → souligner les progrès même petits", "Si les présentations manquent de détails → poser questions guidées sur les changements"],
-        "movementBreaks": ["Présentations actives avec démonstrations"]
+        "decisionPoints": [
+          "Si certains élèves sont déçus de leurs améliorations → souligner les progrès même petits",
+          "Si les présentations manquent de détails → poser questions guidées sur les changements"
+        ],
+        "movementBreaks": [
+          "Présentations actives avec démonstrations"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Savoir comment améliorer sa machine",
-        "then": "Offrir suggestions spécifiques basées sur les tests ou encourager collaboration avec pairs"
-      },
-      "realWorldConnection": "Students understand that cars, computers, and other machines keep getting better because engineers constantly improve their designs",
       "differentiation": {
-        "pourDifficultés": ["Amélioration guidée avec suggestions spécifiques", "Focus sur une seule amélioration simple", "Support pour identifier les problèmes"],
-        "pourAvancés": ["Multiples améliorations complexes", "Aider d'autres élèves avec leurs améliorations", "Documenter le processus d'amélioration"],
-        "pourLangue": ["Support visuel pour montrer améliorations", "Vocabulaire avec gestes concrets", "Utilisation L1 si nécessaire"],
-        "pourPEI": ["Améliorations adaptées aux capacités individuelles", "Support individuel pour modifications", "Focus sur succès et progrès"]
+        "pourDifficultés": [
+          "Amélioration guidée avec suggestions spécifiques",
+          "Focus sur une seule amélioration simple",
+          "Support pour identifier les problèmes"
+        ],
+        "pourAvancés": [
+          "Multiples améliorations complexes",
+          "Aider d'autres élèves avec leurs améliorations",
+          "Documenter le processus d'amélioration"
+        ],
+        "pourLangue": [
+          "Support visuel pour montrer améliorations",
+          "Vocabulaire avec gestes concrets",
+          "Utilisation L1 si nécessaire"
+        ],
+        "pourPEI": [
+          "Améliorations adaptées aux capacités individuelles",
+          "Support individuel pour modifications",
+          "Focus sur succès et progrès"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève identifie des améliorations possibles", "L'élève modifie sa machine", "L'élève explique ses améliorations"],
-        "checkpoints": ["Peut suggérer une amélioration", "Peut faire un changement à sa machine", "Peut expliquer pourquoi l'amélioration aide"]
+        "observable": [
+          "L'élève identifie des améliorations possibles",
+          "L'élève modifie sa machine",
+          "L'élève explique ses améliorations"
+        ],
+        "checkpoints": [
+          "Peut suggérer une amélioration",
+          "Peut faire un changement à sa machine",
+          "Peut expliquer pourquoi l'amélioration aide"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -916,41 +1657,86 @@
       "opening": {
         "duration": 8,
         "activity": "Playground science detectives (5 min): Students recall their favorite playground activities and games. Challenge: 'Let's discover the forces and machines hiding in our favorite games!' Review push, pull, and simple machines vocabulary.",
-        "materials": ["Images de jeux et activités", "Affiche vocabulaire forces"],
+        "materials": [
+          "Images de jeux et activités",
+          "Affiche vocabulaire forces"
+        ],
         "visualSupports": "Images jeux de cour, vocabulaire forces et machines simples, défi de détective scientifique",
-        "decisionPoints": ["Si élèves se concentrent trop sur compétition → rediriger vers observation scientifique"],
-        "movementBreaks": ["Gestes pour reproduire les jeux préférés (3 min)"]
+        "decisionPoints": [
+          "Si élèves se concentrent trop sur compétition → rediriger vers observation scientifique"
+        ],
+        "movementBreaks": [
+          "Gestes pour reproduire les jeux préférés (3 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Games and forces exploration (25 min): Students examine playground activities for forces and machines. Swings: pushing and pulling forces, pendulum motion. Slides: ramps (inclined planes) that use gravity. Seesaws: levers in action with fulcrum in middle. Ball games: pushing forces to make balls move, rolling forces. Jump rope: pulling forces and circular motion. Students create 'Forces in Games' chart showing push/pull examples and simple machines found in recreational activities.",
-        "materials": ["Images d'équipement de cour", "Graphique 'Forces dans les jeux'", "Crayons", "Autocollants ou timbres"],
+        "materials": [
+          "Images d'équipement de cour",
+          "Graphique 'Forces dans les jeux'",
+          "Crayons",
+          "Autocollants ou timbres"
+        ],
         "visualSupports": "Images claires de chaque jeu avec forces identifiées, graphique à compléter, exemples visuels",
-        "decisionPoints": ["Si certains ne voient pas les forces dans les jeux familiers → démontrer avec leurs corps d'abord", "Si l'énergie devient trop élevée en parlant de jeux → revenir au vocabulaire scientifique calme", "Si les élèves confondent machines simples et jeux → utiliser exemples très clairs comme balançoire = levier"],
-        "movementBreaks": ["Simulation des jeux dans la classe (mouvements contrôlés)"]
+        "decisionPoints": [
+          "Si certains ne voient pas les forces dans les jeux familiers → démontrer avec leurs corps d'abord",
+          "Si l'énergie devient trop élevée en parlant de jeux → revenir au vocabulaire scientifique calme",
+          "Si les élèves confondent machines simples et jeux → utiliser exemples très clairs comme balançoire = levier"
+        ],
+        "movementBreaks": [
+          "Simulation des jeux dans la classe (mouvements contrôlés)"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Games science sharing (10 min): Students share discoveries: 'Dans ce jeu, j'utilise une force de...' or 'Cette activité utilise une machine simple qui est...' Appreciate how science makes play more fun and how playing helps us understand science naturally.",
-        "materials": ["Graphique complété", "Découvertes des élèves"],
+        "materials": [
+          "Graphique complété",
+          "Découvertes des élèves"
+        ],
         "visualSupports": "Phrases modèles pour partage, célébration des découvertes, lien science-jeu",
-        "decisionPoints": ["Si certains veulent parler de jeux non-liés aux forces → rediriger gentiment vers les jeux avec push/pull", "Si les partages deviennent des histoires personnelles → recentrer sur les découvertes scientifiques"],
-        "movementBreaks": ["Partage debout avec démonstrations gestuelles"]
+        "decisionPoints": [
+          "Si certains veulent parler de jeux non-liés aux forces → rediriger gentiment vers les jeux avec push/pull",
+          "Si les partages deviennent des histoires personnelles → recentrer sur les découvertes scientifiques"
+        ],
+        "movementBreaks": [
+          "Partage debout avec démonstrations gestuelles"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Identifier les forces dans les jeux familiers",
-        "then": "Utiliser des jeux très simples comme pousser une balançoire ou tirer une corde, puis généraliser"
-      },
-      "realWorldConnection": "Students recognize that their favorite activities naturally involve the same forces and machines they've been studying in science",
       "differentiation": {
-        "pourDifficultés": ["Se concentrer sur 1-2 jeux très familiers", "Support visuel pour identifier forces", "Partenaire pour discussion"],
-        "pourAvancés": ["Analyser jeux plus complexes ou inhabituels", "Expliquer pourquoi certaines forces rendent les jeux amusants", "Créer nouveaux jeux basés sur forces"],
-        "pourLangue": ["Utiliser jeux universels (ballon, course)", "Gestes pour expliquer forces", "Support visuel pour vocabulaire"],
-        "pourPEI": ["Jeux adaptés à leurs capacités", "Participation selon leurs intérêts", "Focus sur leurs jeux préférés"]
+        "pourDifficultés": [
+          "Se concentrer sur 1-2 jeux très familiers",
+          "Support visuel pour identifier forces",
+          "Partenaire pour discussion"
+        ],
+        "pourAvancés": [
+          "Analyser jeux plus complexes ou inhabituels",
+          "Expliquer pourquoi certaines forces rendent les jeux amusants",
+          "Créer nouveaux jeux basés sur forces"
+        ],
+        "pourLangue": [
+          "Utiliser jeux universels (ballon, course)",
+          "Gestes pour expliquer forces",
+          "Support visuel pour vocabulaire"
+        ],
+        "pourPEI": [
+          "Jeux adaptés à leurs capacités",
+          "Participation selon leurs intérêts",
+          "Focus sur leurs jeux préférés"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève identifie des forces dans les jeux", "L'élève fait des connexions science-jeu", "L'élève s'engage dans l'exploration"],
-        "checkpoints": ["Peut nommer une force dans un jeu", "Peut expliquer comment un jeu utilise les forces", "Peut apprécier que la science se trouve dans les jeux"]
+        "observable": [
+          "L'élève identifie des forces dans les jeux",
+          "L'élève fait des connexions science-jeu",
+          "L'élève s'engage dans l'exploration"
+        ],
+        "checkpoints": [
+          "Peut nommer une force dans un jeu",
+          "Peut expliquer comment un jeu utilise les forces",
+          "Peut apprécier que la science se trouve dans les jeux"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1007,41 +1793,86 @@
       "opening": {
         "duration": 8,
         "activity": "Problem-solving inventors introduction (5 min): Students learn that inventors are people who see problems and create machines to solve them. Examples: someone invented wheels because carrying heavy things was hard, someone invented ramps because lifting things up high was difficult. Challenge: 'What problems do you notice that a simple machine could solve?'",
-        "materials": ["Images d'inventeurs célèbres", "Exemples problème-solution"],
+        "materials": [
+          "Images d'inventeurs célèbres",
+          "Exemples problème-solution"
+        ],
         "visualSupports": "Exemples inventions avec problèmes qu'elles résolvent, processus invention illustré",
-        "decisionPoints": ["Si élèves suggèrent problèmes trop complexes → guider vers solutions simples"],
-        "movementBreaks": ["Gestes d'inventeur pensant et créant (3 min)"]
+        "decisionPoints": [
+          "Si élèves suggèrent problèmes trop complexes → guider vers solutions simples"
+        ],
+        "movementBreaks": [
+          "Gestes d'inventeur pensant et créant (3 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Invention design process (25 min): Students identify problems they've observed: reaching high shelves, moving heavy backpacks, organizing scattered toys, getting objects across room quickly. Choose one problem to solve using simple machines. Design invention on paper first: draw their machine, label parts, explain how it works. Build simple prototype using available materials. Test invention and make adjustments. Prepare to present invention as 'inventors' explaining their problem-solution creation.",
-        "materials": ["Papier pour dessins d'invention", "Matériaux de construction variés", "Crayons", "Exemples de problèmes illustrés"],
+        "materials": [
+          "Papier pour dessins d'invention",
+          "Matériaux de construction variés",
+          "Crayons",
+          "Exemples de problèmes illustrés"
+        ],
         "visualSupports": "Processus de design étape par étape, exemples d'inventions simples, feuille de conception",
-        "decisionPoints": ["Si un élève ne trouve pas de problème à résoudre → suggérer problèmes observés en classe cette semaine", "Si les dessins d'invention sont trop complexes → encourager simplicité avec 1-2 parties seulement", "Si la construction ne ressemble pas au dessin → célébrer l'adaptation créative"],
-        "movementBreaks": ["Construction active constitue l'activité physique"]
+        "decisionPoints": [
+          "Si un élève ne trouve pas de problème à résoudre → suggérer problèmes observés en classe cette semaine",
+          "Si les dessins d'invention sont trop complexes → encourager simplicité avec 1-2 parties seulement",
+          "Si la construction ne ressemble pas au dessin → célébrer l'adaptation créative"
+        ],
+        "movementBreaks": [
+          "Construction active constitue l'activité physique"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Inventor presentations (10 min): Students present inventions: 'Le problème était... Mon invention résout le problème parce que...' Celebrate creative problem-solving and connect to real inventors who help make life easier through simple machines.",
-        "materials": ["Inventions des élèves", "Dessins de conception"],
+        "materials": [
+          "Inventions des élèves",
+          "Dessins de conception"
+        ],
         "visualSupports": "Phrase modèle pour présentation, célébration de la créativité, lien avec vrais inventeurs",
-        "decisionPoints": ["Si un élève est gêné que son invention ne marche pas → rappeler que c'est exactement comme les vrais inventeurs", "Si les présentations manquent de vocabulaire scientifique → poser questions guidées utilisant 'force', 'machine simple'"],
-        "movementBreaks": ["Présentations debout avec démonstrations"]
+        "decisionPoints": [
+          "Si un élève est gêné que son invention ne marche pas → rappeler que c'est exactement comme les vrais inventeurs",
+          "Si les présentations manquent de vocabulaire scientifique → poser questions guidées utilisant 'force', 'machine simple'"
+        ],
+        "movementBreaks": [
+          "Présentations debout avec démonstrations"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Identifier un problème à résoudre",
-        "then": "Suggérer problèmes quotidiens simples ou utiliser problèmes observés en classe"
-      },
-      "realWorldConnection": "Students experience the invention process and understand how everyday objects were created to solve problems people noticed",
       "differentiation": {
-        "pourDifficultés": ["Problème simple et évident fourni", "Partenaire pour brainstorming", "Focus sur le dessin OU la construction"],
-        "pourAvancés": ["Problèmes plus complexes ou multiples", "Invention avec plusieurs machines simples", "Présentation détaillée du processus"],
-        "pourLangue": ["Support visuel pour expliquer problème et solution", "Vocabulaire invention avec images", "Utilisation L1 pour brainstorming"],
-        "pourPEI": ["Problèmes adaptés à leurs expériences", "Matériaux et outils appropriés", "Processus adapté à leurs capacités"]
+        "pourDifficultés": [
+          "Problème simple et évident fourni",
+          "Partenaire pour brainstorming",
+          "Focus sur le dessin OU la construction"
+        ],
+        "pourAvancés": [
+          "Problèmes plus complexes ou multiples",
+          "Invention avec plusieurs machines simples",
+          "Présentation détaillée du processus"
+        ],
+        "pourLangue": [
+          "Support visuel pour expliquer problème et solution",
+          "Vocabulaire invention avec images",
+          "Utilisation L1 pour brainstorming"
+        ],
+        "pourPEI": [
+          "Problèmes adaptés à leurs expériences",
+          "Matériaux et outils appropriés",
+          "Processus adapté à leurs capacités"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève identifie un problème", "L'élève conçoit une solution", "L'élève présente son invention"],
-        "checkpoints": ["Peut nommer un problème à résoudre", "Peut créer quelque chose pour aider", "Peut expliquer comment son invention fonctionne"]
+        "observable": [
+          "L'élève identifie un problème",
+          "L'élève conçoit une solution",
+          "L'élève présente son invention"
+        ],
+        "checkpoints": [
+          "Peut nommer un problème à résoudre",
+          "Peut créer quelque chose pour aider",
+          "Peut expliquer comment son invention fonctionne"
+        ]
       },
       "extensionGuidance": {
         "category": "Différenciation",
@@ -1098,41 +1929,86 @@
       "opening": {
         "duration": 8,
         "activity": "Exhibition preparation (5 min): Students transform into 'museum curators' preparing to teach visitors about forces and simple machines. Review key concepts: push/pull forces, wheels, levers, ramps, pulleys, and how machines make work easier.",
-        "materials": ["Badges de conservateur de musée", "Affiche récapitulative des concepts"],
+        "materials": [
+          "Badges de conservateur de musée",
+          "Affiche récapitulative des concepts"
+        ],
         "visualSupports": "Rôle conservateur de musée, résumé visuel des apprentissages, préparation exposition",
-        "decisionPoints": ["Si certains sont nerveux pour enseigner → rassurer et pratiquer ensemble"],
-        "movementBreaks": ["Gestes professionnels de conservateur (2 min)"]
+        "decisionPoints": [
+          "Si certains sont nerveux pour enseigner → rassurer et pratiquer ensemble"
+        ],
+        "movementBreaks": [
+          "Gestes professionnels de conservateur (2 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Simple machines exhibition (25 min): Students set up exhibition stations displaying their built machines, invention designs, and experiment results from throughout the unit. Each student or pair becomes 'expert guide' for their station, explaining to visitors (classmates, other classes, or family members): what forces are, how their machines work, what problems their inventions solve. Include hands-on demonstrations where visitors can try simple machines and feel the difference they make. Create exhibition signs with student drawings and explanations.",
-        "materials": ["Toutes les machines construites", "Panneaux d'exposition", "Dessins et expériences", "Espace organisé en stations"],
+        "materials": [
+          "Toutes les machines construites",
+          "Panneaux d'exposition",
+          "Dessins et expériences",
+          "Espace organisé en stations"
+        ],
         "visualSupports": "Stations d'exposition clairement organisées, panneaux explicatifs, démonstrations interactives",
-        "decisionPoints": ["Si l'organisation des stations devient chaotique → assigner rôles spécifiques (guide, démonstrateur, accueillant)", "Si certains élèves parlent trop vite aux visiteurs → rappeler de parler lentement et clairement", "Si les visiteurs ne comprennent pas les explications → encourager plus de démonstrations physiques"],
-        "movementBreaks": ["Mouvement naturel entre stations et démonstrations actives"]
+        "decisionPoints": [
+          "Si l'organisation des stations devient chaotique → assigner rôles spécifiques (guide, démonstrateur, accueillant)",
+          "Si certains élèves parlent trop vite aux visiteurs → rappeler de parler lentement et clairement",
+          "Si les visiteurs ne comprennent pas les explications → encourager plus de démonstrations physiques"
+        ],
+        "movementBreaks": [
+          "Mouvement naturel entre stations et démonstrations actives"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Exhibition reflection celebration (10 min): Students reflect on their exhibition experience: what they enjoyed about teaching others, what they learned by explaining their work, how it felt to be science experts. Celebrate becoming forces and simple machines experts who can teach others.",
-        "materials": ["Réflexions des visiteurs", "Certificats d'expert (optionnel)"],
+        "materials": [
+          "Réflexions des visiteurs",
+          "Certificats d'expert (optionnel)"
+        ],
         "visualSupports": "Célébration des accomplissements, réflexion sur apprentissages, reconnaissance expertise",
-        "decisionPoints": ["Si certains élèves se sentent timides devant les visiteurs → leur permettre d'être assistants plutôt que présentateurs principaux", "Si l'exhibition devient trop bruyante → utiliser signal pour attention collective"],
-        "movementBreaks": ["Célébration debout avec applaudissements"]
+        "decisionPoints": [
+          "Si certains élèves se sentent timides devant les visiteurs → leur permettre d'être assistants plutôt que présentateurs principaux",
+          "Si l'exhibition devient trop bruyante → utiliser signal pour attention collective"
+        ],
+        "movementBreaks": [
+          "Célébration debout avec applaudissements"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Expliquer leur travail aux visiteurs",
-        "then": "Fournir phrases simples préparées ou permettre démonstration sans explication verbale"
-      },
-      "realWorldConnection": "Students experience how science museums and technology exhibitions help people learn about machines and inventions that improve daily life",
       "differentiation": {
-        "pourDifficultés": ["Rôle adapté à leurs forces (démonstrateur vs présentateur)", "Phrases préparées pour explication", "Support d'un partenaire"],
-        "pourAvancés": ["Rôle de guide principal pour plusieurs stations", "Aider à organiser l'exposition", "Enseigner concepts plus complexes"],
-        "pourLangue": ["Utilisation démonstrations visuelles", "Support visuel pour vocabulaire", "Utilisation L1 avec visiteurs appropriés"],
-        "pourPEI": ["Rôle adapté à leurs capacités et intérêts", "Support selon besoins individuels", "Célébration de leurs contributions uniques"]
+        "pourDifficultés": [
+          "Rôle adapté à leurs forces (démonstrateur vs présentateur)",
+          "Phrases préparées pour explication",
+          "Support d'un partenaire"
+        ],
+        "pourAvancés": [
+          "Rôle de guide principal pour plusieurs stations",
+          "Aider à organiser l'exposition",
+          "Enseigner concepts plus complexes"
+        ],
+        "pourLangue": [
+          "Utilisation démonstrations visuelles",
+          "Support visuel pour vocabulaire",
+          "Utilisation L1 avec visiteurs appropriés"
+        ],
+        "pourPEI": [
+          "Rôle adapté à leurs capacités et intérêts",
+          "Support selon besoins individuels",
+          "Célébration de leurs contributions uniques"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève organise sa station d'exposition", "L'élève partage ses connaissances", "L'élève démontre expertise en forces et machines"],
-        "checkpoints": ["Peut présenter son travail aux visiteurs", "Peut expliquer au moins un concept appris", "Peut démontrer fierté de ses apprentissages"]
+        "observable": [
+          "L'élève organise sa station d'exposition",
+          "L'élève partage ses connaissances",
+          "L'élève démontre expertise en forces et machines"
+        ],
+        "checkpoints": [
+          "Peut présenter son travail aux visiteurs",
+          "Peut expliquer au moins un concept appris",
+          "Peut démontrer fierté de ses apprentissages"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",
@@ -1189,41 +2065,87 @@
       "opening": {
         "duration": 8,
         "activity": "Engineering celebration preparation (5 min): Students put on engineer hats or badges and prepare to share their forces and simple machines journey with families. Review celebration goals: show what we learned, demonstrate our machines, teach families about forces.",
-        "materials": ["Chapeaux d'ingénieur ou badges", "Programme de célébration", "Objectifs affichés"],
+        "materials": [
+          "Chapeaux d'ingénieur ou badges",
+          "Programme de célébration",
+          "Objectifs affichés"
+        ],
         "visualSupports": "Ambiance célébration, objectifs de partage, parcours d'apprentissage illustré",
-        "decisionPoints": ["Si certains sont nerveux devant familles → rassurer et pratiquer présentations"],
-        "movementBreaks": ["Préparation active avec déplacement festif (3 min)"]
+        "decisionPoints": [
+          "Si certains sont nerveux devant familles → rassurer et pratiquer présentations"
+        ],
+        "movementBreaks": [
+          "Préparation active avec déplacement festif (3 min)"
+        ]
       },
       "main": {
         "duration": 27,
         "activity": "Engineering achievements celebration (25 min): Families rotate through student-led stations: Forces Discovery Station (students demonstrate push/pull with various objects), Simple Machines Showcase (students explain and demonstrate wheels, levers, ramps, pulleys), Invention Fair (students present their problem-solving machines), Engineering Challenge Station (families work with students to build simple machines together). Students guide families through hands-on experiences and explain scientific concepts using vocabulary learned throughout unit.",
-        "materials": ["Toutes les créations des élèves", "Stations clairement organisées", "Matériaux pour défis familiaux", "Panneaux explicatifs"],
+        "materials": [
+          "Toutes les créations des élèves",
+          "Stations clairement organisées",
+          "Matériaux pour défis familiaux",
+          "Panneaux explicatifs"
+        ],
         "visualSupports": "Stations festives bien organisées, parcours de rotation, démonstrations interactives prêtés",
-        "decisionPoints": ["Si les familles arrivent à des heures différentes → avoir stations flexibles qui fonctionnent avec groupes variables", "Si certaines stations deviennent trop populaires → guider rotation avec minuteur doux", "Si les explications scientifiques sont trop avancées pour les familles → encourager démonstrations simples"],
-        "movementBreaks": ["Rotation active entre stations avec familles"]
+        "decisionPoints": [
+          "Si les familles arrivent à des heures différentes → avoir stations flexibles qui fonctionnent avec groupes variables",
+          "Si certaines stations deviennent trop populaires → guider rotation avec minuteur doux",
+          "Si les explications scientifiques sont trop avancées pour les familles → encourager démonstrations simples"
+        ],
+        "movementBreaks": [
+          "Rotation active entre stations avec familles"
+        ]
       },
       "closing": {
         "duration": 10,
         "activity": "Engineer achievement ceremony (10 min): Celebrate student growth as engineers and scientists. Present certificates recognizing specific achievements: creative problem-solver, excellent experimenter, clear explainer, persistent builder. Students share favorite discovery from forces and simple machines unit with families.",
-        "materials": ["Certificats personnalisés", "Découvertes favorites des élèves"],
+        "materials": [
+          "Certificats personnalisés",
+          "Découvertes favorites des élèves"
+        ],
         "visualSupports": "Cérémonie de remise festive, reconnaissance des accomplissements uniques, partage des découvertes",
-        "decisionPoints": ["Si certains élèves deviennent émotifs pendant les reconnaissances → offrir soutien discret et rappeler leurs réussites", "Si la cérémonie traîne en longueur → garder reconnaissance brève mais significative"],
-        "movementBreaks": ["Cérémonie debout avec applaudissements"]
+        "decisionPoints": [
+          "Si certains élèves deviennent émotifs pendant les reconnaissances → offrir soutien discret et rappeler leurs réussites",
+          "Si la cérémonie traîne en longueur → garder reconnaissance brève mais significative"
+        ],
+        "movementBreaks": [
+          "Cérémonie debout avec applaudissements"
+        ]
       },
-      "troubleshooting": {
-        "ifStrugglingWith": "Nervosité devant les familles",
-        "then": "Créer ambiance détendue, permettre participation à leur niveau, célébrer toute participation"
-      },
-      "realWorldConnection": "Students proudly share engineering and science learning with families, building community appreciation for STEM education and hands-on learning",
       "differentiation": {
-        "pourDifficultés": ["Rôle adapté à leurs forces", "Support discret pendant présentations", "Focus sur leurs réussites personnelles"],
-        "pourAvancés": ["Leadership dans organisation des stations", "Enseignement de concepts complexes aux familles", "Médiation entre différentes stations"],
-        "pourLangue": ["Support pour communication avec familles", "Utilisation démonstrations visuelles", "Interprète familial si disponible"],
-        "pourPEI": ["Participation adaptée à leurs capacités", "Célébration de leurs contributions uniques", "Support familial pour participation"]
+        "pourDifficultés": [
+          "Rôle adapté à leurs forces",
+          "Support discret pendant présentations",
+          "Focus sur leurs réussites personnelles"
+        ],
+        "pourAvancés": [
+          "Leadership dans organisation des stations",
+          "Enseignement de concepts complexes aux familles",
+          "Médiation entre différentes stations"
+        ],
+        "pourLangue": [
+          "Support pour communication avec familles",
+          "Utilisation démonstrations visuelles",
+          "Interprète familial si disponible"
+        ],
+        "pourPEI": [
+          "Participation adaptée à leurs capacités",
+          "Célébration de leurs contributions uniques",
+          "Support familial pour participation"
+        ]
       },
       "assessmentCriteria": {
-        "observable": ["L'élève partage ses apprentissages avec fierté", "L'élève démontre ses compétences aux familles", "L'élève participe à la célébration"],
-        "checkpoints": ["Peut présenter une réalisation à sa famille", "Peut exprimer fierté de ses apprentissages", "Peut célébrer ses succès en ingénierie"]
+        "observable": [
+          "L'élève partage ses apprentissages avec fierté",
+          "L'élève démontre ses compétences aux familles",
+          "L'élève participe à la célébration"
+        ],
+        "checkpoints": [
+          "Peut présenter une réalisation à sa famille",
+          "Peut exprimer fierté de ses apprentissages",
+          "Peut célébrer ses succès en ingénierie"
+        ]
       },
       "extensionGuidance": {
         "category": "Célébration",

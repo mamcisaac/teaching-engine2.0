@@ -1,0 +1,3533 @@
+{
+  "unitTitle": "Communication créative",
+  "subject": "Français (Immersion)",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Ma voix spéciale",
+      "oneGoal": "Students discover their voice as a tool for communication",
+      "duration": 45,
+      "keyVocabulary": [
+        "voix",
+        "parler",
+        "écouter"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Explore different voices - whisper, loud, high, low. Point to throat and say 'voix'. Everyone practices saying their name with their special voice.",
+        "materials": [
+          "Miroir de classe",
+          "Cartes d'images voix (chuchoter, crier, chanter)"
+        ],
+        "visualSupports": "Images des parties du corps (gorge, bouche) pour expliquer la voix",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves sont timides avec leur voix",
+            "options": [
+              "Commencer par chuchoter ensemble",
+              "Utiliser des marionnettes",
+              "Faire des sons avec la bouche fermée"
+            ]
+          },
+          {
+            "question": "Si les élèves deviennent trop bruyants",
+            "options": [
+              "Signal de silence avec la main",
+              "Jeu du volume (1-5)",
+              "Pause respiratoire calme"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirements du cou et des épaules",
+          "Respirations profondes"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Voice exploration games - students experiment with volume, pitch, and expression. Practice 'Bonjour' in different ways. Record some voices if technology available.",
+        "materials": [
+          "Enregistreur audio (si disponible)",
+          "Tableau des volumes 1-5"
+        ],
+        "visualSupports": "Affiche des différents types de voix (forte, douce, aiguë, grave)",
+        "decisionPoints": [
+          {
+            "question": "Si la technologie n'est pas disponible",
+            "options": [
+              "Utiliser écho en classe",
+              "Partenaires s'enregistrent mutuellement",
+              "Imitation en temps réel"
+            ]
+          },
+          {
+            "question": "Si certains élèves monopolisent",
+            "options": [
+              "Chronomètre de 30 secondes",
+              "Tour de rôle structuré",
+              "Partenaires changent"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Exercices de respiration",
+          "Étirements faciaux"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Circle sharing - each student says one word in their special voice. Celebrate the uniqueness of each voice.",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "Cercle de partage au sol avec coussin spécial pour le partage",
+        "decisionPoints": [
+          {
+            "question": "Si un élève ne veut pas partager",
+            "options": [
+              "Partage optionnel",
+              "Partage avec l'enseignant(e) seulement",
+              "Écoute active seulement"
+            ]
+          },
+          {
+            "question": "Si le temps manque",
+            "options": [
+              "Un mot par élève seulement",
+              "Petits groupes de 3-4",
+              "Continuer demain"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If voice exploration feels uncomfortable, use familiar songs or chants as starting point",
+      "realWorldConnection": "We use our voices every day to talk to family and friends - our voice is special and unique",
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer par des sons familiers (animaux)",
+          "Support en petit groupe",
+          "Imiter d'abord avant créer"
+        ],
+        "pourAvancés": [
+          "Expérimenter avec accents différents",
+          "Créer des histoires avec voix",
+          "Diriger l'exploration du groupe"
+        ],
+        "pourLangue": [
+          "Support visuel avec gestes",
+          "Encourager mélange L1/français",
+          "Partenaire francophone"
+        ],
+        "pourPEI": [
+          "Volume personnalisé selon confort",
+          "Support technologique si nécessaire",
+          "Temps additionnel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Participe à l'exploration vocale",
+          "Démontre confort avec sa voix",
+          "Respecte les autres voix"
+        ],
+        "checkpoints": [
+          "Essaie différents volumes",
+          "Partage sa voix spéciale",
+          "Écoute avec respect"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Montrer et dire",
+      "oneGoal": "Students bring something special to share with simple French words",
+      "duration": 45,
+      "keyVocabulary": [
+        "montrer",
+        "dire",
+        "partager"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review using our voices. Today we use voice to share special things. Model with teacher's special item.",
+        "materials": [
+          "Objet spécial de l'enseignant(e) pour modèle"
+        ],
+        "visualSupports": "Phrases de départ sur affiche : 'Voici...', 'J'aime...', 'C'est important parce que...'",
+        "decisionPoints": [
+          {
+            "question": "Si élève oublie d'apporter quelque chose",
+            "options": [
+              "Choisir objet de classe",
+              "Dessiner objet spécial",
+              "Partager souvenir sans objet"
+            ]
+          },
+          {
+            "question": "Si présentation trop longue",
+            "options": [
+              "Chronomètre de 2 minutes",
+              "3 phrases maximum",
+              "Signal gentil de temps"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Se lever pour montrer objet",
+          "Applaudir chaque présentation"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Traditional show and tell with French vocabulary support. Students show item and say 2-3 simple French words about it. Use 'Voici...' and 'J'aime...' sentence starters.",
+        "materials": [
+          "Cartes visuelles des phrases de départ",
+          "Objets variés pour pratique"
+        ],
+        "visualSupports": "Modèles de phrases : 'Voici mon/ma...', 'J'aime ça parce que...'",
+        "decisionPoints": [
+          {
+            "question": "Si élève très nerveux",
+            "options": [
+              "Présenter à un ami d'abord",
+              "Enseignant(e) aide",
+              "Présentation assise"
+            ]
+          },
+          {
+            "question": "Si participation inégale",
+            "options": [
+              "Petits groupes",
+              "Partenaires",
+              "Présentation volontaire seulement"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Circulation pour voir objets",
+          "Applaudissements debout"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflection on sharing - students say one thing they learned about a classmate today.",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Questions de réflexion au tableau : 'Qu'est-ce que j'ai appris?', 'Qu'est-ce qui m'a surpris?'",
+        "decisionPoints": [
+          {
+            "question": "Si élèves ont de la difficulté à réfléchir",
+            "options": [
+              "Questions plus spécifiques",
+              "Partage en paires",
+              "Dessiner ce qu'ils ont appris"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If students are nervous about presenting, let them share with just teacher or one friend first",
+      "realWorldConnection": "Show and tell helps us share what's important to us - just like telling family about special things",
+      "differentiation": {
+        "pourDifficultés": [
+          "Support pour choisir objet simple",
+          "Phrases pré-écrites disponibles",
+          "Présentation avec aide"
+        ],
+        "pourAvancés": [
+          "Phrases complexes",
+          "Questions du public",
+          "Histoire derrière l'objet"
+        ],
+        "pourLangue": [
+          "Support visuel pour phrases",
+          "Mélange de langues accepté",
+          "Traduction si nécessaire"
+        ],
+        "pourPEI": [
+          "Format adapté aux besoins",
+          "Temps flexible",
+          "Support technologique"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Partage objet personnel",
+          "Utilise phrases françaises",
+          "Écoute respectueusement"
+        ],
+        "checkpoints": [
+          "Apporte quelque chose de spécial",
+          "Utilise 'Voici' ou 'J'aime'",
+          "Participe au partage"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Gestes qui parlent",
+      "oneGoal": "Students use gestures and body language to communicate meaning",
+      "duration": 45,
+      "keyVocabulary": [
+        "geste",
+        "corps",
+        "communication"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review using voice to share. Today explore how body 'talks' too. Model gestures for hello, goodbye, happy, sad.",
+        "materials": [
+          "Cartes d'images émotions/actions pour gestes"
+        ],
+        "visualSupports": "Affiche des gestes de base : bonjour, au revoir, content, triste",
+        "decisionPoints": [
+          {
+            "question": "Si concept des gestes est trop abstrait",
+            "options": [
+              "Commencer par gestes évidents (saluer)",
+              "Utiliser des objets",
+              "Gestes en paires"
+            ]
+          },
+          {
+            "question": "Si élèves deviennent agités",
+            "options": [
+              "Gestes plus calmes",
+              "Assis pour certains gestes",
+              "Pause réflexion"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirements des bras et mains",
+          "Gestes de relaxation"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Gesture games - students communicate ideas using only body language, then add French words. Practice common gestures and their meanings.",
+        "materials": [
+          "Cartes scenarios simples",
+          "Minuteur pour tours de rôle"
+        ],
+        "visualSupports": "Exemples visuels des gestes communs dans notre culture",
+        "decisionPoints": [
+          {
+            "question": "Si jeux deviennent compétitifs",
+            "options": [
+              "Accent sur collaboration",
+              "Pas de 'gagnants'",
+              "Célébrer toutes tentatives"
+            ]
+          },
+          {
+            "question": "Si certains gestes semblent inappropriés",
+            "options": [
+              "Rediriger vers gestes positifs",
+              "Discussion sur respect",
+              "Gestes de classe seulement"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Mouvement libre créatif",
+          "Étirements guidés"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Silent communication challenge - students communicate one idea to partner using only gestures.",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "chemises individuelles (30 chemises)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "Liste des gestes appris pour référence",
+        "decisionPoints": [
+          {
+            "question": "Si communication silencieuse est difficile",
+            "options": [
+              "Commencer par gestes simples",
+              "Permettre quelques mots",
+              "Gestes en équipe"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If gesture communication feels abstract, use familiar actions like waving, clapping, pointing",
+      "realWorldConnection": "Our bodies help us communicate even without words - like waving hello or pointing to things we want",
+      "differentiation": {
+        "pourDifficultés": [
+          "Gestes simples et évidents",
+          "Imitation d'abord",
+          "Support en petit groupe"
+        ],
+        "pourAvancés": [
+          "Gestes complexes et créatifs",
+          "Séquences de gestes",
+          "Enseigner aux autres"
+        ],
+        "pourLangue": [
+          "Gestes universels d'abord",
+          "Comparaison avec culture d'origine",
+          "Support visuel constant"
+        ],
+        "pourPEI": [
+          "Gestes adaptés aux capacités",
+          "Support physique si nécessaire",
+          "Alternative communication"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Utilise gestes pour communiquer",
+          "Comprend gestes des autres",
+          "Respecte différents styles de communication"
+        ],
+        "checkpoints": [
+          "Essaie différents gestes",
+          "Communique sans mots",
+          "Interprète gestes d'autrui"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Écouter avec attention",
+      "oneGoal": "Students practice being good listeners and asking simple questions",
+      "duration": 45,
+      "keyVocabulary": [
+        "attention",
+        "question",
+        "répondre"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review using voice and body to communicate. Today focus on the other side - listening! Put on 'listening ears'.",
+        "materials": [
+          "Oreilles en papier pour 'oreilles d'écoute'"
+        ],
+        "visualSupports": "Affiche des signes d'un bon auditeur : yeux, oreilles, bouche fermée",
+        "decisionPoints": [
+          {
+            "question": "Si concept d'écoute est abstrait",
+            "options": [
+              "Démonstration exagérée bonne/mauvaise écoute",
+              "Jeu du téléphone",
+              "Écoute de sons mystères"
+            ]
+          },
+          {
+            "question": "Si élèves ont du mal à se concentrer",
+            "options": [
+              "Séances d'écoute plus courtes",
+              "Support visuel pendant écoute",
+              "Position d'écoute spéciale"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Exercices d'oreilles (toucher, bouger)",
+          "Position d'écoute spéciale"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Listening practice with partners - one student shares, other practices active listening and asking simple questions using 'Qu'est-ce que...?' and 'Pourquoi...?'",
+        "materials": [
+          "Cartes de questions de départ",
+          "Minuteur pour tours d'écoute"
+        ],
+        "visualSupports": "Exemples de bonnes questions : 'Qu'est-ce que...?', 'Pourquoi...?'",
+        "decisionPoints": [
+          {
+            "question": "Si questions trop difficiles à formuler",
+            "options": [
+              "Commencer par 'Qu'est-ce que...?'",
+              "Questions en français/anglais",
+              "Montrer plutôt que demander"
+            ]
+          },
+          {
+            "question": "Si un partenaire domine",
+            "options": [
+              "Chronomètre strict",
+              "Changer partenaires",
+              "Rôles clairement définis"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Changement de partenaires",
+          "Étirements d'écoute"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflect on what makes good listening. Students share what they learned by listening carefully today.",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "Critères d'écoute affichés : attention, questions, respect",
+        "decisionPoints": [
+          {
+            "question": "Si réflexion sur écoute difficile",
+            "options": [
+              "Questions spécifiques",
+              "Exemples concrets",
+              "Dessiner bon auditeur"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If listening skills are challenging, use structured turn-taking with clear signals for speaker/listener roles",
+      "realWorldConnection": "Good communication means both talking and listening - like how family members take turns sharing",
+      "differentiation": {
+        "pourDifficultés": [
+          "Écoute en petits groupes",
+          "Support visuel pour questions",
+          "Modèles de questions simples"
+        ],
+        "pourAvancés": [
+          "Questions complexes et de suivi",
+          "Aide aux pairs",
+          "Résumé de ce qu'ils entendent"
+        ],
+        "pourLangue": [
+          "Questions en français et anglais OK",
+          "Support visuel pour compréhension",
+          "Partenaire patient"
+        ],
+        "pourPEI": [
+          "Format adapté aux besoins auditifs",
+          "Support technologique",
+          "Temps flexible"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Démontre écoute active",
+          "Pose questions appropriées",
+          "Respecte temps de parole"
+        ],
+        "checkpoints": [
+          "Maintient contact visuel",
+          "Pose au moins une question",
+          "Répond de façon pertinente"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Raconter mes aventures",
+      "oneGoal": "Students tell simple personal stories using sequence words",
+      "duration": 45,
+      "keyVocabulary": [
+        "aventure",
+        "d'abord",
+        "ensuite"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review good listening and sharing. Today tell adventure stories! Model simple adventure with sequence words.",
+        "materials": [
+          "Cartes de séquence (1, 2, 3)"
+        ],
+        "visualSupports": "Mots de séquence sur affiche : 'D'abord', 'Ensuite', 'Finalement'",
+        "decisionPoints": [
+          {
+            "question": "Si concept de séquence difficile",
+            "options": [
+              "Utiliser routine de classe comme exemple",
+              "Actions physiques pour séquence",
+              "Images séquentielles"
+            ]
+          },
+          {
+            "question": "Si élèves n'ont pas d'aventures à partager",
+            "options": [
+              "Aventures de classe récentes",
+              "Aventures imaginaires OK",
+              "Aventures simples (jouer dehors)"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Actions pour 'd'abord, ensuite, finalement'",
+          "Marche séquentielle"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Students share simple personal adventures (playground, home, weekend) using 'D'abord...', 'Ensuite...', 'Finalement...' Support with visual sequence cards.",
+        "materials": [
+          "Cartes visuelles de séquence 1-2-3",
+          "Images d'aventures pour inspiration"
+        ],
+        "visualSupports": "Support visuel avec images pour 'D'abord', 'Ensuite', 'Finalement'",
+        "decisionPoints": [
+          {
+            "question": "Si histoires deviennent très longues",
+            "options": [
+              "3 étapes maximum",
+              "Minuteur discret",
+              "Signal pour conclusion"
+            ]
+          },
+          {
+            "question": "Si certains élèves dominent",
+            "options": [
+              "Tour de rôle strict",
+              "Bâton de parole",
+              "Petits groupes"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Gestes pour chaque étape",
+          "Marche d'aventure"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Celebrate adventurous storytellers. Practice sequence words together as group.",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "Mots de séquence restent affichés pour référence",
+        "decisionPoints": [
+          {
+            "question": "Si pratique groupe difficile",
+            "options": [
+              "Pratique individuelle d'abord",
+              "Séquence avec gestes",
+              "Chanson de séquence"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If sequence concepts are difficult, use familiar classroom routine as practice for 'first, then, last'",
+      "realWorldConnection": "We tell family about our adventures and experiences - sharing stories helps us remember and connect",
+      "differentiation": {
+        "pourDifficultés": [
+          "Support visuel constant pour séquence",
+          "Aventures très simples",
+          "Aide pour structurer récit"
+        ],
+        "pourAvancés": [
+          "Plus d'étapes dans séquence",
+          "Détails riches",
+          "Questions du public encouragées"
+        ],
+        "pourLangue": [
+          "Mélange séquence en deux langues OK",
+          "Support visuel fort",
+          "Partenaire pour aider"
+        ],
+        "pourPEI": [
+          "Format adapté (dessin, gestes)",
+          "Support technologique",
+          "Temps flexible"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Utilise mots de séquence",
+          "Raconte aventure personnelle",
+          "Structure histoire logiquement"
+        ],
+        "checkpoints": [
+          "Dit 'D'abord'",
+          "Ajoute 'Ensuite'",
+          "Conclut histoire"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Personnages vivants",
+      "oneGoal": "Students use different voices and movements for simple characters",
+      "duration": 45,
+      "keyVocabulary": [
+        "personnage",
+        "voix",
+        "bouger"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review adventure storytelling. Today make characters come alive with special voices and movements!",
+        "materials": [
+          "Images de personnages variés (animaux, personnes)"
+        ],
+        "visualSupports": "Affiche des types de personnages avec leurs voix",
+        "decisionPoints": [
+          {
+            "question": "Si travail de personnage trop complexe",
+            "options": [
+              "Commencer par voix d'animaux",
+              "Personnages très simples",
+              "Imitation en groupe"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirements créatifs"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Character exploration - students practice different character voices (big/small, happy/sad, fast/slow) and movements. Create simple character scenarios.",
+        "materials": [
+          "Cartes de personnages",
+          "Foulards ou accessoires simples"
+        ],
+        "visualSupports": "Exemples visuels : grand/petit, rapide/lent, content/triste",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves sont timides",
+            "options": [
+              "Travail en paires",
+              "Derrière un rideau",
+              "Personnages assis"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Transformation physique libre"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Character parade - students briefly demonstrate their favorite character voice and movement.",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "certificats d'encouragement (30 copies)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "Espace désigné pour la parade",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves hésitent à faire la parade",
+            "options": [
+              "Commencer par un seul élève volontaire",
+              "Faire la parade en petits groupes",
+              "Permettre d'observer d'abord"
+            ]
+          },
+          {
+            "question": "Si certains personnages sont trop bruyants",
+            "options": [
+              "Chuchoter les voix de personnages",
+              "Utiliser gestes sans voix",
+              "Signal pour contrôler volume"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If character work feels too complex, start with familiar animals or family member voices",
+      "realWorldConnection": "We change our voices when we pretend to be different people - like when playing with toys or telling stories",
+      "differentiation": {
+        "pourDifficultés": [
+          "Personnages très familiers",
+          "Voix simples seulement",
+          "Support en petit groupe"
+        ],
+        "pourAvancés": [
+          "Personnages complexes",
+          "Combinaison voix-mouvement",
+          "Improvisation de scènes"
+        ],
+        "pourLangue": [
+          "Personnages universels",
+          "Support visuel pour caractéristiques",
+          "Expression non-verbale encouragée"
+        ],
+        "pourPEI": [
+          "Personnages adaptés aux capacités",
+          "Modifications physiques au besoin",
+          "Participation à son niveau"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Expérimente avec voix différentes",
+          "Ajoute mouvement aux personnages",
+          "Partage créations avec confiance"
+        ],
+        "checkpoints": [
+          "Crée au moins un personnage",
+          "Change sa voix",
+          "Participe à la parade"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Émotions expressives",
+      "oneGoal": "Students express different emotions through voice and face",
+      "duration": 45,
+      "keyVocabulary": [
+        "émotion",
+        "content",
+        "triste"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review character voices. Today explore how emotions change our voice and face. Model happy vs. sad voice.",
+        "materials": [
+          "Miroir de classe",
+          "Cartes d'émotions avec visages"
+        ],
+        "visualSupports": "Roue des émotions avec expressions faciales",
+        "decisionPoints": [
+          {
+            "question": "Si sujet des émotions semble difficile",
+            "options": [
+              "Commencer par content/triste seulement",
+              "Utiliser marionnettes",
+              "Imitation en groupe"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Exercices faciaux amusants"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Emotion exploration - students practice expressing different emotions through facial expressions and voice tone. Use scenarios to practice appropriate emotional responses.",
+        "materials": [
+          "Scénarios simples sur cartes",
+          "Miroirs individuels si disponibles"
+        ],
+        "visualSupports": "Affiche des émotions principales avec mots français",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves deviennent bouleversés",
+            "options": [
+              "Retour aux émotions positives",
+              "Pause réconfortante",
+              "Discussion sur sécurité émotionnelle"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Mouvements d'émotions corporelles"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Emotion check-in - students share how they're feeling using French emotion words and expressions.",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "Thermomètre des émotions pour auto-évaluation",
+        "decisionPoints": [
+          {
+            "question": "Si un élève ne veut pas partager ses émotions",
+            "options": [
+              "Utiliser marionnette pour exprimer",
+              "Choisir émotion d'un livre",
+              "Écouter seulement aujourd'hui"
+            ]
+          },
+          {
+            "question": "Si les émotions deviennent trop intenses",
+            "options": [
+              "Respiration calme ensemble",
+              "Passer à émotion plus légère",
+              "Pause réconfortante"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": "If emotion work feels too personal, use characters or stuffed animals to explore emotional expression",
+      "realWorldConnection": "Our faces and voices show how we feel - helping others understand our emotions",
+      "differentiation": {
+        "pourDifficultés": [
+          "Émotions de base seulement",
+          "Support avec objets",
+          "Expression non-verbale prioritaire"
+        ],
+        "pourAvancés": [
+          "Émotions complexes",
+          "Nuances d'expression",
+          "Aide aux pairs pour reconnaissance"
+        ],
+        "pourLangue": [
+          "Émotions universelles d'abord",
+          "Support visuel constant",
+          "Comparaison interculturelle"
+        ],
+        "pourPEI": [
+          "Adaptations pour confort émotionnel",
+          "Expression au niveau de capacité",
+          "Soutien supplémentaire si nécessaire"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Exprime émotions avec visage",
+          "Change voix selon émotion",
+          "Reconnaît émotions chez autrui"
+        ],
+        "checkpoints": [
+          "Montre content et triste",
+          "Utilise mots d'émotions",
+          "Participe avec respect"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Jouer des scènes",
+      "oneGoal": "Students act out simple everyday scenarios with partners",
+      "duration": 45,
+      "keyVocabulary": [
+        "jouer",
+        "scène",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review expressing emotions. Today combine everything to act out real-life scenes with partners!",
+        "materials": [
+          "Cartes de scénarios simples"
+        ],
+        "visualSupports": "Exemples de scènes à jouer avec illustrations",
+        "decisionPoints": [
+          {
+            "question": "Si travail en paires difficile",
+            "options": [
+              "Groupes de trois",
+              "Enseignant(e) comme partenaire",
+              "Scènes individuelles"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Échauffement théâtral"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Partner drama - students act out simple scenarios (ordering food, asking for help, greeting friends) using voice, emotion, and character skills.",
+        "materials": [
+          "Accessoires simples (chapeaux, foulards)",
+          "Minuteur pour scènes"
+        ],
+        "visualSupports": "Guide visuel pour expressions faciales et gestes",
+        "decisionPoints": [
+          {
+            "question": "Si scènes deviennent désorganisées",
+            "options": [
+              "Structure plus claire",
+              "Rôles précis",
+              "Pause pour réorganiser"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Changement de partenaires avec mouvement"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Mini performances - few pairs share their scenes with class. Celebrate teamwork and creativity.",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "étiquettes autocollantes (2 planches)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "Espace de performance désigné",
+        "decisionPoints": [
+          {
+            "question": "Si peu de paires veulent partager",
+            "options": [
+              "Commencer par enseignant et élève",
+              "Partage optionnel seulement",
+              "Un élève raconte pour le groupe"
+            ]
+          },
+          {
+            "question": "Si les performances sont très courtes",
+            "options": [
+              "Célébrer chaque effort",
+              "Poser une question douce",
+              "Applaudir avec enthousiasme"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If partner work is challenging, let students work individually or provide very structured role assignments",
+      "realWorldConnection": "We act out different situations in our daily play - practicing helps us in real situations",
+      "differentiation": {
+        "pourDifficultés": [
+          "Scénarios très simples",
+          "Rôles précis assignés",
+          "Support constant"
+        ],
+        "pourAvancés": [
+          "Scénarios complexes",
+          "Improvisation libre",
+          "Leadership dans groupes"
+        ],
+        "pourLangue": [
+          "Scénarios universels",
+          "Gestes prioritaires",
+          "Support de partenaire francophone"
+        ],
+        "pourPEI": [
+          "Adaptations pour interactions sociales",
+          "Rôles selon forces",
+          "Support pour anxiité sociale"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Collabore avec partenaire",
+          "Intègre voix et mouvement",
+          "Joue scène avec confiance"
+        ],
+        "checkpoints": [
+          "Participe en équipe",
+          "Utilise compétences apprises",
+          "Respecte partenaire"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Présenter mes créations",
+      "oneGoal": "Students present their artwork or projects with simple descriptions",
+      "duration": 45,
+      "keyVocabulary": [
+        "présenter",
+        "création",
+        "expliquer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review acting scenes together. Today be solo presenters sharing our own special creations!",
+        "materials": [
+          "Créations d'élèves (dessins, projets)"
+        ],
+        "visualSupports": "Phrases pour présenter : 'J'ai fait...', 'J'aime ça parce que...'",
+        "decisionPoints": [
+          {
+            "question": "Si élèves n'ont pas de créations",
+            "options": [
+              "Dessin rapide sur place",
+              "Projet imaginé",
+              "Création de classe"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Préparation créative debout"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Art presentation - students present their artwork or projects using simple French descriptions. Practice explaining process and meaning.",
+        "materials": [
+          "Chevalet ou support d'affichage",
+          "Pointeur pour montrer détails"
+        ],
+        "visualSupports": "Guide des mots descriptifs : couleurs, formes, sentiments",
+        "decisionPoints": [
+          {
+            "question": "Si anxiiété de présentation haute",
+            "options": [
+              "Présentation assise",
+              "Avec un ami",
+              "Juste à l'enseignant(e)"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Tour de la classe pour voir créations"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Audience appreciation - students practice giving positive feedback using simple French phrases.",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "Phrases de félicitations : 'Bravo!', 'J'aime...', 'C'est beau!'",
+        "decisionPoints": [
+          {
+            "question": "Si les commentaires sont trop critiques",
+            "options": [
+              "Modeler phrases positives",
+              "Règle: toujours dire quelque chose de beau",
+              "Guide vers compliments spécifiques"
+            ]
+          },
+          {
+            "question": "Si certains élèves dominent les commentaires",
+            "options": [
+              "Tour de rôle structuré",
+              "Chacun dit une chose",
+              "Temps de réflexion avant partage"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If presentation anxiety is high, let students practice explanation with just teacher before group presentation",
+      "realWorldConnection": "Artists explain their work to help others understand - sharing our creations spreads joy",
+      "differentiation": {
+        "pourDifficultés": [
+          "Créations très simples OK",
+          "Phrases courtes suffisantes",
+          "Support pour expliquer"
+        ],
+        "pourAvancés": [
+          "Détails complexes",
+          "Questions techniques",
+          "Aide aux pairs presenters"
+        ],
+        "pourLangue": [
+          "Description en deux langues OK",
+          "Support visuel pour mots",
+          "Focus sur fierté plutôt que perfection"
+        ],
+        "pourPEI": [
+          "Format adapté aux forces",
+          "Présentation modifiée",
+          "Soutien émotionnel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Présente sa création",
+          "Utilise vocabulaire descriptif",
+          "Démontre fierté dans travail"
+        ],
+        "checkpoints": [
+          "Montre sa création",
+          "Explique un aspect",
+          "Accepte félicitations"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Questions curieuses",
+      "oneGoal": "Students ask thoughtful questions about classmates' presentations",
+      "duration": 45,
+      "keyVocabulary": [
+        "curieux",
+        "intéressant",
+        "pourquoi"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review presenting our work. Today be curious audience members who ask great questions!",
+        "materials": [
+          "Cartes de questions exemple"
+        ],
+        "visualSupports": "Exemples de bonnes questions sur affiche",
+        "decisionPoints": [
+          {
+            "question": "Si concept de poser questions difficile",
+            "options": [
+              "Modéliser beaucoup",
+              "Questions simples oui/non d'abord",
+              "Questions en équipe"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Geste de curiosité"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Question practice - students present briefly while others practice asking thoughtful questions using 'Pourquoi...?', 'Comment...?', 'Qu'est-ce que...?'",
+        "materials": [
+          "Minuteur pour présentations courtes",
+          "Cartes d'aide questions"
+        ],
+        "visualSupports": "Guide visuel des types de questions",
+        "decisionPoints": [
+          {
+            "question": "Si questions répétitives ou inappropriées",
+            "options": [
+              "Reformuler ensemble",
+              "Banque de questions variées",
+              "Enseignant modèle questions"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Changement de présentateur avec mouvement"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Celebrate good questions asked today. Discuss how questions help us learn about each other.",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "certificats d'encouragement (30 copies)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Collection des meilleures questions de la journée",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves posent questions trop personnelles",
+            "options": [
+              "Rappeler questions respectueuses",
+              "Rediriger vers sujets légers",
+              "Modeler questions appropriées"
+            ]
+          },
+          {
+            "question": "Si quelqu'un ne veut pas répondre",
+            "options": [
+              "Droit de passer respecté",
+              "Question plus simple",
+              "Réponse en privé plus tard"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": "If questioning feels awkward, use familiar topics and model enthusiastic curiosity about simple things",
+      "realWorldConnection": "Asking questions shows we're interested in others - curiosity helps us learn and make friends",
+      "differentiation": {
+        "pourDifficultés": [
+          "Questions très simples",
+          "Aide pour formuler",
+          "Questions oui/non OK"
+        ],
+        "pourAvancés": [
+          "Questions détaillées",
+          "Questions de suivi",
+          "Aide à formuler questions complexes"
+        ],
+        "pourLangue": [
+          "Questions dans deux langues OK",
+          "Support visuel pour structure",
+          "Modèles concrets"
+        ],
+        "pourPEI": [
+          "Questions adaptées aux capacités",
+          "Support pour interaction sociale",
+          "Temps additionnel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Pose questions aux pairs",
+          "Montre curiosité authentique",
+          "Écoute réponses avec attention"
+        ],
+        "checkpoints": [
+          "Essaie de poser question",
+          "Utilise mots question",
+          "Respecte réponses d'autrui"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Instructions claires",
+      "oneGoal": "Students give simple instructions for games or activities",
+      "duration": 45,
+      "keyVocabulary": [
+        "instruction",
+        "faire",
+        "suivre"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review asking good questions. Today give clear instructions to help others learn new things!",
+        "materials": [
+          "Exemples d'instructions écrites simples"
+        ],
+        "visualSupports": "Guide des mots d'instruction : 'D'abord', 'Ensuite', 'Finalement'",
+        "decisionPoints": [
+          {
+            "question": "Si donner instructions trop difficile",
+            "options": [
+              "Instructions très courtes",
+              "Avec démonstration",
+              "En paires"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Pratique gestes d'instruction"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Instruction practice - students teach classmates simple games, activities, or skills using clear French instructions. Practice giving and following instructions.",
+        "materials": [
+          "Cartes d'activités simples",
+          "Minuteur pour tours"
+        ],
+        "visualSupports": "Modèles d'instructions avec images",
+        "decisionPoints": [
+          {
+            "question": "Si instructions pas claires",
+            "options": [
+              "Redémontrer",
+              "Simplifier étapes",
+              "Aide d'un pair"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Changement d'enseignant avec mouvement"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflect on what makes instructions easy to follow. Celebrate successful teaching moments.",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "Critères d'instructions claires affichés",
+        "decisionPoints": [
+          {
+            "question": "Si les instructions sont confuses",
+            "options": [
+              "Démonstration avec gestes",
+              "Répéter plus lentement",
+              "Élève aide à expliquer"
+            ]
+          },
+          {
+            "question": "Si certains ne suivent pas les instructions",
+            "options": [
+              "Vérifier compréhension individuellement",
+              "Support visuel supplémentaire",
+              "Partenaire guide"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If instruction-giving is overwhelming, start with very familiar activities like hand-washing or line-up procedures",
+      "realWorldConnection": "We give instructions to help others learn new things - like teaching friends games or showing family how to do something",
+      "differentiation": {
+        "pourDifficultés": [
+          "Instructions en 2 étapes maximum",
+          "Avec démonstration physique",
+          "Aide pour organiser idées"
+        ],
+        "pourAvancés": [
+          "Instructions multi-étapes",
+          "Enseigner activités complexes",
+          "Aider pairs avec instructions"
+        ],
+        "pourLangue": [
+          "Instructions avec gestes",
+          "Support visuel fort",
+          "Mélange langues pour clarté"
+        ],
+        "pourPEI": [
+          "Instructions adaptées capacités",
+          "Support pour séquencer",
+          "Temps flexible"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Donne instructions dans ordre logique",
+          "Utilise gestes pour clarifier",
+          "Vérifie compréhension"
+        ],
+        "checkpoints": [
+          "Enseigne une activité simple",
+          "Utilise mots de séquence",
+          "Aide autrui à réussir"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Descriptions vivantes",
+      "oneGoal": "Students describe people, places, or things with vivid details",
+      "duration": 45,
+      "keyVocabulary": [
+        "décrire",
+        "détail",
+        "imaginer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review giving clear instructions. Today paint pictures with words using vivid descriptions!",
+        "materials": [
+          "Images variées pour description"
+        ],
+        "visualSupports": "Mots descriptifs par catégorie : couleur, taille, forme, texture",
+        "decisionPoints": [
+          {
+            "question": "Si descriptions très simples",
+            "options": [
+              "Commencer par couleurs seulement",
+              "Phrases courtes OK",
+              "Support en paires"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Gestes descriptifs"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Description practice - students describe pictures, objects, or experiences using sensory details and descriptive French words. Help others 'see' through words.",
+        "materials": [
+          "Objets variés pour toucher",
+          "Images mystères"
+        ],
+        "visualSupports": "Banque de mots sensoriels avec images",
+        "decisionPoints": [
+          {
+            "question": "Si descriptions manquent de détails",
+            "options": [
+              "Questions guides",
+              "Exploration sensorielle d'abord",
+              "Modéliser descriptions riches"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Exploration tactile d'objets"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Guessing game - students give descriptions while others guess what they're describing.",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Règles du jeu de devinettes affichées",
+        "decisionPoints": [
+          {
+            "question": "Si les descriptions manquent de détails",
+            "options": [
+              "Poser questions guides: couleur? taille?",
+              "Utiliser les sens: toucher, odeur",
+              "Exemple avec objet familier"
+            ]
+          },
+          {
+            "question": "Si le jeu devient trop facile",
+            "options": [
+              "Objets moins évidents",
+              "Descriptions sans regarder",
+              "Catégories spécifiques"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": "If descriptive language feels difficult, start with familiar objects and use sensory exploration",
+      "realWorldConnection": "Good descriptions help others picture what we're talking about - like describing a movie to someone who hasn't seen it",
+      "differentiation": {
+        "pourDifficultés": [
+          "Un détail à la fois",
+          "Objets très familiers",
+          "Support pour trouver mots"
+        ],
+        "pourAvancés": [
+          "Descriptions multi-sensorielles",
+          "Métaphores simples",
+          "Descriptions d'émotions aussi"
+        ],
+        "pourLangue": [
+          "Support visuel pour vocabulaire",
+          "Descriptions bilingues OK",
+          "Gestes pour expliquer"
+        ],
+        "pourPEI": [
+          "Descriptions adaptées aux forces",
+          "Supports sensoriels",
+          "Temps flexible"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Utilise mots descriptifs variés",
+          "Aide autres à visualiser",
+          "Améliore descriptions avec pratique"
+        ],
+        "checkpoints": [
+          "Décrit avec 2+ détails",
+          "Utilise mots nouveaux",
+          "Participe jeux devinettes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Spectacle de classe",
+      "oneGoal": "Students perform in a simple class presentation showcasing their skills",
+      "duration": 45,
+      "keyVocabulary": [
+        "spectacle",
+        "performance",
+        "applaudir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review all communication skills learned. Today put everything together in special class performance!",
+        "materials": [
+          "Liste des compétences apprises"
+        ],
+        "visualSupports": "Menu des options de performance",
+        "decisionPoints": [
+          {
+            "question": "Si anxiiété de performance",
+            "options": [
+              "Performances optionnelles",
+              "En paires pour soutien",
+              "Audience réduite"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Échauffement de performance"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Class show - students choose how to showcase their communication skills (storytelling, character work, presentations, etc.) in mini-performances.",
+        "materials": [
+          "Accessoires simples pour performances",
+          "Chronomètre"
+        ],
+        "visualSupports": "Espace de scène désigné",
+        "decisionPoints": [
+          {
+            "question": "Si performances trop longues ou courtes",
+            "options": [
+              "Temps flexible selon élève",
+              "Signal doux pour temps",
+              "Encouragement pour continuer"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Transitions entre performances"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Audience appreciation and celebration of everyone's communication growth. Take photos of proud performers.",
+        "materials": [
+          "Caméra ou téléphone pour photos"
+        ],
+        "visualSupports": "Certificats de participation",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont trop nerveux pour performer",
+            "options": [
+              "Performance en duo",
+              "Public plus petit d'abord",
+              "Présentation assise au lieu debout"
+            ]
+          },
+          {
+            "question": "Si l'attention du public se disperse",
+            "options": [
+              "Performances plus courtes",
+              "Activité interactive pour audience",
+              "Pause mouvement rapide"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": "If performance anxiety is high, make it optional or offer alternative ways to showcase learning",
+      "realWorldConnection": "Performers share their talents with audiences - celebrating what we've learned makes us proud",
+      "differentiation": {
+        "pourDifficultés": [
+          "Performance très courte OK",
+          "Avec support d'ami",
+          "Montrer plutôt que dire"
+        ],
+        "pourAvancés": [
+          "Performances élaborées",
+          "Combinaison plusieurs compétences",
+          "Leadership pour organiser"
+        ],
+        "pourLangue": [
+          "Performance dans langue confortable",
+          "Gestes et actions prioritaires",
+          "Célébration de la participation"
+        ],
+        "pourPEI": [
+          "Performance adaptée aux forces",
+          "Soutien selon besoins",
+          "Célébration individualisée"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Participe selon ses capacités",
+          "Démontre compétences apprises",
+          "Célèbre avec fierté"
+        ],
+        "checkpoints": [
+          "Partage une compétence",
+          "Respecte autres performers",
+          "Montre progrès depuis début"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Portfolio de communication",
+      "oneGoal": "Students reflect on their growth as French communicators",
+      "duration": 45,
+      "keyVocabulary": [
+        "portfolio",
+        "grandir",
+        "communication"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review class performance success. Today look back at amazing communication journey from Lesson 1 to now!",
+        "materials": [
+          "Travaux des élèves depuis le début"
+        ],
+        "visualSupports": "Chronologie des leçons apprises",
+        "decisionPoints": [
+          {
+            "question": "Si élèves ne voient pas progrès",
+            "options": [
+              "Comparer travail début/fin",
+              "Célébrer petits progrès",
+              "Demander aux pairs ce qu'ils ont remarqué"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Revisiter espace classe avec souvenirs"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Portfolio creation - students compile examples of their communication growth, reflections on learning, and goals for continued French communication.",
+        "materials": [
+          "Dossiers individuels",
+          "Papier et crayons pour réflexion"
+        ],
+        "visualSupports": "Questions de réflexion guidée avec images",
+        "decisionPoints": [
+          {
+            "question": "Si réflexion abstraite difficile",
+            "options": [
+              "Dessiner progrès",
+              "Comparer photos début/fin",
+              "Questions très concrètes"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Recherche de travaux dans différents espaces"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Portfolio sharing - students share one thing they're most proud of in their communication growth.",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "tampons motivants avec encreur (5 tampons)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Cercle de fierté avec coussins spéciaux",
+        "decisionPoints": [
+          {
+            "question": "Si la réflexion semble difficile",
+            "options": [
+              "Photos du début de l'année",
+              "Exemples concrets de progrès",
+              "Aide de camarades"
+            ]
+          },
+          {
+            "question": "Si certains ne voient pas leur croissance",
+            "options": [
+              "Rappeler moments spécifiques",
+              "Portfolio avec preuves",
+              "Compliments des pairs"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If reflection feels abstract, use concrete examples like 'remember when you were shy to speak, now you love presenting!'",
+      "realWorldConnection": "We can see how much better we've become at sharing ideas - like looking at old photos to see how we've grown",
+      "differentiation": {
+        "pourDifficultés": [
+          "Portfolio très simple",
+          "Support pour identifier progrès",
+          "Focus sur réussites"
+        ],
+        "pourAvancés": [
+          "Réflexion approfondie",
+          "Objectifs futurs détaillés",
+          "Aide pairs à voir progrès"
+        ],
+        "pourLangue": [
+          "Portfolio bilingue OK",
+          "Images pour montrer progrès",
+          "Célébration courage linguistique"
+        ],
+        "pourPEI": [
+          "Portfolio adapté aux forces",
+          "Méthodes variées de réflexion",
+          "Soutien pour autoesteem"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Reconnaît son progrès",
+          "Exprime fierté d'apprentissage",
+          "Identifie compétences acquises"
+        ],
+        "checkpoints": [
+          "Compile travaux",
+          "Partage réflexion",
+          "Exprime fierté authentique"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Conteurs d'histoires",
+      "oneGoal": "Students create and tell elaborate stories with multiple characters",
+      "duration": 45,
+      "keyVocabulary": [
+        "conteur",
+        "histoire",
+        "créatif"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Celebrate communication portfolio completion. Today become master storytellers creating elaborate tales!",
+        "materials": [
+          "Images d'inspiration pour histoires"
+        ],
+        "visualSupports": "Structure d'histoire : début, milieu, fin",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves manquent d'inspiration",
+            "options": [
+              "Images provocatrices",
+              "Début d'histoire fourni",
+              "Histoires familières réinventées"
+            ]
+          },
+          {
+            "question": "Si les histoires deviennent trop longues",
+            "options": [
+              "Limite de temps douce",
+              "Signal à mi-parcours",
+              "Focus sur une partie préférée"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Échauffement créatif"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Advanced storytelling - students create and tell complex stories using multiple characters, different voices, and rich details. Focus on creative expression.",
+        "materials": [
+          "Accessoires pour personnages",
+          "Cartes d'éléments d'histoire"
+        ],
+        "visualSupports": "Galerie de personnages possibles avec voix",
+        "decisionPoints": [
+          {
+            "question": "Si histoires trop complexes ou confuses",
+            "options": [
+              "Retour à structure simple",
+              "Aide pour organiser idées",
+              "Focus sur un personnage principal"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Actions physiques pendant histoires"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Storyteller appreciation circle - audience gives specific compliments about storytelling techniques.",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Modèles de compliments spécifiques",
+        "decisionPoints": [
+          {
+            "question": "Si les histoires manquent de structure",
+            "options": [
+              "Guide: qui, quoi, où",
+              "Images séquence pour support",
+              "Histoire à tour de rôle"
+            ]
+          },
+          {
+            "question": "Si l'audience perd intérêt",
+            "options": [
+              "Questions d'engagement",
+              "Gestes pour maintenir attention",
+              "Conteur change de place"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If elaborate storytelling feels overwhelming, let students adapt familiar stories with their own creative twists",
+      "realWorldConnection": "Storytellers entertain people with creative tales - sharing stories brings joy to listeners",
+      "differentiation": {
+        "pourDifficultés": [
+          "Histoires courtes et simples",
+          "Un personnage principal",
+          "Structure guidée"
+        ],
+        "pourAvancés": [
+          "Histoires complexes multi-personnages",
+          "Techniques narratives avancées",
+          "Mentorship d'autres conteurs"
+        ],
+        "pourLangue": [
+          "Mélange narratif bilingue OK",
+          "Gestes pour enrichir histoire",
+          "Histoires de culture d'origine"
+        ],
+        "pourPEI": [
+          "Format narratif adapté",
+          "Support pour séquencer",
+          "Célébration de créativité unique"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Crée histoire originale",
+          "Intègre compétences multiples",
+          "Captive audience avec narration"
+        ],
+        "checkpoints": [
+          "Raconte histoire complète",
+          "Utilise voix différentes",
+          "Réagit positivement aux commentaires"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Reporters de nouvelles",
+      "oneGoal": "Students report on classroom or school events like news reporters",
+      "duration": 45,
+      "keyVocabulary": [
+        "reporter",
+        "nouvelles",
+        "événement"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review creative storytelling. Today be news reporters sharing real information about our school!",
+        "materials": [
+          "Microphones-jouets",
+          "Cartes d'événements scolaires"
+        ],
+        "visualSupports": "Format de nouvelles : Qui, Quoi, Où, Quand",
+        "decisionPoints": [
+          {
+            "question": "Si les sujets de nouvelles manquent",
+            "options": [
+              "Tour de l'école pour inspiration",
+              "Événements de la semaine",
+              "Nouvelles de la classe"
+            ]
+          },
+          {
+            "question": "Si l'information est insuffisante",
+            "options": [
+              "Questions de base: qui, quoi, quand",
+              "Interview rapide",
+              "Observation directe"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Pratique posture reporter"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "News reporting - students research and report on classroom or school events using reporter techniques. Practice clear, informative communication.",
+        "materials": [
+          "Bloc-notes pour reporters",
+          "Caméra-jouet"
+        ],
+        "visualSupports": "Structure de rapport de nouvelles avec exemples",
+        "decisionPoints": [
+          {
+            "question": "Si format nouvelles trop formel",
+            "options": [
+              "Nouvelles très simples",
+              "Format conversation",
+              "Nouvelles amusantes OK"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Reporter en action dans classe"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Evening news show - students present their news reports to 'television audience' (class).",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "étiquettes autocollantes (2 planches)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "Décor 'télévision' simple",
+        "decisionPoints": [
+          {
+            "question": "Si les présentations sont trop courtes",
+            "options": [
+              "Une question de suivi",
+              "Détail supplémentaire demandé",
+              "Support visuel ajouté"
+            ]
+          },
+          {
+            "question": "Si le format télé intimide",
+            "options": [
+              "Conversation naturelle d'abord",
+              "Micro invisible",
+              "Partenaire co-présentateur"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If news reporting feels too formal, start with sharing simple announcements or describing class activities",
+      "realWorldConnection": "Reporters tell people about important events - sharing information helps our community stay connected",
+      "differentiation": {
+        "pourDifficultés": [
+          "Nouvelles très courtes",
+          "Avec aide pour organiser infos",
+          "Focus sur un fait simple"
+        ],
+        "pourAvancés": [
+          "Rapports détaillés",
+          "Interviews avec questions",
+          "Production nouvelles complexes"
+        ],
+        "pourLangue": [
+          "Nouvelles bilingues OK",
+          "Support visuel pour structure",
+          "Nouvelles sur culture d'origine"
+        ],
+        "pourPEI": [
+          "Format adapté aux forces",
+          "Support pour organiser informations",
+          "Rôle selon préférences"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Partage information factuelle",
+          "Utilise format nouvelles",
+          "Communique clairement avec audience"
+        ],
+        "checkpoints": [
+          "Répond à 'Qui/Quoi/Où'",
+          "Présente avec confiance",
+          "Respecte faits vs opinions"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Débat amical",
+      "oneGoal": "Students share different opinions respectfully on simple topics",
+      "duration": 45,
+      "keyVocabulary": [
+        "opinion",
+        "différent",
+        "respecter"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review news reporting. Today learn that people can have different ideas and still be friends!",
+        "materials": [
+          "Images de sujets d'opinion simples"
+        ],
+        "visualSupports": "Phrases respectueuses : 'Je pense que...', 'Tu as raison aussi'",
+        "decisionPoints": [
+          {
+            "question": "Si les opinions deviennent conflictuelles",
+            "options": [
+              "Rappel des règles de respect",
+              "Pause pour respirer",
+              "Retour aux exemples neutres"
+            ]
+          },
+          {
+            "question": "Si certains évitent de donner opinions",
+            "options": [
+              "Commencer par préférences simples",
+              "Vote anonyme d'abord",
+              "Expression par dessin"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Gestes d'accord et désaccord respectueux"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Gentle debate practice - students share different opinions on simple topics (favorite seasons, best playground games) while practicing respectful disagreement.",
+        "materials": [
+          "Cartes de sujets d'opinion appropriées",
+          "Bâton de parole"
+        ],
+        "visualSupports": "Règles du débat respectueux affichées",
+        "decisionPoints": [
+          {
+            "question": "Si désaccord devient tendu",
+            "options": [
+              "Pause rappel respect",
+              "Changement de sujet",
+              "Focus sur écouter plutôt que convaincre"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Cercle de respect entre sujets"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Reflection on respectful disagreement - students share what they learned about different opinions.",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "Leçons sur diversité d'opinions affichées",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves se sentent mal à l'aise",
+            "options": [
+              "Célébrer toutes différences",
+              "Rappeler que différent = intéressant",
+              "Partage volontaire seulement"
+            ]
+          },
+          {
+            "question": "Si peu d'élèves participent",
+            "options": [
+              "Commencer par l'enseignant",
+              "Partage en petits groupes",
+              "Questions guidées spécifiques"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": "If debate concept is too challenging, focus on sharing preferences and asking 'why do you think that?'",
+      "realWorldConnection": "People can have different ideas and still be friends - listening to different opinions helps us learn",
+      "differentiation": {
+        "pourDifficultés": [
+          "Partage préférences simples",
+          "Sujets très familiers",
+          "Pas de pression argumenter"
+        ],
+        "pourAvancés": [
+          "Argmentation avec raisons",
+          "Questions de suivi",
+          "Médiation entre opinions"
+        ],
+        "pourLangue": [
+          "Opinions culturelles valorisées",
+          "Support pour exprimer idées",
+          "Comparaisons interculturelles"
+        ],
+        "pourPEI": [
+          "Participation selon confort social",
+          "Support pour interaction respectueuse",
+          "Alternatives à débat oral"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Exprime opinion personnelle",
+          "Respecte opinions différentes",
+          "Écoute sans interrompre"
+        ],
+        "checkpoints": [
+          "Partage une préférence",
+          "Accepte désaccord avec calme",
+          "Pose question respectueuse"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Enseignants experts",
+      "oneGoal": "Students teach younger students or family members something new",
+      "duration": 45,
+      "keyVocabulary": [
+        "enseigner",
+        "expert",
+        "apprendre"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review respectful opinion sharing. Today become teachers sharing expertise with others!",
+        "materials": [
+          "Badge 'Enseignant Expert'"
+        ],
+        "visualSupports": "Qualités d'un bon enseignant affichées",
+        "decisionPoints": [
+          {
+            "question": "Si l'expertise semble limitée",
+            "options": [
+              "Valoriser savoirs simples",
+              "Enseigner par démonstration",
+              "Passions personnelles acceptées"
+            ]
+          },
+          {
+            "question": "Si les explications sont confuses",
+            "options": [
+              "Questions clarifiantes douces",
+              "Reformulation par enseignant",
+              "Support visuel improvisé"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Posture enseignant confiant"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Teaching practice - students plan and practice teaching something they know well to younger students, family members, or classmates.",
+        "materials": [
+          "Matériaux variés pour démonstrations",
+          "Tableau individuel si possible"
+        ],
+        "visualSupports": "Guide de planification de leçon simple",
+        "decisionPoints": [
+          {
+            "question": "Si difficulté à choisir sujet d'expertise",
+            "options": [
+              "Suggérer compétences observées",
+              "Compétences de classe OK",
+              "Travail en équipes enseignantes"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Rotation entre enseignants-élèves"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Teacher appreciation - students reflect on what makes good teaching and how it feels to help others learn.",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Célébration des enseignants du jour",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves hésitent à partager culture",
+            "options": [
+              "Commencer par nourriture favorite",
+              "Photos de famille",
+              "Histoires simples"
+            ]
+          },
+          {
+            "question": "Si certaines cultures dominent discussion",
+            "options": [
+              "Temps égal pour tous",
+              "Focus sur points communs",
+              "Célébration de chaque unicité"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If teaching concept is too abstract, let students demonstrate rather than formally teach",
+      "realWorldConnection": "We can teach others what we've learned - sharing knowledge helps everyone grow",
+      "differentiation": {
+        "pourDifficultés": [
+          "Démonstration simple",
+          "Sujet très familier",
+          "Co-enseignement avec ami"
+        ],
+        "pourAvancés": [
+          "Enseignement structuré",
+          "Adaptation à différents apprenants",
+          "Création matériel pédagogique"
+        ],
+        "pourLangue": [
+          "Enseignement bilingue valorisé",
+          "Partage expertise culturelle",
+          "Démonstration prioritaire"
+        ],
+        "pourPEI": [
+          "Enseignement selon forces uniques",
+          "Support pour planification",
+          "Format adapté aux capacités"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Partage expertise authentique",
+          "Adapte enseignement à audience",
+          "Montre fierté dans savoir partagé"
+        ],
+        "checkpoints": [
+          "Enseigne quelque chose qu'il maîtrise",
+          "Aide autrui à apprendre",
+          "Réfléchit sur expérience enseignement"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Ambassadeurs culturels",
+      "oneGoal": "Students share aspects of their culture through creative communication",
+      "duration": 45,
+      "keyVocabulary": [
+        "culture",
+        "ambassadeur",
+        "tradition"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review being teachers and experts. Today be cultural ambassadors sharing special traditions from our families!",
+        "materials": [
+          "Objets culturels apportés par élèves"
+        ],
+        "visualSupports": "Carte du monde pour localiser cultures",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves hésitent à partager culture",
+            "options": [
+              "Commencer par nourriture favorite",
+              "Photos de famille",
+              "Histoires simples"
+            ]
+          },
+          {
+            "question": "Si certaines cultures dominent discussion",
+            "options": [
+              "Temps égal pour tous",
+              "Focus sur points communs",
+              "Célébration de chaque unicité"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Salutations de différentes cultures"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Cultural sharing - students present aspects of their family culture, traditions, or heritage using communication skills developed throughout unit.",
+        "materials": [
+          "Photos de famille",
+          "Aliments culturels si possible"
+        ],
+        "visualSupports": "Galerie de diversité culturelle de classe",
+        "decisionPoints": [
+          {
+            "question": "Si partage culturel inconfortable",
+            "options": [
+              "Traditions très générales OK",
+              "Culture de classe/école aussi",
+              "Soutien pour tous types familles"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Danses ou mouvements culturels simples"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cultural appreciation - celebrate the diversity in classroom and what we learned about each other's backgrounds.",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "Mosaïque de diversité créée ensemble",
+        "decisionPoints": [
+          {
+            "question": "Si les familles ne sont pas représentées",
+            "options": [
+              "Diversité de ma famille",
+              "Focus sur amour et soin",
+              "Inclusion de tous types de familles"
+            ]
+          },
+          {
+            "question": "Si l'appréciation manque de spécificité",
+            "options": [
+              "Questions guides pour détails",
+              "Ce qui vous a surpris?",
+              "Modeler commentaires précis"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If cultural sharing feels uncomfortable, focus on simple family traditions like holiday celebrations or favorite foods",
+      "realWorldConnection": "We can share our family traditions with others - learning about different cultures makes our community richer",
+      "differentiation": {
+        "pourDifficultés": [
+          "Tradition très simple",
+          "Avec support familial",
+          "Objets pour montrer plutôt que expliquer"
+        ],
+        "pourAvancés": [
+          "Présentation culturelle détaillée",
+          "Comparaisons interculturelles",
+          "Leadership pour célébration diversité"
+        ],
+        "pourLangue": [
+          "Expertise culturelle valorisée",
+          "Partage dans langue d'origine encourage",
+          "Traduction pour classe"
+        ],
+        "pourPEI": [
+          "Partage selon niveau confort",
+          "Toutes formes de partage valorisées",
+          "Soutien pour participation sociale"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Partage aspect de sa culture",
+          "Respecte cultures d'autrui",
+          "Contribue à appréciation diversité"
+        ],
+        "checkpoints": [
+          "Présente tradition familiale",
+          "Pose questions respectueuses",
+          "Célèbre richesse culturelle classe"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration de communicateurs",
+      "oneGoal": "Students celebrate their growth as confident French communicators",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébrer",
+        "confiant",
+        "succès"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Look back at incredible communication journey from shy beginners to confident communicators!",
+        "materials": [
+          "Portfolio de classe avec photos/travaux du début"
+        ],
+        "visualSupports": "Ligne de temps des apprentissages avec photos",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal à voir leurs progrès",
+            "options": [
+              "Vidéos du début d'année",
+              "Portfolio avec preuves",
+              "Témoignages des pairs"
+            ]
+          },
+          {
+            "question": "Si l'émotion devient trop forte",
+            "options": [
+              "Pause pour respirer ensemble",
+              "Focus sur fierté calme",
+              "Célébration douce"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Danse célébration du progrès"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Communication celebration - students showcase their favorite communication skills, receive certificates, and reflect on amazing growth as French speakers.",
+        "materials": [
+          "Certificats personnalisés",
+          "Décorations festives"
+        ],
+        "visualSupports": "Galerie de réussites et progrès affichés",
+        "decisionPoints": [
+          {
+            "question": "Si élèves ne reconnaissent pas progrès",
+            "options": [
+              "Rappels spécifiques de croissance",
+              "Témoignages de pairs",
+              "Comparaison concrète début/maintenant"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Parade de fierté communicative"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Final circle: each student completes 'Je suis un communicateur confiant parce que...' Group celebration photo with certificates.",
+        "materials": [
+          "Caméra pour photo de groupe"
+        ],
+        "visualSupports": "Phrase de complétion affichée",
+        "decisionPoints": [
+          {
+            "question": "Si les phrases sont difficiles à compléter",
+            "options": [
+              "Exemples multiples donnés",
+              "Aide d'un ami",
+              "Phrases plus simples"
+            ]
+          },
+          {
+            "question": "Si l'émotion empêche participation",
+            "options": [
+              "Expression non-verbale acceptée",
+              "Geste ou sourire suffit",
+              "Moment privé avec enseignant"
+            ]
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": "If students don't recognize their progress, use before/after examples from beginning of unit",
+      "realWorldConnection": "Confident communicators can share ideas with anyone - our voices can now reach the French-speaking world!",
+      "differentiation": {
+        "pourDifficultés": [
+          "Célébration de tout progrès",
+          "Reconnaissance efforts plutôt que résultats",
+          "Soutien pour identifier forces"
+        ],
+        "pourAvancés": [
+          "Réflexion approfondie sur apprentissage",
+          "Plans futurs détaillés",
+          "Mentorship pour célébration collective"
+        ],
+        "pourLangue": [
+          "Célébration courage linguistique",
+          "Fierté identité multilingue",
+          "Progrès dans toutes langues valorisés"
+        ],
+        "pourPEI": [
+          "Célébration personnalisée aux réussites uniques",
+          "Reconnaissance de tous types progrès",
+          "Soutien pour confiance en soi"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Exprime fierté d'apprentissage",
+          "Reconnaît progrès personnel",
+          "Célèbre avec communauté classe"
+        ],
+        "checkpoints": [
+          "Complète phrase de fierté",
+          "Participe à célébration",
+          "Montre confiance communicative acquise"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Vocabulaire",
+        "items": [
+          "Démontre une compréhension de base en vocabulaire",
+          "Participe activement aux activités de vocabulaire",
+          "Montre du progrès dans vocabulaire",
+          "Applique les apprentissages de vocabulaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Communication orale",
+        "items": [
+          "Démontre une compréhension de base en communication orale",
+          "Participe activement aux activités de communication orale",
+          "Montre du progrès dans communication orale",
+          "Applique les apprentissages de communication orale dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Participation",
+        "items": [
+          "Démontre une compréhension de base en participation",
+          "Participe activement aux activités de participation",
+          "Montre du progrès dans participation",
+          "Applique les apprentissages de participation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Compréhension",
+        "items": [
+          "Démontre une compréhension de base en compréhension",
+          "Participe activement aux activités de compréhension",
+          "Montre du progrès dans compréhension",
+          "Applique les apprentissages de compréhension dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - Communication créative",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Vocabulaire",
+        "Communication orale",
+        "Participation",
+        "Compréhension"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "😊",
+          "😐",
+          "😟"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Communication créative\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en français\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nMa voix spéciale, Montrer et dire, Gestes qui parlent, Écouter avec attention, Raconter mes aventures\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nIl est normal et bénéfique que votre enfant mélange les langues à la maison.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nMerci pour votre soutien continu dans l'apprentissage du français!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Lecture ensemble",
+        "description": "Lisez des livres en français ou en anglais sur le thème de l'unité",
+        "timeRequired": "15 minutes",
+        "materials": "Livres de la bibliothèque",
+        "frenchSupport": "Les livres bilingues sont excellents!"
+      },
+      {
+        "title": "Jeu de mots",
+        "description": "Jouez à des jeux simples avec les nouveaux mots (mémoire, devinettes)",
+        "timeRequired": "10 minutes",
+        "materials": "Cartes de vocabulaire maison",
+        "frenchSupport": "Mélanger les langues est normal et utile"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "voix",
+        "lesson": 1,
+        "context": "Ma voix spéciale",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voix\"",
+          "Utilisez \"voix\" dans une phrase simple",
+          "Trouvez des images représentant \"voix\"",
+          "Faites des gestes pour \"voix\""
+        ]
+      },
+      {
+        "word": "parler",
+        "lesson": 1,
+        "context": "Ma voix spéciale",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"parler\"",
+          "Utilisez \"parler\" dans une phrase simple",
+          "Trouvez des images représentant \"parler\"",
+          "Faites des gestes pour \"parler\""
+        ]
+      },
+      {
+        "word": "écouter",
+        "lesson": 1,
+        "context": "Ma voix spéciale",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écouter\"",
+          "Utilisez \"écouter\" dans une phrase simple",
+          "Trouvez des images représentant \"écouter\"",
+          "Faites des gestes pour \"écouter\""
+        ]
+      },
+      {
+        "word": "montrer",
+        "lesson": 2,
+        "context": "Montrer et dire",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"montrer\"",
+          "Utilisez \"montrer\" dans une phrase simple",
+          "Trouvez des images représentant \"montrer\"",
+          "Faites des gestes pour \"montrer\""
+        ]
+      },
+      {
+        "word": "dire",
+        "lesson": 2,
+        "context": "Montrer et dire",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dire\"",
+          "Utilisez \"dire\" dans une phrase simple",
+          "Trouvez des images représentant \"dire\"",
+          "Faites des gestes pour \"dire\""
+        ]
+      },
+      {
+        "word": "partager",
+        "lesson": 2,
+        "context": "Montrer et dire",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"partager\"",
+          "Utilisez \"partager\" dans une phrase simple",
+          "Trouvez des images représentant \"partager\"",
+          "Faites des gestes pour \"partager\""
+        ]
+      },
+      {
+        "word": "geste",
+        "lesson": 3,
+        "context": "Gestes qui parlent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"geste\"",
+          "Utilisez \"geste\" dans une phrase simple",
+          "Trouvez des images représentant \"geste\"",
+          "Faites des gestes pour \"geste\""
+        ]
+      },
+      {
+        "word": "corps",
+        "lesson": 3,
+        "context": "Gestes qui parlent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"corps\"",
+          "Utilisez \"corps\" dans une phrase simple",
+          "Trouvez des images représentant \"corps\"",
+          "Faites des gestes pour \"corps\""
+        ]
+      },
+      {
+        "word": "communication",
+        "lesson": 3,
+        "context": "Gestes qui parlent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"communication\"",
+          "Utilisez \"communication\" dans une phrase simple",
+          "Trouvez des images représentant \"communication\"",
+          "Faites des gestes pour \"communication\""
+        ]
+      },
+      {
+        "word": "attention",
+        "lesson": 4,
+        "context": "Écouter avec attention",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"attention\"",
+          "Utilisez \"attention\" dans une phrase simple",
+          "Trouvez des images représentant \"attention\"",
+          "Faites des gestes pour \"attention\""
+        ]
+      },
+      {
+        "word": "question",
+        "lesson": 4,
+        "context": "Écouter avec attention",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"question\"",
+          "Utilisez \"question\" dans une phrase simple",
+          "Trouvez des images représentant \"question\"",
+          "Faites des gestes pour \"question\""
+        ]
+      },
+      {
+        "word": "répondre",
+        "lesson": 4,
+        "context": "Écouter avec attention",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"répondre\"",
+          "Utilisez \"répondre\" dans une phrase simple",
+          "Trouvez des images représentant \"répondre\"",
+          "Faites des gestes pour \"répondre\""
+        ]
+      },
+      {
+        "word": "aventure",
+        "lesson": 5,
+        "context": "Raconter mes aventures",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aventure\"",
+          "Utilisez \"aventure\" dans une phrase simple",
+          "Trouvez des images représentant \"aventure\"",
+          "Faites des gestes pour \"aventure\""
+        ]
+      },
+      {
+        "word": "d'abord",
+        "lesson": 5,
+        "context": "Raconter mes aventures",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"d'abord\"",
+          "Utilisez \"d'abord\" dans une phrase simple",
+          "Trouvez des images représentant \"d'abord\"",
+          "Faites des gestes pour \"d'abord\""
+        ]
+      },
+      {
+        "word": "ensuite",
+        "lesson": 5,
+        "context": "Raconter mes aventures",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensuite\"",
+          "Utilisez \"ensuite\" dans une phrase simple",
+          "Trouvez des images représentant \"ensuite\"",
+          "Faites des gestes pour \"ensuite\""
+        ]
+      },
+      {
+        "word": "personnage",
+        "lesson": 6,
+        "context": "Personnages vivants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"personnage\"",
+          "Utilisez \"personnage\" dans une phrase simple",
+          "Trouvez des images représentant \"personnage\"",
+          "Faites des gestes pour \"personnage\""
+        ]
+      },
+      {
+        "word": "bouger",
+        "lesson": 6,
+        "context": "Personnages vivants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bouger\"",
+          "Utilisez \"bouger\" dans une phrase simple",
+          "Trouvez des images représentant \"bouger\"",
+          "Faites des gestes pour \"bouger\""
+        ]
+      },
+      {
+        "word": "émotion",
+        "lesson": 7,
+        "context": "Émotions expressives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"émotion\"",
+          "Utilisez \"émotion\" dans une phrase simple",
+          "Trouvez des images représentant \"émotion\"",
+          "Faites des gestes pour \"émotion\""
+        ]
+      },
+      {
+        "word": "content",
+        "lesson": 7,
+        "context": "Émotions expressives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"content\"",
+          "Utilisez \"content\" dans une phrase simple",
+          "Trouvez des images représentant \"content\"",
+          "Faites des gestes pour \"content\""
+        ]
+      },
+      {
+        "word": "triste",
+        "lesson": 7,
+        "context": "Émotions expressives",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"triste\"",
+          "Utilisez \"triste\" dans une phrase simple",
+          "Trouvez des images représentant \"triste\"",
+          "Faites des gestes pour \"triste\""
+        ]
+      },
+      {
+        "word": "jouer",
+        "lesson": 8,
+        "context": "Jouer des scènes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jouer\"",
+          "Utilisez \"jouer\" dans une phrase simple",
+          "Trouvez des images représentant \"jouer\"",
+          "Faites des gestes pour \"jouer\""
+        ]
+      },
+      {
+        "word": "scène",
+        "lesson": 8,
+        "context": "Jouer des scènes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"scène\"",
+          "Utilisez \"scène\" dans une phrase simple",
+          "Trouvez des images représentant \"scène\"",
+          "Faites des gestes pour \"scène\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 8,
+        "context": "Jouer des scènes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "présenter",
+        "lesson": 9,
+        "context": "Présenter mes créations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"présenter\"",
+          "Utilisez \"présenter\" dans une phrase simple",
+          "Trouvez des images représentant \"présenter\"",
+          "Faites des gestes pour \"présenter\""
+        ]
+      },
+      {
+        "word": "création",
+        "lesson": 9,
+        "context": "Présenter mes créations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"création\"",
+          "Utilisez \"création\" dans une phrase simple",
+          "Trouvez des images représentant \"création\"",
+          "Faites des gestes pour \"création\""
+        ]
+      },
+      {
+        "word": "expliquer",
+        "lesson": 9,
+        "context": "Présenter mes créations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expliquer\"",
+          "Utilisez \"expliquer\" dans une phrase simple",
+          "Trouvez des images représentant \"expliquer\"",
+          "Faites des gestes pour \"expliquer\""
+        ]
+      },
+      {
+        "word": "curieux",
+        "lesson": 10,
+        "context": "Questions curieuses",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"curieux\"",
+          "Utilisez \"curieux\" dans une phrase simple",
+          "Trouvez des images représentant \"curieux\"",
+          "Faites des gestes pour \"curieux\""
+        ]
+      },
+      {
+        "word": "intéressant",
+        "lesson": 10,
+        "context": "Questions curieuses",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"intéressant\"",
+          "Utilisez \"intéressant\" dans une phrase simple",
+          "Trouvez des images représentant \"intéressant\"",
+          "Faites des gestes pour \"intéressant\""
+        ]
+      },
+      {
+        "word": "pourquoi",
+        "lesson": 10,
+        "context": "Questions curieuses",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pourquoi\"",
+          "Utilisez \"pourquoi\" dans une phrase simple",
+          "Trouvez des images représentant \"pourquoi\"",
+          "Faites des gestes pour \"pourquoi\""
+        ]
+      },
+      {
+        "word": "instruction",
+        "lesson": 11,
+        "context": "Instructions claires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"instruction\"",
+          "Utilisez \"instruction\" dans une phrase simple",
+          "Trouvez des images représentant \"instruction\"",
+          "Faites des gestes pour \"instruction\""
+        ]
+      },
+      {
+        "word": "faire",
+        "lesson": 11,
+        "context": "Instructions claires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"faire\"",
+          "Utilisez \"faire\" dans une phrase simple",
+          "Trouvez des images représentant \"faire\"",
+          "Faites des gestes pour \"faire\""
+        ]
+      },
+      {
+        "word": "suivre",
+        "lesson": 11,
+        "context": "Instructions claires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"suivre\"",
+          "Utilisez \"suivre\" dans une phrase simple",
+          "Trouvez des images représentant \"suivre\"",
+          "Faites des gestes pour \"suivre\""
+        ]
+      },
+      {
+        "word": "décrire",
+        "lesson": 12,
+        "context": "Descriptions vivantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"décrire\"",
+          "Utilisez \"décrire\" dans une phrase simple",
+          "Trouvez des images représentant \"décrire\"",
+          "Faites des gestes pour \"décrire\""
+        ]
+      },
+      {
+        "word": "détail",
+        "lesson": 12,
+        "context": "Descriptions vivantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"détail\"",
+          "Utilisez \"détail\" dans une phrase simple",
+          "Trouvez des images représentant \"détail\"",
+          "Faites des gestes pour \"détail\""
+        ]
+      },
+      {
+        "word": "imaginer",
+        "lesson": 12,
+        "context": "Descriptions vivantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"imaginer\"",
+          "Utilisez \"imaginer\" dans une phrase simple",
+          "Trouvez des images représentant \"imaginer\"",
+          "Faites des gestes pour \"imaginer\""
+        ]
+      },
+      {
+        "word": "spectacle",
+        "lesson": 13,
+        "context": "Spectacle de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"spectacle\"",
+          "Utilisez \"spectacle\" dans une phrase simple",
+          "Trouvez des images représentant \"spectacle\"",
+          "Faites des gestes pour \"spectacle\""
+        ]
+      },
+      {
+        "word": "performance",
+        "lesson": 13,
+        "context": "Spectacle de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"performance\"",
+          "Utilisez \"performance\" dans une phrase simple",
+          "Trouvez des images représentant \"performance\"",
+          "Faites des gestes pour \"performance\""
+        ]
+      },
+      {
+        "word": "applaudir",
+        "lesson": 13,
+        "context": "Spectacle de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"applaudir\"",
+          "Utilisez \"applaudir\" dans une phrase simple",
+          "Trouvez des images représentant \"applaudir\"",
+          "Faites des gestes pour \"applaudir\""
+        ]
+      },
+      {
+        "word": "portfolio",
+        "lesson": 14,
+        "context": "Portfolio de communication",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"portfolio\"",
+          "Utilisez \"portfolio\" dans une phrase simple",
+          "Trouvez des images représentant \"portfolio\"",
+          "Faites des gestes pour \"portfolio\""
+        ]
+      },
+      {
+        "word": "grandir",
+        "lesson": 14,
+        "context": "Portfolio de communication",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"grandir\"",
+          "Utilisez \"grandir\" dans une phrase simple",
+          "Trouvez des images représentant \"grandir\"",
+          "Faites des gestes pour \"grandir\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

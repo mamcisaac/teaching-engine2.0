@@ -1,0 +1,107 @@
+{
+  "evaluation": {
+    "lessonTitle": "Impression et motifs",
+    "grade": "1ère année",
+    "subject": "Arts visuels",
+    "totalDuration": "15 heures",
+    "evaluationDate": "2025-08-22",
+    "criteria": {
+      "simplicity": {
+        "weight": 40,
+        "score": 88,
+        "analysis": {
+          "strengths": [
+            "Vocabulaire adapté à l'âge (impression, motif, contraste)",
+            "Instructions claires et séquentielles dans chaque leçon",
+            "Matériaux simples et accessibles (bouchons, éponges, peinture tempera)",
+            "Objectifs concrets et mesurables pour chaque leçon",
+            "Durées appropriées (45 minutes) avec structure claire",
+            "Techniques progressives du simple vers le complexe"
+          ],
+          "areas_for_improvement": [
+            "Certaines leçons pourraient avoir des matériaux simplifiés (ex: leçon 7 avec grillage)",
+            "Quelques activités de différenciation sont complexes pour la 1ère année"
+          ],
+          "examples": [
+            "Leçon 1: Démonstration simple 'presser bouchon dans peinture puis sur papier'",
+            "Progression logique: découverte → tamponnage → nature → motifs",
+            "Questions d'amorce accessibles: 'Que peut-on faire avec ces objets en art?'"
+          ]
+        }
+      },
+      "progression": {
+        "weight": 30,
+        "score": 92,
+        "analysis": {
+          "strengths": [
+            "Progression logique du simple vers le complexe sur 14 leçons",
+            "Développement séquentiel: découverte → maîtrise technique → créativité → collaboration → réflexion",
+            "Chaque leçon s'appuie sur les acquis précédents",
+            "Évaluation formative continue avec critères d'observation",
+            "Culmination authentique avec exposition et célébration",
+            "Développement de l'autonomie artistique progressive"
+          ],
+          "areas_for_improvement": [
+            "Pourrait inclure plus de révisions explicites des techniques antérieures",
+            "Quelques sauts conceptuels entre motifs simples et narratifs"
+          ],
+          "examples": [
+            "Leçon 1-2: Bases de l'impression → Leçon 3: Application à la nature → Leçon 4-5: Création de motifs",
+            "Évaluation progressive: observation → auto-évaluation → présentation publique",
+            "Extensions cohérentes reliant chaque leçon à la suivante"
+          ]
+        }
+      },
+      "authenticity": {
+        "weight": 30,
+        "score": 91,
+        "analysis": {
+          "strengths": [
+            "Activités créatives centrées sur l'expression personnelle",
+            "Liens authentiques avec l'environnement (nature, saisons)",
+            "Projet final significatif avec exposition réelle",
+            "Développement de l'identité artistique des élèves",
+            "Collaboration authentique et résolution de problèmes réels",
+            "Réflexion métacognitive sur l'apprentissage artistique",
+            "Intégration naturelle avec autres matières (mathématiques, sciences)"
+          ],
+          "areas_for_improvement": [
+            "Pourrait inclure plus d'exemples d'artistes contemporains",
+            "Connexions culturelles pourraient être renforcées"
+          ],
+          "examples": [
+            "Leçon 3: Collecte réelle d'éléments naturels pour impression",
+            "Leçon 9: Collaboration véritable avec négociation et compromis",
+            "Leçon 14: Présentation authentique aux familles avec fierté artistique",
+            "Auto-évaluation reflétant vraiment sur le processus créatif"
+          ]
+        }
+      }
+    },
+    "overallScore": 90,
+    "calculation": {
+      "simplicity": "88 × 0.40 = 35.2",
+      "progression": "92 × 0.30 = 27.6", 
+      "authenticity": "91 × 0.30 = 27.3",
+      "total": "35.2 + 27.6 + 27.3 = 90.1"
+    },
+    "status": "EXCEEDS_THRESHOLD",
+    "threshold": 85,
+    "summary": {
+      "verdict": "APPROVED - Cette unité d'enseignement dépasse le seuil requis de 85%",
+      "key_strengths": [
+        "Progression pédagogique exemplaire du simple vers le complexe",
+        "Activités authentiques et créatives adaptées à la 1ère année",
+        "Structure claire et cohérente sur 14 leçons bien articulées",
+        "Évaluation formative continue et culmination significative",
+        "Intégration naturelle de la différenciation pédagogique"
+      ],
+      "minor_recommendations": [
+        "Simplifier quelques matériaux dans certaines leçons avancées",
+        "Ajouter des références à des artistes contemporains",
+        "Renforcer les révisions explicites entre les leçons"
+      ],
+      "overall_assessment": "Cette unité d'arts visuels présente une qualité pédagogique exceptionnelle avec une progression naturelle, des activités engageantes et authentiques, et une structure claire adaptée aux jeunes apprenants. Elle offre un excellent équilibre entre guidance et créativité individuelle."
+    }
+  }
+}

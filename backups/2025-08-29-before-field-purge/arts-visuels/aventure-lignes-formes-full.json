@@ -1,0 +1,3777 @@
+{
+  "unitTitle": "Aventure lignes et formes",
+  "subject": "Arts visuels",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Découverte des lignes",
+      "oneGoal": "Les élèves reconnaissent que les lignes sont partout dans leur environnement",
+      "duration": 45,
+      "keyVocabulary": [
+        "ligne",
+        "droit",
+        "courbe"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Line Detective Walk",
+        "materials": [
+          "Loupes (25)",
+          "Carnets d'observation (25)",
+          "Crayons (25)"
+        ],
+        "visualSupports": [
+          "Magnifying glasses",
+          "Teacher finger tracing",
+          "Excited facial expressions"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent confus par le concept de ligne",
+            "choice": "Faire tracer des lignes dans l'air avec le doigt avant de chercher dans la classe"
+          },
+          {
+            "question": "Si l'enthousiasme diminue pendant la recherche",
+            "choice": "Transformer en jeu d'équipe : qui trouve le plus de lignes différentes?"
+          },
+          {
+            "question": "Si certains élèves ont terminé plus tôt",
+            "choice": "Les inviter à dessiner leurs lignes préférées trouvées"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Line Creation Station",
+        "materials": [
+          "Papier grand format (25 feuilles)",
+          "Crayons de cire (25 boîtes)",
+          "Marqueurs lavables (25)",
+          "Ruban adhésif pour le sol"
+        ],
+        "visualSupports": [
+          "Station picture cards",
+          "Teacher demonstration",
+          "Tape lines on floor as examples"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal à varier leurs lignes",
+            "choice": "Montrer comment changer la pression du crayon pour différentes épaisseurs"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Line Collection Circle",
+        "materials": [
+          "Tapis de rassemblement",
+          "Cartes visuelles de lignes",
+          "Pointer laser (optionnel)"
+        ],
+        "visualSupports": [
+          "Circle formation",
+          "Student pointing/gesturing allowed",
+          "Visual sentence starter card"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves oublient le vocabulaire des lignes",
+            "choice": "Rappeler avec des gestes : doigt droit pour 'droit', ondulation pour 'courbe'"
+          },
+          {
+            "question": "Si certains élèves ne participent pas au partage",
+            "choice": "Utiliser le pointage silencieux - ils montrent leurs lignes préférées sans parler"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "",
+        "then": {
+          "situation": "Materials missing or broken",
+          "plan": "Use student bodies as lines - lie down straight for 'droit', curl up for 'courbe'. Dance with line movements to music."
+        }
+      },
+      "realWorldConnection": "Lines in classroom objects, clothing patterns, and body movements",
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer par des lignes très évidentes (bords de tables, côtés de livres)",
+          "Utiliser le doigt pour tracer les lignes avant de les identifier",
+          "Travailler en paires avec un partenaire plus expérimenté"
+        ],
+        "pourAvancés": [
+          "Chercher des lignes dans des motifs complexes (tissus, affiches)",
+          "Classer les lignes par type (droites, courbes, mixtes)",
+          "Devenir des guides pour aider leurs pairs"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes clairs pour 'droit' et 'courbe'",
+          "Répéter les mots clés avec des actions",
+          "Permettre la description dans leur langue maternelle d'abord"
+        ],
+        "pourPEI": [
+          "Adapter selon les besoins moteurs (pointer au lieu de tracer)",
+          "Utiliser des supports tactiles pour sentir les lignes",
+          "Prolonger le temps selon les besoins individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Lignes avec le corps",
+      "oneGoal": "Les élèves créent différents types de lignes avec leur corps et leurs gestes",
+      "duration": 45,
+      "keyVocabulary": [
+        "zigzag",
+        "ondulé",
+        "spirale"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Line Memory Game",
+        "materials": [
+          "Bandes de papier montrant les types de lignes (25)",
+          "Cartes visuelles de mouvements (25)",
+          "Tapis de danse (optionnel)"
+        ],
+        "visualSupports": [
+          "Paper strips showing line types",
+          "Teacher full-body demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal à se souvenir des mouvements",
+            "choice": "Répéter en chanson ou avec une comptine rythmique"
+          },
+          {
+            "question": "Si certains élèves sont timides pour bouger",
+            "choice": "Commencer en position assise, puis debout graduellement"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Line Dance Creation",
+        "materials": [
+          "Rubans ou foulards (25)",
+          "Lecteur de musique",
+          "Espace dégagé pour bouger",
+          "Marqueurs au sol (optionnel)"
+        ],
+        "visualSupports": [
+          "Ribbon scarves for movement trails",
+          "Teacher demonstration",
+          "Music for rhythm"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si la musique perturbe la concentration",
+            "choice": "Créer un rythme avec des claquements de mains au lieu de musique"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Line Performance",
+        "materials": [
+          "Espace de représentation délimité",
+          "Chaises pour le public",
+          "Applaudissements d'encouragement"
+        ],
+        "visualSupports": [
+          "Performance space marked on floor",
+          "Clapping for encouragement"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont peur de bouger librement",
+            "choice": "Commencer par des mouvements assis, puis ajouter les bras, enfin tout le corps"
+          },
+          {
+            "question": "Si l'espace devient trop agité",
+            "choice": "Créer des 'zones de danse' avec du ruban au sol pour limiter l'espace"
+          },
+          {
+            "question": "Si certains copient au lieu de créer",
+            "choice": "Encourager : 'Montre-moi TA façon spéciale de faire une ligne zigzag'"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des lignes avec le corps et les gestes",
+        "then": {
+          "situation": "Music system fails",
+          "plan": "Teacher provides rhythm with clapping or simple songs. Students can create their own rhythm sounds for line movements."
+        }
+      },
+      "realWorldConnection": "Body movements create invisible lines in dance and sports",
+      "differentiation": {
+        "pourDifficultés": [
+          "Simplifier les mouvements (seulement droits et courbes d'abord)",
+          "Permettre de rester assis pour certains mouvements",
+          "Modéliser chaque mouvement lentement"
+        ],
+        "pourAvancés": [
+          "Combiner plusieurs types de lignes dans une séquence",
+          "Créer leurs propres variations de mouvements",
+          "Diriger un petit groupe dans les mouvements"
+        ],
+        "pourLangue": [
+          "Utiliser la modélisation physique plutôt que les instructions verbales",
+          "Répéter les nouveaux mots de vocabulaire avec les mouvements",
+          "Encourager la participation non verbale d'abord"
+        ],
+        "pourPEI": [
+          "Adapter les mouvements selon les capacités motrices individuelles",
+          "Utiliser des aides visuelles ou tactiles supplémentaires",
+          "Permettre des pauses fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Lignes émotionnelles",
+      "oneGoal": "Les élèves comprennent que différentes qualités de lignes expriment différents sentiments",
+      "duration": 45,
+      "keyVocabulary": [
+        "heureux",
+        "triste",
+        "en colère"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Emotion Line Theater",
+        "materials": [
+          "Cartes d'émotions avec visages (25)",
+          "Miroirs individuels (25)",
+          "Costumes simples (optionnel)"
+        ],
+        "visualSupports": [
+          "Large emotion face cards",
+          "Teacher dramatic demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal à connecter émotions et lignes",
+            "choice": "Modéliser en dessinant une ligne heureuse bondissante vs. une ligne triste qui tombe"
+          },
+          {
+            "question": "Si certains élèves sont réticents à exprimer des émotions",
+            "choice": "Utiliser des personnages de contes ou des animaux plutôt que des émotions personnelles"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Emotion Line Painting",
+        "materials": [
+          "Peinture lavable (rouge, bleu, jaune, noir) (6 contenants)",
+          "Pinceaux variés (épais et minces) (25)",
+          "Papier aquarelle ou construction (25 feuilles)",
+          "Tabliers ou vieux vêtements (25)"
+        ],
+        "visualSupports": [
+          "Color-emotion associations shown",
+          "Teacher demonstration painting",
+          "Emotion cards as reference"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si la peinture devient trop salissante",
+            "choice": "Passer aux crayons de cire pour continuer l'exploration des émotions"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Emotion Line Gallery Walk",
+        "materials": [
+          "Pinces à linge pour affichage (25)",
+          "Corde à linge ou espace d'affichage",
+          "Lingettes humides pour nettoyage (25)"
+        ],
+        "visualSupports": [
+          "Paintings displayed at student height",
+          "Thumbs up/down for guessing game"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient pas les formes dans les objets",
+            "choice": "Tracer les contours avec le doigt en nommant : 'Je trace un cercle'"
+          },
+          {
+            "question": "Si certains nomment incorrectement les formes",
+            "choice": "Valider l'effort puis corriger gentiment : 'Presque! C'est un triangle'"
+          },
+          {
+            "question": "Si l'enthousiasme baisse",
+            "choice": "Transformer en 'chasse au trésor' avec des indices sur les formes"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Exprimer des émotions à travers des qualités de lignes",
+        "then": {
+          "situation": "Paint supplies unavailable",
+          "plan": "Use colored pencils or crayons. Focus more on body movement emotions and tracing emotions in sand trays or on rough paper."
+        }
+      },
+      "realWorldConnection": "How we draw when happy versus sad shows in our line quality",
+      "differentiation": {
+        "pourDifficultés": [
+          "Limiter à 2 émotions de base (heureux/triste) d'abord",
+          "Utiliser des exemples concrets (‘une ligne souriante’, ‘une ligne qui pleure’)",
+          "Permettre de copier les exemples de l'enseignant"
+        ],
+        "pourAvancés": [
+          "Explorer des émotions plus complexes (surpris, excité, paisible)",
+          "Créer des histoires courtes avec leurs lignes émotionnelles",
+          "Mélanger plusieurs émotions dans une même œuvre"
+        ],
+        "pourLangue": [
+          "Utiliser des expressions faciales exagérées pour enseigner le vocabulaire",
+          "Permettre l'expression d'émotions sans nécessairement nommer en français",
+          "Utiliser des gestes universels pour les émotions"
+        ],
+        "pourPEI": [
+          "Adapter les outils de dessin selon les besoins moteurs",
+          "Permettre l'expression émotionnelle à travers d'autres moyens si nécessaire",
+          "Offrir des choix multiples pour l'expression créative"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève associe différentes qualités de lignes à des émotions",
+          "L'élève utilise le vocabulaire émotionnel (heureux, triste, en colère)",
+          "L'élève crée des lignes qui transmettent visuellement une émotion",
+          "L'élève explique ses choix artistiques avec des mots simples"
+        ],
+        "checkpoints": [
+          "Ouverture : Vérifier la compréhension des trois émotions de base",
+          "Mi-activité : Observer l'intentionnalité dans les choix de couleurs et lignes",
+          "Fermeture : Écouter les explications des élèves sur leurs créations"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Chasse aux formes",
+      "oneGoal": "Les élèves identifient les formes de base (cercle, carré, triangle) dans leur environnement",
+      "duration": 45,
+      "keyVocabulary": [
+        "cercle",
+        "carré",
+        "triangle"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Shape Body Sculptures",
+        "materials": [
+          "Cartes de formes géantes (3 de chaque forme)",
+          "Cerceau (optionnel pour cercle)",
+          "Tapis de yoga (optionnel)"
+        ],
+        "visualSupports": [
+          "Teacher body demonstrations",
+          "Large shape cards as reference"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal à faire les formes avec leur corps",
+            "choice": "Permettre le travail en paires pour créer les formes ensemble"
+          },
+          {
+            "question": "Si l'espace est limité pour les mouvements",
+            "choice": "Faire les formes avec les mains seulement ou en position assise"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Shape Safari Adventure",
+        "materials": [
+          "Jumelles-jouets ou tuyaux de toilette (25)",
+          "Carnets d'exploration (25)",
+          "Autocollants de formes (75 - 25 de chaque forme)",
+          "Crayons attachés avec ficelle (25)"
+        ],
+        "visualSupports": [
+          "Shape binoculars with cutout viewing holes",
+          "Visual checklist with pictures",
+          "Shape stickers for marking finds"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves trouvent trop de formes à la fois",
+            "choice": "Se concentrer sur une forme à la fois (tous cherchent les cercles d'abord)"
+          },
+          {
+            "question": "Si certains élèves ne trouvent aucune forme",
+            "choice": "Les diriger vers des formes évidentes comme horloges rondes ou fenêtres carrées"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Shape Celebration Circle",
+        "materials": [
+          "Tapis de rassemblement",
+          "Cartes de formes pour référence",
+          "Prix symboliques (autocollants)"
+        ],
+        "visualSupports": [
+          "Students pointing to shape locations",
+          "Body shape demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les formes ne ressemblent pas aux modèles",
+            "choice": "Célébrer les tentatives : 'Ton cercle a sa propre personnalité!'"
+          },
+          {
+            "question": "Si les élèves ont du mal avec les ciseaux",
+            "choice": "Proposer de déchirer le papier pour créer des formes organiques"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Identifier les formes de base dans l'environnement",
+        "then": {
+          "situation": "Cannot leave classroom for hunt",
+          "plan": "Hide large paper shapes around classroom beforehand. Students hunt for hidden shapes instead of naturally occurring ones."
+        }
+      },
+      "realWorldConnection": "Shapes appear in signs, windows, wheels, and everyday objects",
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer avec des formes très évidentes et grandes",
+          "Utiliser des formes colorées ou contrastantes pour faciliter la reconnaissance",
+          "Travailler avec un partenaire plus compétent"
+        ],
+        "pourAvancés": [
+          "Chercher des formes partiellement cachées ou dans des motifs complexes",
+          "Identifier des formes composées (une maison = carré + triangle)",
+          "Compter combien de chaque forme ils trouvent"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes clairs pour chaque forme (tracer dans l'air)",
+          "Répéter les noms des formes fréquemment avec des actions",
+          "Permettre de nommer dans leur langue maternelle d'abord"
+        ],
+        "pourPEI": [
+          "Adapter les déplacements selon les capacités physiques",
+          "Utiliser des supports tactiles pour sentir les formes",
+          "Permettre plus de temps pour l'identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Création de lignes libres",
+      "oneGoal": "Les élèves s'entraînent à créer divers types de lignes avec des outils de dessin",
+      "duration": 45,
+      "keyVocabulary": [
+        "épais",
+        "mince",
+        "pointillé"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Line Tool Exploration",
+        "materials": [
+          "Crayons de couleur (25 boîtes)",
+          "Marqueurs épais (25)",
+          "Crayons de cire (25)",
+          "Pinceaux moyens (25)",
+          "Papier d'essai (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Tools displayed clearly",
+          "Sample lines chart",
+          "Teacher demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les outils ne créent pas les effets attendus",
+            "choice": "Montrer comment ajuster la pression ou l'angle pour obtenir différents effets"
+          },
+          {
+            "question": "Si certains élèves utilisent un seul outil",
+            "choice": "Mettre en place une rotation obligatoire toutes les 5 minutes"
+          },
+          {
+            "question": "Si les matériaux deviennent mélangés ou sales",
+            "choice": "Faire une pause nettoyage avec démonstration de l'entretien des outils"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Line Quality Art Studio",
+        "materials": [
+          "Stations d'outils organisées (4 stations)",
+          "Papier de qualité différente à chaque station (rugueuse, lisse)",
+          "Exemples de qualités de lignes affichés",
+          "Plateau de nettoyage à chaque station"
+        ],
+        "visualSupports": [
+          "Station example cards",
+          "Tool-specific paper at each station",
+          "Visual instruction cards"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si une station devient surpeuplée",
+            "choice": "Implémenter un système de minuterie pour encourager la rotation"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Line Quality Show and Tell",
+        "materials": [
+          "Support d'affichage pour les œuvres",
+          "Loupe pour examiner les détails",
+          "Certificat de 'Maître des Lignes' (25)"
+        ],
+        "visualSupports": [
+          "Student artwork displayed",
+          "Hand movement demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne comprennent pas 'motif'",
+            "choice": "Montrer avec des gestes répétitifs : 'rond-carré-rond-carré'"
+          },
+          {
+            "question": "Si les motifs sont trop complexes",
+            "choice": "Simplifier à 2 éléments qui se répètent : ligne-point-ligne-point"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer différentes qualités de lignes avec les outils de dessin",
+        "then": {
+          "situation": "Drawing tools malfunction or unavailable",
+          "plan": "Use fingers with different pressures - light touch for thin lines, firm press for thick lines, fingertip dots for pointillé. Draw in sand tray or on textured surfaces."
+        }
+      },
+      "realWorldConnection": "Different drawing tools create different line qualities for different purposes",
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur seulement 2 qualités de lignes (épais/mince d'abord)",
+          "Utiliser des outils plus faciles à contrôler (gros marqueurs)",
+          "Permettre plus de temps d'exploration libre"
+        ],
+        "pourAvancés": [
+          "Explorer des techniques mixtes (combiner plusieurs outils)",
+          "Créer des motifs complexes avec différentes qualités de lignes",
+          "Enseigner aux autres élèves leurs découvertes"
+        ],
+        "pourLangue": [
+          "Mettre l'accent sur la démonstration visuelle plutôt que les instructions verbales",
+          "Répéter le vocabulaire épais/mince/pointillé avec des gestes",
+          "Permettre l'exploration sans nécessiter de description verbale immédiate"
+        ],
+        "pourPEI": [
+          "Adapter les outils selon les besoins moteurs individuels",
+          "Utiliser des supports pour maintenir le papier stable",
+          "Offrir des alternatives tactiles si nécessaire"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Formes avec les mains",
+      "oneGoal": "Les élèves créent des formes en utilisant la peinture aux doigts et les techniques d'impression à la main",
+      "duration": 45,
+      "keyVocabulary": [
+        "rectangle",
+        "ovale",
+        "losange"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Hand Shape Warm-up",
+        "materials": [
+          "Miroirs individuels (25)",
+          "Cartes de formes géantes (6)",
+          "Lotion pour mains (2 bouteilles)"
+        ],
+        "visualSupports": [
+          "Teacher hand demonstrations",
+          "Shape reference cards",
+          "Mirror for students to see their hand shapes"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves ont du mal à former les formes avec leurs mains",
+            "choice": "Permettre le travail en paires pour créer des formes plus grandes ensemble"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Hand Print Shape Gallery",
+        "materials": [
+          "Peinture lavable non-toxique (4 couleurs) (6 contenants)",
+          "Assiettes plates pour peinture (25)",
+          "Papier cartonné ou construction (25 grandes feuilles)",
+          "Tabliers ou vieux vêtements (25)",
+          "Serviettes humides (25)"
+        ],
+        "visualSupports": [
+          "Step-by-step visual guides",
+          "Teacher demonstration",
+          "Shape examples made with hand prints"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si la peinture devient trop salissante ou ingérable",
+            "choice": "Passer à des tampons encreurs lavables ou à l'argile pour continuer"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Shape Gallery Walk",
+        "materials": [
+          "Espace d'affichage pour séchage",
+          "Lingettes nettoyantes (25)",
+          "Savon et serviettes pour lavage des mains"
+        ],
+        "visualSupports": [
+          "Artwork displayed on desks or walls",
+          "Pointing and nodding communication"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient pas de motifs dans la nature",
+            "choice": "Commencer par des exemples évidents : pétales de fleur, rayures d'animal"
+          },
+          {
+            "question": "Si l'attention se disperse à l'extérieur",
+            "choice": "Créer un cadre avec les mains pour focaliser l'observation"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des formes avec les techniques de peinture aux doigts et d'impression à la main",
+        "then": {
+          "situation": "Finger paints unavailable or classroom restrictions",
+          "plan": "Use clay or playdough to create 3D shapes with hands. Students can press hands into clay to make shape impressions."
+        }
+      },
+      "realWorldConnection": "Hands can create shapes in sand, clay, and other materials",
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur une forme à la fois (rectangles avec les paumes d'abord)",
+          "Utiliser des guides visuels ou des gabarits pour aider au positionnement",
+          "Permettre l'aide d'un partenaire pour le positionnement des mains"
+        ],
+        "pourAvancés": [
+          "Créer des formes composées en combinant plusieurs impressions",
+          "Explorer les formes plus complexes (losange, ovale) avec précision",
+          "Décorer leurs formes avec des détails supplémentaires"
+        ],
+        "pourLangue": [
+          "Utiliser la démonstration tactile plutôt que les instructions verbales",
+          "Répéter les noms des formes en montrant avec les mains",
+          "Permettre l'exploration libre avant d'introduire le vocabulaire"
+        ],
+        "pourPEI": [
+          "Adapter les techniques selon les capacités motrices fines",
+          "Utiliser des outils d'assistance si nécessaire (pinceaux-éponges)",
+          "Offrir des alternatives sensorielles pour ceux qui évitent les textures"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Lignes racontent des histoires",
+      "oneGoal": "Les élèves utilisent différentes lignes pour illustrer des histoires simples ou des expériences",
+      "duration": 45,
+      "keyVocabulary": [
+        "histoire",
+        "voyage",
+        "chemin"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Story Line Acting",
+        "materials": [
+          "Cartes d'histoire simple (6-8 cartes)",
+          "Accessoires simples (chapeaux, écharpes) (5)",
+          "Espace de performance délimité"
+        ],
+        "visualSupports": [
+          "Teacher dramatic storytelling",
+          "Simple story picture cards",
+          "Large gestures and movements"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal à connecter lignes et histoires",
+            "choice": "Utiliser des histoires très familières comme 'Boucle d'or' avec des lignes droites pour marcher, courbes pour les bols"
+          },
+          {
+            "question": "Si certains élèves sont timides pour performer",
+            "choice": "Permettre le travail en paires ou petits groupes pour réduire l'anxiété"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Journey Map Creation",
+        "materials": [
+          "Papier grand format ou carton (25)",
+          "Crayons de couleur (25 boîtes)",
+          "Marqueurs fins (25)",
+          "Autocollants décoratifs (100)",
+          "Exemples de cartes simples (3-4)"
+        ],
+        "visualSupports": [
+          "Simple map examples",
+          "Step-by-step visual instructions",
+          "Teacher's own journey map example"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves créent des cartes trop complexes",
+            "choice": "Les encourager à se concentrer sur 3-4 éléments principaux avec des lignes claires"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Journey Sharing Circle",
+        "materials": [
+          "Tapis de rassemblement",
+          "Support pour afficher les cartes",
+          "Pointer pour tracer les parcours"
+        ],
+        "visualSupports": [
+          "Maps displayed in center of circle",
+          "Finger tracing demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne connaissent pas les cultures mentionnées",
+            "choice": "Connecter à leur expérience : 'Comme les décorations chez mémère'"
+          },
+          {
+            "question": "Si les motifs semblent trop avancés",
+            "choice": "Extraire un élément simple : juste les formes rondes par exemple"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Utiliser différentes lignes pour illustrer des histoires ou expériences",
+        "then": {
+          "situation": "Students struggle with personal journey concept",
+          "plan": "Use a familiar story like 'Three Little Pigs' and create the pigs' journey using different lines for different parts of their adventure."
+        }
+      },
+      "realWorldConnection": "Maps use lines to show paths and journeys we take",
+      "differentiation": {
+        "pourDifficultés": [
+          "Fournir une histoire structure simple avec seulement 3 étapes",
+          "Utiliser des gabarits de lignes pour tracer les parcours",
+          "Permettre de raconter l'histoire oralement plutôt que de la dessiner entièrement"
+        ],
+        "pourAvancés": [
+          "Créer des histoires originales avec des parcours complexes",
+          "Ajouter des détails narratifs et des légendes à leurs cartes",
+          "Utiliser différents types de lignes pour différents moyens de transport"
+        ],
+        "pourLangue": [
+          "Permettre l'utilisation d'images ou de dessins pour compléter le vocabulaire manquant",
+          "Utiliser des histoires culturellement familières si possible",
+          "Encourager la narration dans leur langue maternelle d'abord"
+        ],
+        "pourPEI": [
+          "Adapter les outils de dessin selon les besoins moteurs",
+          "Permettre des formats alternatifs (oral, gestuel, numérique)",
+          "Offrir plus de temps pour la planification et l'exécution"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève utilise différents types de lignes pour représenter différents éléments d'une histoire",
+          "L'élève utilise le vocabulaire histoire, voyage, chemin dans ses explications",
+          "L'élève crée une séquence cohérente dans sa carte de parcours",
+          "L'élève partage son histoire avec enthusiasm et clarté"
+        ],
+        "checkpoints": [
+          "Ouverture : Vérifier la compréhension du concept histoire-ligne",
+          "Mi-création : Observer l'intentionnalité dans les choix de lignes",
+          "Fermeture : Écouter la cohérence des récits partagés"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Motifs avec des formes",
+      "oneGoal": "Les élèves créent des motifs répétitifs simples en utilisant des formes de base",
+      "duration": 45,
+      "keyVocabulary": [
+        "motif",
+        "répéter",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Pattern Body Dance",
+        "materials": [
+          "Cartes de motifs corporels (8-10)",
+          "Musique rythmique douce",
+          "Espace dégagé pour danser",
+          "Foulards colorés (25)"
+        ],
+        "visualSupports": [
+          "Teacher clear body demonstrations",
+          "Pattern cards showing body positions"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont du mal avec le concept de répétition",
+            "choice": "Commencer par des motifs corporels très simples : taper-claquer-taper-claquer"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Pattern Creation Studio",
+        "materials": [
+          "Tampons de formes diverses (75 - 25 de chaque forme de base)",
+          "Encre ou peinture lavable (6 couleurs)",
+          "Bandes de papier longues (25)",
+          "Assiettes plates pour encrage (6)",
+          "Exemples de motifs affichés (5-6)"
+        ],
+        "visualSupports": [
+          "Pattern example cards",
+          "Step-by-step stamping demonstration",
+          "Completed pattern examples"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les tampons ne fonctionnent pas bien",
+            "choice": "Passer au dessin libre de formes répétitives ou utiliser des autocollants"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Pattern Fashion Show",
+        "materials": [
+          "Pinces à linge pour affichage (25)",
+          "Corde ou support d'affichage",
+          "Musique de défilé légère",
+          "Applaudissements d'encouragement"
+        ],
+        "visualSupports": [
+          "Pattern strips worn or displayed",
+          "Clapping rhythms",
+          "Walking presentation"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves n'associent pas lignes et émotions",
+            "choice": "Montrer avec le corps : 'ligne droite = je suis fort, ligne ondulée = je suis calme'"
+          },
+          {
+            "question": "Si certains sont mal à l'aise avec les émotions",
+            "choice": "Utiliser des exemples neutres : 'cette ligne me fait penser au vent'"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des motifs répétitifs simples avec des formes de base",
+        "then": {
+          "situation": "Stamp supplies fail",
+          "plan": "Use cut paper shapes to glue patterns, or create patterns with pattern blocks and copy them by drawing."
+        }
+      },
+      "realWorldConnection": "Patterns appear in clothing, wallpaper, and nature around us",
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur des motifs à 2 éléments seulement (cercle-carré-cercle-carré)",
+          "Utiliser des gabarits ou guides visuels pour le placement",
+          "Permettre la répétition libre sans structure stricte au début"
+        ],
+        "pourAvancés": [
+          "Créer des motifs à 3-4 éléments avec variations de couleur",
+          "Expérimenter avec la taille et l'orientation des formes",
+          "Désigner des motifs pour différents usages (bordures, centres)"
+        ],
+        "pourLangue": [
+          "Utiliser la démonstration visuelle claire du concept de répétition",
+          "Répéter les mots motif/répéter/ensemble avec des actions",
+          "Permettre l'imitation des motifs avant la création originale"
+        ],
+        "pourPEI": [
+          "Adapter les outils de tamponnage selon les capacités motrices",
+          "Utiliser des supports pour maintenir la stabilité du papier",
+          "Offrir des alternatives comme le collage pré-découpé"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Lignes et nature",
+      "oneGoal": "Les élèves observent et recréent des motifs de lignes naturels de plantes et d'animaux",
+      "duration": 45,
+      "keyVocabulary": [
+        "nature",
+        "feuille",
+        "branche"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Nature Line Detective Work",
+        "materials": [
+          "Objets naturels variés (feuilles, branches, plumes) (30-40)",
+          "Loupes (25)",
+          "Plateaux d'observation (25)",
+          "Carnets de nature (25)"
+        ],
+        "visualSupports": [
+          "Real natural objects",
+          "Magnifying glasses",
+          "Teacher finger tracing demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les objets naturels ne sont pas disponibles",
+            "choice": "Utiliser des photos haute qualité de la nature ou sortir brièvement à l'extérieur pour observer"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Nature Line Art Creation",
+        "materials": [
+          "Papier de différentes textures (25 feuilles)",
+          "Crayons de couleur naturelle (verts, bruns, jaunes) (25 boîtes)",
+          "Livres de photos de nature (5-6)",
+          "Objets naturels comme modèles sur chaque table"
+        ],
+        "visualSupports": [
+          "Nature reference objects on tables",
+          "Nature photo books",
+          "Teacher demonstration drawings"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves copient trop exactement au lieu de s'inspirer",
+            "choice": "Les encourager à interpreter et simplifier les motifs naturels à leur manière"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Nature Gallery and Guessing Game",
+        "materials": [
+          "Espace d'affichage naturel (tables ou sol)",
+          "Objets naturels de référence pour comparaison",
+          "Cartes 'Devine l'objet naturel' (10)"
+        ],
+        "visualSupports": [
+          "Student artwork displayed",
+          "Natural reference objects available for comparison"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient que la surface des œuvres",
+            "choice": "Guider l'observation : 'Regarde les couleurs, puis les formes, puis les lignes'"
+          },
+          {
+            "question": "Si certains critiquent négativement",
+            "choice": "Rediriger : 'Qu'est-ce que tu remarques d'intéressant dans cette œuvre?'"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Observer et recréer des motifs de lignes naturels",
+        "then": {
+          "situation": "No natural objects available",
+          "plan": "Use online nature videos or photos on screen. Students can trace line patterns they see in the air, then draw them on paper."
+        }
+      },
+      "realWorldConnection": "Tree branches, leaf veins, and animal stripes are natural line patterns",
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur des motifs simples (ligne droite d'une branche)",
+          "Utiliser le traçage direct sur les objets naturels d'abord",
+          "Permettre l'observation sans nécessité de reproduction immédiate"
+        ],
+        "pourAvancés": [
+          "Observer et reproduire des motifs plus complexes (nervures de feuilles)",
+          "Combiner plusieurs motifs naturels dans une œuvre",
+          "Créer des motifs inspirés mais non copiés de la nature"
+        ],
+        "pourLangue": [
+          "Utiliser l'observation tactile et visuelle plutôt que les instructions verbales",
+          "Répéter le vocabulaire nature/feuille/branche avec les objets réels",
+          "Permettre l'exploration libre avant d'introduire le vocabulaire spécifique"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'observation (grosses loupes, supports)",
+          "Utiliser différentes textures d'objets naturels selon les préférences sensorielles",
+          "Offrir des alternatives comme la photographie d'objets naturels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie des motifs de lignes dans les objets naturels",
+          "L'élève utilise le vocabulaire nature, feuille, branche correctement",
+          "L'élève crée des lignes inspirées des observations naturelles",
+          "L'élève fait des connexions entre ses créations et les modèles naturels"
+        ],
+        "checkpoints": [
+          "Exploration : Observer l'engagement dans l'observation détaillée",
+          "Création : Vérifier l'inspiration naturelle dans les œuvres",
+          "Partage : Écouter les connexions établies entre art et nature"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Formes géométriques composées",
+      "oneGoal": "Les élèves combinent les formes de base pour créer des formes et objets plus complexes",
+      "duration": 45,
+      "keyVocabulary": [
+        "construire",
+        "assembler",
+        "créer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Shape Building Challenge",
+        "materials": [
+          "Crayons de couleur (25 boîtes)",
+          "Papier blanc grand format (25 feuilles)",
+          "Règles de plastique (25)"
+        ],
+        "visualSupports": [
+          "Pattern blocks for manipulation",
+          "Example shape combinations",
+          "Teacher demonstration"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne comprennent pas 'texture' visuellement",
+            "choice": "Faire toucher d'abord : 'Rugueux comme du papier sablé, lisse comme du plastique'"
+          },
+          {
+            "question": "Si les outils de texture ne fonctionnent pas",
+            "choice": "Improviser avec des objets de classe : gommes à effacer, règles texturées"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Shape Construction Studio",
+        "materials": [
+          "Papier coloré (assortiment)",
+          "Ciseaux sécuritaires (25 paires)",
+          "Bâtons de colle (25)"
+        ],
+        "visualSupports": [
+          "Variety of pre-cut shapes in different sizes",
+          "Example combinations displayed",
+          "Step-by-step building visuals"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves bougent trop vite et ratent des détails",
+            "choice": "Instaurer des pauses : 'Stop! Regardons bien cette partie ensemble'"
+          },
+          {
+            "question": "Si l'énergie devient trop haute",
+            "choice": "Transformer en mouvement lent : 'Bougeons comme des astronautes'"
+          },
+          {
+            "question": "Si certains ne participent pas aux mouvements",
+            "choice": "Proposer des rôles alternatifs : 'Tu peux être le guide qui observe'"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Shape Building Show and Tell",
+        "materials": [
+          "Tampons géométriques (set de 25)",
+          "Encreurs lavables (6 couleurs)",
+          "Papier d'art (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Student creations displayed",
+          "Pointing and counting demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne savent pas comment collaborer",
+            "choice": "Donner des rôles clairs : 'Toi les formes, toi les couleurs, toi l'assemblage'"
+          },
+          {
+            "question": "Si des conflits éclatent sur les choix artistiques",
+            "choice": "Proposer le vote : 'On essaie les deux idées et on choisit ensemble'"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Combiner les formes de base pour créer des formes complexes",
+        "then": {
+          "situation": "Paper shapes or glue unavailable",
+          "plan": "Use pattern blocks to build creations and have students draw their constructions. Or use sidewalk chalk outside to draw large shape combinations."
+        }
+      },
+      "realWorldConnection": "Houses, cars, and toys are made by combining basic shapes",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Fournir des instructions simples, une étape à la fois",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Cultures et motifs",
+      "oneGoal": "Les élèves explorent les motifs de lignes et formes de différentes cultures",
+      "duration": 45,
+      "keyVocabulary": [
+        "culture",
+        "tradition",
+        "décoration"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Cultural Pattern Discovery",
+        "materials": [
+          "Crayons de cire (25 boîtes)",
+          "Surfaces texturées (écorce, tissus, grillage)",
+          "Papier fin (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Real cultural objects or high-quality photos",
+          "Pattern close-up examples",
+          "World map showing pattern origins"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont gênés de présenter",
+            "choice": "Permettre de présenter avec un ami ou juste montrer sans parler"
+          },
+          {
+            "question": "Si les présentations sont timides ou inaudibles",
+            "choice": "Encourager : 'Tiens ton dessin haut pour que tout le monde voie bien'"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Cultural Pattern Creation",
+        "materials": [
+          "Papier affiche grand format (6 feuilles)",
+          "Marqueurs lavables (6 sets)",
+          "Ruban adhésif"
+        ],
+        "visualSupports": [
+          "Pattern templates from different cultures",
+          "Step-by-step pattern guides",
+          "Cultural reference materials"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si certains terminent très rapidement",
+            "choice": "Proposer d'ajouter des détails ou de créer une deuxième version"
+          },
+          {
+            "question": "Si certains se découragent de leurs dessins",
+            "choice": "Valoriser l'observation : 'Tu as bien vu ce détail important!'"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cultural Pattern Appreciation Circle",
+        "materials": [
+          "Musique rythmée",
+          "Foulards ou rubans (25)",
+          "Espace dégagé"
+        ],
+        "visualSupports": [
+          "Student pattern creations",
+          "Cultural reference materials for comparison"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves oublient le vocabulaire des lignes",
+            "choice": "Rappeler avec des gestes : doigt droit pour 'droit', ondulation pour 'courbe'"
+          },
+          {
+            "question": "Si certains élèves ne participent pas au partage",
+            "choice": "Utiliser le pointage silencieux - ils montrent leurs lignes préférées sans parler"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Explorer les motifs de lignes et formes de différentes cultures",
+        "then": {
+          "situation": "Cultural materials unavailable",
+          "plan": "Focus on patterns from students' own family backgrounds. Ask students if their families have special decorations or patterns at home."
+        }
+      },
+      "realWorldConnection": "Every culture decorates objects with special line and shape patterns",
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Permettre les explications dans la langue première si nécessaire"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Expression personnelle",
+      "oneGoal": "Les élèves créent des œuvres originales exprimant leurs sentiments avec des lignes et formes",
+      "duration": 45,
+      "keyVocabulary": [
+        "expression",
+        "personnel",
+        "sentiment"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Feeling Check-in and Expression",
+        "materials": [
+          "Loupes (25)",
+          "Carnets d'observation (25)",
+          "Crayons à mine (25)"
+        ],
+        "visualSupports": [
+          "Mirrors for self-reflection",
+          "Emotion reference cards",
+          "Teacher demonstration of feeling-lines"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont peur de bouger librement",
+            "choice": "Commencer par des mouvements assis, puis ajouter les bras, enfin tout le corps"
+          },
+          {
+            "question": "Si l'espace devient trop agité",
+            "choice": "Créer des 'zones de danse' avec du ruban au sol pour limiter l'espace"
+          },
+          {
+            "question": "Si certains copient au lieu de créer",
+            "choice": "Encourager : 'Montre-moi TA façon spéciale de faire une ligne zigzag'"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Personal Expression Art Creation",
+        "materials": [
+          "Tapis de rassemblement",
+          "Chevalet d'exposition",
+          "Pinces à dessin"
+        ],
+        "visualSupports": [
+          "All previous lesson techniques available",
+          "Soft background music",
+          "Encouraging teacher presence"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient pas les formes dans les objets",
+            "choice": "Tracer les contours avec le doigt en nommant : 'Je trace un cercle'"
+          },
+          {
+            "question": "Si certains nomment incorrectement les formes",
+            "choice": "Valider l'effort puis corriger gentiment : 'Presque! C'est un triangle'"
+          },
+          {
+            "question": "Si l'enthousiasme baisse",
+            "choice": "Transformer en 'chasse au trésor' avec des indices sur les formes"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Artist Reflection Time",
+        "materials": [
+          "Crayons de couleur (25 boîtes)",
+          "Papier blanc grand format (25 feuilles)",
+          "Règles de plastique (25)"
+        ],
+        "visualSupports": [
+          "Quiet, respectful environment",
+          "Student artwork as focus"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les formes ne ressemblent pas aux modèles",
+            "choice": "Célébrer les tentatives : 'Ton cercle a sa propre personnalité!'"
+          },
+          {
+            "question": "Si les élèves ont du mal avec les ciseaux",
+            "choice": "Proposer de déchirer le papier pour créer des formes organiques"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des œuvres originales exprimant leurs sentiments",
+        "then": {
+          "situation": "Students resist personal expression",
+          "plan": "Make it less personal - have them create artwork about their favorite animal or color instead, focusing on technique rather than emotion."
+        }
+      },
+      "realWorldConnection": "Art helps us share our feelings with others through visual language",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Encourager le jumelage avec un pair plus fort en français"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Critique et appréciation",
+      "oneGoal": "Les élèves observent et discutent comment les lignes et formes fonctionnent dans les œuvres d'art et la vie quotidienne",
+      "duration": 45,
+      "keyVocabulary": [
+        "regarder",
+        "observer",
+        "décrire"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Art Detective Training",
+        "materials": [
+          "Papier coloré (assortiment)",
+          "Ciseaux sécuritaires (25 paires)",
+          "Bâtons de colle (25)"
+        ],
+        "visualSupports": [
+          "Art detective badges or clipboards",
+          "Magnifying glasses",
+          "One clear art example"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne comprennent pas 'motif'",
+            "choice": "Montrer avec des gestes répétitifs : 'rond-carré-rond-carré'"
+          },
+          {
+            "question": "Si les motifs sont trop complexes",
+            "choice": "Simplifier à 2 éléments qui se répètent : ligne-point-ligne-point"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Gallery Investigation",
+        "materials": [
+          "Tampons géométriques (set de 25)",
+          "Encreurs lavables (6 couleurs)",
+          "Papier d'art (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Art prints at student eye level",
+          "Simple observation sheets with pictures",
+          "Detective tools"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient pas de motifs dans la nature",
+            "choice": "Commencer par des exemples évidents : pétales de fleur, rayures d'animal"
+          },
+          {
+            "question": "Si l'attention se disperse à l'extérieur",
+            "choice": "Créer un cadre avec les mains pour focaliser l'observation"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Detective Report Sharing",
+        "materials": [
+          "Crayons de cire (25 boîtes)",
+          "Surfaces texturées (écorce, tissus, grillage)",
+          "Papier fin (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Student pointing at artworks",
+          "Body demonstrations of elements"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne connaissent pas les cultures mentionnées",
+            "choice": "Connecter à leur expérience : 'Comme les décorations chez mémère'"
+          },
+          {
+            "question": "Si les motifs semblent trop avancés",
+            "choice": "Extraire un élément simple : juste les formes rondes par exemple"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Observer et discuter comment les lignes et formes fonctionnent dans les œuvres",
+        "then": {
+          "situation": "Art prints unavailable",
+          "plan": "Use student artwork from previous lessons as gallery pieces, or investigate line and shape elements in classroom decorations and displays."
+        }
+      },
+      "realWorldConnection": "Looking carefully at art and design helps us see beauty everywhere",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Proposer des textes plus complexes avec vocabulaire étendu"
+        ],
+        "pourLangue": [
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Encourager le jumelage avec un pair plus fort en français"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Portfolio et réflexion",
+      "oneGoal": "Les élèves compilent leur travail et réfléchissent sur leur apprentissage des lignes et formes",
+      "duration": 45,
+      "keyVocabulary": [
+        "portfolio",
+        "apprendre",
+        "grandir"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Art Memory Lane",
+        "materials": [
+          "Papier affiche grand format (6 feuilles)",
+          "Marqueurs lavables (6 sets)",
+          "Ruban adhésif"
+        ],
+        "visualSupports": [
+          "All previous artwork displayed chronologically",
+          "Lesson reference cards for teacher prompts"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves n'associent pas lignes et émotions",
+            "choice": "Montrer avec le corps : 'ligne droite = je suis fort, ligne ondulée = je suis calme'"
+          },
+          {
+            "question": "Si certains sont mal à l'aise avec les émotions",
+            "choice": "Utiliser des exemples neutres : 'cette ligne me fait penser au vent'"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Portfolio Creation and Reflection",
+        "materials": [
+          "Musique rythmée",
+          "Foulards ou rubans (25)",
+          "Espace dégagé"
+        ],
+        "visualSupports": [
+          "Portfolio organization examples",
+          "Simple reflection sheets with picture prompts",
+          "Teacher individual conferencing"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient que la surface des œuvres",
+            "choice": "Guider l'observation : 'Regarde les couleurs, puis les formes, puis les lignes'"
+          },
+          {
+            "question": "Si certains critiquent négativement",
+            "choice": "Rediriger : 'Qu'est-ce que tu remarques d'intéressant dans cette œuvre?'"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Portfolio Pride Celebration",
+        "materials": [
+          "Loupes (25)",
+          "Carnets d'observation (25)",
+          "Crayons à mine (25)"
+        ],
+        "visualSupports": [
+          "Student portfolios as props",
+          "Celebratory atmosphere"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne comprennent pas 'texture' visuellement",
+            "choice": "Faire toucher d'abord : 'Rugueux comme du papier sablé, lisse comme du plastique'"
+          },
+          {
+            "question": "Si les outils de texture ne fonctionnent pas",
+            "choice": "Improviser avec des objets de classe : gommes à effacer, règles texturées"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Compiler et réfléchir sur l'apprentissage des lignes et formes",
+        "then": {
+          "situation": "Student artwork is incomplete or missing",
+          "plan": "Focus on memories and learning instead of physical pieces. Students can recreate favorite techniques or demonstrate what they learned through movement and gesture."
+        }
+      },
+      "realWorldConnection": "Keeping artwork helps us see how our skills grow and change",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Permettre les explications dans la langue première si nécessaire"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Lignes dans l'espace",
+      "oneGoal": "Les élèves s'entraînent à créer des sculptures de lignes tridimensionnelles avec du fil de fer",
+      "duration": 45,
+      "keyVocabulary": [
+        "espace",
+        "sculpture",
+        "tridimensionnel"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "3D Line Body Sculptures",
+        "materials": [
+          "Tapis de rassemblement",
+          "Chevalet d'exposition",
+          "Pinces à dessin"
+        ],
+        "visualSupports": [
+          "Partner demonstrations",
+          "Teacher showing different viewing angles"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves bougent trop vite et ratent des détails",
+            "choice": "Instaurer des pauses : 'Stop! Regardons bien cette partie ensemble'"
+          },
+          {
+            "question": "Si l'énergie devient trop haute",
+            "choice": "Transformer en mouvement lent : 'Bougeons comme des astronautes'"
+          },
+          {
+            "question": "Si certains ne participent pas aux mouvements",
+            "choice": "Proposer des rôles alternatifs : 'Tu peux être le guide qui observe'"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Wire Line Sculpture Studio",
+        "materials": [
+          "Crayons de couleur (25 boîtes)",
+          "Papier blanc grand format (25 feuilles)",
+          "Règles de plastique (25)"
+        ],
+        "visualSupports": [
+          "3D sculpture examples",
+          "Step-by-step construction visuals",
+          "Teacher demonstration"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne savent pas comment collaborer",
+            "choice": "Donner des rôles clairs : 'Toi les formes, toi les couleurs, toi l'assemblage'"
+          },
+          {
+            "question": "Si des conflits éclatent sur les choix artistiques",
+            "choice": "Proposer le vote : 'On essaie les deux idées et on choisit ensemble'"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Sculpture Gallery Walk",
+        "materials": [
+          "Papier coloré (assortiment)",
+          "Ciseaux sécuritaires (25 paires)",
+          "Bâtons de colle (25)"
+        ],
+        "visualSupports": [
+          "Sculpture display tables",
+          "Walking gallery format"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont gênés de présenter",
+            "choice": "Permettre de présenter avec un ami ou juste montrer sans parler"
+          },
+          {
+            "question": "Si les présentations sont timides ou inaudibles",
+            "choice": "Encourager : 'Tiens ton dessin haut pour que tout le monde voie bien'"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des sculptures de lignes tridimensionnelles",
+        "then": {
+          "situation": "Wire materials unavailable",
+          "plan": "Use playdough or clay to create 3D line sculptures by rolling and shaping. Students can make standing line forms that can be viewed from all angles."
+        }
+      },
+      "realWorldConnection": "Sculptors use lines in space to create artwork we can walk around",
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Formes en collage",
+      "oneGoal": "Les élèves s'entraînent à la reconnaissance des formes et à la composition par les techniques de collage",
+      "duration": 45,
+      "keyVocabulary": [
+        "collage",
+        "composition",
+        "superposer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Shape Layering Exploration",
+        "materials": [
+          "Tampons géométriques (set de 25)",
+          "Encreurs lavables (6 couleurs)",
+          "Papier d'art (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Pre-cut shapes for demonstration",
+          "Teacher layering examples",
+          "Visual vocabulary cards"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si certains terminent très rapidement",
+            "choice": "Proposer d'ajouter des détails ou de créer une deuxième version"
+          },
+          {
+            "question": "Si certains se découragent de leurs dessins",
+            "choice": "Valoriser l'observation : 'Tu as bien vu ce détail important!'"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Collage Creation Workshop",
+        "materials": [
+          "Crayons de cire (25 boîtes)",
+          "Surfaces texturées (écorce, tissus, grillage)",
+          "Papier fin (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Collage examples",
+          "Step-by-step cutting and layering visuals",
+          "Safe scissor use demonstration"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves oublient le vocabulaire des lignes",
+            "choice": "Rappeler avec des gestes : doigt droit pour 'droit', ondulation pour 'courbe'"
+          },
+          {
+            "question": "Si certains élèves ne participent pas au partage",
+            "choice": "Utiliser le pointage silencieux - ils montrent leurs lignes préférées sans parler"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Collage Composition Discussion",
+        "materials": [
+          "Papier affiche grand format (6 feuilles)",
+          "Marqueurs lavables (6 sets)",
+          "Ruban adhésif"
+        ],
+        "visualSupports": [
+          "Student collages displayed",
+          "Pointing to layered elements"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont peur de bouger librement",
+            "choice": "Commencer par des mouvements assis, puis ajouter les bras, enfin tout le corps"
+          },
+          {
+            "question": "Si l'espace devient trop agité",
+            "choice": "Créer des 'zones de danse' avec du ruban au sol pour limiter l'espace"
+          },
+          {
+            "question": "Si certains copient au lieu de créer",
+            "choice": "Encourager : 'Montre-moi TA façon spéciale de faire une ligne zigzag'"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Reconnaissance des formes et composition par collage",
+        "then": {
+          "situation": "Cutting materials unavailable or unsafe",
+          "plan": "Use pre-torn paper shapes or digital shape arranging if technology is available. Focus on layering and composition concepts rather than cutting skills."
+        }
+      },
+      "realWorldConnection": "Magazine pictures are made of shapes that can be cut and rearranged",
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Lignes de mouvement",
+      "oneGoal": "Les élèves s'entraînent à dessiner des lignes d'action qui montrent le mouvement et l'énergie",
+      "duration": 45,
+      "keyVocabulary": [
+        "mouvement",
+        "énergie",
+        "action"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Movement Line Acting",
+        "materials": [
+          "Musique rythmée",
+          "Foulards ou rubans (25)",
+          "Espace dégagé"
+        ],
+        "visualSupports": [
+          "Ribbon scarves for visible movement trails",
+          "Teacher movement demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient pas les formes dans les objets",
+            "choice": "Tracer les contours avec le doigt en nommant : 'Je trace un cercle'"
+          },
+          {
+            "question": "Si certains nomment incorrectement les formes",
+            "choice": "Valider l'effort puis corriger gentiment : 'Presque! C'est un triangle'"
+          },
+          {
+            "question": "Si l'enthousiasme baisse",
+            "choice": "Transformer en 'chasse au trésor' avec des indices sur les formes"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Action Line Drawing Studio",
+        "materials": [
+          "Loupes (25)",
+          "Carnets d'observation (25)",
+          "Crayons à mine (25)"
+        ],
+        "visualSupports": [
+          "Action photo references",
+          "Comic book examples of movement lines",
+          "Teacher demonstration drawings"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les formes ne ressemblent pas aux modèles",
+            "choice": "Célébrer les tentatives : 'Ton cercle a sa propre personnalité!'"
+          },
+          {
+            "question": "Si les élèves ont du mal avec les ciseaux",
+            "choice": "Proposer de déchirer le papier pour créer des formes organiques"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Movement Line Performance",
+        "materials": [
+          "Tapis de rassemblement",
+          "Chevalet d'exposition",
+          "Pinces à dessin"
+        ],
+        "visualSupports": [
+          "Student artwork displayed",
+          "Movement demonstrations"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne comprennent pas 'motif'",
+            "choice": "Montrer avec des gestes répétitifs : 'rond-carré-rond-carré'"
+          },
+          {
+            "question": "Si les motifs sont trop complexes",
+            "choice": "Simplifier à 2 éléments qui se répètent : ligne-point-ligne-point"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Dessiner des lignes d'action montrant mouvement et énergie",
+        "then": {
+          "situation": "Drawing supplies limited",
+          "plan": "Use finger movement in air to practice action lines, or draw large movement lines with sidewalk chalk outside."
+        }
+      },
+      "realWorldConnection": "Comic books use special lines to show speed and movement",
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Motifs personnalisés",
+      "oneGoal": "Les élèves s'entraînent à créer leurs propres motifs uniques avec les formes et lignes apprises",
+      "duration": 45,
+      "keyVocabulary": [
+        "personnalisé",
+        "unique",
+        "invention"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Pattern Inventor Brainstorm",
+        "materials": [
+          "Crayons de couleur (25 boîtes)",
+          "Papier blanc grand format (25 feuilles)",
+          "Règles de plastique (25)"
+        ],
+        "visualSupports": [
+          "Review charts of all learned shapes and lines",
+          "Brainstorming encouraging environment"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient pas de motifs dans la nature",
+            "choice": "Commencer par des exemples évidents : pétales de fleur, rayures d'animal"
+          },
+          {
+            "question": "Si l'attention se disperse à l'extérieur",
+            "choice": "Créer un cadre avec les mains pour focaliser l'observation"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Personal Pattern Design Studio",
+        "materials": [
+          "Papier coloré (assortiment)",
+          "Ciseaux sécuritaires (25 paires)",
+          "Bâtons de colle (25)"
+        ],
+        "visualSupports": [
+          "All previous art techniques available",
+          "Pattern planning guides",
+          "Designer pattern examples for inspiration"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne connaissent pas les cultures mentionnées",
+            "choice": "Connecter à leur expérience : 'Comme les décorations chez mémère'"
+          },
+          {
+            "question": "Si les motifs semblent trop avancés",
+            "choice": "Extraire un élément simple : juste les formes rondes par exemple"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Pattern Designer Presentation",
+        "materials": [
+          "Tampons géométriques (set de 25)",
+          "Encreurs lavables (6 couleurs)",
+          "Papier d'art (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Student patterns displayed professionally",
+          "Presentation space"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves n'associent pas lignes et émotions",
+            "choice": "Montrer avec le corps : 'ligne droite = je suis fort, ligne ondulée = je suis calme'"
+          },
+          {
+            "question": "Si certains sont mal à l'aise avec les émotions",
+            "choice": "Utiliser des exemples neutres : 'cette ligne me fait penser au vent'"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Créer des motifs uniques personnalisés",
+        "then": {
+          "situation": "Art supplies limited",
+          "plan": "Focus on pattern planning and design using paper and pencil, or create patterns using natural materials found outside."
+        }
+      },
+      "realWorldConnection": "Designers create new patterns for fabric, wallpaper, and products",
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Proposer des textes plus complexes avec vocabulaire étendu"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Fournir des instructions simples, une étape à la fois",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Collaborations créatives",
+      "oneGoal": "Les élèves s'entraînent au travail d'équipe en créant de grandes œuvres collectives avec lignes et formes",
+      "duration": 45,
+      "keyVocabulary": [
+        "collaboration",
+        "équipe",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Teamwork Planning Circle",
+        "materials": [
+          "Crayons de cire (25 boîtes)",
+          "Surfaces texturées (écorce, tissus, grillage)",
+          "Papier fin (25 feuilles)"
+        ],
+        "visualSupports": [
+          "Small group formation",
+          "Planning sheets with pictures",
+          "Turn-taking visual cues"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne voient que la surface des œuvres",
+            "choice": "Guider l'observation : 'Regarde les couleurs, puis les formes, puis les lignes'"
+          },
+          {
+            "question": "Si certains critiquent négativement",
+            "choice": "Rediriger : 'Qu'est-ce que tu remarques d'intéressant dans cette œuvre?'"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Collaborative Art Creation",
+        "materials": [
+          "Papier affiche grand format (6 feuilles)",
+          "Marqueurs lavables (6 sets)",
+          "Ruban adhésif"
+        ],
+        "visualSupports": [
+          "Large workspace for each group",
+          "Shared supplies",
+          "Collaboration examples"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne comprennent pas 'texture' visuellement",
+            "choice": "Faire toucher d'abord : 'Rugueux comme du papier sablé, lisse comme du plastique'"
+          },
+          {
+            "question": "Si les outils de texture ne fonctionnent pas",
+            "choice": "Improviser avec des objets de classe : gommes à effacer, règles texturées"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Collaborative Art Gallery Opening",
+        "materials": [
+          "Musique rythmée",
+          "Foulards ou rubans (25)",
+          "Espace dégagé"
+        ],
+        "visualSupports": [
+          "Professional gallery setup",
+          "Group presentation format"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves bougent trop vite et ratent des détails",
+            "choice": "Instaurer des pauses : 'Stop! Regardons bien cette partie ensemble'"
+          },
+          {
+            "question": "Si l'énergie devient trop haute",
+            "choice": "Transformer en mouvement lent : 'Bougeons comme des astronautes'"
+          },
+          {
+            "question": "Si certains ne participent pas aux mouvements",
+            "choice": "Proposer des rôles alternatifs : 'Tu peux être le guide qui observe'"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Travail d'équipe pour créer des œuvres collectives",
+        "then": {
+          "situation": "Group dynamics become difficult",
+          "plan": "Switch to individual work on one large class mural where everyone contributes their own section connected to others."
+        }
+      },
+      "realWorldConnection": "Many public artworks are created by teams of artists working together",
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Galerie d'exposition",
+      "oneGoal": "Les élèves s'entraînent aux compétences de présentation en affichant et expliquant leurs œuvres de lignes et formes",
+      "duration": 45,
+      "keyVocabulary": [
+        "exposition",
+        "présenter",
+        "partager"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Gallery Setup Preparation",
+        "materials": [
+          "Loupes (25)",
+          "Carnets d'observation (25)",
+          "Crayons à mine (25)"
+        ],
+        "visualSupports": [
+          "Gallery setup examples",
+          "Museum behavior visual guides"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ne savent pas comment collaborer",
+            "choice": "Donner des rôles clairs : 'Toi les formes, toi les couleurs, toi l'assemblage'"
+          },
+          {
+            "question": "Si des conflits éclatent sur les choix artistiques",
+            "choice": "Proposer le vote : 'On essaie les deux idées et on choisit ensemble'"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Art Exhibition and Gallery Tours",
+        "materials": [
+          "Tapis de rassemblement",
+          "Chevalet d'exposition",
+          "Pinces à dessin"
+        ],
+        "visualSupports": [
+          "Professional gallery display",
+          "Artist presentation spaces",
+          "Audience behavior guides"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont gênés de présenter",
+            "choice": "Permettre de présenter avec un ami ou juste montrer sans parler"
+          },
+          {
+            "question": "Si les présentations sont timides ou inaudibles",
+            "choice": "Encourager : 'Tiens ton dessin haut pour que tout le monde voie bien'"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Artist Appreciation Celebration",
+        "materials": [
+          "Crayons de couleur (25 boîtes)",
+          "Papier blanc grand format (25 feuilles)",
+          "Règles de plastique (25)"
+        ],
+        "visualSupports": [
+          "Circle formation for community",
+          "Celebration atmosphere"
+        ],
+        "decisionPoints": [
+          {
+            "question": "Si certains terminent très rapidement",
+            "choice": "Proposer d'ajouter des détails ou de créer une deuxième version"
+          },
+          {
+            "question": "Si certains se découragent de leurs dessins",
+            "choice": "Valoriser l'observation : 'Tu as bien vu ce détail important!'"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Compétences de présentation et explication des œuvres d'art",
+        "then": {
+          "situation": "Gallery setup impossible",
+          "plan": "Create individual portfolio sharing in pairs or small groups, focus on personal artistic growth rather than public exhibition."
+        }
+      },
+      "realWorldConnection": "Art galleries and museums help artists share their work with the community",
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Créativité",
+        "items": [
+          "Démontre une compréhension de base en créativité",
+          "Participe activement aux activités de créativité",
+          "Montre du progrès dans créativité",
+          "Applique les apprentissages de créativité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Utilisation des matériaux",
+        "items": [
+          "Démontre une compréhension de base en utilisation des matériaux",
+          "Participe activement aux activités de utilisation des matériaux",
+          "Montre du progrès dans utilisation des matériaux",
+          "Applique les apprentissages de utilisation des matériaux dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Appréciation artistique",
+        "items": [
+          "Démontre une compréhension de base en appréciation artistique",
+          "Participe activement aux activités de appréciation artistique",
+          "Montre du progrès dans appréciation artistique",
+          "Applique les apprentissages de appréciation artistique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Créativité",
+        "Utilisation des matériaux",
+        "Expression personnelle",
+        "Appréciation artistique"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🎨",
+          "🖌️",
+          "✏️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en arts visuels\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nDécouverte des lignes, Lignes avec le corps, Lignes émotionnelles, Chasse aux formes, Création de lignes libres\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nValorisez le processus créatif autant que le produit final.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa créativité s'épanouit avec votre encouragement!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Création artistique libre",
+        "description": "Créez de l'art ensemble en utilisant les techniques apprises",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux d'art disponibles",
+        "frenchSupport": "L'art transcende les langues!"
+      },
+      {
+        "title": "Galerie maison",
+        "description": "Créez un espace pour exposer les créations de votre enfant",
+        "timeRequired": "10 minutes",
+        "materials": "Espace mural ou table",
+        "frenchSupport": "Demandez à votre enfant d'expliquer ses œuvres"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "ligne",
+        "lesson": 1,
+        "context": "Découverte des lignes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ligne\"",
+          "Utilisez \"ligne\" dans une phrase simple",
+          "Trouvez des images représentant \"ligne\"",
+          "Faites des gestes pour \"ligne\""
+        ]
+      },
+      {
+        "word": "droit",
+        "lesson": 1,
+        "context": "Découverte des lignes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"droit\"",
+          "Utilisez \"droit\" dans une phrase simple",
+          "Trouvez des images représentant \"droit\"",
+          "Faites des gestes pour \"droit\""
+        ]
+      },
+      {
+        "word": "courbe",
+        "lesson": 1,
+        "context": "Découverte des lignes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"courbe\"",
+          "Utilisez \"courbe\" dans une phrase simple",
+          "Trouvez des images représentant \"courbe\"",
+          "Faites des gestes pour \"courbe\""
+        ]
+      },
+      {
+        "word": "zigzag",
+        "lesson": 2,
+        "context": "Lignes avec le corps",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"zigzag\"",
+          "Utilisez \"zigzag\" dans une phrase simple",
+          "Trouvez des images représentant \"zigzag\"",
+          "Faites des gestes pour \"zigzag\""
+        ]
+      },
+      {
+        "word": "ondulé",
+        "lesson": 2,
+        "context": "Lignes avec le corps",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ondulé\"",
+          "Utilisez \"ondulé\" dans une phrase simple",
+          "Trouvez des images représentant \"ondulé\"",
+          "Faites des gestes pour \"ondulé\""
+        ]
+      },
+      {
+        "word": "spirale",
+        "lesson": 2,
+        "context": "Lignes avec le corps",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"spirale\"",
+          "Utilisez \"spirale\" dans une phrase simple",
+          "Trouvez des images représentant \"spirale\"",
+          "Faites des gestes pour \"spirale\""
+        ]
+      },
+      {
+        "word": "heureux",
+        "lesson": 3,
+        "context": "Lignes émotionnelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"heureux\"",
+          "Utilisez \"heureux\" dans une phrase simple",
+          "Trouvez des images représentant \"heureux\"",
+          "Faites des gestes pour \"heureux\""
+        ]
+      },
+      {
+        "word": "triste",
+        "lesson": 3,
+        "context": "Lignes émotionnelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"triste\"",
+          "Utilisez \"triste\" dans une phrase simple",
+          "Trouvez des images représentant \"triste\"",
+          "Faites des gestes pour \"triste\""
+        ]
+      },
+      {
+        "word": "en colère",
+        "lesson": 3,
+        "context": "Lignes émotionnelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"en colère\"",
+          "Utilisez \"en colère\" dans une phrase simple",
+          "Trouvez des images représentant \"en colère\"",
+          "Faites des gestes pour \"en colère\""
+        ]
+      },
+      {
+        "word": "cercle",
+        "lesson": 4,
+        "context": "Chasse aux formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cercle\"",
+          "Utilisez \"cercle\" dans une phrase simple",
+          "Trouvez des images représentant \"cercle\"",
+          "Faites des gestes pour \"cercle\""
+        ]
+      },
+      {
+        "word": "carré",
+        "lesson": 4,
+        "context": "Chasse aux formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"carré\"",
+          "Utilisez \"carré\" dans une phrase simple",
+          "Trouvez des images représentant \"carré\"",
+          "Faites des gestes pour \"carré\""
+        ]
+      },
+      {
+        "word": "triangle",
+        "lesson": 4,
+        "context": "Chasse aux formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"triangle\"",
+          "Utilisez \"triangle\" dans une phrase simple",
+          "Trouvez des images représentant \"triangle\"",
+          "Faites des gestes pour \"triangle\""
+        ]
+      },
+      {
+        "word": "épais",
+        "lesson": 5,
+        "context": "Création de lignes libres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"épais\"",
+          "Utilisez \"épais\" dans une phrase simple",
+          "Trouvez des images représentant \"épais\"",
+          "Faites des gestes pour \"épais\""
+        ]
+      },
+      {
+        "word": "mince",
+        "lesson": 5,
+        "context": "Création de lignes libres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mince\"",
+          "Utilisez \"mince\" dans une phrase simple",
+          "Trouvez des images représentant \"mince\"",
+          "Faites des gestes pour \"mince\""
+        ]
+      },
+      {
+        "word": "pointillé",
+        "lesson": 5,
+        "context": "Création de lignes libres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pointillé\"",
+          "Utilisez \"pointillé\" dans une phrase simple",
+          "Trouvez des images représentant \"pointillé\"",
+          "Faites des gestes pour \"pointillé\""
+        ]
+      },
+      {
+        "word": "rectangle",
+        "lesson": 6,
+        "context": "Formes avec les mains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rectangle\"",
+          "Utilisez \"rectangle\" dans une phrase simple",
+          "Trouvez des images représentant \"rectangle\"",
+          "Faites des gestes pour \"rectangle\""
+        ]
+      },
+      {
+        "word": "ovale",
+        "lesson": 6,
+        "context": "Formes avec les mains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ovale\"",
+          "Utilisez \"ovale\" dans une phrase simple",
+          "Trouvez des images représentant \"ovale\"",
+          "Faites des gestes pour \"ovale\""
+        ]
+      },
+      {
+        "word": "losange",
+        "lesson": 6,
+        "context": "Formes avec les mains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"losange\"",
+          "Utilisez \"losange\" dans une phrase simple",
+          "Trouvez des images représentant \"losange\"",
+          "Faites des gestes pour \"losange\""
+        ]
+      },
+      {
+        "word": "histoire",
+        "lesson": 7,
+        "context": "Lignes racontent des histoires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"histoire\"",
+          "Utilisez \"histoire\" dans une phrase simple",
+          "Trouvez des images représentant \"histoire\"",
+          "Faites des gestes pour \"histoire\""
+        ]
+      },
+      {
+        "word": "voyage",
+        "lesson": 7,
+        "context": "Lignes racontent des histoires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voyage\"",
+          "Utilisez \"voyage\" dans une phrase simple",
+          "Trouvez des images représentant \"voyage\"",
+          "Faites des gestes pour \"voyage\""
+        ]
+      },
+      {
+        "word": "chemin",
+        "lesson": 7,
+        "context": "Lignes racontent des histoires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chemin\"",
+          "Utilisez \"chemin\" dans une phrase simple",
+          "Trouvez des images représentant \"chemin\"",
+          "Faites des gestes pour \"chemin\""
+        ]
+      },
+      {
+        "word": "motif",
+        "lesson": 8,
+        "context": "Motifs avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"motif\"",
+          "Utilisez \"motif\" dans une phrase simple",
+          "Trouvez des images représentant \"motif\"",
+          "Faites des gestes pour \"motif\""
+        ]
+      },
+      {
+        "word": "répéter",
+        "lesson": 8,
+        "context": "Motifs avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"répéter\"",
+          "Utilisez \"répéter\" dans une phrase simple",
+          "Trouvez des images représentant \"répéter\"",
+          "Faites des gestes pour \"répéter\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 8,
+        "context": "Motifs avec des formes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "nature",
+        "lesson": 9,
+        "context": "Lignes et nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nature\"",
+          "Utilisez \"nature\" dans une phrase simple",
+          "Trouvez des images représentant \"nature\"",
+          "Faites des gestes pour \"nature\""
+        ]
+      },
+      {
+        "word": "feuille",
+        "lesson": 9,
+        "context": "Lignes et nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"feuille\"",
+          "Utilisez \"feuille\" dans une phrase simple",
+          "Trouvez des images représentant \"feuille\"",
+          "Faites des gestes pour \"feuille\""
+        ]
+      },
+      {
+        "word": "branche",
+        "lesson": 9,
+        "context": "Lignes et nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"branche\"",
+          "Utilisez \"branche\" dans une phrase simple",
+          "Trouvez des images représentant \"branche\"",
+          "Faites des gestes pour \"branche\""
+        ]
+      },
+      {
+        "word": "construire",
+        "lesson": 10,
+        "context": "Formes géométriques composées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"construire\"",
+          "Utilisez \"construire\" dans une phrase simple",
+          "Trouvez des images représentant \"construire\"",
+          "Faites des gestes pour \"construire\""
+        ]
+      },
+      {
+        "word": "assembler",
+        "lesson": 10,
+        "context": "Formes géométriques composées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"assembler\"",
+          "Utilisez \"assembler\" dans une phrase simple",
+          "Trouvez des images représentant \"assembler\"",
+          "Faites des gestes pour \"assembler\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 10,
+        "context": "Formes géométriques composées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "culture",
+        "lesson": 11,
+        "context": "Cultures et motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"culture\"",
+          "Utilisez \"culture\" dans une phrase simple",
+          "Trouvez des images représentant \"culture\"",
+          "Faites des gestes pour \"culture\""
+        ]
+      },
+      {
+        "word": "tradition",
+        "lesson": 11,
+        "context": "Cultures et motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tradition\"",
+          "Utilisez \"tradition\" dans une phrase simple",
+          "Trouvez des images représentant \"tradition\"",
+          "Faites des gestes pour \"tradition\""
+        ]
+      },
+      {
+        "word": "décoration",
+        "lesson": 11,
+        "context": "Cultures et motifs",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"décoration\"",
+          "Utilisez \"décoration\" dans une phrase simple",
+          "Trouvez des images représentant \"décoration\"",
+          "Faites des gestes pour \"décoration\""
+        ]
+      },
+      {
+        "word": "expression",
+        "lesson": 12,
+        "context": "Expression personnelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expression\"",
+          "Utilisez \"expression\" dans une phrase simple",
+          "Trouvez des images représentant \"expression\"",
+          "Faites des gestes pour \"expression\""
+        ]
+      },
+      {
+        "word": "personnel",
+        "lesson": 12,
+        "context": "Expression personnelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"personnel\"",
+          "Utilisez \"personnel\" dans une phrase simple",
+          "Trouvez des images représentant \"personnel\"",
+          "Faites des gestes pour \"personnel\""
+        ]
+      },
+      {
+        "word": "sentiment",
+        "lesson": 12,
+        "context": "Expression personnelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sentiment\"",
+          "Utilisez \"sentiment\" dans une phrase simple",
+          "Trouvez des images représentant \"sentiment\"",
+          "Faites des gestes pour \"sentiment\""
+        ]
+      },
+      {
+        "word": "regarder",
+        "lesson": 13,
+        "context": "Critique et appréciation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"regarder\"",
+          "Utilisez \"regarder\" dans une phrase simple",
+          "Trouvez des images représentant \"regarder\"",
+          "Faites des gestes pour \"regarder\""
+        ]
+      },
+      {
+        "word": "observer",
+        "lesson": 13,
+        "context": "Critique et appréciation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"observer\"",
+          "Utilisez \"observer\" dans une phrase simple",
+          "Trouvez des images représentant \"observer\"",
+          "Faites des gestes pour \"observer\""
+        ]
+      },
+      {
+        "word": "décrire",
+        "lesson": 13,
+        "context": "Critique et appréciation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"décrire\"",
+          "Utilisez \"décrire\" dans une phrase simple",
+          "Trouvez des images représentant \"décrire\"",
+          "Faites des gestes pour \"décrire\""
+        ]
+      },
+      {
+        "word": "portfolio",
+        "lesson": 14,
+        "context": "Portfolio et réflexion",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"portfolio\"",
+          "Utilisez \"portfolio\" dans une phrase simple",
+          "Trouvez des images représentant \"portfolio\"",
+          "Faites des gestes pour \"portfolio\""
+        ]
+      },
+      {
+        "word": "apprendre",
+        "lesson": 14,
+        "context": "Portfolio et réflexion",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"apprendre\"",
+          "Utilisez \"apprendre\" dans une phrase simple",
+          "Trouvez des images représentant \"apprendre\"",
+          "Faites des gestes pour \"apprendre\""
+        ]
+      },
+      {
+        "word": "grandir",
+        "lesson": 14,
+        "context": "Portfolio et réflexion",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"grandir\"",
+          "Utilisez \"grandir\" dans une phrase simple",
+          "Trouvez des images représentant \"grandir\"",
+          "Faites des gestes pour \"grandir\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

@@ -1,0 +1,3270 @@
+{
+  "unitTitle": "Premiers pas artistiques",
+  "subject": "Arts visuels",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Bonjour l'art!",
+      "oneGoal": "Students will recognize art exists everywhere around them",
+      "duration": 45,
+      "keyVocabulary": [
+        "art",
+        "voir",
+        "couleur"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Circle time greeting with art objects. Show 3-4 familiar items (crayon, picture book, decorated pencil case). Point and say 'Voici l'art!' Use big gestures and excited voice. Students repeat with actions.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Gesture cards for 'voir' (hand above eyes), visual routine chart for circle time",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Big gestures and excited movements for 'Voici l'art!', action-based vocabulary repetition"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Art Hunt Around the School: Students walk in pairs with collection baskets, looking for 'art' examples everywhere - posters, decorations, patterns, colors. Teacher guides: 'Regardez! Voici de l'art!' Students collect or sketch 3 things they find beautiful. Return to class and sort finds by colors: 'Rouge ici, bleu là!' Practice vocabulary through discovery and sorting activities.",
+        "materials": [
+          "Color word cards with pictures",
+          "Small collection basket per student (20-25 total)",
+          "Clipboard for recording finds (optional)",
+          "Chart paper for color sorting",
+          "Marker for labeling"
+        ],
+        "visualSupports": "Color cards with French words and pictures, visual vocabulary chart showing 'art/voir/couleur' with images and gestures",
+        "decisionPoints": [
+          "Si les élèves trouvent beaucoup d'exemples rapidement: Extended art hunt to playground or library",
+          "Si les élèves ont de la difficulté à identifier l'art: Focus on obvious examples like classroom posters and student work",
+          "Si le temps permet: Create a class 'art map' showing all the places where art was discovered"
+        ],
+        "movementBreaks": [
+          "Walking art hunt provides natural movement",
+          "Color sorting with standing and moving around chart"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Art Gallery Share. Students place their chosen art object on desk. Walk around like in an art gallery, whispering 'Je vois...' and naming colors they see. End with group cheer: 'L'art est partout!' (Art is everywhere!)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Gallery walk behavior chart, whisper voice visual cue, celebration gesture poster",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Gallery walk movement, celebration gestures for 'L'art est partout!'"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty identifying what counts as 'art' in their environment",
+        "then": "Picture book art hunt: Use any picture book, point to illustrations saying 'Voici l'art!' Students find colors and repeat vocabulary. Works with any adult, no French required."
+      },
+      "realWorldConnection": "Looking for art in their bedroom, kitchen, playground - send home simple visual checklist with pictures",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Mes yeux découvrent",
+      "oneGoal": "Students will use their eyes to observe details in their environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "regarder",
+        "détail",
+        "forme"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Review game with Lesson 1 vocabulary using actions. Then introduce 'regarder' with exaggerated looking gesture (hand above eyes like binoculars). Practice looking at ceiling, floor, each other with 'Je regarde...'",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Action cards for 'regarder', vocabulary review chart from Lesson 1",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Physical actions for each vocabulary word, looking gestures around the room"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Detective Eyes Investigation: Students become art detectives using magnifying glasses to examine classroom objects closely. Practice 'Je regarde les détails!' while finding shapes, textures, patterns. Create detail drawings of one special object, focusing on shapes they discover. Share findings: 'J'ai trouvé un cercle!' Use shape vocabulary while examining and drawing.",
+        "materials": [
+          "Magnifying glasses or cardboard cutouts (20-25 total)",
+          "Shape cards (circle, square, triangle)",
+          "Paper and crayons for detail drawings",
+          "Clipboards for drawing support",
+          "Collection of interesting textured objects"
+        ],
+        "visualSupports": "Shape reference chart with French words, detective investigation steps poster, magnifying glass technique visual",
+        "decisionPoints": [
+          "Si les élèves finissent rapidement: Challenge to find shapes in more complex objects or patterns",
+          "Si les élèves ont besoin de plus de temps: Focus on one simple object for detailed examination"
+        ],
+        "movementBreaks": [
+          "Walking around room as detectives",
+          "Standing and moving to examine different objects"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Detail Gallery Walk. Post drawings on board. Students walk by and point to details they can identify, saying 'Je vois un détail!' or 'Une forme!' End with group celebration of their detective eyes.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Gallery walk behavior chart, sentence starters for sharing observations",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Gallery walk movement, celebration gestures for detective success"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty seeing or identifying small details in objects",
+        "then": "Shape puppet show: Use any geometric shapes (blocks, cut paper). Make shapes 'talk' to each other in simple French. Students identify and respond to shapes. No art background needed."
+      },
+      "realWorldConnection": "Noticing shapes in clouds, patterns on clothing, textures on playground - encourage 'detective eyes' at home and recess",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "J'aime, j'aime pas",
+      "oneGoal": "Students will express simple preferences about visual things they see",
+      "duration": 45,
+      "keyVocabulary": [
+        "j'aime",
+        "beau",
+        "préférer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Show two contrasting art pieces (bright vs dark, busy vs simple). Model preferences with clear gestures: 'J'aime!' (thumbs up, smile) and 'J'aime pas!' (gentle shake of head). Students practice with hand gestures for each phrase.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Preference gesture cards, contrasting art examples display, emotion/preference vocabulary chart",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Physical gestures for preferences, movement between contrasting displays"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Art Preference Exploration: Present 6-8 diverse art images (different styles, colors, subjects). Students examine each and practice 'J'aime' or 'J'aime pas' with reasons: 'J'aime parce que c'est beau!' Create preference voting with movement - students walk to 'J'aime' or 'J'aime pas' sides. Discuss: 'Pourquoi préféres-tu ça?' Celebrate different opinions: 'Nos goûts sont différents et c'est parfait!'",
+        "materials": [
+          "6-8 art image printouts (20-25 students can see clearly)",
+          "Talking stick or special object for sharing",
+          "Two easels or wall spaces for voting activity",
+          "'J'aime' and 'J'aime pas' signs for room sides"
+        ],
+        "visualSupports": "Preference vocabulary poster with gestures, sentence starters for opinions, celebration phrases chart",
+        "decisionPoints": [
+          "Si tous les élèves aiment la même chose: Introduce more contrasting styles to encourage variety",
+          "Si les élèves hésitent à partager: Use anonymous voting or partner sharing first",
+          "Si le temps permet: Create a class preference gallery with reasons"
+        ],
+        "movementBreaks": [
+          "Walking to different sides of room for voting",
+          "Moving between art displays for examination"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Preference Circle. Students sit with their 'beau' object from hunt. Each shares: 'J'aime...' and points to their object. Others respond with 'C'est beau!' End with 'Nos goûts sont différents!' (Our tastes are different!)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Circle time routine poster, response phrase chart, celebration vocabulary display",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Forming circle, gesturing toward chosen objects, celebration movements"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students reluctant to express preferences or worried about 'wrong' answers",
+        "then": "Picture book preferences: Use any picture book with varied illustrations. Point to different pages asking 'J'aime ou j'aime pas?' Students show thumbs up/down. Celebrate all answers as valid opinions."
+      },
+      "realWorldConnection": "Choosing favorite toys, clothes, or foods based on how they look - encourage family conversations about preferences",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Mes mains créent",
+      "oneGoal": "Students will explore basic art materials safely and confidently",
+      "duration": 45,
+      "keyVocabulary": [
+        "crayon",
+        "papier",
+        "créer"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Hand warm-up with finger wiggles and 'magic hands' gestures. Introduce vocabulary with TPR: hold up 'crayon' and pretend to draw, wave 'papier' like a flag, use both hands in creating motion for 'créer'. Students mirror all actions.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "TPR action cards for art materials, vocabulary cards with gestures, magic hands routine poster",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Hand warm-up exercises, full-body TPR movements for vocabulary"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Material Exploration Stations: Students rotate through 4 stations exploring different crayon-paper combinations. Station 1: Thick crayons + smooth paper, Station 2: Thin crayons + textured paper, Station 3: Colored crayons + white paper, Station 4: Dark crayons + colored paper. At each station: 'Qu'est-ce qui se passe?' Practice vocabulary while creating and comparing results: 'Mon crayon crée sur ce papier!'",
+        "materials": [
+          "Various crayons - thick, thin, different colors (enough for 20-25 students)",
+          "Different paper types - smooth, textured, colored, white",
+          "Simple smocks or paper towels for cleanup",
+          "Station labels with French names",
+          "Collection trays for each station"
+        ],
+        "visualSupports": "Station rotation chart, material vocabulary poster, creation process visuals, comparison chart",
+        "decisionPoints": [
+          "Si les élèves adorent une station: Allow extra time at preferred station",
+          "Si une station pose des défis: Provide more guidance or simplify materials"
+        ],
+        "movementBreaks": [
+          "Moving between stations every 6-7 minutes",
+          "Standing and working at different heights"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Creator Circle. Students hold their creation and share: 'J'ai créé avec...' (holding up their crayon type). Others celebrate: 'Bravo! Tu crées!' Practice putting materials away properly saying 'Merci, crayon!' to each tool.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Creator circle sharing prompts, celebration phrases poster, cleanup routine chart",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Forming circle, showing creations with gestures, cleanup movements"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students feeling frustrated with their crayon techniques or unsure how to 'create'",
+        "then": "Paper sculpture: Use any paper available. Show simple folding, rolling, tearing techniques. Students experiment saying 'Je crée' with each action. No drawing skills needed, focus on manipulation."
+      },
+      "realWorldConnection": "Drawing pictures for family, decorating their room, making cards - encourage trying different papers and crayons at home",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Lignes partout!",
+      "oneGoal": "Students will create different types of lines with purpose",
+      "duration": 45,
+      "keyVocabulary": [
+        "ligne",
+        "droite",
+        "courbe"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Body lines: Students make straight lines with arms ('droite' - arms out straight), curved lines with bodies ('courbe' - bend and sway). Draw lines in air following teacher. Use whole body to understand 'ligne' concept with movement.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Line type cards with body positions, movement demonstration poster, vocabulary action chart",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Full body line making, air drawing exercises, dynamic movement between line types"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Line Creation Adventure: Students explore making different line types on large paper. Challenge: Create a 'ligne droite' path from one side to another, then add 'ligne courbe' decorations. Hunt for lines in classroom objects - window frames (droite), plant stems (courbe), book edges (droite). Create collaborative line mural: each student adds their favorite line type while saying 'Ma ligne est...'",
+        "materials": [
+          "Large paper (at least 11x17) for each student (20-25 sheets)",
+          "Thick crayons or markers in various colors",
+          "Masking tape for floor lines (optional)",
+          "Examples of linear objects from classroom",
+          "Long mural paper for collaborative work"
+        ],
+        "visualSupports": "Line type reference chart, classroom line hunt checklist, collaborative mural process poster",
+        "decisionPoints": [
+          "Si les élèves maîtrisent rapidement: Challenge to combine straight and curved lines in patterns",
+          "Si les élèves ont besoin de pratique: Focus on one line type at a time with more guidance",
+          "Si le temps permet: Extend to zigzag and wavy line exploration"
+        ],
+        "movementBreaks": [
+          "Walking around classroom for line hunt",
+          "Moving along mural paper for collaborative creation"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Line Gallery. Post artwork at student eye level. Walk gallery style, students point to different line types they see: 'Je vois une ligne droite!' Celebrate variety and effort with specific praise about line choices.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Gallery walk protocol poster, line identification prompts, celebration vocabulary display",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Gallery walk movement, pointing and gesturing at line discoveries"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty controlling crayon to make intended line types",
+        "then": "Finger line tracing: Use any textbook or worksheet with printed lines (letters, borders, pictures). Students trace over lines with fingers, identifying 'droite' or 'courbe'. Requires no art supplies."
+      },
+      "realWorldConnection": "Lines in sidewalk cracks, tree branches, their own hair - notice and name line types during outdoor play and daily routines",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Formes magiques",
+      "oneGoal": "Students will recognize and create basic shapes in art",
+      "duration": 45,
+      "keyVocabulary": [
+        "cercle",
+        "carré",
+        "triangle"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Shape actions: Draw shapes in air while saying names. 'Cercle' - arms make big circle, 'carré' - four-cornered gesture with index fingers, 'triangle' - three-pointed shape with arms above head. Students mirror and chant shape names.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Shape action cards, vocabulary posters with movements, chanting rhythm chart",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Full-body shape making, air drawing, rhythmic chanting with movement"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Shape Magic Creation: Students become shape magicians! Use templates to trace and create magic pictures combining all three shapes. Challenge: 'Peux-tu faire un bonhbonhomme avec des formes?' (Can you make a person with shapes?) Create shape tally chart together - count circles, squares, triangles in classroom. End with shape stamp art: combine shapes to make creative pictures while naming each: 'Un cercle, un carré, un triangle!'",
+        "materials": [
+          "Shape templates in various sizes (enough for 20-25 students)",
+          "Chart paper and markers for class tally",
+          "Crayons and paper for individual creative work",
+          "Shape stamps or cut-out templates for printing",
+          "Shape counting/recording sheets"
+        ],
+        "visualSupports": "Shape identification poster, creation examples display, counting chart template, magic words vocabulary",
+        "decisionPoints": [
+          "Si les élèves finissent la création rapidement: Challenge to tell story about their shape creation",
+          "Si les élèves ont besoin de plus de temps: Focus on one shape type for simpler success"
+        ],
+        "movementBreaks": [
+          "Moving around classroom for shape hunt and counting",
+          "Stamping activities with standing/reaching movements"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Shape Gallery Share. Students display their magic shape art and identify what shapes they used: 'J'ai utilisé des cercles!' (I used circles!) Others guess what they see in the shape art: 'Je vois un soleil!' (I see a sun!)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Gallery sharing prompts, shape vocabulary reminder chart, guessing game sentence starters",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Displaying and moving around gallery, gesturing toward shape discoveries"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty recognizing or remembering shape names in French",
+        "then": "Shape sorting: Use any classroom manipulatives (blocks, books, supplies). Sort into shape categories while practicing French names. Students take turns being 'shape caller' - no drawing required."
+      },
+      "realWorldConnection": "Shapes in their house windows, food, toys, and books - family shape hunting game at home with simple checklist",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trace des lignes droites, courbes et en zigzag",
+          "L'élève crée des formes géométriques avec ses lignes",
+          "L'élève explique les différences entre ses lignes",
+          "L'élève utilise différents outils pour tracer"
+        ],
+        "checkpoints": [
+          "Contrôle ses gestes pour tracer des lignes précises",
+          "Nomme les types de lignes: droite, courbe, pointillée, en zigzag",
+          "Combine les lignes pour créer des motifs",
+          "Exprime ses idées par ses choix de lignes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Couleurs vivantes",
+      "oneGoal": "Students will use color intentionally to express ideas",
+      "duration": 45,
+      "keyVocabulary": [
+        "rouge",
+        "bleu",
+        "jaune"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Color energy movement: 'Rouge' - stomp like fire, 'bleu' - flow like water, 'jaune' - bounce like sunshine. Students mirror movements while chanting color names. Show how colors can have personalities and feelings.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Color energy cards with movements, personality/feeling vocabulary, color association poster",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Dynamic movements for each color, full-body color expressions, rhythmic chanting"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Color Intention Exploration: Students choose ONE color to work with based on how they feel: 'Je me sens comme le rouge today!' Create intentional color art expressing that feeling. Experiment with color layering using transparent sheets: 'Que se passe-t-il quand..?' (What happens when..?) Document color mixing discoveries. Share color intention: 'J'ai choisi le bleu parce que...' Create class color feeling chart.",
+        "materials": [
+          "Primary color paints or thick markers (enough for 20-25 students)",
+          "Transparent color sheets for layering experiments",
+          "White paper for individual work",
+          "Paint brushes (various sizes)",
+          "Water containers for cleanup",
+          "Chart paper for class color feelings record"
+        ],
+        "visualSupports": "Color mixing chart, feeling vocabulary poster, intention-sharing sentence starters, discovery recording sheet",
+        "decisionPoints": [
+          "Si les élèves adorent le mélange de couleurs: Extend to secondary color discovery",
+          "Si les élèves préfèrent une couleur: Allow deeper exploration of that color's variations"
+        ],
+        "movementBreaks": [
+          "Moving between mixing station and work space",
+          "Standing to demonstrate color layering techniques"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Color Intention Share. Students explain their color choices: 'J'ai choisi le rouge pour...' (I chose red for...). Others listen and respond with color connections: 'Le rouge me fait penser à...' (Red makes me think of...)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Intention sharing prompts, color connection vocabulary, active listening visual cues",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Sharing circle formation, gesturing toward artwork, responsive body language"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students unable to articulate why they chose certain colors or feeling overwhelmed by color choices",
+        "then": "Color story: Tell simple story using only color words and gestures. Students act out different colors as characters. 'Rouge was angry, Bleu was sad, Jaune came to make everyone happy!' No art supplies needed."
+      },
+      "realWorldConnection": "Colors in nature, their favorite foods, seasonal changes - discuss how colors make them feel in different situations at home",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme les 3 couleurs primaires en français",
+          "L'élève mélange deux couleurs pour créer une couleur secondaire",
+          "L'élève explique: 'Rouge plus bleu donne violet'",
+          "L'élève choisit des couleurs qui expriment une émotion"
+        ],
+        "checkpoints": [
+          "Identifie rouge, bleu, jaune comme couleurs primaires",
+          "Crée vert, orange, violet en mélangeant",
+          "Utilise le vocabulaire: primaire, secondaire, mélanger",
+          "Exprime ses idées par ses choix de couleurs"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Textures à toucher",
+      "oneGoal": "Students will explore how texture can be shown in art",
+      "duration": 45,
+      "keyVocabulary": [
+        "toucher",
+        "doux",
+        "rugueux"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Texture box mystery: Without looking, students feel objects of different textures. Describe with actions: 'doux' - gentle pet motion, 'rugueux' - scratchy clawing motion, 'toucher' - reaching out with fingertips. Guess and reveal objects.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Texture Art Detective Work: Students explore texture samples, describing each: 'C'est doux comme...' or 'C'est rugueux comme...' Create texture rubbings using crayons over textured surfaces. Mystery texture guessing game - feel without looking: 'Je touche quelque chose de...' Make texture collage combining real textures with drawn textures while practicing vocabulary.",
+        "materials": [
+          "Texture sample collection - sandpaper, cotton, fabric, bubble wrap (enough for 20-25 students)",
+          "Crayons and various paper types for rubbings",
+          "Mystery texture box or bag for guessing game",
+          "Glue sticks for texture collages",
+          "Collection sheets for texture organization"
+        ],
+        "visualSupports": "Texture vocabulary poster with touch demonstrations, rubbing technique visuals, comparison chart for descriptions",
+        "decisionPoints": [
+          "Si les élèves adorent les frottages: Allow extended time for detailed texture exploration",
+          "Si certaines textures posent des défis sensoriels: Provide alternative materials or optional participation"
+        ],
+        "movementBreaks": [
+          "Moving around room to find textured surfaces for rubbings",
+          "Active texture exploration and handling materials"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Texture Gallery Walk. Students touch each other's texture artwork (gently!) and identify what they feel: 'Je touche... c'est doux!' Partner discussions about texture choices and techniques used.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Classroom texture hunt: Find smooth and rough surfaces around room (desk tops, carpet, walls). Students touch and categorize using French texture words. No art supplies needed, just exploration."
+      },
+      "realWorldConnection": "Feeling bark on trees, smooth stones, fuzzy sweaters - encourage texture awareness during outdoor play and daily activities",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Mes sentiments en art",
+      "oneGoal": "Students will connect their emotions to their artistic choices",
+      "duration": 45,
+      "keyVocabulary": [
+        "content",
+        "triste",
+        "excité"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Emotion mirror: Teacher shows emotion faces and students mirror while saying French words. 'Content' - big smile and relaxed shoulders, 'triste' - sad face and drooping posture, 'excité' - bouncy energy and wide eyes. Practice transitioning between emotions.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Emotion Art Expression: Students choose their current feeling: 'Aujourd'hui je me sens...' and select colors/techniques that match. Look in mirrors to practice emotion faces, then create art showing that feeling. Emotion guessing game: others look at artwork and guess: 'Tu te sens content?' Share emotion vocabulary while creating. Build class emotion art gallery with French labels.",
+        "materials": [
+          "Emotion-themed art examples for inspiration",
+          "Full range of colors - paints, crayons, markers (for 20-25 students)",
+          "Paper for individual emotion art pieces",
+          "Mirrors for emotion face practice (hand mirrors work)",
+          "Labels for emotion gallery display"
+        ],
+        "visualSupports": "Emotion vocabulary chart with faces, color-feeling association poster, mirror practice routine, gallery labels template",
+        "decisionPoints": [
+          "Si les élèves sont très expressifs: Allow extended sharing and discussion time",
+          "Si certains élèves hésitent: Offer emotion cards to choose from rather than self-reflection"
+        ],
+        "movementBreaks": [
+          "Mirror practice with facial expressions and body language",
+          "Moving around to set up emotion gallery display"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Emotion Art Share. Students hold artwork and share their emotion choice: 'Mon art montre que je suis content!' Others respond supportively: 'Je comprends ton sentiment!' (I understand your feeling!)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Emotion charades: Students act out emotions while others guess in French. Then discuss what colors or lines might show those emotions. No art supplies needed, focus on expression and vocabulary."
+      },
+      "realWorldConnection": "Happy birthday drawings, comfort objects, celebrating achievements - encourage expressing feelings through art at home during different moods",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Outils d'artiste",
+      "oneGoal": "Students will select appropriate tools for their artistic intentions",
+      "duration": 45,
+      "keyVocabulary": [
+        "pinceau",
+        "colle",
+        "ciseaux"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Tool parade: Hold up each tool type with exaggerated demonstration. 'Pinceau' - painting gestures in air, 'colle' - sticky finger motions, 'ciseaux' - cutting actions (safety emphasis). Students practice motions while chanting tool names.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Artist Tool Challenge: Students rotate through tool stations, learning proper use and French names. Station 1: Pinceau painting techniques, Station 2: Ciseaux cutting practice, Station 3: Colle collage creation. Each station: 'Comment utilise-t-on...?' Create one collaborative artwork using ALL three tools. Practice tool requests: 'Puis-je avoir le pinceau?' Share favorite tool and explain why.",
+        "materials": [
+          "Various paintbrushes - thick, thin, flat (enough for 20-25 students)",
+          "Child-safe scissors (checked for proper function)",
+          "Glue sticks (enough for sharing at stations)",
+          "Paper in different colors and textures",
+          "Paint or ink pads for painting station",
+          "Newspapers/plastic for work surface protection",
+          "Station instruction cards with French labels"
+        ],
+        "visualSupports": "Tool vocabulary poster with proper usage, station rotation chart, safety reminder visuals, tool request phrase cards",
+        "decisionPoints": [
+          "Si une station est très populaire: Allow extended time or create duplicate stations",
+          "Si les élèves ont besoin de plus de pratique: Focus on one tool at a time with detailed instruction"
+        ],
+        "movementBreaks": [
+          "Rotating between three active stations",
+          "Standing and demonstrating tool techniques"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Artist Tool Talk. Students show their multi-tool artwork and explain which tools they used: 'J'ai utilisé les ciseaux pour...' Others ask questions: 'Pourquoi le pinceau?' Tool cleanup becomes vocabulary practice.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Tool pantomime: Students act out using different art tools while others guess in French. Discuss what each tool does best. No actual tools needed, focus on understanding tool purposes."
+      },
+      "realWorldConnection": "Choosing right tools for jobs at home, helping with crafts - encourage noticing when family members select specific tools for different tasks",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Techniques nouvelles",
+      "oneGoal": "Students will try new art techniques to achieve different effects",
+      "duration": 45,
+      "keyVocabulary": [
+        "mélanger",
+        "tamponner",
+        "gratter"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Technique demonstrations: Show each new technique with exaggerated actions. 'Mélanger' - stirring/mixing motions, 'tamponner' - dabbing/stamping actions, 'gratter' - gentle scratching movements. Students practice motions in air while learning pronunciation.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "New Technique Laboratory: Students become technique scientists! Try all three techniques: mélanger colors to discover new shades, tamponner with sponges to create patterns, gratter through crayon layers to reveal underneath. Document discoveries: 'Quand je mélange rouge et jaune...' Choose favorite technique for final creation. Share technique tips with classmates.",
+        "materials": [
+          "Paint for mixing experiments (primary colors for 20-25 students)",
+          "Sponges in various shapes for stamping/dabbing",
+          "Crayons and safe scratch tools (popsicle sticks work)",
+          "Black crayon/paint for scratch technique base layers",
+          "Various paper types for different technique exploration",
+          "Discovery recording sheets",
+          "Mixing palettes or paper plates"
+        ],
+        "visualSupports": "Technique demonstration posters, discovery vocabulary chart, step-by-step visual guides, comparison recording sheet",
+        "decisionPoints": [
+          "Si une technique est très appréciée: Allow extended exploration time",
+          "Si une technique pose des défis: Provide more demonstration and guided practice"
+        ],
+        "movementBreaks": [
+          "Moving between technique stations",
+          "Active demonstration of different motions for each technique"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Technique Gallery. Students explain which technique they chose and why: 'J'ai préféré mélanger parce que...' Others observe technique effects in different artworks. Celebrate variety of choices and discoveries made.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Technique storytelling: Tell story of three artist friends who each had special technique. Students act out techniques while story progresses. No art supplies needed, focus on understanding and movement."
+      },
+      "realWorldConnection": "Different ways to spread jam, clean windows, or play in sand - connect art techniques to daily activities that use similar motions",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Mon style unique",
+      "oneGoal": "Students will recognize their own artistic preferences and style",
+      "duration": 45,
+      "keyVocabulary": [
+        "style",
+        "unique",
+        "spécial"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Style celebration: Look at student artwork from previous lessons. Point out different approaches: 'Voici le style de...' Emphasize that different is wonderful. Students practice saying 'Mon style est unique!' with proud gestures.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Style Discovery Portfolio Review: Students examine their artwork collection from all previous lessons. Identify patterns: 'Je préfère toujours...' or 'Mon style utilise beaucoup de...' Create 'Mon Style' poster showing their favorite techniques, colors, and subjects. Practice describing their unique artistic voice: 'Mon art est spécial parce que...' Share style discoveries with art buddy.",
+        "materials": [
+          "Previous lesson artwork collections (organized by student)",
+          "Portfolio folders or display spaces",
+          "Full art supply access for style poster creation",
+          "Mirrors for self-reflection moments",
+          "'Mon Style' poster templates",
+          "Vocabulary cards for style descriptions"
+        ],
+        "visualSupports": "Style vocabulary poster, portfolio organization guide, self-reflection prompts, sharing sentence starters",
+        "decisionPoints": [
+          "Si les élèves ont du mal à identifier leur style: Provide guided questions and examples",
+          "Si les élèves sont très confiants: Encourage them to teach others about recognizing artistic style"
+        ],
+        "movementBreaks": [
+          "Moving around to organize and examine portfolio pieces",
+          "Partner sharing with movement between workspaces"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Style Celebration Circle. Students share one thing that makes their style special: 'Mon style est spécial parce que...' Others respond with appreciation: 'Ton style est unique!' End with group cheer about everyone being special artists.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Style dress-up: Students describe their clothing style choices using French vocabulary. Connect to artistic style: 'My clothes are bright like my art!' No art supplies needed, personal connection."
+      },
+      "realWorldConnection": "Their unique way of decorating, dressing, or arranging their space - encourage family conversations about what makes each person special",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Partager mes idées",
+      "oneGoal": "Students will communicate about their art using French vocabulary learned",
+      "duration": 45,
+      "keyVocabulary": [
+        "expliquer",
+        "montrer",
+        "raconter"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Communication practice: Teacher models different ways to share art. 'Expliquer' - pointing and describing, 'montrer' - displaying and indicating features, 'raconter' - telling story about the art. Students practice each gesture style.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Artist Interview Experience: Students become art reporters and artists! Practice interview questions: 'Peux-tu expliquer ton art?' Take turns being interviewed about their favorite artwork. Use 'microphone' prop for official feel. Practice explaining, showing, and telling stories about their creations. Create class art magazine with student quotes and artwork photos.",
+        "materials": [
+          "Student artwork from previous lessons (selected favorites)",
+          "Interview question prompt cards in French",
+          "'Microphone' prop for authentic presentations",
+          "Comfortable presentation space with seating",
+          "Class art magazine template pages",
+          "Camera or device for artwork documentation (if available)"
+        ],
+        "visualSupports": "Interview question cards, presentation tips poster, vocabulary for art discussion, confidence-building phrases",
+        "decisionPoints": [
+          "Si certains élèves sont nerveux: Allow partner interviews or smaller groups first",
+          "Si les élèves adorent présenter: Extend time and encourage more detailed explanations"
+        ],
+        "movementBreaks": [
+          "Moving between interviewer and artist roles",
+          "Standing presentations and audience engagement"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Communication Celebration. Students vote for different communication awards: 'Meilleure explication' (best explanation), 'Meilleure histoire' (best story), 'Meilleure présentation' (best presentation). Everyone gets recognized for something special.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Show and tell circle: Students simply show artwork and say one French word about it. Others repeat the word and clap. Focus on vocabulary reinforcement over complex communication."
+      },
+      "realWorldConnection": "Showing family their creations, explaining their room decorations - encourage practicing French art words when sharing at home",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Art dans ma vie",
+      "oneGoal": "Students will demonstrate understanding of how art connects to their daily experience",
+      "duration": 45,
+      "keyVocabulary": [
+        "important",
+        "quotidien",
+        "utiliser"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Daily art hunt: Students think about their morning routine and identify art they saw/used: clothing patterns, cereal box designs, toothbrush colors. Practice vocabulary: 'L'art est important dans ma vie quotidienne!' (Art is important in my daily life!)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Art Life Connection Mapping: Students create visual map of art in their daily life - from morning (colorful toothbrush) to bedtime (patterned pajamas). Draw or list art connections: 'Dans ma chambre, il y a...', 'Dans la cuisine, je vois...' Plan one new way to add art to daily routine. Share discoveries: 'L'art est important dans ma vie parce que...'",
+        "materials": [
+          "Paper for life maps (large enough for drawings and words)",
+          "Crayons and markers for colorful illustrations",
+          "Daily routine planning sheets with French prompts",
+          "Examples of everyday art objects for inspiration",
+          "Home art checklist to take home"
+        ],
+        "visualSupports": "Daily routine vocabulary poster, art identification guide, life mapping example, sharing prompts for family discussions",
+        "decisionPoints": [
+          "Si les élèves trouvent peu d'exemples: Guide them to notice patterns, colors, designs they hadn't considered",
+          "Si les élèves trouvent beaucoup d'exemples: Challenge them to categorize by type of art or importance"
+        ],
+        "movementBreaks": [
+          "Walking around classroom to find more art examples",
+          "Moving to share life maps with different partners"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Art Life Commitment. Students share one way they will use art in their daily life: 'L'art va être important dans ma vie parce que...' Create class commitment to noticing and creating art every day.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Art gratitude circle: Students say 'Merci' to different art elements in the classroom, explaining why: 'Merci, couleurs, parce que vous me rendez heureux!' Focus on appreciation and vocabulary."
+      },
+      "realWorldConnection": "Making art part of their daily routine, noticing design everywhere - encourage family discussions about art in their home and community",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Atelier libre",
+      "oneGoal": "Students will practice all learned techniques in self-directed creation",
+      "duration": 45,
+      "keyVocabulary": [
+        "couleur",
+        "forme",
+        "créer",
+        "dessiner",
+        "beau"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Art vocabulary review game: Students take turns acting out vocabulary words from lessons 1-14 while others guess in French. Quick energy builder that reinforces all learned terms before independent work time.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Free Choice Art Studio: Students choose their own project using any techniques learned. Options: continue a previous artwork, try combining techniques, create gift for family, or experiment with new ideas. Practice requesting materials in French: 'Puis-je avoir...?' Teacher circulates providing vocabulary support. Focus on creative process and French expression during creation.",
+        "materials": [
+          "All art materials from previous lessons organized by type",
+          "Planning sheets for students who want structure (optional)",
+          "Clear organization systems for independent material access",
+          "Material request phrase cards",
+          "Timer for sharing reminders"
+        ],
+        "visualSupports": "Studio procedure poster, material location chart, French request phrases, technique reminder cards available",
+        "decisionPoints": [
+          "Si les élèves ont besoin d'idées: Provide inspiration cards or technique challenges"
+        ],
+        "movementBreaks": [
+          "Independent movement to access materials",
+          "Natural movement during creative process"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Artist Reflection. Students complete sentence starters: 'Aujourd'hui j'ai utilisé...' (Today I used...) 'Ma technique préférée était...' (My favorite technique was...) 'Je suis fier de...' (I'm proud of...)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Free choice art using only available classroom supplies (pencils, paper, classroom decorations for inspiration). Focus on creativity and vocabulary use rather than specific materials."
+      },
+      "realWorldConnection": "Having art time at home, making gifts, decorating personal spaces - encourage establishing regular creative time in daily routine",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Collaboration artistique",
+      "oneGoal": "Students will work together on artistic projects using learned vocabulary",
+      "duration": 45,
+      "keyVocabulary": [
+        "couleur",
+        "forme",
+        "créer",
+        "dessiner",
+        "beau"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Collaboration warm-up: Partner mirror drawing - one student draws while partner mirrors movements in air. Practice sharing materials and space. Introduce collaboration phrases: 'On peut partager?' (Can we share?) 'Bonne idée!' (Good idea!)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Collaborative Art Creation: Partners or small groups plan and create together using all learned techniques. Practice collaboration vocabulary: 'Qu'est-ce que tu penses de...?', 'On peut essayer...', 'J'aime ton idée!' Create large collaborative piece where each student contributes their artistic strengths. Document collaboration process with photos if possible.",
+        "materials": [
+          "Large paper for collaborative work (poster size or mural paper)",
+          "Shared art supplies organized in central stations",
+          "Mural paper or connected sheets for class project",
+          "Organization containers for sharing materials efficiently",
+          "Collaboration phrase cards",
+          "Planning sheets for group projects"
+        ],
+        "visualSupports": "Collaboration vocabulary poster, sharing procedures chart, group work behavior expectations, project planning template",
+        "decisionPoints": [
+          "Si la collaboration fonctionne bien: Allow extended project time or larger groups"
+        ],
+        "movementBreaks": [
+          "Moving between shared material stations",
+          "Collaborative work requiring physical coordination"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Collaboration Celebration. Groups present their collaborative work, explaining how they worked together: 'Nous avons collaboré en...' (We collaborated by...) Others appreciate: 'Votre collaboration est belle!' (Your collaboration is beautiful!)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Collaborative storytelling: Students take turns adding to visual story on board using simple drawings while practicing French vocabulary. No individual supplies needed."
+      },
+      "realWorldConnection": "Making art with siblings, friends, or family members - encourage collaborative creative projects at home",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Art en grand",
+      "oneGoal": "Students will apply their skills to larger-scale creative projects",
+      "duration": 45,
+      "keyVocabulary": [
+        "couleur",
+        "forme",
+        "créer",
+        "dessiner",
+        "beau"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Scale exploration: Compare small and large versions of same artwork. Discuss challenges and opportunities of working big: 'En grand, je peux...' (When working big, I can...) Practice big gestures and movements for large-scale art.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Big Art Challenge: Students work on large-scale projects using bigger tools and movements. Practice vocabulary for size: 'grand', 'petit', 'plus grand'. Explore how working big changes their technique and expression. Compare small and large versions of same concept. Use whole body movements while creating: 'Mon bras fait de grands mouvements!'",
+        "materials": [
+          "Large format paper (poster size minimum, bigger if available)",
+          "Big brushes and tools (house painting brushes work well)",
+          "Floor space or large table areas for working",
+          "Small paper for planning sketches and comparison",
+          "Protective covering for work surface",
+          "Size comparison vocabulary cards"
+        ],
+        "visualSupports": "Scale comparison chart, large movement demonstration posters, size vocabulary cards, safety procedures for big art",
+        "decisionPoints": [
+          "Si l'espace est limité: Work in shifts or adapt to available space"
+        ],
+        "movementBreaks": [
+          "Large body movements required for big art creation",
+          "Moving around large work surfaces"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Scale Reflection. Students compare their large-scale work experience with smaller projects: 'Travailler en grand était...' (Working big was...) 'J'ai appris que...' (I learned that...) Discuss challenges and successes.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Floor art: Use chalk or washable markers on floor tiles (if available) to create large-scale temporary art. Focus on big movements and scale adaptation."
+      },
+      "realWorldConnection": "Decorating their bedroom, making posters, creating gifts for family - encourage thinking about scale in home projects",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Galerie de classe",
+      "oneGoal": "Students will curate and present their artwork in a gallery setting",
+      "duration": 45,
+      "keyVocabulary": [
+        "couleur",
+        "forme",
+        "créer",
+        "dessiner",
+        "beau"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Gallery visit preparation: Discuss how art galleries work. Practice gallery behavior: quiet voices, careful looking, respectful comments. Introduce curatorial vocabulary: 'Je choisis cette œuvre parce que...' (I choose this work because...)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Class Gallery Curation: Students become curators, choosing and arranging their best artworks for display. Learn gallery vocabulary: 'exposition', 'curateur', 'présentation'. Practice writing simple French labels: 'Mon art préféré', 'Créé par...' Set up professional gallery walk with silent viewing time, then discussion period.",
+        "materials": [
+          "Display methods - tape, easels, clips, string lines",
+          "Gallery labels or cards for French descriptions",
+          "Comfortable viewing arrangement with chairs if needed",
+          "All student artwork from previous lessons (curated selection)",
+          "Gallery vocabulary posters",
+          "Quiet reflection journals or sheets"
+        ],
+        "visualSupports": "Gallery behavior expectations, curation vocabulary chart, label writing templates, reflection prompts for viewing",
+        "decisionPoints": [
+          "Si l'espace est limité: Create rotating mini-galleries or outdoor display"
+        ],
+        "movementBreaks": [
+          "Setting up gallery display arrangements",
+          "Formal gallery walk movement patterns"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Gallery Reflection. Students complete gallery visitor forms: 'Mon œuvre préférée était...' (My favorite work was...) 'J'ai appris...' (I learned...) 'La galerie m'a fait sentir...' (The gallery made me feel...)",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Desk gallery: Each student creates mini gallery on their desk with 2-3 small artworks. Others visit desk galleries in small groups, practicing vocabulary and respectful viewing."
+      },
+      "realWorldConnection": "Displaying their art at home, choosing what to show to visitors - encourage creating personal art displays in their rooms",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Art et nature",
+      "oneGoal": "Students will create art inspired by natural elements and materials",
+      "duration": 45,
+      "keyVocabulary": [
+        "couleur",
+        "forme",
+        "créer",
+        "dessiner",
+        "beau"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Nature art exploration: Show examples of natural materials used in art (leaf printing, stone painting, twig sculptures). Discuss respectful collection: 'Nous prenons seulement ce que nous avons besoin' (We take only what we need). Practice nature vocabulary review.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Nature Art Exploration: Use natural materials to create eco-friendly art. Try leaf printing, rock painting, stick sculptures, or flower pressing. Practice nature vocabulary: 'feuille', 'pierre', 'fleur', 'branche'. Discuss how nature inspires artists: 'La nature me donne des idées pour...' Create temporary outdoor art that respects environment.",
+        "materials": [
+          "Natural materials (leaves, rocks, sticks, flowers - collected respectfully)",
+          "Washable paint for printing on natural materials",
+          "Paper for rubbings and nature pressing",
+          "Art supplies for nature-inspired drawing and documentation",
+          "Collection bags for respectful gathering",
+          "Nature vocabulary cards"
+        ],
+        "visualSupports": "Nature vocabulary poster, eco-art techniques guide, respectful collection guidelines, inspiration examples from nature artists",
+        "decisionPoints": [
+          "Si la météo ne permet pas: Use indoor plants or pre-collected materials"
+        ],
+        "movementBreaks": [
+          "Outdoor exploration and material collection",
+          "Working with natural materials in various positions"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Nature Art Share. Students present their nature art explaining their inspiration: 'La nature m'inspire parce que...' (Nature inspires me because...) 'J'ai utilisé...' (I used...) Connect to environmental appreciation.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Nature drawing from observation: Use any plants visible from classroom windows or indoor plants. Students practice observational drawing while using descriptive vocabulary."
+      },
+      "realWorldConnection": "Collecting leaves and flowers, rock painting, nature photography - encourage respectful nature appreciation and creation at home",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration artistique",
+      "oneGoal": "Students will celebrate their artistic growth and share with families",
+      "duration": 45,
+      "keyVocabulary": [
+        "couleur",
+        "forme",
+        "créer",
+        "dessiner",
+        "beau"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Growth reflection: Students look through portfolio of work from all lessons. Identify improvements and new skills: 'Au début, je...' (At the beginning, I...) 'Maintenant, je peux...' (Now I can...) Celebrate progress with encouraging gestures.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Artistic Journey Celebration: Students create final celebration piece showing their artistic growth. Choose favorite technique learned and create 'masterpiece' while reflecting: 'Au début j'étais..., maintenant je suis...' Prepare portfolio presentations for families. Practice sharing artistic vocabulary and growth stories in French.",
+        "materials": [
+          "Portfolio folders organized with chronological artwork",
+          "Full art supplies access for celebration piece creation",
+          "Presentation space setup with display areas",
+          "Family invitation preparations if doing presentation",
+          "Celebration certificates or recognition items",
+          "Reflection worksheets for growth documentation"
+        ],
+        "visualSupports": "Growth vocabulary poster, presentation tips chart, portfolio organization guide, celebration routine visual schedule",
+        "decisionPoints": [
+          "Si les familles peuvent venir: Plan formal presentation ceremony"
+        ],
+        "movementBreaks": [
+          "Setting up celebration presentation space",
+          "Ceremonial movement during celebration activities"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Artist Commitment Circle. Students share one artistic goal for the future: 'Je veux continuer à...' (I want to continue to...) 'L'art va toujours être important parce que...' (Art will always be important because...) Group celebration of artistic growth.",
+        "materials": [
+          "Art objects for demonstration",
+          "Visual routine chart",
+          "Basic art supplies (crayons, paper, glue)"
+        ],
+        "visualSupports": "Relevant vocabulary cards and visual aids for lesson content",
+        "decisionPoints": [
+          "Si les élèves sont nerveux au début → commencer par montrer comment tenir les objets artistiques et les toucher doucement",
+          "Si certains élèves ne participent pas → les inviter à pointer vers l'art avec l'enseignant en disant ensemble 'Voici!'",
+          "Si les gestes sont trop excités → modéliser des mouvements plus calmes et inviter à copier"
+        ],
+        "movementBreaks": [
+          "Natural movement opportunities during activity"
+        ]
+      },
+      "troubleshooting": {
+        "ifStrugglingWith": "Students having difficulty with the main lesson concept or activity",
+        "then": "Art appreciation circle: Students take turns appreciating something special about each classmate's artistic development using French vocabulary. Focus on community celebration and individual recognition."
+      },
+      "realWorldConnection": "Continuing to make art at home, noticing art everywhere, sharing creativity - encourage lifelong artistic engagement and French vocabulary use",
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual examples and demonstrations",
+          "Use simple gestures and basic vocabulary",
+          "Allow non-verbal responses initially",
+          "Partner with supportive peer"
+        ],
+        "pourAvancés": [
+          "Encourage detailed French descriptions",
+          "Challenge with complex art concepts",
+          "Lead activities and help others",
+          "Explore creative extensions"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary supports",
+          "Allow L1 support when needed",
+          "Use gestures and pointing",
+          "Focus on concrete, visible concepts"
+        ],
+        "pourPEI": [
+          "Adapt materials and tools as needed",
+          "Provide sensory accommodations",
+          "Adjust expectations and timing",
+          "Offer multiple ways to show understanding"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève explore les matériaux artistiques avec curiosité",
+          "L'élève explique ses choix artistiques en français simple",
+          "L'élève respecte les matériaux et l'espace de travail",
+          "L'élève apprécie les créations artistiques des autres"
+        ],
+        "checkpoints": [
+          "Utilise les techniques artistiques démontrées",
+          "Exprime ses idées par l'art visuel",
+          "Utilise le vocabulaire artistique approprié",
+          "Montre fierté dans ses créations artistiques"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Créativité",
+        "items": [
+          "Démontre une compréhension de base en créativité",
+          "Participe activement aux activités de créativité",
+          "Montre du progrès dans créativité",
+          "Applique les apprentissages de créativité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Utilisation des matériaux",
+        "items": [
+          "Démontre une compréhension de base en utilisation des matériaux",
+          "Participe activement aux activités de utilisation des matériaux",
+          "Montre du progrès dans utilisation des matériaux",
+          "Applique les apprentissages de utilisation des matériaux dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Appréciation artistique",
+        "items": [
+          "Démontre une compréhension de base en appréciation artistique",
+          "Participe activement aux activités de appréciation artistique",
+          "Montre du progrès dans appréciation artistique",
+          "Applique les apprentissages de appréciation artistique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Créativité",
+        "Utilisation des matériaux",
+        "Expression personnelle",
+        "Appréciation artistique"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🎨",
+          "🖌️",
+          "✏️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\\n\\nNous sommes ravis de commencer notre nouvelle unité: 'Premiers pas artistiques'\\n\\nCette unité permettra à votre enfant de:\\n• Explorer des concepts importants en arts visuels\\n• Développer du vocabulaire en français\\n• Pratiquer de nouvelles compétences\\n• Faire des connexions avec la vie quotidienne\\n\\nQuelques thèmes que nous explorerons:\\nBonjour l'art!, Mes yeux découvrent, J'aime j'aime pas, Mes mains créent, Lignes partout!\\n\\nComment vous pouvez aider à la maison:\\n• Demandez à votre enfant de partager ce qu'il/elle a appris\\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\\n• Essayez les activités suggérées quand vous avez du temps\\n• Célébrez les efforts et les progrès, pas seulement les résultats\\n\\nValorisez le processus créatif autant que le produit final.\\n\\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\\n\\nLa créativité s'épanouit avec votre encouragement!\\n\\nCordialement,\\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Création artistique libre",
+        "description": "Créez de l'art ensemble en utilisant les techniques apprises",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux d'art disponibles",
+        "frenchSupport": "L'art transcende les langues!"
+      },
+      {
+        "title": "Galerie maison",
+        "description": "Créez un espace pour exposer les créations de votre enfant",
+        "timeRequired": "10 minutes",
+        "materials": "Espace mural ou table",
+        "frenchSupport": "Demandez à votre enfant d'expliquer ses œuvres"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "art",
+        "lesson": 1,
+        "context": "Bonjour l'art!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"art\"",
+          "Utilisez \"art\" dans une phrase simple",
+          "Trouvez des images représentant \"art\"",
+          "Faites des gestes pour \"art\""
+        ]
+      },
+      {
+        "word": "voir",
+        "lesson": 1,
+        "context": "Bonjour l'art!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voir\"",
+          "Utilisez \"voir\" dans une phrase simple",
+          "Trouvez des images représentant \"voir\"",
+          "Faites des gestes pour \"voir\""
+        ]
+      },
+      {
+        "word": "couleur",
+        "lesson": 1,
+        "context": "Bonjour l'art!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"couleur\"",
+          "Utilisez \"couleur\" dans une phrase simple",
+          "Trouvez des images représentant \"couleur\"",
+          "Faites des gestes pour \"couleur\""
+        ]
+      },
+      {
+        "word": "regarder",
+        "lesson": 2,
+        "context": "Mes yeux découvrent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"regarder\"",
+          "Utilisez \"regarder\" dans une phrase simple",
+          "Trouvez des images représentant \"regarder\"",
+          "Faites des gestes pour \"regarder\""
+        ]
+      },
+      {
+        "word": "détail",
+        "lesson": 2,
+        "context": "Mes yeux découvrent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"détail\"",
+          "Utilisez \"détail\" dans une phrase simple",
+          "Trouvez des images représentant \"détail\"",
+          "Faites des gestes pour \"détail\""
+        ]
+      },
+      {
+        "word": "forme",
+        "lesson": 2,
+        "context": "Mes yeux découvrent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"forme\"",
+          "Utilisez \"forme\" dans une phrase simple",
+          "Trouvez des images représentant \"forme\"",
+          "Faites des gestes pour \"forme\""
+        ]
+      },
+      {
+        "word": "j'aime",
+        "lesson": 3,
+        "context": "J'aime, j'aime pas",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"j'aime\"",
+          "Utilisez \"j'aime\" dans une phrase simple",
+          "Trouvez des images représentant \"j'aime\"",
+          "Faites des gestes pour \"j'aime\""
+        ]
+      },
+      {
+        "word": "beau",
+        "lesson": 3,
+        "context": "J'aime, j'aime pas",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"beau\"",
+          "Utilisez \"beau\" dans une phrase simple",
+          "Trouvez des images représentant \"beau\"",
+          "Faites des gestes pour \"beau\""
+        ]
+      },
+      {
+        "word": "préférer",
+        "lesson": 3,
+        "context": "J'aime, j'aime pas",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"préférer\"",
+          "Utilisez \"préférer\" dans une phrase simple",
+          "Trouvez des images représentant \"préférer\"",
+          "Faites des gestes pour \"préférer\""
+        ]
+      },
+      {
+        "word": "crayon",
+        "lesson": 4,
+        "context": "Mes mains créent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"crayon\"",
+          "Utilisez \"crayon\" dans une phrase simple",
+          "Trouvez des images représentant \"crayon\"",
+          "Faites des gestes pour \"crayon\""
+        ]
+      },
+      {
+        "word": "papier",
+        "lesson": 4,
+        "context": "Mes mains créent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"papier\"",
+          "Utilisez \"papier\" dans une phrase simple",
+          "Trouvez des images représentant \"papier\"",
+          "Faites des gestes pour \"papier\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 4,
+        "context": "Mes mains créent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "ligne",
+        "lesson": 5,
+        "context": "Lignes partout!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ligne\"",
+          "Utilisez \"ligne\" dans une phrase simple",
+          "Trouvez des images représentant \"ligne\"",
+          "Faites des gestes pour \"ligne\""
+        ]
+      },
+      {
+        "word": "droite",
+        "lesson": 5,
+        "context": "Lignes partout!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"droite\"",
+          "Utilisez \"droite\" dans une phrase simple",
+          "Trouvez des images représentant \"droite\"",
+          "Faites des gestes pour \"droite\""
+        ]
+      },
+      {
+        "word": "courbe",
+        "lesson": 5,
+        "context": "Lignes partout!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"courbe\"",
+          "Utilisez \"courbe\" dans une phrase simple",
+          "Trouvez des images représentant \"courbe\"",
+          "Faites des gestes pour \"courbe\""
+        ]
+      },
+      {
+        "word": "cercle",
+        "lesson": 6,
+        "context": "Formes magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cercle\"",
+          "Utilisez \"cercle\" dans une phrase simple",
+          "Trouvez des images représentant \"cercle\"",
+          "Faites des gestes pour \"cercle\""
+        ]
+      },
+      {
+        "word": "carré",
+        "lesson": 6,
+        "context": "Formes magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"carré\"",
+          "Utilisez \"carré\" dans une phrase simple",
+          "Trouvez des images représentant \"carré\"",
+          "Faites des gestes pour \"carré\""
+        ]
+      },
+      {
+        "word": "triangle",
+        "lesson": 6,
+        "context": "Formes magiques",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"triangle\"",
+          "Utilisez \"triangle\" dans une phrase simple",
+          "Trouvez des images représentant \"triangle\"",
+          "Faites des gestes pour \"triangle\""
+        ]
+      },
+      {
+        "word": "rouge",
+        "lesson": 7,
+        "context": "Couleurs vivantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rouge\"",
+          "Utilisez \"rouge\" dans une phrase simple",
+          "Trouvez des images représentant \"rouge\"",
+          "Faites des gestes pour \"rouge\""
+        ]
+      },
+      {
+        "word": "bleu",
+        "lesson": 7,
+        "context": "Couleurs vivantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bleu\"",
+          "Utilisez \"bleu\" dans une phrase simple",
+          "Trouvez des images représentant \"bleu\"",
+          "Faites des gestes pour \"bleu\""
+        ]
+      },
+      {
+        "word": "jaune",
+        "lesson": 7,
+        "context": "Couleurs vivantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jaune\"",
+          "Utilisez \"jaune\" dans une phrase simple",
+          "Trouvez des images représentant \"jaune\"",
+          "Faites des gestes pour \"jaune\""
+        ]
+      },
+      {
+        "word": "toucher",
+        "lesson": 8,
+        "context": "Textures à toucher",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"toucher\"",
+          "Utilisez \"toucher\" dans une phrase simple",
+          "Trouvez des images représentant \"toucher\"",
+          "Faites des gestes pour \"toucher\""
+        ]
+      },
+      {
+        "word": "doux",
+        "lesson": 8,
+        "context": "Textures à toucher",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"doux\"",
+          "Utilisez \"doux\" dans une phrase simple",
+          "Trouvez des images représentant \"doux\"",
+          "Faites des gestes pour \"doux\""
+        ]
+      },
+      {
+        "word": "rugueux",
+        "lesson": 8,
+        "context": "Textures à toucher",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rugueux\"",
+          "Utilisez \"rugueux\" dans une phrase simple",
+          "Trouvez des images représentant \"rugueux\"",
+          "Faites des gestes pour \"rugueux\""
+        ]
+      },
+      {
+        "word": "content",
+        "lesson": 9,
+        "context": "Mes sentiments en art",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"content\"",
+          "Utilisez \"content\" dans une phrase simple",
+          "Trouvez des images représentant \"content\"",
+          "Faites des gestes pour \"content\""
+        ]
+      },
+      {
+        "word": "triste",
+        "lesson": 9,
+        "context": "Mes sentiments en art",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"triste\"",
+          "Utilisez \"triste\" dans une phrase simple",
+          "Trouvez des images représentant \"triste\"",
+          "Faites des gestes pour \"triste\""
+        ]
+      },
+      {
+        "word": "excité",
+        "lesson": 9,
+        "context": "Mes sentiments en art",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"excité\"",
+          "Utilisez \"excité\" dans une phrase simple",
+          "Trouvez des images représentant \"excité\"",
+          "Faites des gestes pour \"excité\""
+        ]
+      },
+      {
+        "word": "pinceau",
+        "lesson": 10,
+        "context": "Outils d'artiste",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pinceau\"",
+          "Utilisez \"pinceau\" dans une phrase simple",
+          "Trouvez des images représentant \"pinceau\"",
+          "Faites des gestes pour \"pinceau\""
+        ]
+      },
+      {
+        "word": "colle",
+        "lesson": 10,
+        "context": "Outils d'artiste",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"colle\"",
+          "Utilisez \"colle\" dans une phrase simple",
+          "Trouvez des images représentant \"colle\"",
+          "Faites des gestes pour \"colle\""
+        ]
+      },
+      {
+        "word": "ciseaux",
+        "lesson": 10,
+        "context": "Outils d'artiste",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ciseaux\"",
+          "Utilisez \"ciseaux\" dans une phrase simple",
+          "Trouvez des images représentant \"ciseaux\"",
+          "Faites des gestes pour \"ciseaux\""
+        ]
+      },
+      {
+        "word": "mélanger",
+        "lesson": 11,
+        "context": "Techniques nouvelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mélanger\"",
+          "Utilisez \"mélanger\" dans une phrase simple",
+          "Trouvez des images représentant \"mélanger\"",
+          "Faites des gestes pour \"mélanger\""
+        ]
+      },
+      {
+        "word": "tamponner",
+        "lesson": 11,
+        "context": "Techniques nouvelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tamponner\"",
+          "Utilisez \"tamponner\" dans une phrase simple",
+          "Trouvez des images représentant \"tamponner\"",
+          "Faites des gestes pour \"tamponner\""
+        ]
+      },
+      {
+        "word": "gratter",
+        "lesson": 11,
+        "context": "Techniques nouvelles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"gratter\"",
+          "Utilisez \"gratter\" dans une phrase simple",
+          "Trouvez des images représentant \"gratter\"",
+          "Faites des gestes pour \"gratter\""
+        ]
+      },
+      {
+        "word": "style",
+        "lesson": 12,
+        "context": "Mon style unique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"style\"",
+          "Utilisez \"style\" dans une phrase simple",
+          "Trouvez des images représentant \"style\"",
+          "Faites des gestes pour \"style\""
+        ]
+      },
+      {
+        "word": "unique",
+        "lesson": 12,
+        "context": "Mon style unique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"unique\"",
+          "Utilisez \"unique\" dans une phrase simple",
+          "Trouvez des images représentant \"unique\"",
+          "Faites des gestes pour \"unique\""
+        ]
+      },
+      {
+        "word": "spécial",
+        "lesson": 12,
+        "context": "Mon style unique",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"spécial\"",
+          "Utilisez \"spécial\" dans une phrase simple",
+          "Trouvez des images représentant \"spécial\"",
+          "Faites des gestes pour \"spécial\""
+        ]
+      },
+      {
+        "word": "expliquer",
+        "lesson": 13,
+        "context": "Partager mes idées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expliquer\"",
+          "Utilisez \"expliquer\" dans une phrase simple",
+          "Trouvez des images représentant \"expliquer\"",
+          "Faites des gestes pour \"expliquer\""
+        ]
+      },
+      {
+        "word": "montrer",
+        "lesson": 13,
+        "context": "Partager mes idées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"montrer\"",
+          "Utilisez \"montrer\" dans une phrase simple",
+          "Trouvez des images représentant \"montrer\"",
+          "Faites des gestes pour \"montrer\""
+        ]
+      },
+      {
+        "word": "raconter",
+        "lesson": 13,
+        "context": "Partager mes idées",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"raconter\"",
+          "Utilisez \"raconter\" dans une phrase simple",
+          "Trouvez des images représentant \"raconter\"",
+          "Faites des gestes pour \"raconter\""
+        ]
+      },
+      {
+        "word": "important",
+        "lesson": 14,
+        "context": "Art dans ma vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"important\"",
+          "Utilisez \"important\" dans une phrase simple",
+          "Trouvez des images représentant \"important\"",
+          "Faites des gestes pour \"important\""
+        ]
+      },
+      {
+        "word": "quotidien",
+        "lesson": 14,
+        "context": "Art dans ma vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"quotidien\"",
+          "Utilisez \"quotidien\" dans une phrase simple",
+          "Trouvez des images représentant \"quotidien\"",
+          "Faites des gestes pour \"quotidien\""
+        ]
+      },
+      {
+        "word": "utiliser",
+        "lesson": 14,
+        "context": "Art dans ma vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"utiliser\"",
+          "Utilisez \"utiliser\" dans une phrase simple",
+          "Trouvez des images représentant \"utiliser\"",
+          "Faites des gestes pour \"utiliser\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}
