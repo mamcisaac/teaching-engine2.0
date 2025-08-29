@@ -1,0 +1,294 @@
+name: Student Assessment Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'server/src/routes/students.ts'
+      - 'server/src/routes/artifacts.ts'
+      - 'server/src/routes/masteryTracking.ts'
+      - 'server/src/routes/analytics.ts'
+      - 'server/src/routes/reports.ts'
+      - 'server/src/services/**/*'
+      - 'server/src/processors/**/*'
+      - 'tests/e2e/**/*'
+      - '.github/workflows/student-assessment-tests.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'server/src/routes/students.ts'
+      - 'server/src/routes/artifacts.ts'
+      - 'server/src/routes/masteryTracking.ts'
+      - 'server/src/routes/analytics.ts'
+      - 'server/src/routes/reports.ts'
+      - 'server/src/services/**/*'
+      - 'server/src/processors/**/*'
+      - 'tests/e2e/**/*'
+      - '.github/workflows/student-assessment-tests.yml'
+
+jobs:
+  test-assessment-features:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || contains(github.event.pull_request.title, 'assessment') || contains(github.event.pull_request.title, 'student')
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      postgres:
+        image: postgres:15-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: teaching_engine_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      NODE_ENV: test
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/teaching_engine_test
+      REDIS_URL: redis://localhost:6379
+      JWT_SECRET: test-secret-key-for-ci-only
+      FEATURE_STUDENT_ASSESSMENT: true
+      STORAGE_DRIVER: local
+      UPLOAD_PATH: ./test-uploads
+      UPLOAD_MAX_MB: 10
+      MOCK_FILE_PROCESSING: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.1
+          run_install: false
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-assessment-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-assessment-
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install system dependencies for file processing
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ffmpeg \
+            imagemagick \
+            ghostscript \
+            poppler-utils
+
+      - name: Generate Prisma Client
+        run: pnpm db:generate
+
+      - name: Run database migrations
+        run: pnpm --filter @teaching-engine/database exec prisma migrate deploy
+
+      - name: Seed test data
+        run: |
+          pnpm --filter @teaching-engine/database exec prisma db seed
+
+      - name: Verify Redis connection
+        run: |
+          redis-cli -h localhost ping
+          echo "Redis is running"
+
+      - name: Create test upload directories
+        run: |
+          mkdir -p test-uploads/artifacts/{images,videos,audio,documents}
+          mkdir -p test-uploads/temp
+
+      - name: Run unit tests for assessment features
+        run: |
+          pnpm --filter server test -- \
+            --testPathPattern="(students|artifacts|mastery|analytics|reports)" \
+            --coverage \
+            --coverageDirectory=coverage/assessment
+
+      - name: Run integration tests
+        run: |
+          pnpm --filter server test -- \
+            --testPathPattern="integration.*assessment" \
+            --runInBand
+
+      - name: Start servers for E2E tests
+        run: |
+          pnpm --filter server build
+          pnpm --filter client build
+          nohup pnpm --filter server start &
+          nohup pnpm --filter client preview --port 5173 &
+          sleep 10
+
+      - name: Wait for servers to be ready
+        run: |
+          npx wait-on http://localhost:3000/health -t 30000
+          npx wait-on http://localhost:5173 -t 30000
+
+      - name: Run E2E assessment tests
+        run: |
+          HEADLESS=true pnpm test:e2e:full
+
+      - name: Upload test artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts-${{ github.run_id }}
+          path: |
+            test-uploads/
+            coverage/
+            test-results/
+            screenshots/
+
+      - name: Upload coverage reports
+        if: success()
+        uses: codecov/codecov-action@v4
+        with:
+          directory: ./coverage/assessment
+          flags: assessment
+          name: assessment-coverage
+
+  test-file-processing:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || contains(github.event.pull_request.title, 'file') || contains(github.event.pull_request.title, 'upload')
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      NODE_ENV: test
+      REDIS_URL: redis://localhost:6379
+      FEATURE_STUDENT_ASSESSMENT: true
+      STORAGE_DRIVER: local
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.1
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install file processing dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg imagemagick
+
+      - name: Test image processing
+        run: |
+          pnpm --filter server test -- \
+            --testPathPattern="imageProcessor" \
+            --runInBand
+
+      - name: Test video processing
+        run: |
+          pnpm --filter server test -- \
+            --testPathPattern="videoProcessor" \
+            --runInBand
+
+      - name: Test document processing
+        run: |
+          pnpm --filter server test -- \
+            --testPathPattern="documentProcessor" \
+            --runInBand
+
+      - name: Test queue operations
+        run: |
+          pnpm --filter server test -- \
+            --testPathPattern="queue" \
+            --runInBand
+
+  performance-tests:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+      
+      postgres:
+        image: postgres:15-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: teaching_engine_perf
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/teaching_engine_perf
+      REDIS_URL: redis://localhost:6379
+      FEATURE_STUDENT_ASSESSMENT: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.1
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup database
+        run: |
+          pnpm db:generate
+          pnpm --filter @teaching-engine/database exec prisma migrate deploy
+
+      - name: Run performance tests
+        run: |
+          pnpm --filter server test:performance -- \
+            --testNamePattern="Student Assessment Performance"
+
+      - name: Upload performance results
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-results-${{ github.sha }}
+          path: performance-results/
