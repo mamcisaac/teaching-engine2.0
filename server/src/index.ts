@@ -30,6 +30,7 @@ import { prisma } from './prisma';
 import { router as activityCollectionsRoutes } from './routes/activity-collections';
 import { router as aiActivityGenerationRoutes } from './routes/ai-activity-generation';
 import { router as aiPlanningRoutes } from './routes/ai-planning';
+import { router as artifactsRoutes } from './routes/artifacts';
 import { router as authEndpoints } from './routes/authEndpoints';
 import { router as cacheRoutes } from './routes/cache';
 import { router as calendarEventRoutes } from './routes/calendar-events';
@@ -55,6 +56,7 @@ import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
 import { userRoutes } from './routes/user';
 import { errorReportingService } from './services/monitoring/errorReportingService';
+import { initializeServices } from './services/initializeServices';
 import {
   structuredLogger,
   correlationMiddleware,
@@ -219,6 +221,7 @@ if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
   app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentsRoutes);
   app.use('/api/mastery', asyncMiddleware(authenticate), rateLimiters.api, userCache, masteryTrackingRoutes);
   app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
+  app.use('/api/artifacts', asyncMiddleware(authenticate), rateLimiters.write, userCache, artifactsRoutes);
 }
 
 // Key Teacher Features
@@ -353,6 +356,10 @@ async function initializeApp(): Promise<express.Application> {
   // Initialize error reporting service first
   log('Initializing error reporting service...');
   errorReportingService.init();
+
+  // Initialize background services (queues, cleanup, etc.)
+  log('Initializing background services...');
+  await initializeServices();
 
   // Initialize OpenTelemetry before anything else
   log('Initializing OpenTelemetry...');
