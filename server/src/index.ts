@@ -40,7 +40,9 @@ import { router as dashboardMetricsRoutes } from './routes/dashboard-metrics';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as etfoProgressRoutes } from './routes/etfo-progress';
+import evidenceExportRoutes from './routes/evidenceExport';
 import lessonGenerationRoutes from './routes/lesson-generation';
+import { router as masteryTrackingRoutes } from './routes/masteryTracking';
 import { router as longRangePlanRoutes } from './routes/long-range-plans';
 import { router as metricsRoutes } from './routes/metrics';
 import { router as monitoringRoutes } from './routes/monitoring';
@@ -48,6 +50,7 @@ import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
 import { router as recentPlansRoutes } from './routes/recent-plans';
+import studentsRoutes from './routes/students';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
@@ -214,7 +217,10 @@ log('Mounting ETFO-aligned API routes...');
 
 // ETFO Student Assessment Routes (conditionally enabled)
 if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
-  log('Mounting file processing and artifact routes...');
+  log('Mounting student assessment routes...');
+  app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentsRoutes);
+  app.use('/api/mastery', asyncMiddleware(authenticate), rateLimiters.api, userCache, masteryTrackingRoutes);
+  app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
   app.use('/api/artifacts', asyncMiddleware(authenticate), rateLimiters.write, userCache, artifactsRoutes);
 }
 
