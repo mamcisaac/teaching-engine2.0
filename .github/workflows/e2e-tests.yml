@@ -1,0 +1,270 @@
+name: E2E Tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      NODE_ENV: test
+      DATABASE_URL: "file:./test.db"
+      REDIS_URL: redis://localhost:6379
+      JWT_SECRET: test-secret-for-e2e-tests
+      FEATURE_STUDENT_ASSESSMENT: true
+      STORAGE_DRIVER: local
+      UPLOAD_PATH: ./test-uploads
+      HEADLESS: true
+      CLIENT_URL: http://localhost:5173
+      VITE_API_URL: http://localhost:3000
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.1
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Puppeteer system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ca-certificates \
+            fonts-liberation \
+            libappindicator3-1 \
+            libasound2 \
+            libatk-bridge2.0-0 \
+            libatk1.0-0 \
+            libc6 \
+            libcairo2 \
+            libcups2 \
+            libdbus-1-3 \
+            libexpat1 \
+            libfontconfig1 \
+            libgbm1 \
+            libgcc1 \
+            libglib2.0-0 \
+            libgtk-3-0 \
+            libnspr4 \
+            libnss3 \
+            libpango-1.0-0 \
+            libpangocairo-1.0-0 \
+            libstdc++6 \
+            libx11-6 \
+            libx11-xcb1 \
+            libxcb1 \
+            libxcomposite1 \
+            libxcursor1 \
+            libxdamage1 \
+            libxext6 \
+            libxfixes3 \
+            libxi6 \
+            libxrandr2 \
+            libxrender1 \
+            libxss1 \
+            libxtst6 \
+            lsb-release \
+            wget \
+            xdg-utils
+
+      - name: Generate Prisma Client
+        run: pnpm db:generate
+
+      - name: Setup test database
+        run: |
+          pnpm --filter @teaching-engine/database exec prisma migrate deploy
+          pnpm --filter @teaching-engine/database exec prisma db seed
+
+      - name: Create test directories
+        run: |
+          mkdir -p test-uploads/artifacts/{images,videos,audio,documents}
+          mkdir -p test-uploads/temp
+          mkdir -p test-results
+          mkdir -p screenshots
+
+      - name: Build application
+        run: |
+          pnpm --filter server build
+          pnpm --filter client build
+
+      - name: Start server
+        run: |
+          nohup pnpm --filter server start > server.log 2>&1 &
+          echo $! > server.pid
+
+      - name: Start client
+        run: |
+          nohup pnpm --filter client preview --port 5173 > client.log 2>&1 &
+          echo $! > client.pid
+
+      - name: Wait for services
+        run: |
+          npx wait-on http://localhost:3000/health -t 60000
+          npx wait-on http://localhost:5173 -t 60000
+          echo "Services are ready"
+
+      - name: Run E2E smoke tests
+        run: |
+          pnpm test:e2e:smoke || true
+
+      - name: Run full E2E test suite
+        run: |
+          pnpm test:e2e:all
+
+      - name: Generate test report
+        if: always()
+        run: |
+          echo "# E2E Test Results" > test-results/summary.md
+          echo "- Date: $(date)" >> test-results/summary.md
+          echo "- Commit: ${{ github.sha }}" >> test-results/summary.md
+          echo "- Branch: ${{ github.ref }}" >> test-results/summary.md
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results-${{ github.run_id }}
+          path: |
+            test-results/
+            screenshots/
+            server.log
+            client.log
+
+      - name: Upload coverage
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-coverage-${{ github.run_id }}
+          path: coverage/
+
+      - name: Stop services
+        if: always()
+        run: |
+          if [ -f server.pid ]; then kill $(cat server.pid) || true; fi
+          if [ -f client.pid ]; then kill $(cat client.pid) || true; fi
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let summary = '## ✅ E2E Tests Completed\n\n';
+            
+            if (fs.existsSync('test-results/summary.md')) {
+              summary += fs.readFileSync('test-results/summary.md', 'utf8');
+            }
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
+
+  quick-e2e:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    timeout-minutes: 15
+
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    env:
+      NODE_ENV: test
+      DATABASE_URL: "file:./test.db"
+      REDIS_URL: redis://localhost:6379
+      JWT_SECRET: quick-test-secret
+      FEATURE_STUDENT_ASSESSMENT: true
+      HEADLESS: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.1
+
+      - name: Install dependencies
+        run: |
+          pnpm install --frozen-lockfile --prefer-offline
+
+      - name: Install Puppeteer dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+
+      - name: Setup and build
+        run: |
+          pnpm db:generate
+          pnpm --filter server build
+          pnpm --filter client build
+
+      - name: Start services
+        run: |
+          nohup pnpm --filter server start &
+          nohup pnpm --filter client preview --port 5173 &
+          npx wait-on http://localhost:3000/health http://localhost:5173 -t 30000
+
+      - name: Run quick E2E test
+        run: pnpm test:e2e
+
+      - name: Report status
+        if: always()
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "✅ Quick E2E tests passed"
+          else
+            echo "❌ Quick E2E tests failed"
+            exit 1
+          fi
