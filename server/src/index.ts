@@ -30,6 +30,7 @@ import { prisma } from './prisma';
 import { router as activityCollectionsRoutes } from './routes/activity-collections';
 import { router as aiActivityGenerationRoutes } from './routes/ai-activity-generation';
 import { router as aiPlanningRoutes } from './routes/ai-planning';
+import { router as artifactsRoutes } from './routes/artifacts';
 import { router as authEndpoints } from './routes/authEndpoints';
 import { router as cacheRoutes } from './routes/cache';
 import { router as calendarEventRoutes } from './routes/calendar-events';
@@ -52,6 +53,7 @@ import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
 import { userRoutes } from './routes/user';
 import { errorReportingService } from './services/monitoring/errorReportingService';
+import { initializeServices } from './services/initializeServices';
 import {
   structuredLogger,
   correlationMiddleware,
@@ -210,6 +212,12 @@ app.use('/api/notifications', asyncMiddleware(authenticate), rateLimiters.api, n
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
 
+// ETFO Student Assessment Routes (conditionally enabled)
+if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
+  log('Mounting file processing and artifact routes...');
+  app.use('/api/artifacts', asyncMiddleware(authenticate), rateLimiters.write, userCache, artifactsRoutes);
+}
+
 // Key Teacher Features
 app.use('/api/newsletters', asyncMiddleware(authenticate), rateLimiters.write, newsletterRoutes);
 app.use('/api/substitute-plans', asyncMiddleware(authenticate), rateLimiters.write, substitutePlanRoutes);
@@ -342,6 +350,10 @@ async function initializeApp(): Promise<express.Application> {
   // Initialize error reporting service first
   log('Initializing error reporting service...');
   errorReportingService.init();
+
+  // Initialize background services (queues, cleanup, etc.)
+  log('Initializing background services...');
+  await initializeServices();
 
   // Initialize OpenTelemetry before anything else
   log('Initializing OpenTelemetry...');
