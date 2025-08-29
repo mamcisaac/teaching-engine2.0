@@ -30,6 +30,7 @@ import { prisma } from './prisma';
 import { router as activityCollectionsRoutes } from './routes/activity-collections';
 import { router as aiActivityGenerationRoutes } from './routes/ai-activity-generation';
 import { router as aiPlanningRoutes } from './routes/ai-planning';
+import { router as analyticsRoutes } from './routes/analytics';
 import { router as authEndpoints } from './routes/authEndpoints';
 import { router as cacheRoutes } from './routes/cache';
 import { router as calendarEventRoutes } from './routes/calendar-events';
@@ -39,6 +40,7 @@ import { router as dashboardMetricsRoutes } from './routes/dashboard-metrics';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as etfoProgressRoutes } from './routes/etfo-progress';
+import evidenceExportRoutes from './routes/evidenceExport';
 import lessonGenerationRoutes from './routes/lesson-generation';
 import { router as longRangePlanRoutes } from './routes/long-range-plans';
 import { router as metricsRoutes } from './routes/metrics';
@@ -47,6 +49,7 @@ import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
 import { router as recentPlansRoutes } from './routes/recent-plans';
+import reportsRoutes from './routes/reports';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
@@ -213,6 +216,14 @@ log('Mounting ETFO-aligned API routes...');
 // Key Teacher Features
 app.use('/api/newsletters', asyncMiddleware(authenticate), rateLimiters.write, newsletterRoutes);
 app.use('/api/substitute-plans', asyncMiddleware(authenticate), rateLimiters.write, substitutePlanRoutes);
+
+// ETFO Student Assessment Routes (conditionally enabled)
+if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
+  log('Mounting student assessment analytics routes...');
+  app.use('/api/reports', asyncMiddleware(authenticate), rateLimiters.api, userCache, reportsRoutes);
+  app.use('/api/analytics', asyncMiddleware(authenticate), rateLimiters.api, userCache, analyticsRoutes);
+  app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
+}
 
 app.use(
   '/api/curriculum-import',
