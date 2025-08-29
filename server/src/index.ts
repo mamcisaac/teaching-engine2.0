@@ -49,6 +49,7 @@ import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
 import { router as recentPlansRoutes } from './routes/recent-plans';
+import studentsRoutes from './routes/students';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
@@ -214,7 +215,8 @@ log('Mounting ETFO-aligned API routes...');
 
 // ETFO Student Assessment Routes (conditionally enabled)
 if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
-  log('Mounting assessment and mastery tracking routes...');
+  log('Mounting student assessment routes...');
+  app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentsRoutes);
   app.use('/api/mastery', asyncMiddleware(authenticate), rateLimiters.api, userCache, masteryTrackingRoutes);
   app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
 }
