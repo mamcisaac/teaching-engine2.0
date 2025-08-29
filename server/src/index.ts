@@ -47,6 +47,7 @@ import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
 import { router as recentPlansRoutes } from './routes/recent-plans';
+import studentsRoutes from './routes/students';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
@@ -209,6 +210,12 @@ app.use('/api/notifications', asyncMiddleware(authenticate), rateLimiters.api, n
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
+
+// ETFO Student Assessment Routes (conditionally enabled)
+if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
+  log('Mounting student assessment routes...');
+  app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentsRoutes);
+}
 
 // Key Teacher Features
 app.use('/api/newsletters', asyncMiddleware(authenticate), rateLimiters.write, newsletterRoutes);
