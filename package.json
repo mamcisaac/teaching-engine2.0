@@ -7,12 +7,17 @@
     "node": ">=18.0.0",
     "pnpm": ">=8.0.0"
   },
+  "packageManager": "pnpm@10.11.1",
   "scripts": {
     "dev": "echo 'Please use: cd server && npm run dev & cd client && npm run dev'",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "check:docs": "echo 'Docs check placeholder'",
+    "test:e2e": "echo 'E2E tests placeholder'",
+    "test:e2e:smoke": "echo 'E2E smoke tests placeholder'",
+    "test:e2e:ci": "echo 'E2E CI tests placeholder'"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.0",
