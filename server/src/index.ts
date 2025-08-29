@@ -39,7 +39,9 @@ import { router as dashboardMetricsRoutes } from './routes/dashboard-metrics';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as etfoProgressRoutes } from './routes/etfo-progress';
+import evidenceExportRoutes from './routes/evidenceExport';
 import lessonGenerationRoutes from './routes/lesson-generation';
+import { router as masteryTrackingRoutes } from './routes/masteryTracking';
 import { router as longRangePlanRoutes } from './routes/long-range-plans';
 import { router as metricsRoutes } from './routes/metrics';
 import { router as monitoringRoutes } from './routes/monitoring';
@@ -209,6 +211,13 @@ app.use('/api/notifications', asyncMiddleware(authenticate), rateLimiters.api, n
 // Apply authentication and rate limiting to all API routes
 log('Mounting ETFO-aligned API routes...');
 // Student endpoints removed - app does not store student data
+
+// ETFO Student Assessment Routes (conditionally enabled)
+if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
+  log('Mounting assessment and mastery tracking routes...');
+  app.use('/api/mastery', asyncMiddleware(authenticate), rateLimiters.api, userCache, masteryTrackingRoutes);
+  app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
+}
 
 // Key Teacher Features
 app.use('/api/newsletters', asyncMiddleware(authenticate), rateLimiters.write, newsletterRoutes);
