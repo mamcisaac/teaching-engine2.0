@@ -56,7 +56,7 @@ describe('Emily\'s ETFO Student Assessment System - E2E Tests', () => {
   beforeEach(async () => {
     // Navigate to the application
     await page.goto(baseURL, { waitUntil: 'networkidle0' });
-    await page.waitForTimeout(1000); // Allow UI to settle
+    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 1000))); // Allow UI to settle
   });
 
   describe('Authentication and Initial Setup', () => {
@@ -560,7 +560,7 @@ Critères observés:
       // Click through different subjects
       for (let i = 0; i < Math.min(subjectTabs.length, 3); i++) {
         await subjectTabs[i].click();
-        await page.waitForTimeout(1000);
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 1000)));
         await page.screenshot({ 
           path: path.join(screenshotDir, `21-student-analytics-subject-${i}.png`),
           fullPage: true 
@@ -941,7 +941,7 @@ Mme Emily McIsaac`);
           loadTime: endTime - startTime
         });
         
-        await page.waitForTimeout(500); // Brief pause between tests
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 500))); // Brief pause between tests
       }
 
       // Test API responsiveness

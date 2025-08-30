@@ -8,7 +8,11 @@ import {
   Package,
   Eye,
   Target,
-  Clock
+  Clock,
+  CheckCircle,
+  Camera,
+  BarChart3,
+  FileBarChart
 } from 'lucide-react';
 import { useNavigation } from './NavigationProvider';
 
@@ -94,6 +98,44 @@ export function TeachingNavigationSection(): React.ReactElement {
     },
   ];
 
+  const assessmentItems: TeachingNavItem[] = [
+    {
+      id: 'students',
+      name: 'Students',
+      path: '/students',
+      icon: <Users className="h-5 w-5" />,
+      description: 'Class roster',
+    },
+    {
+      id: 'assessment',
+      name: 'Assessment',
+      path: '/assessment',
+      icon: <CheckCircle className="h-5 w-5" />,
+      description: 'Record assessments',
+    },
+    {
+      id: 'artifacts',
+      name: 'Artifacts',
+      path: '/artifacts',
+      icon: <Camera className="h-5 w-5" />,
+      description: 'Student work',
+    },
+    {
+      id: 'analytics',
+      name: 'Analytics',
+      path: '/analytics',
+      icon: <BarChart3 className="h-5 w-5" />,
+      description: 'Class insights',
+    },
+    {
+      id: 'reports',
+      name: 'Reports',
+      path: '/reports',
+      icon: <FileBarChart className="h-5 w-5" />,
+      description: 'Progress reports',
+    },
+  ];
+
   return (
     <div className="space-y-6">
       {/* Teaching Section */}
@@ -105,6 +147,7 @@ export function TeachingNavigationSection(): React.ReactElement {
           <NavLink
             key={item.id}
             to={item.path}
+            data-testid={item.id === 'showcase' ? 'nav-dashboard' : `nav-${item.id}`}
             className={({ isActive }): string => {
               const baseClasses = `flex items-center py-3 px-4 ${!isSidebarOpen && 'justify-center'}`;
               
@@ -158,6 +201,37 @@ export function TeachingNavigationSection(): React.ReactElement {
             {isSidebarOpen && (
               <div className="flex-1">
                 <div>{item.name}</div>
+              </div>
+            )}
+          </NavLink>
+        ))}
+      </div>
+
+      {/* Assessment & Tracking Section */}
+      <div>
+        <h2 className="px-4 py-2 text-xs uppercase text-indigo-300 font-semibold">
+          {isSidebarOpen ? '📊 ASSESSMENT & TRACKING' : ''}
+        </h2>
+        {assessmentItems.map((item) => (
+          <NavLink
+            key={item.id}
+            to={item.path}
+            data-testid={`nav-${item.id}`}
+            className={({ isActive }): string => {
+              const baseClasses = `flex items-center py-2 px-4 ${!isSidebarOpen && 'justify-center'}`;
+              
+              if (isActive) {
+                return `${baseClasses} bg-indigo-900 text-white border-l-4 border-yellow-400`;
+              }
+              
+              return `${baseClasses} text-indigo-200 hover:bg-indigo-700`;
+            }}
+          >
+            <span className="mr-3">{item.icon}</span>
+            {isSidebarOpen && (
+              <div className="flex-1">
+                <div className="font-medium">{item.name}</div>
+                <div className="text-xs text-indigo-300 mt-0.5">{item.description}</div>
               </div>
             )}
           </NavLink>

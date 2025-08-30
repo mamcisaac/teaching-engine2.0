@@ -1,0 +1,21 @@
+{
+  "name": "@teaching-engine/e2e-tests",
+  "version": "1.0.0",
+  "description": "E2E tests for Teaching Engine 2.0 - Emily's Grade 1 French Immersion System",
+  "main": "index.js",
+  "scripts": {
+    "test": "node emily-comprehensive-test-suite.js",
+    "test:emily": "HEADLESS=true node emily-comprehensive-test-suite.js",
+    "test:emily:ui": "HEADLESS=false node emily-comprehensive-test-suite.js",
+    "test:perfect": "node perfect-e2e-test.js",
+    "test:all": "npm run test:perfect && npm run test:emily"
+  },
+  "dependencies": {
+    "puppeteer": "^23.0.0",
+    "@jest/globals": "^29.0.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

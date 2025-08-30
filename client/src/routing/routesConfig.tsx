@@ -3,6 +3,7 @@ import type { ComponentType } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { ETFOLevel } from '../hooks/useWorkflowState';
+import { withMainLayout } from '../components/withMainLayout';
 
 // Lazy load pages - import based on actual export patterns
 const LoginPage = lazy(() => import('../pages/LoginPage').then(module => ({ default: module.LoginPage }))); // named export
@@ -21,6 +22,23 @@ const TemplatesPage = lazy(() => import('../pages/TemplatesPage').then(module =>
 const SimpleCalendarPage = lazy(() => import('../pages/SimpleCalendarPage').then(module => ({ default: module.SimpleCalendarPage }))); // named export
 const SimpleTodayView = lazy(() => import('../pages/SimpleTodayView').then(module => ({ default: module.SimpleTodayView }))); // named export
 const SimpleWeekView = lazy(() => import('../pages/SimpleWeekView').then(module => ({ default: module.SimpleWeekView }))); // named export
+
+// Assessment System Pages - wrapped with MainLayout
+const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => ({ 
+  default: withMainLayout(module.StudentsPage) 
+}))); 
+const AssessmentPage = lazy(() => import('../pages/AssessmentPage').then(module => ({ 
+  default: withMainLayout(module.AssessmentPage) 
+})));
+const ArtifactsPage = lazy(() => import('../pages/ArtifactsPage').then(module => ({ 
+  default: withMainLayout(module.ArtifactsPage) 
+})));
+const AnalyticsPage = lazy(() => import('../pages/AnalyticsPage').then(module => ({ 
+  default: withMainLayout(module.AnalyticsPage) 
+})));
+const ReportsPage = lazy(() => import('../pages/ReportsPage').then(module => ({ 
+  default: withMainLayout(module.ReportsPage) 
+})));
 
 export interface RouteConfig {
   path?: string;
@@ -228,6 +246,27 @@ export const protectedRoutes: RouteConfig[] = [
     path: '/help/:section',
     element: HelpPage,
   },
+  // Assessment System Routes
+  {
+    path: '/students',
+    element: StudentsPage,
+  },
+  {
+    path: '/assessment',
+    element: AssessmentPage,
+  },
+  {
+    path: '/artifacts',
+    element: ArtifactsPage,
+  },
+  {
+    path: '/analytics',
+    element: AnalyticsPage,
+  },
+  {
+    path: '/reports',
+    element: ReportsPage,
+  },
   // Legacy redirects
   {
     path: '/parent-messages',
@@ -238,16 +277,8 @@ export const protectedRoutes: RouteConfig[] = [
     element: <Navigate replace to="/students" />,
   },
   {
-    path: '/students',
-    element: <Navigate replace to="/planner/dashboard" />,
-  },
-  {
     path: '/parent-summaries',
     element: <Navigate replace to="/students" />,
-  },
-  {
-    path: '/analytics',
-    element: <Navigate replace to="/" />,
   },
   {
     path: '/notifications',

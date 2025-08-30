@@ -133,7 +133,7 @@ describe('Teaching Engine 2.0 - Complete E2E Workflow', () => {
       `;
     });
     
-    await page.waitForTimeout(5000);
+    await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 5000)));
   });
 });
 

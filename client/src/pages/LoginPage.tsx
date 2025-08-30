@@ -142,11 +142,12 @@ function LoginPage(): React.ReactElement {
                 required
                 autoComplete="email"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                id="email-address"
+                id="email"
                 name="email"
                 placeholder="Email address"
                 type="email"
                 value={email}
+                data-testid="email-input"
                 onChange={(e) => {
  setEmail(e.target.value); 
 }}
@@ -165,6 +166,7 @@ function LoginPage(): React.ReactElement {
                 placeholder="Password"
                 type="password"
                 value={password}
+                data-testid="password-input"
                 onChange={(e) => {
  setPassword(e.target.value); 
 }}
@@ -184,6 +186,7 @@ function LoginPage(): React.ReactElement {
                 } focus:outline-none`}
                 disabled={isLoading || isSuccess}
                 type="submit"
+                data-testid="login-submit"
               >
                 {isSuccess ? (
                   <React.Fragment>

@@ -7,6 +7,7 @@ import { NotificationBell } from '../NotificationBell';
 
 import { secondaryNavItems } from './navigationConfig';
 import { useNavigation } from './NavigationProvider';
+import { UserProfileDropdown } from './UserProfileDropdown';
 
 export function TopNavigationBar(): React.ReactElement {
   const location = useLocation();
@@ -67,9 +68,7 @@ return secondaryMatch.label;
           <LanguageSwitcher />
         </div>
         <NotificationBell />
-        <div className="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white">
-          <span className="font-semibold text-sm">TP</span>
-        </div>
+        <UserProfileDropdown />
       </div>
     </div>
   );

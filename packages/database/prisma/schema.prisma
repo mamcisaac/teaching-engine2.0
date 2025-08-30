@@ -38,6 +38,8 @@ model User {
   password                 String
   name                     String
   role                     String                    @default("teacher")
+  grade                    String?                   // Teacher's primary grade
+  program                  String?                   // e.g., "French Immersion"
   preferredLanguage        String                    @default("en")
   activityCollections      ActivityCollection[]
   activityImports          ActivityImport[]
@@ -63,6 +65,9 @@ model User {
   students                 Student[]
   studentArtifacts         StudentArtifact[]
   studentOutcomeProgress   StudentOutcomeProgress[]
+  assessments              Assessment[]
+  reports                  Report[]
+  uploadedArtifacts        Artifact[]
 }
 
 model Notification {
@@ -874,26 +879,38 @@ model Student {
   userId                 Int                     // Teacher who created the student record
   firstName              String
   lastName               String
+  studentId              String?                 @unique // Unique student identifier
   studentNumber          String?                 // Optional school-assigned number
+  dateOfBirth            DateTime?
   grade                  Int
+  program                String?                 // e.g., "French Immersion"
   homeroom               String?
+  hasIEP                 Boolean                 @default(false)
+  iepGoals               Json?                   // Array of IEP goals
+  accommodations         Json?                   // Array of accommodations
   specialNeeds           String?                 // IEP, accommodations, etc.
   parentContact          Json?                   // Emergency contact info
   enrollmentDate         DateTime                @default(now())
   withdrawalDate         DateTime?
   isActive               Boolean                 @default(true)
+  status                 String                  @default("active") // active, archived
   notes                  String?                 // General teacher notes
   createdAt              DateTime                @default(now())
   updatedAt              DateTime                @updatedAt
   user                   User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
   artifacts              StudentArtifact[]
   outcomeProgress        StudentOutcomeProgress[]
+  assessments            Assessment[]
+  reports                Report[]
+  uploadedArtifacts      Artifact[]
 
   @@index([userId])
   @@index([userId, isActive])
   @@index([userId, grade])
   @@index([grade, isActive])
   @@index([studentNumber])
+  @@index([studentId])
+  @@index([status])
 }
 
 model StudentArtifact {
@@ -990,4 +1007,90 @@ model StudentOutcomeProgress {
   @@index([outcomeId, currentLevel])
   @@index([userId, lastAssessmentDate])
   @@index([parentShared])
+}
+
+// Assessment model for ETFO 4-level mastery tracking
+model Assessment {
+  id                String                 @id @default(cuid())
+  studentId         String
+  teacherId         Int                    // User ID of teacher
+  subject           String
+  expectation       String                 // Learning expectation being assessed
+  expectationCode   String?                // Curriculum code (e.g., FR-1.1)
+  level             String                 // NOT_YET, APPROACHING, MEETING, EXCEEDING
+  evidenceType      String                 // OBSERVATION, CONVERSATION, PRODUCT
+  description       String?                // What was observed/assessed
+  notes             String?                // Professional judgment notes
+  artifacts         Json?                   // Array of artifact IDs
+  date              DateTime               @default(now())
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+  
+  student           Student                @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacher           User                   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  
+  @@index([studentId])
+  @@index([teacherId])
+  @@index([subject])
+  @@index([level])
+  @@index([evidenceType])
+  @@index([date])
+  @@index([studentId, subject])
+  @@index([studentId, date])
+}
+
+// Report model for generating assessment reports
+model Report {
+  id                String                 @id @default(cuid())
+  type              String                 // progress, summary, parent, term, individual
+  title             String
+  studentId         String?                // Optional - null for class reports
+  teacherId         Int
+  dateRangeStart    DateTime
+  dateRangeEnd      DateTime
+  subjects          Json?                   // Array of subjects included
+  format            String                 // pdf, csv, html
+  status            String                 @default("draft") // draft, final
+  url               String?                // URL to generated report file
+  metadata          Json?                  // Additional report configuration
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+  
+  student           Student?               @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacher           User                   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  
+  @@index([teacherId])
+  @@index([studentId])
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Artifact model for file uploads (extends StudentArtifact for assessment system)
+model Artifact {
+  id                String                 @id @default(cuid())
+  filename          String
+  originalName      String
+  mimeType          String
+  size              Int                    // File size in bytes
+  url               String                 // URL to access file
+  thumbnailUrl      String?                // URL to thumbnail
+  studentId         String?                // Optional student association
+  assessmentId      String?                // Optional assessment association
+  uploadedBy        Int                    // User ID who uploaded
+  processingStatus  String                 @default("pending") // pending, processing, completed, failed
+  tags              Json?                   // Array of tags
+  description       String?
+  metadata          Json?                  // Additional metadata
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+  
+  student           Student?               @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  uploader          User                   @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
+  
+  @@index([studentId])
+  @@index([assessmentId])
+  @@index([uploadedBy])
+  @@index([processingStatus])
+  @@index([createdAt])
 }

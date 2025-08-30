@@ -17,12 +17,16 @@
     "typecheck": "pnpm -r typecheck",
     "db:generate": "pnpm --filter @teaching-engine/database db:generate",
     "check:docs": "echo 'Docs check placeholder'",
-    "test:e2e": "jest --config=tests/e2e/jest.config.js tests/e2e/quick-demo.test.js",
-    "test:e2e:full": "jest --config=tests/e2e/jest.config.js tests/e2e/emily-assessment-workflows.test.js",
+    "test:e2e": "node tests/e2e/run-assessment-tests.js quick",
+    "test:e2e:full": "node tests/e2e/run-assessment-tests.js full",
+    "test:e2e:agents": "node tests/e2e/run-assessment-tests.js agents",
+    "test:e2e:stress": "node tests/e2e/run-assessment-tests.js stress --parallel",
     "test:e2e:headless": "HEADLESS=true jest --config=tests/e2e/jest.config.js tests/e2e/quick-demo.test.js",
     "test:e2e:all": "jest --config=tests/e2e/jest.config.js",
     "test:e2e:smoke": "jest --config=tests/e2e/jest.config.js tests/e2e/complete-ui-test.js",
-    "test:e2e:ci": "HEADLESS=true jest --config=tests/e2e/jest.config.js --maxWorkers=2"
+    "test:e2e:ci": "HEADLESS=true node tests/e2e/run-assessment-tests.js full --headless --parallel",
+    "test:assessment": "node tests/e2e/run-assessment-tests.js full --headless",
+    "test:assessment:visual": "node tests/e2e/run-assessment-tests.js full"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.0",

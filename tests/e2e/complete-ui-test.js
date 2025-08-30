@@ -90,7 +90,7 @@ class UITester {
     console.log(`  👆 Clicking: ${description}`);
     await this.page.waitForSelector(selector, { timeout: 10000 });
     await this.page.click(selector);
-    await this.page.waitForTimeout(500);
+    await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 500)));
   }
 
   async waitAndType(selector, text, description) {
@@ -98,7 +98,7 @@ class UITester {
     await this.page.waitForSelector(selector, { timeout: 10000 });
     await this.page.click(selector);
     await this.page.keyboard.type(text);
-    await this.page.waitForTimeout(200);
+    await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 200)));
   }
 
   async findAndClick(selectors, description) {
@@ -107,7 +107,7 @@ class UITester {
       const element = await this.page.$(selector);
       if (element) {
         await element.click();
-        await this.page.waitForTimeout(500);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 500)));
         return true;
       }
     }
@@ -116,7 +116,7 @@ class UITester {
       const [element] = await this.page.$x(`//button[contains(., '${text}')]`);
       if (element) {
         await element.click();
-        await this.page.waitForTimeout(500);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 500)));
         return true;
       }
     }
@@ -130,7 +130,7 @@ class UITester {
       if (element) {
         await element.click({ clickCount: 3 });
         await element.type(text);
-        await this.page.waitForTimeout(200);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 200)));
         return true;
       }
     }
@@ -197,7 +197,7 @@ class UITester {
       // Try clicking student navigation
       try {
         await this.findAndClick(studentNavSelectors, 'Students');
-        await this.page.waitForTimeout(2000);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } catch (e) {
         // Try direct navigation
         await this.page.goto(`${CLIENT_URL}/students`, { waitUntil: 'networkidle0' });
@@ -223,7 +223,7 @@ class UITester {
       
       try {
         await this.findAndClick(addButtonSelectors, 'Add Student');
-        await this.page.waitForTimeout(2000);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
         await this.screenshot('04-add-student-form');
         
         // Try to fill form
@@ -242,7 +242,7 @@ class UITester {
         ];
         
         await this.findAndClick(submitSelectors, 'Save');
-        await this.page.waitForTimeout(2000);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
         await this.screenshot('06-student-saved');
         
       } catch (e) {
@@ -271,7 +271,7 @@ class UITester {
           'button[class*="assess"]'
         ];
         await this.findAndClick(assessmentSelectors, 'Assessment');
-        await this.page.waitForTimeout(2000);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } catch (e) {
         await this.page.goto(`${CLIENT_URL}/assessment`, { waitUntil: 'networkidle0' });
       }
@@ -316,7 +316,7 @@ class UITester {
           'button[class*="evidence"]'
         ];
         await this.findAndClick(evidenceSelectors, 'Evidence');
-        await this.page.waitForTimeout(2000);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } catch (e) {
         await this.page.goto(`${CLIENT_URL}/evidence`, { waitUntil: 'networkidle0' });
       }
@@ -355,7 +355,7 @@ class UITester {
           'button[class*="analytics"]'
         ];
         await this.findAndClick(analyticsSelectors, 'Analytics');
-        await this.page.waitForTimeout(2000);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } catch (e) {
         await this.page.goto(`${CLIENT_URL}/analytics`, { waitUntil: 'networkidle0' });
       }
@@ -389,7 +389,7 @@ class UITester {
           'button[class*="report"]'
         ];
         await this.findAndClick(reportSelectors, 'Reports');
-        await this.page.waitForTimeout(2000);
+        await this.page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } catch (e) {
         await this.page.goto(`${CLIENT_URL}/reports`, { waitUntil: 'networkidle0' });
       }

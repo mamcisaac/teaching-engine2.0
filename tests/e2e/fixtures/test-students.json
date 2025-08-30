@@ -1,0 +1,274 @@
+{
+  "grade1FrenchImmersion": [
+    {
+      "firstName": "Amélie",
+      "lastName": "Bouchard",
+      "studentId": "AM001",
+      "dateOfBirth": "2018-03-15",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Strong oral communication in French"
+    },
+    {
+      "firstName": "Xavier",
+      "lastName": "Leblanc",
+      "studentId": "XA002",
+      "dateOfBirth": "2018-06-22",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Excels in mathematics, visual learner"
+    },
+    {
+      "firstName": "Sophie",
+      "lastName": "Martin",
+      "studentId": "SO003",
+      "dateOfBirth": "2018-01-10",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Creative, enjoys arts and storytelling"
+    },
+    {
+      "firstName": "Luc",
+      "lastName": "Dubois",
+      "studentId": "LU004",
+      "dateOfBirth": "2018-09-05",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Kinesthetic learner, active in physical education"
+    },
+    {
+      "firstName": "Émilie",
+      "lastName": "Tremblay",
+      "studentId": "EM005",
+      "dateOfBirth": "2018-04-18",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "IEP for reading support, making good progress"
+    },
+    {
+      "firstName": "Noah",
+      "lastName": "Gauthier",
+      "studentId": "NO006",
+      "dateOfBirth": "2018-07-30",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "English as additional language, progressing well"
+    },
+    {
+      "firstName": "Chloé",
+      "lastName": "Roy",
+      "studentId": "CH007",
+      "dateOfBirth": "2018-02-14",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Advanced reader, enjoys challenging materials"
+    },
+    {
+      "firstName": "Thomas",
+      "lastName": "Bergeron",
+      "studentId": "TH008",
+      "dateOfBirth": "2018-11-25",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Collaborative learner, works well in groups"
+    },
+    {
+      "firstName": "Olivia",
+      "lastName": "Lavoie",
+      "studentId": "OL009",
+      "dateOfBirth": "2018-05-07",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Musical aptitude, participates in choir"
+    },
+    {
+      "firstName": "Gabriel",
+      "lastName": "Fortin",
+      "studentId": "GA010",
+      "dateOfBirth": "2018-08-20",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Curious about science, asks thoughtful questions"
+    },
+    {
+      "firstName": "Emma",
+      "lastName": "Côté",
+      "studentId": "EM011",
+      "dateOfBirth": "2018-12-03",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Strong social skills, natural leader"
+    },
+    {
+      "firstName": "William",
+      "lastName": "Bélanger",
+      "studentId": "WI012",
+      "dateOfBirth": "2018-03-28",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Detail-oriented, excellent organizational skills"
+    },
+    {
+      "firstName": "Mia",
+      "lastName": "Pelletier",
+      "studentId": "MI013",
+      "dateOfBirth": "2018-10-15",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Creative problem solver, enjoys puzzles"
+    },
+    {
+      "firstName": "Jacob",
+      "lastName": "Simard",
+      "studentId": "JA014",
+      "dateOfBirth": "2018-06-08",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "IEP for speech support, improving daily"
+    },
+    {
+      "firstName": "Charlotte",
+      "lastName": "Morin",
+      "studentId": "CH015",
+      "dateOfBirth": "2018-01-22",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Artistic, excels in visual arts"
+    },
+    {
+      "firstName": "Raphaël",
+      "lastName": "Boucher",
+      "studentId": "RA016",
+      "dateOfBirth": "2018-09-17",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Technology enthusiast, quick with digital tools"
+    },
+    {
+      "firstName": "Alice",
+      "lastName": "Girard",
+      "studentId": "AL017",
+      "dateOfBirth": "2018-04-30",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Empathetic, supports peers naturally"
+    },
+    {
+      "firstName": "Félix",
+      "lastName": "Gagnon",
+      "studentId": "FE018",
+      "dateOfBirth": "2018-07-12",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Athletic, coordinates well in PE activities"
+    },
+    {
+      "firstName": "Léa",
+      "lastName": "Poirier",
+      "studentId": "LE019",
+      "dateOfBirth": "2018-02-05",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Bilingual household, strong French foundation"
+    },
+    {
+      "firstName": "Samuel",
+      "lastName": "Fournier",
+      "studentId": "SA020",
+      "dateOfBirth": "2018-11-10",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Methodical thinker, enjoys structured activities"
+    },
+    {
+      "firstName": "Zoé",
+      "lastName": "Mercier",
+      "studentId": "ZO021",
+      "dateOfBirth": "2018-05-23",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Imaginative, creates elaborate stories"
+    },
+    {
+      "firstName": "Nathan",
+      "lastName": "Lévesque",
+      "studentId": "NA022",
+      "dateOfBirth": "2018-08-03",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Quiet observer, thoughtful responses"
+    },
+    {
+      "firstName": "Florence",
+      "lastName": "Beaulieu",
+      "studentId": "FL023",
+      "dateOfBirth": "2018-12-18",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Enthusiastic learner, always eager to participate"
+    },
+    {
+      "firstName": "Antoine",
+      "lastName": "Cloutier",
+      "studentId": "AN024",
+      "dateOfBirth": "2018-03-07",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Strong mathematical reasoning skills"
+    },
+    {
+      "firstName": "Rosalie",
+      "lastName": "Demers",
+      "studentId": "RO025",
+      "dateOfBirth": "2018-10-28",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Environmental awareness, loves nature activities"
+    },
+    {
+      "firstName": "Édouard",
+      "lastName": "Paradis",
+      "studentId": "ED026",
+      "dateOfBirth": "2018-06-15",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "IEP for attention support, benefits from movement breaks"
+    },
+    {
+      "firstName": "Juliette",
+      "lastName": "Thibault",
+      "studentId": "JU027",
+      "dateOfBirth": "2018-01-08",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Excellent memory, retains information well"
+    },
+    {
+      "firstName": "Alexandre",
+      "lastName": "Nadeau",
+      "studentId": "AL028",
+      "dateOfBirth": "2018-09-20",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Hands-on learner, enjoys building activities"
+    },
+    {
+      "firstName": "Victoria",
+      "lastName": "Blais",
+      "studentId": "VI029",
+      "dateOfBirth": "2018-04-13",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Strong communicator, articulate for age"
+    },
+    {
+      "firstName": "Maxime",
+      "lastName": "Savard",
+      "studentId": "MA030",
+      "dateOfBirth": "2018-07-25",
+      "grade": 1,
+      "program": "French Immersion",
+      "notes": "Curious about how things work, enjoys experiments"
+    }
+  ]
+}

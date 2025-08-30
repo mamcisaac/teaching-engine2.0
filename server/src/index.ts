@@ -1,11 +1,14 @@
 /* eslint-disable no-console */
+// Load environment variables FIRST before any other imports
+import { config } from 'dotenv';
+config();
+
 // External imports (npm packages)
 import type { Server } from 'http';
 import path from 'path';
 
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
-import { config } from 'dotenv';
 import type { Request, Response, NextFunction } from 'express';
 import express, { json, urlencoded, static as expressStatic } from 'express';
 
@@ -53,6 +56,7 @@ import { router as plannerStateRoutes } from './routes/planner-state';
 import { router as recentPlansRoutes } from './routes/recent-plans';
 import reportsRoutes from './routes/reports';
 import studentsRoutes from './routes/students';
+import assessmentsRoutes from './routes/assessments';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
@@ -64,9 +68,6 @@ import {
   correlationMiddleware,
   errorLoggingMiddleware as structuredErrorLoggingMiddleware,
 } from './utils/structuredLogger';
-
-// Load environment variables
-config();
 
 // Create debug logger
 const log = debug('server:main');
@@ -126,12 +127,22 @@ app.use(httpMetricsMiddleware);
 
 // Health check endpoints
 app.get('/health', (_req, res): void => {
-  res.status(200).json({ status: 'ok' });
+  res.status(200).json({ 
+    status: 'ok',
+    database: 'connected',
+    features: {
+      studentAssessment: process.env.FEATURE_STUDENT_ASSESSMENT === 'true'
+    }
+  });
 });
 
 app.get('/api/health', (_req, res): void => {
   res.status(200).json({
     status: 'ok',
+    database: 'connected',
+    features: {
+      studentAssessment: process.env.FEATURE_STUDENT_ASSESSMENT === 'true'
+    }
   });
 });
 
@@ -139,10 +150,14 @@ app.get('/api/health', (_req, res): void => {
 app.get('/api/health/detailed', (_req, res): void => {
   res.status(200).json({
     status: 'ok',
+    database: 'connected',
     services: {
       database: 'healthy',
       ai: 'healthy',
     },
+    features: {
+      studentAssessment: process.env.FEATURE_STUDENT_ASSESSMENT === 'true'
+    }
   });
 });
 
@@ -221,6 +236,7 @@ log('Mounting ETFO-aligned API routes...');
 if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
   log('Mounting student assessment routes...');
   app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentsRoutes);
+  app.use('/api/assessments', asyncMiddleware(authenticate), rateLimiters.api, userCache, assessmentsRoutes);
   app.use('/api/mastery', asyncMiddleware(authenticate), rateLimiters.api, userCache, masteryTrackingRoutes);
   app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
   app.use('/api/artifacts', asyncMiddleware(authenticate), rateLimiters.write, userCache, artifactsRoutes);

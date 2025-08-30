@@ -131,7 +131,7 @@ describe('Comprehensive UI Testing', () => {
       const studentsLink = await page.$('a[href*="students"], button:has-text("Students"), [data-testid*="student"]');
       if (studentsLink) {
         await studentsLink.click();
-        await page.waitForTimeout(2000);
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } else {
         // Direct navigation
         await page.goto(`${CLIENT_URL}/students`, { waitUntil: 'networkidle0' });
@@ -179,7 +179,7 @@ describe('Comprehensive UI Testing', () => {
         await page.goto(`${CLIENT_URL}/students/add`, { waitUntil: 'networkidle0' });
       }
       
-      await page.waitForTimeout(2000);
+      await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       await takeScreenshot('04-add-student-form');
     });
 
@@ -209,7 +209,7 @@ describe('Comprehensive UI Testing', () => {
       const submitButton = await page.$('button[type="submit"], [data-testid="save-student"], button:has-text("Save"), button:has-text("Add")');
       if (submitButton) {
         await submitButton.click();
-        await page.waitForTimeout(3000);
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 3000)));
       }
       
       await takeScreenshot('06-student-added');
@@ -221,7 +221,7 @@ describe('Comprehensive UI Testing', () => {
       const assessmentLink = await page.$('a[href*="assessment"], button:has-text("Assessment"), [data-testid*="assessment"]');
       if (assessmentLink) {
         await assessmentLink.click();
-        await page.waitForTimeout(2000);
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } else {
         await page.goto(`${CLIENT_URL}/assessments`, { waitUntil: 'networkidle0' });
       }
@@ -250,7 +250,7 @@ describe('Comprehensive UI Testing', () => {
       const evidenceLink = await page.$('a[href*="evidence"], a[href*="artifact"], button:has-text("Evidence"), [data-testid*="evidence"]');
       if (evidenceLink) {
         await evidenceLink.click();
-        await page.waitForTimeout(2000);
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } else {
         await page.goto(`${CLIENT_URL}/evidence`, { waitUntil: 'networkidle0' });
       }
@@ -274,7 +274,7 @@ describe('Comprehensive UI Testing', () => {
       const dashboardLink = await page.$('a[href*="analytics"], a[href*="dashboard"], button:has-text("Analytics"), [data-testid*="analytics"]');
       if (dashboardLink) {
         await dashboardLink.click();
-        await page.waitForTimeout(2000);
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } else {
         await page.goto(`${CLIENT_URL}/analytics`, { waitUntil: 'networkidle0' });
       }
@@ -295,7 +295,7 @@ describe('Comprehensive UI Testing', () => {
       const reportsLink = await page.$('a[href*="report"], button:has-text("Report"), [data-testid*="report"]');
       if (reportsLink) {
         await reportsLink.click();
-        await page.waitForTimeout(2000);
+        await page.evaluate(() => new Promise(resolve => setTimeout(resolve, 2000)));
       } else {
         await page.goto(`${CLIENT_URL}/reports`, { waitUntil: 'networkidle0' });
       }
