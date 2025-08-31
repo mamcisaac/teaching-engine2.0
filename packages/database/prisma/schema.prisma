@@ -38,12 +38,14 @@ model User {
   password                 String
   name                     String
   role                     String                    @default("teacher")
-  grade                    String?                   // Teacher's primary grade
-  program                  String?                   // e.g., "French Immersion"
+  grade                    String?
+  program                  String?
   preferredLanguage        String                    @default("en")
   activityCollections      ActivityCollection[]
   activityImports          ActivityImport[]
   activityRatings          ActivityRating[]
+  uploadedArtifacts        Artifact[]
+  assessments              Assessment[]
   events                   CalendarEvent[]
   classRoutines            ClassRoutine[]
   classroomAnnouncements   ClassroomAnnouncement[]
@@ -56,18 +58,15 @@ model User {
   performanceTaskTemplates PerformanceTaskTemplate[]
   createdTemplates         PlanTemplate[]
   recentPlanAccess         RecentPlanAccess[]
+  reports                  Report[]
+  students                 Student[]
+  studentArtifacts         StudentArtifact[]
+  studentOutcomeProgress   StudentOutcomeProgress[]
   subjects                 Subject[]
   substitutePlans          SubstitutePlan[]
   unavailableBlocks        UnavailableBlock[]
   unitPlans                UnitPlan[]
   weeklyPlannerState       WeeklyPlannerState?
-  // ETFO Student Assessment Relations
-  students                 Student[]
-  studentArtifacts         StudentArtifact[]
-  studentOutcomeProgress   StudentOutcomeProgress[]
-  assessments              Assessment[]
-  reports                  Report[]
-  uploadedArtifacts        Artifact[]
 }
 
 model Notification {
@@ -185,30 +184,29 @@ model ClassRoutine {
 }
 
 model CurriculumExpectation {
-  id             String                          @id @default(cuid())
-  code           String                          @unique
-  description    String
-  strand         String
-  substrand      String?
-  grade          Int
-  subject        String
-  descriptionFr  String?
-  strandFr       String?
-  substrandFr    String?
-  importId       String?
-  createdAt      DateTime                        @default(now())
-  updatedAt      DateTime                        @updatedAt
-  title          String?
-  titleFr        String?
-  import         CurriculumImport?               @relation("CurriculumExpectationImport", fields: [importId], references: [id])
-  embedding      CurriculumExpectationEmbedding?
-  daybookEntries DaybookEntryExpectation[]
-  lessonPlans    ETFOLessonPlanExpectation[]
-  longRangePlans LongRangePlanExpectation[]
-  unitPlans      UnitPlanExpectation[]
-  // ETFO Student Assessment Relations
-  artifactOutcomes   StudentArtifactOutcome[]    @relation("StudentArtifactOutcome")
-  studentProgress    StudentOutcomeProgress[]    @relation("StudentOutcomeProgress")
+  id               String                          @id @default(cuid())
+  code             String                          @unique
+  description      String
+  strand           String
+  substrand        String?
+  grade            Int
+  subject          String
+  descriptionFr    String?
+  strandFr         String?
+  substrandFr      String?
+  importId         String?
+  createdAt        DateTime                        @default(now())
+  updatedAt        DateTime                        @updatedAt
+  title            String?
+  titleFr          String?
+  import           CurriculumImport?               @relation("CurriculumExpectationImport", fields: [importId], references: [id])
+  embedding        CurriculumExpectationEmbedding?
+  daybookEntries   DaybookEntryExpectation[]
+  lessonPlans      ETFOLessonPlanExpectation[]
+  longRangePlans   LongRangePlanExpectation[]
+  artifactOutcomes StudentArtifactOutcome[]        @relation("StudentArtifactOutcome")
+  studentProgress  StudentOutcomeProgress[]        @relation("StudentOutcomeProgress")
+  unitPlans        UnitPlanExpectation[]
 
   @@index([subject, grade])
   @@index([code])
@@ -308,8 +306,8 @@ model LongRangePlanExpectation {
   longRangePlanId String
   expectationId   String
   plannedTerm     String?
-  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   longRangePlan   LongRangePlan         @relation(fields: [longRangePlanId], references: [id], onDelete: Cascade)
+  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
 
   @@id([longRangePlanId, expectationId])
 }
@@ -355,8 +353,8 @@ model UnitPlan {
   lockedAt                   DateTime?
   lockedReason               String?
   lessonPlans                ETFOLessonPlan[]
-  user                       User                    @relation(fields: [userId], references: [id])
   longRangePlan              LongRangePlan           @relation(fields: [longRangePlanId], references: [id])
+  user                       User                    @relation(fields: [userId], references: [id])
   expectations               UnitPlanExpectation[]
   resources                  UnitPlanResource[]
   transferSkills             UnitPlanTransferSkill[]
@@ -372,8 +370,8 @@ model UnitPlan {
 model UnitPlanExpectation {
   unitPlanId    String
   expectationId String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   unitPlan      UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
 
   @@id([unitPlanId, expectationId])
 }
@@ -430,8 +428,8 @@ model ETFOLessonPlan {
   indigenousPerspectives    String?
   activityImports           ActivityImport[]
   daybookEntry              DaybookEntry?
-  user                      User                        @relation(fields: [userId], references: [id])
   unitPlan                  UnitPlan                    @relation(fields: [unitPlanId], references: [id])
+  user                      User                        @relation(fields: [userId], references: [id])
   expectations              ETFOLessonPlanExpectation[]
   resources                 ETFOLessonPlanResource[]
 
@@ -453,8 +451,8 @@ model ETFOLessonPlan {
 model ETFOLessonPlanExpectation {
   lessonPlanId  String
   expectationId String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   lessonPlan    ETFOLessonPlan        @relation(fields: [lessonPlanId], references: [id], onDelete: Cascade)
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
 
   @@id([lessonPlanId, expectationId])
 }
@@ -491,8 +489,8 @@ model DaybookEntry {
   wouldReuseLesson    Boolean?
   createdAt           DateTime                  @default(now())
   updatedAt           DateTime                  @updatedAt
-  lessonPlan          ETFOLessonPlan?           @relation(fields: [lessonPlanId], references: [id])
   user                User                      @relation(fields: [userId], references: [id])
+  lessonPlan          ETFOLessonPlan?           @relation(fields: [lessonPlanId], references: [id])
   expectations        DaybookEntryExpectation[]
 
   @@index([userId, date])
@@ -508,8 +506,8 @@ model DaybookEntryExpectation {
   daybookEntryId String
   expectationId  String
   coverage       String?
-  expectation    CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   daybookEntry   DaybookEntry          @relation(fields: [daybookEntryId], references: [id], onDelete: Cascade)
+  expectation    CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
 
   @@id([daybookEntryId, expectationId])
 }
@@ -570,9 +568,9 @@ model ActivityImport {
   lastUsed       DateTime         @default(now())
   effectiveness  Int?
   createdAt      DateTime         @default(now())
-  lessonPlan     ETFOLessonPlan?  @relation(fields: [lessonPlanId], references: [id])
-  activity       ExternalActivity @relation(fields: [activityId], references: [id])
   user           User             @relation(fields: [userId], references: [id])
+  activity       ExternalActivity @relation(fields: [activityId], references: [id])
+  lessonPlan     ETFOLessonPlan?  @relation(fields: [lessonPlanId], references: [id])
 
   @@index([userId, activityId])
   @@index([lessonPlanId])
@@ -590,8 +588,8 @@ model ActivityRating {
   workedWell     String?
   challenges     String?
   createdAt      DateTime         @default(now())
-  activity       ExternalActivity @relation(fields: [activityId], references: [id])
   user           User             @relation(fields: [userId], references: [id])
+  activity       ExternalActivity @relation(fields: [activityId], references: [id])
 
   @@unique([userId, activityId])
   @@index([activityId, rating])
@@ -614,8 +612,8 @@ model ActivityCollectionItem {
   collectionId String
   activityId   String
   addedAt      DateTime           @default(now())
-  activity     ExternalActivity   @relation(fields: [activityId], references: [id], onDelete: Cascade)
   collection   ActivityCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  activity     ExternalActivity   @relation(fields: [activityId], references: [id], onDelete: Cascade)
 
   @@id([collectionId, activityId])
 }
@@ -866,43 +864,41 @@ model UnitPlanTransferSkill {
   unitPlanId      String
   transferSkillId String
   emphasis        String                @default("developing")
-  transferSkill   TransferSkillTemplate @relation(fields: [transferSkillId], references: [id], onDelete: Cascade)
   unitPlan        UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
+  transferSkill   TransferSkillTemplate @relation(fields: [transferSkillId], references: [id], onDelete: Cascade)
 
   @@id([unitPlanId, transferSkillId])
 }
 
-// ETFO-Aligned Student Assessment Models
-
 model Student {
-  id                     String                  @id @default(cuid())
-  userId                 Int                     // Teacher who created the student record
-  firstName              String
-  lastName               String
-  studentId              String?                 @unique // Unique student identifier
-  studentNumber          String?                 // Optional school-assigned number
-  dateOfBirth            DateTime?
-  grade                  Int
-  program                String?                 // e.g., "French Immersion"
-  homeroom               String?
-  hasIEP                 Boolean                 @default(false)
-  iepGoals               Json?                   // Array of IEP goals
-  accommodations         Json?                   // Array of accommodations
-  specialNeeds           String?                 // IEP, accommodations, etc.
-  parentContact          Json?                   // Emergency contact info
-  enrollmentDate         DateTime                @default(now())
-  withdrawalDate         DateTime?
-  isActive               Boolean                 @default(true)
-  status                 String                  @default("active") // active, archived
-  notes                  String?                 // General teacher notes
-  createdAt              DateTime                @default(now())
-  updatedAt              DateTime                @updatedAt
-  user                   User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  artifacts              StudentArtifact[]
-  outcomeProgress        StudentOutcomeProgress[]
-  assessments            Assessment[]
-  reports                Report[]
-  uploadedArtifacts      Artifact[]
+  id                String                   @id @default(cuid())
+  userId            Int
+  firstName         String
+  lastName          String
+  studentId         String?                  @unique
+  studentNumber     String?
+  dateOfBirth       DateTime?
+  grade             Int
+  program           String?
+  homeroom          String?
+  hasIEP            Boolean                  @default(false)
+  iepGoals          Json?
+  accommodations    Json?
+  specialNeeds      String?
+  parentContact     Json?
+  enrollmentDate    DateTime                 @default(now())
+  withdrawalDate    DateTime?
+  isActive          Boolean                  @default(true)
+  status            String                   @default("active")
+  notes             String?
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+  uploadedArtifacts Artifact[]
+  assessments       Assessment[]
+  reports           Report[]
+  user              User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  artifacts         StudentArtifact[]
+  outcomeProgress   StudentOutcomeProgress[]
 
   @@index([userId])
   @@index([userId, isActive])
@@ -914,35 +910,35 @@ model Student {
 }
 
 model StudentArtifact {
-  id                String                      @id @default(cuid())
-  studentId         String
-  userId            Int                         // Teacher who uploaded the artifact
-  artifactType      String                      // PHOTO, VIDEO, AUDIO, DOCUMENT, NOTE
-  title             String
-  description       String?
-  filePath          String?                     // Path to uploaded file (if applicable)
-  fileName          String?                     // Original filename
-  fileSize          Int?                        // File size in bytes
-  mimeType          String?                     // MIME type for files
-  textContent       String?                     // For text-based artifacts or notes
-  metadata          Json?                       // Additional metadata (dimensions, duration, etc.)
-  checksum          String?                     // SHA-256 hash for duplicate detection
-  thumbnailPath     String?                     // Path to generated thumbnail
-  thumbnailUrl      String?                     // Public URL for thumbnail
-  collectionContext String?                     // When/where was this collected (lesson plan, activity, etc.)
-  dateCollected     DateTime                    @default(now())
-  isPrivate         Boolean                     @default(false)
-  isArchived        Boolean                     @default(false)     // For archiving old artifacts
-  tags              Json?                       // Flexible tagging system
-  processingStatus  String                      @default("PENDING")   // PENDING, PROCESSING, COMPLETED, FAILED
-  processingError   String?
-  processingCompletedAt DateTime?                // When processing finished
-  lastAssessedDate  DateTime?                   // Last time this was used in assessment
-  createdAt         DateTime                    @default(now())
-  updatedAt         DateTime                    @updatedAt
-  student           Student                     @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  user              User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  outcomes          StudentArtifactOutcome[]
+  id                    String                   @id @default(cuid())
+  studentId             String
+  userId                Int
+  artifactType          String
+  title                 String
+  description           String?
+  filePath              String?
+  fileName              String?
+  fileSize              Int?
+  mimeType              String?
+  textContent           String?
+  metadata              Json?
+  checksum              String?
+  thumbnailPath         String?
+  thumbnailUrl          String?
+  collectionContext     String?
+  dateCollected         DateTime                 @default(now())
+  isPrivate             Boolean                  @default(false)
+  isArchived            Boolean                  @default(false)
+  tags                  Json?
+  processingStatus      String                   @default("PENDING")
+  processingError       String?
+  processingCompletedAt DateTime?
+  lastAssessedDate      DateTime?
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
+  user                  User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  student               Student                  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  outcomes              StudentArtifactOutcome[]
 
   @@index([studentId])
   @@index([userId])
@@ -957,15 +953,15 @@ model StudentArtifact {
 }
 
 model StudentArtifactOutcome {
-  artifactId            String
-  outcomeId             String                 // References CurriculumExpectation.id
-  evidenceType          String                 // OBSERVATION, CONVERSATION, PRODUCT (triangulation)
-  teacherNote           String?                // Teacher's professional judgment note
-  confidenceLevel       String                 @default("MEDIUM") // LOW, MEDIUM, HIGH
-  contextualFactors     String?                // Environmental factors affecting performance
-  dateAssessed          DateTime               @default(now())
-  artifact              StudentArtifact        @relation(fields: [artifactId], references: [id], onDelete: Cascade)
-  outcome               CurriculumExpectation  @relation("StudentArtifactOutcome", fields: [outcomeId], references: [id], onDelete: Cascade)
+  artifactId        String
+  outcomeId         String
+  evidenceType      String
+  teacherNote       String?
+  confidenceLevel   String                @default("MEDIUM")
+  contextualFactors String?
+  dateAssessed      DateTime              @default(now())
+  outcome           CurriculumExpectation @relation("StudentArtifactOutcome", fields: [outcomeId], references: [id], onDelete: Cascade)
+  artifact          StudentArtifact       @relation(fields: [artifactId], references: [id], onDelete: Cascade)
 
   @@id([artifactId, outcomeId])
   @@index([outcomeId])
@@ -975,27 +971,27 @@ model StudentArtifactOutcome {
 }
 
 model StudentOutcomeProgress {
-  id                    String                 @id @default(cuid())
-  studentId             String
-  outcomeId             String                 // References CurriculumExpectation.id
-  userId                Int                    // Teacher making the assessment
-  currentLevel          String                 @default("NOT_YET") // ETFO 4-level: NOT_YET, APPROACHING, MEETING, EXCEEDING
-  previousLevel         String?                // Track progression
-  lastAssessmentDate    DateTime               @default(now())
-  lastAssessedDate      DateTime?              // Alias for compatibility
-  totalEvidencePieces   Int                    @default(0)
-  strongestEvidence     Json?                  // Reference to most compelling artifact
-  areasForGrowth        String?                // Teacher notes on next steps
-  strengths             String?                // What the student does well
-  teacherNotes          String?                // General assessment notes
-  parentShared          Boolean                @default(false)     // Has this been shared with parents?
-  parentShareDate       DateTime?
-  isArchived            Boolean                @default(false)
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
-  student               Student                @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  outcome               CurriculumExpectation  @relation("StudentOutcomeProgress", fields: [outcomeId], references: [id], onDelete: Cascade)
-  user                  User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                  String                @id @default(cuid())
+  studentId           String
+  outcomeId           String
+  userId              Int
+  currentLevel        String                @default("NOT_YET")
+  previousLevel       String?
+  lastAssessmentDate  DateTime              @default(now())
+  lastAssessedDate    DateTime?
+  totalEvidencePieces Int                   @default(0)
+  strongestEvidence   Json?
+  areasForGrowth      String?
+  strengths           String?
+  teacherNotes        String?
+  parentShared        Boolean               @default(false)
+  parentShareDate     DateTime?
+  isArchived          Boolean               @default(false)
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  user                User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  outcome             CurriculumExpectation @relation("StudentOutcomeProgress", fields: [outcomeId], references: [id], onDelete: Cascade)
+  student             Student               @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   @@unique([studentId, outcomeId])
   @@index([studentId])
@@ -1009,26 +1005,24 @@ model StudentOutcomeProgress {
   @@index([parentShared])
 }
 
-// Assessment model for ETFO 4-level mastery tracking
 model Assessment {
-  id                String                 @id @default(cuid())
-  studentId         String
-  teacherId         Int                    // User ID of teacher
-  subject           String
-  expectation       String                 // Learning expectation being assessed
-  expectationCode   String?                // Curriculum code (e.g., FR-1.1)
-  level             String                 // NOT_YET, APPROACHING, MEETING, EXCEEDING
-  evidenceType      String                 // OBSERVATION, CONVERSATION, PRODUCT
-  description       String?                // What was observed/assessed
-  notes             String?                // Professional judgment notes
-  artifacts         Json?                   // Array of artifact IDs
-  date              DateTime               @default(now())
-  createdAt         DateTime               @default(now())
-  updatedAt         DateTime               @updatedAt
-  
-  student           Student                @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  teacher           User                   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  
+  id              String   @id @default(cuid())
+  studentId       String
+  teacherId       Int
+  subject         String
+  expectation     String
+  expectationCode String?
+  level           String
+  evidenceType    String
+  description     String?
+  notes           String?
+  artifacts       Json?
+  date            DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  teacher         User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  student         Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
   @@index([studentId])
   @@index([teacherId])
   @@index([subject])
@@ -1039,26 +1033,24 @@ model Assessment {
   @@index([studentId, date])
 }
 
-// Report model for generating assessment reports
 model Report {
-  id                String                 @id @default(cuid())
-  type              String                 // progress, summary, parent, term, individual
-  title             String
-  studentId         String?                // Optional - null for class reports
-  teacherId         Int
-  dateRangeStart    DateTime
-  dateRangeEnd      DateTime
-  subjects          Json?                   // Array of subjects included
-  format            String                 // pdf, csv, html
-  status            String                 @default("draft") // draft, final
-  url               String?                // URL to generated report file
-  metadata          Json?                  // Additional report configuration
-  createdAt         DateTime               @default(now())
-  updatedAt         DateTime               @updatedAt
-  
-  student           Student?               @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  teacher           User                   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  
+  id             String   @id @default(cuid())
+  type           String
+  title          String
+  studentId      String?
+  teacherId      Int
+  dateRangeStart DateTime
+  dateRangeEnd   DateTime
+  subjects       Json?
+  format         String
+  status         String   @default("draft")
+  url            String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  teacher        User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  student        Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
   @@index([teacherId])
   @@index([studentId])
   @@index([type])
@@ -1066,28 +1058,26 @@ model Report {
   @@index([createdAt])
 }
 
-// Artifact model for file uploads (extends StudentArtifact for assessment system)
 model Artifact {
-  id                String                 @id @default(cuid())
-  filename          String
-  originalName      String
-  mimeType          String
-  size              Int                    // File size in bytes
-  url               String                 // URL to access file
-  thumbnailUrl      String?                // URL to thumbnail
-  studentId         String?                // Optional student association
-  assessmentId      String?                // Optional assessment association
-  uploadedBy        Int                    // User ID who uploaded
-  processingStatus  String                 @default("pending") // pending, processing, completed, failed
-  tags              Json?                   // Array of tags
-  description       String?
-  metadata          Json?                  // Additional metadata
-  createdAt         DateTime               @default(now())
-  updatedAt         DateTime               @updatedAt
-  
-  student           Student?               @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  uploader          User                   @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
-  
+  id               String   @id @default(cuid())
+  filename         String
+  originalName     String
+  mimeType         String
+  size             Int
+  url              String
+  thumbnailUrl     String?
+  studentId        String?
+  assessmentId     String?
+  uploadedBy       Int
+  processingStatus String   @default("pending")
+  tags             Json?
+  description      String?
+  metadata         Json?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  uploader         User     @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
+  student          Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
   @@index([studentId])
   @@index([assessmentId])
   @@index([uploadedBy])

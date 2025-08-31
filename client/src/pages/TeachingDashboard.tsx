@@ -13,7 +13,9 @@ import {
   AlertCircle,
   PlayCircle,
   FileText,
-  Eye
+  Eye,
+  GripVertical,
+  ClipboardCheck
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { STORAGE_KEYS } from '../constants/subjects';
@@ -23,6 +25,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Alert, AlertDescription } from '../components/ui/alert';
+import { SubjectDashboard } from '../components/SubjectDashboard';
 
 export function TeachingDashboard(): React.ReactElement {
   const navigate = useNavigate();
@@ -289,6 +292,11 @@ export function TeachingDashboard(): React.ReactElement {
           </div>
         </div>
         
+        {/* Subject Dashboard Section */}
+        <div className="mb-8">
+          <SubjectDashboard />
+        </div>
+        
         {/* Active Units Section */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
@@ -331,7 +339,7 @@ export function TeachingDashboard(): React.ReactElement {
         </div>
         
         {/* Quick Actions - Teaching Focused */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
           <Button 
             variant="outline" 
             className="h-auto flex flex-col items-center py-4 hover:bg-blue-50"
@@ -348,6 +356,24 @@ export function TeachingDashboard(): React.ReactElement {
           >
             <Eye className="h-8 w-8 mb-2 text-green-600" />
             <span className="text-sm font-medium">Week Overview</span>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            className="h-auto flex flex-col items-center py-4 hover:bg-indigo-50 border-indigo-300"
+            onClick={() => navigate('/planner/schedule-editor')}
+          >
+            <GripVertical className="h-8 w-8 mb-2 text-indigo-600" />
+            <span className="text-sm font-medium">Edit Schedule</span>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            className="h-auto flex flex-col items-center py-4 hover:bg-emerald-50 border-emerald-300"
+            onClick={() => navigate('/assessment')}
+          >
+            <ClipboardCheck className="h-8 w-8 mb-2 text-emerald-600" />
+            <span className="text-sm font-medium">Assess Students</span>
           </Button>
           
           <Button 
@@ -377,15 +403,15 @@ export function TeachingDashboard(): React.ReactElement {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div>
-                <p className="text-3xl font-bold text-blue-600">8</p>
+                <p className="text-3xl font-bold text-blue-600">6</p>
                 <p className="text-sm text-gray-600">Subjects</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-green-600">53</p>
+                <p className="text-3xl font-bold text-green-600">50</p>
                 <p className="text-sm text-gray-600">Unit Plans</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-purple-600">978</p>
+                <p className="text-3xl font-bold text-purple-600">731</p>
                 <p className="text-sm text-gray-600">Teaching Hours</p>
               </div>
               <div>

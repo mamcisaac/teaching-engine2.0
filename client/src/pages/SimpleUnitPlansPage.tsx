@@ -234,10 +234,21 @@ export function SimpleUnitPlansPage(): React.ReactElement {
                 fontSize: '20px', 
                 fontWeight: '600', 
                 color: '#1f2937',
-                marginBottom: '8px'
+                marginBottom: '4px'
               }}>
                 {unit.title}
               </h3>
+              
+              {unit.longRangePlan && (
+                <p style={{
+                  fontSize: '12px',
+                  color: '#4f46e5',
+                  fontWeight: '500',
+                  marginBottom: '8px'
+                }}>
+                  {unit.longRangePlan.subject}
+                </p>
+              )}
               
               <p style={{ 
                 color: '#6b7280', 
@@ -245,7 +256,7 @@ export function SimpleUnitPlansPage(): React.ReactElement {
                 marginBottom: '16px',
                 lineHeight: '1.5'
               }}>
-                {unit.description}
+                {unit.description || 'Unit plan for Grade 1 French Immersion'}
               </p>
 
               <div style={{ 

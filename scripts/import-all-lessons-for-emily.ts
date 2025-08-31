@@ -106,7 +106,7 @@ async function importAllLessons() {
     }
     
     // Process each subject folder
-    const lessonsDir = path.join(process.cwd(), '..', '..', 'generated-lessons');
+    const lessonsDir = path.join(process.cwd(), 'generated-lessons');
     const subjectFolders = await fs.readdir(lessonsDir);
     
     let totalUnits = 0;
@@ -186,20 +186,32 @@ async function importAllLessons() {
                   : (lesson.duration || 45),
                 date: new Date('2025-09-03'),
                 
-                // Three-part lesson structure
-                mindsOn: lesson.mindsOn || lesson.introduction || 'Activation des connaissances',
-                mindsOnFr: lesson.mindsOnFr || lesson.mindsOn || 'Activation des connaissances',
-                action: lesson.action || lesson.mainActivity || 'Activité principale',
-                actionFr: lesson.actionFr || lesson.action || 'Activité principale',
-                consolidation: lesson.consolidation || lesson.conclusion || 'Consolidation et réflexion',
-                consolidationFr: lesson.consolidationFr || lesson.consolidation || 'Consolidation et réflexion',
+                // Three-part lesson structure - mapped from rich source content
+                mindsOn: lesson.opening?.activity || lesson.mindsOn || lesson.introduction || 'Activation des connaissances',
+                mindsOnFr: lesson.opening?.activity || lesson.mindsOnFr || lesson.mindsOn || 'Activation des connaissances',
+                action: lesson.main?.activity || lesson.action || lesson.mainActivity || 'Activité principale',
+                actionFr: lesson.main?.activity || lesson.actionFr || lesson.action || 'Activité principale',
+                consolidation: lesson.closing?.activity || lesson.consolidation || lesson.conclusion || 'Consolidation et réflexion',
+                consolidationFr: lesson.closing?.activity || lesson.consolidationFr || lesson.consolidation || 'Consolidation et réflexion',
                 
-                // ETFO fields
-                learningGoals: typeof lesson.learningGoals === 'string' 
+                // ETFO fields - mapped from rich source content
+                learningGoals: lesson.oneGoal || (typeof lesson.learningGoals === 'string' 
                   ? lesson.learningGoals 
-                  : (lesson.objectives?.join(', ') || 'Développer les compétences en français'),
-                learningGoalsFr: lesson.learningGoalsFr || lesson.learningGoals || 'Développer les compétences en français',
-                materials: lesson.materials || ['Matériel de classe'],
+                  : (lesson.objectives?.join(', ') || 'Développer les compétences en français')),
+                learningGoalsFr: lesson.oneGoal || lesson.learningGoalsFr || lesson.learningGoals || 'Développer les compétences en français',
+                materials: (() => {
+                  const allMaterials = [];
+                  if (lesson.opening?.materials && Array.isArray(lesson.opening.materials)) {
+                    allMaterials.push(...lesson.opening.materials);
+                  }
+                  if (lesson.main?.materials && Array.isArray(lesson.main.materials)) {
+                    allMaterials.push(...lesson.main.materials);
+                  }
+                  if (lesson.closing?.materials && Array.isArray(lesson.closing.materials)) {
+                    allMaterials.push(...lesson.closing.materials);
+                  }
+                  return allMaterials.length > 0 ? allMaterials : (lesson.materials || ['Matériel de classe']);
+                })(),
                 
                 // Differentiation as JSON
                 differentiationStrategies: lesson.differentiation || {
@@ -212,10 +224,40 @@ async function importAllLessons() {
                 assessmentType: 'Formative',
                 assessmentNotes: lesson.assessmentNotes || 'Observation continue',
                 
-                // Additional fields
+                // Additional fields - mapped from rich source content
                 engagementHooks: {
                   vocabulary: lesson.keyVocabulary || [],
-                  visualSupports: lesson.visualSupports || []
+                  visualSupports: [
+                    lesson.opening?.visualSupports,
+                    lesson.main?.visualSupports,
+                    lesson.closing?.visualSupports
+                  ].filter(Boolean),
+                  movementBreaks: (() => {
+                    const breaks = [];
+                    if (lesson.opening?.movementBreaks && Array.isArray(lesson.opening.movementBreaks)) {
+                      breaks.push(...lesson.opening.movementBreaks);
+                    }
+                    if (lesson.main?.movementBreaks && Array.isArray(lesson.main.movementBreaks)) {
+                      breaks.push(...lesson.main.movementBreaks);
+                    }
+                    if (lesson.closing?.movementBreaks && Array.isArray(lesson.closing.movementBreaks)) {
+                      breaks.push(...lesson.closing.movementBreaks);
+                    }
+                    return breaks;
+                  })(),
+                  decisionPoints: (() => {
+                    const points = [];
+                    if (lesson.opening?.decisionPoints && Array.isArray(lesson.opening.decisionPoints)) {
+                      points.push(...lesson.opening.decisionPoints);
+                    }
+                    if (lesson.main?.decisionPoints && Array.isArray(lesson.main.decisionPoints)) {
+                      points.push(...lesson.main.decisionPoints);
+                    }
+                    if (lesson.closing?.decisionPoints && Array.isArray(lesson.closing.decisionPoints)) {
+                      points.push(...lesson.closing.decisionPoints);
+                    }
+                    return points;
+                  })()
                 },
                 indigenousPerspectives: lesson.indigenousPerspectives || '',
                 
@@ -332,6 +374,11 @@ async function createCurriculumExpectations() {
 }
 
 async function createStudents(teacherId: number) {
+  // First, clear existing students for this teacher
+  await prisma.student.deleteMany({
+    where: { userId: teacherId }
+  });
+  
   const students = [
     { firstName: 'Amélie', lastName: 'Bouchard', notes: 'Strong oral communication in French' },
     { firstName: 'Xavier', lastName: 'Leblanc', notes: 'Excels in mathematics, visual learner' },

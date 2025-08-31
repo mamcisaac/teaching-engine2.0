@@ -10,6 +10,7 @@ const LoginPage = lazy(() => import('../pages/LoginPage').then(module => ({ defa
 const SimpleLongRangePage = lazy(() => import('../pages/SimpleLongRangePage').then(module => ({ default: module.SimpleLongRangePage }))); // named export
 const SimpleUnitPlansPage = lazy(() => import('../pages/SimpleUnitPlansPage').then(module => ({ default: module.SimpleUnitPlansPage }))); // named export
 const SimpleLessonPlansPage = lazy(() => import('../pages/SimpleLessonPlansPage').then(module => ({ default: module.SimpleLessonPlansPage }))); // named export
+const ETFOLessonPlanPage = lazy(() => import('../pages/ETFOLessonPlanPage').then(module => ({ default: module.ETFOLessonPlanPage }))); // named export
 const QuickLessonPage = lazy(() => import('../pages/QuickLessonPage').then(module => ({ default: module.QuickLessonPage }))); // named export
 const SimpleCurriculumPage = lazy(() => import('../pages/SimpleCurriculumPage').then(module => ({ default: module.SimpleCurriculumPage }))); // named export
 const CurriculumImportPage = lazy(() => import('../pages/CurriculumImportPage').then(module => ({ default: module.CurriculumImportPage }))); // named export
@@ -21,7 +22,10 @@ const HelpPage = lazy(() => import('../pages/HelpPage').then(module => ({ defaul
 const TemplatesPage = lazy(() => import('../pages/TemplatesPage').then(module => ({ default: module.TemplatesPage }))); // named export
 const SimpleCalendarPage = lazy(() => import('../pages/SimpleCalendarPage').then(module => ({ default: module.SimpleCalendarPage }))); // named export
 const SimpleTodayView = lazy(() => import('../pages/SimpleTodayView').then(module => ({ default: module.SimpleTodayView }))); // named export
-const SimpleWeekView = lazy(() => import('../pages/SimpleWeekView').then(module => ({ default: module.SimpleWeekView }))); // named export
+const WeekViewPage = lazy(() => import('../pages/WeekViewPage').then(module => ({ default: module.WeekViewPage }))); // named export
+const DayViewPage = lazy(() => import('../pages/DayViewPage').then(module => ({ default: module.DayViewPage }))); // named export
+const LessonDetailPage = lazy(() => import('../pages/LessonDetailPage').then(module => ({ default: module.LessonDetailPage }))); // named export
+const ScheduleEditor = lazy(() => import('../pages/ScheduleEditor').then(module => ({ default: module.ScheduleEditor }))); // named export
 
 // Assessment System Pages - wrapped with MainLayout
 const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => ({ 
@@ -63,11 +67,15 @@ export const plannerRoutes: RouteConfig[] = [
   },
   {
     path: 'today',
-    element: SimpleTodayView,
+    element: DayViewPage,
+  },
+  {
+    path: 'day/:date',
+    element: DayViewPage,
   },
   {
     path: 'week',
-    element: SimpleWeekView,
+    element: WeekViewPage,
   },
   {
     path: 'year',
@@ -95,8 +103,18 @@ export const plannerRoutes: RouteConfig[] = [
   },
   {
     path: 'units/:unitId/lessons',
-    element: SimpleLessonPlansPage,
-    // Removed workflowLevel to bypass WorkflowGate for hardcoded component
+    element: ETFOLessonPlanPage,
+    // Use real ETFO component for Emily's perfect lessons
+  },
+  {
+    path: 'lessons/:lessonId',
+    element: LessonDetailPage,
+    // Detailed view of individual lesson
+  },
+  {
+    path: 'units/:unitId/lessons/:lessonId',
+    element: ETFOLessonPlanPage,
+    // Use real ETFO component for Emily's perfect lessons
   },
   {
     path: 'lessons/:lessonId',
@@ -119,6 +137,10 @@ export const plannerRoutes: RouteConfig[] = [
   {
     path: 'calendar',
     element: SimpleCalendarPage,
+  },
+  {
+    path: 'schedule-editor',
+    element: ScheduleEditor,
   },
   // Legacy redirects
   {
@@ -245,6 +267,15 @@ export const protectedRoutes: RouteConfig[] = [
   {
     path: '/help/:section',
     element: HelpPage,
+  },
+  // ETFO Lesson Plans Routes
+  {
+    path: '/etfo-lesson-plans',
+    element: ETFOLessonPlanPage,
+  },
+  {
+    path: '/etfo-lesson-plans/:lessonId',
+    element: ETFOLessonPlanPage,
   },
   // Assessment System Routes
   {

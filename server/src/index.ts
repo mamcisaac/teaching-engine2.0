@@ -61,6 +61,7 @@ import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
 import { userRoutes } from './routes/user';
+import scheduleManagementRoutes from './routes/schedule-management';
 import { errorReportingService } from './services/monitoring/errorReportingService';
 import { initializeServices } from './services/initializeServices';
 import {
@@ -274,6 +275,7 @@ app.use(
   userCache,
   etfoLessonPlanRoutes,
 );
+app.use('/api/schedule', asyncMiddleware(authenticate), rateLimiters.write, userCache, scheduleManagementRoutes);
 app.use('/api/daybook-entries', asyncMiddleware(authenticate), rateLimiters.write, userCache, daybookEntryRoutes);
 app.use('/api/lesson-generation', asyncMiddleware(authenticate), rateLimiters.write, lessonGenerationRoutes);
 app.use('/api/etfo', asyncMiddleware(authenticate), rateLimiters.read, etfoProgressRoutes);

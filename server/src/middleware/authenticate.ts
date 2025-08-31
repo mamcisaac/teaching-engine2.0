@@ -21,17 +21,17 @@ interface TokenPayload extends JwtPayload {
  */
 
 // Get JWT secret from environment - REQUIRED for production
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-here-change-in-production';
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN ?? '24h';
 const JWT_REFRESH_EXPIRES_IN = process.env.JWT_REFRESH_EXPIRES_IN ?? '7d';
 
 // Ensure JWT_SECRET is set in production
-if (!JWT_SECRET) {
+if (!process.env.JWT_SECRET) {
   if (process.env.NODE_ENV === 'production') {
     throw new Error('CRITICAL: JWT_SECRET must be set in production environment');
   }
   // Only log warning in development
-  logger.warn('JWT_SECRET not set - authentication will not work properly');
+  logger.warn('JWT_SECRET not set in environment - using fallback for development');
 }
 
 /**

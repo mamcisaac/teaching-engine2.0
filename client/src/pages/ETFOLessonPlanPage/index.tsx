@@ -64,9 +64,19 @@ import { AUTO_SAVE_CONFIG, TEMPLATE_CONFIG, DIALOG_MESSAGES } from './utils';
 export function ETFOLessonPlanPage(): React.ReactElement {
   const { unitId, lessonId } = useParams();
   
-  // Validate required params
+  // If no unitId, show a helpful message or redirect
   if (!unitId) {
-    throw new Error('Unit ID is required');
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-white shadow rounded-lg p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Select a Unit</h2>
+          <p className="text-gray-600 mb-4">Please select a unit from the Unit Plans page to view its lessons.</p>
+          <a href="/planner/units" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+            Go to Unit Plans
+          </a>
+        </div>
+      </div>
+    );
   }
 
   // Form management

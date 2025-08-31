@@ -482,8 +482,13 @@ export function useETFOLessonPlans(filters?: {
       }
 
       const response = await apiClient.get(`/api/etfo-lesson-plans?${params.toString()}`);
-      // Ensure we always return an array
-      return Array.isArray(response.data) ? response.data as ETFOLessonPlan[] : [];
+      // Handle both array and object with lessonPlans property
+      if (Array.isArray(response.data)) {
+        return response.data as ETFOLessonPlan[];
+      } else if (response.data?.lessonPlans && Array.isArray(response.data.lessonPlans)) {
+        return response.data.lessonPlans as ETFOLessonPlan[];
+      }
+      return [];
     },
   });
 }

@@ -93,7 +93,7 @@ const lessonPlanCreateSchema = z.object({
 const lessonPlanUpdateSchema = lessonPlanCreateSchema.partial().omit({ unitPlanId: true });
 
 const lessonPlanQuerySchema = z.object({
-  unitPlanId: z.string().cuid().optional(),
+  unitPlanId: z.string().optional(),
   startDate: z.string().datetime().optional(),
   endDate: z.string().datetime().optional(),
   isSubFriendly: z.coerce.boolean().optional(),
@@ -101,8 +101,8 @@ const lessonPlanQuerySchema = z.object({
   hasExpectations: z.coerce.boolean().optional(),
   limit: z.coerce.number().int().min(1).max(100).default(20),
   offset: z.coerce.number().int().min(0).default(0),
-  sortBy: z.enum(['date', 'title', 'createdAt', 'duration']).default('date'),
-  sortOrder: z.enum(['asc', 'desc']).default('asc'),
+  sort: z.enum(['date', 'title', 'createdAt', 'duration']).default('date'),
+  order: z.enum(['asc', 'desc']).default('asc'),
 });
 
 const resourceSchema = z.object({
@@ -133,14 +133,14 @@ class ETFOLessonPlanService extends BaseService {
   }
 
   private buildBasicFilters(filters: {
-    unitPlanId?: number;
+    unitPlanId?: string;
     isSubFriendly?: boolean;
     assessmentType?: string;
   }, userId: number): Prisma.ETFOLessonPlanWhereInput {
     const where: Prisma.ETFOLessonPlanWhereInput = { userId };
 
-    if (filters.unitPlanId !== undefined) {
-      where.unitPlanId = String(filters.unitPlanId);
+    if (filters.unitPlanId !== undefined && filters.unitPlanId !== '' && filters.unitPlanId !== null) {
+      where.unitPlanId = filters.unitPlanId;
     }
     if (filters.isSubFriendly !== undefined) {
       where.isSubFriendly = filters.isSubFriendly;
@@ -211,7 +211,7 @@ class ETFOLessonPlanService extends BaseService {
 
   async findMany(
     filters: {
-      unitPlanId?: number;
+      unitPlanId?: string;
       startDate?: Date;
       endDate?: Date;
       isSubFriendly?: boolean;
@@ -235,6 +235,13 @@ class ETFOLessonPlanService extends BaseService {
     const where = this.buildBasicFilters(filters, userId);
     this.addDateRangeFilter(where, startDate, endDate);
     this.addExpectationsFilter(where, hasExpectations);
+    
+    // Remove any null/undefined values from where clause
+    Object.keys(where).forEach(key => {
+      if (where[key] === null || where[key] === undefined) {
+        delete where[key];
+      }
+    });
 
     // Build order by
     const orderBy = this.buildOrderBy(sort, order);
@@ -878,7 +885,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       findMany: async (filters: unknown, userId: number): Promise<unknown[]> => {
         const result = await this.lessonPlanService.findMany(
           filters as {
-            unitPlanId?: number;
+            unitPlanId?: string;
             startDate?: Date;
             endDate?: Date;
             isSubFriendly?: boolean;
@@ -949,7 +956,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     unitPlanId?: string;
     [key: string]: unknown;
   }): {
-    unitPlanId?: number;
+    unitPlanId?: string;
     startDate?: Date;
     endDate?: Date;
     isSubFriendly?: boolean;
@@ -965,12 +972,12 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       ...filterBase,
       ...(startDate && { startDate: new Date(startDate) }),
       ...(endDate && { endDate: new Date(endDate) }),
-      ...(unitPlanId && { unitPlanId: parseInt(String(unitPlanId), 10) }),
+      ...(unitPlanId && { unitPlanId }),
       // Convert sortBy/sortOrder to sort/order for service
       sort: sortBy,
       order: sortOrder,
     } as {
-      unitPlanId?: number;
+      unitPlanId?: string;
       startDate?: Date;
       endDate?: Date;
       isSubFriendly?: boolean;
