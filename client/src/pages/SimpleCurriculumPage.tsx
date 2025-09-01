@@ -1,13 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { STORAGE_KEYS } from '../constants/subjects';
-import { useCurriculumExpectations } from '../hooks/useETFOPlanning';
+import { useCurriculumExpectations, useETFOLessonPlans, useUnitPlans } from '../hooks/useETFOPlanning';
 import { safeJsonParse } from '../utils/typeGuards';
 
 // Grade 1 French Immersion curriculum expectations for PEI
 export function SimpleCurriculumPage(): React.ReactElement {
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showUncoveredOnly, setShowUncoveredOnly] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15; // Show 15 expectations per page
   
@@ -21,6 +22,26 @@ export function SimpleCurriculumPage(): React.ReactElement {
   const { data: allExpectations = [], isLoading, error } = useCurriculumExpectations({
     grade: 1
   });
+  
+  // Fetch lesson plans and unit plans to check coverage
+  const { data: lessonPlans = [] } = useETFOLessonPlans();
+  const { data: unitPlans = [] } = useUnitPlans();
+  
+  // Calculate which expectations are covered
+  const coveredIds = useMemo(() => {
+    const ids = new Set<string>();
+    lessonPlans.forEach((lesson: any) => {
+      lesson.expectations?.forEach((exp: any) => {
+        ids.add(exp.expectation?.id || exp.expectationId);
+      });
+    });
+    unitPlans.forEach((unit: any) => {
+      unit.expectations?.forEach((exp: any) => {
+        ids.add(exp.expectation?.id || exp.expectationId);
+      });
+    });
+    return ids;
+  }, [lessonPlans, unitPlans]);
   
   // Filter expectations based on teacher's selected subjects
   const teacherFilteredExpectations = useMemo(() => {
@@ -44,6 +65,11 @@ export function SimpleCurriculumPage(): React.ReactElement {
       exp.strand.toLowerCase().includes(searchLower) ||
       (exp.substrand && exp.substrand.toLowerCase().includes(searchLower))
     );
+  }
+  
+  // Apply uncovered filter if enabled
+  if (showUncoveredOnly) {
+    filteredExpectations = filteredExpectations.filter(exp => !coveredIds.has(exp.id));
   }
   
   // Calculate pagination
@@ -383,6 +409,28 @@ export function SimpleCurriculumPage(): React.ReactElement {
           </div>
         </div>
         
+        {/* Coverage Filter */}
+        <div style={{
+          marginTop: '16px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px'
+        }}>
+          <input
+            type="checkbox"
+            id="uncovered-only"
+            checked={showUncoveredOnly}
+            onChange={(e) => setShowUncoveredOnly(e.target.checked)}
+            style={{ width: '16px', height: '16px', cursor: 'pointer' }}
+          />
+          <label 
+            htmlFor="uncovered-only"
+            style={{ fontSize: '16px', color: '#374151', cursor: 'pointer' }}
+          >
+            Show uncovered only ({teacherFilteredExpectations.filter(e => !coveredIds.has(e.id)).length} expectations need lessons)
+          </label>
+        </div>
+        
         {/* Results Summary */}
         {(searchQuery || selectedSubject !== 'all') && (
           <div style={{
@@ -440,6 +488,9 @@ export function SimpleCurriculumPage(): React.ReactElement {
                     }}>
                       {expectation.code}
                     </span>
+                    {coveredIds.has(expectation.id) && (
+                      <span style={{ color: '#10b981', fontSize: '18px' }}>✓</span>
+                    )}
                     <span style={{
                       backgroundColor: '#f3f4f6',
                       color: '#374151',
