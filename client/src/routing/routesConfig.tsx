@@ -7,6 +7,7 @@ import { withMainLayout } from '../components/withMainLayout';
 
 // Lazy load pages - import based on actual export patterns
 const LoginPage = lazy(() => import('../pages/LoginPage').then(module => ({ default: module.LoginPage }))); // named export
+const WeeklyDayPlanDashboard = lazy(() => import('../pages/WeeklyDayPlanDashboard').then(module => ({ default: module.WeeklyDayPlanDashboard }))); // named export
 const SimpleLongRangePage = lazy(() => import('../pages/SimpleLongRangePage').then(module => ({ default: module.SimpleLongRangePage }))); // named export
 const SimpleUnitPlansPage = lazy(() => import('../pages/SimpleUnitPlansPage').then(module => ({ default: module.SimpleUnitPlansPage }))); // named export
 const SimpleLessonPlansPage = lazy(() => import('../pages/SimpleLessonPlansPage').then(module => ({ default: module.SimpleLessonPlansPage }))); // named export
@@ -132,7 +133,7 @@ export const plannerRoutes: RouteConfig[] = [
   },
   {
     path: 'dashboard',
-    element: <Navigate replace to="/dashboard" />,
+    element: <Navigate replace to="/weekly-plan" />,
   },
   {
     path: 'calendar',
@@ -168,10 +169,18 @@ export const plannerRoutes: RouteConfig[] = [
 export const protectedRoutes: RouteConfig[] = [
   {
     path: '/',
-    element: <Navigate replace to="/dashboard" />,
+    element: <Navigate replace to="/weekly-plan" />,
+  },
+  {
+    path: '/weekly-plan',
+    element: WeeklyDayPlanDashboard,
   },
   {
     path: '/dashboard',
+    element: <Navigate replace to="/weekly-plan" />,
+  },
+  {
+    path: '/showcase',
     element: ShowcaseDashboard,
   },
   {
