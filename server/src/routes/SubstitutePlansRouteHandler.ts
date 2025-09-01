@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import { SubstitutePlanService } from '../services/index';
+import { SubstitutePlanPdfService } from '../services/substitutePlanPdfService';
 import type { SubstitutePlanCreateData, SubstitutePlanUpdateData } from '../types/routes';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
@@ -435,6 +436,13 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       this.requireAuthentication,
       this.asyncHandler(this.handleUpcomingDates.bind(this)),
     );
+
+    // GET /substitute-plans/:id/pdf
+    this.router.get(
+      '/:id/pdf',
+      this.requireAuthentication,
+      this.asyncHandler(this.handleExportPdf.bind(this)),
+    );
   }
 
   private async handleGenerate(
@@ -518,6 +526,52 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       return;
     } catch (_error) {
       this.logger.error('Error getting upcoming dates:', _error as string | undefined);
+      next(_error); return;
+    }
+  }
+
+  private async handleExportPdf(
+    req: AuthenticatedRequest,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
+    try {
+      const {userId} = req;
+      if (userId === null) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const { id: planId } = req.params;
+
+      // Generate PDF
+      const pdfService = new SubstitutePlanPdfService();
+      const pdfBuffer = await pdfService.generatePdf(planId, userId!);
+
+      // Get plan details for filename
+      const plan = await prisma.substitutePlan.findFirst({
+        where: { id: planId, userId },
+        select: { title: true, dateFor: true }
+      });
+
+      if (!plan) {
+        res.status(404).json({ error: 'Substitute plan not found' });
+        return;
+      }
+
+      // Format filename
+      const date = new Date(plan.dateFor).toISOString().split('T')[0];
+      const filename = `substitute-plan-${date}.pdf`;
+
+      // Set headers for PDF download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+      res.setHeader('Content-Length', pdfBuffer.length.toString());
+
+      // Send PDF
+      res.send(pdfBuffer);
+      return;
+    } catch (_error) {
+      this.logger.error('Error exporting substitute plan as PDF:', _error as string | undefined);
       next(_error); return;
     }
   }

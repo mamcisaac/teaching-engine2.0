@@ -26,6 +26,7 @@ const WeekViewPage = lazy(() => import('../pages/WeekViewPage').then(module => (
 const DayViewPage = lazy(() => import('../pages/DayViewPage').then(module => ({ default: module.DayViewPage }))); // named export
 const LessonDetailPage = lazy(() => import('../pages/LessonDetailPage').then(module => ({ default: module.LessonDetailPage }))); // named export
 const ScheduleEditor = lazy(() => import('../pages/ScheduleEditor').then(module => ({ default: module.ScheduleEditor }))); // named export
+const SubstitutePlansPage = lazy(() => import('../pages/SubstitutePlansPage').then(module => ({ default: module.default || module.SubstitutePlansPage }))); // default or named export
 
 // Assessment System Pages - wrapped with MainLayout
 const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => ({ 
@@ -249,6 +250,19 @@ export const protectedRoutes: RouteConfig[] = [
   {
     path: '/newsletters/draft',
     element: <Navigate replace to="/newsletters" />,
+  },
+  // Substitute Plans
+  {
+    path: '/substitute-plans',
+    element: SubstitutePlansPage,
+  },
+  {
+    path: '/substitute-plans/:id',
+    element: SubstitutePlansPage,
+  },
+  {
+    path: '/substitute-plans/new',
+    element: SubstitutePlansPage,
   },
   // Templates
   {
