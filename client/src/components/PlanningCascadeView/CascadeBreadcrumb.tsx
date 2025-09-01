@@ -16,25 +16,26 @@ export function CascadeBreadcrumb({ selection }: CascadeBreadcrumbProps): JSX.El
       case 'curriculum':
         items.push({ label: 'Curriculum', type: 'curriculum' });
         if (selection.data && 'code' in selection.data) {
-          items.push({ label: selection.data.code, type: 'expectation' });
+          items.push({ label: String(selection.data.code || ''), type: 'expectation' });
         }
         break;
 
       case 'lrp':
         items.push({ label: 'Long Range Plans', type: 'lrp' });
         if (selection.data && 'title' in selection.data) {
-          items.push({ label: selection.data.title, type: 'lrp' });
+          items.push({ label: String(selection.data.title || ''), type: 'lrp' });
         }
         break;
 
       case 'unit':
         items.push({ label: 'Long Range Plans', type: 'lrp' });
         if (selection.data && 'longRangePlan' in selection.data && selection.data.longRangePlan) {
-          items.push({ label: selection.data.longRangePlan.title, type: 'lrp' });
+          const lrp = selection.data.longRangePlan as { title?: string };
+          items.push({ label: String(lrp.title || ''), type: 'lrp' });
         }
         items.push({ label: 'Units', type: 'unit' });
         if (selection.data && 'title' in selection.data) {
-          items.push({ label: selection.data.title, type: 'unit' });
+          items.push({ label: String(selection.data.title || ''), type: 'unit' });
         }
         break;
 

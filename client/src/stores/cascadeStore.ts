@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import type { CascadeData } from '../components/PlanningCascadeView/types';
 
 // Simplified state focused on actual needs
 export interface CascadeNode {
@@ -8,7 +9,7 @@ export interface CascadeNode {
   type: 'curriculum' | 'lrp' | 'unit' | 'lesson' | 'daybook';
   hasChildren: boolean;
   childrenCount?: number;
-  data?: any;
+  data?: CascadeData;
   progress?: {
     completed: number;
     total: number;

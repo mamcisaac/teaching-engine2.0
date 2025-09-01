@@ -4,7 +4,7 @@ import { MainLayout } from '../MainLayout';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/card';
-import { Loader2, AlertCircle, RefreshCw, ChevronRight, ChevronDown, BookOpen, Target, Layers, FileText, Calendar } from 'lucide-react';
+import { Loader2, AlertCircle, RefreshCw, FolderTree, FileText } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useCascadeStore, type CascadeNode } from '../../stores/cascadeStore';
 import { apiClient } from '../../api/core/client';
@@ -12,6 +12,9 @@ import { FilterBar } from './FilterBar';
 import { CascadeDetailPanel } from './CascadeDetailPanel';
 import { CascadeBreadcrumb } from './CascadeBreadcrumb';
 import { CascadeProgressIndicator } from './CascadeProgressIndicator';
+import { VirtualTree } from './VirtualTree';
+import { ErrorBoundary } from './ErrorBoundary';
+import type { CascadeData } from './types';
 
 interface RootData {
   longRangePlans: Array<{
@@ -39,6 +42,7 @@ interface RootData {
 export function PlanningCascadeView(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const [focusedNodeId, setFocusedNodeId] = useState<string | null>(null);
+  const [mobileView, setMobileView] = useState<'tree' | 'detail'>('tree');
   
   // Zustand store - simplified state management
   const {
@@ -100,7 +104,17 @@ export function PlanningCascadeView(): JSX.Element {
         }
       );
       
-      const children = response.data.children.map((child: any): CascadeNode => ({
+      interface ProgressiveResponseChild {
+        id: string;
+        label?: string;
+        title?: string;
+        type: 'curriculum' | 'lrp' | 'unit' | 'lesson' | 'daybook';
+        hasChildren?: boolean;
+        childrenCount?: number;
+        data?: CascadeData;
+      }
+      
+      const children = response.data.children.map((child: ProgressiveResponseChild): CascadeNode => ({
         id: child.id,
         label: child.label || child.title,
         type: child.type,
@@ -252,107 +266,16 @@ export function PlanningCascadeView(): JSX.Element {
     }
   }, [rootNodes, expandedNodes, nodeChildren, focusedNodeId, selectNode, toggleNode, loadNodeChildren]);
   
-  // Render a tree node and its children
-  const renderNode = (node: CascadeNode, level: number = 0) => {
-    const isExpanded = expandedNodes.has(node.id);
-    const isSelected = selectedNodeId === node.id;
-    const isFocused = focusedNodeId === node.id;
-    const isLoading = loadingNodes.has(node.id);
-    const children = nodeChildren.get(node.id);
-    
-    const getNodeIcon = () => {
-      switch (node.type) {
-        case 'curriculum': return <Target className="h-4 w-4" />;
-        case 'lrp': return <BookOpen className="h-4 w-4" />;
-        case 'unit': return <Layers className="h-4 w-4" />;
-        case 'lesson': return <FileText className="h-4 w-4" />;
-        case 'daybook': return <Calendar className="h-4 w-4" />;
-        default: return <FileText className="h-4 w-4" />;
-      }
-    };
-    
-    return (
-      <div key={node.id} className="select-none">
-        <div
-          className={cn(
-            "flex items-center gap-2 px-2 py-1.5 hover:bg-gray-100 cursor-pointer rounded transition-colors",
-            isSelected && "bg-blue-50 border-l-2 border-blue-500",
-            isFocused && "ring-2 ring-blue-400",
-            level > 0 && "ml-6"
-          )}
-          onClick={() => {
-            selectNode(node.id);
-            setFocusedNodeId(node.id);
-          }}
-          role="treeitem"
-          aria-expanded={node.hasChildren ? isExpanded : undefined}
-          aria-selected={isSelected}
-          aria-level={level + 1}
-          tabIndex={isFocused ? 0 : -1}
-        >
-          {/* Expand/Collapse button */}
-          {node.hasChildren && (
-            <button
-              className="p-0.5 hover:bg-gray-200 rounded"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleNodeToggle(node);
-              }}
-              aria-label={isExpanded ? 'Collapse' : 'Expand'}
-            >
-              {isLoading ? (
-                <Loader2 className="h-3 w-3 animate-spin" />
-              ) : isExpanded ? (
-                <ChevronDown className="h-3 w-3" />
-              ) : (
-                <ChevronRight className="h-3 w-3" />
-              )}
-            </button>
-          )}
-          {!node.hasChildren && <div className="w-4" />}
-          
-          {/* Icon */}
-          <div className="text-gray-600">
-            {getNodeIcon()}
-          </div>
-          
-          {/* Label */}
-          <span className={cn("flex-1 text-sm", isSelected && "font-medium")}>
-            {node.label}
-          </span>
-          
-          {/* Progress */}
-          {node.progress && (
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-gray-500">
-                {node.progress.completed}/{node.progress.total}
-              </span>
-              <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-green-500 transition-all"
-                  style={{ width: `${Math.round((node.progress.completed / node.progress.total) * 100)}%` }}
-                />
-              </div>
-            </div>
-          )}
-          
-          {/* Children count */}
-          {node.childrenCount !== undefined && node.childrenCount > 0 && !isExpanded && (
-            <span className="text-xs text-gray-400">
-              ({node.childrenCount})
-            </span>
-          )}
-        </div>
-        
-        {/* Render children if expanded */}
-        {isExpanded && children && (
-          <div className="ml-2">
-            {children.map(child => renderNode(child, level + 1))}
-          </div>
-        )}
-      </div>
-    );
-  };
+  // Check if mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  
+  // Auto-switch to detail view on mobile when selecting
+  const handleNodeSelect = useCallback((nodeId: string) => {
+    selectNode(nodeId);
+    if (isMobile) {
+      setMobileView('detail');
+    }
+  }, [selectNode, isMobile]);
   
   // Get selected node details
   const selectedNode = useMemo(() => {
@@ -398,10 +321,43 @@ export function PlanningCascadeView(): JSX.Element {
           </div>
         </div>
         
+        {/* Mobile tab switcher */}
+        <div className="md:hidden border-b bg-white">
+          <div className="flex">
+            <button
+              className={cn(
+                "flex-1 px-4 py-2 text-sm font-medium border-b-2 transition-colors",
+                mobileView === 'tree' 
+                  ? "border-blue-500 text-blue-600" 
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+              )}
+              onClick={() => setMobileView('tree')}
+            >
+              <FolderTree className="inline h-4 w-4 mr-1" />
+              Tree
+            </button>
+            <button
+              className={cn(
+                "flex-1 px-4 py-2 text-sm font-medium border-b-2 transition-colors",
+                mobileView === 'detail' 
+                  ? "border-blue-500 text-blue-600" 
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+              )}
+              onClick={() => setMobileView('detail')}
+            >
+              <FileText className="inline h-4 w-4 mr-1" />
+              Details
+            </button>
+          </div>
+        </div>
+        
         {/* Main content area - responsive */}
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-          {/* Tree panel - full/half height on mobile, half width on desktop */}
-          <div className="h-1/2 md:h-auto md:w-1/2 border-b md:border-b-0 md:border-r bg-white overflow-y-auto">
+          {/* Tree panel - full on mobile (when selected), half on desktop */}
+          <div className={cn(
+            "md:w-1/2 md:border-r bg-white overflow-y-auto",
+            mobileView === 'tree' ? 'block' : 'hidden md:block'
+          )}>
             <div className="p-4">
               {/* Loading state */}
               {isLoading && (
@@ -432,16 +388,26 @@ export function PlanningCascadeView(): JSX.Element {
                 </Alert>
               )}
               
-              {/* Tree view with keyboard navigation */}
+              {/* Tree view with virtual rendering */}
               {!isLoading && !fetchError && rootNodes.length > 0 && (
                 <div 
                   role="tree" 
                   aria-label="Planning cascade tree"
                   onKeyDown={handleKeyDown}
                   tabIndex={0}
-                  className="focus:outline-none"
+                  className="focus:outline-none h-full"
                 >
-                  {rootNodes.map(node => renderNode(node))}
+                  <VirtualTree
+                    nodes={rootNodes}
+                    expandedNodes={expandedNodes}
+                    selectedNodeId={selectedNodeId}
+                    focusedNodeId={focusedNodeId}
+                    loadingNodes={loadingNodes}
+                    nodeChildren={nodeChildren}
+                    onToggle={handleNodeToggle}
+                    onSelect={handleNodeSelect}
+                    onFocus={setFocusedNodeId}
+                  />
                 </div>
               )}
               
@@ -459,8 +425,11 @@ export function PlanningCascadeView(): JSX.Element {
             </div>
           </div>
           
-          {/* Detail panel - half height on mobile, half width on desktop */}
-          <div className="h-1/2 md:h-auto md:w-1/2 bg-gray-50 overflow-y-auto">
+          {/* Detail panel - full on mobile (when selected), half on desktop */}
+          <div className={cn(
+            "md:w-1/2 bg-gray-50 overflow-y-auto",
+            mobileView === 'detail' ? 'block' : 'hidden md:block'
+          )}>
             {selectedNode ? (
               <div className="p-4">
                 <CascadeBreadcrumb selection={{
@@ -488,4 +457,13 @@ export function PlanningCascadeView(): JSX.Element {
   );
 }
 
-export default PlanningCascadeView;
+// Wrap with error boundary
+function PlanningCascadeViewWithErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <PlanningCascadeView />
+    </ErrorBoundary>
+  );
+}
+
+export default PlanningCascadeViewWithErrorBoundary;

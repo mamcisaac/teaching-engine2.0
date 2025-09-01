@@ -16,7 +16,14 @@ import {
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import type { CascadeSelection } from './types';
+import type { 
+  CascadeSelection, 
+  CurriculumData, 
+  LRPData, 
+  UnitData, 
+  LessonData, 
+  DaybookData 
+} from './types';
 
 interface CascadeDetailPanelProps {
   selection: CascadeSelection;
@@ -25,7 +32,7 @@ interface CascadeDetailPanelProps {
 export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.Element {
   const navigate = useNavigate();
 
-  const renderCurriculumDetail = (data: any) => (
+  const renderCurriculumDetail = (data: CurriculumData) => (
     <div className="p-6">
       <div className="mb-6">
         <h2 className="text-2xl font-bold mb-2">{data.code}</h2>
@@ -88,7 +95,7 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
     </div>
   );
 
-  const renderLRPDetail = (data: any) => (
+  const renderLRPDetail = (data: LRPData) => (
     <div className="p-6">
       <div className="mb-6">
         <div className="flex justify-between items-start">
@@ -193,7 +200,7 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
     </div>
   );
 
-  const renderUnitDetail = (data: any) => (
+  const renderUnitDetail = (data: UnitData) => (
     <div className="p-6">
       <div className="mb-6">
         <div className="flex justify-between items-start">
@@ -314,7 +321,7 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
     </div>
   );
 
-  const renderLessonDetail = (data: any) => (
+  const renderLessonDetail = (data: LessonData) => (
     <div className="p-6">
       <div className="mb-6">
         <div className="flex justify-between items-start">

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '../api/core/client';
-import { handleApiError } from '../utils/errorHandler';
+import { getErrorMessage } from '../utils/typeGuards';
 import type { 
   CurriculumExpectation, 
   LongRangePlan, 
@@ -29,8 +29,9 @@ export interface CascadeLesson extends ETFOLessonPlan {
 export interface CascadeUnit extends UnitPlan {
   lessonPlans?: CascadeLesson[];
   progress?: {
-    totalLessons: number;
-    completedLessons: number;
+    total: number;
+    completed: number;
+    percentage: number;
   };
 }
 
@@ -119,12 +120,12 @@ export function usePlanningCascade(options: UsePlanningCascadeOptions = {}) {
         const response = await apiClient.get(`/api/planning-cascade?${params}`);
         return response.data;
       } catch (error) {
-        const errorMessage = handleApiError(error);
+        const errorMessage = getErrorMessage(error);
         throw new Error(errorMessage);
       }
     },
     staleTime: 5 * 60 * 1000, // Cache for 5 minutes
-    cacheTime: 10 * 60 * 1000, // Keep in cache for 10 minutes
+    gcTime: 10 * 60 * 1000, // Keep in cache for 10 minutes
   });
 }
 
@@ -136,11 +137,11 @@ export function useCascadeSummary() {
         const response = await apiClient.get('/api/planning-cascade/summary');
         return response.data;
       } catch (error) {
-        const errorMessage = handleApiError(error);
+        const errorMessage = getErrorMessage(error);
         throw new Error(errorMessage);
       }
     },
     staleTime: 2 * 60 * 1000, // Cache for 2 minutes
-    cacheTime: 5 * 60 * 1000, // Keep in cache for 5 minutes
+    gcTime: 5 * 60 * 1000, // Keep in cache for 5 minutes
   });
 }
