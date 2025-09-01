@@ -1,5 +1,6 @@
 import { AlertTriangle, Target } from 'lucide-react';
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   PieChart,
   Pie,
@@ -43,6 +44,8 @@ interface GradeCoverage {
 }
 
 export function CurriculumExpectationCoverage(): React.ReactElement {
+  const navigate = useNavigate();
+  
   // Fetch data
   const { data: expectations = [] } = useCurriculumExpectations();
   const { data: unitPlans = [] } = useUnitPlans();
@@ -375,9 +378,17 @@ return 'secondary';
                               </div>
                               <div className="text-sm text-gray-600 mt-1">{exp.description}</div>
                             </div>
-                            <Badge className="ml-2" variant="destructive">
-                              Regular
-                            </Badge>
+                            <div className="flex items-center gap-2">
+                              <Badge className="ml-2" variant="destructive">
+                                High Priority
+                              </Badge>
+                              <button
+                                onClick={() => navigate(`/lessons/new?expectationId=${exp.id}`)}
+                                className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                              >
+                                Quick Plan
+                              </button>
+                            </div>
                           </div>
                         </div>
                       ))}
@@ -399,13 +410,19 @@ return 'secondary';
                     <div className="space-y-2">
                       {coverageMetrics.gaps.regular.slice(0, 5).map((exp, _index) => (
                         <div key={exp.id} className="p-3 bg-yellow-50 rounded-lg">
-                          <div className="flex items-start">
+                          <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="font-medium text-sm">
                                 {exp.code} - {exp.subject} Grade {exp.grade}
                               </div>
                               <div className="text-sm text-gray-600 mt-1">{exp.description}</div>
                             </div>
+                            <button
+                              onClick={() => navigate(`/lessons/new?expectationId=${exp.id}`)}
+                              className="ml-2 px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                            >
+                              Quick Plan
+                            </button>
                           </div>
                         </div>
                       ))}

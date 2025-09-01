@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { STORAGE_KEYS } from '../constants/subjects';
 import { useCurriculumExpectations } from '../hooks/useETFOPlanning';
 import { safeJsonParse } from '../utils/typeGuards';
+import { CurriculumExpectationCoverage } from '../components/CurriculumExpectationCoverage';
 
 // Grade 1 French Immersion curriculum expectations for PEI
 export function SimpleCurriculumPage(): React.ReactElement {
@@ -305,6 +306,11 @@ export function SimpleCurriculumPage(): React.ReactElement {
           </p>
         </div>
       ) : null}
+
+      {/* Coverage Dashboard */}
+      <div style={{ marginBottom: '32px' }}>
+        <CurriculumExpectationCoverage />
+      </div>
 
       {/* Filters and Search */}
       <div style={{ 
