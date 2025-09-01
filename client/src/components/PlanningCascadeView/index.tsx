@@ -179,7 +179,7 @@ export function PlanningCascadeView(): JSX.Element {
     };
   }, [rootData]);
   
-  // Persist expanded state in localStorage
+  // Persist expanded state in localStorage (with debounce)
   useEffect(() => {
     const saved = localStorage.getItem('cascade-expanded');
     if (saved) {
@@ -195,7 +195,11 @@ export function PlanningCascadeView(): JSX.Element {
   }, []);
   
   useEffect(() => {
-    localStorage.setItem('cascade-expanded', JSON.stringify(Array.from(expandedNodes)));
+    const timer = setTimeout(() => {
+      localStorage.setItem('cascade-expanded', JSON.stringify(Array.from(expandedNodes)));
+    }, 500); // Debounce 500ms
+    
+    return () => clearTimeout(timer);
   }, [expandedNodes]);
   
   // Simple keyboard navigation
@@ -238,12 +242,15 @@ export function PlanningCascadeView(): JSX.Element {
           e.preventDefault();
           const node = visibleNodes[currentIndex];
           if (node.hasChildren) {
-            handleNodeToggle(node);
+            toggleNode(node.id);
+            if (!expandedNodes.has(node.id) && !nodeChildren.has(node.id)) {
+              loadNodeChildren(node.id, node.type);
+            }
           }
         }
         break;
     }
-  }, [rootNodes, expandedNodes, nodeChildren, focusedNodeId, selectNode, handleNodeToggle]);
+  }, [rootNodes, expandedNodes, nodeChildren, focusedNodeId, selectNode, toggleNode, loadNodeChildren]);
   
   // Render a tree node and its children
   const renderNode = (node: CascadeNode, level: number = 0) => {
@@ -393,8 +400,8 @@ export function PlanningCascadeView(): JSX.Element {
         
         {/* Main content area - responsive */}
         <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-          {/* Tree panel - full width on mobile, half on desktop */}
-          <div className="w-full md:w-1/2 border-b md:border-b-0 md:border-r bg-white overflow-y-auto">
+          {/* Tree panel - full/half height on mobile, half width on desktop */}
+          <div className="h-1/2 md:h-auto md:w-1/2 border-b md:border-b-0 md:border-r bg-white overflow-y-auto">
             <div className="p-4">
               {/* Loading state */}
               {isLoading && (
@@ -452,8 +459,8 @@ export function PlanningCascadeView(): JSX.Element {
             </div>
           </div>
           
-          {/* Detail panel - hidden on mobile, half width on desktop */}
-          <div className="hidden md:block md:w-1/2 bg-gray-50 overflow-y-auto">
+          {/* Detail panel - half height on mobile, half width on desktop */}
+          <div className="h-1/2 md:h-auto md:w-1/2 bg-gray-50 overflow-y-auto">
             {selectedNode ? (
               <div className="p-4">
                 <CascadeBreadcrumb selection={{
