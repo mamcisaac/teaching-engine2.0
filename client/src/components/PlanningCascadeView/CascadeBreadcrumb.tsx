@@ -46,14 +46,15 @@ export function CascadeBreadcrumb({ selection }: CascadeBreadcrumbProps): JSX.El
         // Would need unit title from parent
         items.push({ label: 'Lessons', type: 'lesson' });
         if (selection.data && 'title' in selection.data) {
-          items.push({ label: selection.data.title, type: 'lesson' });
+          items.push({ label: String(selection.data.title || ''), type: 'lesson' });
         }
         break;
 
       case 'daybook':
         items.push({ label: 'Daybook Entries', type: 'daybook' });
         if (selection.data && 'date' in selection.data) {
-          items.push({ label: new Date(selection.data.date).toLocaleDateString(), type: 'daybook' });
+          const dateStr = String(selection.data.date || '');
+          items.push({ label: dateStr ? new Date(dateStr).toLocaleDateString() : '', type: 'daybook' });
         }
         break;
     }

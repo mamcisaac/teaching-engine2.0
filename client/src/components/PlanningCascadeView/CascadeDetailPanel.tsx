@@ -78,15 +78,15 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span>Lesson Plans:</span>
-                <span className="font-medium">{data.coverage.lessonCount}</span>
+                <span className="font-medium">{data.coverage.totalLessons}</span>
               </div>
               <div className="flex justify-between">
                 <span>Unit Plans:</span>
-                <span className="font-medium">{data.coverage.unitCount}</span>
+                <span className="font-medium">{data.coverage.totalUnits}</span>
               </div>
               <div className="flex justify-between">
-                <span>Long Range Plans:</span>
-                <span className="font-medium">{data.coverage.lrpCount}</span>
+                <span>Completed:</span>
+                <span className="font-medium">{data.coverage.completedLessons}/{data.coverage.totalLessons}</span>
               </div>
             </div>
           </CardContent>
@@ -244,7 +244,7 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
               <Calendar className="h-4 w-4 mr-2 text-gray-500" />
               <span className="text-sm text-gray-600">Start:</span>
               <span className="ml-2 font-medium">
-                {format(new Date(data.startDate), 'MMM d, yyyy')}
+                {data.startDate ? format(new Date(data.startDate), 'MMM d, yyyy') : 'N/A'}
               </span>
             </div>
           </CardContent>
@@ -255,7 +255,7 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
               <Calendar className="h-4 w-4 mr-2 text-gray-500" />
               <span className="text-sm text-gray-600">End:</span>
               <span className="ml-2 font-medium">
-                {format(new Date(data.endDate), 'MMM d, yyyy')}
+                {data.endDate ? format(new Date(data.endDate), 'MMM d, yyyy') : 'N/A'}
               </span>
             </div>
           </CardContent>
@@ -328,7 +328,7 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
           <div>
             <h2 className="text-2xl font-bold mb-2">{data.title}</h2>
             {data.titleFr && <p className="text-gray-500 italic">{data.titleFr}</p>}
-            {data.daybookEntry && (
+            {!!data.daybookEntry && (
               <Badge className="mt-2 bg-green-100 text-green-800">
                 <CheckCircle className="h-3 w-3 mr-1" />
                 Completed
@@ -372,7 +372,7 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
               <Calendar className="h-4 w-4 mr-2 text-gray-500" />
               <span className="text-sm text-gray-600">Date:</span>
               <span className="ml-2 font-medium">
-                {format(new Date(data.date), 'EEEE, MMM d, yyyy')}
+                {data.date ? format(new Date(String(data.date)), 'EEEE, MMM d, yyyy') : 'N/A'}
               </span>
             </div>
           </CardContent>
@@ -388,82 +388,82 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
         </Card>
       </div>
 
-      {data.learningGoals && (
+      {!!data.learningGoals && (
         <Card className="mb-4">
           <CardHeader>
             <CardTitle className="text-lg">Learning Goals</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>{data.learningGoals}</p>
+            <p>{String(data.learningGoals || '')}</p>
           </CardContent>
         </Card>
       )}
 
-      {data.mindsOn && (
+      {!!data.mindsOn && (
         <Card className="mb-4">
           <CardHeader>
             <CardTitle className="text-lg">Minds On</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>{data.mindsOn}</p>
+            <p>{String(data.mindsOn || '')}</p>
           </CardContent>
         </Card>
       )}
 
-      {data.action && (
+      {!!data.action && (
         <Card className="mb-4">
           <CardHeader>
             <CardTitle className="text-lg">Action</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>{data.action}</p>
+            <p>{String(data.action || '')}</p>
           </CardContent>
         </Card>
       )}
 
-      {data.consolidation && (
+      {!!data.consolidation && (
         <Card className="mb-4">
           <CardHeader>
             <CardTitle className="text-lg">Consolidation</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>{data.consolidation}</p>
+            <p>{String(data.consolidation || '')}</p>
           </CardContent>
         </Card>
       )}
 
-      {data.daybookEntry && (
+      {!!data.daybookEntry && (
         <Card className="border-green-200 bg-green-50">
           <CardHeader>
             <CardTitle className="text-lg text-green-800">Daybook Entry</CardTitle>
           </CardHeader>
           <CardContent>
-            {data.daybookEntry.whatWorked && (
+            {(data.daybookEntry as any).whatWorked && (
               <div className="mb-3">
                 <h4 className="font-medium text-green-700">What Worked:</h4>
-                <p className="text-gray-700">{data.daybookEntry.whatWorked}</p>
+                <p className="text-gray-700">{String((data.daybookEntry as any).whatWorked)}</p>
               </div>
             )}
-            {data.daybookEntry.whatDidntWork && (
+            {(data.daybookEntry as any).whatDidntWork && (
               <div className="mb-3">
                 <h4 className="font-medium text-orange-700">What Didn't Work:</h4>
-                <p className="text-gray-700">{data.daybookEntry.whatDidntWork}</p>
+                <p className="text-gray-700">{String((data.daybookEntry as any).whatDidntWork)}</p>
               </div>
             )}
-            {data.daybookEntry.nextSteps && (
+            {(data.daybookEntry as any).nextSteps && (
               <div className="mb-3">
                 <h4 className="font-medium text-blue-700">Next Steps:</h4>
-                <p className="text-gray-700">{data.daybookEntry.nextSteps}</p>
+                <p className="text-gray-700">{String((data.daybookEntry as any).nextSteps)}</p>
               </div>
             )}
-            {data.daybookEntry.overallRating && (
+            {(data.daybookEntry as any).overallRating && (
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">Rating:</span>
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map(star => (
                     <span
                       key={star}
-                      className={star <= data.daybookEntry.overallRating ? 'text-yellow-500' : 'text-gray-300'}
+                      className={star <= (data.daybookEntry as any).overallRating ? 'text-yellow-500' : 'text-gray-300'}
                     >
                       ★
                     </span>
@@ -479,13 +479,13 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
 
   switch (selection.type) {
     case 'curriculum':
-      return renderCurriculumDetail(selection.data);
+      return renderCurriculumDetail(selection.data as CurriculumData);
     case 'lrp':
-      return renderLRPDetail(selection.data);
+      return renderLRPDetail(selection.data as LRPData);
     case 'unit':
-      return renderUnitDetail(selection.data);
+      return renderUnitDetail(selection.data as UnitData);
     case 'lesson':
-      return renderLessonDetail(selection.data);
+      return renderLessonDetail(selection.data as LessonData);
     default:
       return <div className="p-6">Select an item to view details</div>;
   }

@@ -4,7 +4,7 @@ import { MainLayout } from '../MainLayout';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/card';
-import { Loader2, AlertCircle, RefreshCw, FolderTree, FileText } from 'lucide-react';
+import { Loader2, AlertCircle, RefreshCw, FolderTree, FileText, Search, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useCascadeStore, type CascadeNode } from '../../stores/cascadeStore';
 import { apiClient } from '../../api/core/client';
@@ -14,6 +14,9 @@ import { CascadeBreadcrumb } from './CascadeBreadcrumb';
 import { CascadeProgressIndicator } from './CascadeProgressIndicator';
 import { VirtualTree } from './VirtualTree';
 import { ErrorBoundary } from './ErrorBoundary';
+import { TreeSkeleton } from './TreeSkeleton';
+import { ExportMenu } from './ExportMenu';
+import { EmptyState } from './EmptyState';
 import type { CascadeData } from './types';
 
 interface RootData {
@@ -43,6 +46,7 @@ export function PlanningCascadeView(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const [focusedNodeId, setFocusedNodeId] = useState<string | null>(null);
   const [mobileView, setMobileView] = useState<'tree' | 'detail'>('tree');
+  const [localSearchQuery, setLocalSearchQuery] = useState('');
   
   // Zustand store - simplified state management
   const {
@@ -112,15 +116,19 @@ export function PlanningCascadeView(): JSX.Element {
         hasChildren?: boolean;
         childrenCount?: number;
         data?: CascadeData;
+        progress?: {
+          completed: number;
+          total: number;
+        };
       }
       
       const children = response.data.children.map((child: ProgressiveResponseChild): CascadeNode => ({
         id: child.id,
-        label: child.label || child.title,
+        label: child.label || child.title || '',
         type: child.type,
-        hasChildren: child.hasChildren || child.childrenCount > 0,
+        hasChildren: child.hasChildren || (child.childrenCount ? child.childrenCount > 0 : false),
         childrenCount: child.childrenCount,
-        data: child.data || child,
+        data: child.data,
         progress: child.progress,
       }));
       
@@ -155,7 +163,7 @@ export function PlanningCascadeView(): JSX.Element {
         label: `Curriculum Expectations (${rootData.curriculumSummary.total})`,
         type: 'curriculum',
         hasChildren: true,
-        data: rootData.curriculumSummary,
+        data: undefined, // Summary data is in the node itself
         progress: {
           completed: 0,
           total: rootData.curriculumSummary.total,
@@ -180,18 +188,63 @@ export function PlanningCascadeView(): JSX.Element {
     return nodes;
   }, [rootData]);
   
-  // Calculate overall metrics
+  // Calculate overall metrics with REAL data
   const metrics = useMemo(() => {
     if (!rootData) return null;
+    
+    let totalLessons = 0;
+    let completedLessons = 0;
+    
+    // Count all loaded lessons and their completion status
+    const countLessons = (nodes: CascadeNode[]) => {
+      nodes.forEach(node => {
+        if (node.type === 'lesson') {
+          totalLessons++;
+          // Check if lesson is completed based on data status
+          if (node.data && 'status' in node.data && node.data.status === 'completed') {
+            completedLessons++;
+          }
+        }
+        
+        // Accumulate from progress if available
+        if (node.progress) {
+          // Don't double count - only use progress from non-lesson nodes
+          if (node.type !== 'lesson' && node.progress.total > 0) {
+            // This represents aggregated lesson counts from units/LRPs
+            const nodeCompleted = node.progress.completed || 0;
+            const nodeTotal = node.progress.total || 0;
+            
+            // Only add if we haven't traversed the children yet
+            if (!nodeChildren.has(node.id) && node.type === 'unit') {
+              totalLessons += nodeTotal;
+              completedLessons += nodeCompleted;
+            }
+          }
+        }
+        
+        // Recurse through loaded children
+        const children = nodeChildren.get(node.id);
+        if (children) countLessons(children);
+      });
+    };
+    
+    countLessons(rootNodes);
+    
+    // If no lessons counted yet, estimate from unit counts
+    if (totalLessons === 0) {
+      // Estimate 4 lessons per unit as a reasonable default
+      const totalUnits = rootData.longRangePlans.reduce((sum, lrp) => sum + lrp._count.unitPlans, 0);
+      totalLessons = totalUnits * 4;
+    }
     
     return {
       totalExpectations: rootData.curriculumSummary.total,
       totalLRPs: rootData.longRangePlans.length,
       totalUnits: rootData.longRangePlans.reduce((sum, lrp) => sum + lrp._count.unitPlans, 0),
-      completedLessons: 0, // Would be calculated from actual data
-      totalLessons: 0,
+      completedLessons,
+      totalLessons,
     };
-  }, [rootData]);
+  }, [rootData, rootNodes, nodeChildren]);
   
   // Persist expanded state in localStorage (with debounce)
   useEffect(() => {
@@ -216,16 +269,29 @@ export function PlanningCascadeView(): JSX.Element {
     return () => clearTimeout(timer);
   }, [expandedNodes]);
   
-  // Simple keyboard navigation
+  // Debounce search query updates
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearchQuery(localSearchQuery);
+    }, 300); // Debounce 300ms for search
+    
+    return () => clearTimeout(timer);
+  }, [localSearchQuery, setSearchQuery]);
+  
+  // Enhanced ARIA-compliant keyboard navigation
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
-    // Get all visible nodes
-    const visibleNodes: CascadeNode[] = [];
-    const collectVisible = (nodes: CascadeNode[]) => {
+    // Build flat list with level information
+    interface FlatNodeWithLevel {
+      node: CascadeNode;
+      level: number;
+    }
+    const visibleNodes: FlatNodeWithLevel[] = [];
+    const collectVisible = (nodes: CascadeNode[], level: number = 0) => {
       nodes.forEach(node => {
-        visibleNodes.push(node);
+        visibleNodes.push({ node, level });
         if (expandedNodes.has(node.id)) {
           const children = nodeChildren.get(node.id);
-          if (children) collectVisible(children);
+          if (children) collectVisible(children, level + 1);
         }
       });
     };
@@ -234,33 +300,118 @@ export function PlanningCascadeView(): JSX.Element {
     if (visibleNodes.length === 0) return;
     
     const currentIndex = focusedNodeId 
-      ? visibleNodes.findIndex(n => n.id === focusedNodeId)
+      ? visibleNodes.findIndex(n => n.node.id === focusedNodeId)
       : -1;
+    
+    const currentItem = currentIndex >= 0 ? visibleNodes[currentIndex] : null;
     
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
         const nextIndex = currentIndex < visibleNodes.length - 1 ? currentIndex + 1 : 0;
-        setFocusedNodeId(visibleNodes[nextIndex].id);
-        selectNode(visibleNodes[nextIndex].id);
+        setFocusedNodeId(visibleNodes[nextIndex].node.id);
+        selectNode(visibleNodes[nextIndex].node.id);
         break;
+        
       case 'ArrowUp':
         e.preventDefault();
         const prevIndex = currentIndex > 0 ? currentIndex - 1 : visibleNodes.length - 1;
-        setFocusedNodeId(visibleNodes[prevIndex].id);
-        selectNode(visibleNodes[prevIndex].id);
+        setFocusedNodeId(visibleNodes[prevIndex].node.id);
+        selectNode(visibleNodes[prevIndex].node.id);
         break;
+        
+      case 'ArrowRight':
+        // Expand if has children and collapsed, or move to first child if expanded
+        if (currentItem) {
+          e.preventDefault();
+          const { node } = currentItem;
+          if (node.hasChildren) {
+            if (!expandedNodes.has(node.id)) {
+              // Expand the node
+              toggleNode(node.id);
+              if (!nodeChildren.has(node.id)) {
+                loadNodeChildren(node.id, node.type);
+              }
+            } else {
+              // Move to first child if expanded
+              const children = nodeChildren.get(node.id);
+              if (children && children.length > 0) {
+                setFocusedNodeId(children[0].id);
+                selectNode(children[0].id);
+              }
+            }
+          }
+        }
+        break;
+        
+      case 'ArrowLeft':
+        // Collapse if expanded, or move to parent
+        if (currentItem) {
+          e.preventDefault();
+          const { node, level } = currentItem;
+          if (expandedNodes.has(node.id)) {
+            // Collapse the node
+            toggleNode(node.id);
+          } else if (level > 0) {
+            // Move to parent node
+            for (let i = currentIndex - 1; i >= 0; i--) {
+              if (visibleNodes[i].level === level - 1) {
+                setFocusedNodeId(visibleNodes[i].node.id);
+                selectNode(visibleNodes[i].node.id);
+                break;
+              }
+            }
+          }
+        }
+        break;
+        
+      case 'Home':
+        // Move to first node
+        e.preventDefault();
+        if (visibleNodes.length > 0) {
+          setFocusedNodeId(visibleNodes[0].node.id);
+          selectNode(visibleNodes[0].node.id);
+        }
+        break;
+        
+      case 'End':
+        // Move to last node
+        e.preventDefault();
+        if (visibleNodes.length > 0) {
+          const lastNode = visibleNodes[visibleNodes.length - 1];
+          setFocusedNodeId(lastNode.node.id);
+          selectNode(lastNode.node.id);
+        }
+        break;
+        
       case 'Enter':
       case ' ':
-        if (currentIndex >= 0) {
+        // Toggle expansion
+        if (currentItem) {
           e.preventDefault();
-          const node = visibleNodes[currentIndex];
+          const { node } = currentItem;
           if (node.hasChildren) {
             toggleNode(node.id);
             if (!expandedNodes.has(node.id) && !nodeChildren.has(node.id)) {
               loadNodeChildren(node.id, node.type);
             }
           }
+        }
+        break;
+        
+      case '*':
+        // Expand all siblings
+        if (currentItem) {
+          e.preventDefault();
+          const { level } = currentItem;
+          visibleNodes.forEach(({ node: sibling, level: siblingLevel }) => {
+            if (siblingLevel === level && sibling.hasChildren && !expandedNodes.has(sibling.id)) {
+              toggleNode(sibling.id);
+              if (!nodeChildren.has(sibling.id)) {
+                loadNodeChildren(sibling.id, sibling.type);
+              }
+            }
+          });
         }
         break;
     }
@@ -305,6 +456,41 @@ export function PlanningCascadeView(): JSX.Element {
           <h1 className="text-2xl font-semibold text-gray-900">Planning Cascade View</h1>
           <p className="text-sm text-gray-600 mt-1">Navigate your curriculum hierarchy</p>
         </div>
+        
+        {/* Search Bar with Export Actions */}
+        <div className="border-b bg-white">
+          <div className="p-4 flex justify-between items-center">
+            <div className="relative max-w-md flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search cascade (name, code, title)..."
+                value={localSearchQuery}
+                onChange={(e) => setLocalSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-10 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                aria-label="Search planning cascade"
+              />
+              {localSearchQuery && (
+                <button
+                  onClick={() => setLocalSearchQuery('')}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  aria-label="Clear search"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+            {/* Export Menu */}
+            <div className="ml-4">
+              <ExportMenu 
+                nodes={rootNodes}
+                expandedNodes={expandedNodes}
+                nodeChildren={nodeChildren}
+              />
+            </div>
+          </div>
+        </div>
+        
         {/* Header with filters and progress */}
         <div className="border-b bg-white">
           <div className="p-4">
@@ -359,11 +545,9 @@ export function PlanningCascadeView(): JSX.Element {
             mobileView === 'tree' ? 'block' : 'hidden md:block'
           )}>
             <div className="p-4">
-              {/* Loading state */}
+              {/* Loading state with skeleton */}
               {isLoading && (
-                <div className="flex items-center justify-center py-8">
-                  <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
-                </div>
+                <TreeSkeleton count={8} className="py-4" />
               )}
               
               {/* Error state */}
@@ -391,8 +575,6 @@ export function PlanningCascadeView(): JSX.Element {
               {/* Tree view with virtual rendering */}
               {!isLoading && !fetchError && rootNodes.length > 0 && (
                 <div 
-                  role="tree" 
-                  aria-label="Planning cascade tree"
                   onKeyDown={handleKeyDown}
                   tabIndex={0}
                   className="focus:outline-none h-full"
@@ -404,6 +586,7 @@ export function PlanningCascadeView(): JSX.Element {
                     focusedNodeId={focusedNodeId}
                     loadingNodes={loadingNodes}
                     nodeChildren={nodeChildren}
+                    searchQuery={searchQuery}
                     onToggle={handleNodeToggle}
                     onSelect={handleNodeSelect}
                     onFocus={setFocusedNodeId}
@@ -413,14 +596,10 @@ export function PlanningCascadeView(): JSX.Element {
               
               {/* Empty state */}
               {!isLoading && !fetchError && rootNodes.length === 0 && (
-                <Card className="p-8 text-center">
-                  <p className="text-gray-500 mb-4">
-                    No planning data available for the selected filters.
-                  </p>
-                  <Button onClick={clearFilters}>
-                    Clear Filters
-                  </Button>
-                </Card>
+                <EmptyState 
+                  type={filters.academicYear || filters.subject || filters.grade ? "filtered-empty" : "no-data"}
+                  onAction={filters.academicYear || filters.subject || filters.grade ? clearFilters : undefined}
+                />
               )}
             </div>
           </div>
@@ -435,13 +614,13 @@ export function PlanningCascadeView(): JSX.Element {
                 <CascadeBreadcrumb selection={{
                   type: selectedNode.type,
                   id: selectedNode.id,
-                  data: selectedNode.data,
+                  data: selectedNode.data!,
                 }} />
                 <div className="mt-4">
                   <CascadeDetailPanel selection={{
                     type: selectedNode.type,
                     id: selectedNode.id,
-                    data: selectedNode.data,
+                    data: selectedNode.data!,
                   }} />
                 </div>
               </div>

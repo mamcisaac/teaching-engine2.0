@@ -20,6 +20,7 @@ export interface CascadeState {
   // Essential UI State
   expandedNodes: Set<string>;
   selectedNodeId: string | null;
+  selectedNodes: Set<string>; // Multi-select support
   
   // Data loading
   loadingNodes: Set<string>;
@@ -34,6 +35,9 @@ export interface CascadeState {
   
   // Search
   searchQuery: string;
+  
+  // UI State
+  multiSelectMode: boolean;
 }
 
 export interface CascadeActions {
