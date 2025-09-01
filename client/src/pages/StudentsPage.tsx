@@ -33,9 +33,6 @@ export function StudentsPage(): React.ReactElement {
   });
 
   const filteredStudents = students.filter(student => {
-    // Filter out archived students
-    if (student.status === 'archived') return false;
-    
     const searchLower = searchTerm.toLowerCase();
     return (
       student.firstName.toLowerCase().includes(searchLower) ||
@@ -151,16 +148,6 @@ export function StudentsPage(): React.ReactElement {
     }
   };
 
-  const handleArchiveStudent = async (student: Student) => {
-    // Archive functionality temporarily disabled - status field not available in update API
-    // For now, just update locally
-    const updatedStudents = students.map(s =>
-      s.id === student.id ? { ...s, status: 'archived' as const, updatedAt: new Date().toISOString() } : s
-    );
-    setStudents(updatedStudents);
-    localStorage.setItem('assessment-students', JSON.stringify(updatedStudents));
-    toast.success(`Archived ${student.firstName} ${student.lastName} (local only)`);
-  };
 
   const handleCSVImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -427,12 +414,6 @@ export function StudentsPage(): React.ReactElement {
                   className="flex-1 px-3 py-1 text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
                 >
                   Edit
-                </button>
-                <button
-                  onClick={() => handleArchiveStudent(student)}
-                  className="flex-1 px-3 py-1 text-gray-600 border border-gray-600 rounded hover:bg-gray-50"
-                >
-                  Archive
                 </button>
               </div>
             </div>
