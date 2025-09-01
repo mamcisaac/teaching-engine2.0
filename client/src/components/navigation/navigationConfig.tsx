@@ -128,6 +128,26 @@ export const secondaryNavItems: NavItem[] = [
     ),
   },
   {
+    path: '/planner/cascade',
+    label: 'Cascade View',
+    icon: (
+      <svg
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3 10h18M3 14h18m-9-4v8m0 0l-4-4m4 4l4-4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+        />
+      </svg>
+    ),
+  },
+  {
     path: '/templates',
     label: 'Plan Templates',
     icon: (

@@ -27,6 +27,9 @@ const DayViewPage = lazy(() => import('../pages/DayViewPage').then(module => ({ 
 const LessonDetailPage = lazy(() => import('../pages/LessonDetailPage').then(module => ({ default: module.LessonDetailPage }))); // named export
 const ScheduleEditor = lazy(() => import('../pages/ScheduleEditor').then(module => ({ default: module.ScheduleEditor }))); // named export
 
+// Planning Cascade View
+const PlanningCascadeView = lazy(() => import('../components/PlanningCascadeView')); // default export
+
 // Assessment System Pages - wrapped with MainLayout
 const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => ({ 
   default: withMainLayout(module.StudentsPage) 
@@ -137,6 +140,10 @@ export const plannerRoutes: RouteConfig[] = [
   {
     path: 'calendar',
     element: SimpleCalendarPage,
+  },
+  {
+    path: 'cascade',
+    element: PlanningCascadeView,
   },
   {
     path: 'schedule-editor',

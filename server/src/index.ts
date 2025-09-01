@@ -53,6 +53,7 @@ import { router as monitoringRoutes } from './routes/monitoring';
 import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
+import { router as planningCascadeRoutes } from './routes/planning-cascade';
 import { router as recentPlansRoutes } from './routes/recent-plans';
 import reportsRoutes from './routes/reports';
 import studentsRoutes from './routes/students';
@@ -293,6 +294,9 @@ app.use('/api/calendar-events', asyncMiddleware(authenticate), rateLimiters.api,
 
 // Recent Plans Routes
 app.use('/api/recent-plans', asyncMiddleware(authenticate), rateLimiters.api, userCache, recentPlansRoutes);
+
+// Planning Cascade Routes
+app.use('/api/planning-cascade', asyncMiddleware(authenticate), rateLimiters.api, userCache, planningCascadeRoutes);
 
 // Cache Management Routes
 app.use('/api/cache', cacheRoutes);
