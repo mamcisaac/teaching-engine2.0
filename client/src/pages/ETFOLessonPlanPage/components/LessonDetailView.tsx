@@ -1,11 +1,14 @@
 import { format } from 'date-fns';
-import { Calendar, Clock, Printer, Download } from 'lucide-react';
-import React from 'react';
+import { Calendar, Clock, Printer, Download, MessageSquare } from 'lucide-react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
+import { QuickAssessmentWidget } from '../../../components/assessment/QuickAssessmentWidget';
+import { AssessmentNotesModal } from '../../../components/assessment/AssessmentNotesModal';
+import { AssessmentBadge } from '../../../components/assessment/AssessmentBadge';
 import type { ETFOLessonPlan, UnitPlan, CurriculumExpectation } from '../../../hooks/useETFOPlanning';
 import type { LessonPlan } from '../../../utils/printing/types';
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../../../utils/printUtils';
@@ -19,6 +22,8 @@ interface LessonDetailViewProps {
 }
 
 export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDetailViewProps): React.ReactElement {
+  const [showDetailedReflection, setShowDetailedReflection] = useState(false);
+  
   // Helper function to convert ETFOLessonPlan to LessonPlan for printing
   const convertLessonForPrinting = (etfoLesson: ETFOLessonPlan): LessonPlan => ({
     title: etfoLesson.title,
@@ -141,6 +146,78 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
             </div>
           </div>
         </div>
+
+        {/* Quick Assessment Section - Only show if lesson has been taught */}
+        {lesson.daybookEntry && (
+          <div className="px-6 py-4 bg-gray-50 border-b">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-medium text-gray-700 mb-2">Lesson Reflection & Assessment</h3>
+                <QuickAssessmentWidget lessonPlan={lesson} />
+              </div>
+              <div className="flex items-center gap-2">
+                {lesson.quickAssessment && (
+                  <AssessmentBadge lessonPlan={lesson} showLabel={true} size="md" />
+                )}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowDetailedReflection(true)}
+                  className="flex items-center gap-2"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                  Detailed Reflection
+                </Button>
+              </div>
+            </div>
+            
+            {/* Show existing reflection data if available */}
+            {(lesson.studentEngagement || lesson.paceAssessment || lesson.materialEffectiveness || lesson.modificationNotes) && (
+              <div className="mt-4 pt-4 border-t border-gray-200">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  {lesson.studentEngagement && (
+                    <div>
+                      <span className="text-gray-500">Engagement:</span>
+                      <span className={`ml-2 font-medium ${
+                        lesson.studentEngagement === 'high' ? 'text-green-600' :
+                        lesson.studentEngagement === 'medium' ? 'text-yellow-600' :
+                        'text-red-600'
+                      }`}>
+                        {lesson.studentEngagement}
+                      </span>
+                    </div>
+                  )}
+                  {lesson.paceAssessment && (
+                    <div>
+                      <span className="text-gray-500">Pace:</span>
+                      <span className="ml-2 font-medium">{lesson.paceAssessment.replace('-', ' ')}</span>
+                    </div>
+                  )}
+                  {lesson.materialEffectiveness && (
+                    <div>
+                      <span className="text-gray-500">Materials:</span>
+                      <span className="ml-2 font-medium">{lesson.materialEffectiveness.replace('-', ' ')}</span>
+                    </div>
+                  )}
+                  {lesson.wouldRepeat !== undefined && (
+                    <div>
+                      <span className="text-gray-500">Would Repeat:</span>
+                      <span className={`ml-2 font-medium ${lesson.wouldRepeat ? 'text-green-600' : 'text-red-600'}`}>
+                        {lesson.wouldRepeat ? 'Yes' : 'No'}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                {lesson.modificationNotes && (
+                  <div className="mt-3">
+                    <span className="text-gray-500 text-sm">Modifications for next time:</span>
+                    <p className="mt-1 text-sm text-gray-700">{lesson.modificationNotes}</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Three-Part Lesson Structure */}
         <div className="p-6 space-y-6">
@@ -313,6 +390,13 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
           )}
         </div>
       </div>
+      
+      {/* Detailed Reflection Modal */}
+      <AssessmentNotesModal
+        isOpen={showDetailedReflection}
+        onClose={() => setShowDetailedReflection(false)}
+        lessonPlan={lesson}
+      />
     </div>
   );
 }

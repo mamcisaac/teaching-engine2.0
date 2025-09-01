@@ -144,6 +144,19 @@ export interface ETFOLessonPlan {
   assessmentNotes?: string;
   isSubFriendly: boolean;
   subNotes?: string;
+  
+  // Quick Assessment Fields
+  quickAssessment?: 'thumbs-up' | 'thumbs-okay' | 'thumbs-down';
+  quickAssessmentNotes?: string;
+  assessedAt?: string;
+  
+  // Detailed Reflection Fields
+  studentEngagement?: 'high' | 'medium' | 'low';
+  paceAssessment?: 'too-fast' | 'just-right' | 'too-slow';
+  materialEffectiveness?: 'very-effective' | 'effective' | 'needs-improvement';
+  wouldRepeat?: boolean;
+  modificationNotes?: string;
+  
   expectations?: { expectation: CurriculumExpectation }[];
   daybookEntry?: DaybookEntry;
   resources?: ETFOLessonPlanResource[];

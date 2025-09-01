@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { BlankTemplateQuickActions } from '../../../components/printing/BlankTemplatePrinter';
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
+import { QuickAssessmentWidget } from '../../../components/assessment/QuickAssessmentWidget';
+import { AssessmentBadge } from '../../../components/assessment/AssessmentBadge';
 import type { UnitPlan, ETFOLessonPlan } from '../../../hooks/useETFOPlanning';
 
 interface LessonListViewProps {
@@ -132,6 +134,9 @@ export function LessonListView({
                   Assessment
                 </th>
                 <th className="hidden lg:table-cell px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Quick Reflection
+                </th>
+                <th className="hidden lg:table-cell px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
                 <th className="px-3 sm:px-6 py-2 sm:py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -171,6 +176,14 @@ export function LessonListView({
                       <Badge className="text-xs" variant="outline">
                         {lesson.assessmentType}
                       </Badge>
+                    )}
+                  </td>
+                  <td className="hidden lg:table-cell px-3 sm:px-6 py-2 sm:py-4">
+                    {/* Show QuickAssessmentWidget only if lesson has been taught */}
+                    {lesson.daybookEntry ? (
+                      <QuickAssessmentWidget lessonPlan={lesson} compact={false} />
+                    ) : (
+                      <AssessmentBadge lessonPlan={lesson} showLabel={true} size="sm" />
                     )}
                   </td>
                   <td className="hidden lg:table-cell px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap">
