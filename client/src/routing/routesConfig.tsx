@@ -31,6 +31,9 @@ const ScheduleEditor = lazy(() => import('../pages/ScheduleEditor').then(module 
 const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => ({ 
   default: withMainLayout(module.StudentsPage) 
 }))); 
+const StudentProgressPage = lazy(() => import('../pages/StudentProgressPage').then(module => ({ 
+  default: withMainLayout(module.StudentProgressPage) 
+})));
 const AssessmentPage = lazy(() => import('../pages/AssessmentPage').then(module => ({ 
   default: withMainLayout(module.AssessmentPage) 
 })));
@@ -281,6 +284,10 @@ export const protectedRoutes: RouteConfig[] = [
   {
     path: '/students',
     element: StudentsPage,
+  },
+  {
+    path: '/students/:studentId/progress',
+    element: StudentProgressPage,
   },
   {
     path: '/assessment',
