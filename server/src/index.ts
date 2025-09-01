@@ -40,6 +40,7 @@ import { router as cacheRoutes } from './routes/cache';
 import { router as calendarEventRoutes } from './routes/calendar-events';
 import { router as curriculumExpectationRoutes } from './routes/curriculum-expectations';
 import { router as curriculumImportRoutes } from './routes/curriculumImport';
+import { router as curriculumCoverageRoutes } from './routes/curriculum-coverage';
 import { router as dashboardMetricsRoutes } from './routes/dashboard-metrics';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
@@ -265,6 +266,13 @@ app.use(
   rateLimiters.read,
   curriculumCache, // Cache curriculum data for 30 minutes
   curriculumExpectationRoutes,
+);
+app.use(
+  '/api/curriculum-coverage',
+  asyncMiddleware(authenticate),
+  rateLimiters.read,
+  curriculumCache, // Cache coverage data for 30 minutes
+  curriculumCoverageRoutes,
 );
 app.use('/api/long-range-plans', asyncMiddleware(authenticate), rateLimiters.write, userCache, longRangePlanRoutes);
 app.use('/api/unit-plans', asyncMiddleware(authenticate), rateLimiters.write, userCache, unitPlanRoutes);

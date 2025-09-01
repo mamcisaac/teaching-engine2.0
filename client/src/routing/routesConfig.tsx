@@ -27,6 +27,10 @@ const DayViewPage = lazy(() => import('../pages/DayViewPage').then(module => ({ 
 const LessonDetailPage = lazy(() => import('../pages/LessonDetailPage').then(module => ({ default: module.LessonDetailPage }))); // named export
 const ScheduleEditor = lazy(() => import('../pages/ScheduleEditor').then(module => ({ default: module.ScheduleEditor }))); // named export
 
+// Curriculum Coverage Pages
+const CurriculumCoverageDashboard = lazy(() => import('../components/CurriculumCoverageDashboard').then(module => ({ default: module.CurriculumCoverageDashboard }))); // named export
+const UncoveredExpectationsList = lazy(() => import('../components/UncoveredExpectationsList').then(module => ({ default: module.UncoveredExpectationsList }))); // named export
+
 // Assessment System Pages - wrapped with MainLayout
 const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => ({ 
   default: withMainLayout(module.StudentsPage) 
@@ -205,12 +209,20 @@ export const protectedRoutes: RouteConfig[] = [
     element: CurriculumImportPage,
   },
   {
+    path: '/curriculum-coverage',
+    element: CurriculumCoverageDashboard,
+  },
+  {
+    path: '/curriculum-coverage/uncovered',
+    element: UncoveredExpectationsList,
+  },
+  {
     path: '/outcomes',
     element: <Navigate replace to="/curriculum" />,
   },
   {
     path: '/coverage',
-    element: <Navigate replace to="/curriculum" />,
+    element: <Navigate replace to="/curriculum-coverage" />,
   },
   {
     path: '/curriculum-audit',

@@ -132,73 +132,169 @@ export function PlanningDashboard(): React.ReactElement {
         </div>
 
 
-        {/* Curriculum Coverage Section */}
-        {Object.keys(curriculumStats).length > 0 && (
+        {/* Enhanced Curriculum Coverage Dashboard */}
+        <div style={{ 
+          backgroundColor: 'white', 
+          padding: '25px', 
+          borderRadius: '12px', 
+          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          marginBottom: '30px',
+          border: '2px solid #e5e7eb'
+        }}>
           <div style={{ 
-            backgroundColor: 'white', 
-            padding: '25px', 
-            borderRadius: '12px', 
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            marginBottom: '30px'
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            marginBottom: '20px'
           }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#374151', marginBottom: '15px' }}>
-              📊 Curriculum Coverage Progress
+            <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#1f2937' }}>
+              📊 Curriculum Coverage Dashboard
             </h3>
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-              gap: '12px'
-            }}>
-              {Object.entries(curriculumStats).map(([subject, stats]) => {
-                const percentage = stats.total > 0 ? Math.round((stats.covered / stats.total) * 100) : 0;
-                const color = percentage === 100 ? '#10b981' : percentage > 50 ? '#f59e0b' : '#ef4444';
-                
-                return (
-                  <div key={subject} style={{
-                    padding: '12px',
-                    backgroundColor: '#f9fafb',
-                    borderRadius: '8px',
-                    border: '1px solid #e5e7eb'
-                  }}>
-                    <div style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '4px' }}>
-                      {subject}
-                    </div>
-                    <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '8px' }}>
-                      {stats.covered}/{stats.total} expectations planned
-                    </div>
-                    <div style={{ 
-                      width: '100%', 
-                      height: '6px', 
-                      backgroundColor: '#e5e7eb', 
-                      borderRadius: '3px',
-                      overflow: 'hidden'
-                    }}>
-                      <div style={{
-                        width: `${percentage}%`,
-                        height: '100%',
-                        backgroundColor: color,
-                        transition: 'width 0.3s ease'
-                      }} />
-                    </div>
-                    <div style={{ fontSize: '11px', color: color, marginTop: '4px', fontWeight: '600' }}>
-                      {percentage}% covered
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            {Object.values(curriculumStats).some(stats => stats.covered < stats.total) && (
-              <p style={{ 
-                fontSize: '13px', 
-                color: '#6b7280', 
-                marginTop: '15px',
-                fontStyle: 'italic'
-              }}>
-                💡 Tip: Create lesson plans to increase your curriculum coverage!
-              </p>
-            )}
+            <button
+              onClick={() => navigate('/curriculum-coverage')}
+              style={{
+                padding: '8px 16px',
+                backgroundColor: '#4f46e5',
+                color: 'white',
+                border: 'none',
+                borderRadius: '6px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4f46e5'}
+            >
+              View Full Dashboard →
+            </button>
           </div>
-        )}
+          
+          {Object.keys(curriculumStats).length > 0 ? (
+            <>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+                gap: '12px'
+              }}>
+                {Object.entries(curriculumStats).map(([subject, stats]) => {
+                  const percentage = stats.total > 0 ? Math.round((stats.covered / stats.total) * 100) : 0;
+                  const color = percentage === 100 ? '#10b981' : percentage > 50 ? '#f59e0b' : '#ef4444';
+                  
+                  return (
+                    <div key={subject} style={{
+                      padding: '12px',
+                      backgroundColor: '#f9fafb',
+                      borderRadius: '8px',
+                      border: '1px solid #e5e7eb',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                    onClick={() => navigate(`/curriculum-coverage?subject=${subject}`)}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#f3f4f6';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#f9fafb';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
+                    >
+                      <div style={{ fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '4px' }}>
+                        {subject}
+                      </div>
+                      <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '8px' }}>
+                        {stats.covered}/{stats.total} expectations planned
+                      </div>
+                      <div style={{ 
+                        width: '100%', 
+                        height: '6px', 
+                        backgroundColor: '#e5e7eb', 
+                        borderRadius: '3px',
+                        overflow: 'hidden'
+                      }}>
+                        <div style={{
+                          width: `${percentage}%`,
+                          height: '100%',
+                          backgroundColor: color,
+                          transition: 'width 0.3s ease'
+                        }} />
+                      </div>
+                      <div style={{ fontSize: '11px', color: color, marginTop: '4px', fontWeight: '600' }}>
+                        {percentage}% covered
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              
+              {/* Quick Actions for Coverage Gaps */}
+              {Object.values(curriculumStats).some(stats => stats.covered < stats.total) && (
+                <div style={{
+                  marginTop: '20px',
+                  padding: '15px',
+                  backgroundColor: '#fef3c7',
+                  borderRadius: '8px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <div>
+                    <p style={{ fontSize: '14px', fontWeight: '600', color: '#92400e', marginBottom: '4px' }}>
+                      🎯 Coverage Gaps Detected
+                    </p>
+                    <p style={{ fontSize: '13px', color: '#92400e' }}>
+                      You have uncovered expectations that need attention
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => navigate('/curriculum-coverage/uncovered')}
+                    style={{
+                      padding: '6px 12px',
+                      backgroundColor: '#f59e0b',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '4px',
+                      fontSize: '13px',
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#d97706'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f59e0b'}
+                  >
+                    Quick Plan Gaps
+                  </button>
+                </div>
+              )}
+            </>
+          ) : (
+            <div style={{ 
+              textAlign: 'center', 
+              padding: '40px',
+              backgroundColor: '#f9fafb',
+              borderRadius: '8px'
+            }}>
+              <p style={{ fontSize: '16px', color: '#6b7280', marginBottom: '12px' }}>
+                No curriculum data available yet
+              </p>
+              <button
+                onClick={() => navigate('/curriculum')}
+                style={{
+                  padding: '8px 16px',
+                  backgroundColor: '#4f46e5',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  fontSize: '14px',
+                  cursor: 'pointer'
+                }}
+              >
+                Import Curriculum
+              </button>
+            </div>
+          )}
+        </div>
 
         {/* Today's Teaching - PRIMARY FOCUS */}
         <div style={{ 
