@@ -10,7 +10,13 @@ import { z } from 'zod';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import { SubstitutePlanService } from '../services/index';
-import { SubstitutePlanPdfService } from '../services/substitutePlanPdfService';
+import { substitutePlanPdfService } from '../services/substitutePlanPdfService';
+import { 
+  pdfGenerationRateLimit, 
+  pdfGenerationHourlyLimit,
+  globalPdfGenerationLimit,
+  trackPdfGenerationStart 
+} from '../middleware/rateLimit/pdfGenerationRateLimit';
 import type { SubstitutePlanCreateData, SubstitutePlanUpdateData } from '../types/routes';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
@@ -437,10 +443,14 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       this.asyncHandler(this.handleUpcomingDates.bind(this)),
     );
 
-    // GET /substitute-plans/:id/pdf
+    // GET /substitute-plans/:id/pdf with rate limiting
     this.router.get(
       '/:id/pdf',
       this.requireAuthentication,
+      trackPdfGenerationStart,
+      pdfGenerationRateLimit,
+      pdfGenerationHourlyLimit,
+      globalPdfGenerationLimit,
       this.asyncHandler(this.handleExportPdf.bind(this)),
     );
   }
@@ -543,36 +553,99 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       }
       const { id: planId } = req.params;
 
-      // Generate PDF
-      const pdfService = new SubstitutePlanPdfService();
-      const pdfBuffer = await pdfService.generatePdf(planId, userId!);
+      // Validate plan ID format
+      if (!planId || typeof planId !== 'string') {
+        res.status(400).json({ 
+          error: 'Invalid request',
+          message: 'Plan ID is required',
+          code: 'INVALID_PLAN_ID'
+        });
+        return;
+      }
 
-      // Get plan details for filename
+      // Generate PDF using singleton service
+      const pdfBuffer = await substitutePlanPdfService.generatePdf(planId, userId!);
+
+      // Get plan details for filename (already validated in service)
       const plan = await prisma.substitutePlan.findFirst({
         where: { id: planId, userId },
         select: { title: true, dateFor: true }
       });
 
       if (!plan) {
-        res.status(404).json({ error: 'Substitute plan not found' });
+        // This shouldn't happen as the service validates, but check anyway
+        res.status(404).json({ 
+          error: 'Substitute plan not found',
+          code: 'PLAN_NOT_FOUND'
+        });
         return;
       }
 
-      // Format filename
+      // Format filename with sanitization
       const date = new Date(plan.dateFor).toISOString().split('T')[0];
-      const filename = `substitute-plan-${date}.pdf`;
+      const safeTitle = plan.title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+      const filename = `substitute-plan-${safeTitle}-${date}.pdf`;
 
       // Set headers for PDF download
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
       res.setHeader('Content-Length', pdfBuffer.length.toString());
+      res.setHeader('Cache-Control', 'private, max-age=300'); // Cache for 5 minutes
 
       // Send PDF
       res.send(pdfBuffer);
       return;
-    } catch (_error) {
-      this.logger.error('Error exporting substitute plan as PDF:', _error as string | undefined);
-      next(_error); return;
+    } catch (error) {
+      // Handle specific error types
+      if (error && typeof error === 'object' && 'code' in error) {
+        const typedError = error as any;
+        
+        switch (typedError.code) {
+          case 'ACCESS_DENIED':
+            res.status(403).json({ 
+              error: 'Access denied',
+              message: 'You do not have permission to export this plan',
+              code: typedError.code
+            });
+            return;
+          
+          case 'TIMEOUT':
+            res.status(504).json({ 
+              error: 'Request timeout',
+              message: 'PDF generation took too long. Please try again.',
+              code: typedError.code
+            });
+            return;
+          
+          case 'MEMORY_LIMIT':
+            res.status(507).json({ 
+              error: 'File too large',
+              message: 'The generated PDF is too large. Please reduce the content and try again.',
+              code: typedError.code
+            });
+            return;
+          
+          case 'INVALID_DATA':
+            res.status(400).json({ 
+              error: 'Invalid data',
+              message: typedError.message || 'The plan data is invalid',
+              code: typedError.code
+            });
+            return;
+          
+          default:
+            // Log unexpected error
+            this.logger.error('Unexpected PDF generation error:', typedError);
+        }
+      }
+
+      // Generic error handling
+      this.logger.error('Error exporting substitute plan as PDF:', error);
+      res.status(500).json({ 
+        error: 'PDF generation failed',
+        message: 'An error occurred while generating the PDF. Please try again later.',
+        code: 'PDF_GENERATION_ERROR'
+      });
     }
   }
 }
