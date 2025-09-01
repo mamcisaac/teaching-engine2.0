@@ -54,6 +54,7 @@ import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
 import { router as planningCascadeRoutes } from './routes/planning-cascade';
+import { router as planningCascadeProgressiveRoutes } from './routes/planning-cascade-progressive';
 import { router as recentPlansRoutes } from './routes/recent-plans';
 import reportsRoutes from './routes/reports';
 import studentsRoutes from './routes/students';
@@ -297,6 +298,7 @@ app.use('/api/recent-plans', asyncMiddleware(authenticate), rateLimiters.api, us
 
 // Planning Cascade Routes
 app.use('/api/planning-cascade', asyncMiddleware(authenticate), rateLimiters.api, userCache, planningCascadeRoutes);
+app.use('/api/planning-cascade-progressive', asyncMiddleware(authenticate), rateLimiters.api, userCache, planningCascadeProgressiveRoutes);
 
 // Cache Management Routes
 app.use('/api/cache', cacheRoutes);
