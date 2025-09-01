@@ -335,7 +335,7 @@ export function PlanningCascadeView(): JSX.Element {
                 <Alert variant="destructive" className="mb-4">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>
-                    {fetchError?.message || error || 'Failed to load data'}
+                    {fetchError instanceof Error ? fetchError.message : error || 'Failed to load data'}
                   </AlertDescription>
                   <Button
                     size="sm"
