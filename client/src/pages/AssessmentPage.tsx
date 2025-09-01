@@ -12,8 +12,10 @@ import {
   XCircleIcon,
   ExclamationTriangleIcon,
   ArrowTrendingUpIcon,
-  FunnelIcon
+  FunnelIcon,
+  BookOpenIcon
 } from '@heroicons/react/24/outline';
+import { NotesTab } from '../components/Notes';
 
 interface Assessment {
   id: string;
@@ -62,6 +64,7 @@ const SUBJECTS = [
 ];
 
 export function AssessmentPage(): React.ReactElement {
+  const [activeTab, setActiveTab] = useState<'assessments' | 'notes'>('assessments');
   const [assessments, setAssessments] = useState<Assessment[]>(() => {
     const saved = localStorage.getItem('assessment-records');
     return saved ? JSON.parse(saved) : [];
@@ -216,12 +219,49 @@ export function AssessmentPage(): React.ReactElement {
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Assessment</h1>
-        <p className="text-gray-600">ETFO 4-Level Mastery Tracking</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Assessment & Notes</h1>
+        <p className="text-gray-600">Track student progress and observations</p>
       </div>
 
-      {/* Quick Actions */}
-      <div className="mb-6 flex flex-wrap gap-4">
+      {/* Tab Navigation */}
+      <div className="mb-6 border-b">
+        <nav className="-mb-px flex space-x-8">
+          <button
+            onClick={() => setActiveTab('assessments')}
+            className={`py-2 px-1 border-b-2 font-medium text-sm ${
+              activeTab === 'assessments'
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <ChartBarIcon className="h-5 w-5" />
+              Assessments
+            </div>
+          </button>
+          <button
+            onClick={() => setActiveTab('notes')}
+            className={`py-2 px-1 border-b-2 font-medium text-sm ${
+              activeTab === 'notes'
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <BookOpenIcon className="h-5 w-5" />
+              Anecdotal Notes
+            </div>
+          </button>
+        </nav>
+      </div>
+
+      {/* Tab Content */}
+      {activeTab === 'notes' ? (
+        <NotesTab />
+      ) : (
+        <>
+          {/* Quick Actions */}
+          <div className="mb-6 flex flex-wrap gap-4">
         <button
           onClick={() => setShowQuickAssessment(true)}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
@@ -654,6 +694,8 @@ export function AssessmentPage(): React.ReactElement {
             </div>
           </div>
         </div>
+      )}
+      </>
       )}
     </div>
   );

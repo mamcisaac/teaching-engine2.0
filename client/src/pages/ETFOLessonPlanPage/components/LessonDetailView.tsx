@@ -50,13 +50,10 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
     setSaving(true);
     
     try {
-      const timestamp = format(new Date(), 'yyyy-MM-dd HH:mm');
-      const noteContent = `[${timestamp}] ${noteText.trim()}`;
-      
-      // Create a proper note using the notes API
+      // Create a proper note using the notes API (timestamp handled by createdAt field)
       await notesApi.create({
         studentId: selectedStudent,
-        content: noteContent,
+        content: noteText.trim(),
         lessonPlanId: lesson.id,
         lessonTitle: lesson.title,
         subject: lesson.subject || 'General',

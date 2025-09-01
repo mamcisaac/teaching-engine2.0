@@ -37,20 +37,44 @@ export interface NoteFilters {
   startDate?: string;
   endDate?: string;
   subject?: string;
+  search?: string;
+  page?: number;
+  limit?: number;
+}
+
+export interface PaginatedNotes {
+  notes: Note[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalCount: number;
+    totalPages: number;
+  };
+}
+
+export interface BulkNoteDto {
+  studentIds: string[];
+  content: string;
+  lessonPlanId?: string;
+  lessonTitle?: string;
+  subject?: string;
 }
 
 export const notesApi = {
-  async getAll(filters?: NoteFilters): Promise<Note[]> {
+  async getAll(filters?: NoteFilters): Promise<PaginatedNotes> {
     const params = new URLSearchParams();
     if (filters?.studentId) params.append('studentId', filters.studentId);
     if (filters?.startDate) params.append('startDate', filters.startDate);
     if (filters?.endDate) params.append('endDate', filters.endDate);
     if (filters?.subject) params.append('subject', filters.subject);
+    if (filters?.search) params.append('search', filters.search);
+    if (filters?.page) params.append('page', filters.page.toString());
+    if (filters?.limit) params.append('limit', filters.limit.toString());
     
     const queryString = params.toString();
     const url = `/api/notes${queryString ? `?${queryString}` : ''}`;
     
-    const response = await apiClient.get<Note[]>(url);
+    const response = await apiClient.get<PaginatedNotes>(url);
     return response.data;
   },
 
@@ -61,6 +85,11 @@ export const notesApi = {
 
   async create(note: CreateNoteDto): Promise<Note> {
     const response = await apiClient.post<Note>('/api/notes', note);
+    return response.data;
+  },
+
+  async createBulk(data: BulkNoteDto): Promise<{ message: string; notes: Note[] }> {
+    const response = await apiClient.post<{ message: string; notes: Note[] }>('/api/notes/bulk', data);
     return response.data;
   },
 

@@ -28,8 +28,8 @@ export function NotesView({
   const fetchNotes = async () => {
     setLoading(true);
     try {
-      const data = await notesApi.getAll({ studentId, subject });
-      setNotes(data);
+      const response = await notesApi.getAll({ studentId, subject });
+      setNotes(response.notes);
     } catch (error) {
       console.error('Error fetching notes:', error);
       toast.error('Failed to load notes');
@@ -169,17 +169,18 @@ export function NotesView({
                             </div>
                           </div>
                         ) : (
-                          <p className="text-sm text-gray-700 whitespace-pre-wrap">
-                            {note.content}
-                          </p>
+                          <div>
+                            <p className="text-sm text-gray-700 whitespace-pre-wrap">
+                              {note.content}
+                            </p>
+                            <p className="text-xs text-gray-500 mt-2">
+                              {format(new Date(note.createdAt), 'h:mm a')}
+                              {note.updatedAt !== note.createdAt && 
+                                ` (edited ${format(new Date(note.updatedAt), 'MMM d, h:mm a')})`
+                              }
+                            </p>
+                          </div>
                         )}
-                        
-                        <p className="text-xs text-gray-500 mt-2">
-                          {format(new Date(note.createdAt), 'h:mm a')}
-                          {note.updatedAt !== note.createdAt && 
-                            ` (edited ${format(new Date(note.updatedAt), 'MMM d, h:mm a')})`
-                          }
-                        </p>
                       </div>
                       
                       {allowEdit && editingId !== note.id && (
