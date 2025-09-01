@@ -1,7 +1,8 @@
 import { format } from 'date-fns';
-import { Calendar, Clock, Printer, Download } from 'lucide-react';
-import React from 'react';
+import { Calendar, Clock, Printer, Download, PencilIcon, XMarkIcon } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
@@ -10,6 +11,9 @@ import type { ETFOLessonPlan, UnitPlan, CurriculumExpectation } from '../../../h
 import type { LessonPlan } from '../../../utils/printing/types';
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../../../utils/printUtils';
 import { SafeHtmlRenderer } from '../../../utils/sanitization';
+import { studentsApi } from '../../../services/api/students';
+import { assessmentApi } from '../../../services/api/assessment';
+import type { Student } from '../../../services/api/students';
 
 interface LessonDetailViewProps {
   lesson: ETFOLessonPlan;
@@ -19,6 +23,85 @@ interface LessonDetailViewProps {
 }
 
 export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDetailViewProps): React.ReactElement {
+  const [students, setStudents] = useState<Student[]>([]);
+  const [showNoteModal, setShowNoteModal] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState('');
+  const [noteText, setNoteText] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const data = await studentsApi.getAll();
+        setStudents(data.filter(s => s.status === 'active'));
+      } catch (error) {
+        console.error('Error fetching students:', error);
+      }
+    };
+    fetchStudents();
+  }, []);
+
+  const handleSaveNote = async () => {
+    if (!selectedStudent || !noteText.trim()) {
+      toast.error('Please select a student and enter a note');
+      return;
+    }
+
+    setSaving(true);
+    
+    try {
+      // Get today's date at start of day
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      // Check if there's an existing assessment for this student today
+      const existingAssessments = await assessmentApi.getAll(selectedStudent);
+      const todayAssessment = existingAssessments.find(a => {
+        const assessmentDate = new Date(a.date);
+        return assessmentDate >= today && assessmentDate < tomorrow &&
+               a.subject === (lesson.subject || 'General');
+      });
+
+      const timestamp = format(new Date(), 'yyyy-MM-dd HH:mm');
+      const formattedNote = `[${timestamp}] ${noteText.trim()}`;
+      const contextNote = `${formattedNote}\nLesson: ${lesson.title}`;
+
+      if (todayAssessment) {
+        // Append to existing assessment
+        const updatedNote = todayAssessment.notes 
+          ? `${todayAssessment.notes}\n${contextNote}`
+          : contextNote;
+        
+        await assessmentApi.update(todayAssessment.id, { notes: updatedNote });
+        toast.success('Note added to today\'s assessment');
+      } else {
+        // Create new assessment with note
+        await assessmentApi.create({
+          studentId: selectedStudent,
+          subject: lesson.subject || 'General',
+          expectation: lesson.learningGoals || 'Daily observation',
+          level: 'MEETING',
+          evidenceType: 'OBSERVATION',
+          notes: contextNote,
+          date: new Date().toISOString()
+        });
+        toast.success('Note saved with new assessment');
+      }
+
+      // Reset form
+      setNoteText('');
+      setSelectedStudent('');
+      setShowNoteModal(false);
+    } catch (error) {
+      console.error('Error saving note:', error);
+      toast.error('Failed to save note');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   // Helper function to convert ETFOLessonPlan to LessonPlan for printing
   const convertLessonForPrinting = (etfoLesson: ETFOLessonPlan): LessonPlan => ({
     title: etfoLesson.title,
@@ -39,6 +122,7 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
     subNotes: etfoLesson.subNotes,
     expectations: etfoLesson.expectations?.map(exp => ({ expectation: exp.expectation })),
   });
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Breadcrumb */}
@@ -87,7 +171,16 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
                 {lesson.isSubFriendly && <Badge variant="secondary">Sub-Friendly</Badge>}
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setShowNoteModal(true)}
+                className="flex items-center gap-2"
+              >
+                <PencilIcon className="h-4 w-4" />
+                Add Note
+              </Button>
               <Button
                 className="flex items-center gap-2"
                 size="sm"
@@ -313,6 +406,82 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
           )}
         </div>
       </div>
+
+      {/* Simple Note Modal */}
+      {showNoteModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Add Anecdotal Note</h2>
+              <button
+                onClick={() => {
+                  setShowNoteModal(false);
+                  setSelectedStudent('');
+                  setNoteText('');
+                }}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XMarkIcon className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Select Student
+              </label>
+              <select
+                value={selectedStudent}
+                onChange={(e) => setSelectedStudent(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="">Choose a student...</option>
+                {students.map(student => (
+                  <option key={student.id} value={student.id}>
+                    {student.firstName} {student.lastName}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Note
+              </label>
+              <textarea
+                value={noteText}
+                onChange={(e) => setNoteText(e.target.value)}
+                placeholder="Enter your observation..."
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                rows={4}
+                autoFocus
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Will be added to today's assessment for {lesson.title}
+              </p>
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={handleSaveNote}
+                disabled={saving || !selectedStudent || !noteText.trim()}
+                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+              >
+                {saving ? 'Saving...' : 'Save Note'}
+              </button>
+              <button
+                onClick={() => {
+                  setShowNoteModal(false);
+                  setSelectedStudent('');
+                  setNoteText('');
+                }}
+                className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
