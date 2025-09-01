@@ -223,8 +223,8 @@ export const substituteApi = {
     },
 
     // Export plan as PDF
-    exportPDF: async (id: number): Promise<Blob> => {
-      const { data } = await apiClient.get<Blob>(`/api/substitute-plans/${id}/export`, {
+    exportPDF: async (id: number | string): Promise<Blob> => {
+      const { data } = await apiClient.get<Blob>(`/api/substitute-plans/${id}/pdf`, {
         responseType: 'blob',
       });
       return data;
