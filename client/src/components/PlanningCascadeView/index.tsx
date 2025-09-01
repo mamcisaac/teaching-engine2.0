@@ -38,6 +38,7 @@ interface RootData {
  */
 export function PlanningCascadeView(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
+  const [focusedNodeId, setFocusedNodeId] = useState<string | null>(null);
   
   // Zustand store - simplified state management
   const {
@@ -178,10 +179,77 @@ export function PlanningCascadeView(): JSX.Element {
     };
   }, [rootData]);
   
+  // Persist expanded state in localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('cascade-expanded');
+    if (saved) {
+      try {
+        const nodeIds = JSON.parse(saved);
+        nodeIds.forEach((id: string) => {
+          if (!expandedNodes.has(id)) {
+            toggleNode(id);
+          }
+        });
+      } catch {}
+    }
+  }, []);
+  
+  useEffect(() => {
+    localStorage.setItem('cascade-expanded', JSON.stringify(Array.from(expandedNodes)));
+  }, [expandedNodes]);
+  
+  // Simple keyboard navigation
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+    // Get all visible nodes
+    const visibleNodes: CascadeNode[] = [];
+    const collectVisible = (nodes: CascadeNode[]) => {
+      nodes.forEach(node => {
+        visibleNodes.push(node);
+        if (expandedNodes.has(node.id)) {
+          const children = nodeChildren.get(node.id);
+          if (children) collectVisible(children);
+        }
+      });
+    };
+    collectVisible(rootNodes);
+    
+    if (visibleNodes.length === 0) return;
+    
+    const currentIndex = focusedNodeId 
+      ? visibleNodes.findIndex(n => n.id === focusedNodeId)
+      : -1;
+    
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        const nextIndex = currentIndex < visibleNodes.length - 1 ? currentIndex + 1 : 0;
+        setFocusedNodeId(visibleNodes[nextIndex].id);
+        selectNode(visibleNodes[nextIndex].id);
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        const prevIndex = currentIndex > 0 ? currentIndex - 1 : visibleNodes.length - 1;
+        setFocusedNodeId(visibleNodes[prevIndex].id);
+        selectNode(visibleNodes[prevIndex].id);
+        break;
+      case 'Enter':
+      case ' ':
+        if (currentIndex >= 0) {
+          e.preventDefault();
+          const node = visibleNodes[currentIndex];
+          if (node.hasChildren) {
+            handleNodeToggle(node);
+          }
+        }
+        break;
+    }
+  }, [rootNodes, expandedNodes, nodeChildren, focusedNodeId, selectNode, handleNodeToggle]);
+  
   // Render a tree node and its children
   const renderNode = (node: CascadeNode, level: number = 0) => {
     const isExpanded = expandedNodes.has(node.id);
     const isSelected = selectedNodeId === node.id;
+    const isFocused = focusedNodeId === node.id;
     const isLoading = loadingNodes.has(node.id);
     const children = nodeChildren.get(node.id);
     
@@ -202,13 +270,18 @@ export function PlanningCascadeView(): JSX.Element {
           className={cn(
             "flex items-center gap-2 px-2 py-1.5 hover:bg-gray-100 cursor-pointer rounded transition-colors",
             isSelected && "bg-blue-50 border-l-2 border-blue-500",
+            isFocused && "ring-2 ring-blue-400",
             level > 0 && "ml-6"
           )}
-          onClick={() => selectNode(node.id)}
+          onClick={() => {
+            selectNode(node.id);
+            setFocusedNodeId(node.id);
+          }}
           role="treeitem"
           aria-expanded={node.hasChildren ? isExpanded : undefined}
           aria-selected={isSelected}
           aria-level={level + 1}
+          tabIndex={isFocused ? 0 : -1}
         >
           {/* Expand/Collapse button */}
           {node.hasChildren && (
@@ -318,10 +391,10 @@ export function PlanningCascadeView(): JSX.Element {
           </div>
         </div>
         
-        {/* Main content area */}
-        <div className="flex-1 flex overflow-hidden">
-          {/* Tree panel */}
-          <div className="w-1/2 border-r bg-white overflow-y-auto">
+        {/* Main content area - responsive */}
+        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+          {/* Tree panel - full width on mobile, half on desktop */}
+          <div className="w-full md:w-1/2 border-b md:border-b-0 md:border-r bg-white overflow-y-auto">
             <div className="p-4">
               {/* Loading state */}
               {isLoading && (
@@ -352,9 +425,15 @@ export function PlanningCascadeView(): JSX.Element {
                 </Alert>
               )}
               
-              {/* Tree view */}
+              {/* Tree view with keyboard navigation */}
               {!isLoading && !fetchError && rootNodes.length > 0 && (
-                <div role="tree" aria-label="Planning cascade tree">
+                <div 
+                  role="tree" 
+                  aria-label="Planning cascade tree"
+                  onKeyDown={handleKeyDown}
+                  tabIndex={0}
+                  className="focus:outline-none"
+                >
                   {rootNodes.map(node => renderNode(node))}
                 </div>
               )}
@@ -373,8 +452,8 @@ export function PlanningCascadeView(): JSX.Element {
             </div>
           </div>
           
-          {/* Detail panel */}
-          <div className="w-1/2 bg-gray-50 overflow-y-auto">
+          {/* Detail panel - hidden on mobile, half width on desktop */}
+          <div className="hidden md:block md:w-1/2 bg-gray-50 overflow-y-auto">
             {selectedNode ? (
               <div className="p-4">
                 <CascadeBreadcrumb selection={{

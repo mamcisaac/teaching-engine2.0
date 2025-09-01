@@ -146,14 +146,13 @@ describe('PlanningCascadeView', () => {
   });
 
   it.skip('displays error state with retry', async () => {
-    // Skip for now - error handling works but test has timing issues
+    // TODO: Fix React Query error handling in tests
     vi.mocked(apiClient.get).mockRejectedValue(new Error('Network error'));
 
     render(<PlanningCascadeView />, { wrapper: createWrapper() });
 
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: /retry/i })).toBeInTheDocument();
-    });
+    const retryButton = await screen.findByRole('button', { name: /retry/i });
+    expect(retryButton).toBeInTheDocument();
   });
 
   it('displays empty state when no data', async () => {
