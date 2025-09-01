@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import { PencilIcon, TrashIcon, XMarkIcon, CheckIcon } from 'lucide-react';
+import { PencilIcon, TrashIcon, XIcon, CheckIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { notesApi, type Note } from '../../services/api/notes';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
@@ -164,7 +164,7 @@ export function NotesView({
                                 variant="outline" 
                                 onClick={handleCancelEdit}
                               >
-                                <XMarkIcon className="h-4 w-4" />
+                                <XIcon className="h-4 w-4" />
                               </Button>
                             </div>
                           </div>

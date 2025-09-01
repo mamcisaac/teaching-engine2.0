@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { Calendar, Clock, Printer, Download, PencilIcon, XMarkIcon } from 'lucide-react';
+import { Calendar, Clock, Printer, Download, PencilIcon, XIcon } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -56,7 +56,7 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
         content: noteText.trim(),
         lessonPlanId: lesson.id,
         lessonTitle: lesson.title,
-        subject: lesson.subject || 'General',
+        subject: unitPlan?.longRangePlan?.subject || 'General',
       });
       
       toast.success('Note saved successfully');
@@ -392,7 +392,7 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
                 }}
                 className="text-gray-400 hover:text-gray-600"
               >
-                <XMarkIcon className="w-5 h-5" />
+                <XIcon className="w-5 h-5" />
               </button>
             </div>
 
