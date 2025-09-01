@@ -1,18 +1,9 @@
-import type { 
-  CurriculumExpectation,
-  CascadeLRP,
-  CascadeUnit,
-  CascadeLesson,
-  DaybookEntry
-} from '../../hooks/usePlanningCascade';
-
 export type CascadeItemType = 'curriculum' | 'lrp' | 'unit' | 'lesson' | 'daybook';
 
 export interface CascadeSelection {
   type: CascadeItemType;
   id: string;
-  data: CurriculumExpectation | CascadeLRP | CascadeUnit | CascadeLesson | DaybookEntry;
-  path?: string[]; // Breadcrumb path
+  data: any; // Flexible data structure for different types
 }
 
 export interface TreeNode {
@@ -27,4 +18,18 @@ export interface TreeNode {
     completed: number;
     total: number;
   };
+}
+
+export interface CascadeMetrics {
+  totalExpectations: number;
+  totalLRPs: number;
+  totalUnits: number;
+  completedLessons: number;
+  totalLessons: number;
+}
+
+export interface CascadeFilters {
+  academicYear?: string;
+  subject?: string;
+  grade?: number;
 }

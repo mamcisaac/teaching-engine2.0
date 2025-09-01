@@ -1,17 +1,21 @@
 import React from 'react';
 import { BookOpen, Layers, FileText, CheckCircle } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import type { CascadeMetrics } from '../../hooks/usePlanningCascade';
+import type { CascadeMetrics } from './types';
 
 interface CascadeProgressIndicatorProps {
   metrics: CascadeMetrics;
 }
 
 export function CascadeProgressIndicator({ metrics }: CascadeProgressIndicatorProps): JSX.Element {
+  const completionPercentage = metrics.totalLessons > 0 
+    ? Math.round((metrics.completedLessons / metrics.totalLessons) * 100)
+    : 0;
+  
   const items = [
     {
       label: 'LRPs',
-      value: metrics.totalLongRangePlans,
+      value: metrics.totalLRPs,
       icon: BookOpen,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
@@ -57,18 +61,20 @@ export function CascadeProgressIndicator({ metrics }: CascadeProgressIndicatorPr
       })}
       
       {/* Overall completion percentage */}
-      <div className="ml-4 pl-4 border-l">
-        <div className="text-xs text-gray-500">Overall Progress</div>
-        <div className="flex items-center gap-2">
-          <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-green-500 transition-all duration-300"
-              style={{ width: `${metrics.completionPercentage}%` }}
-            />
+      {metrics.totalLessons > 0 && (
+        <div className="ml-4 pl-4 border-l">
+          <div className="text-xs text-gray-500">Overall Progress</div>
+          <div className="flex items-center gap-2">
+            <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-green-500 transition-all duration-300"
+                style={{ width: `${completionPercentage}%` }}
+              />
+            </div>
+            <span className="text-sm font-semibold">{completionPercentage}%</span>
           </div>
-          <span className="text-sm font-semibold">{metrics.completionPercentage}%</span>
         </div>
-      </div>
+      )}
     </div>
   );
 }
