@@ -12,8 +12,7 @@ import {
   XCircleIcon,
   ExclamationTriangleIcon,
   ArrowTrendingUpIcon,
-  FunnelIcon,
-  BookOpenIcon
+  FunnelIcon
 } from '@heroicons/react/24/outline';
 
 interface Assessment {
@@ -78,7 +77,6 @@ export function AssessmentPage(): React.ReactElement {
   const [showQuickAssessment, setShowQuickAssessment] = useState(false);
   const [showBulkAssessment, setShowBulkAssessment] = useState(false);
   const [filterDate, setFilterDate] = useState(new Date().toISOString().split('T')[0]);
-  const [filterHasNotes, setFilterHasNotes] = useState(false);
   
   const [formData, setFormData] = useState({
     studentId: '',
@@ -197,7 +195,6 @@ export function AssessmentPage(): React.ReactElement {
     if (selectedStudent) matches = matches && a.studentId === selectedStudent;
     if (selectedSubject) matches = matches && a.subject === selectedSubject;
     if (filterDate) matches = matches && a.date.startsWith(filterDate);
-    if (filterHasNotes) matches = matches && a.notes && a.notes.trim() !== '';
     return matches;
   });
 
@@ -316,18 +313,6 @@ export function AssessmentPage(): React.ReactElement {
           className="px-4 py-2 border rounded-lg"
           data-testid="filter-date"
         />
-        
-        <button
-          onClick={() => setFilterHasNotes(!filterHasNotes)}
-          className={`px-4 py-2 border rounded-lg flex items-center gap-2 ${
-            filterHasNotes ? 'bg-blue-50 border-blue-500 text-blue-700' : ''
-          }`}
-          data-testid="filter-notes"
-        >
-          <FunnelIcon className="w-4 h-4" />
-          <BookOpenIcon className="w-4 h-4" />
-          Has Notes
-        </button>
       </div>
 
       {/* Assessment List */}
@@ -364,15 +349,6 @@ export function AssessmentPage(): React.ReactElement {
                     
                     {assessment.description && (
                       <p className="text-sm text-gray-600 mb-2">{assessment.description}</p>
-                    )}
-                    
-                    {assessment.notes && (
-                      <div className="mb-2 p-2 bg-yellow-50 rounded-lg border border-yellow-200">
-                        <div className="flex items-start gap-2">
-                          <BookOpenIcon className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                          <p className="text-sm text-gray-700 whitespace-pre-wrap">{assessment.notes}</p>
-                        </div>
-                      </div>
                     )}
                     
                     <div className="flex items-center gap-4">

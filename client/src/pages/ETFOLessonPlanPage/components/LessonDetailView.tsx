@@ -12,7 +12,7 @@ import type { LessonPlan } from '../../../utils/printing/types';
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../../../utils/printUtils';
 import { SafeHtmlRenderer } from '../../../utils/sanitization';
 import { studentsApi } from '../../../services/api/students';
-import { assessmentApi } from '../../../services/api/assessment';
+import { notesApi } from '../../../services/api/notes';
 import type { Student } from '../../../services/api/students';
 
 interface LessonDetailViewProps {
@@ -50,45 +50,19 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
     setSaving(true);
     
     try {
-      // Get today's date at start of day
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-
-      // Check if there's an existing assessment for this student today
-      const existingAssessments = await assessmentApi.getAll(selectedStudent);
-      const todayAssessment = existingAssessments.find(a => {
-        const assessmentDate = new Date(a.date);
-        return assessmentDate >= today && assessmentDate < tomorrow &&
-               a.subject === (lesson.subject || 'General');
-      });
-
       const timestamp = format(new Date(), 'yyyy-MM-dd HH:mm');
-      const formattedNote = `[${timestamp}] ${noteText.trim()}`;
-      const contextNote = `${formattedNote}\nLesson: ${lesson.title}`;
-
-      if (todayAssessment) {
-        // Append to existing assessment
-        const updatedNote = todayAssessment.notes 
-          ? `${todayAssessment.notes}\n${contextNote}`
-          : contextNote;
-        
-        await assessmentApi.update(todayAssessment.id, { notes: updatedNote });
-        toast.success('Note added to today\'s assessment');
-      } else {
-        // Create new assessment with note
-        await assessmentApi.create({
-          studentId: selectedStudent,
-          subject: lesson.subject || 'General',
-          expectation: lesson.learningGoals || 'Daily observation',
-          level: 'MEETING',
-          evidenceType: 'OBSERVATION',
-          notes: contextNote,
-          date: new Date().toISOString()
-        });
-        toast.success('Note saved with new assessment');
-      }
+      const noteContent = `[${timestamp}] ${noteText.trim()}`;
+      
+      // Create a proper note using the notes API
+      await notesApi.create({
+        studentId: selectedStudent,
+        content: noteContent,
+        lessonPlanId: lesson.id,
+        lessonTitle: lesson.title,
+        subject: lesson.subject || 'General',
+      });
+      
+      toast.success('Note saved successfully');
 
       // Reset form
       setNoteText('');
@@ -456,7 +430,7 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
                 autoFocus
               />
               <p className="text-xs text-gray-500 mt-1">
-                Will be added to today's assessment for {lesson.title}
+                Quick note for {lesson.title}
               </p>
             </div>
 

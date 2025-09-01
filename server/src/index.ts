@@ -57,6 +57,7 @@ import { router as recentPlansRoutes } from './routes/recent-plans';
 import reportsRoutes from './routes/reports';
 import studentsRoutes from './routes/students';
 import assessmentsRoutes from './routes/assessments';
+import notesRoutes from './routes/notes';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
@@ -238,6 +239,7 @@ if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
   log('Mounting student assessment routes...');
   app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentsRoutes);
   app.use('/api/assessments', asyncMiddleware(authenticate), rateLimiters.api, userCache, assessmentsRoutes);
+  app.use('/api/notes', asyncMiddleware(authenticate), rateLimiters.api, userCache, notesRoutes);
   app.use('/api/mastery', asyncMiddleware(authenticate), rateLimiters.api, userCache, masteryTrackingRoutes);
   app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
   app.use('/api/artifacts', asyncMiddleware(authenticate), rateLimiters.write, userCache, artifactsRoutes);
