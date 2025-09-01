@@ -420,14 +420,18 @@ export function CurriculumCoverageDashboard(): React.ReactElement {
                     {subject.uncoveredExpectations.length > 0 && (
                       <div className="flex gap-2 flex-wrap">
                         {subject.uncoveredExpectations.slice(0, 3).map((exp) => (
-                          <Badge
+                          <button
                             key={exp.id}
-                            variant={getPriorityBadgeVariant(exp.priority)}
-                            className="cursor-pointer"
                             onClick={() => handleQuickPlan(exp.id)}
+                            className="inline-block"
                           >
-                            {exp.code}
-                          </Badge>
+                            <Badge
+                              variant={getPriorityBadgeVariant(exp.priority)}
+                              className="cursor-pointer"
+                            >
+                              {exp.code}
+                            </Badge>
+                          </button>
                         ))}
                         {subject.uncoveredExpectations.length > 3 && (
                           <Badge variant="secondary">

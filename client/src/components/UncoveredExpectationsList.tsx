@@ -116,9 +116,9 @@ export function UncoveredExpectationsList({
   }, [data?.expectations, searchQuery, selectedStrand]);
 
   // Get unique strands for filtering
-  const uniqueStrands = useMemo(() => {
+  const uniqueStrands = useMemo((): string[] => {
     if (!data?.expectations) return [];
-    const strands = new Set(data.expectations.map((exp: UncoveredExpectation) => exp.strand));
+    const strands = new Set<string>(data.expectations.map((exp: UncoveredExpectation) => exp.strand));
     return Array.from(strands).sort();
   }, [data?.expectations]);
 
@@ -300,7 +300,7 @@ export function UncoveredExpectationsList({
                 className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
                 <option value="all">All Strands</option>
-                {uniqueStrands.map(strand => (
+                {uniqueStrands.map((strand: string) => (
                   <option key={strand} value={strand}>{strand}</option>
                 ))}
               </select>
