@@ -33,6 +33,9 @@ export function StudentsPage(): React.ReactElement {
   });
 
   const filteredStudents = students.filter(student => {
+    // Filter out archived students
+    if (student.status === 'archived') return false;
+    
     const searchLower = searchTerm.toLowerCase();
     return (
       student.firstName.toLowerCase().includes(searchLower) ||

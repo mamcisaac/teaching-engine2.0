@@ -89,9 +89,18 @@ router.get('/:studentId/progress-summary',
     try {
       const { studentId } = req.params;
       
-      // Get student
+      if (!studentId) {
+        res.status(400).json({ error: 'Student ID is required' });
+        return;
+      }
+      
+      // Get student with validation
       const student = await prisma.student.findFirst({
-        where: { id: studentId, userId: req.user!.id }
+        where: { 
+          id: studentId, 
+          userId: req.user!.id,
+          isActive: true 
+        }
       });
 
       if (!student) {
@@ -99,13 +108,21 @@ router.get('/:studentId/progress-summary',
         return;
       }
 
-      // Get progress records
+      // Get progress records - handle empty case
       const progress = await prisma.studentOutcomeProgress.findMany({
-        where: { studentId, isArchived: false },
-        include: { outcome: true },
-        orderBy: { lastAssessmentDate: 'desc' }
+        where: { 
+          studentId, 
+          isArchived: false 
+        },
+        include: { 
+          outcome: true 
+        },
+        orderBy: { 
+          lastAssessmentDate: 'desc' 
+        }
       });
 
+      // Always return arrays even if empty
       res.json({
         student: {
           firstName: student.firstName,
@@ -116,27 +133,28 @@ router.get('/:studentId/progress-summary',
           .filter(p => p.currentLevel === 'MEETING' || p.currentLevel === 'EXCEEDING')
           .map(p => ({
             expectation: {
-              description: p.outcome.description,
-              subject: p.outcome.subject
+              description: p.outcome.description || 'No description',
+              subject: p.outcome.subject || 'Unknown'
             }
           })),
         growthAreas: progress
           .filter(p => p.currentLevel === 'NOT_YET' || p.currentLevel === 'APPROACHING')
           .map(p => ({
             expectation: {
-              description: p.outcome.description,
-              subject: p.outcome.subject
+              description: p.outcome.description || 'No description',
+              subject: p.outcome.subject || 'Unknown'
             }
           })),
         recentNotes: progress
-          .filter(p => p.teacherNotes)
+          .filter(p => p.teacherNotes && p.teacherNotes.trim().length > 0)
           .slice(0, 5)
           .map(p => ({
-            note: p.teacherNotes,
-            date: p.lastAssessmentDate
+            note: p.teacherNotes!.trim(),
+            date: p.lastAssessmentDate.toISOString()
           }))
       });
     } catch (error) {
+      console.error('Progress fetch error:', error);
       res.status(500).json({ error: 'Failed to fetch progress' });
     }
   }
