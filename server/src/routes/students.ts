@@ -80,6 +80,69 @@ router.get('/',
 );
 
 /**
+ * GET /api/students/:studentId/progress-summary
+ * Get student progress summary for parent reports
+ */
+router.get('/:studentId/progress-summary',
+  requireAuth,
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+      const { studentId } = req.params;
+      
+      // Get student
+      const student = await prisma.student.findFirst({
+        where: { id: studentId, userId: req.user!.id }
+      });
+
+      if (!student) {
+        res.status(404).json({ error: 'Student not found' });
+        return;
+      }
+
+      // Get progress records
+      const progress = await prisma.studentOutcomeProgress.findMany({
+        where: { studentId, isArchived: false },
+        include: { outcome: true },
+        orderBy: { lastAssessmentDate: 'desc' }
+      });
+
+      res.json({
+        student: {
+          firstName: student.firstName,
+          lastName: student.lastName,
+          grade: student.grade
+        },
+        strengths: progress
+          .filter(p => p.currentLevel === 'MEETING' || p.currentLevel === 'EXCEEDING')
+          .map(p => ({
+            expectation: {
+              description: p.outcome.description,
+              subject: p.outcome.subject
+            }
+          })),
+        growthAreas: progress
+          .filter(p => p.currentLevel === 'NOT_YET' || p.currentLevel === 'APPROACHING')
+          .map(p => ({
+            expectation: {
+              description: p.outcome.description,
+              subject: p.outcome.subject
+            }
+          })),
+        recentNotes: progress
+          .filter(p => p.teacherNotes)
+          .slice(0, 5)
+          .map(p => ({
+            note: p.teacherNotes,
+            date: p.lastAssessmentDate
+          }))
+      });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch progress' });
+    }
+  }
+);
+
+/**
  * POST /api/students/import/csv
  * Bulk import students from CSV file
  */

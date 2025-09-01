@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, ViewGridIcon } from '@heroicons/react/24/outline';
+import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, Squares2X2Icon, ChartBarIcon } from '@heroicons/react/24/outline';
 import { studentsApi, type Student } from '../services/api/students';
 
 
 export function StudentsPage(): React.ReactElement {
+  const navigate = useNavigate();
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -147,23 +149,14 @@ export function StudentsPage(): React.ReactElement {
   };
 
   const handleArchiveStudent = async (student: Student) => {
-    try {
-      const updated = await studentsApi.update(student.id, { status: 'archived' });
-      const updatedStudents = students.map(s =>
-        s.id === student.id ? updated : s
-      );
-      setStudents(updatedStudents);
-      localStorage.setItem('assessment-students', JSON.stringify(updatedStudents));
-      toast.success(`Archived ${student.firstName} ${student.lastName}`);
-    } catch (err) {
-      // Fallback to local-only archive
-      const updatedStudents = students.map(s =>
-        s.id === student.id ? { ...s, status: 'archived' as const, updatedAt: new Date().toISOString() } : s
-      );
-      setStudents(updatedStudents);
-      localStorage.setItem('assessment-students', JSON.stringify(updatedStudents));
-      toast.success(`Archived ${student.firstName} ${student.lastName} (offline mode)`);
-    }
+    // Archive functionality temporarily disabled - status field not available in update API
+    // For now, just update locally
+    const updatedStudents = students.map(s =>
+      s.id === student.id ? { ...s, status: 'archived' as const, updatedAt: new Date().toISOString() } : s
+    );
+    setStudents(updatedStudents);
+    localStorage.setItem('assessment-students', JSON.stringify(updatedStudents));
+    toast.success(`Archived ${student.firstName} ${student.lastName} (local only)`);
   };
 
   const handleCSVImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -301,7 +294,7 @@ export function StudentsPage(): React.ReactElement {
               className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white shadow' : ''}`}
               data-testid="grid-view-btn"
             >
-              <ViewGridIcon className="w-5 h-5" />
+              <Squares2X2Icon className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -365,9 +358,18 @@ export function StudentsPage(): React.ReactElement {
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
                       <button
+                        onClick={() => navigate(`/students/${student.id}/progress`)}
+                        className="p-1 text-green-600 hover:bg-green-50 rounded"
+                        data-testid={`view-progress-${student.id}`}
+                        title="View Progress"
+                      >
+                        <ChartBarIcon className="w-4 h-4" />
+                      </button>
+                      <button
                         onClick={() => openEditModal(student)}
                         className="p-1 text-blue-600 hover:bg-blue-50 rounded"
                         data-testid={`edit-student-${student.id}`}
+                        title="Edit Student"
                       >
                         <PencilIcon className="w-4 h-4" />
                       </button>
@@ -375,6 +377,7 @@ export function StudentsPage(): React.ReactElement {
                         onClick={() => handleDeleteStudent(student)}
                         className="p-1 text-red-600 hover:bg-red-50 rounded"
                         data-testid={`delete-student-${student.id}`}
+                        title="Delete Student"
                       >
                         <TrashIcon className="w-4 h-4" />
                       </button>
@@ -410,6 +413,12 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div className="mt-4 flex gap-2">
+                <button
+                  onClick={() => navigate(`/students/${student.id}/progress`)}
+                  className="flex-1 px-3 py-1 text-green-600 border border-green-600 rounded hover:bg-green-50"
+                >
+                  Progress
+                </button>
                 <button
                   onClick={() => openEditModal(student)}
                   className="flex-1 px-3 py-1 text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
