@@ -1,10 +1,17 @@
 /**
  * SubstitutePlanCard Component
  * Displays substitute plan information with one-click PDF export functionality
+ * 
+ * Features:
+ * - Secure PDF export with proper authentication
+ * - Internationalization support
+ * - Comprehensive error handling
+ * - Loading states and user feedback
  */
 
-import React, { useState } from 'react';
-import { substituteApi } from '../api/domains/substitute/api';
+import React, { useState, useContext } from 'react';
+import { apiClient } from '../api/core/client';
+import { LanguageContext } from '../contexts/LanguageContext';
 
 interface SubstitutePlanCardProps {
   plan: {
@@ -19,48 +26,52 @@ interface SubstitutePlanCardProps {
   };
   onUpdate?: () => void;
   onDelete?: () => void;
+  onExportComplete?: () => void;
 }
 
 export const SubstitutePlanCard: React.FC<SubstitutePlanCardProps> = ({ 
   plan, 
   onUpdate, 
-  onDelete 
+  onDelete,
+  onExportComplete 
 }) => {
   const [isExporting, setIsExporting] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
+  const [exportSuccess, setExportSuccess] = useState(false);
+  
+  // Use language context for translations
+  const languageContext = useContext(LanguageContext);
+  const t = languageContext?.t || ((key: string) => key);
 
   const handleExportPdf = async () => {
     setIsExporting(true);
     setExportError(null);
+    setExportSuccess(false);
 
     try {
-      // Call the PDF export endpoint with proper authentication
-      const token = localStorage.getItem('token') || localStorage.getItem('authToken');
-      const response = await fetch(`/api/substitute-plans/${plan.id}/pdf`, {
-        method: 'GET',
+      // Use apiClient which handles authentication automatically
+      const response = await apiClient.get(`/api/substitute-plans/${plan.id}/pdf`, {
+        responseType: 'blob',
         headers: {
-          'Authorization': token ? `Bearer ${token}` : '',
           'Accept': 'application/pdf',
         },
-        credentials: 'include',
+        // Add timeout for large PDFs
+        timeout: 60000, // 60 seconds
       });
 
-      if (!response.ok) {
-        throw new Error(`Failed to export PDF: ${response.statusText}`);
-      }
-
-      // Get the blob from the response
-      const blob = await response.blob();
+      // Create blob from response
+      const blob = new Blob([response.data], { type: 'application/pdf' });
       
-      // Create a download link
+      // Create download link
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       
-      // Format filename with date
+      // Format filename with date and sanitized title
       const date = new Date(plan.dateFor);
       const dateStr = date.toISOString().split('T')[0];
-      link.download = `substitute-plan-${dateStr}.pdf`;
+      const safeTitle = plan.title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+      link.download = `substitute-plan-${safeTitle}-${dateStr}.pdf`;
       
       // Trigger download
       document.body.appendChild(link);
@@ -69,9 +80,56 @@ export const SubstitutePlanCard: React.FC<SubstitutePlanCardProps> = ({
       // Cleanup
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
-    } catch (error) {
+      
+      // Show success feedback
+      setExportSuccess(true);
+      setTimeout(() => setExportSuccess(false), 3000);
+      
+      // Notify parent component
+      if (onExportComplete) {
+        onExportComplete();
+      }
+    } catch (error: any) {
       console.error('Error exporting substitute plan PDF:', error);
-      setExportError(error instanceof Error ? error.message : 'Failed to export PDF');
+      
+      // Handle specific error codes
+      let errorMessage = t('export_pdf_error_generic');
+      
+      if (error.response) {
+        const { status, data } = error.response;
+        
+        switch (status) {
+          case 403:
+            errorMessage = t('export_pdf_error_permission');
+            break;
+          case 404:
+            errorMessage = t('export_pdf_error_not_found');
+            break;
+          case 429:
+            // Rate limiting
+            errorMessage = data?.message || t('export_pdf_error_rate_limit');
+            break;
+          case 503:
+            errorMessage = t('export_pdf_error_service_busy');
+            break;
+          case 504:
+            errorMessage = t('export_pdf_error_timeout');
+            break;
+          case 507:
+            errorMessage = t('export_pdf_error_too_large');
+            break;
+          default:
+            if (data?.message) {
+              errorMessage = data.message;
+            }
+        }
+      } else if (error.code === 'ECONNABORTED') {
+        errorMessage = t('export_pdf_error_timeout');
+      } else if (!navigator.onLine) {
+        errorMessage = t('export_pdf_error_offline');
+      }
+      
+      setExportError(errorMessage);
     } finally {
       setIsExporting(false);
     }
@@ -95,23 +153,23 @@ export const SubstitutePlanCard: React.FC<SubstitutePlanCardProps> = ({
             {plan.title}
           </h3>
           <p className="text-gray-600 mb-1">
-            <span className="font-medium">Date:</span> {formatDate(plan.dateFor)}
+            <span className="font-medium">{t('date')}:</span> {formatDate(plan.dateFor)}
           </p>
           {plan.grade && (
             <p className="text-gray-600 mb-1">
-              <span className="font-medium">Grade:</span> {plan.grade}
+              <span className="font-medium">{t('grade')}:</span> {plan.grade}
             </p>
           )}
           {plan.subject && (
             <p className="text-gray-600 mb-1">
-              <span className="font-medium">Subject:</span> {plan.subject}
+              <span className="font-medium">{t('subject')}:</span> {plan.subject}
             </p>
           )}
         </div>
         <div className="flex items-center space-x-2">
           {plan.isActive && (
             <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-              Active
+              {t('active')}
             </span>
           )}
         </div>
@@ -143,14 +201,14 @@ export const SubstitutePlanCard: React.FC<SubstitutePlanCardProps> = ({
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Exporting...
+                {t('exporting')}
               </>
             ) : (
               <>
                 <svg className="-ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                Export PDF
+                {t('export_pdf')}
               </>
             )}
           </button>
@@ -163,7 +221,7 @@ export const SubstitutePlanCard: React.FC<SubstitutePlanCardProps> = ({
               <svg className="-ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
-              Edit
+              {t('edit')}
             </button>
           )}
         </div>

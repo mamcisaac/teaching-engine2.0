@@ -1,10 +1,16 @@
 /**
  * SubstitutePlansPage
  * Displays all substitute plans with one-click PDF export functionality
+ * 
+ * Features:
+ * - Secure API calls with proper authentication
+ * - Full internationalization support
+ * - Enhanced error handling and user feedback
  */
 
-import React, { useState, useEffect } from 'react';
-import { substituteApi } from '../api/domains/substitute/api';
+import React, { useState, useEffect, useContext } from 'react';
+import { apiClient } from '../api/core/client';
+import { LanguageContext } from '../contexts/LanguageContext';
 import SubstitutePlanCard from '../components/SubstitutePlanCard';
 
 interface SubstitutePlan {
@@ -24,6 +30,10 @@ export const SubstitutePlansPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [filterActive, setFilterActive] = useState(false);
   const [filterUpcoming, setFilterUpcoming] = useState(false);
+  
+  // Use language context for translations
+  const languageContext = useContext(LanguageContext);
+  const t = languageContext?.t || ((key: string) => key);
 
   useEffect(() => {
     fetchPlans();
@@ -34,30 +44,32 @@ export const SubstitutePlansPage: React.FC = () => {
     setError(null);
 
     try {
-      const token = localStorage.getItem('token') || localStorage.getItem('authToken');
-      const response = await fetch('/api/substitute-plans?' + new URLSearchParams({
-        ...(filterActive && { isActive: 'true' }),
-        ...(filterUpcoming && { upcoming: 'true' }),
-        limit: '50',
-        sortBy: 'dateFor',
-        sortOrder: 'desc'
-      }), {
-        headers: {
-          'Authorization': token ? `Bearer ${token}` : '',
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
+      // Use apiClient which handles authentication automatically
+      const response = await apiClient.get('/api/substitute-plans', {
+        params: {
+          ...(filterActive && { isActive: 'true' }),
+          ...(filterUpcoming && { upcoming: 'true' }),
+          limit: 50,
+          sortBy: 'dateFor',
+          sortOrder: 'desc'
+        }
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch substitute plans');
-      }
-
-      const data = await response.json();
-      setPlans(data.plans || data);
-    } catch (error) {
+      setPlans(response.data.plans || response.data);
+    } catch (error: any) {
       console.error('Error fetching substitute plans:', error);
-      setError(error instanceof Error ? error.message : 'Failed to load substitute plans');
+      
+      // Handle specific error types
+      let errorMessage = t('error');
+      if (error.response?.status === 401) {
+        errorMessage = t('error_unauthorized', 'Please log in to view substitute plans');
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -74,29 +86,26 @@ export const SubstitutePlansPage: React.FC = () => {
   };
 
   const handleDelete = async (planId: string) => {
-    if (!confirm('Are you sure you want to delete this substitute plan?')) {
+    if (!confirm(t('confirm_delete_substitute_plan', 'Are you sure you want to delete this substitute plan?'))) {
       return;
     }
 
     try {
-      const token = localStorage.getItem('token') || localStorage.getItem('authToken');
-      const response = await fetch(`/api/substitute-plans/${planId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': token ? `Bearer ${token}` : '',
-        },
-        credentials: 'include',
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to delete substitute plan');
-      }
+      // Use apiClient which handles authentication automatically
+      await apiClient.delete(`/api/substitute-plans/${planId}`);
 
       // Refresh the list
       fetchPlans();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting substitute plan:', error);
-      alert('Failed to delete substitute plan');
+      
+      // Handle specific error types
+      let errorMessage = t('error_delete_substitute_plan', 'Failed to delete substitute plan');
+      if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      }
+      
+      alert(errorMessage);
     }
   };
 
@@ -119,9 +128,9 @@ export const SubstitutePlansPage: React.FC = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Substitute Plans</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{t('substitute_plans')}</h1>
               <p className="mt-2 text-gray-600">
-                Manage your substitute teaching plans with one-click PDF export
+                {t('substitute_plans_description', 'Manage your substitute teaching plans with one-click PDF export')}
               </p>
             </div>
             <button
@@ -131,7 +140,7 @@ export const SubstitutePlansPage: React.FC = () => {
               <svg className="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
-              Create New Plan
+              {t('create_new_plan', 'Create New Plan')}
             </button>
           </div>
         </div>
@@ -146,7 +155,7 @@ export const SubstitutePlansPage: React.FC = () => {
                 checked={filterActive}
                 onChange={(e) => setFilterActive(e.target.checked)}
               />
-              <span className="ml-2 text-gray-700">Active Plans Only</span>
+              <span className="ml-2 text-gray-700">{t('active_plans_only', 'Active Plans Only')}</span>
             </label>
             <label className="inline-flex items-center">
               <input
@@ -155,7 +164,7 @@ export const SubstitutePlansPage: React.FC = () => {
                 checked={filterUpcoming}
                 onChange={(e) => setFilterUpcoming(e.target.checked)}
               />
-              <span className="ml-2 text-gray-700">Upcoming Plans</span>
+              <span className="ml-2 text-gray-700">{t('upcoming_plans', 'Upcoming Plans')}</span>
             </label>
             <button
               onClick={fetchPlans}
@@ -164,7 +173,7 @@ export const SubstitutePlansPage: React.FC = () => {
               <svg className="-ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
-              Refresh
+              {t('refresh', 'Refresh')}
             </button>
           </div>
         </div>
@@ -191,8 +200,8 @@ export const SubstitutePlansPage: React.FC = () => {
             <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <h3 className="mt-2 text-sm font-medium text-gray-900">No substitute plans</h3>
-            <p className="mt-1 text-sm text-gray-500">Get started by creating a new substitute plan.</p>
+            <h3 className="mt-2 text-sm font-medium text-gray-900">{t('no_substitute_plans', 'No substitute plans')}</h3>
+            <p className="mt-1 text-sm text-gray-500">{t('no_substitute_plans_description', 'Get started by creating a new substitute plan.')}</p>
             <div className="mt-6">
               <button
                 onClick={handleCreateNew}
@@ -201,7 +210,7 @@ export const SubstitutePlansPage: React.FC = () => {
                 <svg className="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
-                Create Your First Plan
+                {t('create_first_plan', 'Create Your First Plan')}
               </button>
             </div>
           </div>
@@ -220,12 +229,12 @@ export const SubstitutePlansPage: React.FC = () => {
 
         {/* Quick Tips */}
         <div className="mt-12 bg-blue-50 rounded-lg p-6">
-          <h3 className="text-lg font-medium text-blue-900 mb-2">Quick Tips</h3>
+          <h3 className="text-lg font-medium text-blue-900 mb-2">{t('quick_tips', 'Quick Tips')}</h3>
           <ul className="list-disc list-inside text-sm text-blue-700 space-y-1">
-            <li>Click "Export PDF" on any plan to instantly download a comprehensive substitute teacher document</li>
-            <li>The PDF includes class routines, emergency information, lesson plans, and recent teaching notes</li>
-            <li>Keep your class routines updated in Settings for more detailed substitute plans</li>
-            <li>Recent daybook entries are automatically included to provide context for substitutes</li>
+            <li>{t('substitute_tip_1', 'Click "Export PDF" on any plan to instantly download a comprehensive substitute teacher document')}</li>
+            <li>{t('substitute_tip_2', 'The PDF includes class routines, emergency information, lesson plans, and recent teaching notes')}</li>
+            <li>{t('substitute_tip_3', 'Keep your class routines updated in Settings for more detailed substitute plans')}</li>
+            <li>{t('substitute_tip_4', 'Recent daybook entries are automatically included to provide context for substitutes')}</li>
           </ul>
         </div>
       </div>
