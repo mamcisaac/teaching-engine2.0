@@ -10,19 +10,14 @@ import { z } from 'zod';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import { SubstitutePlanService } from '../services/index';
-import { substitutePlanPdfService } from '../services/substitutePlanPdfService';
-import { 
-  pdfGenerationRateLimit, 
-  pdfGenerationHourlyLimit,
-  globalPdfGenerationLimit,
-  trackPdfGenerationStart 
-} from '../middleware/rateLimit/pdfGenerationRateLimit';
+import { createSubstitutePlanPdfService } from '../services/substitutePlanPdfService';
 import type { SubstitutePlanCreateData, SubstitutePlanUpdateData } from '../types/routes';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
 import { BaseRouteHandler } from './base/BaseRouteHandler';
 import { commonValidations } from './base/validation';
 import { optimizedQueries, queryPerformance } from './optimizations/queryOptimizations';
+// import { pdfRateLimit } from '../middleware/rateLimit/pdfGenerationRateLimit';
 
 // Substitute plan-specific validation schemas
 const scheduleItemSchema = z.object({
@@ -334,6 +329,7 @@ where.isActive = isActive;
 
 export class SubstitutePlansRouteHandler extends BaseRouteHandler {
   private substitutePlanService: SubstitutePlanServiceWrapper;
+  private substitutePlanPdfService: ReturnType<typeof createSubstitutePlanPdfService>;
 
   constructor() {
     super({
@@ -341,6 +337,9 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       requireAuth: true,
     });
     this.substitutePlanService = new SubstitutePlanServiceWrapper();
+    
+    // Create simplified PDF service
+    this.substitutePlanPdfService = createSubstitutePlanPdfService(prisma);
   }
 
   protected getService(): BaseService {
@@ -443,14 +442,24 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
       this.asyncHandler(this.handleUpcomingDates.bind(this)),
     );
 
-    // GET /substitute-plans/:id/pdf with rate limiting
+    // GET /substitute-plans/:id/preview - HTML preview
+    this.router.get(
+      '/:id/preview',
+      this.requireAuthentication,
+      this.asyncHandler(this.handlePreview.bind(this)),
+    );
+
+    // GET /substitute-plans/:id/pdf
     this.router.get(
       '/:id/pdf',
       this.requireAuthentication,
-      trackPdfGenerationStart,
-      pdfGenerationRateLimit,
-      pdfGenerationHourlyLimit,
-      globalPdfGenerationLimit,
+      // Rate limiting temporarily disabled - can be added back when needed
+      // pdfRateLimit({
+      //   windowMs: 60 * 60 * 1000, // 1 hour
+      //   maxRequests: 10, // 10 PDFs per hour
+      //   maxConcurrent: 2, // 2 concurrent generations
+      //   maxBytesPerWindow: 50 * 1024 * 1024, // 50MB per hour
+      // }),
       this.asyncHandler(this.handleExportPdf.bind(this)),
     );
   }
@@ -540,112 +549,145 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
     }
   }
 
+  private async handlePreview(
+    req: AuthenticatedRequest,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
+    try {
+      const { userId } = req;
+      if (!userId) {
+        res.status(401).json({ error: 'Not authenticated' });
+        return;
+      }
+
+      const { id } = req.params;
+      
+      // Validate ID format (CUID)
+      if (!id || !id.match(/^c[a-z0-9]{24,}$/)) {
+        res.status(400).json({ error: 'Invalid plan ID format' });
+        return;
+      }
+      
+      // Generate HTML preview
+      const html = await this.substitutePlanPdfService.generateHtmlPreview(
+        id, 
+        userId
+      );
+      
+      // Set appropriate headers
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('X-Content-Type-Options', 'nosniff');
+      res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      
+      // Send HTML response
+      res.send(html);
+      
+    } catch (error) {
+      if (error instanceof Error && error.message.includes('not found')) {
+        res.status(404).json({ error: 'Substitute plan not found' });
+        return;
+      }
+      
+      this.logger.error('Preview generation error:', error instanceof Error ? error.message : String(error));
+      next(error);
+    }
+  }
+
   private async handleExportPdf(
     req: AuthenticatedRequest,
     res: Response,
     next: NextFunction,
   ): Promise<void> {
     try {
-      const {userId} = req;
-      if (userId === null) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      const { id: planId } = req.params;
-
-      // Validate plan ID format
-      if (!planId || typeof planId !== 'string') {
-        res.status(400).json({ 
-          error: 'Invalid request',
-          message: 'Plan ID is required',
-          code: 'INVALID_PLAN_ID'
-        });
+      const { userId } = req;
+      if (!userId) {
+        res.status(401).json({ error: 'Not authenticated' });
         return;
       }
 
-      // Generate PDF using singleton service
-      const pdfBuffer = await substitutePlanPdfService.generatePdf(planId, userId!);
-
-      // Get plan details for filename (already validated in service)
+      const { id } = req.params;
+      
+      // Validate ID format (CUID)
+      if (!id || !id.match(/^c[a-z0-9]{24,}$/)) {
+        res.status(400).json({ error: 'Invalid plan ID format' });
+        return;
+      }
+      
+      // Verify plan exists and user has access
       const plan = await prisma.substitutePlan.findFirst({
-        where: { id: planId, userId },
-        select: { title: true, dateFor: true }
+        where: { 
+          id,
+          userId,
+          isActive: true
+        },
+        select: {
+          id: true,
+          title: true,
+          dateFor: true
+        }
       });
-
+      
       if (!plan) {
-        // This shouldn't happen as the service validates, but check anyway
-        res.status(404).json({ 
-          error: 'Substitute plan not found',
-          code: 'PLAN_NOT_FOUND'
-        });
+        res.status(404).json({ error: 'Substitute plan not found or access denied' });
         return;
       }
-
-      // Format filename with sanitization
-      const date = new Date(plan.dateFor).toISOString().split('T')[0];
-      const safeTitle = plan.title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-      const filename = `substitute-plan-${safeTitle}-${date}.pdf`;
-
-      // Set headers for PDF download
+      
+      // Check if date is reasonable (not too far in past or future)
+      const planDate = new Date(plan.dateFor);
+      const now = new Date();
+      const daysDiff = Math.abs((planDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+      
+      if (daysDiff > 365) {
+        res.status(400).json({ error: 'Plan date is too far from current date' });
+        return;
+      }
+      
+      // Generate PDF with timeout
+      const timeout = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('PDF generation timeout')), 30000)
+      );
+      
+      const pdfBuffer = await Promise.race([
+        this.substitutePlanPdfService.generatePdf(id, userId),
+        timeout
+      ]);
+      
+      // Validate PDF size
+      if (pdfBuffer.length > 10 * 1024 * 1024) { // 10MB limit
+        this.logger.warn(`Large PDF generated: ${pdfBuffer.length} bytes for plan ${id}`);
+      }
+      
+      // Generate safe filename
+      const safeTitle = plan.title
+        .replace(/[^a-z0-9]/gi, '-')
+        .replace(/-+/g, '-')
+        .toLowerCase()
+        .substring(0, 50);
+      const dateStr = planDate.toISOString().split('T')[0];
+      const filename = `substitute-plan-${dateStr}-${safeTitle}.pdf`;
+      
+      // Set security headers
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
       res.setHeader('Content-Length', pdfBuffer.length.toString());
-      res.setHeader('Cache-Control', 'private, max-age=300'); // Cache for 5 minutes
-
-      // Send PDF
+      res.setHeader('X-Content-Type-Options', 'nosniff');
+      res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+      
+      // Log successful generation
+      this.logger.info(`PDF generated for plan ${id} by user ${userId}, size: ${pdfBuffer.length} bytes`);
+      
       res.send(pdfBuffer);
-      return;
     } catch (error) {
-      // Handle specific error types
-      if (error && typeof error === 'object' && 'code' in error) {
-        const typedError = error as any;
-        
-        switch (typedError.code) {
-          case 'ACCESS_DENIED':
-            res.status(403).json({ 
-              error: 'Access denied',
-              message: 'You do not have permission to export this plan',
-              code: typedError.code
-            });
-            return;
-          
-          case 'TIMEOUT':
-            res.status(504).json({ 
-              error: 'Request timeout',
-              message: 'PDF generation took too long. Please try again.',
-              code: typedError.code
-            });
-            return;
-          
-          case 'MEMORY_LIMIT':
-            res.status(507).json({ 
-              error: 'File too large',
-              message: 'The generated PDF is too large. Please reduce the content and try again.',
-              code: typedError.code
-            });
-            return;
-          
-          case 'INVALID_DATA':
-            res.status(400).json({ 
-              error: 'Invalid data',
-              message: typedError.message || 'The plan data is invalid',
-              code: typedError.code
-            });
-            return;
-          
-          default:
-            // Log unexpected error
-            this.logger.error('Unexpected PDF generation error:', typedError);
-        }
+      if (error instanceof Error && error.message === 'PDF generation timeout') {
+        res.status(504).json({ error: 'PDF generation timed out. Please try again.' });
+        return;
       }
-
-      // Generic error handling
-      this.logger.error('Error exporting substitute plan as PDF:', error);
-      res.status(500).json({ 
-        error: 'PDF generation failed',
-        message: 'An error occurred while generating the PDF. Please try again later.',
-        code: 'PDF_GENERATION_ERROR'
-      });
+      
+      this.logger.error('PDF export error:', error instanceof Error ? error.message : String(error));
+      next(error);
     }
   }
 }

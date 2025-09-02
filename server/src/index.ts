@@ -408,7 +408,14 @@ async function gracefulShutdown(signal: string, server?: Server): Promise<void> 
       });
     }
 
-    // Service shutdown removed - simplified for single-teacher use
+    // Close Puppeteer browser if it's running
+    try {
+      const { SubstitutePlanPdfService } = await import('./services/substitutePlanPdfService');
+      await SubstitutePlanPdfService.closeBrowser();
+      structuredLogger.info('Puppeteer browser closed');
+    } catch (error) {
+      structuredLogger.warn('Error closing Puppeteer browser', error as Error);
+    }
 
     // Close database connections
     await prisma.$disconnect();
