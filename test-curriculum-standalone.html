@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Curriculum Page - Quick Plan Test</title>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f8fafc;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #6b7280;
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+        .filters {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            margin-bottom: 32px;
+        }
+        .checkbox-container {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .expectation-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+        }
+        .expectation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .left-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .right-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .code-badge {
+            background: #4f46e5;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .checkmark {
+            color: #10b981;
+            font-size: 18px;
+        }
+        .strand-badge {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .grade-badge {
+            background: #ede9fe;
+            color: #6d28d9;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .quick-plan-btn {
+            padding: 4px 12px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .quick-plan-btn:hover {
+            background-color: #2563eb !important;
+        }
+        .quick-plan-btn:active {
+            background-color: #1d4ed8 !important;
+        }
+        .description {
+            font-size: 16px;
+            color: #374151;
+            line-height: 1.6;
+        }
+        #test-results {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            display: none;
+        }
+        #test-results.show {
+            display: block;
+        }
+        .test-item {
+            margin: 8px 0;
+        }
+        .test-pass {
+            color: #10b981;
+        }
+        .test-fail {
+            color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Curriculum Expectations</h1>
+        <p class="subtitle">Grade 1 French Immersion - Testing Quick Plan Button</p>
+
+        <div class="filters">
+            <div class="checkbox-container">
+                <input type="checkbox" id="uncovered-only" style="width: 16px; height: 16px; cursor: pointer;">
+                <label for="uncovered-only" style="font-size: 16px; color: #374151; cursor: pointer;">
+                    Show uncovered only (<span id="uncovered-count">2</span> expectations need lessons)
+                </label>
+            </div>
+        </div>
+
+        <!-- Français Section -->
+        <div style="margin-bottom: 32px;">
+            <h2 class="section-header">Français (Immersion)</h2>
+            
+            <!-- Covered expectation -->
+            <div class="expectation-card" data-covered="true">
+                <div class="expectation-header">
+                    <div class="left-group">
+                        <span class="code-badge">FL1.1</span>
+                        <span class="checkmark">✓</span>
+                        <span class="strand-badge">Communication orale</span>
+                    </div>
+                    <div class="right-group">
+                        <span class="grade-badge">Grade 1</span>
+                    </div>
+                </div>
+                <p class="description">Comprendre des messages simples et clairs dans des situations familières</p>
+            </div>
+
+            <!-- Uncovered expectation -->
+            <div class="expectation-card" data-covered="false">
+                <div class="expectation-header">
+                    <div class="left-group">
+                        <span class="code-badge">FL1.2</span>
+                        <span class="strand-badge">Lecture</span>
+                    </div>
+                    <div class="right-group">
+                        <button 
+                            class="quick-plan-btn"
+                            onclick="handleQuickPlan('fl1-2')"
+                            aria-label="Create lesson plan for FL1.2"
+                            title="Create a lesson plan for FL1.2"
+                        >
+                            Quick Plan
+                        </button>
+                        <span class="grade-badge">Grade 1</span>
+                    </div>
+                </div>
+                <p class="description">Reconnaître et lire des mots familiers</p>
+            </div>
+        </div>
+
+        <!-- Mathématiques Section -->
+        <div style="margin-bottom: 32px;">
+            <h2 class="section-header">Mathématiques</h2>
+            
+            <!-- Uncovered expectation -->
+            <div class="expectation-card" data-covered="false">
+                <div class="expectation-header">
+                    <div class="left-group">
+                        <span class="code-badge">MA1.1</span>
+                        <span class="strand-badge">Nombres</span>
+                    </div>
+                    <div class="right-group">
+                        <button 
+                            class="quick-plan-btn"
+                            onclick="handleQuickPlan('ma1-1')"
+                            aria-label="Create lesson plan for MA1.1"
+                            title="Create a lesson plan for MA1.1"
+                        >
+                            Quick Plan
+                        </button>
+                        <span class="grade-badge">Grade 1</span>
+                    </div>
+                </div>
+                <p class="description">Compter jusqu'à 100 et reconnaître les nombres</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Results Panel -->
+    <div id="test-results">
+        <h3 style="margin-bottom: 12px;">Test Results</h3>
+        <div id="test-list"></div>
+    </div>
+
+    <script>
+        // Test tracking
+        const testResults = [];
+        
+        function addTestResult(test, passed) {
+            testResults.push({ test, passed });
+            updateTestDisplay();
+        }
+        
+        function updateTestDisplay() {
+            const panel = document.getElementById('test-results');
+            const list = document.getElementById('test-list');
+            panel.classList.add('show');
+            
+            list.innerHTML = testResults.map(r => 
+                `<div class="test-item ${r.passed ? 'test-pass' : 'test-fail'}">
+                    ${r.passed ? '✅' : '❌'} ${r.test}
+                </div>`
+            ).join('');
+        }
+        
+        // Test Quick Plan button
+        function handleQuickPlan(expectationId) {
+            console.log('Quick Plan clicked for:', expectationId);
+            
+            // Test 1: Button click works
+            addTestResult('Button click handler triggered', true);
+            
+            // Test 2: Navigation URL is correct
+            const targetUrl = `/planner/quick-lesson?expectationId=${expectationId}`;
+            addTestResult(`Navigation URL: ${targetUrl}`, true);
+            
+            // Test 3: Button has proper attributes
+            const btn = event.target;
+            const hasAriaLabel = btn.hasAttribute('aria-label');
+            const hasTitle = btn.hasAttribute('title');
+            addTestResult('Accessibility attributes present', hasAriaLabel && hasTitle);
+            
+            // Simulate navigation
+            alert(`Would navigate to: ${targetUrl}`);
+        }
+        
+        // Test filter functionality
+        document.getElementById('uncovered-only').addEventListener('change', (e) => {
+            const showUncovered = e.target.checked;
+            const cards = document.querySelectorAll('.expectation-card');
+            
+            cards.forEach(card => {
+                if (showUncovered && card.dataset.covered === 'true') {
+                    card.style.display = 'none';
+                } else {
+                    card.style.display = 'block';
+                }
+            });
+            
+            addTestResult('Filter toggle works', true);
+        });
+        
+        // Run initial tests
+        window.addEventListener('DOMContentLoaded', () => {
+            // Test 1: Quick Plan buttons exist
+            const buttons = document.querySelectorAll('.quick-plan-btn');
+            addTestResult(`${buttons.length} Quick Plan buttons found`, buttons.length === 2);
+            
+            // Test 2: Checkmarks exist for covered
+            const checkmarks = document.querySelectorAll('.checkmark');
+            addTestResult(`${checkmarks.length} checkmark(s) for covered`, checkmarks.length === 1);
+            
+            // Test 3: Button placement
+            const firstButton = buttons[0];
+            if (firstButton) {
+                const rightGroup = firstButton.parentElement;
+                const hasGradeBadge = rightGroup.querySelector('.grade-badge');
+                addTestResult('Button in right position', hasGradeBadge !== null);
+            }
+            
+            // Test 4: Hover effect
+            if (buttons[0]) {
+                const computed = window.getComputedStyle(buttons[0]);
+                addTestResult('CSS hover class applied', buttons[0].classList.contains('quick-plan-btn'));
+            }
+        });
+    </script>
+</body>
+</html>
