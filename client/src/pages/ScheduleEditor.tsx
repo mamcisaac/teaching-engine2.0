@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/input';
+import { Input } from '../components/ui/Input';
 import { Badge } from '../components/ui/Badge';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
@@ -357,13 +357,15 @@ export function ScheduleEditor(): React.ReactElement {
             {/* Filters */}
             <div className="flex gap-2 mb-4">
               <div className="flex-1">
-                <Input
-                  placeholder="Search lessons..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full"
-                  icon={<Search className="h-4 w-4" />}
-                />
+                <div className="relative">
+                  <Input
+                    placeholder="Search lessons..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-8"
+                  />
+                  <Search className="h-4 w-4 absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                </div>
               </div>
               <select
                 value={filterSubject}

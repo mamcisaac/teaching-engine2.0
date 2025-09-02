@@ -1,23 +1,11 @@
--- DropIndex
-DROP INDEX "idx_student_artifact_cleanup";
-
--- DropIndex
-DROP INDEX "idx_student_artifact_covering";
-
--- DropIndex
-DROP INDEX "idx_student_artifact_user_type_archived";
-
--- DropIndex
-DROP INDEX "idx_student_artifact_user_date_type";
-
--- DropIndex
-DROP INDEX "idx_artifact_outcome_user_evidence";
-
--- DropIndex
-DROP INDEX "idx_artifact_outcome_evidence_date";
-
--- DropIndex
-DROP INDEX "idx_student_progress_user_level_date";
+-- DropIndex (commented out - these indexes don't exist)
+-- DROP INDEX "idx_student_artifact_cleanup";
+-- DROP INDEX "idx_student_artifact_covering";
+-- DROP INDEX "idx_student_artifact_user_type_archived";
+-- DROP INDEX "idx_student_artifact_user_date_type";
+-- DROP INDEX "idx_artifact_outcome_user_evidence";
+-- DROP INDEX "idx_artifact_outcome_evidence_date";
+-- DROP INDEX "idx_student_progress_user_level_date";
 
 -- AlterTable
 ALTER TABLE "User" ADD COLUMN "grade" TEXT;

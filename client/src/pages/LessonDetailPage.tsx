@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { 
   Calendar, Clock, BookOpen, Target, Users, Package, 
-  CheckCircle, AlertCircle, ChevronLeft, Edit, Trash2, Print,
+  CheckCircle, AlertCircle, ChevronLeft, Edit, Trash2, Printer,
   ClipboardCheck, BarChart3
 } from 'lucide-react';
 import { useETFOLessonPlan, useDeleteETFOLessonPlan } from '../hooks/useETFOPlanning';
@@ -12,6 +12,7 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { toast } from 'sonner';
+import { QuickAssessment } from '../components/QuickAssessment';
 
 export function LessonDetailPage(): React.ReactElement {
   const { lessonId } = useParams();
@@ -109,12 +110,12 @@ export function LessonDetailPage(): React.ReactElement {
                 View Progress
               </Button>
               <Button variant="outline" onClick={handlePrint}>
-                <Print className="h-4 w-4" />
+                <Printer className="h-4 w-4" />
               </Button>
               <Button variant="outline" onClick={handleEdit}>
                 <Edit className="h-4 w-4" />
               </Button>
-              <Button variant="destructive" onClick={handleDelete}>
+              <Button variant="danger" onClick={handleDelete}>
                 <Trash2 className="h-4 w-4" />
               </Button>
             </div>
@@ -151,6 +152,20 @@ export function LessonDetailPage(): React.ReactElement {
             )}
           </div>
         </div>
+        
+        {/* Quick Assessment */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="text-lg">Quick Reflection</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <QuickAssessment 
+              lessonId={lessonId || ''} 
+              value={lesson.quickAssessment}
+              notes={lesson.quickAssessmentNotes}
+            />
+          </CardContent>
+        </Card>
         
         {/* Learning Goals */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

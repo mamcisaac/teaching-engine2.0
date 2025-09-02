@@ -426,19 +426,9 @@ model ETFOLessonPlan {
   reflectionActivities      Json?
   wheretoFramework          Json?
   indigenousPerspectives    String?
-  
-  // Quick Assessment Fields
-  quickAssessment           String?                     // "thumbs-up", "thumbs-okay", "thumbs-down"
-  quickAssessmentNotes      String?                     // Quick notes for the assessment
-  assessedAt                DateTime?                   // When the quick assessment was made
-  
-  // Detailed Reflection Fields
-  studentEngagement         String?                     // "high", "medium", "low"
-  paceAssessment           String?                     // "too-fast", "just-right", "too-slow"
-  materialEffectiveness    String?                     // "very-effective", "effective", "needs-improvement"
-  wouldRepeat              Boolean?                    // Would you repeat this lesson?
-  modificationNotes        String?                     // What modifications would you make?
-  
+  // Quick Assessment - Perfect Simplicity
+  quickAssessment           String?  // 'good', 'okay', 'needs_work'
+  quickAssessmentNotes      String?  // Optional notes
   activityImports           ActivityImport[]
   daybookEntry              DaybookEntry?
   unitPlan                  UnitPlan                    @relation(fields: [unitPlanId], references: [id])
@@ -459,9 +449,6 @@ model ETFOLessonPlan {
   @@index([userId, date, grade])
   @@index([date, duration])
   @@index([userId, assessmentType])
-  @@index([userId, quickAssessment])
-  @@index([userId, assessedAt])
-  @@index([quickAssessment, assessedAt])
 }
 
 model ETFOLessonPlanExpectation {

@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 import { BlankTemplateQuickActions } from '../../../components/printing/BlankTemplatePrinter';
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
-import { QuickAssessmentWidget } from '../../../components/assessment/QuickAssessmentWidget';
-import { AssessmentBadge } from '../../../components/assessment/AssessmentBadge';
+// Removed complex assessment imports - assessment is now in LessonDetailPage
 import type { UnitPlan, ETFOLessonPlan } from '../../../hooks/useETFOPlanning';
 
 interface LessonListViewProps {
@@ -179,11 +178,12 @@ export function LessonListView({
                     )}
                   </td>
                   <td className="hidden lg:table-cell px-3 sm:px-6 py-2 sm:py-4">
-                    {/* Show QuickAssessmentWidget only if lesson has been taught */}
-                    {lesson.daybookEntry ? (
-                      <QuickAssessmentWidget lessonPlan={lesson} compact={false} />
-                    ) : (
-                      <AssessmentBadge lessonPlan={lesson} showLabel={true} size="sm" />
+                    {/* Assessment moved to LessonDetailPage */}
+                    {lesson.quickAssessment && (
+                      <Badge variant="secondary">
+                        {lesson.quickAssessment === 'good' ? '👍' : 
+                         lesson.quickAssessment === 'okay' ? '👌' : '👎'}
+                      </Badge>
                     )}
                   </td>
                   <td className="hidden lg:table-cell px-3 sm:px-6 py-2 sm:py-4 whitespace-nowrap">

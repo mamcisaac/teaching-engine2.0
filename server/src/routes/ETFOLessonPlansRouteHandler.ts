@@ -88,6 +88,10 @@ const lessonPlanCreateSchema = z.object({
 
   // Curriculum expectations
   expectationIds: z.array(z.string().cuid()).max(20).optional(),
+  
+  // Quick Assessment (Perfect Simplicity)
+  quickAssessment: z.enum(['good', 'okay', 'needs_work']).optional(),
+  quickAssessmentNotes: z.string().max(1000).optional(),
 });
 
 const lessonPlanUpdateSchema = lessonPlanCreateSchema.partial().omit({ unitPlanId: true });
@@ -124,28 +128,6 @@ const duplicateSchema = z.object({
 const rescheduleSchema = z.object({
   newDate: z.string().datetime(),
   updateRelated: z.boolean().default(false),
-});
-
-// Quick Assessment Schemas
-const quickAssessmentSchema = z.object({
-  quickAssessment: z.enum(['thumbs-up', 'thumbs-okay', 'thumbs-down']),
-  quickAssessmentNotes: z.string().max(1000).optional(),
-});
-
-const detailedReflectionSchema = z.object({
-  studentEngagement: z.enum(['high', 'medium', 'low']).optional(),
-  paceAssessment: z.enum(['too-fast', 'just-right', 'too-slow']).optional(),
-  materialEffectiveness: z.enum(['very-effective', 'effective', 'needs-improvement']).optional(),
-  wouldRepeat: z.boolean().optional(),
-  modificationNotes: z.string().max(2000).optional(),
-});
-
-const assessmentStatsQuerySchema = z.object({
-  startDate: z.string().datetime().optional(),
-  endDate: z.string().datetime().optional(),
-  unitPlanId: z.string().cuid().optional(),
-  subject: z.string().optional(),
-  grade: z.coerce.number().int().optional(),
 });
 
 // ETFO Lesson Plan service
@@ -877,196 +859,7 @@ class ETFOLessonPlanService extends BaseService {
     return prisma.eTFOLessonPlan.create({ data: createData });
   }
 
-  // Quick Assessment Methods
-  async updateQuickAssessment(
-    lessonPlanId: string,
-    assessmentData: {
-      quickAssessment: 'thumbs-up' | 'thumbs-okay' | 'thumbs-down';
-      quickAssessmentNotes?: string;
-    },
-    userId: number,
-  ): Promise<unknown> {
-    // Verify ownership
-    const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
-      where: { id: lessonPlanId, userId },
-    });
-
-    if (!lessonPlan) {
-      throw new Error('Lesson plan not found or access denied');
-    }
-
-    // Update with assessment data
-    return prisma.eTFOLessonPlan.update({
-      where: { id: lessonPlanId },
-      data: {
-        quickAssessment: assessmentData.quickAssessment,
-        quickAssessmentNotes: assessmentData.quickAssessmentNotes,
-        assessedAt: new Date(),
-      },
-      include: {
-        unitPlan: {
-          select: {
-            title: true,
-            titleFr: true,
-          },
-        },
-      },
-    });
-  }
-
-  async updateDetailedReflection(
-    lessonPlanId: string,
-    reflectionData: {
-      studentEngagement?: 'high' | 'medium' | 'low';
-      paceAssessment?: 'too-fast' | 'just-right' | 'too-slow';
-      materialEffectiveness?: 'very-effective' | 'effective' | 'needs-improvement';
-      wouldRepeat?: boolean;
-      modificationNotes?: string;
-    },
-    userId: number,
-  ): Promise<unknown> {
-    // Verify ownership
-    const lessonPlan = await prisma.eTFOLessonPlan.findFirst({
-      where: { id: lessonPlanId, userId },
-    });
-
-    if (!lessonPlan) {
-      throw new Error('Lesson plan not found or access denied');
-    }
-
-    // Update with detailed reflection data
-    return prisma.eTFOLessonPlan.update({
-      where: { id: lessonPlanId },
-      data: reflectionData,
-      include: {
-        unitPlan: {
-          select: {
-            title: true,
-            titleFr: true,
-          },
-        },
-      },
-    });
-  }
-
-  async getAssessmentStats(
-    filters: {
-      startDate?: Date;
-      endDate?: Date;
-      unitPlanId?: string;
-      subject?: string;
-      grade?: number;
-    },
-    userId: number,
-  ): Promise<{
-    totalLessons: number;
-    assessedLessons: number;
-    assessmentBreakdown: {
-      thumbsUp: number;
-      thumbsOkay: number;
-      thumbsDown: number;
-    };
-    wouldRepeatPercentage: number;
-    engagementStats: {
-      high: number;
-      medium: number;
-      low: number;
-    };
-    paceStats: {
-      tooFast: number;
-      justRight: number;
-      tooSlow: number;
-    };
-    recentAssessments: unknown[];
-  }> {
-    // Build where clause
-    const where: Prisma.ETFOLessonPlanWhereInput = { userId };
-    
-    if (filters.startDate || filters.endDate) {
-      where.date = {};
-      if (filters.startDate) where.date.gte = filters.startDate;
-      if (filters.endDate) where.date.lte = filters.endDate;
-    }
-    
-    if (filters.unitPlanId) where.unitPlanId = filters.unitPlanId;
-    if (filters.subject) where.subject = filters.subject;
-    if (filters.grade) where.grade = filters.grade;
-
-    // Get all lessons matching filters
-    const lessons = await prisma.eTFOLessonPlan.findMany({
-      where,
-      select: {
-        id: true,
-        title: true,
-        date: true,
-        quickAssessment: true,
-        quickAssessmentNotes: true,
-        assessedAt: true,
-        studentEngagement: true,
-        paceAssessment: true,
-        materialEffectiveness: true,
-        wouldRepeat: true,
-        unitPlan: {
-          select: {
-            title: true,
-          },
-        },
-      },
-      orderBy: { assessedAt: 'desc' },
-    });
-
-    // Calculate statistics
-    const totalLessons = lessons.length;
-    const assessedLessons = lessons.filter(l => l.quickAssessment).length;
-    
-    const assessmentBreakdown = {
-      thumbsUp: lessons.filter(l => l.quickAssessment === 'thumbs-up').length,
-      thumbsOkay: lessons.filter(l => l.quickAssessment === 'thumbs-okay').length,
-      thumbsDown: lessons.filter(l => l.quickAssessment === 'thumbs-down').length,
-    };
-
-    const wouldRepeatCount = lessons.filter(l => l.wouldRepeat === true).length;
-    const wouldRepeatTotal = lessons.filter(l => l.wouldRepeat !== null).length;
-    const wouldRepeatPercentage = wouldRepeatTotal > 0 
-      ? Math.round((wouldRepeatCount / wouldRepeatTotal) * 100) 
-      : 0;
-
-    const engagementStats = {
-      high: lessons.filter(l => l.studentEngagement === 'high').length,
-      medium: lessons.filter(l => l.studentEngagement === 'medium').length,
-      low: lessons.filter(l => l.studentEngagement === 'low').length,
-    };
-
-    const paceStats = {
-      tooFast: lessons.filter(l => l.paceAssessment === 'too-fast').length,
-      justRight: lessons.filter(l => l.paceAssessment === 'just-right').length,
-      tooSlow: lessons.filter(l => l.paceAssessment === 'too-slow').length,
-    };
-
-    // Get recent assessments (last 10)
-    const recentAssessments = lessons
-      .filter(l => l.quickAssessment)
-      .slice(0, 10)
-      .map(l => ({
-        id: l.id,
-        title: l.title,
-        date: l.date,
-        quickAssessment: l.quickAssessment,
-        quickAssessmentNotes: l.quickAssessmentNotes,
-        assessedAt: l.assessedAt,
-        unitPlanTitle: l.unitPlan?.title,
-      }));
-
-    return {
-      totalLessons,
-      assessedLessons,
-      assessmentBreakdown,
-      wouldRepeatPercentage,
-      engagementStats,
-      paceStats,
-      recentAssessments,
-    };
-  }
+  // Removed complex assessment methods - keeping it simple!
 }
 
 export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
@@ -1264,28 +1057,6 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       this.requireAuthentication,
       this.asyncHandler(this.handleDuplicate.bind(this)),
     );
-
-    // Quick Assessment Routes
-    // PATCH /etfo-lesson-plans/:id/quick-assessment
-    this.router.patch(
-      '/:id/quick-assessment',
-      this.requireAuthentication,
-      this.asyncHandler(this.handleQuickAssessment.bind(this)),
-    );
-
-    // GET /etfo-lesson-plans/assessment-stats
-    this.router.get(
-      '/assessment-stats',
-      this.requireAuthentication,
-      this.asyncHandler(this.handleAssessmentStats.bind(this)),
-    );
-
-    // PATCH /etfo-lesson-plans/:id/detailed-reflection
-    this.router.patch(
-      '/:id/detailed-reflection',
-      this.requireAuthentication,
-      this.asyncHandler(this.handleDetailedReflection.bind(this)),
-    );
   }
 
   private async handleAddResource(
@@ -1403,93 +1174,6 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     } catch (_error) {
       this.logger.error('Error duplicating lesson plan:', _error as string | undefined);
       next(_error); return;
-    }
-  }
-
-  // Quick Assessment Handlers
-  private async handleQuickAssessment(
-    req: AuthenticatedRequest,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
-    try {
-      const { userId } = req;
-      if (!userId) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      
-      const { id: lessonPlanId } = req.params;
-      const assessmentData = quickAssessmentSchema.parse(req.body);
-
-      const updatedLesson = await this.lessonPlanService.updateQuickAssessment(
-        lessonPlanId,
-        assessmentData,
-        userId
-      );
-      
-      res.json(updatedLesson);
-    } catch (_error) {
-      this.logger.error('Error updating quick assessment:', _error as string | undefined);
-      next(_error);
-    }
-  }
-
-  private async handleDetailedReflection(
-    req: AuthenticatedRequest,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
-    try {
-      const { userId } = req;
-      if (!userId) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      
-      const { id: lessonPlanId } = req.params;
-      const reflectionData = detailedReflectionSchema.parse(req.body);
-
-      const updatedLesson = await this.lessonPlanService.updateDetailedReflection(
-        lessonPlanId,
-        reflectionData,
-        userId
-      );
-      
-      res.json(updatedLesson);
-    } catch (_error) {
-      this.logger.error('Error updating detailed reflection:', _error as string | undefined);
-      next(_error);
-    }
-  }
-
-  private async handleAssessmentStats(
-    req: AuthenticatedRequest,
-    res: Response,
-    next: NextFunction,
-  ): Promise<void> {
-    try {
-      const { userId } = req;
-      if (!userId) {
-        res.status(401).json({ error: 'User not authenticated' });
-        return;
-      }
-      
-      const query = assessmentStatsQuerySchema.parse(req.query);
-      
-      // Convert string dates to Date objects
-      const filters = {
-        ...query,
-        startDate: query.startDate ? new Date(query.startDate) : undefined,
-        endDate: query.endDate ? new Date(query.endDate) : undefined,
-      };
-
-      const stats = await this.lessonPlanService.getAssessmentStats(filters, userId);
-      
-      res.json(stats);
-    } catch (_error) {
-      this.logger.error('Error getting assessment stats:', _error as string | undefined);
-      next(_error);
     }
   }
 }

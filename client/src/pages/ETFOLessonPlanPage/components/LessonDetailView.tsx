@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
-import { QuickAssessmentWidget } from '../../../components/assessment/QuickAssessmentWidget';
-import { AssessmentNotesModal } from '../../../components/assessment/AssessmentNotesModal';
-import { AssessmentBadge } from '../../../components/assessment/AssessmentBadge';
+// Removed complex assessment imports - using simple QuickAssessment in LessonDetailPage instead
 import type { ETFOLessonPlan, UnitPlan, CurriculumExpectation } from '../../../hooks/useETFOPlanning';
 import type { LessonPlan } from '../../../utils/printing/types';
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../../../utils/printUtils';
@@ -151,14 +149,8 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
         {lesson.daybookEntry && (
           <div className="px-6 py-4 bg-gray-50 border-b">
             <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-sm font-medium text-gray-700 mb-2">Lesson Reflection & Assessment</h3>
-                <QuickAssessmentWidget lessonPlan={lesson} />
-              </div>
+              {/* Removed complex assessment widget - assessment is now in LessonDetailPage */}
               <div className="flex items-center gap-2">
-                {lesson.quickAssessment && (
-                  <AssessmentBadge lessonPlan={lesson} showLabel={true} size="md" />
-                )}
                 <Button
                   variant="outline"
                   size="sm"
@@ -391,12 +383,7 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
         </div>
       </div>
       
-      {/* Detailed Reflection Modal */}
-      <AssessmentNotesModal
-        isOpen={showDetailedReflection}
-        onClose={() => setShowDetailedReflection(false)}
-        lessonPlan={lesson}
-      />
+      {/* Removed complex reflection modal - assessment is now simple in LessonDetailPage */}
     </div>
   );
 }
