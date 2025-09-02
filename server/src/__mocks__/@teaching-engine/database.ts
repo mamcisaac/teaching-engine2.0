@@ -160,16 +160,16 @@ export const PrismaClient = jest.fn().mockImplementation(() => ({
     count: jest.fn(),
   },
   // Transaction support
-  $transaction: jest.fn((fn) => {
+  $transaction: jest.fn((fn: any) => {
     if (typeof fn === 'function') {
       return fn(PrismaClient);
     }
     return Promise.resolve(fn);
   }),
-  $disconnect: jest.fn().mockResolvedValue(undefined),
-  $connect: jest.fn().mockResolvedValue(undefined),
-  $queryRaw: jest.fn().mockResolvedValue([]),
-  $executeRaw: jest.fn().mockResolvedValue(0),
+  $disconnect: jest.fn(() => Promise.resolve()),
+  $connect: jest.fn(() => Promise.resolve()),
+  $queryRaw: jest.fn(() => Promise.resolve([])),
+  $executeRaw: jest.fn(() => Promise.resolve(0)),
 }));
 
 // Export Prisma types (mocked versions)
@@ -185,4 +185,5 @@ export const Prisma = {
   PrismaClientRustPanicError: class PrismaClientRustPanicError extends Error {},
   PrismaClientInitializationError: class PrismaClientInitializationError extends Error {},
   PrismaClientValidationError: class PrismaClientValidationError extends Error {},
+  JsonNull: Symbol('JsonNull'),
 };

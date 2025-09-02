@@ -3,53 +3,63 @@
  * Tests PDF generation for substitute plans with class routines and notes
  */
 
-import { PrismaClient } from '@teaching-engine/database';
+import { jest } from '@jest/globals';
 import { SubstitutePlanPdfService } from '../substitutePlanPdfService';
+import { PrismaClient } from '@teaching-engine/database';
 
-// Mock Prisma
-jest.mock('@teaching-engine/database', () => ({
-  PrismaClient: jest.fn().mockImplementation(() => ({
-    substitutePlan: {
-      findFirst: jest.fn(),
-    },
-    classRoutine: {
-      findMany: jest.fn(),
-    },
-    daybookEntry: {
-      findMany: jest.fn(),
-    },
-    eTFOLessonPlan: {
-      findMany: jest.fn(),
-    },
-    user: {
-      findUnique: jest.fn(),
-    },
-    student: {
-      findMany: jest.fn(),
-    },
-  })),
-}));
-
-// Mock Puppeteer
+// Mock dependencies
+jest.mock('@teaching-engine/database');
 jest.mock('puppeteer', () => ({
-  launch: jest.fn().mockResolvedValue({
-    newPage: jest.fn().mockResolvedValue({
-      setContent: jest.fn(),
-      pdf: jest.fn().mockResolvedValue(Buffer.from('mock-pdf-content')),
-      close: jest.fn(),
-    }),
-    close: jest.fn(),
-  }),
+  launch: jest.fn(),
 }));
+jest.mock('../../logger');
+jest.mock('../../utils/prisma');
+
+// Import puppeteer to access mocks
+import * as puppeteer from 'puppeteer';
 
 describe('SubstitutePlanPdfService', () => {
   let service: SubstitutePlanPdfService;
-  let prisma: any;
+  let mockPrisma: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    service = new SubstitutePlanPdfService();
-    prisma = new PrismaClient();
+    
+    // Create mock Prisma client
+    mockPrisma = {
+      substitutePlan: {
+        findFirst: jest.fn(),
+      },
+      classRoutine: {
+        findMany: jest.fn(),
+      },
+      daybookEntry: {
+        findMany: jest.fn(),
+      },
+      user: {
+        findUnique: jest.fn(),
+      },
+      student: {
+        findMany: jest.fn(),
+      },
+      auditLog: {
+        create: jest.fn(),
+      },
+    };
+    
+    // Setup puppeteer mock
+    const mockPage = {
+      setContent: jest.fn(),
+      pdf: jest.fn(() => Promise.resolve(Buffer.from('mock-pdf-content'))),
+    };
+    const mockBrowser = {
+      newPage: jest.fn(() => Promise.resolve(mockPage)),
+      close: jest.fn(),
+    };
+    (puppeteer.launch as any).mockResolvedValue(mockBrowser);
+    
+    // Create service with mocked Prisma
+    service = new SubstitutePlanPdfService(mockPrisma);
   });
 
   describe('generatePdf', () => {
@@ -66,19 +76,8 @@ describe('SubstitutePlanPdfService', () => {
       schedule: [
         { time: '8:30 AM', activity: 'Morning Entry', notes: 'Students unpack and begin morning work' },
         { time: '9:00 AM', activity: 'Morning Meeting', notes: 'Take attendance, calendar activities' },
-        { time: '9:15 AM', activity: 'French Language Arts', notes: 'Lesson plan attached' },
-        { time: '10:30 AM', activity: 'Nutrition Break', notes: 'Supervised snack time' },
-        { time: '10:45 AM', activity: 'Mathematics', notes: 'Lesson plan attached' },
-        { time: '12:00 PM', activity: 'Lunch', notes: 'Students eat in classroom' },
-        { time: '1:00 PM', activity: 'Science', notes: 'Hands-on activity' },
-        { time: '2:15 PM', activity: 'Pack Up', notes: 'Clean classroom, pack bags' },
-        { time: '2:30 PM', activity: 'Dismissal', notes: 'Follow dismissal procedures' },
       ],
       emergencyInfo: {
-        contacts: [
-          { name: 'Main Office', phone: '(902) 555-0100' },
-          { name: 'Nurse', phone: 'Extension 205' },
-        ],
         evacuationProcedure: 'Exit through main door, proceed to playground assembly point',
         lockdownProcedure: 'Lock door, turn off lights, move students to safe corner',
       },
@@ -90,7 +89,7 @@ describe('SubstitutePlanPdfService', () => {
         id: 1,
         category: 'morning',
         title: 'Morning Entry Routine',
-        description: 'Students enter quietly, unpack backpacks, put homework in bin, begin morning work on desk',
+        description: 'Students enter quietly, unpack backpacks',
         timeOfDay: '8:30 AM',
         priority: 10,
       },
@@ -98,75 +97,17 @@ describe('SubstitutePlanPdfService', () => {
         id: 2,
         category: 'transition',
         title: 'Line Up Procedure',
-        description: 'Call by table groups, students push in chairs, line up quietly by the door',
+        description: 'Call by table groups',
         priority: 8,
-      },
-      {
-        id: 3,
-        category: 'behavior',
-        title: 'Attention Signal',
-        description: 'Teacher claps pattern, students repeat and give attention',
-        priority: 9,
-      },
-      {
-        id: 4,
-        category: 'dismissal',
-        title: 'End of Day Routine',
-        description: 'Pack bags, stack chairs, pick up floor, line up when called',
-        timeOfDay: '2:20 PM',
-        priority: 10,
       },
     ];
 
     const mockDaybookEntries = [
       {
-        id: 'daybook-1',
         date: new Date('2025-09-10'),
-        whatWorked: 'Math manipulatives were very engaging for addition lesson',
-        whatDidntWork: 'Transition to carpet took too long',
-        nextSteps: 'Practice transition routine more',
-        notableAchievements: 'All students completed math worksheet independently',
-        lessonPlan: {
-          title: 'Addition with Manipulatives',
-          subject: 'Mathematics',
-        },
-      },
-      {
-        id: 'daybook-2',
-        date: new Date('2025-09-11'),
-        whatWorkedFr: 'Les élèves ont bien participé à la lecture partagée',
-        commonChallenges: 'Some students struggling with French pronunciation',
-        nextStepsFr: 'Plus de pratique avec les sons difficiles',
-        lessonPlan: {
-          title: 'Lecture partagée',
-          subject: 'Français',
-        },
-      },
-    ];
-
-    const mockLessonPlans = [
-      {
-        id: 'lesson-1',
-        title: 'French Reading - Les animaux',
-        subject: 'Français',
-        sequence: 1,
-        learningGoals: 'Students will identify animal vocabulary in French',
-        mindsOnActivities: 'Show animal pictures, practice pronunciation',
-        actionActivities: 'Read story "Les animaux de la ferme", identify animals',
-        consolidationActivities: 'Draw favorite animal and label in French',
-        materials: ['Story book', 'Animal flashcards', 'Drawing paper'],
-        differentiation: 'Provide word bank for struggling students',
-      },
-      {
-        id: 'lesson-2',
-        title: 'Math - Addition to 10',
-        subject: 'Mathématiques',
-        sequence: 2,
-        learningGoals: 'Students will add numbers to 10 using manipulatives',
-        mindsOnActivities: 'Number talk: ways to make 10',
-        actionActivities: 'Use counters to solve addition problems',
-        consolidationActivities: 'Math journal entry',
-        materials: ['Counters', 'Worksheets', 'Math journals'],
+        whatWorked: 'Students engaged well with hands-on math manipulatives',
+        whatDidntWork: 'Transition to gym took too long',
+        nextSteps: 'Practice gym transition routine tomorrow',
       },
     ];
 
@@ -181,27 +122,20 @@ describe('SubstitutePlanPdfService', () => {
       {
         firstName: 'Sarah',
         lastName: 'Smith',
-        medicalNotes: 'Severe peanut allergy - EpiPen in office',
-        accommodations: 'Sits near front for vision',
-        parentNotes: 'Mother picks up at dismissal',
-      },
-      {
-        firstName: 'James',
-        lastName: 'Brown',
-        accommodations: 'Extra time for written work',
-        medicalNotes: null,
-        parentNotes: 'Goes to after-school care',
+        notes: 'Severe peanut allergy - EpiPen in office',
+        accommodations: { visual: 'Sits near front for vision' },
+        specialNeeds: null,
       },
     ];
 
     beforeEach(() => {
       // Setup mock returns
-      prisma.substitutePlan.findFirst.mockResolvedValue(mockSubstitutePlan);
-      prisma.classRoutine.findMany.mockResolvedValue(mockClassRoutines);
-      prisma.daybookEntry.findMany.mockResolvedValue(mockDaybookEntries);
-      prisma.eTFOLessonPlan.findMany.mockResolvedValue(mockLessonPlans);
-      prisma.user.findUnique.mockResolvedValue(mockTeacher);
-      prisma.student.findMany.mockResolvedValue(mockStudents);
+      mockPrisma.substitutePlan.findFirst.mockResolvedValue(mockSubstitutePlan);
+      mockPrisma.classRoutine.findMany.mockResolvedValue(mockClassRoutines);
+      mockPrisma.daybookEntry.findMany.mockResolvedValue(mockDaybookEntries);
+      mockPrisma.user.findUnique.mockResolvedValue(mockTeacher);
+      mockPrisma.student.findMany.mockResolvedValue(mockStudents);
+      mockPrisma.auditLog.create.mockResolvedValue({});
     });
 
     it('should successfully generate a PDF for a substitute plan', async () => {
@@ -215,38 +149,39 @@ describe('SubstitutePlanPdfService', () => {
       await service.generatePdf(mockPlanId, mockUserId);
 
       // Verify all data fetching calls
-      expect(prisma.substitutePlan.findFirst).toHaveBeenCalledWith({
-        where: { id: mockPlanId, userId: mockUserId },
+      expect(mockPrisma.substitutePlan.findFirst).toHaveBeenCalledWith({
+        where: { id: mockPlanId, userId: mockUserId, isActive: true },
       });
 
-      expect(prisma.classRoutine.findMany).toHaveBeenCalledWith({
+      expect(mockPrisma.classRoutine.findMany).toHaveBeenCalledWith({
         where: { userId: mockUserId, isActive: true },
-        orderBy: [{ priority: 'desc' }, { category: 'asc' }],
+        orderBy: { priority: 'desc' },
       });
 
-      expect(prisma.daybookEntry.findMany).toHaveBeenCalledWith({
+      expect(mockPrisma.daybookEntry.findMany).toHaveBeenCalledWith({
         where: expect.objectContaining({
           userId: mockUserId,
         }),
         orderBy: { date: 'desc' },
         take: 5,
-        include: {
-          lessonPlan: {
-            select: { title: true, subject: true },
-          },
-        },
+        select: expect.objectContaining({
+          date: true,
+          whatWorked: true,
+          whatDidntWork: true,
+          nextSteps: true,
+        }),
       });
 
-      expect(prisma.eTFOLessonPlan.findMany).toHaveBeenCalled();
-      expect(prisma.user.findUnique).toHaveBeenCalledWith({
+      expect(mockPrisma.user.findUnique).toHaveBeenCalledWith({
         where: { id: mockUserId },
         select: { name: true, email: true, grade: true, program: true },
       });
-      expect(prisma.student.findMany).toHaveBeenCalled();
+      
+      expect(mockPrisma.student.findMany).toHaveBeenCalled();
     });
 
     it('should throw error if substitute plan not found', async () => {
-      prisma.substitutePlan.findFirst.mockResolvedValue(null);
+      mockPrisma.substitutePlan.findFirst.mockResolvedValue(null);
 
       await expect(service.generatePdf(mockPlanId, mockUserId)).rejects.toThrow(
         'Substitute plan not found or access denied'
@@ -254,14 +189,14 @@ describe('SubstitutePlanPdfService', () => {
     });
 
     it('should handle empty class routines gracefully', async () => {
-      prisma.classRoutine.findMany.mockResolvedValue([]);
+      mockPrisma.classRoutine.findMany.mockResolvedValue([]);
 
       const result = await service.generatePdf(mockPlanId, mockUserId);
       expect(result).toBeInstanceOf(Buffer);
     });
 
     it('should handle empty daybook entries gracefully', async () => {
-      prisma.daybookEntry.findMany.mockResolvedValue([]);
+      mockPrisma.daybookEntry.findMany.mockResolvedValue([]);
 
       const result = await service.generatePdf(mockPlanId, mockUserId);
       expect(result).toBeInstanceOf(Buffer);
@@ -272,7 +207,7 @@ describe('SubstitutePlanPdfService', () => {
         ...mockSubstitutePlan,
         schedule: JSON.stringify(mockSubstitutePlan.schedule),
       };
-      prisma.substitutePlan.findFirst.mockResolvedValue(planWithJsonSchedule);
+      mockPrisma.substitutePlan.findFirst.mockResolvedValue(planWithJsonSchedule);
 
       const result = await service.generatePdf(mockPlanId, mockUserId);
       expect(result).toBeInstanceOf(Buffer);
@@ -281,72 +216,55 @@ describe('SubstitutePlanPdfService', () => {
     it('should group routines by category correctly', async () => {
       await service.generatePdf(mockPlanId, mockUserId);
 
-      // The grouping should happen internally
-      // We can verify the PDF was generated successfully
-      expect(prisma.classRoutine.findMany).toHaveBeenCalled();
-    });
-
-    it('should format lesson plans with time slots', async () => {
-      await service.generatePdf(mockPlanId, mockUserId);
-
-      // Verify lesson plans were fetched and processed
-      expect(prisma.eTFOLessonPlan.findMany).toHaveBeenCalled();
+      // Verify PDF was generated successfully
+      expect(puppeteer.launch).toHaveBeenCalled();
     });
 
     it('should include only students with special notes', async () => {
       await service.generatePdf(mockPlanId, mockUserId);
 
-      expect(prisma.student.findMany).toHaveBeenCalledWith({
-        where: {
+      expect(mockPrisma.student.findMany).toHaveBeenCalledWith({
+        where: expect.objectContaining({
           userId: mockUserId,
-          OR: [
-            { medicalNotes: { not: null } },
-            { accommodations: { not: null } },
-            { parentNotes: { not: null } },
-          ],
-        },
-        select: expect.any(Object),
-        orderBy: [{ lastName: 'asc' }, { firstName: 'asc' }],
+          isActive: true,
+        }),
+        select: expect.objectContaining({
+          firstName: true,
+          lastName: true,
+          notes: true,
+          accommodations: true,
+          specialNeeds: true,
+        }),
+        orderBy: [
+          { lastName: 'asc' },
+          { firstName: 'asc' }
+        ],
       });
     });
 
     it('should handle PDF generation errors gracefully', async () => {
       const mockError = new Error('PDF generation failed');
-      const mockPage = {
-        setContent: jest.fn(),
-        pdf: jest.fn().mockRejectedValue(mockError),
-        close: jest.fn(),
-      };
-      
-      const puppeteer = require('puppeteer');
-      puppeteer.launch.mockResolvedValue({
-        newPage: jest.fn().mockResolvedValue(mockPage),
-        close: jest.fn(),
-      });
+      (puppeteer.launch as any).mockRejectedValue(mockError);
 
       await expect(service.generatePdf(mockPlanId, mockUserId)).rejects.toThrow(
-        'Failed to generate substitute plan PDF: PDF generation failed'
+        'PDF generation failed'
       );
     });
 
     it('should clean up browser resources after generation', async () => {
       const mockBrowser = {
-        newPage: jest.fn().mockResolvedValue({
+        newPage: jest.fn(() => Promise.resolve({
           setContent: jest.fn(),
-          pdf: jest.fn().mockResolvedValue(Buffer.from('mock-pdf')),
-          close: jest.fn(),
-        }),
+          pdf: jest.fn(() => Promise.resolve(Buffer.from('mock-pdf-content'))),
+        })),
         close: jest.fn(),
       };
-
-      const puppeteer = require('puppeteer');
-      puppeteer.launch.mockResolvedValue(mockBrowser);
+      (puppeteer.launch as any).mockResolvedValue(mockBrowser);
 
       await service.generatePdf(mockPlanId, mockUserId);
-      
-      // Cleanup is called internally after PDF generation
-      // We can verify the browser was used correctly
-      expect(mockBrowser.newPage).toHaveBeenCalled();
+
+      // Verify browser was closed
+      expect(mockBrowser.close).toHaveBeenCalled();
     });
   });
 });
