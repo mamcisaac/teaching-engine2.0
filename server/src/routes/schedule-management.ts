@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import { authenticateUser } from '../middleware/auth';
+import { authenticate } from '../middleware/auth';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -15,7 +15,7 @@ const batchUpdateSchema = z.object({
 });
 
 // Batch update lesson schedules
-router.patch('/batch-update', authenticateUser, async (req, res) => {
+router.patch('/batch-update', authenticate, async (req: any, res) => {
   try {
     const { updates } = batchUpdateSchema.parse(req.body);
     const userId = req.user!.id;
@@ -60,7 +60,7 @@ router.patch('/batch-update', authenticateUser, async (req, res) => {
 });
 
 // Swap two lessons
-router.post('/swap', authenticateUser, async (req, res) => {
+router.post('/swap', authenticate, async (req: any, res) => {
   try {
     const { lessonId1, lessonId2 } = z.object({
       lessonId1: z.string(),
@@ -111,7 +111,7 @@ router.post('/swap', authenticateUser, async (req, res) => {
 });
 
 // Get schedule for date range
-router.get('/range', authenticateUser, async (req, res) => {
+router.get('/range', authenticate, async (req: any, res) => {
   try {
     const { startDate, endDate } = z.object({
       startDate: z.string().datetime(),
@@ -155,7 +155,7 @@ router.get('/range', authenticateUser, async (req, res) => {
 });
 
 // Move all lessons in a unit
-router.post('/move-unit', authenticateUser, async (req, res) => {
+router.post('/move-unit', authenticate, async (req: any, res) => {
   try {
     const { unitId, startDate } = z.object({
       unitId: z.string(),

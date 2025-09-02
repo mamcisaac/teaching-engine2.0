@@ -40,25 +40,24 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
-  if (!req.user?.id) {
-    res.status(401).json({ error: 'Authentication required' });
-    return;
-  }
-  next();
-};
+// Authentication is handled by middleware in index.ts
 
 /**
  * GET /api/students
  * List all students for the teacher
  */
 router.get('/',
-  requireAuth,
   artifactViewRateLimit,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
+      // Validate user is authenticated
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+
       // Use optimized cached query
-      const students = await getStudentsOptimized(req.user!.id, false);
+      const students = await getStudentsOptimized(req.user.id, false);
       
       res.json({
         students: students.map(student => ({
@@ -84,7 +83,6 @@ router.get('/',
  * Bulk import students from CSV file
  */
 router.post('/import/csv',
-  requireAuth,
   bulkOperationRateLimit,
   csvUpload.single('csvFile'),
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
@@ -141,7 +139,6 @@ router.post('/import/csv',
  * Download CSV template for student import
  */
 router.get('/template/csv',
-  requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const template = generateCSVTemplate();
@@ -161,7 +158,6 @@ router.get('/template/csv',
  * Export all students to CSV
  */
 router.get('/export/csv',
-  requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const csv = await exportStudentsToCSV(req.user!.id);
@@ -181,7 +177,6 @@ router.get('/export/csv',
  * Get storage quota usage report for all students
  */
 router.get('/quota/report',
-  requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const report = await checkClassQuota(req.user!.id);
@@ -213,7 +208,6 @@ router.get('/quota/report',
  * Get storage quota usage for specific student
  */
 router.get('/:id/quota',
-  requireAuth,
   [param('id').isString().isLength({ min: 1 }).withMessage('Student ID is required')],
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     const errors = validationResult(req);
@@ -250,7 +244,6 @@ router.get('/:id/quota',
  * Create a single student
  */
 router.post('/',
-  requireAuth,
   [
     body('firstName').isString().isLength({ min: 1, max: 100 }).withMessage('First name is required (1-100 characters)'),
     body('lastName').isString().isLength({ min: 1, max: 100 }).withMessage('Last name is required (1-100 characters)'),
@@ -261,16 +254,23 @@ router.post('/',
     body('notes').optional().isString().isLength({ max: 1000 }).withMessage('Notes must be less than 1000 characters')
   ],
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      res.status(400).json({ error: 'Validation failed', details: errors.array() });
-      return;
-    }
+    try {
+      // Validate user is authenticated
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
 
-    const createStudent = withDatabaseResilience(async () => {
-      return await prisma.student.create({
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(400).json({ error: 'Validation failed', details: errors.array() });
+        return;
+      }
+
+      // Create student with proper error handling
+      const student = await prisma.student.create({
         data: {
-          userId: req.user!.id,
+          userId: req.user.id,
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           studentNumber: req.body.studentId || `${req.body.firstName[0]}${req.body.lastName[0]}${Date.now()}`,
@@ -279,13 +279,9 @@ router.post('/',
           isActive: true
         }
       });
-    });
-
-    try {
-      const student = await createStudent();
       
       // Invalidate cache after creating student
-      await invalidateUserCache(req.user!.id);
+      await invalidateUserCache(req.user.id);
       
       res.status(201).json({
         id: student.id,
@@ -297,7 +293,17 @@ router.post('/',
       });
     } catch (error) {
       console.error('Failed to create student:', error);
-      res.status(500).json({ error: 'Failed to create student' });
+      
+      // Provide more detailed error message
+      if (error instanceof Error) {
+        if (error.message.includes('Unique constraint')) {
+          res.status(400).json({ error: 'Student with this ID already exists' });
+        } else {
+          res.status(500).json({ error: 'Failed to create student', details: error.message });
+        }
+      } else {
+        res.status(500).json({ error: 'Failed to create student' });
+      }
     }
   }
 );

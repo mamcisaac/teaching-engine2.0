@@ -1097,6 +1097,8 @@ model Note {
   subject      String?  // Optional subject context
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  deletedAt    DateTime? // Soft delete timestamp
+  deletedBy    Int?      // Who deleted the note
   
   // Relations
   student  Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
@@ -1107,4 +1109,5 @@ model Note {
   @@index([teacherId])
   @@index([createdAt])
   @@index([studentId, createdAt])
+  @@index([deletedAt])
 }

@@ -14,6 +14,7 @@ import { SafeHtmlRenderer } from '../../../utils/sanitization';
 import { studentsApi } from '../../../services/api/students';
 import { notesApi } from '../../../services/api/notes';
 import type { Student } from '../../../services/api/students';
+import { RichTextEditor } from '../../../components/Notes/RichTextEditor';
 
 interface LessonDetailViewProps {
   lesson: ETFOLessonPlan;
@@ -418,13 +419,10 @@ export function LessonDetailView({ lesson, unitPlan, unitId, onEdit }: LessonDet
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Note
               </label>
-              <textarea
+              <RichTextEditor
                 value={noteText}
-                onChange={(e) => setNoteText(e.target.value)}
+                onChange={setNoteText}
                 placeholder="Enter your observation..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                rows={4}
-                autoFocus
               />
               <p className="text-xs text-gray-500 mt-1">
                 Quick note for {lesson.title}

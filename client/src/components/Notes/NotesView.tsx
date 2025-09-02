@@ -6,6 +6,7 @@ import { notesApi, type Note } from '../../services/api/notes';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
+import { RichTextEditor, RichTextDisplay } from './RichTextEditor';
 
 interface NotesViewProps {
   studentId?: string;
@@ -144,12 +145,10 @@ export function NotesView({
                         
                         {editingId === note.id ? (
                           <div className="space-y-2">
-                            <textarea
+                            <RichTextEditor
                               value={editingContent}
-                              onChange={(e) => setEditingContent(e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                              rows={3}
-                              autoFocus
+                              onChange={setEditingContent}
+                              placeholder="Edit your note..."
                             />
                             <div className="flex gap-2">
                               <Button 
@@ -170,9 +169,10 @@ export function NotesView({
                           </div>
                         ) : (
                           <div>
-                            <p className="text-sm text-gray-700 whitespace-pre-wrap">
-                              {note.content}
-                            </p>
+                            <RichTextDisplay 
+                              content={note.content} 
+                              className="text-sm text-gray-700"
+                            />
                             <p className="text-xs text-gray-500 mt-2">
                               {format(new Date(note.createdAt), 'h:mm a')}
                               {note.updatedAt !== note.createdAt && 
