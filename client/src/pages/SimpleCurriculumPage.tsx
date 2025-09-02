@@ -1,13 +1,22 @@
 import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { STORAGE_KEYS } from '../constants/subjects';
-import { useCurriculumExpectations } from '../hooks/useETFOPlanning';
+import { 
+  useCurriculumExpectations, 
+  useETFOLessonPlans, 
+  useUnitPlans,
+  type ETFOLessonPlan,
+  type UnitPlan,
+  type CurriculumExpectation 
+} from '../hooks/useETFOPlanning';
 import { safeJsonParse } from '../utils/typeGuards';
 
 // Grade 1 French Immersion curriculum expectations for PEI
 export function SimpleCurriculumPage(): React.ReactElement {
+  const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showUncoveredOnly, setShowUncoveredOnly] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15; // Show 15 expectations per page
   
@@ -21,6 +30,28 @@ export function SimpleCurriculumPage(): React.ReactElement {
   const { data: allExpectations = [], isLoading, error } = useCurriculumExpectations({
     grade: 1
   });
+  
+  // Fetch lesson plans and unit plans to check coverage
+  const { data: lessonPlans = [] } = useETFOLessonPlans();
+  const { data: unitPlans = [] } = useUnitPlans();
+  
+  // Calculate which expectations are covered
+  const coveredIds = useMemo(() => {
+    const ids = new Set<string>();
+    lessonPlans.forEach((lesson: ETFOLessonPlan) => {
+      lesson.expectations?.forEach(exp => {
+        const id = exp.expectation?.id;
+        if (id) ids.add(id);
+      });
+    });
+    unitPlans.forEach((unit: UnitPlan) => {
+      unit.expectations?.forEach(exp => {
+        const id = exp.expectation?.id;
+        if (id) ids.add(id);
+      });
+    });
+    return ids;
+  }, [lessonPlans, unitPlans]);
   
   // Filter expectations based on teacher's selected subjects
   const teacherFilteredExpectations = useMemo(() => {
@@ -44,6 +75,11 @@ export function SimpleCurriculumPage(): React.ReactElement {
       exp.strand.toLowerCase().includes(searchLower) ||
       (exp.substrand && exp.substrand.toLowerCase().includes(searchLower))
     );
+  }
+  
+  // Apply uncovered filter if enabled
+  if (showUncoveredOnly) {
+    filteredExpectations = filteredExpectations.filter(exp => !coveredIds.has(exp.id));
   }
   
   // Calculate pagination
@@ -383,6 +419,28 @@ export function SimpleCurriculumPage(): React.ReactElement {
           </div>
         </div>
         
+        {/* Coverage Filter */}
+        <div style={{
+          marginTop: '16px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px'
+        }}>
+          <input
+            type="checkbox"
+            id="uncovered-only"
+            checked={showUncoveredOnly}
+            onChange={(e) => setShowUncoveredOnly(e.target.checked)}
+            style={{ width: '16px', height: '16px', cursor: 'pointer' }}
+          />
+          <label 
+            htmlFor="uncovered-only"
+            style={{ fontSize: '16px', color: '#374151', cursor: 'pointer' }}
+          >
+            Show uncovered only ({teacherFilteredExpectations.filter(e => !coveredIds.has(e.id)).length} expectations need lessons)
+          </label>
+        </div>
+        
         {/* Results Summary */}
         {(searchQuery || selectedSubject !== 'all') && (
           <div style={{
@@ -440,6 +498,9 @@ export function SimpleCurriculumPage(): React.ReactElement {
                     }}>
                       {expectation.code}
                     </span>
+                    {coveredIds.has(expectation.id) && (
+                      <span style={{ color: '#10b981', fontSize: '18px' }}>✓</span>
+                    )}
                     <span style={{
                       backgroundColor: '#f3f4f6',
                       color: '#374151',
@@ -451,16 +512,39 @@ export function SimpleCurriculumPage(): React.ReactElement {
                       {expectation.strand}
                     </span>
                   </div>
-                  <span style={{
-                    backgroundColor: '#ede9fe',
-                    color: '#6d28d9',
-                    padding: '4px 12px',
-                    borderRadius: '16px',
-                    fontSize: '12px',
-                    fontWeight: '500'
-                  }}>
-                    Grade 1
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {!coveredIds.has(expectation.id) && (
+                      <button
+                        onClick={() => navigate(`/planner/quick-lesson?expectationId=${expectation.id}`)}
+                        aria-label={`Create lesson plan for ${expectation.code}`}
+                        title={`Create a lesson plan for ${expectation.code}`}
+                        className="quick-plan-btn"
+                        style={{
+                          padding: '4px 12px',
+                          backgroundColor: '#3b82f6',
+                          color: 'white',
+                          borderRadius: '6px',
+                          border: 'none',
+                          fontSize: '13px',
+                          cursor: 'pointer',
+                          fontWeight: '500',
+                          transition: 'background-color 0.2s'
+                        }}
+                      >
+                        Quick Plan
+                      </button>
+                    )}
+                    <span style={{
+                      backgroundColor: '#ede9fe',
+                      color: '#6d28d9',
+                      padding: '4px 12px',
+                      borderRadius: '16px',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}>
+                      Grade 1
+                    </span>
+                  </div>
                 </div>
                 
                 <p style={{ 

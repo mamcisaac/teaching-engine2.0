@@ -1,17 +1,20 @@
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import { Breadcrumbs } from '../components/Breadcrumbs';
-import { useCreateETFOLessonPlan, useUnitPlans } from '../hooks/useETFOPlanning';
+import { useCreateETFOLessonPlan, useUnitPlans, useCurriculumExpectations } from '../hooks/useETFOPlanning';
 
 export function QuickLessonPage(): React.ReactElement {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const expectationId = searchParams.get('expectationId');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   // Get user's unit plans to allow selection
   const { data: unitPlans = [] } = useUnitPlans({});
+  const { data: allExpectations = [] } = useCurriculumExpectations({ grade: 1 });
   const createMutation = useCreateETFOLessonPlan();
 
   const [formData, setFormData] = useState({
@@ -33,6 +36,33 @@ export function QuickLessonPage(): React.ReactElement {
       forIEP: ''
     }
   });
+
+  // Pre-populate form if expectationId is provided
+  const [hasShownToast, setHasShownToast] = useState(false);
+  
+  useEffect(() => {
+    if (expectationId && allExpectations.length > 0) {
+      const expectation = allExpectations.find(exp => exp.id === expectationId);
+      if (expectation) {
+        setFormData(prev => ({
+          ...prev,
+          title: `Lesson for ${expectation.code}`,
+          learningGoals: `Students will ${expectation.description.toLowerCase()}`
+        }));
+        // Only show toast once
+        if (!hasShownToast) {
+          toast.info(`Creating lesson for: ${expectation.code}`);
+          setHasShownToast(true);
+        }
+      } else {
+        // Expectation not found - show warning but allow manual creation
+        if (!hasShownToast) {
+          toast.warning('Curriculum expectation not found. You can still create a lesson manually.');
+          setHasShownToast(true);
+        }
+      }
+    }
+  }, [expectationId, allExpectations, hasShownToast]);
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
