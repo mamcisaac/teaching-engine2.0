@@ -1,124 +1,148 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import { authenticateUser } from '../middleware/auth';
+import { authenticate } from '../middleware/auth';
 
 const router = Router();
 const prisma = new PrismaClient();
 
-// Validation schema for batch updates
+// Simple position management - just sequential integers
+const POSITION_GAP = 1000;
+
+// Validation schemas
+const reorderSchema = z.object({
+  lessonId: z.string(),
+  targetDate: z.string().datetime(),
+  targetIndex: z.number().int().min(0)
+});
+
 const batchUpdateSchema = z.object({
   updates: z.array(z.object({
     lessonId: z.string(),
-    date: z.string().datetime()
+    date: z.string().datetime(),
+    position: z.number().int().optional()
   }))
 });
 
-// Batch update lesson schedules
-router.patch('/batch-update', authenticateUser, async (req, res) => {
-  try {
-    const { updates } = batchUpdateSchema.parse(req.body);
-    const userId = req.user!.id;
+// Helper to get date boundaries
+function getDayBoundaries(date: Date): { start: Date, end: Date } {
+  const start = new Date(date);
+  start.setHours(0, 0, 0, 0);
+  
+  const end = new Date(date);
+  end.setHours(23, 59, 59, 999);
+  
+  return { start, end };
+}
 
-    // Verify all lessons belong to the user
-    const lessonIds = updates.map(u => u.lessonId);
-    const lessons = await prisma.eTFOLessonPlan.findMany({
-      where: {
-        id: { in: lessonIds },
-        userId
-      },
-      select: { id: true }
+// Reindex all lessons for a day with clean positions
+async function reindexLessonsForDay(
+  tx: any,
+  userId: number,
+  date: Date
+): Promise<void> {
+  const { start, end } = getDayBoundaries(date);
+  
+  // Get all lessons for the day
+  const lessons = await tx.eTFOLessonPlan.findMany({
+    where: {
+      userId,
+      date: {
+        gte: start,
+        lt: end
+      }
+    },
+    orderBy: { position: 'asc' },
+    select: { id: true }
+  });
+
+  // Update each with clean position
+  for (let i = 0; i < lessons.length; i++) {
+    await tx.eTFOLessonPlan.update({
+      where: { id: lessons[i].id },
+      data: { position: (i + 1) * POSITION_GAP }
     });
+  }
+}
 
-    if (lessons.length !== lessonIds.length) {
-      return res.status(403).json({ 
-        error: 'Some lessons do not belong to you or do not exist' 
+// Reorder a lesson
+router.post('/reorder', authenticate, async (req, res) => {
+  try {
+    if (!req.user?.id) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const userId = req.user.id;
+
+    const { lessonId, targetDate, targetIndex } = reorderSchema.parse(req.body);
+
+    const updatedLesson = await prisma.$transaction(async (tx) => {
+      // Verify ownership
+      const lesson = await tx.eTFOLessonPlan.findFirst({
+        where: { id: lessonId, userId },
+        select: { id: true }
       });
-    }
 
-    // Perform batch update
-    const updatePromises = updates.map(({ lessonId, date }) =>
-      prisma.eTFOLessonPlan.update({
+      if (!lesson) {
+        throw new Error('Lesson not found');
+      }
+
+      const newDate = new Date(targetDate);
+      
+      // Update lesson with temporary position that will sort correctly
+      await tx.eTFOLessonPlan.update({
         where: { id: lessonId },
-        data: { date: new Date(date) }
-      })
-    );
+        data: {
+          date: newDate,
+          position: targetIndex * POSITION_GAP + POSITION_GAP / 2 // Places it between existing positions
+        }
+      });
 
-    await prisma.$transaction(updatePromises);
+      // Reindex the entire day to get clean positions
+      await reindexLessonsForDay(tx, userId, newDate);
 
-    res.json({ 
-      success: true, 
-      message: `Updated ${updates.length} lessons` 
+      // Return the updated lesson
+      return await tx.eTFOLessonPlan.findUnique({
+        where: { id: lessonId },
+        include: {
+          unitPlan: {
+            include: {
+              longRangePlan: {
+                select: { subject: true }
+              }
+            }
+          }
+        }
+      });
     });
-  } catch (error) {
-    console.error('Batch update error:', error);
+
+    res.json({
+      success: true,
+      lesson: updatedLesson
+    });
+  } catch (error: any) {
+    console.error('Reorder error:', error);
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
     }
-    res.status(500).json({ error: 'Failed to update schedule' });
+    if (error.message === 'Lesson not found') {
+      return res.status(404).json({ error: error.message });
+    }
+    res.status(500).json({ error: 'Failed to reorder lesson' });
   }
 });
 
-// Swap two lessons
-router.post('/swap', authenticateUser, async (req, res) => {
+// Get lessons for date range
+router.get('/range', authenticate, async (req, res) => {
   try {
-    const { lessonId1, lessonId2 } = z.object({
-      lessonId1: z.string(),
-      lessonId2: z.string()
-    }).parse(req.body);
-    
-    const userId = req.user!.id;
-
-    // Get both lessons
-    const [lesson1, lesson2] = await Promise.all([
-      prisma.eTFOLessonPlan.findFirst({
-        where: { id: lessonId1, userId },
-        select: { id: true, date: true }
-      }),
-      prisma.eTFOLessonPlan.findFirst({
-        where: { id: lessonId2, userId },
-        select: { id: true, date: true }
-      })
-    ]);
-
-    if (!lesson1 || !lesson2) {
-      return res.status(404).json({ error: 'One or both lessons not found' });
+    if (!req.user?.id) {
+      return res.status(401).json({ error: 'Unauthorized' });
     }
+    const userId = req.user.id;
 
-    // Swap the dates
-    await prisma.$transaction([
-      prisma.eTFOLessonPlan.update({
-        where: { id: lessonId1 },
-        data: { date: lesson2.date }
-      }),
-      prisma.eTFOLessonPlan.update({
-        where: { id: lessonId2 },
-        data: { date: lesson1.date }
-      })
-    ]);
-
-    res.json({ 
-      success: true, 
-      message: 'Lessons swapped successfully' 
-    });
-  } catch (error) {
-    console.error('Swap error:', error);
-    if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: 'Invalid request data', details: error.errors });
-    }
-    res.status(500).json({ error: 'Failed to swap lessons' });
-  }
-});
-
-// Get schedule for date range
-router.get('/range', authenticateUser, async (req, res) => {
-  try {
     const { startDate, endDate } = z.object({
       startDate: z.string().datetime(),
       endDate: z.string().datetime()
     }).parse(req.query);
-    
-    const userId = req.user!.id;
 
     const lessons = await prisma.eTFOLessonPlan.findMany({
       where: {
@@ -132,16 +156,15 @@ router.get('/range', authenticateUser, async (req, res) => {
         unitPlan: {
           include: {
             longRangePlan: {
-              select: {
-                subject: true
-              }
+              select: { subject: true }
             }
           }
         }
       },
-      orderBy: {
-        date: 'asc'
-      }
+      orderBy: [
+        { date: 'asc' },
+        { position: 'asc' }
+      ]
     });
 
     res.json(lessons);
@@ -154,58 +177,194 @@ router.get('/range', authenticateUser, async (req, res) => {
   }
 });
 
-// Move all lessons in a unit
-router.post('/move-unit', authenticateUser, async (req, res) => {
+// Batch update lessons
+router.patch('/batch-update', authenticate, async (req, res) => {
   try {
+    if (!req.user?.id) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const userId = req.user.id;
+
+    const { updates } = batchUpdateSchema.parse(req.body);
+
+    const result = await prisma.$transaction(async (tx) => {
+      const affectedDates = new Set<string>();
+      
+      for (const update of updates) {
+        const newDate = new Date(update.date);
+        affectedDates.add(newDate.toDateString());
+        
+        // Verify ownership
+        const lesson = await tx.eTFOLessonPlan.findFirst({
+          where: { id: update.lessonId, userId },
+          select: { id: true }
+        });
+        
+        if (!lesson) {
+          throw new Error(`Lesson ${update.lessonId} not found`);
+        }
+        
+        await tx.eTFOLessonPlan.update({
+          where: { id: update.lessonId },
+          data: {
+            date: newDate,
+            ...(update.position !== undefined && { position: update.position })
+          }
+        });
+      }
+
+      // Reindex affected dates
+      for (const dateStr of affectedDates) {
+        await reindexLessonsForDay(tx, userId, new Date(dateStr));
+      }
+
+      return { success: true, updatedCount: updates.length };
+    });
+
+    res.json(result);
+  } catch (error: any) {
+    console.error('Batch update error:', error);
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ error: 'Invalid request data', details: error.errors });
+    }
+    if (error.message?.includes('not found')) {
+      return res.status(404).json({ error: error.message });
+    }
+    res.status(500).json({ error: 'Failed to update schedule' });
+  }
+});
+
+// Swap two lessons
+router.post('/swap', authenticate, async (req, res) => {
+  try {
+    if (!req.user?.id) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const userId = req.user.id;
+
+    const { lessonId1, lessonId2 } = z.object({
+      lessonId1: z.string(),
+      lessonId2: z.string()
+    }).parse(req.body);
+
+    await prisma.$transaction(async (tx) => {
+      const [lesson1, lesson2] = await Promise.all([
+        tx.eTFOLessonPlan.findFirst({
+          where: { id: lessonId1, userId },
+          select: { id: true, date: true, position: true }
+        }),
+        tx.eTFOLessonPlan.findFirst({
+          where: { id: lessonId2, userId },
+          select: { id: true, date: true, position: true }
+        })
+      ]);
+
+      if (!lesson1 || !lesson2) {
+        throw new Error('One or both lessons not found');
+      }
+
+      // Swap the lessons
+      await Promise.all([
+        tx.eTFOLessonPlan.update({
+          where: { id: lessonId1 },
+          data: {
+            date: lesson2.date,
+            position: lesson2.position
+          }
+        }),
+        tx.eTFOLessonPlan.update({
+          where: { id: lessonId2 },
+          data: {
+            date: lesson1.date,
+            position: lesson1.position
+          }
+        })
+      ]);
+    });
+
+    res.json({
+      success: true,
+      message: 'Lessons swapped successfully'
+    });
+  } catch (error: any) {
+    console.error('Swap error:', error);
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ error: 'Invalid request data', details: error.errors });
+    }
+    if (error.message === 'One or both lessons not found') {
+      return res.status(404).json({ error: error.message });
+    }
+    res.status(500).json({ error: 'Failed to swap lessons' });
+  }
+});
+
+// Move all lessons in a unit
+router.post('/move-unit', authenticate, async (req, res) => {
+  try {
+    if (!req.user?.id) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    const userId = req.user.id;
+
     const { unitId, startDate } = z.object({
       unitId: z.string(),
       startDate: z.string().datetime()
     }).parse(req.body);
-    
-    const userId = req.user!.id;
 
-    // Get all lessons in the unit
-    const lessons = await prisma.eTFOLessonPlan.findMany({
-      where: {
-        unitPlanId: unitId,
-        userId
-      },
-      orderBy: {
-        date: 'asc'
+    await prisma.$transaction(async (tx) => {
+      const lessons = await tx.eTFOLessonPlan.findMany({
+        where: {
+          unitPlanId: unitId,
+          userId
+        },
+        orderBy: [
+          { date: 'asc' },
+          { position: 'asc' }
+        ]
+      });
+
+      if (lessons.length === 0) {
+        throw new Error('No lessons found in this unit');
+      }
+
+      const firstLessonDate = new Date(lessons[0].date);
+      const newStartDate = new Date(startDate);
+      const daysDiff = Math.floor((newStartDate.getTime() - firstLessonDate.getTime()) / (1000 * 60 * 60 * 24));
+
+      const affectedDates = new Set<string>();
+
+      // Update all lessons
+      await Promise.all(
+        lessons.map(lesson => {
+          const oldDate = new Date(lesson.date);
+          const newDate = new Date(oldDate);
+          newDate.setDate(newDate.getDate() + daysDiff);
+          affectedDates.add(newDate.toDateString());
+          
+          return tx.eTFOLessonPlan.update({
+            where: { id: lesson.id },
+            data: { date: newDate }
+          });
+        })
+      );
+
+      // Reindex all affected dates
+      for (const dateStr of affectedDates) {
+        await reindexLessonsForDay(tx, userId, new Date(dateStr));
       }
     });
 
-    if (lessons.length === 0) {
-      return res.status(404).json({ error: 'No lessons found in this unit' });
-    }
-
-    // Calculate new dates maintaining relative spacing
-    const firstLessonDate = new Date(lessons[0].date);
-    const newStartDate = new Date(startDate);
-    const daysDiff = Math.floor((newStartDate.getTime() - firstLessonDate.getTime()) / (1000 * 60 * 60 * 24));
-
-    // Update all lessons
-    const updatePromises = lessons.map(lesson => {
-      const oldDate = new Date(lesson.date);
-      const newDate = new Date(oldDate);
-      newDate.setDate(newDate.getDate() + daysDiff);
-      
-      return prisma.eTFOLessonPlan.update({
-        where: { id: lesson.id },
-        data: { date: newDate }
-      });
+    res.json({
+      success: true,
+      message: 'Unit moved successfully'
     });
-
-    await prisma.$transaction(updatePromises);
-
-    res.json({ 
-      success: true, 
-      message: `Moved ${lessons.length} lessons in unit` 
-    });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Move unit error:', error);
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
+    }
+    if (error.message === 'No lessons found in this unit') {
+      return res.status(404).json({ error: error.message });
     }
     res.status(500).json({ error: 'Failed to move unit' });
   }
