@@ -8,6 +8,8 @@ import {
   RefreshCw,
   Trash2,
   BookTemplate,
+  PlayCircle,
+  Calendar,
 } from 'lucide-react';
 import React, { useState, lazy, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
@@ -41,6 +43,7 @@ import { isUnitPlanTemplate } from '../types/template';
 import { logger } from '../utils/logger';
 import { generateUnitPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 import { SafeHtmlRenderer } from '../utils/sanitization';
+import { useStartNextUnit, useSchedulingStats } from '../api/domains/schedule';
 
 // Lazy load AI components for better performance
 const AIUnitPlanPanel = lazy(() =>
@@ -77,6 +80,11 @@ function UnitPlansPage(): React.ReactElement {
   const [editingUnit, setEditingUnit] = useState<string | null>(null);
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<PlanTemplate | null>(null);
+  const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
+  
+  // Scheduling hooks
+  const startNextUnit = useStartNextUnit();
+  const { data: schedulingStats } = useSchedulingStats();
 
   // Fetch real long-range plan data from API
   const { data: longRangePlan, isLoading: longRangePlanLoading } = useLongRangePlan(longRangePlanId || '');
@@ -220,6 +228,15 @@ function UnitPlansPage(): React.ReactElement {
     };
     loadUnitPlan({ ...formDataUnit, expectationIds: [] } as UnitPlanFormData);
     setIsCreateModalOpen(true);
+  };
+
+  const handleStartNextUnit = async (subject: string): Promise<void> => {
+    try {
+      await startNextUnit.mutateAsync(subject);
+      setIsScheduleModalOpen(false);
+    } catch (error) {
+      logger.error('Failed to start next unit:', error);
+    }
   };
 
   const handleApplyTemplate = async (template: PlanTemplate): Promise<void> => {
@@ -680,6 +697,19 @@ function UnitPlansPage(): React.ReactElement {
               <BookTemplate className="h-4 w-4" />
               Create from Template
             </Button>
+            {longRangePlan && (
+              <Button
+                className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
+                data-testid="start-next-unit-button"
+                disabled={startNextUnit.isPending}
+                onClick={() => {
+                  setIsScheduleModalOpen(true);
+                }}
+              >
+                <PlayCircle className="h-4 w-4" />
+                Start Next Unit
+              </Button>
+            )}
             <Button
               className="bg-indigo-600 hover:bg-indigo-700 text-white"
               data-testid="create-unit-plan-button"
@@ -1299,6 +1329,106 @@ function UnitPlansPage(): React.ReactElement {
               }}
             >
               {applyTemplate.isPending ? 'Loading...' : 'Use This Template'}
+            </Button>
+          </div>
+        </div>
+      </Dialog>
+
+      {/* Schedule Next Unit Confirmation Modal */}
+      <Dialog open={isScheduleModalOpen} onOpenChange={setIsScheduleModalOpen}>
+        <div className="p-6 max-w-md">
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold flex items-center gap-2">
+              <Calendar className="h-5 w-5 text-green-600" />
+              Start Next Unit
+            </h3>
+          </div>
+
+          <div className="space-y-4">
+            <p className="text-gray-600">
+              This will automatically schedule the next unscheduled unit for{' '}
+              <span className="font-semibold">{longRangePlan?.subject}</span>.
+            </p>
+
+            {schedulingStats && (
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h4 className="text-sm font-medium text-gray-700 mb-2">Current Status</h4>
+                <div className="space-y-1 text-sm text-gray-600">
+                  <div className="flex justify-between">
+                    <span>Total Lessons:</span>
+                    <span className="font-medium">{schedulingStats.total}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Scheduled:</span>
+                    <span className="font-medium text-green-600">{schedulingStats.scheduled}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Unscheduled:</span>
+                    <span className="font-medium text-amber-600">{schedulingStats.unscheduled}</span>
+                  </div>
+                  <div className="flex justify-between pt-2 border-t">
+                    <span>Completion:</span>
+                    <span className="font-medium">{schedulingStats.completionPercentage}%</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p className="text-sm text-blue-800">
+                <strong>What will happen:</strong>
+              </p>
+              <ul className="mt-2 text-sm text-blue-700 space-y-1">
+                <li className="flex items-start gap-1">
+                  <span>•</span>
+                  <span>The next unit in sequence will be identified</span>
+                </li>
+                <li className="flex items-start gap-1">
+                  <span>•</span>
+                  <span>All lessons in that unit will be scheduled to available dates</span>
+                </li>
+                <li className="flex items-start gap-1">
+                  <span>•</span>
+                  <span>Lessons will be distributed evenly across teaching days</span>
+                </li>
+                <li className="flex items-start gap-1">
+                  <span>•</span>
+                  <span>The calendar will update automatically</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-3 pt-6 mt-6 border-t">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setIsScheduleModalOpen(false);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
+              disabled={startNextUnit.isPending}
+              onClick={() => {
+                if (longRangePlan?.subject) {
+                  handleStartNextUnit(longRangePlan.subject);
+                }
+              }}
+            >
+              {startNextUnit.isPending ? (
+                <>
+                  <RefreshCw className="h-4 w-4 animate-spin" />
+                  Scheduling...
+                </>
+              ) : (
+                <>
+                  <PlayCircle className="h-4 w-4" />
+                  Confirm & Schedule
+                </>
+              )}
             </Button>
           </div>
         </div>
