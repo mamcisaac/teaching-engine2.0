@@ -7,7 +7,7 @@
 
 import { logger } from '../logger';
 import { initializeQueues } from './queues/init';
-import { initializeCronJobs } from './cron/cleanup';
+import { startCleanupJobs } from './cron/cleanup';
 
 /**
  * Initialize all background services
@@ -21,7 +21,7 @@ export const initializeServices = async (): Promise<void> => {
     logger.info('✅ Job queues initialized');
     
     // Start cleanup cron jobs
-    initializeCronJobs();
+    startCleanupJobs();
     logger.info('✅ Cleanup cron jobs scheduled');
     
     // Log successful initialization

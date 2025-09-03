@@ -115,7 +115,7 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
         metadata: {
           artifactId,
           type: 'video-thumbnail',
-          extractedAt: thumbnailTime,
+          extractedAt: String(thumbnailTime),
           originalFile: originalName
         }
       }

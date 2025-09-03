@@ -219,7 +219,7 @@ const generateStudentEvidencePDF = async (
   
   if (options.parentFriendly) {
     doc.moveDown();
-    doc.fontSize(10).text('This portfolio showcases your child\'s learning journey and progress in our Grade 1 French Immersion classroom.', { align: 'center', color: 'gray' });
+    doc.fontSize(10).fillColor('gray').text('This portfolio showcases your child\'s learning journey and progress in our Grade 1 French Immersion classroom.', { align: 'center' }).fillColor('black');
   }
   
   doc.moveDown(2);
@@ -493,7 +493,10 @@ const generateClassSummaryPDF = async (
   const fileName = `Class_Learning_Summary_${new Date().toISOString().split('T')[0]}.pdf`;
   const pdfPath = path.join(tempDir, fileName);
 
-  const doc = new PDFDocument({ size: 'LETTER', margins: 50 });
+  const doc = new PDFDocument({ 
+    size: 'LETTER', 
+    margins: { top: 50, bottom: 50, left: 50, right: 50 } 
+  });
   const chunks: Buffer[] = [];
   doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
@@ -522,7 +525,7 @@ const generateClassSummaryPDF = async (
     for (const progress of student.outcomeProgress) {
       const subject = progress.outcome?.subject || 'Other';
       if (!subjectData[subject]) {
-        subjectData[subject] = { students: new Set().add(student.id), artifacts: 0 };
+        subjectData[subject] = { students: new Set<string>().add(student.id), artifacts: 0 };
       } else {
         subjectData[subject].students.add(student.id);
       }

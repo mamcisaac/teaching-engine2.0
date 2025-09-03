@@ -8,7 +8,6 @@ import { param, query, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
 import { generateStudentReport, generateClassReport } from '../services/reportGenerator';
 import { reportGenerationRateLimit } from '../middleware/rateLimit/artifactRateLimit';
-import { withDatabaseResilience } from '../services/errorHandling';
 
 const router = Router();
 const prisma = new PrismaClient();

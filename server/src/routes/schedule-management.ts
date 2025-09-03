@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
-import { authenticateUser } from '../middleware/auth';
+import { authenticate } from '../middleware/auth';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -15,7 +15,7 @@ const batchUpdateSchema = z.object({
 });
 
 // Batch update lesson schedules
-router.patch('/batch-update', authenticateUser, async (req, res) => {
+router.patch('/batch-update', authenticate, async (req, res) => {
   try {
     const { updates } = batchUpdateSchema.parse(req.body);
     const userId = req.user!.id;
@@ -46,7 +46,7 @@ router.patch('/batch-update', authenticateUser, async (req, res) => {
 
     await prisma.$transaction(updatePromises);
 
-    res.json({ 
+    return res.json({ 
       success: true, 
       message: `Updated ${updates.length} lessons` 
     });
@@ -55,12 +55,12 @@ router.patch('/batch-update', authenticateUser, async (req, res) => {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
     }
-    res.status(500).json({ error: 'Failed to update schedule' });
+    return res.status(500).json({ error: 'Failed to update schedule' });
   }
 });
 
 // Swap two lessons
-router.post('/swap', authenticateUser, async (req, res) => {
+router.post('/swap', authenticate, async (req, res) => {
   try {
     const { lessonId1, lessonId2 } = z.object({
       lessonId1: z.string(),
@@ -97,7 +97,7 @@ router.post('/swap', authenticateUser, async (req, res) => {
       })
     ]);
 
-    res.json({ 
+    return res.json({ 
       success: true, 
       message: 'Lessons swapped successfully' 
     });
@@ -106,12 +106,12 @@ router.post('/swap', authenticateUser, async (req, res) => {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
     }
-    res.status(500).json({ error: 'Failed to swap lessons' });
+    return res.status(500).json({ error: 'Failed to swap lessons' });
   }
 });
 
 // Get schedule for date range
-router.get('/range', authenticateUser, async (req, res) => {
+router.get('/range', authenticate, async (req, res) => {
   try {
     const { startDate, endDate } = z.object({
       startDate: z.string().datetime(),
@@ -144,18 +144,18 @@ router.get('/range', authenticateUser, async (req, res) => {
       }
     });
 
-    res.json(lessons);
+    return res.json(lessons);
   } catch (error: unknown) {
     console.error('Get range error:', error);
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid query parameters', details: error.errors });
     }
-    res.status(500).json({ error: 'Failed to get schedule' });
+    return res.status(500).json({ error: 'Failed to get schedule' });
   }
 });
 
 // Move all lessons in a unit
-router.post('/move-unit', authenticateUser, async (req, res) => {
+router.post('/move-unit', authenticate, async (req, res) => {
   try {
     const { unitId, startDate } = z.object({
       unitId: z.string(),
@@ -198,7 +198,7 @@ router.post('/move-unit', authenticateUser, async (req, res) => {
 
     await prisma.$transaction(updatePromises);
 
-    res.json({ 
+    return res.json({ 
       success: true, 
       message: `Moved ${lessons.length} lessons in unit` 
     });
@@ -207,7 +207,7 @@ router.post('/move-unit', authenticateUser, async (req, res) => {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
     }
-    res.status(500).json({ error: 'Failed to move unit' });
+    return res.status(500).json({ error: 'Failed to move unit' });
   }
 });
 

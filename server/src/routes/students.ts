@@ -9,9 +9,8 @@ import multer from 'multer';
 import { PrismaClient } from '@teaching-engine/database';
 import { importStudentsFromCSV, validateCSVFormat, generateCSVTemplate, exportStudentsToCSV } from '../services/csvImport';
 import { checkClassQuota, checkStudentQuota, formatBytes } from '../services/quotaManager';
-import { withDatabaseResilience } from '../services/errorHandling';
 import { bulkOperationRateLimit, artifactViewRateLimit } from '../middleware/rateLimit/artifactRateLimit';
-import { getStudentsOptimized, invalidateUserCache, invalidateStudentCache } from '../services/performanceOptimizer';
+import { getStudentsOptimized, invalidateUserCache } from '../services/performanceOptimizer';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -267,8 +266,8 @@ router.post('/',
       return;
     }
 
-    const createStudent = withDatabaseResilience(async () => {
-      return await prisma.student.create({
+    try {
+      const student = await prisma.student.create({
         data: {
           userId: req.user!.id,
           firstName: req.body.firstName,
@@ -279,10 +278,6 @@ router.post('/',
           isActive: true
         }
       });
-    });
-
-    try {
-      const student = await createStudent();
       
       // Invalidate cache after creating student
       await invalidateUserCache(req.user!.id);

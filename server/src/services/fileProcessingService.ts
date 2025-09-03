@@ -263,7 +263,7 @@ export class FileProcessingService {
           metadata: {
             type: 'video-thumbnail',
             originalFile: metadata.originalName,
-            extractedAt: screenshotTime
+            extractedAt: String(screenshotTime)
           }
         }
       );
@@ -310,18 +310,18 @@ export class FileProcessingService {
             const audioStream = data.streams.find(s => s.codec_type === 'audio');
             if (audioStream) {
               metadata.duration = audioStream.duration ? 
-                parseFloat(audioStream.duration) : 
-                (data.format.duration ? parseFloat(data.format.duration) : undefined);
+                parseFloat(String(audioStream.duration)) : 
+                (data.format.duration ? parseFloat(String(data.format.duration)) : undefined);
               metadata.sampleRate = audioStream.sample_rate ? 
                 parseInt(String(audioStream.sample_rate)) : undefined;
               metadata.bitrate = audioStream.bit_rate ? 
-                parseInt(audioStream.bit_rate) : 
-                (data.format.bit_rate ? parseInt(data.format.bit_rate) : undefined);
+                parseInt(String(audioStream.bit_rate)) : 
+                (data.format.bit_rate ? parseInt(String(data.format.bit_rate)) : undefined);
             }
 
             // Use format duration if stream duration not available
             if (!metadata.duration && data.format.duration) {
-              metadata.duration = parseFloat(data.format.duration);
+              metadata.duration = parseFloat(String(data.format.duration));
             }
 
             resolve();
@@ -472,7 +472,10 @@ export class FileProcessingService {
           console.log(`Duplicate file detected for student ${studentId}: ${existing.fileName}`);
           return {
             isDuplicate: true,
-            existingArtifact: existing
+            existingArtifact: {
+              ...existing,
+              fileName: existing.fileName || ''
+            }
           };
         }
         

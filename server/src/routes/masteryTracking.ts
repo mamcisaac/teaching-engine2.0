@@ -218,7 +218,7 @@ router.post('/update',
         areasForGrowth,
         strengths,
         teacherNotes,
-        strongestEvidence: strongestEvidence ? JSON.stringify(strongestEvidence) : null
+        strongestEvidence: strongestEvidence ? JSON.stringify(strongestEvidence) : undefined
       };
 
       // Upsert progress record
@@ -268,8 +268,8 @@ router.post('/update',
         strongestEvidence: progress.strongestEvidence ? JSON.parse(progress.strongestEvidence as string) : null,
         parentShared: progress.parentShared,
         updatedAt: progress.updatedAt,
-        student: progress.student,
-        outcome: progress.outcome,
+        student: (progress as any).student,
+        outcome: (progress as any).outcome,
         isLevelChange
       });
     } catch (error: unknown) {
@@ -507,7 +507,7 @@ router.get('/student/:studentId',
         }
 
         acc[subject].totalOutcomes++;
-        acc[subject].mastery[record.currentLevel as keyof typeof acc[subject]['mastery']]++;
+        acc[subject].mastery[record.currentLevel as keyof typeof acc[typeof subject]['mastery']]++;
         acc[subject].records.push({
           id: record.id,
           outcomeId: record.outcomeId,
@@ -649,7 +649,7 @@ router.get('/overview/:studentId',
         }
 
         acc[subject].totalOutcomes++;
-        acc[subject].mastery[record.currentLevel as keyof typeof acc[subject]['mastery']]++;
+        acc[subject].mastery[record.currentLevel as keyof typeof acc[typeof subject]['mastery']]++;
         acc[subject].records.push({
           id: record.id,
           outcomeId: record.outcomeId,

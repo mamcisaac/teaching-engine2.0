@@ -110,8 +110,9 @@ export const importStudentsFromCSV = async (
         };
 
         // Check for duplicates
+        let existing: any = null;
         if (!options.updateExisting) {
-          const existing = await prisma.student.findFirst({
+          existing = await prisma.student.findFirst({
             where: {
               userId,
               OR: [
@@ -228,7 +229,7 @@ export const validateCSVFormat = (csvBuffer: Buffer): {
       columns: true,
       skip_empty_lines: true,
       trim: true,
-      max_records: 1 // Just check the header
+      to: 1 // Just check the header
     });
 
     if (records.length === 0) {

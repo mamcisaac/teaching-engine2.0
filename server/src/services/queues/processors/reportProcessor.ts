@@ -73,7 +73,7 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
         options.endDate ? new Date(options.endDate) : undefined
       );
 
-      reportBuffer = reportData.buffer;
+      reportBuffer = reportData.buffer as Buffer;
       fileName = reportData.fileName;
       reportMetadata = {
         studentId,
@@ -100,7 +100,7 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
         options.endDate ? new Date(options.endDate) : undefined
       );
 
-      reportBuffer = reportData.buffer;
+      reportBuffer = reportData.buffer as Buffer;
       fileName = reportData.fileName;
       reportMetadata = {
         type: 'class',

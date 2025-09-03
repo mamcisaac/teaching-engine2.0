@@ -238,8 +238,8 @@ class ETFOLessonPlanService extends BaseService {
     
     // Remove any null/undefined values from where clause
     Object.keys(where).forEach(key => {
-      if (where[key] === null || where[key] === undefined) {
-        delete where[key];
+      if ((where as any)[key] === null || (where as any)[key] === undefined) {
+        delete (where as any)[key];
       }
     });
 
@@ -933,19 +933,14 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     sortOrder: 'asc' | 'desc';
   } {
     const schemas = this.getValidationSchemas();
-    const querySchema = schemas.query as z.ZodSchema<{
-      unitPlanId?: string;
-      startDate?: string;
-      endDate?: string;
-      isSubFriendly?: boolean;
-      assessmentType?: 'diagnostic' | 'formative' | 'summative';
-      hasExpectations?: boolean;
-      limit: number;
-      offset: number;
-      sortBy: 'date' | 'title' | 'createdAt' | 'duration';
-      sortOrder: 'asc' | 'desc';
-    }>;
-    return querySchema.parse(req.query);
+    const parsed = schemas.query.parse(req.query);
+    
+    // Map 'sort' and 'order' to 'sortBy' and 'sortOrder'
+    return {
+      ...parsed,
+      sortBy: parsed.sort,
+      sortOrder: parsed.order,
+    } as any;
   }
 
   private convertFiltersForService(filters: {
