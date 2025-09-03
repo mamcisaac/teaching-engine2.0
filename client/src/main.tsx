@@ -7,9 +7,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'sonner'
 
-import { AuthProvider } from './contexts/AuthContext'
 import { LanguageProvider } from './contexts/LanguageContext'
-import { AppRouter } from './routing/AppRouter'
+import { App } from './App'
 import './index.css'
 import { errorReportingService } from './services/errorReportingService'
 
@@ -51,11 +50,9 @@ if (rootElement) {
       <StrictMode>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
-            <AuthProvider>
-              <LanguageProvider>
-                <AppRouter />
-              </LanguageProvider>
-            </AuthProvider>
+            <LanguageProvider>
+              <App />
+            </LanguageProvider>
             <Toaster closeButton richColors position="top-right" />
           </BrowserRouter>
         </QueryClientProvider>

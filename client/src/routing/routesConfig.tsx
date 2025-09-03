@@ -34,6 +34,9 @@ const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => (
 const AssessmentPage = lazy(() => import('../pages/AssessmentPage').then(module => ({ 
   default: withMainLayout(module.AssessmentPage) 
 })));
+const StudentRosterPage = lazy(() => import('../pages/StudentRosterPage').then(module => ({ 
+  default: withMainLayout(module.StudentRosterPage) 
+})));
 const ArtifactsPage = lazy(() => import('../pages/ArtifactsPage').then(module => ({ 
   default: withMainLayout(module.ArtifactsPage) 
 })));
@@ -285,6 +288,10 @@ export const protectedRoutes: RouteConfig[] = [
   {
     path: '/assessment',
     element: AssessmentPage,
+  },
+  {
+    path: '/roster',
+    element: StudentRosterPage,
   },
   {
     path: '/artifacts',
