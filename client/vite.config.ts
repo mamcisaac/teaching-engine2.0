@@ -172,6 +172,7 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       strictPort: true,
       host: true, // Enable network access
+      allowedHosts: ['c5d5653b4afb.ngrok-free.app'], // Allow ngrok tunnel
       proxy: {
         '/api': {
           target: 'http://localhost:3000',
@@ -201,7 +202,7 @@ export default defineConfig(({ mode }) => {
       host: true,
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:3001',
           changeOrigin: true,
         },
       },
