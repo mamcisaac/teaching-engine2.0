@@ -24,6 +24,7 @@ export interface SampleUnit {
 export interface PublicStatsResponse {
   stats: PublicStats;
   sampleUnits: SampleUnit[];
+  subjectDistribution: Record<string, number>;
   academicYear: string;
   currentDate: string;
 }

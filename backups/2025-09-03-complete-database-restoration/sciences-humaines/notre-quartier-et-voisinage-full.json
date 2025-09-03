@@ -1,0 +1,3235 @@
+{
+  "unitTitle": "Découvrons notre quartier ensemble",
+  "subject": "Sciences humaines",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Qu'est-ce qu'un quartier?",
+      "oneGoal": "Students will understand what a neighborhood is and identify the basic elements that make up their local area",
+      "duration": 45,
+      "keyVocabulary": [
+        "quartier",
+        "voisinage",
+        "maison"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Neighborhood circle where students share one thing they see when they walk outside their home. Introduce the word 'quartier' with welcoming, expansive gestures that suggest community connection.",
+        "materials": [
+          "neighborhood photos from various communities",
+          "community sound effects",
+          "welcome music"
+        ],
+        "visualSupports": "Open arms for community inclusion, pointing gestures for exploration, wide circle for neighborhood concept",
+        "decisionPoints": [
+          "Si un élève ne connaît pas le mot 'quartier' → utiliser des gestes qui montrent 'autour de nous' et pointer vers les fenêtres pour montrer l'extérieur",
+          "Si un élève dit qu'il n'aime pas son quartier → rassurer qu'on peut toujours trouver quelque chose de bien et commencer par identifier une chose positive",
+          "Si un élève veut parler de lieux dangereux → rediriger vers les endroits sécuritaires et les personnes qui aident dans le quartier"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Neighborhood exploration using aerial photos and neighborhood picture books. Students create a 'What Makes a Neighborhood' anchor chart, identifying homes, streets, people, and places. Build understanding that neighborhoods are collections of homes where people live together as a community.",
+        "materials": [
+          "aerial neighborhood photos",
+          "neighborhood books",
+          "anchor chart paper",
+          "markers",
+          "building blocks for 3D modeling"
+        ],
+        "visualSupports": "Pointing to neighborhood elements, building gestures for homes, walking motions for streets, people connections for community",
+        "decisionPoints": [
+          {
+            "question": "How familiar are students with their immediate neighborhood?",
+            "ifYes": "Use specific local examples and encourage students to share familiar places",
+            "ifNo": "Use general neighborhood concepts and focus on universal elements like homes and streets"
+          },
+          {
+            "question": "Should we start with the school area or students' home areas?",
+            "ifYes": "Begin with school neighborhood since it's shared experience",
+            "ifNo": "Start with home neighborhoods to build personal connection first"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Neighborhood appreciation circle where students share one word that describes their neighborhood. End with group chant: 'Mon quartier est spécial!'",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne peut pas penser à un mot pour décrire son quartier → suggérer des mots simples comme 'bon', 'calme', ou 'grand'",
+          "Si un élève utilise des mots négatifs → accepter ses sentiments et ajouter quelque chose de positif comme 'et aussi...'"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Diviser les tâches longues en étapes plus petites et gérables"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Utiliser un dictionnaire visuel français-anglais"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Ma maison dans mon quartier",
+      "oneGoal": "Students will locate their home within their neighborhood and understand their place in the local community",
+      "duration": 45,
+      "keyVocabulary": [
+        "ma",
+        "adresse",
+        "voisin"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Home location circle where students point in the direction of their home and say 'Ma maison est là-bas' (My house is over there). Practice confident pointing and proud expressions about home location.",
+        "materials": [
+          "compass rose",
+          "school neighborhood map",
+          "pointing props"
+        ],
+        "visualSupports": "Confident pointing gestures, proud posture, directional movements",
+        "decisionPoints": [
+          "Si un élève ne sait pas où il habite → commencer par identifier des repères qu'il connaît près de l'école",
+          "Si un élève confond 'maison' et 'quartier' → utiliser ses mains pour montrer 'petit' pour maison et 'grand' pour quartier",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Home mapping activity using simple neighborhood maps and address practice. Students locate their street or area on a neighborhood map and create a personal 'My Home in My Neighborhood' drawing showing their house connected to the school and other important places.",
+        "materials": [
+          "simplified neighborhood maps",
+          "drawing paper",
+          "crayons",
+          "address examples",
+          "home stickers",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Pointing to map locations, connecting lines between places, home symbols, pathway gestures",
+        "decisionPoints": [
+          {
+            "question": "How comfortable are students sharing their address information?",
+            "ifYes": "Use real street names and help students practice their address",
+            "ifNo": "Use example addresses and focus on general neighborhood location concepts"
+          },
+          {
+            "question": "How do we handle students with temporary or unstable housing?",
+            "ifYes": "Focus on current location and emphasize that home is where family is together",
+            "ifNo": "Celebrate all types of homes and housing situations equally"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Home connection sharing where students show their drawings and share one thing they like about where their home is located. Celebrate all locations as special.",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève dit 'Je ne sais pas mon adresse' → rassurer que c'est normal et qu'on peut commencer par des repères qu'il connaît",
+          "Si un élève veut dire son adresse complète → l'encourager mais garder le focus sur les concepts généraux pour tous"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Les maisons de mes voisins",
+      "oneGoal": "Students will explore different types of homes in their neighborhood and understand housing diversity",
+      "duration": 45,
+      "keyVocabulary": [
+        "différent",
+        "appartement",
+        "types"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Housing variety circle where students use their hands to show different house shapes (tall, wide, small, big) while saying 'Les maisons sont différentes' (Houses are different). Celebrate diversity with enthusiastic gestures.",
+        "materials": [
+          "house shape cards",
+          "housing type photos",
+          "celebration music"
+        ],
+        "visualSupports": "Varied hand shapes for different houses, celebratory expressions, inclusive arm movements",
+        "decisionPoints": [
+          "Si un élève ne connaît pas ses voisins → expliquer qu'on peut quand même observer les maisons autour de nous",
+          "Si un élève veut parler de problèmes avec des voisins → rediriger vers l'observation respectueuse des différences",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Housing exploration using photos of different home types (houses, apartments, townhomes, mobile homes). Students create a 'Neighborhood Homes' collage showing various housing types and discuss how different families need different types of homes. Emphasize that all homes provide safety and belonging.",
+        "materials": [
+          "diverse housing photos",
+          "collage materials",
+          "magazines",
+          "glue sticks",
+          "poster board",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Pointing to different house types with equal celebration, sheltering gestures, family inclusion movements",
+        "decisionPoints": [
+          {
+            "question": "How do we discuss housing differences without emphasizing socioeconomic disparities?",
+            "ifYes": "Focus on how different homes meet different family needs and preferences",
+            "ifNo": "Emphasize architectural features and family choice rather than economic factors"
+          },
+          {
+            "question": "How do we ensure all housing types are presented positively?",
+            "ifYes": "Use enthusiastic language and highlight positive features of each housing type",
+            "ifNo": "Focus on universal home functions: safety, shelter, family togetherness"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Home appreciation sharing where students share one positive thing about a different type of home they learned about. End with chant: 'Toutes les maisons sont importantes!'",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève fait des commentaires négatifs sur d'autres maisons → rediriger vers l'appréciation de la diversité: 'Toutes les maisons sont spéciales'",
+          "Si un élève semble triste de sa propre maison → célébrer que chaque maison est parfaite pour sa famille"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Diviser les tâches longues en étapes plus petites et gérables"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Les rues de mon quartier",
+      "oneGoal": "Students will identify and understand the role of streets in connecting neighborhood places and people",
+      "duration": 45,
+      "keyVocabulary": [
+        "rue",
+        "intersection",
+        "chemin"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Street movement circle where students practice walking, stopping, looking both ways, and connecting movements while saying 'Les rues nous connectent' (Streets connect us). Use safe walking gestures.",
+        "materials": [
+          "street signs",
+          "walking rhythm music",
+          "connection ribbons"
+        ],
+        "visualSupports": "Walking motions, stopping gestures, looking both ways, connecting hand movements",
+        "decisionPoints": [
+          "Si un élève a peur de marcher dans certaines rues → discuter des adultes de confiance et des règles de sécurité",
+          "Si un élève veut explorer au-delà des limites → expliquer l'importance de rester dans notre zone sécuritaire"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Street mapping activity using neighborhood street maps and street exploration. Students create a 'Street Connections' map showing how streets connect important places like home, school, stores, and parks. Practice identifying intersections and understanding that streets help people get where they need to go.",
+        "materials": [
+          "neighborhood street maps",
+          "colored pencils",
+          "street stickers",
+          "connection string",
+          "mapping paper"
+        ],
+        "visualSupports": "Tracing street paths with finger, connecting gestures between places, pathway movements",
+        "decisionPoints": [
+          {
+            "question": "What level of detail should we include about street safety?",
+            "ifYes": "Include basic pedestrian safety concepts like looking both ways and using crosswalks",
+            "ifNo": "Focus primarily on streets as connectors and save detailed safety for separate lessons"
+          },
+          {
+            "question": "Should we focus on street names or general navigation concepts?",
+            "ifYes": "Practice some local street names that students might recognize",
+            "ifNo": "Focus on understanding streets as pathways rather than memorizing names"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Street appreciation circle where students share one place they like to go on neighborhood streets. Practice safe walking movements together.",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève n'a jamais remarqué les règles de sécurité → commencer par observer ensemble les feux et les passages piétons",
+          "Si un élève partage une expérience effrayante → valider ses sentiments et renforcer les stratégies de sécurité"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Inviter à créer un livre illustré pour les plus jeunes"
+        ],
+        "pourLangue": [
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Promenade de sécurité dans le quartier",
+      "oneGoal": "Students will identify safety features and practices for navigating their neighborhood",
+      "duration": 60,
+      "keyVocabulary": [
+        "sécurité",
+        "prudent",
+        "attention"
+      ],
+      "opening": {
+        "duration": 10,
+        "activity": "Safety superhero circle where students practice safety poses while saying safety phrases like 'Je regarde à gauche et à droite' (I look left and right). Use confident, alert body language.",
+        "materials": [
+          "safety superhero capes",
+          "safety signal cards",
+          "alertness music"
+        ],
+        "visualSupports": "Alert posture, looking both ways, confident walking stance, protective gestures",
+        "decisionPoints": [
+          "Si un élève a peur de marcher dans certaines rues → discuter des adultes de confiance et des règles de sécurité",
+          "Si un élève veut explorer au-delà des limites → expliquer l'importance de rester dans notre zone sécuritaire"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 40,
+        "activity": "Guided neighborhood safety walk (or virtual tour if walking not possible) identifying safety features like crosswalks, stop signs, sidewalks, and trusted adult helpers. Students practice safe walking behaviors and create a 'Neighborhood Safety' checklist of important safety rules and features.",
+        "materials": [
+          "clipboards",
+          "safety checklists",
+          "identification badges",
+          "safety stickers",
+          "cameras for documentation"
+        ],
+        "visualSupports": "Pointing to safety features, demonstrating safe behaviors, alert scanning movements, protective positioning",
+        "decisionPoints": [
+          {
+            "question": "Should we take an actual neighborhood walk or use virtual exploration?",
+            "ifYes": "Take supervised walk with adequate adult supervision and safety protocols",
+            "ifNo": "Use virtual neighborhood tour with photos and videos of local safety features"
+          },
+          {
+            "question": "How do we teach safety without creating fear or anxiety?",
+            "ifYes": "Frame safety as smart, responsible behavior that helps us explore confidently",
+            "ifNo": "Focus on empowerment and capability rather than dangers and threats"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Safety confidence circle where students share one safety rule they will remember and practice their confident, alert walking stance.",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève n'a jamais remarqué les règles de sécurité → commencer par observer ensemble les feux et les passages piétons",
+          "Si un élève partage une expérience effrayante → valider ses sentiments et renforcer les stratégies de sécurité"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Les commerces près de chez moi",
+      "oneGoal": "Students will identify local businesses and understand how they serve neighborhood residents",
+      "duration": 45,
+      "keyVocabulary": [
+        "magasin",
+        "service",
+        "acheter"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Business discovery circle where students mime different shopping actions (buying food, getting hair cut, filling gas) while saying 'Les magasins nous aident' (Stores help us). Use helpful, service-oriented gestures.",
+        "materials": [
+          "business picture cards",
+          "shopping props",
+          "service music"
+        ],
+        "visualSupports": "Service gestures, helping movements, shopping actions, community connection motions",
+        "decisionPoints": [
+          "Si un élève ne connaît aucun commerce dans son quartier → commencer par identifier où sa famille fait les courses",
+          "Si un élève confond les types de commerces → utiliser des objets concrets pour clarifier (pain = boulangerie)"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Local business exploration using photos of neighborhood businesses and discussion of services they provide. Students create a 'Neighborhood Helpers' chart categorizing businesses by how they help families (food, clothing, services, health). Include businesses from students' experiences.",
+        "materials": [
+          "local business photos",
+          "service category cards",
+          "chart paper",
+          "business stickers",
+          "sorting materials"
+        ],
+        "visualSupports": "Pointing to business services, categorizing gestures, helping movements, community connections",
+        "decisionPoints": [
+          {
+            "question": "Which local businesses are most familiar to students?",
+            "ifYes": "Start with businesses students know and expand to others they might not have visited",
+            "ifNo": "Use universal business types that exist in most communities"
+          },
+          {
+            "question": "How do we represent businesses students may not be able to afford to visit?",
+            "ifYes": "Focus on the services they provide to the community rather than personal shopping experiences",
+            "ifNo": "Emphasize that all businesses help make neighborhoods complete and serve different needs"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Business appreciation circle where students share one neighborhood business they would like to learn more about and why it's helpful to families.",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève veut visiter tous les commerces maintenant → expliquer qu'on va les découvrir petit à petit",
+          "Si un élève dit que sa famille ne va jamais dans les commerces → accepter que chaque famille a ses habitudes"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Encourager le jumelage avec un pair plus fort en français"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Qui travaille dans mon quartier?",
+      "oneGoal": "Students will recognize various workers in their neighborhood and understand how jobs support community life",
+      "duration": 45,
+      "keyVocabulary": [
+        "travailleur",
+        "emploi",
+        "aider"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Community workers circle where students mime different neighborhood jobs (mail delivery, bus driving, store clerk) while saying 'Les travailleurs nous aident' (Workers help us). Use appreciative, respectful gestures.",
+        "materials": [
+          "worker costume pieces",
+          "job action cards",
+          "appreciation music"
+        ],
+        "visualSupports": "Job-specific movements, helping gestures, respectful acknowledgment, community service motions",
+        "decisionPoints": [
+          "Si un élève ne reconnaît aucun travailleur du quartier → commencer par les personnes à l'école comme exemples",
+          "Si un élève veut parler du travail de ses parents → l'encourager mais maintenir le focus sur les travailleurs visibles dans le quartier"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Neighborhood workers exploration using photos and stories of local workers. Students create a 'Community Helpers' book with pages for different neighborhood workers, showing how each job helps families and neighbors. Include both formal and informal community helpers.",
+        "materials": [
+          "worker photos",
+          "book-making materials",
+          "job description cards",
+          "helper badges",
+          "appreciation stickers"
+        ],
+        "visualSupports": "Demonstrating job actions, appreciative pointing, community connection gestures, helpful movements",
+        "decisionPoints": [
+          {
+            "question": "Which neighborhood workers are most visible and relatable to students?",
+            "ifYes": "Feature workers students see regularly like bus drivers, crossing guards, store workers",
+            "ifNo": "Include a variety of workers and explain how all jobs contribute to community life"
+          },
+          {
+            "question": "How do we present all types of work as valuable and important?",
+            "ifYes": "Use equally enthusiastic language and emphasize unique contributions of each job",
+            "ifNo": "Focus on how every worker helps make the neighborhood function well"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Worker appreciation circle where students share one neighborhood worker they want to thank and practice saying 'Merci pour votre travail' (Thank you for your work).",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève veut être tous les métiers à la fois → célébrer son enthousiasme et dire qu'il peut choisir plus tard",
+          "Si un élève dit qu'un métier est 'pour les filles' ou 'pour les garçons' → clarifier que tous les métiers sont pour tout le monde"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Inviter à créer un livre illustré pour les plus jeunes"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Les services publics de mon quartier",
+      "oneGoal": "Students will identify public services in their neighborhood and understand how they benefit everyone",
+      "duration": 45,
+      "keyVocabulary": [
+        "public",
+        "bibliothèque",
+        "parc"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Public service circle where students practice sharing gestures while saying 'C'est pour tout le monde' (It's for everyone). Use inclusive, welcoming movements that show community sharing.",
+        "materials": [
+          "sharing props",
+          "public service pictures",
+          "community music"
+        ],
+        "visualSupports": "Sharing gestures, inclusive arm movements, welcoming expressions, community gathering motions",
+        "decisionPoints": [
+          "Si un élève ne comprend pas ce que sont les services publics → utiliser des exemples concrets qu'il voit chaque jour",
+          "Si un élève demande pourquoi on a besoin de ces services → expliquer simplement comment ils aident les familles"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Public services exploration using photos and field trip planning to local public spaces like library, park, or community center. Students create a 'Public Places for Everyone' map showing services available to all neighborhood residents and discuss how these places help build community.",
+        "materials": [
+          "public service photos",
+          "community maps",
+          "planning sheets",
+          "public space stickers",
+          "sharing symbols"
+        ],
+        "visualSupports": "Pointing to shared spaces, inclusive gestures, community gathering movements, welcoming expressions",
+        "decisionPoints": [
+          {
+            "question": "Which public services are most accessible and familiar to students?",
+            "ifYes": "Start with services students have used and expand to others available in the community",
+            "ifNo": "Focus on universal public services and explain how they serve everyone"
+          },
+          {
+            "question": "How do we explain the concept of 'public' to Grade 1 students?",
+            "ifYes": "Use concrete examples: 'This belongs to everyone in our neighborhood'",
+            "ifNo": "Compare to classroom sharing: just like we share classroom materials, the community shares these places"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Public service appreciation circle where students share one public place they enjoy and explain how it helps everyone in the neighborhood.",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "chemises individuelles (30 chemises)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève n'a jamais utilisé certains services → expliquer que toutes les familles ont des besoins différents",
+          "Si un élève veut savoir qui paie pour ces services → donner une explication simple sur le travail communautaire"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Ma carte du quartier",
+      "oneGoal": "Students will create a simple map of their neighborhood showing important places and landmarks",
+      "duration": 60,
+      "keyVocabulary": [
+        "carte",
+        "plan",
+        "dessiner"
+      ],
+      "opening": {
+        "duration": 10,
+        "activity": "Mapping exploration circle where students use their finger to 'draw' in the air while saying 'Je dessine mon quartier' (I draw my neighborhood). Practice bird's-eye view thinking and spatial visualization.",
+        "materials": [
+          "aerial view photos",
+          "tracing materials",
+          "visualization music"
+        ],
+        "visualSupports": "Bird's-eye view gestures, drawing motions in air, spatial positioning, overview perspectives",
+        "decisionPoints": [
+          "Si un élève trouve difficile de dessiner une carte → l'encourager à commencer par dessiner sa maison et l'école",
+          "Si un élève veut inclure trop de détails → l'aider à choisir les éléments les plus importants"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 40,
+        "activity": "Neighborhood mapping project where students create their own maps showing home, school, and important neighborhood places. Use aerial photos as reference and practice basic mapping concepts like symbols, spatial relationships, and landmarks. Include both walking routes and special places.",
+        "materials": [
+          "large paper",
+          "aerial reference photos",
+          "mapping symbols",
+          "colored pencils",
+          "rulers",
+          "landmark stickers"
+        ],
+        "visualSupports": "Pointing to map elements, spatial relationship gestures, landmark identification, pathway tracing",
+        "decisionPoints": [
+          {
+            "question": "What mapping skills are developmentally appropriate for Grade 1?",
+            "ifYes": "Focus on basic symbols, spatial relationships, and important landmarks",
+            "ifNo": "Keep maps simple with emphasis on meaningful places rather than precise geography"
+          },
+          {
+            "question": "How do we help students understand spatial relationships and scale?",
+            "ifYes": "Use body movements and classroom modeling to demonstrate spatial concepts",
+            "ifNo": "Focus on relative positions (near, far, between) rather than precise distances"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Map sharing gallery walk where students display their maps and share one interesting route or place they included.",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève compare sa carte négativement à d'autres → célébrer que chaque quartier est unique et spécial",
+          "Si un élève ne peut pas lire sa propre carte → l'aider à ajouter des symboles ou images simples"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Fournir des instructions simples, une étape à la fois",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Exploration guidée du quartier",
+      "oneGoal": "Students will take a guided walk through their neighborhood to observe and identify key features",
+      "duration": 90,
+      "keyVocabulary": [
+        "explorer",
+        "observer",
+        "découvrir"
+      ],
+      "opening": {
+        "duration": 15,
+        "activity": "Neighborhood explorer preparation where students receive 'explorer badges' and practice observation skills by describing classroom details. Review safety rules and exploration goals using enthusiastic explorer language.",
+        "materials": [
+          "explorer badges",
+          "clipboards",
+          "observation sheets",
+          "pencils",
+          "safety vests"
+        ],
+        "visualSupports": "Alert observation postures, pointing gestures, scanning movements, confident walking stance",
+        "decisionPoints": [
+          "Si un élève a peur d'explorer certains endroits → respecter ses sentiments et se concentrer sur les lieux sécuritaires",
+          "Si un élève veut aller au-delà des limites établies → rediriger vers l'exploration dans notre zone désignée"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 60,
+        "activity": "Guided neighborhood walk (with adequate adult supervision) to observe and document neighborhood features students have been learning about. Students use observation sheets to note homes, businesses, safety features, and public spaces. Practice applying vocabulary and concepts in real environment.",
+        "materials": [
+          "observation clipboards",
+          "neighborhood exploration sheets",
+          "cameras",
+          "safety equipment",
+          "identification badges"
+        ],
+        "visualSupports": "Pointing to observed features, documentation gestures, alert scanning, respectful observation behaviors",
+        "decisionPoints": [
+          {
+            "question": "What route would be safest and most educational for a class walk?",
+            "ifYes": "Plan route including variety of housing, businesses, safety features, and public spaces",
+            "ifNo": "Stay within school immediate area but ensure diverse neighborhood features are visible"
+          },
+          {
+            "question": "How do we ensure all students can participate in physical exploration?",
+            "ifYes": "Plan inclusive route and alternative participation methods for students with mobility needs",
+            "ifNo": "Provide virtual exploration alternative and ensure meaningful participation for all"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 15,
+        "activity": "Exploration debrief circle where students share one new thing they noticed about their neighborhood and one way they felt connected to their community during the walk.",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève trouve l'exploration fatigante → offrir des pauses et rappeler l'objectif d'apprendre ensemble",
+          "Si un élève fait des découvertes excitantes → l'encourager à les partager avec la classe"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Permettre les explications dans la langue première si nécessaire",
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Les changements dans mon quartier",
+      "oneGoal": "Students will observe how neighborhoods change over time and identify current changes in their area",
+      "duration": 45,
+      "keyVocabulary": [
+        "changement",
+        "nouveau",
+        "ancien"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Change observation circle where students use before-and-after gestures while saying 'Mon quartier change' (My neighborhood changes). Practice noticing differences and showing growth with positive body language.",
+        "materials": [
+          "before/after photo pairs",
+          "change observation cards",
+          "growth music"
+        ],
+        "visualSupports": "Before/after comparison gestures, growth movements, positive change expressions, development motions",
+        "decisionPoints": [
+          "Si un élève ne remarque aucun changement → l'aider en posant des questions spécifiques sur les saisons ou nouveaux bâtiments",
+          "Si un élève s'inquiète des changements → expliquer que les changements peuvent être positifs et aider le quartier"
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Neighborhood change exploration using then-and-now photos of local area and discussion of positive changes like new playgrounds, improved crosswalks, or community gardens. Students create a 'Neighborhood Changes' timeline showing positive developments and discuss how communities grow and improve over time.",
+        "materials": [
+          "historical photos",
+          "current photos",
+          "timeline materials",
+          "change documentation",
+          "positive change examples"
+        ],
+        "visualSupports": "Timeline gestures, development movements, improvement pointing, positive change celebrations",
+        "decisionPoints": [
+          {
+            "question": "How do we discuss neighborhood changes without emphasizing gentrification or displacement?",
+            "ifYes": "Focus on positive improvements that benefit all residents like safety features and public spaces",
+            "ifNo": "Emphasize that good changes help make neighborhoods better for everyone who lives there"
+          },
+          {
+            "question": "How do we help students see change as both normal and sometimes challenging?",
+            "ifYes": "Acknowledge that change can feel big but emphasize community adaptation and resilience",
+            "ifNo": "Focus primarily on positive aspects of community growth and development"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Change appreciation circle where students share one positive change they would like to see in their neighborhood and explain how it would help families.",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève résiste aux changements → valider que parfois les changements sont difficiles mais peuvent être bons aussi",
+          "Si un élève a des idées très créatives pour les changements → célébrer sa créativité et discuter de réalisme"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Utiliser des minuteurs visuels pour structurer le temps"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Comment prendre soin de mon quartier",
+      "oneGoal": "Students will identify ways they can help keep their neighborhood clean, safe, and beautiful",
+      "duration": 45,
+      "keyVocabulary": [
+        "prendre soin",
+        "propre",
+        "responsabilité"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Neighborhood care circle where students practice caring actions (picking up, planting, helping) while saying 'Je prends soin de mon quartier' (I take care of my neighborhood). Use gentle, caring gestures.",
+        "materials": [
+          "caring action cards",
+          "gentle care props",
+          "community care music"
+        ],
+        "visualSupports": "Gentle caring gestures, protective movements, nurturing actions, community stewardship motions",
+        "decisionPoints": [
+          "Si un élève ne sait pas comment aider → commencer par des actions très simples comme ne pas jeter de déchets",
+          "Si un élève propose des idées trop ambitieuses → valider son enthousiasme et rediriger vers des actions à sa portée"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community stewardship project planning where students identify simple ways to care for their neighborhood and plan a class community care action. Create 'Neighborhood Care' pledge cards with age-appropriate actions like proper trash disposal, kindness to neighbors, and appreciation for public spaces.",
+        "materials": [
+          "care action cards",
+          "pledge materials",
+          "community care examples",
+          "planning sheets",
+          "stewardship badges"
+        ],
+        "visualSupports": "Caring action demonstrations, community stewardship gestures, environmental care movements, neighbor kindness actions",
+        "decisionPoints": [
+          {
+            "question": "What neighborhood care activities are age-appropriate for Grade 1 students?",
+            "ifYes": "Focus on simple actions like not littering, being kind to neighbors, appreciating public spaces",
+            "ifNo": "Emphasize attitude and awareness rather than complex environmental actions"
+          },
+          {
+            "question": "How do we encourage environmental stewardship without overwhelming students?",
+            "ifYes": "Present care actions as simple ways to show appreciation for our community",
+            "ifNo": "Focus on small actions that make students feel empowered and capable"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Community care commitment circle where students share one way they will help take care of their neighborhood and practice saying 'Notre quartier est précieux' (Our neighborhood is precious).",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève dit 'Ça ne change rien si je le fais tout seul' → expliquer que chaque personne compte et que les petites actions s'additionnent",
+          "Si un élève veut nettoyer tout le quartier aujourd'hui → célébrer son esprit communautaire et parler de patience"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Fournir des instructions simples, une étape à la fois",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Utiliser des minuteurs visuels pour structurer le temps"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Les transports dans mon quartier",
+      "oneGoal": "Students will identify different ways people move around their neighborhood and understand transportation options",
+      "duration": 45,
+      "keyVocabulary": [
+        "transport",
+        "autobus",
+        "marcher"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Transportation movement circle where students mime different ways of moving through the neighborhood (walking, biking, bus riding) while saying 'Je me déplace dans mon quartier' (I move through my neighborhood). Use confident movement gestures.",
+        "materials": [
+          "transportation pictures",
+          "movement props",
+          "travel music"
+        ],
+        "visualSupports": "Various transportation movements, confident travel gestures, safe movement demonstrations, connection motions",
+        "decisionPoints": [
+          "Si un élève ne connaît aucun moyen de transport dans son quartier → commencer par observer comment les gens se déplacent",
+          "Si un élève s'inquiète de la sécurité des transports → discuter des règles de sécurité et des adultes de confiance"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Transportation exploration using local examples of how people travel in the neighborhood. Students create a 'Getting Around Our Neighborhood' chart showing different transportation options and discuss how various transportation methods help people reach work, school, stores, and friends.",
+        "materials": [
+          "transportation photos",
+          "local transit information",
+          "movement charts",
+          "transportation stickers",
+          "route examples"
+        ],
+        "visualSupports": "Demonstrating transportation methods, route tracing gestures, connection movements, accessibility considerations",
+        "decisionPoints": [
+          {
+            "question": "Which transportation methods are most common in students' neighborhood?",
+            "ifYes": "Feature prevalent local transportation and explain how they serve the community",
+            "ifNo": "Include variety of transportation options and discuss how different methods meet different needs"
+          },
+          {
+            "question": "How do we discuss transportation equity and accessibility?",
+            "ifYes": "Emphasize that good neighborhoods have many transportation options for all residents",
+            "ifNo": "Focus on how transportation connects people to important places and opportunities"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Transportation appreciation circle where students share their favorite way to travel through the neighborhood and explain why it's helpful for families.",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève veut essayer tous les moyens de transport → expliquer qu'on peut observer et apprendre d'abord",
+          "Si un élève a peur de certains transports → valider ses sentiments et se concentrer sur ceux qui le rassurent"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Les espaces verts de mon quartier",
+      "oneGoal": "Students will identify parks, gardens, and green spaces in their neighborhood and understand their importance",
+      "duration": 45,
+      "keyVocabulary": [
+        "parc",
+        "jardin",
+        "nature"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Nature connection circle where students practice growing movements and deep breathing while saying 'J'aime les espaces verts' (I love green spaces). Use peaceful, nature-connected gestures.",
+        "materials": [
+          "nature sounds",
+          "plant props",
+          "peaceful nature music"
+        ],
+        "visualSupports": "Growing plant gestures, peaceful breathing, nature appreciation movements, outdoor connection motions",
+        "decisionPoints": [
+          "Si un élève n'a pas d'espaces verts près de chez lui → expliquer que même un petit arbre ou des fleurs comptent",
+          "Si un élève veut jouer dans tous les espaces verts → discuter des règles et du respect de la nature"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Green spaces exploration using photos of local parks, gardens, and natural areas. Students create a 'Green Spaces in Our Neighborhood' guide showing where people can enjoy nature, play, and relax. Discuss how green spaces help people feel peaceful and healthy.",
+        "materials": [
+          "green space photos",
+          "nature identification guides",
+          "mapping materials",
+          "nature stickers",
+          "outdoor activity cards"
+        ],
+        "visualSupports": "Pointing to natural features, peaceful gestures, outdoor activity demonstrations, nature appreciation expressions",
+        "decisionPoints": [
+          {
+            "question": "What green spaces are accessible to students in their neighborhood?",
+            "ifYes": "Feature spaces students can visit and plan possible exploration visits",
+            "ifNo": "Include variety of green spaces and discuss their benefits for community well-being"
+          },
+          {
+            "question": "How do we discuss environmental benefits at an age-appropriate level?",
+            "ifYes": "Focus on how green spaces help people feel good and provide places for wildlife",
+            "ifNo": "Emphasize personal benefits: fresh air, peaceful feelings, places to play and exercise"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Green space appreciation circle where students share one activity they enjoy in outdoor spaces and explain why green spaces are important for neighborhoods.",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "certificats d'encouragement (30 copies)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'y a rien de vert dans son quartier → l'aider à chercher même les plus petits éléments naturels",
+          "Si un élève veut ramasser tout ce qu'il voit dans la nature → enseigner le respect en laissant les choses en place"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Rencontrer des voisins",
+      "oneGoal": "Students will understand how to be good neighbors and appreciate the people who live nearby",
+      "duration": 45,
+      "keyVocabulary": [
+        "rencontrer",
+        "saluer",
+        "gentil"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Friendly neighbor circle where students practice welcoming waves and friendly greetings while saying 'Bonjour, voisin!' (Hello, neighbor!). Use warm, respectful friendship gestures.",
+        "materials": [
+          "greeting cards",
+          "friendship props",
+          "welcoming music"
+        ],
+        "visualSupports": "Friendly waving, warm greeting expressions, respectful acknowledgment, community connection gestures",
+        "decisionPoints": [
+          "Si un élève est très timide pour rencontrer des voisins → commencer par un simple sourire et 'bonjour'",
+          "Si un élève veut aller frapper à toutes les portes → expliquer l'importance du respect et des limites"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Neighbor appreciation activity using stories and photos of diverse neighborhood residents. Students create 'Good Neighbor' cards showing kind actions like waving hello, helping with small tasks, and being respectful. Practice appropriate social boundaries while building community connection.",
+        "materials": [
+          "neighbor story books",
+          "card-making materials",
+          "kindness examples",
+          "social boundary guides",
+          "appreciation stickers"
+        ],
+        "visualSupports": "Friendly interaction demonstrations, respectful boundary gestures, community kindness actions, neighbor appreciation expressions",
+        "decisionPoints": [
+          {
+            "question": "How do we encourage social connection while teaching appropriate stranger safety?",
+            "ifYes": "Emphasize friendly acknowledgment and kindness while maintaining appropriate boundaries with adults",
+            "ifNo": "Focus on community appreciation and respect rather than direct interaction with unknown adults"
+          },
+          {
+            "question": "How do we represent the diversity of neighborhood residents positively?",
+            "ifYes": "Use inclusive examples showing neighbors of different ages, backgrounds, and family structures",
+            "ifNo": "Emphasize that good neighbors come in all varieties and all contribute to community life"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Neighbor appreciation circle where students share one way they can be a good neighbor and practice saying 'Nous sommes une communauté' (We are a community).",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève partage une interaction négative avec un voisin → valider ses sentiments et se concentrer sur les relations positives possibles",
+          "Si un élève veut devenir le meilleur ami de tous les voisins → apprécier son enthousiasme social et discuter d'attentes réalistes"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Les événements du quartier",
+      "oneGoal": "Students will learn about community events and celebrations that bring neighbors together",
+      "duration": 45,
+      "keyVocabulary": [
+        "événement",
+        "célébration",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Community celebration circle where students practice celebration movements and sounds while saying 'Nous célébrons ensemble!' (We celebrate together!). Use joyful, inclusive gathering gestures.",
+        "materials": [
+          "celebration props",
+          "community event photos",
+          "festive music"
+        ],
+        "visualSupports": "Joyful celebration movements, inclusive gathering gestures, community participation actions, festive expressions",
+        "decisionPoints": [
+          "Si un élève n'a jamais participé à un événement de quartier → expliquer qu'il y en aura peut-être un bientôt",
+          "Si un élève veut organiser un énorme événement tout de suite → canaliser son enthousiasme vers des idées plus simples"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community events exploration using photos and information about local neighborhood gatherings like street festivals, park events, library programs, and cultural celebrations. Students create a 'Neighborhood Events' calendar and discuss how events help neighbors meet each other and celebrate their community.",
+        "materials": [
+          "event photos",
+          "calendar materials",
+          "celebration examples",
+          "community gathering information",
+          "event stickers"
+        ],
+        "visualSupports": "Pointing to event activities, celebration demonstrations, community gathering gestures, inclusive participation motions",
+        "decisionPoints": [
+          {
+            "question": "What community events are appropriate and accessible for young families?",
+            "ifYes": "Feature family-friendly events that welcome children and provide inclusive activities",
+            "ifNo": "Focus on events that build community connection and celebrate neighborhood diversity"
+          },
+          {
+            "question": "How do we include diverse cultural celebrations that happen in the neighborhood?",
+            "ifYes": "Represent variety of cultural celebrations and emphasize how they enrich community life",
+            "ifNo": "Show that neighborhoods are stronger when they celebrate many different traditions"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Event planning circle where students share one type of neighborhood event they would enjoy and explain how it would help neighbors feel connected.",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève propose un événement très coûteux → rediriger vers des activités simples et amusantes",
+          "Si un élève ne peut pas penser à un événement → suggérer des idées simples comme un pique-nique"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Problèmes et solutions du quartier",
+      "oneGoal": "Students will identify simple neighborhood challenges and brainstorm age-appropriate solutions",
+      "duration": 45,
+      "keyVocabulary": [
+        "problème",
+        "solution",
+        "résoudre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Problem-solving circle where students practice thinking poses and solution gestures while saying 'Ensemble, nous trouvons des solutions' (Together, we find solutions). Use confident, collaborative thinking movements.",
+        "materials": [
+          "thinking props",
+          "solution examples",
+          "collaborative music"
+        ],
+        "visualSupports": "Thinking postures, collaborative gestures, solution-finding movements, confident problem-solving expressions",
+        "decisionPoints": [
+          "Si un élève se concentre trop sur les problèmes négatifs → rediriger vers des solutions positives et l'espoir",
+          "Si un élève propose des solutions irréalistes → valider sa créativité et guider vers des solutions pratiques"
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community problem-solving exploration using age-appropriate examples like littering, damaged playground equipment, or lack of crosswalks. Students work in groups to brainstorm simple solutions and create 'Community Solutions' posters showing how neighbors can work together to make improvements.",
+        "materials": [
+          "problem scenario cards",
+          "solution brainstorming sheets",
+          "poster materials",
+          "collaboration examples",
+          "solution stickers"
+        ],
+        "visualSupports": "Collaborative thinking gestures, solution presentation movements, community action demonstrations, positive change expressions",
+        "decisionPoints": [
+          {
+            "question": "What neighborhood problems are appropriate to discuss with Grade 1 students?",
+            "ifYes": "Focus on concrete, solvable problems that students can understand and potentially help address",
+            "ifNo": "Avoid complex social issues and focus on environmental and safety concerns with clear solutions"
+          },
+          {
+            "question": "How do we maintain optimism while acknowledging real community concerns?",
+            "ifYes": "Frame problems as opportunities for community cooperation and positive change",
+            "ifNo": "Emphasize that communities are strongest when neighbors work together to solve challenges"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Solution sharing circle where students present their group's solution ideas and practice saying 'Nous pouvons faire la différence' (We can make a difference).",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève est trop timide pour présenter → lui permettre de présenter avec un partenaire ou de contribuer autrement",
+          "Si un élève critique les idées d'autres groupes → rediriger vers l'appréciation et les commentaires constructifs"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Utiliser des minuteurs visuels pour structurer le temps"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Projet d'amélioration du quartier",
+      "oneGoal": "Students will plan a simple project to improve their neighborhood and understand their role as active citizens",
+      "duration": 60,
+      "keyVocabulary": [
+        "projet",
+        "améliorer",
+        "citoyen"
+      ],
+      "opening": {
+        "duration": 10,
+        "activity": "Young citizen circle where students practice leadership poses and community action gestures while saying 'Je suis un petit citoyen' (I am a young citizen). Use empowered, capable movement language.",
+        "materials": [
+          "citizen badges",
+          "leadership props",
+          "empowerment music"
+        ],
+        "visualSupports": "Leadership postures, citizen action gestures, community contribution movements, empowered expressions",
+        "decisionPoints": [
+          "Si un élève ne se sent pas capable de faire du leadership → rassurer que chaque contribution compte, même petite",
+          "Si un élève veut tout diriger seul → encourager le travail d'équipe et le partage des responsabilités"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 40,
+        "activity": "Community improvement project planning where students choose a simple, achievable project like creating appreciation cards for neighborhood workers, making a classroom community garden, or organizing a neighborhood cleanup pledge. Plan project steps and assign roles to give every student meaningful participation.",
+        "materials": [
+          "project planning sheets",
+          "improvement examples",
+          "citizen action cards",
+          "project materials",
+          "collaboration tools"
+        ],
+        "visualSupports": "Planning gestures, project development movements, citizen action demonstrations, collaborative working motions",
+        "decisionPoints": [
+          {
+            "question": "What improvement project is realistic and achievable for Grade 1 students?",
+            "ifYes": "Choose project that students can complete successfully and feel proud of their contribution",
+            "ifNo": "Focus on projects that build community connection and appreciation rather than complex solutions"
+          },
+          {
+            "question": "How do we ensure the project feels meaningful without being overwhelming?",
+            "ifYes": "Break project into small steps and emphasize how young people's actions matter to community",
+            "ifNo": "Focus on the positive impact of caring actions rather than the scale of community challenges"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Project commitment circle where students share their role in the improvement project and practice saying 'Mon action compte' (My action matters).",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève ne sait pas quel rôle choisir → l'aider à identifier ses forces et intérêts personnels",
+          "Si un élève veut prendre tous les rôles → expliquer l'importance du travail d'équipe et de la spécialisation"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Permettre les explications dans la langue première si nécessaire"
+        ],
+        "pourPEI": [
+          "Fournir des instructions simples, une étape à la fois",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Présenter mon quartier",
+      "oneGoal": "Students will create a presentation about their neighborhood to share with others",
+      "duration": 60,
+      "keyVocabulary": [
+        "présenter",
+        "partager",
+        "fier"
+      ],
+      "opening": {
+        "duration": 10,
+        "activity": "Neighborhood ambassador circle where students practice proud presentation poses while saying 'Je présente mon quartier avec fierté' (I present my neighborhood with pride). Use confident, ambassadorial gestures.",
+        "materials": [
+          "ambassador badges",
+          "presentation props",
+          "pride music"
+        ],
+        "visualSupports": "Confident presentation postures, proud gesturing, ambassadorial expressions, community pride demonstrations",
+        "decisionPoints": [
+          "Si un élève est nerveux de présenter → lui rappeler qu'il connaît bien son quartier et peut parler de ce qu'il aime",
+          "Si un élève ne trouve rien de positif à présenter → l'aider à identifier au moins une chose spéciale dans son quartier"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 40,
+        "activity": "Neighborhood presentation creation where students choose their favorite neighborhood features to share through drawings, maps, photos, or mini-demonstrations. Create individual or small group presentations highlighting what makes their neighborhood special and why they feel proud to live there.",
+        "materials": [
+          "presentation materials",
+          "neighborhood documentation",
+          "creation supplies",
+          "sharing tools",
+          "pride celebration items"
+        ],
+        "visualSupports": "Presentation gestures, proud sharing movements, neighborhood feature demonstrations, community celebration expressions",
+        "decisionPoints": [
+          {
+            "question": "What format would work best for student neighborhood presentations?",
+            "ifYes": "Choose format that allows all students to participate confidently and showcase their learning",
+            "ifNo": "Provide multiple presentation options to accommodate different strengths and comfort levels"
+          },
+          {
+            "question": "How do we help students feel proud of their neighborhood regardless of its challenges?",
+            "ifYes": "Focus on positive features, community strengths, and personal connections to place",
+            "ifNo": "Emphasize that every neighborhood has special qualities and caring people"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Presentation celebration circle where students share one highlight from their neighborhood presentation preparation and practice audience appreciation.",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève n'arrive pas à choisir un point fort → l'aider en posant des questions spécifiques sur ce qu'il a appris",
+          "Si un élève critique sa propre présentation → rediriger vers les aspects positifs et l'effort fourni"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Je suis fier de mon quartier",
+      "oneGoal": "Students will reflect on their neighborhood learning and express pride in their local community",
+      "duration": 45,
+      "keyVocabulary": [
+        "fier",
+        "appartenir",
+        "chez-moi"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Pride reflection circle where students hold their hearts while saying 'Mon quartier est dans mon cœur' (My neighborhood is in my heart). Use gentle, loving, pride-filled gestures.",
+        "materials": [
+          "heart props",
+          "reflection music",
+          "pride celebration items"
+        ],
+        "visualSupports": "Heart-centered gestures, loving expressions, pride postures, community appreciation movements",
+        "decisionPoints": [
+          "Si un élève ne se sent pas fier de son quartier → l'aider à identifier les aspects positifs et ses propres connections",
+          "Si un élève compare négativement son quartier à d'autres → célébrer l'unicité et les qualités spéciales de chaque quartier"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Neighborhood pride reflection where students create a personal 'Why I Love My Neighborhood' book or poster, drawing and writing about their favorite discoveries from the unit. Include reflections on community connections, special places, and ways they can contribute to neighborhood life.",
+        "materials": [
+          "reflection books",
+          "pride creation materials",
+          "neighborhood memory items",
+          "celebration supplies",
+          "love expression tools"
+        ],
+        "visualSupports": "Reflective gestures, pride creation movements, community love expressions, appreciation demonstrations",
+        "decisionPoints": [
+          {
+            "question": "How do we help students articulate what they've learned about neighborhoods?",
+            "ifYes": "Use reflection prompts that help students connect learning to personal experience and community appreciation",
+            "ifNo": "Focus on feelings and connections rather than detailed academic recall"
+          },
+          {
+            "question": "How do we end the unit with genuine pride regardless of neighborhood challenges?",
+            "ifYes": "Emphasize community strengths, personal connections, and potential for positive contribution",
+            "ifNo": "Focus on universal neighborhood benefits: belonging, community, places where families live and grow"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Community pride celebration circle where students share one way their learning about neighborhoods has made them feel more connected to their community. End with group chant: 'Notre quartier, notre fierté!' (Our neighborhood, our pride!)",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève a du mal à articuler sa connection → l'aider avec des questions guidées sur ses apprentissages favoris",
+          "Si un élève exprime de la tristesse de finir l'unité → célébrer que son apprentissage continue dans sa vie quotidienne"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Respect de la diversité",
+        "items": [
+          "Démontre une compréhension de base en respect de la diversité",
+          "Participe activement aux activités de respect de la diversité",
+          "Montre du progrès dans respect de la diversité",
+          "Applique les apprentissages de respect de la diversité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Participation communautaire",
+        "items": [
+          "Démontre une compréhension de base en participation communautaire",
+          "Participe activement aux activités de participation communautaire",
+          "Montre du progrès dans participation communautaire",
+          "Applique les apprentissages de participation communautaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Compréhension culturelle",
+        "items": [
+          "Démontre une compréhension de base en compréhension culturelle",
+          "Participe activement aux activités de compréhension culturelle",
+          "Montre du progrès dans compréhension culturelle",
+          "Applique les apprentissages de compréhension culturelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Respect de la diversité",
+        "Participation communautaire",
+        "Compréhension culturelle",
+        "Expression personnelle"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🌈",
+          "☀️",
+          "☁️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en sciences humaines\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nQu'est-ce qu'un quartier?, Ma maison dans mon quartier, Les maisons de mes voisins, Les rues de mon quartier, Promenade de sécurité dans le quartier\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nPartagez vos traditions familiales et culturelles avec votre enfant.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nChaque famille a des histoires importantes à partager!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Partage d'histoires familiales",
+        "description": "Partagez des histoires ou traditions familiales liées au thème",
+        "timeRequired": "15 minutes",
+        "materials": "Photos familiales (optionnel)",
+        "frenchSupport": "Racontez dans votre langue maternelle si préféré"
+      },
+      {
+        "title": "Exploration communautaire",
+        "description": "Visitez un lieu dans la communauté lié à l'unité",
+        "timeRequired": "Variable",
+        "materials": "Transport",
+        "frenchSupport": "Discutez dans la langue la plus confortable"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "quartier",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'un quartier?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"quartier\"",
+          "Utilisez \"quartier\" dans une phrase simple",
+          "Trouvez des images représentant \"quartier\"",
+          "Faites des gestes pour \"quartier\""
+        ]
+      },
+      {
+        "word": "voisinage",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'un quartier?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voisinage\"",
+          "Utilisez \"voisinage\" dans une phrase simple",
+          "Trouvez des images représentant \"voisinage\"",
+          "Faites des gestes pour \"voisinage\""
+        ]
+      },
+      {
+        "word": "maison",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'un quartier?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"maison\"",
+          "Utilisez \"maison\" dans une phrase simple",
+          "Trouvez des images représentant \"maison\"",
+          "Faites des gestes pour \"maison\""
+        ]
+      },
+      {
+        "word": "ma",
+        "lesson": 2,
+        "context": "Ma maison dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ma\"",
+          "Utilisez \"ma\" dans une phrase simple",
+          "Trouvez des images représentant \"ma\"",
+          "Faites des gestes pour \"ma\""
+        ]
+      },
+      {
+        "word": "adresse",
+        "lesson": 2,
+        "context": "Ma maison dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"adresse\"",
+          "Utilisez \"adresse\" dans une phrase simple",
+          "Trouvez des images représentant \"adresse\"",
+          "Faites des gestes pour \"adresse\""
+        ]
+      },
+      {
+        "word": "voisin",
+        "lesson": 2,
+        "context": "Ma maison dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voisin\"",
+          "Utilisez \"voisin\" dans une phrase simple",
+          "Trouvez des images représentant \"voisin\"",
+          "Faites des gestes pour \"voisin\""
+        ]
+      },
+      {
+        "word": "différent",
+        "lesson": 3,
+        "context": "Les maisons de mes voisins",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"différent\"",
+          "Utilisez \"différent\" dans une phrase simple",
+          "Trouvez des images représentant \"différent\"",
+          "Faites des gestes pour \"différent\""
+        ]
+      },
+      {
+        "word": "appartement",
+        "lesson": 3,
+        "context": "Les maisons de mes voisins",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"appartement\"",
+          "Utilisez \"appartement\" dans une phrase simple",
+          "Trouvez des images représentant \"appartement\"",
+          "Faites des gestes pour \"appartement\""
+        ]
+      },
+      {
+        "word": "types",
+        "lesson": 3,
+        "context": "Les maisons de mes voisins",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"types\"",
+          "Utilisez \"types\" dans une phrase simple",
+          "Trouvez des images représentant \"types\"",
+          "Faites des gestes pour \"types\""
+        ]
+      },
+      {
+        "word": "rue",
+        "lesson": 4,
+        "context": "Les rues de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rue\"",
+          "Utilisez \"rue\" dans une phrase simple",
+          "Trouvez des images représentant \"rue\"",
+          "Faites des gestes pour \"rue\""
+        ]
+      },
+      {
+        "word": "intersection",
+        "lesson": 4,
+        "context": "Les rues de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"intersection\"",
+          "Utilisez \"intersection\" dans une phrase simple",
+          "Trouvez des images représentant \"intersection\"",
+          "Faites des gestes pour \"intersection\""
+        ]
+      },
+      {
+        "word": "chemin",
+        "lesson": 4,
+        "context": "Les rues de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chemin\"",
+          "Utilisez \"chemin\" dans une phrase simple",
+          "Trouvez des images représentant \"chemin\"",
+          "Faites des gestes pour \"chemin\""
+        ]
+      },
+      {
+        "word": "sécurité",
+        "lesson": 5,
+        "context": "Promenade de sécurité dans le quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sécurité\"",
+          "Utilisez \"sécurité\" dans une phrase simple",
+          "Trouvez des images représentant \"sécurité\"",
+          "Faites des gestes pour \"sécurité\""
+        ]
+      },
+      {
+        "word": "prudent",
+        "lesson": 5,
+        "context": "Promenade de sécurité dans le quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"prudent\"",
+          "Utilisez \"prudent\" dans une phrase simple",
+          "Trouvez des images représentant \"prudent\"",
+          "Faites des gestes pour \"prudent\""
+        ]
+      },
+      {
+        "word": "attention",
+        "lesson": 5,
+        "context": "Promenade de sécurité dans le quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"attention\"",
+          "Utilisez \"attention\" dans une phrase simple",
+          "Trouvez des images représentant \"attention\"",
+          "Faites des gestes pour \"attention\""
+        ]
+      },
+      {
+        "word": "magasin",
+        "lesson": 6,
+        "context": "Les commerces près de chez moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"magasin\"",
+          "Utilisez \"magasin\" dans une phrase simple",
+          "Trouvez des images représentant \"magasin\"",
+          "Faites des gestes pour \"magasin\""
+        ]
+      },
+      {
+        "word": "service",
+        "lesson": 6,
+        "context": "Les commerces près de chez moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"service\"",
+          "Utilisez \"service\" dans une phrase simple",
+          "Trouvez des images représentant \"service\"",
+          "Faites des gestes pour \"service\""
+        ]
+      },
+      {
+        "word": "acheter",
+        "lesson": 6,
+        "context": "Les commerces près de chez moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"acheter\"",
+          "Utilisez \"acheter\" dans une phrase simple",
+          "Trouvez des images représentant \"acheter\"",
+          "Faites des gestes pour \"acheter\""
+        ]
+      },
+      {
+        "word": "travailleur",
+        "lesson": 7,
+        "context": "Qui travaille dans mon quartier?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"travailleur\"",
+          "Utilisez \"travailleur\" dans une phrase simple",
+          "Trouvez des images représentant \"travailleur\"",
+          "Faites des gestes pour \"travailleur\""
+        ]
+      },
+      {
+        "word": "emploi",
+        "lesson": 7,
+        "context": "Qui travaille dans mon quartier?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"emploi\"",
+          "Utilisez \"emploi\" dans une phrase simple",
+          "Trouvez des images représentant \"emploi\"",
+          "Faites des gestes pour \"emploi\""
+        ]
+      },
+      {
+        "word": "aider",
+        "lesson": 7,
+        "context": "Qui travaille dans mon quartier?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aider\"",
+          "Utilisez \"aider\" dans une phrase simple",
+          "Trouvez des images représentant \"aider\"",
+          "Faites des gestes pour \"aider\""
+        ]
+      },
+      {
+        "word": "public",
+        "lesson": 8,
+        "context": "Les services publics de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"public\"",
+          "Utilisez \"public\" dans une phrase simple",
+          "Trouvez des images représentant \"public\"",
+          "Faites des gestes pour \"public\""
+        ]
+      },
+      {
+        "word": "bibliothèque",
+        "lesson": 8,
+        "context": "Les services publics de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bibliothèque\"",
+          "Utilisez \"bibliothèque\" dans une phrase simple",
+          "Trouvez des images représentant \"bibliothèque\"",
+          "Faites des gestes pour \"bibliothèque\""
+        ]
+      },
+      {
+        "word": "parc",
+        "lesson": 8,
+        "context": "Les services publics de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"parc\"",
+          "Utilisez \"parc\" dans une phrase simple",
+          "Trouvez des images représentant \"parc\"",
+          "Faites des gestes pour \"parc\""
+        ]
+      },
+      {
+        "word": "carte",
+        "lesson": 9,
+        "context": "Ma carte du quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"carte\"",
+          "Utilisez \"carte\" dans une phrase simple",
+          "Trouvez des images représentant \"carte\"",
+          "Faites des gestes pour \"carte\""
+        ]
+      },
+      {
+        "word": "plan",
+        "lesson": 9,
+        "context": "Ma carte du quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"plan\"",
+          "Utilisez \"plan\" dans une phrase simple",
+          "Trouvez des images représentant \"plan\"",
+          "Faites des gestes pour \"plan\""
+        ]
+      },
+      {
+        "word": "dessiner",
+        "lesson": 9,
+        "context": "Ma carte du quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dessiner\"",
+          "Utilisez \"dessiner\" dans une phrase simple",
+          "Trouvez des images représentant \"dessiner\"",
+          "Faites des gestes pour \"dessiner\""
+        ]
+      },
+      {
+        "word": "explorer",
+        "lesson": 10,
+        "context": "Exploration guidée du quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"explorer\"",
+          "Utilisez \"explorer\" dans une phrase simple",
+          "Trouvez des images représentant \"explorer\"",
+          "Faites des gestes pour \"explorer\""
+        ]
+      },
+      {
+        "word": "observer",
+        "lesson": 10,
+        "context": "Exploration guidée du quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"observer\"",
+          "Utilisez \"observer\" dans une phrase simple",
+          "Trouvez des images représentant \"observer\"",
+          "Faites des gestes pour \"observer\""
+        ]
+      },
+      {
+        "word": "découvrir",
+        "lesson": 10,
+        "context": "Exploration guidée du quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"découvrir\"",
+          "Utilisez \"découvrir\" dans une phrase simple",
+          "Trouvez des images représentant \"découvrir\"",
+          "Faites des gestes pour \"découvrir\""
+        ]
+      },
+      {
+        "word": "changement",
+        "lesson": 11,
+        "context": "Les changements dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"changement\"",
+          "Utilisez \"changement\" dans une phrase simple",
+          "Trouvez des images représentant \"changement\"",
+          "Faites des gestes pour \"changement\""
+        ]
+      },
+      {
+        "word": "nouveau",
+        "lesson": 11,
+        "context": "Les changements dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nouveau\"",
+          "Utilisez \"nouveau\" dans une phrase simple",
+          "Trouvez des images représentant \"nouveau\"",
+          "Faites des gestes pour \"nouveau\""
+        ]
+      },
+      {
+        "word": "ancien",
+        "lesson": 11,
+        "context": "Les changements dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ancien\"",
+          "Utilisez \"ancien\" dans une phrase simple",
+          "Trouvez des images représentant \"ancien\"",
+          "Faites des gestes pour \"ancien\""
+        ]
+      },
+      {
+        "word": "prendre soin",
+        "lesson": 12,
+        "context": "Comment prendre soin de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"prendre soin\"",
+          "Utilisez \"prendre soin\" dans une phrase simple",
+          "Trouvez des images représentant \"prendre soin\"",
+          "Faites des gestes pour \"prendre soin\""
+        ]
+      },
+      {
+        "word": "propre",
+        "lesson": 12,
+        "context": "Comment prendre soin de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"propre\"",
+          "Utilisez \"propre\" dans une phrase simple",
+          "Trouvez des images représentant \"propre\"",
+          "Faites des gestes pour \"propre\""
+        ]
+      },
+      {
+        "word": "responsabilité",
+        "lesson": 12,
+        "context": "Comment prendre soin de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"responsabilité\"",
+          "Utilisez \"responsabilité\" dans une phrase simple",
+          "Trouvez des images représentant \"responsabilité\"",
+          "Faites des gestes pour \"responsabilité\""
+        ]
+      },
+      {
+        "word": "transport",
+        "lesson": 13,
+        "context": "Les transports dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"transport\"",
+          "Utilisez \"transport\" dans une phrase simple",
+          "Trouvez des images représentant \"transport\"",
+          "Faites des gestes pour \"transport\""
+        ]
+      },
+      {
+        "word": "autobus",
+        "lesson": 13,
+        "context": "Les transports dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"autobus\"",
+          "Utilisez \"autobus\" dans une phrase simple",
+          "Trouvez des images représentant \"autobus\"",
+          "Faites des gestes pour \"autobus\""
+        ]
+      },
+      {
+        "word": "marcher",
+        "lesson": 13,
+        "context": "Les transports dans mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"marcher\"",
+          "Utilisez \"marcher\" dans une phrase simple",
+          "Trouvez des images représentant \"marcher\"",
+          "Faites des gestes pour \"marcher\""
+        ]
+      },
+      {
+        "word": "jardin",
+        "lesson": 14,
+        "context": "Les espaces verts de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jardin\"",
+          "Utilisez \"jardin\" dans une phrase simple",
+          "Trouvez des images représentant \"jardin\"",
+          "Faites des gestes pour \"jardin\""
+        ]
+      },
+      {
+        "word": "nature",
+        "lesson": 14,
+        "context": "Les espaces verts de mon quartier",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nature\"",
+          "Utilisez \"nature\" dans une phrase simple",
+          "Trouvez des images représentant \"nature\"",
+          "Faites des gestes pour \"nature\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

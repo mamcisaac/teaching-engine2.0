@@ -2,8 +2,8 @@ import { lazy } from 'react';
 import type { ComponentType } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { ETFOLevel } from '../hooks/useWorkflowState';
 import { withMainLayout } from '../components/withMainLayout';
+import type { ETFOLevel } from '../hooks/useWorkflowState';
 
 // Lazy load pages - import based on actual export patterns
 const LoginPage = lazy(() => import('../pages/LoginPage').then(module => ({ default: module.LoginPage }))); // named export

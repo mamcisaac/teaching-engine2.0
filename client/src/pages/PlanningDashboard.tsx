@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { STORAGE_KEYS } from '../constants/subjects';
 import { useAuth } from '../contexts/AuthContext';
 import { useOnboarding } from '../contexts/OnboardingContext';
-import { STORAGE_KEYS } from '../constants/subjects';
 import { useCurriculumExpectations } from '../hooks/useETFOPlanning';
 import { safeJsonParse } from '../utils/typeGuards';
 

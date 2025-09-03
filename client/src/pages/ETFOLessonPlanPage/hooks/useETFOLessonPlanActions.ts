@@ -144,8 +144,8 @@ export function useETFOLessonPlanActions({
       logger.error('Failed to apply template', {
         operation: 'applyTemplate',
         unitId,
-        templateId: template?.id,
-        templateName: template?.title,
+        templateId: template.id,
+        templateName: template.title,
         error: error instanceof Error ? error.message : 'Unknown error',
         errorType: error instanceof Error ? error.constructor.name : typeof error
       });

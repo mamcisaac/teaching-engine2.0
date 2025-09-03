@@ -1,5 +1,3 @@
-import React, { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { format, startOfDay, endOfDay, addDays } from 'date-fns';
 import { 
   Calendar, 
@@ -17,15 +15,18 @@ import {
   GripVertical,
   ClipboardCheck
 } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { SubjectDashboard } from '../components/SubjectDashboard';
+import { Alert, AlertDescription } from '../components/ui/alert';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { STORAGE_KEYS } from '../constants/subjects';
+import { useAuth } from '../contexts/AuthContext';
 import { useETFOLessonPlans, useUnitPlans, useLongRangePlans } from '../hooks/useETFOPlanning';
 import { safeJsonParse } from '../utils/typeGuards';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
-import { Alert, AlertDescription } from '../components/ui/alert';
-import { SubjectDashboard } from '../components/SubjectDashboard';
 
 export function TeachingDashboard(): React.ReactElement {
   const navigate = useNavigate();
@@ -97,7 +98,7 @@ export function TeachingDashboard(): React.ReactElement {
         {/* Hero Section - What Am I Teaching Right Now? */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Bonjour, {user?.name?.split(' ')[0] || 'Teacher'}! 👋
+            Bonjour, {user?.name.split(' ')[0] || 'Teacher'}! 👋
           </h1>
           <p className="text-lg text-gray-600">
             {format(today, 'EEEE, MMMM d, yyyy')} • Week {format(today, 'w')} of the School Year

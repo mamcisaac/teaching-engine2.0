@@ -1,0 +1,116 @@
+{
+  "unitTitle": "Soustraction et relations inverses",
+  "evaluationDate": "2025-08-21",
+  "evaluator": "Critic Agent",
+  "
+": {
+    "simplicity": {
+      "score": 92,
+      "evaluation": "Excellente simplicité",
+      "evidence": [
+        "Chaque leçon a UN objectif clair et focalisé",
+        "Exactement 3 points de décision par leçon - pas de surcharge",
+        "Instructions suffisamment simples pour un enseignant suppléant",
+        "Évite la complexité artificielle et les scripts rigides"
+      ],
+      "improvements": [
+        "Quelques leçons d'extension pourraient être encore plus simples",
+        "S'assurer que les matériaux restent minimaux et accessibles"
+      ]
+    },
+    "progression": {
+      "score": 89,
+      "evaluation": "Très bonne progression",
+      "evidence": [
+        "Construction claire: concepts concrets → visuels → abstraits",
+        "Vocabulaire spiralé efficacement à travers les leçons",
+        "Connexions explicites entre les leçons ('Construis sur Leçon X')",
+        "Progression logique: enlever → compter à l'envers → relations inverses",
+        "14 leçons cœur couvrent systématiquement tous les concepts",
+        "6 extensions offrent pratique et enrichissement sans nouveau contenu"
+      ],
+      "improvements": [
+        "Quelques transitions entre leçons pourraient être plus fluides",
+        "Assurer que la révision est suffisante pour les concepts clés"
+      ]
+    },
+    "authenticity": {
+      "score": 90,
+      "evaluation": "Excellent support pour vrais enseignants",
+      "evidence": [
+        "Points de décision basés sur des situations réelles de classe",
+        "Flexibilité intégrée avec des options 'si... alors...'",
+        "Reconnaissance des imprévisibilités (attention spans, intérêts)",
+        "Soutien de la pensée pédagogique, pas de scripts",
+        "Connexions au monde réel authentiques et pertinentes",
+        "Adapté aux apprenants de 6-7 ans avec supports appropriés"
+      ],
+      "improvements": [
+        "Pourrait inclure plus d'options pour différents styles d'apprentissage",
+        "Quelques activités pourraient bénéficier de plus d'alternatives"
+      ]
+    }
+  },
+  "overallScore": 90,
+  "qualitativeAssessment": {
+    "strengths": [
+      "Progression exceptionnellement bien structurée du concret à l'abstrait",
+      "Focus clair sur la soustraction comme 'enlever' avec manipulatifs",
+      "Intégration naturelle des relations inverses addition-soustraction",
+      "Utilisation extensive d'histoires, jeux et situations réelles",
+      "Support différencié avec leçons cœur vs extensions",
+      "Décisions pédagogiques réalistes et pratiques",
+      "Vocabulaire mathématique introduit graduellement et renforcé",
+      "Activités engageantes adaptées aux jeunes apprenants"
+    ],
+    "areas_for_improvement": [
+      "Quelques leçons d'extension pourraient être simplifiées davantage",
+      "Plus d'options pour les apprenants kinesthésiques",
+      "Considérer plus de supports visuels pour les apprenants ELL",
+      "Évaluation formative pourrait être plus intégrée"
+    ],
+    "pedagogical_soundness": "Très solide - basé sur principes de développement de l'enfant et meilleures pratiques mathématiques pour jeunes apprenants",
+    "practical_usability": "Excellente - peut être utilisé efficacement par enseignants réguliers et suppléants",
+    "age_appropriateness": "Parfaitement adapté aux enfants de 6-7 ans avec supports concrets et temps d'attention respectés"
+  },
+  "curriculum_alignment": {
+    "expectations_coverage": "Complet",
+    "details": [
+      "M1 (Nombre et numération): Couvert excellemment avec progression 0-10",
+      "M2 (Mesure): Intégré naturellement dans contextes réels",
+      "M3 (Géométrie): Inclus via manipulatifs et arrangements spatiaux",
+      "M4 (Modélisation): Au cœur de l'approche avec histoires et problèmes"
+    ]
+  },
+  "key_pedagogical_features": [
+    "Manipulation extensive d'objets concrets",
+    "Stories mathématiques pour contextualiser",
+    "Jeux engageants pour la pratique",
+    "Relations inverses addition-soustraction",
+    "Progression du comptage à l'envers",
+    "Stratégies multiples de résolution",
+    "Évaluation authentique et célébration"
+  ],
+  "risk_factors": [
+    {
+      "risk": "Surcharge cognitive possible dans leçons d'extension",
+      "mitigation": "Monitorer attentivement et simplifier au besoin"
+    },
+    {
+      "risk": "Gestion des matériaux avec jeunes enfants",
+      "mitigation": "Procédures claires de distribution/rangement"
+    },
+    {
+      "risk": "Différences de rythme d'apprentissage",
+      "mitigation": "Structure flexible et options multiples intégrées"
+    }
+  ],
+  "recommendation": "APPROUVÉ - Cette unité respecte excellemment les principes de simplicité, progression et authenticité. Elle est prête pour l'implémentation avec des ajustements mineurs selon les besoins spécifiques de la classe.",
+  "implementation_notes": [
+    "Préparer les matériaux manipulatifs en avance",
+    "Établir des routines claires pour les transitions",
+    "Adapter le rythme selon les besoins observés",
+    "Utiliser l'évaluation formative continue",
+    "Célébrer les progrès individuels et collectifs"
+  ]
+}

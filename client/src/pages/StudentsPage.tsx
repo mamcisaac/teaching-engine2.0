@@ -1,6 +1,7 @@
+import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, ViewGridIcon } from '@heroicons/react/24/outline';
 import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
-import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, ViewGridIcon } from '@heroicons/react/24/outline';
+
 import { studentsApi, type Student } from '../services/api/students';
 
 

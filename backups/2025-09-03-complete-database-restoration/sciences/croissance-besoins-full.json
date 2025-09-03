@@ -1,0 +1,3141 @@
+{
+  "unitTitle": "Croissance et besoins des êtres vivants",
+  "subject": "Sciences de la nature",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Les êtres vivants autour de nous",
+      "oneGoal": "Students will identify and distinguish between living and non-living things in their environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "vivant",
+        "grandir",
+        "respirer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Living things hunt - students point to living and non-living items in the classroom",
+        "materials": [
+          "objets de classe variés (25 articles)",
+          "plantes de classe (3-4 plantes)",
+          "images d'êtres vivants et non-vivants (30 cartes)",
+          "tableau d'affichage pour classification"
+        ],
+        "visualSupports": "living vs non-living chart with pictures",
+        "decisionPoints": [
+          "Si l'élève confond vivant et non-vivant → Montrer qu'un animal bouge seul, pas un jouet",
+          "Si l'élève ne participe pas à la chasse → L'inviter à pointer avec son doigt d'abord"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux : marcher comme un chat, voler comme un oiseau (2 minutes)",
+          "Grandir comme une plante : s'accroupir puis s'étirer vers le soleil (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on sorting exploration of classroom items into living and non-living categories",
+        "materials": [
+          "tapis de tri (8 tapis pour groupes)",
+          "objets de classe variés (40 items)",
+          "plantes de classe (4-5 plantes)",
+          "animaux jouets (15-20 animaux)",
+          "roches et objets non-vivants (20 items)",
+          "bacs de rangement pour le tri (8 bacs)"
+        ],
+        "visualSupports": "large sorting chart, picture cards with living/non-living examples",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils identifier les caractéristiques de base du vivant (grandir, avoir besoin d'eau/nourriture)?",
+            "ifYes": "Passer à la comparaison des besoins des plantes et des animaux",
+            "ifNo": "Utiliser des exemples plus concrets comme animaux de compagnie vs jouets"
+          },
+          {
+            "question": "Les élèves comprennent-ils que les êtres vivants bougent et changent?",
+            "ifYes": "Explorer comment les plantes bougent vers la lumière",
+            "ifNo": "Démontrer avec des mouvements corporels et des plantes qui se penchent"
+          },
+          {
+            "question": "Les élèves peuvent-ils expliquer pourquoi quelque chose est vivant?",
+            "ifYes": "Demander de prédire les besoins de nouveaux êtres vivants",
+            "ifNo": "Revenir aux exemples les plus évidents avec plus de support visuel"
+          }
+        ],
+        "movementBreaks": [
+          "Mime des besoins : boire de l'eau, chercher la lumière, respirer l'air (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Circle sharing - each student shares one living thing they found",
+        "materials": [
+          "tableau d'affichage pour résultats (1 grand tableau)",
+          "autocollants pour récompenser la participation (30 autocollants)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne comprend pas le partage → Modéliser en montrant son propre exemple"
+        ],
+        "movementBreaks": [
+          "Cercle magique : se passer un objet spécial pour parler (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des objets concrets familiers pour la classification",
+          "Fournir des cartes visuelles avec des exemples clairs vivant/non-vivant",
+          "Permettre le travail en paires avec un partenaire plus expérimenté",
+          "Réduire le nombre d'objets à classer (5-8 au lieu de 10-15)"
+        ],
+        "pourAvancés": [
+          "Demander d'expliquer leurs critères de classification aux autres",
+          "Créer leurs propres catégories plus nuancées (ex: vivant, était vivant, jamais vivant)",
+          "Chercher des exemples plus difficiles à classifier dans la classe",
+          "Enseigner leurs découvertes aux élèves qui ont besoin d'aide"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes et des actions pour 'vivant' (bouger, grandir)",
+          "Fournir des mots-clés en anglais et français côte à côte",
+          "Encourager l'usage de la langue maternelle pour expliquer les concepts",
+          "Utiliser beaucoup d'images et de supports visuels concrets"
+        ],
+        "pourPEI": [
+          "Utiliser des supports sensoriels pour explorer les concepts",
+          "Permettre des réponses non-verbales (pointer, dessiner)",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "De quoi ont besoin les plantes pour vivre?",
+      "oneGoal": "Students will identify that plants need water, sunlight, and air to stay alive and healthy",
+      "duration": 45,
+      "keyVocabulary": [
+        "eau",
+        "soleil",
+        "air"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Plant observation - examining classroom plants and discussing what keeps them healthy",
+        "materials": [
+          "plantes de classe (4-5 plantes variées)",
+          "loupes (8-10 loupes)",
+          "arrosoir transparent",
+          "lampe de croissance ou lampe de bureau"
+        ],
+        "visualSupports": "plant needs poster with sun, water drop, and air symbols",
+        "decisionPoints": [
+          "Si l'élève ne voit pas les besoins des plantes → Montrer une plante fanée vs une plante saine",
+          "Si l'élève dit que les plantes n'ont pas besoin d'eau → Faire toucher la terre sèche"
+        ],
+        "movementBreaks": [
+          "Devenir une plante assoiffée : se pencher et avoir l'air fatigué (2 minutes)",
+          "Être arrosé : se redresser et sourire au soleil (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration creating plant needs diagrams and observing plant placement near windows",
+        "materials": [
+          "plantes de classe (4-5 plantes)",
+          "feuilles d'observation (25 feuilles)",
+          "crayons de couleur (ensembles de classe)",
+          "outils de soin des plantes (arrosoirs, vaporisateurs)",
+          "thermomètre simple pour sentir la chaleur du soleil"
+        ],
+        "visualSupports": "illustrated plant needs chart, before/after plant photos",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils pourquoi les plantes sont placées près des fenêtres?",
+            "ifYes": "Explorer ce qui arrive quand les plantes n'ont pas assez de lumière",
+            "ifNo": "Démontrer en déplaçant une plante loin de la source de lumière"
+          },
+          {
+            "question": "Les élèves peuvent-ils faire le lien entre l'eau et la croissance des plantes?",
+            "ifYes": "Discuter de la quantité d'eau nécessaire (pas trop, pas trop peu)",
+            "ifNo": "Utiliser une analogie avec leur propre soif et besoin de boire"
+          },
+          {
+            "question": "Les élèves comprennent-ils que les plantes 'respirent' l'air?",
+            "ifYes": "Introduire l'idée que les plantes nettoient l'air pour nous",
+            "ifNo": "Faire des exercices de respiration pour montrer l'importance de l'air"
+          }
+        ],
+        "movementBreaks": [
+          "Créer un jardin humain : chacun est une plante qui pousse vers la fenêtre (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Plant needs song - singing about water, sun, and air while doing actions",
+        "materials": [
+          "carnets d'observation personnels (25 carnets)",
+          "étiquettes pour identifier nos plantes (15 étiquettes)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève dessine mal → L'encourager, l'important est l'observation pas l'art"
+        ],
+        "movementBreaks": [
+          "Dessiner dans l'air : tracer les formes des plantes avec les bras (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des plantes réelles pour observer les besoins concrets",
+          "Fournir des supports visuels simples avec soleil, eau, air illustrés",
+          "Permettre l'exploration tactile des matériaux (terre, eau)",
+          "Simplifier à 2 besoins principaux: eau et lumière"
+        ],
+        "pourAvancés": [
+          "Prédire ce qui arrive sans chaque besoin spécifique",
+          "Comparer différents types de plantes et leurs besoins",
+          "Créer un guide de soins pour différentes plantes de classe",
+          "Expliquer pourquoi chaque besoin est important"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'eau' (verser), 'soleil' (rayons), 'air' (souffler)",
+          "Associer chaque mot français à un objet concret visible",
+          "Permettre l'usage de dessins pour expliquer les besoins",
+          "Utiliser des cognates anglais-français (air = air)"
+        ],
+        "pourPEI": [
+          "Utiliser tous les sens pour explorer les besoins des plantes",
+          "Permettre des manipulations sensorielles avec eau et terre",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Expérience: les plantes et l'eau",
+      "oneGoal": "Students will conduct a simple experiment to observe how plants react when they have or don't have water",
+      "duration": 45,
+      "keyVocabulary": [
+        "expérience",
+        "arroser",
+        "observer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Prediction making - what will happen to plants with and without water?",
+        "materials": [
+          "plantes identiques (4 paires pour démonstration et groupes)",
+          "feuilles de prédiction (25 feuilles)",
+          "étiquettes pour identifier les plantes",
+          "calendrier d'observation classe"
+        ],
+        "visualSupports": "experiment setup diagram showing two plants",
+        "decisionPoints": [
+          "Si l'élève prédit mal → Dire que c'est une bonne hypothèse, on va voir ensemble",
+          "Si l'élève ne veut pas toucher la terre → Respecter et lui donner une cuillère"
+        ],
+        "movementBreaks": [
+          "Faire les gestes d'arroser : tenir un arrosoir imaginaire et verser doucement (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on science experiment setting up watered and unwatered plant observations",
+        "materials": [
+          "plantes identiques (8 plantes en 4 paires)",
+          "eau dans arrosoirs transparents",
+          "tasses à mesurer (4 tasses)",
+          "journaux d'observation (25 journaux)",
+          "étiquettes avec mots et images",
+          "bacs de protection pour les plantes"
+        ],
+        "visualSupports": "step-by-step experiment chart, daily observation tracking sheet",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des prédictions précises sur les besoins en eau des plantes?",
+            "ifYes": "Demander de prédire le délai pour voir des changements visibles",
+            "ifNo": "Les guider avec des questions sur leurs propres sensations de soif"
+          },
+          {
+            "question": "Les élèves comprennent-ils le concept de comparaison scientifique?",
+            "ifYes": "Introduire l'idée de 'groupe témoin' avec des mots simples",
+            "ifNo": "Utiliser l'analogie de comparer deux amis pour voir qui court plus vite"
+          },
+          {
+            "question": "Les élèves peuvent-ils expliquer ce qu'ils s'attendent à observer?",
+            "ifYes": "Demander de dessiner leurs prédictions avec détails",
+            "ifNo": "Fournir des choix multiples avec images pour leurs prédictions"
+          }
+        ],
+        "movementBreaks": [
+          "Danse de la croissance : partir petit, grandir lentement avec la musique (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Initial observations recording - drawing what both plants look like today",
+        "materials": [
+          "feuilles d'expérience avec dessins simples (25 feuilles)",
+          "crayons gras pour dessiner les changements (ensembles de classe)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne voit pas de changement → L'aider à comparer avec une photo d'avant"
+        ],
+        "movementBreaks": [
+          "Résultats de science : lever le pouce pour 'pousse bien', baisser pour 'pas bien' (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des prédictions simples avec images avant/après",
+          "Fournir des plantes identiques pour comparaison directe",
+          "Permettre le travail en équipes pour partager les observations",
+          "Utiliser des phrases simples pour décrire ce qu'ils voient"
+        ],
+        "pourAvancés": [
+          "Prédire le timeline exact des changements observables",
+          "Suggérer d'autres expériences similaires à tester",
+          "Créer un journal scientifique détaillé avec dessins et notes",
+          "Expliquer les résultats à d'autres groupes"
+        ],
+        "pourLangue": [
+          "Utiliser des mots simples: 'avec eau', 'sans eau', 'différent'",
+          "Permettre les descriptions en langue maternelle puis traduire",
+          "Utiliser beaucoup de gestes pour 'arroser', 'sécher', 'changer'",
+          "Fournir du vocabulaire visuel avec images et mots"
+        ],
+        "pourPEI": [
+          "Utiliser différentes façons de montrer les prédictions (dessins, gestes)",
+          "Permettre des observations sensorielles (toucher la terre sèche/humide)",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Les plantes ont besoin de lumière",
+      "oneGoal": "Students will understand that plants need light to grow and will observe what happens without sunlight",
+      "duration": 45,
+      "keyVocabulary": [
+        "lumière",
+        "pousser",
+        "vert"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Light hunt - finding all the light sources that help our classroom plants",
+        "materials": [
+          "flashlights",
+          "classroom plants"
+        ],
+        "visualSupports": "light source identification chart",
+        "decisionPoints": [
+          "Si l'élève dit que la plante ne change pas → Montrer la différence avec une règle",
+          "Si l'élève veut changer d'expérience → Expliquer qu'on doit rester patient en science"
+        ],
+        "movementBreaks": [
+          "Être des scientifiques : tenir une loupe imaginaire et regarder partout (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration creating light and dark conditions for plant observation",
+        "materials": [
+          "plants",
+          "cardboard boxes",
+          "clear containers",
+          "observation tools"
+        ],
+        "visualSupports": "light experiment setup photos, plant growth comparison charts",
+        "decisionPoints": [
+          {
+            "question": "Les élèves remarquent-ils que les plantes se penchent vers les sources de lumière?",
+            "ifYes": "Explorer pourquoi les plantes se déplacent vers la lumière",
+            "ifNo": "Démontrer avec les plantes de classe près des fenêtres"
+          },
+          {
+            "question": "Les élèves peuvent-ils identifier différentes sources de lumière?",
+            "ifYes": "Comparer la lumière naturelle vs artificielle pour les plantes",
+            "ifNo": "Se concentrer sur le soleil comme source principale de lumière"
+          },
+          {
+            "question": "Les élèves comprennent-ils le lien entre lumière et couleur verte?",
+            "ifYes": "Introduire l'idée que les plantes utilisent la lumière pour rester vertes",
+            "ifNo": "Montrer des plantes pâles dans des endroits sombres vs vertes au soleil"
+          }
+        ],
+        "movementBreaks": [
+          "Tourner vers la lumière : comme un tournesol qui suit le soleil (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Light needs discussion - sharing observations about plant placement and light",
+        "materials": [
+          "lampe de bureau pour démonstration (1 lampe)",
+          "plantes en pot pour tourner (3-4 petites plantes)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève pense que les plantes ne bougent pas → Montrer une vidéo de croissance rapide"
+        ],
+        "movementBreaks": [
+          "Expérience de lumière : fermer les yeux, ouvrir vers la 'lumière' (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser une lampe de poche pour montrer comment la lumière fonctionne",
+          "Fournir des exemples concrets avec plantes qui se penchent vers les fenêtres",
+          "Permettre l'exploration tactile de la chaleur du soleil vs l'ombre",
+          "Simplifier à 'les plantes aiment la lumière comme nous'"
+        ],
+        "pourAvancés": [
+          "Explorer différents types de lumière (naturelle vs artificielle)",
+          "Prédire comment les plantes réagiraient à différentes quantités de lumière",
+          "Créer un guide des meilleurs endroits pour les plantes dans l'école",
+          "Expliquer pourquoi les feuilles sont vertes et leur rapport à la lumière"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'lumière' (rayons avec les mains)",
+          "Associer 'lumière' et 'light' avec objets réels",
+          "Permettre l'usage de dessins pour montrer la lumière et les plantes",
+          "Utiliser des mots cognates: plante/plant, vert/green"
+        ],
+        "pourPEI": [
+          "Utiliser tous les sens pour explorer la lumière (chaleur, luminosité)",
+          "Permettre différentes façons de montrer la compréhension",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de lumière naturelle et artificielle",
+          "L'élève décrit ce qui arrive quand on bloque la lumière",
+          "L'élève classe les objets: transparents, translucides, opaques",
+          "L'élève explique: 'Le soleil nous donne lumière et chaleur'"
+        ],
+        "checkpoints": [
+          "Distingue sources naturelles/artificielles de lumière",
+          "Comprend que la lumière voyage en ligne droite",
+          "Prédit la formation des ombres",
+          "Fait des liens entre lumière, chaleur et vie des plantes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "De quoi ont besoin les animaux pour vivre?",
+      "oneGoal": "Students will identify that animals need food, water, air, and shelter to stay alive and healthy",
+      "duration": 45,
+      "keyVocabulary": [
+        "nourriture",
+        "abri",
+        "protection"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Pet care discussion - sharing how students care for pets or stuffed animals",
+        "materials": [
+          "pet photos",
+          "stuffed animals"
+        ],
+        "visualSupports": "animal needs poster with food, water, shelter, air symbols",
+        "decisionPoints": [
+          "Si l'élève dit que les animaux n'ont pas les mêmes besoins → Comparer avec notre hamster de classe",
+          "Si l'élève ne comprend pas les besoins → Demander ce qu'il mange au déjeuner"
+        ],
+        "movementBreaks": [
+          "Imiter les besoins des animaux : manger, boire, dormir comme différents animaux (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration matching animals with their needs using picture cards and sorting",
+        "materials": [
+          "animal picture cards",
+          "need category cards",
+          "sorting mats",
+          "pet care items"
+        ],
+        "visualSupports": "animal habitat pictures, pet care routine chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils connecter les besoins des animaux aux besoins des plantes déjà appris?",
+            "ifYes": "Créer un diagramme de Venn comparant les besoins des plantes et animaux",
+            "ifNo": "Se concentrer sur les besoins les plus évidents comme nourriture et eau d'abord"
+          },
+          {
+            "question": "Les élèves comprennent-ils le concept d'abri et de protection?",
+            "ifYes": "Explorer différents types d'abris pour différents animaux",
+            "ifNo": "Utiliser l'analogie avec leur propre maison comme protection"
+          },
+          {
+            "question": "Les élèves peuvent-ils expliquer pourquoi les animaux ont ces besoins?",
+            "ifYes": "Discuter de ce qui arrive quand un besoin n'est pas satisfait",
+            "ifNo": "Utiliser des exemples concrets d'animaux affamés, assoiffés, ou froids"
+          }
+        ],
+        "movementBreaks": [
+          "Chercher de la nourriture : ramper comme une chenille qui mange (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Animal needs role play - acting out feeding, watering, and sheltering pets",
+        "materials": [
+          "images d'animaux avec leurs bébés (20-25 images)",
+          "tableau de comparaison parent-bébé (1 grand tableau)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne voit pas la ressemblance parent-bébé → Montrer les mêmes couleurs ou formes"
+        ],
+        "movementBreaks": [
+          "Grandir d'un bébé : commencer petit et grandir jusqu'à la taille adulte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des animaux de compagnie familiers pour exemples concrets",
+          "Fournir des images claires des besoins de base (nourriture, eau, abri)",
+          "Permettre le partage d'expériences personnelles avec les animaux",
+          "Simplifier aux 3 besoins principaux: manger, boire, dormir"
+        ],
+        "pourAvancés": [
+          "Comparer les besoins de différents types d'animaux (chat vs oiseau)",
+          "Prédire les besoins d'animaux qu'ils n'ont jamais vus",
+          "Créer un guide de soins pour différents animaux domestiques",
+          "Expliquer pourquoi certains besoins sont plus importants que d'autres"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'manger', 'boire', 'dormir', 'protection'",
+          "Associer chaque besoin à un objet réel (bol, eau, lit)",
+          "Permettre l'usage d'expériences avec animaux en langue maternelle",
+          "Utiliser cognates: animal/animal, protection/protection"
+        ],
+        "pourPEI": [
+          "Utiliser des supports sensoriels (textures, sons d'animaux)",
+          "Permettre différentes façons d'exprimer la compréhension",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Les bébés animaux grandissent",
+      "oneGoal": "Students will observe that baby animals grow into adult animals and need special care when young",
+      "duration": 45,
+      "keyVocabulary": [
+        "bébé",
+        "adulte",
+        "grandir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Baby animal picture sharing - looking at photos of baby animals and their parents",
+        "materials": [
+          "baby and adult animal photos",
+          "growth sequence cards"
+        ],
+        "visualSupports": "animal growth timeline display",
+        "decisionPoints": [
+          "Si l'élève dit qu'un bébé chat ressemble à un chien → Regarder les oreilles et la queue ensemble",
+          "Si l'élève ne comprend pas 'grandir' → Montrer photos de lui-même bébé vs maintenant"
+        ],
+        "movementBreaks": [
+          "Famille d'animaux : faire des groupes parent-enfant et imiter leurs cris (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration sequencing animal growth stages and discussing care needs",
+        "materials": [
+          "animal growth sequence cards",
+          "matching games",
+          "observation tools"
+        ],
+        "visualSupports": "animal life cycle posters, before and after growth photos",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils que les bébés animaux ont besoin de protection supplémentaire?",
+            "ifYes": "Explorer comment les parents soignent les bébés différemment des adultes",
+            "ifNo": "Comparer à comment ils avaient besoin de plus de soins quand ils étaient bébés"
+          }
+        ],
+        "movementBreaks": [
+          "Chaîne de croissance : se mettre en ordre de bébé à adulte pour différents animaux (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Growth story telling - each student shares about an animal baby growing up",
+        "materials": [
+          "cartes de séquence de croissance (sets de 4-5 images par animal)",
+          "autocollants en forme d'animaux pour récompenser (30 autocollants)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève met les images dans le désordre → Demander 'lequel est le plus petit?'"
+        ],
+        "movementBreaks": [
+          "Histoire vivante : mimer l'histoire de croissance d'un animal choisi (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des photos d'animaux bébés familiers (chatons, chiots, poussins)",
+          "Fournir des sequences simples de 2-3 étapes de croissance",
+          "Permettre l'usage d'expériences personnelles de croissance",
+          "Simplifier à 'les bébés deviennent grands comme vous'"
+        ],
+        "pourAvancés": [
+          "Comparer les vitesses de croissance de différents animaux",
+          "Prédire combien de temps prend la croissance pour différentes espèces",
+          "Créer un timeline détaillé de croissance animale",
+          "Expliquer pourquoi les bébés animaux ont besoin de soins spéciaux"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'petit', 'grandir', 'bébé', 'adulte'",
+          "Associer à leurs propres photos de bébé/maintenant",
+          "Permettre descriptions en langue maternelle puis traduire",
+          "Utiliser cognates: bébé/baby, adulte/adult, animal/animal"
+        ],
+        "pourPEI": [
+          "Utiliser supports visuels et tactiles pour explorer les concepts",
+          "Permettre différentes façons de montrer la compréhension",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Comment prendre soin d'une plante?",
+      "oneGoal": "Students will learn practical ways to care for plants by providing water, light, and proper conditions",
+      "duration": 45,
+      "keyVocabulary": [
+        "prendre soin",
+        "soigner",
+        "responsabilité"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Plant care routine demonstration - showing proper watering and positioning techniques",
+        "materials": [
+          "plants",
+          "watering cans",
+          "plant care tools"
+        ],
+        "visualSupports": "plant care checklist with pictures",
+        "decisionPoints": [
+          "Si l'élève ne sait pas comment soigner → Montrer avec la plante de classe d'abord",
+          "Si l'élève verse trop d'eau → Dire 'un petit peu comme pour se laver le visage'"
+        ],
+        "movementBreaks": [
+          "Jardiniers en action : faire les gestes d'arroser, tailler, observer (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on plant care practice - students water, position, and check their assigned plants",
+        "materials": [
+          "individual plant pots",
+          "small watering containers",
+          "plant labels",
+          "care journals"
+        ],
+        "visualSupports": "step-by-step care instruction cards, plant health identification chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrosent-ils correctement sans trop arroser?",
+            "ifYes": "Introduire la vérification de l'humidité du sol avant l'arrosage",
+            "ifNo": "Démontrer les bonnes quantités d'eau avec des outils de mesure"
+          },
+          {
+            "question": "Les élèves comprennent-ils les signes d'une plante en bonne santé?",
+            "ifYes": "Explorer comment identifier les problèmes de plantes précocement",
+            "ifNo": "Montrer des exemples visuels de plantes saines vs malades"
+          }
+        ],
+        "movementBreaks": [
+          "Plantes heureuses : s'étirer et sourire comme une plante bien soignée (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Care commitment ceremony - students promise to care for their plants daily",
+        "materials": [
+          "petits arrosoirs pour enfants (8-10 arrosoirs)",
+          "chiffons doux pour nettoyer les feuilles (15 chiffons)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève a peur de faire mal à la plante → Montrer que les plantes aiment être touchées doucement"
+        ],
+        "movementBreaks": [
+          "Routine de soins : chantonner une petite chanson en prenant soin des plantes (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Fournir des étapes visuelles simples pour soins des plantes",
+          "Utiliser de petits arrosoirs faciles à manipuler",
+          "Permettre le travail en équipes pour partager les tâches",
+          "Se concentrer sur une tâche à la fois (arroser OU positionner)"
+        ],
+        "pourAvancés": [
+          "Créer un calendrier de soins pour toute la classe",
+          "Surveiller et ajuster les soins selon la réaction des plantes",
+          "Enseigner les techniques de soins à d'autres élèves",
+          "Rechercher les besoins spécifiques de différents types de plantes"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'arroser', 'tourner', 'nettoyer les feuilles'",
+          "Associer chaque action à un objet concret et réel",
+          "Permettre l'usage du vocabulaire de soins en langue maternelle",
+          "Utiliser des images séquentielles pour les étapes"
+        ],
+        "pourPEI": [
+          "Utiliser des outils adaptés pour manipulation facile",
+          "Permettre différentes façons de participer aux soins",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Comment aider les animaux?",
+      "oneGoal": "Students will identify ways to help animals by providing food, water, and safe spaces",
+      "duration": 45,
+      "keyVocabulary": [
+        "aider",
+        "nourrir",
+        "sécuritaire"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Animal helping brainstorm - discussing ways students already help animals",
+        "materials": [
+          "animal pictures",
+          "helping action cards"
+        ],
+        "visualSupports": "animal helping poster with safe and unsafe examples",
+        "decisionPoints": [
+          "Si l'élève ne comprend pas comment aider → Donner des exemples simples comme donner de l'eau",
+          "Si l'élève a peur des animaux → Commencer par parler d'animaux mignons comme les lapins"
+        ],
+        "movementBreaks": [
+          "Aider les animaux : mimer donner à manger, caresser, construire un abri (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration creating bird feeders and discussing safe animal interactions",
+        "materials": [
+          "pinecones",
+          "peanut butter",
+          "birdseed",
+          "string",
+          "animal safety pictures"
+        ],
+        "visualSupports": "safe animal interaction chart, local wildlife identification cards",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils les limites de sécurité avec les animaux sauvages?",
+            "ifYes": "Explorer des façons spécifiques d'aider différents types d'animaux",
+            "ifNo": "Se concentrer sur l'observation à distance et demander l'aide d'adultes"
+          },
+          {
+            "question": "Les élèves peuvent-ils identifier des moyens sécuritaires d'aider les animaux?",
+            "ifYes": "Discuter de la création d'habitats accueillants dans la cour d'école",
+            "ifNo": "Utiliser des exemples concrets comme laisser de l'eau propre pour les oiseaux"
+          }
+        ],
+        "movementBreaks": [
+          "Animaux reconnaissants : remuer la queue, ronronner, chanter pour dire merci (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Animal helper pledge - promising to help animals safely and kindly",
+        "materials": [
+          "images d'animaux dans différentes saisons (30 images)",
+          "matériaux pour construire des abris miniatures (brindilles, tissus, boîtes)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève construit un abri trop petit → Demander si l'animal peut s'y cacher complètement"
+        ],
+        "movementBreaks": [
+          "Test d'abri : se cacher dans un coin comme un animal dans son abri (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur des actions simples et sécuritaires (mangeoire pour oiseaux)",
+          "Fournir des étapes visuelles claires pour créer la mangeoire",
+          "Permettre l'aide d'un partenaire pour les tâches manuelles",
+          "Simplifier à 'aider les animaux sans les toucher'"
+        ],
+        "pourAvancés": [
+          "Rechercher différents types de nourriture pour oiseaux locaux",
+          "Créer un guide de sécurité pour interagir avec les animaux",
+          "Planifier des projets d'aide aux animaux pour la communauté",
+          "Expliquer pourquoi certains animaux ne doivent pas être touchés"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'aider', 'nourrir', 'sécuritaire'",
+          "Associer chaque action d'aide à un objet concret",
+          "Permettre le partage d'expériences d'aide aux animaux en langue maternelle",
+          "Utiliser des images pour montrer des actions sécuritaires vs dangereuses"
+        ],
+        "pourPEI": [
+          "Utiliser des matériaux sensoriels pour créer la mangeoire",
+          "Permettre différentes façons de participer au projet",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Notre jardin de classe",
+      "oneGoal": "Students will plant seeds and create a classroom garden to observe plant growth and practice care",
+      "duration": 45,
+      "keyVocabulary": [
+        "graines",
+        "planter",
+        "jardin"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Seed exploration - examining different seeds and predicting what will grow",
+        "materials": [
+          "various seeds",
+          "magnifying glasses",
+          "seed packets"
+        ],
+        "visualSupports": "seed to plant growth chart, garden planning poster",
+        "decisionPoints": [
+          "Si l'élève plante trop profond → Montrer que la graine doit juste être couverte un petit peu",
+          "Si l'élève ne veut pas se salir les mains → Offrir des gants ou une petite pelle"
+        ],
+        "movementBreaks": [
+          "Préparation de jardin : creuser, planter, arroser avec de grands gestes (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on garden creation - planting seeds in individual containers and setting up class garden",
+        "materials": [
+          "seeds",
+          "soil",
+          "small pots",
+          "planting tools",
+          "labels",
+          "watering supplies"
+        ],
+        "visualSupports": "planting step-by-step guide, garden layout diagram",
+        "decisionPoints": [
+          {
+            "question": "Les élèves plantent-ils à la bonne profondeur selon le type de graines?",
+            "ifYes": "Leur faire prédire et noter la chronologie de croissance attendue",
+            "ifNo": "Utiliser les instructions des sachets de graines pour guider la profondeur"
+          },
+          {
+            "question": "Les élèves comprennent-ils pourquoi différentes graines ont des besoins différents?",
+            "ifYes": "Explorer comment la taille de la graine affecte la profondeur de plantation",
+            "ifNo": "Comparer visuellement des grosses et petites graines côte à côte"
+          }
+        ],
+        "movementBreaks": [
+          "Graines magiques : s'accroupir comme une graine, puis pousser lentement (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Garden blessing ceremony - students share hopes for their plants' growth",
+        "materials": [
+          "étiquettes pour marquer nos plantations (25 étiquettes)",
+          "crayons de cire pour écrire sur les étiquettes (ensembles de classe)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève écrit mal son nom → L'aider en tenant sa main pour former les lettres"
+        ],
+        "movementBreaks": [
+          "Célébration de plantation : danser autour du jardin comme une fête (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des graines grosses et faciles à manipuler (haricots, tournesol)",
+          "Fournir des étapes visuelles simples pour planter",
+          "Permettre l'aide d'un partenaire pour les tâches de plantation",
+          "Se concentrer sur 'mettre la graine dans la terre'"
+        ],
+        "pourAvancés": [
+          "Rechercher les meilleures conditions pour différents types de graines",
+          "Prédire et documenter les temps de germination",
+          "Créer un plan de jardin organisé pour la classe",
+          "Expliquer le cycle de la graine à la plante à la graine"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'planter', 'creuser', 'couvrir'",
+          "Associer chaque étape à des actions concrètes",
+          "Permettre l'usage d'expériences de jardinage en langue maternelle",
+          "Utiliser des séquences visuelles pour les étapes"
+        ],
+        "pourPEI": [
+          "Utiliser des outils de jardinage adaptés",
+          "Permettre différentes façons de participer à la plantation",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Observer la croissance de nos plantes",
+      "oneGoal": "Students will measure and record plant growth over time using simple tools and observations",
+      "duration": 45,
+      "keyVocabulary": [
+        "mesurer",
+        "croissance",
+        "noter"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Growth detective work - examining plants for signs of growth and change",
+        "materials": [
+          "classroom plants",
+          "magnifying glasses",
+          "rulers"
+        ],
+        "visualSupports": "plant growth observation chart with measurement examples",
+        "decisionPoints": [
+          "Si l'élève ne voit aucun changement → L'aider à regarder de plus près avec une loupe",
+          "Si l'élève est déçu de la croissance lente → Expliquer que les plantes prennent leur temps"
+        ],
+        "movementBreaks": [
+          "Croissance observable : commencer accroupi, grandir très lentement (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on scientific measurement and recording of plant height, leaf count, and observations",
+        "materials": [
+          "measuring tools",
+          "observation journals",
+          "colored pencils",
+          "camera",
+          "growth charts"
+        ],
+        "visualSupports": "measurement technique posters, growth tracking templates",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils mesurer la hauteur des plantes avec précision?",
+            "ifYes": "Introduire la comparaison des taux de croissance entre différentes plantes",
+            "ifNo": "Utiliser des unités non-standard comme des trombones pour faciliter la mesure"
+          },
+          {
+            "question": "Les élèves voient-ils les changements depuis la dernière observation?",
+            "ifYes": "Discuter des facteurs qui pourraient expliquer la croissance rapide ou lente",
+            "ifNo": "Utiliser des photos 'avant/après' pour rendre les changements plus évidents"
+          }
+        ],
+        "movementBreaks": [
+          "Détectives de croissance : chercher des indices avec une loupe imaginaire (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Growth celebration - sharing exciting observations and measurements with the class",
+        "materials": [
+          "cahier d'observations avec photos d'avant (25 cahiers)",
+          "règles simples pour mesurer (10 règles)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne comprend pas comment mesurer → Montrer avec ses doigts d'abord"
+        ],
+        "movementBreaks": [
+          "Comparaison de taille : se comparer aux plantes, plus grand ou plus petit (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des unités de mesure non-standards (trombones, blocs)",
+          "Fournir des règles visuelles avec couleurs et chiffres gros",
+          "Permettre le travail en équipes pour les mesures",
+          "Se concentrer sur 'plus grand' vs 'plus petit' plutôt que nombres exacts"
+        ],
+        "pourAvancés": [
+          "Utiliser des unités standards (centimètres) pour mesures précises",
+          "Créer des graphiques de croissance avec le temps",
+          "Comparer les taux de croissance entre différentes plantes",
+          "Prédire la croissance future basée sur les données"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'mesurer', 'grandir', 'noter'",
+          "Associer les nombres à des quantités visuelles concrètes",
+          "Permettre l'usage de la langue maternelle pour décrire les observations",
+          "Utiliser plus de dessins que de mots pour enregistrer"
+        ],
+        "pourPEI": [
+          "Utiliser des outils de mesure adaptés et faciles à manipuler",
+          "Permettre différentes façons d'enregistrer les observations",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Les humains ont des besoins aussi",
+      "oneGoal": "Students will identify human needs (food, water, air, shelter) and compare them to plant and animal needs",
+      "duration": 45,
+      "keyVocabulary": [
+        "humains",
+        "besoins",
+        "comparer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Daily needs reflection - students share what they needed today to feel healthy and happy",
+        "materials": [
+          "daily routine pictures",
+          "needs sorting cards"
+        ],
+        "visualSupports": "human needs poster matching plant and animal needs layout",
+        "decisionPoints": [
+          "Si l'élève ne comprend pas ses besoins → Demander ce qu'il faut quand il a faim",
+          "Si l'élève dit qu'il n'a pas besoin d'air → Lui faire retenir son souffle quelques secondes"
+        ],
+        "movementBreaks": [
+          "Besoins humains : mimer manger, boire, dormir, respirer (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on comparison activity creating three-way chart of plant, animal, and human needs",
+        "materials": [
+          "large comparison chart",
+          "need picture cards",
+          "sorting materials",
+          "markers"
+        ],
+        "visualSupports": "Venn diagram showing overlapping needs, needs comparison posters",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils les similitudes entre les besoins humains et ceux des animaux/plantes?",
+            "ifYes": "Explorer pourquoi tous les êtres vivants ont des besoins de base similaires",
+            "ifNo": "Utiliser des exemples concrets comme le fait que tout le monde a besoin d'eau"
+          },
+          {
+            "question": "Les élèves peuvent-ils placer correctement les besoins dans le diagramme de Venn?",
+            "ifYes": "Discuter des besoins uniques à chaque groupe (humains, animaux, plantes)",
+            "ifNo": "Se concentrer d'abord sur les besoins universels (eau, air)"
+          }
+        ],
+        "movementBreaks": [
+          "Comparer avec les plantes : faire les mêmes gestes qu'une plante (se pencher vers la lumière) (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Living things connection circle - students share one way they're similar to plants or animals",
+        "materials": [
+          "diagramme de Venn géant pour comparer (1 grand diagramme sur le sol)",
+          "images de besoins humains et de plantes (40 images mélangées)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève place mal les images → Demander 'est-ce que les plantes ont besoin de vêtements?'"
+        ],
+        "movementBreaks": [
+          "Tri vivant : sauter dans la bonne section selon ce qu'on nomme (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur les besoins les plus évidents (manger, boire, dormir)",
+          "Utiliser des exemples personnels de leur propre vie quotidienne",
+          "Fournir un diagramme simple avec images des besoins de base",
+          "Permettre les connexions une à la fois plutôt que multiples"
+        ],
+        "pourAvancés": [
+          "Créer un diagramme complexe comparant tous les types de vivants",
+          "Expliquer pourquoi certains besoins sont universels",
+          "Rechercher des besoins spéciaux pour différents groupes d'âge",
+          "Développer des théories sur l'évolution des besoins"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes universels pour besoins de base",
+          "Associer chaque besoin humain à des objets de la vie quotidienne",
+          "Permettre les comparaisons avec la culture familiale",
+          "Utiliser des mots cognates: humain/human, comparer/compare"
+        ],
+        "pourPEI": [
+          "Utiliser des supports personnalisés pour faire les connexions",
+          "Permettre différentes façons d'exprimer les comparaisons",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Créer un habitat pour les petites créatures",
+      "oneGoal": "Students will design and create a simple habitat that provides what small creatures need to survive",
+      "duration": 45,
+      "keyVocabulary": [
+        "habitat",
+        "créer",
+        "survivre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Habitat exploration - examining pictures of animal homes and discussing what makes them suitable",
+        "materials": [
+          "habitat pictures",
+          "small creature photos"
+        ],
+        "visualSupports": "habitat examples poster showing different animal homes",
+        "decisionPoints": [
+          "Si l'élève fait un habitat trop petit → Demander si la créature peut bouger à l'aise",
+          "Si l'élève utilise des matériaux dangereux → Orienter vers des matériaux doux et sécuritaires"
+        ],
+        "movementBreaks": [
+          "Test d'habitat : ramper et explorer l'habitat qu'on a créé (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on habitat construction for beneficial insects or small creatures using natural materials",
+        "materials": [
+          "small containers",
+          "soil",
+          "leaves",
+          "twigs",
+          "moss",
+          "small rocks",
+          "magnifying glasses"
+        ],
+        "visualSupports": "habitat building guide, creature care instruction cards",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves incluent tous les éléments d'habitat nécessaires (nourriture, eau, abri, air)",
+            "ifYes": "Challenge them to explain why each element helps the creature survive",
+            "ifNo": "Guide them through creature needs checklist before building"
+          }
+        ],
+        "movementBreaks": [
+          "Présentation fière : faire un défilé de mode avec nos créations d'habitat (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Habitat showcase - students present their habitat and explain design choices",
+        "materials": [
+          "étiquettes pour identifier les habitats (20 étiquettes)",
+          "feutres pour décorer les étiquettes (ensembles de classe)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne sait pas quoi écrire → Suggérer le nom de l'animal qui y habiterait"
+        ],
+        "movementBreaks": [
+          "Visite d'habitat : visiter les créations des amis comme des touristes (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des matériaux naturels simples et disponibles",
+          "Fournir un modèle ou exemple d'habitat à suivre",
+          "Permettre le travail en équipes pour partager les idées",
+          "Se concentrer sur un besoin à la fois (nourriture OU abri)"
+        ],
+        "pourAvancés": [
+          "Rechercher les besoins spécifiques de créatures locales",
+          "Créer des habitats pour différents types d'animaux",
+          "Planifier l'entretien à long terme de leurs habitats",
+          "Expliquer l'écologie de base des relations habitat-animal"
+        ],
+        "pourLangue": [
+          "Utiliser des gestes pour 'créer', 'construire', 'habitat'",
+          "Associer chaque élément d'habitat à un objet concret",
+          "Permettre l'usage d'expériences de nature en langue maternelle",
+          "Utiliser des images séquentielles pour les étapes de construction"
+        ],
+        "pourPEI": [
+          "Utiliser des matériaux sensoriels variés",
+          "Permettre différentes façons de participer à la création",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Nos plantes après plusieurs semaines",
+      "oneGoal": "Students will evaluate their plant care success and identify what helped or hindered plant growth",
+      "duration": 45,
+      "keyVocabulary": [
+        "évaluer",
+        "succès",
+        "améliorer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Plant health assessment - students examine their plants for signs of health or problems",
+        "materials": [
+          "plants",
+          "magnifying glasses",
+          "plant health checklist"
+        ],
+        "visualSupports": "healthy vs unhealthy plant comparison chart",
+        "decisionPoints": [
+          "Si l'élève ne voit toujours pas de grands changements → Comparer avec des photos du début",
+          "Si l'élève veut ramener sa plante à la maison → Expliquer comment continuer à en prendre soin"
+        ],
+        "movementBreaks": [
+          "Mesure de croissance : s'étirer pour montrer la croissance de nos plantes (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on evaluation comparing plant growth results and analyzing care effectiveness",
+        "materials": [
+          "measurement tools",
+          "before/after photos",
+          "evaluation sheets",
+          "problem-solving cards"
+        ],
+        "visualSupports": "plant care success indicators chart, troubleshooting guide poster",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves identifient les facteurs qui affectent la santé de leur plante",
+            "ifYes": "Have them create recommendations for future plant care",
+            "ifNo": "Guide them through systematic comparison of care practices"
+          }
+        ],
+        "movementBreaks": [
+          "Livre photo vivant : mimer les étapes de croissance en séquence (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Plant care wisdom sharing - students offer advice based on their experiences",
+        "materials": [
+          "appareil photo ou tablette pour documenter (1 appareil)",
+          "album photo simple pour la classe (1 album)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne se rappelle pas du début → Montrer les premières photos ensemble"
+        ],
+        "movementBreaks": [
+          "Ligne du temps vivante : se placer en ordre chronologique des photos (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des comparaisons visuelles simples (avant/après photos)",
+          "Se concentrer sur des observations évidentes (vert vs jaune, grand vs petit)",
+          "Permettre l'expression orale plutôt qu'écrite pour les conclusions",
+          "Fournir des choix multiples pour les évaluations"
+        ],
+        "pourAvancés": [
+          "Analyser les données de croissance pour identifier les tendances",
+          "Formuler des hypothèses pour améliorer les soins futurs",
+          "Créer un rapport détaillé avec recommandations",
+          "Enseigner leurs découvertes à d'autres classes"
+        ],
+        "pourLangue": [
+          "Utiliser des mots simples pour décrire le succès: 'bon', 'mauvais', 'mieux'",
+          "Permettre l'usage de la langue maternelle pour expliquer les observations",
+          "Utiliser beaucoup de supports visuels pour les évaluations",
+          "Encourager les gestes pour montrer ce qui a bien ou mal fonctionné"
+        ],
+        "pourPEI": [
+          "Utiliser différentes façons d'exprimer les évaluations",
+          "Permettre des observations sensorielles pour évaluer la santé des plantes",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Célébrer les êtres vivants",
+      "oneGoal": "Students will create a class presentation showing what they learned about caring for living things",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébrer",
+        "présenter",
+        "apprendre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Learning celebration preparation - students review their growth and discoveries about living things",
+        "materials": [
+          "student work portfolios",
+          "plant growth photos",
+          "learning journals"
+        ],
+        "visualSupports": "unit learning journey timeline poster",
+        "decisionPoints": [
+          "Si l'élève ne sait pas quoi célébrer → Rappeler tout ce qu'on a appris sur les êtres vivants",
+          "Si l'élève est timide pour présenter → L'encourager à montrer juste une chose qu'il aime"
+        ],
+        "movementBreaks": [
+          "Célébration de la vie : danser comme tous les êtres vivants qu'on connaît (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on presentation creation showcasing plant care success and living thing knowledge",
+        "materials": [
+          "presentation boards",
+          "photos",
+          "drawings",
+          "plants",
+          "habitat displays",
+          "markers"
+        ],
+        "visualSupports": "presentation organization template, showcase example displays",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves peuvent exprimer ce qu'ils ont appris sur le soin des êtres vivants",
+            "ifYes": "Have them include specific examples and evidence of their learning",
+            "ifNo": "Provide sentence starters and visual cues to support sharing"
+          }
+        ],
+        "movementBreaks": [
+          "Applaudissements spéciaux : applaudir comme la pluie pour les plantes (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Learning celebration - students share their favorite discovery about living things",
+        "materials": [
+          "certificats de 'gardien des êtres vivants' (25 certificats)",
+          "autocollants spéciaux pour décorer les certificats (100 autocollants)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne se sent pas comme un 'gardien' → Rappeler toutes les plantes qu'il a aidées"
+        ],
+        "movementBreaks": [
+          "Marche des gardiens : marcher fièrement en tenant son certificat (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Fournir des modèles ou gabarits pour organiser leur présentation",
+          "Permettre l'usage de beaucoup d'images plutôt que de mots",
+          "Offrir des phrases d'amorce pour les aider à commencer",
+          "Permettre les présentations en petits groupes plutôt qu'individuelles"
+        ],
+        "pourAvancés": [
+          "Créer une présentation détaillée avec evidence scientifique",
+          "Inclure des recommandations pour d'autres élèves ou classes",
+          "Organiser et animer la célébration d'apprentissage",
+          "Créer des matériaux pédagogiques pour partager les connaissances"
+        ],
+        "pourLangue": [
+          "Permettre l'usage d'un mélange de langues pour la présentation",
+          "Utiliser beaucoup de supports visuels et d'objets concrets",
+          "Encourager les gestes et démonstrations physiques",
+          "Fournir du vocabulaire de présentation en français et anglais"
+        ],
+        "pourPEI": [
+          "Permettre différentes formes de présentation (oral, visuel, tactile)",
+          "Utiliser des technologies d'aide si appropriées",
+          "Adapter matériel selon besoins sensoriels (textures, sons)",
+          "Fournir loupes ou outils adaptés selon vision"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Les saisons et les besoins des vivants",
+      "oneGoal": "Students will explore how the needs of living things change with different seasons",
+      "duration": 45,
+      "keyVocabulary": [
+        "saisons",
+        "changer",
+        "adapter"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Seasonal observation walk - noticing how plants and animals adapt to current season",
+        "materials": [
+          "observation clipboards",
+          "seasonal pictures"
+        ],
+        "visualSupports": "seasonal changes poster showing plant and animal adaptations",
+        "decisionPoints": [
+          "Si l'élève ne voit pas les changements saisonniers → Comparer les arbres en été vs en hiver",
+          "Si l'élève ne comprend pas l'adaptation → Demander comment il s'habille en hiver vs en été"
+        ],
+        "movementBreaks": [
+          "Saisons en mouvement : mimer les activités de chaque saison (nager, skier, ramasser des feuilles) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration of seasonal adaptations through pictures, stories, and comparisons",
+        "materials": [
+          "seasonal picture sets",
+          "animal adaptation cards",
+          "plant seasonal photos",
+          "sorting activities"
+        ],
+        "visualSupports": "four seasons chart with living thing changes, adaptation example displays",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent que les besoins changent mais les exigences de base restent",
+            "ifYes": "Explore specific seasonal adaptations like thick fur or leaf changes",
+            "ifNo": "Focus on how living things still need food, water, shelter in all seasons"
+          }
+        ],
+        "movementBreaks": [
+          "Animaux saisonniers : hiberner comme un ours, migrer comme un oiseau (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Seasonal needs discussion - sharing observations about how living things change with seasons",
+        "materials": [
+          "images des quatre saisons avec des êtres vivants (40 images)",
+          "cercle saisonnier pour trier les activités (1 grand cercle divisé)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève mélange les saisons → Associer chaque saison à une fête qu'il connaît"
+        ],
+        "movementBreaks": [
+          "Roue des saisons : tourner en cercle en mimant chaque saison (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Protéger les habitats",
+      "oneGoal": "Students will identify ways humans can protect natural habitats that living things need",
+      "duration": 45,
+      "keyVocabulary": [
+        "protéger",
+        "habitats",
+        "naturels"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Habitat protection discussion - exploring how humans can help or hurt natural spaces",
+        "materials": [
+          "habitat photos",
+          "environmental action pictures"
+        ],
+        "visualSupports": "helpful vs harmful human actions poster",
+        "decisionPoints": [
+          "Si l'élève ne comprend pas 'protéger' → Expliquer comme 'prendre soin de' notre maison",
+          "Si l'élève dit que c'est trop difficile → Donner des exemples simples comme ne pas jeter de déchets"
+        ],
+        "movementBreaks": [
+          "Actions de protection : mimer ramasser des déchets, planter, arroser (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration creating action plans for protecting local habitats and living things",
+        "materials": [
+          "local habitat pictures",
+          "action planning sheets",
+          "recycled materials for projects"
+        ],
+        "visualSupports": "habitat protection action chart, local conservation examples display",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves lient des actions simples à la protection de l'habitat",
+            "ifYes": "Help them plan specific actions they can take in their community",
+            "ifNo": "Focus on basic concepts like not littering and being gentle with nature"
+          }
+        ],
+        "movementBreaks": [
+          "Super héros de l'environnement : voler à la rescousse des habitats en danger (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Habitat protector pledge - students commit to specific actions to help living things",
+        "materials": [
+          "badges de 'protecteur d'habitat' (25 badges)",
+          "liste d'actions simples à cocher (25 listes)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne peut pas penser à une action → Suggérer de commencer par être gentil avec les insectes"
+        ],
+        "movementBreaks": [
+          "Serment des protecteurs : lever la main droite et répéter ensemble (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Ajuster l'éclairage et réduire les distractions visuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Les êtres vivants qui nous aident",
+      "oneGoal": "Students will explore how different living things help humans and other living things survive",
+      "duration": 45,
+      "keyVocabulary": [
+        "aident",
+        "utiles",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Helper living things brainstorm - discussing plants and animals that help humans daily",
+        "materials": [
+          "helpful living things pictures",
+          "daily life photos"
+        ],
+        "visualSupports": "living things helpers poster with examples and benefits",
+        "decisionPoints": [
+          "Si l'élève ne voit pas comment les plantes aident → Parler de la nourriture et de l'oxygène qu'elles donnent",
+          "Si l'élève pense que seuls les humains aident → Montrer comment les abeilles aident les fleurs"
+        ],
+        "movementBreaks": [
+          "Chaîne d'aide : chacun mime comment il aide quelqu'un d'autre (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on exploration of interdependence through matching games and relationship mapping",
+        "materials": [
+          "relationship cards",
+          "matching activities",
+          "ecosystem pictures",
+          "connection strings"
+        ],
+        "visualSupports": "interdependence web display, helper relationships chart",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent que les êtres vivants s'entraident, pas seulement les humains",
+            "ifYes": "Explore complex relationships like bees helping flowers while getting food",
+            "ifNo": "Focus on obvious examples like pets helping families feel happy"
+          }
+        ],
+        "movementBreaks": [
+          "Web de connexions : se tenir par la main et montrer les liens entre tous les vivants (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Gratitude circle - students thank different living things for their help",
+        "materials": [
+          "cartes de remerciement à décorer (25 cartes)",
+          "autocollants d'animaux et de plantes (100 autocollants)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne sait pas quoi dire → Suggérer 'merci aux arbres pour l'oxygène'"
+        ],
+        "movementBreaks": [
+          "Remerciements en action : applaudir trois fois pour chaque être vivant nommé (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Proposer des textes plus complexes avec vocabulaire étendu"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Utiliser un dictionnaire visuel français-anglais"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Fournir des instructions simples, une étape à la fois",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Devenir des experts en soins",
+      "oneGoal": "Students will teach younger students or family members about caring for living things",
+      "duration": 45,
+      "keyVocabulary": [
+        "experts",
+        "enseigner",
+        "partager"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Expert preparation - students review their knowledge and practice explaining plant and animal care",
+        "materials": [
+          "teaching materials",
+          "student learning journals",
+          "demonstration tools"
+        ],
+        "visualSupports": "teaching tips poster, expert knowledge checklist",
+        "decisionPoints": [
+          "Si l'élève manque de confiance pour enseigner → Commencer par lui faire répéter avec un ami",
+          "Si l'élève ne se souvient plus des leçons → L'aider à consulter son journal d'apprentissage"
+        ],
+        "movementBreaks": [
+          "Pose d'expert : se tenir droit et fier comme quelqu'un qui sait beaucoup de choses (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on teaching practice through peer instruction and demonstration of care techniques",
+        "materials": [
+          "teaching props",
+          "plants",
+          "care tools",
+          "instruction cards",
+          "demonstration areas"
+        ],
+        "visualSupports": "teaching sequence cards, student expert badges",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves expliquent clairement les besoins des êtres vivants avec confiance",
+            "ifYes": "Have them create their own teaching materials and demonstrations",
+            "ifNo": "Provide structured teaching scripts and visual aids for support"
+          }
+        ],
+        "movementBreaks": [
+          "Pratique d'enseignement : mimer comment expliquer quelque chose avec les gestes (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Expert certification ceremony - celebrating students as living things care experts",
+        "materials": [
+          "diplomes d'expert en soins des vivants (25 diplômes)",
+          "chapeaux ou badges d'expert (25 chapeaux ou badges)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne se sent pas comme un expert → Énumérer tout ce qu'il a appris depuis le début"
+        ],
+        "movementBreaks": [
+          "Cérémonie de graduation : marcher fièrement pour recevoir son diplôme (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Encourager le jumelage avec un pair plus fort en français"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Ajuster l'éclairage et réduire les distractions visuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Notre livre des êtres vivants",
+      "oneGoal": "Students will create a class book documenting all their discoveries about living things and their care",
+      "duration": 45,
+      "keyVocabulary": [
+        "livre",
+        "documenter",
+        "découvertes"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Book planning session - organizing student discoveries and experiences into book chapters",
+        "materials": [
+          "student work samples",
+          "photos",
+          "organizing materials"
+        ],
+        "visualSupports": "book organization chart, chapter planning template",
+        "decisionPoints": [
+          "Si l'élève ne sait pas comment organiser ses idées → L'aider à classer par thème (plantes, animaux, soins)",
+          "Si l'élève n'a pas assez de matériel → L'encourager à dessiner ses souvenirs d'apprentissage"
+        ],
+        "movementBreaks": [
+          "Organisation en mouvement : se déplacer pour regrouper les idées similaires (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on book creation combining drawings, photos, and written observations into class publication",
+        "materials": [
+          "book binding materials",
+          "photos",
+          "student artwork",
+          "writing tools",
+          "laminating supplies"
+        ],
+        "visualSupports": "book assembly instructions, page layout examples",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves organisent leurs apprentissages en sections logiques de livre",
+            "ifYes": "Have them add detailed explanations and scientific observations",
+            "ifNo": "Provide book structure template with clear sections for different topics"
+          }
+        ],
+        "movementBreaks": [
+          "Auteurs fièrs : présenter son travail comme un vrai écrivain (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Book dedication ceremony - dedicating the class book to all living things they've learned to care for",
+        "materials": [
+          "livre de classe terminé (1 livre relié)",
+          "plume spéciale pour signer les dédicaces (1 plume décorative)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève ne sait pas quoi écrire dans la dédicace → Suggérer de remercier les plantes et animaux"
+        ],
+        "movementBreaks": [
+          "Signature d'auteur : signer fièrement le livre comme de vrais auteurs (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Permettre les explications dans la langue première si nécessaire"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Fête des petits gardiens de la vie",
+      "oneGoal": "Students will celebrate their learning journey by showcasing their plant care success and animal knowledge",
+      "duration": 45,
+      "keyVocabulary": [
+        "fête",
+        "gardiens",
+        "succès"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration setup - students arrange their plants, projects, and learning displays for families",
+        "materials": [
+          "student plants",
+          "projects",
+          "display boards",
+          "celebration decorations"
+        ],
+        "visualSupports": "celebration setup guide, display arrangement examples",
+        "decisionPoints": [
+          "Si l'élève est nerveux pour la présentation → L'assurer que sa famille sera fière de ses progrès",
+          "Si l'élève ne sait pas comment organiser son espace → L'aider à mettre sa plus belle plante au centre"
+        ],
+        "movementBreaks": [
+          "Préparation de fête : danser en décorant et en arrangeant l'espace (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "hands-on celebration with family presentations, plant displays, and demonstration of care skills",
+        "materials": [
+          "healthy plants",
+          "student projects",
+          "demonstration materials",
+          "celebration supplies"
+        ],
+        "visualSupports": "celebration program, student achievement certificates",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves démontrent fièrement leurs compétences de soin des plantes",
+            "ifYes": "Encourage them to share specific examples of problems solved and growth achieved",
+            "ifNo": "Provide prompting questions to help them share their accomplishments"
+          }
+        ],
+        "movementBreaks": [
+          "Célébration finale : lever les bras en victoire pour tout ce qu'on a appris (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Guardian commitment renewal - students pledge to continue caring for living things beyond the classroom",
+        "materials": [
+          "certificats de gardien de la vie à vie (25 certificats spéciaux)",
+          "petites plantes à rapporter à la maison (25 petites plantes en pot)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si l'élève promet mais semble incertain → Lui rappeler qu'il peut commencer petit avec une seule plante"
+        ],
+        "movementBreaks": [
+          "Engagement solennel : placer la main sur le cœur et prononcer la promesse ensemble (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Utiliser des minuteurs visuels pour structurer le temps"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Observation",
+        "items": [
+          "Démontre une compréhension de base en observation",
+          "Participe activement aux activités de observation",
+          "Montre du progrès dans observation",
+          "Applique les apprentissages de observation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Questionnement",
+        "items": [
+          "Démontre une compréhension de base en questionnement",
+          "Participe activement aux activités de questionnement",
+          "Montre du progrès dans questionnement",
+          "Applique les apprentissages de questionnement dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Exploration sécuritaire",
+        "items": [
+          "Démontre une compréhension de base en exploration sécuritaire",
+          "Participe activement aux activités de exploration sécuritaire",
+          "Montre du progrès dans exploration sécuritaire",
+          "Applique les apprentissages de exploration sécuritaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Communication des découvertes",
+        "items": [
+          "Démontre une compréhension de base en communication des découvertes",
+          "Participe activement aux activités de communication des découvertes",
+          "Montre du progrès dans communication des découvertes",
+          "Applique les apprentissages de communication des découvertes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Observation",
+        "Questionnement",
+        "Exploration sécuritaire",
+        "Communication des découvertes"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🌟",
+          "⭐",
+          "☆"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en sciences\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nLes êtres vivants autour de nous, De quoi ont besoin les plantes pour vivre?, Expérience: les plantes et l'eau, Les plantes ont besoin de lumière, De quoi ont besoin les animaux pour vivre?\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nEncouragez les questions 'pourquoi' et explorez ensemble les réponses.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa curiosité scientifique commence à la maison!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Observations de la nature",
+        "description": "Observez et discutez des phénomènes naturels liés à l'unité",
+        "timeRequired": "15 minutes",
+        "materials": "Carnet d'observations",
+        "frenchSupport": "Dessiner les observations aide la communication"
+      },
+      {
+        "title": "Expérience simple",
+        "description": "Faites une expérience sécuritaire liée au thème",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux simples du quotidien",
+        "frenchSupport": "Utilisez les mots scientifiques en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "vivant",
+        "lesson": 1,
+        "context": "Les êtres vivants autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vivant\"",
+          "Utilisez \"vivant\" dans une phrase simple",
+          "Trouvez des images représentant \"vivant\"",
+          "Faites des gestes pour \"vivant\""
+        ]
+      },
+      {
+        "word": "grandir",
+        "lesson": 1,
+        "context": "Les êtres vivants autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"grandir\"",
+          "Utilisez \"grandir\" dans une phrase simple",
+          "Trouvez des images représentant \"grandir\"",
+          "Faites des gestes pour \"grandir\""
+        ]
+      },
+      {
+        "word": "respirer",
+        "lesson": 1,
+        "context": "Les êtres vivants autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"respirer\"",
+          "Utilisez \"respirer\" dans une phrase simple",
+          "Trouvez des images représentant \"respirer\"",
+          "Faites des gestes pour \"respirer\""
+        ]
+      },
+      {
+        "word": "eau",
+        "lesson": 2,
+        "context": "De quoi ont besoin les plantes pour vivre?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"eau\"",
+          "Utilisez \"eau\" dans une phrase simple",
+          "Trouvez des images représentant \"eau\"",
+          "Faites des gestes pour \"eau\""
+        ]
+      },
+      {
+        "word": "soleil",
+        "lesson": 2,
+        "context": "De quoi ont besoin les plantes pour vivre?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"soleil\"",
+          "Utilisez \"soleil\" dans une phrase simple",
+          "Trouvez des images représentant \"soleil\"",
+          "Faites des gestes pour \"soleil\""
+        ]
+      },
+      {
+        "word": "air",
+        "lesson": 2,
+        "context": "De quoi ont besoin les plantes pour vivre?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"air\"",
+          "Utilisez \"air\" dans une phrase simple",
+          "Trouvez des images représentant \"air\"",
+          "Faites des gestes pour \"air\""
+        ]
+      },
+      {
+        "word": "expérience",
+        "lesson": 3,
+        "context": "Expérience: les plantes et l'eau",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expérience\"",
+          "Utilisez \"expérience\" dans une phrase simple",
+          "Trouvez des images représentant \"expérience\"",
+          "Faites des gestes pour \"expérience\""
+        ]
+      },
+      {
+        "word": "arroser",
+        "lesson": 3,
+        "context": "Expérience: les plantes et l'eau",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"arroser\"",
+          "Utilisez \"arroser\" dans une phrase simple",
+          "Trouvez des images représentant \"arroser\"",
+          "Faites des gestes pour \"arroser\""
+        ]
+      },
+      {
+        "word": "observer",
+        "lesson": 3,
+        "context": "Expérience: les plantes et l'eau",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"observer\"",
+          "Utilisez \"observer\" dans une phrase simple",
+          "Trouvez des images représentant \"observer\"",
+          "Faites des gestes pour \"observer\""
+        ]
+      },
+      {
+        "word": "lumière",
+        "lesson": 4,
+        "context": "Les plantes ont besoin de lumière",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"lumière\"",
+          "Utilisez \"lumière\" dans une phrase simple",
+          "Trouvez des images représentant \"lumière\"",
+          "Faites des gestes pour \"lumière\""
+        ]
+      },
+      {
+        "word": "pousser",
+        "lesson": 4,
+        "context": "Les plantes ont besoin de lumière",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pousser\"",
+          "Utilisez \"pousser\" dans une phrase simple",
+          "Trouvez des images représentant \"pousser\"",
+          "Faites des gestes pour \"pousser\""
+        ]
+      },
+      {
+        "word": "vert",
+        "lesson": 4,
+        "context": "Les plantes ont besoin de lumière",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vert\"",
+          "Utilisez \"vert\" dans une phrase simple",
+          "Trouvez des images représentant \"vert\"",
+          "Faites des gestes pour \"vert\""
+        ]
+      },
+      {
+        "word": "nourriture",
+        "lesson": 5,
+        "context": "De quoi ont besoin les animaux pour vivre?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nourriture\"",
+          "Utilisez \"nourriture\" dans une phrase simple",
+          "Trouvez des images représentant \"nourriture\"",
+          "Faites des gestes pour \"nourriture\""
+        ]
+      },
+      {
+        "word": "abri",
+        "lesson": 5,
+        "context": "De quoi ont besoin les animaux pour vivre?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"abri\"",
+          "Utilisez \"abri\" dans une phrase simple",
+          "Trouvez des images représentant \"abri\"",
+          "Faites des gestes pour \"abri\""
+        ]
+      },
+      {
+        "word": "protection",
+        "lesson": 5,
+        "context": "De quoi ont besoin les animaux pour vivre?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"protection\"",
+          "Utilisez \"protection\" dans une phrase simple",
+          "Trouvez des images représentant \"protection\"",
+          "Faites des gestes pour \"protection\""
+        ]
+      },
+      {
+        "word": "bébé",
+        "lesson": 6,
+        "context": "Les bébés animaux grandissent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bébé\"",
+          "Utilisez \"bébé\" dans une phrase simple",
+          "Trouvez des images représentant \"bébé\"",
+          "Faites des gestes pour \"bébé\""
+        ]
+      },
+      {
+        "word": "adulte",
+        "lesson": 6,
+        "context": "Les bébés animaux grandissent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"adulte\"",
+          "Utilisez \"adulte\" dans une phrase simple",
+          "Trouvez des images représentant \"adulte\"",
+          "Faites des gestes pour \"adulte\""
+        ]
+      },
+      {
+        "word": "prendre soin",
+        "lesson": 7,
+        "context": "Comment prendre soin d'une plante?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"prendre soin\"",
+          "Utilisez \"prendre soin\" dans une phrase simple",
+          "Trouvez des images représentant \"prendre soin\"",
+          "Faites des gestes pour \"prendre soin\""
+        ]
+      },
+      {
+        "word": "soigner",
+        "lesson": 7,
+        "context": "Comment prendre soin d'une plante?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"soigner\"",
+          "Utilisez \"soigner\" dans une phrase simple",
+          "Trouvez des images représentant \"soigner\"",
+          "Faites des gestes pour \"soigner\""
+        ]
+      },
+      {
+        "word": "responsabilité",
+        "lesson": 7,
+        "context": "Comment prendre soin d'une plante?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"responsabilité\"",
+          "Utilisez \"responsabilité\" dans une phrase simple",
+          "Trouvez des images représentant \"responsabilité\"",
+          "Faites des gestes pour \"responsabilité\""
+        ]
+      },
+      {
+        "word": "aider",
+        "lesson": 8,
+        "context": "Comment aider les animaux?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aider\"",
+          "Utilisez \"aider\" dans une phrase simple",
+          "Trouvez des images représentant \"aider\"",
+          "Faites des gestes pour \"aider\""
+        ]
+      },
+      {
+        "word": "nourrir",
+        "lesson": 8,
+        "context": "Comment aider les animaux?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nourrir\"",
+          "Utilisez \"nourrir\" dans une phrase simple",
+          "Trouvez des images représentant \"nourrir\"",
+          "Faites des gestes pour \"nourrir\""
+        ]
+      },
+      {
+        "word": "sécuritaire",
+        "lesson": 8,
+        "context": "Comment aider les animaux?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sécuritaire\"",
+          "Utilisez \"sécuritaire\" dans une phrase simple",
+          "Trouvez des images représentant \"sécuritaire\"",
+          "Faites des gestes pour \"sécuritaire\""
+        ]
+      },
+      {
+        "word": "graines",
+        "lesson": 9,
+        "context": "Notre jardin de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"graines\"",
+          "Utilisez \"graines\" dans une phrase simple",
+          "Trouvez des images représentant \"graines\"",
+          "Faites des gestes pour \"graines\""
+        ]
+      },
+      {
+        "word": "planter",
+        "lesson": 9,
+        "context": "Notre jardin de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"planter\"",
+          "Utilisez \"planter\" dans une phrase simple",
+          "Trouvez des images représentant \"planter\"",
+          "Faites des gestes pour \"planter\""
+        ]
+      },
+      {
+        "word": "jardin",
+        "lesson": 9,
+        "context": "Notre jardin de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jardin\"",
+          "Utilisez \"jardin\" dans une phrase simple",
+          "Trouvez des images représentant \"jardin\"",
+          "Faites des gestes pour \"jardin\""
+        ]
+      },
+      {
+        "word": "mesurer",
+        "lesson": 10,
+        "context": "Observer la croissance de nos plantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mesurer\"",
+          "Utilisez \"mesurer\" dans une phrase simple",
+          "Trouvez des images représentant \"mesurer\"",
+          "Faites des gestes pour \"mesurer\""
+        ]
+      },
+      {
+        "word": "croissance",
+        "lesson": 10,
+        "context": "Observer la croissance de nos plantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"croissance\"",
+          "Utilisez \"croissance\" dans une phrase simple",
+          "Trouvez des images représentant \"croissance\"",
+          "Faites des gestes pour \"croissance\""
+        ]
+      },
+      {
+        "word": "noter",
+        "lesson": 10,
+        "context": "Observer la croissance de nos plantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"noter\"",
+          "Utilisez \"noter\" dans une phrase simple",
+          "Trouvez des images représentant \"noter\"",
+          "Faites des gestes pour \"noter\""
+        ]
+      },
+      {
+        "word": "humains",
+        "lesson": 11,
+        "context": "Les humains ont des besoins aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"humains\"",
+          "Utilisez \"humains\" dans une phrase simple",
+          "Trouvez des images représentant \"humains\"",
+          "Faites des gestes pour \"humains\""
+        ]
+      },
+      {
+        "word": "besoins",
+        "lesson": 11,
+        "context": "Les humains ont des besoins aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"besoins\"",
+          "Utilisez \"besoins\" dans une phrase simple",
+          "Trouvez des images représentant \"besoins\"",
+          "Faites des gestes pour \"besoins\""
+        ]
+      },
+      {
+        "word": "comparer",
+        "lesson": 11,
+        "context": "Les humains ont des besoins aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"comparer\"",
+          "Utilisez \"comparer\" dans une phrase simple",
+          "Trouvez des images représentant \"comparer\"",
+          "Faites des gestes pour \"comparer\""
+        ]
+      },
+      {
+        "word": "habitat",
+        "lesson": 12,
+        "context": "Créer un habitat pour les petites créatures",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"habitat\"",
+          "Utilisez \"habitat\" dans une phrase simple",
+          "Trouvez des images représentant \"habitat\"",
+          "Faites des gestes pour \"habitat\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 12,
+        "context": "Créer un habitat pour les petites créatures",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "survivre",
+        "lesson": 12,
+        "context": "Créer un habitat pour les petites créatures",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"survivre\"",
+          "Utilisez \"survivre\" dans une phrase simple",
+          "Trouvez des images représentant \"survivre\"",
+          "Faites des gestes pour \"survivre\""
+        ]
+      },
+      {
+        "word": "évaluer",
+        "lesson": 13,
+        "context": "Nos plantes après plusieurs semaines",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"évaluer\"",
+          "Utilisez \"évaluer\" dans une phrase simple",
+          "Trouvez des images représentant \"évaluer\"",
+          "Faites des gestes pour \"évaluer\""
+        ]
+      },
+      {
+        "word": "succès",
+        "lesson": 13,
+        "context": "Nos plantes après plusieurs semaines",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"succès\"",
+          "Utilisez \"succès\" dans une phrase simple",
+          "Trouvez des images représentant \"succès\"",
+          "Faites des gestes pour \"succès\""
+        ]
+      },
+      {
+        "word": "améliorer",
+        "lesson": 13,
+        "context": "Nos plantes après plusieurs semaines",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"améliorer\"",
+          "Utilisez \"améliorer\" dans une phrase simple",
+          "Trouvez des images représentant \"améliorer\"",
+          "Faites des gestes pour \"améliorer\""
+        ]
+      },
+      {
+        "word": "célébrer",
+        "lesson": 14,
+        "context": "Célébrer les êtres vivants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"célébrer\"",
+          "Utilisez \"célébrer\" dans une phrase simple",
+          "Trouvez des images représentant \"célébrer\"",
+          "Faites des gestes pour \"célébrer\""
+        ]
+      },
+      {
+        "word": "présenter",
+        "lesson": 14,
+        "context": "Célébrer les êtres vivants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"présenter\"",
+          "Utilisez \"présenter\" dans une phrase simple",
+          "Trouvez des images représentant \"présenter\"",
+          "Faites des gestes pour \"présenter\""
+        ]
+      },
+      {
+        "word": "apprendre",
+        "lesson": 14,
+        "context": "Célébrer les êtres vivants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"apprendre\"",
+          "Utilisez \"apprendre\" dans une phrase simple",
+          "Trouvez des images représentant \"apprendre\"",
+          "Faites des gestes pour \"apprendre\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

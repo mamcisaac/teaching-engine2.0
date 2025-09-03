@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { format, addDays, differenceInDays } from 'date-fns';
 import { 
   Calendar, 
@@ -19,13 +17,16 @@ import {
   Star,
   Settings
 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { SubjectSelectionModal } from '../components/SubjectSelectionModal';
 import { Alert, AlertDescription } from '../components/ui/alert';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { useAuth } from '../contexts/AuthContext';
 import { usePublicStats } from '../hooks/usePublicStats';
-import { SubjectSelectionModal } from '../components/SubjectSelectionModal';
 
 // Dynamic lesson data will be loaded from database
 
@@ -106,6 +107,7 @@ export function ShowcaseDashboard(): React.ReactElement {
   // Use fetched data with proper fallbacks
   const stats = publicData?.stats || { unitCount: 0, lessonCount: 0, lrpCount: 0, totalHours: 0 };
   const sampleUnits = publicData?.sampleUnits || [];
+  const subjectDistribution = publicData?.subjectDistribution || {};
   const academicYear = publicData?.academicYear || `${new Date().getFullYear()}-${new Date().getFullYear() + 1}`;
   
   
@@ -128,13 +130,16 @@ export function ShowcaseDashboard(): React.ReactElement {
   const totalUnits = stats.unitCount;
   const septemberLessonCount = septemberLessons.length;
   
-  // Group units by subject using sample units
+  // Group units by subject using sample units for preview display
   const unitsBySubject = sampleUnits.reduce((acc, unit) => {
     const subject = unit.longRangePlan?.subject || 'Unknown';
     if (!acc[subject]) acc[subject] = [];
     acc[subject].push(unit);
     return acc;
   }, {} as Record<string, typeof sampleUnits>);
+  
+  // Get actual subjects from database distribution (override hardcoded localStorage subjects)
+  const actualSubjects = Object.keys(subjectDistribution);
   
   // Filter units by selected subject
   const displayedUnits = selectedSubject 
@@ -191,23 +196,23 @@ export function ShowcaseDashboard(): React.ReactElement {
             <CardContent className="p-4 sm:p-6 text-center relative">
               <Settings className="absolute top-2 right-2 h-4 w-4 text-gray-400" />
               <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600">
-                {teacherSubjects.length}
+                {actualSubjects.length}
               </p>
               <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">
-                Selected Subjects
+                Active Subjects
               </p>
             </CardContent>
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
             <CardContent className="p-4 sm:p-6 text-center">
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">{allUnits.length || '0'}</p>
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">{stats.unitCount || '0'}</p>
               <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Unit Plans Ready</p>
             </CardContent>
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
             <CardContent className="p-4 sm:p-6 text-center">
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600">978</p>
-              <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Teaching Hours</p>
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600">{stats.lessonCount || '0'}</p>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Teaching Lessons</p>
             </CardContent>
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
@@ -281,7 +286,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                 <div className="flex justify-between items-start">
                   <div>
                     <CardTitle className="text-2xl">
-                      Your {teacherSubjects.length} Selected Subjects
+                      Your {Object.values(subjectDistribution).filter(count => count > 0).length} Active Subjects
                     </CardTitle>
                     <CardDescription>Click any subject to explore its unit plans</CardDescription>
                   </div>
@@ -298,9 +303,9 @@ export function ShowcaseDashboard(): React.ReactElement {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {teacherSubjects.length > 0 ? (
-                    teacherSubjects.map((subject) => {
-                      const units = unitsBySubject[subject] || [];
+                  {actualSubjects.length > 0 ? (
+                    actualSubjects.filter(subject => (subjectDistribution[subject] || 0) > 0).map((subject) => {
+                      const unitCount = subjectDistribution[subject] || 0;
                       return (
                         <button
                           key={subject}
@@ -312,7 +317,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                           <div className="flex flex-col items-center">
                             {subjectIcons[subject] || <BookOpen className="h-6 w-6" />}
                             <p className="text-xs font-semibold opacity-95 mb-1">{subject}</p>
-                            <p className="text-2xl font-bold">{units.length}</p>
+                            <p className="text-2xl font-bold">{unitCount}</p>
                             <p className="text-xs opacity-90">Units</p>
                           </div>
                         </button>
@@ -382,7 +387,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                   onClick={() => navigate('/planner/units')}
                 >
                   <Layers className="h-5 w-5 mr-2" />
-                  Explore All {allUnits.length || '0'} Unit Plans
+                  Explore All {stats.unitCount || '0'} Unit Plans
                 </Button>
               </CardContent>
             </Card>
@@ -502,7 +507,7 @@ export function ShowcaseDashboard(): React.ReactElement {
               <CheckCircle2 className="h-5 w-5 text-green-600" />
               <AlertDescription className="text-green-900">
                 <strong>Everything is ready!</strong><br />
-                Your entire school year is planned with {allUnits.length || '0'} comprehensive unit plans and {totalLessons} detailed lesson plans ({totalHours.toFixed(1)} hours total). You can start teaching with confidence!
+                Your entire school year is planned with {stats.unitCount || '0'} comprehensive unit plans and {stats.lessonCount} detailed lesson plans ({stats.totalHours.toFixed(1)} hours total). You can start teaching with confidence!
               </AlertDescription>
             </Alert>
             

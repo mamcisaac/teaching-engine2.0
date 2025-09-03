@@ -1,5 +1,3 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { 
   Calendar, 
   BookOpen, 
@@ -14,6 +12,9 @@ import {
   BarChart3,
   FileBarChart
 } from 'lucide-react';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import { useNavigation } from './NavigationProvider';
 
 interface TeachingNavItem {
@@ -42,7 +43,7 @@ export function TeachingNavigationSection(): React.ReactElement {
       name: 'Unit Plans',
       path: '/planner/units',
       icon: <BookOpen className="h-5 w-5" />,
-      description: '53 complete units',
+      description: 'Complete unit plans',
     },
     {
       id: 'longrange',

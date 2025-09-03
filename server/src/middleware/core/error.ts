@@ -7,7 +7,7 @@ import { errorReportingService } from '../../services/monitoring/errorReportingS
 import { AppError, handleDatabaseError, formatErrorResponse } from '../../utils/errors';
 
 // Extended Express Request with additional properties
-interface ExtendedRequest extends Request {
+export interface ExtendedRequest extends Request {
   id?: string;
   user?: {
     id: number;

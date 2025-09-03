@@ -1,46 +1,16 @@
-import React from 'react';
 import { format, startOfWeek, addDays } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
 import { Calendar, Clock, BookOpen, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// Weekly lesson schedule for Emily's Grade 1 French Immersion
-const weekSchedule = {
-  Monday: [
-    { time: '9:00', subject: 'Français', title: 'Les sons et les lettres', duration: 60 },
-    { time: '10:15', subject: 'Mathématiques', title: 'Les nombres 1-10', duration: 45 },
-    { time: '11:15', subject: 'Sciences', title: 'Observer la nature', duration: 30 },
-    { time: '1:00', subject: 'Arts visuels', title: 'Créer avec les couleurs', duration: 45 },
-    { time: '2:00', subject: 'Éducation physique', title: 'Jeux de mouvement', duration: 45 }
-  ],
-  Tuesday: [
-    { time: '9:00', subject: 'Français', title: 'Les mots fréquents', duration: 60 },
-    { time: '10:15', subject: 'Mathématiques', title: 'Compter jusqu\'à 20', duration: 45 },
-    { time: '11:15', subject: 'Sciences humaines', title: 'Notre école', duration: 30 },
-    { time: '1:00', subject: 'Musique', title: 'Chansons françaises', duration: 45 },
-    { time: '2:00', subject: 'Formation personnelle', title: 'Les émotions', duration: 45 }
-  ],
-  Wednesday: [
-    { time: '9:00', subject: 'Français', title: 'Écriture émergente', duration: 60 },
-    { time: '10:15', subject: 'Mathématiques', title: 'Les formes géométriques', duration: 45 },
-    { time: '11:15', subject: 'Sciences', title: 'Les saisons', duration: 30 },
-    { time: '1:00', subject: 'Arts visuels', title: 'Dessiner notre monde', duration: 45 },
-    { time: '2:00', subject: 'Éducation physique', title: 'Coordination et équilibre', duration: 45 }
-  ],
-  Thursday: [
-    { time: '9:00', subject: 'Français', title: 'Lecture partagée', duration: 60 },
-    { time: '10:15', subject: 'Mathématiques', title: 'Résolution de problèmes', duration: 45 },
-    { time: '11:15', subject: 'Sciences humaines', title: 'Ma famille', duration: 30 },
-    { time: '1:00', subject: 'Musique', title: 'Rythmes et instruments', duration: 45 },
-    { time: '2:00', subject: 'Formation personnelle', title: 'Amitié et respect', duration: 45 }
-  ],
-  Friday: [
-    { time: '9:00', subject: 'Français', title: 'Centres de littératie', duration: 60 },
-    { time: '10:15', subject: 'Mathématiques', title: 'Jeux mathématiques', duration: 45 },
-    { time: '11:15', subject: 'Sciences', title: 'Exploration libre', duration: 30 },
-    { time: '1:00', subject: 'Arts/Musique', title: 'Projet créatif', duration: 45 },
-    { time: '2:00', subject: 'Célébration', title: 'Partage de la semaine', duration: 45 }
-  ]
-};
+// Daily lesson slots - 5 per day
+const DAILY_SLOTS = [
+  { slotNumber: 1, label: 'Slot 1' },
+  { slotNumber: 2, label: 'Slot 2' },
+  { slotNumber: 3, label: 'Slot 3' },
+  { slotNumber: 4, label: 'Slot 4' },
+  { slotNumber: 5, label: 'Slot 5' }
+];
 
 const subjectColors: Record<string, string> = {
   'Français': 'bg-blue-100 text-blue-800 border-blue-300',
@@ -61,7 +31,6 @@ export function SimpleWeekView(): React.ReactElement {
   const weekStart = startOfWeek(today, { weekStartsOn: 1 }); // Monday
   
   const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-  const timeSlots = ['9:00', '10:15', '11:15', '1:00', '2:00'];
   
   // Check if current date is within school year (Sept 2025 - June 2026)
   const schoolStartDate = new Date('2025-09-04');
@@ -276,17 +245,17 @@ export function SimpleWeekView(): React.ReactElement {
               })}
             </div>
 
-            {/* Time Slots */}
-            {timeSlots.map((time, timeIndex) => (
+            {/* Daily Slots */}
+            {DAILY_SLOTS.map((slot, slotIndex) => (
               <div 
-                key={time}
+                key={slot.slotNumber}
                 style={{
                   display: 'grid',
                   gridTemplateColumns: '80px repeat(5, 1fr)',
-                  borderBottom: timeIndex < timeSlots.length - 1 ? '1px solid #e5e7eb' : 'none'
+                  borderBottom: slotIndex < DAILY_SLOTS.length - 1 ? '1px solid #e5e7eb' : 'none'
                 }}
               >
-                {/* Time Label */}
+                {/* Slot Label */}
                 <div style={{
                   padding: '16px',
                   backgroundColor: '#f9fafb',
@@ -295,13 +264,13 @@ export function SimpleWeekView(): React.ReactElement {
                   fontWeight: '500',
                   color: '#374151'
                 }}>
-                  {time}
+                  {slot.label}
                 </div>
                 
-                {/* Lessons for each day */}
+                {/* Placeholder for lessons - will be populated dynamically */}
                 {weekDays.map((day, dayIndex) => {
-                  const lesson = weekSchedule[day as keyof typeof weekSchedule][timeIndex];
-                  const colorClass = subjectColors[lesson.subject] || 'bg-gray-100 text-gray-800 border-gray-300';
+                  // Placeholder for dynamic lesson data
+                  const colorClass = 'bg-gray-100 text-gray-800 border-gray-300';
                   const colors = colorClass.split(' ');
                   const bgColor = colors[0].replace('bg-', '').replace('-100', '');
                   
@@ -336,7 +305,7 @@ export function SimpleWeekView(): React.ReactElement {
                   
                   return (
                     <div 
-                      key={`${day}-${time}`}
+                      key={`${day}-${slot.slotNumber}`}
                       style={{
                         padding: '8px',
                         borderRight: dayIndex < 4 ? '1px solid #e5e7eb' : 'none',
@@ -345,43 +314,24 @@ export function SimpleWeekView(): React.ReactElement {
                     >
                       <div
                         style={{
-                          backgroundColor: colorMap[bgColor.split('-')[0]] || '#f3f4f6',
-                          border: `1px solid ${colorMap[bgColor.split('-')[0]] || '#e5e7eb'}`,
+                          backgroundColor: '#f3f4f6',
+                          border: '2px dashed #d1d5db',
                           borderRadius: '6px',
                           padding: '8px',
                           height: '100%',
                           cursor: 'pointer',
-                          transition: 'transform 0.2s'
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
                         }}
-                        onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                        onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                        onClick={() => navigate(`/planner/units/unit-1/lessons`)}
+                        onClick={() => navigate(`/planner/day/${format(addDays(weekStart, dayIndex), 'yyyy-MM-dd')}`)}
                       >
                         <div style={{
                           fontSize: '12px',
-                          fontWeight: '600',
-                          color: textColorMap[bgColor.split('-')[0]] || '#374151',
-                          marginBottom: '4px'
+                          color: '#9ca3af',
+                          textAlign: 'center'
                         }}>
-                          {lesson.subject}
-                        </div>
-                        <div style={{
-                          fontSize: '11px',
-                          color: textColorMap[bgColor.split('-')[0]] || '#4b5563',
-                          lineHeight: '1.3'
-                        }}>
-                          {lesson.title}
-                        </div>
-                        <div style={{
-                          fontSize: '10px',
-                          color: textColorMap[bgColor.split('-')[0]] || '#6b7280',
-                          marginTop: '4px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}>
-                          <Clock style={{ width: '10px', height: '10px' }} />
-                          {lesson.duration} min
+                          Click to add lesson
                         </div>
                       </div>
                     </div>
@@ -389,6 +339,25 @@ export function SimpleWeekView(): React.ReactElement {
                 })}
               </div>
             ))}
+          </div>
+
+          {/* Footer Note */}
+          <div style={{
+            marginTop: '24px',
+            padding: '16px',
+            backgroundColor: '#f9fafb',
+            borderRadius: '8px',
+            fontSize: '14px',
+            color: '#6b7280',
+            textAlign: 'center'
+                        }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <BookOpen style={{ width: '16px', height: '16px', color: '#9ca3af' }} />
+              <span>5 lessons slots per day - drag and drop to organize</span>
           </div>
 
           {/* Weekly Summary - Only show during school year */}

@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
 import { format, isToday } from 'date-fns';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import { 
   Calendar, 
   Clock, 
@@ -11,6 +9,9 @@ import {
   Target,
   Package
 } from 'lucide-react';
+import React, { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 
 // Helper function to format time from date

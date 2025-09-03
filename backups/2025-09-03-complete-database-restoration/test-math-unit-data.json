@@ -1,0 +1,36 @@
+{
+  "unitPlan": {
+    "title": "Fondations des nombres 0-10",
+    "bigIdeas": "Les nombres sont partout et nous aident à comprendre et organiser notre monde.",
+    "essentialQuestions": [
+      "Qu'est-ce qu'un nombre?",
+      "Comment compter?",
+      "Pourquoi les nombres sont-ils importants?"
+    ],
+    "startDate": "2025-09-03T00:00:00.000Z",
+    "endDate": "2025-09-30T00:00:00.000Z",
+    "estimatedHours": 15,
+    "differentiationStrategies": {
+      "structure": "14 leçons essentielles couvrant tous les concepts fondamentaux, 6 leçons d'extension pour pratique et enrichissement"
+    }
+  },
+  "subject": "Mathématiques",
+  "expectations": [
+    {
+      "code": "1NS.1",
+      "description": "Énoncer la suite des nombres de 0 à 100 en comptant un par un et par ordre croissant et décroissant, entre deux nombres donnés"
+    },
+    {
+      "code": "1NS.2",
+      "description": "Reconnaître du premier coup d'œil des arrangements familiers de 1 à 10 objets (ou points) et les nommer"
+    },
+    {
+      "code": "1NS.3",
+      "description": "Démontrer une compréhension de la notion du comptage"
+    },
+    {
+      "code": "1NS.4",
+      "description": "Comparer des ensembles comprenant jusqu'à 20 éléments pour résoudre des problèmes en utilisant des référents"
+    }
+  ]
+}

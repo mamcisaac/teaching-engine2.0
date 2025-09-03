@@ -1,19 +1,20 @@
-import React, { useState, useCallback } from 'react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { format, addDays, startOfWeek, parseISO } from 'date-fns';
 import { 
   Calendar, GripVertical, Save, Undo, Redo, 
   ChevronLeft, ChevronRight, Filter, Search 
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/input';
-import { Badge } from '../components/ui/Badge';
-import { Alert, AlertDescription } from '../components/ui/alert';
-import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
+import React, { useState, useCallback } from 'react';
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { toast } from 'sonner';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { Alert, AlertDescription } from '../components/ui/alert';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Input } from '../components/ui/input';
+import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 import api from '../utils/api';
 
 interface Lesson {
@@ -29,15 +30,15 @@ interface Lesson {
 interface DragItem {
   lesson: Lesson;
   fromDate: string;
-  fromTimeSlot: number;
+  fromSlotNumber: number;
 }
 
-const TIME_SLOTS = [
-  { time: '08:45', label: 'Block 1', subject: 'Français (Immersion)' },
-  { time: '09:30', label: 'Block 2', subject: 'Mathématiques' },
-  { time: '10:30', label: 'Block 3', subject: 'Sciences de la nature' },
-  { time: '11:15', label: 'Block 4', subject: 'Arts visuels' },
-  { time: '13:00', label: 'Block 5', subject: 'Rotating' }
+const DAILY_SLOTS = [
+  { slotNumber: 1, label: 'Slot 1' },
+  { slotNumber: 2, label: 'Slot 2' },
+  { slotNumber: 3, label: 'Slot 3' },
+  { slotNumber: 4, label: 'Slot 4' },
+  { slotNumber: 5, label: 'Slot 5' }
 ];
 
 const SUBJECT_COLORS: Record<string, string> = {
@@ -49,14 +50,14 @@ const SUBJECT_COLORS: Record<string, string> = {
   'Formation personnelle et sociale': 'bg-pink-100 border-pink-300'
 };
 
-function LessonCard({ lesson, fromDate, fromTimeSlot }: { 
+function LessonCard({ lesson, fromDate, fromSlotNumber }: { 
   lesson: Lesson; 
   fromDate: string; 
-  fromTimeSlot: number;
+  fromSlotNumber: number;
 }) {
   const [{ isDragging }, drag] = useDrag({
     type: 'lesson',
-    item: { lesson, fromDate, fromTimeSlot } as DragItem,
+    item: { lesson, fromDate, fromSlotNumber } as DragItem,
     collect: (monitor) => ({
       isDragging: monitor.isDragging()
     })
@@ -86,21 +87,21 @@ function LessonCard({ lesson, fromDate, fromTimeSlot }: {
   );
 }
 
-function TimeSlot({ 
+function DailySlot({ 
   date, 
-  timeSlot, 
+  slotNumber, 
   lessons, 
   onDrop 
 }: { 
   date: string; 
-  timeSlot: number; 
+  slotNumber: number; 
   lessons: Lesson[];
   onDrop: (item: DragItem, targetDate: string, targetSlot: number) => void;
 }) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: 'lesson',
     drop: (item: DragItem) => {
-      onDrop(item, date, timeSlot);
+      onDrop(item, date, slotNumber);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -120,7 +121,7 @@ function TimeSlot({
           key={lesson.id} 
           lesson={lesson} 
           fromDate={date}
-          fromTimeSlot={timeSlot}
+          fromSlotNumber={slotNumber}
         />
       ))}
       {lessons.length === 0 && (
@@ -134,7 +135,7 @@ export function ScheduleEditor(): React.ReactElement {
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [searchTerm, setSearchTerm] = useState('');
   const [filterSubject, setFilterSubject] = useState('');
-  const [changes, setChanges] = useState<Map<string, { date: string; timeSlot: number }>>(new Map());
+  const [changes, setChanges] = useState<Map<string, { date: string; slotNumber: number }>>(new Map());
   const [history, setHistory] = useState<typeof changes[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   
@@ -159,24 +160,22 @@ export function ScheduleEditor(): React.ReactElement {
   });
 
   const handleDrop = useCallback((item: DragItem, targetDate: string, targetSlot: number) => {
-    const { lesson, fromDate, fromTimeSlot } = item;
+    const { lesson, fromDate, fromSlotNumber } = item;
     
     // Don't do anything if dropping in same spot
-    if (fromDate === targetDate && fromTimeSlot === targetSlot) {
+    if (fromDate === targetDate && fromSlotNumber === targetSlot) {
       return;
     }
 
     // Create new changes map
     const newChanges = new Map(changes);
     
-    // Calculate new datetime
+    // Set the target date for the lesson
     const targetDateTime = new Date(targetDate);
-    const [hours, minutes] = TIME_SLOTS[targetSlot].time.split(':').map(Number);
-    targetDateTime.setHours(hours, minutes, 0, 0);
     
     newChanges.set(lesson.id, { 
       date: targetDateTime.toISOString(), 
-      timeSlot: targetSlot 
+      slotNumber: targetSlot 
     });
     
     // Update state
@@ -188,7 +187,7 @@ export function ScheduleEditor(): React.ReactElement {
     setHistory(newHistory);
     setHistoryIndex(newHistory.length - 1);
     
-    toast.info(`Moved "${lesson.titleFr || lesson.title}" to ${format(targetDateTime, 'MMM d, h:mm a')}`);
+    toast.info(`Moved "${lesson.titleFr || lesson.title}" to ${format(targetDateTime, 'MMM d')} Slot ${targetSlot}`);
   }, [changes, history, historyIndex]);
 
   const handleUndo = () => {
@@ -420,7 +419,7 @@ export function ScheduleEditor(): React.ReactElement {
                         const filteredLessons = slotLessons.filter(lesson => {
                           if (searchTerm && 
                               !lesson.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-                              !lesson.titleFr?.toLowerCase().includes(searchTerm.toLowerCase())) {
+                              !lesson.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return false;
                           }
                           if (filterSubject && lesson.subject !== filterSubject) {

@@ -1,0 +1,3944 @@
+{
+  "unitTitle": "Fondations des nombres 0-10",
+  "subject": "Mathématiques",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Découvrir les nombres dans notre monde",
+      "oneGoal": "Les élèves reconnaissent les nombres 0-3 dans leur environnement quotidien",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nombre",
+        "zéro",
+        "un"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Chanson de bienvenue avec gestes: 'Bonjour les nombres, bonjour les amis!' Montrer 0 doigt (rien), 1 doigt, 2 doigts, 3 doigts avec mouvements expressifs.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes visuelles grandes 0-3",
+              "quantity": "1 jeu pour classe (4 cartes format 8x10)",
+              "source": "Matériel pédagogique - armoire mathématiques",
+              "preparation": "Plastifier si nécessaire, installer au tableau",
+              "alternatives": [
+                "Dessiner à la craie",
+                "Afficher sur écran numérique"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cloche ou signal auditif",
+              "quantity": "1 pour classe",
+              "purpose": "Recentrer l'attention pendant la chanson"
+            }
+          ]
+        },
+        "visualSupports": "Cartes affichées au tableau montrant 0, 1, 2, 3",
+        "decisionPoints": [
+          "Si les élèves ont de la difficulté à montrer les nombres avec leurs doigts → modéliser lentement et permettre l'imitation",
+          "Si distraction pendant la chanson → utiliser la cloche pour ramener l'attention",
+          "Si confusion entre zéro et les autres nombres → insister sur 'rien du tout' pour zéro"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Promenade des nombres: Explorer la classe pour trouver des exemples de 0 (boîte vide), 1 (horloge), 2 (ciseaux), 3 (crayons). Les élèves touchent, comptent et nomment.",
+        "materials": {
+          "required": [
+            {
+              "item": "Boîtes transparentes vides",
+              "quantity": "3-4 boîtes pour démontrer 'zéro'",
+              "source": "Matériel recyclé - bureau administratif",
+              "preparation": "Nettoyer et vérifier qu'elles sont complètement vides",
+              "alternatives": [
+                "Contenants plastique transparents",
+                "Bocaux en verre"
+              ]
+            },
+            {
+              "item": "Objets concrets de la classe",
+              "quantity": "Collection variée (1 horloge, 2 ciseaux, 3+ crayons)",
+              "source": "Matériel déjà présent en classe",
+              "preparation": "Vérifier accessibilité et sécurité pour manipulation",
+              "alternatives": [
+                "Photos plastifiées des objets",
+                "Images projetées"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Étiquettes nombres 0-3",
+              "quantity": "1 jeu pour affichage",
+              "purpose": "Support visuel pendant l'exploration"
+            }
+          ]
+        },
+        "visualSupports": "Tableau visuel avec symboles: 0 = boîte vide, 1 = soleil, 2 = yeux, 3 = roues de tricycle",
+        "decisionPoints": [
+          "Si les élèves se dispersent pendant l'exploration → diviser en petits groupes de 4-5 élèves",
+          "Si confusion sur le concept de 'zéro' → comparer avec des boîtes pleines versus vides",
+          "Si trop d'excitation pendant la promenade → établir des règles claires de déplacement"
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de partage: Chaque élève montre un nombre avec ses doigts. Chanson de fermeture: 'Un, deux, trois, au revoir!'",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Musique douce de fond",
+              "quantity": "1 source audio",
+              "purpose": "Ambiance calme pour la fermeture"
+            }
+          ]
+        },
+        "visualSupports": "Cercle marqué au sol ou tapis de rassemblement",
+        "decisionPoints": [
+          "Si les élèves montrent incorrectement les nombres avec les doigts → modéliser et permettre répétition",
+          "Si difficulté à faire le cercle → utiliser des marqueurs visuels au sol"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser seulement les nombres 0-2 au lieu de 0-3",
+          "Permettre l'utilisation d'objets concrets pendant toute la leçon",
+          "Offrir plus de temps pour la manipulation et l'exploration",
+          "Fournir un partenaire pour le soutien pendant la promenade"
+        ],
+        "pourAvancés": [
+          "Introduire le nombre 4 s'ils maîtrisent rapidement 0-3",
+          "Demander de trouver et compter des collections plus grandes dans la classe",
+          "Encourager l'écriture ou le dessin des nombres trouvés",
+          "Créer leur propre chanson avec gestes pour les nombres"
+        ],
+        "pourLangue": [
+          "Associer chaque nombre à une image claire et constante",
+          "Permettre l'usage de la langue première pour compter initialement",
+          "Utiliser gestes exagérés et répétition pour vocabulaire",
+          "Fournir cartes visuelles avec nombres et objets concrets"
+        ],
+        "pourPEI": [
+          "Adapter selon les besoins sensoriels (volume, éclairage, espace)",
+          "Modifier les attentes de participation (pointer au lieu de parler)",
+          "Utiliser supports tactiles si nécessaire (nombres en relief)",
+          "Ajuster la durée d'attention avec pauses fréquentes"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève montre 0-3 avec ses doigts correctement",
+          "Élève reconnaît les nombres 0-3 dans l'environnement",
+          "Élève participe activement à la promenade des nombres",
+          "Élève utilise le vocabulaire: nombre, zéro, un en contexte"
+        ],
+        "checkpoints": [
+          "Pendant l'ouverture: Vérifier si élève suit les gestes de la chanson",
+          "Pendant l'exploration: Observer la manipulation des objets et comptage",
+          "Pendant la fermeture: Noter la participation au cercle de partage"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Compter avec nos doigts",
+      "oneGoal": "Les élèves comptent jusqu'à 3 en utilisant leurs doigts et des objets concrets",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "deux",
+        "trois",
+        "compter"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Révision de la Leçon 1 avec gestes: 'Hier nous avons trouvé des nombres! Montrez-moi 0, 1, 2, 3 avec vos doigts!' Chanson des doigts avec mouvement.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 0-3 de la leçon précédente",
+              "quantity": "1 jeu pour affichage",
+              "source": "Matériel de la leçon 1",
+              "preparation": "Réinstaller au tableau pour révision",
+              "alternatives": [
+                "Redessiner rapidement",
+                "Utiliser écran numérique"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Cartes nombres 0-3 affichées pour référence",
+        "decisionPoints": [
+          "Si les élèves ont oublié la leçon précédente → faire une brève révision avec les objets concrets",
+          "Si difficulté avec la chanson → ralentir le rythme et accentuer les gestes"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Stations de comptage: Station 1 - Compter des blocs dans des boîtes (0-3). Station 2 - Jeu de doigts avec comptines. Station 3 - Tri d'objets par quantité.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables colorés",
+              "quantity": "120 cubes (20 pour chaque station de 4-5 élèves)",
+              "source": "Kit mathématiques - armoire A",
+              "preparation": "Séparer en groupes de 0-3 dans des boîtes transparentes",
+              "alternatives": [
+                "Jetons de comptage",
+                "Blocs de bois",
+                "Haricots lima"
+              ]
+            },
+            {
+              "item": "Boîtes transparentes petites",
+              "quantity": "12 boîtes (4 par station)",
+              "source": "Matériel de rangement",
+              "preparation": "Nettoyer et étiqueter 0, 1, 2, 3",
+              "alternatives": [
+                "Assiettes de papier",
+                "Contenants de yogourt"
+              ]
+            },
+            {
+              "item": "Objets à trier variés",
+              "quantity": "60 objets (20 par station): boutons, crayons, gommes",
+              "source": "Matériel de classe et fournitures",
+              "preparation": "Vérifier sécurité, organiser dans paniers",
+              "alternatives": [
+                "Autocollants géométriques",
+                "Images découpées"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuteur visuel",
+              "quantity": "3 minuteurs (1 par station)",
+              "purpose": "Gestion du temps de rotation"
+            }
+          ]
+        },
+        "visualSupports": "Cartes numériques avec points, lignes de nombre tactile au sol",
+        "decisionPoints": [
+          "Si les élèves comptent sans correspondance un-à-un → modéliser 'toucher et dire' à chaque objet",
+          "Si confusion dans les rotations → utiliser des signaux visuels clairs pour chaque station",
+          "Si certains finissent très rapidement → préparer des défis supplémentaires avec nombres 4-5"
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Jeu 'Montre-moi': L'enseignant dit un nombre, les élèves le montrent avec leurs doigts et trouvent ce nombre d'objets.",
+        "materials": {
+          "required": [
+            {
+              "item": "Petits objets pour comptage rapide",
+              "quantity": "100 objets identiques (4 par élève): jetons, boutons, cubes",
+              "source": "Réutiliser matériel de l'activité principale",
+              "preparation": "Distribuer 4 objets par élève dans petits contenants",
+              "alternatives": [
+                "Crayons cassés",
+                "Blocs Lego",
+                "Bouchons"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Cercle de rassemblement avec espace pour objets",
+        "decisionPoints": [
+          "Si difficulté à trouver le bon nombre d'objets → commencer par nombres plus petits (0-2)",
+          "Si élèves lancent les objets → rappeler les règles de manipulation douce"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer avec seulement 0-1-2, retarder l'introduction de 3",
+          "Utiliser des objets plus gros et faciles à manipuler",
+          "Permettre comptage plus lent avec pause entre chaque nombre",
+          "Utiliser supports visuels constants pour chaque nombre"
+        ],
+        "pourAvancés": [
+          "Introduire le comptage jusqu'à 5 si maîtrise rapide",
+          "Demander de créer des collections de différentes tailles",
+          "Encourager à enseigner le comptage à un pair",
+          "Explorer différentes façons de montrer un nombre (doigts, objets, dessins)"
+        ],
+        "pourLangue": [
+          "Répéter chaque nombre plusieurs fois avec gestes clairs",
+          "Associer nombres à des images/photos familières",
+          "Permettre comptage dans langue maternelle puis en français",
+          "Utiliser objets culturellement familiers quand possible"
+        ],
+        "pourPEI": [
+          "Adapter les manipulatives selon besoins moteurs (plus gros, texturés)",
+          "Modifier attentes de production verbale (gestes ok)",
+          "Ajuster éclairage et position selon besoins sensoriels",
+          "Fournir pauses sensorielles fréquentes"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève manipule le matériel mathématique avec aisance",
+          "L'élève explique sa pensée mathématique en français simple",
+          "L'élève fait des liens entre les concepts et la vie quotidienne",
+          "L'élève vérifie ses réponses en utilisant une autre stratégie"
+        ],
+        "checkpoints": [
+          "Comprend le concept mathématique ciblé",
+          "Utilise le vocabulaire mathématique approprié",
+          "Applique la stratégie apprise à de nouveaux problèmes",
+          "Montre sa compréhension par des exemples concrets"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Représenter les nombres 0-3",
+      "oneGoal": "Les élèves créent différentes représentations visuelles des nombres 0-3",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "dessiner",
+        "montrer",
+        "représenter"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Révision avec mouvement: 'Comment montrions-nous 2 hier?' (doigts, objets). 'Aujourd'hui nous allons DESSINER les nombres!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Quelques objets de révision",
+              "quantity": "10 objets pour démonstration (cubes ou jetons)",
+              "source": "Matériel de la leçon précédente",
+              "preparation": "Préparer groupes de 1, 2, 3 pour rappel rapide",
+              "alternatives": [
+                "Doigts seulement",
+                "Images projetées"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Exemples de représentations: objets réels, doigts, puis dessins",
+        "decisionPoints": [
+          "Si les élèves ont oublié les leçons précédentes → faire révision plus approfondie avec manipulation",
+          "Si anxiété face au dessin → rassurer que tous les dessins sont acceptables"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Atelier de représentation: Les élèves choisissent comment représenter chaque nombre (dessins, autocollants, empreintes de doigts, pâte à modeler). Créer un 'livre personnel des nombres'.",
+        "materials": {
+          "required": [
+            {
+              "item": "Papier pour livre personnel",
+              "quantity": "4 feuilles par élève (100 feuilles): 1 page par nombre 0-3",
+              "source": "Fournitures de classe",
+              "preparation": "Plier en format livret, numéroter les pages",
+              "alternatives": [
+                "Papier recyclé",
+                "Dos de feuilles utilisées"
+              ]
+            },
+            {
+              "item": "Crayons de couleur ou marqueurs",
+              "quantity": "1 boîte par table (6 boîtes pour 25 élèves)",
+              "source": "Matériel artistique de classe",
+              "preparation": "Vérifier que tous fonctionnent, organiser par table",
+              "alternatives": [
+                "Crayons de plomb seulement",
+                "Craies colorées"
+              ]
+            },
+            {
+              "item": "Autocollants ronds (optionnel)",
+              "quantity": "50 autocollants (2 par élève par nombre)",
+              "source": "Matériel artistique ou bureau",
+              "preparation": "Prévoir autocollants simples et colorés",
+              "alternatives": [
+                "Gommettes faites maison",
+                "Dessins seulement"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Pâte à modeler",
+              "quantity": "10 pots pour partage",
+              "purpose": "Option tactile pour représentation 3D"
+            }
+          ]
+        },
+        "visualSupports": "Exemples variés de représentations: dots, lignes, formes, dessins",
+        "decisionPoints": [
+          "Si frustration avec le dessin → encourager d'autres options comme autocollants ou empreintes",
+          "Si perfectionnisme bloque la créativité → montrer que toutes les tentatives sont valables",
+          "Si élèves finissent rapidement → les inviter à décorer ou essayer une deuxième technique"
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Galerie de nombres: Afficher les créations et inviter les élèves à 'lire' les nombres des autres.",
+        "materials": {
+          "required": [
+            {
+              "item": "Espace d'affichage (tableau ou mur)",
+              "quantity": "Espace pour 25 livrets ouverts",
+              "source": "Espace classe existant",
+              "preparation": "Dégager espace au niveau des yeux des élèves",
+              "alternatives": [
+                "Tables arrangées pour exposition",
+                "Sol avec tapis"
+              ]
+            },
+            {
+              "item": "Punaises ou épingles (si affichage mural)",
+              "quantity": "25-30 punaises",
+              "source": "Matériel de bureau",
+              "preparation": "Vérifier sécurité pour élèves de 6 ans",
+              "alternatives": [
+                "Pâte collante",
+                "Affichage sur tables"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Organisation en galerie avec chemin de circulation",
+        "decisionPoints": [
+          "Si timidité pour partager → commencer par observation silencieuse puis inviter commentaires volontaires",
+          "Si difficulté à 'lire' les représentations des autres → encourager les questions à l'auteur"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Explorer les nombres 4 et 5",
+      "oneGoal": "Les élèves découvrent et comptent les nombres 4 et 5 avec des manipulatives",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "quatre",
+        "cinq",
+        "collection"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Révision active: 'Montrez-moi vos nombres 0-3!' Puis surprise: 'Aujourd'hui nous rencontrons de NOUVEAUX amis: 4 et 5!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 0-3 existantes",
+              "quantity": "Cartes déjà utilisées",
+              "source": "Matériel des leçons précédentes",
+              "preparation": "Réinstaller pour révision rapide",
+              "alternatives": [
+                "Dessiner rapidement au tableau"
+              ]
+            },
+            {
+              "item": "Cartes nouvelles 4 et 5",
+              "quantity": "2 grandes cartes format affichage",
+              "source": "Préparer nouveau matériel ou dessiner",
+              "preparation": "Cartes colorées et attrayantes pour l'excitation",
+              "alternatives": [
+                "Dessiner directement au tableau"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique d'introduction festive",
+              "quantity": "1 source audio",
+              "purpose": "Créer excitation pour nouveaux nombres"
+            }
+          ]
+        },
+        "visualSupports": "Progression visible: 0, 1, 2, 3... puis révélation de 4 et 5",
+        "decisionPoints": [
+          "Si les élèves semblent dépassés par deux nouveaux nombres → se concentrer sur 4 aujourd'hui, introduire 5 demain",
+          "Si excellente révision de 0-3 → procéder avec confiance aux nouveaux nombres"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration guidée: Utiliser une main géante pour montrer 5 doigts. Construire des tours de 4 et 5 blocs. Jeu de collections: faire des groupes de 4 et 5 objets.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes emboîtables pour constructions",
+              "quantity": "200 cubes (8 par élève): assez pour tours de 4 et 5",
+              "source": "Kit mathématiques - armoire A",
+              "preparation": "Séparer en couleurs, prévoir contenants pour distribution",
+              "alternatives": [
+                "Blocs de bois",
+                "Boîtes empilables",
+                "Livres pour empiler"
+              ]
+            },
+            {
+              "item": "Objets variés pour collections",
+              "quantity": "250 objets au total: crayons (50), gommes (50), jetons (50), boutons (50), bouchons (50)",
+              "source": "Matériel de classe et collections",
+              "preparation": "Organiser dans 5 paniers différents, vérifier sécurité",
+              "alternatives": [
+                "Autocollants",
+                "Coquillages",
+                "Haricots lima"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Main géante en carton",
+              "quantity": "1 main découpee format grand affichage",
+              "purpose": "Demonstration visuelle spectaculaire de 5 doigts"
+            }
+          ]
+        },
+        "visualSupports": "Main géante avec doigts numérotés, cartes visuelles 4-5 avec objets familiers",
+        "decisionPoints": [
+          "Si surcharge cognitive avec 4 ET 5 → se concentrer sur 4 seulement et reporter 5 à demain",
+          "Si tours s'effondrent constamment → encourager constructions plus larges à la base",
+          "Si difficulté à faire collections exactes → modéliser comptage en touchant chaque objet"
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Jeu 'Main magique': Montrer différents nombres de doigts, les élèves nomment le nombre et le construisent avec des blocs.",
+        "materials": {
+          "required": [
+            {
+              "item": "Quelques cubes par élève",
+              "quantity": "125 cubes (5 par élève) dans petits contenants",
+              "source": "Réutiliser cubes de l'activité principale",
+              "preparation": "Distribuer 5 cubes maximum par élève",
+              "alternatives": [
+                "Jetons",
+                "Boutons dans coupelles",
+                "Bouchons"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Cercle avec espace central pour démonstrations",
+        "decisionPoints": [
+          "Si élèves confondent encore 4 et 5 → revenir à comparer avec les doigts d'une main",
+          "Si agitation avec les blocs → établir règles claires de manipulation"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Jeux de nombres 0-5",
+      "oneGoal": "Les élèves pratiquent la reconnaissance rapide des nombres 0-5 par le jeu",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "reconnaître",
+        "vite",
+        "jeu"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Échauffement 'Danse des nombres': Musique, quand elle s'arrête, montrer le nombre de doigts demandé.",
+        "materials": {
+          "required": [
+            {
+              "item": "Musique entraînante adaptée aux enfants",
+              "quantity": "1 source audio avec contrôle facile pause/play",
+              "source": "Système audio de classe ou appareil personnel",
+              "preparation": "Tester volume et facilité d'arrêt rapide",
+              "alternatives": [
+                "Chansons a capella",
+                "Battement de mains rhythmique"
+              ]
+            },
+            {
+              "item": "Cartes nombres 0-5 pour référence",
+              "quantity": "1 jeu pour affichage rapide",
+              "source": "Matériel déjà préparé",
+              "preparation": "Garder à portée de main pour rappels",
+              "alternatives": [
+                "Doigts de l'enseignant seulement"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Espace de danse dégagé, cartes nombres visibles",
+        "decisionPoints": [
+          "Si élèves trop excités par la musique → baisser volume et raccourcir périodes",
+          "Si difficulté à montrer nombres rapidement → ralentir le rythme et donner plus de temps",
+          "Si confusion sur nombres 4-5 → se concentrer sur 0-3 pour cette activité"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Rotation de jeux: Jeu 1 - Dé géant (rouler, dire le nombre, applaudir ce nombre de fois). Jeu 2 - Sac mystère (deviner le nombre d'objets au toucher). Jeu 3 - Course de nombres (trouver le nombre appelé dans la classe).",
+        "materials": {
+          "required": [
+            {
+              "item": "Dé géant en mousse ou carton",
+              "quantity": "1 dé avec faces 0-5 (couvrir le 6 ou faire dé spécial)",
+              "source": "Matériel éducatif ou fabriquer avec boîte",
+              "preparation": "Vérifier que faces montrent 0, 1, 2, 3, 4, 5",
+              "alternatives": [
+                "Dé régulier avec équivalences",
+                "Roulette avec nombres"
+              ]
+            },
+            {
+              "item": "Sacs opaques pour jeu mystère",
+              "quantity": "6 sacs (2 par station de 8-9 élèves)",
+              "source": "Sacs en tissu ou papier",
+              "preparation": "Préparer avec 0-5 objets identiques dans chaque sac",
+              "alternatives": [
+                "Boîtes fermées",
+                "Contenants opaques"
+              ]
+            },
+            {
+              "item": "Objets pour sacs mystère",
+              "quantity": "90 objets identiques: 30 cubes, 30 jetons, 30 boutons",
+              "source": "Matériel de comptage existant",
+              "preparation": "Séparer en groupes de 0-5 par sac",
+              "alternatives": [
+                "Cailloux lisses",
+                "Blocs identiques",
+                "Bouchons"
+              ]
+            },
+            {
+              "item": "Cartes nombres à afficher dans la classe",
+              "quantity": "15 cartes (3 copies de chaque nombre 0-5)",
+              "source": "Fabriquer ou imprimer grand format",
+              "preparation": "Afficher à différents endroits de la classe",
+              "alternatives": [
+                "Dessiner nombres au tableau temporairement"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Minuteur pour rotations",
+              "quantity": "1 minuteur visuel",
+              "purpose": "Gestion des rotations de 9 minutes par jeu"
+            }
+          ]
+        },
+        "visualSupports": "Nombres affichés partout dans la classe, cartes colorées avec symboles",
+        "decisionPoints": [
+          "Si trop d'excitation avec le dé géant → établir règles claires: rouler doucement, attendre son tour",
+          "Si difficulté avec sac mystère → permettre de regarder après avoir deviné",
+          "Si course devient chaotique → établir règles de déplacement sécuritaire"
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de célébration: Chaque élève dit son nombre préféré entre 0-5 et explique pourquoi.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cercle ou tapis de rassemblement",
+              "quantity": "Espace pour 25 élèves assis",
+              "source": "Aménagement de classe existant",
+              "preparation": "Dégager l'espace, marquer places si nécessaire",
+              "alternatives": [
+                "Chaises en cercle",
+                "Marqueurs au sol"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Bâton de parole ou objet à passer",
+              "quantity": "1 objet spécial",
+              "purpose": "Gestion des tours de parole"
+            }
+          ]
+        },
+        "visualSupports": "Cartes nombres 0-5 affichées comme référence",
+        "decisionPoints": [
+          "Si certains élèves sont timides pour partager → commencer par modéliser avec votre nombre préféré",
+          "Si discussions deviennent trop longues → limiter à une phrase par élève"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Compter vers l'avant et vers l'arrière",
+      "oneGoal": "Les élèves comptent en ordre croissant et décroissant de 0 à 5",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "avant",
+        "arrière",
+        "ordre"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Révision en mouvement: Marcher sur la ligne de nombre en comptant vers l'avant 0-5, puis applaudir en reculant 5-0.",
+        "materials": {
+          "required": [
+            {
+              "item": "Ligne de nombre au sol",
+              "quantity": "1 ligne marquée 0 à 5 (6 points)",
+              "source": "Ruban adhésif coloré ou craie",
+              "preparation": "Marquer au sol avec espaces de 50cm entre nombres",
+              "alternatives": [
+                "Cerceaux placés en ligne",
+                "Feuilles numérotées au sol"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Ligne numérique visible au sol",
+        "decisionPoints": [
+          "Si confusion directionnelle (avant/arrière) → utiliser flèches au sol et gestes clairs",
+          "Si élèves trébuchent sur la ligne → élargir l'espace ou permettre côté de la ligne"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Activités séquentielles: Escalier de nombres (monter en comptant vers l'avant, descendre en comptant vers l'arrière). Théâtre de marionnettes: nombres qui se suivent racontent leur histoire.",
+        "materials": {
+          "required": [
+            {
+              "item": "Blocs ou boîtes pour escalier",
+              "quantity": "30 blocs identiques pour construire escalier 6 marches",
+              "source": "Blocs de construction ou boîtes",
+              "preparation": "Préparer construction stable, étiqueter marches 0-5",
+              "alternatives": [
+                "Utiliser escalier réel de l'école",
+                "Dessiner escalier géant au tableau"
+              ]
+            },
+            {
+              "item": "Marionnettes nombres simples",
+              "quantity": "6 marionnettes ou personnages (0, 1, 2, 3, 4, 5)",
+              "source": "Fabriquer avec papier ou chaussettes",
+              "preparation": "Créer personnages expressifs, faciles à manipuler",
+              "alternatives": [
+                "Cartes nombres avec visages",
+                "Doigts déguisés"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Flèches directionnelles, ligne de nombre colorée, marionnettes expressives",
+        "decisionPoints": [
+          "Si escalier physique non sécuritaire → utiliser version au sol ou dessinnée",
+          "Si élèves perdent intérêt dans théâtre → les inviter à manipuler marionnettes eux-mêmes"
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Chanson 'L'ascenseur des nombres': Monter et descendre avec la mélodie en comptant.",
+        "materials": {
+          "required": [
+            {
+              "item": "Espace pour mouvement vertical",
+              "quantity": "Espace classe dégagé pour 25 élèves",
+              "source": "Centre de la classe",
+              "preparation": "Pousser chaises/tables si nécessaire",
+              "alternatives": [
+                "Mouvement assis (bras vers haut/bas)",
+                "Utiliser couloir"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique d'ascenseur douce",
+              "quantity": "1 source audio",
+              "purpose": "Ambiance pour la chanson"
+            }
+          ]
+        },
+        "visualSupports": "Géstes clairs pour monter/descendre",
+        "decisionPoints": [
+          "Si espace insuffisant → faire activité en deux groupes"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève manipule le matériel mathématique avec aisance",
+          "L'élève explique sa pensée mathématique en français simple",
+          "L'élève fait des liens entre les concepts et la vie quotidienne",
+          "L'élève vérifie ses réponses en utilisant une autre stratégie"
+        ],
+        "checkpoints": [
+          "Comprend le concept mathématique ciblé",
+          "Utilise le vocabulaire mathématique approprié",
+          "Applique la stratégie apprise à de nouveaux problèmes",
+          "Montre sa compréhension par des exemples concrets"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Découvrir les nombres 6 et 7",
+      "oneGoal": "Les élèves explorent les nombres 6 et 7 avec des blocs et des jetons",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "six",
+        "sept",
+        "plus"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Révision énergique 0-5, puis surprise: 'Nous grandissons! Voici 6 et 7, nos nouveaux amis nombres!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 0-5 pour révision",
+              "quantity": "1 jeu d'affichage",
+              "source": "Matériel des leçons précédentes",
+              "preparation": "Réinstaller rapidement",
+              "alternatives": [
+                "Compter sur doigts seulement"
+              ]
+            },
+            {
+              "item": "Cartes nouvelles 6 et 7",
+              "quantity": "2 cartes grand format",
+              "source": "Préparer ou dessiner",
+              "preparation": "Rendre attrayantes pour exciter",
+              "alternatives": [
+                "Dessiner au tableau"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Progression 0-5 puis ajout de 6-7",
+        "decisionPoints": [
+          "Si surcharge avec deux nouveaux nombres → se concentrer sur 6 seulement"
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Construction et exploration: Construire des tours de 6 et 7 blocs. Utiliser des boîtes d'œufs pour visualiser 6. Explorer comment faire 7 (6+1). Jeux de comparaison: 'plus que 5'.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cubes pour constructions",
+              "quantity": "175 cubes (7 par élève)",
+              "source": "Kit mathématiques",
+              "preparation": "Distribuer en contenants",
+              "alternatives": [
+                "Blocs de bois",
+                "Boîtes empilables"
+              ]
+            },
+            {
+              "item": "Boîtes d'œufs (6 compartiments)",
+              "quantity": "10 boîtes pour démonstration",
+              "source": "Matériel recyclé ou imitation carton",
+              "preparation": "Nettoyer si réelles, vérifier 6 compartiments",
+              "alternatives": [
+                "Dessiner grilles de 6 cases",
+                "Moules à muffins"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Images concrètes (6 pattes d'insecte, 7 jours semaine), tableaux de comparaison",
+        "decisionPoints": [
+          "Si tours s'effondrent constamment → encourager bases plus larges ou constructions horizontales",
+          "Si confusion entre 6 et 7 → utiliser comparaison avec une main (5) plus doigts supplémentaires"
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Célébration des nombres 'grands': Applaudir 6 fois lentement, puis 7 fois avec enthousiasme.",
+        "materials": {
+          "required": [],
+          "optional": [
+            {
+              "item": "Musique célébration",
+              "quantity": "1 source audio",
+              "purpose": "Ambiance festive pour les nouveaux nombres"
+            }
+          ]
+        },
+        "visualSupports": "Espace pour applaudir ensemble en cercle",
+        "decisionPoints": [
+          "Si confusion dans comptage d'applaudissements → applaudir plus lentement avec modélisation"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Mesurer avec les nombres",
+      "oneGoal": "Les élèves utilisent les nombres pour mesurer des objets simples",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "mesurer",
+        "long",
+        "court"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Connexion: 'Hier nous avons appris 6 et 7. Aujourd'hui, nous utilisons TOUS nos nombres pour mesurer!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 6 et 7 de révision",
+              "quantity": "2 cartes format affichage",
+              "source": "Matériel des leçons précédentes",
+              "preparation": "Afficher au tableau pour connexion",
+              "alternatives": [
+                "Redessiner rapidement au tableau"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Règle ou mètre à ruban",
+              "quantity": "1 pour démonstration",
+              "purpose": "Montrer l'idée de mesurer pendant l'introduction"
+            }
+          ]
+        },
+        "visualSupports": "Cartes nombres 6-7 affichées, exemple de mesure simple au tableau",
+        "decisionPoints": [
+          "Si les élèves ont oublié les nombres 6 et 7 → faire une révision rapide avec les doigts",
+          "Si confusion sur le concept de 'mesurer' → montrer brièvement avec la règle"
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Ateliers de mesure: Mesurer des livres avec des trombones, des bureaux avec des blocs, des crayons avec des jetons. Prédire d'abord, puis mesurer et compter.",
+        "materials": {
+          "required": [
+            {
+              "item": "Trombones pour mesurer",
+              "quantity": "200 trombones (8 par élève)",
+              "source": "Fournitures de bureau",
+              "preparation": "Vérifier qu'ils sont tous de même taille",
+              "alternatives": [
+                "Cubes unifix",
+                "Jetons identiques",
+                "Crayons cassés de même longueur"
+              ]
+            },
+            {
+              "item": "Objets à mesurer variés",
+              "quantity": "Livres (25), crayons (25), règles (10)",
+              "source": "Matériel de classe existant",
+              "preparation": "Sélectionner objets de longueurs variées intéressantes",
+              "alternatives": [
+                "Objets personnels des élèves",
+                "Fournitures de classe"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Tableaux de prédiction, étiquettes 'long/court', exemples de mesure",
+        "decisionPoints": [
+          "Si difficulté avec alignement des unités → modéliser placement bout à bout",
+          "Si frustration avec comptage long → choisir objets plus courts à mesurer"
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Partage des découvertes: 'Qu'est-ce qui était long? Court? Combien de trombones?'",
+        "materials": {
+          "required": [
+            {
+              "item": "Tableau de résultats de mesure",
+              "quantity": "1 affiche pour classe",
+              "source": "Papier grand format et marqueurs",
+              "preparation": "Préparer colonnes: Objet, Nombre de trombones, Long/Court",
+              "alternatives": [
+                "Utiliser le tableau noir pour noter les résultats"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Objets mesurés pour référence",
+              "quantity": "2-3 exemples",
+              "purpose": "Rappeler les mesures effectuées pendant le partage"
+            }
+          ]
+        },
+        "visualSupports": "Tableau de résultats, objets de référence pour comparaison long/court",
+        "decisionPoints": [
+          "Si difficulté à se rappeler les résultats → montrer les objets mesurés à nouveau",
+          "Si discussion trop longue → limiter à 3-4 exemples marquants"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Explorer les nombres 8 et 9",
+      "oneGoal": "Les élèves découvrent les nombres 8 et 9 avec des activités de regroupement",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "huit",
+        "neuf",
+        "groupe"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Révision par le mouvement: Compter jusqu'à 7 en marchant, puis découvrir 'Voici les nombres 8 et 9!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Cartes nombres 0-7 de révision",
+              "quantity": "8 cartes format affichage",
+              "source": "Matériel des leçons précédentes",
+              "preparation": "Afficher en séquence 0-7 pour la révision",
+              "alternatives": [
+                "Dessiner rapidement au tableau"
+              ]
+            },
+            {
+              "item": "Cartes nombres 8 et 9 (nouvelles)",
+              "quantity": "2 grandes cartes colorées",
+              "source": "Préparer nouveau matériel",
+              "preparation": "Cartes attrayantes pour la révélation",
+              "alternatives": [
+                "Dessiner au tableau avec couleurs"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique rythmique pour marcher",
+              "quantity": "1 source audio",
+              "purpose": "Accompagner le mouvement de comptage"
+            }
+          ]
+        },
+        "visualSupports": "Séquence nombres 0-7 affichée, puis révélation de 8 et 9",
+        "decisionPoints": [
+          "Si les élèves se fatiguent pendant la marche → réduire à compter sur place avec gestes",
+          "Si oubli des nombres précédents → pointer les cartes pendant le comptage"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Activités de regroupement: Créer des groupes de 8 et 9 objets sur des assiettes. Explorer différentes façons de faire 8 (4+4, 5+3). Jeu de 'familles de nombres'.",
+        "materials": {
+          "required": [
+            {
+              "item": "Assiettes en papier ou contenants",
+              "quantity": "30 assiettes (1-2 par élève)",
+              "source": "Fournitures de classe ou cafétéria",
+              "preparation": "Distribuer avant l'activité",
+              "alternatives": [
+                "Cercles de papier",
+                "Napperons"
+              ]
+            },
+            {
+              "item": "Objets à compter variés",
+              "quantity": "300+ petits objets (jetons, boutons, haricots)",
+              "source": "Collection de manipulatives de classe",
+              "preparation": "Placer dans des bacs accessibles par équipe",
+              "alternatives": [
+                "Cubes unifix",
+                "Blocs de bois",
+                "Cailloux propres"
+              ]
+            },
+            {
+              "item": "Cartes décomposition 8 et 9",
+              "quantity": "10 cartes montrant 4+4, 5+3, etc.",
+              "source": "Créer ou imprimer",
+              "preparation": "Plastifier pour durabilité",
+              "alternatives": [
+                "Dessiner exemples au tableau"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Pinces pour manipulation fine",
+              "quantity": "10-12 pinces",
+              "purpose": "Développement de la motricité fine"
+            }
+          ]
+        },
+        "visualSupports": "Cercles de regroupement dessinés, images de collections naturelles (8 pattes araignée)",
+        "decisionPoints": [
+          "Si confusion avec regroupement → modéliser avec une assiette au tableau",
+          "Si objets se mélangent entre groupes → utiliser contenants séparés plus éloignés",
+          "Si difficulté avec décomposition 4+4, 5+3 → utiliser des couleurs différentes d'objets"
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Jeu 'Devinez mon groupe': Montrer un groupe d'objets, les élèves devinent le nombre.",
+        "materials": {
+          "required": [
+            {
+              "item": "Boîtes mystère ou sacs opaques",
+              "quantity": "3-4 contenants",
+              "source": "Boîtes de chaussures ou sacs en tissu",
+              "preparation": "Préparer groupes de 6, 7, 8, 9 objets dans chaque",
+              "alternatives": [
+                "Utiliser des nappes pour couvrir les groupes"
+              ]
+            },
+            {
+              "item": "Objets identiques pour les groupes",
+              "quantity": "40+ objets (boutons, jetons, blocs)",
+              "source": "Matériel de manipulatives réutilisé",
+              "preparation": "Créer des groupes de tailles différentes",
+              "alternatives": [
+                "Dessins d'objets groupés"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Tableau de score simple",
+              "quantity": "1 affiche",
+              "purpose": "Suivre les bonnes réponses si désiré"
+            }
+          ]
+        },
+        "visualSupports": "Groupes d'objets, cartes nombres 6-9 pour référence",
+        "decisionPoints": [
+          "Si trop facile → montrer partiellement les objets pour plus de défi",
+          "Si élèves devinent au hasard → encourager le comptage attentif avant de deviner"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Le nombre magique 10",
+      "oneGoal": "Les élèves découvrent le nombre 10 et sa composition avec deux mains",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "dix",
+        "complet",
+        "mains"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Moment magique: 'Aujourd'hui nous rencontrons le nombre le plus spécial: DIX!' Montrer deux mains complètes avec gants colorés.",
+        "materials": {
+          "required": [
+            {
+              "item": "Gants colorés pour enseignant",
+              "quantity": "1 paire de gants voyants",
+              "source": "Gants d'hiver ou gants de jardinage colorés",
+              "preparation": "Choisir couleurs vives pour effet dramatique",
+              "alternatives": [
+                "Mains nues avec bracelets colorés",
+                "Dessiner sur mains"
+              ]
+            },
+            {
+              "item": "Affichage spécial pour 10",
+              "quantity": "1 grande carte décorative",
+              "source": "Fabriquer spécialement",
+              "preparation": "Rendre très spéciale: paillettes, couleurs vives",
+              "alternatives": [
+                "Dessiner très grand au tableau"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique magique d'introduction",
+              "quantity": "1 source audio",
+              "purpose": "Créer atmosphere magique pour introduction de 10"
+            }
+          ]
+        },
+        "visualSupports": "Deux mains bien visibles, affichage dramatique du 10",
+        "decisionPoints": [
+          "Si élèves trop excités → canaliser l'excitation vers l'observation attentive",
+          "Si confusion sur pourquoi 10 est spécial → montrer connexion avec nos deux mains"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration de 10: Utiliser des cadres de 10 pour différentes combinaisons. Jeu des 'deux mains magiques'. Collections de 10 objets identiques. Découvrir que 10 = 5+5.",
+        "materials": {
+          "required": [
+            {
+              "item": "Cadres de 10 (grilles 2x5)",
+              "quantity": "25 cadres plastifiés (1 par élève)",
+              "source": "Imprimer grilles ou fabriquer avec carton",
+              "preparation": "2 rangées de 5 cases chacune, plastifier pour réutilisation",
+              "alternatives": [
+                "Boîtes d'œufs coupées",
+                "Grilles dessinées"
+              ]
+            },
+            {
+              "item": "Jetons pour remplir cadres",
+              "quantity": "500 jetons (20 par élève)",
+              "source": "Matériel de comptage existant",
+              "preparation": "Distribuer dans petits contenants",
+              "alternatives": [
+                "Haricots",
+                "Boutons",
+                "Autocollants ronds"
+              ]
+            },
+            {
+              "item": "Collections d'objets identiques",
+              "quantity": "10 groupes de 10 objets: crayons (10), gommes (10), trombones (10), etc.",
+              "source": "Matériel de classe organisé",
+              "preparation": "Compter et regrouper exactement 10 de chaque type",
+              "alternatives": [
+                "Collections naturelles: cailloux, feuilles"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Cadres de 10 géants, affiches de collections de 10, mains tracées",
+        "decisionPoints": [
+          "Si surcharge avec concept de 10 → revenir aux nombres plus petits pour sécuriser",
+          "Si difficulté avec combinaisons 5+5 → utiliser comparaison concrète avec deux mains"
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Célébration du 10: Chanson spéciale '10 petits doigts' avec mouvements chorégraphiés.",
+        "materials": {
+          "required": [
+            {
+              "item": "Espace de danse dégagé",
+              "quantity": "Espace pour 25 élèves en mouvement",
+              "source": "Centre de classe ou couloir",
+              "preparation": "Dégager mobilier si nécessaire",
+              "alternatives": [
+                "Mouvements assis",
+                "Cour extérieure si temps permet"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique entraînante",
+              "quantity": "1 chanson rythmée appropriée",
+              "purpose": "Accompagnement pour chanson des 10 doigts"
+            }
+          ]
+        },
+        "visualSupports": "Modélisation des gestes par l'enseignant",
+        "decisionPoints": [
+          "Si espace insuffisant → adapter mouvements ou faire en deux groupes"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Régularités avec les nombres",
+      "oneGoal": "Les élèves identifient des régularités simples dans la suite des nombres 0-10",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "régularité",
+        "suite",
+        "suivant"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Révision rythmée: Compter 0-10 en tapant des mains, puis identifier 'Qu'est-ce qui vient après 5? Avant 8?'",
+        "materials": [
+          "tableau d'écriture ou grande feuille",
+          "marionnettes simples (3-4 personnages)",
+          "affiches d'alphabet avec images (alphabet complet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si les élèves confondent l'ordre des nombres → utiliser la ligne de nombre physique et montrer avec le doigt",
+          "Si perte d'attention avec le rythme → varier la vitesse du claquement et ajouter des gestes",
+          "Si confusion sur 'avant et après' → utiliser des objets concrets comme des perles sur une ficelle"
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Chasse aux régularités: Créer des colliers de perles suivant la séquence 0-10. Jeu 'Nombre mystère' (quel nombre manque?). Construire des tours suivant l'ordre numérique.",
+        "materials": [
+          "tableaux individuels effaçables (15 tableaux)",
+          "papier ligné pour débutants (30 feuilles)",
+          "lettres magnétiques (jeu complet A-Z)",
+          "crayons à mine large (30 crayons)",
+          "marqueurs effaçables (15 marqueurs)"
+        ],
+        "visualSupports": "Ligne de nombre géante, cartes séquentielles, motifs visuels",
+        "decisionPoints": [
+          "Si frustration avec les perles → offrir des blocs plus gros et faciles à manipuler",
+          "Si élève trouve trop facilement le nombre manquant → cacher deux nombres consécutifs",
+          "Si confusion dans la construction des tours → montrer étape par étape et laisser imiter"
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de régularité: Chaque élève dit le nombre qui vient après celui de son voisin.",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si un élève dit le mauvais nombre → encourager doucement et rappeler le dernier nombre dit",
+          "Si timidité pour participer → permettre de chuchoter la réponse à l'oreille",
+          "Si excitation trop forte → utiliser un objet 'bâton de parole' pour structurer les tours"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Comparer les nombres",
+      "oneGoal": "Les élèves comparent les nombres 0-10 en utilisant 'plus que', 'moins que', 'égal'",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "plus que",
+        "moins que",
+        "égal"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Jeu de comparaison corporelle: 'Qui est plus grand/petit?' puis transition vers 'Quels nombres sont plus grands/petits?'",
+        "materials": [
+          "livres d'images variés (6-8 livres)",
+          "tableau d'écriture ou grande feuille",
+          "crayons de couleur (boîte de 24)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élève ne comprend pas 'plus grand/petit' → comparer d'abord avec la taille des élèves",
+          "Si confusion entre les mots français → utiliser des gestes: main haute pour 'plus', main basse pour 'moins'",
+          "Si agitation pendant les comparaisons → faire participer le corps: se lever si plus grand, s'accroupir si plus petit"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Ateliers de comparaison: Balance avec objets pour comparer quantités. Tours de cubes côte à côte. Jeu 'Plus ou moins' avec cartes. Tri d'objets par quantité.",
+        "materials": [
+          "papier ligné pour débutants (30 feuilles)",
+          "livrets de lecture simple (niveau débutant, 15 copies)",
+          "tableaux individuels effaçables (15 tableaux)",
+          "marqueurs effaçables (15 marqueurs)",
+          "crayons à mine large (30 crayons)"
+        ],
+        "visualSupports": "Symboles visuels (<, >, =), couleurs pour 'plus/moins', graphiques comparatifs",
+        "decisionPoints": [
+          "Si balance penche trop vite → ajouter les objets un par un lentement pour voir l'effet",
+          "Si élèves veulent tous toucher en même temps → établir des tours avec minuteur de 2 minutes",
+          "Si confusion avec les symboles < > → expliquer que 'la bouche mange le plus gros nombre'"
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Jeu 'Vrai ou faux': L'enseignant fait une affirmation de comparaison, les élèves montrent pouce levé/baissé.",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "tampons motivants avec encreur (5 tampons)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élèves montrent pouce trop rapidement sans réfléchir → demander de compter jusqu'à trois avant de montrer",
+          "Si désaccord sur vrai/faux → refaire la comparaison avec objets concrets devant tous",
+          "Si fatigue à rester assis → permettre de se lever pour montrer pouce levé/baissé"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Écrire les nombres 0-10",
+      "oneGoal": "Les élèves tracent et écrivent les chiffres 0-10 avec support visuel",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "écrire",
+        "tracer",
+        "chiffre"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Échauffement moteur: Tracer les nombres dans l'air avec tout le bras, puis avec le doigt.",
+        "materials": [
+          "crayons de couleur (boîte de 24)",
+          "marionnettes simples (3-4 personnages)",
+          "tapis de rassemblement coloré"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élèves bougent n'importe comment → modéliser des mouvements lents et contrôlés",
+          "Si confusion entre tracer dans l'air et écrire → montrer la différence: 'grand dans l'air, petit sur papier'",
+          "Si certains ne participent pas → offrir choix: grand mouvement de bras ou petit mouvement de doigt"
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Ateliers d'écriture multi-sensoriels: Tracer dans le sable, écrire avec craies sur papier texturé, suivre des modèles pointillés, créer un carnet personnel de nombres.",
+        "materials": [
+          "lettres magnétiques (jeu complet A-Z)",
+          "papier ligné pour débutants (30 feuilles)",
+          "livrets de lecture simple (niveau débutant, 15 copies)",
+          "crayons à mine large (30 crayons)",
+          "gommes à effacer douces (15 gommes)"
+        ],
+        "visualSupports": "Flèches directionnelles sur les chiffres, couleurs pour différentes parties",
+        "decisionPoints": [
+          "Si frustration avec écriture au crayon → commencer avec doigt dans sable ou peinture au doigt",
+          "Si chiffre écrit à l'envers → mettre point de départ vert et flèche de direction",
+          "Si élève perfectionne trop et se décourage → célébrer toute tentative: 'Je vois que tu essaies!'"
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Exposition d'écriture: Célébrer les tentatives d'écriture et les progrès de chacun.",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "tampons motivants avec encreur (5 tampons)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élève timide pour montrer son travail → permettre de présenter à un ami seulement",
+          "Si élève dit 'c'est laid' → rediriger: 'Dis-moi comment tu l'as fait' au lieu de juger",
+          "Si comparaisons entre élèves → célébrer les différences: 'Chaque personne écrit différemment'"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Portfolio de nombres - évaluation",
+      "oneGoal": "Les élèves démontrent leur compréhension des nombres 0-10 dans un portfolio",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "portfolio",
+        "démontrer",
+        "comprendre"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Célébration des apprentissages: 'Vous avez appris tellement! Aujourd'hui, montrez tout ce que vous savez!'",
+        "materials": {
+          "required": [
+            {
+              "item": "Portfolios vides ou cahiers",
+              "quantity": "25 portfolios individuels",
+              "source": "Cahiers école ou feuilles agrafées",
+              "preparation": "Préparer avec nom de chaque élève",
+              "alternatives": [
+                "Chemises cartonnées",
+                "Feuilles simples"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Affichage des nombres 0-10 appris comme référence",
+        "decisionPoints": [
+          "Si anxiété d'évaluation → rassurer que c'est pour célébrer apprentissages",
+          "Si élève dit 'Je ne sais rien faire' → montrer exemples de progrès depuis leçon 1",
+          "Si excitation trop forte pour le portfolio → établir règles calmes: chuchoter, marcher lentement"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Création de portfolio: Les élèves choisissent comment démontrer leur compréhension (dessins, constructions, écriture, photos). Stations optionnelles pour différents styles d'expression.",
+        "materials": [
+          "tableaux individuels effaçables (15 tableaux)",
+          "gommes à effacer douces (15 gommes)",
+          "marqueurs effaçables (15 marqueurs)",
+          "fiches de mots illustrées (50 cartes)",
+          "cahiers d'écriture (30 cahiers)"
+        ],
+        "visualSupports": "Exemples de portfolios, listes de vérification visuelles",
+        "decisionPoints": [
+          "Si élève ne sait pas quoi mettre dans portfolio → offrir 3 choix simples: dessiner, construire ou montrer avec doigts",
+          "Si élève veut tout faire en même temps → utiliser minuteur: 10 minutes par station",
+          "Si blocage créatif → commencer par 'Montre-moi ton nombre préféré' et développer à partir de là"
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Partage des fiertés: Chaque élève partage une chose dont il est fier dans son portfolio.",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "chemises individuelles (30 chemises)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élève trop timide pour partager → permettre de montrer silencieusement en tenant son travail",
+          "Si élève veut tout expliquer → utiliser minuteur 'bâton de parole' de 1 minute",
+          "Si élève dit 'Je ne suis fier de rien' → aider à identifier une petite réussite: 'Tu as essayé, c'est formidable!'"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Jeux de nombres amusants",
+      "oneGoal": "Les élèves pratiquent les nombres 0-10 à travers des jeux variés et motivants",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nombre",
+        "compter",
+        "plus",
+        "moins",
+        "forme"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Choix de jeux: Présenter les options de jeux et laisser les élèves choisir leurs préférences.",
+        "materials": [
+          "tapis de rassemblement coloré",
+          "crayons de couleur (boîte de 24)",
+          "livres d'images variés (6-8 livres)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si tous veulent le même jeu → faire rotation obligatoire ou diviser en petits groupes",
+          "Si élève ne veut jouer à aucun jeu → offrir rôle d'aide-enseignant ou observateur spécial",
+          "Si trop d'excitation au choix → utiliser système de numéros tirés au hasard pour équité"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Centres de jeux rotatifs: Jeux de dés, jeux de cartes simples, bingo des nombres, jeux de plateau adaptés. Rotation toutes les 8-10 minutes.",
+        "materials": {
+          "required": [
+            {
+              "item": "Jeux de dés (faces 0-10)",
+              "quantity": "8 dés pour 4 centres",
+              "source": "Jeux éducatifs ou modifier dés existants",
+              "preparation": "Vérifier que faces montrent nombres 0-10",
+              "alternatives": [
+                "Roulettes numériques",
+                "Cartes à piger"
+              ]
+            },
+            {
+              "item": "Cartes bingo simples",
+              "quantity": "25 cartes différentes avec nombres 0-10",
+              "source": "Fabriquer ou imprimer",
+              "preparation": "Plastifier pour durabilité",
+              "alternatives": [
+                "Grilles dessinées sur papier"
+              ]
+            }
+          ],
+          "optional": []
+        },
+        "visualSupports": "Instructions visuelles pour chaque jeu, minuteur visuel",
+        "decisionPoints": [
+          "Si disputes dans jeux → rappeler règles de fair-play et tour de rôle"
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Réflexion ludique: Quel jeu était le plus amusant? Pourquoi? Qu'avez-vous pratiqué?",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élève dit 'Rien n'était amusant' → aider à identifier une petite chose intéressante dans les jeux",
+          "Si tous parlent en même temps → utiliser 'bâton de parole' ou lever la main pour tour de parole",
+          "Si difficulté à expliquer 'pourquoi' → simplifier: 'Montre-moi avec ton visage si tu as aimé'"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Pratique supplémentaire",
+        "icon": "🔄",
+        "purpose": "Pour consolider les apprentissages essentiels",
+        "whenToUse": "Quand les élèves ont besoin de plus de pratique",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les concepts nécessitant plus de pratique",
+            "Préparer du matériel de manipulation",
+            "Avoir des activités différenciées prêtes"
+          ],
+          "implementation": [
+            "Utiliser des jeux et activités ludiques",
+            "Varier les modalités de pratique",
+            "Offrir des rétroactions immédiates"
+          ],
+          "assessment": "Observer les progrès dans la maîtrise des concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension pratique supplémentaire renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Station de révision",
+          "Devoir optionnel à la maison",
+          "Activité de transition"
+        ]
+      },
+      "extensionCategory": "practice"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Art mathématique avec les nombres",
+      "oneGoal": "Les élèves créent des œuvres artistiques incorporant les nombres 0-10",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nombre",
+        "compter",
+        "plus",
+        "moins",
+        "forme"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Inspiration artistique: Montrer des exemples d'art avec des nombres et demander des idées créatives.",
+        "materials": {
+          "required": [
+            {
+              "item": "Exemples d'art mathématique",
+              "quantity": "5-6 images ou créations",
+              "source": "Internet, livres d'art, créations précédentes",
+              "preparation": "Imprimer ou préparer sur écran, montrer nombres intégrés",
+              "alternatives": [
+                "Dessiner exemples simples au tableau"
+              ]
+            },
+            {
+              "item": "Cartes nombres 0-10 décoratives",
+              "quantity": "11 cartes colorées",
+              "source": "Matériel existing ou créer",
+              "preparation": "Affichage attrayant pour inspiration",
+              "alternatives": [
+                "Nombres écrits au tableau avec couleurs"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Musique d'ambiance créative",
+              "quantity": "1 source audio douce",
+              "purpose": "Créer ambiance artistique inspirante"
+            }
+          ]
+        },
+        "visualSupports": "Galerie d'exemples d'art mathématique, nombres 0-10 affichés artistiquement",
+        "decisionPoints": [
+          "Si peu de réaction aux exemples → poser des questions spécifiques: 'Où voyez-vous les nombres?'",
+          "Si trop d'excitation → canaliser l'enthousiasme vers des idées concrètes"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Atelier d'art libre: Créer des œuvres intégrant les nombres - peintures, collages, sculptures, dessins. Les nombres peuvent être décoratifs, structurels ou thématiques.",
+        "materials": {
+          "required": [
+            {
+              "item": "Matériel artistique varié",
+              "quantity": "Papier (25 feuilles), crayons (6 boîtes), marqueurs (3 boîtes)",
+              "source": "Fournitures artistiques de classe",
+              "preparation": "Organiser en stations accessibles",
+              "alternatives": [
+                "Crayons de plomb et papier recyclé"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Autocollants nombres décoratifs",
+              "quantity": "2-3 feuilles d'autocollants",
+              "purpose": "Option pour élèves moins confiants en dessin"
+            }
+          ]
+        },
+        "visualSupports": "Exemples d'art mathématique, galerie d'inspiration",
+        "decisionPoints": [
+          "Si blocage créatif → proposer techniques simples comme pochoirs ou autocollants"
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Vernissage: Exposer les créations et inviter les commentaires positifs des pairs.",
+        "materials": {
+          "required": [
+            {
+              "item": "Surface d'exposition",
+              "quantity": "Murs, tableau d'affichage ou tables",
+              "source": "Espaces de classe disponibles",
+              "preparation": "Dégager espace pour galerie temporaire",
+              "alternatives": [
+                "Présentations au bureau de chaque élève"
+              ]
+            },
+            {
+              "item": "Système d'accrochage simple",
+              "quantity": "Punaises, tréfles ou ruban adhésif (25 pièces)",
+              "source": "Fournitures de classe",
+              "preparation": "Accès facile pour installation rapide",
+              "alternatives": [
+                "Tenir les œuvres pour présentation"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Cartons de présentation",
+              "quantity": "25 petites étiquettes",
+              "purpose": "Permettre aux élèves d'écrire leur nom d'artiste"
+            }
+          ]
+        },
+        "visualSupports": "Galerie d'œuvres organisée, affichage attractif des créations",
+        "decisionPoints": [
+          "Si commentaires négatifs → rediriger vers aspects positifs et nombres utilisés",
+          "Si trop de temps pour chaque œuvre → limiter à un commentaire positif par élève"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Chansons et rythmes des nombres",
+      "oneGoal": "Les élèves apprennent des chansons et créent des rythmes avec les nombres",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nombre",
+        "compter",
+        "plus",
+        "moins",
+        "forme"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Échauffement musical: Révision de comptines connues intégrant des nombres.",
+        "materials": {
+          "required": [
+            {
+              "item": "Recueil de comptines numériques",
+              "quantity": "1 livre ou feuilles imprimées",
+              "source": "Ressources pédagogiques ou Internet",
+              "preparation": "Sélectionner 3-4 comptines simples avec nombres 0-10",
+              "alternatives": [
+                "Mémoriser quelques comptines classiques"
+              ]
+            },
+            {
+              "item": "Cartes nombres 0-10 musicales",
+              "quantity": "11 cartes avec symboles musicaux",
+              "source": "Créer ou décorer cartes existantes",
+              "preparation": "Ajouter notes de musique ou instruments à chaque nombre",
+              "alternatives": [
+                "Dessiner au tableau avec symboles musicaux"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Instrument de rythme simple",
+              "quantity": "1 tambourin ou maracas",
+              "purpose": "Accompagner le chant et marquer le tempo"
+            }
+          ]
+        },
+        "visualSupports": "Cartes nombres musicales affichées, paroles de comptines au tableau",
+        "decisionPoints": [
+          "Si les élèves ne connaissent pas les comptines → enseigner une simple phrase à la fois",
+          "Si timidité pour chanter → commencer par des chuchotements puis augmenter le volume"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Création musicale: Apprendre de nouvelles chansons de nombres, créer des rythmes pour chaque chiffre, composer une chanson de classe avec les nombres 0-10.",
+        "materials": {
+          "required": [
+            {
+              "item": "Instruments de percussion variés",
+              "quantity": "25+ instruments (maracas, tambourins, cuillères, blocs)",
+              "source": "Collection d'instruments de classe ou créer avec matériau recyclé",
+              "preparation": "Organiser en stations accessibles par groupes",
+              "alternatives": [
+                "Objets du quotidien: pots, cuillères, boîtes"
+              ]
+            },
+            {
+              "item": "Tableau de rythmes pour nombres",
+              "quantity": "1 grande affiche ou tableau",
+              "source": "Créer avec symboles visuels",
+              "preparation": "Montrer rythmes différents pour chaque nombre (0=silence, 1=tap, 2=tap-tap)",
+              "alternatives": [
+                "Utiliser le tableau noir avec symboles"
+              ]
+            },
+            {
+              "item": "Papier grand format pour composition",
+              "quantity": "2-3 feuilles grand format",
+              "source": "Papier d'emballage ou journaux",
+              "preparation": "Préparer pour écrire paroles de chanson collective",
+              "alternatives": [
+                "Utiliser le tableau pour noter les idées"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Enregistreur audio simple",
+              "quantity": "1 appareil ou téléphone",
+              "purpose": "Enregistrer la chanson créée pour réécouter"
+            }
+          ]
+        },
+        "visualSupports": "Partitions picturales, gestes musicaux, cartes rythmiques",
+        "decisionPoints": [
+          "Si trop de bruit avec instruments → établir signal pour 'silence musical' et règles d'utilisation",
+          "Si difficulté à créer rythmes pour nombres → modéliser avec 0=silence, 1=un son, 2=deux sons",
+          "Si composition de chanson trop complexe → se concentrer sur une simple phrase répétée"
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Concert de classe: Performance de la chanson créée ensemble.",
+        "materials": {
+          "required": [
+            {
+              "item": "Scène improvisée (espace dégagé)",
+              "quantity": "Zone devant la classe",
+              "source": "Réorganiser l'espace classe",
+              "preparation": "Dégager espace pour «scène» et public",
+              "alternatives": [
+                "Rester aux places avec performances individuelles"
+              ]
+            },
+            {
+              "item": "Paroles de chanson créée",
+              "quantity": "1 affiche visible ou copies",
+              "source": "Résultats de l'activité principale",
+              "preparation": "Afficher clairement pour référence pendant performance",
+              "alternatives": [
+                "Mémorisation simple sans support écrit"
+              ]
+            }
+          ],
+          "optional": [
+            {
+              "item": "Public improvisé (autres classes)",
+              "quantity": "Inviter une classe voisine",
+              "purpose": "Créer ambiance de vrai concert"
+            }
+          ]
+        },
+        "visualSupports": "Paroles affichées, espace de performance délimité",
+        "decisionPoints": [
+          "Si timidité pour performance → commencer par chanter tous ensemble, puis volontaires",
+          "Si oubli des paroles → permettre aide du public ou référence à l'affiche"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Enquête sur les nombres dans l'école",
+      "oneGoal": "Les élèves explorent et documentent les nombres trouvés dans l'environnement scolaire",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nombre",
+        "compter",
+        "plus",
+        "moins",
+        "forme"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Mission d'enquête: Présenter la mission de détectives des nombres et réviser les règles de sécurité.",
+        "materials": [
+          "livres d'images variés (6-8 livres)",
+          "tapis de rassemblement coloré",
+          "crayons de couleur (boîte de 24)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élèves se dispersent hors de l'école → rester en groupes de 4-5 avec un adulte par groupe",
+          "Si trop d'excitation en voyant les nombres → rappeler la mission: 'Nous sommes des détectives calmes'",
+          "Si élève ne trouve aucun nombre → guider vers horloge, numéros de salle, ou escaliers"
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Exploration guidée: Parcourir l'école en petits groupes pour documenter les nombres trouvés - numéros de salles, horloges, panneaux, escaliers, etc. Noter ou photographier les découvertes.",
+        "materials": [
+          "lettres magnétiques (jeu complet A-Z)",
+          "papier ligné pour débutants (30 feuilles)",
+          "livrets de lecture simple (niveau débutant, 15 copies)",
+          "crayons à mine large (30 crayons)",
+          "tableaux individuels effaçables (15 tableaux)"
+        ],
+        "visualSupports": "Carnet d'enquête avec images, carte de l'école, liste de vérification",
+        "decisionPoints": [
+          "Si élèves se perdent dans l'école → utiliser système de 'buddy' avec partenaire responsable",
+          "Si carnet tombe ou se perd → avoir carnets supplémentaires et rassurer que ce n'est pas grave",
+          "Si élève trouve trop de nombres → limiter à 3 favoris pour éviter surcharge"
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Rapport de mission: Partager les découvertes les plus intéressantes et créer une carte des nombres de l'école.",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si plusieurs élèves veulent partager en même temps → utiliser système de 'bâton de détective'",
+          "Si élève timide n'ose pas partager → permettre de chuchoter sa découverte à l'enseignant qui la répète",
+          "Si pas assez de temps pour tous → planifier suite au prochain cours avec photos prises"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Histoires de nombres créatives",
+      "oneGoal": "Les élèves inventent et partagent des histoires mettant en vedette les nombres",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nombre",
+        "compter",
+        "plus",
+        "moins",
+        "forme"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Inspiration narrative: Lire une courte histoire mettant en vedette des nombres pour stimuler l'imagination.",
+        "materials": [
+          "crayons de couleur (boîte de 24)",
+          "marionnettes simples (3-4 personnages)",
+          "tapis de rassemblement coloré"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élèves n'ont pas d'idées d'histoire → proposer début simple: 'Il était une fois le nombre 3 qui...'",
+          "Si histoire devient très longue → encourager gentiment: 'Raconte-moi la partie la plus importante'",
+          "Si élève veut utiliser nombres plus grands que 10 → rediriger: 'Nos amis 0-10 ont besoin d'aventures!'"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Atelier de création d'histoires: Les élèves inventent des histoires où les nombres sont personnages principaux. Options: dessiner, dicter, jouer avec marionnettes, enregistrer.",
+        "materials": [
+          "fiches de mots illustrées (50 cartes)",
+          "livrets de lecture simple (niveau débutant, 15 copies)",
+          "papier ligné pour débutants (30 feuilles)",
+          "crayons à mine large (30 crayons)",
+          "marqueurs effaçables (15 marqueurs)"
+        ],
+        "visualSupports": "Images d'inspiration, amorces d'histoire, exemples de personnages-nombres",
+        "decisionPoints": [
+          "Si élève frustré de ne pas pouvoir dessiner → offrir option de dicter histoire à l'adulte",
+          "Si élève veut faire histoire trop compliquée → simplifier: 'Que fait ton nombre aujourd'hui?'",
+          "Si manque d'inspiration → suggérer: 'Imagine si le nombre 5 rencontrait le nombre 2...'"
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Théâtre d'histoires: Présentation volontaire des créations sous forme de mini-spectacles.",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "chemises individuelles (30 chemises)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élève trop timide pour présenter → permettre présentation à un seul ami ou en chuchotant",
+          "Si histoire trop longue pour le temps → encourager: 'Montre-nous juste la partie la plus excitante'",
+          "Si élève oublie son histoire → l'aider en posant questions simples: 'Quel nombre était le héros?'"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève compte de 1 à 10 en touchant chaque objet",
+          "L'élève montre le bon nombre de doigts pour chaque quantité",
+          "L'élève identifie les chiffres écrits sur les cartes",
+          "L'élève utilise les mots nombres en contexte mathématique"
+        ],
+        "checkpoints": [
+          "Peut faire correspondance 1-à-1 jusqu'à 10",
+          "Reconnaît symboles écrits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+          "Compte en ordre sans aide visuelle",
+          "Comprend que le dernier nombre dit = quantité totale"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration des mathématiques",
+      "oneGoal": "Les élèves célèbrent leurs apprentissages et partagent leurs réussites en mathématiques",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nombre",
+        "compter",
+        "plus",
+        "moins",
+        "forme"
+      ],
+      "opening": {
+        "duration": "~8 min",
+        "activity": "Ouverture festive: Accueillir avec musique joyeuse et rappeler le chemin parcouru depuis la Leçon 1.",
+        "materials": [
+          "tapis de rassemblement coloré",
+          "affiches d'alphabet avec images (alphabet complet)",
+          "autocollants motivants (1 planche)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élèves trop excités par la musique → baisser le volume et utiliser gestes calmes",
+          "Si élève triste que l'unité se termine → rassurer: 'Nos nombres restent avec nous toujours!'",
+          "Si nostalgie des premières leçons → regarder ensemble photos du début: 'Regardez comme vous avez grandi!'"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": "~27 min",
+        "activity": "Festival des mathématiques: Centres de célébration - exposition des portfolios, démonstrations de compétences, jeux préférés revisités, partage avec d'autres classes ou parents.",
+        "materials": [
+          "papier ligné pour débutants (30 feuilles)",
+          "fiches de mots illustrées (50 cartes)",
+          "tableaux individuels effaçables (15 tableaux)",
+          "livrets de lecture simple (niveau débutant, 15 copies)",
+          "lettres magnétiques (jeu complet A-Z)"
+        ],
+        "visualSupports": "Exposition organisée, affiches de progression, photos du parcours",
+        "decisionPoints": [
+          "Si élèves se bousculent aux centres → établir rotation avec minuteur et maximum 4 par centre",
+          "Si élève ne veut pas que parents voient son travail → respecter et offrir alternative privée",
+          "Si sur-stimulation avec tous les centres → prévoir coin calme avec quelques élèves et adulte"
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": "~10 min",
+        "activity": "Cercle de reconnaissance: Chaque élève reçoit une reconnaissance spéciale et partage sa plus grande fierté mathématique.",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "étiquettes autocollantes (2 planches)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          "Si élève timide pour partager fierté → permettre de montrer objet de portfolio au lieu de parler",
+          "Si élève dit 'Je ne suis pas bon' → rediriger vers effort: 'Tu as essayé chaque jour, c'est magnifique!'",
+          "Si émotions fortes (larmes de joie/tristesse) → valider sentiment: 'C'est normal de ressentir cela, tu as travaillé si fort!'"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Réduire la quantité de nombres à travailler (se concentrer sur 2-3 nombres)",
+          "Fournir plus d'objets concrets et de supports visuels",
+          "Permettre plus de temps pour la manipulation et l'exploration",
+          "Offrir un partenaire ou soutien adulte supplémentaire"
+        ],
+        "pourAvancés": [
+          "Introduire des nombres supplémentaires ou des concepts plus complexes",
+          "Encourager l'enseignement par les pairs",
+          "Proposer des défis d'extension ou des problèmes ouverts",
+          "Demander de créer leurs propres exemples ou variations"
+        ],
+        "pourLangue": [
+          "Utiliser plus d'images, de gestes et de supports visuels",
+          "Permettre l'usage de la langue maternelle pour comprendre initialement",
+          "Répéter le vocabulaire clé avec gestes et contexte",
+          "Associer nouveaux mots à des expériences culturellement familières"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins sensoriels ou moteurs",
+          "Modifier les attentes de participation (gestes au lieu de parole)",
+          "Ajuster l'environnement pour besoins sensoriels (volume, éclairage)",
+          "Fournir pauses et supports selon le plan individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève manipule le matériel mathématique avec aisance",
+          "L'élève explique sa pensée mathématique en français simple",
+          "L'élève fait des liens entre les concepts et la vie quotidienne",
+          "L'élève vérifie ses réponses en utilisant une autre stratégie"
+        ],
+        "checkpoints": [
+          "Comprend le concept mathématique ciblé",
+          "Utilise le vocabulaire mathématique approprié",
+          "Applique la stratégie apprise à de nouveaux problèmes",
+          "Montre sa compréhension par des exemples concrets"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Résolution de problèmes",
+        "items": [
+          "Démontre une compréhension de base en résolution de problèmes",
+          "Participe activement aux activités de résolution de problèmes",
+          "Montre du progrès dans résolution de problèmes",
+          "Applique les apprentissages de résolution de problèmes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Manipulation",
+        "items": [
+          "Démontre une compréhension de base en manipulation",
+          "Participe activement aux activités de manipulation",
+          "Montre du progrès dans manipulation",
+          "Applique les apprentissages de manipulation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Vocabulaire mathématique",
+        "items": [
+          "Démontre une compréhension de base en vocabulaire mathématique",
+          "Participe activement aux activités de vocabulaire mathématique",
+          "Montre du progrès dans vocabulaire mathématique",
+          "Applique les apprentissages de vocabulaire mathématique dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Représentation",
+        "items": [
+          "Démontre une compréhension de base en représentation",
+          "Participe activement aux activités de représentation",
+          "Montre du progrès dans représentation",
+          "Applique les apprentissages de représentation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - Fondations des nombres 0-10",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Résolution de problèmes",
+        "Manipulation",
+        "Vocabulaire mathématique",
+        "Représentation"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "✓",
+          "~",
+          "?"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Fondations des nombres 0-10\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en mathématiques\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nDécouvrir les nombres dans notre monde, Compter avec nos doigts, Représenter les nombres 0-3, Explorer les nombres 4 et 5, Jeux de nombres 0-5\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nUtilisez les moments quotidiens pour pratiquer les mathématiques (compter, mesurer, etc.)\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLes mathématiques sont partout dans notre vie quotidienne!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Mathématiques en cuisine",
+        "description": "Comptez, mesurez et comparez en préparant des collations",
+        "timeRequired": "Pendant la préparation des repas",
+        "materials": "Ingrédients de cuisine",
+        "frenchSupport": "Utilisez les nombres en français si possible"
+      },
+      {
+        "title": "Jeux de société mathématiques",
+        "description": "Jouez à des jeux impliquant compter, additionner ou reconnaître des formes",
+        "timeRequired": "20 minutes",
+        "materials": "Jeux de société, dés, cartes",
+        "frenchSupport": "Comptez ensemble en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "nombre",
+        "lesson": 1,
+        "context": "Découvrir les nombres dans notre monde",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nombre\"",
+          "Utilisez \"nombre\" dans une phrase simple",
+          "Trouvez des images représentant \"nombre\"",
+          "Faites des gestes pour \"nombre\""
+        ]
+      },
+      {
+        "word": "zéro",
+        "lesson": 1,
+        "context": "Découvrir les nombres dans notre monde",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"zéro\"",
+          "Utilisez \"zéro\" dans une phrase simple",
+          "Trouvez des images représentant \"zéro\"",
+          "Faites des gestes pour \"zéro\""
+        ]
+      },
+      {
+        "word": "un",
+        "lesson": 1,
+        "context": "Découvrir les nombres dans notre monde",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"un\"",
+          "Utilisez \"un\" dans une phrase simple",
+          "Trouvez des images représentant \"un\"",
+          "Faites des gestes pour \"un\""
+        ]
+      },
+      {
+        "word": "deux",
+        "lesson": 2,
+        "context": "Compter avec nos doigts",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"deux\"",
+          "Utilisez \"deux\" dans une phrase simple",
+          "Trouvez des images représentant \"deux\"",
+          "Faites des gestes pour \"deux\""
+        ]
+      },
+      {
+        "word": "trois",
+        "lesson": 2,
+        "context": "Compter avec nos doigts",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"trois\"",
+          "Utilisez \"trois\" dans une phrase simple",
+          "Trouvez des images représentant \"trois\"",
+          "Faites des gestes pour \"trois\""
+        ]
+      },
+      {
+        "word": "compter",
+        "lesson": 2,
+        "context": "Compter avec nos doigts",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"compter\"",
+          "Utilisez \"compter\" dans une phrase simple",
+          "Trouvez des images représentant \"compter\"",
+          "Faites des gestes pour \"compter\""
+        ]
+      },
+      {
+        "word": "dessiner",
+        "lesson": 3,
+        "context": "Représenter les nombres 0-3",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dessiner\"",
+          "Utilisez \"dessiner\" dans une phrase simple",
+          "Trouvez des images représentant \"dessiner\"",
+          "Faites des gestes pour \"dessiner\""
+        ]
+      },
+      {
+        "word": "montrer",
+        "lesson": 3,
+        "context": "Représenter les nombres 0-3",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"montrer\"",
+          "Utilisez \"montrer\" dans une phrase simple",
+          "Trouvez des images représentant \"montrer\"",
+          "Faites des gestes pour \"montrer\""
+        ]
+      },
+      {
+        "word": "représenter",
+        "lesson": 3,
+        "context": "Représenter les nombres 0-3",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"représenter\"",
+          "Utilisez \"représenter\" dans une phrase simple",
+          "Trouvez des images représentant \"représenter\"",
+          "Faites des gestes pour \"représenter\""
+        ]
+      },
+      {
+        "word": "quatre",
+        "lesson": 4,
+        "context": "Explorer les nombres 4 et 5",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"quatre\"",
+          "Utilisez \"quatre\" dans une phrase simple",
+          "Trouvez des images représentant \"quatre\"",
+          "Faites des gestes pour \"quatre\""
+        ]
+      },
+      {
+        "word": "cinq",
+        "lesson": 4,
+        "context": "Explorer les nombres 4 et 5",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cinq\"",
+          "Utilisez \"cinq\" dans une phrase simple",
+          "Trouvez des images représentant \"cinq\"",
+          "Faites des gestes pour \"cinq\""
+        ]
+      },
+      {
+        "word": "collection",
+        "lesson": 4,
+        "context": "Explorer les nombres 4 et 5",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"collection\"",
+          "Utilisez \"collection\" dans une phrase simple",
+          "Trouvez des images représentant \"collection\"",
+          "Faites des gestes pour \"collection\""
+        ]
+      },
+      {
+        "word": "reconnaître",
+        "lesson": 5,
+        "context": "Jeux de nombres 0-5",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"reconnaître\"",
+          "Utilisez \"reconnaître\" dans une phrase simple",
+          "Trouvez des images représentant \"reconnaître\"",
+          "Faites des gestes pour \"reconnaître\""
+        ]
+      },
+      {
+        "word": "vite",
+        "lesson": 5,
+        "context": "Jeux de nombres 0-5",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vite\"",
+          "Utilisez \"vite\" dans une phrase simple",
+          "Trouvez des images représentant \"vite\"",
+          "Faites des gestes pour \"vite\""
+        ]
+      },
+      {
+        "word": "jeu",
+        "lesson": 5,
+        "context": "Jeux de nombres 0-5",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jeu\"",
+          "Utilisez \"jeu\" dans une phrase simple",
+          "Trouvez des images représentant \"jeu\"",
+          "Faites des gestes pour \"jeu\""
+        ]
+      },
+      {
+        "word": "avant",
+        "lesson": 6,
+        "context": "Compter vers l'avant et vers l'arrière",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"avant\"",
+          "Utilisez \"avant\" dans une phrase simple",
+          "Trouvez des images représentant \"avant\"",
+          "Faites des gestes pour \"avant\""
+        ]
+      },
+      {
+        "word": "arrière",
+        "lesson": 6,
+        "context": "Compter vers l'avant et vers l'arrière",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"arrière\"",
+          "Utilisez \"arrière\" dans une phrase simple",
+          "Trouvez des images représentant \"arrière\"",
+          "Faites des gestes pour \"arrière\""
+        ]
+      },
+      {
+        "word": "ordre",
+        "lesson": 6,
+        "context": "Compter vers l'avant et vers l'arrière",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ordre\"",
+          "Utilisez \"ordre\" dans une phrase simple",
+          "Trouvez des images représentant \"ordre\"",
+          "Faites des gestes pour \"ordre\""
+        ]
+      },
+      {
+        "word": "six",
+        "lesson": 7,
+        "context": "Découvrir les nombres 6 et 7",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"six\"",
+          "Utilisez \"six\" dans une phrase simple",
+          "Trouvez des images représentant \"six\"",
+          "Faites des gestes pour \"six\""
+        ]
+      },
+      {
+        "word": "sept",
+        "lesson": 7,
+        "context": "Découvrir les nombres 6 et 7",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sept\"",
+          "Utilisez \"sept\" dans une phrase simple",
+          "Trouvez des images représentant \"sept\"",
+          "Faites des gestes pour \"sept\""
+        ]
+      },
+      {
+        "word": "plus",
+        "lesson": 7,
+        "context": "Découvrir les nombres 6 et 7",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"plus\"",
+          "Utilisez \"plus\" dans une phrase simple",
+          "Trouvez des images représentant \"plus\"",
+          "Faites des gestes pour \"plus\""
+        ]
+      },
+      {
+        "word": "mesurer",
+        "lesson": 8,
+        "context": "Mesurer avec les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mesurer\"",
+          "Utilisez \"mesurer\" dans une phrase simple",
+          "Trouvez des images représentant \"mesurer\"",
+          "Faites des gestes pour \"mesurer\""
+        ]
+      },
+      {
+        "word": "long",
+        "lesson": 8,
+        "context": "Mesurer avec les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"long\"",
+          "Utilisez \"long\" dans une phrase simple",
+          "Trouvez des images représentant \"long\"",
+          "Faites des gestes pour \"long\""
+        ]
+      },
+      {
+        "word": "court",
+        "lesson": 8,
+        "context": "Mesurer avec les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"court\"",
+          "Utilisez \"court\" dans une phrase simple",
+          "Trouvez des images représentant \"court\"",
+          "Faites des gestes pour \"court\""
+        ]
+      },
+      {
+        "word": "huit",
+        "lesson": 9,
+        "context": "Explorer les nombres 8 et 9",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"huit\"",
+          "Utilisez \"huit\" dans une phrase simple",
+          "Trouvez des images représentant \"huit\"",
+          "Faites des gestes pour \"huit\""
+        ]
+      },
+      {
+        "word": "neuf",
+        "lesson": 9,
+        "context": "Explorer les nombres 8 et 9",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"neuf\"",
+          "Utilisez \"neuf\" dans une phrase simple",
+          "Trouvez des images représentant \"neuf\"",
+          "Faites des gestes pour \"neuf\""
+        ]
+      },
+      {
+        "word": "groupe",
+        "lesson": 9,
+        "context": "Explorer les nombres 8 et 9",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"groupe\"",
+          "Utilisez \"groupe\" dans une phrase simple",
+          "Trouvez des images représentant \"groupe\"",
+          "Faites des gestes pour \"groupe\""
+        ]
+      },
+      {
+        "word": "dix",
+        "lesson": 10,
+        "context": "Le nombre magique 10",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dix\"",
+          "Utilisez \"dix\" dans une phrase simple",
+          "Trouvez des images représentant \"dix\"",
+          "Faites des gestes pour \"dix\""
+        ]
+      },
+      {
+        "word": "complet",
+        "lesson": 10,
+        "context": "Le nombre magique 10",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"complet\"",
+          "Utilisez \"complet\" dans une phrase simple",
+          "Trouvez des images représentant \"complet\"",
+          "Faites des gestes pour \"complet\""
+        ]
+      },
+      {
+        "word": "mains",
+        "lesson": 10,
+        "context": "Le nombre magique 10",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mains\"",
+          "Utilisez \"mains\" dans une phrase simple",
+          "Trouvez des images représentant \"mains\"",
+          "Faites des gestes pour \"mains\""
+        ]
+      },
+      {
+        "word": "régularité",
+        "lesson": 11,
+        "context": "Régularités avec les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"régularité\"",
+          "Utilisez \"régularité\" dans une phrase simple",
+          "Trouvez des images représentant \"régularité\"",
+          "Faites des gestes pour \"régularité\""
+        ]
+      },
+      {
+        "word": "suite",
+        "lesson": 11,
+        "context": "Régularités avec les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"suite\"",
+          "Utilisez \"suite\" dans une phrase simple",
+          "Trouvez des images représentant \"suite\"",
+          "Faites des gestes pour \"suite\""
+        ]
+      },
+      {
+        "word": "suivant",
+        "lesson": 11,
+        "context": "Régularités avec les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"suivant\"",
+          "Utilisez \"suivant\" dans une phrase simple",
+          "Trouvez des images représentant \"suivant\"",
+          "Faites des gestes pour \"suivant\""
+        ]
+      },
+      {
+        "word": "plus que",
+        "lesson": 12,
+        "context": "Comparer les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"plus que\"",
+          "Utilisez \"plus que\" dans une phrase simple",
+          "Trouvez des images représentant \"plus que\"",
+          "Faites des gestes pour \"plus que\""
+        ]
+      },
+      {
+        "word": "moins que",
+        "lesson": 12,
+        "context": "Comparer les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"moins que\"",
+          "Utilisez \"moins que\" dans une phrase simple",
+          "Trouvez des images représentant \"moins que\"",
+          "Faites des gestes pour \"moins que\""
+        ]
+      },
+      {
+        "word": "égal",
+        "lesson": 12,
+        "context": "Comparer les nombres",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"égal\"",
+          "Utilisez \"égal\" dans une phrase simple",
+          "Trouvez des images représentant \"égal\"",
+          "Faites des gestes pour \"égal\""
+        ]
+      },
+      {
+        "word": "écrire",
+        "lesson": 13,
+        "context": "Écrire les nombres 0-10",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écrire\"",
+          "Utilisez \"écrire\" dans une phrase simple",
+          "Trouvez des images représentant \"écrire\"",
+          "Faites des gestes pour \"écrire\""
+        ]
+      },
+      {
+        "word": "tracer",
+        "lesson": 13,
+        "context": "Écrire les nombres 0-10",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tracer\"",
+          "Utilisez \"tracer\" dans une phrase simple",
+          "Trouvez des images représentant \"tracer\"",
+          "Faites des gestes pour \"tracer\""
+        ]
+      },
+      {
+        "word": "chiffre",
+        "lesson": 13,
+        "context": "Écrire les nombres 0-10",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chiffre\"",
+          "Utilisez \"chiffre\" dans une phrase simple",
+          "Trouvez des images représentant \"chiffre\"",
+          "Faites des gestes pour \"chiffre\""
+        ]
+      },
+      {
+        "word": "portfolio",
+        "lesson": 14,
+        "context": "Portfolio de nombres - évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"portfolio\"",
+          "Utilisez \"portfolio\" dans une phrase simple",
+          "Trouvez des images représentant \"portfolio\"",
+          "Faites des gestes pour \"portfolio\""
+        ]
+      },
+      {
+        "word": "démontrer",
+        "lesson": 14,
+        "context": "Portfolio de nombres - évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"démontrer\"",
+          "Utilisez \"démontrer\" dans une phrase simple",
+          "Trouvez des images représentant \"démontrer\"",
+          "Faites des gestes pour \"démontrer\""
+        ]
+      },
+      {
+        "word": "comprendre",
+        "lesson": 14,
+        "context": "Portfolio de nombres - évaluation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"comprendre\"",
+          "Utilisez \"comprendre\" dans une phrase simple",
+          "Trouvez des images représentant \"comprendre\"",
+          "Faites des gestes pour \"comprendre\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

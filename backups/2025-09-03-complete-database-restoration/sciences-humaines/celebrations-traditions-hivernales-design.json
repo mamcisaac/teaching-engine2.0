@@ -1,0 +1,366 @@
+{
+  "unit_title": "Célébrations et traditions hivernales",
+  "subject": "Sciences humaines",
+  "grade_level": "Maternelle",
+  "duration": "20 lessons",
+  "unit_description": "Une exploration inclusive des célébrations et traditions hivernales diverses, encourageant le respect culturel et l'appréciation des différentes façons de célébrer la saison d'hiver.",
+  "learning_outcomes": [
+    "Identifier et décrire diverses célébrations hivernales de différentes cultures",
+    "Comprendre l'importance du respect et de l'inclusion culturelle",
+    "Comparer et contraster les traditions familiales et communautaires",
+    "Développer un vocabulaire lié aux célébrations et traditions",
+    "Exprimer sa propre identité culturelle avec fierté",
+    "Reconnaître les similitudes entre différentes traditions hivernales"
+  ],
+  "key_concepts": [
+    "Diversité culturelle",
+    "Traditions familiales",
+    "Célébrations hivernales",
+    "Respect mutuel",
+    "Communauté inclusive",
+    "Patrimoine culturel"
+  ],
+  "cross_curricular_connections": [
+    "Français - Vocabulaire des célébrations",
+    "Arts visuels - Créations artistiques festives",
+    "Formation personnelle - Respect et inclusion",
+    "Mathématiques - Calendriers et dates importantes"
+  ],
+  "lessons": [
+    {
+      "lesson_number": 1,
+      "title": "Bienvenue dans notre monde d'hiver",
+      "duration": "30 minutes",
+      "objective": "Introduire le concept de célébrations hivernales diverses",
+      "key_vocabulary": ["hiver", "célébration", "tradition", "famille"],
+      "activities": [
+        "Cercle de partage sur les traditions familiales d'hiver",
+        "Création d'une affiche collective 'Notre hiver'",
+        "Chanson d'accueil multiculturelle"
+      ],
+      "materials": ["papier affiche", "crayons", "photos de famille"],
+      "assessment": "Observation de la participation au partage"
+    },
+    {
+      "lesson_number": 2,
+      "title": "Noël autour du monde",
+      "duration": "30 minutes",
+      "objective": "Découvrir comment Noël est célébré dans différents pays",
+      "key_vocabulary": ["Noël", "sapin", "cadeaux", "famille", "joie"],
+      "activities": [
+        "Présentation visuelle de Noël dans 3-4 pays différents",
+        "Création de décorations inspirées de traditions diverses",
+        "Chant de 'Joyeux Noël' dans différentes langues"
+      ],
+      "materials": ["images culturelles", "matériel d'art", "cartes du monde"],
+      "assessment": "Identification d'éléments de différentes traditions de Noël"
+    },
+    {
+      "lesson_number": 3,
+      "title": "La magie de Hanouka",
+      "duration": "30 minutes",
+      "objective": "Apprendre sur la fête juive de Hanouka",
+      "key_vocabulary": ["Hanouka", "menorah", "lumière", "miracle", "famille"],
+      "activities": [
+        "Histoire simple de Hanouka avec images",
+        "Création d'une menorah en pâte à modeler",
+        "Jeu de la toupie (dreidel) adapté"
+      ],
+      "materials": ["pâte à modeler", "images de Hanouka", "toupies"],
+      "assessment": "Récit simple de l'histoire de Hanouka"
+    },
+    {
+      "lesson_number": 4,
+      "title": "Kwanzaa et les valeurs communautaires",
+      "duration": "30 minutes",
+      "objective": "Découvrir les principes et célébrations de Kwanzaa",
+      "key_vocabulary": ["Kwanzaa", "communauté", "famille", "valeurs", "bougies"],
+      "activities": [
+        "Présentation des 7 principes de Kwanzaa simplifiés",
+        "Création d'un kinara symbolique",
+        "Activité de partage sur les valeurs familiales"
+      ],
+      "materials": ["bougies colorées", "support pour kinara", "images"],
+      "assessment": "Expression d'une valeur importante pour l'enfant"
+    },
+    {
+      "lesson_number": 5,
+      "title": "Le Nouvel An chinois",
+      "duration": "30 minutes",
+      "objective": "Explorer les traditions du Nouvel An chinois",
+      "key_vocabulary": ["dragon", "rouge", "chance", "famille", "fête"],
+      "activities": [
+        "Danse du dragon simplifiée",
+        "Création d'enveloppes rouges décoratives",
+        "Découverte des animaux du zodiaque chinois"
+      ],
+      "materials": ["tissu rouge", "enveloppes", "images d'animaux"],
+      "assessment": "Participation à la danse du dragon"
+    },
+    {
+      "lesson_number": 6,
+      "title": "Diwali, la fête des lumières",
+      "duration": "30 minutes",
+      "objective": "Comprendre l'importance de Diwali dans la culture hindoue",
+      "key_vocabulary": ["Diwali", "lumières", "lampes", "couleurs", "joie"],
+      "activities": [
+        "Création de diyas (lampes) en argile",
+        "Art rangoli avec des couleurs sables",
+        "Histoire simple sur la victoire de la lumière"
+      ],
+      "materials": ["argile", "sable coloré", "bougies LED"],
+      "assessment": "Explication simple de pourquoi on allume des lumières"
+    },
+    {
+      "lesson_number": 7,
+      "title": "Las Posadas du Mexique",
+      "duration": "30 minutes",
+      "objective": "Découvrir la tradition mexicaine de Las Posadas",
+      "key_vocabulary": ["posada", "voyage", "étoile", "communauté", "chanson"],
+      "activities": [
+        "Procession symbolique avec étoile",
+        "Création de luminarias (lanternes)",
+        "Apprentissage d'une chanson traditionnelle simple"
+      ],
+      "materials": ["sacs papier", "bougies LED", "étoile dorée"],
+      "assessment": "Participation à la procession et au chant"
+    },
+    {
+      "lesson_number": 8,
+      "title": "Santa Lucia en Suède",
+      "duration": "30 minutes",
+      "objective": "Apprendre sur la tradition suédoise de Sainte-Lucie",
+      "key_vocabulary": ["Lucia", "couronne", "lumière", "chanson", "blanc"],
+      "activities": [
+        "Création de couronnes de lumière sécuritaires",
+        "Défilé de Lucia dans la classe",
+        "Dégustation de sablés suédois (simulation)"
+      ],
+      "materials": ["couronnes blanches", "bougies LED", "vêtements blancs"],
+      "assessment": "Participation au défilé de Lucia"
+    },
+    {
+      "lesson_number": 9,
+      "title": "Le solstice d'hiver",
+      "duration": "30 minutes",
+      "objective": "Comprendre le phénomène naturel du solstice d'hiver",
+      "key_vocabulary": ["solstice", "hiver", "jour", "nuit", "lumière"],
+      "activities": [
+        "Démonstration simple jour/nuit avec lampe",
+        "Création d'un calendrier solstice",
+        "Célébration du retour progressif de la lumière"
+      ],
+      "materials": ["lampe", "globe", "calendrier vierge"],
+      "assessment": "Compréhension que les jours raccourcissent puis rallongent"
+    },
+    {
+      "lesson_number": 10,
+      "title": "Nos traditions familiales",
+      "duration": "30 minutes",
+      "objective": "Célébrer et partager les traditions familiales uniques",
+      "key_vocabulary": ["famille", "tradition", "spécial", "souvenir", "amour"],
+      "activities": [
+        "Présentation 'Show and Tell' des traditions familiales",
+        "Création d'un livre de classe des traditions",
+        "Cercle d'appréciation des différences"
+      ],
+      "materials": ["objets familiaux", "appareil photo", "livre vierge"],
+      "assessment": "Présentation claire d'une tradition familiale"
+    },
+    {
+      "lesson_number": 11,
+      "title": "Les aliments des fêtes",
+      "duration": "30 minutes",
+      "objective": "Explorer les aliments traditionnels des célébrations hivernales",
+      "key_vocabulary": ["nourriture", "recette", "famille", "partage", "délicieux"],
+      "activities": [
+        "Présentation d'aliments festifs de diverses cultures",
+        "Création d'un menu de fête multiculturel",
+        "Jeu de devinettes sur les aliments festifs"
+      ],
+      "materials": ["images d'aliments", "menus vierges", "échantillons sécuritaires"],
+      "assessment": "Identification d'aliments de différentes cultures"
+    },
+    {
+      "lesson_number": 12,
+      "title": "Musiques et danses de fête",
+      "duration": "30 minutes",
+      "objective": "Découvrir les expressions musicales des célébrations hivernales",
+      "key_vocabulary": ["musique", "danse", "rythme", "célébration", "mouvement"],
+      "activities": [
+        "Écoute de musiques festives de diverses cultures",
+        "Apprentissage de mouvements de danse simples",
+        "Création d'instruments rythmiques"
+      ],
+      "materials": ["musiques variées", "instruments simples", "matériel de bricolage"],
+      "assessment": "Participation active aux activités musicales"
+    },
+    {
+      "lesson_number": 13,
+      "title": "Décorations du monde",
+      "duration": "30 minutes",
+      "objective": "Créer des décorations inspirées de traditions mondiales",
+      "key_vocabulary": ["décoration", "couleur", "symbole", "beauté", "création"],
+      "activities": [
+        "Atelier de création de décorations multiculturelles",
+        "Exposition des créations dans la classe",
+        "Discussion sur les symboles et leurs significations"
+      ],
+      "materials": ["matériel d'art varié", "exemples de décorations", "fils et rubans"],
+      "assessment": "Création réussie d'une décoration culturelle"
+    },
+    {
+      "lesson_number": 14,
+      "title": "Histoires d'hiver du monde",
+      "duration": "30 minutes",
+      "objective": "Découvrir des contes et légendes hivernales de diverses cultures",
+      "key_vocabulary": ["histoire", "conte", "légende", "personnage", "magie"],
+      "activities": [
+        "Lecture d'histoires hivernales de différents pays",
+        "Jeu de rôle avec les personnages des histoires",
+        "Création d'un livre d'histoires de classe"
+      ],
+      "materials": ["livres multiculturels", "costumes simples", "matériel de reliure"],
+      "assessment": "Raconter les éléments principaux d'une histoire"
+    },
+    {
+      "lesson_number": 15,
+      "title": "Cadeaux et générosité",
+      "duration": "30 minutes",
+      "objective": "Explorer le concept de générosité dans différentes cultures",
+      "key_vocabulary": ["cadeau", "générosité", "gentillesse", "partage", "donner"],
+      "activities": [
+        "Discussion sur différentes façons de donner",
+        "Création de cadeaux faits main pour la famille",
+        "Projet de générosité collective pour la communauté"
+      ],
+      "materials": ["matériel de bricolage", "papier d'emballage", "rubans"],
+      "assessment": "Expression de la compréhension de la générosité"
+    },
+    {
+      "lesson_number": 16,
+      "title": "Vêtements de fête",
+      "duration": "30 minutes",
+      "objective": "Découvrir les vêtements traditionnels des célébrations hivernales",
+      "key_vocabulary": ["vêtements", "costume", "tradition", "couleur", "élégant"],
+      "activities": [
+        "Présentation de vêtements festifs de diverses cultures",
+        "Défilé de mode multiculturel",
+        "Création d'accessoires festifs"
+      ],
+      "materials": ["costumes variés", "accessoires", "miroir", "appareil photo"],
+      "assessment": "Description des caractéristiques d'un vêtement traditionnel"
+    },
+    {
+      "lesson_number": 17,
+      "title": "Symboles et significations",
+      "duration": "30 minutes",
+      "objective": "Comprendre les symboles importants des célébrations hivernales",
+      "key_vocabulary": ["symbole", "signification", "important", "représenter", "comprendre"],
+      "activities": [
+        "Chasse au trésor des symboles festifs",
+        "Création d'un dictionnaire visuel des symboles",
+        "Jeu d'association symbole-célébration"
+      ],
+      "materials": ["images de symboles", "cartes d'association", "dictionnaire vierge"],
+      "assessment": "Association correcte de symboles à leurs célébrations"
+    },
+    {
+      "lesson_number": 18,
+      "title": "Préparation de notre célébration",
+      "duration": "30 minutes",
+      "objective": "Planifier une célébration inclusive de classe",
+      "key_vocabulary": ["planifier", "organiser", "ensemble", "célébration", "inclusion"],
+      "activities": [
+        "Vote démocratique sur les éléments à inclure",
+        "Attribution des rôles pour la préparation",
+        "Création d'invitations pour les familles"
+      ],
+      "materials": ["listes de vérification", "cartons d'invitation", "matériel de vote"],
+      "assessment": "Participation constructive à la planification"
+    },
+    {
+      "lesson_number": 19,
+      "title": "Notre célébration multiculturelle",
+      "duration": "45 minutes",
+      "objective": "Célébrer ensemble la diversité des traditions hivernales",
+      "key_vocabulary": ["célébrer", "ensemble", "diversité", "respect", "joie"],
+      "activities": [
+        "Célébration inclusive avec éléments de diverses cultures",
+        "Présentation des apprentissages aux familles",
+        "Partage de traditions familiales avec les invités"
+      ],
+      "materials": ["décorations créées", "aliments symboliques", "musiques variées"],
+      "assessment": "Participation respectueuse et joyeuse à la célébration"
+    },
+    {
+      "lesson_number": 20,
+      "title": "Réflexion et appréciation",
+      "duration": "30 minutes",
+      "objective": "Réfléchir sur les apprentissages et célébrer la diversité",
+      "key_vocabulary": ["apprendre", "grandir", "différent", "spécial", "fierté"],
+      "activities": [
+        "Cercle de réflexion sur les apprentissages",
+        "Création d'un certificat d'explorateur culturel",
+        "Engagement à continuer d'apprendre sur les autres cultures"
+      ],
+      "materials": ["certificats vierges", "crayons de couleur", "photos de l'unité"],
+      "assessment": "Expression de l'appréciation pour la diversité culturelle"
+    }
+  ],
+  "unit_materials": [
+    "Livres multiculturels sur les célébrations hivernales",
+    "Images et cartes représentant diverses cultures",
+    "Matériel d'art et de bricolage varié",
+    "Musiques traditionnelles de différents pays",
+    "Costumes et accessoires culturels",
+    "Ingrédients pour activités culinaires sécuritaires",
+    "Cartes du monde et globe terrestre",
+    "Appareil photo pour documenter les apprentissages"
+  ],
+  "assessment_strategies": [
+    "Observation continue de la participation",
+    "Portfolio des créations artistiques",
+    "Documentation photographique des activités",
+    "Auto-évaluation simple avec pictogrammes",
+    "Évaluation par les pairs lors des présentations",
+    "Réflexions verbales enregistrées",
+    "Participation aux célébrations et activités de groupe"
+  ],
+  "differentiation_strategies": [
+    "Supports visuels pour tous les apprentissages",
+    "Activités kinesthésiques et sensorielles",
+    "Choix dans les modes d'expression",
+    "Regroupements flexibles",
+    "Adaptation du niveau de vocabulaire",
+    "Utilisation de la langue maternelle si nécessaire",
+    "Temps supplémentaire selon les besoins"
+  ],
+  "cultural_sensitivity_notes": [
+    "Présenter toutes les traditions avec respect égal",
+    "Éviter la hiérarchisation des célébrations",
+    "Inclure les familles dans le partage culturel",
+    "Respecter les choix familiaux de participation",
+    "Utiliser un langage inclusif et positif",
+    "Célébrer la diversité comme une richesse",
+    "Permettre aux enfants de partager ou non selon leur confort"
+  ],
+  "extension_activities": [
+    "Correspondance avec des classes d'autres pays",
+    "Visite virtuelle de lieux de célébration",
+    "Invitations d'intervenants culturels",
+    "Création d'un calendrier multiculturel de classe",
+    "Projet de recherche familiale sur les origines",
+    "Participation à des événements communautaires",
+    "Documentation vidéo des apprentissages"
+  ],
+  "home_connections": [
+    "Enquêtes sur les traditions familiales",
+    "Partage de recettes familiales",
+    "Invitations aux célébrations de classe",
+    "Projets collaboratifs parents-enfants",
+    "Communication régulière sur les apprentissages",
+    "Ressources pour continuer l'apprentissage à la maison",
+    "Encouragement du partage culturel familial"
+  ]
+}

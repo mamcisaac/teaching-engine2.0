@@ -393,6 +393,7 @@ model ETFOLessonPlan {
   title                     String
   unitPlanId                String
   date                      DateTime
+  slotNumber                Int?                        @default(1)
   duration                  Int
   mindsOn                   String?
   action                    String?
@@ -446,6 +447,7 @@ model ETFOLessonPlan {
   @@index([userId, date, grade])
   @@index([date, duration])
   @@index([userId, assessmentType])
+  @@index([userId, date, slotNumber])
 }
 
 model ETFOLessonPlanExpectation {

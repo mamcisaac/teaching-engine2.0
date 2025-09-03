@@ -1,11 +1,12 @@
-import React, { useState, useMemo } from 'react';
 import { format, startOfWeek, addDays, isSameDay, addWeeks, subWeeks } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
 import { Calendar, ChevronLeft, ChevronRight, Clock, BookOpen, Plus } from 'lucide-react';
-import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/Button';
+import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 
 interface DaySchedule {
   date: Date;
@@ -13,12 +14,12 @@ interface DaySchedule {
   lessons: any[];
 }
 
-const TIME_BLOCKS = [
-  { time: '08:45', label: 'Block 1 - Français', subject: 'Français (Immersion)' },
-  { time: '09:30', label: 'Block 2 - Mathématiques', subject: 'Mathématiques' },
-  { time: '10:30', label: 'Block 3 - Sciences', subject: 'Sciences de la nature' },
-  { time: '11:15', label: 'Block 4 - Arts', subject: 'Arts visuels' },
-  { time: '13:00', label: 'Block 5 - Social/Health', subject: 'rotating' }
+const DAILY_SLOTS = [
+  { slotNumber: 1, label: 'Slot 1' },
+  { slotNumber: 2, label: 'Slot 2' },
+  { slotNumber: 3, label: 'Slot 3' },
+  { slotNumber: 4, label: 'Slot 4' },
+  { slotNumber: 5, label: 'Slot 5' }
 ];
 
 const SUBJECT_COLORS: Record<string, string> = {
@@ -85,9 +86,9 @@ export function WeekViewPage(): React.ReactElement {
     navigate(`/planner/lessons/${lessonId}`);
   };
   
-  const handleCreateLesson = (date: Date, timeBlock: any) => {
-    // Navigate to lesson creation with pre-filled date and subject
-    navigate(`/planner/quick-lesson?date=${format(date, 'yyyy-MM-dd')}&subject=${timeBlock.subject}`);
+  const handleCreateLesson = (date: Date, slot: any) => {
+    // Navigate to lesson creation with pre-filled date and slot
+    navigate(`/planner/quick-lesson?date=${format(date, 'yyyy-MM-dd')}&slot=${slot.slotNumber}`);
   };
   
   return (
@@ -153,7 +154,7 @@ export function WeekViewPage(): React.ReactElement {
           <div className="bg-white rounded-lg shadow overflow-hidden">
             <div className="grid grid-cols-6 border-b">
               <div className="p-3 bg-gray-50 font-semibold text-gray-700 border-r">
-                Time
+                Lesson Slots
               </div>
               {weekSchedule.map((day) => (
                 <div 
@@ -174,51 +175,42 @@ export function WeekViewPage(): React.ReactElement {
               ))}
             </div>
             
-            {/* Time Blocks */}
-            {TIME_BLOCKS.map((timeBlock) => (
-              <div key={timeBlock.time} className="grid grid-cols-6 border-b last:border-b-0">
+            {/* Daily Slots */}
+            {DAILY_SLOTS.map((slot) => (
+              <div key={slot.slotNumber} className="grid grid-cols-6 border-b last:border-b-0">
                 <div className="p-3 bg-gray-50 font-medium text-sm text-gray-700 border-r">
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    {timeBlock.time}
-                  </div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    {timeBlock.label}
+                    <BookOpen className="h-4 w-4" />
+                    {slot.label}
                   </div>
                 </div>
                 
                 {weekSchedule.map((day) => {
-                  // Find lesson for this time block
-                  const subject = timeBlock.subject === 'rotating' 
-                    ? (day.date.getDate() % 2 === 0 ? 'Sciences humaines' : 'Formation personnelle et sociale')
-                    : timeBlock.subject;
-                  
-                  const lesson = day.lessons.find(l => {
-                    // Match by subject from unit plan
-                    return l.unitPlan?.longRangePlan?.subject === subject;
-                  });
+                  // Find lesson for this slot
+                  const lesson = day.lessons.find(l => l.slotNumber === slot.slotNumber);
+                  const subject = lesson?.unitPlan?.longRangePlan?.subject;
                   
                   return (
                     <div 
-                      key={`${day.dateStr}-${timeBlock.time}`}
+                      key={`${day.dateStr}-${slot.slotNumber}`}
                       className="p-2 border-r last:border-r-0 hover:bg-gray-50 min-h-[100px]"
                     >
                       {lesson ? (
                         <div 
-                          className={`p-2 rounded cursor-pointer ${SUBJECT_COLORS[subject] || 'bg-gray-100'}`}
+                          className={`p-2 rounded cursor-pointer ${subject ? SUBJECT_COLORS[subject] : 'bg-gray-100'}`}
                           onClick={() => handleLessonClick(lesson.id)}
                         >
                           <div className="font-medium text-xs mb-1">
                             {lesson.titleFr || lesson.title}
                           </div>
                           <div className="text-xs opacity-75">
-                            {lesson.duration} min
+                            {subject} - {lesson.duration} min
                           </div>
                         </div>
                       ) : (
                         <button
                           className="w-full h-full p-2 border-2 border-dashed border-gray-300 rounded hover:border-indigo-400 hover:bg-indigo-50 flex items-center justify-center text-gray-400 hover:text-indigo-600"
-                          onClick={() => handleCreateLesson(day.date, { ...timeBlock, subject })}
+                          onClick={() => handleCreateLesson(day.date, slot)}
                         >
                           <Plus className="h-4 w-4" />
                         </button>

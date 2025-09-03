@@ -119,6 +119,7 @@ export interface ETFOLessonPlan {
   unitPlanId: string;
   unitPlan?: UnitPlan;
   date: string;
+  slotNumber?: number;
   duration: number;
   mindsOn?: string;
   mindsOnFr?: string;

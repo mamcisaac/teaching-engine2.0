@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { format, startOfWeek, endOfWeek, addDays, isToday, isSameDay, addWeeks, subWeeks } from 'date-fns';
 import { 
   Calendar, 
@@ -11,12 +10,13 @@ import {
   Eye,
   Plus
 } from 'lucide-react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
 import { Alert, AlertDescription } from '../components/ui/alert';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { useETFOLessonPlans, type ETFOLessonPlan } from '../hooks/useETFOPlanning';
 import { generateLessonPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 

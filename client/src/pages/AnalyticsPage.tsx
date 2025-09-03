@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { 
   ChartBarIcon,
   AcademicCapIcon,
@@ -10,6 +9,7 @@ import {
   XCircleIcon,
   SparklesIcon
 } from '@heroicons/react/24/outline';
+import React, { useState, useEffect } from 'react';
 
 interface Assessment {
   id: string;

@@ -1,0 +1,3187 @@
+{
+  "unitTitle": "Notre environnement partagé",
+  "subject": "Sciences de la nature",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Notre environnement naturel",
+      "oneGoal": "Students will identify different natural environments around them and recognize that they are part of these environments",
+      "duration": 45,
+      "keyVocabulary": [
+        "environnement",
+        "naturel",
+        "autour"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Nature sounds listening game - students close eyes and identify different environmental sounds",
+        "materials": [
+          "nature sounds recording",
+          "speaker",
+          "environment picture cards"
+        ],
+        "visualSupports": "large poster showing different natural environments (forest, water, garden, field)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves ont-ils besoin de plus de temps pour identifier les sons?",
+            "ifYes": "Répéter les sons et permettre discussion en petits groupes",
+            "ifNo": "Continuer avec identification visuelle des environnements"
+          },
+          {
+            "question": "Y a-t-il des élèves qui semblent anxieux des sons inconnus?",
+            "ifYes": "Montrer sources des sons avec images rassurantes",
+            "ifNo": "Ajouter sons plus complexes pour défi"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Environment exploration walk around school grounds or nature picture sorting and discussion",
+        "materials": [
+          "clipboards",
+          "observation sheets",
+          "magnifying glasses",
+          "collection bags"
+        ],
+        "visualSupports": "environment identification chart, 'I am part of nature' poster",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves peuvent explorer dehors en sécurité",
+            "ifYes": "Faire une promenade nature pour identifier les environnements locaux",
+            "ifNo": "Utiliser observations par fenêtre et tri d'images"
+          },
+          {
+            "question": "Si les élèves comprennent qu'ils font partie de l'environnement",
+            "ifYes": "Discuter comment leurs actions affectent la nature",
+            "ifNo": "Se concentrer sur l'observation et l'identification simples"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Circle share - students share one natural environment they found and how they are part of it",
+        "materials": [
+          "speaking stone or talking object",
+          "circle carpet or floor markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves hésitent-ils à partager leurs observations?",
+            "ifYes": "Commencer par montrer un exemple personnel et encourager doucement",
+            "ifNo": "Inviter des détails supplémentaires sur comment ils se sentent connectés à l'environnement"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des images pour identifier les environnements",
+          "Commencer par un seul exemple d'environnement familier",
+          "Permettre des réponses gestuelles ou pointage"
+        ],
+        "pourAvancés": [
+          "Identifier des environnements moins évidents (sous-sol, grenier)",
+          "Expliquer comment différents environnements sont connectés",
+          "Créer une carte des environnements de l'école"
+        ],
+        "pourLangue": [
+          "Étiquettes visuelles pour 'environnement', 'naturel', 'autour'",
+          "Permettre description en L1 puis traduire ensemble",
+          "Utiliser gestes pour accompagner nouveaux mots"
+        ],
+        "pourPEI": [
+          "Adapter selon les besoins sensoriels (bruit, lumière)",
+          "Fournir supports tactiles pour exploration",
+          "Ajuster durée selon capacité d'attention"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie au moins 2 environnements naturels",
+          "L'élève utilise le vocabulaire 'environnement', 'naturel'",
+          "L'élève démontre compréhension qu'il fait partie de l'environnement"
+        ],
+        "checkpoints": [
+          "Peut pointer environnements sur images",
+          "Nomme environnement de l'école ou maison",
+          "Explique simple connexion à l'environnement"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Les animaux dans leur maison naturelle",
+      "oneGoal": "Students will observe and identify where different animals live in natural environments",
+      "duration": 45,
+      "keyVocabulary": [
+        "maison",
+        "habitat",
+        "animaux"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Animal home guessing game - show animal pictures and guess where they live",
+        "materials": [
+          "animal picture cards",
+          "habitat picture cards"
+        ],
+        "visualSupports": "animal homes matching poster (bird-tree, fish-water, rabbit-burrow)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre animaux et habitats?",
+            "ifYes": "Ajouter des questions sur pourquoi ces animaux vivent là",
+            "ifNo": "Utiliser des gestes et pointer vers les images pour aider"
+          },
+          {
+            "question": "Certains élèves semblent-ils inquiets pour les animaux?",
+            "ifYes": "Expliquer que les habitats sont des maisons sûres et confortables",
+            "ifNo": "Explorer comment nous pouvons protéger ces habitats"
+          },
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create simple animal habitat dioramas using natural and craft materials",
+        "materials": [
+          "small boxes",
+          "natural materials (twigs, leaves, sand)",
+          "animal figures",
+          "blue fabric",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "habitat examples poster, step-by-step diorama instructions",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves peuvent associer animaux et habitats",
+            "ifYes": "Explore why specific animals need specific homes",
+            "ifNo": "Focus on obvious examples like fish needing water"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Habitat gallery walk - students present their dioramas and explain animal homes",
+        "materials": [
+          "sticky notes for feedback",
+          "observation checklist"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils fiers de présenter leurs dioramas?",
+            "ifYes": "Encourager questions entre pairs et célébrer créativité",
+            "ifNo": "Offrir support en posant questions guidées sur leur travail"
+          },
+          {
+            "question": "Comprennent-ils pourquoi chaque animal a besoin d'un habitat spécifique?",
+            "ifYes": "Discuter comment nous partageons la planète avec les animaux",
+            "ifNo": "Utiliser comparaisons avec leurs propres maisons et besoins"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser 3-4 animaux très familiers seulement",
+          "Associer animal-habitat avec images identiques",
+          "Permettre manipulation d'objets concrets (figurines)"
+        ],
+        "pourAvancés": [
+          "Explorer pourquoi certains animaux changent d'habitat selon saisons",
+          "Créer dioramas multi-habitats (animal utilise plusieurs espaces)",
+          "Rechercher habitats d'animaux moins communs"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'maison', 'habitat', 'animaux' avec gestes",
+          "Permettre noms d'animaux en L1 puis apprendre en français",
+          "Utiliser sons d'animaux pour renforcer connexions"
+        ],
+        "pourPEI": [
+          "Adapter matériaux tactiles selon besoins sensoriels",
+          "Simplifier à 2-3 associations animal-habitat maximum",
+          "Fournir support visuel séquentiel pour construction diorama"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève associe correctement 3+ animaux à leurs habitats",
+          "L'élève utilise vocabulaire 'maison', 'habitat' appropriément",
+          "L'élève explique pourquoi animal a besoin habitat spécifique"
+        ],
+        "checkpoints": [
+          "Place animal dans bon habitat sur diorama",
+          "Nomme habitat de 2+ animaux familiers",
+          "Explique une raison pourquoi animal vit là"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Les plantes ont leur place aussi",
+      "oneGoal": "Students will identify where different plants grow naturally and why location matters for plants",
+      "duration": 45,
+      "keyVocabulary": [
+        "place",
+        "pousser",
+        "endroit"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Plant location detective game - examine plants in different school locations",
+        "materials": [
+          "observation journals",
+          "plant identification guides"
+        ],
+        "visualSupports": "plant location preference chart (sun plants, shade plants, water plants)",
+        "decisionPoints": [
+          {
+            "question": "Les élèves observent-ils des différences entre les plantes?",
+            "ifYes": "Guider vers observation des préférences lumière/ombre",
+            "ifNo": "Montrer plantes côte à côte pour comparaison directe"
+          },
+          {
+            "question": "Veulent-ils toucher ou cueillir les plantes?",
+            "ifYes": "Enseigner observation respectueuse - regarder sans déranger",
+            "ifNo": "Féliciter leur respect et encourager observation détaillée"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Plant a classroom experiment with same seeds in different conditions (light, dark, wet, dry)",
+        "materials": [
+          "seeds",
+          "small pots",
+          "potting soil",
+          "water",
+          "labels"
+        ],
+        "visualSupports": "plant needs diagram, experiment tracking chart",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent que les plantes préfèrent certains endroits",
+            "ifYes": "Explore what happens when plants are in wrong locations",
+            "ifNo": "Focus on simple observations of where plants look healthy"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Plant placement predictions - students predict which planted seeds will grow best",
+        "materials": [
+          "prediction cards",
+          "pencils"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des prédictions raisonnées?",
+            "ifYes": "Demander d'expliquer leur raisonnement sur besoins des plantes",
+            "ifNo": "Guider avec questions: 'Que pensez-vous que les plantes aiment?'"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser 2-3 plantes très visibles seulement (tournesol, fougère)",
+          "Montrer exemples évidents (cactus=sec, nénuphar=eau)",
+          "Permettre réponses par désignation d'images"
+        ],
+        "pourAvancés": [
+          "Explorer micro-environnements (sous roches, troncs d'arbres)",
+          "Prédire quelles plantes survivraient dans différents endroits",
+          "Créer guide de plantes selon leurs préférences de lieu"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'place', 'pousser', 'endroit' avec actions",
+          "Utiliser vraies plantes pour vocabulaire tactile",
+          "Permettre comparaisons avec plantes de culture d'origine"
+        ],
+        "pourPEI": [
+          "Adapter selon allergies ou sensibilités aux plantes",
+          "Fournir gants si difficultés tactiles avec terre",
+          "Simplifier expérience à 2 conditions seulement (lumière/ombre)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie où 2+ plantes poussent naturellement",
+          "L'élève explique pourquoi lieu important pour plantes",
+          "L'élève fait prédictions sur croissance des graines"
+        ],
+        "checkpoints": [
+          "Associe plante à son environnement préféré",
+          "Utilise 'place', 'pousser' dans contexte approprié",
+          "Prédit quelle graine poussera mieux et pourquoi"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Tout est connecté dans la nature",
+      "oneGoal": "Students will discover simple connections between animals, plants, and their environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "connecté",
+        "ensemble",
+        "dépendre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Connection web game - hold yarn to show how students are connected to each other",
+        "materials": [
+          "ball of yarn",
+          "connection cards"
+        ],
+        "visualSupports": "nature connection web poster showing plant-animal relationships",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils les connexions nature?",
+            "ifYes": "Explorer connexions plus complexes - qui mange quoi, qui aide qui",
+            "ifNo": "Commencer par exemples simples - abeilles et fleurs, oiseaux et arbres"
+          },
+          {
+            "question": "Sont-ils engagés dans l'activité de la toile?",
+            "ifYes": "Ajouter plus de cartes de connexion pour étendre l'apprentissage",
+            "ifNo": "Simplifier en utilisant moins de cartes et mouvements plus actifs"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create nature connection chains using pictures and arrows to show relationships",
+        "materials": [
+          "nature picture cards",
+          "arrow stickers",
+          "large paper",
+          "glue sticks"
+        ],
+        "visualSupports": "simple food chain examples, connection word bank",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves identifient des liens simples (oiseau mange graines)",
+            "ifYes": "Explore what happens when connections are broken",
+            "ifNo": "Focus on very obvious connections like animals needing plants for food"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Connection sharing circle - students share one nature connection they discovered",
+        "materials": [
+          "speaking stone or talking object",
+          "circle carpet or floor markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves partagent-ils volontiers leurs découvertes?",
+            "ifYes": "Encourager détails sur pourquoi ces connexions sont importantes",
+            "ifNo": "Commencer par exemple personnel puis inviter participation douce"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser connexions très évidentes (abeille-fleur, poisson-eau)",
+          "Montrer avec objets concrets et ficelle pour 'connexion'",
+          "Se limiter à 2-3 connexions simples maximum"
+        ],
+        "pourAvancés": [
+          "Explorer que se passe-t-il si une connexion est brisée",
+          "Créer chaînes de connexions multiples (soleil-plante-animal)",
+          "Identifier connexions dans environnement de l'école"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'connecté', 'ensemble', 'dépendre' avec liens physiques",
+          "Utiliser gestes de liaison pour 'connecté'",
+          "Permettre explications en L1 puis traduire ensemble"
+        ],
+        "pourPEI": [
+          "Utiliser supports tactiles pour montrer connexions physiques",
+          "Adapter selon capacité d'attention (1-2 connexions max)",
+          "Fournir supports visuels séquentiels pour chaînes"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 2+ connexions simples dans nature",
+          "L'élève utilise vocabulaire 'connecté', 'ensemble' appropriément",
+          "L'élève explique pourquoi éléments dépendent les uns des autres"
+        ],
+        "checkpoints": [
+          "Relie 2 éléments nature avec flèche ou ficelle",
+          "Explique connexion oiseau-arbre ou abeille-fleur",
+          "Utilise 'ensemble' pour décrire relation nature"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "L'eau: source de vie partout",
+      "oneGoal": "Students will recognize that all living things need clean water and identify water sources in nature",
+      "duration": 45,
+      "keyVocabulary": [
+        "eau",
+        "propre",
+        "source"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Water needs demonstration - show how plants, animals, and humans all need water",
+        "materials": [
+          "clear containers",
+          "water",
+          "plant cutting",
+          "pet photos"
+        ],
+        "visualSupports": "water cycle poster, clean vs polluted water pictures",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils l'importance de l'eau propre?",
+            "ifYes": "Explorer comment nos actions affectent la qualité de l'eau",
+            "ifNo": "Montrer exemples concrets - boire, laver, arroser plantes"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create a classroom water filter using natural materials and test with muddy water",
+        "materials": [
+          "clear bottles",
+          "sand",
+          "gravel",
+          "coffee filters",
+          "muddy water"
+        ],
+        "visualSupports": "water filtration diagram, natural water sources map",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent que la qualité de l'eau est importante",
+            "ifYes": "Explore what makes water clean or dirty",
+            "ifNo": "Focus on simple observation that all living things drink water"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Water protection pledges - students share one way they will help keep water clean",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils l'importance de l'eau propre?",
+            "ifYes": "Explorer comment nos actions affectent la qualité de l'eau",
+            "ifNo": "Montrer exemples concrets - boire, laver, arroser plantes"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur eau pour boire seulement (évident)",
+          "Utiliser vraie eau et filtres simples seulement",
+          "Montrer avant/après avec eau très sale vs propre"
+        ],
+        "pourAvancés": [
+          "Tester différents matériaux de filtration naturels",
+          "Explorer sources d'eau dans communauté locale",
+          "Calculer combien d'eau utilisée quotidiennement"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'eau', 'propre', 'source' avec vraie eau",
+          "Utiliser sensations tactiles (froid, liquide) pour 'eau'",
+          "Permettre comparaisons avec sources d'eau du pays d'origine"
+        ],
+        "pourPEI": [
+          "Adapter selon sensibilités à l'eau ou matériaux mouillés",
+          "Fournir alternatives sèches si nécessaire (images)",
+          "Simplifier expérience à observation seulement si requis"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie que tous les vivants ont besoin d'eau",
+          "L'élève distingue eau propre vs eau sale",
+          "L'élève nomme 2+ sources d'eau naturelles"
+        ],
+        "checkpoints": [
+          "Pointe sources d'eau sur images ou à l'école",
+          "Explique pourquoi plantes/animaux ont besoin d'eau",
+          "Utilise 'eau propre' vs 'eau sale' correctement"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "L'air pur pour tous les vivants",
+      "oneGoal": "Students will understand that all living things need clean air and identify what helps keep air clean",
+      "duration": 45,
+      "keyVocabulary": [
+        "air",
+        "pur",
+        "respirer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Breathing awareness exercise - students notice how they breathe and what clean air feels like",
+        "materials": [
+          "feathers for air movement detection",
+          "plants"
+        ],
+        "visualSupports": "air quality poster, trees cleaning air diagram",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre arbres et air pur?",
+            "ifYes": "Discuter comment nous pouvons protéger les arbres",
+            "ifNo": "Démontrer avec respiration profonde près des plantes"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Plant air filters experiment - compare air quality near plants vs away from plants using simple tests",
+        "materials": [
+          "plants",
+          "white paper",
+          "tape",
+          "magnifying glasses"
+        ],
+        "visualSupports": "how trees clean air poster, air pollution examples",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent que les arbres nettoient l'air",
+            "ifYes": "Explore other things that help or hurt air quality",
+            "ifNo": "Focus on simple observation that plants and trees are good for air"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Fresh air appreciation walk - students take deep breaths and appreciate clean air",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre arbres et air pur?",
+            "ifYes": "Discuter comment nous pouvons protéger les arbres",
+            "ifNo": "Démontrer avec respiration profonde près des plantes"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur respirer seulement (action évidente)",
+          "Utiliser plumes pour montrer air invisible en mouvement",
+          "Comparer air frais dehors vs air enfermé"
+        ],
+        "pourAvancés": [
+          "Explorer différentes sources de pollution de l'air",
+          "Mesurer qualité air à différents endroits de l'école",
+          "Rechercher comment différentes plantes nettoient l'air"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'air', 'pur', 'respirer' avec actions physiques",
+          "Utiliser exercices de respiration pour 'air'",
+          "Permettre comparaisons avec qualité air du pays d'origine"
+        ],
+        "pourPEI": [
+          "Adapter selon difficultés respiratoires ou sensibilités",
+          "Fournir alternatives à l'exercice physique si nécessaire",
+          "Utiliser supports visuels pour air invisible"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève démontre compréhension que tous les vivants respirent",
+          "L'élève identifie arbres/plantes comme nettoyeurs d'air",
+          "L'élève utilise vocabulaire 'air pur' vs 'air pollué'"
+        ],
+        "checkpoints": [
+          "Montre comment il/elle respire",
+          "Explique pourquoi arbres sont bons pour l'air",
+          "Nomme endroit avec air frais et air moins frais"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Prendre soin de notre environnement",
+      "oneGoal": "Students will identify simple ways they can help take care of their natural environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "prendre soin",
+        "aider",
+        "protéger"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Environmental care photo analysis - look at before/after pictures of environmental care actions",
+        "materials": [
+          "before/after photo cards",
+          "environmental care action cards"
+        ],
+        "visualSupports": "environmental care actions poster, 'Earth helpers' chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Environmental care action planning - choose and practice simple care actions for school environment",
+        "materials": [
+          "action planning sheets",
+          "cleanup supplies",
+          "plant care materials"
+        ],
+        "visualSupports": "step-by-step care action guides, environmental care pledge chart",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont prêts à prendre soin de l'environnement",
+            "ifYes": "Plan regular care actions for the classroom/school",
+            "ifNo": "Focus on simple, one-time care actions to build confidence"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Environmental care pledge ceremony - students make commitments to care for their environment",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer par 1-2 actions simples (ramasser déchets)",
+          "Utiliser avant/après photos très claires",
+          "Se concentrer sur actions à l'école seulement"
+        ],
+        "pourAvancés": [
+          "Planifier projet de soin environnemental à long terme",
+          "Enseigner actions de soin à d'autres classes",
+          "Créer système de rappels pour actions quotidiennes"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'prendre soin', 'aider', 'protéger' avec actions",
+          "Utiliser gestes pour 'prendre soin' (caresser, protéger)",
+          "Connecter avec traditions de soin environnemental culturelles"
+        ],
+        "pourPEI": [
+          "Choisir actions adaptées aux capacités physiques",
+          "Fournir outils adaptatifs pour activités de soin si requis",
+          "Permettre contributions différentes selon forces individuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3+ actions de soin environnemental",
+          "L'élève démontre action de soin avec matériaux",
+          "L'élève explique pourquoi soin de l'environnement important"
+        ],
+        "checkpoints": [
+          "Choisit action environnementale et la fait",
+          "Utilise 'prendre soin' dans contexte approprié",
+          "Explique comment action aide environnement"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Réduire nos déchets",
+      "oneGoal": "Students will understand that making less waste helps protect the environment and identify ways to reduce waste",
+      "duration": 45,
+      "keyVocabulary": [
+        "déchets",
+        "réduire",
+        "moins"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Classroom waste audit - examine what gets thrown away in one day",
+        "materials": [
+          "waste collection bags",
+          "sorting gloves",
+          "clipboards"
+        ],
+        "visualSupports": "waste reduction poster, 'less waste = happier Earth' chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Waste reduction challenge - students brainstorm and practice ways to make less waste",
+        "materials": [
+          "waste reduction idea cards",
+          "reusable containers",
+          "both sides paper examples"
+        ],
+        "visualSupports": "waste reduction strategies poster, before/after waste examples",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves identifient des actions de réduction des déchets",
+            "ifYes": "Practice implementing waste reduction in classroom activities",
+            "ifNo": "Focus on simple examples like using both sides of paper"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Waste reduction commitment ceremony - students choose one waste reduction action to practice",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur 1-2 exemples très évidents (papier, plastique)",
+          "Utiliser vraies poubelles pour trier ce qu'on peut réduire",
+          "Commencer par réduire à l'école seulement"
+        ],
+        "pourAvancés": [
+          "Calculer combien de déchets évités par actions de réduction",
+          "Créer plan de réduction pour école entière",
+          "Comparer déchets avant/après changements comportement"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'déchets', 'réduire', 'moins' avec quantités",
+          "Utiliser gestes pour 'moins' et 'réduire'",
+          "Connecter avec pratiques de réduction culturelles familiales"
+        ],
+        "pourPEI": [
+          "Adapter manipulation des déchets selon sensibilités",
+          "Fournir gants ou outils pour tri si nécessaire",
+          "Simplifier à 2-3 catégories de déchets maximum"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3+ façons de réduire déchets",
+          "L'élève démontre action de réduction (utiliser moins)",
+          "L'élève explique pourquoi moins de déchets aide environnement"
+        ],
+        "checkpoints": [
+          "Choisit et pratique action de réduction",
+          "Utilise 'réduire' et 'moins' correctement",
+          "Compare quantités avant/après réduction"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Réutiliser les objets créativement",
+      "oneGoal": "Students will discover how to give objects new purposes instead of throwing them away",
+      "duration": 45,
+      "keyVocabulary": [
+        "réutiliser",
+        "nouveau",
+        "créatif"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Magic transformation game - show how common items can become something new",
+        "materials": [
+          "cardboard tubes",
+          "plastic containers",
+          "fabric scraps"
+        ],
+        "visualSupports": "reuse transformation examples poster, 'new life for old things' chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create useful items from materials that would otherwise be discarded",
+        "materials": [
+          "clean recyclable containers",
+          "art supplies",
+          "craft materials",
+          "tools"
+        ],
+        "visualSupports": "step-by-step reuse project guides, reuse safety rules poster",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves voient de nouvelles possibilités pour objets jetés",
+            "ifYes": "Encourage creative, original reuse ideas",
+            "ifNo": "Provide specific examples and guided reuse projects"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Reuse creation showcase - students share their new creations and explain the transformation",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves participent-ils volontiers au partage?",
+            "ifYes": "Poser questions approfondissantes sur leurs observations",
+            "ifNo": "Commencer par exemple personnel et encourager doucement"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser transformations très évidentes (boite -> contenant)",
+          "Fournir modèles à copier plutôt que création libre",
+          "Se limiter à 1-2 matériaux simples"
+        ],
+        "pourAvancés": [
+          "Imaginer multiples usages pour même objet",
+          "Créer guide de réutilisation pour autres classes",
+          "Combiner plusieurs objets pour création complexe"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'réutiliser', 'nouveau', 'créatif' avec transformations",
+          "Utiliser 'avant/après' pour montrer transformation",
+          "Partager idées de réutilisation culturelles familiales"
+        ],
+        "pourPEI": [
+          "Choisir matériaux sécuritaires selon besoins individuels",
+          "Fournir outils adaptatifs pour création si requis",
+          "Adapter complexité de transformation selon capacités"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève transforme objet en quelque chose de nouveau",
+          "L'élève explique comment objet réutilisé aide environnement",
+          "L'élève utilise vocabulaire 'réutiliser', 'nouveau' appropriément"
+        ],
+        "checkpoints": [
+          "Crée objet utile de matériaux de récupération",
+          "Explique nouvelle fonction de l'objet transformé",
+          "Utilise 'réutiliser' plutôt que 'jeter'"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Le recyclage: donner une nouvelle vie",
+      "oneGoal": "Students will understand how recycling transforms old materials into new products",
+      "duration": 45,
+      "keyVocabulary": [
+        "recyclage",
+        "transformer",
+        "nouveau"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Recycling transformation demonstration - show paper being made from recycled materials",
+        "materials": [
+          "recycled paper making kit",
+          "old paper",
+          "water",
+          "screens"
+        ],
+        "visualSupports": "recycling process poster, 'from old to new' transformation chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Make recycled paper or participate in simple recycling transformation activity",
+        "materials": [
+          "paper pulp",
+          "water",
+          "screens",
+          "sponges",
+          "towels"
+        ],
+        "visualSupports": "recycling step-by-step guides, materials transformation examples",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent que le recyclage transforme les matériaux",
+            "ifYes": "Explore different types of recycling transformations",
+            "ifNo": "Focus on one clear example like paper becoming new paper"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Recycling transformation celebration - students share their recycled creations",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser transformation papier seulement (la plus simple)",
+          "Montrer avant/après avec papiers à différentes étapes",
+          "Se concentrer sur observation plutôt que fabrication"
+        ],
+        "pourAvancés": [
+          "Explorer différents types de recyclage (plastique, métal, verre)",
+          "Calculer combien d'arbres économisés par recyclage papier",
+          "Rechercher processus industriel de recyclage"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'recyclage', 'transformer', 'nouveau' avec étapes",
+          "Utiliser séquences visuelles pour processus de transformation",
+          "Connecter avec pratiques de recyclage du pays d'origine"
+        ],
+        "pourPEI": [
+          "Adapter activité selon sensibilités à l'eau ou matériaux mouillés",
+          "Fournir observation seulement si manipulation difficile",
+          "Simplifier à étape principale: vieux papier -> nouveau papier"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève démontre compréhension que recyclage transforme matériaux",
+          "L'élève participe à création de papier recyclé",
+          "L'élève utilise 'recyclage', 'transformer' appropriément"
+        ],
+        "checkpoints": [
+          "Montre différence entre vieux et nouveau papier",
+          "Explique transformation matériaux recyclables",
+          "Utilise 'nouveau' pour décrire produit recyclé"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Trier pour mieux recycler",
+      "oneGoal": "Students will learn to sort different materials for recycling and understand why sorting helps",
+      "duration": 45,
+      "keyVocabulary": [
+        "trier",
+        "matériaux",
+        "séparer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Recycling sorting race - quickly sort mixed recyclables into correct categories",
+        "materials": [
+          "mixed clean recyclables",
+          "sorting bins",
+          "timer"
+        ],
+        "visualSupports": "recycling sorting guide poster, material identification chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create classroom recycling station with proper sorting system",
+        "materials": [
+          "recycling bins",
+          "labels",
+          "sorting guide posters",
+          "clean recyclables"
+        ],
+        "visualSupports": "recycling symbols guide, sorting decision tree poster",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves peuvent trier les matériaux par type",
+            "ifYes": "Introduce more challenging materials and recycling symbols",
+            "ifNo": "Focus on basic categories (paper, plastic, metal) with clear examples"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Sorting expertise test - students demonstrate their sorting skills",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se limiter à 2-3 catégories principales (papier, plastique, métal)",
+          "Utiliser bacs de couleurs différentes pour tri visuel",
+          "Commencer par matériaux très évidents et familiers"
+        ],
+        "pourAvancés": [
+          "Apprendre symboles de recyclage sur emballages",
+          "Créer système de tri pour toute l'école",
+          "Explorer que se passe avec matériaux mal triés"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'trier', 'matériaux', 'séparer' avec actions",
+          "Utiliser objets réels plutôt que mots pour catégories",
+          "Permettre noms de matériaux en L1 puis apprendre français"
+        ],
+        "pourPEI": [
+          "Fournir gants si difficultés tactiles avec matériaux",
+          "Simplifier à 2 catégories seulement si nécessaire",
+          "Utiliser supports visuels clairs pour chaque catégorie"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève trie correctement matériaux par type",
+          "L'élève explique pourquoi tri important pour recyclage",
+          "L'élève utilise 'trier', 'séparer' dans contexte approprié"
+        ],
+        "checkpoints": [
+          "Place 5+ objets dans bonnes catégories de tri",
+          "Explique pourquoi papier ne va pas avec plastique",
+          "Démontre compétence de tri avec nouveaux matériaux"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Les 3 R: Réduire, Réutiliser, Recycler",
+      "oneGoal": "Students will understand and apply the 3 Rs as a strategy for helping the environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "3 R",
+        "stratégie",
+        "ordre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "3 Rs song and movement activity - learn actions for reduce, reuse, recycle",
+        "materials": [
+          "3 Rs song recording",
+          "action prompt cards"
+        ],
+        "visualSupports": "3 Rs hierarchy poster showing order of preference, action reminder chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "3 Rs decision-making scenarios - practice choosing the best R for different situations",
+        "materials": [
+          "scenario cards",
+          "3 Rs decision wheels",
+          "response sheets"
+        ],
+        "visualSupports": "3 Rs decision flowchart, scenario examples poster",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent l'ordre des 3 R (réduire, réutiliser, recycler)",
+            "ifYes": "Practice applying 3 Rs to complex scenarios",
+            "ifNo": "Focus on simple examples where the best choice is obvious"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "3 Rs pledge ceremony - students commit to using the 3 Rs strategy in their daily lives",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur ordre: réduire d'abord, recycler en dernier",
+          "Utiliser objets simples pour pratiquer chaque R",
+          "Créer chanson ou rime pour mémoriser ordre"
+        ],
+        "pourAvancés": [
+          "Analyser objets complexes avec multiples options de 3R",
+          "Créer guide des 3R pour différents types d'objets",
+          "Calculer impact environnemental de chaque R"
+        ],
+        "pourLangue": [
+          "Cartes visuelles '3 R', 'stratégie', 'ordre' avec actions",
+          "Utiliser gestes pour chaque R (diminuer, transformer, séparer)",
+          "Pratiquer prononciation des 3 mots R en français"
+        ],
+        "pourPEI": [
+          "Simplifier à 2 R seulement si 3 trop complexe",
+          "Utiliser supports visuels pour chaque étape de décision",
+          "Permettre choix multiples plutôt que réponses ouvertes"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme les 3 R dans le bon ordre",
+          "L'élève applique stratégie 3R à différents objets",
+          "L'élève explique pourquoi réduire vient avant recycler"
+        ],
+        "checkpoints": [
+          "Récite les 3 R en ordre (réduire, réutiliser, recycler)",
+          "Choisit le bon R pour objet donné",
+          "Utilise stratégie 3R pour décider avec nouvel objet"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Notre projet de compostage",
+      "oneGoal": "Students will create a simple compost system and understand how food scraps become soil",
+      "duration": 45,
+      "keyVocabulary": [
+        "compost",
+        "décomposer",
+        "terre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Decomposition demonstration - show different stages of food waste breakdown",
+        "materials": [
+          "decomposition timeline photos",
+          "soil samples",
+          "food scraps"
+        ],
+        "visualSupports": "composting process poster, 'from scraps to soil' transformation chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves reconnaissent-ils différents types de déchets?",
+            "ifYes": "Enseigner règles simples - réduire, réutiliser, recycler",
+            "ifNo": "Commencer par tri simple - papier vs plastique vs compost"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Build classroom compost bin and add first materials",
+        "materials": [
+          "compost bin",
+          "brown materials",
+          "green materials",
+          "thermometer",
+          "journal"
+        ],
+        "visualSupports": "composting recipe poster, compost care instructions chart",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent le processus de compostage",
+            "ifYes": "Assign students different composting care responsibilities",
+            "ifNo": "Focus on simple observation of materials changing over time"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Compost care commitment ceremony - students sign up for compost monitoring duties",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur observation seulement (pas manipulation)",
+          "Utiliser images de décomposition plutôt que vrais matériaux",
+          "Commencer par feuilles qui deviennent terre naturellement"
+        ],
+        "pourAvancés": [
+          "Mesurer température et surveiller changements quotidiens",
+          "Comparer compost avec décomposition naturelle extérieure",
+          "Calculer temps nécessaire pour transformation complète"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'compost', 'décomposer', 'terre' avec transformations",
+          "Utiliser séquences visuelles pour processus de décomposition",
+          "Connecter avec pratiques de compostage culturelles"
+        ],
+        "pourPEI": [
+          "Adapter selon sensibilités aux odeurs ou matériaux organiques",
+          "Fournir gants et outils pour manipulation si requis",
+          "Permettre observation à distance si nécessaire"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève comprend que restes de nourriture peuvent devenir terre",
+          "L'élève participe à mise en place du compost",
+          "L'élève utilise 'compost', 'décomposer' dans contexte approprié"
+        ],
+        "checkpoints": [
+          "Explique transformation restes -> terre avec mots ou dessins",
+          "Contribue matériaux appropriés au compost",
+          "Prédit ce qui arrivera aux restes dans le compost"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Économiser l'énergie ensemble",
+      "oneGoal": "Students will identify simple ways to save energy at home and school to help the environment",
+      "duration": 45,
+      "keyVocabulary": [
+        "énergie",
+        "économiser",
+        "éteindre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Energy use detective walk - identify how energy is used in the classroom and school",
+        "materials": [
+          "clipboards",
+          "energy use tracking sheets",
+          "camera"
+        ],
+        "visualSupports": "energy sources poster, energy conservation actions chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves observent-ils activement leur environnement?",
+            "ifYes": "Encourager questions sur ce qu'ils voient et pourquoi",
+            "ifNo": "Guider attention avec pointage et questions spécifiques"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create energy-saving action plan for classroom and practice energy conservation",
+        "materials": [
+          "energy action planning sheets",
+          "reminder stickers",
+          "timers"
+        ],
+        "visualSupports": "energy saving tips poster, 'energy helpers' chart",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves identifient le gaspillage d'énergie",
+            "ifYes": "Create systematic energy conservation plan with specific responsibilities",
+            "ifNo": "Focus on obvious examples like turning off lights when leaving room"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Energy conservation pledge - students commit to specific energy-saving actions",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur actions simples (éteindre lumières)",
+          "Utiliser interrupteurs et appareils réels pour pratique",
+          "Montrer avant/après consommation avec compteurs visuels"
+        ],
+        "pourAvancés": [
+          "Mesurer consommation énergétique de différents appareils",
+          "Créer plan d'économie énergétique pour école entière",
+          "Explorer sources d'énergie renouvelable vs non-renouvelable"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'énergie', 'économiser', 'éteindre' avec actions",
+          "Utiliser gestes pour 'allumer' vs 'éteindre'",
+          "Connecter avec pratiques d'économie énergétique familiales"
+        ],
+        "pourPEI": [
+          "Adapter selon capacités de manipulation d'interrupteurs",
+          "Fournir supports visuels pour concepts invisibles (énergie)",
+          "Permettre participation selon capacités individuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3+ façons d'économiser énergie",
+          "L'élève démontre actions d'économie énergétique",
+          "L'élève explique pourquoi économiser énergie aide environnement"
+        ],
+        "checkpoints": [
+          "Pratique éteindre lumières en quittant pièce",
+          "Utilise 'économiser énergie' dans phrases appropriées",
+          "Identifie gaspillage énergétique dans environnement"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Créer un jardin pour les pollinisateurs",
+      "oneGoal": "Students will plant flowers to help bees and butterflies and understand how this helps the ecosystem",
+      "duration": 45,
+      "keyVocabulary": [
+        "jardin",
+        "pollinisateurs",
+        "abeilles"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Pollinator observation - watch videos or observe real pollinators visiting flowers",
+        "materials": [
+          "pollinator videos",
+          "magnifying glasses",
+          "observation sheets"
+        ],
+        "visualSupports": "pollinator identification poster, flower-pollinator matching chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves observent-ils activement leur environnement?",
+            "ifYes": "Encourager questions sur ce qu'ils voient et pourquoi",
+            "ifNo": "Guider attention avec pointage et questions spécifiques"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Plant pollinator-friendly flowers in containers or school garden",
+        "materials": [
+          "flower seeds",
+          "pots",
+          "soil",
+          "water",
+          "plant markers",
+          "gloves"
+        ],
+        "visualSupports": "pollinator garden planning poster, flower care instructions",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent la relation fleurs-pollinisateurs",
+            "ifYes": "Explore what happens when pollinators have no flowers to visit",
+            "ifNo": "Focus on simple observation that bees and butterflies love flowers"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Pollinator garden blessing ceremony - students make wishes for their flowers to help pollinators",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur observation pollinisateurs seulement",
+          "Utiliser graines faciles à planter (tournesol, capucine)",
+          "Planter dans pots plutôt que jardin pour contrôle"
+        ],
+        "pourAvancés": [
+          "Rechercher quelles fleurs attirent quels pollinisateurs",
+          "Créer calendrier de floraison pour pollinisateurs toute saison",
+          "Mesurer et documenter visites de pollinisateurs"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'jardin', 'pollinisateurs', 'abeilles' avec images réelles",
+          "Utiliser gestes pour 'voler' et 'butiner'",
+          "Connecter avec plantes à pollinisateurs du pays d'origine"
+        ],
+        "pourPEI": [
+          "Adapter selon peurs ou allergies aux insectes",
+          "Fournir gants pour plantation si sensibilités tactiles",
+          "Utiliser vidéos si observation directe difficile"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève plante graines appropriées pour pollinisateurs",
+          "L'élève explique comment fleurs aident abeilles et papillons",
+          "L'élève utilise 'pollinisateurs', 'jardin' dans contexte approprié"
+        ],
+        "checkpoints": [
+          "Plante et arrose graines correctement",
+          "Explique pourquoi abeilles visitent fleurs",
+          "Fait souhaits pour pollinisateurs avec sincérité"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Les transports respectueux de l'environnement",
+      "oneGoal": "Students will identify transportation choices that help keep air and environment clean",
+      "duration": 45,
+      "keyVocabulary": [
+        "transport",
+        "respectueux",
+        "pollution"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Transportation survey - chart how students get to school and discuss environmental impact",
+        "materials": [
+          "transportation survey sheets",
+          "chart paper",
+          "markers"
+        ],
+        "visualSupports": "clean transportation options poster, air quality comparison chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Green transportation challenge - plan and practice environmentally-friendly transportation",
+        "materials": [
+          "maps",
+          "transportation planning sheets",
+          "pedometer",
+          "timer"
+        ],
+        "visualSupports": "green transportation benefits poster, local walking/biking route map",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves lient choix de transport et impact environnemental",
+            "ifYes": "Calculate environmental benefits of green transportation choices",
+            "ifNo": "Focus on simple observation that walking/biking creates no pollution"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Green transportation pledge - students commit to using clean transportation when possible",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur transport familier (marche, auto, autobus)",
+          "Utiliser comparaisons simples: marche=pas de pollution",
+          "Carte simple de trajet maison-école seulement"
+        ],
+        "pourAvancés": [
+          "Calculer distance et temps pour différents transports",
+          "Explorer transport en commun vs transport privé",
+          "Créer guide de transport écologique pour familles"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'transport', 'respectueux', 'pollution' avec véhicules",
+          "Utiliser vraies photos de différents moyens de transport",
+          "Partager moyens de transport du pays d'origine"
+        ],
+        "pourPEI": [
+          "Adapter selon capacités de mobilité individuelles",
+          "Inclure transport adaptatif dans options respectueuses",
+          "Focaliser sur choix possibles pour chaque famille"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie transports qui polluent moins",
+          "L'élève fait connexion transport-qualité de l'air",
+          "L'élève s'engage à utiliser transport vert quand possible"
+        ],
+        "checkpoints": [
+          "Compare pollution de différents transports",
+          "Utilise 'respectueux de l'environnement' correctement",
+          "Fait engagement réaliste pour son contexte familial"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Protéger les animaux sauvages",
+      "oneGoal": "Students will learn respectful ways to observe and protect wild animals in their natural habitats",
+      "duration": 45,
+      "keyVocabulary": [
+        "sauvages",
+        "observer",
+        "distance"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Wildlife observation practice - learn proper techniques for watching animals without disturbing them",
+        "materials": [
+          "binoculars",
+          "field notebooks",
+          "animal behavior cards"
+        ],
+        "visualSupports": "wildlife watching rules poster, respectful distance guidelines chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves observent-ils activement leur environnement?",
+            "ifYes": "Encourager questions sur ce qu'ils voient et pourquoi",
+            "ifNo": "Guider attention avec pointage et questions spécifiques"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create wildlife protection action plan for school grounds and local environment",
+        "materials": [
+          "action planning sheets",
+          "habitat protection materials",
+          "wildlife protection signs"
+        ],
+        "visualSupports": "wildlife protection strategies poster, habitat protection examples",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves comprennent l'impact humain sur la faune",
+            "ifYes": "Plan specific habitat protection actions for school environment",
+            "ifNo": "Focus on simple rules like not chasing or bothering animals"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Wildlife protection pledge ceremony - students commit to protecting local wildlife",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur règles simples: regarder, ne pas toucher",
+          "Pratiquer avec animaux en peluche d'abord",
+          "Utiliser distance d'un bras pour 'distance respectueuse'"
+        ],
+        "pourAvancés": [
+          "Apprendre signes de stress chez animaux sauvages",
+          "Créer guide d'observation pour autres élèves",
+          "Planifier aménagement d'habitat sur terrain de l'école"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'sauvages', 'observer', 'distance' avec animaux",
+          "Utiliser gestes pour 'regarder de loin', 'ne pas déranger'",
+          "Partager traditions de respect des animaux culturelles"
+        ],
+        "pourPEI": [
+          "Adapter selon peurs ou phobies d'animaux",
+          "Utiliser photos/vidéos si observation directe anxiogène",
+          "Focaliser sur animaux familiers et non-menaçants"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève démontre techniques d'observation respectueuses",
+          "L'élève explique pourquoi animaux ont besoin d'espace",
+          "L'élève s'engage à protéger habitats d'animaux"
+        ],
+        "checkpoints": [
+          "Observe animaux à distance appropriée",
+          "Utilise 'distance respectueuse' dans contexte approprié",
+          "Fait engagement concret pour protection wildlife"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Partager notre planète équitablement",
+      "oneGoal": "Students will understand that all living things need space and resources and practice sharing environmental spaces",
+      "duration": 45,
+      "keyVocabulary": [
+        "partager",
+        "équitable",
+        "espace"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Playground sharing reflection - discuss how students share playground space fairly",
+        "materials": [
+          "playground map",
+          "sharing scenario cards"
+        ],
+        "visualSupports": "fair sharing principles poster, environmental sharing examples chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre arbres et air pur?",
+            "ifYes": "Discuter comment nous pouvons protéger les arbres",
+            "ifNo": "Démontrer avec respiration profonde près des plantes"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Design fair use plan for school natural spaces that considers all living things",
+        "materials": [
+          "school grounds map",
+          "design materials",
+          "planning sheets"
+        ],
+        "visualSupports": "environmental justice examples poster, sharing solutions chart",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves appliquent l'équité au partage environnemental",
+            "ifYes": "Explore complex sharing scenarios with multiple needs",
+            "ifNo": "Focus on simple examples like leaving some areas for wildlife"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Environmental sharing pledge - students commit to fair environmental sharing practices",
+        "materials": [
+          "commitment cards",
+          "markers or pencils"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves font-ils des connexions entre arbres et air pur?",
+            "ifYes": "Discuter comment nous pouvons protéger les arbres",
+            "ifNo": "Démontrer avec respiration profonde près des plantes"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur partage d'espaces familiers (parc, cour d'école)",
+          "Utiliser exemples concrets de partage équitable",
+          "Commencer par ‘chacun a sa place’"
+        ],
+        "pourAvancés": [
+          "Explorer justice environnementale et accès égal à nature",
+          "Concevoir espaces qui répondent aux besoins de tous",
+          "Rechercher comment différentes communautés utilisent espaces verts"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'partager', 'équitable', 'espace' avec exemples concrets",
+          "Utiliser objets physiques pour démontrer partage équitable",
+          "Connecter avec concepts de partage culturels"
+        ],
+        "pourPEI": [
+          "Adapter selon besoins d'accessibilité individuelle",
+          "Inclure adaptations dans planification d'espaces",
+          "Focaliser sur inclusion et accès pour tous"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève comprend concept de partage équitable d'espaces",
+          "L'élève contribue à planification inclusive d'espaces",
+          "L'élève s'engage au partage respectueux de l'environnement"
+        ],
+        "checkpoints": [
+          "Explique pourquoi espaces verts importants pour tous",
+          "Propose solutions pour partage équitable",
+          "Utilise 'partager équitablement' dans contexte approprié"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Devenir des ambassadeurs de l'environnement",
+      "oneGoal": "Students will teach others about caring for the environment and share their environmental knowledge",
+      "duration": 45,
+      "keyVocabulary": [
+        "ambassadeurs",
+        "enseigner",
+        "partager"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Ambassador preparation - students choose their best environmental learning to share",
+        "materials": [
+          "learning portfolio",
+          "presentation planning sheets"
+        ],
+        "visualSupports": "teaching strategies poster, environmental knowledge showcase examples",
+        "decisionPoints": [
+          {
+            "question": "Les élèves participent-ils volontiers au partage?",
+            "ifYes": "Poser questions approfondissantes sur leurs observations",
+            "ifNo": "Commencer par exemple personnel et encourager doucement"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create environmental education presentations for younger students or family members",
+        "materials": [
+          "presentation materials",
+          "visual aids",
+          "demonstration supplies"
+        ],
+        "visualSupports": "presentation structure guide, environmental teaching tips poster",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont confiants dans leurs connaissances environnementales",
+            "ifYes": "Prepare presentations for authentic teaching opportunities",
+            "ifNo": "Practice with classmates first to build confidence"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Ambassador commissioning ceremony - students receive environmental educator certificates",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer par partager 1 conseil simple avec ami",
+          "Utiliser supports visuels pour aider présentation",
+          "Pratiquer avec partenaire avant présenter au groupe"
+        ],
+        "pourAvancés": [
+          "Préparer présentation pour classes plus jeunes",
+          "Créer matériels pédagogiques pour enseigner familles",
+          "Planifier ateliers environnementaux pour communauté"
+        ],
+        "pourLangue": [
+          "Cartes visuelles 'ambassadeurs', 'enseigner', 'partager' avec rôles",
+          "Permettre présentation bilingue si plus à l'aise",
+          "Utiliser modèles de phrases pour structurer enseignement"
+        ],
+        "pourPEI": [
+          "Choisir format de partage adapté aux forces individuelles",
+          "Permettre travail en équipe si présentation solo difficile",
+          "Adapter audience selon niveau de confort"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève prépare contenu éducatif sur environnement",
+          "L'élève démontre confiance pour enseigner autres",
+          "L'élève s'identifie comme ambassadeur environnemental"
+        ],
+        "checkpoints": [
+          "Crée présentation ou démonstration environnementale",
+          "Partage apprentissage avec authenticité et enthousiasme",
+          "S'engage à continuer éducation environnementale"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration de notre environnement partagé",
+      "oneGoal": "Students will celebrate their environmental learning by showcasing actions they've taken and commitments for the future",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "actions",
+        "engagement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Environmental journey reflection - students review all their environmental learning and actions",
+        "materials": [
+          "learning portfolios",
+          "photo documentation",
+          "reflection sheets"
+        ],
+        "visualSupports": "environmental learning journey timeline, student achievement showcase",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés dans l'activité?",
+            "ifYes": "Approfondir avec questions de réflexion sur l'environnement",
+            "ifNo": "Adapter avec mouvements ou supports visuels supplémentaires"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Environmental fair - students showcase projects, demonstrate skills, and share commitments",
+        "materials": [
+          "display materials",
+          "demonstration supplies",
+          "celebration decorations"
+        ],
+        "visualSupports": "student work displays, environmental action evidence board",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves peuvent exprimer leurs apprentissages environnementaux",
+            "ifYes": "Focus celebration on student-led demonstrations and teaching",
+            "ifNo": "Provide structured ways for students to share their learning"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Environmental stewardship pledge renewal - students make commitments for continued environmental care",
+        "materials": [
+          "chart paper for recording ideas",
+          "markers"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves proposent-ils des actions réalistes?",
+            "ifYes": "Aider à planifier comment mettre ces idées en pratique",
+            "ifNo": "Donner exemples concrets - éteindre lumières, ramasser déchets"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur 1-2 accomplissements dont fier",
+          "Utiliser portfolio visuel plutôt que présentation orale",
+          "Participer à célébration sans pression de performance"
+        ],
+        "pourAvancés": [
+          "Diriger station de démonstration pour visiteurs",
+          "Créer vidéo documentaire de parcours environnemental",
+          "Planifier actions environnementales futures avec chronologie"
+        ],
+        "pourLangue": [
+          "Permettre présentation dans langue maternelle avec traduction",
+          "Utiliser supports visuels pour communiquer accomplissements",
+          "Inviter familles à partager traditions environnementales culturelles"
+        ],
+        "pourPEI": [
+          "Choisir format de participation qui met en valeur forces",
+          "Adapter environnement de célébration selon besoins sensoriels",
+          "Célébrer progrès individuel sans comparaison"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève réfléchit sur parcours d'apprentissage environnemental",
+          "L'élève partage fierté de ses accomplissements environnementaux",
+          "L'élève s'engage à continuer actions environnementales futures"
+        ],
+        "checkpoints": [
+          "Identifie changements dans ses actions environnementales",
+          "Partage apprentissage avec famille ou communauté",
+          "Fait engagement concret pour futur soin environnemental"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Observation",
+        "items": [
+          "Démontre une compréhension de base en observation",
+          "Participe activement aux activités de observation",
+          "Montre du progrès dans observation",
+          "Applique les apprentissages de observation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Questionnement",
+        "items": [
+          "Démontre une compréhension de base en questionnement",
+          "Participe activement aux activités de questionnement",
+          "Montre du progrès dans questionnement",
+          "Applique les apprentissages de questionnement dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Exploration sécuritaire",
+        "items": [
+          "Démontre une compréhension de base en exploration sécuritaire",
+          "Participe activement aux activités de exploration sécuritaire",
+          "Montre du progrès dans exploration sécuritaire",
+          "Applique les apprentissages de exploration sécuritaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Communication des découvertes",
+        "items": [
+          "Démontre une compréhension de base en communication des découvertes",
+          "Participe activement aux activités de communication des découvertes",
+          "Montre du progrès dans communication des découvertes",
+          "Applique les apprentissages de communication des découvertes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Observation",
+        "Questionnement",
+        "Exploration sécuritaire",
+        "Communication des découvertes"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🌟",
+          "⭐",
+          "☆"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en sciences\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nNotre environnement naturel, Les animaux dans leur maison naturelle, Les plantes ont leur place aussi, Tout est connecté dans la nature, L'eau: source de vie partout\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nEncouragez les questions 'pourquoi' et explorez ensemble les réponses.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa curiosité scientifique commence à la maison!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Observations de la nature",
+        "description": "Observez et discutez des phénomènes naturels liés à l'unité",
+        "timeRequired": "15 minutes",
+        "materials": "Carnet d'observations",
+        "frenchSupport": "Dessiner les observations aide la communication"
+      },
+      {
+        "title": "Expérience simple",
+        "description": "Faites une expérience sécuritaire liée au thème",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux simples du quotidien",
+        "frenchSupport": "Utilisez les mots scientifiques en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "environnement",
+        "lesson": 1,
+        "context": "Notre environnement naturel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"environnement\"",
+          "Utilisez \"environnement\" dans une phrase simple",
+          "Trouvez des images représentant \"environnement\"",
+          "Faites des gestes pour \"environnement\""
+        ]
+      },
+      {
+        "word": "naturel",
+        "lesson": 1,
+        "context": "Notre environnement naturel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"naturel\"",
+          "Utilisez \"naturel\" dans une phrase simple",
+          "Trouvez des images représentant \"naturel\"",
+          "Faites des gestes pour \"naturel\""
+        ]
+      },
+      {
+        "word": "autour",
+        "lesson": 1,
+        "context": "Notre environnement naturel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"autour\"",
+          "Utilisez \"autour\" dans une phrase simple",
+          "Trouvez des images représentant \"autour\"",
+          "Faites des gestes pour \"autour\""
+        ]
+      },
+      {
+        "word": "maison",
+        "lesson": 2,
+        "context": "Les animaux dans leur maison naturelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"maison\"",
+          "Utilisez \"maison\" dans une phrase simple",
+          "Trouvez des images représentant \"maison\"",
+          "Faites des gestes pour \"maison\""
+        ]
+      },
+      {
+        "word": "habitat",
+        "lesson": 2,
+        "context": "Les animaux dans leur maison naturelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"habitat\"",
+          "Utilisez \"habitat\" dans une phrase simple",
+          "Trouvez des images représentant \"habitat\"",
+          "Faites des gestes pour \"habitat\""
+        ]
+      },
+      {
+        "word": "animaux",
+        "lesson": 2,
+        "context": "Les animaux dans leur maison naturelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"animaux\"",
+          "Utilisez \"animaux\" dans une phrase simple",
+          "Trouvez des images représentant \"animaux\"",
+          "Faites des gestes pour \"animaux\""
+        ]
+      },
+      {
+        "word": "place",
+        "lesson": 3,
+        "context": "Les plantes ont leur place aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"place\"",
+          "Utilisez \"place\" dans une phrase simple",
+          "Trouvez des images représentant \"place\"",
+          "Faites des gestes pour \"place\""
+        ]
+      },
+      {
+        "word": "pousser",
+        "lesson": 3,
+        "context": "Les plantes ont leur place aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pousser\"",
+          "Utilisez \"pousser\" dans une phrase simple",
+          "Trouvez des images représentant \"pousser\"",
+          "Faites des gestes pour \"pousser\""
+        ]
+      },
+      {
+        "word": "endroit",
+        "lesson": 3,
+        "context": "Les plantes ont leur place aussi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"endroit\"",
+          "Utilisez \"endroit\" dans une phrase simple",
+          "Trouvez des images représentant \"endroit\"",
+          "Faites des gestes pour \"endroit\""
+        ]
+      },
+      {
+        "word": "connecté",
+        "lesson": 4,
+        "context": "Tout est connecté dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"connecté\"",
+          "Utilisez \"connecté\" dans une phrase simple",
+          "Trouvez des images représentant \"connecté\"",
+          "Faites des gestes pour \"connecté\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 4,
+        "context": "Tout est connecté dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "dépendre",
+        "lesson": 4,
+        "context": "Tout est connecté dans la nature",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dépendre\"",
+          "Utilisez \"dépendre\" dans une phrase simple",
+          "Trouvez des images représentant \"dépendre\"",
+          "Faites des gestes pour \"dépendre\""
+        ]
+      },
+      {
+        "word": "eau",
+        "lesson": 5,
+        "context": "L'eau: source de vie partout",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"eau\"",
+          "Utilisez \"eau\" dans une phrase simple",
+          "Trouvez des images représentant \"eau\"",
+          "Faites des gestes pour \"eau\""
+        ]
+      },
+      {
+        "word": "propre",
+        "lesson": 5,
+        "context": "L'eau: source de vie partout",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"propre\"",
+          "Utilisez \"propre\" dans une phrase simple",
+          "Trouvez des images représentant \"propre\"",
+          "Faites des gestes pour \"propre\""
+        ]
+      },
+      {
+        "word": "source",
+        "lesson": 5,
+        "context": "L'eau: source de vie partout",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"source\"",
+          "Utilisez \"source\" dans une phrase simple",
+          "Trouvez des images représentant \"source\"",
+          "Faites des gestes pour \"source\""
+        ]
+      },
+      {
+        "word": "air",
+        "lesson": 6,
+        "context": "L'air pur pour tous les vivants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"air\"",
+          "Utilisez \"air\" dans une phrase simple",
+          "Trouvez des images représentant \"air\"",
+          "Faites des gestes pour \"air\""
+        ]
+      },
+      {
+        "word": "pur",
+        "lesson": 6,
+        "context": "L'air pur pour tous les vivants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pur\"",
+          "Utilisez \"pur\" dans une phrase simple",
+          "Trouvez des images représentant \"pur\"",
+          "Faites des gestes pour \"pur\""
+        ]
+      },
+      {
+        "word": "respirer",
+        "lesson": 6,
+        "context": "L'air pur pour tous les vivants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"respirer\"",
+          "Utilisez \"respirer\" dans une phrase simple",
+          "Trouvez des images représentant \"respirer\"",
+          "Faites des gestes pour \"respirer\""
+        ]
+      },
+      {
+        "word": "prendre soin",
+        "lesson": 7,
+        "context": "Prendre soin de notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"prendre soin\"",
+          "Utilisez \"prendre soin\" dans une phrase simple",
+          "Trouvez des images représentant \"prendre soin\"",
+          "Faites des gestes pour \"prendre soin\""
+        ]
+      },
+      {
+        "word": "aider",
+        "lesson": 7,
+        "context": "Prendre soin de notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aider\"",
+          "Utilisez \"aider\" dans une phrase simple",
+          "Trouvez des images représentant \"aider\"",
+          "Faites des gestes pour \"aider\""
+        ]
+      },
+      {
+        "word": "protéger",
+        "lesson": 7,
+        "context": "Prendre soin de notre environnement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"protéger\"",
+          "Utilisez \"protéger\" dans une phrase simple",
+          "Trouvez des images représentant \"protéger\"",
+          "Faites des gestes pour \"protéger\""
+        ]
+      },
+      {
+        "word": "déchets",
+        "lesson": 8,
+        "context": "Réduire nos déchets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"déchets\"",
+          "Utilisez \"déchets\" dans une phrase simple",
+          "Trouvez des images représentant \"déchets\"",
+          "Faites des gestes pour \"déchets\""
+        ]
+      },
+      {
+        "word": "réduire",
+        "lesson": 8,
+        "context": "Réduire nos déchets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réduire\"",
+          "Utilisez \"réduire\" dans une phrase simple",
+          "Trouvez des images représentant \"réduire\"",
+          "Faites des gestes pour \"réduire\""
+        ]
+      },
+      {
+        "word": "moins",
+        "lesson": 8,
+        "context": "Réduire nos déchets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"moins\"",
+          "Utilisez \"moins\" dans une phrase simple",
+          "Trouvez des images représentant \"moins\"",
+          "Faites des gestes pour \"moins\""
+        ]
+      },
+      {
+        "word": "réutiliser",
+        "lesson": 9,
+        "context": "Réutiliser les objets créativement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réutiliser\"",
+          "Utilisez \"réutiliser\" dans une phrase simple",
+          "Trouvez des images représentant \"réutiliser\"",
+          "Faites des gestes pour \"réutiliser\""
+        ]
+      },
+      {
+        "word": "nouveau",
+        "lesson": 9,
+        "context": "Réutiliser les objets créativement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nouveau\"",
+          "Utilisez \"nouveau\" dans une phrase simple",
+          "Trouvez des images représentant \"nouveau\"",
+          "Faites des gestes pour \"nouveau\""
+        ]
+      },
+      {
+        "word": "créatif",
+        "lesson": 9,
+        "context": "Réutiliser les objets créativement",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créatif\"",
+          "Utilisez \"créatif\" dans une phrase simple",
+          "Trouvez des images représentant \"créatif\"",
+          "Faites des gestes pour \"créatif\""
+        ]
+      },
+      {
+        "word": "recyclage",
+        "lesson": 10,
+        "context": "Le recyclage: donner une nouvelle vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"recyclage\"",
+          "Utilisez \"recyclage\" dans une phrase simple",
+          "Trouvez des images représentant \"recyclage\"",
+          "Faites des gestes pour \"recyclage\""
+        ]
+      },
+      {
+        "word": "transformer",
+        "lesson": 10,
+        "context": "Le recyclage: donner une nouvelle vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"transformer\"",
+          "Utilisez \"transformer\" dans une phrase simple",
+          "Trouvez des images représentant \"transformer\"",
+          "Faites des gestes pour \"transformer\""
+        ]
+      },
+      {
+        "word": "trier",
+        "lesson": 11,
+        "context": "Trier pour mieux recycler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"trier\"",
+          "Utilisez \"trier\" dans une phrase simple",
+          "Trouvez des images représentant \"trier\"",
+          "Faites des gestes pour \"trier\""
+        ]
+      },
+      {
+        "word": "matériaux",
+        "lesson": 11,
+        "context": "Trier pour mieux recycler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"matériaux\"",
+          "Utilisez \"matériaux\" dans une phrase simple",
+          "Trouvez des images représentant \"matériaux\"",
+          "Faites des gestes pour \"matériaux\""
+        ]
+      },
+      {
+        "word": "séparer",
+        "lesson": 11,
+        "context": "Trier pour mieux recycler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"séparer\"",
+          "Utilisez \"séparer\" dans une phrase simple",
+          "Trouvez des images représentant \"séparer\"",
+          "Faites des gestes pour \"séparer\""
+        ]
+      },
+      {
+        "word": "3 R",
+        "lesson": 12,
+        "context": "Les 3 R: Réduire, Réutiliser, Recycler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"3 R\"",
+          "Utilisez \"3 R\" dans une phrase simple",
+          "Trouvez des images représentant \"3 R\"",
+          "Faites des gestes pour \"3 R\""
+        ]
+      },
+      {
+        "word": "stratégie",
+        "lesson": 12,
+        "context": "Les 3 R: Réduire, Réutiliser, Recycler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"stratégie\"",
+          "Utilisez \"stratégie\" dans une phrase simple",
+          "Trouvez des images représentant \"stratégie\"",
+          "Faites des gestes pour \"stratégie\""
+        ]
+      },
+      {
+        "word": "ordre",
+        "lesson": 12,
+        "context": "Les 3 R: Réduire, Réutiliser, Recycler",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ordre\"",
+          "Utilisez \"ordre\" dans une phrase simple",
+          "Trouvez des images représentant \"ordre\"",
+          "Faites des gestes pour \"ordre\""
+        ]
+      },
+      {
+        "word": "compost",
+        "lesson": 13,
+        "context": "Notre projet de compostage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"compost\"",
+          "Utilisez \"compost\" dans une phrase simple",
+          "Trouvez des images représentant \"compost\"",
+          "Faites des gestes pour \"compost\""
+        ]
+      },
+      {
+        "word": "décomposer",
+        "lesson": 13,
+        "context": "Notre projet de compostage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"décomposer\"",
+          "Utilisez \"décomposer\" dans une phrase simple",
+          "Trouvez des images représentant \"décomposer\"",
+          "Faites des gestes pour \"décomposer\""
+        ]
+      },
+      {
+        "word": "terre",
+        "lesson": 13,
+        "context": "Notre projet de compostage",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"terre\"",
+          "Utilisez \"terre\" dans une phrase simple",
+          "Trouvez des images représentant \"terre\"",
+          "Faites des gestes pour \"terre\""
+        ]
+      },
+      {
+        "word": "énergie",
+        "lesson": 14,
+        "context": "Économiser l'énergie ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"énergie\"",
+          "Utilisez \"énergie\" dans une phrase simple",
+          "Trouvez des images représentant \"énergie\"",
+          "Faites des gestes pour \"énergie\""
+        ]
+      },
+      {
+        "word": "économiser",
+        "lesson": 14,
+        "context": "Économiser l'énergie ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"économiser\"",
+          "Utilisez \"économiser\" dans une phrase simple",
+          "Trouvez des images représentant \"économiser\"",
+          "Faites des gestes pour \"économiser\""
+        ]
+      },
+      {
+        "word": "éteindre",
+        "lesson": 14,
+        "context": "Économiser l'énergie ensemble",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"éteindre\"",
+          "Utilisez \"éteindre\" dans une phrase simple",
+          "Trouvez des images représentant \"éteindre\"",
+          "Faites des gestes pour \"éteindre\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

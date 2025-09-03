@@ -1,12 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
 import { 
   UserCircleIcon, 
   Cog6ToothIcon, 
   ArrowRightOnRectangleIcon,
   ChevronDownIcon
 } from '@heroicons/react/24/outline';
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useAuth } from '../../contexts/AuthContext';
 
 export function UserProfileDropdown(): React.ReactElement {
   const [isOpen, setIsOpen] = useState(false);

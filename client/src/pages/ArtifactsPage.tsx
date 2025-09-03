@@ -1,5 +1,3 @@
-import React, { useState, useRef } from 'react';
-import { toast } from 'sonner';
 import { 
   PhotoIcon,
   VideoCameraIcon,
@@ -15,6 +13,8 @@ import {
   CalendarIcon,
   UserIcon
 } from '@heroicons/react/24/outline';
+import React, { useState, useRef } from 'react';
+import { toast } from 'sonner';
 
 interface Artifact {
   id: string;

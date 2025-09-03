@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useAuth } from '../../contexts/AuthContext';
 
-import { TeachingNavigationSection } from './TeachingNavigationSection';
 import { useNavigation } from './NavigationProvider';
 import { SidebarHeader } from './SidebarHeader';
+import { TeachingNavigationSection } from './TeachingNavigationSection';
 
 export function SidebarComponent(): React.ReactElement {
   const { logout } = useAuth();

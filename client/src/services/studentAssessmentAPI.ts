@@ -3,7 +3,7 @@
  * Type-safe API functions for ETFO student assessment system
  */
 
-import {
+import type {
   Student,
   StudentSummary,
   StudentsResponse,

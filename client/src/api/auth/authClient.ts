@@ -11,7 +11,8 @@ import type {
 } from '../../types/auth';
 
 // Create a separate auth client without interceptors
-const baseURL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
+// Use empty string for relative URLs when in development (Vite will proxy)
+const baseURL = import.meta.env.VITE_API_BASE_URL ?? '';
 
 interface AuthRequestConfig {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';

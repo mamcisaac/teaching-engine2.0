@@ -1,17 +1,19 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { 
   Calendar, Clock, BookOpen, Target, Users, Package, 
   CheckCircle, AlertCircle, ChevronLeft, Edit, Trash2, Print,
   ClipboardCheck, BarChart3
 } from 'lucide-react';
-import { useETFOLessonPlan, useDeleteETFOLessonPlan } from '../hooks/useETFOPlanning';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
-import { Alert, AlertDescription } from '../components/ui/alert';
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+
+import { Alert, AlertDescription } from '../components/ui/alert';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { useETFOLessonPlan, useDeleteETFOLessonPlan } from '../hooks/useETFOPlanning';
+
 
 export function LessonDetailPage(): React.ReactElement {
   const { lessonId } = useParams();

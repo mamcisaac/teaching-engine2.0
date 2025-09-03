@@ -1,0 +1,3529 @@
+{
+  "unitTitle": "Sons et vibrations autour de nous",
+  "subject": "Sciences de la nature",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Découvrir les sons autour de nous",
+      "oneGoal": "Nous apprenons à identifier et distinguer différents sons dans notre environnement en utilisant notre sens de l'ouïe",
+      "duration": 45,
+      "keyVocabulary": [
+        "son",
+        "entendre",
+        "écouter"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Sound mystery walk - students close eyes and listen while teacher makes familiar classroom sounds (pencil sharpener, door closing, water pouring)",
+        "materials": [
+          "various classroom objects that make distinct sounds (class set of 25-30)",
+          "quiet background music (class set of 25-30)"
+        ],
+        "visualSupports": "ear symbol poster, 'listening detective' badge for each student",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils à l'aise de fermer les yeux?",
+            "ifYes": "Continuer avec l'exploration sonore les yeux fermés",
+            "ifNo": "Permettre les yeux ouverts et utiliser des supports visuels"
+          },
+          {
+            "question": "Y a-t-il trop de bruit ambiant pour distinguer les sons?",
+            "ifYes": "Déplacer vers un espace plus calme ou utiliser des sons plus forts",
+            "ifNo": "Continuer avec l'activité telle que planifiée"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Sound exploration stations - students rotate through listening activities identifying animal sounds, musical sounds, and nature sounds",
+        "materials": [
+          "audio recordings of different sound categories (class set of 25-30)",
+          "headphones or speakers (class set of 25-30)",
+          "sound identification cards with pictures (class set of 25-30)"
+        ],
+        "visualSupports": "picture cards matching sounds, sound wave demonstration with ribbon",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont à l'aise de fermer les yeux pour se concentrer sur l'écoute?",
+            "ifYes": "Extend with blindfolded sound identification games",
+            "ifNo": "Use pictures alongside sounds and gradually reduce visual support"
+          },
+          {
+            "question": "Si les élèves peuvent identifier des sons évidents comme les chiens qui aboient ou les voitures qui klaxonnent?",
+            "ifYes": "Introduce more subtle sounds like leaves rustling or paper tearing",
+            "ifNo": "Start with very obvious, contrasting sounds and use visual cues"
+          },
+          {
+            "question": "Si les élèves restent engagés pendant les stations d'exploration sonore?",
+            "ifYes": "Add a sound creation station where students make their own sounds with safe materials",
+            "ifNo": "Reduce station time and add more movement between activities"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Sound scavenger hunt - students share one new sound they discovered and demonstrate how to make it safely",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "tampons motivants avec encreur (5 tampons)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à décrire leurs sons découverts?",
+            "ifYes": "Encourager des descriptions plus détaillées avec le vocabulaire scientifique",
+            "ifNo": "Permettre les démonstrations physiques et fournir le vocabulaire nécessaire"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide picture cards alongside all sounds for visual support",
+          "Start with very obvious, contrasting sounds (door slam vs whisper)",
+          "Allow students to keep eyes open during listening activities",
+          "Use hand gestures and body movements to reinforce sound concepts"
+        ],
+        "pourAvancés": [
+          "Challenge students to identify sound sources without visual clues",
+          "Introduce sound sequencing games (remember 3-4 sounds in order)",
+          "Have students create their own sound mysteries for classmates",
+          "Explore sound direction (where is the sound coming from?)"
+        ],
+        "pourLangue": [
+          "Pre-teach key vocabulary (son, entendre, écouter) with visual supports",
+          "Use bilingual picture cards showing sound sources",
+          "Pair French sound words with English cognates where possible",
+          "Provide sound identification cards with both languages"
+        ],
+        "pourPEI": [
+          "Modify seating for optimal hearing conditions",
+          "Use vibrating speakers or tactile sound experiences for hearing impaired students",
+          "Provide noise-reducing headphones if overwhelmed by sounds",
+          "Allow extra processing time for sound identification responses"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Sons forts et sons doux",
+      "oneGoal": "Nous apprenons à comparer les sons forts et les sons doux en utilisant des mots descriptifs",
+      "duration": 45,
+      "keyVocabulary": [
+        "fort",
+        "doux",
+        "volume"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Volume control demonstration - teacher uses voice and simple instruments to show loud and soft, students copy with hand gestures (big gestures for loud, tiny for soft)",
+        "materials": [
+          "simple instruments like shakers or drums (class set of 25-30)",
+          "volume control poster"
+        ],
+        "visualSupports": "volume meter drawing with big and small sections, hand gesture reference chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves distinguent-ils facilement entre les sons forts et doux?",
+            "ifYes": "Introduire des nuances de volume intermédiaires",
+            "ifNo": "Utiliser des contrastes de volume plus extrêmes et des supports visuels"
+          },
+          {
+            "question": "Les élèves imitent-ils les gestes correctement?",
+            "ifYes": "Ajouter des variations de gestes plus créatives",
+            "ifNo": "Modéliser les gestes plus lentement et individuellement"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Loud and soft exploration with everyday objects - students experiment making loud and soft sounds with paper, blocks, and containers",
+        "materials": [
+          "paper sheets (class set of 25-30)",
+          "wooden blocks (class set of 25-30)",
+          "plastic containers (6-8 needed for group work)",
+          "cotton balls (class set of 25-30)",
+          "recording sheets (class set of 25-30)"
+        ],
+        "visualSupports": "loud/soft comparison chart with pictures, volume gesture reminders",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés et à l'aise avec les activités sonores?",
+            "ifYes": "Add more complex sound exploration challenges",
+            "ifNo": "Simplify activities and provide more visual/tactile supports"
+          },
+          {
+            "question": "Les élèves utilisent-ils avec succès le vocabulaire sonore en français?",
+            "ifYes": "Introduce more advanced sound descriptors",
+            "ifNo": "Focus on basic vocabulary with picture supports"
+          },
+          {
+            "question": "Les élèves démontrent-ils leur compréhension des concepts sonores?",
+            "ifYes": "Extend with creative sound-making challenges",
+            "ifNo": "Provide more concrete examples and hands-on experiences"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Volume matching game - students listen to sounds and show with body movements whether sounds are loud or soft",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "chemises individuelles (30 chemises)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves correspondent-ils correctement les mouvements aux volumes?",
+            "ifYes": "Défier avec des sons de volume variable ou des mélanges",
+            "ifNo": "Simplifier avec seulement deux choix clairs (fort ou doux) et modéliser"
+          },
+          {
+            "question": "Les élèves utilisent-ils le vocabulaire 'fort' et 'doux' correctement?",
+            "ifYes": "Introduire des mots descriptifs additionnels pour les sons",
+            "ifNo": "Renforcer le vocabulaire de base avec des répétitions et des images"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Sons aigus et sons graves",
+      "oneGoal": "Nous apprenons à distinguer entre les sons aigus et les sons graves par des activités d'écoute",
+      "duration": 45,
+      "keyVocabulary": [
+        "aigu",
+        "grave",
+        "hauteur"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Voice pitch exploration - students practice making mouse squeaks (high) and bear growls (low) while using hand gestures (high hands for high sounds, low hands for low sounds)",
+        "materials": [
+          "animal picture cards (class set of 25-30)",
+          "pitch gesture demonstration"
+        ],
+        "visualSupports": "high/low animal poster, pitch hand signals chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à produire des sons aigus et graves avec leur voix?",
+            "ifYes": "Introduire des variations plus subtiles de hauteur",
+            "ifNo": "Modéliser avec des contrastes plus extrêmes (souris vs ours) et des supports gestuels"
+          },
+          {
+            "question": "Les élèves associent-ils correctement les gestes aux hauteurs de son?",
+            "ifYes": "Ajouter des défis gestuels plus complexes avec différentes hauteurs",
+            "ifNo": "Pratiquer les gestes de base lentement avec beaucoup de répétitions"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Pitch discovery with xylophone and bottles - students explore how different sized objects make different pitch sounds",
+        "materials": [
+          "xylophone or simple keyboard (class set of 25-30)",
+          "glass bottles with different amounts of water (class set of 25-30)",
+          "mallets or spoons (class set of 25-30)"
+        ],
+        "visualSupports": "high/low pitch chart with visual height differences, musical note representations",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés et à l'aise avec les activités sonores?",
+            "ifYes": "Add more complex sound exploration challenges",
+            "ifNo": "Simplify activities and provide more visual/tactile supports"
+          },
+          {
+            "question": "Les élèves utilisent-ils avec succès le vocabulaire sonore en français?",
+            "ifYes": "Introduce more advanced sound descriptors",
+            "ifNo": "Focus on basic vocabulary with picture supports"
+          },
+          {
+            "question": "Les élèves démontrent-ils leur compréhension des concepts sonores?",
+            "ifYes": "Extend with creative sound-making challenges",
+            "ifNo": "Provide more concrete examples and hands-on experiences"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "High-low sound sorting - students categorize picture cards of things that make high sounds vs. low sounds",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "étiquettes autocollantes (2 planches)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves classifient-ils correctement les images selon aigu/grave?",
+            "ifYes": "Ajouter des défis avec des sons moins évidents (violon vs tuba)",
+            "ifNo": "Utiliser seulement les exemples les plus contrastés (oiseau vs éléphant) avec modélisation"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "D'où viennent les sons?",
+      "oneGoal": "Nous découvrons que les sons viennent d'objets qui vibrent autour de nous",
+      "duration": 45,
+      "keyVocabulary": [
+        "source",
+        "vibrer",
+        "mouvement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Mystery sound investigation - students guess what's making sounds behind a screen, then reveal sources to make connection between objects and sounds",
+        "materials": [
+          "screen or box for hiding",
+          "variety of sound-making objects (class set of 25-30)",
+          "detective props (class set of 25-30)"
+        ],
+        "visualSupports": "sound source matching cards, detective badge for each student",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à deviner les sources sonores cachées?",
+            "ifYes": "Utiliser des sons plus subtils et moins évidents",
+            "ifNo": "Commencer avec des sons très familiers et donner des indices visuels"
+          },
+          {
+            "question": "Les élèves font-ils le lien entre objet et son produit?",
+            "ifYes": "Introduire le concept que les objets doivent bouger pour faire du son",
+            "ifNo": "Démontrer clairement la connexion objet-son avec répétitions"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Vibration discovery with rubber bands, tuning forks, and drums - students observe and feel vibrations while sounds are produced",
+        "materials": [
+          "large rubber bands (class set of 25-30)",
+          "simple drums or containers (6-8 needed for group work)",
+          "tuning forks (teacher use)",
+          "rice or small beads to show vibration (class set of 25-30)"
+        ],
+        "visualSupports": "vibration demonstration setup, before/during/after pictures of vibrating objects",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés et à l'aise avec les activités sonores?",
+            "ifYes": "Add more complex sound exploration challenges",
+            "ifNo": "Simplify activities and provide more visual/tactile supports"
+          },
+          {
+            "question": "Les élèves utilisent-ils avec succès le vocabulaire sonore en français?",
+            "ifYes": "Introduce more advanced sound descriptors",
+            "ifNo": "Focus on basic vocabulary with picture supports"
+          },
+          {
+            "question": "Les élèves démontrent-ils leur compréhension des concepts sonores?",
+            "ifYes": "Extend with creative sound-making challenges",
+            "ifNo": "Provide more concrete examples and hands-on experiences"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Vibration hunt - students find three objects in the classroom that vibrate when they make sounds",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves trouvent-ils des objets qui vibrent quand ils font du son?",
+            "ifYes": "Défier avec la recherche d'objets moins évidents qui vibrent",
+            "ifNo": "Guider vers des objets évidents (tambour, élastique) et démontrer la vibration"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Sentir les vibrations",
+      "oneGoal": "Nous explorons les vibrations de façon sécuritaire pendant que les sons sont produits",
+      "duration": 45,
+      "keyVocabulary": [
+        "sentir",
+        "toucher",
+        "vibration"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Vibration body exploration - students feel vibrations in their chest when humming, throat when talking, and head when singing",
+        "materials": [
+          "mirrors for students to see mouth movements (class set of 25-30)",
+          "comfortable seating (class set of 25-30)"
+        ],
+        "visualSupports": "body vibration diagram showing throat, chest, and head",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sentent-ils les vibrations dans leur corps quand ils produisent des sons?",
+            "ifYes": "Explorer des vibrations plus subtiles dans différentes parties du corps",
+            "ifNo": "Commencer avec des sons plus forts (chant fort) et guider leurs mains vers les bonnes zones"
+          },
+          {
+            "question": "Les élèves comprennent-ils que leur corps vibre pour créer les sons?",
+            "ifYes": "Introduire l'idée que tous les sons viennent de vibrations",
+            "ifNo": "Démontrer avec des miroirs pour qu'ils voient et sentent en même temps"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Safe vibration exploration stations - students feel vibrations through desks when tapping, rulers when plucking, and balloon surfaces when playing music nearby",
+        "materials": [
+          "wooden rulers (class set of 25-30)",
+          "balloons (class set of 25-30)",
+          "portable speaker (class set of 25-30)",
+          "various containers and surfaces (6-8 needed for group work)"
+        ],
+        "visualSupports": "safety reminder chart for touching, vibration exploration recording sheet",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils engagés et à l'aise avec les activités sonores?",
+            "ifYes": "Add more complex sound exploration challenges",
+            "ifNo": "Simplify activities and provide more visual/tactile supports"
+          },
+          {
+            "question": "Les élèves utilisent-ils avec succès le vocabulaire sonore en français?",
+            "ifYes": "Introduce more advanced sound descriptors",
+            "ifNo": "Focus on basic vocabulary with picture supports"
+          },
+          {
+            "question": "Les élèves démontrent-ils leur compréhension des concepts sonores?",
+            "ifYes": "Extend with creative sound-making challenges",
+            "ifNo": "Provide more concrete examples and hands-on experiences"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Vibration sharing circle - students demonstrate their favorite vibration discovery and explain what they felt",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "étiquettes autocollantes (2 planches)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à démontrer et expliquer leurs découvertes sur les vibrations?",
+            "ifYes": "Encourager des connexions entre différents types de vibrations",
+            "ifNo": "Permettre seulement les démonstrations physiques avec aide verbale minimale"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Fabriquer un téléphone à ficelle",
+      "oneGoal": "Nous construisons et testons un téléphone à ficelle simple pour explorer comment le son voyage",
+      "duration": 45,
+      "keyVocabulary": [
+        "téléphone",
+        "ficelle",
+        "message"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Communication challenge - students try to communicate across the room using whispers, then discover they need a better way",
+        "materials": [
+          "distance markers (class set of 25-30)",
+          "communication challenge cards (class set of 25-30)"
+        ],
+        "visualSupports": "communication problem poster, telephone invention story pictures",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils le défi de communication à distance?",
+            "ifYes": "Passer directement à la construction du téléphone",
+            "ifNo": "Démontrer plus clairement pourquoi chuchoter ne fonctionne pas à distance"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "String telephone construction and testing - students work in pairs to build telephones with cups and string, then test communication",
+        "materials": [
+          "plastic cups (class set of 25-30)",
+          "long string or yarn (class set of 25-30)",
+          "tape (class set of 25-30)",
+          "scissors (class set of 25-30)",
+          "hole punch (class set of 25-30)",
+          "testing distance markers (class set of 25-30)"
+        ],
+        "visualSupports": "step-by-step construction visual guide, troubleshooting tips poster",
+        "decisionPoints": [
+          {
+            "question": "Les élèves construisent-ils avec succès leurs téléphones avec un minimum d'aide?",
+            "ifYes": "Les laisser expérimenter avec différentes longueurs de ficelle et tailles de gobelets",
+            "ifNo": "Fournir des gobelets pré-perforés et ficelles coupées, se concentrer sur les tests et l'utilisation"
+          },
+          {
+            "question": "Les téléphones à ficelle fonctionnent-ils pour une communication claire?",
+            "ifYes": "Défier les élèves à envoyer des messages secrets et tester la distance maximale",
+            "ifNo": "Dépanner ensemble: vérifier la tension de ficelle, contact des gobelets, et technique de parole"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Telephone testing celebration - pairs demonstrate their telephones and share the coolest message they sent",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les téléphones des élèves fonctionnent-ils pour la communication?",
+            "ifYes": "Défier avec des messages plus complexes ou des distances plus longues",
+            "ifNo": "Aider avec le dépannage: tension de ficelle, contact des gobelets, technique de parole"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Explorer les tambours",
+      "oneGoal": "Nous étudions comment différentes tailles et matériaux affectent les sons de tambour par l'expérimentation",
+      "duration": 45,
+      "keyVocabulary": [
+        "tambour",
+        "rythme",
+        "battre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Drum circle rhythm - students use body percussion (clapping, patting) to create rhythms together before exploring drum instruments",
+        "materials": [
+          "rhythm pattern cards (class set of 25-30)",
+          "body percussion visual guides (class set of 25-30)"
+        ],
+        "visualSupports": "rhythm pattern posters, drum circle formation diagram",
+        "decisionPoints": [
+          {
+            "question": "Le niveau de bruit devient-il trop élevé durant les percussions corporelles?",
+            "ifYes": "Utiliser le signal de silence et pratiquer les mouvements sans son d'abord",
+            "ifNo": "Continuer avec l'exploration rythmique comme prévue"
+          },
+          {
+            "question": "Les élèves ont-ils de la difficulté à suivre les motifs rythmiques?",
+            "ifYes": "Simplifier à 2 battements par motif et utiliser plus de supports visuels",
+            "ifNo": "Progresser vers des motifs plus complexes selon le niveau"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Drum making and testing station - students create drums using containers of different sizes and various covering materials, then compare sounds",
+        "materials": [
+          "containers of various sizes (6-8 needed for group work)",
+          "balloon pieces (class set of 25-30)",
+          "plastic wrap (class set of 25-30)",
+          "rubber bands (class set of 25-30)",
+          "drumsticks or spoons (class set of 25-30)",
+          "sound comparison chart (class set of 25-30)"
+        ],
+        "visualSupports": "drum construction steps poster, size and sound comparison chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves entendent-ils clairement les différences entre les tambours de différentes tailles?",
+            "ifYes": "Introduce rhythm creation and pattern making with their drums",
+            "ifNo": "Use very different sized containers and help them focus on one sound at a time"
+          },
+          {
+            "question": "Les élèves réussissent-ils à construire leurs propres tambours?",
+            "ifYes": "Let them experiment with different covering materials and decorating",
+            "ifNo": "Provide pre-made drums and focus on sound exploration and rhythm"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Drum concert - students use their handmade drums to create a simple group rhythm performance",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "tampons motivants avec encreur (5 tampons)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Y a-t-il des problèmes techniques avec les tambours faits maison?",
+            "ifYes": "Avoir des tambours de rechange prêts et aider à réparer rapidement",
+            "ifNo": "Laisser les élèves explorer librement leurs créations"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Construire un kazoo",
+      "oneGoal": "Nous créons un instrument kazoo et explorons comment notre voix crée des vibrations et du son",
+      "duration": 45,
+      "keyVocabulary": [
+        "kazoo",
+        "voix",
+        "chanter"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Voice exploration - students experiment with different voice sounds (humming, buzzing, singing) while feeling throat vibrations",
+        "materials": [
+          "mirrors for observing mouth movements (class set of 25-30)",
+          "throat vibration exploration (class set of 25-30)"
+        ],
+        "visualSupports": "voice production diagram, different voice sounds example chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils mal à l'aise de toucher leur gorge?",
+            "ifYes": "Démontrer d'abord et respecter ceux qui préfèrent seulement observer",
+            "ifNo": "Encourager l'exploration tactile des vibrations vocales"
+          },
+          {
+            "question": "Les élèves crient-ils trop fort en explorant leur voix?",
+            "ifYes": "Rappeler que les scientifiques utilisent des voix douces et contrôlées",
+            "ifNo": "Continuer avec les différents niveaux de volume"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Kazoo construction and voice modification exploration - students build kazoos from toilet paper tubes and wax paper, then explore how it changes their voice",
+        "materials": [
+          "toilet paper tubes (class set of 25-30)",
+          "wax paper (class set of 25-30)",
+          "rubber bands (class set of 25-30)",
+          "crayons for decorating (class set of 25-30)",
+          "hole punch (class set of 25-30)"
+        ],
+        "visualSupports": "kazoo construction step-by-step guide, voice modification explanation pictures",
+        "decisionPoints": [
+          {
+            "question": "Les élèves produisent-ils avec succès des sons avec leurs kazoos terminés?",
+            "ifYes": "Encourage them to try different songs and voice pitches with the kazoo",
+            "ifNo": "Check wax paper tension and demonstrate proper humming technique"
+          },
+          {
+            "question": "Les élèves comprennent-ils comment leurs vibrations vocales créent le son du kazoo?",
+            "ifYes": "Have them experiment with different vocal techniques and observe changes",
+            "ifNo": "Focus on feeling throat vibrations while using kazoo and making direct connections"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Kazoo orchestra - students use their kazoos to hum a simple familiar song together",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Certains élèves n'arrivent-ils pas à faire fonctionner leur kazoo?",
+            "ifYes": "Démontrer la technique de fredonnement et vérifier l'assemblage",
+            "ifNo": "Encourager l'expérimentation avec différentes chansons"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Bouteilles musicales",
+      "oneGoal": "Nous créons des bouteilles musicales avec différents niveaux d'eau pour produire différentes hauteurs de son",
+      "duration": 45,
+      "keyVocabulary": [
+        "bouteille",
+        "eau",
+        "musique"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Water level prediction - students predict what will happen to sound when water levels change in bottles",
+        "materials": [
+          "clear bottles with different amounts of water (class set of 25-30)",
+          "prediction recording sheets (class set of 25-30)"
+        ],
+        "visualSupports": "water level and pitch prediction chart, before/after comparison setup",
+        "decisionPoints": [
+          {
+            "question": "Y a-t-il des déversements d'eau durant l'expérience?",
+            "ifYes": "Avoir des serviettes prêtes et montrer comment tenir les bouteilles avec précaution",
+            "ifNo": "Continuer avec l'exploration des différents niveaux d'eau"
+          },
+          {
+            "question": "Les élèves ont-ils de la difficulté à entendre les différences de hauteur?",
+            "ifYes": "Utiliser des différences plus marquées entre les niveaux d'eau",
+            "ifNo": "Encourager les comparaisons directes entre bouteilles"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Musical bottle construction and pitch exploration - students create sets of bottles with different water levels and explore pitch changes",
+        "materials": [
+          "identical clear bottles (class set of 25-30)",
+          "water (class set of 25-30)",
+          "food coloring (class set of 25-30)",
+          "funnels (class set of 25-30)",
+          "towels (class set of 25-30)",
+          "mallets for tapping (class set of 25-30)"
+        ],
+        "visualSupports": "step-by-step bottle filling guide, pitch progression visual chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves entendent-ils clairement les différences de hauteur entre les bouteilles avec différents niveaux d'eau?",
+            "ifYes": "Challenge them to create simple melodies or arrange bottles from low to high pitch",
+            "ifNo": "Use more dramatic water level differences and help them focus on one bottle at a time"
+          },
+          {
+            "question": "Les élèves réussissent-ils à remplir et mesurer l'eau?",
+            "ifYes": "Let them experiment with precise measurements and create specific pitches",
+            "ifNo": "Pre-fill bottles to different levels and focus on sound exploration"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Bottle band performance - small groups use their bottle sets to play simple tunes or create musical conversations",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Le groupe musical devient-il trop bruyant pour l'espace?",
+            "ifYes": "Diviser en plus petits groupes et faire des performances alternées",
+            "ifNo": "Encourager la créativité musicale collaborative"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Maracas et shakers",
+      "oneGoal": "Nous construisons des instruments secoueurs avec divers matériaux pour explorer comment le contenu affecte la qualité du son",
+      "duration": 45,
+      "keyVocabulary": [
+        "maracas",
+        "secouer",
+        "remplir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Shaker sound mystery - students listen to different pre-made shakers and guess what might be inside each one",
+        "materials": [
+          "prepared shakers with different contents (class set of 25-30)",
+          "mystery box setup (class set of 25-30)"
+        ],
+        "visualSupports": "shaker contents guessing chart, different materials picture cards",
+        "decisionPoints": [
+          {
+            "question": "Les élèves ouvrent-ils les shakers avant de deviner?",
+            "ifYes": "Rappeler que les scientifiques font leurs hypothèses avant de vérifier",
+            "ifNo": "Encourager les prédictions et discussions sur les indices sonores"
+          },
+          {
+            "question": "Certains shakers ne font-ils pas de son distinct?",
+            "ifYes": "Avoir des shakers de rechange avec des contenus plus contrastés",
+            "ifNo": "Continuer avec l'exploration comparative des sons"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Maracas construction with material experimentation - students create shakers using various filling materials and compare sound qualities",
+        "materials": [
+          "plastic containers with lids (6-8 needed for group work)",
+          "rice (class set of 25-30)",
+          "beans (class set of 25-30)",
+          "small pebbles (class set of 25-30)",
+          "buttons (class set of 25-30)",
+          "tape (class set of 25-30)",
+          "decorating materials (class set of 25-30)"
+        ],
+        "visualSupports": "shaker construction steps, material and sound quality comparison chart",
+        "decisionPoints": [
+          {
+            "question": "Les élèves identifient-ils comment différents matériaux créent différents sons de secoueur?",
+            "ifYes": "Let them experiment with mixing materials or varying amounts",
+            "ifNo": "Focus on very different materials (rice vs. pebbles) and clear sound demonstrations"
+          },
+          {
+            "question": "Les élèves sont-ils prêts pour la construction et décoration indépendante?",
+            "ifYes": "Encourage creative decoration and personalization of their shakers",
+            "ifNo": "Provide assembly assistance and focus on sound exploration activities"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Shaker rhythm celebration - students create group rhythms using their different-sounding shakers",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "certificats d'encouragement (30 copies)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Le rythme de groupe devient-il chaotique?",
+            "ifYes": "Utiliser un chef d'orchestre pour guider le tempo",
+            "ifNo": "Laisser l'expression rythmique libre se développer"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Guitare en boîte",
+      "oneGoal": "Nous construisons une guitare en boîte simple avec des élastiques pour explorer les vibrations des cordes et la hauteur du son",
+      "duration": 45,
+      "keyVocabulary": [
+        "guitare",
+        "élastiques",
+        "cordes"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "String vibration demonstration - students pluck individual rubber bands of different sizes to hear and see vibration differences",
+        "materials": [
+          "various sizes of rubber bands (class set of 25-30)",
+          "individual exploration trays (class set of 25-30)"
+        ],
+        "visualSupports": "string vibration slow-motion demonstration, pitch and tension connection chart",
+        "decisionPoints": [
+          {
+            "question": "Les élastiques se brisent-ils durant l'expérimentation?",
+            "ifYes": "Avoir des élastiques de rechange et montrer comment étirer doucement",
+            "ifNo": "Encourager l'exploration des différentes tensions"
+          },
+          {
+            "question": "Les élèves ont-ils de la difficulté à voir les vibrations?",
+            "ifYes": "Utiliser un élastique plus épais et ralentir le mouvement de pincement",
+            "ifNo": "Encourager l'observation attentive et la description des mouvements"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Box guitar construction and string exploration - students create guitars using boxes and rubber bands, then explore how tension affects pitch",
+        "materials": [
+          "small sturdy boxes (6-8 needed for group work)",
+          "various rubber band sizes (class set of 25-30)",
+          "tape (class set of 25-30)",
+          "decorating materials (class set of 25-30)",
+          "picks made from cardboard (class set of 25-30)"
+        ],
+        "visualSupports": "guitar construction step-by-step guide, string tension and pitch relationship diagram",
+        "decisionPoints": [
+          {
+            "question": "Les élèves étirent-ils avec succès les élastiques et créent différentes hauteurs?",
+            "ifYes": "Teach them simple fingering techniques to create different notes",
+            "ifNo": "Focus on strumming all strings together and feeling vibrations"
+          },
+          {
+            "question": "Les élèves comprennent-ils comment la tension affecte la hauteur de leurs cordes de guitare?",
+            "ifYes": "Let them experiment with tuning their guitars and creating melodies",
+            "ifNo": "Demonstrate with one string at a time, showing loose vs. tight comparisons"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Guitar showcase - students take turns playing their box guitars and sharing their favorite sound discovery",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les guitares en boîte ne produisent-elles pas de son satisfaisant?",
+            "ifYes": "Aider à ajuster la tension des élastiques et vérifier l'assemblage",
+            "ifNo": "Célébrer les découvertes musicales individuelles"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Flûte de Pan avec pailles",
+      "oneGoal": "Nous créons un instrument flûte de Pan avec des pailles pour démontrer comment la longueur affecte la hauteur du son",
+      "duration": 45,
+      "keyVocabulary": [
+        "flûte",
+        "pailles",
+        "longueur"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Straw length investigation - students blow across straws of different lengths to discover pitch changes before construction",
+        "materials": [
+          "straws of various lengths (class set of 25-30)",
+          "cutting tools (class set of 25-30)",
+          "length measurement guides (class set of 25-30)"
+        ],
+        "visualSupports": "length and pitch relationship demonstration, wind instrument pictures",
+        "decisionPoints": [
+          {
+            "question": "Les élèves ont-ils de la difficulté à souffler dans les pailles?",
+            "ifYes": "Démontrer la technique de souffle doux et vérifier que les pailles ne sont pas bouchées",
+            "ifNo": "Encourager l'expérimentation avec différentes longueurs"
+          },
+          {
+            "question": "Les différences de hauteur de son sont-elles difficiles à entendre?",
+            "ifYes": "Utiliser des différences de longueur plus marquées entre les pailles",
+            "ifNo": "Encourager les comparaisons directes et la discussion des observations"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Pan flute construction and melody creation - students create panpipes by arranging straws of different lengths and explore making melodies",
+        "materials": [
+          "drinking straws (class set of 25-30)",
+          "tape (class set of 25-30)",
+          "scissors (class set of 25-30)",
+          "cardboard backing (class set of 25-30)",
+          "length templates (class set of 25-30)",
+          "decoration materials (class set of 25-30)"
+        ],
+        "visualSupports": "pan flute construction guide, length arrangement patterns, simple melody visual guides",
+        "decisionPoints": [
+          {
+            "question": "Les élèves créent-ils des différences claires de hauteur avec leurs longueurs de pailles?",
+            "ifYes": "Teach them to play simple tunes and create musical conversations",
+            "ifNo": "Focus on making sounds and use pre-cut straws with very obvious length differences"
+          },
+          {
+            "question": "Les élèves arrivent-ils à souffler avec succès sur les pailles pour créer des sons?",
+            "ifYes": "Encourage experimentation with breath control and different playing techniques",
+            "ifNo": "Demonstrate proper blowing technique and provide individual support"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Pan flute orchestra - students combine their instruments to create group musical experiences",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "L'orchestre de flûtes de pan devient-il trop cacophonique?",
+            "ifYes": "Organiser des performances en plus petits groupes avec écoute active",
+            "ifNo": "Encourager l'harmonie et l'écoute mutuelle"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Orchestre de la classe",
+      "oneGoal": "Nous combinons tous nos instruments faits à la main pour créer un orchestre de classe et jouer ensemble",
+      "duration": 45,
+      "keyVocabulary": [
+        "orchestre",
+        "ensemble",
+        "jouer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Instrument review parade - students walk around with their favorite handmade instrument, demonstrating its sound and sharing how it works",
+        "materials": [
+          "all previously made instruments (class set of 25-30)",
+          "parade music (class set of 25-30)",
+          "instrument showcase areas (class set of 25-30)"
+        ],
+        "visualSupports": "instrument family classification chart, orchestra setup diagram",
+        "decisionPoints": [
+          {
+            "question": "Les élèves peuvent-ils démontrer et expliquer comment leurs instruments fonctionnent?",
+            "ifYes": "Encourager les comparaisons entre instruments et les explications scientifiques",
+            "ifNo": "Permettre seulement les démonstrations avec aide pour les explications"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Orchestra formation and collaborative music making - students organize into instrument sections and practice playing together",
+        "materials": [
+          "all student-made instruments (class set of 25-30)",
+          "simple song sheets with pictures (class set of 25-30)",
+          "conductor baton (class set of 25-30)",
+          "music stands or holders (class set of 25-30)"
+        ],
+        "visualSupports": "orchestra seating chart, simple rhythm and melody notation, conductor signal guide",
+        "decisionPoints": [
+          {
+            "question": "Les élèves coordonnent-ils leurs instruments pour jouer ensemble en groupe?",
+            "ifYes": "Introduire des signaux de direction simples et essayer différents styles musicaux",
+            "ifNo": "Se concentrer sur les tours par groupes d'instruments et maintenir des rythmes réguliers ensemble"
+          },
+          {
+            "question": "Les élèves sont-ils engagés et excités par leur expérience d'orchestre?",
+            "ifYes": "Les laisser composer leurs propres chansons de groupe et diriger à tour de rôle",
+            "ifNo": "Se concentrer sur des chansons amusantes et familières, s'assurer que chaque élève se sent réussi"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Orchestra reflection circle - students share their favorite moment from playing in the orchestra and what they learned about teamwork in music",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "tampons motivants avec encreur (5 tampons)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à réfléchir sur leur expérience d'orchestre?",
+            "ifYes": "Encourager des connexions avec la science des sons et vibrations",
+            "ifNo": "Poser des questions guidées spécifiques sur ce qu'ils ont aimé"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Concert de démonstration",
+      "oneGoal": "Nous démontrons notre compréhension du son et des vibrations en jouant et expliquant nos instruments",
+      "duration": 45,
+      "keyVocabulary": [
+        "concert",
+        "expliquer",
+        "démontrer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Concert preparation - students practice their performance pieces and prepare simple explanations of how their instruments work",
+        "materials": [
+          "performance area setup (class set of 25-30)",
+          "audience seating (class set of 25-30)",
+          "instrument display areas (class set of 25-30)"
+        ],
+        "visualSupports": "concert program with student names and instruments, science explanation prompt cards",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils nerveux de performer devant la classe?",
+            "ifYes": "Offrir l'option de performer en duo ou permettre seulement la démonstration",
+            "ifNo": "Encourager les performances individuelles avec célébration"
+          },
+          {
+            "question": "Le concert devient-il trop long pour maintenir l'attention?",
+            "ifYes": "Diviser en plusieurs mini-concerts ou raccourcir les performances",
+            "ifNo": "Continuer avec le programme complet en célébrant chaque contribution"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Student concert performance with scientific explanations - students perform with their instruments and explain the science behind how they create sound",
+        "materials": [
+          "all student instruments (class set of 25-30)",
+          "microphone or voice projection setup (class set of 25-30)",
+          "recording device for memories (class set of 25-30)",
+          "certificates of achievement (class set of 25-30)"
+        ],
+        "visualSupports": "performance order chart, scientific vocabulary reminder posters, applause and encouragement signs",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils confiants et prêts à jouer devant un public?",
+            "ifYes": "Invite other classes or family members to attend the concert",
+            "ifNo": "Keep the audience small and supportive, focus on celebrating effort rather than performance"
+          },
+          {
+            "question": "Les élèves peuvent-ils expliquer les concepts scientifiques derrière leurs instruments?",
+            "ifYes": "Encourage detailed explanations about vibration, pitch, and volume",
+            "ifNo": "Use simple prompts like 'This makes sound when...' and support with gestures"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Concert celebration and reflection - students receive certificates and share what they're most proud of learning about sound and music",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils déçus que leur concert soit terminé?",
+            "ifYes": "Planifier une performance bis ou promettre d'autres concerts futurs",
+            "ifNo": "Célébrer les accomplissements et encourager la pratique continue"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Sons dans la nature",
+      "oneGoal": "Nous appliquons nos connaissances sur les sons pour identifier et classifier les sons naturels lors d'exploration extérieure",
+      "duration": 45,
+      "keyVocabulary": [
+        "nature",
+        "animaux",
+        "vent"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Nature sound preparation - students listen to recordings of natural sounds and predict what they might hear during outdoor exploration",
+        "materials": [
+          "nature sound recordings (class set of 25-30)",
+          "outdoor exploration checklist (class set of 25-30)",
+          "portable speaker (class set of 25-30)"
+        ],
+        "visualSupports": "nature sound identification cards, outdoor safety reminder chart",
+        "decisionPoints": [
+          {
+            "question": "Le temps ne permet-il pas la sortie à l'extérieur?",
+            "ifYes": "Utiliser des enregistrements de sons de nature et ouvrir les fenêtres si possible",
+            "ifNo": "Profiter de l'exploration sonore naturelle à l'extérieur"
+          },
+          {
+            "question": "Les élèves se dispersent-ils trop durant l'exploration extérieure?",
+            "ifYes": "Utiliser un système de partenaires et définir des zones d'écoute spécifiques",
+            "ifNo": "Encourager l'exploration autonome avec vérifications périodiques"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Outdoor sound expedition - students explore school grounds or nearby natural area to identify, record, and classify natural sounds",
+        "materials": [
+          "clipboards with recording sheets (class set of 25-30)",
+          "pencils (class set of 25-30)",
+          "portable sound recording devices (class set of 25-30)",
+          "binoculars for distant sound sources (class set of 25-30)"
+        ],
+        "visualSupports": "sound classification categories (animal, weather, plant, water), observation recording templates",
+        "decisionPoints": [
+          {
+            "question": "Les élèves identifient-ils et classifient différentes catégories de sons naturels?",
+            "ifYes": "Challenge them to find the sources of mysterious sounds and investigate how natural sounds are made",
+            "ifNo": "Focus on obvious sounds like birds chirping and wind in trees, using clear categories"
+          },
+          {
+            "question": "Les élèves sont-ils engagés et concentrés pendant l'exploration extérieure?",
+            "ifYes": "Extend the exploration time and let them discover unexpected sound sources",
+            "ifNo": "Structure with specific sound-finding missions and shorter exploration periods"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Nature sound sharing - students report their discoveries and create a class list of all the natural sounds they identified",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Certains élèves n'ont-ils pas trouvé beaucoup de sons naturels?",
+            "ifYes": "Encourager le partage entre partenaires et valider même les découvertes simples",
+            "ifNo": "Célébrer la diversité des découvertes sonores"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Échos et réflexion du son",
+      "oneGoal": "Nous explorons comment les sons rebondissent pour créer des échos dans différents environnements",
+      "duration": 45,
+      "keyVocabulary": [
+        "écho",
+        "rebondir",
+        "réflexion"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Echo demonstration - students experience echoes in different school locations like hallways, gymnasiums, or outdoor areas with buildings",
+        "materials": [
+          "location map for echo testing (class set of 25-30)",
+          "safety guidelines for echo exploration (class set of 25-30)"
+        ],
+        "visualSupports": "echo demonstration pictures, sound wave bouncing diagram",
+        "decisionPoints": [
+          {
+            "question": "Les échos ne sont-ils pas audibles dans l'espace disponible?",
+            "ifYes": "Essayer des espaces alternatifs ou utiliser des démonstrations audio d'échos",
+            "ifNo": "Encourager l'expérimentation avec différents cris et espaces"
+          },
+          {
+            "question": "Les élèves crient-ils trop fort en testant les échos?",
+            "ifYes": "Enseigner que les échos marchent aussi avec des voix normales",
+            "ifNo": "Encourager l'expérimentation avec différents volumes"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Echo investigation in various school environments - students test making sounds in different locations and observe echo effects",
+        "materials": [
+          "sound makers like clapping blocks (class set of 25-30)",
+          "timing devices (class set of 25-30)",
+          "location recording sheets (class set of 25-30)",
+          "measuring tools for distance (class set of 25-30)"
+        ],
+        "visualSupports": "echo timing chart, sound reflection explanation pictures",
+        "decisionPoints": [
+          {
+            "question": "Les élèves entendent-ils et identifient clairement les échos dans différents environnements?",
+            "ifYes": "Investigate how distance and surface materials affect echo quality",
+            "ifNo": "Start with very obvious echo locations and use sharp, clear sounds like hand claps"
+          },
+          {
+            "question": "Les élèves comprennent-ils que les échos sont des sons qui rebondissent?",
+            "ifYes": "Explore how animals like bats use echoes for navigation",
+            "ifNo": "Use physical demonstrations with bouncing balls to show sound bouncing concept"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Echo experiment reporting - students share their discoveries about where echoes work best and why",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves n'ont-ils pas réussi à entendre des échos?",
+            "ifYes": "Valoriser toutes les tentatives et expliquer que les échos dépendent de l'espace",
+            "ifNo": "Encourager le partage des meilleures découvertes d'écho"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Musique du monde",
+      "oneGoal": "Nous explorons les instruments et les sons musicaux de différentes cultures du monde",
+      "duration": 45,
+      "keyVocabulary": [
+        "monde",
+        "cultures",
+        "traditions"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "World music listening tour - students listen to musical examples from different cultures and identify familiar and unfamiliar instruments",
+        "materials": [
+          "world music recordings (class set of 25-30)",
+          "world map (class set of 25-30)",
+          "cultural instrument pictures (class set of 25-30)"
+        ],
+        "visualSupports": "world map with musical traditions, instrument pictures from different cultures",
+        "decisionPoints": [
+          {
+            "question": "Certains élèves trouvent-ils la musique mondiale étrange ou dérangeante?",
+            "ifYes": "Expliquer que toutes les cultures ont leur belle musique et encourager l'ouverture",
+            "ifNo": "Célébrer la curiosité et l'appréciation de la diversité musicale"
+          },
+          {
+            "question": "Les élèves ont-ils de la difficulté à identifier les instruments inconnus?",
+            "ifYes": "Fournir plus d'indices visuels et se concentrer sur les sons plutôt que les noms",
+            "ifNo": "Encourager les comparaisons avec des instruments familiers"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Cultural instrument exploration and creation - students explore examples of instruments from various cultures and create their own versions",
+        "materials": [
+          "cultural instrument examples or pictures (class set of 25-30)",
+          "materials for simple recreations (class set of 25-30)",
+          "cultural music for background (class set of 25-30)"
+        ],
+        "visualSupports": "cultural instrument classification chart, respectful cultural learning guidelines",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils respectueux et curieux des différentes traditions musicales culturelles?",
+            "ifYes": "Explore how different cultures use music for celebrations and storytelling",
+            "ifNo": "Focus on the beauty and creativity of different musical sounds rather than cultural differences"
+          },
+          {
+            "question": "Les élèves identifient-ils les similitudes et différences entre les instruments culturels et leurs propres créations?",
+            "ifYes": "Discuss how all cultures create music and express themselves through sound",
+            "ifNo": "Focus on enjoying the different sounds and connecting to their own musical experiences"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "World music appreciation circle - students share what they found most interesting about music from different cultures",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves veulent-ils continuer à écouter plus de musiques du monde?",
+            "ifYes": "Promettere d'autres sessions d'écoute et encourager l'exploration à la maison",
+            "ifNo": "Respecter les préférences et célébrer ce qui a été apprécié"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Inventions sonores créatives",
+      "oneGoal": "Nous concevons et créons notre propre instrument original qui produit du son avec des matériaux recyclés",
+      "duration": 45,
+      "keyVocabulary": [
+        "inventer",
+        "créer",
+        "original"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Inventor inspiration - students brainstorm what kind of new sound they want to create and look at recycled materials for possibilities",
+        "materials": [
+          "collection of clean recycled materials (class set of 25-30)",
+          "inventor inspiration pictures (class set of 25-30)",
+          "design planning sheets (class set of 25-30)"
+        ],
+        "visualSupports": "invention process poster, famous inventor examples, creative thinking prompts",
+        "decisionPoints": [
+          {
+            "question": "Les élèves manquent-ils d'idées pour leurs inventions sonores?",
+            "ifYes": "Fournir des exemples concrets et encourager la modification d'instruments existants",
+            "ifNo": "Soutenir la créativité individuelle et offrir de l'aide technique"
+          },
+          {
+            "question": "Les matériaux de recyclage sont-ils insuffisants ou inappropriés?",
+            "ifYes": "Avoir des matériaux supplémentaires prêts et montrer des alternatives créatives",
+            "ifNo": "Encourager l'expérimentation avec les matériaux disponibles"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Original instrument invention and testing - students design, build, and test their own unique sound-making inventions",
+        "materials": [
+          "variety of recycled containers, materials, and tools (6-8 needed for group work)",
+          "construction supplies like tape and glue (class set of 25-30)",
+          "testing area for sound experiments (class set of 25-30)"
+        ],
+        "visualSupports": "invention planning template, troubleshooting guide for inventors",
+        "decisionPoints": [
+          {
+            "question": "Les élèves créent-ils avec succès des sons originaux avec leurs inventions?",
+            "ifYes": "Encourage them to refine their designs and explore multiple sound possibilities",
+            "ifNo": "Provide more structured guidance and suggest specific material combinations"
+          },
+          {
+            "question": "Les élèves montrent-ils de la pensée créative et de la résolution de problèmes dans leurs inventions?",
+            "ifYes": "Challenge them to solve specific sound problems or create instruments for specific purposes",
+            "ifNo": "Provide more examples and support collaborative invention process"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Inventor showcase - students present their sound inventions and explain their design thinking",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Certaines inventions ne produisent-elles pas de son satisfaisant?",
+            "ifYes": "Aider à modifier la conception ou célébrer l'effort créatif même si le son est faible",
+            "ifNo": "Célébrer l'ingéniosité et encourager l'explication du processus d'invention"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Enregistrer nos créations",
+      "oneGoal": "Nous enregistrons nos créations musicales et écoutons pour évaluer nos productions sonores",
+      "duration": 45,
+      "keyVocabulary": [
+        "enregistrer",
+        "écouter",
+        "améliorer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Recording studio setup - students learn how recording technology works and practice using simple recording devices",
+        "materials": [
+          "simple recording devices or tablets (class set of 25-30)",
+          "headphones (class set of 25-30)",
+          "recording studio setup (class set of 25-30)"
+        ],
+        "visualSupports": "recording studio pictures, recording process step-by-step guide",
+        "decisionPoints": [
+          {
+            "question": "La technologie d'enregistrement ne fonctionne-t-elle pas correctement?",
+            "ifYes": "Avoir un plan de sauvegarde avec enregistrements simples ou démonstrations en direct",
+            "ifNo": "Encourager l'expérimentation avec différents sons et voix"
+          },
+          {
+            "question": "Les élèves sont-ils timides devant la technologie d'enregistrement?",
+            "ifYes": "Commencer par des enregistrements de groupe et rassurer sur les tentatives",
+            "ifNo": "Encourager l'exploration créative et l'expérimentation sonore"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Musical creation recording and playback analysis - students record performances with their instruments and analyze their recordings",
+        "materials": [
+          "recording devices (class set of 25-30)",
+          "playback speakers (class set of 25-30)",
+          "recording evaluation sheets (class set of 25-30)",
+          "all student-made instruments (class set of 25-30)"
+        ],
+        "visualSupports": "recording quality checklist, listening and evaluation guides",
+        "decisionPoints": [
+          {
+            "question": "Les élèves utilisent-ils avec succès la technologie d'enregistrement de façon indépendante?",
+            "ifYes": "Let them experiment with different recording techniques and multiple takes",
+            "ifNo": "Provide partner support and focus on simple recording and playback experiences"
+          },
+          {
+            "question": "Les élèves évaluent-ils et améliorent de façon réfléchie leurs performances enregistrées?",
+            "ifYes": "Encourage them to make multiple recordings and choose their best versions",
+            "ifNo": "Focus on enjoying listening to themselves and identifying what they like about their music"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Recording listening party - students share their favorite recorded creations with the class",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "étiquettes autocollantes (2 planches)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les enregistrements sont-ils de qualité insuffisante pour bien les entendre?",
+            "ifYes": "Se concentrer sur l'effort créatif plutôt que la qualité technique",
+            "ifNo": "Célébrer les créations et encourager l'écoute attentive mutuelle"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Festival des sons et vibrations",
+      "oneGoal": "Nous organisons et participons à une célébration qui présente tous nos apprentissages sur les sons et la musique",
+      "duration": 45,
+      "keyVocabulary": [
+        "festival",
+        "célébrer",
+        "partager"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Festival preparation - students help set up different stations showcasing their learning and prepare to be teachers for visitors",
+        "materials": [
+          "festival setup materials (class set of 25-30)",
+          "student work displays (class set of 25-30)",
+          "demonstration station supplies"
+        ],
+        "visualSupports": "festival map and station guide, student teacher preparation cards",
+        "decisionPoints": [
+          {
+            "question": "L'organisation du festival devient-elle trop complexe pour les élèves?",
+            "ifYes": "Simplifier les stations et donner des rôles plus guidés",
+            "ifNo": "Encourager le leadership étudiant et l'organisation collaborative"
+          },
+          {
+            "question": "Les visiteurs du festival sont-ils trop nombreux pour l'espace?",
+            "ifYes": "Organiser des rotations de visiteurs ou des visites échelonnées",
+            "ifNo": "Profiter de l'énergie et de l'enthousiasme du grand groupe"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Sound and vibration festival with community celebration - students lead interactive stations teaching visitors about sound science and demonstrating their instruments",
+        "materials": [
+          "all student instruments and inventions (class set of 25-30)",
+          "demonstration materials",
+          "visitor participation supplies (class set of 25-30)",
+          "celebration decorations (class set of 25-30)"
+        ],
+        "visualSupports": "festival program, station instruction cards, learning celebration banners",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils confiants d'enseigner aux autres leurs apprentissages sur le son?",
+            "ifYes": "Let them lead interactive demonstrations and answer visitor questions independently",
+            "ifNo": "Provide supportive adult partners and focus on demonstrating rather than explaining"
+          },
+          {
+            "question": "Is the festival creating a joyful celebration of learning for everyone?",
+            "ifYes": "Encourage student leadership in organizing activities and welcoming visitors",
+            "ifNo": "Focus on structured, successful activities that highlight student accomplishments"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Festival reflection and celebration - students share their proudest learning moments and celebrate their growth as sound scientists",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "tampons motivants avec encreur (5 tampons)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils dépassés par tout ce qu'ils ont appris?",
+            "ifYes": "Guider une réflexion simple sur 2-3 apprentissages favoris",
+            "ifNo": "Encourager le partage libre et célébrer tous les apprentissages"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide visual supports alongside all sound activities",
+          "Use exaggerated sound contrasts (very loud vs very quiet)",
+          "Allow tactile exploration of vibrating objects",
+          "Offer picture cards for sound vocabulary"
+        ],
+        "pourAvancés": [
+          "Challenge students to create complex sound patterns",
+          "Introduce sound analysis and comparison activities",
+          "Have students teach sound concepts to younger students",
+          "Explore scientific explanations for sound phenomena"
+        ],
+        "pourLangue": [
+          "Pre-teach key sound vocabulary with visual and audio supports",
+          "Use bilingual sound identification materials",
+          "Connect French sound words to home language equivalents",
+          "Provide sound vocabulary cards with pictures and translations"
+        ],
+        "pourPEI": [
+          "Modify volume levels based on individual sensitivities",
+          "Use vibrating objects for tactile sound experience",
+          "Provide alternative communication methods for responses",
+          "Allow extra processing time for sound identification"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie 3 sources de sons différents dans l'environnement",
+          "L'élève décrit les sons avec des mots: fort/faible, aigu/grave",
+          "L'élève fait vibrer des objets pour créer des sons",
+          "L'élève explique: 'Le son vient des vibrations'"
+        ],
+        "checkpoints": [
+          "Distingue entre sons naturels et sons fabriqués",
+          "Utilise le vocabulaire scientifique: vibration, son, bruit",
+          "Prédit quels objets feront des sons forts/faibles",
+          "Fait des liens entre vibrations et production de sons"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Observation",
+        "items": [
+          "Démontre une compréhension de base en observation",
+          "Participe activement aux activités de observation",
+          "Montre du progrès dans observation",
+          "Applique les apprentissages de observation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Questionnement",
+        "items": [
+          "Démontre une compréhension de base en questionnement",
+          "Participe activement aux activités de questionnement",
+          "Montre du progrès dans questionnement",
+          "Applique les apprentissages de questionnement dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Exploration sécuritaire",
+        "items": [
+          "Démontre une compréhension de base en exploration sécuritaire",
+          "Participe activement aux activités de exploration sécuritaire",
+          "Montre du progrès dans exploration sécuritaire",
+          "Applique les apprentissages de exploration sécuritaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Communication des découvertes",
+        "items": [
+          "Démontre une compréhension de base en communication des découvertes",
+          "Participe activement aux activités de communication des découvertes",
+          "Montre du progrès dans communication des découvertes",
+          "Applique les apprentissages de communication des découvertes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Observation",
+        "Questionnement",
+        "Exploration sécuritaire",
+        "Communication des découvertes"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🌟",
+          "⭐",
+          "☆"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en sciences\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nDécouvrir les sons autour de nous, Sons forts et sons doux, Sons aigus et sons graves, D'où viennent les sons?, Sentir les vibrations\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nEncouragez les questions 'pourquoi' et explorez ensemble les réponses.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa curiosité scientifique commence à la maison!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Observations de la nature",
+        "description": "Observez et discutez des phénomènes naturels liés à l'unité",
+        "timeRequired": "15 minutes",
+        "materials": "Carnet d'observations",
+        "frenchSupport": "Dessiner les observations aide la communication"
+      },
+      {
+        "title": "Expérience simple",
+        "description": "Faites une expérience sécuritaire liée au thème",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux simples du quotidien",
+        "frenchSupport": "Utilisez les mots scientifiques en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "son",
+        "lesson": 1,
+        "context": "Découvrir les sons autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"son\"",
+          "Utilisez \"son\" dans une phrase simple",
+          "Trouvez des images représentant \"son\"",
+          "Faites des gestes pour \"son\""
+        ]
+      },
+      {
+        "word": "entendre",
+        "lesson": 1,
+        "context": "Découvrir les sons autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"entendre\"",
+          "Utilisez \"entendre\" dans une phrase simple",
+          "Trouvez des images représentant \"entendre\"",
+          "Faites des gestes pour \"entendre\""
+        ]
+      },
+      {
+        "word": "écouter",
+        "lesson": 1,
+        "context": "Découvrir les sons autour de nous",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écouter\"",
+          "Utilisez \"écouter\" dans une phrase simple",
+          "Trouvez des images représentant \"écouter\"",
+          "Faites des gestes pour \"écouter\""
+        ]
+      },
+      {
+        "word": "fort",
+        "lesson": 2,
+        "context": "Sons forts et sons doux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"fort\"",
+          "Utilisez \"fort\" dans une phrase simple",
+          "Trouvez des images représentant \"fort\"",
+          "Faites des gestes pour \"fort\""
+        ]
+      },
+      {
+        "word": "doux",
+        "lesson": 2,
+        "context": "Sons forts et sons doux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"doux\"",
+          "Utilisez \"doux\" dans une phrase simple",
+          "Trouvez des images représentant \"doux\"",
+          "Faites des gestes pour \"doux\""
+        ]
+      },
+      {
+        "word": "volume",
+        "lesson": 2,
+        "context": "Sons forts et sons doux",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"volume\"",
+          "Utilisez \"volume\" dans une phrase simple",
+          "Trouvez des images représentant \"volume\"",
+          "Faites des gestes pour \"volume\""
+        ]
+      },
+      {
+        "word": "aigu",
+        "lesson": 3,
+        "context": "Sons aigus et sons graves",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aigu\"",
+          "Utilisez \"aigu\" dans une phrase simple",
+          "Trouvez des images représentant \"aigu\"",
+          "Faites des gestes pour \"aigu\""
+        ]
+      },
+      {
+        "word": "grave",
+        "lesson": 3,
+        "context": "Sons aigus et sons graves",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"grave\"",
+          "Utilisez \"grave\" dans une phrase simple",
+          "Trouvez des images représentant \"grave\"",
+          "Faites des gestes pour \"grave\""
+        ]
+      },
+      {
+        "word": "hauteur",
+        "lesson": 3,
+        "context": "Sons aigus et sons graves",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"hauteur\"",
+          "Utilisez \"hauteur\" dans une phrase simple",
+          "Trouvez des images représentant \"hauteur\"",
+          "Faites des gestes pour \"hauteur\""
+        ]
+      },
+      {
+        "word": "source",
+        "lesson": 4,
+        "context": "D'où viennent les sons?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"source\"",
+          "Utilisez \"source\" dans une phrase simple",
+          "Trouvez des images représentant \"source\"",
+          "Faites des gestes pour \"source\""
+        ]
+      },
+      {
+        "word": "vibrer",
+        "lesson": 4,
+        "context": "D'où viennent les sons?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vibrer\"",
+          "Utilisez \"vibrer\" dans une phrase simple",
+          "Trouvez des images représentant \"vibrer\"",
+          "Faites des gestes pour \"vibrer\""
+        ]
+      },
+      {
+        "word": "mouvement",
+        "lesson": 4,
+        "context": "D'où viennent les sons?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mouvement\"",
+          "Utilisez \"mouvement\" dans une phrase simple",
+          "Trouvez des images représentant \"mouvement\"",
+          "Faites des gestes pour \"mouvement\""
+        ]
+      },
+      {
+        "word": "sentir",
+        "lesson": 5,
+        "context": "Sentir les vibrations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sentir\"",
+          "Utilisez \"sentir\" dans une phrase simple",
+          "Trouvez des images représentant \"sentir\"",
+          "Faites des gestes pour \"sentir\""
+        ]
+      },
+      {
+        "word": "toucher",
+        "lesson": 5,
+        "context": "Sentir les vibrations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"toucher\"",
+          "Utilisez \"toucher\" dans une phrase simple",
+          "Trouvez des images représentant \"toucher\"",
+          "Faites des gestes pour \"toucher\""
+        ]
+      },
+      {
+        "word": "vibration",
+        "lesson": 5,
+        "context": "Sentir les vibrations",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vibration\"",
+          "Utilisez \"vibration\" dans une phrase simple",
+          "Trouvez des images représentant \"vibration\"",
+          "Faites des gestes pour \"vibration\""
+        ]
+      },
+      {
+        "word": "téléphone",
+        "lesson": 6,
+        "context": "Fabriquer un téléphone à ficelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"téléphone\"",
+          "Utilisez \"téléphone\" dans une phrase simple",
+          "Trouvez des images représentant \"téléphone\"",
+          "Faites des gestes pour \"téléphone\""
+        ]
+      },
+      {
+        "word": "ficelle",
+        "lesson": 6,
+        "context": "Fabriquer un téléphone à ficelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ficelle\"",
+          "Utilisez \"ficelle\" dans une phrase simple",
+          "Trouvez des images représentant \"ficelle\"",
+          "Faites des gestes pour \"ficelle\""
+        ]
+      },
+      {
+        "word": "message",
+        "lesson": 6,
+        "context": "Fabriquer un téléphone à ficelle",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"message\"",
+          "Utilisez \"message\" dans une phrase simple",
+          "Trouvez des images représentant \"message\"",
+          "Faites des gestes pour \"message\""
+        ]
+      },
+      {
+        "word": "tambour",
+        "lesson": 7,
+        "context": "Explorer les tambours",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tambour\"",
+          "Utilisez \"tambour\" dans une phrase simple",
+          "Trouvez des images représentant \"tambour\"",
+          "Faites des gestes pour \"tambour\""
+        ]
+      },
+      {
+        "word": "rythme",
+        "lesson": 7,
+        "context": "Explorer les tambours",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rythme\"",
+          "Utilisez \"rythme\" dans une phrase simple",
+          "Trouvez des images représentant \"rythme\"",
+          "Faites des gestes pour \"rythme\""
+        ]
+      },
+      {
+        "word": "battre",
+        "lesson": 7,
+        "context": "Explorer les tambours",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"battre\"",
+          "Utilisez \"battre\" dans une phrase simple",
+          "Trouvez des images représentant \"battre\"",
+          "Faites des gestes pour \"battre\""
+        ]
+      },
+      {
+        "word": "kazoo",
+        "lesson": 8,
+        "context": "Construire un kazoo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"kazoo\"",
+          "Utilisez \"kazoo\" dans une phrase simple",
+          "Trouvez des images représentant \"kazoo\"",
+          "Faites des gestes pour \"kazoo\""
+        ]
+      },
+      {
+        "word": "voix",
+        "lesson": 8,
+        "context": "Construire un kazoo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voix\"",
+          "Utilisez \"voix\" dans une phrase simple",
+          "Trouvez des images représentant \"voix\"",
+          "Faites des gestes pour \"voix\""
+        ]
+      },
+      {
+        "word": "chanter",
+        "lesson": 8,
+        "context": "Construire un kazoo",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chanter\"",
+          "Utilisez \"chanter\" dans une phrase simple",
+          "Trouvez des images représentant \"chanter\"",
+          "Faites des gestes pour \"chanter\""
+        ]
+      },
+      {
+        "word": "bouteille",
+        "lesson": 9,
+        "context": "Bouteilles musicales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bouteille\"",
+          "Utilisez \"bouteille\" dans une phrase simple",
+          "Trouvez des images représentant \"bouteille\"",
+          "Faites des gestes pour \"bouteille\""
+        ]
+      },
+      {
+        "word": "eau",
+        "lesson": 9,
+        "context": "Bouteilles musicales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"eau\"",
+          "Utilisez \"eau\" dans une phrase simple",
+          "Trouvez des images représentant \"eau\"",
+          "Faites des gestes pour \"eau\""
+        ]
+      },
+      {
+        "word": "musique",
+        "lesson": 9,
+        "context": "Bouteilles musicales",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"musique\"",
+          "Utilisez \"musique\" dans une phrase simple",
+          "Trouvez des images représentant \"musique\"",
+          "Faites des gestes pour \"musique\""
+        ]
+      },
+      {
+        "word": "maracas",
+        "lesson": 10,
+        "context": "Maracas et shakers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"maracas\"",
+          "Utilisez \"maracas\" dans une phrase simple",
+          "Trouvez des images représentant \"maracas\"",
+          "Faites des gestes pour \"maracas\""
+        ]
+      },
+      {
+        "word": "secouer",
+        "lesson": 10,
+        "context": "Maracas et shakers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"secouer\"",
+          "Utilisez \"secouer\" dans une phrase simple",
+          "Trouvez des images représentant \"secouer\"",
+          "Faites des gestes pour \"secouer\""
+        ]
+      },
+      {
+        "word": "remplir",
+        "lesson": 10,
+        "context": "Maracas et shakers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"remplir\"",
+          "Utilisez \"remplir\" dans une phrase simple",
+          "Trouvez des images représentant \"remplir\"",
+          "Faites des gestes pour \"remplir\""
+        ]
+      },
+      {
+        "word": "guitare",
+        "lesson": 11,
+        "context": "Guitare en boîte",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"guitare\"",
+          "Utilisez \"guitare\" dans une phrase simple",
+          "Trouvez des images représentant \"guitare\"",
+          "Faites des gestes pour \"guitare\""
+        ]
+      },
+      {
+        "word": "élastiques",
+        "lesson": 11,
+        "context": "Guitare en boîte",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"élastiques\"",
+          "Utilisez \"élastiques\" dans une phrase simple",
+          "Trouvez des images représentant \"élastiques\"",
+          "Faites des gestes pour \"élastiques\""
+        ]
+      },
+      {
+        "word": "cordes",
+        "lesson": 11,
+        "context": "Guitare en boîte",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cordes\"",
+          "Utilisez \"cordes\" dans une phrase simple",
+          "Trouvez des images représentant \"cordes\"",
+          "Faites des gestes pour \"cordes\""
+        ]
+      },
+      {
+        "word": "flûte",
+        "lesson": 12,
+        "context": "Flûte de Pan avec pailles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"flûte\"",
+          "Utilisez \"flûte\" dans une phrase simple",
+          "Trouvez des images représentant \"flûte\"",
+          "Faites des gestes pour \"flûte\""
+        ]
+      },
+      {
+        "word": "pailles",
+        "lesson": 12,
+        "context": "Flûte de Pan avec pailles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pailles\"",
+          "Utilisez \"pailles\" dans une phrase simple",
+          "Trouvez des images représentant \"pailles\"",
+          "Faites des gestes pour \"pailles\""
+        ]
+      },
+      {
+        "word": "longueur",
+        "lesson": 12,
+        "context": "Flûte de Pan avec pailles",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"longueur\"",
+          "Utilisez \"longueur\" dans une phrase simple",
+          "Trouvez des images représentant \"longueur\"",
+          "Faites des gestes pour \"longueur\""
+        ]
+      },
+      {
+        "word": "orchestre",
+        "lesson": 13,
+        "context": "Orchestre de la classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"orchestre\"",
+          "Utilisez \"orchestre\" dans une phrase simple",
+          "Trouvez des images représentant \"orchestre\"",
+          "Faites des gestes pour \"orchestre\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 13,
+        "context": "Orchestre de la classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "jouer",
+        "lesson": 13,
+        "context": "Orchestre de la classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jouer\"",
+          "Utilisez \"jouer\" dans une phrase simple",
+          "Trouvez des images représentant \"jouer\"",
+          "Faites des gestes pour \"jouer\""
+        ]
+      },
+      {
+        "word": "concert",
+        "lesson": 14,
+        "context": "Concert de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"concert\"",
+          "Utilisez \"concert\" dans une phrase simple",
+          "Trouvez des images représentant \"concert\"",
+          "Faites des gestes pour \"concert\""
+        ]
+      },
+      {
+        "word": "expliquer",
+        "lesson": 14,
+        "context": "Concert de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"expliquer\"",
+          "Utilisez \"expliquer\" dans une phrase simple",
+          "Trouvez des images représentant \"expliquer\"",
+          "Faites des gestes pour \"expliquer\""
+        ]
+      },
+      {
+        "word": "démontrer",
+        "lesson": 14,
+        "context": "Concert de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"démontrer\"",
+          "Utilisez \"démontrer\" dans une phrase simple",
+          "Trouvez des images représentant \"démontrer\"",
+          "Faites des gestes pour \"démontrer\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

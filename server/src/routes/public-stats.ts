@@ -26,10 +26,9 @@ router.get('/stats', async (req, res) => {
       return sum + (unit.estimatedHours || 0);
     }, 0);
     
-    // Get basic unit plan data for showcase (no sensitive info)
-    const sampleUnits = await prisma.unitPlan.findMany({
+    // Get all units grouped by subject to show real distribution
+    const allUnits = await prisma.unitPlan.findMany({
       where: { userId: EMILY_USER_ID },
-      take: 5,
       orderBy: { startDate: 'asc' },
       select: {
         id: true,
@@ -46,6 +45,20 @@ router.get('/stats', async (req, res) => {
       }
     });
     
+    // Get subject distribution for dashboard
+    const subjectStats = allUnits.reduce((acc, unit) => {
+      const subject = unit.longRangePlan?.subject || 'Unknown';
+      if (!acc[subject]) {
+        acc[subject] = { count: 0, units: [] };
+      }
+      acc[subject].count += 1;
+      acc[subject].units.push(unit);
+      return acc;
+    }, {} as Record<string, { count: number; units: any[] }>);
+    
+    // For sample units, get first unit from each subject for display
+    const sampleUnits = Object.values(subjectStats).map(subjectData => subjectData.units[0]);
+    
     res.json({
       stats: {
         unitCount,
@@ -54,6 +67,9 @@ router.get('/stats', async (req, res) => {
         totalHours: Math.round(totalHours * 100) / 100 // Round to 2 decimal places
       },
       sampleUnits,
+      subjectDistribution: Object.fromEntries(
+        Object.entries(subjectStats).map(([subject, data]) => [subject, data.count])
+      ),
       academicYear: `${new Date().getFullYear()}-${new Date().getFullYear() + 1}`,
       currentDate: new Date().toISOString()
     });
@@ -69,6 +85,7 @@ router.get('/stats', async (req, res) => {
         totalHours: 0
       },
       sampleUnits: [],
+      subjectDistribution: {},
       academicYear: `${new Date().getFullYear()}-${new Date().getFullYear() + 1}`,
       currentDate: new Date().toISOString()
     });

@@ -1,0 +1,3130 @@
+{
+  "unitTitle": "Nutrition et mode de vie sain",
+  "subject": "Formation personnelle et sociale",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Qu'est-ce que la nutrition?",
+      "oneGoal": "Comprendre que la nutrition signifie nourrir notre corps",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "nutrition",
+        "corps",
+        "nourriture"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Chanson de bienvenue et question du jour : 'Qu'avez-vous mangé ce matin?'",
+        "materials": [
+          "Affiche colorée 'La nutrition'",
+          "Images d'aliments variés",
+          "Marionnette 'Santé' (petit personnage)",
+          "Miroir pour observer notre corps"
+        ],
+        "visualSupports": "Affiche visuelle avec le mot 'nutrition', gestes pour manger, expressions faciales de satisfaction",
+        "decisionPoints": [
+          "Si un élève ne comprend pas le mot 'nutrition' → utiliser des exemples concrets comme 'donner à manger à notre corps pour qu'il soit fort'",
+          "Si un élève dit qu'il n'aime pas manger → expliquer avec la marionnette que notre corps a besoin de nourriture comme une voiture a besoin d'essence",
+          "Si un élève semble anxieux face au nouveau vocabulaire → commencer avec des mots familiers comme 'manger' avant d'introduire 'nutrition'"
+        ],
+        "movementBreaks": [
+          "Geste de manger en caressant doucement le ventre",
+          "Mouvement de grandir (bras qui s'élèvent)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Exploration sensorielle avec la marionnette Santé. Regarder différentes images d'aliments et dire 'Ceci nourrit notre corps'. Pratique du mot 'nutrition' avec gestes. Jeu de Simon dit: 'Simon dit touchez votre ventre qui a besoin de nutrition!'",
+        "materials": [
+          "Marionnette Santé",
+          "Collection d'images d'aliments",
+          "Tableau 'Notre corps a besoin de nutrition'",
+          "Autocollants alimentaires"
+        ],
+        "visualSupports": "Images d'aliments collées au tableau, gestes répétés pour 'nutrition', démonstrations corporelles",
+        "decisionPoints": [
+          "Si un élève confond 'nutrition' et 'délicieux' → expliquer que la nutrition aide notre corps même si ce n'est pas toujours notre goût préféré",
+          "Si un élève ne participe pas au jeu de Simon → l'inviter à observer d'abord puis proposer des gestes plus petits comme pointer son ventre",
+          "Si un élève pose des questions sur des aliments spécifiques → utiliser la règle simple 'Est-ce que ça aide mon corps à grandir?'"
+        ],
+        "movementBreaks": [
+          "Jeu de Simon avec mouvements nutritifs",
+          "Geste de croissance avec les bras"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Récapitulatif avec gestes : 'La nutrition, c'est donner à manger à notre corps pour qu'il soit fort!'",
+        "materials": [
+          "Cahier personnel de chaque élève",
+          "Autocollants 'nutrition'",
+          "Affiche récapitulative",
+          "Marionnette Santé pour au revoir"
+        ],
+        "visualSupports": "Geste du cœur pour la phrase finale, routine prévisible de fermeture avec mouvement",
+        "decisionPoints": [
+          "Si un élève ne se rappelle pas ce qu'est la nutrition → utiliser le geste du cœur et dire 'c'est donner de l'amour à notre corps'",
+          "Si un élève veut garder tous les autocollants → expliquer qu'un seul autocollant spécial pour aujourd'hui suffit, les autres sont pour demain",
+          "Si un élève semble fatigué → faire le récapitulatif plus court et se concentrer sur le geste principal de la nutrition"
+        ],
+        "movementBreaks": [
+          "Geste du cœur nutritif (mains sur le cœur)",
+          "Mouvement de fierté corporelle"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser uniquement le mot 'manger' avant d'introduire 'nutrition'",
+          "Permettre la réponse par gestes (pointer, toucher) plutôt que par mots",
+          "Se concentrer sur un seul aliment familier comme exemple"
+        ],
+        "pourAvancés": [
+          "Encourager à nommer différents types d'aliments nutritifs",
+          "Inviter à expliquer pourquoi notre corps a besoin de nutrition",
+          "Proposer d'aider les pairs à comprendre le concept"
+        ],
+        "pourLangue": [
+          "Utiliser beaucoup d'images et de gestes pour expliquer 'nutrition'",
+          "Permettre l'expression dans leur langue maternelle au besoin",
+          "Jumeler avec un pair francophone pour soutien"
+        ],
+        "pourPEI": [
+          "Adapter les matériels selon les besoins sensoriels individuels",
+          "Utiliser des aides visuelles ou tactiles si approprié",
+          "Modifier les attentes selon les objectifs du plan d'intervention"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève écoute attentivement quand on parle de nutrition",
+          "L'élève fait le geste de manger quand il entend 'nutrition'",
+          "L'élève pointe son corps quand on dit 'nourrir notre corps'",
+          "L'élève participe aux mouvements nutritifs"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier si l'élève associe 'nutrition' avec 'nourrir le corps'",
+          "Fin de leçon: Observer si l'élève peut répéter un mot clé de la leçon",
+          "Transition: Noter comment l'élève montre sa compréhension par gestes"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Mon corps a faim",
+      "oneGoal": "Reconnaître les signaux de faim et de satiété du corps",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "faim",
+        "ventre",
+        "rassasié"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision avec la chanson de la nutrition et question : 'Comment vous sentez-vous dans votre ventre maintenant?'",
+        "materials": [
+          "Affiche des signaux du corps",
+          "Marionnette Santé avec ventre mobile",
+          "Images 'faim' et 'rassasié'",
+          "Miroir pour observer expressions"
+        ],
+        "visualSupports": "Gestes pour 'faim' (main sur ventre qui grogne), visages expressífs montrant faim/satiété",
+        "decisionPoints": [
+          "Si un élève dit qu'il a toujours faim → expliquer que notre ventre nous dit quand il a besoin de nourriture, comme une alarme",
+          "Si un élève ne comprend pas 'rassasié' → utiliser l'image d'un ventre content et heureux qui dit 'merci, c'est assez'",
+          "Si un élève semble gêné de parler de son ventre → utiliser la marionnette pour démontrer en premier"
+        ],
+        "movementBreaks": [
+          "Geste de faim (main sur ventre, air inquiet)",
+          "Geste de satisfaction (caresser ventre, sourire)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Exploration des signaux corporels avec la marionnette Santé. Pratiquer 'J'ai faim' et 'Je suis rassasié' avec des scénarios imagés. Jeu d'écoute du ventre: poser la main sur le ventre et deviner s'il a faim. Création d'un tableau des signaux : ventre qui grogne = faim, ventre calme = rassasié.",
+        "materials": [
+          "Marionnette Santé avec expressions",
+          "Scénarios visuels (matin, après-midi, soir)",
+          "Tableau 'Les signaux de mon ventre'",
+          "Images de repas et collations"
+        ],
+        "visualSupports": "Démonstrations corporelles exagérées, sons de ventre qui grogne, gestes répétés pour chaque état",
+        "decisionPoints": [
+          "Si un élève confond les signaux → utiliser des sons distincts (grognement pour faim, soupir content pour rassasié)",
+          "Si un élève ne veut pas toucher son ventre → proposer d'observer la marionnette ou faire le geste dans l'air",
+          "Si un élève rapporte avoir mal au ventre → expliquer la différence entre mal et signaux normaux de faim/satiété"
+        ],
+        "movementBreaks": [
+          "Jeu d'écoute corporelle (pause silencieuse)",
+          "Danse du ventre heureux (mouvement doux)"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cercle de partage : chacun montre comment son ventre se sent maintenant",
+        "materials": [
+          "Cartes d'émotion de ventre",
+          "Autocollants 'j'écoute mon corps'",
+          "Tableau récapitulatif des signaux",
+          "Marionnette pour au revoir"
+        ],
+        "visualSupports": "Formation de cercle visible, gestes rappels pour faim/rassasié, routine de fermeture",
+        "decisionPoints": [
+          "Si un élève ne peut pas identifier comment il se sent → offrir des choix simples avec images (faim/rassasié/entre les deux)",
+          "Si un élève dit qu'il a faim alors qu'il vient de manger → expliquer qu'parfois notre ventre a besoin de temps pour nous dire comment il va",
+          "Si un élève semble préoccupé par la nourriture → rassurer que c'est normal d'écouter notre corps et qu'on mangera bientôt si nécessaire"
+        ],
+        "movementBreaks": [
+          "Caresse douce du ventre en cercle",
+          "Salut du ventre heureux"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer uniquement sur 'faim' avec le son du ventre qui grogne",
+          "Utiliser des supports tactiles comme poser la main sur le ventre",
+          "Permettre la réponse par pointage d'images plutôt que par mots"
+        ],
+        "pourAvancés": [
+          "Encourager à décrire différents niveaux de faim (un peu, beaucoup)",
+          "Inviter à aider les pairs à identifier leurs signaux corporels",
+          "Proposer de créer des catégories de signaux corporels"
+        ],
+        "pourLangue": [
+          "Utiliser beaucoup de sons et gestes pour clarifier le vocabulaire",
+          "Permettre l'expression des sensations dans leur langue maternelle",
+          "Jumeler avec un pair francophone pour soutien"
+        ],
+        "pourPEI": [
+          "Adapter selon les besoins sensoriels (certains peuvent être sensibles au toucher)",
+          "Utiliser des aides visuelles ou auditives selon les besoins",
+          "Modifier les attentes selon les objectifs individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève écoute quand on parle des signaux du corps",
+          "L'élève fait le geste de la faim quand approprié",
+          "L'élève pointe son ventre quand on parle de sensations",
+          "L'élève participe au jeu d'écoute corporelle"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier si l'élève distingue les images de faim et de satiété",
+          "Fin de leçon: Observer si l'élève peut identifier son propre état actuel",
+          "Transition: Noter comment l'élève exprime ses sensations corporelles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Les couleurs dans mon assiette",
+      "oneGoal": "Identifier que les aliments ont différentes couleurs et que c'est important",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "couleurs",
+        "assiette",
+        "arc-en-ciel"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Chanson des couleurs et révision des signaux du corps",
+        "materials": [
+          "Assiettes colorées en plastique",
+          "Images d'aliments colorés",
+          "Arc-en-ciel alimentaire géant",
+          "Marionnette Santé avec tablier coloré"
+        ],
+        "visualSupports": "Arc-en-ciel géant au mur, assiettes de couleurs vives, gestes pour chaque couleur",
+        "decisionPoints": [
+          "Si un élève ne reconnaît pas certaines couleurs → commencer avec rouge et vert (pomme et légume) puis ajouter progressivement",
+          "Si un élève dit qu'il n'aime que les aliments d'une couleur → utiliser l'arc-en-ciel pour explorer 'et si on essayait une couleur de plus?'",
+          "Si un élève confond les objets et les couleurs → pointer spécifiquement la couleur en disant 'regarde cette couleur rouge'"
+        ],
+        "movementBreaks": [
+          "Danse de l'arc-en-ciel (bras qui bougent en arc)",
+          "Pointer les couleurs autour de nous"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Création d'arc-en-ciel alimentaires sur assiettes en papier. Classer les images d'aliments par couleur avec la marionnette Santé. Jeu 'Trouvons la couleur manquante' - regarder une assiette et identifier quelle couleur arc-en-ciel manque. Chansonnette: 'Rouge comme la tomate, vert comme la salade, jaune comme la banane!'",
+        "materials": [
+          "Assiettes en papier blanc",
+          "Images d'aliments à découper classées par couleur",
+          "Bâtons de colle non toxique",
+          "Tableau de classement par couleur"
+        ],
+        "visualSupports": "Démonstrations de classement, arc-en-ciel de référence visible, couleurs nommées à haute voix constamment",
+        "decisionPoints": [
+          "Si un élève colle tous les aliments ensemble sans tri → l'aider à faire un petit tas de rouges d'abord, puis célébrer ce succès",
+          "Si un élève ne veut pas utiliser la colle → proposer de placer les images sur l'assiette sans coller ou utiliser des autocollants repositionnables",
+          "Si un élève se décourage parce que son arc-en-ciel n'est pas parfait → valoriser chaque couleur ajoutée et dire 'regardez cette belle couleur!'"
+        ],
+        "movementBreaks": [
+          "Chansonnette avec gestes pour chaque couleur",
+          "Pause étirement arc-en-ciel (bras en arc)"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Galerie d'art : admirer les arc-en-ciel alimentaires de chacun",
+        "materials": [
+          "Créations des élèves",
+          "Autocollants étoiles colorés",
+          "Affiche 'Nos beaux arc-en-ciel'",
+          "Aimants pour afficher"
+        ],
+        "visualSupports": "Disposition en galerie visible de tous, lumière sur chaque création, célébration visuelle",
+        "decisionPoints": [
+          "Si un élève ne veut pas montrer sa création → respecter son choix et proposer qu'elle reste à son bureau pour qu'il puisse la regarder",
+          "Si un élève critique le travail d'un autre → rediriger vers 'regardons toutes ces belles couleurs différentes!'",
+          "Si un élève veut refaire son arc-en-ciel → expliquer que chaque arc-en-ciel est unique et beau, comme nous"
+        ],
+        "movementBreaks": [
+          "Tour de galerie en marchant doucement",
+          "Applaudissements colorés pour chaque création"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Limiter à 3 couleurs principales (rouge, vert, jaune)",
+          "Utiliser des objets concrets plutôt que des images",
+          "Permettre l'aide d'un pair pour le collage"
+        ],
+        "pourAvancés": [
+          "Encourager à nommer les aliments ET leurs couleurs",
+          "Inviter à créer des motifs ou des designs avec les couleurs",
+          "Proposer d'aider les pairs avec le tri par couleur"
+        ],
+        "pourLangue": [
+          "Associer chaque couleur à un objet familier comme référence",
+          "Répéter les noms de couleur dans leur langue maternelle aussi",
+          "Utiliser beaucoup de pointage et de gestes"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux selon les besoins moteurs (gros objets, pinces adaptées)",
+          "Utiliser des couleurs contrastantes si difficultés visuelles",
+          "Modifier les attentes selon les objectifs individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève reconnaît au moins 2-3 couleurs d'aliments",
+          "L'élève essaie de trier les images par couleur",
+          "L'élève participe au jeu de 'trouve la couleur manquante'",
+          "L'élève montre de la fierté pour sa création"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier si l'élève peut associer une couleur à un aliment",
+          "Fin de leçon: Observer l'engagement de l'élève dans la présentation de sa création",
+          "Transition: Noter quelles couleurs l'élève reconnaît spontanément"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Les fruits et légumes",
+      "oneGoal": "Reconnaître les fruits et légumes comme un groupe alimentaire important",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "fruits",
+        "légumes",
+        "vitamines"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'arc-en-ciel alimentaire et devinettes avec des indices sur des fruits/légumes",
+        "materials": [
+          "Sac mystère avec fruits et légumes en plastique",
+          "Images géantes de fruits et légumes",
+          "Affiche 'Fruits vs Légumes'",
+          "Loupe pour examiner les détails"
+        ],
+        "visualSupports": "Deux colonnes visuelles (fruits/légumes), couleurs vives pour distinguer, gestes spécifiques pour chaque groupe",
+        "decisionPoints": [
+          "Si un élève confond fruits et légumes → utiliser la règle simple 'les fruits sont souvent sucrés' avec exemples concrets",
+          "Si un élève dit qu'il n'aime aucun fruit ou légume → commencer par 'lesquels connaissez-vous?' sans pression de goût",
+          "Si un élève ne comprend pas les devinettes → donner des indices visuels ou tactiles (forme, couleur, texture)"
+        ],
+        "movementBreaks": [
+          "Geste pour fruits (mains en forme de rond, sourire)",
+          "Geste pour légumes (mains qui poussent vers le haut)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Station d'exploration fruits/légumes. Trier des images en deux groupes avec aide visuelle. Jeu 'Fruit ou Légume?' - montrer une image et tout le monde pointe vers le bon côté. Introduction des vitamines: 'Les fruits et légumes nous donnent des vitamines pour être forts!' avec geste de force.",
+        "materials": [
+          "Images laminées de fruits et légumes variés",
+          "Deux boîtes étiquetées (fruits/légumes)",
+          "Vrais fruits et légumes pour observation",
+          "Autocollants vitamines (petites étoiles)"
+        ],
+        "visualSupports": "Exemples concrets des deux groupes, étiquettes avec images et mots, démonstrations de tri",
+        "decisionPoints": [
+          "Si un élève met tout dans la même boîte → commencer avec un seul fruit évident (pomme) et célébrer ce classement avant d'ajouter",
+          "Si un élève ne veut pas toucher les vrais aliments → respecter et proposer d'observer seulement ou utiliser les images",
+          "Si un élève pose des questions sur des aliments ambigus (tomate) → expliquer simplement 'parfois c'est un peu mélangé, mais c'est correct!'"
+        ],
+        "movementBreaks": [
+          "Geste de force pour les vitamines (fléchir les muscles)",
+          "Pointage vers fruits et légumes autour de nous"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cercle de dégustation : goûter un petit morceau de fruit et légume nouveaux",
+        "materials": [
+          "Petits morceaux de fruits frais (pomme, orange)",
+          "Petits morceaux de légumes crus (carotte, concombre)",
+          "Serviettes humides pour se nettoyer",
+          "Gobelet d'eau pour chacun"
+        ],
+        "visualSupports": "Modélisation de la dégustation respectueuse, expressions faciales positives, routine de propreté",
+        "decisionPoints": [
+          "Si un élève refuse de goûter → respecter totalement et proposer d'observer et de sentir seulement",
+          "Si un élève n'aime pas ce qu'il goûte → valider 'c'est correct, merci d'avoir essayé!' et proposer de rincer la bouche",
+          "Si un élève veut plus → expliquer que c'est juste pour goûter aujourd'hui, mais c'est merveilleux qu'il aime!"
+        ],
+        "movementBreaks": [
+          "Geste de remerciement pour avoir essayé",
+          "Célébration silencieuse (pouce en l'air)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Commencer avec seulement 2 fruits et 2 légumes très distincts",
+          "Utiliser le goût et la texture comme indices supplémentaires",
+          "Permettre la collaboration avec un pair pour le tri"
+        ],
+        "pourAvancés": [
+          "Encourager à nommer des fruits et légumes qu'ils connaissent",
+          "Inviter à expliquer leurs choix de classement",
+          "Proposer d'aider à préparer la dégustation"
+        ],
+        "pourLangue": [
+          "Associer chaque fruit/légume à sa couleur et sa forme",
+          "Répéter les mots dans leur langue maternelle si possible",
+          "Utiliser beaucoup de gestes et d'expressions faciales"
+        ],
+        "pourPEI": [
+          "Adapter selon les restrictions alimentaires ou sensibilités",
+          "Utiliser des alternatives tactiles si besoin (textures différentes)",
+          "Modifier les attentes de dégustation selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève reconnaît au moins un fruit et un légume familier",
+          "L'élève essaie de participer au tri, même avec aide",
+          "L'élève montre de l'intérêt pour l'exploration alimentaire",
+          "L'élève respecte les choix des autres pendant la dégustation"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension fruit vs légume avec 2-3 exemples",
+          "Fin de leçon: Observer l'attitude de l'élève face aux nouveaux aliments",
+          "Transition: Noter quels aliments l'élève peut nommer ou reconnaître"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Les céréales et grains",
+      "oneGoal": "Identifier les céréales et grains comme source d'énergie",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "céréales",
+        "pain",
+        "énergie"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision fruits/légumes avec un jeu de mémoire et introduction énergique avec des sauts",
+        "materials": [
+          "Cartes mémoire fruits/légumes",
+          "Vraies céréales dans des bols transparents",
+          "Différents types de pain (tranches)",
+          "Affiche 'Énergie pour bouger!'"
+        ],
+        "visualSupports": "Affiche énergie avec flèches et mouvement, grains visibles dans contenants, comparaison avec essence de voiture",
+        "decisionPoints": [
+          "Si un élève ne comprend pas 'énergie' → utiliser l'analogie simple 'c'est ce qui nous donne la force pour courir et jouer'",
+          "Si un élève confond céréales du petit-déjeuner et grains → montrer les deux et expliquer 'les céréales sont faites avec des grains'",
+          "Si un élève semble fatigué → utiliser ce moment pour parler d'énergie: 'peut-être avons-nous besoin d'énergie!'"
+        ],
+        "movementBreaks": [
+          "Sauts énergiques pour démontrer l'énergie",
+          "Geste de manger et grandir (bras vers le haut)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Exploration des céréales et grains. Toucher différents grains (avoine, blé, riz) dans des bols. Observer comment les grains deviennent pain/céréales avec images séquentielles. Activité 'Énergie-mètre': mimer être fatigué, puis manger des céréales et devenir énergique!",
+        "materials": [
+          "Bols avec différents grains (avoine, riz, blé)",
+          "Images séquentielles grain → pain/céréales",
+          "Loupes pour observer les grains",
+          "Mètre d'énergie dessiné (faible → fort)"
+        ],
+        "visualSupports": "Séquence visuelle claire grain-produit, échelle d'énergie colorée, gestes exagérés fatigué/énergique",
+        "decisionPoints": [
+          "Si un élève ne veut pas toucher les grains → proposer d'observer avec la loupe ou utiliser une cuillère pour remuer",
+          "Si un élève ne comprend pas la transformation grain-pain → utiliser une analogie simple comme 'les grains sont les bébés du pain'",
+          "Si un élève ne veut pas mimer être fatigué → l'inviter à observer d'abord et proposer juste le geste énergique"
+        ],
+        "movementBreaks": [
+          "Mime fatigué vs énergique (contraste fort)",
+          "Exploration tactile douce des grains"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Danse de l'énergie : danser avec enthousiasme en chantant 'Les céréales me donnent de l'énergie!'",
+        "materials": [
+          "Musique énergique ou tambourin",
+          "Cartes rappel (céréales + énergie)",
+          "Autocollants énergie (petits soleils)",
+          "Mètre d'énergie pour bilan final"
+        ],
+        "visualSupports": "Mouvements énergiques modélisés, chanson avec gestes, célébration visuelle de l'énergie",
+        "decisionPoints": [
+          "Si un élève ne veut pas danser → proposer de tenir le tambourin ou de chanter seulement",
+          "Si un élève devient trop excité → utiliser cela pour expliquer 'voilà ce que l'énergie peut faire!' puis calmer progressivement",
+          "Si un élève dit qu'il n'a pas d'énergie → l'inviter à imaginer qu'il mange des céréales et que l'énergie arrive doucement"
+        ],
+        "movementBreaks": [
+          "Danse énergique collective",
+          "Retour au calme progressif (de fort à doux)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur un seul type de céréale familier (pain)",
+          "Utiliser des comparaisons corporelles simples (fatigué vs énergique)",
+          "Permettre l'observation plutôt que la manipulation"
+        ],
+        "pourAvancés": [
+          "Encourager à nommer différents types de céréales qu'ils connaissent",
+          "Inviter à expliquer quand ils ont besoin d'énergie dans leur journée",
+          "Proposer d'aider à démontrer la transformation grain-produit"
+        ],
+        "pourLangue": [
+          "Associer 'céréales' aux céréales du petit-déjeuner qu'ils connaissent",
+          "Utiliser beaucoup de gestes pour 'énergie' (sauter, courir)",
+          "Répéter le vocabulaire avec supports visuels constants"
+        ],
+        "pourPEI": [
+          "Adapter la manipulation des grains selon les capacités motrices",
+          "Utiliser des alternatives tactiles si allergies alimentaires",
+          "Ajuster l'intensité des mouvements énergiques selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève reconnaît au moins un type de céréales (pain, riz)",
+          "L'élève fait des gestes énergiques quand on parle d'énergie",
+          "L'élève participe aux activités tactiles d'exploration",
+          "L'élève montre un lien entre manger et avoir de l'énergie"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension du lien céréales-énergie",
+          "Fin de leçon: Observer l'engagement dans la danse énergique",
+          "Transition: Noter si l'élève peut mimer avoir ou manquer d'énergie"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Le lait et les produits laitiers",
+      "oneGoal": "Reconnaître les produits laitiers comme importants pour les os",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "lait",
+        "fromage",
+        "os"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision énergique des céréales et introduction en touchant nos os (bras, jambes)",
+        "materials": [
+          "Squelette ou image d'os humains",
+          "Différents produits laitiers (images/emballages)",
+          "Verre de lait (vrai ou en plastique)",
+          "Morceaux de fromage sous plastique pour observer"
+        ],
+        "visualSupports": "Image du squelette avec os identifiés, gestes pour toucher nos propres os, couleur blanche associée au lait",
+        "decisionPoints": [
+          "Si un élève a peur du squelette → commencer par toucher nos os à travers la peau et expliquer qu'ils nous aident à être forts",
+          "Si un élève dit qu'il n'aime pas le lait → présenter d'autres produits laitiers comme le fromage ou le yogourt",
+          "Si un élève ne comprend pas le lien lait-os → utiliser l'analogie 'le lait aide nos os à grandir comme l'eau aide les plantes'"
+        ],
+        "movementBreaks": [
+          "Toucher et montrer nos os (bras, jambes, dos)",
+          "Geste de boire du lait (mimer avec verre)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Découverte des produits laitiers. Examiner différents produits (lait, fromage, yogourt) et les grouper. Jeu 'Trouve le produit laitier' parmi un mélange d'aliments. Activité 'Os forts': comparer nos os maintenant avec des os de bébé (images) pour montrer la croissance grâce au lait.",
+        "materials": [
+          "Variété de produits laitiers (vraie ou images)",
+          "Mélange d'aliments laitiers et non-laitiers",
+          "Images comparatives os bébé/enfant/adulte",
+          "Boîte spéciale 'Produits laitiers'"
+        ],
+        "visualSupports": "Regroupement visuel des produits blancs, comparaisons de taille d'os, démonstrations de force",
+        "decisionPoints": [
+          "Si un élève met des aliments non-laitiers dans le groupe → l'aider en pointant la couleur blanche comme indice principal",
+          "Si un élève se préoccupe de ses os → le rassurer en montrant comme ses os sont déjà forts et en croissance",
+          "Si un élève a des restrictions alimentaires → mentionner que d'autres aliments aident aussi les os, comme les légumes verts"
+        ],
+        "movementBreaks": [
+          "Test de force des os (fléchir les bras)",
+          "Marche comme un robot aux os solides"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Marche des os forts : marcher fièrement en montrant nos os solides grâce aux produits laitiers",
+        "materials": [
+          "Musique de marche ou tambour",
+          "Autocollants 'os forts'",
+          "Affiche récapitulative lait = os forts",
+          "Cértificat 'Expert en os forts'"
+        ],
+        "visualSupports": "Marche fière modélisée, posture droite exemplifiée, célébration de la force",
+        "decisionPoints": [
+          "Si un élève ne peut pas marcher ou a des difficultés motrices → adapter avec des mouvements des bras ou de la tête pour montrer la fierté",
+          "Si un élève exagère ses mouvements → canaliser cette énergie en le désignant comme le leader de la marche",
+          "Si un élève dit que ses os ne sont pas forts → lui expliquer que ses os grandissent chaque jour et sont parfaits pour lui"
+        ],
+        "movementBreaks": [
+          "Marche des os forts (posture droite, pas assurés)",
+          "Salut final avec geste de force"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer uniquement sur le lait comme produit laitier principal",
+          "Utiliser le toucher de nos propres os comme référence concrete",
+          "Simplifier à 'lait = os forts' avec gestes"
+        ],
+        "pourAvancés": [
+          "Encourager à nommer d'autres produits laitiers (yogourt, crème glacée)",
+          "Inviter à expliquer pourquoi nos os ont besoin d'être forts",
+          "Proposer d'aider à classer les produits par catégorie"
+        ],
+        "pourLangue": [
+          "Associer chaque produit laitier à sa couleur et texture",
+          "Utiliser beaucoup de gestes pour 'fort' et 'os'",
+          "Répéter avec supports visuels constants"
+        ],
+        "pourPEI": [
+          "Adapter selon les allergies ou intolérances alimentaires",
+          "Utiliser des alternatives tactiles pour l'exploration",
+          "Modifier les attentes de mouvement selon les capacités physiques"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève reconnaît le lait comme produit laitier principal",
+          "L'élève fait le lien entre toucher ses os et les rendre forts",
+          "L'élève participe aux jeux de classification avec effort",
+          "L'élève montre de la fierté pour ses os forts"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension du lien lait-os forts",
+          "Fin de leçon: Observer la confiance dans les mouvements de 'marche forte'",
+          "Transition: Noter si l'élève peut identifier un produit laitier"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Les protéines",
+      "oneGoal": "Identifier les sources de protéines pour les muscles",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "protéines",
+        "muscles",
+        "viande"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision des os forts et flexion des muscles pour introduire les protéines",
+        "materials": [
+          "Images de différentes sources de protéines",
+          "Miroir pour observer nos muscles",
+          "Livre d'images sur le corps humain",
+          "Autocollants 'muscles forts'"
+        ],
+        "visualSupports": "Images de muscles et aliments protéinés, gestes pour fléchir et montrer la force",
+        "decisionPoints": [
+          "Si un élève ne comprend pas 'protéines' → simplifier en disant 'c'est la nourriture qui rend nos muscles forts comme un super-héros'",
+          "Si un élève dit qu'il n'a pas de muscles → l'aider à sentir ses muscles dans ses bras, même petits, ils sont là!",
+          "Si un élève associe seulement protéines à viande → présenter d'autres sources comme les œufs, les haricots, le poisson"
+        ],
+        "movementBreaks": [
+          "Fléchir les muscles (biceps, jambes)",
+          "Pose du super-héros (mains sur les hanches)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Exploration des aliments protéinés. Trier images d'aliments en 'muscle-builder' vs autres. Jeu d'association: montrer un aliment et fléchir les muscles si c'est une protéine. Activité 'Muscles avant/après': mimer avoir des muscles faibles, manger des protéines, puis devenir fort!",
+        "materials": [
+          "Images variées d'aliments riches en protéines",
+          "Boîtes 'Muscle-builders' et 'Autres aliments'",
+          "Cartes d'actions (fléchir, porter, pousser)",
+          "Balance ou poids légers pour simulation"
+        ],
+        "visualSupports": "Démonstrations claires de force, avant/après visuels, gestes exagérés pour muscles",
+        "decisionPoints": [
+          "Si un élève classe mal un aliment → l'aider en demandant 'ça aide-tu les muscles?' et guide vers la bonne réponse",
+          "Si un élève ne veut pas mimer être faible → proposer de montrer seulement la partie 'devenir fort' du jeu",
+          "Si un élève a des restrictions alimentaires → inclure ses alternatives comme sources de protéines valides"
+        ],
+        "movementBreaks": [
+          "Simulation muscle faible → fort (transformation)",
+          "Test de force avec objets légers"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Pose du super-héros : montrer nos muscles forts grâce aux protéines",
+        "materials": [
+          "Capes ou foulards pour super-héros",
+          "Miroir pour admirer nos muscles",
+          "Cértificats 'Super muscles'",
+          "Autocollants protéines"
+        ],
+        "visualSupports": "Poses de super-héros modélisées, célébration de la force personnelle",
+        "decisionPoints": [
+          "Si un élève ne veut pas faire la pose → proposer une version assise ou simplement lever un bras en l'air",
+          "Si un élève se compare négativement aux autres → rappeler que chaque super-héros a ses propres forces spéciales",
+          "Si un élève devient trop excité avec les capes → canaliser vers une pose calme mais fière"
+        ],
+        "movementBreaks": [
+          "Poses variées de super-héros (bras levés, mains sur hanches)",
+          "Célébration silencieuse de nos muscles"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur 2-3 sources de protéines familier (viande, œufs)",
+          "Utiliser le toucher de ses propres muscles comme référence concrete",
+          "Simplifier à 'cette nourriture = muscles forts'"
+        ],
+        "pourAvancés": [
+          "Encourager à nommer d'autres sources de protéines (poisson, légumineuses)",
+          "Inviter à expliquer quand on utilise nos muscles dans la journée",
+          "Proposer d'inventer des poses de super-héros originales"
+        ],
+        "pourLangue": [
+          "Associer chaque source de protéine à un geste ou mouvement",
+          "Utiliser beaucoup de démonstrations physiques de force",
+          "Répéter 'muscles' avec gestes constants"
+        ],
+        "pourPEI": [
+          "Adapter les démonstrations de force selon les capacités physiques",
+          "Utiliser des alternatives sensorielles pour 'sentir' la force",
+          "Modifier les poses selon les besoins moteurs individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève reconnaît au moins une source de protéines (viande, œufs)",
+          "L'élève fait le lien entre protéines et muscles forts",
+          "L'élève participe aux jeux de simulation de force",
+          "L'élève montre de la fierté pour ses propres muscles"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension protéines = muscles forts",
+          "Fin de leçon: Observer l'engagement dans les poses de super-héros",
+          "Transition: Noter si l'élève peut identifier une source de protéines"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "L'eau, c'est la vie",
+      "oneGoal": "Comprendre l'importance de boire de l'eau chaque jour",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "eau",
+        "soif",
+        "hydratation"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de tous les groupes alimentaires et question : 'Qu'est-ce qui n'est pas de la nourriture mais est essentiel?'",
+        "materials": [
+          "Bouteilles d'eau transparentes",
+          "Images de plantes avec/sans eau",
+          "Affiche des groupes alimentaires + eau",
+          "Verres pour observer l'eau claire"
+        ],
+        "visualSupports": "Comparaisons plante flétrie/fraîche, eau claire et pure, geste de boire",
+        "decisionPoints": [
+          "Si un élève ne devine pas que c'est l'eau → donner des indices comme 'c'est transparent' ou 'on le boit quand on a soif'",
+          "Si un élève dit qu'il n'aime pas l'eau → expliquer que notre corps est comme une plante qui a besoin d'eau pour être en santé",
+          "Si un élève confond l'eau avec d'autres boissons → montrer la clarté et pureté de l'eau versus autres liquides"
+        ],
+        "movementBreaks": [
+          "Geste de boire (porter verre imagimaire aux lèvres)",
+          "Imitation d'une plante qui grandit avec l'eau"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Expérience avec l'eau et les plantes. Observer comment les plantes flétries deviennent fraîches avec l'eau. Jeu 'Quand ai-je soif?' avec scénarios (après avoir couru, au soleil, après avoir mangé salé). Création d'un 'compteur d'eau' pour suivre combien de verres on boit.",
+        "materials": [
+          "Petites plantes ou fleurs flétries et fraîches",
+          "Cartes scénarios 'soif' (courir, soleil, etc.)",
+          "Compteur d'eau personnalisé (tableau avec autocollants)",
+          "Petits verres pour mesurer"
+        ],
+        "visualSupports": "Transformation plantes avec eau, scénarios visuels de soif, compteur d'eau coloré",
+        "decisionPoints": [
+          "Si un élève ne comprend pas le lien plante-eau-nous → lui faire toucher une plante fraîche vs flétrie et comparer à comment il se sent",
+          "Si un élève dit qu'il n'a jamais soif → utiliser des exemples concrets comme 'et quand tu cours dehors au soleil?'",
+          "Si un élève veut boire trop d'eau pendant l'activité → expliquer qu'on boit quand on a soif, pas trop à la fois"
+        ],
+        "movementBreaks": [
+          "Mime d'avoir très soif puis boire et être satisfait",
+          "Danse de la plante qui pousse avec l'eau"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Chanson de l'eau : 'Glou glou glou, l'eau c'est bon pour nous!'",
+        "materials": [
+          "Paroles de chanson illustrées",
+          "Instruments pour faire des sons d'eau (shakers)",
+          "Compteurs d'eau complétés à emporter",
+          "Autocollants gouttes d'eau"
+        ],
+        "visualSupports": "Gestes pour 'glou glou', mouvements fluides comme l'eau, célébration hydratante",
+        "decisionPoints": [
+          "Si un élève ne veut pas chanter → l'inviter à faire juste les gestes 'glou glou' ou tenir un instrument",
+          "Si un élève boit trop d'eau pendant la chanson → le rassurer que c'est bien d'avoir soif mais qu'on peut boire après la chanson",
+          "Si un élève dit que l'eau n'a pas de goût → expliquer que c'est parfait! L'eau pure n'a pas besoin d'avoir un goût"
+        ],
+        "movementBreaks": [
+          "Chanson avec gestes d'eau coulante",
+          "Célébration de nos corps bien hydratés"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur 'j'ai soif = je bois de l'eau' simplement",
+          "Utiliser des exemples très concrets (chaud = soif)",
+          "Permettre l'observation plutôt que la manipulation"
+        ],
+        "pourAvancés": [
+          "Encourager à identifier d'autres moments où on a besoin d'eau",
+          "Inviter à expliquer comment ils se sentent quand ils ont soif",
+          "Proposer d'aider à arroser de vraies plantes de classe"
+        ],
+        "pourLangue": [
+          "Associer 'eau' au geste universel de boire",
+          "Utiliser beaucoup d'exemples visuels de soif/satisfaction",
+          "Répéter 'glou glou' comme son universel"
+        ],
+        "pourPEI": [
+          "Adapter selon les besoins d'hydratation médicaux spéciaux",
+          "Utiliser des alternatives sensorielles pour 'sentir' l'eau",
+          "Modifier les activités de manipulation selon les capacités"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève reconnaît l'eau comme boisson essentielle",
+          "L'élève comprend le concept de soif et hydratation",
+          "L'élève participe à l'expérience plantes/eau avec intérêt",
+          "L'élève fait des liens entre eau et santé"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension eau = besoin du corps",
+          "Fin de leçon: Observer l'engagement dans la chanson et les gestes",
+          "Transition: Noter si l'élève peut expliquer quand il a soif"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Bouger pour être en santé",
+      "oneGoal": "Comprendre que l'activité physique est importante pour la santé",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "bouger",
+        "exercice",
+        "santé"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'hydratation en buvant un peu d'eau, puis stretching matinal",
+        "materials": [
+          "Bouteilles d'eau pour tous",
+          "Musique douce pour stretching",
+          "Images d'enfants qui bougent et jouent",
+          "Affiche 'Bouger = Santé'"
+        ],
+        "visualSupports": "Démonstrations de mouvements simples, images d'activités physiques amusantes",
+        "decisionPoints": [
+          "Si un élève ne peut pas faire certains mouvements → proposer des alternatives adaptées (mouvements assis, plus petits)",
+          "Si un élève résiste à l'activité physique → commencer par des mouvements très doux et amusants comme des vagues avec les bras",
+          "Si un élève devient trop excité → canaliser l'énergie en lui demandant de modéliser des mouvements calmes"
+        ],
+        "movementBreaks": [
+          "Stretching doux des bras et jambes",
+          "Rotations douces du cou et des épaules"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Exploration de différents types d'exercices. Stations: marche, saut, danse, étirements. Discussion sur comment on se sent avant/après bouger. Création d'une routine personnelle d'exercice avec 3 mouvements préférés. Jeu 'Simon dit bouge' avec actions santé.",
+        "materials": [
+          "Cartes d'exercices illustrés",
+          "Espace dégagé pour bouger sécuritairement",
+          "Musique variée (calme et énergique)",
+          "Papier pour dessiner sa routine"
+        ],
+        "visualSupports": "Démonstrations claires de chaque exercice, expressions faciales avant/après exercice",
+        "decisionPoints": [
+          "Si un élève ne participe pas à une station → l'inviter à observer et encourager puis proposer une version adaptée",
+          "Si un élève dit qu'il est fatigué → expliquer que c'est normal et qu'on peut se reposer, ça fait partie de l'exercice",
+          "Si un élève compare ses capacités à d'autres → rediriger vers 'regardez comme votre corps bouge bien pour vous!'"
+        ],
+        "movementBreaks": [
+          "Rotation entre stations d'exercices",
+          "Pauses hydratation et respiration"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Danse collective avec la nouvelle routine de chacun",
+        "materials": [
+          "Musique entraînante pour danse",
+          "Espace pour danser ensemble",
+          "Routines personnelles dessiinées",
+          "Autocollants 'j'aime bouger'"
+        ],
+        "visualSupports": "Chaque élève modélise sa routine, célébration collective du mouvement",
+        "decisionPoints": [
+          "Si un élève ne veut pas montrer sa routine → respecter son choix et l'inviter à suivre les autres ou applaudir",
+          "Si la danse devient trop chaotique → revenir à une danse guidée simple avec des mouvements synchronisés",
+          "Si un élève se sent étourdi → l'inviter à s'asseoir, boire de l'eau et observer jusqu'à ce qu'il se sente mieux"
+        ],
+        "movementBreaks": [
+          "Danse libre et créative collective",
+          "Retour au calme avec respirations profondes"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des mouvements très simples (lever les bras, marcher sur place)",
+          "Permettre des pauses fréquentes et respecter le rythme individuel",
+          "Célébrer chaque petit mouvement comme un succès"
+        ],
+        "pourAvancés": [
+          "Encourager à créer des mouvements plus complexes ou originaux",
+          "Inviter à aider et encourager les pairs moins confiants",
+          "Proposer des défis supplémentaires comme tenir une pose plus longtemps"
+        ],
+        "pourLangue": [
+          "Utiliser des démonstrations plutôt que des explications verbales",
+          "Associer chaque mouvement à un mot simple et répétitif",
+          "Encourager l'imitation et la participation sans pression linguistique"
+        ],
+        "pourPEI": [
+          "Adapter tous les mouvements selon les capacités physiques individuelles",
+          "Utiliser du matériel adapté (si fauteuil roulant, mouvements des bras)",
+          "Se concentrer sur le plaisir plutôt que sur la performance"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève participe aux activités de mouvement à sa façon",
+          "L'élève montre une attitude positive face à l'exercice",
+          "L'élève comprend que bouger est bon pour la santé",
+          "L'élève crée une routine personnelle simple"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier l'engagement dans les différentes stations",
+          "Fin de leçon: Observer la participation dans la danse collective",
+          "Transition: Noter les mouvements préférés de chaque élève"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Jeux actifs et amusants",
+      "oneGoal": "Découvrir que l'exercice peut être amusant à travers les jeux",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "jeux",
+        "amusant",
+        "actif"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de la routine d'exercice personnelle et échauffement collectif",
+        "materials": [
+          "Cartes des routines personnelles de la leçon précédente",
+          "Musique d'échauffement",
+          "Images de jeux actifs (tag, danse, ballon)",
+          "Sourires et expressions joyeuses"
+        ],
+        "visualSupports": "Images d'enfants qui s'amusent en bougeant, expressions faciales heureuses, mouvement = plaisir",
+        "decisionPoints": [
+          "Si un élève a oublié sa routine → l'aider à se rappeler un mouvement qu'il aime ou en créer un nouveau simple",
+          "Si un élève dit que l'exercice n'est pas amusant → lui demander quels jeux il aime et montrer que c'est de l'exercice déguisé",
+          "Si un élève semble réticent à participer → commencer par l'inviter à observer et applaudir, puis proposer de petits mouvements"
+        ],
+        "movementBreaks": [
+          "Révision des routines personnelles ensemble",
+          "Échauffement collectif doux et joyeux"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Rotation de jeux actifs amusants: Jacques a dit (version mouvement), danse libre, course à obstacles simple, jeu du miroir (copier les mouvements). Chaque élève choisit son jeu préféré et explique pourquoi c'est amusant ET bon pour la santé.",
+        "materials": [
+          "Cônes ou objets pour parcours d'obstacles",
+          "Musique variée pour danser",
+          "Foulards ou rubans pour jeu du miroir",
+          "Tableau 'Jeu favori' pour votes"
+        ],
+        "visualSupports": "Démonstrations de chaque jeu, expressions joyeuses constantes, lien visuel jeu = santé",
+        "decisionPoints": [
+          "Si un élève ne participe qu'à certains jeux → c'est parfait! Encourager ses préférences et célébrer ce qu'il aime",
+          "Si un jeu devient trop compétitif → rediriger vers le plaisir: 'Est-ce que tout le monde s'amuse?' et adapter les règles",
+          "Si un élève se sent exclus → créer immédiatement un rôle spécial pour lui (arbitre, meneur, démonstrateur)"
+        ],
+        "movementBreaks": [
+          "Rotation entre différents jeux actifs",
+          "Pauses rire et célébration entre les jeux"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cercle de relaxation : respirations profondes et partage du jeu préféré",
+        "materials": [
+          "Musique douce pour relaxation",
+          "Couvertures ou tapis pour s'asseoir",
+          "Cartes avec dessins de jeux pour aider à partager",
+          "Autocollants 'jeu favori'"
+        ],
+        "visualSupports": "Position de relaxation modelée, transition douce actif vers calme, cercle inclusif",
+        "decisionPoints": [
+          "Si un élève reste trop activé après les jeux → utiliser des respirations extra-profondes et des mouvements très lents pour l'aider à se calmer",
+          "Si un élève ne veut pas partager son jeu préféré → respecter et proposer de pointer une image ou faire un geste",
+          "Si un élève dit qu'il n'a pas aimé les jeux → valider ses sentiments et demander ce qui l'aiderait à mieux s'amuser la prochaine fois"
+        ],
+        "movementBreaks": [
+          "Respirations profondes collectives",
+          "Mouvements doux de retour au calme"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Adapter les jeux pour qu'ils soient moins physiquement exigeants",
+          "Permettre des rôles d'observateur ou d'encourageur",
+          "Célébrer toute participation, même minime"
+        ],
+        "pourAvancés": [
+          "Inviter à proposer des variantes ou nouvelles règles créatives",
+          "Encourager à aider et inclure tous les pairs dans les jeux",
+          "Proposer des rôles de leadership (meneur de jeu, organisateur)"
+        ],
+        "pourLangue": [
+          "Utiliser des jeux avec des règles simples et universelles",
+          "Permettre l'apprentissage par imitation plutôt que par explication",
+          "Encourager les gestes et expressions plutôt que les mots"
+        ],
+        "pourPEI": [
+          "Adapter chaque jeu selon les capacités physiques individuelles",
+          "Créer des versions alternatives inclusives de chaque jeu",
+          "Se concentrer sur la participation et le plaisir plutôt que sur la performance"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève participe avec enthousiasme à au moins un jeu actif",
+          "L'élève montre des signes de plaisir pendant les jeux (sourires, rires)",
+          "L'élève comprend que les jeux sont une forme d'exercice",
+          "L'élève interagit positivement avec ses pairs pendant les jeux"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier l'engagement et le plaisir dans les différents jeux",
+          "Fin de leçon: Observer la capacité à passer de actif à calme",
+          "Transition: Noter quels jeux chaque élève préfère et pourquoi"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Le sommeil réparateur",
+      "oneGoal": "Comprendre pourquoi dormir suffisamment est important pour grandir",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "sommeil",
+        "dormir",
+        "repos"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision des jeux actifs avec des étirements doux, puis transition vers le calme",
+        "materials": [
+          "Musique douce et relaxante",
+          "Images d'animaux qui dorment",
+          "Petites couvertures ou foulards doux",
+          "Ours en peluche ou poupée pour démonstration"
+        ],
+        "visualSupports": "Transition visuelle actif vers calme, images paisibles d'animaux endormis, gestes doux",
+        "decisionPoints": [
+          "Si un élève reste très énergique après les jeux → utiliser des exercices de respiration extra-longs et des mouvements très lents",
+          "Si un élève résiste à l'idée du calme → expliquer que même les super-héros ont besoin de repos pour recharger leurs pouvoirs",
+          "Si un élève semble fatigué déjà → utiliser cela comme exemple parfait: 'Regarde, ton corps te dit qu'il a besoin de repos!'"
+        ],
+        "movementBreaks": [
+          "Étirements doux et lents comme un chat",
+          "Mouvements de transition vers la détente"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Exploration du sommeil avec histoire interactive. Observer comment les animaux dorment (ours, chat, oiseau). Discussion sur nos routines du coucher. Création d'un 'plan dodo' personnel avec dessins. Jeu 'Avant/après sommeil' - mimer être fatigué puis bien reposé.",
+        "materials": [
+          "Livre d'images sur le sommeil des animaux",
+          "Papier et crayons pour plan dodo",
+          "Images de routines du coucher (bain, pyjama, histoire)",
+          "Horloge simple pour montrer l'heure du dodo"
+        ],
+        "visualSupports": "Images de routines du coucher, expressions faciales fatigué/reposé, séquences visuelles de préparation au sommeil",
+        "decisionPoints": [
+          "Si un élève dit qu'il ne dort jamais → expliquer en souriant que son corps dort même s'il ne s'en souvient pas, comme un secret magique",
+          "Si un élève a peur du noir ou de dormir → parler des objets réconfortants et expliquer que dormir c'est comme recharger une tablette",
+          "Si un élève partage des difficultés de sommeil → valider et suggerer d'en parler avec ses parents, se concentrer sur les bonnes habitudes"
+        ],
+        "movementBreaks": [
+          "Mime fatigué vs bien reposé (contraste doux)",
+          "Mouvements d'animaux qui se préparent à dormir"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Moment de détente avec musique douce et couvertures, visualisation d'un sommeil paisible",
+        "materials": [
+          "Musique très douce ou sons de nature",
+          "Petites couvertures pour chacun",
+          "Plans dodo personnels complétés",
+          "Ours en peluche pour démonstration finale"
+        ],
+        "visualSupports": "Ambiance paisible créée, modélisation de la détente, images mentales guidées",
+        "decisionPoints": [
+          "Si un élève ne peut pas rester calme pendant la détente → lui donner un rôle spécial comme 'gardien du calme' ou permettre de dessiner silencieusement",
+          "Si un élève s'endort vraiment → le laisser se reposer quelques minutes puis réveiller doucement avec la musique",
+          "Si un élève gigote beaucoup → lui proposer de faire des respirations profondes ou de serrer doucement son ourson"
+        ],
+        "movementBreaks": [
+          "Relaxation guidée avec respirations profondes",
+          "Réveil doux et étirements comme au matin"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur 'dormir = grandir et être fort' simplement",
+          "Utiliser des objets réconfortants familiers (poupée, couverture)",
+          "Permettre des niveaux de participation différents dans la relaxation"
+        ],
+        "pourAvancés": [
+          "Encourager à expliquer leur routine de coucher personnelle",
+          "Inviter à aider les pairs pendant la relaxation guidée",
+          "Proposer de créer une histoire de dodo pour la classe"
+        ],
+        "pourLangue": [
+          "Utiliser beaucoup de gestes universels (dormir, se réveiller)",
+          "Permettre l'expression des routines dans leur langue maternelle",
+          "Se concentrer sur l'expérience sensorielle plutôt que verbal"
+        ],
+        "pourPEI": [
+          "Adapter la position de relaxation selon les besoins physiques",
+          "Respecter les sensibilités sensorielles (sons, textures)",
+          "Modifier les attentes de participation à la relaxation guidée"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève comprend que le sommeil est important pour grandir",
+          "L'élève participe à la création de son plan dodo",
+          "L'élève montre une attitude positive face au repos et à la détente",
+          "L'élève peut identifier au moins un élément de sa routine du coucher"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension du rôle du sommeil",
+          "Fin de leçon: Observer la capacité à se détendre et participer à la relaxation",
+          "Transition: Noter les éléments du plan dodo que chaque élève a choisis"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Se laver les mains",
+      "oneGoal": "Apprendre la technique correcte pour se laver les mains",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "laver",
+        "mains",
+        "propre"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision du sommeil réparateur et observation de nos mains",
+        "materials": [
+          "Loupes pour examiner les mains",
+          "Images de mains propres/sales",
+          "Miroir pour observer nos mains",
+          "Peinture lavable pour démonstration de 'microbes'"
+        ],
+        "visualSupports": "Comparaisons visuelles mains propres/sales, gestes de lavage, images de microbes invisibles",
+        "decisionPoints": [
+          "Si un élève a peur des 'microbes' → expliquer que ce sont de petites choses invisibles et que se laver les mains c'est comme un jeu pour les enlever",
+          "Si un élève dit que ses mains sont déjà propres → utiliser la loupe pour chercher ensemble et expliquer que propre signifie très, très propre",
+          "Si un élève n'aime pas qu'on regarde ses mains → respecter et proposer d'observer les mains de la poupée ou marionnette d'abord"
+        ],
+        "movementBreaks": [
+          "Observation et mouvement des doigts",
+          "Gestes de lavage dans l'air (préparation)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Apprentissage des 5 étapes du lavage des mains: eau, savon, frotter (20 secondes), rincer, sécher. Pratique avec vraie eau ou simulation. Chanson du lavage: 'Eau, savon, frotte, rince, sèche - mes mains sont super propres!' Jeu avec poudre scintillante pour voir ce qu'on rate.",
+        "materials": [
+          "Bassin d'eau tiède et savon doux",
+          "Serviettes propres pour chacun",
+          "Poudre scintillante lavable (simulation microbes)",
+          "Affiche des 5 étapes illustrées"
+        ],
+        "visualSupports": "Étapes numérotées et illustrées, démonstration lente et claire, avant/après avec scintillant",
+        "decisionPoints": [
+          "Si un élève ne veut pas utiliser l'eau → commencer par la simulation dans l'air avec tous les gestes, puis proposer juste de tremper un doigt",
+          "Si un élève frotte trop rapidement → utiliser une chanson ou compter lentement pour rallentir le rythme à 20 secondes",
+          "Si un élève est fasciné par la poudre scintillante → utiliser cet intérêt pour expliquer comment elle représente les microbes invisibles"
+        ],
+        "movementBreaks": [
+          "Pratique des gestes de lavage avec chanson",
+          "Jeu 'trouve la poudre oubliée' (vérification amusante)"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Chanson finale du lavage des mains avec tous les gestes",
+        "materials": [
+          "Paroles illustrées de la chanson affichées",
+          "Mains super propres à admirer",
+          "Certificats 'Expert lavage de mains'",
+          "Autocollants mains propres"
+        ],
+        "visualSupports": "Gestes synchronisés de groupe, célébration des mains propres, routine mémorisée",
+        "decisionPoints": [
+          "Si un élève oublie une étape dans la chanson → l'encourager gentiment et demander aux amis de l'aider sans jugement",
+          "Si un élève veut continuer à se laver les mains → expliquer que c'est merveilleux mais qu'il faut aussi laisser nos mains se reposer",
+          "Si un élève dit que c'est difficile → rassurer que ça devient plus facile avec la pratique et que nous sommes tous là pour s'entraider"
+        ],
+        "movementBreaks": [
+          "Chanson complète avec tous les gestes maîtrisés",
+          "Célébration finale: montrer nos mains super propres!"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Simplifier à 3 étapes essentielles: eau, savon, rincer",
+          "Utiliser plus de support visuel et de répétition",
+          "Permettre l'aide d'un pair ou adulte pour les étapes difficiles"
+        ],
+        "pourAvancés": [
+          "Encourager à expliquer pourquoi chaque étape est importante",
+          "Inviter à aider les pairs à apprendre la technique",
+          "Proposer d'être le 'moniteur de lavage' et vérifier les mains des amis"
+        ],
+        "pourLangue": [
+          "Utiliser beaucoup de démonstrations plutôt que d'explications",
+          "Répéter les mots clés avec gestes constants",
+          "Encourager l'imitation et la pratique répétée"
+        ],
+        "pourPEI": [
+          "Adapter selon les capacités motrices (aides, outils spéciaux)",
+          "Respecter les sensibilités sensorielles (température, texture)",
+          "Modifier les attentes selon les objectifs individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève suit les étapes de base du lavage des mains",
+          "L'élève comprend l'importance de se laver les mains",
+          "L'élève participe à la pratique avec eau et savon",
+          "L'élève peut répéter au moins une partie de la chanson/routine"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la technique de base (eau-savon-rincer)",
+          "Fin de leçon: Observer la maîtrise de la chanson et des gestes",
+          "Transition: Noter quels élèves peuvent expliquer quand se laver les mains"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Hygiène personnelle quotidienne",
+      "oneGoal": "Établir une routine d'hygiène personnelle quotidienne",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "hygiène",
+        "routine",
+        "quotidien"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision du lavage des mains avec la chanson et introduction de l'hygiène complète",
+        "materials": [
+          "Matériels d'hygiène (brosse à dents, brosse à cheveux, savon)",
+          "Poupée ou marionnette pour démonstration",
+          "Images séquentielles de routine quotidienne",
+          "Miroir pour observer notre propreté"
+        ],
+        "visualSupports": "Séquence d'images routine quotidienne, objets concrets d'hygiène, gestes familiers",
+        "decisionPoints": [
+          "Si un élève ne connaît pas certains outils d'hygiène → les présenter un par un avec leur utilisation et laisser manipuler s'il veut",
+          "Si un élève dit qu'il fait déjà tout → célébrer ses bonnes habitudes et l'inviter à aider les amis",
+          "Si un élève semble gêné de parler d'hygiène → utiliser la marionnette pour démontrer et normaliser toutes les conversations"
+        ],
+        "movementBreaks": [
+          "Révision chanson lavage des mains",
+          "Mimes des gestes d'hygiène dans l'air"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Création d'une routine quotidienne personnalisée. Explorer matin (se laver le visage, brosser les dents) et soir (bain/douche, pyjama). Jeu de mise en ordre des étapes avec images. Pratique avec marionnette: 'Aidons Bébé à devenir propre!' Dessin de sa routine personnelle.",
+        "materials": [
+          "Cartes d'étapes d'hygiène à placer en ordre",
+          "Papier et crayons pour dessiner sa routine",
+          "Bébé poupée avec accessoires d'hygiène",
+          "Horloge pour montrer matin/soir"
+        ],
+        "visualSupports": "Séquences chronologiques claires, distinction matin/soir par couleurs, démonstrations avec poupée",
+        "decisionPoints": [
+          "Si un élève mélange l'ordre des étapes → l'aider gentiment en demandant 'qu'est-ce qu'on fait quand on se lève le matin?' pour guider sa réflexion",
+          "Si un élève ne veut pas dessiner sa routine → proposer de coller des images toutes faites ou de raconter verbalement",
+          "Si un élève partage des détails personnels inappropriés → rediriger avec douceur vers 'c'est un secret de famille' et recentrer sur les bases"
+        ],
+        "movementBreaks": [
+          "Simulation de routine matin (s'étirer, se laver, s'habiller)",
+          "Jeu d'étapes avec mouvements corporels"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Partage des routines créées et engagement à les suivre",
+        "materials": [
+          "Routines personnelles complétées",
+          "Autocollants 'hygiène champion'",
+          "Affichage mural pour exposer les créations",
+          "Petites étoiles pour encouragement"
+        ],
+        "visualSupports": "Galerie des routines créées, célébration visuelle, engagement collectif positif",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager sa routine → respecter totalement et proposer de l'afficher sans présentation orale",
+          "Si un élève dit qu'il ne pourra pas suivre sa routine → l'encourager en disant qu'on peut essayer une étape à la fois, pas de pression",
+          "Si un élève critique la routine d'un autre → rediriger vers 'chaque famille a ses façons spéciales et c'est parfait!'"
+        ],
+        "movementBreaks": [
+          "Tour de galerie pour admirer les créations",
+          "Geste d'engagement collectif (lever la main ensemble)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur 2-3 habitudes de base seulement (se laver, brosser les dents)",
+          "Utiliser des images plutôt que des mots pour créer la routine",
+          "Permettre l'aide d'un pair pour organiser les étapes"
+        ],
+        "pourAvancés": [
+          "Encourager à inclure des détails spécifiques et expliquer pourquoi chaque étape est importante",
+          "Inviter à créer une routine pour aider un plus jeune enfant",
+          "Proposer d'inclure des éléments de bien-être (relaxation, gratitude)"
+        ],
+        "pourLangue": [
+          "Utiliser beaucoup d'images et minimiser les mots écrits",
+          "Permettre l'explication de leur routine dans leur langue maternelle",
+          "Se concentrer sur les gestes et actions plutôt que le vocabulaire"
+        ],
+        "pourPEI": [
+          "Adapter selon les besoins d'indépendance et capacités",
+          "Inclure les aides ou adaptations nécessaires dans la routine",
+          "Respecter les sensibilités et préférences individuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève comprend le concept de routine répétée chaque jour",
+          "L'élève peut identifier au moins 2 éléments de sa routine d'hygiène",
+          "L'élève participe à la création de sa routine personnelle",
+          "L'élève montre une attitude positive face aux soins personnels"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension routine matin vs soir",
+          "Fin de leçon: Observer l'engagement dans la création de sa routine personnelle",
+          "Transition: Noter quels éléments chaque élève considère comme les plus importants"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Ma collation santé",
+      "oneGoal": "Planifier et préparer une collation nutritive simple",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "collation",
+        "préparer",
+        "nutritif"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'hygiène en se lavant les mains avant de manipuler de la nourriture",
+        "materials": [
+          "Savon et serviettes pour lavage des mains",
+          "Tabliers ou bavoirs pour protection",
+          "Images de collations santé vs moins santé",
+          "Panier à collations pour motivation"
+        ],
+        "visualSupports": "Comparaisons visuelles collations nutritives, processus de préparation illustré, règles de propreté",
+        "decisionPoints": [
+          "Si un élève oublie de se laver les mains → utiliser cela comme rappel amical de notre apprentissage précédent et faire ensemble",
+          "Si un élève dit qu'il n'aime aucune collation santé → commencer par explorer ce qu'il aime déjà et trouver des versions plus nutritives",
+          "Si un élève a des allergies alimentaires → adapter immédiatement et utiliser ses alternatives comme exemples positifs pour la classe"
+        ],
+        "movementBreaks": [
+          "Lavage des mains avec chanson apprise",
+          "Préparation corporelle pour cuisiner (mettre tablier, retrousser manches)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Atelier de création de collations santé. Choisir parmi: brochettes de fruits, légumes avec trempette, mélange montagnard maison. Planifier sa collation avec dessin puis préparer. Discussion: 'Qu'est-ce qui rend ma collation nutritive?' Intégrer tous les groupes alimentaires appris.",
+        "materials": [
+          "Fruits coupés sécuritairement (raisins, pommes, bananes)",
+          "Légumes prêt à manger (carottes, concombres)",
+          "Trempette santé (houmous, yogourt)",
+          "Brochettes en plastique sécuritaires"
+        ],
+        "visualSupports": "Exemples de collations complétées, étapes de préparation illustrées, groupes alimentaires rappelés",
+        "decisionPoints": [
+          "Si un élève a peur d'utiliser les brochettes → proposer de faire une assiette mélangée ou l'aider avec supervision étroite",
+          "Si un élève veut seulement des fruits sucrés → célébrer ce choix et encourager à essayer 'juste un petit morceau' d'autre chose",
+          "Si un élève fait des dégâts en préparant → normaliser en disant 'c'est normal quand on apprend!' et nettoyer ensemble joyeusement"
+        ],
+        "movementBreaks": [
+          "Mouvements de préparation culinaire (mélanger, assembler)",
+          "Pause dégustation avec appréciation sensorielle"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Partage des créations et discussion sur ce qui fait une bonne collation",
+        "materials": [
+          "Collations complétées de chacun",
+          "Serviettes pour dégustation propre",
+          "Tableau 'Nos collations nutritives'",
+          "Autocollants 'chef santé'"
+        ],
+        "visualSupports": "Exposition des créations, partage en cercle, célébration des choix nutritifs",
+        "decisionPoints": [
+          "Si un élève ne veut pas goûter sa création → c'est parfait! Célébrer qu'il l'a préparée et proposer de l'emporter à la maison",
+          "Si un élève critique la collation d'un autre → rediriger vers 'regardons tous ces beaux choix nutritifs différents!'",
+          "Si un élève veut manger toute sa collation maintenant → expliquer gentiment qu'on peut en garder pour plus tard et savourer petit à petit"
+        ],
+        "movementBreaks": [
+          "Dégustation appréciative ensemble",
+          "Nettoyage collectif de l'espace (mouvement responsable)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Limiter les choix à 2-3 options simples et familierès",
+          "Offrir plus d'aide physique pour la préparation",
+          "Célébrer chaque petit choix nutritif sans pression"
+        ],
+        "pourAvancés": [
+          "Encourager à créer des combinaisons originales de groupes alimentaires",
+          "Inviter à expliquer leurs choix nutritifs aux pairs",
+          "Proposer d'aider les amis avec la préparation"
+        ],
+        "pourLangue": [
+          "Utiliser beaucoup de démonstrations et peu d'explications verbales",
+          "Permettre l'imitation et l'exploration libre des ingrédients",
+          "Associer chaque aliment à son groupe avec gestes/couleurs"
+        ],
+        "pourPEI": [
+          "Adapter les outils de préparation selon les capacités motrices",
+          "Respecter les restrictions alimentaires et sensibilités",
+          "Ajuster les attentes de préparation selon les objectifs individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève choisit au moins un aliment de différents groupes alimentaires",
+          "L'élève participe à la préparation de sa collation avec plaisir",
+          "L'élève peut expliquer pourquoi sa collation est nutritive (même simplement)",
+          "L'élève respecte les règles d'hygiène pendant la préparation"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier les choix nutritifs dans la planification",
+          "Fin de leçon: Observer l'attitude face à sa création et au partage",
+          "Transition: Noter la compréhension de 'nutritif' vs juste 'délicieux'"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Chef en herbe - salade de fruits",
+      "oneGoal": "Créer une salade de fruits colorée en suivant une recette simple",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "chef",
+        "recette",
+        "mélanger"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision des collations santé et transformation en chefs avec tabliers",
+        "materials": [
+          "Tabliers ou bavoirs de chef pour chacun",
+          "Toques de chef en papier (optionnelles)",
+          "Recette illustrée de salade de fruits",
+          "Images de vrais chefs au travail"
+        ],
+        "visualSupports": "Transformation visuelle en chefs, recette avec images claires, ambiance culinaire créée",
+        "decisionPoints": [
+          "Si un élève ne veut pas porter de tablier → respecter et proposer juste de retrousser les manches ou utiliser une serviette",
+          "Si un élève dit qu'il ne sait pas cuisiner → l'encourager en disant que tous les grands chefs ont commencé comme lui, en apprenant",
+          "Si un élève s'inquiète de la recette → rassurer qu'on va la faire ensemble, étape par étape, comme une équipe"
+        ],
+        "movementBreaks": [
+          "Transformation en chefs (mettre tablier, ajuster toque)",
+          "Préparation des mains et posture de chef"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Suivre la recette étape par étape: laver les fruits, les couper sécuritairement (avec aide), les mélanger délicatement. Chaque élève crée sa portion personnelle. Apprendre le vocabulaire culinaire: mélanger, ajouter, goûter. Discussion sur les couleurs et saveurs.",
+        "materials": [
+          "Variété de fruits lavés et préparés sécuritairement",
+          "Bols individuels pour chaque chef",
+          "Cuillères en plastique pour mélanger",
+          "Recette affichée avec étapes numérotées"
+        ],
+        "visualSupports": "Recette avec étapes illustrées, démonstration de chaque technique, résultats intermédiaires montrés",
+        "decisionPoints": [
+          "Si un élève a peur de manipuler certains fruits → commencer avec ses fruits préférés et encourager l'exploration graduelle sans pression",
+          "Si un élève mélange trop vigoureusement → montrer la technique douce en expliquant 'les fruits sont délicats comme des bébés'",
+          "Si un élève goute constamment pendant la préparation → canaliser positivement: 'un bon chef goûte, mais garde de la place pour le résultat final!'"
+        ],
+        "movementBreaks": [
+          "Mouvements de mélange doux et techniques culinaires",
+          "Pauses dégustation et appréciation sensorielle"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Dégustation communautaire et célébration des chefs en herbe",
+        "materials": [
+          "Salades de fruits complétées",
+          "Serviettes et cuillères propres",
+          "Diplômes 'Chef en herbe' à remettre",
+          "Appareil photo pour immortaliser les créations"
+        ],
+        "visualSupports": "Cérémonie de remise de diplômes, exposition des créations, ambiance fêtue",
+        "decisionPoints": [
+          "Si un élève n'aime pas sa création → célébrer qu'il a essayé et appris, proposer d'échanger avec un ami volontaire",
+          "Si un élève est trop fier et se vante → canaliser vers 'nous sommes TOUS des chefs formidables aujourd'hui!' pour inclure tout le monde",
+          "Si un élève fait des dégâts en mangeant → normaliser joyeusement: 'c'est le signe d'un vrai chef qui savoure sa création!'"
+        ],
+        "movementBreaks": [
+          "Dégustation appréciative en groupe",
+          "Célébration finale avec applaudissements de chefs"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Simplifier la recette à 2-3 étapes essentielles seulement",
+          "Offrir plus d'aide physique pour la manipulation",
+          "Permettre l'imitation plutôt que l'indépendance complète"
+        ],
+        "pourAvancés": [
+          "Encourager à estimer les quantités et ajuster les saveurs",
+          "Inviter à expliquer les étapes aux pairs ou proposer des améliorations",
+          "Proposer de présenter leur création comme de vrais chefs"
+        ],
+        "pourLangue": [
+          "Se concentrer sur l'action et l'imitation plutôt que les instructions verbales",
+          "Utiliser beaucoup de gestes et de démonstrations",
+          "Permettre l'expression de satisfaction dans leur langue maternelle"
+        ],
+        "pourPEI": [
+          "Adapter les outils et techniques selon les capacités motrices",
+          "Respecter les allergies et restrictions alimentaires",
+          "Ajuster les attentes de présentation selon les objectifs individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève suit les étapes principales de la recette avec aide",
+          "L'élève manipule les ingrédients avec soin et plaisir",
+          "L'élève utilise le vocabulaire culinaire approprié (mélanger, ajouter)",
+          "L'élève montre de la fierté pour sa création culinaire"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension des étapes de base",
+          "Fin de leçon: Observer l'attitude face à sa création et au partage",
+          "Transition: Noter l'acquisition du vocabulaire culinaire de base"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Petit restaurant santé",
+      "oneGoal": "Jouer au restaurant en créant un menu avec des choix santé",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "restaurant",
+        "menu",
+        "servir"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'expérience de chef et transformation de la classe en restaurant",
+        "materials": [
+          "Tabliers de serveur/serveuse",
+          "Menus vierges à compléter",
+          "Images de plats santé pour inspiration",
+          "Décorations de restaurant (nappe, fleurs)"
+        ],
+        "visualSupports": "Transformation de l'espace en restaurant, menus illustrés, ambiance restauration créée",
+        "decisionPoints": [
+          "Si un élève ne comprend pas le concept de restaurant → commencer par demander s'il est déjà allé au restaurant et rappeler cette expérience",
+          "Si un élève ne veut pas jouer un rôle → respecter et proposer d'être le client spécial ou l'observateur expert",
+          "Si un élève est trop excité par la nouveauté → canaliser vers les rôles spécifiques et rappeler les règles de notre restaurant classe"
+        ],
+        "movementBreaks": [
+          "Transformation de l'espace (disposer tables et décorations)",
+          "Essayage des accessoires de restaurant"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Jeu de rôles restaurant avec création de menus santé. Chaque élève crée son menu en choisissant des plats de tous les groupes alimentaires. Pratiquer être serveur/client: 'Bonjour, que puis-je vous servir?' Rotation des rôles et commandes santé.",
+        "materials": [
+          "Carnets de commande pour serveurs",
+          "Crayons pour écrire/dessiner les commandes",
+          "Plateau de service (en plastique)",
+          "Fausse nourriture ou images d'aliments"
+        ],
+        "visualSupports": "Démonstration des rôles serveur/client, menus créés affichés, scénarios de restaurant modelés",
+        "decisionPoints": [
+          "Si un élève met seulement des sucreries sur son menu → guider avec 'notre restaurant spécial sert de la nourriture qui rend fort, quels groupes alimentaires pouvez-vous ajouter?'",
+          "Si un élève est trop timide pour être serveur → commencer par lui faire pratiquer avec la marionnette ou permettre d'être client d'abord",
+          "Si le jeu devient trop bruyant → introduire la règle du 'restaurant chic' où on parle doucement et poliment"
+        ],
+        "movementBreaks": [
+          "Déplacements de serveur (porter plateau, prendre commandes)",
+          "Rotation entre tables et rôles différents"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cérémonie de remise de prix pour les menus les plus créatifs et nutritifs",
+        "materials": [
+          "Menus complétés de chaque élève",
+          "Prix spéciaux (autocollants, certificats)",
+          "Tableau d'affichage pour exposer les menus",
+          "Appareils photo pour immortaliser"
+        ],
+        "visualSupports": "Cérémonie festive avec remise officielle, exposition des créations, célébration collective",
+        "decisionPoints": [
+          "Si un élève est déçu de ne pas gagner de prix → créer des catégories spéciales pour que chacun reçoive une reconnaissance (plus coloré, plus original, etc.)",
+          "Si un élève critique le menu d'un autre → rediriger vers 'regardons toutes ces idées formidables pour manger sainement!'",
+          "Si un élève veut continuer à jouer au restaurant → proposer que ce soit une activité possible pendant les temps libres avec les matériaux disponibles"
+        ],
+        "movementBreaks": [
+          "Défilé des créateurs de menu (présenter fier)",
+          "Applaudissements et célébration collective"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Simplifier le menu à 3-4 choix santé avec images",
+          "Permettre d'être observateur ou d'aider sans pression de performance",
+          "Utiliser des phrases simples répétitives pour le jeu de rôle"
+        ],
+        "pourAvancés": [
+          "Encourager à créer des descriptions détaillées de leurs plats santé",
+          "Inviter à calculer des 'prix' symboliques ou expliquer pourquoi leurs choix sont nutritifs",
+          "Proposer d'être maître d'hôtel ou gérant du restaurant"
+        ],
+        "pourLangue": [
+          "Se concentrer sur les gestes et actions plutôt que sur le dialogue complexe",
+          "Utiliser des supports visuels et permettre le pointage pour communiquer",
+          "Encourager l'imitation des interactions sociales de base"
+        ],
+        "pourPEI": [
+          "Adapter les rôles selon les capacités sociales et communicatives",
+          "Utiliser des supports technologiques si approprié (tablettes pour menus)",
+          "Respecter les préférences sensorielles dans l'aménagement de l'espace"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève crée un menu incluant différents groupes alimentaires",
+          "L'élève participe au jeu de rôle restaurant avec plaisir",
+          "L'élève utilise le vocabulaire du restaurant (menu, servir, commander)",
+          "L'élève fait des choix alimentaires réfléchis pour son menu"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la diversité nutritionnelle des menus créés",
+          "Fin de leçon: Observer l'engagement dans les interactions sociales du jeu",
+          "Transition: Noter la compréhension du lien entre choix et santé"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Olympiques de la santé",
+      "oneGoal": "Participer à des activités physiques variées en équipe",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "équipe",
+        "olympiques",
+        "participer"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Cérémonie d'ouverture des Olympiques de la santé avec hymne et formation d'équipes",
+        "materials": [
+          "Foulards ou brassards de couleur pour les équipes",
+          "Drapeau des Olympiques de la santé",
+          "Musique olympique ou entraînante",
+          "Médailles en carton pour tous"
+        ],
+        "visualSupports": "Cérémonie festive avec décorations, équipes colorées identifiées, ambiance sportive créée",
+        "decisionPoints": [
+          "Si un élève ne veut pas faire partie d'une équipe → respecter et proposer d'être l'arbitre spécial ou l'encourageur officiel",
+          "Si un élève est inquiet de la compétition → expliquer que nos olympiques célèbrent la participation et le plaisir, pas seulement gagner",
+          "Si un élève domine la formation d'équipes → guider vers l'inclusion: 'un bon capitaine s'assure que tout le monde est inclus et heureux'"
+        ],
+        "movementBreaks": [
+          "Marée olympique avec musique (défilé des équipes)",
+          "Chant ou cri d'équipe avec mouvements"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Rotation d'épreuves olympiques adaptées: course en marchant, saut sur place, lancer de sac de sable doux, équilibre sur ligne, danse synchronisée. Chaque équipe participe ensemble avec encouragement mutuel. Focus sur effort et amélioration personnelle.",
+        "materials": [
+          "Cônes pour marquer les parcours",
+          "Sacs de sable doux ou balles en mousse",
+          "Corde ou ruban pour lignes d'équilibre",
+          "Chrono-mètre visible (optionnel)"
+        ],
+        "visualSupports": "Épreuves démontrées clairement, encouragement visuel constant, célébration de chaque effort",
+        "decisionPoints": [
+          "Si un élève ne peut pas faire une épreuve → créer immédiatement une version adaptée ou un rôle spécial (chronométreur, encourageur)",
+          "Si un élève devient frustré de ses performances → rediriger vers ses efforts et célébrer 'regardez comme vous essayez fort!'",
+          "Si une équipe devient trop compétitive → rappeler que gagner signifie que tout le monde s'amuse et fait de son mieux"
+        ],
+        "movementBreaks": [
+          "Rotation active entre différentes épreuves sportives",
+          "Pauses encouragement et hydratation entre épreuves"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cérémonie de clôture avec réflexion sur le plaisir de bouger ensemble",
+        "materials": [
+          "Médailles pour tous les participants",
+          "Podium improvisé (boîtes ou coussins)",
+          "Musique de célébration",
+          "Certificats de participation"
+        ],
+        "visualSupports": "Cérémonie officielle avec remise de médailles, tous sur podium ensemble, fierté collective",
+        "decisionPoints": [
+          "Si un élève boude parce qu'il n'a pas 'gagné' → expliquer que tout le monde a gagné en participant et s'amusant, c'est ça la vraie victoire",
+          "Si un élève ne veut pas monter sur le podium → respecter et proposer d'être celui qui remet les médailles aux autres",
+          "Si un élève veut continuer les olympiques → proposer que ce soit une activité possible à la récréation avec matériaux simples"
+        ],
+        "movementBreaks": [
+          "Montée sur podium et célébration collective",
+          "Danse de victoire tous ensemble"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Adapter toutes les épreuves pour être réalisables par tous",
+          "Créer des rôles de soutien valorisants (encourageur officiel, juge)",
+          "Célébrer la participation plutôt que la performance"
+        ],
+        "pourAvancés": [
+          "Proposer d'être mentors ou aidants pour les pairs",
+          "Inviter à créer de nouvelles épreuves ou variantes",
+          "Encourager le leadership positif et l'inclusion"
+        ],
+        "pourLangue": [
+          "Se concentrer sur l'action et l'imitation plutôt que les instructions complexes",
+          "Utiliser beaucoup de démonstrations visuelles",
+          "Encourager la participation non-verbale et les gestes"
+        ],
+        "pourPEI": [
+          "Adapter complètement chaque épreuve selon les capacités individuelles",
+          "Utiliser matériel adapté et support personnalisé",
+          "Se concentrer sur le plaisir et l'inclusion sociale"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève participe aux activités d'équipe à sa façon",
+          "L'élève montre de l'entraide et de l'encouragement envers ses équipiers",
+          "L'élève comprend que l'effort et la participation sont valorisés",
+          "L'élève montre du plaisir dans les activités physiques de groupe"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier l'engagement dans l'esprit d'équipe",
+          "Fin de leçon: Observer l'attitude face aux résultats et la célébration collective",
+          "Transition: Noter les comportements d'entraide et d'encouragement"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Détectives de la nutrition",
+      "oneGoal": "Analyser des repas et identifier les groupes alimentaires présents",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "détective",
+        "analyser",
+        "identifier"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Transformation en détectives avec badges et mission spéciale d'enquête nutritionnelle",
+        "materials": [
+          "Badges de détective à porter",
+          "Loupes pour 'enquêter'",
+          "Carnet d'enquête pour chaque détective",
+          "Affiche 'Mission: Trouver les groupes alimentaires!'"
+        ],
+        "visualSupports": "Transformation en détectives professionnels, mission claire affichée, ambiance d'enquête créée",
+        "decisionPoints": [
+          "Si un élève ne comprend pas le concept de détective → expliquer comme quelqu'un qui cherche et trouve des indices, comme dans les livres ou films",
+          "Si un élève ne veut pas porter le badge → respecter et proposer de tenir la loupe ou d'être l'expert consultant",
+          "Si un élève s'inquiète de la mission → rassurer que c'est une enquête amusante sur la nourriture, pas de vrais mystères difficiles"
+        ],
+        "movementBreaks": [
+          "Transformation en détectives (mettre badge, prendre loupe)",
+          "Marche mystérieuse de détectives autour de la classe"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Enquête sur des repas mystères. Analyser des images de repas complets et identifier tous les groupes alimentaires présents. Utiliser la loupe et le carnet pour noter les découvertes. Jeu 'Que manque-t-il?' - identifier le groupe alimentaire manquant dans un repas.",
+        "materials": [
+          "Images de repas complets variés",
+          "Images de repas incomplets (groupes manquants)",
+          "Tableau de groupes alimentaires comme référence",
+          "Autocollants pour marquer les découvertes"
+        ],
+        "visualSupports": "Images claires de repas analysés, tableau référence des groupes, démonstration de la méthode d'enquête",
+        "decisionPoints": [
+          "Si un élève ne reconnaît pas un groupe alimentaire → l'aider en pointant et demandant 'de quelle couleur/forme est cet aliment?' pour guider",
+          "Si un élève trouve des groupes qui n'y sont pas → célébrer son effort d'observation et guider doucement vers les vrais groupes présents",
+          "Si un élève se décourage face à un repas complexe → simplifier en cachant une partie et se concentrant sur 2-3 aliments visibles"
+        ],
+        "movementBreaks": [
+          "Déplacements d'enquête entre différentes 'scènes de crime' (images de repas)",
+          "Gestes d'observation et de prise de notes"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cérémonie de remise de diplômes de détectives experts en nutrition",
+        "materials": [
+          "Diplômes 'Détective Expert en Nutrition'",
+          "Carnets d'enquête complétés",
+          "Badge spécial 'Expert' à ajouter",
+          "Appareil photo pour cérémonie officielle"
+        ],
+        "visualSupports": "Cérémonie officielle avec remise solennelle, exposition des carnets d'enquête, célébration de l'expertise",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'est pas un bon détective → montrer toutes ses découvertes dans son carnet et célébrer chaque effort d'observation",
+          "Si un élève veut continuer l'enquête → proposer d'être détective à la maison en analysant ses propres repas avec sa famille",
+          "Si un élève ne veut pas recevoir de diplôme devant les autres → respecter et le lui donner discrètement ou proposer de le garder sur son bureau"
+        ],
+        "movementBreaks": [
+          "March processionnelle pour recevoir diplôme",
+          "Salut final de détectives experts (tous ensemble)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des repas simples avec peu d'aliments à identifier",
+          "Permettre le pointage et la collaboration plutôt que l'analyse indépendante",
+          "Célébrer chaque groupe alimentaire identifié, même avec aide"
+        ],
+        "pourAvancés": [
+          "Proposer des repas complexes avec mélanges et sauces à analyser",
+          "Inviter à créer leurs propres repas mystères pour les pairs",
+          "Encourager à expliquer leurs déductions comme de vrais détectives"
+        ],
+        "pourLangue": [
+          "Se concentrer sur la reconnaissance visuelle plutôt que sur les noms des groupes",
+          "Utiliser couleurs et formes pour identifier plutôt que vocabulaire complexe",
+          "Permettre le pointage et les gestes pour montrer les découvertes"
+        ],
+        "pourPEI": [
+          "Adapter les matériaux d'observation selon les capacités visuelles",
+          "Utiliser des supports technologiques si approprié (tablettes, loupes adaptées)",
+          "Respecter les sensibilités et permettre des pauses selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève identifie au moins 2-3 groupes alimentaires dans un repas simple",
+          "L'élève utilise la méthode d'observation systématique avec outils",
+          "L'élève montre de l'intérêt pour l'analyse nutritionnelle des repas",
+          "L'élève participe activement au jeu d'enquête avec engagement"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la capacité à utiliser la méthode d'analyse",
+          "Fin de leçon: Observer l'expertise développée dans l'identification des groupes",
+          "Transition: Noter la compréhension du concept d'équilibre alimentaire"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Jardinage en classe",
+      "oneGoal": "Planter des graines et comprendre d'où viennent nos aliments",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "jardinage",
+        "graines",
+        "pousser"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Révision de l'enquête nutritionnelle et introduction au jardinage comme source d'aliments",
+        "materials": [
+          "Différents types de graines (haricots, radis, laitue)",
+          "Images du cycle de croissance plante",
+          "Petits pots de jardinage",
+          "Tabliers de jardinage ou vîatements de protection"
+        ],
+        "visualSupports": "Séquence visuelle graine → plante → aliment, vraies graines à observer, jardins existants en photo",
+        "decisionPoints": [
+          "Si un élève n'a jamais vu de vraies graines → commencer par l'observation tactile et expliquer que c'est un 'bébé plante'",
+          "Si un élève a peur de toucher la terre → respecter et proposer d'utiliser une cuillère ou de regarder d'abord les autres",
+          "Si un élève dit que les plantes ne donnent pas à manger → utiliser des exemples familiers comme pommes qui poussent sur arbres"
+        ],
+        "movementBreaks": [
+          "Observation et manipulation douce des graines",
+          "Préparation corporelle pour jardiner (retrousser manches, tablier)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Plantation de graines dans petits pots personnels. Apprendre les besoins des plantes: terre, eau, soleil. Chaque élève plante sa graine avec soin, arrose délicatement et étiquette son pot. Discussion sur la patience et les soins nécessaires.",
+        "materials": [
+          "Terre de qualité dans bacs",
+          "Petits arrosoirs ou vaporisateurs",
+          "Étiquettes pour identifier les pots",
+          "Cuillères pour plantation délicate"
+        ],
+        "visualSupports": "Démonstration de plantation étape par étape, besoins des plantes illustrés, soins tendres modelés",
+        "decisionPoints": [
+          "Si un élève met trop de graines ou d'eau → guider doucement: 'les plantes aiment juste ce qu'il faut, comme nous avec la nourriture'",
+          "Si un élève s'inquiète que sa graine ne poussera pas → rassurer que toutes les graines sont magiques et ont leur propre temps pour grandir",
+          "Si un élève fait des dégâts avec la terre → normaliser joyeusement: 'les vrais jardiniers ont toujours un peu de terre sur eux!'"
+        ],
+        "movementBreaks": [
+          "Mouvements délicats de plantation et d'arrosage",
+          "Mime de la croissance d'une plante (accroupi → debout)"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cercle de prédictions : imaginer comment les plantes vont grandir et ce qu'on va pouvoir manger",
+        "materials": [
+          "Pots plantés de chaque élève",
+          "Tableau de prédictions à compléter",
+          "Calendrier de soins des plantes",
+          "Autocollants 'petit jardinier'"
+        ],
+        "visualSupports": "Exposition des pots plantés, prédictions visuelles dessinées, futur jardin imaginaire",
+        "decisionPoints": [
+          "Si un élève prédit des choses impossibles → célébrer son imagination et guider doucement vers ce que sa graine peut vraiment devenir",
+          "Si un élève ne veut pas faire de prédictions → respecter et proposer juste d'observer et de dessiner sa graine",
+          "Si un élève s'inquiète de l'entretien → expliquer que nous prendrons soin des plantes ensemble, comme une famille de jardiniers"
+        ],
+        "movementBreaks": [
+          "Tour de jardinage pour admirer tous les pots plantés",
+          "Geste de protection et d'amour pour nos futures plantes"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Simplifier à l'observation et à un geste simple de plantation",
+          "Offrir plus d'aide physique pour manipuler terre et graines",
+          "Se concentrer sur l'expérience sensorielle plutôt que sur les concepts"
+        ],
+        "pourAvancés": [
+          "Encourager à expliquer le processus de croissance aux pairs",
+          "Inviter à prédire les besoins spécifiques de leur type de graine",
+          "Proposer d'être responsable de l'entretien de plusieurs plants"
+        ],
+        "pourLangue": [
+          "Se concentrer sur l'action et l'expérience tactile",
+          "Utiliser beaucoup de gestes et d'imitation pour enseigner",
+          "Associer vocabulaire nouveau aux actions concrètes de plantation"
+        ],
+        "pourPEI": [
+          "Adapter les outils de jardinage selon les capacités motrices",
+          "Respecter les sensibilités tactiles (gants si nécessaire)",
+          "Modifier les attentes selon les objectifs sensoriels individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève comprend que les plantes ont besoin de soins pour grandir",
+          "L'élève participe à la plantation avec soin et attention",
+          "L'élève fait le lien entre plantes et aliments dans nos assiettes",
+          "L'élève montre de la responsabilité et tendresse envers sa plante"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la compréhension des besoins des plantes",
+          "Fin de leçon: Observer l'engagement dans les prédictions et soins futurs",
+          "Transition: Noter la connexion établie entre jardinage et alimentation"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Célébration de la vie saine",
+      "oneGoal": "Célébrer tout ce qu'on a appris sur la vie saine et partager nos créations",
+      "duration": "45 minutes",
+      "keyVocabulary": [
+        "célébration",
+        "partager",
+        "fier"
+      ],
+      "opening": {
+        "duration": "8 minutes",
+        "activity": "Préparation festive de la classe et récapitulatif de tous les apprentissages de l'unité",
+        "materials": [
+          "Décorations festives (ballons, banderoles)",
+          "Affichage de tous les projets de l'unité",
+          "Musique célébratoire",
+          "Couronne ou badge spécial pour chaque expert"
+        ],
+        "visualSupports": "Galerie de tous les apprentissages affichés, ambiance festive créée, parcours des découvertes visible",
+        "decisionPoints": [
+          "Si un élève ne se rappelle pas de certains apprentissages → l'aider en pointant ses créations et en rappelant une activité mémorable de chaque leçon",
+          "Si un élève dit qu'il n'a pas bien appris → montrer concrètement tous ses progrès et célébrer chaque petite découverte",
+          "Si un élève semble débordé par tous les apprentissages → simplifier en se concentrant sur 2-3 choses qu'il maîtrise le mieux"
+        ],
+        "movementBreaks": [
+          "Tour de la galerie des apprentissages (marche fière)",
+          "Préparation festive collective (disposer décorations)"
+        ]
+      },
+      "main": {
+        "duration": "27 minutes",
+        "activity": "Fête des experts en vie saine! Chaque élève présente fier une création de l'unité. Jeu 'Qu'avons-nous appris?' avec indices amusants. Création collective d'une affiche géante 'Notre classe vit sainement!' avec dessins et promesses personnelles.",
+        "materials": [
+          "Toutes les créations de l'unité rassemblées",
+          "Grande affiche collective vierge",
+          "Matériel artistique pour décorer",
+          "Micro ou objet spécial pour présentations"
+        ],
+        "visualSupports": "Exposition complète des réalisations, affiche collective en création, célébration visuelle continue",
+        "decisionPoints": [
+          "Si un élève ne veut pas présenter devant le groupe → respecter et proposer de montrer juste à l'enseignant(e) ou de laisser sur son bureau pour admiration",
+          "Si un élève critique le travail d'un autre → rediriger immédiatement vers 'regardons comme chacun a appris de façon formidable!'",
+          "Si un élève devient trop excité par la fête → canaliser vers un rôle spécial comme photographe officiel ou organisateur de l'affiche"
+        ],
+        "movementBreaks": [
+          "Présentations avec mouvements et gestes de fierté",
+          "Création collective de l'affiche (déplacements, collaboration)"
+        ]
+      },
+      "closing": {
+        "duration": "10 minutes",
+        "activity": "Cérémonie de remise de certificats 'Expert en vie saine' et engagement pour l'avenir",
+        "materials": [
+          "Certificats 'Expert en vie saine' personnalisés",
+          "Affiche collective complétée à signer",
+          "Couronne ou badge de remise des diplômes",
+          "Musique solennelle pour la cérémonie"
+        ],
+        "visualSupports": "Cérémonie officielle avec podium, certificats présentés solennellement, engagement collectif visible",
+        "decisionPoints": [
+          "Si un élève pleure de joie ou d'émotion → normaliser et célébrer: 'c'est beau d'être si fier de ses apprentissages!'",
+          "Si un élève dit qu'il va oublier → rassurer en montrant toutes ses créations qu'il emporte et son certificat qui le rappellera toujours",
+          "Si un élève ne veut pas s'engager pour l'avenir → respecter et expliquer que c'est correct, il peut décider plus tard quand il se sentira prêt"
+        ],
+        "movementBreaks": [
+          "March processionnelle pour recevoir certificat",
+          "Célébration finale avec applaudissements et fierté collective"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Se concentrer sur 1-2 apprentissages clés plutôt que tout revoir",
+          "Permettre de montrer plutôt que d'expliquer verbalement",
+          "Célébrer chaque petite participation comme un grand succès"
+        ],
+        "pourAvancés": [
+          "Inviter à faire des liens entre différents apprentissages de l'unité",
+          "Encourager à partager comment ils vont continuer à vivre sainement",
+          "Proposer d'être mentors pour aider d'autres classes"
+        ],
+        "pourLangue": [
+          "Permettre l'expression dans leur langue maternelle pour les concepts complexes",
+          "Utiliser beaucoup de supports visuels pour communiquer les apprentissages",
+          "Célébrer la participation plutôt que la perfection linguistique"
+        ],
+        "pourPEI": [
+          "Adapter le format de célébration selon les préférences sensorielles",
+          "Personnaliser les certificats selon les réalisations individuelles",
+          "Respecter différents niveaux de participation à la célébration collective"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève montre de la fierté pour ses apprentissages en vie saine",
+          "L'élève peut identifier au moins 2-3 éléments appris dans l'unité",
+          "L'élève participe positivement à la célébration collective",
+          "L'élève exprime des intentions de continuer à vivre sainement"
+        ],
+        "checkpoints": [
+          "Milieu de leçon: Vérifier la capacité à réfléchir sur les apprentissages complets",
+          "Fin de leçon: Observer l'attitude de fierté et d'accomplissement",
+          "Transition: Noter l'engagement à continuer les habitudes saines apprises"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Régulation émotionnelle",
+        "items": [
+          "Démontre une compréhension de base en régulation émotionnelle",
+          "Participe activement aux activités de régulation émotionnelle",
+          "Montre du progrès dans régulation émotionnelle",
+          "Applique les apprentissages de régulation émotionnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Relations positives",
+        "items": [
+          "Démontre une compréhension de base en relations positives",
+          "Participe activement aux activités de relations positives",
+          "Montre du progrès dans relations positives",
+          "Applique les apprentissages de relations positives dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Sécurité personnelle",
+        "items": [
+          "Démontre une compréhension de base en sécurité personnelle",
+          "Participe activement aux activités de sécurité personnelle",
+          "Montre du progrès dans sécurité personnelle",
+          "Applique les apprentissages de sécurité personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Bien-être",
+        "items": [
+          "Démontre une compréhension de base en bien-être",
+          "Participe activement aux activités de bien-être",
+          "Montre du progrès dans bien-être",
+          "Applique les apprentissages de bien-être dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - Nutrition et mode de vie sain",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Régulation émotionnelle",
+        "Relations positives",
+        "Sécurité personnelle",
+        "Bien-être"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "💚",
+          "💛",
+          "❤️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"Nutrition et mode de vie sain\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en formation personnelle et sociale\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nQu'est-ce que la nutrition?, Mon corps a faim, Les couleurs dans mon assiette, Les fruits et légumes, Les céréales et grains\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nPratiquez l'identification des émotions ensemble à la maison.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLe bien-être émotionnel est la base de tout apprentissage!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Pratique de bien-être",
+        "description": "Pratiquez ensemble des techniques de calme ou de respiration",
+        "timeRequired": "5-10 minutes",
+        "materials": "Espace calme",
+        "frenchSupport": "Les émotions sont universelles"
+      },
+      {
+        "title": "Discussion sur les émotions",
+        "description": "Parlez des émotions de la journée et comment les gérer",
+        "timeRequired": "10 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "Utilisez la langue où l'enfant s'exprime le mieux"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "nutrition",
+        "lesson": 1,
+        "context": "Qu'est-ce que la nutrition?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nutrition\"",
+          "Utilisez \"nutrition\" dans une phrase simple",
+          "Trouvez des images représentant \"nutrition\"",
+          "Faites des gestes pour \"nutrition\""
+        ]
+      },
+      {
+        "word": "corps",
+        "lesson": 1,
+        "context": "Qu'est-ce que la nutrition?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"corps\"",
+          "Utilisez \"corps\" dans une phrase simple",
+          "Trouvez des images représentant \"corps\"",
+          "Faites des gestes pour \"corps\""
+        ]
+      },
+      {
+        "word": "nourriture",
+        "lesson": 1,
+        "context": "Qu'est-ce que la nutrition?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nourriture\"",
+          "Utilisez \"nourriture\" dans une phrase simple",
+          "Trouvez des images représentant \"nourriture\"",
+          "Faites des gestes pour \"nourriture\""
+        ]
+      },
+      {
+        "word": "faim",
+        "lesson": 2,
+        "context": "Mon corps a faim",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"faim\"",
+          "Utilisez \"faim\" dans une phrase simple",
+          "Trouvez des images représentant \"faim\"",
+          "Faites des gestes pour \"faim\""
+        ]
+      },
+      {
+        "word": "ventre",
+        "lesson": 2,
+        "context": "Mon corps a faim",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ventre\"",
+          "Utilisez \"ventre\" dans une phrase simple",
+          "Trouvez des images représentant \"ventre\"",
+          "Faites des gestes pour \"ventre\""
+        ]
+      },
+      {
+        "word": "rassasié",
+        "lesson": 2,
+        "context": "Mon corps a faim",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"rassasié\"",
+          "Utilisez \"rassasié\" dans une phrase simple",
+          "Trouvez des images représentant \"rassasié\"",
+          "Faites des gestes pour \"rassasié\""
+        ]
+      },
+      {
+        "word": "couleurs",
+        "lesson": 3,
+        "context": "Les couleurs dans mon assiette",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"couleurs\"",
+          "Utilisez \"couleurs\" dans une phrase simple",
+          "Trouvez des images représentant \"couleurs\"",
+          "Faites des gestes pour \"couleurs\""
+        ]
+      },
+      {
+        "word": "assiette",
+        "lesson": 3,
+        "context": "Les couleurs dans mon assiette",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"assiette\"",
+          "Utilisez \"assiette\" dans une phrase simple",
+          "Trouvez des images représentant \"assiette\"",
+          "Faites des gestes pour \"assiette\""
+        ]
+      },
+      {
+        "word": "arc-en-ciel",
+        "lesson": 3,
+        "context": "Les couleurs dans mon assiette",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"arc-en-ciel\"",
+          "Utilisez \"arc-en-ciel\" dans une phrase simple",
+          "Trouvez des images représentant \"arc-en-ciel\"",
+          "Faites des gestes pour \"arc-en-ciel\""
+        ]
+      },
+      {
+        "word": "fruits",
+        "lesson": 4,
+        "context": "Les fruits et légumes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"fruits\"",
+          "Utilisez \"fruits\" dans une phrase simple",
+          "Trouvez des images représentant \"fruits\"",
+          "Faites des gestes pour \"fruits\""
+        ]
+      },
+      {
+        "word": "légumes",
+        "lesson": 4,
+        "context": "Les fruits et légumes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"légumes\"",
+          "Utilisez \"légumes\" dans une phrase simple",
+          "Trouvez des images représentant \"légumes\"",
+          "Faites des gestes pour \"légumes\""
+        ]
+      },
+      {
+        "word": "vitamines",
+        "lesson": 4,
+        "context": "Les fruits et légumes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"vitamines\"",
+          "Utilisez \"vitamines\" dans une phrase simple",
+          "Trouvez des images représentant \"vitamines\"",
+          "Faites des gestes pour \"vitamines\""
+        ]
+      },
+      {
+        "word": "céréales",
+        "lesson": 5,
+        "context": "Les céréales et grains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"céréales\"",
+          "Utilisez \"céréales\" dans une phrase simple",
+          "Trouvez des images représentant \"céréales\"",
+          "Faites des gestes pour \"céréales\""
+        ]
+      },
+      {
+        "word": "pain",
+        "lesson": 5,
+        "context": "Les céréales et grains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pain\"",
+          "Utilisez \"pain\" dans une phrase simple",
+          "Trouvez des images représentant \"pain\"",
+          "Faites des gestes pour \"pain\""
+        ]
+      },
+      {
+        "word": "énergie",
+        "lesson": 5,
+        "context": "Les céréales et grains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"énergie\"",
+          "Utilisez \"énergie\" dans une phrase simple",
+          "Trouvez des images représentant \"énergie\"",
+          "Faites des gestes pour \"énergie\""
+        ]
+      },
+      {
+        "word": "lait",
+        "lesson": 6,
+        "context": "Le lait et les produits laitiers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"lait\"",
+          "Utilisez \"lait\" dans une phrase simple",
+          "Trouvez des images représentant \"lait\"",
+          "Faites des gestes pour \"lait\""
+        ]
+      },
+      {
+        "word": "fromage",
+        "lesson": 6,
+        "context": "Le lait et les produits laitiers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"fromage\"",
+          "Utilisez \"fromage\" dans une phrase simple",
+          "Trouvez des images représentant \"fromage\"",
+          "Faites des gestes pour \"fromage\""
+        ]
+      },
+      {
+        "word": "os",
+        "lesson": 6,
+        "context": "Le lait et les produits laitiers",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"os\"",
+          "Utilisez \"os\" dans une phrase simple",
+          "Trouvez des images représentant \"os\"",
+          "Faites des gestes pour \"os\""
+        ]
+      },
+      {
+        "word": "protéines",
+        "lesson": 7,
+        "context": "Les protéines",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"protéines\"",
+          "Utilisez \"protéines\" dans une phrase simple",
+          "Trouvez des images représentant \"protéines\"",
+          "Faites des gestes pour \"protéines\""
+        ]
+      },
+      {
+        "word": "muscles",
+        "lesson": 7,
+        "context": "Les protéines",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"muscles\"",
+          "Utilisez \"muscles\" dans une phrase simple",
+          "Trouvez des images représentant \"muscles\"",
+          "Faites des gestes pour \"muscles\""
+        ]
+      },
+      {
+        "word": "viande",
+        "lesson": 7,
+        "context": "Les protéines",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"viande\"",
+          "Utilisez \"viande\" dans une phrase simple",
+          "Trouvez des images représentant \"viande\"",
+          "Faites des gestes pour \"viande\""
+        ]
+      },
+      {
+        "word": "eau",
+        "lesson": 8,
+        "context": "L'eau, c'est la vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"eau\"",
+          "Utilisez \"eau\" dans une phrase simple",
+          "Trouvez des images représentant \"eau\"",
+          "Faites des gestes pour \"eau\""
+        ]
+      },
+      {
+        "word": "soif",
+        "lesson": 8,
+        "context": "L'eau, c'est la vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"soif\"",
+          "Utilisez \"soif\" dans une phrase simple",
+          "Trouvez des images représentant \"soif\"",
+          "Faites des gestes pour \"soif\""
+        ]
+      },
+      {
+        "word": "hydratation",
+        "lesson": 8,
+        "context": "L'eau, c'est la vie",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"hydratation\"",
+          "Utilisez \"hydratation\" dans une phrase simple",
+          "Trouvez des images représentant \"hydratation\"",
+          "Faites des gestes pour \"hydratation\""
+        ]
+      },
+      {
+        "word": "bouger",
+        "lesson": 9,
+        "context": "Bouger pour être en santé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bouger\"",
+          "Utilisez \"bouger\" dans une phrase simple",
+          "Trouvez des images représentant \"bouger\"",
+          "Faites des gestes pour \"bouger\""
+        ]
+      },
+      {
+        "word": "exercice",
+        "lesson": 9,
+        "context": "Bouger pour être en santé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"exercice\"",
+          "Utilisez \"exercice\" dans une phrase simple",
+          "Trouvez des images représentant \"exercice\"",
+          "Faites des gestes pour \"exercice\""
+        ]
+      },
+      {
+        "word": "santé",
+        "lesson": 9,
+        "context": "Bouger pour être en santé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"santé\"",
+          "Utilisez \"santé\" dans une phrase simple",
+          "Trouvez des images représentant \"santé\"",
+          "Faites des gestes pour \"santé\""
+        ]
+      },
+      {
+        "word": "jeux",
+        "lesson": 10,
+        "context": "Jeux actifs et amusants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"jeux\"",
+          "Utilisez \"jeux\" dans une phrase simple",
+          "Trouvez des images représentant \"jeux\"",
+          "Faites des gestes pour \"jeux\""
+        ]
+      },
+      {
+        "word": "amusant",
+        "lesson": 10,
+        "context": "Jeux actifs et amusants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"amusant\"",
+          "Utilisez \"amusant\" dans une phrase simple",
+          "Trouvez des images représentant \"amusant\"",
+          "Faites des gestes pour \"amusant\""
+        ]
+      },
+      {
+        "word": "actif",
+        "lesson": 10,
+        "context": "Jeux actifs et amusants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"actif\"",
+          "Utilisez \"actif\" dans une phrase simple",
+          "Trouvez des images représentant \"actif\"",
+          "Faites des gestes pour \"actif\""
+        ]
+      },
+      {
+        "word": "sommeil",
+        "lesson": 11,
+        "context": "Le sommeil réparateur",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sommeil\"",
+          "Utilisez \"sommeil\" dans une phrase simple",
+          "Trouvez des images représentant \"sommeil\"",
+          "Faites des gestes pour \"sommeil\""
+        ]
+      },
+      {
+        "word": "dormir",
+        "lesson": 11,
+        "context": "Le sommeil réparateur",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"dormir\"",
+          "Utilisez \"dormir\" dans une phrase simple",
+          "Trouvez des images représentant \"dormir\"",
+          "Faites des gestes pour \"dormir\""
+        ]
+      },
+      {
+        "word": "repos",
+        "lesson": 11,
+        "context": "Le sommeil réparateur",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"repos\"",
+          "Utilisez \"repos\" dans une phrase simple",
+          "Trouvez des images représentant \"repos\"",
+          "Faites des gestes pour \"repos\""
+        ]
+      },
+      {
+        "word": "laver",
+        "lesson": 12,
+        "context": "Se laver les mains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"laver\"",
+          "Utilisez \"laver\" dans une phrase simple",
+          "Trouvez des images représentant \"laver\"",
+          "Faites des gestes pour \"laver\""
+        ]
+      },
+      {
+        "word": "mains",
+        "lesson": 12,
+        "context": "Se laver les mains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mains\"",
+          "Utilisez \"mains\" dans une phrase simple",
+          "Trouvez des images représentant \"mains\"",
+          "Faites des gestes pour \"mains\""
+        ]
+      },
+      {
+        "word": "propre",
+        "lesson": 12,
+        "context": "Se laver les mains",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"propre\"",
+          "Utilisez \"propre\" dans une phrase simple",
+          "Trouvez des images représentant \"propre\"",
+          "Faites des gestes pour \"propre\""
+        ]
+      },
+      {
+        "word": "hygiène",
+        "lesson": 13,
+        "context": "Hygiène personnelle quotidienne",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"hygiène\"",
+          "Utilisez \"hygiène\" dans une phrase simple",
+          "Trouvez des images représentant \"hygiène\"",
+          "Faites des gestes pour \"hygiène\""
+        ]
+      },
+      {
+        "word": "routine",
+        "lesson": 13,
+        "context": "Hygiène personnelle quotidienne",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"routine\"",
+          "Utilisez \"routine\" dans une phrase simple",
+          "Trouvez des images représentant \"routine\"",
+          "Faites des gestes pour \"routine\""
+        ]
+      },
+      {
+        "word": "quotidien",
+        "lesson": 13,
+        "context": "Hygiène personnelle quotidienne",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"quotidien\"",
+          "Utilisez \"quotidien\" dans une phrase simple",
+          "Trouvez des images représentant \"quotidien\"",
+          "Faites des gestes pour \"quotidien\""
+        ]
+      },
+      {
+        "word": "collation",
+        "lesson": 14,
+        "context": "Ma collation santé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"collation\"",
+          "Utilisez \"collation\" dans une phrase simple",
+          "Trouvez des images représentant \"collation\"",
+          "Faites des gestes pour \"collation\""
+        ]
+      },
+      {
+        "word": "préparer",
+        "lesson": 14,
+        "context": "Ma collation santé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"préparer\"",
+          "Utilisez \"préparer\" dans une phrase simple",
+          "Trouvez des images représentant \"préparer\"",
+          "Faites des gestes pour \"préparer\""
+        ]
+      },
+      {
+        "word": "nutritif",
+        "lesson": 14,
+        "context": "Ma collation santé",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nutritif\"",
+          "Utilisez \"nutritif\" dans une phrase simple",
+          "Trouvez des images représentant \"nutritif\"",
+          "Faites des gestes pour \"nutritif\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

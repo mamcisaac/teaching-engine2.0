@@ -196,7 +196,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         if (isDevelopmentBypass) {
           console.log('[AuthContext] Development bypass active - auto-authenticating as Emily McIsaac');
           const emilyUser = {
-            id: 3,  // Correct userId from database for emmcisaac@gmail.com
+            id: 23,  // Correct userId from database for emmcisaac@gmail.com
             email: 'emmcisaac@gmail.com',  // Correct email from database
             name: 'Emily McIsaac',
             role: 'USER' as const,

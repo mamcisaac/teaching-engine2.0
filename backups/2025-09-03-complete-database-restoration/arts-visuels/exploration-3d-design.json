@@ -1,0 +1,237 @@
+{
+  "unitDesign": {
+    "title": "Exploration 3D et sculpture",
+    "grade": "1",
+    "subject": "Arts visuels",
+    "duration": "5 semaines",
+    "bigIdeas": "Explorer et créer avec de nouveaux concepts artistiques tridimensionnels",
+    "essentialQuestions": [
+      "Comment explorer les formes 3D?",
+      "Que peux-tu créer avec différents matériaux?",
+      "Pourquoi la sculpture est-elle importante dans l'art?"
+    ],
+    "expectations": [
+      {
+        "code": "AV1",
+        "description": "Reconnaître la valeur de son environnement visuel"
+      },
+      {
+        "code": "AV2",
+        "description": "Utiliser la création artistique afin de communiquer des idées ou des sentiments"
+      },
+      {
+        "code": "AV3",
+        "description": "Utiliser une variété d'outils, de matériaux, de styles et de techniques"
+      }
+    ],
+    "progression": {
+      "phase1": {
+        "title": "Découverte des formes 3D",
+        "duration": "Semaine 1",
+        "focus": "Exploration sensorielle et reconnaissance des formes",
+        "coreLessons": [
+          {
+            "lessonNumber": 1,
+            "title": "Qu'est-ce que la 3D?",
+            "objective": "Distinguer les formes 2D et 3D dans l'environnement",
+            "keyActivities": ["Chasse aux formes 3D", "Manipulation d'objets", "Discussion guidée"]
+          },
+          {
+            "lessonNumber": 2,
+            "title": "Toucher et explorer",
+            "objective": "Développer la sensibilité tactile aux textures et formes",
+            "keyActivities": ["Boîte mystère", "Exploration tactile", "Vocabulaire sensoriel"]
+          },
+          {
+            "lessonNumber": 3,
+            "title": "Formes géométriques en 3D",
+            "objective": "Identifier et nommer les formes géométriques de base",
+            "keyActivities": ["Tri de solides", "Construction avec blocs", "Jeu d'association"]
+          }
+        ],
+        "extensionLessons": [
+          {
+            "lessonNumber": "E1",
+            "title": "Art 3D dans la nature",
+            "objective": "Observer et documenter les formes naturelles",
+            "keyActivities": ["Sortie nature", "Collection d'éléments", "Création de mandala naturel"]
+          }
+        ]
+      },
+      "phase2": {
+        "title": "Initiation à l'argile",
+        "duration": "Semaine 2",
+        "focus": "Techniques de base avec l'argile",
+        "coreLessons": [
+          {
+            "lessonNumber": 4,
+            "title": "Première rencontre avec l'argile",
+            "objective": "Se familiariser avec les propriétés de l'argile",
+            "keyActivities": ["Manipulation libre", "Techniques de pétrissage", "Création de boules et serpentins"]
+          },
+          {
+            "lessonNumber": 5,
+            "title": "Pincer et modeler",
+            "objective": "Apprendre les techniques de pincement",
+            "keyActivities": ["Création de bols simples", "Animaux en argile", "Exploration des textures"]
+          },
+          {
+            "lessonNumber": 6,
+            "title": "Empreintes et motifs",
+            "objective": "Créer des textures et motifs dans l'argile",
+            "keyActivities": ["Empreintes d'objets", "Création de plaques décoratives", "Outils de texture"]
+          }
+        ],
+        "extensionLessons": [
+          {
+            "lessonNumber": "E2",
+            "title": "Sculptures d'argile inspirées",
+            "objective": "Créer une sculpture personnelle en argile",
+            "keyActivities": ["Planification du projet", "Réalisation guidée", "Séchage et finition"]
+          }
+        ]
+      },
+      "phase3": {
+        "title": "Construction et assemblage",
+        "duration": "Semaine 3",
+        "focus": "Techniques de construction avec divers matériaux",
+        "coreLessons": [
+          {
+            "lessonNumber": 7,
+            "title": "Construire avec du papier",
+            "objective": "Explorer les possibilités du papier en 3D",
+            "keyActivities": ["Pliage et froissage", "Tours et ponts", "Sculptures en papier"]
+          },
+          {
+            "lessonNumber": 8,
+            "title": "Assemblage créatif",
+            "objective": "Combiner différents matériaux pour créer",
+            "keyActivities": ["Collage 3D", "Recyclage créatif", "Structures mixtes"]
+          },
+          {
+            "lessonNumber": 9,
+            "title": "Équilibre et stabilité",
+            "objective": "Comprendre les principes d'équilibre en sculpture",
+            "keyActivities": ["Tests d'équilibre", "Tours instables", "Mobiles simples"]
+          }
+        ],
+        "extensionLessons": [
+          {
+            "lessonNumber": "E3",
+            "title": "Architecture en miniature",
+            "objective": "Construire des structures architecturales",
+            "keyActivities": ["Maisons en carton", "Châteaux imaginaires", "Ville collaborative"]
+          }
+        ]
+      },
+      "phase4": {
+        "title": "Formes expressives",
+        "duration": "Semaine 4",
+        "focus": "Expression créative et communication par la forme",
+        "coreLessons": [
+          {
+            "lessonNumber": 10,
+            "title": "Sculptures d'émotions",
+            "objective": "Exprimer des sentiments par la forme",
+            "keyActivities": ["Formes de joie/tristesse", "Couleurs et émotions", "Présentation émotionnelle"]
+          },
+          {
+            "lessonNumber": 11,
+            "title": "Personnages imaginaires",
+            "objective": "Créer des personnages en 3D",
+            "keyActivities": ["Créatures fantastiques", "Marionnettes simples", "Théâtre de sculptures"]
+          },
+          {
+            "lessonNumber": 12,
+            "title": "Raconter avec la sculpture",
+            "objective": "Utiliser la sculpture pour narrer",
+            "keyActivities": ["Scènes narratives", "Dioramas simples", "Histoires sculptées"]
+          }
+        ],
+        "extensionLessons": [
+          {
+            "lessonNumber": "E4",
+            "title": "Installation artistique collective",
+            "objective": "Créer une œuvre collaborative",
+            "keyActivities": ["Planification de groupe", "Réalisation collaborative", "Présentation publique"]
+          }
+        ]
+      },
+      "phase5": {
+        "title": "Réflexion et présentation",
+        "duration": "Semaine 5",
+        "focus": "Documentation, évaluation et partage",
+        "coreLessons": [
+          {
+            "lessonNumber": 13,
+            "title": "Portfolio 3D",
+            "objective": "Documenter et réfléchir sur ses créations",
+            "keyActivities": ["Photos des œuvres", "Descriptions écrites", "Auto-évaluation"]
+          },
+          {
+            "lessonNumber": 14,
+            "title": "Exposition de classe",
+            "objective": "Présenter et partager ses œuvres",
+            "keyActivities": ["Préparation d'exposition", "Présentation orale", "Appréciation mutuelle"]
+          }
+        ],
+        "extensionLessons": [
+          {
+            "lessonNumber": "E5",
+            "title": "Critique d'art junior",
+            "objective": "Analyser et discuter les œuvres d'art 3D",
+            "keyActivities": ["Observation d'œuvres célèbres", "Vocabulaire critique", "Discussion guidée"]
+          },
+          {
+            "lessonNumber": "E6",
+            "title": "Projet libre créatif",
+            "objective": "Créer une œuvre personnelle intégrant tous les apprentissages",
+            "keyActivities": ["Planification libre", "Réalisation autonome", "Présentation finale"]
+          }
+        ]
+      }
+    },
+    "materials": {
+      "essential": [
+        "Argile ou pâte à modeler",
+        "Papier de construction",
+        "Colle blanche",
+        "Ciseaux adaptés",
+        "Matériaux de recyclage",
+        "Outils de texture (fourchettes, bouchons, etc.)"
+      ],
+      "extension": [
+        "Argile autodurcissante",
+        "Peinture acrylique",
+        "Pinceaux variés",
+        "Matériaux naturels",
+        "Carton épais",
+        "Fil de fer souple"
+      ]
+    },
+    "assessment": {
+      "formative": [
+        "Observation continue des techniques",
+        "Discussions réflexives",
+        "Auto-évaluation guidée"
+      ],
+      "summative": [
+        "Portfolio de créations",
+        "Présentation finale",
+        "Évaluation par critères"
+      ]
+    },
+    "differentiation": {
+      "support": [
+        "Démonstrations répétées",
+        "Support physique pour la manipulation",
+        "Matériaux adaptés (plus malléables)"
+      ],
+      "enrichment": [
+        "Techniques avancées",
+        "Projets complexes",
+        "Recherche d'artistes"
+      ]
+    }
+  }
+}

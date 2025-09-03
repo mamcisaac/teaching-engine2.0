@@ -31,7 +31,8 @@
   "dependencies": {
     "@prisma/client": "^6.10.1",
     "bcryptjs": "^3.0.2",
-    "better-sqlite3": "^12.2.0"
+    "better-sqlite3": "^12.2.0",
+    "puppeteer": "^24.18.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",

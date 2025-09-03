@@ -1,7 +1,8 @@
+import { BookOpen, Calculator, Microscope, Globe, Palette, Heart } from 'lucide-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { BookOpen, Calculator, Microscope, Globe, Palette, Heart } from 'lucide-react';
 
 interface SubjectInfo {
   name: string;

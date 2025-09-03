@@ -1,0 +1,3477 @@
+{
+  "unitTitle": "Exposition finale des sciences",
+  "subject": "Sciences de la nature",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Notre année scientifique en révision",
+      "oneGoal": "Students will identify and recall the main science topics they explored during the year",
+      "duration": 45,
+      "keyVocabulary": [
+        "révision",
+        "année",
+        "sciences"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Welcome circle and year overview introduction",
+        "materials": [
+          "1 classroom calendar",
+          "1 large photo timeline display",
+          "25 science journal covers (student portfolios)"
+        ],
+        "visualSupports": "Timeline display of the school year with science unit photos",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent nerveux ou timides au début?",
+            "ifYes": "utiliser des jeux de brise-glace et rassurer sur l'aspect amusant de partager",
+            "ifNo": "procéder avec enthousiasme à l'introduction de la révision"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Interactive science year review using timeline and memory sharing",
+        "materials": [
+          "6-8 science unit posters for display",
+          "25 student science journals",
+          "100 sticky notes (assorted colors)",
+          "25 markers (1 per student)"
+        ],
+        "visualSupports": "Visual timeline with unit icons and key vocabulary cards",
+        "decisionPoints": [
+          {
+            "question": "Si les sujets de science les plus mémorables pour les élèves cette année",
+            "ifYes": "Focus on those topics for deeper recall and connection",
+            "ifNo": "Use visual prompts and peer sharing to activate memories"
+          },
+          {
+            "question": "Si on utilise une ligne du temps ou une révision par sujets",
+            "ifYes": "Continue with chronological timeline approach",
+            "ifNo": "Switch to thematic groupings of similar concepts"
+          },
+          {
+            "question": "Si les élèves sont prêts à faire des liens entre différentes unités",
+            "ifYes": "Guide students to find links between units",
+            "ifNo": "Focus on individual unit recall before making connections"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share one favorite science memory with the class",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont de la difficulté à se rappeler leurs expériences scientifiques?",
+            "ifYes": "utiliser plus d'indices visuels et permettre de regarder dans leurs cahiers",
+            "ifNo": "encourager le partage plus détaillé et les connexions entre sujets"
+          },
+          {
+            "question": "Le temps est-il suffisant pour que tous partagent leur souvenir préféré?",
+            "ifYes": "permettre à chacun de partager brièvement",
+            "ifNo": "faire partager en paires puis quelques volontaires avec la classe"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide picture cards showing different science activities to help trigger memories",
+          "Allow students to work with a partner to recall science experiences together",
+          "Use simple yes/no questions about science topics rather than open-ended recall"
+        ],
+        "pourAvancés": [
+          "Encourage students to make connections between different science units they studied",
+          "Ask students to identify their favorite science concept and explain why it was interesting",
+          "Challenge students to think about science questions they still wonder about"
+        ],
+        "pourLangue": [
+          "Provide visual vocabulary cards with science terms in both French and home language",
+          "Use gestures and actions when reviewing different science activities",
+          "Allow students to draw their science memories instead of only using words"
+        ],
+        "pourPEI": [
+          "Break the review into smaller chunks with breaks between topics",
+          "Provide a visual schedule showing the order of science units reviewed",
+          "Use concrete objects from science activities to help trigger specific memories"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Nos découvertes les plus excitantes",
+      "oneGoal": "Students will identify their most exciting scientific discoveries from the year and explain why they were special",
+      "duration": 45,
+      "keyVocabulary": [
+        "découvertes",
+        "excitant",
+        "spécial"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review previous lesson and introduce the concept of scientific discoveries",
+        "materials": [
+          "discovery jar",
+          "exciting moment cards"
+        ],
+        "visualSupports": "Images of famous scientific discoveries adapted for Grade 1",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves confondent découverte avec invention?",
+            "ifYes": "clarifier avec des exemples simples : découvrir = trouver ce qui existe déjà",
+            "ifNo": "approfondir leur compréhension des découvertes scientifiques"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Individual reflection and small group sharing of most exciting science discoveries",
+        "materials": [
+          "drawing paper",
+          "crayons",
+          "discovery sharing template",
+          "timer"
+        ],
+        "visualSupports": "Sentence starters and emotion words display",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves partagent leurs découvertes individuellement ou en petits groupes",
+            "ifYes": "Use individual presentation format with audience",
+            "ifNo": "Keep to small group sharing for comfort and time management"
+          },
+          {
+            "question": "How can we help students who struggle to identify favorite discoveries?",
+            "ifYes": "Provide guided prompts and visual reminders of activities",
+            "ifNo": "Use peer partnerships to help generate ideas together"
+          },
+          {
+            "question": "Si les élèves peuvent expliquer leur pensée ou se concentrer sur le partage d'expériences",
+            "ifYes": "Include 'why' questions in sharing prompts",
+            "ifNo": "Focus on describing what happened and how it felt"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Gallery walk of discovery drawings with positive comments",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils identifié au moins une découverte à partager?",
+            "ifYes": "célébrer leurs choix et commencer la planification",
+            "ifNo": "offrir du soutien individuel pour identifier une découverte simple"
+          },
+          {
+            "question": "Le niveau d'excitation est-il approprié ou trop élevé?",
+            "ifYes": "canaliser l'énergie vers la planification de demain",
+            "ifNo": "utiliser des activités calmantes pour terminer positivement"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide a choice between 2-3 specific discoveries with visual reminders",
+          "Allow students to point to pictures instead of describing with words",
+          "Use partner support to help recall and share discovery experiences"
+        ],
+        "pourAvancés": [
+          "Encourage students to explain WHY their discovery was exciting using science reasoning",
+          "Ask students to connect their discovery to how it relates to the real world",
+          "Challenge students to think about what questions their discovery raised for them"
+        ],
+        "pourLangue": [
+          "Provide discovery vocabulary cards with visual supports",
+          "Allow students to use gestures and demonstrations alongside French words",
+          "Offer sentence frames: 'Ma découverte préférée était...' 'C'était excitant parce que...'"
+        ],
+        "pourPEI": [
+          "Pre-select 2-3 appropriate discoveries for students to choose from",
+          "Use concrete materials from past activities to help recall experiences",
+          "Allow alternative ways to show excitement (drawing, acting, simple words)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Student can identify one specific scientific discovery they found exciting",
+          "Student can explain using simple words why the discovery was special to them",
+          "Student uses appropriate emotion vocabulary (excitant, spécial, fantastique)",
+          "Student shares discovery experience with enthusiasm and engagement"
+        ],
+        "checkpoints": [
+          "Discovery reflection: Can student choose one discovery to focus on?",
+          "Small group sharing: Does student communicate excitement about their discovery?",
+          "Drawing activity: Does student's drawing show details about their discovery?",
+          "Gallery walk: Does student respond positively to others' discoveries?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Qu'est-ce qu'une exposition scientifique?",
+      "oneGoal": "Students will understand what a science fair or exposition is and how scientists share their work",
+      "duration": 45,
+      "keyVocabulary": [
+        "exposition",
+        "montrer",
+        "partager"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Connect sharing discoveries to the idea of science exhibitions",
+        "materials": [
+          "science fair photos",
+          "sharing circle props"
+        ],
+        "visualSupports": "Age-appropriate images of children at science fairs and exhibitions",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves confondent exposition scientifique avec spectacle de talents?",
+            "ifYes": "clarifier qu'on montre ce qu'on a appris en sciences, pas un talent",
+            "ifNo": "approfondir leur compréhension du partage scientifique"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Explore the concept of science sharing through videos, pictures, and role-play",
+        "materials": [
+          "video clips",
+          "dress-up scientist props",
+          "demonstration table",
+          "audience chairs"
+        ],
+        "visualSupports": "Simple flowchart showing: Learn → Practice → Share → Celebrate",
+        "decisionPoints": [
+          {
+            "question": "Si on montre des exemples d'expo-sciences ou se concentre sur des concepts simples",
+            "ifYes": "Use carefully selected, age-appropriate science fair videos",
+            "ifNo": "Focus on familiar sharing experiences like show-and-tell"
+          },
+          {
+            "question": "How can we make the concept accessible without overwhelming students?",
+            "ifYes": "Use simple analogies and familiar sharing situations",
+            "ifNo": "Break down the concept into very small, concrete steps"
+          },
+          {
+            "question": "Si les élèves comprennent le public ou se concentrent sur montrer leur travail",
+            "ifYes": "Include discussion about who comes to see science work",
+            "ifNo": "Focus mainly on the act of showing what we've learned"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Practice being a science audience for teacher demonstration",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves comprennent-ils bien le concept d'exposition?",
+            "ifYes": "passer à pratiquer d'être un bon public",
+            "ifNo": "donner plus d'exemples concrets et familiers"
+          },
+          {
+            "question": "Certains élèves semblent-ils inquiets de présenter devant d'autres?",
+            "ifYes": "rassurer que c'est normal et qu'on va pratiquer beaucoup ensemble",
+            "ifNo": "célébrer leur confiance et les encourager à aider leurs pairs"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Focus on familiar sharing experiences like show-and-tell or sharing toys",
+          "Use concrete examples: 'showing your drawings to grandparents' instead of abstract concepts",
+          "Provide simple picture cards showing different ways people share their work"
+        ],
+        "pourAvancés": [
+          "Introduce the idea that scientists share discoveries to help other people learn",
+          "Discuss different ways scientists share their work (books, videos, teaching)",
+          "Connect science sharing to how students can teach others what they've learned"
+        ],
+        "pourLangue": [
+          "Use visual supports showing: montrer (show), partager (share), exposition (display)",
+          "Practice key vocabulary with gestures and real examples in the classroom",
+          "Allow students to connect concept to sharing traditions from their home culture"
+        ],
+        "pourPEI": [
+          "Break the concept into single steps: Learn something → Show it to others",
+          "Use role-play with concrete props rather than discussing abstract concepts",
+          "Focus on the celebration aspect of sharing rather than formal presentation"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève présente sa découverte scientifique clairement",
+          "L'élève utilise le vocabulaire scientifique appris pendant l'année",
+          "L'élève répond aux questions sur son projet avec confiance",
+          "L'élève écoute respectueusement les présentations des autres"
+        ],
+        "checkpoints": [
+          "Explique son expérience scientifique du début à la fin",
+          "Utilise des mots scientifiques précis: hypothèse, observation, conclusion",
+          "Partage ce qu'il a appris de nouveau",
+          "Pose des questions pertinentes aux autres présentateurs"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Choisir notre projet de démonstration",
+      "oneGoal": "Students will select one science topic or experiment from the year to demonstrate at the exposition",
+      "duration": 45,
+      "keyVocabulary": [
+        "choisir",
+        "projet",
+        "démonstration"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review science year and introduce project selection",
+        "materials": [
+          "choice chart",
+          "science topic cards",
+          "thinking time music"
+        ],
+        "visualSupports": "Visual menu of science topics studied this year with pictures",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont trop d'idées et n'arrivent pas à choisir?",
+            "ifYes": "les aider à identifier leurs 2-3 découvertes les plus importantes",
+            "ifNo": "les encourager à réfléchir plus profondément à leurs expériences"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Individual reflection and selection process with teacher conferences",
+        "materials": [
+          "selection worksheet",
+          "colored pencils",
+          "conference schedule",
+          "topic reminder cards"
+        ],
+        "visualSupports": "Decision-making criteria poster: Safe, Fun, I Know It Well",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves choisissent individuellement ou travaillent en petits groupes",
+            "ifYes": "Allow individual choice with option for partnerships",
+            "ifNo": "Organize into predetermined small groups with shared choices"
+          },
+          {
+            "question": "What criteria should guide project selection (interest, success, safety)?",
+            "ifYes": "Use all three criteria in a simple checklist format",
+            "ifNo": "Focus primarily on student interest and engagement level"
+          },
+          {
+            "question": "Si les élèves sont prêts pour un choix indépendant ou ont besoin d'options guidées",
+            "ifYes": "Provide full menu of year's topics for selection",
+            "ifNo": "Pre-select 4-5 most appropriate options for students to choose from"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share chosen project with a partner and explain why",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)",
+          "tampons motivants avec encreur (5 tampons)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à expliquer leur choix de projet?",
+            "ifYes": "encourager des explications plus détaillées avec des raisons",
+            "ifNo": "fournir des phrases modèles : 'J'ai choisi... parce que...'"
+          },
+          {
+            "question": "Y a-t-il des élèves qui veulent changer leur choix après avoir écouté les autres?",
+            "ifYes": "permettre un changement final si c'est bien réfléchi",
+            "ifNo": "confirmer les choix et célébrer la diversité des projets"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Limit choices to 2-3 pre-selected appropriate science topics",
+          "Use visual reminders showing students doing each activity successfully",
+          "Provide teacher conference support to talk through each option"
+        ],
+        "pourAvancés": [
+          "Encourage students to choose topics they can extend or teach in new ways",
+          "Allow students to combine two related science topics if appropriate",
+          "Challenge students to think about what aspect of their topic was most interesting"
+        ],
+        "pourLangue": [
+          "Provide topic cards with both French labels and visual representations",
+          "Allow students to discuss choices in partner talk before individual decision",
+          "Use simple vocabulary: 'J'aime...', 'Je suis bon à...', 'Je veux montrer...'"
+        ],
+        "pourPEI": [
+          "Pre-select 2 topics that the student had clear success with during the year",
+          "Use concrete materials from activities to help recall experiences",
+          "Allow selection through pointing, drawing, or simple words rather than complex reasoning"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Planifier notre démonstration",
+      "oneGoal": "Students will create a simple plan for how they will show their chosen science topic to visitors",
+      "duration": 45,
+      "keyVocabulary": [
+        "planifier",
+        "plan",
+        "visiteurs"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review chosen projects and introduce planning concepts",
+        "materials": [
+          "planning examples",
+          "step cards",
+          "demonstration area"
+        ],
+        "visualSupports": "Simple planning template with pictures: What? How? What do I need?",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent dépassés par le concept de planification?",
+            "ifYes": "simplifier en se concentrant sur une seule étape à la fois",
+            "ifNo": "procéder avec l'introduction complète du processus de planification"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create individual planning sheets with drawings and simple steps",
+        "materials": [
+          "planning templates",
+          "crayons",
+          "sticky notes",
+          "pencils",
+          "planning examples"
+        ],
+        "visualSupports": "Step-by-step planning process poster and sample completed plans",
+        "decisionPoints": [
+          {
+            "question": "Si on fournit des modèles de planification ou encourage les formats créatifs",
+            "ifYes": "Provide basic template but allow creative additions",
+            "ifNo": "Start with completely open-ended planning approach"
+          },
+          {
+            "question": "How detailed should the planning be for Grade 1 students?",
+            "ifYes": "Include 3-4 simple steps with drawings",
+            "ifNo": "Focus on just the main idea and one key step"
+          },
+          {
+            "question": "Si les élèves pensent aux besoins du public ou se concentrent sur leur présentation",
+            "ifYes": "Include 'What will visitors see?' in planning",
+            "ifNo": "Focus on 'What will I do?' for now"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Partner sharing of plans with feedback and suggestions",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves ont-ils créé des plans réalistes et réalisables?",
+            "ifYes": "célébrer leurs idées et encourager le partage constructif",
+            "ifNo": "aider à ajuster les plans pour qu'ils soient plus simples et faisables"
+          },
+          {
+            "question": "Le feedback entre partenaires est-il constructif et encourageant?",
+            "ifYes": "modéliser des commentaires encore plus spécifiques et utiles",
+            "ifNo": "enseigner des phrases pour donner des commentaires positifs"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide a very simple template with pictures: First I will..., Then I will..., Last I will...",
+          "Focus on just 2 steps: What I will show and What I will say",
+          "Use partner support to help think through the planning process"
+        ],
+        "pourAvancés": [
+          "Encourage students to think about what questions visitors might ask",
+          "Include planning for how to make the demonstration interactive for the audience",
+          "Challenge students to plan for different age audiences (other Grade 1s vs. older students)"
+        ],
+        "pourLangue": [
+          "Provide planning vocabulary with visual supports: d'abord (first), puis (then), finalement (finally)",
+          "Allow drawings with simple French labels instead of full sentences",
+          "Use sentence frames: 'Je vais montrer...' 'Les visiteurs vont voir...' 'J'ai besoin de...'"
+        ],
+        "pourPEI": [
+          "Break planning into one step at a time with visual supports for each",
+          "Use concrete props to help student physically plan out their demonstration",
+          "Focus on the main action: 'I will show...' with support to add details later"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Student can create a simple plan with 2-3 steps for their demonstration",
+          "Student identifies what materials or props they will need for their presentation",
+          "Student can explain their plan to a partner using simple language",
+          "Student's plan aligns logically with their chosen science topic"
+        ],
+        "checkpoints": [
+          "Planning activity: Does student engage with creating steps for their demonstration?",
+          "Template completion: Can student fill in planning sheet with appropriate information?",
+          "Partner sharing: Does student communicate their plan clearly to others?",
+          "Teacher check-in: Is student's plan realistic and doable for their abilities?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Matériel et outils nécessaires",
+      "oneGoal": "Students will identify and gather the materials they need for their science demonstration",
+      "duration": 45,
+      "keyVocabulary": [
+        "matériel",
+        "outils",
+        "nécessaires"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review plans and introduce material identification",
+        "materials": [
+          "material cards",
+          "safety symbols",
+          "planning sheets from previous lesson"
+        ],
+        "visualSupports": "Safety symbol chart and material category pictures",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves veulent des matériaux non sécuritaires pour leur démonstration?",
+            "ifYes": "explorer des alternatives sécuritaires qui donnent le même effet",
+            "ifNo": "célébrer leurs choix sécuritaires et procéder"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create material lists and practice safe handling procedures",
+        "materials": [
+          "material checklist sheets",
+          "sample materials",
+          "safety practice items",
+          "storage containers"
+        ],
+        "visualSupports": "Material safety chart with green, yellow, and red categories",
+        "decisionPoints": [
+          {
+            "question": "Which materials are safe and appropriate for student-led demonstrations?",
+            "ifYes": "Allow all green-category materials with student responsibility",
+            "ifNo": "Restrict to pre-approved safe materials list only"
+          },
+          {
+            "question": "Si on utilise des matériaux simples ou permet des outils complexes avec supervision",
+            "ifYes": "Include some yellow-category materials with adult helper assigned",
+            "ifNo": "Stick to simple, completely safe materials students can handle alone"
+          },
+          {
+            "question": "Si les élèves sont prêts pour la responsabilité du matériel ou ont besoin d'ensembles préparés",
+            "ifYes": "Have students gather and organize their own materials",
+            "ifNo": "Pre-prepare material sets with student input on arrangement"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Practice setup and cleanup procedures with materials",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "étiquettes autocollantes (2 planches)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à organiser leur matériel efficacement?",
+            "ifYes": "chronométrer pour ajouter un défi amusant de vitesse",
+            "ifNo": "réduire le nombre de matériaux et pratiquer plus lentement"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide pre-made material lists specific to each student's chosen demonstration",
+          "Use picture cards showing each needed material instead of written lists",
+          "Partner students with material organization helpers"
+        ],
+        "pourAvancés": [
+          "Encourage students to think about backup materials in case something breaks",
+          "Include students in making safety decisions about their material choices",
+          "Challenge students to organize materials for efficient setup and cleanup"
+        ],
+        "pourLangue": [
+          "Provide material vocabulary cards with French labels and pictures",
+          "Practice key phrases: 'J'ai besoin de...', 'C'est sécuritaire', 'C'est fragile'",
+          "Use hands-on material exploration with vocabulary practice"
+        ],
+        "pourPEI": [
+          "Focus on 3-4 essential materials rather than comprehensive lists",
+          "Use concrete materials handling practice before list-making",
+          "Provide step-by-step visual sequence for material gathering"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Pratiquer notre explication simple",
+      "oneGoal": "Students will practice explaining their science topic using simple words that other children can understand",
+      "duration": 45,
+      "keyVocabulary": [
+        "pratiquer",
+        "explication",
+        "comprendre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Warm-up with simple explanation practice using familiar objects",
+        "materials": [
+          "familiar objects",
+          "explanation cards",
+          "timer"
+        ],
+        "visualSupports": "Simple explanation framework: This is... It does... I like it because...",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves utilisent un vocabulaire trop complexe pour leur âge?",
+            "ifYes": "modéliser des mots plus simples et faire pratiquer ensemble",
+            "ifNo": "encourager leur vocabulaire tout en ajoutant des explications simples"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Practice rounds with partners, focusing on clear, simple language",
+        "materials": [
+          "explanation practice cards",
+          "recording device",
+          "feedback sheets",
+          "encouragement stickers"
+        ],
+        "visualSupports": "Word choice helper chart: hard words → easy words",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves pratiquent avec des pairs ou des adultes d'abord",
+            "ifYes": "Start with peer practice for comfort level",
+            "ifNo": "Begin with adult practice for immediate feedback"
+          },
+          {
+            "question": "How can we help students use age-appropriate vocabulary?",
+            "ifYes": "Provide word substitution chart and practice",
+            "ifNo": "Model simple language and have students repeat"
+          },
+          {
+            "question": "Si les élèves sont prêts pour la rétroaction ou ont besoin d'encouragement d'abord",
+            "ifYes": "Include gentle, specific feedback with encouragement",
+            "ifNo": "Focus purely on positive reinforcement and building confidence"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "One-minute explanation challenge with whole group audience",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "chemises individuelles (30 chemises)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves sont-ils prêts pour une explication devant tout le groupe?",
+            "ifYes": "célébrer leur courage et donner des encouragements spécifiques",
+            "ifNo": "garder les groupes plus petits et augmenter graduellement"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide sentence starters: 'D'abord...', 'Puis...', 'C'est important parce que...'",
+          "Use props and visual aids to support verbal explanations",
+          "Practice with very patient partners who encourage rather than correct"
+        ],
+        "pourAvancés": [
+          "Encourage students to explain the 'why' behind their science topic, not just the 'what'",
+          "Challenge students to think of questions their audience might ask",
+          "Practice explaining the same concept in different ways for different audiences"
+        ],
+        "pourLangue": [
+          "Allow mixing of gestures, drawing, and simple French words during explanations",
+          "Practice key explanation vocabulary with visual supports",
+          "Pair with French-speaking partners for modeling and support"
+        ],
+        "pourPEI": [
+          "Focus on explaining just one key point clearly rather than comprehensive explanations",
+          "Use concrete objects and hands-on demonstration instead of abstract explanations",
+          "Allow alternative communication methods (drawing, pointing, demonstrating)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Student can explain their science topic using vocabulary appropriate for other Grade 1 students",
+          "Student includes key information about their topic (what it is, what happens, why it's interesting)",
+          "Student speaks clearly and at an appropriate volume for their audience",
+          "Student responds positively to gentle feedback and makes adjustments to their explanation"
+        ],
+        "checkpoints": [
+          "Partner practice: Does student communicate their main idea clearly to peer audience?",
+          "Vocabulary use: Does student choose simple, understandable words over complex terms?",
+          "Engagement: Does student show enthusiasm while explaining their topic?",
+          "Feedback response: Can student incorporate suggestions to improve their explanation?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Créer un affichage visuel",
+      "oneGoal": "Students will create a simple visual display (drawing, poster, or model) to support their science demonstration",
+      "duration": 45,
+      "keyVocabulary": [
+        "créer",
+        "affichage",
+        "visuel"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Look at examples of visual displays and discuss their purpose",
+        "materials": [
+          "visual display examples",
+          "magnifying glass",
+          "observation sheets"
+        ],
+        "visualSupports": "Gallery of age-appropriate science displays with features highlighted",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves veulent copier exactement les exemples montrés?",
+            "ifYes": "encourager l'adaptation des idées plutôt que la copie directe",
+            "ifNo": "célébrer leur créativité et leurs idées originales"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create individual visual displays with choice of format and materials",
+        "materials": [
+          "25 sheets poster paper (11x17)",
+          "50 sheets construction paper (assorted colors)",
+          "25 sets markers",
+          "25 sets crayons",
+          "10 glue sticks (shared)",
+          "25 pairs safety scissors",
+          "25 simple display templates"
+        ],
+        "visualSupports": "Visual display planning template and design idea examples",
+        "decisionPoints": [
+          {
+            "question": "What visual formats are most appropriate for Grade 1 science concepts?",
+            "ifYes": "Allow choice between drawing, simple poster, or basic model",
+            "ifNo": "Focus on drawings with labels as the primary format"
+          },
+          {
+            "question": "Si on se concentre sur des dessins, affiches simples, ou modèles 3D",
+            "ifYes": "Offer all three options based on student project needs",
+            "ifNo": "Standardize on one format for consistency and time management"
+          },
+          {
+            "question": "Si les élèves créent indépendamment ou ont besoin de modèles guidés",
+            "ifYes": "Provide optional templates but encourage creative additions",
+            "ifNo": "Use structured templates with specific areas for student input"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Gallery walk with positive feedback on visual displays",
+        "materials": [
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les affichages créés supportent-ils bien les démonstrations scientifiques?",
+            "ifYes": "encourager les élèves à expliquer comment ils vont les utiliser",
+            "ifNo": "aider à identifier un élément clé à ajouter ou modifier"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide simple templates or pre-drawn outlines for visual displays",
+          "Focus on one key concept rather than comprehensive displays",
+          "Use partner support for planning and organizing visual elements"
+        ],
+        "pourAvancés": [
+          "Encourage students to create interactive elements for their visual display",
+          "Include multiple ways to show the same concept (drawing, diagram, model)",
+          "Challenge students to design displays that teach others step-by-step"
+        ],
+        "pourLangue": [
+          "Use visual vocabulary cards with French labels for display creation",
+          "Allow combination of drawings and simple French words/phrases",
+          "Practice key vocabulary: 'affichage', 'montrer', 'expliquer', 'intéressant'"
+        ],
+        "pourPEI": [
+          "Focus on creating one clear visual element rather than complex displays",
+          "Use concrete materials and hands-on creation over abstract planning",
+          "Provide step-by-step visual guides for display creation process"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Student creates a visual display that supports their science demonstration",
+          "Student includes key information about their science topic in visual format",
+          "Student uses appropriate materials and organization in their display",
+          "Student can explain how their visual display helps others understand their topic"
+        ],
+        "checkpoints": [
+          "Planning phase: Does student identify key elements to include in their display?",
+          "Creation phase: Does student work purposefully to create meaningful visual supports?",
+          "Review phase: Can student explain how their display connects to their demonstration?",
+          "Integration phase: Does student see how visual and verbal elements work together?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Questions que les visiteurs pourraient poser",
+      "oneGoal": "Students will anticipate and practice answering simple questions about their science topic",
+      "duration": 45,
+      "keyVocabulary": [
+        "questions",
+        "visiteurs",
+        "répondre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Introduce the idea of visitor questions through role-play",
+        "materials": [
+          "question cards",
+          "visitor name tags",
+          "demonstration props"
+        ],
+        "visualSupports": "Common question types poster with picture cues",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent anxieux à l'idée de répondre aux questions?",
+            "ifYes": "rassurer que les visiteurs posent des questions parce qu'ils sont intéressés",
+            "ifNo": "encourager leur enthousiasme et leur confiance naturelle"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Generate possible questions and practice answering with partners",
+        "materials": [
+          "question practice cards",
+          "answer recording sheets",
+          "timer",
+          "conversation practice props"
+        ],
+        "visualSupports": "Answer framework: I think... because... Do you want to see?",
+        "decisionPoints": [
+          {
+            "question": "What types of questions are most likely from different age groups?",
+            "ifYes": "Practice with age-specific question categories",
+            "ifNo": "Focus on general curiosity questions regardless of age"
+          },
+          {
+            "question": "Si on pratique des questions spécifiques ou des compétences générales de réponse",
+            "ifYes": "Create specific question bank for each project type",
+            "ifNo": "Focus on general questioning strategies and comfort building"
+          },
+          {
+            "question": "Si les élèves sont prêts pour des questions inconnues ou prévisibles",
+            "ifYes": "Include some surprise questions in practice",
+            "ifNo": "Practice only with predictable, prepared questions"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Quick question-answer rounds with the whole class as visitors",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "tampons motivants avec encreur (5 tampons)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves répondent-ils avec confiance aux questions de leurs pairs?",
+            "ifYes": "ajouter quelques questions surprises pour développer leur flexibilité",
+            "ifNo": "revenir à des questions plus prévisibles et rassurantes"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Pre-practice with 2-3 simple, predictable questions about their topic",
+          "Use visual cue cards to remind students of key answer points",
+          "Practice with very supportive peer partners who ask gentle questions"
+        ],
+        "pourAvancés": [
+          "Encourage students to think of follow-up questions visitors might ask",
+          "Practice explaining their topic in different ways if first explanation unclear",
+          "Challenge students to connect their topic to visitors' own experiences"
+        ],
+        "pourLangue": [
+          "Practice key question-answer vocabulary: 'Qu'est-ce que...?', 'Comment...?', 'Pourquoi...?'",
+          "Use sentence frames for answers: 'C'est...', 'Ça marche parce que...', 'J'aime ça parce que...'",
+          "Allow use of gestures and props to support verbal answers"
+        ],
+        "pourPEI": [
+          "Focus on understanding and answering just one type of question well",
+          "Use concrete examples and hands-on demonstrations rather than abstract explanations",
+          "Practice with familiar adults before peer or visitor interactions"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Student can anticipate basic questions visitors might ask about their topic",
+          "Student provides appropriate answers using simple, clear language",
+          "Student responds to questions with confidence and enthusiasm",
+          "Student uses their demonstration materials to help answer questions"
+        ],
+        "checkpoints": [
+          "Question anticipation: Can student predict what others might wonder about their topic?",
+          "Answer preparation: Does student practice clear, simple responses?",
+          "Interactive practice: Does student engage appropriately during question practice?",
+          "Confidence building: Does student show increasing comfort with Q&A format?"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Sécurité pendant notre démonstration",
+      "oneGoal": "Students will identify and practice safety rules for their science demonstration with visitors",
+      "duration": 45,
+      "keyVocabulary": [
+        "sécurité",
+        "règles",
+        "démonstration"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Review general safety rules and apply them to demonstration contexts",
+        "materials": [
+          "safety rule cards",
+          "demonstration area setup",
+          "safety props"
+        ],
+        "visualSupports": "Safety rules poster with pictures and symbols",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves minimisent l'importance de la sécurité?",
+            "ifYes": "utiliser des exemples concrets et des scénarios réalistes",
+            "ifNo": "célébrer leur conscience de la sécurité et approfondir"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create personalized safety checklists and practice safety procedures",
+        "materials": [
+          "safety checklist templates",
+          "demonstration materials",
+          "safety practice scenarios",
+          "first aid kit display"
+        ],
+        "visualSupports": "Safety action cards: Stop, Look, Think, Ask",
+        "decisionPoints": [
+          {
+            "question": "Which safety considerations are most important for student-led demonstrations?",
+            "ifYes": "Focus on material handling and visitor guidance safety",
+            "ifNo": "Concentrate on basic personal safety and space organization"
+          },
+          {
+            "question": "Si on se concentre sur la sécurité du matériel ou des visiteurs",
+            "ifYes": "Include both with emphasis on visitor safety",
+            "ifNo": "Prioritize material safety as the foundation"
+          },
+          {
+            "question": "Si les élèves sont prêts pour la responsabilité sécuritaire ou ont besoin de rappels",
+            "ifYes": "Practice student safety leadership with backup adult support",
+            "ifNo": "Focus on recognizing when to call for adult help"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Safety scenario practice with problem-solving discussions",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves identifient-ils les situations qui nécessitent l'aide d'un adulte?",
+            "ifYes": "pratiquer comment demander de l'aide poliment et clairement",
+            "ifNo": "donner plus d'exemples concrets de quand appeler à l'aide"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Focus on 2-3 most important safety rules rather than comprehensive lists",
+          "Use visual safety symbols and pictures rather than word-based rules",
+          "Practice safety scenarios with adult guidance and support"
+        ],
+        "pourAvancés": [
+          "Include students in creating safety plans for the entire classroom exhibition",
+          "Encourage students to think about visitor safety as well as material safety",
+          "Challenge students to become safety helpers for peers during demonstrations"
+        ],
+        "pourLangue": [
+          "Teach key safety vocabulary with actions: 'attention' (careful), 'sécuritaire' (safe), 'aide' (help)",
+          "Use universal safety symbols alongside French vocabulary",
+          "Practice safety phrases: 'C'est sécuritaire', 'J'ai besoin d'aide', 'Attention'"
+        ],
+        "pourPEI": [
+          "Use concrete practice with actual demonstration materials in safe environment",
+          "Create personalized safety reminder cards with pictures",
+          "Focus on recognition of when to ask for adult help rather than complex safety reasoning"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Première pratique complète",
+      "oneGoal": "Students will perform a complete run-through of their science demonstration with classmates as audience",
+      "duration": 45,
+      "keyVocabulary": [
+        "première",
+        "pratique",
+        "complète"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Setup demonstration spaces and review practice expectations",
+        "materials": [
+          "demonstration setup materials",
+          "audience seating",
+          "practice schedule",
+          "encouragement props"
+        ],
+        "visualSupports": "Practice checklist and supportive audience behavior chart",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves semblent très nerveux pour leur première pratique complète?",
+            "ifYes": "offrir la possibilité de commencer avec un public très réduit",
+            "ifNo": "procéder avec confiance et beaucoup d'encouragements"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Full demonstration practice with structured audience feedback",
+        "materials": [
+          "all demonstration materials",
+          "feedback forms",
+          "timer",
+          "positive comment cards",
+          "practice evaluation sheets"
+        ],
+        "visualSupports": "Audience job chart: Listen, Look, Think of kind words",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves présentent individuellement ou en petits groupes",
+            "ifYes": "Use individual presentations with small audience rotation",
+            "ifNo": "Organize small group presentations with larger audiences"
+          },
+          {
+            "question": "How can we provide supportive feedback without discouraging students?",
+            "ifYes": "Use structured positive feedback with one gentle suggestion",
+            "ifNo": "Focus purely on encouragement and celebration of efforts"
+          },
+          {
+            "question": "Si les élèves sont prêts pour la rétroaction des pairs ou l'observation de l'enseignant",
+            "ifYes": "Include guided peer feedback with kind word focus",
+            "ifNo": "Have teacher provide all feedback while peers practice audience skills"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration circle sharing what went well and how students felt",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils réussi à compléter leur démonstration?",
+            "ifYes": "célébrer tous les efforts et identifier les points forts",
+            "ifNo": "prévoir du temps supplémentaire de pratique avant l'exposition"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide a very supportive audience of just 2-3 classmates for first practice",
+          "Allow students to practice with notes or visual reminders if needed",
+          "Focus on celebrating effort and enthusiasm rather than perfection"
+        ],
+        "pourAvancés": [
+          "Encourage students to practice handling questions or interruptions gracefully",
+          "Include timing awareness and pacing in their practice sessions",
+          "Challenge students to adapt their presentation for different audience reactions"
+        ],
+        "pourLangue": [
+          "Allow use of key props or visual aids to support French vocabulary during practice",
+          "Provide patient peer partners who focus on encouragement",
+          "Practice key presentation phrases: 'Regardez', 'Voici', 'C'est intéressant parce que...'"
+        ],
+        "pourPEI": [
+          "Allow shorter practice sessions with breaks to prevent overwhelm",
+          "Use familiar audience members (teacher, educational assistant, close friend) for comfort",
+          "Focus on one aspect of presentation at a time (voice, showing materials, eye contact)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Améliorer notre présentation",
+      "oneGoal": "Students will identify one specific improvement they can make to their science demonstration",
+      "duration": 45,
+      "keyVocabulary": [
+        "améliorer",
+        "mieux",
+        "changement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Reflect on practice session and introduce improvement mindset",
+        "materials": [
+          "reflection sheets",
+          "practice videos if available",
+          "improvement examples"
+        ],
+        "visualSupports": "Growth mindset poster: Good → Better → Best!",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont trop critiques envers leur propre performance?",
+            "ifYes": "recentrer sur les aspects positifs avant de parler d'améliorations",
+            "ifNo": "encourager leur attitude positive et leur ouverture au changement"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Self-reflection and improvement planning with teacher conferences",
+        "materials": [
+          "improvement planning sheets",
+          "conference materials",
+          "goal-setting cards",
+          "practice materials"
+        ],
+        "visualSupports": "Improvement areas chart: Louder voice, Clearer words, Better showing",
+        "decisionPoints": [
+          {
+            "question": "Si les améliorations portent sur la clarté du contenu ou les compétences de présentation",
+            "ifYes": "Allow student choice between content and delivery improvements",
+            "ifNo": "Focus primarily on presentation skills as more immediately achievable"
+          },
+          {
+            "question": "How can we help students identify achievable improvements?",
+            "ifYes": "Provide specific, small-step improvement options to choose from",
+            "ifNo": "Guide students to very specific, single-focus improvements"
+          },
+          {
+            "question": "Si les élèves sont prêts pour l'autoréflexion ou ont besoin de suggestions guidées",
+            "ifYes": "Start with self-reflection then confirm with teacher guidance",
+            "ifNo": "Provide teacher-identified improvements with student input"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Practice improved element with a partner for immediate feedback",
+        "materials": [
+          "tampons motivants avec encreur (5 tampons)",
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les améliorations choisies sont-elles réalistes et atteignables?",
+            "ifYes": "encourager la pratique répétée de ces petites améliorations",
+            "ifNo": "aider à décomposer en étapes plus petites et faisables"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Focus on just one specific improvement area (louder voice, clearer showing, etc.)",
+          "Use peer feedback focused on positive observations only",
+          "Practice improvements in low-pressure, supportive environment"
+        ],
+        "pourAvancés": [
+          "Encourage students to seek feedback on multiple aspects of their presentation",
+          "Include students in helping peers identify improvement opportunities",
+          "Challenge students to practice their improvements until they become automatic"
+        ],
+        "pourLangue": [
+          "Focus on improvement vocabulary: 'mieux', 'plus fort', 'plus clair', 'améliorer'",
+          "Use visual guides showing good presentation behaviors",
+          "Practice improvement phrases: 'Je peux faire mieux', 'Maintenant c'est plus clair'"
+        ],
+        "pourPEI": [
+          "Use concrete, specific feedback rather than general improvement suggestions",
+          "Focus on one small, achievable improvement at a time",
+          "Provide multiple practice opportunities with consistent support"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Aider les autres avec leurs projets",
+      "oneGoal": "Students will provide helpful feedback and encouragement to classmates preparing their demonstrations",
+      "duration": 45,
+      "keyVocabulary": [
+        "aider",
+        "autres",
+        "encouragement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Discuss what helpful feedback looks like and practice kind words",
+        "materials": [
+          "feedback examples",
+          "kind words cards",
+          "helper badges"
+        ],
+        "visualSupports": "Helpful helper chart: Listen, Think, Say something kind and helpful",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves donnent des commentaires trop critiques ou blessants?",
+            "ifYes": "revoir les exemples de commentaires constructifs et bienveillants",
+            "ifNo": "célébrer leur nature encourageante et développer davantage"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Structured peer feedback sessions with rotation and guided prompts",
+        "materials": [
+          "feedback forms",
+          "positive comment templates",
+          "peer observation sheets",
+          "encouragement stickers"
+        ],
+        "visualSupports": "Feedback sentence starters: I liked... You could try... Great job with...",
+        "decisionPoints": [
+          {
+            "question": "What feedback skills are appropriate for Grade 1 students to practice?",
+            "ifYes": "Focus on specific positive observations and gentle suggestions",
+            "ifNo": "Concentrate only on positive encouragement and celebration"
+          },
+          {
+            "question": "Si on se concentre sur les commentaires positifs ou suggestions spécifiques",
+            "ifYes": "Balance positive comments with one gentle suggestion",
+            "ifNo": "Emphasize positive comments with optional suggestions"
+          },
+          {
+            "question": "Si les élèves sont prêts pour l'évaluation par les pairs ou modéliser le langage de soutien",
+            "ifYes": "Allow guided peer evaluation with supportive language frames",
+            "ifNo": "Have teacher model supportive language while students practice listening"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Thank-you circle where students appreciate help received from others",
+        "materials": [
+          "étiquettes autocollantes (2 planches)",
+          "tampons motivants avec encreur (5 tampons)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Tous les élèves ont-ils reçu du soutien et des encouragements?",
+            "ifYes": "célébrer l'esprit d'entraide développé dans la classe",
+            "ifNo": "s'assurer que chaque élève reçoit au moins un commentaire positif"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Focus on giving positive encouragement rather than specific feedback",
+          "Use structured sentence frames for supportive comments",
+          "Practice listening skills and kind audience behaviors"
+        ],
+        "pourAvancés": [
+          "Encourage students to give specific, helpful suggestions to peers",
+          "Include students in helping solve presentation challenges collaboratively",
+          "Challenge students to ask thoughtful questions that help others improve"
+        ],
+        "pourLangue": [
+          "Practice encouragement vocabulary: 'Bon travail!', 'C'est intéressant!', 'J'aime...'",
+          "Use simple comment frames: 'Tu expliques bien...', 'Ton projet montre...'",
+          "Focus on positive observation rather than complex feedback"
+        ],
+        "pourPEI": [
+          "Focus on being a good audience member (listening, looking, staying quiet)",
+          "Use concrete ways to help (holding materials, being practice audience)",
+          "Practice giving one positive comment rather than detailed feedback"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Inviter notre famille",
+      "oneGoal": "Students will create invitations for their families to attend the science exposition",
+      "duration": 45,
+      "keyVocabulary": [
+        "inviter",
+        "famille",
+        "venir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Discuss family celebration and the importance of sharing learning",
+        "materials": [
+          "family photos",
+          "invitation examples",
+          "celebration props"
+        ],
+        "visualSupports": "Family words chart and invitation template examples",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves sont inquiets que leur famille ne puisse pas venir?",
+            "ifYes": "rassurer qu'on peut inviter d'autres personnes spéciales ou célébrer autrement",
+            "ifNo": "célébrer leur enthousiasme à partager avec leur famille"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Create personalized family invitations with drawings and key information",
+        "materials": [
+          "invitation templates",
+          "art supplies",
+          "family information sheets",
+          "envelope materials",
+          "stickers"
+        ],
+        "visualSupports": "Invitation checklist: Who, What, When, Where, Why",
+        "decisionPoints": [
+          {
+            "question": "Si les invitations incluent des détails sur les démonstrations des élèves",
+            "ifYes": "Include brief description of student's project on invitation",
+            "ifNo": "Keep invitations general with focus on celebration aspect"
+          },
+          {
+            "question": "How can we make invitations accessible for all family situations?",
+            "ifYes": "Use multiple language options and flexible wording about family",
+            "ifNo": "Use simple universal language about 'special people' instead of specific family terms"
+          },
+          {
+            "question": "Si les élèves écrivent les invitations ou utilisent des modèles/dictée",
+            "ifYes": "Provide writing templates with student choice in personalization",
+            "ifNo": "Use teacher/student dictated text with student art additions"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share invitations with partners and practice explaining the event",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "chemises individuelles (30 chemises)",
+          "certificats d'encouragement (30 copies)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "Les élèves arrivent-ils à expliquer ce que leur famille verra à l'exposition?",
+            "ifYes": "encourager des explications plus détaillées et enthousiastes",
+            "ifNo": "pratiquer des phrases simples pour décrire l'événement"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide simple invitation template with blanks to fill in key information",
+          "Focus on drawing and decorating rather than extensive writing",
+          "Use dictation with adult help for writing invitation text"
+        ],
+        "pourAvancés": [
+          "Encourage students to include specific details about what visitors will see and learn",
+          "Include students in thinking about accessibility and comfort for all visitors",
+          "Challenge students to create invitations in multiple languages if appropriate"
+        ],
+        "pourLangue": [
+          "Provide invitation vocabulary with visual supports: invitation, venir, voir, célébrer",
+          "Use simple sentence frames: 'Venez voir', 'Je vais montrer', 'À bientôt'",
+          "Allow incorporation of home language elements in invitation design"
+        ],
+        "pourPEI": [
+          "Use very simple invitation format focusing on essential information only",
+          "Provide hands-on decoration materials (stickers, stamps) rather than complex art tasks",
+          "Focus on personal connection: drawing family members or special people to invite"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Préparer notre espace d'exposition",
+      "oneGoal": "Students will organize their demonstration space and materials for the science exposition",
+      "duration": 45,
+      "keyVocabulary": [
+        "préparer",
+        "espace",
+        "organiser"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Tour exposition space and discuss organization principles",
+        "materials": [
+          "space layout maps",
+          "organizing bins",
+          "label makers"
+        ],
+        "visualSupports": "Space organization examples and setup checklist",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent dépassés par l'organisation de l'espace?",
+            "ifYes": "simplifier en se concentrant sur leur zone personnelle seulement",
+            "ifNo": "inclure des réflexions sur l'organisation générale de la classe"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Set up individual demonstration spaces with materials and displays",
+        "materials": [
+          "tables",
+          "display stands",
+          "all demonstration materials",
+          "organizational containers",
+          "name tags",
+          "setup guides"
+        ],
+        "visualSupports": "Space setup diagram and material organization chart",
+        "decisionPoints": [
+          {
+            "question": "How much space and setup responsibility can Grade 1 students handle?",
+            "ifYes": "Give students full responsibility for their defined space",
+            "ifNo": "Provide structured setup tasks with adult support available"
+          },
+          {
+            "question": "Si on organise des espaces individuels ou une disposition collaborative",
+            "ifYes": "Organize individual spaces within collaborative room setup",
+            "ifNo": "Focus on individual spaces with minimal room-wide coordination"
+          },
+          {
+            "question": "Si les élèves organisent indépendamment ou ont besoin de guidance étape par étape",
+            "ifYes": "Provide setup checklist and allow independent organization",
+            "ifNo": "Use step-by-step guided setup with teacher direction"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Space walk-through and final setup adjustments",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "tampons motivants avec encreur (5 tampons)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "question": "L'organisation de l'espace permet-elle une circulation facile des visiteurs?",
+            "ifYes": "finaliser les ajustements et célébrer le travail accompli",
+            "ifNo": "faire les modifications nécessaires pour améliorer l'accès"
+          }
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Focus on organizing just 3-4 essential items in their demonstration space",
+          "Use pictorial setup guides showing where each item should go",
+          "Practice setup with teacher guidance before independent organization"
+        ],
+        "pourAvancés": [
+          "Include students in overall classroom layout planning for visitor flow",
+          "Encourage students to think about visitor comfort (seating, viewing angles, space to move)",
+          "Challenge students to create backup plans in case materials are moved or broken"
+        ],
+        "pourLangue": [
+          "Teach key organization vocabulary: ici (here), là (there), à côté (beside), devant (in front)",
+          "Use directional gestures and physical modeling for space organization concepts",
+          "Practice key phrases: 'Voici ma place', 'Mes matériaux sont ici', 'Bienvenue à mon espace'"
+        ],
+        "pourPEI": [
+          "Use concrete visual markers (tape, signs) to define the student's demonstration space clearly",
+          "Focus on one organization task at a time with clear success criteria",
+          "Provide consistent adult support for setup and cleanup routines"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève présente sa découverte scientifique clairement",
+          "L'élève utilise le vocabulaire scientifique appris pendant l'année",
+          "L'élève répond aux questions sur son projet avec confiance",
+          "L'élève écoute respectueusement les présentations des autres"
+        ],
+        "checkpoints": [
+          "Explique son expérience scientifique du début à la fin",
+          "Utilise des mots scientifiques précis: hypothèse, observation, conclusion",
+          "Partage ce qu'il a appris de nouveau",
+          "Pose des questions pertinentes aux autres présentateurs"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Répétition générale",
+      "oneGoal": "Students will perform a final practice run of their science demonstration with timing and setup",
+      "duration": 45,
+      "keyVocabulary": [
+        "répétition",
+        "générale",
+        "prêt"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Final preparation check and confidence building activities",
+        "materials": [
+          "confidence building props",
+          "final checklist",
+          "calming music"
+        ],
+        "visualSupports": "Final preparation checklist and confidence affirmation cards",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent très nerveux pour la répétition générale?",
+            "ifYes": "prendre plus de temps pour les activités calmantes et les encouragements",
+            "ifNo": "procéder avec confiance vers la pratique complète"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Complete dress rehearsal with timing, setup, and audience simulation",
+        "materials": [
+          "all exposition materials",
+          "timer",
+          "visitor simulation props",
+          "final feedback forms",
+          "celebration materials"
+        ],
+        "visualSupports": "Performance flow chart and timing guidelines",
+        "decisionPoints": [
+          {
+            "question": "Si la répétition générale inclut d'autres classes comme public",
+            "ifYes": "Invite other classes for authentic audience experience",
+            "ifNo": "Use classroom-only rehearsal to maintain comfort level"
+          },
+          {
+            "question": "How can we address last-minute concerns without creating anxiety?",
+            "ifYes": "Address concerns individually with calm problem-solving",
+            "ifNo": "Focus on positive reinforcement and confidence building"
+          },
+          {
+            "question": "Si les élèves performent indépendamment ou ont besoin de rappels de soutien",
+            "ifYes": "Allow independent performance with minimal prompting",
+            "ifNo": "Provide discrete support cues and encouragement throughout"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration of readiness and final encouragement circle",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "certificats d'encouragement (30 copies)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "situation": "Si un élève ressent encore de l'anxiété avant la présentation finale",
+            "action": "offrir des stratégies de respiration calme et rappeler les succès de la pratique"
+          },
+          {
+            "situation": "Si le cercle d'encouragement devient trop long ou répétitif",
+            "action": "guider vers des messages spécifiques et positifs avec gestes d'encouragement"
+          },
+          {
+            "situation": "Si certains élèves expriment de l'inquiétude pour les oublis pendant la présentation",
+            "action": "rappeler que les erreurs font partie de l'apprentissage et suggérer des signaux d'aide"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Focus on completing their presentation from start to finish without perfection pressure",
+          "Provide extra encouragement and positive reinforcement during practice",
+          "Allow for shorter presentation length if full demonstration feels overwhelming"
+        ],
+        "pourAvancés": [
+          "Include practicing with timing and pacing for efficient presentations",
+          "Encourage students to practice handling unexpected situations or questions",
+          "Challenge students to help support classmates during their final practice"
+        ],
+        "pourLangue": [
+          "Allow use of visual cues and props to support verbal presentation",
+          "Practice key transition phrases: 'D'abord', 'Maintenant', 'Finalement', 'Merci'",
+          "Focus on clear communication over perfect French pronunciation"
+        ],
+        "pourPEI": [
+          "Provide calm, supportive environment with familiar audience members",
+          "Allow breaks between presentation components if needed",
+          "Focus on celebrating completion and effort rather than performance evaluation"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Notre exposition scientifique!",
+      "oneGoal": "Students will successfully demonstrate their science learning to visitors at the exposition event",
+      "duration": 90,
+      "keyVocabulary": [
+        "exposition",
+        "succès",
+        "fier"
+      ],
+      "opening": {
+        "duration": 15,
+        "activity": "Final setup, calm preparation, and welcome visitors",
+        "materials": [
+          "25 sets individual demonstration materials (prepared by students)",
+          "2-3 welcome signs for classroom entrance",
+          "50 visitor guides/programs",
+          "background calming music system"
+        ],
+        "visualSupports": "Welcome display and student confidence reminders",
+        "decisionPoints": [
+          {
+            "question": "Si l'installation prend plus de temps que prévu?",
+            "ifYes": "reporter l'ouverture aux visiteurs de quelques minutes",
+            "ifNo": "accueillir les visiteurs selon l'horaire prévu"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 60,
+        "activity": "Active science exposition with student demonstrations to family and community visitors",
+        "materials": [
+          "all prepared demonstration materials",
+          "visitor feedback forms",
+          "celebration props",
+          "documentation cameras"
+        ],
+        "visualSupports": "Station guides and visitor flow directions",
+        "decisionPoints": [
+          {
+            "question": "How can we support nervous students during the actual event?",
+            "ifYes": "Provide discrete teacher support and calm encouragement",
+            "ifNo": "Use peer buddy system and confident student helpers"
+          },
+          {
+            "question": "Si les élèves alternent entre présentateurs et membres du public",
+            "ifYes": "Plan rotation schedule for students to see other presentations",
+            "ifNo": "Keep students focused on their own demonstrations throughout"
+          },
+          {
+            "question": "How do we ensure every student feels successful regardless of performance?",
+            "ifYes": "Celebrate effort and participation rather than performance quality",
+            "ifNo": "Focus on individual growth and personal achievement recognition"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 15,
+        "activity": "Thank visitors, celebration of accomplishment, and cleanup",
+        "materials": [
+          "lingettes pour nettoyer les mains (1 paquet)",
+          "chemises individuelles (30 chemises)",
+          "boîte de rangement pour travaux (1 grande boîte)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "situation": "Si les visiteurs posent des questions trop complexes aux élèves",
+            "action": "intervenir doucement pour simplifier ou rediriger vers ce que l'élève peut partager"
+          },
+          {
+            "situation": "Si un élève devient émotionnel pendant ou après sa présentation",
+            "action": "offrir un espace calme et célébrer sa bravoure de partager son apprentissage"
+          },
+          {
+            "situation": "Si les visiteurs s'attardent trop longtemps et fatiguent les élèves",
+            "action": "guider poliment vers une conclusion avec remerciements et reconnaissance du travail accompli"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Provide adult support nearby for encouragement and assistance if needed",
+          "Allow flexibility in presentation length based on student comfort and energy",
+          "Focus on celebrating participation and effort rather than performance perfection"
+        ],
+        "pourAvancés": [
+          "Encourage students to engage visitors with questions and interactive elements",
+          "Include students in helping welcome and guide visitors around the classroom",
+          "Challenge students to make connections between their topic and visitors' experiences"
+        ],
+        "pourLangue": [
+          "Allow use of all available supports (visual aids, props, gestures) during presentation",
+          "Provide patient adult or peer support for language assistance if needed",
+          "Celebrate communication success regardless of language perfection"
+        ],
+        "pourPEI": [
+          "Ensure familiar, supportive adults are available during presentation time",
+          "Allow alternative presentation formats if traditional format becomes overwhelming",
+          "Focus on student's comfort and success rather than standardized presentation expectations"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève présente sa découverte scientifique clairement",
+          "L'élève utilise le vocabulaire scientifique appris pendant l'année",
+          "L'élève répond aux questions sur son projet avec confiance",
+          "L'élève écoute respectueusement les présentations des autres"
+        ],
+        "checkpoints": [
+          "Explique son expérience scientifique du début à la fin",
+          "Utilise des mots scientifiques précis: hypothèse, observation, conclusion",
+          "Partage ce qu'il a appris de nouveau",
+          "Pose des questions pertinentes aux autres présentateurs"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Célébrer nos réussites",
+      "oneGoal": "Students will reflect on their successful participation in the science exposition and celebrate their growth",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébrer",
+        "réussites",
+        "grandir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration circle sharing favorite moments from the exposition",
+        "materials": [
+          "exposition photos",
+          "celebration props",
+          "success certificates"
+        ],
+        "visualSupports": "Photo display from the exposition event",
+        "decisionPoints": [
+          {
+            "question": "Si certains élèves semblent fatigués après l'exposition?",
+            "ifYes": "garder le partage plus bref et se concentrer sur les aspects positifs",
+            "ifNo": "permettre un partage plus détaillé des expériences"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Individual and group reflection on growth, learning, and accomplishments",
+        "materials": [
+          "reflection sheets",
+          "growth documentation",
+          "celebration art supplies",
+          "success story templates"
+        ],
+        "visualSupports": "Growth comparison charts and accomplishment celebration display",
+        "decisionPoints": [
+          {
+            "question": "Si la célébration porte sur les réussites individuelles ou collectives",
+            "ifYes": "Balance individual recognition with group celebration",
+            "ifNo": "Focus primarily on collective class accomplishment"
+          },
+          {
+            "question": "How can we help students identify specific growth and learning?",
+            "ifYes": "Use before/after comparisons and specific skill identification",
+            "ifNo": "Focus on general feelings of accomplishment and pride"
+          },
+          {
+            "question": "Si les élèves sont prêts pour une réflexion formelle ou un partage informel",
+            "ifYes": "Use guided reflection activities with sharing opportunities",
+            "ifNo": "Keep to informal celebration and story sharing"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Class celebration with recognition of everyone's unique contribution",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "étiquettes autocollantes (2 planches)",
+          "lingettes pour nettoyer les mains (1 paquet)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "situation": "Si un élève a de la difficulté à identifier ses propres réussites",
+            "action": "utiliser des exemples spécifiques observés pendant l'exposition pour souligner ses forces"
+          },
+          {
+            "situation": "Si la célébration devient compétitive entre élèves",
+            "action": "recentrer sur les contributions uniques de chacun et la diversité des apprentissages"
+          },
+          {
+            "situation": "Si certains élèves sont encore déçus de leur performance",
+            "action": "mettre l'accent sur le courage démontré et les apprentissages acquis tout au long du processus"
+          }
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Help students identify specific positive moments from their exposition experience",
+          "Use visual supports to help students recall and share their success stories",
+          "Focus on effort and participation achievements rather than performance comparisons"
+        ],
+        "pourAvancés": [
+          "Encourage students to reflect on their learning journey and growth throughout the unit",
+          "Include students in recognizing and celebrating classmates' achievements and efforts",
+          "Challenge students to set science learning goals for future exploration"
+        ],
+        "pourLangue": [
+          "Provide celebration vocabulary: réussir, fier, accomplissement, félicitations",
+          "Use sentence frames for reflection: 'Je suis fier de...', 'J'ai appris...', 'C'était amusant quand...'",
+          "Allow expression of pride and accomplishment in ways that feel natural to student"
+        ],
+        "pourPEI": [
+          "Focus on concrete, specific achievements that student can easily recognize",
+          "Use photos or props from the exposition to help trigger positive memories",
+          "Celebrate individual growth and participation in ways meaningful to the student"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Student can identify specific successes and positive experiences from the science exposition",
+          "Student expresses pride and satisfaction in their scientific learning and sharing",
+          "Student recognizes their own growth in confidence and science communication skills",
+          "Student celebrates both individual and collective class achievements appropriately"
+        ],
+        "checkpoints": [
+          "Success recognition: Can student identify specific things they accomplished well during exposition?",
+          "Pride expression: Does student show appropriate pride and satisfaction in their achievements?",
+          "Growth awareness: Can student recognize how they've grown as a young scientist?",
+          "Community celebration: Does student participate positively in celebrating class achievements?"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Apprendre des autres projets",
+      "oneGoal": "Students will identify interesting ideas and discoveries they learned from other students' demonstrations",
+      "duration": 45,
+      "keyVocabulary": [
+        "apprendre",
+        "autres",
+        "idées"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Share memories of seeing other students' science projects",
+        "materials": [
+          "exposition photos",
+          "memory sharing cards",
+          "peer project documentation"
+        ],
+        "visualSupports": "Photo gallery of all student projects from the exposition",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves ont de la difficulté à se souvenir des projets des autres?",
+            "ifYes": "utiliser les photos pour stimuler les souvenirs",
+            "ifNo": "encourager le partage détaillé des observations"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Structured sharing about what students learned from classmates' projects",
+        "materials": [
+          "learning documentation sheets",
+          "peer appreciation cards",
+          "discovery sharing templates",
+          "art supplies"
+        ],
+        "visualSupports": "Learning from others chart and appreciation sentence starters",
+        "decisionPoints": [
+          {
+            "question": "Si on structure les observations d'apprentissage ou permet l'exploration libre",
+            "ifYes": "Provide guided observation questions with free sharing time",
+            "ifNo": "Use completely open sharing about interesting discoveries"
+          },
+          {
+            "question": "How can we help students articulate what they found interesting?",
+            "ifYes": "Use specific prompts about what surprised or excited them",
+            "ifNo": "Allow general sharing of positive reactions and feelings"
+          },
+          {
+            "question": "Si les élèves comparent les approches ou se concentrent sur l'appréciation",
+            "ifYes": "Include gentle comparisons about different ways to show science",
+            "ifNo": "Focus purely on appreciation and positive observations"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Create thank-you notes or appreciation messages for classmates",
+        "materials": [
+          "boîte de rangement pour travaux (1 grande boîte)",
+          "tampons motivants avec encreur (5 tampons)",
+          "étiquettes autocollantes (2 planches)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "situation": "Si un élève ne se souvient d'aucune présentation de ses camarades",
+            "action": "utiliser des photos ou supports visuels pour stimuler la mémoire et encourager l'observation"
+          },
+          {
+            "situation": "Si les messages de remerciement deviennent répétitifs ou génériques",
+            "action": "guider vers des détails spécifiques appréciés chez chaque camarade"
+          },
+          {
+            "situation": "Si un élève exprime de la jalousie envers le travail d'un autre",
+            "action": "rediriger vers l'appréciation de la diversité et comment chacun apporte quelque chose de spécial"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Focus on identifying just one interesting thing learned from others' presentations",
+          "Use visual supports showing different classmates' topics to help trigger memories",
+          "Allow simple expressions of interest: 'J'ai aimé...', 'C'était cool...'"
+        ],
+        "pourAvancés": [
+          "Encourage students to make connections between different classmates' science topics",
+          "Include students in thinking about questions they still have after seeing others' work",
+          "Challenge students to identify science topics they'd like to explore further"
+        ],
+        "pourLangue": [
+          "Provide vocabulary for expressing interest: intéressant, nouveau, surprenant, cool",
+          "Use sentence frames: 'J'ai appris que...', 'Je ne savais pas que...', 'Maintenant je comprends...'",
+          "Allow students to draw or point to express their learning from others"
+        ],
+        "pourPEI": [
+          "Focus on concrete, observable things from classmates' presentations",
+          "Use photos or materials from other presentations to help recall specific learning",
+          "Celebrate the student's attention and interest in others' work"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Sciences pour l'été",
+      "oneGoal": "Students will identify safe science exploration opportunities they can pursue during summer break",
+      "duration": 45,
+      "keyVocabulary": [
+        "été",
+        "explorer",
+        "vacances"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Introduce summer science exploration and connect to year's learning",
+        "materials": [
+          "summer activity cards",
+          "seasonal props",
+          "exploration journals"
+        ],
+        "visualSupports": "Summer science opportunities poster with seasonal activities",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves semblent fatigués en fin d'année?",
+            "ifYes": "garder l'activité courte et se concentrer sur l'enthousiasme",
+            "ifNo": "explorer plus d'idées pour les sciences d'été"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Brainstorm and plan safe summer science activities with family involvement",
+        "materials": [
+          "summer science booklets",
+          "family activity suggestions",
+          "safety reminder cards",
+          "nature exploration guides"
+        ],
+        "visualSupports": "Safe summer science chart and family activity ideas display",
+        "decisionPoints": [
+          {
+            "question": "Which summer science activities are safest and most accessible for families?",
+            "ifYes": "Focus on observation and simple safe activities requiring minimal materials",
+            "ifNo": "Provide extensive activity options with clear safety guidelines"
+          },
+          {
+            "question": "Si on se concentre sur les activités d'observation ou expériences simples",
+            "ifYes": "Balance observation with very simple, safe experimental activities",
+            "ifNo": "Concentrate on observation and discovery activities"
+          },
+          {
+            "question": "Si les élèves pensent scientifiquement indépendamment ou ont besoin de suggestions structurées",
+            "ifYes": "Encourage independent wondering with family support structure",
+            "ifNo": "Provide specific, structured activity suggestions to follow"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share summer science plans and final celebration of year's science learning",
+        "materials": [
+          "certificats d'encouragement (30 copies)",
+          "étiquettes autocollantes (2 planches)",
+          "chemises individuelles (30 chemises)"
+        ],
+        "visualSupports": "",
+        "decisionPoints": [
+          {
+            "situation": "Si un élève n'arrive pas à penser à des activités scientifiques pour l'été",
+            "action": "connecter aux activités estivales qu'il aime déjà et montrer les aspects scientifiques cachés"
+          },
+          {
+            "situation": "Si les élèves deviennent nostalgiques ou tristes que l'année se termine",
+            "action": "célébrer tous les apprentissages acquis et l'excitation de continuer à explorer cet été"
+          },
+          {
+            "situation": "Si un élève s'inquiète d'oublier ses apprentissages scientifiques pendant l'été",
+            "action": "rassurer qu'explorer la nature et poser des questions maintient l'esprit scientifique vivant"
+          }
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Focus on simple, safe science activities available at home (water play, nature observation)",
+          "Use picture cards showing safe summer science activities",
+          "Connect to familiar summer activities that already have science elements"
+        ],
+        "pourAvancés": [
+          "Encourage students to plan specific science investigations they could do over summer",
+          "Include thinking about questions they want to explore further",
+          "Challenge students to consider sharing summer discoveries with family or friends"
+        ],
+        "pourLangue": [
+          "Provide summer science vocabulary: été, explorer, découvrir, observer, sécuritaire",
+          "Use visual supports showing summer science activities",
+          "Practice phrases: 'Cet été je vais...', 'Je peux observer...', 'C'est sécuritaire de...'"
+        ],
+        "pourPEI": [
+          "Focus on very simple, concrete summer activities with science connections",
+          "Use familiar summer routines and activities as starting points for science thinking",
+          "Emphasize safety and adult supervision for any summer science exploration"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève pose des questions scientifiques sur ce qu'il observe",
+          "L'élève utilise ses cinq sens pour explorer en sécurité",
+          "L'élève décrit ses observations avec des mots précis",
+          "L'élève compare et classe les objets selon leurs propriétés"
+        ],
+        "checkpoints": [
+          "Fait des prédictions basées sur ses connaissances",
+          "Utilise le vocabulaire scientifique approprié au niveau",
+          "Tire des conclusions simples de ses observations",
+          "Fait des liens entre la science et sa vie quotidienne"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Exploration créative",
+        "icon": "🎨",
+        "purpose": "Pour explorer les concepts de manière créative",
+        "whenToUse": "Pour les journées spéciales ou projets libres",
+        "teacherTips": {
+          "preparation": [
+            "Rassembler divers matériaux créatifs",
+            "Créer un environnement ouvert à l'exploration",
+            "Préparer peu de directives, plus de possibilités"
+          ],
+          "implementation": [
+            "Donner du temps pour explorer librement",
+            "Poser des questions ouvertes",
+            "Valoriser toutes les découvertes"
+          ],
+          "assessment": "Documenter le processus d'exploration et les découvertes",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension exploration créative renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Journée thématique",
+          "Projet d'art libre",
+          "Activité de fin de journée"
+        ]
+      },
+      "extensionCategory": "exploration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Observation",
+        "items": [
+          "Démontre une compréhension de base en observation",
+          "Participe activement aux activités de observation",
+          "Montre du progrès dans observation",
+          "Applique les apprentissages de observation dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Questionnement",
+        "items": [
+          "Démontre une compréhension de base en questionnement",
+          "Participe activement aux activités de questionnement",
+          "Montre du progrès dans questionnement",
+          "Applique les apprentissages de questionnement dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Exploration sécuritaire",
+        "items": [
+          "Démontre une compréhension de base en exploration sécuritaire",
+          "Participe activement aux activités de exploration sécuritaire",
+          "Montre du progrès dans exploration sécuritaire",
+          "Applique les apprentissages de exploration sécuritaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Communication des découvertes",
+        "items": [
+          "Démontre une compréhension de base en communication des découvertes",
+          "Participe activement aux activités de communication des découvertes",
+          "Montre du progrès dans communication des découvertes",
+          "Applique les apprentissages de communication des découvertes dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Observation",
+        "Questionnement",
+        "Exploration sécuritaire",
+        "Communication des découvertes"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🌟",
+          "⭐",
+          "☆"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en sciences\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nNotre année scientifique en révision, Nos découvertes les plus excitantes, Qu'est-ce qu'une exposition scientifique?, Choisir notre projet de démonstration, Planifier notre démonstration\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nEncouragez les questions 'pourquoi' et explorez ensemble les réponses.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nLa curiosité scientifique commence à la maison!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Observations de la nature",
+        "description": "Observez et discutez des phénomènes naturels liés à l'unité",
+        "timeRequired": "15 minutes",
+        "materials": "Carnet d'observations",
+        "frenchSupport": "Dessiner les observations aide la communication"
+      },
+      {
+        "title": "Expérience simple",
+        "description": "Faites une expérience sécuritaire liée au thème",
+        "timeRequired": "20 minutes",
+        "materials": "Matériaux simples du quotidien",
+        "frenchSupport": "Utilisez les mots scientifiques en français"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "révision",
+        "lesson": 1,
+        "context": "Notre année scientifique en révision",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"révision\"",
+          "Utilisez \"révision\" dans une phrase simple",
+          "Trouvez des images représentant \"révision\"",
+          "Faites des gestes pour \"révision\""
+        ]
+      },
+      {
+        "word": "année",
+        "lesson": 1,
+        "context": "Notre année scientifique en révision",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"année\"",
+          "Utilisez \"année\" dans une phrase simple",
+          "Trouvez des images représentant \"année\"",
+          "Faites des gestes pour \"année\""
+        ]
+      },
+      {
+        "word": "sciences",
+        "lesson": 1,
+        "context": "Notre année scientifique en révision",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sciences\"",
+          "Utilisez \"sciences\" dans une phrase simple",
+          "Trouvez des images représentant \"sciences\"",
+          "Faites des gestes pour \"sciences\""
+        ]
+      },
+      {
+        "word": "découvertes",
+        "lesson": 2,
+        "context": "Nos découvertes les plus excitantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"découvertes\"",
+          "Utilisez \"découvertes\" dans une phrase simple",
+          "Trouvez des images représentant \"découvertes\"",
+          "Faites des gestes pour \"découvertes\""
+        ]
+      },
+      {
+        "word": "excitant",
+        "lesson": 2,
+        "context": "Nos découvertes les plus excitantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"excitant\"",
+          "Utilisez \"excitant\" dans une phrase simple",
+          "Trouvez des images représentant \"excitant\"",
+          "Faites des gestes pour \"excitant\""
+        ]
+      },
+      {
+        "word": "spécial",
+        "lesson": 2,
+        "context": "Nos découvertes les plus excitantes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"spécial\"",
+          "Utilisez \"spécial\" dans une phrase simple",
+          "Trouvez des images représentant \"spécial\"",
+          "Faites des gestes pour \"spécial\""
+        ]
+      },
+      {
+        "word": "exposition",
+        "lesson": 3,
+        "context": "Qu'est-ce qu'une exposition scientifique?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"exposition\"",
+          "Utilisez \"exposition\" dans une phrase simple",
+          "Trouvez des images représentant \"exposition\"",
+          "Faites des gestes pour \"exposition\""
+        ]
+      },
+      {
+        "word": "montrer",
+        "lesson": 3,
+        "context": "Qu'est-ce qu'une exposition scientifique?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"montrer\"",
+          "Utilisez \"montrer\" dans une phrase simple",
+          "Trouvez des images représentant \"montrer\"",
+          "Faites des gestes pour \"montrer\""
+        ]
+      },
+      {
+        "word": "partager",
+        "lesson": 3,
+        "context": "Qu'est-ce qu'une exposition scientifique?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"partager\"",
+          "Utilisez \"partager\" dans une phrase simple",
+          "Trouvez des images représentant \"partager\"",
+          "Faites des gestes pour \"partager\""
+        ]
+      },
+      {
+        "word": "choisir",
+        "lesson": 4,
+        "context": "Choisir notre projet de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"choisir\"",
+          "Utilisez \"choisir\" dans une phrase simple",
+          "Trouvez des images représentant \"choisir\"",
+          "Faites des gestes pour \"choisir\""
+        ]
+      },
+      {
+        "word": "projet",
+        "lesson": 4,
+        "context": "Choisir notre projet de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"projet\"",
+          "Utilisez \"projet\" dans une phrase simple",
+          "Trouvez des images représentant \"projet\"",
+          "Faites des gestes pour \"projet\""
+        ]
+      },
+      {
+        "word": "démonstration",
+        "lesson": 4,
+        "context": "Choisir notre projet de démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"démonstration\"",
+          "Utilisez \"démonstration\" dans une phrase simple",
+          "Trouvez des images représentant \"démonstration\"",
+          "Faites des gestes pour \"démonstration\""
+        ]
+      },
+      {
+        "word": "planifier",
+        "lesson": 5,
+        "context": "Planifier notre démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"planifier\"",
+          "Utilisez \"planifier\" dans une phrase simple",
+          "Trouvez des images représentant \"planifier\"",
+          "Faites des gestes pour \"planifier\""
+        ]
+      },
+      {
+        "word": "plan",
+        "lesson": 5,
+        "context": "Planifier notre démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"plan\"",
+          "Utilisez \"plan\" dans une phrase simple",
+          "Trouvez des images représentant \"plan\"",
+          "Faites des gestes pour \"plan\""
+        ]
+      },
+      {
+        "word": "visiteurs",
+        "lesson": 5,
+        "context": "Planifier notre démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"visiteurs\"",
+          "Utilisez \"visiteurs\" dans une phrase simple",
+          "Trouvez des images représentant \"visiteurs\"",
+          "Faites des gestes pour \"visiteurs\""
+        ]
+      },
+      {
+        "word": "matériel",
+        "lesson": 6,
+        "context": "Matériel et outils nécessaires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"matériel\"",
+          "Utilisez \"matériel\" dans une phrase simple",
+          "Trouvez des images représentant \"matériel\"",
+          "Faites des gestes pour \"matériel\""
+        ]
+      },
+      {
+        "word": "outils",
+        "lesson": 6,
+        "context": "Matériel et outils nécessaires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"outils\"",
+          "Utilisez \"outils\" dans une phrase simple",
+          "Trouvez des images représentant \"outils\"",
+          "Faites des gestes pour \"outils\""
+        ]
+      },
+      {
+        "word": "nécessaires",
+        "lesson": 6,
+        "context": "Matériel et outils nécessaires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nécessaires\"",
+          "Utilisez \"nécessaires\" dans une phrase simple",
+          "Trouvez des images représentant \"nécessaires\"",
+          "Faites des gestes pour \"nécessaires\""
+        ]
+      },
+      {
+        "word": "pratiquer",
+        "lesson": 7,
+        "context": "Pratiquer notre explication simple",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pratiquer\"",
+          "Utilisez \"pratiquer\" dans une phrase simple",
+          "Trouvez des images représentant \"pratiquer\"",
+          "Faites des gestes pour \"pratiquer\""
+        ]
+      },
+      {
+        "word": "explication",
+        "lesson": 7,
+        "context": "Pratiquer notre explication simple",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"explication\"",
+          "Utilisez \"explication\" dans une phrase simple",
+          "Trouvez des images représentant \"explication\"",
+          "Faites des gestes pour \"explication\""
+        ]
+      },
+      {
+        "word": "comprendre",
+        "lesson": 7,
+        "context": "Pratiquer notre explication simple",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"comprendre\"",
+          "Utilisez \"comprendre\" dans une phrase simple",
+          "Trouvez des images représentant \"comprendre\"",
+          "Faites des gestes pour \"comprendre\""
+        ]
+      },
+      {
+        "word": "créer",
+        "lesson": 8,
+        "context": "Créer un affichage visuel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"créer\"",
+          "Utilisez \"créer\" dans une phrase simple",
+          "Trouvez des images représentant \"créer\"",
+          "Faites des gestes pour \"créer\""
+        ]
+      },
+      {
+        "word": "affichage",
+        "lesson": 8,
+        "context": "Créer un affichage visuel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"affichage\"",
+          "Utilisez \"affichage\" dans une phrase simple",
+          "Trouvez des images représentant \"affichage\"",
+          "Faites des gestes pour \"affichage\""
+        ]
+      },
+      {
+        "word": "visuel",
+        "lesson": 8,
+        "context": "Créer un affichage visuel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"visuel\"",
+          "Utilisez \"visuel\" dans une phrase simple",
+          "Trouvez des images représentant \"visuel\"",
+          "Faites des gestes pour \"visuel\""
+        ]
+      },
+      {
+        "word": "questions",
+        "lesson": 9,
+        "context": "Questions que les visiteurs pourraient poser",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"questions\"",
+          "Utilisez \"questions\" dans une phrase simple",
+          "Trouvez des images représentant \"questions\"",
+          "Faites des gestes pour \"questions\""
+        ]
+      },
+      {
+        "word": "répondre",
+        "lesson": 9,
+        "context": "Questions que les visiteurs pourraient poser",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"répondre\"",
+          "Utilisez \"répondre\" dans une phrase simple",
+          "Trouvez des images représentant \"répondre\"",
+          "Faites des gestes pour \"répondre\""
+        ]
+      },
+      {
+        "word": "sécurité",
+        "lesson": 10,
+        "context": "Sécurité pendant notre démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sécurité\"",
+          "Utilisez \"sécurité\" dans une phrase simple",
+          "Trouvez des images représentant \"sécurité\"",
+          "Faites des gestes pour \"sécurité\""
+        ]
+      },
+      {
+        "word": "règles",
+        "lesson": 10,
+        "context": "Sécurité pendant notre démonstration",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"règles\"",
+          "Utilisez \"règles\" dans une phrase simple",
+          "Trouvez des images représentant \"règles\"",
+          "Faites des gestes pour \"règles\""
+        ]
+      },
+      {
+        "word": "première",
+        "lesson": 11,
+        "context": "Première pratique complète",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"première\"",
+          "Utilisez \"première\" dans une phrase simple",
+          "Trouvez des images représentant \"première\"",
+          "Faites des gestes pour \"première\""
+        ]
+      },
+      {
+        "word": "pratique",
+        "lesson": 11,
+        "context": "Première pratique complète",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"pratique\"",
+          "Utilisez \"pratique\" dans une phrase simple",
+          "Trouvez des images représentant \"pratique\"",
+          "Faites des gestes pour \"pratique\""
+        ]
+      },
+      {
+        "word": "complète",
+        "lesson": 11,
+        "context": "Première pratique complète",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"complète\"",
+          "Utilisez \"complète\" dans une phrase simple",
+          "Trouvez des images représentant \"complète\"",
+          "Faites des gestes pour \"complète\""
+        ]
+      },
+      {
+        "word": "améliorer",
+        "lesson": 12,
+        "context": "Améliorer notre présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"améliorer\"",
+          "Utilisez \"améliorer\" dans une phrase simple",
+          "Trouvez des images représentant \"améliorer\"",
+          "Faites des gestes pour \"améliorer\""
+        ]
+      },
+      {
+        "word": "mieux",
+        "lesson": 12,
+        "context": "Améliorer notre présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mieux\"",
+          "Utilisez \"mieux\" dans une phrase simple",
+          "Trouvez des images représentant \"mieux\"",
+          "Faites des gestes pour \"mieux\""
+        ]
+      },
+      {
+        "word": "changement",
+        "lesson": 12,
+        "context": "Améliorer notre présentation",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"changement\"",
+          "Utilisez \"changement\" dans une phrase simple",
+          "Trouvez des images représentant \"changement\"",
+          "Faites des gestes pour \"changement\""
+        ]
+      },
+      {
+        "word": "aider",
+        "lesson": 13,
+        "context": "Aider les autres avec leurs projets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aider\"",
+          "Utilisez \"aider\" dans une phrase simple",
+          "Trouvez des images représentant \"aider\"",
+          "Faites des gestes pour \"aider\""
+        ]
+      },
+      {
+        "word": "autres",
+        "lesson": 13,
+        "context": "Aider les autres avec leurs projets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"autres\"",
+          "Utilisez \"autres\" dans une phrase simple",
+          "Trouvez des images représentant \"autres\"",
+          "Faites des gestes pour \"autres\""
+        ]
+      },
+      {
+        "word": "encouragement",
+        "lesson": 13,
+        "context": "Aider les autres avec leurs projets",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"encouragement\"",
+          "Utilisez \"encouragement\" dans une phrase simple",
+          "Trouvez des images représentant \"encouragement\"",
+          "Faites des gestes pour \"encouragement\""
+        ]
+      },
+      {
+        "word": "inviter",
+        "lesson": 14,
+        "context": "Inviter notre famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"inviter\"",
+          "Utilisez \"inviter\" dans une phrase simple",
+          "Trouvez des images représentant \"inviter\"",
+          "Faites des gestes pour \"inviter\""
+        ]
+      },
+      {
+        "word": "famille",
+        "lesson": 14,
+        "context": "Inviter notre famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"famille\"",
+          "Utilisez \"famille\" dans une phrase simple",
+          "Trouvez des images représentant \"famille\"",
+          "Faites des gestes pour \"famille\""
+        ]
+      },
+      {
+        "word": "venir",
+        "lesson": 14,
+        "context": "Inviter notre famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"venir\"",
+          "Utilisez \"venir\" dans une phrase simple",
+          "Trouvez des images représentant \"venir\"",
+          "Faites des gestes pour \"venir\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

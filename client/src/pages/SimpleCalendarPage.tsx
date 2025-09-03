@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isSameMonth, isToday, addMonths, subMonths } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
 import { Calendar, ChevronLeft, ChevronRight, Settings, Clock, Coffee, Users } from 'lucide-react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Type definitions for schedule
 interface ScheduleSlot {

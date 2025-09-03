@@ -1,0 +1,3374 @@
+{
+  "unitTitle": "Ma famille, mon trésor",
+  "subject": "Sciences humaines",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Qu'est-ce qu'une famille?",
+      "oneGoal": "Students will understand that families come in many different forms and all families are special and important",
+      "duration": 45,
+      "keyVocabulary": [
+        "famille",
+        "différent",
+        "spécial",
+        "unique"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Family circle where students share one special thing about their family without naming specific members. Introduce the word 'famille' with warm, inclusive gestures.",
+        "materials": [
+          "family photos from diverse sources",
+          "heart-shaped cards",
+          "welcoming music"
+        ],
+        "visualSupports": "Open arms for inclusion, heart gestures for love, smiling faces for celebration",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'a pas de famille traditionnelle → célébrer que toutes les familles sont différentes et spéciales, utiliser des exemples variés de ma famille",
+          "Si un élève semble gêné de sa situation familiale → rassurer que chaque famille est parfaite comme elle est, rediriger vers les aspects positifs",
+          "Si un élève ne veut pas partager → respecter sa confidentialité et offrir l'option d'écouter seulement",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family diversity exploration using picture books and photos showing different family structures. Students create a 'Families are Special' gallery wall, adding drawings or words about what makes families special. Emphasize that ALL families are wonderful.",
+        "materials": [
+          "diverse family books",
+          "family structure photos",
+          "gallery wall space",
+          "art supplies",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Pointing to different family types with equal celebration, diversity hand gestures, appreciation expressions",
+        "decisionPoints": [
+          {
+            "question": "How comfortable are students sharing about their family structure?",
+            "ifYes": "Encourage specific sharing while maintaining privacy boundaries",
+            "ifNo": "Keep discussions general and use book examples rather than personal sharing"
+          },
+          {
+            "question": "What level of emotional support do students need when discussing family?",
+            "ifYes": "Use extra reassurance and validate all feelings about family",
+            "ifNo": "Focus on celebration and positive aspects of family diversity"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Family appreciation circle where students share one word that describes how families make them feel. End with group chant: 'Toutes les familles sont spéciales!'",
+        "materials": [
+          "cartes de mots émotionnels",
+          "autocollants cœurs",
+          "tableau de célébration familiale",
+          "musique douce de fermeture"
+        ],
+        "visualSupports": "Gestes d'appréciation, cercle visuel de partage, expressions de fierté familiale",
+        "decisionPoints": [
+          "Si un élève ne trouve pas de mot pour décrire sa famille → l'aider avec des suggestions douces comme 'aimante' ou 'gentille'",
+          "Si un élève devient émotionnel en parlant de famille → valider ses sentiments et offrir un câlin ou moment de réconfort",
+          "Si un élève reste silencieux → respecter son choix et lui dire que chaque famille mérite d'être célébrée même en silence"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Ma famille à moi",
+      "oneGoal": "Students will share and celebrate their own family structure and members with pride and confidence",
+      "duration": 45,
+      "keyVocabulary": [
+        "ma",
+        "membre",
+        "fier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Family pride circle where students hold a mirror and say 'Je suis fier de ma famille' (I am proud of my family). Practice proud posture and confident expressions.",
+        "materials": [
+          "hand mirrors",
+          "family pride badges",
+          "confident posture cards"
+        ],
+        "visualSupports": "Proud chest out posture, happy confident faces, thumbs up gestures",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à dire qu'il est fier de sa famille → l'encourager à commencer par 'J'aime ma famille' comme alternative",
+          "Si un élève semble inquiet de sa situation familiale → rappeler que toutes les familles sont différentes et spéciales",
+          "Si un élève ne veut pas utiliser le miroir → respecter son choix et offrir de faire l'activité sans miroir",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "My family creation station where students choose how to represent their family - drawing, photos, puppet show, or storytelling. Create family portraits with emphasis on what makes each family special and loved.",
+        "materials": [
+          "art supplies",
+          "family template options",
+          "puppet materials",
+          "story-sharing space",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Creative expression gestures, family love symbols, celebration movements",
+        "decisionPoints": [
+          {
+            "question": "How do we ensure all family structures feel valued and included?",
+            "ifYes": "Celebrate each family presentation equally with specific positive feedback",
+            "ifNo": "Focus on universal family themes like love, care, and togetherness"
+          },
+          {
+            "question": "Should students draw, tell, or show photos of their families?",
+            "ifYes": "Offer multiple options and let students choose their comfort level",
+            "ifNo": "Use drawing as the main activity with optional sharing"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Family gallery walk where students admire each other's family representations and share one positive observation about a classmate's family.",
+        "materials": [
+          "étiquettes de commentaires positifs",
+          "cartes d'observation",
+          "autocollants étoiles",
+          "guide de compliments"
+        ],
+        "visualSupports": "Gestes d'admiration, expressions positives, mouvements de célébration respectueuse",
+        "decisionPoints": [
+          "Si un élève fait un commentaire inapproprié sur une famille → rediriger doucement vers les aspects positifs et rappeler le respect",
+          "Si un élève ne veut pas partager d'observation → l'inviter à simplement regarder et apprécier en silence",
+          "Si un élève semble jaloux d'une autre famille → valider ses sentiments et rappeler ce qui rend sa propre famille spéciale"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des photos de familles simples pour modéliser",
+          "Permettre le dessin libre au lieu de structures complexes",
+          "Offrir de l'aide individuelle pour l'expression"
+        ],
+        "pourAvancés": [
+          "Encourager l'ajout de détails sur les relations familiales",
+          "Inviter à expliquer les rôles spéciaux dans leur famille",
+          "Permettre de partager des histoires familiales"
+        ],
+        "pourLangue": [
+          "Fournir du vocabulaire de membres familiaux en français",
+          "Utiliser des images pour appuyer la compréhension",
+          "Encourager le mélange linguistique avec traduction"
+        ],
+        "pourPEI": [
+          "Adapter les outils de représentation familiale",
+          "Offrir des options de communication alternatives",
+          "Respecter les besoins individuels de participation"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève démontre de la fierté envers sa famille",
+          "Élève crée une représentation de sa famille",
+          "Élève respecte les représentations des autres",
+          "Élève utilise un langage positif sur les familles"
+        ],
+        "checkpoints": [
+          "Observation de l'activité créative - engagement personnel",
+          "Documentation des commentaires lors de la galerie",
+          "Noter l'expression de fierté familiale"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Les personnes dans ma famille",
+      "oneGoal": "Students will identify different family members and understand the special relationships within families",
+      "duration": 45,
+      "keyVocabulary": [
+        "maman",
+        "papa",
+        "grand-parent"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Family member movement game where students act out different family roles (parent, grandparent, sibling, etc.) while others guess. Use inclusive language and actions.",
+        "materials": [
+          "family role cards",
+          "movement space",
+          "guessing game props"
+        ],
+        "visualSupports": "Age-appropriate movements, caring gestures, family relationship symbols",
+        "decisionPoints": [
+          "Si un élève n'a pas certains membres familiaux traditionnels → encourager à montrer les personnes qui s'occupent de lui avec amour",
+          "Si un élève semble confus par les rôles familiaux → expliquer que chaque famille organise les rôles différemment",
+          "Si un élève ne veut pas participer aux mouvements → l'inviter à être le devineur spécial",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family relationship mapping where students create a simple family tree or family circle showing the people in their family. Focus on relationships and connections rather than traditional structures.",
+        "materials": [
+          "family tree templates",
+          "relationship circles",
+          "photo spaces",
+          "connecting lines",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Connection gestures, relationship pointing, family bond symbols",
+        "decisionPoints": [
+          {
+            "question": "Which family roles are most common in our classroom community?",
+            "ifYes": "Include those roles prominently while also showing other family structures",
+            "ifNo": "Use diverse examples from books and media to show variety"
+          },
+          {
+            "question": "How do we include non-traditional family structures in our vocabulary?",
+            "ifYes": "Introduce inclusive terms like 'family member' alongside specific roles",
+            "ifNo": "Focus on universal relationship concepts like love, care, and support"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Family bond celebration where students share one special thing about a family member's relationship to them.",
+        "materials": [
+          "cartes de relations familiales",
+          "autocollants cœurs de connexion",
+          "cercle de partage visuel",
+          "guide de mots positifs"
+        ],
+        "visualSupports": "Gestes de connexion, expressions d'amour familial, symboles de lien spécial",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier une relation spéciale → l'aider avec des exemples: 'Qui te fait rire?' ou 'Qui te lit des histoires?'",
+          "Si un élève devient émotionnel en parlant de famille → offrir du réconfort et valider que l'amour familial peut être fort",
+          "Si un élève ne veut pas nommer une personne spécifique → l'encourager à parler d'un sentiment spécial sur sa famille"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des images simples de relations familiales",
+          "Offrir des phrases modèles pour décrire les membres familiaux",
+          "Permettre le dessin au lieu de l'arbre généalogique traditionnel"
+        ],
+        "pourAvancés": [
+          "Encourager l'explication des rôles spéciaux dans leur famille",
+          "Inviter à comparer les ma famille avec respect",
+          "Permettre de créer des arbres familiaux complexes"
+        ],
+        "pourLangue": [
+          "Fournir du vocabulaire familial bilingue avec images",
+          "Utiliser des gestes pour renforcer les relations",
+          "Encourager l'utilisation de la langue maternelle avec traduction"
+        ],
+        "pourPEI": [
+          "Adapter les outils de cartographie selon les capacités",
+          "Offrir des supports visuels personnalisés",
+          "Respecter les besoins de communication individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève identifie les membres de sa famille",
+          "Élève décrit des relations familiales positives",
+          "Élève montre de la compréhension des liens familiaux",
+          "Élève respecte la diversité des ma famille"
+        ],
+        "checkpoints": [
+          "Observation pendant la création de l'arbre familial",
+          "Documentation des descriptions de relations",
+          "Noter la participation à la célébration des liens"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Qui fait quoi dans ma famille?",
+      "oneGoal": "Students will explore different family roles and understand how everyone contributes to family life",
+      "duration": 45,
+      "keyVocabulary": [
+        "travail",
+        "aider",
+        "ensemble"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Family work charades where students act out different things family members do together - cooking, cleaning, playing, working, caring for each other.",
+        "materials": [
+          "family activity cards",
+          "charades props",
+          "guess-and-celebrate materials"
+        ],
+        "visualSupports": "Work action gestures, helping hands motions, teamwork symbols",
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne fait pas de travaux traditionnels → élargir la définition pour inclure jouer, parler, et prendre soin l'un de l'autre",
+          "Si un élève semble gêné par les tâches de sa famille → souligner que chaque famille organise les responsabilités différemment",
+          "Si un élève ne veut pas agir certaines activités → lui offrir le rôle de devineur spécial ou d'encourageur",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family contribution wheel where students create a visual showing how everyone in their family helps make family life work. Include emotional contributions, fun contributions, and practical help.",
+        "materials": [
+          "wheel templates",
+          "contribution examples",
+          "family work pictures",
+          "celebration stickers",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Circular motion for wheel, helping gestures, appreciation movements",
+        "decisionPoints": [
+          {
+            "question": "How do we present family work without reinforcing gender stereotypes?",
+            "ifYes": "Show diverse examples of who does what work and emphasize flexibility",
+            "ifNo": "Focus on the concept that everyone helps without specific task assignments"
+          },
+          {
+            "question": "Should we focus on traditional chores or emotional support roles?",
+            "ifYes": "Include both practical help and emotional support like hugs, listening, playing",
+            "ifNo": "Emphasize emotional support and care as equally important family work"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Family teamwork celebration where students share how their family works together as a team.",
+        "materials": [
+          "cartes de travail d'équipe",
+          "autocollants d'équipe familiale",
+          "guide de célébration",
+          "symboles de coopération"
+        ],
+        "visualSupports": "Gestes de travail d'équipe, expressions de fierté collective, mouvements de coopération",
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne travaille pas ensemble → l'aider à identifier de petits moments de coopération comme manger ensemble",
+          "Si un élève compare sa famille négativement aux autres → rappeler que chaque famille a sa propre façon spéciale de s'entraider",
+          "Si un élève ne veut pas partager → l'inviter à simplement écouter et apprécier les histoires des autres"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des exemples concrets de travaux familiaux simples",
+          "Permettre de montrer l'aide au lieu de l'expliquer",
+          "Offrir des images de tâches familiales pour modéliser"
+        ],
+        "pourAvancés": [
+          "Encourager la discussion sur l'équité des tâches familiales",
+          "Inviter à proposer des améliorations pour le travail d'équipe familial",
+          "Permettre de créer des horaires de contribution familiale"
+        ],
+        "pourLangue": [
+          "Fournir du vocabulaire de tâches familiales en français",
+          "Utiliser des gestes pour démontrer les activités familiales",
+          "Encourager le partage dans les deux langues avec traduction"
+        ],
+        "pourPEI": [
+          "Adapter les tâches selon les capacités individuelles",
+          "Offrir des outils visuels personnalisés pour l'organisation",
+          "Respecter les rôles familiaux individuels"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève comprend que chacun peut contribuer à la famille",
+          "Élève identifie des façons d'aider dans sa famille",
+          "Élève démontre une attitude positive envers le travail d'équipe familial",
+          "Élève respecte différentes façons d'organiser les tâches familiales"
+        ],
+        "checkpoints": [
+          "Observation pendant l'activité de charades - compréhension des rôles",
+          "Documentation de la création de la roue des contributions",
+          "Noter les commentaires lors de la célébration du travail d'équipe"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Comment ma famille prend soin de moi",
+      "oneGoal": "Students will recognize the many ways their family members care for and support them",
+      "duration": 45,
+      "keyVocabulary": [
+        "soin",
+        "protection",
+        "amour"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Care and comfort sharing circle where students think about times they felt cared for by family. Use gentle, warm expressions and universal examples.",
+        "materials": [
+          "comfort objects",
+          "care examples cards",
+          "warm blanket for circle"
+        ],
+        "visualSupports": "Gentle hugging motions, care-giving gestures, comfort expressions",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier des soins reçus → l'aider avec des exemples universels comme manger ensemble ou dormir en sécurité",
+          "Si un élève devient émotionnel en pensant aux soins familiaux → offrir du réconfort et valider que se sentir aimé est important",
+          "Si un élève semble inquiet de sa situation → rappeler que chaque famille montre l'amour à sa façon spéciale",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family care mapping where students create a visual showing different ways their family takes care of them - physical care, emotional care, safety, fun, learning support.",
+        "materials": [
+          "care category cards",
+          "mapping materials",
+          "care symbols",
+          "appreciation materials",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Care-giving motions, protection gestures, love symbols",
+        "decisionPoints": [
+          {
+            "question": "How do we highlight care without making students feel guilty about family challenges?",
+            "ifYes": "Focus on what students notice and appreciate without judgment about what's missing",
+            "ifNo": "Use universal examples of care that all students can relate to"
+          },
+          {
+            "question": "Should we focus on physical care or emotional care first?",
+            "ifYes": "Include both and let students share what feels most important to them",
+            "ifNo": "Start with emotional care as it's more universal across family situations"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Gratitude expression where students share one way they feel cared for and practice saying 'merci' to family in their hearts.",
+        "materials": [
+          "cartes de gratitude",
+          "cœurs en papier",
+          "guide de remerciements",
+          "autocollants d'appréciation"
+        ],
+        "visualSupports": "Gestes de remerciement, expressions de gratitude, mouvements de cœur reconnaissant",
+        "decisionPoints": [
+          "Si un élève a du mal à exprimer sa gratitude → l'aider avec des phrases simples comme 'Ma famille me donne...' ou 'Je me sens aimé quand...'",
+          "Si un élève semble triste en pensant à sa famille → valider ses sentiments et rappeler que l'amour peut être compliqué parfois",
+          "Si un élève ne veut pas dire merci à voix haute → respecter son choix et encourager le merci silencieux dans son cœur"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des exemples concrets de soins familiaux simples",
+          "Permettre l'expression par le dessin au lieu des mots",
+          "Offrir des phrases modèles pour exprimer la gratitude"
+        ],
+        "pourAvancés": [
+          "Encourager la discussion sur différents types de soins familiaux",
+          "Inviter à réfléchir sur comment montrer de la gratitude à la famille",
+          "Permettre de créer des cartes de remerciement détaillées"
+        ],
+        "pourLangue": [
+          "Fournir du vocabulaire de soins familiaux en français",
+          "Utiliser des gestes pour démontrer les soins reçus",
+          "Encourager l'expression dans les deux langues avec traduction"
+        ],
+        "pourPEI": [
+          "Adapter selon les besoins de communication individuels",
+          "Utiliser des supports visuels personnalisés pour les soins",
+          "Respecter les façons individuelles de recevoir et d'exprimer l'amour"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève reconnaît les soins reçus de sa famille",
+          "Élève exprime de la gratitude pour les soins familiaux",
+          "Élève démontre une compréhension de l'amour familial",
+          "Élève respecte différentes façons de montrer les soins"
+        ],
+        "checkpoints": [
+          "Observation pendant le cercle de partage - reconnaissance des soins",
+          "Documentation de la carte des soins familiaux",
+          "Noter l'expression de gratitude lors de la fermeture"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Comment j'aide ma famille",
+      "oneGoal": "Students will identify ways they contribute to their family and understand their important role as family members",
+      "duration": 45,
+      "keyVocabulary": [
+        "contribuer",
+        "responsabilité",
+        "important"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Helper hero circle where students share one way they help their family and strike a superhero pose to show their importance as family helpers.",
+        "materials": [
+          "superhero capes",
+          "helper badges",
+          "proud posture examples"
+        ],
+        "visualSupports": "Strong helper postures, superhero gestures, pride expressions",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'aide pas sa famille → l'aider à identifier des petites façons comme sourire, obéir, ou être gentil",
+          "Si un élève se sent trop petit pour aider → souligner que même les plus petits membres de famille sont des helpers importants",
+          "Si un élève ne veut pas faire la pose de super-héros → lui offrir d'autres façons de montrer sa fierté d'être un helper",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family contribution portfolio where students document the many ways they help their family - practical help, emotional support, bringing joy, learning and growing.",
+        "materials": [
+          "contribution books",
+          "helper examples",
+          "family impact pictures",
+          "celebration materials",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Helping hand gestures, contribution movements, impact symbols",
+        "decisionPoints": [
+          {
+            "question": "What level of responsibility do Grade 1 students actually have at home?",
+            "ifYes": "Include both big and small ways they help, emphasizing that all help matters",
+            "ifNo": "Focus on emotional contributions and simple helps that all students can relate to"
+          },
+          {
+            "question": "Should we focus on helping tasks or emotional contributions?",
+            "ifYes": "Include both practical help and emotional support like hugs, smiles, cooperation",
+            "ifNo": "Emphasize emotional contributions as equally valuable as practical help"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Helper appreciation ceremony where students celebrate their role as important family contributors.",
+        "materials": [
+          "certificats d'aide familiale",
+          "badges de contribution",
+          "couronne de helpers",
+          "guide de célébration"
+        ],
+        "visualSupports": "Gestes de fierté, expressions de célébration, mouvements d'appréciation personnelle",
+        "decisionPoints": [
+          "Si un élève ne se sent pas comme un vrai helper → souligner que grandir et apprendre sont des façons importantes d'aider sa famille",
+          "Si un élève compare son aide négativement aux autres → rappeler que chaque famille a besoin de différents types d'aide",
+          "Si un élève ne veut pas être célébré → respecter sa préférence et offrir une célébration plus douce et privée"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des exemples très simples d'aide familiale",
+          "Permettre l'expression par l'action au lieu des mots",
+          "Offrir des images de helpers familiaux pour modéliser"
+        ],
+        "pourAvancés": [
+          "Encourager la réflexion sur l'impact de leur aide sur la famille",
+          "Inviter à proposer de nouvelles façons d'aider",
+          "Permettre de créer un plan d'aide familiale personnalisé"
+        ],
+        "pourLangue": [
+          "Fournir du vocabulaire d'aide familiale en français",
+          "Utiliser des gestes pour démontrer les contributions",
+          "Encourager le partage bilingue avec traduction"
+        ],
+        "pourPEI": [
+          "Adapter les tâches d'aide selon les capacités individuelles",
+          "Utiliser des supports visuels personnalisés pour les contributions",
+          "Respecter les façons individuelles de contribuer à la famille"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève reconnaît son rôle important dans sa famille",
+          "Élève identifie des façons spécifiques d'aider sa famille",
+          "Élève démontre de la fierté pour ses contributions familiales",
+          "Élève comprend que toutes les contributions sont importantes"
+        ],
+        "checkpoints": [
+          "Observation pendant l'activité superhero - conscience du rôle",
+          "Documentation du portfolio de contributions",
+          "Noter la participation à la cérémonie d'appréciation"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Les familles de mes amis",
+      "oneGoal": "Students will explore and appreciate the diversity of family structures in their classroom community",
+      "duration": 45,
+      "keyVocabulary": [
+        "amis",
+        "diversité",
+        "apprécier"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Friendship and family appreciation circle where students think about their friends' families with curiosity and appreciation.",
+        "materials": [
+          "friendship circles",
+          "appreciation symbols",
+          "curious expressions cards"
+        ],
+        "visualSupports": "Open curiosity gestures, appreciation movements, friendship symbols",
+        "decisionPoints": [
+          "Si un élève fait des commentaires négatifs sur la famille d'un ami → rediriger doucement vers la curiosité et rappeler que toutes les familles sont spéciales",
+          "Si un élève semble jaloux des familles de ses amis → valider ses sentiments et rappeler ce qui rend sa propre famille unique",
+          "Si un élève ne veut pas parler des familles de ses amis → respecter sa préférence et l'inviter à simplement écouter avec appréciation",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family diversity celebration through anonymous family sharing - students contribute family facts to a class diversity chart without names, showing the beautiful variety in our classroom community.",
+        "materials": [
+          "anonymous sharing system",
+          "diversity chart",
+          "celebration materials",
+          "variety symbols",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Diversity gestures, celebration movements, inclusion symbols",
+        "decisionPoints": [
+          {
+            "question": "How do we celebrate differences without making any student feel 'different'?",
+            "ifYes": "Emphasize that diversity makes our classroom community richer and more interesting",
+            "ifNo": "Focus on common family themes while gently acknowledging variety"
+          },
+          {
+            "question": "Should students share about friends' families or discuss in general terms?",
+            "ifYes": "Keep all sharing general and anonymous to protect privacy",
+            "ifNo": "Use book examples and imaginary families to explore diversity"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Community appreciation where students celebrate how family diversity makes their classroom community special and interesting.",
+        "materials": [
+          "cartes de diversité",
+          "symboles de communauté",
+          "autocollants de célébration",
+          "guide d'appréciation"
+        ],
+        "visualSupports": "Gestes d'inclusion, expressions de célébration communautaire, mouvements d'appréciation de la diversité",
+        "decisionPoints": [
+          "Si un élève fait encore des comparaisons négatives → rediriger vers l'idée que la diversité rend notre classe plus intéressante",
+          "Si un élève semble confus par tant de différences → rappeler que l'amour familial est la même chose dans toutes les familles",
+          "Si un élève ne veut pas célébrer la diversité → respecter son rythme et l'inviter à simplement écouter les autres"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des images de différentes familles pour faciliter la compréhension",
+          "Permettre l'expression par le dessin au lieu de la discussion",
+          "Offrir des exemples concrets de diversité familiale positive"
+        ],
+        "pourAvancés": [
+          "Encourager la discussion sur les avantages de la diversité familiale",
+          "Inviter à réfléchir sur les similitudes entre différentes familles",
+          "Permettre de créer un projet sur l'appréciation de la diversité"
+        ],
+        "pourLangue": [
+          "Fournir du vocabulaire de diversité familiale en français",
+          "Utiliser des gestes pour renforcer l'inclusion",
+          "Encourager le partage bilingue sur les ma famille"
+        ],
+        "pourPEI": [
+          "Adapter selon les besoins de compréhension sociale",
+          "Utiliser des supports visuels personnalisés pour la diversité",
+          "Respecter les niveaux individuels de participation sociale"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "Élève montre de l'appréciation pour la diversité familiale",
+          "Élève démontre de la curiosité positive envers différentes familles",
+          "Élève respecte les différences dans les ma famille",
+          "Élève contribue positivement aux discussions sur la diversité"
+        ],
+        "checkpoints": [
+          "Observation pendant le cercle d'appréciation - attitudes positives",
+          "Documentation des contributions au graphique de diversité",
+          "Noter la participation à la célébration communautaire"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Les traditions de ma famille",
+      "oneGoal": "Students will identify and share family traditions and understand how traditions connect families across time",
+      "duration": 45,
+      "keyVocabulary": [
+        "tradition",
+        "célébrer",
+        "mémoire"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Tradition discovery circle where students think about special things their family does together regularly - big or small, formal or informal.",
+        "materials": [
+          "tradition examples",
+          "memory prompts",
+          "sharing circles"
+        ],
+        "visualSupports": "Repetitive motion gestures, memory symbols, tradition representations",
+        "decisionPoints": [
+          "Si un élève dit que sa famille n'a pas de traditions → l'aider à identifier des petites habitudes comme les repas ensemble ou les histoires avant le coucher",
+          "Si un élève semble gêné par les traditions de sa famille → souligner que chaque famille crée ses propres façons spéciales de faire les choses",
+          "Si un élève ne veut pas partager ses traditions → respecter sa confidentialité et l'inviter à simplement écouter les autres",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family tradition gallery where students create representations of their family traditions - daily routines, special celebrations, ways of doing things, or family sayings.",
+        "materials": [
+          "tradition creation materials",
+          "gallery space",
+          "tradition categories",
+          "celebration supplies",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Tradition gestures, celebration movements, memory symbols",
+        "decisionPoints": [
+          {
+            "question": "How do we include families with few established traditions or recent immigration?",
+            "ifYes": "Emphasize that new traditions can start anytime and small daily practices count",
+            "ifNo": "Focus on universal family practices like bedtime routines, meals, or weekend activities"
+          },
+          {
+            "question": "Should we focus on holiday traditions or daily family habits?",
+            "ifYes": "Include both special occasions and daily family practices as traditions",
+            "ifNo": "Emphasize daily traditions since they're more universal and accessible"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Tradition appreciation walk where students view each other's traditions and share appreciation for the variety of ways families create special moments.",
+        "materials": [
+          "cartes d'appréciation des traditions",
+          "guide de commentaires positifs",
+          "autocollants de célébration",
+          "symboles de mémoire familiale"
+        ],
+        "visualSupports": "Gestes d'admiration respectueuse, expressions d'appréciation, mouvements de célébration des traditions",
+        "decisionPoints": [
+          "Si un élève fait des commentaires négatifs sur les traditions d'autrui → rediriger vers l'appréciation et rappeler que toutes les traditions sont spéciales",
+          "Si un élève semble jaloux des traditions des autres → l'aider à voir la beauté unique dans ses propres traditions familiales",
+          "Si un élève ne veut pas regarder les traditions des autres → respecter son choix et l'inviter à rester près de l'enseignant"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Permettre les explications dans la langue première si nécessaire",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Comment ma famille célèbre",
+      "oneGoal": "Students will explore different ways families celebrate special moments and understand celebration as family bonding",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "moments",
+        "joie"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration dance circle where students move and express joy while thinking about how their families celebrate and have fun together.",
+        "materials": [
+          "celebration music",
+          "joy movement cards",
+          "celebration props"
+        ],
+        "visualSupports": "Joyful dancing, celebration gestures, happiness expressions",
+        "decisionPoints": [
+          "Si un élève ne veut pas danser ou célébrer → respecter son style et l'inviter à bouger doucement ou à regarder avec appréciation",
+          "Si un élève dit que sa famille ne célèbre jamais → l'aider à identifier de petits moments de joie comme rire ensemble",
+          "Si un élève devient trop excité par la célébration → offrir un moment de calme et de respiration profonde",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family celebration showcase where students create displays showing how their families mark special times - birthdays, achievements, holidays, or everyday joys.",
+        "materials": [
+          "celebration creation materials",
+          "showcase space",
+          "joy symbols",
+          "family celebration examples",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Celebration movements, joy expressions, family happiness symbols",
+        "decisionPoints": [
+          {
+            "question": "How do we include families who celebrate in quiet or non-religious ways?",
+            "ifYes": "Show that celebrations can be big or small, loud or quiet, and all are wonderful",
+            "ifNo": "Focus on universal celebration concepts like appreciation, joy, and togetherness"
+          },
+          {
+            "question": "Should we focus on big celebrations or small daily moments?",
+            "ifYes": "Include both major celebrations and small daily joys like family dinners or bedtime stories",
+            "ifNo": "Emphasize small daily celebrations since they're more accessible to all families"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Joy sharing circle where students share how celebrations make them feel and practice gratitude for family joy.",
+        "materials": [
+          "cartes d'émotions de joie",
+          "symboles de gratitude",
+          "guide de partage des sentiments",
+          "autocollants de bonheur"
+        ],
+        "visualSupports": "Expressions de joie, gestes de gratitude, mouvements de partage émotionnel positif",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier la joie → l'aider avec des exemples simples comme se sentir heureux ou content",
+          "Si un élève semble triste en pensant aux célébrations → valider ses sentiments et rappeler que chaque famille trouve la joie différemment",
+          "Si un élève ne veut pas exprimer de gratitude → respecter son choix et l'inviter à ressentir la gratitude en silence"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Ajuster l'éclairage et réduire les distractions visuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "La nourriture dans ma famille",
+      "oneGoal": "Students will explore family food traditions and understand how sharing meals connects families",
+      "duration": 45,
+      "keyVocabulary": [
+        "nourriture",
+        "partager",
+        "goût"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Food appreciation circle where students think about favorite family foods and practice gratitude for food and family meals together.",
+        "materials": [
+          "food appreciation cards",
+          "gratitude symbols",
+          "family meal pictures"
+        ],
+        "visualSupports": "Eating gestures, appreciation movements, sharing symbols",
+        "decisionPoints": [
+          "Si un élève a des restrictions alimentaires ou ne mange pas certains aliments → célébrer la diversité alimentaire et se concentrer sur le partage",
+          "Si un élève semble gêné par sa nourriture familiale → souligner que toutes les traditions alimentaires sont spéciales et délicieuses",
+          "Si un élève ne mange pas souvent en famille → élargir la définition pour inclure tout moment de partage de nourriture",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family food traditions exploration where students create representations of special family foods, family meal practices, or ways their family shares food together.",
+        "materials": [
+          "food tradition materials",
+          "family meal examples",
+          "sharing symbols",
+          "cultural food pictures",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Food sharing gestures, cultural appreciation movements, family meal symbols",
+        "decisionPoints": [
+          {
+            "question": "How do we handle students with food insecurity or dietary restrictions sensitively?",
+            "ifYes": "Focus on any positive food experiences and family meal memories, however simple",
+            "ifNo": "Emphasize the connection and love in family meals rather than specific foods"
+          },
+          {
+            "question": "Should we focus on special occasion foods or daily family meals?",
+            "ifYes": "Include both special foods and everyday family meal practices",
+            "ifNo": "Focus on everyday family meal connection since it's more universal"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Family meal appreciation where students share how food brings their family together and practice gratitude for family meals.",
+        "materials": [
+          "cartes de gratitude alimentaire",
+          "symboles de partage familial",
+          "guide d'appréciation des repas",
+          "autocollants de reconnaissance"
+        ],
+        "visualSupports": "Gestes de gratitude pour la nourriture, expressions d'appréciation familiale, mouvements de partage",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier comment la nourriture unit sa famille → l'aider avec des exemples comme manger ensemble ou préparer des collations",
+          "Si un élève semble triste à propos des repas familiaux → valider ses sentiments et se concentrer sur tout aspect positif, même très petit",
+          "Si un élève ne veut pas partager sur la nourriture → respecter sa confidentialité et l'inviter à ressentir la gratitude silencieusement"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Fournir des instructions simples, une étape à la fois",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Où vit ma famille?",
+      "oneGoal": "Students will explore different types of homes and understand that all homes provide families with shelter and belonging",
+      "duration": 45,
+      "keyVocabulary": [
+        "maison",
+        "chez-nous",
+        "abri"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Home appreciation circle where students think about what makes their family's place feel like home - love, safety, belonging, not the building itself.",
+        "materials": [
+          "home feeling cards",
+          "belonging symbols",
+          "safety representations"
+        ],
+        "visualSupports": "Home safety gestures, belonging movements, love symbols",
+        "decisionPoints": [
+          "Si un élève semble gêné par sa situation de logement → souligner que l'amour familial fait un vrai foyer, peu importe l'endroit",
+          "Si un élève compare sa maison négativement aux autres → rappeler que ce qui compte c'est la famille qui s'aime, pas le bâtiment",
+          "Si un élève ne veut pas parler de son foyer → respecter sa confidentialité et se concentrer sur les sentiments universels de sécurité",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family home celebration where students create representations of what makes their family's living space special - the people, feelings, safety, and love, not the building type.",
+        "materials": [
+          "home creation materials",
+          "feeling symbols",
+          "family space examples",
+          "belonging representations",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Home comfort gestures, family space symbols, belonging movements",
+        "decisionPoints": [
+          {
+            "question": "How do we discuss housing without highlighting economic differences?",
+            "ifYes": "Focus entirely on feelings of home rather than physical building characteristics",
+            "ifNo": "Emphasize that homes are about family love and safety, not size or type of building"
+          },
+          {
+            "question": "Should we focus on house types or what makes a place feel like home?",
+            "ifYes": "Focus completely on feelings, safety, love, and family connection in any space",
+            "ifNo": "Avoid discussing building types and focus on universal home feelings"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Home gratitude circle where students share what makes them feel at home with their family, regardless of where they live.",
+        "materials": [
+          "cartes de sentiments de foyer",
+          "symboles de gratitude pour la maison",
+          "guide d'appréciation du foyer",
+          "autocollants de reconnaissance familiale"
+        ],
+        "visualSupports": "Gestes d'appréciation du foyer, expressions de gratitude familiale, mouvements de sécurité et appartenance",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier ce qui le fait se sentir chez lui → l'aider avec des exemples comme se sentir en sécurité ou aimé",
+          "Si un élève semble triste à propos de son foyer → valider ses sentiments et rappeler que l'amour familial voyage partout",
+          "Si un élève ne veut pas exprimer de gratitude → respecter son choix et l'inviter à ressentir la sécurité du cercle"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Proposer des textes plus complexes avec vocabulaire étendu"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Les espaces spéciaux de ma famille",
+      "oneGoal": "Students will identify special family spaces and understand how physical spaces can hold family memories and meaning",
+      "duration": 45,
+      "keyVocabulary": [
+        "espace",
+        "spécial",
+        "souvenir"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Special space memory circle where students think about places where their family spends time together and feels happy and connected.",
+        "materials": [
+          "memory symbols",
+          "special space examples",
+          "family connection representations"
+        ],
+        "visualSupports": "Memory gestures, space appreciation movements, family connection symbols",
+        "decisionPoints": [
+          "Si un élève n'a pas d'espace spécial fixe → l'aider à identifier n'importe quel endroit où sa famille se sent unie, même temporaire",
+          "Si un élève semble gêné par ses espaces familiaux → rappeler que l'amour familial rend n'importe quel espace spécial",
+          "Si un élève ne veut pas partager ses espaces → respecter sa confidentialité et l'inviter à penser silencieusement à des souvenirs heureux",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family space appreciation where students create representations of special family spaces - not fancy rooms, but places where family feels close and makes memories.",
+        "materials": [
+          "space creation materials",
+          "memory symbols",
+          "family togetherness examples",
+          "connection representations",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Family togetherness gestures, memory symbols, special space movements",
+        "decisionPoints": [
+          {
+            "question": "How do we help students find meaning in any family space, regardless of size or luxury?",
+            "ifYes": "Focus on family connection and memories in any space, however small or simple",
+            "ifNo": "Emphasize that special spaces are about family time together, not about fancy rooms"
+          },
+          {
+            "question": "Should we focus on rooms, outdoor spaces, or specific objects?",
+            "ifYes": "Include any space where family feels close - indoor, outdoor, or even a special chair",
+            "ifNo": "Focus on the concept of family togetherness in any meaningful space"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Special space appreciation where students share how family spaces help them feel connected and loved.",
+        "materials": [
+          "cartes d'appréciation des espaces",
+          "symboles de connexion familiale",
+          "guide de partage des souvenirs",
+          "autocollants de reconnaissance"
+        ],
+        "visualSupports": "Gestes d'appréciation des espaces, expressions de connexion familiale, mouvements de souvenirs heureux",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier comment un espace l'aide → l'aider avec des exemples comme se sentir en sécurité ou heureux",
+          "Si un élève devient nostalgique ou triste → valider ses sentiments et rappeler que les souvenirs d'amour restent avec nous",
+          "Si un élève ne veut pas exprimer d'appréciation → respecter son rythme et l'inviter à ressentir la connexion en silence"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Fournir des instructions simples, une étape à la fois",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Comment les familles communiquent",
+      "oneGoal": "Students will explore different ways families communicate and understand communication as essential for family connection",
+      "duration": 45,
+      "keyVocabulary": [
+        "parler",
+        "écouter",
+        "communiquer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Communication practice circle where students explore different ways families talk, listen, and share feelings with each other.",
+        "materials": [
+          "communication examples",
+          "listening symbols",
+          "expression cards"
+        ],
+        "visualSupports": "Speaking gestures, listening movements, expression symbols",
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne communique pas beaucoup → l'aider à identifier des petites façons comme les regards, sourires ou gestes",
+          "Si un élève semble inquiet de la communication familiale → souligner que chaque famille a sa propre façon de montrer l'amour",
+          "Si un élève ne veut pas pratiquer la communication → respecter son choix et l'inviter à observer les autres avec appréciation",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family communication celebration where students explore the many ways their families share thoughts and feelings - talking, listening, hugs, notes, or special looks.",
+        "materials": [
+          "communication creation materials",
+          "expression examples",
+          "family connection symbols",
+          "sharing representations",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Communication gestures, family connection movements, sharing symbols",
+        "decisionPoints": [
+          {
+            "question": "How do we include families who communicate in multiple languages?",
+            "ifYes": "Celebrate multilingual communication as a special family gift and strength",
+            "ifNo": "Focus on universal communication concepts like listening, caring, and understanding"
+          },
+          {
+            "question": "Should we focus on verbal communication or include non-verbal family communication?",
+            "ifYes": "Include talking, listening, hugs, smiles, and other ways families share feelings",
+            "ifNo": "Emphasize all forms of family communication as important and valuable"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Communication appreciation where students share how their family communicates love and connection.",
+        "materials": [
+          "cartes d'appréciation de la communication",
+          "symboles d'amour et connexion",
+          "guide de partage des façons de communiquer",
+          "autocollants de reconnaissance"
+        ],
+        "visualSupports": "Gestes de communication affectueuse, expressions d'appréciation de la connexion, mouvements de partage familial",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à identifier comment sa famille communique l'amour → l'aider avec des exemples comme les câlins, sourires, ou temps passé ensemble",
+          "Si un élève semble triste à propos de la communication familiale → valider ses sentiments et rappeler que l'amour existe même sans beaucoup de mots",
+          "Si un élève ne veut pas partager → respecter sa confidentialité et l'inviter à apprécier silencieusement sa famille"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Les familles dans notre communauté",
+      "oneGoal": "Students will understand how families connect with other families and contribute to community life",
+      "duration": 45,
+      "keyVocabulary": [
+        "communauté",
+        "voisin",
+        "connecter"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Community connection circle where students think about how their family connects with neighbors, friends, and community members.",
+        "materials": [
+          "community connection examples",
+          "neighborhood symbols",
+          "family network representations"
+        ],
+        "visualSupports": "Connection gestures, community movements, network symbols",
+        "decisionPoints": [
+          "Si un élève dit que sa famille ne connaît personne dans la communauté → rappeler que l'école est une communauté et que les connexions grandissent avec le temps",
+          "Si un élève semble gêné par l'isolement de sa famille → souligner que chaque famille commence quelque part et crée des connexions à son rythme",
+          "Si un élève ne veut pas parler de sa communauté → respecter sa confidentialité et se concentrer sur l'idée générale de communauté",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family community web where students explore how their families connect with other families and contribute to making their community better and stronger.",
+        "materials": [
+          "community web materials",
+          "connection symbols",
+          "family contribution examples",
+          "community strength representations",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Web connection gestures, community building movements, contribution symbols",
+        "decisionPoints": [
+          {
+            "question": "How connected are students' families to the local community?",
+            "ifYes": "Build on existing connections and celebrate family community involvement",
+            "ifNo": "Focus on simple community connections like school, neighbors, or local places"
+          },
+          {
+            "question": "Should we focus on neighborhood connections or broader community involvement?",
+            "ifYes": "Include both close neighbors and broader community connections like school and local businesses",
+            "ifNo": "Focus on immediate community connections that students can observe and understand"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Community appreciation where students celebrate how families working together make communities strong and caring.",
+        "materials": [
+          "cartes d'appréciation communautaire",
+          "symboles de force communautaire",
+          "guide de célébration des connexions",
+          "autocollants de reconnaissance collective"
+        ],
+        "visualSupports": "Gestes de force communautaire, expressions de célébration collective, mouvements d'unité familiale",
+        "decisionPoints": [
+          "Si un élève ne comprend pas comment les familles rendent la communauté forte → donner des exemples simples comme être gentil avec les voisins",
+          "Si un élève se sent déconnecté de la communauté → rappeler que sa famille fait partie de notre communauté scolaire spéciale",
+          "Si un élève ne veut pas célébrer → respecter son rythme et l'inviter à simplement ressentir l'appartenance du groupe"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Permettre les réponses gestuelles avant la production orale"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Créer un livre de famille",
+      "oneGoal": "Students will create a family book celebrating their family's unique story and characteristics",
+      "duration": 45,
+      "keyVocabulary": [
+        "livre",
+        "histoire",
+        "créer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Story celebration circle where students think about their family as having a special, important story worth sharing and remembering.",
+        "materials": [
+          "story symbols",
+          "celebration examples",
+          "family story inspiration"
+        ],
+        "visualSupports": "Story-telling gestures, celebration movements, book creation symbols",
+        "decisionPoints": [
+          "Si un élève dit que son histoire familiale n'est pas intéressante → souligner que chaque famille a une histoire unique et précieuse à célébrer",
+          "Si un élève semble inquiet de créer son livre → rassurer qu'il n'y a pas de mauvaise façon de raconter l'histoire de sa famille",
+          "Si un élève ne veut pas partager son histoire → respecter sa confidentialité et lui permettre de créer un livre privé",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family story book creation where students compile their family learning into a personal book celebrating their family's uniqueness, love, and special characteristics.",
+        "materials": [
+          "book creation materials",
+          "family celebration pages",
+          "story organization tools",
+          "decoration supplies",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Book creation gestures, family celebration movements, story organization symbols",
+        "decisionPoints": [
+          {
+            "question": "What format would work best for students with different fine motor skills?",
+            "ifYes": "Offer multiple formats including drawing, dictating, photo books, or digital creation",
+            "ifNo": "Focus on simple formats that emphasize content over complex construction"
+          },
+          {
+            "question": "Should books focus on current family or include family history?",
+            "ifYes": "Focus primarily on current family with option to include family history if available",
+            "ifNo": "Emphasize current family relationships and experiences students know well"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Author celebration where students appreciate their creation and their family's special story.",
+        "materials": [
+          "certificats d'auteur",
+          "autocollants de célébration",
+          "guide d'appréciation des livres",
+          "symboles de fierté créatrice"
+        ],
+        "visualSupports": "Gestes de fierté d'auteur, expressions de célébration créatrice, mouvements d'appréciation personnelle",
+        "decisionPoints": [
+          "Si un élève n'est pas satisfait de son livre → souligner que chaque histoire familiale racontée avec amour est parfaite",
+          "Si un élève ne veut pas célébrer sa création → respecter sa modestie et offrir une célébration plus tranquille",
+          "Si un élève veut partager son livre avec d'autres → célébrer sa volonté de partager tout en respectant la confidentialité familiale"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Inviter à créer un livre illustré pour les plus jeunes",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Exposition de familles",
+      "oneGoal": "Students will share their family celebrations with classmates and appreciate the diversity of all families",
+      "duration": 45,
+      "keyVocabulary": [
+        "exposition",
+        "présenter",
+        "admirer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Gallery preparation circle where students prepare to share their family stories with appreciation and to receive others' stories with respect and curiosity.",
+        "materials": [
+          "gallery setup materials",
+          "appreciation symbols",
+          "respectful sharing examples"
+        ],
+        "visualSupports": "Gallery gestures, appreciation movements, respectful sharing symbols",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager son livre en public → respecter sa confidentialité et lui offrir un rôle de spectateur appréciatif",
+          "Si un élève semble nerveux de présenter → offrir du soutien et rappeler que chaque famille mérite d'être célébrée",
+          "Si un élève fait des commentaires inappropriés sur les familles des autres → rediriger doucement vers l'appréciation et le respect",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family story gallery where students share their family books and celebrate the beautiful diversity of families in their classroom community.",
+        "materials": [
+          "gallery display space",
+          "sharing organization",
+          "appreciation materials",
+          "family celebration symbols",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Gallery sharing gestures, family appreciation movements, diversity celebration symbols",
+        "decisionPoints": [
+          {
+            "question": "How do we create a safe, celebratory atmosphere for family sharing?",
+            "ifYes": "Establish clear appreciation guidelines and model respectful, positive responses",
+            "ifNo": "Keep sharing optional and provide alternative ways for students to participate"
+          },
+          {
+            "question": "Should presentations be formal or informal, individual or small group?",
+            "ifYes": "Use informal sharing in small groups to reduce pressure and increase connection",
+            "ifNo": "Allow students to choose their comfort level for sharing"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Family diversity celebration where students appreciate the variety and beauty of all the families in their classroom.",
+        "materials": [
+          "cartes de célébration de la diversité",
+          "symboles de beauté familiale",
+          "guide d'appréciation collective",
+          "autocollants de reconnaissance"
+        ],
+        "visualSupports": "Gestes de célébration de la diversité, expressions d'appréciation collective, mouvements d'unité dans la différence",
+        "decisionPoints": [
+          "Si un élève a encore de la difficulté à apprécier la diversité → rappeler doucement que différent est beau et rend notre classe intéressante",
+          "Si un élève se sent émotionnel à propos des familles → valider ses sentiments et rappeler que tout amour familial est précieux",
+          "Si un élève ne veut pas participer à la célébration → respecter son rythme et l'inviter à simplement ressentir l'appartenance du groupe"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Fournir des instructions simples, une étape à la fois",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Utiliser des minuteurs visuels pour structurer le temps"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Jeu de rôles: Ma famille",
+      "oneGoal": "Students will role-play family scenarios to practice family vocabulary and explore family relationships",
+      "duration": 45,
+      "keyVocabulary": [
+        "jouer",
+        "rôle",
+        "pratiquer"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Family role-play preparation where students explore different family roles with appreciation and understanding.",
+        "materials": [
+          "role-play props",
+          "family scenario cards",
+          "character appreciation examples"
+        ],
+        "visualSupports": "Role-play gestures, family relationship movements, character appreciation symbols",
+        "decisionPoints": [
+          "Si un élève ne veut pas jouer de rôles → respecter son choix et lui offrir des rôles d'observateur ou d'assistant",
+          "Si un élève semble mal à l'aise avec certains rôles familiaux → lui permettre de choisir des rôles avec lesquels il se sent confortable",
+          "Si un élève veut seulement jouer sa propre structure familiale → célébrer son choix tout en encourageant doucement l'exploration",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family scenario exploration where students act out positive family interactions, practice family vocabulary, and explore family relationships through creative play.",
+        "materials": [
+          "family scenario materials",
+          "role-play space",
+          "family interaction examples",
+          "vocabulary practice tools",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Family interaction gestures, role-play movements, vocabulary practice symbols",
+        "decisionPoints": [
+          {
+            "question": "Which family scenarios would be most engaging and appropriate for role-play?",
+            "ifYes": "Focus on positive family interactions like meals, celebrations, problem-solving, and care-giving",
+            "ifNo": "Use universal family scenarios that all students can relate to and enjoy"
+          },
+          {
+            "question": "Should students play their own family roles or explore different family structures?",
+            "ifYes": "Allow students to explore different family roles to build empathy and understanding",
+            "ifNo": "Let students choose whether to play familiar or unfamiliar family roles"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Role-play reflection where students share what they learned about family relationships through creative exploration.",
+        "materials": [
+          "cartes de réflexion sur les rôles",
+          "guide de partage des apprentissages",
+          "symboles de compréhension familiale",
+          "autocollants de découverte"
+        ],
+        "visualSupports": "Gestes de réflexion, expressions de compréhension nouvelle, mouvements de partage des apprentissages",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à réfléchir sur son apprentissage → l'aider avec des questions comme 'Qu'est-ce qui était amusant?' ou 'Qu'as-tu remarqué?'",
+          "Si un élève fait des commentaires négatifs sur certains rôles familiaux → rediriger vers l'appréciation et la compréhension",
+          "Si un élève ne veut pas partager sa réflexion → respecter sa préférence et l'inviter à écouter les autres avec appréciation"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Proposer des textes plus complexes avec vocabulaire étendu"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Lettres à ma famille",
+      "oneGoal": "Students will write simple letters to family members expressing appreciation and love",
+      "duration": 45,
+      "keyVocabulary": [
+        "lettre",
+        "merci",
+        "gratitude"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Letter writing inspiration circle where students think about what they want their family members to know about their love and appreciation.",
+        "materials": [
+          "letter inspiration cards",
+          "appreciation examples",
+          "love expression symbols"
+        ],
+        "visualSupports": "Letter writing gestures, appreciation movements, love expression symbols",
+        "decisionPoints": [
+          "Si un élève ne sait pas quoi écrire à sa famille → l'aider avec des phrases simples comme 'Je t'aime' ou 'Merci de prendre soin de moi'",
+          "Si un élève semble émotionnel en pensant à sa famille → valider ses sentiments et rappeler que l'amour peut être fort et beau",
+          "Si un élève ne veut pas écrire une lettre → respecter son choix et offrir des alternatives comme dessiner ou faire un câlin symbolique",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family appreciation letters where students create simple letters, cards, or messages expressing their feelings for family members using words, pictures, or symbols.",
+        "materials": [
+          "letter writing materials",
+          "appreciation templates",
+          "decoration supplies",
+          "expression tools",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Writing gestures, appreciation movements, love expression symbols",
+        "decisionPoints": [
+          {
+            "question": "What writing level is appropriate for Grade 1 students' letter writing?",
+            "ifYes": "Support with templates, pictures, and simple words while encouraging personal expression",
+            "ifNo": "Focus on the expression of feelings rather than perfect writing mechanics"
+          },
+          {
+            "question": "Should letters focus on gratitude, love, or sharing school learning?",
+            "ifYes": "Include appreciation, love, and sharing of school family learning",
+            "ifNo": "Focus primarily on expressing love and appreciation for family"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Letter appreciation where students share (if comfortable) their messages and prepare to deliver their family love.",
+        "materials": [
+          "enveloppes spéciales",
+          "autocollants de livraison d'amour",
+          "guide de partage optionnel",
+          "certificats de messagers d'amour"
+        ],
+        "visualSupports": "Gestes de préparation de livraison, expressions de fierté créatrice, mouvements d'amour familial",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager sa lettre → respecter complètement sa confidentialité et célébrer son amour privé",
+          "Si un élève s'inquiète de la réaction de sa famille → rassurer que toute expression d'amour est un cadeau précieux",
+          "Si un élève veut faire une autre lettre → célébrer son enthousiasme et encourager son amour généreux"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Diviser les tâches longues en étapes plus petites et gérables"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Permettre les explications dans la langue première si nécessaire",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Encourager le jumelage avec un pair plus fort en français"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Célébration des familles",
+      "oneGoal": "Students will plan and participate in a classroom celebration honoring all types of families",
+      "duration": 45,
+      "keyVocabulary": [
+        "fête",
+        "honorer",
+        "tous"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration planning circle where students think about how to honor and celebrate all the wonderful families in their classroom.",
+        "materials": [
+          "celebration planning materials",
+          "family honor examples",
+          "inclusive celebration ideas"
+        ],
+        "visualSupports": "Celebration gestures, planning movements, family honor symbols",
+        "decisionPoints": [
+          "Si un élève ne sait pas comment célébrer sa famille → l'aider avec des idées simples comme faire des dessins ou dire des mots gentils",
+          "Si un élève semble gêné de célébrer sa famille publiquement → offrir des façons plus privées de participer à la célébration",
+          "Si un élève a trop d'idées pour la célébration → canaliser son enthousiasme en l'aidant à choisir les meilleures idées",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family celebration preparation where students work together to create a classroom event that honors all family types and celebrates family diversity and love.",
+        "materials": [
+          "celebration creation materials",
+          "family honor supplies",
+          "diversity celebration tools",
+          "inclusive activity materials",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Celebration preparation gestures, family honor movements, diversity celebration symbols",
+        "decisionPoints": [
+          {
+            "question": "What type of celebration would include and honor all family structures?",
+            "ifYes": "Focus on universal family themes like love, care, support, and belonging",
+            "ifNo": "Create celebration activities that work for all family types without exclusion"
+          },
+          {
+            "question": "Should families be invited to participate or should this be a classroom-only event?",
+            "ifYes": "Consider family availability and comfort while focusing on student celebration of families",
+            "ifNo": "Keep celebration student-focused while honoring families through student appreciation"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration culmination where students participate in their family appreciation celebration and share joy about family diversity.",
+        "materials": [
+          "décorations de célébration familiale",
+          "symboles de joie et diversité",
+          "certificats de célébration",
+          "souvenirs de la célébration"
+        ],
+        "visualSupports": "Gestes de célébration joyeuse, expressions d'appréciation collective, mouvements de fierté familiale partagée",
+        "decisionPoints": [
+          "Si un élève devient trop excité par la célébration → offrir un moment de calme tout en maintenant la joie de l'événement",
+          "Si un élève semble triste ou nostalgique → valider ses émotions et rappeler que l'amour familial est toujours avec nous",
+          "Si un élève ne veut pas participer activement → respecter son choix et l'inviter à être un observateur appréciatif"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Permettre les explications dans la langue première si nécessaire",
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Je suis fier de ma famille",
+      "oneGoal": "Students will reflect on their learning about families and express pride in their own family relationships",
+      "duration": 45,
+      "keyVocabulary": [
+        "fier",
+        "réflexion",
+        "apprendre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Pride reflection circle where students think about how their understanding of families has grown and how they feel about their own family.",
+        "materials": [
+          "reflection symbols",
+          "pride expressions",
+          "learning growth examples"
+        ],
+        "visualSupports": "Pride gestures, reflection movements, growth symbols",
+        "decisionPoints": [
+          "Si un élève a de la difficulté à ressentir de la fierté pour sa famille → l'aider à identifier même de très petites choses positives sur sa famille",
+          "Si un élève ne se souvient pas de ce qu'il a appris → l'aider avec des rappels doux sur les activités familiales qu'on a explorées",
+          "Si un élève semble émotionnel en réfléchissant à sa famille → valider ses sentiments et rappeler que l'amour familial peut être très fort",
+          {
+            "question": "Si un élève partage une structure familiale diverse",
+            "ifYes": "Célébrer la diversité: 'Quelle belle famille unique!'",
+            "ifNo": "Continuer avec respect pour toutes les familles"
+          }
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Family pride culmination where students reflect on their family learning journey and create a final expression of family pride and appreciation.",
+        "materials": [
+          "culmination creation materials",
+          "pride expression tools",
+          "learning reflection supplies",
+          "family appreciation symbols",
+          "Images de familles diverses (monoparentales, recomposées, multiculturelles)"
+        ],
+        "visualSupports": "Pride expressions, reflection gestures, family appreciation movements",
+        "decisionPoints": [
+          {
+            "question": "How do we help students articulate what they've learned about families?",
+            "ifYes": "Use reflection prompts and examples to help students recognize their learning growth",
+            "ifNo": "Focus on feelings and appreciation rather than academic articulation"
+          },
+          {
+            "question": "Should reflection focus on personal growth or family appreciation?",
+            "ifYes": "Include both personal learning growth and deepened family appreciation",
+            "ifNo": "Emphasize family appreciation and pride as the primary focus"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Family pride celebration where students share their final reflections and celebrate their growth in understanding and appreciating families.",
+        "materials": [
+          "certificats de fierté familiale",
+          "autocollants de célébration finale",
+          "guide de réflexions finales",
+          "souvenirs d'apprentissage"
+        ],
+        "visualSupports": "Gestes de fierté et célébration finale, expressions de reconnaissance d'apprentissage, mouvements de gratitude familiale",
+        "decisionPoints": [
+          "Si un élève ne veut pas partager sa réflexion finale → respecter sa préférence et l'inviter à célébrer silencieusement",
+          "Si un élève devient très émotionnel lors de la célébration → offrir du réconfort et rappeler que ces émotions montrent l'amour fort",
+          "Si un élève veut continuer à parler de sa famille → célébrer son enthousiasme tout en incluant les autres dans la conversation"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève décrit sa famille avec respect et fierté",
+          "L'élève explique les rôles différents dans sa famille",
+          "L'élève compare sa famille avec d'autres familles respectueusement",
+          "L'élève partage une tradition familiale importante"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire familial: mère, père, grands-parents, frère, sœur",
+          "Comprend que les familles peuvent être différentes",
+          "Explique comment sa famille l'aide à grandir",
+          "Respecte les différences entre les familles"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Respect de la diversité",
+        "items": [
+          "Démontre une compréhension de base en respect de la diversité",
+          "Participe activement aux activités de respect de la diversité",
+          "Montre du progrès dans respect de la diversité",
+          "Applique les apprentissages de respect de la diversité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Participation communautaire",
+        "items": [
+          "Démontre une compréhension de base en participation communautaire",
+          "Participe activement aux activités de participation communautaire",
+          "Montre du progrès dans participation communautaire",
+          "Applique les apprentissages de participation communautaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Compréhension culturelle",
+        "items": [
+          "Démontre une compréhension de base en compréhension culturelle",
+          "Participe activement aux activités de compréhension culturelle",
+          "Montre du progrès dans compréhension culturelle",
+          "Applique les apprentissages de compréhension culturelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Respect de la diversité",
+        "Participation communautaire",
+        "Compréhension culturelle",
+        "Expression personnelle"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🌈",
+          "☀️",
+          "☁️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en sciences humaines\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nQu'est-ce qu'une famille?, Ma famille à moi, Les personnes dans ma famille, Qui fait quoi dans ma famille?, Comment ma famille prend soin de moi\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nPartagez vos traditions familiales et culturelles avec votre enfant.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nChaque famille a des histoires importantes à partager!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Partage d'histoires familiales",
+        "description": "Partagez des histoires ou traditions familiales liées au thème",
+        "timeRequired": "15 minutes",
+        "materials": "Photos familiales (optionnel)",
+        "frenchSupport": "Racontez dans votre langue maternelle si préféré"
+      },
+      {
+        "title": "Exploration communautaire",
+        "description": "Visitez un lieu dans la communauté lié à l'unité",
+        "timeRequired": "Variable",
+        "materials": "Transport",
+        "frenchSupport": "Discutez dans la langue la plus confortable"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "famille",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'une famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"famille\"",
+          "Utilisez \"famille\" dans une phrase simple",
+          "Trouvez des images représentant \"famille\"",
+          "Faites des gestes pour \"famille\""
+        ]
+      },
+      {
+        "word": "différent",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'une famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"différent\"",
+          "Utilisez \"différent\" dans une phrase simple",
+          "Trouvez des images représentant \"différent\"",
+          "Faites des gestes pour \"différent\""
+        ]
+      },
+      {
+        "word": "spécial",
+        "lesson": 1,
+        "context": "Qu'est-ce qu'une famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"spécial\"",
+          "Utilisez \"spécial\" dans une phrase simple",
+          "Trouvez des images représentant \"spécial\"",
+          "Faites des gestes pour \"spécial\""
+        ]
+      },
+      {
+        "word": "ma",
+        "lesson": 2,
+        "context": "Ma famille à moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ma\"",
+          "Utilisez \"ma\" dans une phrase simple",
+          "Trouvez des images représentant \"ma\"",
+          "Faites des gestes pour \"ma\""
+        ]
+      },
+      {
+        "word": "membre",
+        "lesson": 2,
+        "context": "Ma famille à moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"membre\"",
+          "Utilisez \"membre\" dans une phrase simple",
+          "Trouvez des images représentant \"membre\"",
+          "Faites des gestes pour \"membre\""
+        ]
+      },
+      {
+        "word": "fier",
+        "lesson": 2,
+        "context": "Ma famille à moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"fier\"",
+          "Utilisez \"fier\" dans une phrase simple",
+          "Trouvez des images représentant \"fier\"",
+          "Faites des gestes pour \"fier\""
+        ]
+      },
+      {
+        "word": "maman",
+        "lesson": 3,
+        "context": "Les personnes dans ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"maman\"",
+          "Utilisez \"maman\" dans une phrase simple",
+          "Trouvez des images représentant \"maman\"",
+          "Faites des gestes pour \"maman\""
+        ]
+      },
+      {
+        "word": "papa",
+        "lesson": 3,
+        "context": "Les personnes dans ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"papa\"",
+          "Utilisez \"papa\" dans une phrase simple",
+          "Trouvez des images représentant \"papa\"",
+          "Faites des gestes pour \"papa\""
+        ]
+      },
+      {
+        "word": "grand-parent",
+        "lesson": 3,
+        "context": "Les personnes dans ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"grand-parent\"",
+          "Utilisez \"grand-parent\" dans une phrase simple",
+          "Trouvez des images représentant \"grand-parent\"",
+          "Faites des gestes pour \"grand-parent\""
+        ]
+      },
+      {
+        "word": "travail",
+        "lesson": 4,
+        "context": "Qui fait quoi dans ma famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"travail\"",
+          "Utilisez \"travail\" dans une phrase simple",
+          "Trouvez des images représentant \"travail\"",
+          "Faites des gestes pour \"travail\""
+        ]
+      },
+      {
+        "word": "aider",
+        "lesson": 4,
+        "context": "Qui fait quoi dans ma famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aider\"",
+          "Utilisez \"aider\" dans une phrase simple",
+          "Trouvez des images représentant \"aider\"",
+          "Faites des gestes pour \"aider\""
+        ]
+      },
+      {
+        "word": "ensemble",
+        "lesson": 4,
+        "context": "Qui fait quoi dans ma famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"ensemble\"",
+          "Utilisez \"ensemble\" dans une phrase simple",
+          "Trouvez des images représentant \"ensemble\"",
+          "Faites des gestes pour \"ensemble\""
+        ]
+      },
+      {
+        "word": "soin",
+        "lesson": 5,
+        "context": "Comment ma famille prend soin de moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"soin\"",
+          "Utilisez \"soin\" dans une phrase simple",
+          "Trouvez des images représentant \"soin\"",
+          "Faites des gestes pour \"soin\""
+        ]
+      },
+      {
+        "word": "protection",
+        "lesson": 5,
+        "context": "Comment ma famille prend soin de moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"protection\"",
+          "Utilisez \"protection\" dans une phrase simple",
+          "Trouvez des images représentant \"protection\"",
+          "Faites des gestes pour \"protection\""
+        ]
+      },
+      {
+        "word": "amour",
+        "lesson": 5,
+        "context": "Comment ma famille prend soin de moi",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"amour\"",
+          "Utilisez \"amour\" dans une phrase simple",
+          "Trouvez des images représentant \"amour\"",
+          "Faites des gestes pour \"amour\""
+        ]
+      },
+      {
+        "word": "contribuer",
+        "lesson": 6,
+        "context": "Comment j'aide ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"contribuer\"",
+          "Utilisez \"contribuer\" dans une phrase simple",
+          "Trouvez des images représentant \"contribuer\"",
+          "Faites des gestes pour \"contribuer\""
+        ]
+      },
+      {
+        "word": "responsabilité",
+        "lesson": 6,
+        "context": "Comment j'aide ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"responsabilité\"",
+          "Utilisez \"responsabilité\" dans une phrase simple",
+          "Trouvez des images représentant \"responsabilité\"",
+          "Faites des gestes pour \"responsabilité\""
+        ]
+      },
+      {
+        "word": "important",
+        "lesson": 6,
+        "context": "Comment j'aide ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"important\"",
+          "Utilisez \"important\" dans une phrase simple",
+          "Trouvez des images représentant \"important\"",
+          "Faites des gestes pour \"important\""
+        ]
+      },
+      {
+        "word": "amis",
+        "lesson": 7,
+        "context": "Les familles de mes amis",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"amis\"",
+          "Utilisez \"amis\" dans une phrase simple",
+          "Trouvez des images représentant \"amis\"",
+          "Faites des gestes pour \"amis\""
+        ]
+      },
+      {
+        "word": "diversité",
+        "lesson": 7,
+        "context": "Les familles de mes amis",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"diversité\"",
+          "Utilisez \"diversité\" dans une phrase simple",
+          "Trouvez des images représentant \"diversité\"",
+          "Faites des gestes pour \"diversité\""
+        ]
+      },
+      {
+        "word": "apprécier",
+        "lesson": 7,
+        "context": "Les familles de mes amis",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"apprécier\"",
+          "Utilisez \"apprécier\" dans une phrase simple",
+          "Trouvez des images représentant \"apprécier\"",
+          "Faites des gestes pour \"apprécier\""
+        ]
+      },
+      {
+        "word": "tradition",
+        "lesson": 8,
+        "context": "Les traditions de ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tradition\"",
+          "Utilisez \"tradition\" dans une phrase simple",
+          "Trouvez des images représentant \"tradition\"",
+          "Faites des gestes pour \"tradition\""
+        ]
+      },
+      {
+        "word": "célébrer",
+        "lesson": 8,
+        "context": "Les traditions de ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"célébrer\"",
+          "Utilisez \"célébrer\" dans une phrase simple",
+          "Trouvez des images représentant \"célébrer\"",
+          "Faites des gestes pour \"célébrer\""
+        ]
+      },
+      {
+        "word": "mémoire",
+        "lesson": 8,
+        "context": "Les traditions de ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"mémoire\"",
+          "Utilisez \"mémoire\" dans une phrase simple",
+          "Trouvez des images représentant \"mémoire\"",
+          "Faites des gestes pour \"mémoire\""
+        ]
+      },
+      {
+        "word": "célébration",
+        "lesson": 9,
+        "context": "Comment ma famille célèbre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"célébration\"",
+          "Utilisez \"célébration\" dans une phrase simple",
+          "Trouvez des images représentant \"célébration\"",
+          "Faites des gestes pour \"célébration\""
+        ]
+      },
+      {
+        "word": "moments",
+        "lesson": 9,
+        "context": "Comment ma famille célèbre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"moments\"",
+          "Utilisez \"moments\" dans une phrase simple",
+          "Trouvez des images représentant \"moments\"",
+          "Faites des gestes pour \"moments\""
+        ]
+      },
+      {
+        "word": "joie",
+        "lesson": 9,
+        "context": "Comment ma famille célèbre",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"joie\"",
+          "Utilisez \"joie\" dans une phrase simple",
+          "Trouvez des images représentant \"joie\"",
+          "Faites des gestes pour \"joie\""
+        ]
+      },
+      {
+        "word": "nourriture",
+        "lesson": 10,
+        "context": "La nourriture dans ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"nourriture\"",
+          "Utilisez \"nourriture\" dans une phrase simple",
+          "Trouvez des images représentant \"nourriture\"",
+          "Faites des gestes pour \"nourriture\""
+        ]
+      },
+      {
+        "word": "partager",
+        "lesson": 10,
+        "context": "La nourriture dans ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"partager\"",
+          "Utilisez \"partager\" dans une phrase simple",
+          "Trouvez des images représentant \"partager\"",
+          "Faites des gestes pour \"partager\""
+        ]
+      },
+      {
+        "word": "goût",
+        "lesson": 10,
+        "context": "La nourriture dans ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"goût\"",
+          "Utilisez \"goût\" dans une phrase simple",
+          "Trouvez des images représentant \"goût\"",
+          "Faites des gestes pour \"goût\""
+        ]
+      },
+      {
+        "word": "maison",
+        "lesson": 11,
+        "context": "Où vit ma famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"maison\"",
+          "Utilisez \"maison\" dans une phrase simple",
+          "Trouvez des images représentant \"maison\"",
+          "Faites des gestes pour \"maison\""
+        ]
+      },
+      {
+        "word": "chez-nous",
+        "lesson": 11,
+        "context": "Où vit ma famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"chez-nous\"",
+          "Utilisez \"chez-nous\" dans une phrase simple",
+          "Trouvez des images représentant \"chez-nous\"",
+          "Faites des gestes pour \"chez-nous\""
+        ]
+      },
+      {
+        "word": "abri",
+        "lesson": 11,
+        "context": "Où vit ma famille?",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"abri\"",
+          "Utilisez \"abri\" dans une phrase simple",
+          "Trouvez des images représentant \"abri\"",
+          "Faites des gestes pour \"abri\""
+        ]
+      },
+      {
+        "word": "espace",
+        "lesson": 12,
+        "context": "Les espaces spéciaux de ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"espace\"",
+          "Utilisez \"espace\" dans une phrase simple",
+          "Trouvez des images représentant \"espace\"",
+          "Faites des gestes pour \"espace\""
+        ]
+      },
+      {
+        "word": "souvenir",
+        "lesson": 12,
+        "context": "Les espaces spéciaux de ma famille",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"souvenir\"",
+          "Utilisez \"souvenir\" dans une phrase simple",
+          "Trouvez des images représentant \"souvenir\"",
+          "Faites des gestes pour \"souvenir\""
+        ]
+      },
+      {
+        "word": "parler",
+        "lesson": 13,
+        "context": "Comment les familles communiquent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"parler\"",
+          "Utilisez \"parler\" dans une phrase simple",
+          "Trouvez des images représentant \"parler\"",
+          "Faites des gestes pour \"parler\""
+        ]
+      },
+      {
+        "word": "écouter",
+        "lesson": 13,
+        "context": "Comment les familles communiquent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"écouter\"",
+          "Utilisez \"écouter\" dans une phrase simple",
+          "Trouvez des images représentant \"écouter\"",
+          "Faites des gestes pour \"écouter\""
+        ]
+      },
+      {
+        "word": "communiquer",
+        "lesson": 13,
+        "context": "Comment les familles communiquent",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"communiquer\"",
+          "Utilisez \"communiquer\" dans une phrase simple",
+          "Trouvez des images représentant \"communiquer\"",
+          "Faites des gestes pour \"communiquer\""
+        ]
+      },
+      {
+        "word": "communauté",
+        "lesson": 14,
+        "context": "Les familles dans notre communauté",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"communauté\"",
+          "Utilisez \"communauté\" dans une phrase simple",
+          "Trouvez des images représentant \"communauté\"",
+          "Faites des gestes pour \"communauté\""
+        ]
+      },
+      {
+        "word": "voisin",
+        "lesson": 14,
+        "context": "Les familles dans notre communauté",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"voisin\"",
+          "Utilisez \"voisin\" dans une phrase simple",
+          "Trouvez des images représentant \"voisin\"",
+          "Faites des gestes pour \"voisin\""
+        ]
+      },
+      {
+        "word": "connecter",
+        "lesson": 14,
+        "context": "Les familles dans notre communauté",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"connecter\"",
+          "Utilisez \"connecter\" dans une phrase simple",
+          "Trouvez des images représentant \"connecter\"",
+          "Faites des gestes pour \"connecter\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

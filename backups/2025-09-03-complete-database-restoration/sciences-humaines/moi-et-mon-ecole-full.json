@@ -1,0 +1,3234 @@
+{
+  "unitTitle": "Moi et mon école formidable",
+  "subject": "Sciences humaines",
+  "grade": "1",
+  "totalLessons": 20,
+  "coreCount": 14,
+  "extensionCount": 6,
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "lessonType": "core",
+      "title": "Bienvenue dans notre école!",
+      "oneGoal": "Students will identify their school as a special place and express feelings about being part of the school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "école",
+        "élève",
+        "bienvenue"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Welcome circle with school mascot or special object. Share excitement about being at school together.",
+        "materials": [
+          "school mascot or special school symbol",
+          "welcome chart",
+          "feeling faces cards"
+        ],
+        "visualSupports": "Big smile gestures, welcoming arms, photos of happy children at school",
+        "decisionPoints": [
+          "Si un élève a peur de la nouvelle école → utiliser des mots rassurants et montrer des photos d'enfants heureux à l'école",
+          "Si un élève ne veut pas entrer dans l'école → rester avec lui à l'entrée et identifier quelque chose d'accueillant ensemble",
+          "Si un élève pleure en arrivant → offrir un objet réconfortant et parler doucement de ce qu'on va faire de amusant"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School building appreciation walk. Stop at special places to notice what makes school feel welcoming. Return to create a 'Our School is Special' chart with drawings and words.",
+        "materials": [
+          "clipboards for outdoor writing",
+          "colored pencils",
+          "chart paper",
+          "camera for documentation"
+        ],
+        "visualSupports": "Point to building features, use appreciation gestures, encouraging facial expressions",
+        "decisionPoints": [
+          {
+            "question": "How familiar are students with their school building?",
+            "ifYes": "Focus on deeper appreciation and feelings about familiar spaces",
+            "ifNo": "Take more time exploring and orienting students to school layout"
+          },
+          {
+            "question": "What level of emotional support do students need for school comfort?",
+            "ifYes": "Use buddy system and extra reassurance about school safety",
+            "ifNo": "Encourage independent exploration and sharing of discoveries"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Share one thing that makes our school special. Create class commitment to taking care of our special school.",
+        "materials": [
+          "certificat de bienvenue personnalisé",
+          "autocollant étoile d'élève spécial",
+          "livre photo de la classe précédente"
+        ],
+        "visualSupports": "Gestes de célébration pour être élève, badge d'identité sur le cœur, sourires d'encouragement",
+        "decisionPoints": [
+          "Si un élève ne trouve rien de spécial à dire sur l'école → l'aider en pointant vers des éléments positifs visibles",
+          "Si un élève dit qu'il n'aime pas l'école → valider ses sentiments et chercher un petit aspect qu'il pourrait apprécier",
+          "Si un élève veut rentrer chez lui → rappeler que l'école est un endroit sécuritaire où on apprend et s'amuse ensemble"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser plus d'images et moins de mots parlés",
+          "Permettre des réponses par gestes ou dessins",
+          "Offrir un buddy pour la sécurité émotionnelle"
+        ],
+        "pourAvancés": [
+          "Demander de décrire pourquoi l'école est spéciale avec plus de détails",
+          "Encourager à aider un ami qui a peur",
+          "Inviter à dessiner un plan simple de l'école"
+        ],
+        "pourLangue": [
+          "Montrer des objets réels en nommant en français",
+          "Utiliser gestes et images pour expliquer 'école'",
+          "Permettre réponses en langue maternelle au début"
+        ],
+        "pourPEI": [
+          "Adapter selon besoins sensoriels (lumière, bruit)",
+          "Offrir pauses si nécessaire",
+          "Utiliser support visuel personnalisé"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 2,
+      "lessonType": "core",
+      "title": "Je suis un élève",
+      "oneGoal": "Students will understand their identity as students and recognize their rights and responsibilities in school",
+      "duration": 45,
+      "keyVocabulary": [
+        "élève",
+        "droits",
+        "responsabilités"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Mirror circle where students look at themselves and say 'Je suis un élève' (I am a student). Discuss what being a student means.",
+        "materials": [
+          "hand mirrors",
+          "student identity badges",
+          "photos of students learning"
+        ],
+        "visualSupports": "Point to self proudly, student badge gestures, learning action poses",
+        "decisionPoints": [
+          "Si un élève refuse de se regarder dans le miroir → utiliser un miroir plus grand pour toute la classe et se regarder ensemble",
+          "Si un élève dit qu'il n'est pas vraiment un élève → valider qu'il est en apprentissage pour devenir un excellent élève",
+          "Si un élève a honte d'être à l'école → célébrer tous les élèves et expliquer que c'est formidable d'apprendre"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Rights and responsibilities exploration through role-play scenarios. Act out student rights (safety, learning, respect) and responsibilities (kindness, effort, care). Create student rights and responsibilities poster.",
+        "materials": [
+          "scenario cards",
+          "poster paper",
+          "markers",
+          "dress-up items for role-play"
+        ],
+        "visualSupports": "Acting gestures for scenarios, thumbs up for rights, helping hands for responsibilities",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont prêts à discuter des responsabilités ou si on se concentre d'abord sur les droits?",
+            "ifYes": "Balance rights and responsibilities equally in discussion",
+            "ifNo": "Focus heavily on rights first, then gently introduce responsibilities"
+          },
+          {
+            "question": "How do we balance individual identity with group belonging?",
+            "ifYes": "Emphasize both 'I am special' and 'We belong together'",
+            "ifNo": "Focus more on individual identity and comfort first"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Student identity celebration where each child receives recognition for being an important student in our class.",
+        "materials": [
+          "certificat 'Je suis un élève spécial'",
+          "crayons de couleur pour personnaliser",
+          "autocollants de célébration"
+        ],
+        "visualSupports": "Gestes de fierté personnelle, applaudissements d'encouragement, sourires de célébration",
+        "decisionPoints": [
+          "Si un élève ne veut pas être reconnu publiquement → offrir une reconnaissance privée avec un sourire et un mot doux",
+          "Si un élève dit qu'il n'est pas important → utiliser des exemples concrets de comment il contribue à la classe",
+          "Si un élève compare ses capacités aux autres → rediriger vers ses propres forces et progrès uniques"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des gestes simples pour montrer 'droits' et 'responsabilités'",
+          "Se concentrer sur un seul concept à la fois",
+          "Utiliser des exemples très concrets de la classe"
+        ],
+        "pourAvancés": [
+          "Encourager à donner des exemples de droits et responsabilités",
+          "Inviter à aider un camarade à comprendre les concepts",
+          "Poser des questions sur comment être un bon élève"
+        ],
+        "pourLangue": [
+          "Montrer images pour 'élève', 'droits', 'responsabilités'",
+          "Utiliser leur nom souvent pour renforcer identité d'élève",
+          "Permettre expression dans langue maternelle puis traduire"
+        ],
+        "pourPEI": [
+          "Utiliser supports visuels personnalisés",
+          "Offrir choix de participation (verbal, gestuel, écrit)",
+          "Respecter leur rythme d'apprentissage individuel"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 3,
+      "lessonType": "core",
+      "title": "Notre salle de classe",
+      "oneGoal": "Students will explore their classroom space and understand how spaces are organized for learning and community",
+      "duration": 45,
+      "keyVocabulary": [
+        "salle de classe",
+        "espace",
+        "apprentissage"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Classroom space appreciation tour. Students become 'space detectives' looking for different areas and their purposes.",
+        "materials": [
+          "detective badges",
+          "magnifying glasses (toy)",
+          "exploration clipboards"
+        ],
+        "visualSupports": "Detective gestures, pointing to different areas, questioning expressions",
+        "decisionPoints": [
+          "Si un élève ne comprend pas le concept d'espace d'apprentissage → montrer physiquement comment on utilise chaque coin de la classe",
+          "Si un élève a peur d'explorer certains espaces → rester avec lui et explorer ensemble lentement",
+          "Si un élève veut explorer seulement son bureau → encourager doucement à découvrir d'autres espaces intéressants"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Classroom mapping activity. Students work in pairs to create simple maps of classroom areas. Identify learning spaces, quiet spaces, group spaces. Share maps and explain favorite areas.",
+        "materials": [
+          "large paper for mapping",
+          "colored pencils",
+          "rulers",
+          "area labels"
+        ],
+        "visualSupports": "Bird's eye view gestures, mapping motions, labeling actions",
+        "decisionPoints": [
+          {
+            "question": "Which classroom areas are most meaningful for students to explore?",
+            "ifYes": "Focus on student-chosen areas and their personal connections",
+            "ifNo": "Guide exploration to ensure all functional areas are understood"
+          },
+          {
+            "question": "Si on crée une carte de classe ensemble ou individuellement?",
+            "ifYes": "Create individual maps first, then combine into class map",
+            "ifNo": "Work together on one large class map with everyone contributing"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Classroom space commitment circle. Students share how they will take care of different classroom areas.",
+        "materials": [
+          "cartes d'engagement pour chaque espace",
+          "crayon effaçable pour signatures",
+          "affiche des règles de classe"
+        ],
+        "visualSupports": "Gestes de promesse, mains sur le cœur, sourires de responsabilité",
+        "decisionPoints": [
+          "Si un élève ne sait pas comment prendre soin d'un espace → donner des exemples concrets comme ranger les livres ou essuyer les tables",
+          "Si un élève promet quelque chose d'irréaliste → l'aider à choisir une action simple qu'il peut vraiment faire",
+          "Si un élève ne veut pas s'engager → respecter et suggérer qu'il peut juste observer les autres aujourd'hui"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des points de référence familiers dans la classe",
+          "Permettre mapping avec dessins simples plutôt que mots",
+          "Travailler en petit groupe avec support constant"
+        ],
+        "pourAvancés": [
+          "Encourager à inclure des détails sur la fonction de chaque espace",
+          "Inviter à suggérer des améliorations pour l'organisation",
+          "Demander de comparer avec d'autres salles de classe visitées"
+        ],
+        "pourLangue": [
+          "Étiqueter physiquement les espaces en français avec images",
+          "Utiliser gestes et mouvements pour expliquer chaque espace",
+          "Permettre collaboration avec un partenaire francophone"
+        ],
+        "pourPEI": [
+          "Offrir choix de matériaux pour créer la carte (numérique, tactile)",
+          "Respecter besoins sensoriels lors des déplacements",
+          "Utiliser supports visuels personnalisés selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 4,
+      "lessonType": "core",
+      "title": "Les espaces de notre école",
+      "oneGoal": "Students will identify different school spaces and understand how each space serves the school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "bibliothèque",
+        "gymnase",
+        "cafétéria"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "School space picture walk. Show photos of different school areas and have students predict what happens in each space.",
+        "materials": [
+          "photos of school spaces",
+          "prediction chart",
+          "questioning gestures cards"
+        ],
+        "visualSupports": "Point to photos clearly, use wondering gestures, prediction thinking poses",
+        "decisionPoints": [
+          "Si un élève reconnaît un espace mais ne comprend pas sa fonction → utiliser des questions simples comme 'Qu'est-ce qu'on fait ici?'",
+          "Si un élève a peur d'un espace (comme le bureau du directeur) → rassurer que ces espaces sont là pour nous aider",
+          "Si un élève ne participe pas aux prédictions → l'encourager en validant toute réponse comme intéressante"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School exploration walking tour. Visit library, gymnasium, cafeteria, office, music room. At each space, observe activities and interview people about how the space serves the school community. Record discoveries on exploration sheets.",
+        "materials": [
+          "exploration recording sheets",
+          "clipboards",
+          "cameras",
+          "interview question cards"
+        ],
+        "visualSupports": "Observation gestures, respectful visiting behavior, note-taking actions",
+        "decisionPoints": [
+          {
+            "question": "Which school spaces are most important for students to understand first?",
+            "ifYes": "Prioritize spaces students use regularly (library, gym, cafeteria)",
+            "ifNo": "Include spaces students rarely see (boiler room, storage) for broader understanding"
+          },
+          {
+            "question": "Si on fait une visite à pied ou si on utilise des photos et des cartes?",
+            "ifYes": "Combine walking tour with photo documentation for later reference",
+            "ifNo": "Use virtual tour approach with photos, videos, and maps"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "School spaces appreciation circle. Share discoveries about how different spaces help our school community.",
+        "materials": [
+          "photos prises pendant la visite",
+          "certificats d'explorateur d'école",
+          "carte des espaces découverts"
+        ],
+        "visualSupports": "Gestes d'appréciation pour chaque espace, sourires de découverte, pointage vers les photos",
+        "decisionPoints": [
+          "Si un élève n'a rien à partager sur la visite → l'aider en pointant vers une photo et demander ce qu'il a vu",
+          "Si un élève est déçu de ne pas avoir visité un espace particulier → planifier une mini-visite de cet espace bientôt",
+          "Si un élève veut retourner visiter tout de suite → expliquer qu'on reviendra et noter son intérêt spécial"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Visiter seulement 2-3 espaces pour éviter la surcharge",
+          "Utiliser un buddy system pendant les déplacements",
+          "Se concentrer sur les espaces les plus familiers d'abord"
+        ],
+        "pourAvancés": [
+          "Encourager à poser des questions aux adultes rencontrés",
+          "Demander de comparer les espaces scolaires avec ceux d'autres lieux",
+          "Inviter à suggérer des améliorations pour certains espaces"
+        ],
+        "pourLangue": [
+          "Pré-enseigner le vocabulaire des espaces avec images",
+          "Utiliser gestes pour expliquer l'utilité de chaque espace",
+          "Permettre l'utilisation de la langue maternelle pour exprimer les découvertes"
+        ],
+        "pourPEI": [
+          "Préparer l'élève à l'avance avec des photos des espaces",
+          "Offrir des pauses durant la visite si nécessaire",
+          "Adapter selon les besoins sensoriels (bruit, foule)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 5,
+      "lessonType": "core",
+      "title": "Notre directeur et secrétaire",
+      "oneGoal": "Students will understand the roles of principal and secretary in supporting the school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "directeur",
+        "secrétaire",
+        "bureau"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Role guessing game. Act out different jobs and have students guess. Introduce principal and secretary roles through mime and photos.",
+        "materials": [
+          "job role cards",
+          "photos of principal and secretary",
+          "office props (toy phone, papers)"
+        ],
+        "visualSupports": "Clear job action gestures, office work motions, helping others poses",
+        "decisionPoints": [
+          "Si un élève a peur du directeur → expliquer que le directeur est là pour aider et protéger les élèves",
+          "Si un élève ne comprend pas les rôles d'autorité → utiliser des comparaisons avec les parents à la maison",
+          "Si un élève veut jouer seulement aux jeux de devinette → connecter le jeu aux vrais rôles dans l'école"
+        ],
+        "movementBreaks": [
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Office visit and interview session. Visit school office to meet principal and secretary. Conduct prepared interview about their roles in helping students and teachers. Observe office work and ask questions about how they support school community.",
+        "materials": [
+          "interview question cards",
+          "recording sheets",
+          "thank you cards to make"
+        ],
+        "visualSupports": "Respectful visiting posture, listening gestures, questioning hand raises",
+        "decisionPoints": [
+          {
+            "question": "How comfortable are students with meeting school authority figures?",
+            "ifYes": "Encourage natural conversation and questions",
+            "ifNo": "Use more structured interview format with prepared questions"
+          },
+          {
+            "question": "Si on visite le bureau ou si on invite des invités à notre classe?",
+            "ifYes": "Office visit gives authentic context for understanding their work",
+            "ifNo": "Classroom visit might feel safer and more controlled for students"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Thank you card creation for principal and secretary. Share appreciation for how they help our school community.",
+        "materials": [
+          "cartes vierges colorées",
+          "crayons de couleur et marqueurs",
+          "autocollants de remerciement"
+        ],
+        "visualSupports": "Gestes de gratitude, cœur avec les mains, sourires de remerciement",
+        "decisionPoints": [
+          "Si un élève ne sait pas quoi écrire dans la carte → suggérer des phrases simples comme 'Merci de nous aider'",
+          "Si un élève dit qu'il n'aime pas le directeur → rediriger vers une chose positive qu'il fait pour l'école",
+          "Si un élève veut faire une carte très élaborée → encourager sa créativité tout en gardant le message simple"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Demander d'enseigner une nouvelle règle de français à un camarade"
+        ],
+        "pourLangue": [
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser un dictionnaire visuel français-anglais"
+        ],
+        "pourPEI": [
+          "Fournir des instructions simples, une étape à la fois",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 6,
+      "lessonType": "core",
+      "title": "Nos enseignants et aide-enseignants",
+      "oneGoal": "Students will recognize teaching roles and understand how educators support student learning and growth",
+      "duration": 45,
+      "keyVocabulary": [
+        "enseignant",
+        "aide-enseignant",
+        "apprendre"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Teacher appreciation discussion. Share what students notice about how teachers help them learn and feel cared for.",
+        "materials": [
+          "teacher appreciation chart",
+          "heart-shaped notes",
+          "photos of teachers helping students"
+        ],
+        "visualSupports": "Caring gestures, helping hand motions, learning support actions",
+        "decisionPoints": [
+          "Si un élève dit que son enseignant est méchant → rediriger vers les moments où l'enseignant l'a aidé à apprendre",
+          "Si un élève ne participe pas à la discussion → l'encourager en mentionnant quelque chose de positif qu'il fait en classe",
+          "Si un élève compare les enseignants négativement → rappeler que chaque enseignant aide de façon différente"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Teacher and aide-enseignant interview project. Students prepare questions about why people become teachers and how they help students. Interview classroom teacher, aide-enseignant, and other school teachers. Learn about teachers' interests, families, and reasons for loving teaching.",
+        "materials": [
+          "interview recording sheets",
+          "photos of teachers",
+          "thank you art supplies"
+        ],
+        "visualSupports": "Interview posture, respectful listening, note-taking gestures",
+        "decisionPoints": [
+          {
+            "question": "How do we help students see teachers as people with feelings and needs?",
+            "ifYes": "Include questions about teachers' lives, interests, and experiences",
+            "ifNo": "Focus primarily on professional roles and classroom responsibilities"
+          },
+          {
+            "question": "Si on interviewe les enseignants ou si on les observe en action?",
+            "ifYes": "Combine interviews with classroom observation of teaching in action",
+            "ifNo": "Focus on interview format to encourage personal connection"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Teacher appreciation creation. Make thank you notes or drawings expressing gratitude for how teachers support learning.",
+        "materials": [
+          "papier de construction coloré",
+          "crayons et marqueurs",
+          "autocollants de remerciement"
+        ],
+        "visualSupports": "Gestes artistiques, expressions de gratitude, création avec amour",
+        "decisionPoints": [
+          "Si un élève ne sait pas quoi dessiner pour son enseignant → suggérer de dessiner une activité qu'il aime faire en classe",
+          "Si un élève veut donner sa création tout de suite → expliquer qu'on va les présenter ensemble plus tard",
+          "Si un élève dit qu'il n'a rien à remercier → l'aider à identifier une petite chose que l'enseignant fait pour lui"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Permettre les explications dans la langue première si nécessaire",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 7,
+      "lessonType": "core",
+      "title": "Le concierge et la cuisine",
+      "oneGoal": "Students will appreciate support staff roles and understand how everyone contributes to school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "concierge",
+        "cuisinier",
+        "entretien"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Community helpers appreciation circle. Discuss all the people who help make school work, focusing on often-overlooked support roles.",
+        "materials": [
+          "community helper photos",
+          "appreciation badges",
+          "work action cards"
+        ],
+        "visualSupports": "Work action gestures, appreciation expressions, community helper poses",
+        "decisionPoints": [
+          "Si un élève ne respecte pas le travail du concierge → expliquer combien c'est important de garder l'école propre pour tous",
+          "Si un élève trouve le travail de support 'pas important' → montrer comment l'école ne fonctionnerait pas sans ces personnes",
+          "Si un élève veut seulement parler des enseignants → rediriger vers toutes les personnes qui rendent l'école possible"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Support staff appreciation interviews and observations. Visit custodial areas and kitchen (if possible) to observe support staff work. Interview custodian about keeping school clean and safe. Meet kitchen staff and learn about feeding school community. Understand how support work keeps school functioning.",
+        "materials": [
+          "interview question cards",
+          "observation sheets",
+          "thank you card supplies"
+        ],
+        "visualSupports": "Work observation gestures, respectful visiting behavior, appreciation expressions",
+        "decisionPoints": [
+          {
+            "question": "How do we highlight the importance of support roles without stereotyping?",
+            "ifYes": "Emphasize skill, importance, and choice in all work roles",
+            "ifNo": "Focus primarily on appreciation without discussing role value comparisons"
+          },
+          {
+            "question": "Si on observe le travail en action ou si on a des conversations avec le personnel?",
+            "ifYes": "Combine observation with conversation for full understanding",
+            "ifNo": "Focus on conversation to build personal connections with staff"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Support staff thank you project. Create appreciation gifts or notes recognizing essential work of custodial and kitchen staff.",
+        "materials": [
+          "cartes de remerciement spéciales",
+          "matériaux d'artisanat",
+          "rubans et décorations"
+        ],
+        "visualSupports": "Gestes de gratitude pour le travail bien fait, remerciements sincères, création avec intention",
+        "decisionPoints": [
+          "Si un élève ne veut pas faire de cadeau pour le concierge → expliquer que même un petit merci fait plaisir à quelqu'un",
+          "Si un élève veut donner quelque chose de chez lui → expliquer qu'un cadeau fait en classe montre l'effort du groupe",
+          "Si un élève pense que c'est inutile → montrer comment les remerciements rendent les gens heureux dans leur travail"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 8,
+      "lessonType": "core",
+      "title": "Les règles de notre école",
+      "oneGoal": "Students will understand school rules as community agreements that help everyone feel safe and included",
+      "duration": 45,
+      "keyVocabulary": [
+        "règles",
+        "sécurité",
+        "respect"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Rule exploration through scenarios. Present situations and discuss what rules might help everyone feel safe and happy.",
+        "materials": [
+          "scenario cards",
+          "safety symbols",
+          "rule examples chart"
+        ],
+        "visualSupports": "Safety gestures, problem-solving expressions, community cooperation poses",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'aime pas les règles → expliquer que les règles nous aident tous à nous sentir en sécurité",
+          "Si un élève ne comprend pas pourquoi on a des règles → utiliser des exemples concrets comme traverser la rue ou jouer ensemble",
+          "Si un élève veut désobéir aux règles → demander comment il se sentirait si quelqu'un ne suivait pas les règles avec lui"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School rule investigation project. Explore different areas of school to discover existing rules (posted signs, common practices). Interview staff about why certain rules exist. Discuss how rules help community function. Create illustrated rule book showing how rules help everyone.",
+        "materials": [
+          "rule discovery sheets",
+          "cameras for documentation",
+          "art supplies for rule book"
+        ],
+        "visualSupports": "Rule reading gestures, safety demonstrations, community agreement actions",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont prêts à discuter des buts des règles ou si on se concentre d'abord sur les exemples?",
+            "ifYes": "Explore both what rules are and why they exist",
+            "ifNo": "Focus on identifying and understanding existing rules first"
+          },
+          {
+            "question": "Si on crée de nouvelles règles de classe ou si on explore les règles d'école existantes?",
+            "ifYes": "Combine exploration of existing rules with collaborative creation of class agreements",
+            "ifNo": "Focus on understanding and appreciating existing school rule system"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Rule commitment ceremony. Students share how they will follow school rules to help everyone feel safe and included.",
+        "materials": [
+          "certificats d'engagement aux règles",
+          "autocollants de bon comportement",
+          "livre des règles de classe"
+        ],
+        "visualSupports": "Gestes de promesse solennelle, mains sur le cœur, expressions de responsabilité",
+        "decisionPoints": [
+          "Si un élève ne veut pas s'engager à suivre les règles → lui demander quelle règle lui semble la plus importante pour lui",
+          "Si un élève promet des choses irréalistes → l'aider à choisir une ou deux règles simples à pratiquer",
+          "Si un élève a peur de briser les règles → rassurer que tout le monde fait des erreurs et qu'on apprend ensemble"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser un dictionnaire visuel français-anglais"
+        ],
+        "pourPEI": [
+          "Fournir des instructions simples, une étape à la fois",
+          "Utiliser des supports visuels clairs et contrastés",
+          "Ajuster l'éclairage et réduire les distractions visuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 9,
+      "lessonType": "core",
+      "title": "Comment nous résolvons les problèmes",
+      "oneGoal": "Students will practice conflict resolution and understand how to seek help when problems arise",
+      "duration": 45,
+      "keyVocabulary": [
+        "problème",
+        "solution",
+        "aide"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Problem-solving warm-up. Present simple classroom problems and brainstorm solutions together.",
+        "materials": [
+          "problem scenario cards",
+          "solution brainstorming chart",
+          "thinking poses cards"
+        ],
+        "visualSupports": "Thinking gestures, problem-solving expressions, solution discovery actions",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'a jamais de problèmes → valider que c'est bien et expliquer qu'on apprend pour aider les autres",
+          "Si un élève partage un vrai problème personnel → l'écouter avec empathie et rediriger vers comment on peut l'aider",
+          "Si un élève propose des solutions violentes → rediriger vers des solutions qui aident tout le monde à se sentir mieux"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Conflict resolution skill building through role-play. Practice common student conflicts (sharing, fairness, feelings). Learn steps: stop, breathe, talk, listen, solve together. Practice seeking help from adults when needed. Create problem-solving poster for classroom reference.",
+        "materials": [
+          "conflict scenario cards",
+          "solution step cards",
+          "calm-down tools",
+          "poster materials"
+        ],
+        "visualSupports": "Calm-down gestures, talking and listening poses, helping hand signals",
+        "decisionPoints": [
+          {
+            "question": "What types of conflicts are most relevant to students' experience?",
+            "ifYes": "Focus on conflicts students actually experience in classroom and playground",
+            "ifNo": "Use hypothetical scenarios to introduce problem-solving concepts"
+          },
+          {
+            "question": "Si on joue les rôles des solutions ou si on discute de situations réelles de la classe?",
+            "ifYes": "Carefully address real situations that have occurred with sensitivity",
+            "ifNo": "Use role-play scenarios to practice skills without personalizing conflicts"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Problem-solving commitment circle. Students share one problem-solving strategy they will try when conflicts arise.",
+        "materials": [
+          "stratégies de résolution poster",
+          "cartes de rappel personnelles",
+          "autocollants de succès"
+        ],
+        "visualSupports": "Gestes de calme et de réflexion, expressions de détermination, sourires d'encouragement",
+        "decisionPoints": [
+          "Si un élève ne peut pas choisir une stratégie → l'aider en suggérant de commencer par respirer calmement",
+          "Si un élève veut utiliser des stratégies inappropriées → rediriger vers des approches qui aident tout le monde",
+          "Si un élève a peur d'essayer les stratégies → rassurer qu'on pratique ensemble et que c'est normal de faire des erreurs"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Permettre les explications dans la langue première si nécessaire",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Encourager le jumelage avec un pair plus fort en français"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Utiliser des minuteurs visuels pour structurer le temps"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 10,
+      "lessonType": "core",
+      "title": "Nos traditions scolaires",
+      "oneGoal": "Students will explore school traditions and understand how shared experiences build community identity",
+      "duration": 45,
+      "keyVocabulary": [
+        "tradition",
+        "célébration",
+        "communauté"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Tradition introduction through storytelling. Share stories about special things the school does every year that make it unique.",
+        "materials": [
+          "school tradition photos",
+          "storytelling props",
+          "celebration symbols"
+        ],
+        "visualSupports": "Story gestures, celebration actions, tradition demonstration poses",
+        "decisionPoints": [
+          "Si un élève ne comprend pas ce qu'est une tradition → utiliser des exemples familiaux comme les fêtes d'anniversaire ou Noël",
+          "Si un élève dit que sa famille n'a pas de traditions → l'aider à identifier des petites choses spéciales qu'ils font ensemble",
+          "Si un élève a hâte à une tradition scolaire → encourager son enthousiasme et parler de ce qui rend ces moments spéciaux"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School tradition exploration project. Research school traditions through photos, artifacts, and interviews with long-time staff. Learn about assemblies, special events, annual celebrations. Understand how traditions connect past and present school community. Create tradition timeline or museum display.",
+        "materials": [
+          "tradition research sheets",
+          "historical photos",
+          "interview materials",
+          "display supplies"
+        ],
+        "visualSupports": "Historical comparison gestures, timeline actions, celebration demonstrations",
+        "decisionPoints": [
+          {
+            "question": "Which school traditions are most meaningful for Grade 1 students?",
+            "ifYes": "Focus on traditions students can participate in and understand",
+            "ifNo": "Include broader school traditions to build comprehensive understanding"
+          },
+          {
+            "question": "Si on se concentre sur les traditions de l'année actuelle ou l'histoire de l'école?",
+            "ifYes": "Balance current traditions students will experience with historical context",
+            "ifNo": "Focus primarily on traditions students will directly participate in this year"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Tradition appreciation circle. Students share excitement about school traditions they want to participate in.",
+        "materials": [
+          "calendrier des traditions scolaires",
+          "photos des célébrations passées",
+          "cartes d'anticipation joyeuse"
+        ],
+        "visualSupports": "Gestes d'excitation et d'anticipation, sourires de bonheur, expressions de joie communautaire",
+        "decisionPoints": [
+          "Si un élève ne se sent pas inclus dans une tradition → expliquer comment chaque personne rend les traditions plus spéciales",
+          "Si un élève préfère les traditions de sa famille → célébrer que les deux types de traditions sont importantes",
+          "Si un élève a peur de participer aux traditions → rassurer qu'on apprendra ensemble et que c'est amusant"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Permettre les explications dans la langue première si nécessaire",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Répéter les consignes importantes avec des gestes clairs"
+        ],
+        "pourPEI": [
+          "Fournir des instructions simples, une étape à la fois",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 11,
+      "lessonType": "core",
+      "title": "Ma carte de l'école",
+      "oneGoal": "Students will create simple maps of school spaces and understand how maps help us navigate community spaces",
+      "duration": 45,
+      "keyVocabulary": [
+        "carte",
+        "plan",
+        "direction"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Map exploration introduction. Look at different types of maps and discuss how they help people find their way.",
+        "materials": [
+          "various map examples",
+          "school aerial photo",
+          "treasure map props"
+        ],
+        "visualSupports": "Map reading gestures, direction pointing, navigation actions",
+        "decisionPoints": [
+          "Si un élève ne comprend pas ce qu'est une carte → commencer avec une carte au trésor simple et amusante",
+          "Si un élève a peur de se perdre à l'école → rassurer qu'une carte nous aide à toujours trouver notre chemin",
+          "Si un élève trouve les cartes trop compliquées → montrer des cartes très simples avec juste quelques éléments"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School mapping project. Students create individual maps of school layout, marking important spaces and pathways. Include favorite spots, important rooms, and safety locations. Add symbols and labels. Share maps and compare different perspectives and details noticed.",
+        "materials": [
+          "large mapping paper",
+          "colored pencils",
+          "rulers",
+          "symbol stickers",
+          "school layout reference"
+        ],
+        "visualSupports": "Bird's eye view demonstrations, mapping motions, symbol explanation gestures",
+        "decisionPoints": [
+          {
+            "question": "Si les élèves sont prêts pour la cartographie à vue d'oiseau ou si on utilise une perspective au niveau du sol?",
+            "ifYes": "Introduce bird's eye view with physical demonstrations and examples",
+            "ifNo": "Start with floor-level perspective and gradually introduce aerial view concepts"
+          },
+          {
+            "question": "Si les cartes se concentrent sur les espaces préférés ou toutes les zones de l'école?",
+            "ifYes": "Encourage personal mapping with favorite spaces highlighted",
+            "ifNo": "Provide structure for comprehensive school area mapping"
+          }
+        ],
+        "movementBreaks": [
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Map gallery walk. Students display maps and explain special features they included. Appreciate different mapping perspectives.",
+        "materials": [
+          "supports d'affichage pour cartes",
+          "autocollants d'appréciation",
+          "cartes de commentaires positifs"
+        ],
+        "visualSupports": "Gestes d'exploration et de découverte, pointage respectueux vers les cartes, expressions d'admiration",
+        "decisionPoints": [
+          "Si un élève est gêné de montrer sa carte → valider que chaque carte est unique et spéciale",
+          "Si un élève critique la carte d'un autre → rediriger vers ce qui est intéressant et créatif dans chaque carte",
+          "Si un élève ne veut pas expliquer sa carte → respecter et inviter les autres à deviner les éléments spéciaux"
+        ],
+        "movementBreaks": [
+          "Faire une révérence à nos nouvelles connaissances (1 minute)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Permettre les réponses gestuelles avant la production orale",
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Utiliser un dictionnaire visuel français-anglais",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Ajuster l'éclairage et réduire les distractions visuelles"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 12,
+      "lessonType": "core",
+      "title": "Interview avec le personnel",
+      "oneGoal": "Students will conduct simple interviews with school staff to understand their roles and contributions",
+      "duration": 45,
+      "keyVocabulary": [
+        "interview",
+        "questions",
+        "réponses"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Interview skill practice. Learn how to ask good questions, listen carefully, and show appreciation for people's answers.",
+        "materials": [
+          "interview question examples",
+          "listening pose cards",
+          "appreciation gesture guides"
+        ],
+        "visualSupports": "Question asking gestures, careful listening poses, note-taking actions",
+        "decisionPoints": [
+          "Si un élève a peur de poser des questions aux adultes → commencer par pratiquer avec l'enseignant et utiliser des questions très simples",
+          "Si un élève ne sait pas quoi demander → fournir une liste de questions de base comme 'Quel est votre travail?'",
+          "Si un élève parle trop vite ou fort → pratiquer un ton de voix respectueux et calme pour les interviews"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School staff interview project. Students work in pairs to interview different school staff members they haven't met yet (music teacher, librarian, special education teacher, etc.). Ask about their roles, why they chose their job, how they help students. Record answers through drawings and simple words. Share discoveries with class.",
+        "materials": [
+          "interview recording sheets",
+          "clipboards",
+          "colored pencils",
+          "interview question guides"
+        ],
+        "visualSupports": "Professional interview posture, respectful questioning, note-taking demonstrations",
+        "decisionPoints": [
+          {
+            "question": "Which staff members would be most comfortable and engaging for student interviews?",
+            "ifYes": "Choose staff known for enjoying student interaction and communication",
+            "ifNo": "Prepare staff in advance and provide structured interview formats"
+          },
+          {
+            "question": "Si les interviews sont structurées avec des questions préparées ou plus conversationnelles?",
+            "ifYes": "Use structured questions to build student confidence and focus",
+            "ifNo": "Encourage natural conversation with question prompts available"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Interview discovery sharing. Students share interesting things they learned about school staff and their contributions to school community.",
+        "materials": [
+          "notes d'interview des élèves",
+          "tableau de découvertes",
+          "certificats de remerciement pour le personnel"
+        ],
+        "visualSupports": "Gestes de partage et de découverte, expressions de surprise positive, pointage vers les découvertes",
+        "decisionPoints": [
+          "Si un élève n'a pas eu d'interview réussie → l'aider à partager une chose qu'il a observée sur la personne",
+          "Si un élève veut critiquer quelqu'un qu'il a rencontré → rediriger vers les aspects positifs de ce que cette personne fait",
+          "Si un élève est trop excité par ses découvertes → canaliser son enthousiasme en encourageant un partage organisé"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Inviter à créer un livre illustré pour les plus jeunes"
+        ],
+        "pourLangue": [
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 13,
+      "lessonType": "core",
+      "title": "Les besoins de notre école",
+      "oneGoal": "Students will identify school community needs and understand how needs are met through cooperation",
+      "duration": 45,
+      "keyVocabulary": [
+        "besoins",
+        "désirs",
+        "coopération"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Needs vs. wants exploration. Discuss difference between things we need and things we want, using personal examples.",
+        "materials": [
+          "needs vs wants sorting cards",
+          "basic needs examples",
+          "want examples"
+        ],
+        "visualSupports": "Essential need gestures, want desire expressions, sorting actions",
+        "decisionPoints": [
+          "Si un élève ne comprend pas la différence entre besoin et désir → utiliser des exemples très concrets comme manger (besoin) vs bonbon (désir)",
+          "Si un élève dit que tout est un besoin → demander 'Est-ce qu'on peut vivre sans ça?' pour l'aider à réfléchir",
+          "Si un élève se sent mal de vouloir des choses → expliquer que c'est normal d'avoir des désirs, mais qu'on satisfait les besoins en premier"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School needs assessment project. Walk through school to identify what the school community needs to function well (safety, cleanliness, learning materials, kindness, cooperation). Distinguish between material needs and social/emotional needs. Interview staff about current school needs. Brainstorm how needs are currently met and how students can help.",
+        "materials": [
+          "needs assessment sheets",
+          "clipboards",
+          "interview questions",
+          "brainstorming charts"
+        ],
+        "visualSupports": "Needs identification gestures, assessment actions, brainstorming thinking poses",
+        "decisionPoints": [
+          {
+            "question": "How do we help students distinguish between wants and needs in school context?",
+            "ifYes": "Use concrete examples and 'what if' scenarios to clarify essential vs. nice-to-have",
+            "ifNo": "Accept broader interpretation of needs and focus on community cooperation"
+          },
+          {
+            "question": "Si on se concentre d'abord sur les besoins matériels ou les besoins émotionnels/sociaux?",
+            "ifYes": "Start with tangible material needs, then explore social/emotional community needs",
+            "ifNo": "Integrate both types of needs as equally important for school community"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "School needs commitment circle. Students choose one school need they want to help address and share their commitment.",
+        "materials": [
+          "cartes d'engagement personnel",
+          "tableau des besoins identifiés",
+          "autocollants de promesse"
+        ],
+        "visualSupports": "Gestes d'engagement personnel, expressions de détermination, mains sur le cœur pour les promesses",
+        "decisionPoints": [
+          "Si un élève ne sait pas comment aider → suggérer des actions simples comme garder la classe propre ou être gentil",
+          "Si un élève promet quelque chose de trop grand → l'aider à choisir une action réaliste qu'il peut vraiment faire",
+          "Si un élève ne veut pas s'engager → respecter et suggérer qu'il peut juste observer comment les autres aident"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Utiliser des minuteurs visuels pour structurer le temps",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 14,
+      "lessonType": "core",
+      "title": "Comment nous aidons notre école",
+      "oneGoal": "Students will identify ways they can contribute to school community and take action to help",
+      "duration": 45,
+      "keyVocabulary": [
+        "aider",
+        "contribuer",
+        "action"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Helper appreciation circle. Discuss ways students already help at school and home. Celebrate existing contributions.",
+        "materials": [
+          "helper action cards",
+          "appreciation stickers",
+          "contribution examples chart"
+        ],
+        "visualSupports": "Helping action demonstrations, appreciation expressions, contribution celebration gestures",
+        "decisionPoints": [
+          "Si un élève dit qu'il n'aide jamais → l'aider à identifier des petites choses qu'il fait déjà comme ranger ses affaires",
+          "Si un élève se vante de tout ce qu'il fait → célébrer ses contributions et encourager les autres à partager aussi",
+          "Si un élève ne veut pas aider → respecter ses sentiments et expliquer qu'on peut commencer par de très petites choses"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School contribution action project. Choose specific ways students can help school community based on needs identified in previous lesson. Implement helping actions: classroom organization, playground cleanup, kindness notes, buddy helping, office assistance. Document contributions through photos and reflections.",
+        "materials": [
+          "action choice cards",
+          "helping supplies",
+          "cameras for documentation",
+          "reflection sheets"
+        ],
+        "visualSupports": "Helping action demonstrations, teamwork gestures, pride in contribution expressions",
+        "decisionPoints": [
+          {
+            "question": "What level of responsibility are students ready to take on?",
+            "ifYes": "Offer substantial helping opportunities with appropriate supervision",
+            "ifNo": "Start with simple, manageable helping tasks to build confidence"
+          },
+          {
+            "question": "Si on se concentre sur les contributions individuelles ou les projets de groupe?",
+            "ifYes": "Balance individual choice with collaborative group helping projects",
+            "ifNo": "Focus on group projects to build community cooperation skills"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Contribution celebration circle. Students share how it felt to help school community and plan continued contributions.",
+        "materials": [
+          "certificats de contribution",
+          "tableau des actions accomplies",
+          "plans d'actions futures"
+        ],
+        "visualSupports": "Gestes de fierté personnelle, célébration des accomplissements, sourires de satisfaction",
+        "decisionPoints": [
+          "Si un élève se sent mal de ne pas avoir assez aidé → souligner que chaque petite action compte et qu'on peut continuer à apprendre",
+          "Si un élève veut faire quelque chose de trop grand → l'aider à décomposer en petites étapes réalisables",
+          "Si un élève ne veut plus aider → respecter et suggérer qu'il peut juste observer les autres pour l'instant"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Diviser les tâches longues en étapes plus petites et gérables",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Fournir des instructions simples, une étape à la fois",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      }
+    },
+    {
+      "lessonNumber": 15,
+      "lessonType": "extension",
+      "title": "Notre école dans le quartier",
+      "oneGoal": "Students will understand their school's place in the larger neighborhood community",
+      "duration": 45,
+      "keyVocabulary": [
+        "quartier",
+        "voisinage",
+        "environnement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Neighborhood exploration introduction. Look at school location on maps and discuss what surrounds the school.",
+        "materials": [
+          "neighborhood maps",
+          "aerial photos",
+          "community location cards"
+        ],
+        "visualSupports": "Map pointing gestures, location identification actions, neighborhood connection expressions",
+        "decisionPoints": [
+          "Si un élève ne reconnaît pas son quartier → utiliser des points de repère familiers comme sa maison ou le trajet à l'école",
+          "Si un élève a peur de sortir de l'école → rassurer qu'on reste en sécurité et qu'on observe juste depuis les fenêtres",
+          "Si un élève ne comprend pas ce qu'est un quartier → comparer avec sa propre rue et les maisons autour de chez lui"
+        ],
+        "movementBreaks": [
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School-community connection exploration. From classroom windows and school boundaries, observe neighborhood features. Identify community connections (nearby businesses, homes, other schools, parks). Interview staff about school's role in neighborhood. Create community connection map showing school's place in larger community.",
+        "materials": [
+          "observation sheets",
+          "community connection recording forms",
+          "mapping materials",
+          "cameras"
+        ],
+        "visualSupports": "Observation pointing, community connection gestures, mapping demonstration actions",
+        "decisionPoints": [
+          {
+            "question": "How familiar are students with the area around their school?",
+            "ifYes": "Build on existing knowledge to deepen community understanding",
+            "ifNo": "Provide foundational orientation to immediate school neighborhood"
+          },
+          {
+            "question": "Si on explore par les fenêtres, les promenades, ou les cartes et photos?",
+            "ifYes": "Combine multiple exploration methods for comprehensive understanding",
+            "ifNo": "Choose safest and most practical exploration method for student group"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "School-community appreciation circle. Students share connections they discovered between school and neighborhood.",
+        "materials": [
+          "cartes des connexions découvertes",
+          "photos du quartier prises",
+          "tableau des liens communautaires"
+        ],
+        "visualSupports": "Gestes de connexion entre l'école et le quartier, sourires de découverte, expressions d'appartenance",
+        "decisionPoints": [
+          "Si un élève n'a pas remarqué de connexions → l'aider en pointant vers quelque chose de simple qu'il a observé",
+          "Si un élève partage des informations personnelles sur son quartier → valider ses observations tout en gardant la confidentialité",
+          "Si un élève ne se sent pas connecté au quartier → expliquer que faire partie de l'école nous connecte déjà à la communauté"
+        ],
+        "movementBreaks": [
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)"
+        ],
+        "pourAvancés": [
+          "Proposer des textes plus complexes avec vocabulaire étendu",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens",
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués"
+        ],
+        "pourLangue": [
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Permettre les explications dans la langue première si nécessaire"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Adapter les outils d'écriture (crayons ergonomiques, guides-lignes)",
+          "Utiliser des supports visuels clairs et contrastés"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève nomme 3 endroits importants dans son quartier",
+          "L'élève décrit le trajet de la maison à l'école",
+          "L'élève explique comment les gens s'entraident dans le quartier",
+          "L'élève identifie les personnes qui travaillent dans la communauté"
+        ],
+        "checkpoints": [
+          "Utilise le vocabulaire: quartier, voisin, communauté, maison",
+          "Explique l'importance des services communautaires",
+          "Décrit sa responsabilité comme membre de la communauté",
+          "Fait des liens entre sa famille et sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    },
+    {
+      "lessonNumber": 16,
+      "lessonType": "extension",
+      "title": "Les écoles d'hier et d'aujourd'hui",
+      "oneGoal": "Students will compare past and present schools and understand how communities change over time",
+      "duration": 45,
+      "keyVocabulary": [
+        "hier",
+        "aujourd'hui",
+        "changement"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Time travel introduction. Use props and storytelling to introduce concept of schools from long ago compared to today.",
+        "materials": [
+          "historical school photos",
+          "time travel props",
+          "then/now comparison cards"
+        ],
+        "visualSupports": "Time passage gestures, historical comparison expressions, then/now demonstration actions",
+        "decisionPoints": [
+          "Si un élève ne comprend pas le concept 'avant' → utiliser des exemples personnels comme quand il était bébé vs maintenant",
+          "Si un élève trouve les écoles d'avant 'bizarres' → expliquer que c'était normal pour cette époque, comme nos écoles sont normales aujourd'hui",
+          "Si un élève veut aller à l'école d'avant → célébrer sa curiosité et parler de ce qui était spécial dans chaque époque"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School history exploration project. Compare historical photos of schools with current school. Interview older community members or staff about how schools have changed. Explore differences in classrooms, technology, activities, rules. Create then/now comparison display showing school community changes over time.",
+        "materials": [
+          "historical photos",
+          "comparison charts",
+          "interview materials",
+          "display supplies"
+        ],
+        "visualSupports": "Historical comparison gestures, time difference demonstrations, change explanation actions",
+        "decisionPoints": [
+          {
+            "question": "What aspects of school history will be most interesting and accessible to Grade 1s?",
+            "ifYes": "Focus on tangible differences students can observe and understand",
+            "ifNo": "Include broader historical context about education and community changes"
+          },
+          {
+            "question": "Si on utilise des photos, des artefacts, ou des histoires des membres plus âgés de la communauté?",
+            "ifYes": "Combine multiple sources for rich historical understanding",
+            "ifNo": "Focus on most engaging and accessible historical source for student group"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Time appreciation circle. Students share what they appreciate about schools today and what was interesting about schools in the past.",
+        "materials": [
+          "photos alors/maintenant côte à côte",
+          "cartes d'appréciation temporelle",
+          "ligne du temps simple"
+        ],
+        "visualSupports": "Gestes d'appréciation pour le passé et le présent, expressions de gratitude, sourires de découverte historique",
+        "decisionPoints": [
+          "Si un élève préfère tout du passé → célébrer sa curiosité et mentionner aussi de bonnes choses d'aujourd'hui",
+          "Si un élève dit que le passé était 'nul' → l'aider à trouver quelque chose d'intéressant ou d'amusant dans les écoles d'avant",
+          "Si un élève se sent confus par les changements → rassurer que les changements sont normaux et que notre école continue d'évoluer"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Proposer des supports audio pour accompagner le texte écrit",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Inviter à créer un livre illustré pour les plus jeunes"
+        ],
+        "pourLangue": [
+          "Encourager le jumelage avec un pair plus fort en français",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Utiliser des images et symboles pour soutenir la compréhension"
+        ],
+        "pourPEI": [
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins",
+          "Fournir des instructions simples, une étape à la fois"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    },
+    {
+      "lessonNumber": 17,
+      "lessonType": "extension",
+      "title": "Créer ensemble un projet d'école",
+      "oneGoal": "Students will collaborate on a project that improves their school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "projet",
+        "collaboration",
+        "amélioration"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Project planning circle. Review school needs identified earlier and brainstorm manageable improvement projects students can complete together.",
+        "materials": [
+          "project brainstorming charts",
+          "school needs review sheets",
+          "collaboration planning tools"
+        ],
+        "visualSupports": "Brainstorming thinking gestures, collaboration planning actions, project excitement expressions",
+        "decisionPoints": [
+          "Si un élève veut faire un projet trop grand → l'aider à décomposer en petites étapes réalisables",
+          "Si un élève ne veut pas collaborer → respecter et offrir un rôle d'observation ou de petite contribution individuelle",
+          "Si un élève a peur que le projet ne marche pas → rassurer qu'on apprend ensemble et que chaque effort compte"
+        ],
+        "movementBreaks": [
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "Community improvement project implementation. Work together on chosen project (classroom library organization, playground beautification, kindness campaign, school garden care, office helper program). Divide responsibilities, collaborate on execution, document process and impact.",
+        "materials": [
+          "project supplies specific to chosen project",
+          "documentation cameras",
+          "responsibility charts"
+        ],
+        "visualSupports": "Teamwork cooperation gestures, project work demonstrations, progress celebration actions",
+        "decisionPoints": [
+          {
+            "question": "What type of project would be meaningful and achievable for Grade 1 students?",
+            "ifYes": "Choose project that provides visible impact and matches student developmental capabilities",
+            "ifNo": "Select simpler project that ensures success and builds confidence in community contribution"
+          },
+          {
+            "question": "Si le projet se concentre sur l'amélioration de la classe, de l'école, ou du quartier?",
+            "ifYes": "Choose scope that allows students to see direct impact of their work",
+            "ifNo": "Focus on immediate school community for most meaningful and visible results"
+          }
+        ],
+        "movementBreaks": [
+          "Étirer nos doigts et mains d'écrivains : ouvrir, fermer, tourner (2 minutes)",
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Project completion celebration. Admire completed project and discuss how collaboration made improvement possible.",
+        "materials": [
+          "certificats de projet accompli",
+          "photos avant/après du projet",
+          "tableau des contributions de chacun"
+        ],
+        "visualSupports": "Gestes de fierté collective, expressions de satisfaction d'accomplissement, sourires de célébration d'équipe",
+        "decisionPoints": [
+          "Si un élève ne voit pas l'impact du projet → l'aider à identifier des changements concrets, même petits",
+          "Si un élève revendique tout le mérite → rediriger vers comment chaque personne a contribué au succès",
+          "Si un élève est déçu du résultat → souligner l'effort d'équipe et ce qu'on a appris en travaillant ensemble"
+        ],
+        "movementBreaks": [
+          "Dire au revoir avec tout notre corps : mains, têtes, pieds (2 minutes)",
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Encourager l'utilisation de manipulatifs (lettres magnétiques, etc.)",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau"
+        ],
+        "pourAvancés": [
+          "Proposer des défis de vocabulaire avec mots plus sophistiqués",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Permettre les explications dans la langue première si nécessaire"
+        ],
+        "pourPEI": [
+          "Utiliser des supports visuels clairs et contrastés",
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    },
+    {
+      "lessonNumber": 18,
+      "lessonType": "extension",
+      "title": "Présenter notre école",
+      "oneGoal": "Students will share their school community knowledge with others and practice being school ambassadors",
+      "duration": 45,
+      "keyVocabulary": [
+        "présenter",
+        "ambassadeur",
+        "partager"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "School ambassador preparation. Discuss how to share positive information about school with others. Practice confident, welcoming presentation skills.",
+        "materials": [
+          "presentation preparation charts",
+          "school information summaries",
+          "confidence building activities"
+        ],
+        "visualSupports": "Confident presentation postures, welcoming gestures, information sharing actions",
+        "decisionPoints": [
+          "Si un élève a peur de présenter → commencer par pratiquer avec un seul ami, puis élargir graduellement le groupe",
+          "Si un élève ne sait pas quoi dire sur l'école → l'aider à choisir une chose qu'il aime vraiment et à commencer par ça",
+          "Si un élève veut critiquer l'école → rediriger vers les aspects positifs et ce qui rend l'école spéciale"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Répéter des comptines avec gestes : 'Tête, épaules, genoux et pieds' (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School presentation project. Prepare and deliver presentations about school community to chosen audience (parents, other classes, potential new students, community members). Include information about school spaces, people, traditions, and why school is special. Use drawings, photos, maps, and spoken explanations.",
+        "materials": [
+          "presentation materials from previous lessons",
+          "display boards",
+          "presentation prompts",
+          "audience seating"
+        ],
+        "visualSupports": "Presentation delivery gestures, audience engagement actions, information sharing demonstrations",
+        "decisionPoints": [
+          {
+            "question": "Who would be the best audience for student presentations about their school?",
+            "ifYes": "Choose audience that will be genuinely interested and supportive",
+            "ifNo": "Present to classmates or teachers if external audience isn't available"
+          },
+          {
+            "question": "Si les présentations sont formelles ou conversationnelles, individuelles ou de groupe?",
+            "ifYes": "Match presentation format to student comfort levels and learning goals",
+            "ifNo": "Use group presentations to provide mutual support and shared responsibility"
+          }
+        ],
+        "movementBreaks": [
+          "Faire des gestes de marionnettes pour raconter notre histoire (3 minutes)",
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Ambassador appreciation circle. Celebrate student success in representing their school community and sharing their knowledge.",
+        "materials": [
+          "certificats d'ambassadeur de l'école",
+          "badge d'expert de l'école",
+          "photos des présentations"
+        ],
+        "visualSupports": "Gestes de fierté d'ambassadeur, expressions de confiance en soi, sourires de réussite personnelle",
+        "decisionPoints": [
+          "Si un élève est déçu de sa présentation → souligner ses efforts et identifier une chose qu'il a bien faite",
+          "Si un élève ne veut plus être ambassadeur → respecter et expliquer qu'il peut être fier de ce qu'il a déjà partagé",
+          "Si un élève veut présenter encore → encourager son enthousiasme et planifier d'autres occasions de partage"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Faire une révérence à nos nouvelles connaissances (1 minute)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Permettre les réponses gestuelles avant la production orale",
+          "Diviser les tâches longues en étapes plus petites et gérables"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Encourager la création d'histoires originales avec début, milieu, fin"
+        ],
+        "pourLangue": [
+          "Répéter les consignes importantes avec des gestes clairs",
+          "Permettre les explications dans la langue première si nécessaire",
+          "Offrir des gestes et actions pour accompagner les mots nouveaux"
+        ],
+        "pourPEI": [
+          "Fournir des instructions simples, une étape à la fois",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Utiliser des minuteurs visuels pour structurer le temps"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Intégration",
+        "icon": "🔗",
+        "purpose": "Pour connecter à d'autres matières ou thèmes",
+        "whenToUse": "Pour faire des liens interdisciplinaires",
+        "teacherTips": {
+          "preparation": [
+            "Identifier les liens avec d'autres matières",
+            "Préparer des exemples concrets",
+            "Coordonner avec d'autres enseignants si nécessaire"
+          ],
+          "implementation": [
+            "Faire des liens explicites entre les matières",
+            "Utiliser des exemples de la vie quotidienne",
+            "Encourager les élèves à voir les connexions"
+          ],
+          "assessment": "Évaluer la capacité à faire des liens entre les concepts",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension intégration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Projet interdisciplinaire",
+          "Sortie éducative",
+          "Collaboration avec d'autres classes"
+        ]
+      },
+      "extensionCategory": "integration"
+    },
+    {
+      "lessonNumber": 19,
+      "lessonType": "extension",
+      "title": "Notre célébration scolaire",
+      "oneGoal": "Students will plan and participate in a celebration that honors their school community",
+      "duration": 45,
+      "keyVocabulary": [
+        "célébration",
+        "honorer",
+        "reconnaissance"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Celebration planning circle. Discuss different ways communities celebrate and appreciate each other. Brainstorm celebration ideas for school community.",
+        "materials": [
+          "celebration brainstorming charts",
+          "celebration photo examples",
+          "planning materials"
+        ],
+        "visualSupports": "Celebration planning gestures, joyful expressions, community appreciation actions",
+        "decisionPoints": [
+          "Si un élève ne veut pas célébrer → respecter ses sentiments et offrir un rôle d'observation confortable",
+          "Si un élève veut une célébration trop élaborée → l'aider à choisir des éléments simples mais significatifs",
+          "Si un élève ne comprend pas pourquoi célébrer → expliquer que c'est pour dire merci à tous ceux qui nous aident"
+        ],
+        "movementBreaks": [
+          "Former des lettres dans l'air avec nos doigts : A, B, C (3 minutes)",
+          "Marcher en syllabant notre nom : Ma-rie, Paul, etc. en tapant dans nos mains (2 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School community celebration event. Implement planned celebration that honors school community (appreciation assembly, thank you note delivery, community helper recognition, school pride display, gratitude ceremony). Include all school community members and focus on shared appreciation and belonging.",
+        "materials": [
+          "celebration supplies based on chosen format",
+          "appreciation materials",
+          "documentation cameras"
+        ],
+        "visualSupports": "Celebration participation gestures, appreciation expressions, community joy demonstrations",
+        "decisionPoints": [
+          {
+            "question": "What format of celebration would best honor the diverse contributions in school community?",
+            "ifYes": "Choose inclusive celebration format that recognizes many different contributions",
+            "ifNo": "Focus on simple appreciation format that ensures everyone feels included"
+          },
+          {
+            "question": "Si la célébration se concentre sur les élèves, le personnel, ou toute la communauté scolaire?",
+            "ifYes": "Include whole school community to emphasize interconnected relationships",
+            "ifNo": "Focus on group that would be most meaningful and manageable for Grade 1 students"
+          }
+        ],
+        "movementBreaks": [
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)",
+          "Marcher sur place en récitant l'alphabet lentement (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "Celebration reflection circle. Share feelings about celebration and appreciation for school community relationships.",
+        "materials": [
+          "cartes de réflexion sur la célébration",
+          "photos de la célébration",
+          "livre de souvenirs communautaires"
+        ],
+        "visualSupports": "Expressions de gratitude et de bonheur, gestes de célébration réussie, sourires de satisfaction communautaire",
+        "decisionPoints": [
+          "Si un élève a trouvé la célébration ennuyante → l'aider à identifier un moment qu'il a aimé ou une personne heureuse qu'il a vue",
+          "Si un élève veut célébrer encore → encourager son enthousiasme et parler d'autres occasions de reconnaissance dans l'année",
+          "Si un élève se sent émotionnel après la célébration → valider ses sentiments et expliquer que c'est normal d'être touché par tant d'amour communautaire"
+        ],
+        "movementBreaks": [
+          "Ranger nos idées : faire semblant de mettre nos pensées dans une boîte (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Utiliser des couleurs différentes pour chaque syllabe lors de la lecture",
+          "Offrir du temps supplémentaire pour compléter les activités"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Encourager la création d'histoires originales avec début, milieu, fin",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)"
+        ],
+        "pourLangue": [
+          "Offrir des gestes et actions pour accompagner les mots nouveaux",
+          "Créer des liens avec des mots similaires dans la langue première",
+          "Permettre les explications dans la langue première si nécessaire"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Célébration",
+        "icon": "🎉",
+        "purpose": "Pour célébrer et partager les apprentissages",
+        "whenToUse": "À la fin de l'unité ou pour des événements spéciaux",
+        "teacherTips": {
+          "preparation": [
+            "Organiser l'espace pour la présentation",
+            "Inviter les familles si approprié",
+            "Préparer des certificats ou reconnaissances"
+          ],
+          "implementation": [
+            "Créer une atmosphère festive",
+            "Permettre à chaque élève de briller",
+            "Documenter les accomplissements"
+          ],
+          "assessment": "Célébrer les accomplissements sans évaluation formelle",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension célébration renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Événement de fin d'unité",
+          "Présentation aux parents",
+          "Assemblée scolaire"
+        ]
+      },
+      "extensionCategory": "celebration"
+    },
+    {
+      "lessonNumber": 20,
+      "lessonType": "extension",
+      "title": "Moi, élève et citoyen",
+      "oneGoal": "Students will reflect on their growth as school community members and set goals for continued contribution",
+      "duration": 45,
+      "keyVocabulary": [
+        "citoyen",
+        "croissance",
+        "objectifs"
+      ],
+      "opening": {
+        "duration": 8,
+        "activity": "Growth reflection introduction. Look at documentation from throughout unit to see learning journey and community understanding development.",
+        "materials": [
+          "unit documentation portfolio",
+          "growth reflection charts",
+          "journey timeline materials"
+        ],
+        "visualSupports": "Growth demonstration gestures, journey reflection actions, learning appreciation expressions",
+        "decisionPoints": [
+          "Si un élève ne voit pas ses progrès → l'aider en pointant vers des exemples concrets de ce qu'il a appris sur l'école",
+          "Si un élève se sent triste que l'unité se termine → célébrer tous les apprentissages et rappeler qu'il continue à grandir comme membre de l'école",
+          "Si un élève ne comprend pas le concept de citoyen → expliquer simplement que c'est être une bonne personne qui aide les autres dans sa communauté"
+        ],
+        "movementBreaks": [
+          "Imiter les animaux des histoires : sauter comme un lapin, voler comme un oiseau (3 minutes)",
+          "Faire l'alphabet avec notre corps : A comme arbre (étirer les bras), B comme ballon (forme ronde) (3 minutes)"
+        ]
+      },
+      "main": {
+        "duration": 27,
+        "activity": "School citizenship reflection project. Create personal reflection portfolio showing growth in understanding school community, roles, relationships, and contribution. Set goals for continued school citizenship. Plan ways to keep contributing to school community. Share reflections and goals with school community members.",
+        "materials": [
+          "reflection portfolio materials",
+          "goal setting charts",
+          "growth documentation",
+          "sharing preparation supplies"
+        ],
+        "visualSupports": "Reflection thinking poses, goal setting actions, citizenship demonstration gestures",
+        "decisionPoints": [
+          {
+            "question": "How do we help students see their learning journey and growth over the unit?",
+            "ifYes": "Use concrete examples and documentation to show visible learning progression",
+            "ifNo": "Focus on current understanding and abilities rather than change over time"
+          },
+          {
+            "question": "Si la réflexion se concentre sur la croissance personnelle ou la contribution communautaire?",
+            "ifYes": "Balance both personal learning and community impact in reflection",
+            "ifNo": "Focus on area that feels most meaningful and achievable for student group"
+          }
+        ],
+        "movementBreaks": [
+          "Danser avec les sons : 'a' avec les bras, 'o' en rond, 'i' pointu (3 minutes)",
+          "Faire une pause lecture : s'étirer comme un chat qui se réveille (2 minutes)"
+        ]
+      },
+      "closing": {
+        "duration": 10,
+        "activity": "School citizenship commitment ceremony. Students make commitments to continued positive school community membership and receive recognition as valued school citizens.",
+        "materials": [
+          "certificats de citoyen de l'école",
+          "cartes d'engagement personnel",
+          "portfolio complet de l'unité"
+        ],
+        "visualSupports": "Gestes de fierté de citoyenneté, expressions d'engagement personnel, sourires de réussite complète",
+        "decisionPoints": [
+          "Si un élève ne veut pas s'engager pour le futur → respecter et souligner qu'il a déjà été un bon membre de la communauté",
+          "Si un élève promet des choses irréalistes → l'aider à choisir un ou deux petits gestes qu'il peut vraiment faire",
+          "Si un élève se sent émotionnel en recevant sa reconnaissance → valider ses sentiments et célébrer qu'il mérite vraiment cette fierté"
+        ],
+        "movementBreaks": [
+          "Célébrer nos apprentissages : applaudir, lever les bras, sourire (2 minutes)",
+          "Étirer notre dos d'écrivains : rotation douce des épaules (2 minutes)"
+        ]
+      },
+      "differentiation": {
+        "pourDifficultés": [
+          "Offrir du temps supplémentaire pour compléter les activités",
+          "Utiliser des cartes visuelles avec images pour chaque mot nouveau",
+          "Proposer des supports audio pour accompagner le texte écrit"
+        ],
+        "pourAvancés": [
+          "Demander d'enseigner une nouvelle règle de français à un camarade",
+          "Permettre l'exploration de différents genres littéraires (poésie, théâtre)",
+          "Offrir des projets de recherche sur des auteurs franco-canadiens"
+        ],
+        "pourLangue": [
+          "Permettre les explications dans la langue première si nécessaire",
+          "Utiliser des images et symboles pour soutenir la compréhension",
+          "Créer des liens avec des mots similaires dans la langue première"
+        ],
+        "pourPEI": [
+          "Ajuster l'éclairage et réduire les distractions visuelles",
+          "Permettre différents moyens d'expression (oral, dessin, technologie)",
+          "Offrir des pauses sensorielles fréquentes selon les besoins"
+        ]
+      },
+      "assessmentCriteria": {
+        "observable": [
+          "L'élève respecte les différences entre les personnes et cultures",
+          "L'élève explique les règles importantes de la communauté",
+          "L'élève décrit comment il peut aider dans sa communauté",
+          "L'élève utilise le vocabulaire social approprié"
+        ],
+        "checkpoints": [
+          "Comprend l'importance du respect et de la coopération",
+          "Fait des liens entre sa vie et sa communauté",
+          "Explique ses responsabilités comme citoyen",
+          "Apprécie la diversité dans sa communauté"
+        ]
+      },
+      "extensionGuidance": {
+        "category": "Différenciation",
+        "icon": "🎯",
+        "purpose": "Pour répondre aux besoins variés des élèves",
+        "whenToUse": "Pour adapter aux différents styles d'apprentissage",
+        "teacherTips": {
+          "preparation": [
+            "Préparer plusieurs niveaux d'activités",
+            "Avoir des supports visuels variés",
+            "Planifier des regroupements flexibles"
+          ],
+          "implementation": [
+            "Observer et ajuster selon les réponses",
+            "Offrir des choix aux élèves",
+            "Utiliser des groupes flexibles"
+          ],
+          "assessment": "Utiliser des critères adaptés aux objectifs individuels",
+          "adaptation": {
+            "pourDifficultés": "Simplifier les attentes, offrir plus de soutien, utiliser des manipulatifs",
+            "pourAvancés": "Ajouter des défis, encourager l'autonomie, proposer des extensions",
+            "pourLangue": "Utiliser plus de supports visuels, permettre l'usage de la L1, simplifier le vocabulaire",
+            "pourPEI": "Adapter selon les objectifs individuels, modifier les matériaux au besoin",
+            "timeShort": "Réduire à l'activité principale, éliminer les extensions",
+            "timeLong": "Ajouter des activités d'approfondissement, permettre plus d'exploration"
+          }
+        },
+        "flexibilityNotes": [
+          "Cette leçon peut être adaptée selon les besoins du groupe",
+          "Le timing peut être ajusté selon l'engagement des élèves",
+          "Les matériaux peuvent être substitués selon la disponibilité",
+          "L'activité peut être simplifiée ou enrichie au besoin"
+        ],
+        "connectionToCore": "Cette leçon d'extension différenciation renforce les apprentissages des leçons principales",
+        "alternativeUses": [
+          "Centre d'apprentissage différencié",
+          "Activité en petit groupe",
+          "Support individuel"
+        ]
+      },
+      "extensionCategory": "differentiation"
+    }
+  ],
+  "assessmentTools": {
+    "observationChecklist": [
+      {
+        "category": "Respect de la diversité",
+        "items": [
+          "Démontre une compréhension de base en respect de la diversité",
+          "Participe activement aux activités de respect de la diversité",
+          "Montre du progrès dans respect de la diversité",
+          "Applique les apprentissages de respect de la diversité dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Participation communautaire",
+        "items": [
+          "Démontre une compréhension de base en participation communautaire",
+          "Participe activement aux activités de participation communautaire",
+          "Montre du progrès dans participation communautaire",
+          "Applique les apprentissages de participation communautaire dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Compréhension culturelle",
+        "items": [
+          "Démontre une compréhension de base en compréhension culturelle",
+          "Participe activement aux activités de compréhension culturelle",
+          "Montre du progrès dans compréhension culturelle",
+          "Applique les apprentissages de compréhension culturelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      },
+      {
+        "category": "Expression personnelle",
+        "items": [
+          "Démontre une compréhension de base en expression personnelle",
+          "Participe activement aux activités de expression personnelle",
+          "Montre du progrès dans expression personnelle",
+          "Applique les apprentissages de expression personnelle dans de nouveaux contextes"
+        ],
+        "frequency": [
+          "Pas encore",
+          "Parfois",
+          "Souvent",
+          "Toujours"
+        ],
+        "notes": "Observations spécifiques:"
+      }
+    ],
+    "rubrics": {
+      "title": "Rubrique d'évaluation - ",
+      "levels": [
+        {
+          "level": "Émergent",
+          "emoji": "🌱",
+          "description": "L'élève commence à développer les compétences",
+          "criteria": [
+            "Nécessite un soutien constant",
+            "Démontre une compréhension partielle",
+            "Participe avec encouragement",
+            "Essaie les nouvelles activités"
+          ]
+        },
+        {
+          "level": "En développement",
+          "emoji": "🌿",
+          "description": "L'élève progresse vers les attentes",
+          "criteria": [
+            "Nécessite un soutien occasionnel",
+            "Démontre une bonne compréhension",
+            "Participe régulièrement",
+            "Applique les apprentissages avec aide"
+          ]
+        },
+        {
+          "level": "Maîtrise",
+          "emoji": "🌳",
+          "description": "L'élève répond aux attentes",
+          "criteria": [
+            "Travaille de façon autonome",
+            "Démontre une compréhension solide",
+            "Participe activement et aide les autres",
+            "Applique les apprentissages de façon créative"
+          ]
+        }
+      ],
+      "focusAreas": [
+        "Respect de la diversité",
+        "Participation communautaire",
+        "Compréhension culturelle",
+        "Expression personnelle"
+      ]
+    },
+    "selfAssessment": {
+      "visualScale": {
+        "title": "Comment je me sens sur mon apprentissage",
+        "options": [
+          "🌈",
+          "☀️",
+          "☁️"
+        ],
+        "meanings": [
+          "Je peux le faire seul",
+          "J'ai besoin d'un peu d'aide",
+          "J'ai besoin de beaucoup d'aide"
+        ]
+      },
+      "simpleQuestions": [
+        {
+          "question": "J'ai essayé de mon mieux aujourd'hui",
+          "responseType": "emoji",
+          "options": [
+            "😊 Oui!",
+            "😐 Un peu",
+            "😟 Pas vraiment"
+          ]
+        },
+        {
+          "question": "J'ai appris quelque chose de nouveau",
+          "responseType": "emoji",
+          "options": [
+            "🌟 Beaucoup!",
+            "⭐ Un peu",
+            "☆ Pas sûr"
+          ]
+        },
+        {
+          "question": "J'ai aidé un ami",
+          "responseType": "emoji",
+          "options": [
+            "✓ Oui",
+            "~ Parfois",
+            "? Non"
+          ]
+        },
+        {
+          "question": "Je peux expliquer ce que j'ai appris",
+          "responseType": "drawing",
+          "prompt": "Dessine ou montre ce que tu as appris"
+        }
+      ],
+      "reflectionPrompts": [
+        "Ma partie préférée était...",
+        "J'étais fier quand...",
+        "La prochaine fois, je veux essayer..."
+      ]
+    },
+    "portfolioGuidelines": {
+      "purpose": "Documenter le parcours d'apprentissage de chaque élève",
+      "collectionGuidelines": [
+        "Inclure des échantillons de travail datés",
+        "Photographier les créations 3D ou temporaires",
+        "Noter les observations orales importantes",
+        "Inclure les autoévaluations de l'élève",
+        "Documenter les moments de fierté"
+      ],
+      "organizationTips": [
+        "Organiser par date ou par compétence",
+        "Inclure des réflexions de l'élève",
+        "Ajouter des notes sur le contexte",
+        "Partager régulièrement avec les familles"
+      ],
+      "evidenceTypes": {
+        "Travaux écrits": "Échantillons de début, milieu et fin d'unité",
+        "Photos": "Processus de création, produits finaux, collaboration",
+        "Enregistrements": "Présentations orales, explications, chansons",
+        "Observations": "Notes anecdotiques, listes de vérification complétées"
+      }
+    }
+  },
+  "familyConnections": {
+    "unitLetter": "Chers parents et familles,\n\nNous sommes ravis de commencer notre nouvelle unité: \"\"\n\nCette unité permettra à votre enfant de:\n• Explorer des concepts importants en sciences humaines\n• Développer du vocabulaire en français\n• Pratiquer de nouvelles compétences\n• Faire des connexions avec la vie quotidienne\n\nQuelques thèmes que nous explorerons:\nBienvenue dans notre école!, Je suis un élève, Notre salle de classe, Les espaces de notre école, Notre directeur et secrétaire\n\nComment vous pouvez aider à la maison:\n• Demandez à votre enfant de partager ce qu'il/elle a appris\n• Pratiquez le nouveau vocabulaire ensemble (voir la liste ci-jointe)\n• Essayez les activités suggérées quand vous avez du temps\n• Célébrez les efforts et les progrès, pas seulement les résultats\n\nPartagez vos traditions familiales et culturelles avec votre enfant.\n\nN'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez partager des ressources culturelles liées à cette unité.\n\nChaque famille a des histoires importantes à partager!\n\nCordialement,\n[Nom de l'enseignant(e)]",
+    "homeActivities": [
+      {
+        "title": "Conversation quotidienne",
+        "description": "Demandez chaque jour: 'Qu'as-tu appris de nouveau aujourd'hui?'",
+        "timeRequired": "5 minutes",
+        "materials": "Aucun",
+        "frenchSupport": "C'est correct si votre enfant répond en anglais!"
+      },
+      {
+        "title": "Chasse au trésor vocabulaire",
+        "description": "Cherchez ensemble les mots de vocabulaire dans votre environnement",
+        "timeRequired": "10-15 minutes",
+        "materials": "Liste de vocabulaire",
+        "frenchSupport": "Utilisez des gestes si la prononciation est difficile"
+      },
+      {
+        "title": "Partage d'histoires familiales",
+        "description": "Partagez des histoires ou traditions familiales liées au thème",
+        "timeRequired": "15 minutes",
+        "materials": "Photos familiales (optionnel)",
+        "frenchSupport": "Racontez dans votre langue maternelle si préféré"
+      },
+      {
+        "title": "Exploration communautaire",
+        "description": "Visitez un lieu dans la communauté lié à l'unité",
+        "timeRequired": "Variable",
+        "materials": "Transport",
+        "frenchSupport": "Discutez dans la langue la plus confortable"
+      },
+      {
+        "title": "Projet créatif familial",
+        "description": "Créez quelque chose ensemble en lien avec l'unité (dessin, construction, histoire)",
+        "timeRequired": "30 minutes (optionnel)",
+        "materials": "Matériaux créatifs disponibles",
+        "frenchSupport": "L'important est de s'amuser ensemble, peu importe la langue!"
+      }
+    ],
+    "vocabularyList": [
+      {
+        "word": "école",
+        "lesson": 1,
+        "context": "Bienvenue dans notre école!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"école\"",
+          "Utilisez \"école\" dans une phrase simple",
+          "Trouvez des images représentant \"école\"",
+          "Faites des gestes pour \"école\""
+        ]
+      },
+      {
+        "word": "élève",
+        "lesson": 1,
+        "context": "Bienvenue dans notre école!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"élève\"",
+          "Utilisez \"élève\" dans une phrase simple",
+          "Trouvez des images représentant \"élève\"",
+          "Faites des gestes pour \"élève\""
+        ]
+      },
+      {
+        "word": "bienvenue",
+        "lesson": 1,
+        "context": "Bienvenue dans notre école!",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bienvenue\"",
+          "Utilisez \"bienvenue\" dans une phrase simple",
+          "Trouvez des images représentant \"bienvenue\"",
+          "Faites des gestes pour \"bienvenue\""
+        ]
+      },
+      {
+        "word": "droits",
+        "lesson": 2,
+        "context": "Je suis un élève",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"droits\"",
+          "Utilisez \"droits\" dans une phrase simple",
+          "Trouvez des images représentant \"droits\"",
+          "Faites des gestes pour \"droits\""
+        ]
+      },
+      {
+        "word": "responsabilités",
+        "lesson": 2,
+        "context": "Je suis un élève",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"responsabilités\"",
+          "Utilisez \"responsabilités\" dans une phrase simple",
+          "Trouvez des images représentant \"responsabilités\"",
+          "Faites des gestes pour \"responsabilités\""
+        ]
+      },
+      {
+        "word": "salle de classe",
+        "lesson": 3,
+        "context": "Notre salle de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"salle de classe\"",
+          "Utilisez \"salle de classe\" dans une phrase simple",
+          "Trouvez des images représentant \"salle de classe\"",
+          "Faites des gestes pour \"salle de classe\""
+        ]
+      },
+      {
+        "word": "espace",
+        "lesson": 3,
+        "context": "Notre salle de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"espace\"",
+          "Utilisez \"espace\" dans une phrase simple",
+          "Trouvez des images représentant \"espace\"",
+          "Faites des gestes pour \"espace\""
+        ]
+      },
+      {
+        "word": "apprentissage",
+        "lesson": 3,
+        "context": "Notre salle de classe",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"apprentissage\"",
+          "Utilisez \"apprentissage\" dans une phrase simple",
+          "Trouvez des images représentant \"apprentissage\"",
+          "Faites des gestes pour \"apprentissage\""
+        ]
+      },
+      {
+        "word": "bibliothèque",
+        "lesson": 4,
+        "context": "Les espaces de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bibliothèque\"",
+          "Utilisez \"bibliothèque\" dans une phrase simple",
+          "Trouvez des images représentant \"bibliothèque\"",
+          "Faites des gestes pour \"bibliothèque\""
+        ]
+      },
+      {
+        "word": "gymnase",
+        "lesson": 4,
+        "context": "Les espaces de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"gymnase\"",
+          "Utilisez \"gymnase\" dans une phrase simple",
+          "Trouvez des images représentant \"gymnase\"",
+          "Faites des gestes pour \"gymnase\""
+        ]
+      },
+      {
+        "word": "cafétéria",
+        "lesson": 4,
+        "context": "Les espaces de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cafétéria\"",
+          "Utilisez \"cafétéria\" dans une phrase simple",
+          "Trouvez des images représentant \"cafétéria\"",
+          "Faites des gestes pour \"cafétéria\""
+        ]
+      },
+      {
+        "word": "directeur",
+        "lesson": 5,
+        "context": "Notre directeur et secrétaire",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"directeur\"",
+          "Utilisez \"directeur\" dans une phrase simple",
+          "Trouvez des images représentant \"directeur\"",
+          "Faites des gestes pour \"directeur\""
+        ]
+      },
+      {
+        "word": "secrétaire",
+        "lesson": 5,
+        "context": "Notre directeur et secrétaire",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"secrétaire\"",
+          "Utilisez \"secrétaire\" dans une phrase simple",
+          "Trouvez des images représentant \"secrétaire\"",
+          "Faites des gestes pour \"secrétaire\""
+        ]
+      },
+      {
+        "word": "bureau",
+        "lesson": 5,
+        "context": "Notre directeur et secrétaire",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"bureau\"",
+          "Utilisez \"bureau\" dans une phrase simple",
+          "Trouvez des images représentant \"bureau\"",
+          "Faites des gestes pour \"bureau\""
+        ]
+      },
+      {
+        "word": "enseignant",
+        "lesson": 6,
+        "context": "Nos enseignants et aide-enseignants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"enseignant\"",
+          "Utilisez \"enseignant\" dans une phrase simple",
+          "Trouvez des images représentant \"enseignant\"",
+          "Faites des gestes pour \"enseignant\""
+        ]
+      },
+      {
+        "word": "aide-enseignant",
+        "lesson": 6,
+        "context": "Nos enseignants et aide-enseignants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aide-enseignant\"",
+          "Utilisez \"aide-enseignant\" dans une phrase simple",
+          "Trouvez des images représentant \"aide-enseignant\"",
+          "Faites des gestes pour \"aide-enseignant\""
+        ]
+      },
+      {
+        "word": "apprendre",
+        "lesson": 6,
+        "context": "Nos enseignants et aide-enseignants",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"apprendre\"",
+          "Utilisez \"apprendre\" dans une phrase simple",
+          "Trouvez des images représentant \"apprendre\"",
+          "Faites des gestes pour \"apprendre\""
+        ]
+      },
+      {
+        "word": "concierge",
+        "lesson": 7,
+        "context": "Le concierge et la cuisine",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"concierge\"",
+          "Utilisez \"concierge\" dans une phrase simple",
+          "Trouvez des images représentant \"concierge\"",
+          "Faites des gestes pour \"concierge\""
+        ]
+      },
+      {
+        "word": "cuisinier",
+        "lesson": 7,
+        "context": "Le concierge et la cuisine",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"cuisinier\"",
+          "Utilisez \"cuisinier\" dans une phrase simple",
+          "Trouvez des images représentant \"cuisinier\"",
+          "Faites des gestes pour \"cuisinier\""
+        ]
+      },
+      {
+        "word": "entretien",
+        "lesson": 7,
+        "context": "Le concierge et la cuisine",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"entretien\"",
+          "Utilisez \"entretien\" dans une phrase simple",
+          "Trouvez des images représentant \"entretien\"",
+          "Faites des gestes pour \"entretien\""
+        ]
+      },
+      {
+        "word": "règles",
+        "lesson": 8,
+        "context": "Les règles de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"règles\"",
+          "Utilisez \"règles\" dans une phrase simple",
+          "Trouvez des images représentant \"règles\"",
+          "Faites des gestes pour \"règles\""
+        ]
+      },
+      {
+        "word": "sécurité",
+        "lesson": 8,
+        "context": "Les règles de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"sécurité\"",
+          "Utilisez \"sécurité\" dans une phrase simple",
+          "Trouvez des images représentant \"sécurité\"",
+          "Faites des gestes pour \"sécurité\""
+        ]
+      },
+      {
+        "word": "respect",
+        "lesson": 8,
+        "context": "Les règles de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"respect\"",
+          "Utilisez \"respect\" dans une phrase simple",
+          "Trouvez des images représentant \"respect\"",
+          "Faites des gestes pour \"respect\""
+        ]
+      },
+      {
+        "word": "problème",
+        "lesson": 9,
+        "context": "Comment nous résolvons les problèmes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"problème\"",
+          "Utilisez \"problème\" dans une phrase simple",
+          "Trouvez des images représentant \"problème\"",
+          "Faites des gestes pour \"problème\""
+        ]
+      },
+      {
+        "word": "solution",
+        "lesson": 9,
+        "context": "Comment nous résolvons les problèmes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"solution\"",
+          "Utilisez \"solution\" dans une phrase simple",
+          "Trouvez des images représentant \"solution\"",
+          "Faites des gestes pour \"solution\""
+        ]
+      },
+      {
+        "word": "aide",
+        "lesson": 9,
+        "context": "Comment nous résolvons les problèmes",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aide\"",
+          "Utilisez \"aide\" dans une phrase simple",
+          "Trouvez des images représentant \"aide\"",
+          "Faites des gestes pour \"aide\""
+        ]
+      },
+      {
+        "word": "tradition",
+        "lesson": 10,
+        "context": "Nos traditions scolaires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"tradition\"",
+          "Utilisez \"tradition\" dans une phrase simple",
+          "Trouvez des images représentant \"tradition\"",
+          "Faites des gestes pour \"tradition\""
+        ]
+      },
+      {
+        "word": "célébration",
+        "lesson": 10,
+        "context": "Nos traditions scolaires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"célébration\"",
+          "Utilisez \"célébration\" dans une phrase simple",
+          "Trouvez des images représentant \"célébration\"",
+          "Faites des gestes pour \"célébration\""
+        ]
+      },
+      {
+        "word": "communauté",
+        "lesson": 10,
+        "context": "Nos traditions scolaires",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"communauté\"",
+          "Utilisez \"communauté\" dans une phrase simple",
+          "Trouvez des images représentant \"communauté\"",
+          "Faites des gestes pour \"communauté\""
+        ]
+      },
+      {
+        "word": "carte",
+        "lesson": 11,
+        "context": "Ma carte de l'école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"carte\"",
+          "Utilisez \"carte\" dans une phrase simple",
+          "Trouvez des images représentant \"carte\"",
+          "Faites des gestes pour \"carte\""
+        ]
+      },
+      {
+        "word": "plan",
+        "lesson": 11,
+        "context": "Ma carte de l'école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"plan\"",
+          "Utilisez \"plan\" dans une phrase simple",
+          "Trouvez des images représentant \"plan\"",
+          "Faites des gestes pour \"plan\""
+        ]
+      },
+      {
+        "word": "direction",
+        "lesson": 11,
+        "context": "Ma carte de l'école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"direction\"",
+          "Utilisez \"direction\" dans une phrase simple",
+          "Trouvez des images représentant \"direction\"",
+          "Faites des gestes pour \"direction\""
+        ]
+      },
+      {
+        "word": "interview",
+        "lesson": 12,
+        "context": "Interview avec le personnel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"interview\"",
+          "Utilisez \"interview\" dans une phrase simple",
+          "Trouvez des images représentant \"interview\"",
+          "Faites des gestes pour \"interview\""
+        ]
+      },
+      {
+        "word": "questions",
+        "lesson": 12,
+        "context": "Interview avec le personnel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"questions\"",
+          "Utilisez \"questions\" dans une phrase simple",
+          "Trouvez des images représentant \"questions\"",
+          "Faites des gestes pour \"questions\""
+        ]
+      },
+      {
+        "word": "réponses",
+        "lesson": 12,
+        "context": "Interview avec le personnel",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"réponses\"",
+          "Utilisez \"réponses\" dans une phrase simple",
+          "Trouvez des images représentant \"réponses\"",
+          "Faites des gestes pour \"réponses\""
+        ]
+      },
+      {
+        "word": "besoins",
+        "lesson": 13,
+        "context": "Les besoins de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"besoins\"",
+          "Utilisez \"besoins\" dans une phrase simple",
+          "Trouvez des images représentant \"besoins\"",
+          "Faites des gestes pour \"besoins\""
+        ]
+      },
+      {
+        "word": "désirs",
+        "lesson": 13,
+        "context": "Les besoins de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"désirs\"",
+          "Utilisez \"désirs\" dans une phrase simple",
+          "Trouvez des images représentant \"désirs\"",
+          "Faites des gestes pour \"désirs\""
+        ]
+      },
+      {
+        "word": "coopération",
+        "lesson": 13,
+        "context": "Les besoins de notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"coopération\"",
+          "Utilisez \"coopération\" dans une phrase simple",
+          "Trouvez des images représentant \"coopération\"",
+          "Faites des gestes pour \"coopération\""
+        ]
+      },
+      {
+        "word": "aider",
+        "lesson": 14,
+        "context": "Comment nous aidons notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"aider\"",
+          "Utilisez \"aider\" dans une phrase simple",
+          "Trouvez des images représentant \"aider\"",
+          "Faites des gestes pour \"aider\""
+        ]
+      },
+      {
+        "word": "contribuer",
+        "lesson": 14,
+        "context": "Comment nous aidons notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"contribuer\"",
+          "Utilisez \"contribuer\" dans une phrase simple",
+          "Trouvez des images représentant \"contribuer\"",
+          "Faites des gestes pour \"contribuer\""
+        ]
+      },
+      {
+        "word": "action",
+        "lesson": 14,
+        "context": "Comment nous aidons notre école",
+        "practiceIdeas": [
+          "Pointez l'objet en disant \"action\"",
+          "Utilisez \"action\" dans une phrase simple",
+          "Trouvez des images représentant \"action\"",
+          "Faites des gestes pour \"action\""
+        ]
+      }
+    ]
+  },
+  "resourceAlternatives": {
+    "materials": {
+      "lowCost": [
+        "Matériaux recyclés (boîtes, papier, carton)",
+        "Objets de la nature (feuilles, pierres, branches)",
+        "Matériaux quotidiens (boutons, pâtes, haricots)",
+        "Papier et crayons de base"
+      ],
+      "noCost": [
+        "Observation de l'environnement",
+        "Discussion et partage oral",
+        "Mouvements et gestes",
+        "Jeux d'imagination"
+      ],
+      "digital": [
+        "Applications éducatives gratuites",
+        "Vidéos éducatives en ligne",
+        "Livres numériques de la bibliothèque",
+        "Jeux éducatifs en ligne"
+      ]
+    },
+    "digitalResources": [
+      {
+        "type": "Sites web éducatifs",
+        "examples": [
+          "Radio-Canada Jeunesse",
+          "TFO Éducation",
+          "Bibliothèque numérique locale"
+        ],
+        "note": "Ressources gratuites en français"
+      },
+      {
+        "type": "Applications",
+        "examples": [
+          "Applications de lecture",
+          "Jeux mathématiques",
+          "Exploration scientifique"
+        ],
+        "note": "Cherchez des options gratuites"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2025-08-22T21:43:10.366Z",
+    "version": "2.0",
+    "status": "complete",
+    "originalFormat": "unit-with-lessons"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "unitTitle": "Addition jusqu'à 10",
+  "designRationale": "Cette unité développe la compréhension conceptuelle de l'addition comme 'assembler' et 'joindre' des quantités. L'approche privilégie la manipulation concrète, les représentations visuelles et les stratégies mentales naturelles avant l'introduction des symboles formels.",
+  
+  "learningProgression": {
+    "phase1_Concrete": {
+      "lessons": [1, 2, 3, 4],
+      "focus": "Exploration concrète du concept d'addition par manipulation",
+      "keySkills": ["Joindre des collections", "Compter en ajoutant", "Utiliser 'en tout' et 'ensemble'", "Représenter avec objets"],
+      "materials": ["Objets à compter variés", "Contenants", "Tapis de travail", "Histoires d'addition"],
+      "assessment": "Observation des manipulations et du langage utilisé"
+    },
+    
+    "phase2_Visual": {
+      "lessons": [5, 6, 7, 8, 9, 10],
+      "focus": "Représentations visuelles et développement de stratégies",
+      "keySkills": ["Dessiner l'addition", "Utiliser diagrammes", "Compter à partir du plus grand", "Doubles", "Faire 10"],
+      "materials": ["Cadres de 10", "Papier pointé", "Crayons de couleur", "Images d'addition"],
+      "assessment": "Analyse des dessins et explications des stratégies"
+    },
+    
+    "phase3_Symbolic": {
+      "lessons": [11, 12, 13, 14],
+      "focus": "Introduction des symboles et application en contexte",
+      "keySkills": ["Reconnaître + et =", "Écrire équations simples", "Résoudre problèmes écrits", "Vérifier réponses"],
+      "materials": ["Cartes de symboles", "Problèmes illustrés", "Tableaux d'équations", "Jeux symboliques"],
+      "assessment": "Portfolio d'équations et résolution de problèmes"
+    },
+    
+    "extensions": {
+      "lessons": [15, 16, 17, 18, 19, 20],
+      "focus": "Applications créatives et enrichissement",
+      "keySkills": ["Addition dans l'art", "Jeux d'addition", "Histoires créatives", "Addition avec argent", "Enquêtes mathématiques", "Célébration"],
+      "materials": ["Matériaux artistiques", "Jeux de société", "Argent fictif", "Matériel d'enquête"],
+      "assessment": "Présentations créatives et auto-évaluation"
+    }
+  },
+  
+  "coreStrategies": {
+    "comptage": {
+      "description": "Compter tout, puis compter à partir du premier nombre",
+      "exemple": "3 + 2: 'un, deux, trois... quatre, cinq'",
+      "materiel": "Objets à compter, doigts"
+    },
+    "comptageAvance": {
+      "description": "Commencer avec le plus grand nombre",
+      "exemple": "2 + 7: 'Sept... huit, neuf'",
+      "materiel": "Ligne de nombres, objets"
+    },
+    "doubles": {
+      "description": "Reconnaître les additions avec nombres identiques",
+      "exemple": "4 + 4 = 8, 'les mains ont 5 + 5 doigts'",
+      "materiel": "Miroirs, objets symétriques"
+    },
+    "faire10": {
+      "description": "Décomposer pour utiliser 10 comme ancrage",
+      "exemple": "7 + 5 = 7 + 3 + 2 = 10 + 2 = 12",
+      "materiel": "Cadres de 10, jetons"
+    }
+  },
+  
+  "problemTypes": {
+    "assembler": {
+      "description": "Joindre deux groupes séparés",
+      "exemple": "3 chats + 2 chats = ? chats",
+      "structure": "Résultat inconnu"
+    },
+    "ajouter": {
+      "description": "Augmenter une quantité existante",
+      "exemple": "5 oiseaux, 3 de plus arrivent, combien maintenant?",
+      "structure": "Changement en augmentant"
+    },
+    "partTout": {
+      "description": "Connaître les parties, trouver le tout",
+      "exemple": "4 ballons rouges et 3 ballons bleus, combien de ballons?",
+      "structure": "Partie-partie-tout"
+    }
+  },
+  
+  "vocabulaireEssentiel": [
+    "ajouter", "plus", "ensemble", "en tout", "combien",
+    "faire", "joindre", "augmenter", "davantage", "additionner",
+    "somme", "total", "égale", "résultat", "calculer"
+  ],
+  
+  "strategiesDifferentiation": {
+    "conceptuel": "Plus de temps avec objets concrets, histoires simples, un-à-un",
+    "procedural": "Pratique des stratégies de comptage, mémorisation des doubles",
+    "avance": "Problèmes plus complexes, nombres plus grands, création de problèmes",
+    "visuel": "Diagrammes colorés, représentations graphiques, symboles visuels",
+    "auditif": "Chansons d'addition, narration de problèmes, explications verbales",
+    "kinesthesique": "Manipulation d'objets, mouvement corporel, construction"
+  },
+  
+  "connexionsRealistes": {
+    "maison": "Compter jouets, nourriture, membres famille",
+    "ecole": "Matériel scolaire, élèves présents, livres",
+    "nature": "Feuilles, cailloux, animaux observés",
+    "magasinage": "Articles achetés, argent compté",
+    "cuisine": "Ingrédients, portions, ustensiles"
+  },
+  
+  "evaluationCriteres": {
+    "comprehension": "Explique l'addition comme 'assembler'",
+    "strategie": "Utilise stratégies efficaces de comptage",
+    "representation": "Dessine ou montre l'addition clairement",
+    "problemes": "Résout problèmes d'addition simples",
+    "communication": "Explique sa pensée mathématique"
+  },
+  
+  "materialsSuggestions": {
+    "manipulatives": ["Blocs unifix", "Jetons colorés", "Petits jouets", "Boutons", "Haricots"],
+    "visuels": ["Cadres de 10", "Lignes de nombres", "Diagrammes", "Images d'histoire"],
+    "symboliques": ["Cartes + et =", "Dés", "Cartes de nombres", "Tableaux d'équations"],
+    "technologie": ["Applications d'addition simple", "Calculatrices visuelles", "Jeux interactifs"]
+  }
+}

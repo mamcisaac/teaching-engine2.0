@@ -36,6 +36,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/use-toast';
 
+import { STORAGE_KEYS } from '../constants/subjects';
 import type {
   CurriculumExpectation} from '../hooks/useETFOPlanning';
 import {
@@ -43,7 +44,6 @@ import {
   useUpdateCurriculumExpectation,
   useDeleteCurriculumExpectation
 } from '../hooks/useETFOPlanning';
-import { STORAGE_KEYS } from '../constants/subjects';
 import { logger } from '../utils/logger';
 import { safeJsonParse } from '../utils/typeGuards';
 

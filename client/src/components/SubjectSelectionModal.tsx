@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import { X, Check, BookOpen, Grid3x3, Sparkles, MapPin, Users, Star, Target, Award } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+
 import { Button } from './ui/Button';
 
 interface SubjectSelectionModalProps {
