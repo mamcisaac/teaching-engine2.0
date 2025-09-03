@@ -58,18 +58,18 @@ export class AIDraftService extends BaseService {
   }
 
   async generateLongRangePlanDraft(request: LongRangePlanDraftRequest): Promise<DraftResult> {
-    this.logger.info('Generating long-range plan draft', { 
+    this.logger.info('Generating long-range plan draft', JSON.stringify({ 
       subject: request.subject, 
       grade: request.grade,
       optimized: request.usePedagogicalOptimization 
-    });
+    }));
 
     // Use pedagogical optimization if requested and user context is available
     if (request.usePedagogicalOptimization && request.userId && request.expectationIds?.length) {
       try {
         return await this.generateOptimizedLongRangePlan(request);
-      } catch (error) {
-        this.logger.warn('Failed to generate optimized plan, falling back to template-based:', error);
+      } catch (error: unknown) {
+        this.logger.warn('Failed to generate optimized plan, falling back to template-based:', error instanceof Error ? error.message : String(error));
         // Fall back to template-based if optimization fails
       }
     }

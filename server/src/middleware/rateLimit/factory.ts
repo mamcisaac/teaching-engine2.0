@@ -303,7 +303,7 @@ export async function resetRateLimit(configName: string, key: string): Promise<v
   try {
     await (redisClient as { del: (key: string) => Promise<void> }).del(fullKey);
     logger.info(`Reset rate limit for ${fullKey}`);
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Failed to reset rate limit:', error as string | undefined);
   }
 }
@@ -336,7 +336,7 @@ export async function getRateLimitStatus(
         };
       }
     }
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Failed to get rate limit status:', error as string | undefined);
   }
 

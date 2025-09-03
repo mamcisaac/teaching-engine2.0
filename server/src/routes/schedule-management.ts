@@ -50,7 +50,7 @@ router.patch('/batch-update', authenticateUser, async (req, res) => {
       success: true, 
       message: `Updated ${updates.length} lessons` 
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Batch update error:', error);
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
@@ -101,7 +101,7 @@ router.post('/swap', authenticateUser, async (req, res) => {
       success: true, 
       message: 'Lessons swapped successfully' 
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Swap error:', error);
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
@@ -145,7 +145,7 @@ router.get('/range', authenticateUser, async (req, res) => {
     });
 
     res.json(lessons);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Get range error:', error);
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid query parameters', details: error.errors });
@@ -202,7 +202,7 @@ router.post('/move-unit', authenticateUser, async (req, res) => {
       success: true, 
       message: `Moved ${lessons.length} lessons in unit` 
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Move unit error:', error);
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });

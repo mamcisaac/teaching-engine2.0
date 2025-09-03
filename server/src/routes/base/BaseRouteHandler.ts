@@ -145,7 +145,7 @@ export abstract class BaseRouteHandler<T = unknown> {
       const items = await crudOps.findMany(filters, userId);
       res.json(items);
       return;
-    } catch (error) {
+    } catch (error: unknown) {
       this.logger.error(`Error in ${this.routeName} list:`, formatErrorForLogging(error));
       next(error);
     }
@@ -174,7 +174,7 @@ export abstract class BaseRouteHandler<T = unknown> {
 
       res.json(item);
       return;
-    } catch (error) {
+    } catch (error: unknown) {
       this.logger.error(`Error in ${this.routeName} get:`, formatErrorForLogging(error));
       next(error);
     }
@@ -197,7 +197,7 @@ export abstract class BaseRouteHandler<T = unknown> {
 
       const item = await crudOps.create(data, userId);
       res.status(201).json(item);
-    } catch (error) {
+    } catch (error: unknown) {
       this.logger.error(`Error in ${this.routeName} create:`, formatErrorForLogging(error));
       next(error);
     }
@@ -222,7 +222,7 @@ export abstract class BaseRouteHandler<T = unknown> {
       const item = await crudOps.update(id, data, userId);
       res.json(item);
       return;
-    } catch (error) {
+    } catch (error: unknown) {
       this.logger.error(`Error in ${this.routeName} update:`, formatErrorForLogging(error));
       next(error);
     }
@@ -250,7 +250,7 @@ export abstract class BaseRouteHandler<T = unknown> {
       }
 
       res.status(204).send();
-    } catch (error) {
+    } catch (error: unknown) {
       this.logger.error(`Error in ${this.routeName} delete:`, formatErrorForLogging(error));
       next(error);
     }
@@ -297,7 +297,7 @@ export abstract class BaseRouteHandler<T = unknown> {
         },
       });
       return record !== null && record !== undefined;
-    } catch (error) {
+    } catch (error: unknown) {
       this.logger.error(`Error validating ownership for ${tableName}:`, formatErrorForLogging(error));
       return false;
     }

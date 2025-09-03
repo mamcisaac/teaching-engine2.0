@@ -20,10 +20,11 @@ interface AuthenticatedRequest extends Request {
 }
 
 // Validation middleware
-const validateRequest = (req: Request, res: Response, next: any) => {
+const validateRequest = (req: Request, res: Response, next: any): void => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    res.status(400).json({ errors: errors.array() });
+    return;
   }
   next();
 };
@@ -41,11 +42,12 @@ router.get('/',
     query('offset').optional().isInt({ min: 0 }).toInt()
   ],
   validateRequest,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user?.id;
       if (!userId) {
-        return res.status(401).json({ error: 'Authentication required' });
+        res.status(401).json({ error: 'Authentication required' });
+        return;
       }
 
       const {
@@ -99,7 +101,7 @@ router.get('/',
         limit,
         offset
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching assessments:', error);
       res.status(500).json({ error: 'Failed to fetch assessments' });
     }
@@ -110,11 +112,12 @@ router.get('/',
 router.get('/:id',
   [param('id').isString()],
   validateRequest,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user?.id;
       if (!userId) {
-        return res.status(401).json({ error: 'Authentication required' });
+        res.status(401).json({ error: 'Authentication required' });
+        return;
       }
 
       const assessment = await prisma.assessment.findFirst({
@@ -128,11 +131,12 @@ router.get('/:id',
       });
 
       if (!assessment) {
-        return res.status(404).json({ error: 'Assessment not found' });
+        res.status(404).json({ error: 'Assessment not found' });
+        return;
       }
 
       res.json(assessment);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching assessment:', error);
       res.status(500).json({ error: 'Failed to fetch assessment' });
     }
@@ -154,11 +158,12 @@ router.post('/',
     body('date').optional().isISO8601()
   ],
   validateRequest,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user?.id;
       if (!userId) {
-        return res.status(401).json({ error: 'Authentication required' });
+        res.status(401).json({ error: 'Authentication required' });
+        return;
       }
 
       // Verify student belongs to teacher
@@ -170,7 +175,8 @@ router.post('/',
       });
 
       if (!student) {
-        return res.status(404).json({ error: 'Student not found' });
+        res.status(404).json({ error: 'Student not found' });
+        return;
       }
 
       const assessment = await prisma.assessment.create({
@@ -200,7 +206,7 @@ router.post('/',
       });
 
       res.status(201).json(assessment);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error creating assessment:', error);
       res.status(500).json({ error: 'Failed to create assessment' });
     }
@@ -220,11 +226,12 @@ router.put('/:id',
     body('artifacts').optional().isArray()
   ],
   validateRequest,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user?.id;
       if (!userId) {
-        return res.status(401).json({ error: 'Authentication required' });
+        res.status(401).json({ error: 'Authentication required' });
+        return;
       }
 
       // Verify assessment belongs to teacher
@@ -236,7 +243,8 @@ router.put('/:id',
       });
 
       if (!existing) {
-        return res.status(404).json({ error: 'Assessment not found' });
+        res.status(404).json({ error: 'Assessment not found' });
+        return;
       }
 
       const assessment = await prisma.assessment.update({
@@ -258,7 +266,7 @@ router.put('/:id',
       });
 
       res.json(assessment);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating assessment:', error);
       res.status(500).json({ error: 'Failed to update assessment' });
     }
@@ -269,11 +277,12 @@ router.put('/:id',
 router.delete('/:id',
   [param('id').isString()],
   validateRequest,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user?.id;
       if (!userId) {
-        return res.status(401).json({ error: 'Authentication required' });
+        res.status(401).json({ error: 'Authentication required' });
+        return;
       }
 
       // Verify assessment belongs to teacher
@@ -285,7 +294,8 @@ router.delete('/:id',
       });
 
       if (!existing) {
-        return res.status(404).json({ error: 'Assessment not found' });
+        res.status(404).json({ error: 'Assessment not found' });
+        return;
       }
 
       await prisma.assessment.delete({
@@ -293,7 +303,7 @@ router.delete('/:id',
       });
 
       res.json({ success: true });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting assessment:', error);
       res.status(500).json({ error: 'Failed to delete assessment' });
     }
@@ -311,11 +321,12 @@ router.post('/bulk',
     body('assessments.*.evidenceType').isIn(['OBSERVATION', 'CONVERSATION', 'PRODUCT'])
   ],
   validateRequest,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user?.id;
       if (!userId) {
-        return res.status(401).json({ error: 'Authentication required' });
+        res.status(401).json({ error: 'Authentication required' });
+        return;
       }
 
       // Verify all students belong to teacher
@@ -329,7 +340,8 @@ router.post('/bulk',
       });
 
       if (students.length !== studentIds.length) {
-        return res.status(400).json({ error: 'Some students not found or not authorized' });
+        res.status(400).json({ error: 'Some students not found or not authorized' });
+        return;
       }
 
       const assessments = await prisma.assessment.createMany({
@@ -345,7 +357,7 @@ router.post('/bulk',
         created: assessments.count,
         success: true
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error creating bulk assessments:', error);
       res.status(500).json({ error: 'Failed to create assessments' });
     }
@@ -361,11 +373,12 @@ router.get('/stats/evidence-balance',
     query('endDate').optional().isISO8601()
   ],
   validateRequest,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user?.id;
       if (!userId) {
-        return res.status(401).json({ error: 'Authentication required' });
+        res.status(401).json({ error: 'Authentication required' });
+        return;
       }
 
       const where: any = { teacherId: userId };
@@ -412,7 +425,7 @@ router.get('/stats/evidence-balance',
         isBalanced: Object.values(percentages).every(p => p >= 25 && p <= 40),
         recommendations: getBalanceRecommendations(percentages)
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching evidence balance:', error);
       res.status(500).json({ error: 'Failed to fetch evidence balance' });
     }

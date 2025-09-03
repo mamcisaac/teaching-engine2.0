@@ -123,34 +123,34 @@ export const bulkQueue = new Bull('bulk-operations', REDIS_URL, {
 // Queue event handlers for monitoring
 const setupQueueMonitoring = (queue: Bull.Queue, queueName: string) => {
   queue.on('completed', (job, result) => {
-    logger.info(`[${queueName}] Job ${job.id} completed`, {
+    logger.info(`[${queueName}] Job ${job.id} completed`, JSON.stringify({
       jobId: job.id,
       data: job.data,
       result
-    });
+    }));
   });
 
   queue.on('failed', (job, err) => {
-    logger.error(`[${queueName}] Job ${job.id} failed`, {
+    logger.error(`[${queueName}] Job ${job.id} failed`, JSON.stringify({
       jobId: job.id,
       data: job.data,
       error: err.message,
       stack: err.stack
-    });
+    }));
   });
 
   queue.on('stalled', (job) => {
-    logger.warn(`[${queueName}] Job ${job.id} stalled`, {
+    logger.warn(`[${queueName}] Job ${job.id} stalled`, JSON.stringify({
       jobId: job.id,
       data: job.data
-    });
+    }));
   });
 
   queue.on('error', (error) => {
-    logger.error(`[${queueName}] Queue error`, {
+    logger.error(`[${queueName}] Queue error`, JSON.stringify({
       error: error.message,
       stack: error.stack
-    });
+    }));
   });
 
   // Monitor queue health
@@ -161,15 +161,15 @@ const setupQueueMonitoring = (queue: Bull.Queue, queueName: string) => {
       
       // Alert if too many failed jobs
       if (counts.failed > 50) {
-        logger.error(`[${queueName}] High failure rate detected`, { failed: counts.failed });
+        logger.error(`[${queueName}] High failure rate detected`, JSON.stringify({ failed: counts.failed }));
       }
       
       // Alert if queue is backing up
       if (counts.waiting > 100) {
-        logger.warn(`[${queueName}] Queue backlog detected`, { waiting: counts.waiting });
+        logger.warn(`[${queueName}] Queue backlog detected`, JSON.stringify({ waiting: counts.waiting }));
       }
-    } catch (error) {
-      logger.error(`[${queueName}] Failed to get queue stats`, error);
+    } catch (error: unknown) {
+      logger.error(`[${queueName}] Failed to get queue stats`, error instanceof Error ? error.message : String(error));
     }
   }, 60000); // Check every minute
 };
@@ -225,8 +225,8 @@ export const getQueueStats = async (): Promise<Record<string, any>> => {
   for (const [name, queue] of Object.entries(queues)) {
     try {
       stats[name] = await queue.getJobCounts();
-    } catch (error) {
-      logger.error(`Failed to get stats for ${name} queue`, error);
+    } catch (error: unknown) {
+      logger.error(`Failed to get stats for ${name} queue`, error instanceof Error ? error.message : String(error));
       stats[name] = { error: 'Failed to fetch' };
     }
   }

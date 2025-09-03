@@ -120,7 +120,7 @@ export class StructuredLoggerTransport extends winston.transports.Stream {
  * This is a utility function to help with migration
  */
 export function migrateLogStatement(oldStatement: string): string {
-  // Pattern: logger.error('message', error) → structuredLogger.error('message', error)
+  // Pattern: logger.error('message', error) → structuredLogger.error('message', error instanceof Error ? error.message : String(error))
   if (oldStatement.match(/logger\.error\s*\(\s*['"`]([^'"`]+)['"`]\s*,\s*(\w+)\s*\)/)) {
     return oldStatement.replace(
       /logger\.error\s*\(\s*(['"`][^'"`]+['"`])\s*,\s*(\w+)\s*\)/,

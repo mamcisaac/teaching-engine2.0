@@ -52,7 +52,7 @@ router.get('/search', async (req: Request, res: Response) => {
 
     res.json(results);
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Error searching curriculum expectations:', getErrorMessage(error));
     res.status(500).json({ error: 'Failed to search curriculum expectations' });
   }
@@ -109,7 +109,7 @@ router.get('/', async (req: Request, res: Response) => {
       total: expectations.length,
     });
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Error fetching curriculum expectations:', getErrorMessage(error));
     res.status(500).json({ error: 'Failed to fetch curriculum expectations' });
   }

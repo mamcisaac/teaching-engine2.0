@@ -403,7 +403,7 @@ export class TemplateOrchestrator extends BaseService {
       } 
         return 'unhealthy';
       
-    } catch (error) {
+    } catch (error: unknown) {
       return 'unhealthy';
     }
   }

@@ -78,8 +78,8 @@ export class EssentialQuestionsEngine extends BaseService {
       await this.updateQuestionUsageStats(questionSet.essential_questions);
 
       return questionSet;
-    } catch (error) {
-      logger.error('Error generating essential questions:', error);
+    } catch (error: unknown) {
+      logger.error('Error generating essential questions:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -94,10 +94,10 @@ export class EssentialQuestionsEngine extends BaseService {
     complexity_indicators: string[];
   } {
     const analysis = {
-      key_concepts: [],
-      thinking_skills: [],
-      content_areas: [],
-      complexity_indicators: []
+      key_concepts: [] as string[],
+      thinking_skills: [] as string[],
+      content_areas: [] as string[],
+      complexity_indicators: [] as string[]
     };
 
     expectations.forEach(expectation => {
@@ -489,8 +489,8 @@ export class EssentialQuestionsEngine extends BaseService {
 
       await Promise.all(updatePromises);
       logger.info(`Updated usage statistics for ${questions.length} essential questions`);
-    } catch (error) {
-      logger.error('Error updating question usage statistics:', error);
+    } catch (error: unknown) {
+      logger.error('Error updating question usage statistics:', error instanceof Error ? error.message : String(error));
       // Don't throw error - this is non-critical
     }
   }
@@ -535,7 +535,7 @@ export class EssentialQuestionsEngine extends BaseService {
           serviceStatus: 'operational'
         }
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         healthy: false,
         details: {

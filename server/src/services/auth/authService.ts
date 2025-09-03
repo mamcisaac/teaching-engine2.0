@@ -74,7 +74,7 @@ export class AuthService extends BaseService {
       this.logger.info('Password hashed successfully');
 
       return hashed;
-    } catch (error) {
+    } catch (error: unknown) {
       this.logger.error({ error }, 'Password hashing failed');
       throw error;
     }
@@ -89,7 +89,7 @@ export class AuthService extends BaseService {
       this.logger.info({ isMatch }, 'Password comparison completed');
 
       return isMatch;
-    } catch (error) {
+    } catch (error: unknown) {
       this.logger.error({ error }, 'Password comparison failed');
       throw new Error('Authentication failed');
     }

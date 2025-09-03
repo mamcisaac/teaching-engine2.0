@@ -297,8 +297,8 @@ export class StandardsVerificationService extends BaseService {
       
       logger.info('Curriculum coverage analysis completed');
       return coverageReport;
-    } catch (error) {
-      logger.error('Error in curriculum coverage analysis:', error);
+    } catch (error: unknown) {
+      logger.error('Error in curriculum coverage analysis:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -365,8 +365,8 @@ export class StandardsVerificationService extends BaseService {
         certification_status: certificationStatus.status,
         certification_notes: certificationStatus.notes
       };
-    } catch (error) {
-      logger.error('Error in planning quality verification:', error);
+    } catch (error: unknown) {
+      logger.error('Error in planning quality verification:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -1354,13 +1354,13 @@ export class StandardsVerificationService extends BaseService {
   private async saveCoverageReport(report: CurriculumCoverageReport, userId: number): Promise<void> {
     try {
       // In a full implementation, this would save to database
-      logger.info(`Coverage report saved for user ${userId}:`, {
+      logger.info(`Coverage report saved for user ${userId}:`, JSON.stringify({
         coverage_percentage: report.overall_coverage.coverage_percentage,
         gaps_found: report.coverage_gaps.length,
         recommendations: report.recommendations.length
-      });
-    } catch (error) {
-      logger.warn('Could not save coverage report:', error);
+      }));
+    } catch (error: unknown) {
+      logger.warn('Could not save coverage report:', error instanceof Error ? error.message : String(error));
     }
   }
 
@@ -1380,7 +1380,7 @@ export class StandardsVerificationService extends BaseService {
           ]
         }
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         healthy: false,
         details: {

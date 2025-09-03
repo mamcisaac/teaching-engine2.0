@@ -211,7 +211,7 @@ async function seedAssessmentData() {
     console.log('');
     console.log('You can now run the E2E tests with: npm run test:e2e');
 
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('❌ Error seeding assessment data:', error);
     throw error;
   } finally {

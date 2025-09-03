@@ -43,7 +43,7 @@ export class LocalStorageService implements IStorageService {
   private async ensureDirectoryExists(dirPath: string): Promise<void> {
     try {
       await mkdir(dirPath, { recursive: true });
-    } catch (error) {
+    } catch (error: unknown) {
       if ((error as NodeJS.ErrnoException).code !== 'EEXIST') {
         throw error;
       }
@@ -132,7 +132,7 @@ export class LocalStorageService implements IStorageService {
         size: stats.size,
         lastModified: stats.mtime
       };
-    } catch (error) {
+    } catch (error: unknown) {
       if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
         return null;
       }
@@ -151,7 +151,7 @@ export class LocalStorageService implements IStorageService {
       const absolutePath = this.getAbsolutePath(relativePath);
       await unlink(absolutePath);
       return true;
-    } catch (error) {
+    } catch (error: unknown) {
       if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
         return false; // File doesn't exist
       }
@@ -164,7 +164,7 @@ export class LocalStorageService implements IStorageService {
       const absolutePath = this.getAbsolutePath(relativePath);
       await stat(absolutePath);
       return true;
-    } catch (error) {
+    } catch (error: unknown) {
       if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
         return false;
       }
@@ -232,7 +232,7 @@ export class LocalStorageService implements IStorageService {
           files.push(...subFiles);
         }
       }
-    } catch (error) {
+    } catch (error: unknown) {
       if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
         return []; // Directory doesn't exist
       }

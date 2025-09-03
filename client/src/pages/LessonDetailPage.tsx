@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { 
   Calendar, Clock, BookOpen, Target, Users, Package, 
-  CheckCircle, AlertCircle, ChevronLeft, Edit, Trash2, Print,
+  CheckCircle, AlertCircle, ChevronLeft, Edit, Trash2, Printer,
   ClipboardCheck, BarChart3
 } from 'lucide-react';
 import { useETFOLessonPlan, useDeleteETFOLessonPlan } from '../hooks/useETFOPlanning';
@@ -109,7 +109,7 @@ export function LessonDetailPage(): React.ReactElement {
                 View Progress
               </Button>
               <Button variant="outline" onClick={handlePrint}>
-                <Print className="h-4 w-4" />
+                <Printer className="h-4 w-4" />
               </Button>
               <Button variant="outline" onClick={handleEdit}>
                 <Edit className="h-4 w-4" />

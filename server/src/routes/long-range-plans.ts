@@ -104,7 +104,7 @@ router.get('/', async (req: AuthenticatedRequest, res: Response) => {
 
     res.json(plans);
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Error fetching long-range plans:', String(error));
     res.status(500).json({ error: 'Failed to fetch long-range plans' });
     return;
@@ -463,7 +463,7 @@ router.post('/ai-optimized-draft', validate(optimizedDraftSchema), async (req: A
       }
     });
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Optimized AI draft generation error:', String(error));
     res.status(500).json({ error: 'Failed to generate optimized AI draft' });
     return;
@@ -510,7 +510,7 @@ router.post('/:id/optimize', async (req: AuthenticatedRequest, res: Response) =>
       updated_plan: updatedPlan
     });
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Plan optimization error:', String(error));
     res.status(500).json({ error: 'Failed to optimize plan' });
     return;
@@ -552,7 +552,7 @@ router.get('/:id/quality-assessment', async (req: AuthenticatedRequest, res: Res
       }
     });
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Quality assessment error:', String(error));
     res.status(500).json({ error: 'Failed to assess plan quality' });
     return;
@@ -603,7 +603,7 @@ router.get('/:id/yearly-predictions', async (req: AuthenticatedRequest, res: Res
       }
     });
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Yearly predictions error:', String(error));
     res.status(500).json({ error: 'Failed to generate yearly predictions' });
     return;
@@ -635,9 +635,9 @@ router.get('/optimization-dashboard', async (req: AuthenticatedRequest, res: Res
     const dashboard = {
       summary: {
         total_plans: plans.length,
-        plans_with_descriptions: plans.filter(p => p.description).length,
-        plans_with_indigenous_perspectives: plans.filter(p => p.indigenousPerspectives).length,
-        needs_improvement: plans.filter(p => !p.description).length
+        plans_with_descriptions: plans.filter(p => (p as any).description).length,
+        plans_with_indigenous_perspectives: plans.filter(p => (p as any).indigenousPerspectives).length,
+        needs_improvement: plans.filter(p => !(p as any).description).length
       },
       plans: plans.map(plan => ({
         ...plan,
@@ -648,7 +648,7 @@ router.get('/optimization-dashboard', async (req: AuthenticatedRequest, res: Res
 
     res.json(dashboard);
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Optimization dashboard error:', String(error));
     res.status(500).json({ error: 'Failed to load optimization dashboard' });
     return;

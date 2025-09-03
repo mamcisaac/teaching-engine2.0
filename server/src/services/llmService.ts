@@ -99,8 +99,8 @@ export class LLMService extends BaseService {
       });
 
       this.logger.info('OpenAI client initialized successfully');
-    } catch (error) {
-      this.logger.error(`Failed to initialize OpenAI client: ${error}`);
+    } catch (error: unknown) {
+      this.logger.error(`Failed to initialize OpenAI client: ${error instanceof Error ? error.message : String(error)}`);
       this.openaiClient = null;
     }
   }

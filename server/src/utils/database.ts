@@ -53,7 +53,7 @@ export const dbUtils = {
       // Validate the field name using security utilities
       const validatedFieldName = validateFieldName(sortBy, allowedFields);
       return { [validatedFieldName]: sortOrder };
-    } catch (error) {
+    } catch (error: unknown) {
       // Log security violation but don't expose details
       logger.warn({
         attemptedField: sortBy,
@@ -81,7 +81,7 @@ export const dbUtils = {
       }
 
       return Object.keys(conditions).length > 0 ? { [validatedFieldName]: conditions } : {};
-    } catch (error) {
+    } catch (error: unknown) {
       logger.warn({
         attemptedField: fieldName,
         allowedFields,
@@ -116,7 +116,7 @@ export const dbUtils = {
           },
         })),
       };
-    } catch (error) {
+    } catch (error: unknown) {
       logger.warn({
         attemptedFields: fields,
         allowedFields,
@@ -149,7 +149,7 @@ export const dbUtils = {
         ...additionalConditions,
         [validatedFieldName]: true,
       };
-    } catch (error) {
+    } catch (error: unknown) {
       logger.warn({
         attemptedField: isActiveField,
         allowedFields,
@@ -398,7 +398,7 @@ export const getConnectionInfo = async (prisma: PrismaClientLike): Promise<{
       tableCount: tables.length,
       sizeBytes: size[0]?.size ?? 0,
     };
-  } catch (error) {
+  } catch (error: unknown) {
     // Return safe defaults if queries fail
     logger.warn({
       operation: 'getConnectionInfo',

@@ -31,12 +31,12 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
   const { type, userId, studentId, options = {} } = job.data;
   
   try {
-    logger.info(`Starting report generation`, {
+    logger.info(`Starting report generation`, JSON.stringify({
       type,
       userId,
       studentId,
       options
-    });
+    }));
 
     job.progress(10);
 
@@ -131,25 +131,25 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
 
     job.progress(100);
 
-    logger.info(`Report generation completed`, {
+    logger.info(`Report generation completed`, JSON.stringify({
       type,
       fileName,
       fileSize: reportBuffer.length,
       processingTime,
       studentId
-    });
+    }));
 
     return result;
 
-  } catch (error) {
-    logger.error(`Report generation failed`, {
+  } catch (error: unknown) {
+    logger.error(`Report generation failed`, JSON.stringify({
       error: error instanceof Error ? error.message : error,
       stack: error instanceof Error ? error.stack : undefined,
       type,
       userId,
       studentId,
       options
-    });
+    }));
 
     // Re-throw to mark job as failed
     throw error;

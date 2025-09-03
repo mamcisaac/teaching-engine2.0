@@ -86,7 +86,7 @@ router.get('/student/:id',
       
       res.send(reportBuffer);
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Student report generation failed:', error);
       res.status(500).json({ error: 'Failed to generate student report' });
     }
@@ -134,7 +134,7 @@ router.get('/class',
       
       res.send(reportBuffer);
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Class report generation failed:', error);
       res.status(500).json({ error: 'Failed to generate class report' });
     }
@@ -195,7 +195,7 @@ router.get('/available',
           studentCount
         }
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to get available reports:', error);
       res.status(500).json({ error: 'Failed to get available reports' });
     }

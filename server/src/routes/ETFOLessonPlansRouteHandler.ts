@@ -3,7 +3,7 @@
  * Extends BaseRouteHandler with ETFO lesson plan-specific business logic
  */
 
-import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '../../../shared/utils/typeGuards';
+import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '@shared/utils/typeGuards';
 import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
@@ -1009,7 +1009,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       // Execute query and return result
       const result = await this.lessonPlanService.findMany(convertedFilters, userId);
       res.json(result);
-    } catch (error) {
+    } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Unknown error';
       this.logger.error(`Error in ${this.routeName} list:`, message);
       next(error);

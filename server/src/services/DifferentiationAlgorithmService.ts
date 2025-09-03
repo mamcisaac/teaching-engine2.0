@@ -235,8 +235,8 @@ export class DifferentiationAlgorithmService extends BaseService {
 
       logger.info('Differentiation plan generated successfully');
       return differentiationPlan;
-    } catch (error) {
-      logger.error('Error generating differentiation plan:', error);
+    } catch (error: unknown) {
+      logger.error('Error generating differentiation plan:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -1046,7 +1046,7 @@ export class DifferentiationAlgorithmService extends BaseService {
           strategiesAvailable: true
         }
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         healthy: false,
         details: {

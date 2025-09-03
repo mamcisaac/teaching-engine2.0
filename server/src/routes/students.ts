@@ -72,7 +72,7 @@ router.get('/',
         })),
         total: students.length
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to fetch students:', error);
       res.status(500).json({ error: 'Failed to fetch students' });
     }
@@ -129,7 +129,7 @@ router.post('/import/csv',
           : `Imported ${result.imported} students with ${result.failed} errors`
       });
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('CSV import failed:', error);
       res.status(500).json({ error: 'CSV import failed' });
     }
@@ -149,7 +149,7 @@ router.get('/template/csv',
       res.setHeader('Content-Type', 'text/csv');
       res.setHeader('Content-Disposition', 'attachment; filename="student_import_template.csv"');
       res.send(template);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to generate template:', error);
       res.status(500).json({ error: 'Failed to generate template' });
     }
@@ -169,7 +169,7 @@ router.get('/export/csv',
       res.setHeader('Content-Type', 'text/csv');
       res.setHeader('Content-Disposition', `attachment; filename="students_${new Date().toISOString().split('T')[0]}.csv"`);
       res.send(csv);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to export students:', error);
       res.status(500).json({ error: 'Failed to export students' });
     }
@@ -201,7 +201,7 @@ router.get('/quota/report',
           quota: formatBytes(s.quotaBytes)
         }))
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to get quota report:', error);
       res.status(500).json({ error: 'Failed to get quota report' });
     }
@@ -234,7 +234,7 @@ router.get('/:id/quota',
           size: formatBytes(f.size)
         }))
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to get student quota:', error);
       if ((error as Error).message.includes('not found')) {
         res.status(404).json({ error: 'Student not found' });
@@ -295,7 +295,7 @@ router.post('/',
         grade: student.grade,
         createdAt: student.createdAt
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to create student:', error);
       res.status(500).json({ error: 'Failed to create student' });
     }

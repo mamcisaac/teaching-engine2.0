@@ -58,7 +58,7 @@ router.get('/stats', async (req, res) => {
       currentDate: new Date().toISOString()
     });
     
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error fetching public stats:', error);
     res.status(500).json({ 
       error: 'Failed to fetch stats',

@@ -30,8 +30,8 @@ export const initializeServices = async (): Promise<void> => {
     // Log service status
     logServiceStatus();
     
-  } catch (error) {
-    logger.error('Failed to initialize services:', error);
+  } catch (error: unknown) {
+    logger.error('Failed to initialize services:', error instanceof Error ? error.message : String(error));
     // Don't crash the server, but log the error prominently
     console.error('⚠️  WARNING: Some background services failed to initialize');
     console.error('The application will continue but some features may not work properly');
@@ -66,8 +66,8 @@ export const shutdownServices = async (): Promise<void> => {
     await shutdownQueues();
     
     logger.info('All services shut down gracefully');
-  } catch (error) {
-    logger.error('Error during service shutdown:', error);
+  } catch (error: unknown) {
+    logger.error('Error during service shutdown:', error instanceof Error ? error.message : String(error));
   }
 };
 

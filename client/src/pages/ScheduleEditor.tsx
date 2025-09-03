@@ -14,7 +14,7 @@ import { Alert, AlertDescription } from '../components/ui/alert';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 import { toast } from 'sonner';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '../utils/api';
+import { api } from '../lib/axios';
 
 interface Lesson {
   id: string;

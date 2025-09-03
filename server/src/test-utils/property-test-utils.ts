@@ -359,7 +359,7 @@ export function runPropertyTest(
   
   try {
     fc.assert(property, defaultOptions);
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       logger.error({ error: error instanceof Error ? error : String(error) }, 'Property test failed');
       if (error.stack) {

@@ -143,8 +143,8 @@ export class DataDrivenAnalysisEngine extends BaseService {
 
       logger.info('Data-driven analysis completed successfully');
       return analysisReport;
-    } catch (error) {
-      logger.error('Error in data-driven analysis:', error);
+    } catch (error: unknown) {
+      logger.error('Error in data-driven analysis:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -740,13 +740,13 @@ export class DataDrivenAnalysisEngine extends BaseService {
   private async saveAnalysisReport(report: DataAnalysisReport, userId: number): Promise<void> {
     try {
       // For now, just log the report. In a full implementation, this would be saved to database
-      logger.info(`Analysis report generated for user ${userId}:`, {
+      logger.info(`Analysis report generated for user ${userId}:`, JSON.stringify({
         patterns_found: report.learning_patterns.length,
         adjustments_recommended: report.instructional_adjustments.length,
         interventions_needed: report.intervention_recommendations.length
-      });
-    } catch (error) {
-      logger.warn('Could not save analysis report:', error);
+      }));
+    } catch (error: unknown) {
+      logger.warn('Could not save analysis report:', error instanceof Error ? error.message : String(error));
     }
   }
 
@@ -765,9 +765,9 @@ export class DataDrivenAnalysisEngine extends BaseService {
   }> {
     // Analyze current lesson context and suggest immediate adjustments
     const adjustments = {
-      immediate_adjustments: [],
-      next_steps: [],
-      differentiation_suggestions: []
+      immediate_adjustments: [] as string[],
+      next_steps: [] as string[],
+      differentiation_suggestions: [] as string[]
     };
 
     if (parameters.engagement_level === 'low') {
@@ -815,7 +815,7 @@ export class DataDrivenAnalysisEngine extends BaseService {
           serviceStatus: 'operational'
         }
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         healthy: false,
         details: {

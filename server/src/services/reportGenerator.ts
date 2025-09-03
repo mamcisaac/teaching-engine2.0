@@ -75,7 +75,7 @@ export const generateStudentReport = async (
   });
 
   const chunks: Buffer[] = [];
-  doc.on('data', chunk => chunks.push(chunk));
+  doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
   // Generate report content
   generateReportHeader(doc, student);
@@ -143,7 +143,7 @@ export const generateClassReport = async (
   });
 
   const chunks: Buffer[] = [];
-  doc.on('data', chunk => chunks.push(chunk));
+  doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
   // Generate class overview
   doc.fontSize(20).text('Class Progress Overview', { align: 'center' });

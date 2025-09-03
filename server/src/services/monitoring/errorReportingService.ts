@@ -122,7 +122,7 @@ export class ErrorReportingService {
 
       this.enabled = true;
       logger.info('Error reporting service initialized');
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Failed to initialize error reporting:', getErrorMessage(error));
     }
   }

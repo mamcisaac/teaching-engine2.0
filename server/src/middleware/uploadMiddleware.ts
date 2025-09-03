@@ -3,7 +3,7 @@
  * Handles file uploads with validation, security, and storage integration
  */
 
-import multer from 'multer';
+import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
 import crypto from 'crypto';
 import { Request, Response, NextFunction } from 'express';
@@ -69,10 +69,11 @@ function getFileCategory(mimeType: string): string {
 function createFileFilter(allowedTypes?: string[]) {
   const allowed = allowedTypes || ALL_ALLOWED_MIME_TYPES;
   
-  return (req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback): void => {
+  return (_req: Request, file: Express.Multer.File, cb: FileFilterCallback): void => {
     // Check MIME type
     if (!allowed.includes(file.mimetype)) {
-      return cb(new Error(`File type ${file.mimetype} not allowed. Allowed types: ${allowed.join(', ')}`));
+      cb(new Error(`File type ${file.mimetype} not allowed. Allowed types: ${allowed.join(', ')}`));
+      return;
     }
 
     // Validate file extension matches MIME type
@@ -87,7 +88,8 @@ function createFileFilter(allowedTypes?: string[]) {
     };
 
     if (category !== 'unknown' && extensionValidation[category] && !extensionValidation[category].includes(ext)) {
-      return cb(new Error(`File extension ${ext} does not match MIME type ${file.mimetype}`));
+      cb(new Error(`File extension ${ext} does not match MIME type ${file.mimetype}`));
+      return;
     }
 
     // Security: Block potentially dangerous filenames
@@ -104,7 +106,8 @@ function createFileFilter(allowedTypes?: string[]) {
     ];
 
     if (dangerousPatterns.some(pattern => pattern.test(file.originalname))) {
-      return cb(new Error(`File type potentially dangerous: ${file.originalname}`));
+      cb(new Error(`File type potentially dangerous: ${file.originalname}`));
+      return;
     }
 
     cb(null, true);
@@ -165,7 +168,7 @@ export const uploadMultiple = (fieldName = 'artifacts', options?: {
 };
 
 // Upload processing middleware - integrates with storage service
-export const processUpload = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const processUpload = async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
   try {
     if (!req.file && !req.files) {
       return next();
@@ -228,7 +231,7 @@ export const processUpload = async (req: Request, res: Response, next: NextFunct
     req.uploadResults = uploadResults;
     
     next();
-  } catch (error) {
+  } catch (error: unknown) {
     next(error);
   }
 };
@@ -243,23 +246,26 @@ export const validateUploadRequirements = (requirements: {
     const files = req.file ? [req.file] : (req.files as Express.Multer.File[] || []);
     
     if (requirements.minFiles && files.length < requirements.minFiles) {
-      return res.status(400).json({
+      res.status(400).json({
         error: `Minimum ${requirements.minFiles} file(s) required`
       });
+      return;
     }
 
     if (requirements.maxFiles && files.length > requirements.maxFiles) {
-      return res.status(400).json({
+      res.status(400).json({
         error: `Maximum ${requirements.maxFiles} file(s) allowed`
       });
+      return;
     }
 
     if (requirements.requiredFields) {
       const missingFields = requirements.requiredFields.filter(field => !req.body[field]);
       if (missingFields.length > 0) {
-        return res.status(400).json({
+        res.status(400).json({
           error: `Required fields missing: ${missingFields.join(', ')}`
         });
+        return;
       }
     }
 
@@ -268,33 +274,37 @@ export const validateUploadRequirements = (requirements: {
 };
 
 // Error handler for upload errors
-export const handleUploadErrors = (error: Error, req: Request, res: Response, next: NextFunction): void => {
+export const handleUploadErrors = (error: Error, _req: Request, res: Response, next: NextFunction): void => {
   if (error instanceof multer.MulterError) {
     if (error.code === 'LIMIT_FILE_SIZE') {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'File too large',
         maxSize: `${parseInt(process.env.UPLOAD_MAX_MB || '25')}MB`
       });
+      return;
     }
     
     if (error.code === 'LIMIT_FILE_COUNT') {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Too many files uploaded'
       });
+      return;
     }
     
     if (error.code === 'LIMIT_UNEXPECTED_FILE') {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Unexpected field name in upload'
       });
+      return;
     }
   }
 
   // Handle custom validation errors
   if (error.message.includes('not allowed') || error.message.includes('dangerous')) {
-    return res.status(400).json({
+    res.status(400).json({
       error: error.message
     });
+    return;
   }
 
   next(error);
@@ -307,37 +317,37 @@ export const handleUploadErrors = (error: Error, req: Request, res: Response, ne
 
 // Photo upload middleware
 export const uploadStudentPhoto = [
-  uploadSingle('photo', ALLOWED_MIME_TYPES.images),
+  uploadSingle('photo', { allowedTypes: ALLOWED_MIME_TYPES.images }),
   processUpload
 ];
 
 // Video upload middleware  
 export const uploadStudentVideo = [
-  uploadSingle('video', ALLOWED_MIME_TYPES.videos),
+  uploadSingle('video', { allowedTypes: ALLOWED_MIME_TYPES.videos }),
   processUpload
 ];
 
 // Audio upload middleware
 export const uploadStudentAudio = [
-  uploadSingle('audio', ALLOWED_MIME_TYPES.audio),
+  uploadSingle('audio', { allowedTypes: ALLOWED_MIME_TYPES.audio }),
   processUpload
 ];
 
 // Document upload middleware
 export const uploadStudentDocument = [
-  uploadSingle('document', ALLOWED_MIME_TYPES.documents),
+  uploadSingle('document', { allowedTypes: ALLOWED_MIME_TYPES.documents }),
   processUpload
 ];
 
 // Multiple artifacts upload middleware
 export const uploadMultipleArtifacts = [
-  uploadMultiple('artifacts', ALL_ALLOWED_MIME_TYPES, 5),
+  uploadMultiple('artifacts', { allowedTypes: ALL_ALLOWED_MIME_TYPES, maxFiles: 5 }),
   processUpload
 ];
 
 // Mobile artifact upload (single field, any supported type)
 export const mobileArtifactUpload = [
-  uploadSingle('artifact', ALL_ALLOWED_MIME_TYPES),
+  uploadSingle('artifact', { allowedTypes: ALL_ALLOWED_MIME_TYPES }),
   processUpload
 ];
 
@@ -361,25 +371,25 @@ export const validateQuickNote = [
 ];
 
 // Student access validation
-export const validateStudentAccess = (req: Request, res: Response, next: NextFunction) => {
+export const validateStudentAccess = (_req: Request, _res: Response, next: NextFunction) => {
   // Add student access validation logic
   next();
 };
 
 // Outcome access validation
-export const validateOutcomeAccess = (req: Request, res: Response, next: NextFunction) => {
+export const validateOutcomeAccess = (_req: Request, _res: Response, next: NextFunction) => {
   // Add outcome access validation logic
   next();
 };
 
 // Handle validation errors
-export const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
+export const handleValidationErrors = (_req: Request, _res: Response, next: NextFunction) => {
   // Add validation error handling
   next();
 };
 
 // Upload requirements validation (middleware version)
-export const validateUploadRequirementsMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const validateUploadRequirementsMiddleware = (_req: Request, _res: Response, next: NextFunction) => {
   // Add upload requirements validation
   next();
 };

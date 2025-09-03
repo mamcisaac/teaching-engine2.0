@@ -36,6 +36,7 @@ interface AuthenticatedRequest extends Request {
     email: string;
     role: string;
   };
+  artifact?: any; // Artifact data attached by middleware
 }
 
 // Validation middleware
@@ -132,7 +133,7 @@ const validateArtifactOwnership = async (req: AuthenticatedRequest, res: Respons
     // Attach artifact to request for use in handlers (properly typed via express.d.ts)
     req.artifact = artifact;
     next();
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Artifact ownership validation error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -146,12 +147,12 @@ const validateArtifactOwnership = async (req: AuthenticatedRequest, res: Respons
 router.post('/upload/photo',
   requireAuth,
   artifactUploadRateLimit, // Rate limiting applied
-  uploadStudentPhoto,
+  ...uploadStudentPhoto,
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       await handleArtifactUpload(req, res, 'PHOTO');
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Photo upload error:', error);
       res.status(500).json({ error: 'Failed to upload photo' });
     }
@@ -166,12 +167,12 @@ router.post('/upload/photo',
 router.post('/upload/video',
   requireAuth,
   artifactUploadRateLimit,
-  uploadStudentVideo,
+  ...uploadStudentVideo,
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       await handleArtifactUpload(req, res, 'VIDEO');
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Video upload error:', error);
       res.status(500).json({ error: 'Failed to upload video' });
     }
@@ -186,12 +187,12 @@ router.post('/upload/video',
 router.post('/upload/audio',
   requireAuth,
   artifactUploadRateLimit,
-  uploadStudentAudio,
+  ...uploadStudentAudio,
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       await handleArtifactUpload(req, res, 'AUDIO');
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Audio upload error:', error);
       res.status(500).json({ error: 'Failed to upload audio' });
     }
@@ -206,12 +207,12 @@ router.post('/upload/audio',
 router.post('/upload/document',
   requireAuth,
   artifactUploadRateLimit,
-  uploadStudentDocument,
+  ...uploadStudentDocument,
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       await handleArtifactUpload(req, res, 'DOCUMENT');
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Document upload error:', error);
       res.status(500).json({ error: 'Failed to upload document' });
     }
@@ -226,7 +227,7 @@ router.post('/upload/document',
 router.post('/upload/mobile',
   requireAuth,
   artifactUploadRateLimit,
-  mobileArtifactUpload,
+  ...mobileArtifactUpload,
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -239,7 +240,7 @@ router.post('/upload/mobile',
 
       const artifactType = uploadResult.mimeType.startsWith('image/') ? 'PHOTO' : 'VIDEO';
       await handleArtifactUpload(req, res, artifactType);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Mobile upload error:', error);
       res.status(500).json({ error: 'Failed to upload from mobile' });
     }
@@ -254,7 +255,7 @@ router.post('/upload/mobile',
 router.post('/upload/batch',
   requireAuth,
   bulkOperationRateLimit,
-  uploadMultipleArtifacts,
+  ...uploadMultipleArtifacts,
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -291,7 +292,7 @@ router.post('/upload/batch',
             mimeType: uploadResult.mimeType,
             metadata: JSON.stringify(metadata),
             collectionContext: req.body.collectionContext,
-            tags: req.body.tags ? JSON.stringify(req.body.tags) : null,
+            tags: req.body.tags || undefined,
             dateCollected: req.body.dateCollected ? new Date(req.body.dateCollected) : new Date(),
             isPrivate: req.body.isPrivate || false
           }
@@ -310,7 +311,7 @@ router.post('/upload/batch',
           dateCollected: artifact.dateCollected
         }))
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Batch upload error:', error);
       res.status(500).json({ error: 'Failed to upload artifacts' });
     }
@@ -337,7 +338,7 @@ router.post('/note',
           description: req.body.description,
           textContent: req.body.textContent,
           collectionContext: req.body.collectionContext,
-          tags: req.body.tags ? JSON.stringify(req.body.tags) : null,
+          tags: req.body.tags || undefined,
           dateCollected: req.body.dateCollected ? new Date(req.body.dateCollected) : new Date(),
           isPrivate: req.body.isPrivate || false
         }
@@ -351,7 +352,7 @@ router.post('/note',
         dateCollected: artifact.dateCollected,
         createdAt: artifact.createdAt
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Note creation error:', error);
       res.status(500).json({ error: 'Failed to create note' });
     }
@@ -495,7 +496,7 @@ router.get('/',
           totalPages: Math.ceil(total / limitNum)
         }
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Artifacts listing error:', error);
       res.status(500).json({ error: 'Failed to retrieve artifacts' });
     }
@@ -585,7 +586,7 @@ async function handleArtifactUpload(req: AuthenticatedRequest, res: Response, ar
         checksum: basicMetadata.checksum, // Add checksum for duplicate detection
         processingStatus: 'PENDING', // Will be updated by background job
         collectionContext: req.body.collectionContext,
-        tags: req.body.tags ? JSON.stringify(req.body.tags) : null,
+        tags: req.body.tags || undefined,
         dateCollected: req.body.dateCollected ? new Date(req.body.dateCollected) : new Date(),
         isPrivate: req.body.isPrivate || false
       }
@@ -652,7 +653,7 @@ async function handleArtifactUpload(req: AuthenticatedRequest, res: Response, ar
     );
     
     console.log(`Queued processing job ${jobId} for artifact ${artifact.id}`);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Failed to queue processing job:', error);
     // Don't fail the upload if queuing fails - file is saved, just not processed
   }
@@ -750,7 +751,7 @@ router.get('/:id',
           outcome: ao.outcome
         }))
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Artifact retrieval error:', error);
       res.status(500).json({ error: 'Failed to retrieve artifact' });
     }
@@ -836,7 +837,7 @@ router.put('/:id',
         textContent: updatedArtifact.textContent,
         updatedAt: updatedArtifact.updatedAt
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Artifact update error:', error);
       res.status(500).json({ error: 'Failed to update artifact' });
     }
@@ -861,7 +862,7 @@ router.delete('/:id',
       if (artifact.filePath) {
         try {
           await storageService.deleteFile(artifact.filePath);
-        } catch (error) {
+        } catch (error: unknown) {
           console.warn('Failed to delete file from storage:', error);
           // Continue with database deletion even if file deletion fails
         }
@@ -873,7 +874,7 @@ router.delete('/:id',
       });
 
       res.status(204).send();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Artifact deletion error:', error);
       res.status(500).json({ error: 'Failed to delete artifact' });
     }
@@ -943,7 +944,7 @@ router.post('/:id/outcomes',
         dateAssessed: outcomeTag.dateAssessed,
         outcome: outcome
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Outcome tagging error:', error);
       res.status(500).json({ error: 'Failed to tag outcome' });
     }
@@ -1025,7 +1026,7 @@ router.put('/:id/outcomes/:outcomeId',
         dateAssessed: updatedTag.dateAssessed,
         outcome: updatedTag.outcome
       });
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof Error && 'code' in error && error.code === 'P2025') {
         res.status(404).json({ error: 'Outcome tagging not found' });
       } else {
@@ -1061,7 +1062,7 @@ router.delete('/:id/outcomes/:outcomeId',
       });
 
       res.status(204).send();
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof Error && 'code' in error && error.code === 'P2025') {
         res.status(404).json({ error: 'Outcome tagging not found' });
       } else {

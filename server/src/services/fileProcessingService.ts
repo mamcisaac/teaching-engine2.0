@@ -55,7 +55,7 @@ export class FileProcessingService {
   private async ensureTempDir(): Promise<void> {
     try {
       await fs.mkdir(this.tempDir, { recursive: true });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to create temp directory:', error);
     }
   }
@@ -95,7 +95,7 @@ export class FileProcessingService {
       metadata.isProcessed = true;
       metadata.createdAt = new Date();
 
-    } catch (error) {
+    } catch (error: unknown) {
       metadata.processingError = (error as Error).message;
       console.error('File processing error:', error);
     }
@@ -165,7 +165,7 @@ export class FileProcessingService {
         url: result.url
       };
       
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Image processing failed:', error);
       throw error;
     }
@@ -210,23 +210,23 @@ export class FileProcessingService {
                 }
               }
               metadata.duration = videoStream.duration ? 
-                parseFloat(videoStream.duration) : 
-                (data.format.duration ? parseFloat(data.format.duration) : undefined);
+                parseFloat(String(videoStream.duration)) : 
+                (data.format.duration ? parseFloat(String(data.format.duration)) : undefined);
             }
 
             // Extract audio stream info
             const audioStream = data.streams.find(s => s.codec_type === 'audio');
             if (audioStream) {
               metadata.sampleRate = audioStream.sample_rate ? 
-                parseInt(audioStream.sample_rate) : undefined;
+                parseInt(String(audioStream.sample_rate)) : undefined;
             }
 
             // Extract format info
             if (data.format) {
               metadata.bitrate = data.format.bit_rate ? 
-                parseInt(data.format.bit_rate) : undefined;
+                parseInt(String(data.format.bit_rate)) : undefined;
               if (!metadata.duration && data.format.duration) {
-                metadata.duration = parseFloat(data.format.duration);
+                metadata.duration = parseFloat(String(data.format.duration));
               }
             }
 
@@ -273,7 +273,7 @@ export class FileProcessingService {
         url: result.url
       };
       
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Video processing failed:', error);
       throw error;
     } finally {
@@ -313,7 +313,7 @@ export class FileProcessingService {
                 parseFloat(audioStream.duration) : 
                 (data.format.duration ? parseFloat(data.format.duration) : undefined);
               metadata.sampleRate = audioStream.sample_rate ? 
-                parseInt(audioStream.sample_rate) : undefined;
+                parseInt(String(audioStream.sample_rate)) : undefined;
               metadata.bitrate = audioStream.bit_rate ? 
                 parseInt(audioStream.bit_rate) : 
                 (data.format.bit_rate ? parseInt(data.format.bit_rate) : undefined);
@@ -328,7 +328,7 @@ export class FileProcessingService {
           });
       });
       
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Audio processing failed:', error);
       throw error;
     } finally {
@@ -360,7 +360,7 @@ export class FileProcessingService {
         };
       }
       // Other document types can be handled here
-    } catch (error) {
+    } catch (error: unknown) {
       console.warn('Document processing failed:', error);
       // Non-critical error, continue without document metadata
     }
@@ -377,7 +377,7 @@ export class FileProcessingService {
       return {
         rawExif: exifBuffer.toString('base64').substring(0, 100) + '...' // Truncated for storage
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {};
     }
   }
@@ -481,7 +481,7 @@ export class FileProcessingService {
         // Always disconnect to prevent connection leaks
         await prisma.$disconnect();
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Duplicate check failed:', error);
       // On error, allow upload (fail open) but log the issue
       return { isDuplicate: false };
@@ -605,7 +605,7 @@ export class FileProcessingService {
           error: e.processingError || 'Unknown error'
         }))
       };
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to get processing stats:', error);
       // Return zeros on error rather than crashing
       return {
@@ -642,7 +642,7 @@ export class FileProcessingService {
       }
 
       return deletedCount;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Temp file cleanup failed:', error);
       return 0;
     }

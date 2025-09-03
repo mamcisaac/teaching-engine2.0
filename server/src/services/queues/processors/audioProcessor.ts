@@ -123,7 +123,7 @@ export const processAudioJob = async (job: Job<AudioJobData>): Promise<AudioJobR
       waveformUrl = uploadResult.url;
       
     } catch (waveformError) {
-      logger.warn(`Waveform generation failed for ${artifactId}`, { error: waveformError });
+      logger.warn(`Waveform generation failed for ${artifactId}`, JSON.stringify({ error: waveformError }));
       // Continue without waveform - not critical
     }
     
@@ -160,12 +160,12 @@ export const processAudioJob = async (job: Job<AudioJobData>): Promise<AudioJobR
     
     const processingTime = Date.now() - startTime;
     
-    logger.info(`Audio job ${job.id} completed in ${processingTime}ms`, {
+    logger.info(`Audio job ${job.id} completed in ${processingTime}ms`, JSON.stringify({
       duration,
       sampleRate,
       channels,
       hasWaveform: !!waveformUrl
-    });
+    }));
     
     return {
       waveformUrl,
@@ -174,8 +174,8 @@ export const processAudioJob = async (job: Job<AudioJobData>): Promise<AudioJobR
       processingTime
     };
     
-  } catch (error) {
-    logger.error(`Audio job ${job.id} failed`, error);
+  } catch (error: unknown) {
+    logger.error(`Audio job ${job.id} failed`, error instanceof Error ? error.message : String(error));
     
     // Cleanup temp files on error
     await fs.unlink(tempAudioPath).catch(() => {});

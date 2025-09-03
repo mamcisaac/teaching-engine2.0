@@ -290,8 +290,8 @@ export class PedagogicalOptimizationService extends BaseService {
 
       logger.info(`Optimal lesson plan generated with ${optimizationMetrics.score}% optimization score`);
       return optimalLessonPlan;
-    } catch (error) {
-      logger.error('Error generating optimal lesson plan:', error);
+    } catch (error: unknown) {
+      logger.error('Error generating optimal lesson plan:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -349,8 +349,8 @@ export class PedagogicalOptimizationService extends BaseService {
       };
 
       return optimizationReport;
-    } catch (error) {
-      logger.error('Error in lesson optimization analysis:', error);
+    } catch (error: unknown) {
+      logger.error('Error in lesson optimization analysis:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -1357,16 +1357,16 @@ export class PedagogicalOptimizationService extends BaseService {
 
   private async saveOptimalLessonPlan(optimalPlan: OptimalLessonPlan, userId: number): Promise<void> {
     try {
-      logger.info(`Saving optimal lesson plan for user ${userId}:`, {
+      logger.info(`Saving optimal lesson plan for user ${userId}:`, JSON.stringify({
         lesson_id: optimalPlan.lesson_metadata.lesson_id,
         optimization_score: optimalPlan.lesson_metadata.optimization_score,
         certification_level: optimalPlan.lesson_metadata.certification_level
-      });
+      }));
       
       // In a full implementation, this would save to database
       // For now, just log the achievement
-    } catch (error) {
-      logger.warn('Could not save optimal lesson plan:', error);
+    } catch (error: unknown) {
+      logger.warn('Could not save optimal lesson plan:', error instanceof Error ? error.message : String(error));
     }
   }
 
@@ -1411,7 +1411,7 @@ export class PedagogicalOptimizationService extends BaseService {
           ]
         }
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         healthy: false,
         details: {

@@ -177,8 +177,8 @@ export class PedagogicalPlanningService extends BaseService {
         pedagogical_plan: pedagogicalPlan,
         etfo_lesson_plan_data: etfoLessonPlan
       };
-    } catch (error) {
-      logger.error('Error creating optimal pedagogical plan:', error);
+    } catch (error: unknown) {
+      logger.error('Error creating optimal pedagogical plan:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }

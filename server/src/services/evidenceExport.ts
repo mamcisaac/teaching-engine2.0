@@ -174,8 +174,8 @@ export const exportStudentEvidence = async (
       includedItems
     };
 
-  } catch (error) {
-    logger.error('Failed to export student evidence:', error);
+  } catch (error: unknown) {
+    logger.error('Failed to export student evidence:', error instanceof Error ? error.message : String(error));
     return {
       success: false,
       message: `Export failed: ${(error as Error).message}`,
@@ -207,7 +207,7 @@ const generateStudentEvidencePDF = async (
   });
 
   const chunks: Buffer[] = [];
-  doc.on('data', chunk => chunks.push(chunk));
+  doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
   // Header
   doc.fontSize(20).text('Student Evidence Portfolio', { align: 'center' });
@@ -396,8 +396,8 @@ Questions? Please feel free to contact me!
         const fileName = `${new Date(artifact.dateCollected).toISOString().split('T')[0]}_${artifact.fileName}`;
         
         archive.file(fullPath, { name: `${typeFolder}/${fileName}` });
-      } catch (error) {
-        logger.warn(`Could not add file to zip: ${artifact.filePath}`, error);
+      } catch (error: unknown) {
+        logger.warn(`Could not add file to zip: ${artifact.filePath}`, error instanceof Error ? error.message : String(error));
       }
     }
   }
@@ -472,8 +472,8 @@ export const exportClassSummary = async (
       }
     };
 
-  } catch (error) {
-    logger.error('Failed to export class summary:', error);
+  } catch (error: unknown) {
+    logger.error('Failed to export class summary:', error instanceof Error ? error.message : String(error));
     return {
       success: false,
       message: `Export failed: ${(error as Error).message}`,
@@ -495,7 +495,7 @@ const generateClassSummaryPDF = async (
 
   const doc = new PDFDocument({ size: 'LETTER', margins: 50 });
   const chunks: Buffer[] = [];
-  doc.on('data', chunk => chunks.push(chunk));
+  doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
   // Header
   doc.fontSize(20).text('Grade 1 French Immersion - Class Learning Highlights', { align: 'center' });

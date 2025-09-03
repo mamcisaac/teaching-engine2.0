@@ -175,8 +175,8 @@ export const importStudentsFromCSV = async (
 
         logger.info(`Imported student: ${student.firstName} ${student.lastName} (${student.studentNumber || 'no number'})`);
 
-      } catch (error) {
-        logger.error(`Failed to import row ${rowNumber}:`, error);
+      } catch (error: unknown) {
+        logger.error(`Failed to import row ${rowNumber}:`, error instanceof Error ? error.message : String(error));
         result.errors.push({
           row: rowNumber,
           error: (error as Error).message,
@@ -190,8 +190,8 @@ export const importStudentsFromCSV = async (
 
     logger.info(`CSV import completed: ${result.imported} imported, ${result.failed} failed`);
 
-  } catch (error) {
-    logger.error('CSV parsing failed:', error);
+  } catch (error: unknown) {
+    logger.error('CSV parsing failed:', error instanceof Error ? error.message : String(error));
     result.success = false;
     result.errors.push({
       row: 0,
@@ -257,7 +257,7 @@ export const validateCSVFormat = (csvBuffer: Buffer): {
       errors.push(`CSV contains ${rowCount} students. Maximum recommended is 35 for a single class.`);
     }
 
-  } catch (error) {
+  } catch (error: unknown) {
     errors.push(`Invalid CSV format: ${(error as Error).message}`);
   }
 

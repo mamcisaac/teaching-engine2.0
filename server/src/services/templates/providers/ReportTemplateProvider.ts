@@ -14,7 +14,7 @@ export class ReportTemplateProvider extends TemplateProvider {
     super('ReportTemplateProvider');
     try {
       this.loadTemplates();
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Failed to load report templates:', error as string | undefined);
     }
   }

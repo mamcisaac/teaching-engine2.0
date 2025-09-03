@@ -195,8 +195,8 @@ export class CrossCurricularEngineService extends BaseService {
 
       // Sort by connection strength and implementation feasibility
       return this.rankConnectionOpportunities(opportunities, parameters.time_frame);
-    } catch (error) {
-      logger.error('Error identifying cross-curricular connections:', error);
+    } catch (error: unknown) {
+      logger.error('Error identifying cross-curricular connections:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -292,8 +292,8 @@ export class CrossCurricularEngineService extends BaseService {
       };
 
       return thematicUnit;
-    } catch (error) {
-      logger.error('Error generating thematic unit:', error);
+    } catch (error: unknown) {
+      logger.error('Error generating thematic unit:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -351,8 +351,8 @@ export class CrossCurricularEngineService extends BaseService {
         assessment_methods: assessmentMethods,
         french_language_supports: frenchLanguageSupports
       };
-    } catch (error) {
-      logger.error('Error creating integrated activity:', error);
+    } catch (error: unknown) {
+      logger.error('Error creating integrated activity:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -1096,7 +1096,7 @@ export class CrossCurricularEngineService extends BaseService {
           supportedSubjects: Object.keys(this.connectionMatrix)
         }
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         healthy: false,
         details: {

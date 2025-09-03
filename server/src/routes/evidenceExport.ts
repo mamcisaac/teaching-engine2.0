@@ -117,15 +117,15 @@ router.get('/student/:id',
           const tempDir = path.dirname(result.filePath!);
           try {
             await fs.rmdir(tempDir);
-          } catch (error) {
+          } catch (error: unknown) {
             // Directory might not be empty, that's okay
           }
-        } catch (error) {
+        } catch (error: unknown) {
           console.warn('Failed to clean up temp export file:', error);
         }
       }, 5000); // Clean up after 5 seconds
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Student evidence export failed:', error);
       res.status(500).json({ error: 'Failed to export student evidence' });
     }
@@ -191,15 +191,15 @@ router.get('/class-summary',
           const tempDir = path.dirname(result.filePath!);
           try {
             await fs.rmdir(tempDir);
-          } catch (error) {
+          } catch (error: unknown) {
             // Directory might not be empty, that's okay
           }
-        } catch (error) {
+        } catch (error: unknown) {
           console.warn('Failed to clean up temp export file:', error);
         }
       }, 5000);
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Class summary export failed:', error);
       res.status(500).json({ error: 'Failed to export class summary' });
     }
@@ -278,7 +278,7 @@ router.get('/options',
           timeframe: '90days' // Last 90 days default
         }
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to get export options:', error);
       res.status(500).json({ error: 'Failed to get export options' });
     }
@@ -353,7 +353,7 @@ router.post('/bulk',
           } else {
             results.push({ studentId: student.id, success: false, error: result.message });
           }
-        } catch (error) {
+        } catch (error: unknown) {
           results.push({ 
             studentId: student.id, 
             success: false, 
@@ -399,12 +399,12 @@ ${results.map(r =>
         try {
           await fs.unlink(zipPath);
           await fs.rmdir(tempDir);
-        } catch (error) {
+        } catch (error: unknown) {
           console.warn('Failed to clean up bulk export files:', error);
         }
       }, 5000);
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Bulk export failed:', error);
       res.status(500).json({ error: 'Failed to export evidence for multiple students' });
     }

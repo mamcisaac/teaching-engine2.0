@@ -191,8 +191,8 @@ export const checkQuotaBeforeUpload = async (
     
     return { allowed: true };
     
-  } catch (error) {
-    logger.error('Quota check failed:', error);
+  } catch (error: unknown) {
+    logger.error('Quota check failed:', error instanceof Error ? error.message : String(error));
     // Fail open - allow upload if quota check fails
     return { allowed: true };
   }
@@ -347,8 +347,8 @@ export const monitorQuotaUsage = async (userId: number): Promise<void> => {
       }
     }
     
-  } catch (error) {
-    logger.error('Quota monitoring failed:', error);
+  } catch (error: unknown) {
+    logger.error('Quota monitoring failed:', error instanceof Error ? error.message : String(error));
   }
 };
 

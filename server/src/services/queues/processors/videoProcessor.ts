@@ -169,8 +169,8 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
       processingTime
     };
     
-  } catch (error) {
-    logger.error(`Video job ${job.id} failed`, error);
+  } catch (error: unknown) {
+    logger.error(`Video job ${job.id} failed`, error instanceof Error ? error.message : String(error));
     
     // Cleanup temp files on error
     await fs.unlink(tempVideoPath).catch(() => {});

@@ -130,8 +130,8 @@ export class AssessmentFirstPlanningService extends BaseService {
 
       logger.info('Assessment-first plan created successfully');
       return assessmentPlan;
-    } catch (error) {
-      logger.error('Error creating assessment-first plan:', error);
+    } catch (error: unknown) {
+      logger.error('Error creating assessment-first plan:', error instanceof Error ? error.message : String(error));
       throw error;
     }
   }
@@ -800,8 +800,8 @@ export class AssessmentFirstPlanningService extends BaseService {
       });
 
       logger.info('Assessment plan saved to database for future reference');
-    } catch (error) {
-      logger.warn('Could not save assessment plan to database:', error);
+    } catch (error: unknown) {
+      logger.warn('Could not save assessment plan to database:', error instanceof Error ? error.message : String(error));
       // Don't throw error - this is not critical for the planning process
     }
   }
@@ -857,7 +857,7 @@ export class AssessmentFirstPlanningService extends BaseService {
           serviceStatus: 'operational'
         }
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         healthy: false,
         details: {

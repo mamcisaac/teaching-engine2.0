@@ -139,7 +139,7 @@ export class S3StorageService implements IStorageService {
         lastModified: response.LastModified || new Date(),
         metadata: response.Metadata
       };
-    } catch (error) {
+    } catch (error: unknown) {
       if ((error as any).name === 'NotFound' || (error as any).$metadata?.httpStatusCode === 404) {
         return null;
       }
@@ -159,7 +159,7 @@ export class S3StorageService implements IStorageService {
       });
 
       return signedUrl;
-    } catch (error) {
+    } catch (error: unknown) {
       // Fallback to public URL if signing fails
       return this.getPublicUrl(key);
     }
@@ -174,7 +174,7 @@ export class S3StorageService implements IStorageService {
 
       await this.s3Client.send(deleteCommand);
       return true;
-    } catch (error) {
+    } catch (error: unknown) {
       if ((error as any).name === 'NotFound' || (error as any).$metadata?.httpStatusCode === 404) {
         return false; // File doesn't exist
       }
@@ -191,7 +191,7 @@ export class S3StorageService implements IStorageService {
 
       await this.s3Client.send(headCommand);
       return true;
-    } catch (error) {
+    } catch (error: unknown) {
       if ((error as any).name === 'NotFound' || (error as any).$metadata?.httpStatusCode === 404) {
         return false;
       }

@@ -142,7 +142,7 @@ const validateStudentAccess = async (studentId: string, userId: number): Promise
       }
     });
     return !!student;
-  } catch (error) {
+  } catch (error: unknown) {
     return false;
   }
 };
@@ -154,7 +154,7 @@ const validateOutcomeAccess = async (outcomeId: string): Promise<boolean> => {
       where: { id: outcomeId }
     });
     return !!outcome;
-  } catch (error) {
+  } catch (error: unknown) {
     return false;
   }
 };
@@ -272,7 +272,7 @@ router.post('/update',
         outcome: progress.outcome,
         isLevelChange
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Mastery update error:', error);
       res.status(500).json({ error: 'Failed to update mastery progress' });
     }
@@ -398,7 +398,7 @@ router.post('/batch-update',
           lastAssessmentDate: r.lastAssessmentDate
         }))
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Batch mastery update error:', error);
       res.status(500).json({ error: 'Failed to update mastery records' });
     }
@@ -539,7 +539,7 @@ router.get('/student/:studentId',
         },
         progressBySubject: Object.values(progressBySubject)
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Student mastery retrieval error:', error);
       res.status(500).json({ error: 'Failed to retrieve student mastery data' });
     }
@@ -681,7 +681,7 @@ router.get('/overview/:studentId',
         },
         progressBySubject: Object.values(progressBySubject)
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Student mastery retrieval error:', error);
       res.status(500).json({ error: 'Failed to retrieve student mastery data' });
     }
@@ -820,7 +820,7 @@ router.get('/outcome/:outcomeId',
         },
         studentProgress
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Outcome mastery retrieval error:', error);
       res.status(500).json({ error: 'Failed to retrieve outcome mastery data' });
     }
@@ -1053,7 +1053,7 @@ router.get('/analytics',
         evidenceBreakdown,
         timeframe: parseInt(timeframe as string)
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Mastery analytics error:', error);
       res.status(500).json({ error: 'Failed to retrieve mastery analytics' });
     }
@@ -1103,7 +1103,7 @@ router.post('/share-with-parents',
         sharedCount: updateResult.count,
         totalRequested: progressIds.length
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Parent sharing error:', error);
       res.status(500).json({ error: 'Failed to mark progress as shared' });
     }
@@ -1141,7 +1141,7 @@ router.delete('/:progressId',
       }
 
       res.status(204).send();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Progress archiving error:', error);
       res.status(500).json({ error: 'Failed to archive progress record' });
     }

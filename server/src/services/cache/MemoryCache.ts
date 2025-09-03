@@ -97,7 +97,7 @@ export class MemoryCache {
 
       this.stats.sets++;
       return true;
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Memory cache set error', error as Error, { key });
       this.stats.errors++;
       return false;
