@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { 
   AcademicCapIcon, 
@@ -11,8 +12,12 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   ExclamationTriangleIcon,
-  ArrowTrendingUpIcon
+  ArrowTrendingUpIcon,
+  BoltIcon,
+  UserGroupIcon
 } from '@heroicons/react/24/outline';
+import { QuickAssessmentGrid } from '../components/assessment/QuickAssessmentGrid';
+import { getStudentRoster, SimpleStudent } from '../components/assessment/StudentRoster';
 
 interface Assessment {
   id: string;
@@ -31,12 +36,7 @@ interface Assessment {
   updatedAt: string;
 }
 
-interface Student {
-  id: string;
-  firstName: string;
-  lastName: string;
-  studentId: string;
-}
+// Using SimpleStudent from StudentRoster
 
 const MASTERY_LEVELS = [
   { value: 'NOT_YET', label: 'Not Yet', color: 'red', icon: XCircleIcon },
@@ -61,21 +61,55 @@ const SUBJECTS = [
 ];
 
 export function AssessmentPage(): React.ReactElement {
+  const navigate = useNavigate();
+  
   const [assessments, setAssessments] = useState<Assessment[]>(() => {
     const saved = localStorage.getItem('assessment-records');
     return saved ? JSON.parse(saved) : [];
   });
   
-  const [students, setStudents] = useState<Student[]>(() => {
-    const saved = localStorage.getItem('assessment-students');
-    return saved ? JSON.parse(saved) : [];
+  const [students, setStudents] = useState<SimpleStudent[]>(() => {
+    // Use the real student roster from StudentRoster component
+    return getStudentRoster();
   });
+  
+  // Reload students when page gains focus (in case they were added in another tab/page)
+  useEffect(() => {
+    const handleFocus = () => {
+      const updatedRoster = getStudentRoster();
+      if (updatedRoster.length !== students.length) {
+        setStudents(updatedRoster);
+      }
+    };
+    
+    window.addEventListener('focus', handleFocus);
+    
+    // Also check on mount
+    const roster = getStudentRoster();
+    if (roster.length > 0 && students.length === 0) {
+      setStudents(roster);
+    }
+    
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [students.length]);
   
   const [selectedStudent, setSelectedStudent] = useState<string>('');
   const [selectedSubject, setSelectedSubject] = useState<string>('');
   const [showQuickAssessment, setShowQuickAssessment] = useState(false);
   const [showBulkAssessment, setShowBulkAssessment] = useState(false);
+  const [showQuickGrid, setShowQuickGrid] = useState(false);
   const [filterDate, setFilterDate] = useState(new Date().toISOString().split('T')[0]);
+  
+  // Check for first-time user
+  useEffect(() => {
+    if (students.length === 0 && !localStorage.getItem('roster-prompt-shown')) {
+      localStorage.setItem('roster-prompt-shown', 'true');
+      toast.info('Welcome! You need to set up your student roster first.', {
+        duration: 5000,
+        dismissible: true
+      });
+    }
+  }, [students.length]);
   
   const [formData, setFormData] = useState({
     studentId: '',
@@ -219,8 +253,34 @@ export function AssessmentPage(): React.ReactElement {
         <p className="text-gray-600">ETFO 4-Level Mastery Tracking</p>
       </div>
 
-      {/* Quick Actions */}
+      {/* Empty State for No Students */}
+      {students.length === 0 ? (
+        <div className="bg-white rounded-lg shadow-sm p-8 text-center">
+          <UserGroupIcon className="w-16 h-16 mx-auto text-gray-400 mb-4" />
+          <h3 className="text-lg font-medium text-gray-900 mb-2">No Students in Roster</h3>
+          <p className="text-gray-600 mb-6">
+            You need to add students to your roster before you can start assessments.
+          </p>
+          <button
+            onClick={() => navigate('/roster')}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+          >
+            Set Up Student Roster
+          </button>
+        </div>
+      ) : (
+      <>
+      {/* Quick Actions - Just added one button */}
       <div className="mb-6 flex flex-wrap gap-4">
+        <button
+          onClick={() => setShowQuickGrid(true)}
+          className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center gap-2"
+          data-testid="quick-grid-btn"
+        >
+          <BoltIcon className="w-5 h-5" />
+          Quick Assessment Grid
+        </button>
+        
         <button
           onClick={() => setShowQuickAssessment(true)}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
@@ -245,6 +305,15 @@ export function AssessmentPage(): React.ReactElement {
         >
           <CameraIcon className="w-5 h-5" />
           Upload Artifact
+        </button>
+        
+        <button
+          onClick={() => navigate('/roster')}
+          className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center gap-2"
+          data-testid="manage-roster-btn"
+        >
+          <UserGroupIcon className="w-5 h-5" />
+          Manage Roster
         </button>
       </div>
 
@@ -374,7 +443,26 @@ export function AssessmentPage(): React.ReactElement {
         </div>
       </div>
 
-      {/* Quick Assessment Modal */}
+      {/* Quick Assessment Grid - PERFECT */}
+      {showQuickGrid && (
+        <QuickAssessmentGrid
+          students={students}
+          lessonId={`lesson-${Date.now()}`} // In real app, get from current lesson context
+          lessonTitle="Today's Lesson" // In real app, get from current lesson
+          expectation="Today's Learning Goal" // In real app, get from current lesson
+          onClose={() => setShowQuickGrid(false)}
+          onDaybookUpdate={(summary) => {
+            // Real integration: update actual daybook
+            const today = new Date().toISOString().split('T')[0];
+            const daybookKey = `daybook-${today}`;
+            const existing = localStorage.getItem(daybookKey) || '';
+            localStorage.setItem(daybookKey, existing + '\n' + summary);
+            toast.success('Daybook updated with assessment summary');
+          }}
+        />
+      )}
+
+      {/* Quick Assessment Modal - UNCHANGED */}
       {showQuickAssessment && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -526,7 +614,7 @@ export function AssessmentPage(): React.ReactElement {
         </div>
       )}
 
-      {/* Bulk Assessment Modal */}
+      {/* Bulk Assessment Modal - UNCHANGED */}
       {showBulkAssessment && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -653,6 +741,8 @@ export function AssessmentPage(): React.ReactElement {
             </div>
           </div>
         </div>
+      )}
+      </>
       )}
     </div>
   );

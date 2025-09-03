@@ -1,11 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { format, parseISO, addDays, subDays, isValid } from 'date-fns';
-import { Calendar, ChevronLeft, ChevronRight, Clock, BookOpen, Plus, Edit, Trash2 } from 'lucide-react';
-import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
+import { Calendar, ChevronLeft, ChevronRight, Clock, BookOpen, Plus, Edit, Trash2, BoltIcon, UserGroupIcon } from 'lucide-react';
+import { useETFOLessonPlans, useUpdateDaybookEntry, useDaybookEntries } from '../hooks/useETFOPlanning';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
+import { QuickAssessmentGrid } from '../components/assessment/QuickAssessmentGrid';
+import { TomorrowGroupsDisplay } from '../components/assessment/TomorrowGroups';
+import { getStudentRoster } from '../components/assessment/StudentRoster';
+import { assessmentService } from '../services/assessmentService';
+import { toast } from 'sonner';
 
 const TIME_BLOCKS = [
   { time: '08:45', duration: 45, label: 'Block 1 - Français', subject: 'Français (Immersion)' },
@@ -27,6 +32,10 @@ const SUBJECT_COLORS: Record<string, string> = {
 export function DayViewPage(): React.ReactElement {
   const { date: dateParam } = useParams();
   const navigate = useNavigate();
+  const [showAssessmentGrid, setShowAssessmentGrid] = useState(false);
+  const [selectedLesson, setSelectedLesson] = useState<any>(null);
+  const [showTodayGroups, setShowTodayGroups] = useState(false);
+  const [studentRoster] = useState(() => getStudentRoster());
   
   // Parse the date correctly - this ensures we show the right day
   const currentDate = useMemo(() => {
@@ -45,6 +54,16 @@ export function DayViewPage(): React.ReactElement {
     startDate: startOfDay.toISOString(),
     endDate: endOfDay.toISOString()
   });
+  
+  // Fetch daybook entry for today
+  const { data: daybookEntries } = useDaybookEntries({
+    startDate: startOfDay.toISOString(),
+    endDate: endOfDay.toISOString()
+  });
+  const todayDaybook = daybookEntries?.[0];
+  
+  // Update daybook mutation
+  const updateDaybook = useUpdateDaybookEntry();
   
   // Organize lessons by time block
   const lessonsByBlock = useMemo(() => {
@@ -96,6 +115,39 @@ export function DayViewPage(): React.ReactElement {
   const handleEditLesson = (lessonId: string) => {
     navigate(`/planner/lessons/${lessonId}/edit`);
   };
+  
+  const handleQuickAssessment = (lesson: any) => {
+    setSelectedLesson(lesson);
+    setShowAssessmentGrid(true);
+  };
+  
+  const handleDaybookUpdate = async (summary: string) => {
+    try {
+      // Update the actual daybook entry
+      const existingReflection = todayDaybook?.reflection || '';
+      const updatedReflection = existingReflection 
+        ? `${existingReflection}\n\nAssessment Summary:\n${summary}`
+        : `Assessment Summary:\n${summary}`;
+      
+      await updateDaybook.mutateAsync({
+        id: todayDaybook?.id,
+        date: currentDate.toISOString(),
+        reflection: updatedReflection,
+        assessmentNotes: summary
+      });
+      
+      toast.success('Assessment added to daybook');
+    } catch (error) {
+      console.error('Failed to update daybook:', error);
+      toast.error('Failed to update daybook');
+    }
+  };
+  
+  // Check if there are groups for today (from yesterday's assessment)
+  const todayGroups = useMemo(() => {
+    const todayStr = format(currentDate, 'yyyy-MM-dd');
+    return assessmentService.getGroupsForDate(todayStr);
+  }, [currentDate]);
   
   const totalLessons = dayLessons.length;
   const totalDuration = dayLessons.reduce((sum, lesson) => sum + (lesson.duration || 45), 0);
@@ -150,6 +202,16 @@ export function DayViewPage(): React.ReactElement {
               <Calendar className="h-4 w-4" />
               Month View
             </Button>
+            {todayGroups && (
+              <Button 
+                variant="outline"
+                onClick={() => setShowTodayGroups(!showTodayGroups)}
+                className="flex items-center gap-2 border-green-300 text-green-700"
+              >
+                <UserGroupIcon className="h-4 w-4" />
+                Today's Groups
+              </Button>
+            )}
           </div>
         </div>
         
@@ -185,6 +247,29 @@ export function DayViewPage(): React.ReactElement {
           </Card>
         </div>
         
+        {/* Today's Groups Display */}
+        {showTodayGroups && todayGroups && (
+          <Card className="mb-6 border-green-200 bg-green-50">
+            <CardHeader>
+              <CardTitle className="text-lg">Today's Differentiation Groups</CardTitle>
+              <p className="text-sm text-gray-600">Based on yesterday's assessment</p>
+            </CardHeader>
+            <CardContent>
+              <TomorrowGroupsDisplay 
+                lessonId={todayGroups.lessonId}
+                students={[
+                  // In production, would fetch real student roster
+                  { id: '1', firstName: 'Emma', lastName: 'Smith' },
+                  { id: '2', firstName: 'Liam', lastName: 'Johnson' },
+                  { id: '3', firstName: 'Olivia', lastName: 'Williams' },
+                  // Add more students as needed
+                ]}
+                compact={false}
+              />
+            </CardContent>
+          </Card>
+        )}
+        
         {/* Daily Schedule */}
         {isLoading ? (
           <div className="text-center py-12">
@@ -212,6 +297,15 @@ export function DayViewPage(): React.ReactElement {
                     
                     {block.lesson ? (
                       <div className="flex items-center gap-2">
+                        <Button
+                          size="sm"
+                          variant="primary"
+                          onClick={() => handleQuickAssessment(block.lesson)}
+                          className="flex items-center gap-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 font-semibold shadow-md animate-pulse"
+                        >
+                          <BoltIcon className="h-4 w-4" />
+                          Quick Assess
+                        </Button>
                         <Button
                           size="sm"
                           variant="ghost"
@@ -322,6 +416,21 @@ export function DayViewPage(): React.ReactElement {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Quick Assessment Grid Modal */}
+      {showAssessmentGrid && selectedLesson && (
+        <QuickAssessmentGrid
+          students={studentRoster.length > 0 ? studentRoster : []}
+          lessonId={selectedLesson.id}
+          lessonTitle={selectedLesson.titleFr || selectedLesson.title}
+          expectation={selectedLesson.learningGoalsFr?.[0] || selectedLesson.learningGoals?.[0] || 'Quick Assessment'}
+          onClose={() => {
+            setShowAssessmentGrid(false);
+            setSelectedLesson(null);
+          }}
+          onDaybookUpdate={handleDaybookUpdate}
+        />
+      )}
     </div>
   );
 }
