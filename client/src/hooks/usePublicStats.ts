@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { apiClient } from '../utils/apiClient';
+
+import { apiClient } from '../api/core/client';
 
 export interface PublicStats {
   unitCount: number;
