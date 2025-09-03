@@ -1,7 +1,7 @@
 import { schedule } from 'node-cron';
 
 import { logger } from '../logger';
-import { formatErrorForLogging } from '../utils/typeGuards';
+import { formatErrorForLogging } from '../shared/utils/typeGuards';
 /**
  * Send notifications to remind teachers about upcoming equipment bookings.
  */

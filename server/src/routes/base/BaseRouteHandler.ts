@@ -11,7 +11,7 @@ import type { z } from 'zod';
 import { logger } from '../../logger';
 import { prisma } from '../../prisma';
 import type { BaseService } from '../../services/base/BaseService';
-import { formatErrorForLogging } from '../../utils/typeGuards';
+import { formatErrorForLogging } from '../../shared/utils/typeGuards';
 
 import type { AuthenticatedRequest } from './middleware';
 

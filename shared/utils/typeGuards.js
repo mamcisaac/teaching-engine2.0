@@ -33,6 +33,16 @@ exports.isArrayOf = isArrayOf;
 exports.isOptional = isOptional;
 exports.validate = validate;
 exports.validateAsync = validateAsync;
+exports.isAISuggestion = isAISuggestion;
+exports.isReactEvent = isReactEvent;
+exports.isInputEvent = isInputEvent;
+exports.isSelectEvent = isSelectEvent;
+exports.isCurriculumExpectation = isCurriculumExpectation;
+exports.isLessonPlan = isLessonPlan;
+exports.isUnitPlan = isUnitPlan;
+exports.isSchoolInfo = isSchoolInfo;
+exports.isValidDateString = isValidDateString;
+exports.isDateLike = isDateLike;
 // Basic existence check
 function isDefined(value) {
     return value !== null && value !== undefined;
@@ -170,3 +180,67 @@ async function validateAsync(value, validator, transform, errorMessage = 'Async 
         };
     }
 }
+function isAISuggestion(value) {
+    if (!isObject(value)) {
+        return false;
+    }
+    const validTypes = ['goals', 'bigIdeas', 'activities', 'materials', 'assessments', 'reflections'];
+    return (hasProperty(value, 'type') &&
+        isString(value.type) &&
+        validTypes.includes(value.type) &&
+        hasProperty(value, 'suggestions') &&
+        isArrayOf(value.suggestions, isString) &&
+        (!hasProperty(value, 'rationale') || isOptional(value.rationale, isString)));
+}
+// Event handler type guards for React events
+function isReactEvent(value) {
+    return isObject(value) && hasProperty(value, 'target');
+}
+function isInputEvent(value) {
+    return (isReactEvent(value) &&
+        isObject(value.target) &&
+        hasProperty(value.target, 'value') &&
+        isString(value.target.value));
+}
+function isSelectEvent(value) {
+    return (isReactEvent(value) &&
+        isObject(value.target) &&
+        hasProperty(value.target, 'value') &&
+        isString(value.target.value));
+}
+function isCurriculumExpectation(value) {
+    return (isObject(value) &&
+        hasProperty(value, 'id') && isString(value.id) &&
+        hasProperty(value, 'code') && isString(value.code) &&
+        hasProperty(value, 'description') && isString(value.description) &&
+        hasProperty(value, 'content') && isString(value.content));
+}
+function isLessonPlan(value) {
+    return (isObject(value) &&
+        hasProperty(value, 'title') && isString(value.title) &&
+        hasProperty(value, 'date') && (isString(value.date) || value.date instanceof Date) &&
+        hasProperty(value, 'duration') && isValidNumber(value.duration) &&
+        (!hasProperty(value, 'expectations') || isOptional(value.expectations, (arr) => isArrayOf(arr, isString))));
+}
+function isUnitPlan(value) {
+    return (isObject(value) &&
+        hasProperty(value, 'title') && isString(value.title) &&
+        hasProperty(value, 'subject') && isString(value.subject) &&
+        hasProperty(value, 'grade') && isValidNumber(value.grade));
+}
+function isSchoolInfo(value) {
+    return (isObject(value) &&
+        (!hasProperty(value, 'name') || isOptional(value.name, isString)) &&
+        (!hasProperty(value, 'board') || isOptional(value.board, isString)));
+}
+// Date/Time validation
+function isValidDateString(value) {
+    if (!isString(value))
+        return false;
+    const date = new Date(value);
+    return !isNaN(date.getTime());
+}
+function isDateLike(value) {
+    return value instanceof Date || isValidDateString(value);
+}
+//# sourceMappingURL=typeGuards.js.map

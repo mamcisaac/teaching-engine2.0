@@ -8,13 +8,13 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/input';
+import { Input } from '../components/ui/Input';
 import { Badge } from '../components/ui/Badge';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 import { toast } from 'sonner';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '../utils/api';
+import { apiClient } from '../api/core/client';
 
 interface Lesson {
   id: string;
@@ -143,7 +143,7 @@ export function ScheduleEditor(): React.ReactElement {
 
   const updateSchedule = useMutation({
     mutationFn: async (updates: Array<{ lessonId: string; date: string }>) => {
-      const response = await api.patch('/api/schedule/batch-update', { updates });
+      const response = await apiClient.patch('/api/schedule/batch-update', { updates });
       return response.data;
     },
     onSuccess: () => {

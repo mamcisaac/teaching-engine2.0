@@ -3,7 +3,7 @@
  * Extends BaseRouteHandler with ETFO lesson plan-specific business logic
  */
 
-import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '../../../shared/utils/typeGuards';
+import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '../shared/utils/typeGuards';
 import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';

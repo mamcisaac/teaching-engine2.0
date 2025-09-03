@@ -3,7 +3,7 @@
  * Extends BaseRouteHandler with templates-specific business logic
  */
 
-import { isDefined, isObject, isArray, hasProperty, isString, isValidNumber } from '../../../shared/utils/typeGuards';
+import { isDefined, isObject, isArray, hasProperty, isString, isValidNumber } from '../shared/utils/typeGuards';
 import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
@@ -11,7 +11,7 @@ import { z } from 'zod';
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
 import type { TemplateCreateData, TemplateUpdateData } from '../types/routes';
-import { isValidStringProperty, isNumber } from '../utils/typeGuards';
+import { isValidStringProperty, isNumber } from '../shared/utils/typeGuards';
 
 import type { AuthenticatedRequest, CrudOperations } from './base/BaseRouteHandler';
 import { BaseRouteHandler } from './base/BaseRouteHandler';

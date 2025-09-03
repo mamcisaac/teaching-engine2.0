@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import { isDefined, isErrorLike } from '../../../shared/utils/typeGuards';
+import { isDefined, isErrorLike } from '../shared/utils/typeGuards';
 import type { Request, Response, NextFunction } from 'express';
 import NodeCache from 'node-cache';
 
