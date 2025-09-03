@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import type { RenderResult } from '@testing-library/react';
 import { renderWithProviders } from './test-providers';
 import type { CustomRenderOptions } from './test-providers';
 import { logger } from '../utils/logger';
@@ -17,6 +18,19 @@ export interface MigrationConfig {
   logDifferences?: boolean;
   tolerateSlowTests?: boolean;
   maxResponseTime?: number;
+}
+
+// Test result interface
+interface TestResult {
+  testName: string;
+  mockResult?: unknown;
+  realResult?: unknown;
+  differences?: Array<{
+    path: string;
+    mockValue: unknown;
+    realValue: unknown;
+  }>;
+  performance?: { mock: number; real: number };
 }
 
 // Migration phase detector
@@ -37,18 +51,8 @@ export function detectMigrationPhase(): MigrationConfig['phase'] {
  * Allows tests to gradually move from mock to real implementations
  */
 export class TestMigrationHelper {
-  private config: MigrationConfig;
-  private testResults: Array<{
-    testName: string;
-    mockResult?: unknown;
-    realResult?: unknown;
-    differences?: Array<{
-      path: string;
-      mockValue: unknown;
-      realValue: unknown;
-    }>;
-    performance?: { mock: number; real: number };
-  }> = [];
+  public config: MigrationConfig;
+  public testResults: TestResult[] = [];
 
   constructor(config: Partial<MigrationConfig> = {}) {
     this.config = {
@@ -68,7 +72,7 @@ export class TestMigrationHelper {
     ui: React.ReactElement,
     testName: string,
     options: CustomRenderOptions = {},
-  ) {
+  ): Promise<RenderResult> {
     const phase = this.config.phase;
 
     switch (phase) {
@@ -177,8 +181,19 @@ export class TestMigrationHelper {
         if (this.config.enableComparison && mockImplementation) {
           return this.compareApiImplementations(apiCall, mockImplementation, testName);
         }
-      // Fall through to real implementation
-
+        // Continue to real implementation
+        {
+          const start = performance.now();
+          const result = await apiCall();
+          const duration = performance.now() - start;
+          
+          if (duration > (this.config.maxResponseTime ?? 5000)) {
+            console.warn(`Slow API call in ${testName}: ${duration}ms`);
+          }
+          
+          return result;
+        }
+      
       case 'real': {
         const start = performance.now();
         const result = await apiCall();
@@ -390,10 +405,24 @@ export class TestMigrationHelper {
   }
 }
 
+interface MigrationUtils {
+  createMigrationTest: (config?: Partial<MigrationConfig>) => {
+    render: (ui: React.ReactElement, testName: string, options?: CustomRenderOptions) => Promise<RenderResult>;
+    testApi: <T>(apiCall: () => Promise<T>, testName: string, mockImpl?: () => Promise<T>) => Promise<T>;
+    report: () => { config: MigrationConfig; testResults: TestResult[]; };
+    cleanup: () => void;
+  };
+  shouldUseRealImplementations: () => boolean;
+  detectCurrentPhase: () => MigrationConfig['phase'];
+  logMigrationInfo: (testName: string, details?: Record<string, unknown>) => void;
+  skipIfNotReal: (testFn: () => void, reason?: string) => any;
+  expectPerformance: <T>(operation: () => Promise<T>, maxTime?: number, operationName?: string) => Promise<T>;
+}
+
 /**
  * Simple migration utilities for common scenarios
  */
-export const migrationUtils = {
+export const migrationUtils: MigrationUtils = {
   /**
    * Create a migration-aware test function
    */
@@ -407,7 +436,10 @@ export const migrationUtils = {
       testApi: <T>(apiCall: () => Promise<T>, testName: string, mockImpl?: () => Promise<T>) =>
         helper.testApiWithMigration(apiCall, testName, mockImpl),
 
-      report: () => helper.generateReport(),
+      report: () => ({
+        config: helper.config,
+        testResults: helper.testResults,
+      }),
       cleanup: () => helper.cleanup(),
     };
   },
@@ -446,6 +478,21 @@ export const migrationUtils = {
     }
 
     return result;
+  },
+
+  /**
+   * Detect current migration phase from environment
+   */
+  detectCurrentPhase: (): MigrationConfig['phase'] => {
+    return detectMigrationPhase();
+  },
+
+  /**
+   * Log migration information for debugging
+   */
+  logMigrationInfo: (testName: string, details?: Record<string, unknown>) => {
+    const phase = detectMigrationPhase();
+    console.log(`[Migration Test - ${phase}] ${testName}`, details ?? {});
   },
 };
 

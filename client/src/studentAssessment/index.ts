@@ -19,48 +19,53 @@ export * from '../constants/studentAssessment';
 export { ASSESSMENT_CONSTANTS } from '../constants/studentAssessment';
 
 // Re-export commonly used items for convenience
+// Import types from types module
+export type {
+  Student,
+  StudentArtifact,
+  StudentOutcomeProgress,
+  MasteryLevel,
+  EvidenceType,
+  ArtifactType
+} from '../types/studentAssessment';
+
+// Import API functions from services module
 export {
-  // Core types
-  type Student,
-  type StudentArtifact,
-  type StudentOutcomeProgress,
-  type MasteryLevel,
-  type EvidenceType,
-  type ArtifactType,
-  
-  // API functions
   studentsAPI,
   artifactsAPI,
   masteryAPI,
-  analyticsAPI,
-  
-  // Hooks - Students
+  analyticsAPI
+} from '../services/studentAssessmentAPI';
+
+// Import hooks from hooks module
+export {
+  // Students
   useStudents,
   useStudent,
   useCreateStudent,
   useUpdateStudent,
-  
-  // Hooks - Artifacts
+  // Artifacts
   useArtifacts,
   useUploadArtifact,
   useCreateNote,
   useTagArtifactWithOutcome,
-  
-  // Hooks - Mastery
+  // Mastery
   useStudentMastery,
   useUpdateMastery,
   useOptimisticMasteryUpdate,
   useMasteryAnalytics,
-  
-  // Constants
+  // Query keys
+  QUERY_KEYS
+} from '../hooks/useStudentAssessment';
+
+// Import constants and utilities from constants module
+export {
   MASTERY_LEVELS,
   EVIDENCE_TYPES,
   ARTIFACT_TYPES,
-  
-  // Utilities
   formatFileSize,
   calculateMasteryPercentage,
   formatStudentName,
   getMasteryColor,
-  getMasteryLabel,
+  getMasteryLabel
 } from '../constants/studentAssessment';

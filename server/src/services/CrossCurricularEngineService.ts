@@ -101,8 +101,6 @@ export interface ConnectionOpportunity {
 }
 
 export class CrossCurricularEngineService extends BaseService {
-  private prisma: PrismaClient;
-  
   // Subject connection matrix - defines natural connections between subjects
   private readonly connectionMatrix = {
     'Français (Immersion)': {
@@ -127,9 +125,8 @@ export class CrossCurricularEngineService extends BaseService {
     }
   };
 
-  constructor(prisma: PrismaClient) {
+  constructor(_prisma: PrismaClient) {
     super('CrossCurricularEngineService');
-    this.prisma = prisma;
   }
 
   /**
@@ -362,7 +359,7 @@ export class CrossCurricularEngineService extends BaseService {
   private analyzeNaturalConnections(
     primarySubject: string,
     availableSubjects: string[],
-    objectives: string[]
+    _objectives: string[]
   ): ConnectionOpportunity[] {
     const connections: ConnectionOpportunity[] = [];
     const subjectConnections = this.connectionMatrix[primarySubject as keyof typeof this.connectionMatrix];
@@ -393,7 +390,7 @@ export class CrossCurricularEngineService extends BaseService {
 
   private identifySkillTransferOpportunities(
     primarySubject: string,
-    objectives: string[],
+    _objectives: string[],
     grade: number
   ): ConnectionOpportunity[] {
     const transferableSkills = this.getTransferableSkills(primarySubject, grade);
@@ -459,7 +456,7 @@ export class CrossCurricularEngineService extends BaseService {
   }
 
   private async discoverThematicLinks(
-    primarySubject: string,
+    _primarySubject: string,
     expectations: string[],
     interests: string[]
   ): Promise<ConnectionOpportunity[]> {
@@ -504,8 +501,8 @@ export class CrossCurricularEngineService extends BaseService {
 
   private identifyRealWorldApplications(
     primarySubject: string,
-    objectives: string[],
-    culturalContexts: string[]
+    _objectives: string[],
+    _culturalContexts: string[]
   ): ConnectionOpportunity[] {
     const realWorldConnections: ConnectionOpportunity[] = [];
     
@@ -612,7 +609,7 @@ export class CrossCurricularEngineService extends BaseService {
     return activities;
   }
 
-  private getTransferableSkills(subject: string, grade: number): Array<{
+  private getTransferableSkills(subject: string, _grade: number): Array<{
     name: string;
     rationale: string;
     activities: string[];
@@ -647,7 +644,7 @@ export class CrossCurricularEngineService extends BaseService {
     return skillsBySubject[subject] || [];
   }
 
-  private findSubjectsForSkill(skill: { name: string; rationale: string; activities: string[]; }, grade: number): string[] {
+  private findSubjectsForSkill(skill: { name: string; rationale: string; activities: string[]; }, _grade: number): string[] {
     const skillSubjectMap: Record<string, string[]> = {
       'Communication': ['Français (Immersion)', 'English Language Arts', 'Études sociales'],
       'Problem Solving': ['Mathématiques', 'Sciences et technologie'],
@@ -686,7 +683,7 @@ export class CrossCurricularEngineService extends BaseService {
     return vocab1.filter(word => vocab2.includes(word));
   }
 
-  private findSubjectsForTheme(theme: string, expectations: string[]): string[] {
+  private findSubjectsForTheme(theme: string, _expectations: string[]): string[] {
     const themeSubjectMap: Record<string, string[]> = {
       'Our Community': ['Études sociales', 'Français (Immersion)', 'Mathématiques'],
       'Growing and Changing': ['Sciences et technologie', 'Français (Immersion)', 'Arts'],
@@ -726,7 +723,7 @@ export class CrossCurricularEngineService extends BaseService {
     return activities;
   }
 
-  private generateRealWorldActivities(scenarioName: string, subjects: string[]): string[] {
+  private generateRealWorldActivities(scenarioName: string, _subjects: string[]): string[] {
     const activitiesByScenario: Record<string, string[]> = {
       'Planning a Class Garden': [
         'Research plants that grow in our climate (Science)',
@@ -757,7 +754,7 @@ export class CrossCurricularEngineService extends BaseService {
 
   // Methods for thematic unit generation
 
-  private generateThematicBigIdea(themeName: string, subjects: string[], french = false): string {
+  private generateThematicBigIdea(themeName: string, _subjects: string[], french = false): string {
     if (french) {
       return `L'exploration du thème "${themeName}" nous aide à comprendre les connections dans notre monde et développer nos compétences à travers plusieurs matières.`;
     }
@@ -766,8 +763,8 @@ export class CrossCurricularEngineService extends BaseService {
 
   private generateThematicEssentialQuestions(
     themeName: string, 
-    subjects: string[], 
-    grade: number, 
+    _subjects: string[], 
+    _grade: number, 
     french = false
   ): string[] {
     if (french) {
@@ -787,7 +784,7 @@ export class CrossCurricularEngineService extends BaseService {
   private planSubjectIntegration(
     subjects: string[],
     expectations: Record<string, string[]>,
-    durationWeeks: number
+    _durationWeeks: number
   ): ThematicUnit['subject_integration'] {
     return subjects.map(subject => ({
       subject_name: subject,
@@ -821,7 +818,7 @@ export class CrossCurricularEngineService extends BaseService {
     return focus[subject] || ['Understanding', 'Application', 'Communication'];
   }
 
-  private designCulminatingActivities(themeName: string, subjects: string[], grade: number): CulminatingActivity[] {
+  private designCulminatingActivities(themeName: string, subjects: string[], _grade: number): CulminatingActivity[] {
     return [
       {
         activity_name: `${themeName} Showcase`,
@@ -872,7 +869,7 @@ export class CrossCurricularEngineService extends BaseService {
   private async createSubjectPairConnection(
     subject1: string,
     subject2: string,
-    expectations: Record<string, string[]>,
+    _expectations: Record<string, string[]>,
     themeName: string
   ): Promise<CrossCurricularConnection | null> {
     const connectionData = (this.connectionMatrix as any)[subject1]?.[subject2];
@@ -976,7 +973,7 @@ export class CrossCurricularEngineService extends BaseService {
   private selectMaterialsForIntegration(
     availableResources: string[],
     subjects: string[],
-    theme: string
+    _theme: string
   ): string[] {
     const basicMaterials = ['Paper', 'Pencils', 'Markers', 'Chart paper'];
     const subjectSpecific = subjects.flatMap(subject => this.getSubjectMaterials(subject));
@@ -994,7 +991,7 @@ export class CrossCurricularEngineService extends BaseService {
     return materials[subject] || [];
   }
 
-  private createIntegratedDifferentiation(subjects: string[], grade: number): string[] {
+  private createIntegratedDifferentiation(_subjects: string[], _grade: number): string[] {
     return [
       'Multiple ways to participate in each subject area',
       'Visual supports for all subjects',
@@ -1005,8 +1002,8 @@ export class CrossCurricularEngineService extends BaseService {
   }
 
   private createIntegratedAssessment(
-    subjects: string[],
-    objectives: Record<string, string[]>
+    _subjects: string[],
+    _objectives: Record<string, string[]>
   ): string[] {
     return [
       'Observation of student work across all subjects',
@@ -1016,7 +1013,7 @@ export class CrossCurricularEngineService extends BaseService {
     ];
   }
 
-  private createFrenchLanguageSupports(subjects: string[], frenchImmersionFocus: boolean): string[] {
+  private createFrenchLanguageSupports(_subjects: string[], frenchImmersionFocus: boolean): string[] {
     if (!frenchImmersionFocus) return [];
     
     return [
@@ -1031,7 +1028,7 @@ export class CrossCurricularEngineService extends BaseService {
 
   // Remaining helper methods for thematic unit planning
 
-  private planFamilyEngagement(themeName: string, culturalContexts: string[]): string[] {
+  private planFamilyEngagement(themeName: string, _culturalContexts: string[]): string[] {
     return [
       `Share family experiences related to ${themeName}`,
       'Invite family members to share expertise',
@@ -1041,7 +1038,7 @@ export class CrossCurricularEngineService extends BaseService {
     ];
   }
 
-  private planCommunityConnections(themeName: string, subjects: string[]): string[] {
+  private planCommunityConnections(themeName: string, _subjects: string[]): string[] {
     return [
       `Invite community members related to ${themeName}`,
       'Plan field trips that connect to multiple subjects',
@@ -1054,7 +1051,7 @@ export class CrossCurricularEngineService extends BaseService {
   private compileResourceRequirements(
     subjectIntegration: ThematicUnit['subject_integration'],
     activities: CulminatingActivity[],
-    connections: CrossCurricularConnection[]
+    _connections: CrossCurricularConnection[]
   ): string[] {
     const resources = new Set<string>();
     

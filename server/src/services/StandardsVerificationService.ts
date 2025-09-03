@@ -466,7 +466,7 @@ export class StandardsVerificationService extends BaseService {
   private async analyzePlannedCoverage(
     userId: number,
     academicYear: string,
-    allExpectations: any[]
+    _allExpectations: any[]
   ): Promise<CoverageInstance[]> {
     const coverage: CoverageInstance[] = [];
 
@@ -493,7 +493,7 @@ export class StandardsVerificationService extends BaseService {
     // Extract coverage instances from all planning levels
     for (const lrp of longRangePlans) {
       // Long-range level expectations
-      for (const exp of lrp.expectations) {
+      for (const _exp of lrp.expectations) {
         coverage.push({
           date: lrp.createdAt,
           context: 'lesson',
@@ -505,7 +505,7 @@ export class StandardsVerificationService extends BaseService {
 
       // Unit level expectations
       for (const unit of lrp.unitPlans) {
-        for (const exp of unit.expectations) {
+        for (const _exp of unit.expectations) {
           const estimatedTime = unit.estimatedHours ? unit.estimatedHours * 60 : 0;
           coverage.push({
             unit_id: unit.id,
@@ -519,7 +519,7 @@ export class StandardsVerificationService extends BaseService {
 
         // Lesson level expectations
         for (const lesson of unit.lessonPlans) {
-          for (const exp of lesson.expectations) {
+          for (const _exp of lesson.expectations) {
             coverage.push({
               lesson_id: lesson.id,
               unit_id: unit.id,
@@ -615,7 +615,7 @@ export class StandardsVerificationService extends BaseService {
   private async identifyGapsAndOverlaps(
     allExpectations: any[],
     currentCoverage: CoverageInstance[],
-    temporalAnalysis: TemporalDistribution[]
+    _temporalAnalysis: TemporalDistribution[]
   ): Promise<{ gaps: CoverageGap[]; overlaps: CoverageOverlap[]; }> {
     const gaps: CoverageGap[] = [];
     const overlaps: CoverageOverlap[] = [];
@@ -814,7 +814,7 @@ export class StandardsVerificationService extends BaseService {
 
   private calculateBalanceMetrics(
     coverage: CoverageInstance[],
-    temporal: TemporalDistribution[]
+    _temporal: TemporalDistribution[]
   ): CurriculumCoverageReport['balance_metrics'] {
     // Calculate subject time balance
     const subjectTime: Record<string, number> = {};
@@ -856,7 +856,7 @@ export class StandardsVerificationService extends BaseService {
     };
   }
 
-  private async verifyCurriculumFidelity(planningData: any): Promise<QualityVerificationResult['curriculum_fidelity']> {
+  private async verifyCurriculumFidelity(_planningData: any): Promise<QualityVerificationResult['curriculum_fidelity']> {
     return {
       expectation_accuracy: 0.95, // Would be calculated based on actual expectation matching
       strand_balance: 0.85,
@@ -959,10 +959,10 @@ export class StandardsVerificationService extends BaseService {
     return 'important';
   }
 
-  private generateGapSolutions(expectation: any): GapSolution[] {
+  private generateGapSolutions(_expectation: any): GapSolution[] {
     return [{
       solution_type: 'add_lesson',
-      description: `Create focused lesson for expectation ${expectation.code}`,
+      description: `Create focused lesson for expectation ${_expectation.code}`,
       implementation_complexity: 'moderate',
       time_required: '2-3 hours planning + 45-60 minutes instruction',
       resource_requirements: ['Curriculum resources', 'Assessment materials'],
@@ -991,17 +991,17 @@ export class StandardsVerificationService extends BaseService {
     return Math.max(score, 0) / 100;
   }
 
-  private assessResearchAlignment(data: any): number {
+  private assessResearchAlignment(_data: any): number {
     let score = 100;
     // Check for research-based practices
-    if (!data.priorKnowledgeCheck) score -= 15;
-    if (!data.activeEngagement) score -= 15;
-    if (!data.formativeCheckpoints) score -= 15;
-    if (!data.reflectionOpportunities) score -= 15;
-    if (!data.realWorldConnections) score -= 10;
-    if (!data.culturalResponsiveness) score -= 10;
-    if (!data.multipleIntelligences) score -= 10;
-    if (!data.ubdAlignment) score -= 10;
+    if (!_data.priorKnowledgeCheck) score -= 15;
+    if (!_data.activeEngagement) score -= 15;
+    if (!_data.formativeCheckpoints) score -= 15;
+    if (!_data.reflectionOpportunities) score -= 15;
+    if (!_data.realWorldConnections) score -= 10;
+    if (!_data.culturalResponsiveness) score -= 10;
+    if (!_data.multipleIntelligences) score -= 10;
+    if (!_data.ubdAlignment) score -= 10;
     return Math.max(score, 0) / 100;
   }
 
@@ -1077,7 +1077,7 @@ export class StandardsVerificationService extends BaseService {
     return !!(data.accommodations || data.modifications || data.differentiationStrategies);
   }
 
-  private checkGradeAppropriateness(data: any, grade: number): { issues: string[]; suggestions: string[]; penalty: number; } {
+  private checkGradeAppropriateness(data: any, _grade: number): { issues: string[]; suggestions: string[]; penalty: number; } {
     return this.assessGradeAppropriateness(data);
   }
 
@@ -1104,15 +1104,15 @@ export class StandardsVerificationService extends BaseService {
     return Math.max(count, 1);
   }
 
-  private hasComplexVocabulary(data: any): boolean {
+  private hasComplexVocabulary(_data: any): boolean {
     // Simple check for vocabulary complexity - in real implementation would use NLP
-    const text = (data.description || '') + (data.learningGoals || '');
+    const text = (_data.description || '') + (_data.learningGoals || '');
     const complexWords = text.match(/\b\w{8,}\b/g) || [];
     return complexWords.length > 5;
   }
 
-  private hasHandsOnActivities(data: any): boolean {
-    const text = ((data.action || '') + (data.materials || [])).toLowerCase();
+  private hasHandsOnActivities(_data: any): boolean {
+    const text = ((_data.action || '') + (_data.materials || [])).toLowerCase();
     const handsOnIndicators = ['manipulatives', 'hands-on', 'build', 'create', 'explore', 'touch', 'move'];
     return handsOnIndicators.some(indicator => text.includes(indicator));
   }
@@ -1130,7 +1130,7 @@ export class StandardsVerificationService extends BaseService {
   }
 
   private async analyzeQualityIndicators(
-    data: any,
+    _data: any,
     pedagogical: any,
     curriculum: any,
     feasibility: any
@@ -1315,7 +1315,7 @@ export class StandardsVerificationService extends BaseService {
         subject,
         strand_name: strand,
         importance_weight: this.getStrandImportance(strand),
-        expectation_coverage: expectations.map(exp => ({
+        expectation_coverage: (expectations as any[]).map((exp: any) => ({
           expectation_code: exp.code,
           expectation_description: exp.description,
           coverage_instances: currentCoverage.filter(c => 
@@ -1339,22 +1339,22 @@ export class StandardsVerificationService extends BaseService {
     return strandAnalysis;
   }
 
-  private getStrandImportance(strand: string): 'critical' | 'important' | 'supplementary' {
+  private getStrandImportance(_strand: string): 'critical' | 'important' | 'supplementary' {
     const criticalStrands = [
       'Number Sense', 'Communication orale', 'Reading', 'Basic Literacy',
       'Living Things', 'Community and Environment'
     ];
     
-    if (criticalStrands.some(critical => strand.includes(critical))) {
+    if (criticalStrands.some(critical => _strand.includes(critical))) {
       return 'critical';
     }
     return 'important';
   }
 
-  private async saveCoverageReport(report: CurriculumCoverageReport, userId: number): Promise<void> {
+  private async saveCoverageReport(report: CurriculumCoverageReport, _userId: number): Promise<void> {
     try {
       // In a full implementation, this would save to database
-      logger.info(`Coverage report saved for user ${userId}:`, JSON.stringify({
+      logger.info(`Coverage report saved for user ${_userId}:`, JSON.stringify({
         coverage_percentage: report.overall_coverage.coverage_percentage,
         gaps_found: report.coverage_gaps.length,
         recommendations: report.recommendations.length

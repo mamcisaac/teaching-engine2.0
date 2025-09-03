@@ -111,7 +111,7 @@ export const generateStudentReport = async (
  */
 export const generateClassReport = async (
   userId: number,
-  options: ReportOptions = {}
+  _options: ReportOptions = {}
 ): Promise<Buffer> => {
   logger.info(`Generating class overview report for teacher ${userId}`);
   
@@ -133,14 +133,14 @@ export const generateClassReport = async (
   // Create PDF document
   const doc = new PDFDocument({
     size: 'LETTER',
-    landscape: true,
+    layout: 'landscape' as any, // PDFKit types may not include this option
     margins: {
       top: 50,
       bottom: 50,
       left: 50,
       right: 50
     }
-  });
+  } as any);
 
   const chunks: Buffer[] = [];
   doc.on('data', (chunk: Buffer) => chunks.push(chunk));

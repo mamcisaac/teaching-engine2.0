@@ -22,7 +22,7 @@ const csvUpload = multer({
     fileSize: 1024 * 1024, // 1MB max for CSV
     files: 1
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (_req, file, cb) => {
     if (file.mimetype === 'text/csv' || file.originalname.endsWith('.csv')) {
       cb(null, true);
     } else {
@@ -141,7 +141,7 @@ router.post('/import/csv',
  */
 router.get('/template/csv',
   requireAuth,
-  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  async (_req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const template = generateCSVTemplate();
       

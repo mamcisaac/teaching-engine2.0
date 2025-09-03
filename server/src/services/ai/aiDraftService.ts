@@ -358,9 +358,7 @@ Key pedagogical enhancements:
     ].join('\n');
   }
 
-  private convertOptimizedResources(perfectPlan: any): string {
-    const resources = perfectPlan.implementation_package.resource_organization;
-    
+  private convertOptimizedResources(_perfectPlan: any): string {
     return [
       'Comprehensive Resource Organization:',
       '',
@@ -382,9 +380,7 @@ Key pedagogical enhancements:
     ].join('\n');
   }
 
-  private convertOptimizedProfessionalGoals(perfectPlan: any): string {
-    const profDev = perfectPlan.implementation_package.professional_development;
-    
+  private convertOptimizedProfessionalGoals(_perfectPlan: any): string {
     return [
       'Research-Based Professional Development Goals:',
       '',

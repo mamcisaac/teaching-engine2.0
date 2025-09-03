@@ -2,7 +2,6 @@ import type { PrismaClient } from '@prisma/client';
 
 import { logger } from '../logger';
 import type { ETFOLessonPlanCreateData } from './ETFOLessonPlanService';
-import { ETFOLessonPlanService } from './ETFOLessonPlanService';
 
 import { BaseService } from './base/BaseService';
 
@@ -86,13 +85,9 @@ export interface PedagogicalPlan {
 }
 
 export class PedagogicalPlanningService extends BaseService {
-  private etfoService: ETFOLessonPlanService;
-  private prisma: PrismaClient;
 
-  constructor(prisma: PrismaClient) {
+  constructor(_prisma: PrismaClient) {
     super('PedagogicalPlanningService');
-    this.prisma = prisma;
-    this.etfoService = new ETFOLessonPlanService(prisma);
   }
 
   /**
@@ -249,7 +244,7 @@ export class PedagogicalPlanningService extends BaseService {
   private async generateDifferentiationStrategies(
     subject: string,
     grade: number,
-    transferGoals: TransferGoals
+    _transferGoals: TransferGoals
   ): Promise<DifferentiationStrategy> {
     return {
       content: {
@@ -286,7 +281,7 @@ export class PedagogicalPlanningService extends BaseService {
   }
 
   // Helper methods for generating content
-  private extractEnduringUnderstandings(subject: string, expectations: string[]): string[] {
+  private extractEnduringUnderstandings(subject: string, _expectations: string[]): string[] {
     const understandings: Record<string, string[]> = {
       'Mathematics': [
         'Mathematical patterns and relationships help us understand and describe our world',
@@ -316,7 +311,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private generateEssentialQuestions(subject: string, grade: number, understandings: string[]): string[] {
+  private generateEssentialQuestions(subject: string, _grade: number, _understandings: string[]): string[] {
     const questions: Record<string, string[]> = {
       'Mathematics': [
         'How do patterns help us make predictions?',
@@ -341,7 +336,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private identifyTransferableSkills(subject: string, grade: number): string[] {
+  private identifyTransferableSkills(_subject: string, _grade: number): string[] {
     return [
       'Critical thinking and problem solving',
       'Communication and collaboration',
@@ -356,7 +351,7 @@ export class PedagogicalPlanningService extends BaseService {
     return expectations.map(exp => `Students will demonstrate understanding by ${exp.toLowerCase()}`);
   }
 
-  private createPerformanceTask(transferGoals: TransferGoals, subject: string, grade: number): AssessmentDesign['performance_task'] {
+  private createPerformanceTask(transferGoals: TransferGoals, subject: string, _grade: number): AssessmentDesign['performance_task'] {
     const scenarios: Record<string, string> = {
       'Mathematics': `You are a young architect designing a playground for your school. You need to create a design that uses geometric shapes and follows safety guidelines.`,
       'Français (Immersion)': `Vous êtes journaliste pour le journal de l'école. Vous devez écrire un article sur un événement important dans votre communauté.`,
@@ -372,7 +367,7 @@ export class PedagogicalPlanningService extends BaseService {
     };
   }
 
-  private generateAnalyticRubric(transferGoals: TransferGoals, task: AssessmentDesign['performance_task']): AssessmentDesign['rubric'] {
+  private generateAnalyticRubric(_transferGoals: TransferGoals, _task: AssessmentDesign['performance_task']): AssessmentDesign['rubric'] {
     return {
       criteria: [
         'Understanding of Key Concepts',
@@ -398,7 +393,7 @@ export class PedagogicalPlanningService extends BaseService {
     };
   }
 
-  private determineEvidenceTypes(subject: string): ('observation' | 'conversation' | 'product')[] {
+  private determineEvidenceTypes(_subject: string): ('observation' | 'conversation' | 'product')[] {
     return ['observation', 'conversation', 'product'];
   }
 
@@ -406,7 +401,7 @@ export class PedagogicalPlanningService extends BaseService {
     return `Students will understand that ${transferGoals.enduring_understandings[0]} and be able to ${transferGoals.transferable_skills.slice(0, 2).join(' and ')}.`;
   }
 
-  private createEngagementHooks(topic: string, grade: number): string[] {
+  private createEngagementHooks(topic: string, _grade: number): string[] {
     return [
       `Begin with a real-world problem or mystery related to ${topic}`,
       'Use multimedia presentation to spark curiosity',
@@ -416,7 +411,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private planGuidedExploration(topic: string, subject: string): string {
+  private planGuidedExploration(topic: string, _subject: string): string {
     return `Guide students through structured exploration of ${topic} using inquiry-based activities that build understanding progressively. Include both individual and collaborative work.`;
   }
 
@@ -428,7 +423,7 @@ export class PedagogicalPlanningService extends BaseService {
     return `Students will ${task.scenario} This allows them to demonstrate their understanding in an authentic context.`;
   }
 
-  private createDifferentiationStrategies(grade: number): string {
+  private createDifferentiationStrategies(_grade: number): string {
     return 'Provide multiple pathways for learning through varied content delivery, flexible grouping, and choice in how students demonstrate their learning.';
   }
 
@@ -438,7 +433,7 @@ export class PedagogicalPlanningService extends BaseService {
   }
 
   // Additional helper methods...
-  private getStrugglingLearnerSupports(subject: string, grade: number): string[] {
+  private getStrugglingLearnerSupports(_subject: string, _grade: number): string[] {
     return [
       'Visual supports and graphic organizers',
       'Chunked instructions and tasks',
@@ -448,7 +443,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private getAdvancedLearnerExtensions(subject: string, grade: number): string[] {
+  private getAdvancedLearnerExtensions(_subject: string, _grade: number): string[] {
     return [
       'Independent research projects',
       'Leadership roles in group work',
@@ -458,7 +453,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private getELLSupports(subject: string, grade: number): string[] {
+  private getELLSupports(_subject: string, _grade: number): string[] {
     return [
       'Visual vocabulary supports',
       'Bilingual resources when available',
@@ -468,7 +463,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private getSpecialNeedsAccommodations(subject: string, grade: number): string[] {
+  private getSpecialNeedsAccommodations(_subject: string, _grade: number): string[] {
     return [
       'Assistive technology as needed',
       'Modified physical environment',
@@ -478,11 +473,11 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private getLearningStyleOptions(subject: string): string[] {
+  private getLearningStyleOptions(_subject: string): string[] {
     return ['Visual', 'Auditory', 'Kinesthetic', 'Reading/Writing'];
   }
 
-  private getMultipleIntelligenceActivities(subject: string): string[] {
+  private getMultipleIntelligenceActivities(_subject: string): string[] {
     return [
       'Linguistic activities',
       'Mathematical-logical tasks',
@@ -495,7 +490,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private getGroupingStrategies(grade: number): string[] {
+  private getGroupingStrategies(_grade: number): string[] {
     return [
       'Flexible ability grouping',
       'Interest-based groups',
@@ -505,7 +500,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private getProductChoices(subject: string, grade: number): string[] {
+  private getProductChoices(_subject: string, _grade: number): string[] {
     return [
       'Written reports or stories',
       'Oral presentations',
@@ -516,7 +511,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private getTechnologyOptions(subject: string, grade: number): string[] {
+  private getTechnologyOptions(_subject: string, _grade: number): string[] {
     return [
       'Educational apps and games',
       'Digital presentation tools',
@@ -526,7 +521,7 @@ export class PedagogicalPlanningService extends BaseService {
     ];
   }
 
-  private getAuthenticAssessmentOptions(subject: string): string[] {
+  private getAuthenticAssessmentOptions(_subject: string): string[] {
     return [
       'Portfolio collections',
       'Performance tasks',
@@ -541,7 +536,7 @@ export class PedagogicalPlanningService extends BaseService {
     return `${hooks[0]} (${timeframe} minutes): Create curiosity and activate prior knowledge through engaging entry point.`;
   }
 
-  private createActionPhase(explore: string, exhibit: string, duration: number): string {
+  private createActionPhase(explore: string, _exhibit: string, duration: number): string {
     const timeframe = Math.floor(duration * 0.6);
     return `${explore} Students will actively engage with new learning through hands-on activities and guided practice (${timeframe} minutes).`;
   }
@@ -551,7 +546,7 @@ export class PedagogicalPlanningService extends BaseService {
     return `${reflect} Students consolidate learning through reflection and sharing (${timeframe} minutes).`;
   }
 
-  private generateSuccessCriteria(transferGoals: TransferGoals): string[] {
+  private generateSuccessCriteria(_transferGoals: TransferGoals): string[] {
     return [
       'I can explain the key concepts in my own words',
       'I can apply what I learned to solve new problems',
@@ -572,7 +567,7 @@ export class PedagogicalPlanningService extends BaseService {
     );
   }
 
-  private generateInterventionStrategies(subject: string): string[] {
+  private generateInterventionStrategies(_subject: string): string[] {
     return [
       'Re-teach key concepts using different approach',
       'Provide additional practice opportunities',
@@ -613,7 +608,7 @@ export class PedagogicalPlanningService extends BaseService {
     };
   }
 
-  private extractMaterials(plan: PedagogicalPlan): string[] {
+  private extractMaterials(_plan: PedagogicalPlan): string[] {
     return [
       'Chart paper and markers',
       'Technology tools as needed',
@@ -631,8 +626,8 @@ export class PedagogicalPlanningService extends BaseService {
    * Create a comprehensive unit plan using optimal pedagogical methods
    */
   async createOptimalUnitPlan(
-    longRangePlanId: string,
-    userId: number,
+    _longRangePlanId: string,
+    _userId: number,
     parameters: {
       subject: string;
       grade: number;

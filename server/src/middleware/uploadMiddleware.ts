@@ -127,8 +127,7 @@ export const createUploadMiddleware = (options: {
   const {
     maxFileSize = parseInt(process.env.UPLOAD_MAX_MB || '25') * 1024 * 1024,
     allowedTypes,
-    maxFiles = 10,
-    fieldName = 'artifacts'
+    maxFiles = 10
   } = options;
 
   return multer({

@@ -120,9 +120,6 @@ export class DataDrivenAnalysisEngine extends BaseService {
       // 5. Analyze progress indicators
       const progressIndicators = this.analyzeProgressIndicators(studentData);
 
-      // 6. Generate predictive insights
-      const predictiveInsights = this.generatePredictiveInsights(studentData, learningPatterns);
-
       const analysisReport: DataAnalysisReport = {
         analysis_date: new Date(),
         time_period: { start_date: startDate, end_date: endDate },
@@ -480,7 +477,7 @@ export class DataDrivenAnalysisEngine extends BaseService {
    */
   private generateInstructionalAdjustments(
     patterns: LearningPattern[],
-    dataPoints: StudentDataPoint[]
+    _dataPoints: StudentDataPoint[]
   ): InstructionalAdjustment[] {
     const adjustments: InstructionalAdjustment[] = [];
 
@@ -563,7 +560,7 @@ export class DataDrivenAnalysisEngine extends BaseService {
    */
   private createInterventionRecommendations(
     patterns: LearningPattern[],
-    dataPoints: StudentDataPoint[]
+    _dataPoints: StudentDataPoint[]
   ): InterventionRecommendation[] {
     const recommendations: InterventionRecommendation[] = [];
 
@@ -680,45 +677,6 @@ export class DataDrivenAnalysisEngine extends BaseService {
     };
   }
 
-  /**
-   * Generate predictive insights
-   */
-  private generatePredictiveInsights(
-    dataPoints: StudentDataPoint[],
-    patterns: LearningPattern[]
-  ): PredictiveInsight[] {
-    const insights: PredictiveInsight[] = [];
-
-    // Predict based on declining patterns
-    const decliningPatterns = patterns.filter(p => p.description.includes('declining'));
-    for (const pattern of decliningPatterns) {
-      insights.push({
-        insight_type: 'risk_identification',
-        confidence_score: pattern.confidence_level,
-        description: `Risk of continued decline in ${pattern.subject_area}`,
-        predicted_outcome: 'Students may fall further behind without intervention',
-        recommended_action: 'Implement immediate instructional adjustments and additional support',
-        timeline: '1-2 weeks',
-        monitoring_plan: 'Daily formative assessments and weekly progress reviews'
-      });
-    }
-
-    // Predict growth opportunities based on strengths
-    const strengthPatterns = patterns.filter(p => p.pattern_type === 'strength');
-    for (const pattern of strengthPatterns) {
-      insights.push({
-        insight_type: 'growth_opportunity',
-        confidence_score: pattern.confidence_level,
-        description: `Opportunity to build on strength in ${pattern.subject_area}`,
-        predicted_outcome: 'Students ready for more challenging content and leadership roles',
-        recommended_action: 'Provide extension activities and peer tutoring opportunities',
-        timeline: 'Next unit planning',
-        monitoring_plan: 'Monitor engagement and challenge level weekly'
-      });
-    }
-
-    return insights;
-  }
 
   /**
    * Get unique student count from data points

@@ -5,7 +5,7 @@ const router = Router();
 const prisma = new PrismaClient();
 
 // Public stats endpoint - no auth required for basic dashboard stats
-router.get('/stats', async (req, res) => {
+router.get('/stats', async (_req, res) => {
   try {
     // Get stats for Emily McIsaac (user ID 23) - the showcase user
     const EMILY_USER_ID = 23;

@@ -7,7 +7,6 @@ import { Router, Request, Response } from 'express';
 import { query, body, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
 import { logger } from '../logger';
-import { getClassAnalyticsOptimized, cachedQuery, invalidateUserCache } from '../services/performanceOptimizer';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -558,7 +557,7 @@ router.post('/export',
 /**
  * Helper function to generate CSV export
  */
-async function generateCSVExport(type: string, data: any, userId: number): Promise<string> {
+async function generateCSVExport(type: string, data: any, _userId: number): Promise<string> {
   let csvContent = '';
   
   if (type === 'class-overview') {

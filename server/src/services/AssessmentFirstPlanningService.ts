@@ -146,17 +146,6 @@ export class AssessmentFirstPlanningService extends BaseService {
     transfer_goals: string[];
     big_ideas: string[];
   }): Promise<AssessmentDesignPlan['performance_task']> {
-    // Get existing performance task templates for reference
-    const templates = await this.prisma.performanceTaskTemplate.findMany({
-      where: {
-        subject: parameters.subject,
-        gradeMin: { lte: parameters.grade },
-        gradeMax: { gte: parameters.grade }
-      },
-      orderBy: { timesUsed: 'desc' },
-      take: 5
-    });
-
     // Create task based on subject and grade-level appropriateness
     const taskScenarios = this.generateTaskScenarios(parameters);
     const selectedScenario = this.selectOptimalScenario(taskScenarios, parameters);
@@ -328,7 +317,7 @@ export class AssessmentFirstPlanningService extends BaseService {
    */
   private async generateAnalyticRubric(
     parameters: { learning_outcomes: string[]; transfer_goals: string[]; grade: number; },
-    performanceTask: AssessmentDesignPlan['performance_task']
+    _performanceTask: AssessmentDesignPlan['performance_task']
   ): Promise<AssessmentDesignPlan['rubric']> {
     // Create criteria based on learning outcomes
     const criteria = this.createAssessmentCriteria(parameters.learning_outcomes, parameters.grade);
@@ -512,7 +501,7 @@ export class AssessmentFirstPlanningService extends BaseService {
   /**
    * Plan evidence collection strategy
    */
-  private planEvidenceCollection(parameters: {
+  private planEvidenceCollection(_parameters: {
     subject: string;
     grade: number;
     unit_duration_weeks: number;
@@ -599,7 +588,7 @@ export class AssessmentFirstPlanningService extends BaseService {
   /**
    * Plan assessment differentiation strategies
    */
-  private planAssessmentDifferentiation(parameters: {
+  private planAssessmentDifferentiation(_parameters: {
     grade: number;
     subject: string;
   }): AssessmentDesignPlan['differentiation_considerations'] {

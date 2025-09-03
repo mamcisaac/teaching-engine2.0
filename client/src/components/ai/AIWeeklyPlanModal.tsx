@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { api } from '../../api';
 import { Dialog } from '../Dialog';
 
-interface AIWeeklyPlanModalProps {
+export interface AIWeeklyPlanModalProps {
   isOpen: boolean;
   onClose: () => void;
   weekStart: string;

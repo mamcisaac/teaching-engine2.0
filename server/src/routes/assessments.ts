@@ -6,7 +6,6 @@
 import { Router, Request, Response } from 'express';
 import { body, param, query, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
-import { ValidationError, NotFoundError } from '../services/errorHandling';
 
 const router = Router();
 const prisma = new PrismaClient();

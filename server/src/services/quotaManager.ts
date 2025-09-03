@@ -6,10 +6,8 @@
 
 import { PrismaClient } from '@teaching-engine/database';
 import { logger } from '../logger';
-import { getStorageService } from './storage';
 
 const prisma = new PrismaClient();
-const storageService = getStorageService();
 
 // 5GB limit per student
 export const QUOTA_BYTES = 5 * 1024 * 1024 * 1024;

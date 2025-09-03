@@ -4,7 +4,7 @@
  */
 
 import { Router, Request, Response, NextFunction } from 'express';
-import { body, param, query, validationResult } from 'express-validator';
+import { body, param, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
 import { 
   uploadStudentPhoto,
@@ -14,7 +14,6 @@ import {
   uploadMultipleArtifacts,
   mobileArtifactUpload,
   validateArtifactUpload,
-  validateArtifactWithOutcomes,
   validateQuickNote,
   handleUploadErrors
 } from '../middleware/upload';
@@ -22,7 +21,6 @@ import { getStorageService } from '../services/storage';
 import { getFileProcessingService } from '../services/fileProcessingService';
 import { 
   artifactUploadRateLimit,
-  artifactViewRateLimit,
   bulkOperationRateLimit 
 } from '../middleware/rateLimit/artifactRateLimit';
 
@@ -373,7 +371,6 @@ router.get('/',
         artifactType,
         outcomeId,
         search,
-        tags,
         dateFrom,
         dateTo,
         isPrivate,

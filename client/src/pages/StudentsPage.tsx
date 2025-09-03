@@ -148,9 +148,11 @@ export function StudentsPage(): React.ReactElement {
 
   const handleArchiveStudent = async (student: Student) => {
     try {
-      const updated = await studentsApi.update(student.id, { status: 'archived' });
+      // Note: The API doesn't support updating status through the update method
+      // This is a frontend-only operation for now
+      const archivedStudent: Student = { ...student, status: 'archived' };
       const updatedStudents = students.map(s =>
-        s.id === student.id ? updated : s
+        s.id === student.id ? archivedStudent : s
       );
       setStudents(updatedStudents);
       localStorage.setItem('assessment-students', JSON.stringify(updatedStudents));

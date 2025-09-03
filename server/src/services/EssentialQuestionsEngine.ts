@@ -311,7 +311,7 @@ export class EssentialQuestionsEngine extends BaseService {
   /**
    * Generate questions based on big ideas
    */
-  private generateBigIdeaQuestions(bigIdeas: string[], grade: number): EssentialQuestionAnalysis[] {
+  private generateBigIdeaQuestions(bigIdeas: string[], _grade: number): EssentialQuestionAnalysis[] {
     return bigIdeas.slice(0, 2).map(idea => ({
       question: `How does ${idea.toLowerCase()} affect our daily lives?`,
       category: 'analytical' as const,
@@ -327,7 +327,7 @@ export class EssentialQuestionsEngine extends BaseService {
    */
   private generateThinkingSkillQuestions(
     thinkingSkills: string[],
-    parameters: QuestionGenerationParameters
+    _parameters: QuestionGenerationParameters
   ): EssentialQuestionAnalysis[] {
     const questions: EssentialQuestionAnalysis[] = [];
 
@@ -499,10 +499,10 @@ export class EssentialQuestionsEngine extends BaseService {
    * Evaluate the quality of existing essential questions
    */
   async evaluateQuestionQuality(
-    question: string,
-    subject: string,
-    grade: number,
-    curriculum_context: string[]
+    _question: string,
+    _subject: string,
+    _grade: number,
+    _curriculum_context: string[]
   ): Promise<{
     quality_score: number;
     suggestions: string[];

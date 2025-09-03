@@ -1216,11 +1216,8 @@ export function SimpleLongRangePage(): React.ReactElement {
                   overarchingQuestions: optimizedDraft.overarchingQuestions,
                   assessmentOverview: optimizedDraft.assessmentOverview,
                   resourceNeeds: optimizedDraft.resourceNeeds,
-                  professionalGoals: optimizedDraft.professionalGoals,
-                  // Include optimization metadata
-                  optimizationScore: optimizedDraft.optimizationScore,
-                  pedagogicalCertification: optimizedDraft.pedagogicalCertification,
-                  lastOptimized: new Date().toISOString()
+                  professionalGoals: optimizedDraft.professionalGoals
+                  // Note: optimizationScore and pedagogicalCertification are not part of LongRangePlan interface
                 });
                 
                 toast.success(`Perfect plan generated! Optimization Score: ${optimizedDraft.optimizationScore}% (${optimizedDraft.pedagogicalCertification})`);

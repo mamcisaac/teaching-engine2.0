@@ -177,10 +177,10 @@ function CurriculumImportWizard({
     [toast, pollImportStatus],
   );
 
-  const handleConfirmImport = useCallback(async () => {
+  const handleConfirmImport = useCallback(async (): Promise<void> => {
     if (importId === null || reviewedData === null) {
-return;
-}
+      return;
+    }
 
     setIsConfirming(true);
     const token = localStorage.getItem('token');
@@ -207,15 +207,10 @@ return;
         description: `Successfully imported ${result.expectationsCount} curriculum expectations`,
       });
 
-      const timeoutId = setTimeout(() => {
+      setTimeout(() => {
         handleClose();
         onSuccess();
       }, 2000);
-      
-      // Store timeout ID for cleanup
-      return (): void => {
- clearTimeout(timeoutId); 
-};
     } catch (_error) {
       logger.error('Confirm import error:', _error);
       toast({
@@ -231,8 +226,8 @@ return;
   const handleExpectationEdit = useCallback(
     (index: number, field: keyof ParsedExpectation, value: string) => {
       if (reviewedData === null) {
-return;
-}
+        return;
+      }
 
       const updatedExpectations = [...reviewedData.expectations];
       updatedExpectations[index] = { ...updatedExpectations[index], [field]: value };

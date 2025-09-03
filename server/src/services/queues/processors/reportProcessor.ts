@@ -66,15 +66,18 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
       // Generate student report
       const reportData = await generateStudentReport(
         studentId,
-        options.subject,
-        options.includeArtifacts || false,
-        options.includeProgressChart || false,
-        options.startDate ? new Date(options.startDate) : undefined,
-        options.endDate ? new Date(options.endDate) : undefined
+        userId,
+        {
+          subject: options.subject,
+          includeArtifacts: options.includeArtifacts || false,
+          includeProgressChart: options.includeProgressChart || false,
+          startDate: options.startDate ? new Date(options.startDate) : undefined,
+          endDate: options.endDate ? new Date(options.endDate) : undefined
+        }
       );
 
-      reportBuffer = reportData.buffer as Buffer;
-      fileName = reportData.fileName;
+      reportBuffer = reportData;
+      fileName = `student-report-${studentId}.pdf`;
       reportMetadata = {
         studentId,
         studentName: `${student.firstName} ${student.lastName}`,
@@ -95,13 +98,15 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
       // Generate class report
       const reportData = await generateClassReport(
         userId,
-        options.subject,
-        options.startDate ? new Date(options.startDate) : undefined,
-        options.endDate ? new Date(options.endDate) : undefined
+        {
+          subject: options.subject,
+          startDate: options.startDate ? new Date(options.startDate) : undefined,
+          endDate: options.endDate ? new Date(options.endDate) : undefined
+        }
       );
 
-      reportBuffer = reportData.buffer as Buffer;
-      fileName = reportData.fileName;
+      reportBuffer = reportData;
+      fileName = `class-report-${userId}.pdf`;
       reportMetadata = {
         type: 'class',
         subject: options.subject,

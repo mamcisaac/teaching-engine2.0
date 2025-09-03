@@ -64,7 +64,7 @@ interface Plan {
   [key: string]: unknown;
 }
 
-interface GPTPlanningAgentProps {
+export interface GPTPlanningAgentProps {
   isOpen: boolean;
   onClose: () => void;
   onActivityGenerated?: (activities: Activity[]) => void;

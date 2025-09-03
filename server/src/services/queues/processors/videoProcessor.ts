@@ -46,7 +46,7 @@ export interface VideoJobResult {
  */
 export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobResult> => {
   const startTime = Date.now();
-  const { artifactId, buffer, originalName, mimeType } = job.data;
+  const { artifactId, buffer, originalName } = job.data;
   
   logger.info(`Processing video job ${job.id} for artifact ${artifactId}`);
   
@@ -241,7 +241,7 @@ export const generatePreviewClip = async (
       metadata: {
         artifactId,
         type: 'preview',
-        duration: 10
+        duration: '10'
       }
     }
   );
@@ -300,8 +300,8 @@ export const extractVideoFrames = async (
         folder: 'frames',
         metadata: {
           artifactId,
-          frameNumber: i,
-          timestamp
+          frameNumber: String(i),
+          timestamp: String(timestamp)
         }
       }
     );

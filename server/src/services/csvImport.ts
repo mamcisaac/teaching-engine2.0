@@ -64,7 +64,7 @@ export const importStudentsFromCSV = async (
       columns: true,
       skip_empty_lines: true,
       trim: true,
-      cast: (value, context) => {
+      cast: (value, _context) => {
         // Clean up values
         if (value === '' || value === 'null' || value === 'NULL') {
           return null;

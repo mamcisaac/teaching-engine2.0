@@ -73,7 +73,7 @@ export class LocalStorageService implements IStorageService {
   async uploadBuffer(
     buffer: Buffer,
     originalName: string,
-    mimeType: string,
+    _mimeType: string,
     options?: UploadOptions
   ): Promise<StorageResult> {
     const filename = options?.filename || this.generateSafeFilename(originalName, options?.folder);
@@ -140,7 +140,7 @@ export class LocalStorageService implements IStorageService {
     }
   }
 
-  async getFileUrl(relativePath: string, expiresIn?: number): Promise<string> {
+  async getFileUrl(relativePath: string, _expiresIn?: number): Promise<string> {
     // For local storage, we don't need signed URLs
     // The expiresIn parameter is ignored for local storage
     return this.getPublicUrl(relativePath);

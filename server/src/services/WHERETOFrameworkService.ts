@@ -6,7 +6,7 @@
 export class WHERETOFrameworkService {
   constructor() {}
   
-  async applyFramework(data: any) {
+  async applyFramework(_data: any) {
     // Stub implementation
     return {
       where: 'Where is the learning going?',

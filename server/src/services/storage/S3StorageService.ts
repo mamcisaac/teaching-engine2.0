@@ -11,7 +11,6 @@ import {
   HeadObjectCommand,
   CopyObjectCommand,
   ListObjectsV2Command,
-  GetObjectAttributesCommand
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import crypto from 'crypto';
@@ -154,7 +153,7 @@ export class S3StorageService implements IStorageService {
         Key: key
       });
 
-      const signedUrl = await getSignedUrl(this.s3Client, getCommand, {
+      const signedUrl = await getSignedUrl(this.s3Client as any, getCommand as any, {
         expiresIn
       });
 

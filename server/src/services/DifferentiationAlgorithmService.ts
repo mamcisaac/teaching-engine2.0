@@ -147,11 +147,9 @@ export interface TimeModification {
 }
 
 export class DifferentiationAlgorithmService extends BaseService {
-  private prisma: PrismaClient;
 
-  constructor(prisma: PrismaClient) {
+  constructor(_prisma: PrismaClient) {
     super('DifferentiationAlgorithmService');
-    this.prisma = prisma;
   }
 
   /**
@@ -245,7 +243,7 @@ export class DifferentiationAlgorithmService extends BaseService {
    * Analyze student readiness levels from data
    */
   private analyzeStudentReadiness(
-    studentData: StudentDataPoint[],
+    _studentData: StudentDataPoint[],
     patterns: LearningPattern[],
     subject: string
   ): {
@@ -258,14 +256,6 @@ export class DifferentiationAlgorithmService extends BaseService {
     // Filter patterns for current subject
     const subjectPatterns = patterns.filter(p => p.subject_area === subject);
     
-    // Filter data for current subject
-    const subjectData = studentData.filter(d => d.subject === subject);
-    
-    // Calculate average performance level for class
-    const avgPerformance = subjectData.length > 0 
-      ? subjectData.reduce((sum, d) => sum + d.performance_level, 0) / subjectData.length
-      : 3;
-
     // Estimate distribution based on performance data and patterns
     const concernPatterns = subjectPatterns.filter(p => p.pattern_type === 'concern');
     const strengthPatterns = subjectPatterns.filter(p => p.pattern_type === 'strength');
@@ -292,7 +282,7 @@ export class DifferentiationAlgorithmService extends BaseService {
    */
   private async generateContentDifferentiation(
     lessonContext: any,
-    readinessAnalysis: any
+    _readinessAnalysis: any
   ): Promise<DifferentiationPlan['content_differentiation']> {
     const subject = lessonContext.subject;
     const grade = lessonContext.grade;
@@ -386,8 +376,8 @@ export class DifferentiationAlgorithmService extends BaseService {
    */
   private generateInstructionalStrategies(
     subject: string,
-    grade: number,
-    readinessAnalysis: any
+    _grade: number,
+    _readinessAnalysis: any
   ): InstructionalStrategy[] {
     const baseStrategies: InstructionalStrategy[] = [];
 
@@ -497,7 +487,7 @@ export class DifferentiationAlgorithmService extends BaseService {
    */
   private generateGroupingStrategies(
     durationMinutes: number,
-    readinessAnalysis: any,
+    _readinessAnalysis: any,
     classProfile?: any
   ): GroupingStrategy[] {
     const strategies: GroupingStrategy[] = [];
@@ -549,7 +539,7 @@ export class DifferentiationAlgorithmService extends BaseService {
   /**
    * Generate scaffolding supports
    */
-  private generateScaffoldingSupports(subject: string, grade: number): ScaffoldingSupport[] {
+  private generateScaffoldingSupports(_subject: string, _grade: number): ScaffoldingSupport[] {
     return [
       {
         support_type: 'visual',
@@ -607,8 +597,8 @@ export class DifferentiationAlgorithmService extends BaseService {
    */
   private generateTechnologySupports(
     subject: string,
-    grade: number,
-    classProfile?: any
+    _grade: number,
+    _classProfile?: any
   ): TechnologySupport[] {
     const supports: TechnologySupport[] = [];
 
@@ -690,7 +680,7 @@ export class DifferentiationAlgorithmService extends BaseService {
   /**
    * Generate assessment options
    */
-  private generateAssessmentOptions(subject: string, grade: number): AssessmentOption[] {
+  private generateAssessmentOptions(_subject: string, _grade: number): AssessmentOption[] {
     return [
       {
         assessment_type: 'observation',
@@ -726,7 +716,7 @@ export class DifferentiationAlgorithmService extends BaseService {
   /**
    * Generate choice menus for student products
    */
-  private generateChoiceMenus(subject: string, learningObjective: string): ChoiceMenu[] {
+  private generateChoiceMenus(_subject: string, _learningObjective: string): ChoiceMenu[] {
     return [
       {
         category: 'Ways to Show Your Learning',
@@ -774,7 +764,7 @@ export class DifferentiationAlgorithmService extends BaseService {
   /**
    * Generate rubric modifications
    */
-  private generateRubricModifications(readinessAnalysis: any): RubricModification[] {
+  private generateRubricModifications(_readinessAnalysis: any): RubricModification[] {
     return [
       {
         modification_type: 'language_modified',
@@ -807,8 +797,8 @@ export class DifferentiationAlgorithmService extends BaseService {
    * Generate environment differentiation
    */
   private generateEnvironmentDifferentiation(
-    lessonContext: any,
-    classProfile?: any
+    _lessonContext: any,
+    _classProfile?: any
   ): DifferentiationPlan['environment_differentiation'] {
     return {
       physical_arrangements: [
@@ -853,10 +843,10 @@ export class DifferentiationAlgorithmService extends BaseService {
    * Ensure UDL alignment across all differentiation elements
    */
   private ensureUDLAlignment(
-    lessonContext: any,
-    contentDiff: any,
-    processDiff: any,
-    productDiff: any
+    _lessonContext: any,
+    _contentDiff: any,
+    _processDiff: any,
+    _productDiff: any
   ): DifferentiationPlan['udl_alignment'] {
     return {
       multiple_means_representation: [
@@ -907,7 +897,7 @@ export class DifferentiationAlgorithmService extends BaseService {
   }
 
   // Helper methods for content differentiation
-  private getGradeLevelConcepts(subject: string, objective: string): string[] {
+  private getGradeLevelConcepts(subject: string, _objective: string): string[] {
     const concepts: Record<string, string[]> = {
       'Mathematics': ['Number recognition 1-10', 'Basic counting', 'Simple patterns', 'Shape identification'],
       'Français (Immersion)': ['Letter sounds', 'Simple vocabulary', 'Sentence structure', 'Oral expression'],
@@ -917,7 +907,7 @@ export class DifferentiationAlgorithmService extends BaseService {
     return concepts[subject] || ['Key concept exploration', 'Vocabulary development'];
   }
 
-  private getGradeLevelVocabulary(subject: string): string[] {
+  private getGradeLevelVocabulary(_subject: string): string[] {
     return [
       'Pre-teach 3-5 key terms with visuals',
       'Provide vocabulary cards with pictures',
@@ -937,7 +927,7 @@ export class DifferentiationAlgorithmService extends BaseService {
     return skills[subject]?.[level] || ['Basic listening and following directions'];
   }
 
-  private getStandardMaterials(subject: string, grade: number): string[] {
+  private getStandardMaterials(subject: string, _grade: number): string[] {
     const materials: Record<string, string[]> = {
       'Mathematics': ['Counting bears', 'Number cards', 'Hundred chart', 'Pattern blocks'],
       'Français (Immersion)': ['Picture books', 'Vocabulary cards', 'Letter tiles', 'Audio recordings']
@@ -945,7 +935,7 @@ export class DifferentiationAlgorithmService extends BaseService {
     return materials[subject] || ['Paper', 'Pencils', 'Visual aids'];
   }
 
-  private getGradeLevelSuccessCriteria(objective: string): string[] {
+  private getGradeLevelSuccessCriteria(_objective: string): string[] {
     return [
       'I can explain the main idea in my own words',
       'I can use new vocabulary correctly',
@@ -955,8 +945,8 @@ export class DifferentiationAlgorithmService extends BaseService {
   }
 
   // Additional helper methods would continue here...
-  private getSimplifiedConcepts(subject: string, objective: string): string[] {
-    return this.getGradeLevelConcepts(subject, objective).slice(0, 2); // Fewer concepts, more focused
+  private getSimplifiedConcepts(subject: string, _objective: string): string[] {
+    return this.getGradeLevelConcepts(subject, _objective).slice(0, 2); // Fewer concepts, more focused
   }
 
   private getEnhancedVocabularySupport(subject: string): string[] {
@@ -968,11 +958,11 @@ export class DifferentiationAlgorithmService extends BaseService {
     ];
   }
 
-  private getFoundationalConcepts(subject: string, objective: string): string[] {
+  private getFoundationalConcepts(_subject: string, _objective: string): string[] {
     return ['Basic concept introduction', 'Simple vocabulary', 'Concrete examples only'];
   }
 
-  private getIntensiveVocabularySupport(subject: string): string[] {
+  private getIntensiveVocabularySupport(_subject: string): string[] {
     return [
       'Pre-teach all key vocabulary individually',
       'Use real objects and demonstrations',
@@ -981,7 +971,7 @@ export class DifferentiationAlgorithmService extends BaseService {
     ];
   }
 
-  private getModifiedSuccessCriteria(objective: string, level: string): string[] {
+  private getModifiedSuccessCriteria(_objective: string, level: string): string[] {
     if (level === 'below') {
       return [
         'I can show I understand using actions or pictures',
@@ -996,16 +986,16 @@ export class DifferentiationAlgorithmService extends BaseService {
     ];
   }
 
-  private getEnrichedConcepts(subject: string, objective: string): string[] {
+  private getEnrichedConcepts(subject: string, _objective: string): string[] {
     return [
-      ...this.getGradeLevelConcepts(subject, objective),
+      ...this.getGradeLevelConcepts(subject, _objective),
       'Advanced applications',
       'Cross-curricular connections',
       'Independent exploration opportunities'
     ];
   }
 
-  private getAdvancedVocabulary(subject: string): string[] {
+  private getAdvancedVocabulary(_subject: string): string[] {
     return [
       'Introduce related advanced vocabulary',
       'Explore word families and connections',
@@ -1013,7 +1003,7 @@ export class DifferentiationAlgorithmService extends BaseService {
     ];
   }
 
-  private getExtendedSuccessCriteria(objective: string): string[] {
+  private getExtendedSuccessCriteria(_objective: string): string[] {
     return [
       'I can teach others what I learned',
       'I can make connections to other subjects',
@@ -1022,15 +1012,15 @@ export class DifferentiationAlgorithmService extends BaseService {
     ];
   }
 
-  private getVisualSupports(subject: string): string[] {
+  private getVisualSupports(_subject: string): string[] {
     return ['Graphic organizers', 'Picture cards', 'Visual schedules', 'Anchor charts'];
   }
 
-  private getManipulativeSupports(subject: string): string[] {
+  private getManipulativeSupports(_subject: string): string[] {
     return ['Hands-on materials', 'Concrete objects', 'Tactile learning tools'];
   }
 
-  private getEnrichmentMaterials(subject: string): string[] {
+  private getEnrichmentMaterials(_subject: string): string[] {
     return ['Extension activities', 'Advanced resources', 'Independent research materials'];
   }
 

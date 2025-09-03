@@ -123,7 +123,13 @@ function manualChunks(id: string) {
     if (id.includes('/utils/')) {
       return 'app-utils';
     }
+    
+    // Default for other application code
+    return 'app-misc';
   }
+  
+  // Default for any other files
+  return undefined;
 }
 
 export default defineConfig(({ mode }) => {

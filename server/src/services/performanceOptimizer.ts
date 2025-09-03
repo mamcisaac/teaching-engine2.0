@@ -57,7 +57,7 @@ export const cachedQuery = async <T>(
           try {
             const freshData = await queryFn();
             await redis.setex(fullKey, config.ttl, JSON.stringify(freshData));
-            await redis.setex(staleKey, config.ttl + config.staleWhileRevalidate, JSON.stringify(freshData));
+            await redis.setex(staleKey, config.ttl + (config.staleWhileRevalidate || 0), JSON.stringify(freshData));
             logger.debug(`Background revalidation completed for ${fullKey}`);
           } catch (error: unknown) {
             logger.warn(`Background revalidation failed for ${fullKey}:`, error instanceof Error ? error.message : String(error));
@@ -80,7 +80,7 @@ export const cachedQuery = async <T>(
     
     return data;
   } catch (cacheError) {
-    logger.warn(`Cache error for ${fullKey}, falling back to direct query:`, cacheError);
+    logger.warn(`Cache error for ${fullKey}, falling back to direct query:`, cacheError instanceof Error ? cacheError.message : String(cacheError));
     return queryFn();
   }
 };

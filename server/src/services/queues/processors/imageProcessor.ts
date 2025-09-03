@@ -38,7 +38,7 @@ export interface ImageJobResult {
  */
 export const processImageJob = async (job: Job<ImageJobData>): Promise<ImageJobResult> => {
   const startTime = Date.now();
-  const { artifactId, buffer, originalName, mimeType } = job.data;
+  const { artifactId, buffer, originalName } = job.data;
   
   logger.info(`Processing image job ${job.id} for artifact ${artifactId}`);
   

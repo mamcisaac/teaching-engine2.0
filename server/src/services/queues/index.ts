@@ -157,7 +157,7 @@ const setupQueueMonitoring = (queue: Bull.Queue, queueName: string) => {
   setInterval(async () => {
     try {
       const counts = await queue.getJobCounts();
-      logger.info(`[${queueName}] Queue stats`, counts);
+      logger.info(`[${queueName}] Queue stats`, JSON.stringify(counts));
       
       // Alert if too many failed jobs
       if (counts.failed > 50) {

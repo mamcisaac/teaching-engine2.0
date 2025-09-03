@@ -178,8 +178,6 @@ export interface OptimizationReport {
 }
 
 export class PedagogicalOptimizationService extends BaseService {
-  private prisma: PrismaClient;
-  
   // Integrated specialized services
   private pedagogicalPlanningService: PedagogicalPlanningService;
   private essentialQuestionsEngine: EssentialQuestionsEngine;
@@ -192,7 +190,6 @@ export class PedagogicalOptimizationService extends BaseService {
 
   constructor(prisma: PrismaClient) {
     super('PedagogicalOptimizationService');
-    this.prisma = prisma;
     
     // Initialize all specialized services
     this.pedagogicalPlanningService = new PedagogicalPlanningService(prisma);
@@ -200,7 +197,7 @@ export class PedagogicalOptimizationService extends BaseService {
     this.assessmentFirstPlanningService = new AssessmentFirstPlanningService(prisma);
     this.dataDrivenAnalysisEngine = new DataDrivenAnalysisEngine(prisma);
     this.differentiationAlgorithmService = new DifferentiationAlgorithmService(prisma);
-    this.wheretoFrameworkService = new WHERETOFrameworkService(prisma);
+    this.wheretoFrameworkService = new WHERETOFrameworkService();
     this.crossCurricularEngineService = new CrossCurricularEngineService(prisma);
     this.standardsVerificationService = new StandardsVerificationService(prisma);
   }
@@ -482,11 +479,11 @@ export class PedagogicalOptimizationService extends BaseService {
 
   private async planEngagingLearningExperiences(
     parameters: OptimizationParameters,
-    desiredResults: OptimalLessonPlan['desired_results'],
-    assessmentEvidence: OptimalLessonPlan['assessment_evidence']
+    _desiredResults: OptimalLessonPlan['desired_results'],
+    _assessmentEvidence: OptimalLessonPlan['assessment_evidence']
   ): Promise<OptimalLessonPlan['learning_plan']> {
     // Generate WHERETO framework plan
-    const wheretoplan = await this.wheretoFrameworkService.generateWHERETOPlan({
+    const wheretoplan = await this.wheretoFrameworkService.applyFramework({
       lesson_context: parameters.lesson_context,
       student_profile: {
         interests: parameters.student_profile.interests,
@@ -521,7 +518,11 @@ export class PedagogicalOptimizationService extends BaseService {
     const mockLearningPatterns = this.generateMockLearningPatterns(parameters);
 
     return await this.differentiationAlgorithmService.generateDifferentiationPlan({
-      lesson_context: parameters.lesson_context,
+      lesson_context: {
+        ...parameters.lesson_context,
+        lesson_id: parameters.lesson_context.unit_plan_id || `lesson-${Date.now()}`,
+        learning_objective: parameters.lesson_context.topic // Map topic to learning_objective
+      },
       student_data: mockStudentData,
       learning_patterns: mockLearningPatterns,
       class_profile: {
@@ -614,7 +615,7 @@ export class PedagogicalOptimizationService extends BaseService {
   }
 
   private generateImplementationGuide(
-    parameters: OptimizationParameters,
+    _parameters: OptimizationParameters,
     learningPlan: OptimalLessonPlan['learning_plan'],
     differentiationPlan: any
   ): OptimalLessonPlan['implementation_guide'] {
@@ -657,7 +658,7 @@ export class PedagogicalOptimizationService extends BaseService {
   }
 
   private createImprovementCycle(
-    parameters: OptimizationParameters,
+    _parameters: OptimizationParameters,
     qualityVerification: OptimalLessonPlan['quality_verification']
   ): OptimalLessonPlan['improvement_cycle'] {
     return {
@@ -800,8 +801,8 @@ export class PedagogicalOptimizationService extends BaseService {
 
   private generateOptimizedLearningObjectives(
     topic: string,
-    expectations: string[],
-    grade: number
+    _expectations: string[],
+    _grade: number
   ): string[] {
     return [
       `Students will understand key concepts about ${topic}`,
@@ -811,7 +812,7 @@ export class PedagogicalOptimizationService extends BaseService {
     ];
   }
 
-  private generateOptimizedSuccessCriteria(topic: string, grade: number): string[] {
+  private generateOptimizedSuccessCriteria(topic: string, _grade: number): string[] {
     return [
       `I can explain what I learned about ${topic}`,
       `I can show my thinking through words, pictures, or actions`,
@@ -820,7 +821,7 @@ export class PedagogicalOptimizationService extends BaseService {
     ];
   }
 
-  private generateFormativeAssessments(parameters: OptimizationParameters): any[] {
+  private generateFormativeAssessments(_parameters: OptimizationParameters): any[] {
     return [
       {
         type: 'observation',
@@ -837,7 +838,7 @@ export class PedagogicalOptimizationService extends BaseService {
     ];
   }
 
-  private convertToThreePartLesson(wheretoplan: any, parameters: OptimizationParameters): OptimalLessonPlan['learning_plan']['three_part_lesson'] {
+  private convertToThreePartLesson(wheretoplan: any, _parameters: OptimizationParameters): OptimalLessonPlan['learning_plan']['three_part_lesson'] {
     return {
       minds_on: wheretoplan.hooks.opening_hook.description,
       action: wheretoplan.explore.inquiry_activities[0]?.description || 'Students engage in hands-on exploration',
@@ -847,8 +848,8 @@ export class PedagogicalOptimizationService extends BaseService {
 
   private calculateOptimalTiming(
     totalMinutes: number,
-    threePartLesson: any,
-    grade: number
+    _threePartLesson: any,
+    _grade: number
   ): OptimalLessonPlan['learning_plan']['timing_breakdown'] {
     // Grade 1 optimal timing ratios
     const mindsOnRatio = 0.20; // 20%
@@ -864,12 +865,12 @@ export class PedagogicalOptimizationService extends BaseService {
     };
   }
 
-  private generateMockStudentData(parameters: OptimizationParameters): any[] {
+  private generateMockStudentData(_parameters: OptimizationParameters): any[] {
     return [
       {
         student_id: 'class_average',
-        subject: parameters.lesson_context.subject,
-        grade: parameters.lesson_context.grade,
+        subject: _parameters.lesson_context.subject,
+        grade: _parameters.lesson_context.grade,
         assessment_type: 'formative' as const,
         performance_level: 3 as 1 | 2 | 3 | 4,
         curriculum_expectation: 'General expectation',
@@ -880,11 +881,11 @@ export class PedagogicalOptimizationService extends BaseService {
     ];
   }
 
-  private generateMockLearningPatterns(parameters: OptimizationParameters): any[] {
+  private generateMockLearningPatterns(_parameters: OptimizationParameters): any[] {
     return [
       {
         pattern_type: 'strength' as const,
-        subject_area: parameters.lesson_context.subject,
+        subject_area: _parameters.lesson_context.subject,
         description: 'Students show strong engagement with hands-on activities',
         confidence_level: 0.8,
         affected_students: ['class_average'],
@@ -925,13 +926,13 @@ export class PedagogicalOptimizationService extends BaseService {
     return score;
   }
 
-  private assessEngagementScore(learningPlan: any): number {
-    if (!learningPlan?.whereto_structure) return 0.6;
+  private assessEngagementScore(_learningPlan: any): number {
+    if (!_learningPlan?.whereto_structure) return 0.6;
     
     let score = 0;
-    if (learningPlan.whereto_structure.hooks) score += 0.3;
-    if (learningPlan.whereto_structure.explore) score += 0.4;
-    if (learningPlan.whereto_structure.exhibit) score += 0.3;
+    if (_learningPlan.whereto_structure.hooks) score += 0.3;
+    if (_learningPlan.whereto_structure.explore) score += 0.4;
+    if (_learningPlan.whereto_structure.exhibit) score += 0.3;
     return score;
   }
 
@@ -966,23 +967,23 @@ export class PedagogicalOptimizationService extends BaseService {
     return { score, suggestions, missing };
   }
 
-  private checkETFOAlignmentRealTime(planningState: any): { score: number; suggestions: string[]; } {
+  private checkETFOAlignmentRealTime(_planningState: any): { score: number; suggestions: string[]; } {
     const suggestions: string[] = [];
     let score = 0;
 
-    if (planningState.mindsOn) score += 0.33;
+    if (_planningState.mindsOn) score += 0.33;
     else suggestions.push('Add Minds-On activity to engage students');
 
-    if (planningState.action) score += 0.34;
+    if (_planningState.action) score += 0.34;
     else suggestions.push('Design Action phase for main learning');
 
-    if (planningState.consolidation) score += 0.33;
+    if (_planningState.consolidation) score += 0.33;
     else suggestions.push('Include Consolidation for reflection and closure');
 
     return { score, suggestions };
   }
 
-  private checkGradeAppropriatenessRealTime(planningState: any, parameters: OptimizationParameters): { score: number; suggestions: string[]; } {
+  private checkGradeAppropriatenessRealTime(planningState: any, _parameters: OptimizationParameters): { score: number; suggestions: string[]; } {
     const suggestions: string[] = [];
     let score = 0.8; // Base score
 
@@ -999,32 +1000,32 @@ export class PedagogicalOptimizationService extends BaseService {
     return { score: Math.max(score, 0), suggestions };
   }
 
-  private checkDifferentiationRealTime(planningState: any): { score: number; opportunities: string[]; } {
+  private checkDifferentiationRealTime(_planningState: any): { score: number; opportunities: string[]; } {
     const opportunities: string[] = [];
     let score = 0.5; // Base score
 
-    if (planningState.accommodations) score += 0.2;
+    if (_planningState.accommodations) score += 0.2;
     else opportunities.push('Add accommodations for diverse learners');
 
-    if (planningState.modifications) score += 0.2;
+    if (_planningState.modifications) score += 0.2;
     else opportunities.push('Consider modifications for students with special needs');
 
-    if (planningState.extensions) score += 0.1;
+    if (_planningState.extensions) score += 0.1;
     else opportunities.push('Include extension activities for advanced learners');
 
     return { score: Math.min(score, 1), opportunities };
   }
 
-  private checkFrenchImmersionRealTime(planningState: any): { score: number; suggestions: string[]; } {
+  private checkFrenchImmersionRealTime(_planningState: any): { score: number; suggestions: string[]; } {
     const suggestions: string[] = [];
     let score = 0.7; // Base score
 
-    if (!planningState.frenchLanguageSupports) {
+    if (!_planningState.frenchLanguageSupports) {
       suggestions.push('Add French language supports (vocabulary cards, sentence starters)');
       score -= 0.2;
     }
 
-    if (!planningState.culturalConnections) {
+    if (!_planningState.culturalConnections) {
       suggestions.push('Include French/Francophone cultural connections');
       score -= 0.1;
     }
@@ -1066,8 +1067,8 @@ export class PedagogicalOptimizationService extends BaseService {
 
   // Additional helper methods
 
-  private hasHandsOnElements(planningState: any): boolean {
-    const text = ((planningState.action || '') + (planningState.materials || [])).toLowerCase();
+  private hasHandsOnElements(_planningState: any): boolean {
+    const text = ((_planningState.action || '') + (_planningState.materials || [])).toLowerCase();
     return ['manipulatives', 'hands-on', 'build', 'create', 'explore'].some(term => text.includes(term));
   }
 
@@ -1135,7 +1136,7 @@ export class PedagogicalOptimizationService extends BaseService {
     return challenges;
   }
 
-  private createProgressMonitoringPlan(parameters: OptimizationParameters): any {
+  private createProgressMonitoringPlan(_parameters: OptimizationParameters): any {
     return {
       pre_lesson: 'Quick prior knowledge check',
       during_lesson: 'Formative assessment checkpoints every 15 minutes',
@@ -1209,16 +1210,16 @@ export class PedagogicalOptimizationService extends BaseService {
     return recommendations;
   }
 
-  private assessResearchBasedPractices(lessonData: any): number {
+  private assessResearchBasedPractices(_lessonData: any): number {
     // Simplified assessment of research-based practices
     return 0.85; // High score for integrated approach
   }
 
-  private collectResearchEvidence(lessonData: any): string[] {
+  private collectResearchEvidence(_lessonData: any): string[] {
     return ['Backward design approach', 'Differentiated instruction', 'Formative assessment'];
   }
 
-  private generateResearchRecommendations(lessonData: any): string[] {
+  private generateResearchRecommendations(_lessonData: any): string[] {
     return ['Consider adding more inquiry-based elements', 'Include peer collaboration opportunities'];
   }
 
@@ -1231,11 +1232,11 @@ export class PedagogicalOptimizationService extends BaseService {
     return Math.max(score, 0) / 100;
   }
 
-  private collectGradeAppropriatenessEvidence(lessonData: any): string[] {
+  private collectGradeAppropriatenessEvidence(_lessonData: any): string[] {
     return ['Appropriate duration for Grade 1', 'Concrete learning activities'];
   }
 
-  private generateGradeAppropriatenessRecommendations(lessonData: any): string[] {
+  private generateGradeAppropriatenessRecommendations(_lessonData: any): string[] {
     return ['Include more manipulatives and hands-on activities'];
   }
 
@@ -1246,33 +1247,33 @@ export class PedagogicalOptimizationService extends BaseService {
     return Math.min(score, 100) / 100;
   }
 
-  private collectFrenchImmersionEvidence(lessonData: any): string[] {
+  private collectFrenchImmersionEvidence(_lessonData: any): string[] {
     return ['French instruction integrated', 'Cultural connections considered'];
   }
 
-  private generateFrenchImmersionRecommendations(lessonData: any): string[] {
+  private generateFrenchImmersionRecommendations(_lessonData: any): string[] {
     return ['Add more French vocabulary supports', 'Include Francophone cultural elements'];
   }
 
   // Additional scoring methods
 
-  private calculateEngagementScore(lessonData: any): number {
+  private calculateEngagementScore(_lessonData: any): number {
     return 0.88; // High engagement with WHERETO framework
   }
 
-  private calculateDifferentiationScore(lessonData: any): number {
+  private calculateDifferentiationScore(_lessonData: any): number {
     return 0.85; // Strong differentiation support
   }
 
-  private calculateAssessmentScore(lessonData: any): number {
+  private calculateAssessmentScore(_lessonData: any): number {
     return 0.90; // Excellent assessment-first approach
   }
 
-  private calculateCurriculumAlignmentScore(lessonData: any, parameters: OptimizationParameters): number {
+  private calculateCurriculumAlignmentScore(_lessonData: any, _parameters: OptimizationParameters): number {
     return 0.92; // Strong curriculum alignment
   }
 
-  private calculateImplementationFeasibilityScore(lessonData: any): number {
+  private calculateImplementationFeasibilityScore(_lessonData: any): number {
     return 0.87; // Highly feasible with provided supports
   }
 
@@ -1300,9 +1301,9 @@ export class PedagogicalOptimizationService extends BaseService {
   }
 
   private identifyOptimizationAchievements(
-    bestPractices: any,
-    dimensions: any,
-    lessonData: any
+    _bestPractices: any,
+    _dimensions: any,
+    _lessonData: any
   ): OptimizationReport['optimization_achievements'] {
     return {
       strengths: [
@@ -1327,9 +1328,9 @@ export class PedagogicalOptimizationService extends BaseService {
   }
 
   private async generateContinuousImprovementPlan(
-    bestPractices: any,
-    dimensions: any,
-    parameters: OptimizationParameters
+    _bestPractices: any,
+    _dimensions: any,
+    _parameters: OptimizationParameters
   ): Promise<OptimizationReport['continuous_improvement']> {
     return {
       immediate_enhancements: [
@@ -1355,9 +1356,9 @@ export class PedagogicalOptimizationService extends BaseService {
     };
   }
 
-  private async saveOptimalLessonPlan(optimalPlan: OptimalLessonPlan, userId: number): Promise<void> {
+  private async saveOptimalLessonPlan(optimalPlan: OptimalLessonPlan, _userId: number): Promise<void> {
     try {
-      logger.info(`Saving optimal lesson plan for user ${userId}:`, JSON.stringify({
+      logger.info(`Saving optimal lesson plan for user ${_userId}:`, JSON.stringify({
         lesson_id: optimalPlan.lesson_metadata.lesson_id,
         optimization_score: optimalPlan.lesson_metadata.optimization_score,
         certification_level: optimalPlan.lesson_metadata.certification_level
@@ -1377,17 +1378,17 @@ export class PedagogicalOptimizationService extends BaseService {
     try {
       // Check all integrated services
       const serviceHealthChecks = await Promise.all([
-        this.pedagogicalPlanningService.checkHealth(),
+        // this.pedagogicalPlanningService.checkHealth(), // Method doesn't exist
         this.essentialQuestionsEngine.checkHealth(),
         this.assessmentFirstPlanningService.checkHealth(),
         this.dataDrivenAnalysisEngine.checkHealth(),
         this.differentiationAlgorithmService.checkHealth(),
-        this.wheretoFrameworkService.checkHealth(),
+        // this.wheretoFrameworkService.checkHealth(), // Method doesn't exist in stub implementation
         this.crossCurricularEngineService.checkHealth(),
         this.standardsVerificationService.checkHealth()
       ]);
 
-      const allHealthy = serviceHealthChecks.every(check => check.healthy);
+      const allHealthy = serviceHealthChecks.every((check: { healthy: boolean }) => check.healthy);
 
       return {
         healthy: allHealthy,

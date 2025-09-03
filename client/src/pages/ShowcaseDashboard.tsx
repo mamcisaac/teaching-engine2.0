@@ -200,7 +200,7 @@ export function ShowcaseDashboard(): React.ReactElement {
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
             <CardContent className="p-4 sm:p-6 text-center">
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">{allUnits.length || '0'}</p>
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">{sampleUnits.length || '0'}</p>
               <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Unit Plans Ready</p>
             </CardContent>
           </Card>
@@ -361,7 +361,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                     >
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="font-semibold text-gray-900">
-                          {unit.titleFr || unit.title}
+                          {unit.title}
                         </h3>
                         <Badge variant="outline">
                           {unit.estimatedHours}h
@@ -382,7 +382,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                   onClick={() => navigate('/planner/units')}
                 >
                   <Layers className="h-5 w-5 mr-2" />
-                  Explore All {allUnits.length || '0'} Unit Plans
+                  Explore All {sampleUnits.length || '0'} Unit Plans
                 </Button>
               </CardContent>
             </Card>
@@ -502,7 +502,7 @@ export function ShowcaseDashboard(): React.ReactElement {
               <CheckCircle2 className="h-5 w-5 text-green-600" />
               <AlertDescription className="text-green-900">
                 <strong>Everything is ready!</strong><br />
-                Your entire school year is planned with {allUnits.length || '0'} comprehensive unit plans and {totalLessons} detailed lesson plans ({totalHours.toFixed(1)} hours total). You can start teaching with confidence!
+                Your entire school year is planned with {sampleUnits.length || '0'} comprehensive unit plans and {totalLessons} detailed lesson plans ({totalHours.toFixed(1)} hours total). You can start teaching with confidence!
               </AlertDescription>
             </Alert>
             
