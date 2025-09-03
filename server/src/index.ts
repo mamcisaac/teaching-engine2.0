@@ -62,6 +62,7 @@ import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
 import { userRoutes } from './routes/user';
 import scheduleManagementRoutes from './routes/schedule-management';
+import publicStatsRoutes from './routes/public-stats';
 import { errorReportingService } from './services/monitoring/errorReportingService';
 import { initializeServices } from './services/initializeServices';
 import {
@@ -217,6 +218,9 @@ app.use('/api/auth/reset-password', authRateLimitMiddleware);
 
 // Mount auth endpoints (new auth middleware)
 app.use('/api/auth', authEndpoints);
+
+// Public routes (no authentication required)
+app.use('/api/public', publicStatsRoutes);
 
 // Legacy auth routes disabled - using new auth middleware
 // app.use('/api', authRoutes(prisma));

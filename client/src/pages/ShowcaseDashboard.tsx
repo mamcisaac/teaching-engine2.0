@@ -24,17 +24,10 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { useAuth } from '../contexts/AuthContext';
-import { useLongRangePlans, useUnitPlans, useETFOLessonPlans } from '../hooks/useETFOPlanning';
+import { usePublicStats } from '../hooks/usePublicStats';
 import { SubjectSelectionModal } from '../components/SubjectSelectionModal';
 
-// Sample lesson data for showcase
-const sampleLessons = [
-  { day: "Sept 4", title: "Bienvenue en immersion française!", subtitle: "Welcome to French Immersion" },
-  { day: "Sept 5", title: "Notre communauté de classe", subtitle: "Our Classroom Community" },
-  { day: "Sept 8", title: "Le français partout", subtitle: "French All Around Us" },
-  { day: "Sept 9", title: "La magie des jours", subtitle: "Days of the Week Magic" },
-  { day: "Sept 10", title: "Nos noms spéciaux", subtitle: "Our Special Names" }
-];
+// Dynamic lesson data will be loaded from database
 
 const subjectColors: Record<string, string> = {
   'Français (Immersion)': 'bg-blue-500',
@@ -107,56 +100,46 @@ export function ShowcaseDashboard(): React.ReactElement {
     window.location.reload();
   };
   
-  // Use hardcoded data for Emily's Grade 1 French Immersion
-  const longRangePlans = [];
-  const allUnits = [
-    { id: 'unit-1', title: 'Bienvenue à l\'école!', titleFr: 'Bienvenue à l\'école!', startDate: '2025-09-04', endDate: '2025-09-30', estimatedHours: 40, longRangePlan: { subject: 'Français (Immersion)' } },
-    { id: 'unit-2', title: 'Ma famille et moi', titleFr: 'Ma famille et moi', startDate: '2025-10-01', endDate: '2025-10-31', estimatedHours: 35, longRangePlan: { subject: 'Français (Immersion)' } },
-    { id: 'unit-3', title: 'Les saisons et les fêtes', titleFr: 'Les saisons et les fêtes', startDate: '2025-11-01', endDate: '2025-12-20', estimatedHours: 45, longRangePlan: { subject: 'Français (Immersion)' } },
-    { id: 'unit-4', title: 'Les animaux', titleFr: 'Les animaux et leurs habitats', startDate: '2026-01-06', endDate: '2026-02-14', estimatedHours: 40, longRangePlan: { subject: 'Sciences de la nature' } },
-    { id: 'unit-5', title: 'Notre communauté', titleFr: 'Notre communauté', startDate: '2026-02-17', endDate: '2026-03-28', estimatedHours: 35, longRangePlan: { subject: 'Sciences humaines' } },
-    { id: 'unit-6', title: 'Les plantes', titleFr: 'Les plantes et le jardinage', startDate: '2026-04-01', endDate: '2026-05-09', estimatedHours: 30, longRangePlan: { subject: 'Sciences de la nature' } },
-    { id: 'unit-7', title: 'L\'été arrive!', titleFr: 'L\'été arrive!', startDate: '2026-05-12', endDate: '2026-06-26', estimatedHours: 35, longRangePlan: { subject: 'Français (Immersion)' } },
-    // Math units
-    { id: 'unit-m1', title: 'Les nombres', titleFr: 'Les nombres jusqu\'à 20', startDate: '2025-09-04', endDate: '2025-10-15', estimatedHours: 30, longRangePlan: { subject: 'Mathématiques' } },
-    { id: 'unit-m2', title: 'Les formes', titleFr: 'Les formes géométriques', startDate: '2025-10-16', endDate: '2025-11-30', estimatedHours: 25, longRangePlan: { subject: 'Mathématiques' } },
-    { id: 'unit-m3', title: 'Addition et soustraction', titleFr: 'Addition et soustraction', startDate: '2025-12-01', endDate: '2026-01-31', estimatedHours: 35, longRangePlan: { subject: 'Mathématiques' } },
-    { id: 'unit-m4', title: 'La mesure', titleFr: 'La mesure', startDate: '2026-02-01', endDate: '2026-03-15', estimatedHours: 25, longRangePlan: { subject: 'Mathématiques' } },
-    { id: 'unit-m5', title: 'Les patterns', titleFr: 'Les régularités', startDate: '2026-03-16', endDate: '2026-04-30', estimatedHours: 20, longRangePlan: { subject: 'Mathématiques' } },
-    { id: 'unit-m6', title: 'Résolution de problèmes', titleFr: 'Résolution de problèmes', startDate: '2026-05-01', endDate: '2026-06-26', estimatedHours: 25, longRangePlan: { subject: 'Mathématiques' } },
-    // Arts units
-    { id: 'unit-a1', title: 'Exploration des couleurs', titleFr: 'Exploration des couleurs', startDate: '2025-09-04', endDate: '2025-11-15', estimatedHours: 20, longRangePlan: { subject: 'Arts visuels' } },
-    { id: 'unit-a2', title: 'Créations saisonnières', titleFr: 'Créations saisonnières', startDate: '2025-11-16', endDate: '2026-02-28', estimatedHours: 25, longRangePlan: { subject: 'Arts visuels' } },
-    { id: 'unit-a3', title: 'Expression créative', titleFr: 'Expression créative', startDate: '2026-03-01', endDate: '2026-06-26', estimatedHours: 20, longRangePlan: { subject: 'Arts visuels' } },
-    // Music units
-    { id: 'unit-mu1', title: 'Chansons et comptines', titleFr: 'Chansons et comptines', startDate: '2025-09-04', endDate: '2025-12-20', estimatedHours: 25, longRangePlan: { subject: 'Musique' } },
-    { id: 'unit-mu2', title: 'Rythmes et instruments', titleFr: 'Rythmes et instruments', startDate: '2026-01-06', endDate: '2026-06-26', estimatedHours: 30, longRangePlan: { subject: 'Musique' } },
-    // PE units
-    { id: 'unit-pe1', title: 'Mouvements de base', titleFr: 'Mouvements de base', startDate: '2025-09-04', endDate: '2025-12-20', estimatedHours: 35, longRangePlan: { subject: 'Éducation physique' } },
-    { id: 'unit-pe2', title: 'Jeux coopératifs', titleFr: 'Jeux coopératifs', startDate: '2026-01-06', endDate: '2026-06-26', estimatedHours: 40, longRangePlan: { subject: 'Éducation physique' } },
-    // Personal/Social units
-    { id: 'unit-ps1', title: 'Bien-être émotionnel', titleFr: 'Bien-être émotionnel', startDate: '2025-09-04', endDate: '2025-12-20', estimatedHours: 20, longRangePlan: { subject: 'Formation personnelle et sociale' } },
-    { id: 'unit-ps2', title: 'Relations saines', titleFr: 'Relations saines', startDate: '2026-01-06', endDate: '2026-06-26', estimatedHours: 25, longRangePlan: { subject: 'Formation personnelle et sociale' } }
-  ];
-  const septemberLessons = [];
+  // Fetch public stats from database (no auth required)
+  const { data: publicData, isLoading, error } = usePublicStats();
   
-  // Calculate days until school starts
-  const schoolStartDate = new Date('2025-09-04');
+  // Use fetched data with proper fallbacks
+  const stats = publicData?.stats || { unitCount: 0, lessonCount: 0, lrpCount: 0, totalHours: 0 };
+  const sampleUnits = publicData?.sampleUnits || [];
+  const academicYear = publicData?.academicYear || `${new Date().getFullYear()}-${new Date().getFullYear() + 1}`;
+  
+  
+  // Calculate dynamic dates
+  const currentYear = new Date().getFullYear();
+  const nextYear = currentYear + 1;
+  const schoolStartDate = new Date(`${currentYear}-09-04`);
   const today = new Date();
   const daysUntilSchool = differenceInDays(schoolStartDate, today);
   
-  // Group units by subject
-  const unitsBySubject = allUnits.reduce((acc, unit) => {
+  // Get September lessons from sample units (first month of school)
+  const septemberLessons = sampleUnits.filter(unit => {
+    const unitDate = new Date(unit.startDate);
+    return unitDate.getMonth() === 8 && unitDate.getFullYear() === currentYear; // September = month 8
+  }).slice(0, 5); // Show first 5 for preview
+  
+  // Use dynamic stats from API
+  const totalHours = stats.totalHours;
+  const totalLessons = stats.lessonCount;
+  const totalUnits = stats.unitCount;
+  const septemberLessonCount = septemberLessons.length;
+  
+  // Group units by subject using sample units
+  const unitsBySubject = sampleUnits.reduce((acc, unit) => {
     const subject = unit.longRangePlan?.subject || 'Unknown';
     if (!acc[subject]) acc[subject] = [];
     acc[subject].push(unit);
     return acc;
-  }, {} as Record<string, typeof allUnits>);
+  }, {} as Record<string, typeof sampleUnits>);
   
   // Filter units by selected subject
   const displayedUnits = selectedSubject 
     ? unitsBySubject[selectedSubject] || []
-    : allUnits.slice(0, 6); // Show first 6 if no subject selected
+    : sampleUnits.slice(0, 6); // Show first 6 if no subject selected
   
   return (
     <div className="min-h-screen overflow-auto bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -169,7 +152,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                 Welcome Emily! 🎉
               </h1>
               <p className="text-lg sm:text-xl lg:text-2xl mb-2">
-                Your Complete 2025-2026 School Year is Ready!
+                Your Complete {academicYear} School Year is Ready!
               </p>
               <p className="text-sm sm:text-base lg:text-lg opacity-90">
                 Grade 1 French Immersion • West Kent Elementary • PEI
@@ -217,7 +200,7 @@ export function ShowcaseDashboard(): React.ReactElement {
           </Card>
           <Card className="shadow-xl border-0 transform hover:scale-105 transition-transform">
             <CardContent className="p-4 sm:p-6 text-center">
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">53</p>
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">{allUnits.length || '0'}</p>
               <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">Unit Plans Ready</p>
             </CardContent>
           </Card>
@@ -250,10 +233,10 @@ export function ShowcaseDashboard(): React.ReactElement {
                   <div>
                     <CardTitle className="text-2xl flex items-center gap-2">
                       <Calendar className="h-6 w-6 text-green-600" />
-                      September 2025 - Ready to Start!
+                      September {currentYear} - Ready to Start!
                     </CardTitle>
                     <CardDescription className="text-base mt-2">
-                      Your first unit "Bienvenue à l'école!" has 19 detailed lesson plans
+                      Your first units have {septemberLessonCount} detailed lesson plans
                     </CardDescription>
                   </div>
                   <Badge className="bg-green-600 text-white px-3 py-1 text-lg">
@@ -263,7 +246,7 @@ export function ShowcaseDashboard(): React.ReactElement {
               </CardHeader>
               <CardContent className="pt-6">
                 <div className="space-y-3">
-                  {sampleLessons.map((lesson, idx) => (
+                  {septemberLessons.map((lesson, idx) => (
                     <div 
                       key={idx}
                       className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors cursor-pointer"
@@ -271,11 +254,11 @@ export function ShowcaseDashboard(): React.ReactElement {
                     >
                       <div className="flex items-center gap-4">
                         <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
-                          {lesson.day}
+                          {format(new Date(lesson.startDate), 'MMM d')}
                         </div>
                         <div>
                           <p className="font-semibold text-gray-900">{lesson.title}</p>
-                          <p className="text-sm text-gray-600">{lesson.subtitle}</p>
+                          <p className="text-sm text-gray-600">{lesson.longRangePlan?.subject || 'Subject'}</p>
                         </div>
                       </div>
                       <ChevronRight className="h-5 w-5 text-gray-400" />
@@ -287,7 +270,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                   onClick={() => navigate('/planner/units')}
                 >
                   <Eye className="h-5 w-5 mr-2" />
-                  View All 19 September Lessons
+                  View All {septemberLessonCount} September Lessons
                 </Button>
               </CardContent>
             </Card>
@@ -399,7 +382,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                   onClick={() => navigate('/planner/units')}
                 >
                   <Layers className="h-5 w-5 mr-2" />
-                  Explore All 53 Unit Plans
+                  Explore All {allUnits.length || '0'} Unit Plans
                 </Button>
               </CardContent>
             </Card>
@@ -478,7 +461,7 @@ export function ShowcaseDashboard(): React.ReactElement {
             <Card className="shadow-lg">
               <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50">
                 <CardTitle className="text-xl">First Lesson Preview</CardTitle>
-                <CardDescription>September 4, 2025</CardDescription>
+                <CardDescription>September 4, {currentYear}</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
                 <h3 className="font-bold text-lg mb-2">
@@ -519,7 +502,7 @@ export function ShowcaseDashboard(): React.ReactElement {
               <CheckCircle2 className="h-5 w-5 text-green-600" />
               <AlertDescription className="text-green-900">
                 <strong>Everything is ready!</strong><br />
-                Your entire school year is planned with 53 comprehensive unit plans and 19 detailed lesson plans for September. You can start teaching with confidence!
+                Your entire school year is planned with {allUnits.length || '0'} comprehensive unit plans and {totalLessons} detailed lesson plans ({totalHours.toFixed(1)} hours total). You can start teaching with confidence!
               </AlertDescription>
             </Alert>
             
@@ -530,15 +513,18 @@ export function ShowcaseDashboard(): React.ReactElement {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  {['Sept', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'].map((month, idx) => (
+                  {['Sept', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'].map((month, idx) => {
+                    const year = idx > 3 ? nextYear : currentYear;
+                    return (
                     <div key={month} className="flex items-center gap-3">
                       <div className={`w-3 h-3 rounded-full ${idx < 3 ? 'bg-green-500' : 'bg-gray-300'}`} />
                       <span className={`text-sm ${idx < 3 ? 'font-semibold' : 'text-gray-600'}`}>
-                        {month} 2025{idx > 3 ? '6' : ''}
+                        {month} {year}
                       </span>
                       {idx === 0 && <Badge variant="secondary" className="ml-auto text-xs">Current</Badge>}
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>

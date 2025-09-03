@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { STORAGE_KEYS } from '../constants/subjects';
-import { useCurriculumExpectations } from '../hooks/useETFOPlanning';
+import { useCurriculumExpectations, useETFOLessonPlans, useUnitPlans } from '../hooks/useETFOPlanning';
 import { safeJsonParse } from '../utils/typeGuards';
 
 // Grade 1 French Immersion curriculum expectations for PEI
@@ -9,6 +9,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [showUncoveredOnly, setShowUncoveredOnly] = useState(false);
   const itemsPerPage = 15; // Show 15 expectations per page
   
   // Get teacher's selected subjects from localStorage
@@ -22,6 +23,26 @@ export function SimpleCurriculumPage(): React.ReactElement {
     grade: 1
   });
   
+  // Fetch lesson plans and unit plans to calculate coverage
+  const { data: lessonPlans = [] } = useETFOLessonPlans();
+  const { data: unitPlans = [] } = useUnitPlans();
+  
+  // Calculate which expectations are covered
+  const coveredIds = useMemo(() => {
+    const ids = new Set<string>();
+    lessonPlans.forEach((lesson: any) => {
+      lesson.expectations?.forEach((exp: any) => {
+        ids.add(exp.expectation?.id || exp.expectationId);
+      });
+    });
+    unitPlans.forEach((unit: any) => {
+      unit.expectations?.forEach((exp: any) => {
+        ids.add(exp.expectation?.id || exp.expectationId);
+      });
+    });
+    return ids;
+  }, [lessonPlans, unitPlans]);
+  
   // Filter expectations based on teacher's selected subjects
   const teacherFilteredExpectations = useMemo(() => {
     if (!teacherSubjects || teacherSubjects.length === 0) {
@@ -34,6 +55,11 @@ export function SimpleCurriculumPage(): React.ReactElement {
   let filteredExpectations = selectedSubject === 'all' ? 
     teacherFilteredExpectations : 
     teacherFilteredExpectations.filter(exp => exp.subject === selectedSubject);
+  
+  // Apply uncovered filter if enabled
+  if (showUncoveredOnly) {
+    filteredExpectations = filteredExpectations.filter(exp => !coveredIds.has(exp.id));
+  }
   
   // Apply search filter (optimized)
   if (searchQuery.trim()) {
@@ -383,8 +409,40 @@ export function SimpleCurriculumPage(): React.ReactElement {
           </div>
         </div>
         
+        {/* Coverage Filter */}
+        <div style={{
+          marginTop: '16px',
+          padding: '12px',
+          backgroundColor: 'white',
+          borderRadius: '6px',
+          border: '1px solid #e5e7eb',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px'
+        }}>
+          <input
+            type="checkbox"
+            id="uncovered-filter"
+            checked={showUncoveredOnly}
+            onChange={(e) => setShowUncoveredOnly(e.target.checked)}
+            style={{
+              width: '18px',
+              height: '18px',
+              cursor: 'pointer'
+            }}
+          />
+          <label htmlFor="uncovered-filter" style={{
+            fontSize: '16px',
+            color: '#374151',
+            cursor: 'pointer',
+            userSelect: 'none'
+          }}>
+            Show uncovered only ({teacherFilteredExpectations.filter(exp => !coveredIds.has(exp.id)).length} expectations need lessons)
+          </label>
+        </div>
+        
         {/* Results Summary */}
-        {(searchQuery || selectedSubject !== 'all') && (
+        {(searchQuery || selectedSubject !== 'all' || showUncoveredOnly) && (
           <div style={{
             marginTop: '16px',
             padding: '8px 12px',
@@ -396,6 +454,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
             Showing {filteredExpectations.length} expectation{filteredExpectations.length !== 1 ? 's' : ''} 
             {searchQuery && ` matching "${searchQuery}"`}
             {selectedSubject !== 'all' && ` in ${selectedSubject}`}
+            {showUncoveredOnly && ' (uncovered only)'}
           </div>
         )}
       </div>
@@ -451,16 +510,48 @@ export function SimpleCurriculumPage(): React.ReactElement {
                       {expectation.strand}
                     </span>
                   </div>
-                  <span style={{
-                    backgroundColor: '#ede9fe',
-                    color: '#6d28d9',
-                    padding: '4px 12px',
-                    borderRadius: '16px',
-                    fontSize: '12px',
-                    fontWeight: '500'
-                  }}>
-                    Grade 1
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    {coveredIds.has(expectation.id) ? (
+                      <span style={{
+                        backgroundColor: '#10b981',
+                        color: 'white',
+                        padding: '4px 12px',
+                        borderRadius: '16px',
+                        fontSize: '14px',
+                        fontWeight: '600',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                      }}>
+                        ✓ Covered
+                      </span>
+                    ) : (
+                      <Link to={`/planner/quick-lesson?expectationId=${expectation.id}`} style={{ textDecoration: 'none' }}>
+                        <button style={{
+                          backgroundColor: '#3b82f6',
+                          color: 'white',
+                          padding: '6px 12px',
+                          borderRadius: '6px',
+                          fontSize: '14px',
+                          fontWeight: '500',
+                          border: 'none',
+                          cursor: 'pointer'
+                        }}>
+                          Quick Plan
+                        </button>
+                      </Link>
+                    )}
+                    <span style={{
+                      backgroundColor: '#ede9fe',
+                      color: '#6d28d9',
+                      padding: '4px 12px',
+                      borderRadius: '16px',
+                      fontSize: '12px',
+                      fontWeight: '500'
+                    }}>
+                      Grade 1
+                    </span>
+                  </div>
                 </div>
                 
                 <p style={{ 
