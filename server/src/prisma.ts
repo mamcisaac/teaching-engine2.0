@@ -1,3 +1,8 @@
+// Set DATABASE_URL before importing Prisma to ensure it's available
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL = 'file:./dev.db';
+}
+
 // Import from the database package
 import { PrismaClient as DatabasePrismaClient } from '@teaching-engine/database';
 import { unitPlanProtectionMiddleware } from '../../packages/database/prisma/middleware/unit-plan-protection';

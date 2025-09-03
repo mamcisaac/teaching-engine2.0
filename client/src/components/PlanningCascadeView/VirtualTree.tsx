@@ -1,9 +1,11 @@
 import React, { useMemo, memo, useRef, useCallback } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { cn } from '../../lib/utils';
-import { ChevronRight, BookOpen, Target, Layers, FileText, Calendar, Loader2 } from 'lucide-react';
+import { ChevronRight, ChevronDown, BookOpen, Target, Layers, FileText, Calendar, Loader2 } from 'lucide-react';
+import { Button } from '../ui/Button';
 import { EmptyState } from './EmptyState';
 import type { CascadeNode } from '../../stores/cascadeStore';
+import { useCascadeStore } from '../../stores/cascadeStore';
 
 interface VirtualTreeProps {
   nodes: CascadeNode[];
@@ -36,8 +38,12 @@ export const VirtualTree = memo(function VirtualTree({
   onToggle,
   onSelect,
   onFocus,
-}: VirtualTreeProps) {
+  onLoadMore,
+}: VirtualTreeProps & { onLoadMore?: (nodeId: string) => void }) {
   const parentRef = useRef<HTMLDivElement>(null);
+  
+  // Get pagination state from store
+  const { nodeHasMore, nodeLoadedCount, nodeTotalCount } = useCascadeStore();
   
   // Memoize flattened and filtered nodes
   const flatNodes = useMemo(() => {
@@ -65,13 +71,31 @@ export const VirtualTree = memo(function VirtualTree({
             // If not, children might still match
             traverse(children, level + 1, visible || !query);
           }
+          
+          // Add "Load More" button if there are more children to load
+          const hasMore = nodeHasMore.get(node.id);
+          if (hasMore && visible) {
+            const loadedCount = nodeLoadedCount.get(node.id) || 0;
+            const totalCount = nodeTotalCount.get(node.id) || 0;
+            flat.push({
+              node: {
+                id: `${node.id}-load-more`,
+                label: `Load more (${loadedCount} of ${totalCount})`,
+                type: 'lesson' as const, // Use any type, it's just for the button
+                hasChildren: false,
+                data: { isLoadMore: true, parentId: node.id } as any
+              },
+              level: level + 1,
+              visible: true
+            });
+          }
         }
       }
     };
     
     traverse(nodes, 0);
     return flat;
-  }, [nodes, expandedNodes, nodeChildren, searchQuery]);
+  }, [nodes, expandedNodes, nodeChildren, searchQuery, nodeHasMore, nodeLoadedCount, nodeTotalCount]);
   
   // Filter to only visible nodes for virtualizer
   const visibleNodes = useMemo(() => 
@@ -125,7 +149,20 @@ export const VirtualTree = memo(function VirtualTree({
       className="h-full overflow-auto"
       role="tree"
       aria-label="Planning cascade tree"
+      aria-multiselectable="false"
+      aria-describedby="tree-instructions"
     >
+      {/* Screen reader instructions */}
+      <div id="tree-instructions" className="sr-only">
+        Navigate with arrow keys. Right arrow to expand, left arrow to collapse. 
+        Enter or Space to select. Press asterisk to expand all siblings.
+      </div>
+      
+      {/* Live region for announcements */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {searchQuery && `Showing ${visibleNodes.length} results for "${searchQuery}"`}
+      </div>
+      
       {visibleNodes.length === 0 && searchQuery ? (
         <EmptyState 
           type="no-results" 
@@ -172,15 +209,38 @@ export const VirtualTree = memo(function VirtualTree({
                   )}
                   style={{ paddingLeft: `${level * 20 + 8}px` }}
                   onClick={() => {
-                    onSelect(node.id);
-                    onFocus(node.id);
+                    // Check if this is a "Load More" button
+                    if (node.data?.isLoadMore && onLoadMore) {
+                      onLoadMore(node.data.parentId as string);
+                    } else {
+                      onSelect(node.id);
+                      onFocus(node.id);
+                    }
                   }}
                   role="treeitem"
                   aria-level={level + 1}
                   aria-selected={isSelected}
                   aria-expanded={node.hasChildren ? isExpanded : undefined}
+                  aria-label={`${node.type}: ${node.label}${node.progress ? `, ${node.progress.completed} of ${node.progress.total} completed` : ''}`}
+                  aria-describedby={node.hasChildren && !isExpanded && node.childrenCount ? `children-${node.id}` : undefined}
                   tabIndex={isFocused ? 0 : -1}
                 >
+                  {/* Special rendering for "Load More" button */}
+                  {node.data?.isLoadMore ? (
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      className="text-blue-600 hover:text-blue-800"
+                    >
+                      {isLoading ? (
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4 mr-2" />
+                      )}
+                      {node.label}
+                    </Button>
+                  ) : (
+                    <>
                   {node.hasChildren && (
                     <button
                       className="p-0.5 hover:bg-gray-200 rounded transition-colors"
@@ -228,9 +288,15 @@ export const VirtualTree = memo(function VirtualTree({
                   )}
                   
                   {node.childrenCount !== undefined && node.childrenCount > 0 && !isExpanded && (
-                    <span className="text-xs text-gray-400 px-1">
+                    <span 
+                      id={`children-${node.id}`}
+                      className="text-xs text-gray-400 px-1"
+                      aria-label={`${node.childrenCount} child items`}
+                    >
                       {node.childrenCount}
                     </span>
+                  )}
+                    </>
                   )}
                 </div>
               </div>

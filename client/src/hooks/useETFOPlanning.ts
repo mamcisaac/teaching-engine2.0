@@ -142,6 +142,7 @@ export interface ETFOLessonPlan {
   };
   assessmentType?: 'diagnostic' | 'formative' | 'summative';
   assessmentNotes?: string;
+  successCriteria?: string[];
   isSubFriendly: boolean;
   subNotes?: string;
   expectations?: { expectation: CurriculumExpectation }[];

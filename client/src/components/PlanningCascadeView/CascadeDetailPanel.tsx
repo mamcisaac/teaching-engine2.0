@@ -11,13 +11,16 @@ import {
   Eye,
   Plus,
   ChevronRight,
-  CheckCircle
+  CheckCircle,
+  AlertCircle
 } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Alert, AlertDescription } from '../ui/alert';
 import type { 
   CascadeSelection, 
+  CascadeData,
   CurriculumData, 
   LRPData, 
   UnitData, 
@@ -321,6 +324,63 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
     </div>
   );
 
+  const renderDaybookDetail = (data: DaybookData) => (
+    <div className="p-6">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold mb-2">Daybook Entry</h2>
+        {data.date && (
+          <p className="text-gray-600">
+            <Calendar className="inline h-4 w-4 mr-1" />
+            {format(new Date(data.date), 'MMMM d, yyyy')}
+          </p>
+        )}
+      </div>
+
+      {data.whatWorked && (
+        <Card className="mb-4">
+          <CardHeader>
+            <CardTitle className="text-lg flex items-center">
+              <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
+              What Worked
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700">{data.whatWorked}</p>
+          </CardContent>
+        </Card>
+      )}
+
+      {data.whatDidntWork && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Areas for Improvement</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700">{data.whatDidntWork}</p>
+          </CardContent>
+        </Card>
+      )}
+
+      <div className="mt-6 flex gap-2">
+        <Button
+          onClick={() => navigate(`/daybook/${data.id}/edit`)}
+          size="sm"
+        >
+          <Edit className="h-4 w-4 mr-1" />
+          Edit Entry
+        </Button>
+        <Button
+          onClick={() => navigate(`/daybook/${data.id}`)}
+          variant="outline"
+          size="sm"
+        >
+          <Eye className="h-4 w-4 mr-1" />
+          View Full Entry
+        </Button>
+      </div>
+    </div>
+  );
+
   const renderLessonDetail = (data: LessonData) => (
     <div className="p-6">
       <div className="mb-6">
@@ -477,16 +537,94 @@ export function CascadeDetailPanel({ selection }: CascadeDetailPanelProps): JSX.
     </div>
   );
 
-  switch (selection.type) {
-    case 'curriculum':
-      return renderCurriculumDetail(selection.data as CurriculumData);
-    case 'lrp':
-      return renderLRPDetail(selection.data as LRPData);
-    case 'unit':
-      return renderUnitDetail(selection.data as UnitData);
-    case 'lesson':
-      return renderLessonDetail(selection.data as LessonData);
-    default:
-      return <div className="p-6">Select an item to view details</div>;
+  // Type guards with unique field checks for each type
+  const isCurriculumData = (data: CascadeData): data is CurriculumData => {
+    // Curriculum has code, strand, or subject as unique identifiers
+    return typeof data === 'object' && data !== null && 'id' in data &&
+           ('code' in data || 'strand' in data || 'coverage' in data || 
+            ('subject' in data && 'description' in data));
+  };
+  
+  const isLRPData = (data: CascadeData): data is LRPData => {
+    // LRP has academicYear or goals as unique fields
+    return typeof data === 'object' && data !== null && 'id' in data &&
+           ('academicYear' in data || 'goals' in data || 'themes' in data);
+  };
+  
+  const isUnitData = (data: CascadeData): data is UnitData => {
+    // Unit has hoursAllocated, weeks, or bigIdeas as unique fields
+    return typeof data === 'object' && data !== null && 'id' in data &&
+           ('hoursAllocated' in data || 'weeks' in data || 'bigIdeas' in data || 
+            'essentialQuestions' in data || 'estimatedHours' in data);
+  };
+  
+  const isLessonData = (data: CascadeData): data is LessonData => {
+    // Lesson has duration or isComplete as unique fields
+    return typeof data === 'object' && data !== null && 'id' in data &&
+           ('duration' in data || 'isComplete' in data || 
+            ('title' in data && !('hoursAllocated' in data) && !('academicYear' in data) && 
+             !('weeks' in data) && !('bigIdeas' in data) && !('themes' in data)));
+  };
+  
+  const isDaybookData = (data: CascadeData): data is DaybookData => {
+    // Daybook must have date field
+    return typeof data === 'object' && data !== null && 'id' in data &&
+           'date' in data && typeof data.date === 'string';
+  };
+
+  // Flexible rendering that handles partial data gracefully
+  try {
+    switch (selection.type) {
+      case 'curriculum':
+        // Render with whatever data we have
+        return renderCurriculumDetail({
+          ...selection.data,
+          id: selection.data?.id || selection.id,
+          name: selection.data?.name || selection.data?.title || 'Curriculum Item'
+        } as CurriculumData);
+      
+      case 'lrp':
+        // Render with flexible data structure
+        return renderLRPDetail({
+          ...selection.data,
+          id: selection.data?.id || selection.id,
+          name: selection.data?.name || selection.data?.title || selection.data?.titleFr || 'Long Range Plan'
+        } as LRPData);
+      
+      case 'unit':
+        // Handle unit data flexibly
+        return renderUnitDetail({
+          ...selection.data,
+          id: selection.data?.id || selection.id,
+          name: selection.data?.name || selection.data?.title || selection.data?.titleFr || 'Unit Plan'
+        } as UnitData);
+      
+      case 'lesson':
+        // Handle lesson data flexibly
+        return renderLessonDetail({
+          ...selection.data,
+          id: selection.data?.id || selection.id,
+          title: selection.data?.title || selection.data?.name || 'Lesson'
+        } as LessonData);
+      
+      case 'daybook':
+        // Handle daybook data flexibly
+        return renderDaybookDetail({
+          ...selection.data,
+          id: selection.data?.id || selection.id,
+          date: selection.data?.date || new Date().toISOString()
+        } as DaybookData);
+      
+      default:
+        return <div className="p-6">Select an item to view details</div>;
+    }
+  } catch (error) {
+    console.error('Error rendering detail panel:', error);
+    return (
+      <div className="p-6">
+        <div className="text-red-600">Error loading details</div>
+        <p className="text-sm text-gray-600 mt-2">Please try selecting the item again</p>
+      </div>
+    );
   }
 }

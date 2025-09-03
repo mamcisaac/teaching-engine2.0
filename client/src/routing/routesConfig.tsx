@@ -29,6 +29,8 @@ const ScheduleEditor = lazy(() => import('../pages/ScheduleEditor').then(module 
 
 // Planning Cascade View
 const PlanningCascadeView = lazy(() => import('../components/PlanningCascadeView')); // default export
+const TestCascadePage = lazy(() => import('../pages/TestCascadePage')); // default export
+const PlanningCascadePage = lazy(() => import('../pages/PlanningCascadePage')); // default export
 
 // Assessment System Pages - wrapped with MainLayout
 const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => ({ 
@@ -146,6 +148,10 @@ export const plannerRoutes: RouteConfig[] = [
     element: PlanningCascadeView,
   },
   {
+    path: 'test-cascade',
+    element: TestCascadePage,
+  },
+  {
     path: 'schedule-editor',
     element: ScheduleEditor,
   },
@@ -201,6 +207,11 @@ export const protectedRoutes: RouteConfig[] = [
   {
     path: '/milestones/:id',
     element: <Navigate replace to="/curriculum" />,
+  },
+  // Planning Cascade
+  {
+    path: '/planning-cascade',
+    element: PlanningCascadePage,
   },
   // Curriculum routes
   {

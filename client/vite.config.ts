@@ -124,6 +124,9 @@ function manualChunks(id: string) {
       return 'app-utils';
     }
   }
+  
+  // Default fallback for any other files
+  return undefined;
 }
 
 export default defineConfig(({ mode }) => {
@@ -174,7 +177,7 @@ export default defineConfig(({ mode }) => {
       host: true, // Enable network access
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:3001',
           changeOrigin: true,
           secure: false,
         },
@@ -201,7 +204,7 @@ export default defineConfig(({ mode }) => {
       host: true,
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:3001',
           changeOrigin: true,
         },
       },

@@ -177,8 +177,19 @@ export class TestMigrationHelper {
         if (this.config.enableComparison && mockImplementation) {
           return this.compareApiImplementations(apiCall, mockImplementation, testName);
         }
-      // Fall through to real implementation
-
+        // If not comparing, use real implementation (same as 'real' case)
+        {
+          const start = performance.now();
+          const result = await apiCall();
+          const duration = performance.now() - start;
+          
+          if (duration > (this.config.maxResponseTime ?? 5000)) {
+            console.warn(`Slow API call in ${testName}: ${duration}ms`);
+          }
+          
+          return result;
+        }
+      
       case 'real': {
         const start = performance.now();
         const result = await apiCall();

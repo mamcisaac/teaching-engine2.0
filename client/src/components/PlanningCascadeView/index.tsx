@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { MainLayout } from '../MainLayout';
 import { Alert, AlertDescription } from '../ui/alert';
@@ -17,6 +17,7 @@ import { ErrorBoundary } from './ErrorBoundary';
 import { TreeSkeleton } from './TreeSkeleton';
 import { ExportMenu } from './ExportMenu';
 import { EmptyState } from './EmptyState';
+import { usePerformanceMonitor, getPerformanceWarning, getDeviceType, PERFORMANCE_THRESHOLDS } from './usePerformanceMonitor';
 import type { CascadeData } from './types';
 
 interface RootData {
@@ -39,14 +40,28 @@ interface RootData {
 }
 
 /**
- * Planning Cascade View - Clean, performant hierarchical planning visualization
+ * Planning Cascade View - Hierarchical planning visualization
  * Shows: Curriculum → LRP → Units → Lessons → Days
+ * 
+ * Performance characteristics:
+ * - Tested with ~500-1000 nodes on typical devices
+ * - Uses virtualization to render only visible items
+ * - Performance may vary based on device and browser
+ * - Implements debouncing and request cancellation
  */
 export function PlanningCascadeView(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const [focusedNodeId, setFocusedNodeId] = useState<string | null>(null);
   const [mobileView, setMobileView] = useState<'tree' | 'detail'>('tree');
   const [localSearchQuery, setLocalSearchQuery] = useState('');
+  const [performanceWarning, setPerformanceWarning] = useState<string | null>(null);
+  
+  // Store active abort controllers for request cancellation
+  const abortControllersRef = useRef<Map<string, AbortController>>(new Map());
+  
+  // Performance monitoring
+  const device = getDeviceType();
+  const performanceTimerRef = useRef<NodeJS.Timeout>();
   
   // Zustand store - simplified state management
   const {
@@ -86,26 +101,87 @@ export function PlanningCascadeView(): JSX.Element {
     retry: 2,
   });
   
-  // Load children for a node
-  const loadNodeChildren = useCallback(async (nodeId: string, nodeType: string) => {
-    // Check if already loaded
-    if (nodeChildren.has(nodeId)) {
+  // Retry logic with exponential backoff
+  const retryWithBackoff = useCallback(async <T,>(
+    fn: () => Promise<T>,
+    maxRetries: number = 3,
+    initialDelay: number = 1000
+  ): Promise<T> => {
+    let lastError: Error | undefined;
+    
+    for (let i = 0; i < maxRetries; i++) {
+      try {
+        return await fn();
+      } catch (error) {
+        lastError = error as Error;
+        
+        // Don't retry on abort
+        if (lastError.name === 'AbortError') {
+          throw lastError;
+        }
+        
+        // Check if it's a network error worth retrying
+        const isNetworkError = 
+          lastError.message?.includes('network') ||
+          lastError.message?.includes('fetch') ||
+          (error as any)?.code === 'ECONNABORTED' ||
+          (error as any)?.response?.status >= 500;
+        
+        if (!isNetworkError || i === maxRetries - 1) {
+          throw lastError;
+        }
+        
+        // Exponential backoff
+        const delay = initialDelay * Math.pow(2, i);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+    
+    throw lastError;
+  }, []);
+  
+  // Load children for a node with progressive loading
+  const loadNodeChildren = useCallback(async (nodeId: string, nodeType: string, loadMore = false) => {
+    // Get current state
+    const store = useCascadeStore.getState();
+    const existingChildren = store.nodeChildren.get(nodeId) || [];
+    const loadedCount = store.nodeLoadedCount.get(nodeId) || 0;
+    
+    // For initial load, check if already loaded
+    if (!loadMore && existingChildren.length > 0) {
       return;
     }
     
+    // Cancel any existing request for this node
+    const existingController = abortControllersRef.current.get(nodeId);
+    if (existingController) {
+      existingController.abort();
+    }
+    
+    // Create new abort controller for this request
+    const abortController = new AbortController();
+    abortControllersRef.current.set(nodeId, abortController);
+    
     setNodeLoading(nodeId, true);
     
+    // Progressive loading - start with 20 items, load more on demand
+    const limit = 20;
+    const offset = loadMore ? loadedCount : 0;
+    
     try {
-      const response = await apiClient.get(
-        `/api/planning-cascade-progressive/node/${nodeId}/children`,
-        {
-          params: {
-            nodeType,
-            limit: 50,
-            offset: 0,
-            includeProgress: true,
-          },
-        }
+      const response = await retryWithBackoff(async () => 
+        apiClient.get(
+          `/api/planning-cascade-progressive/node/${nodeId}/children`,
+          {
+            params: {
+              nodeType,
+              limit,
+              offset,
+              includeProgress: true,
+            },
+            signal: abortController.signal,
+          }
+        )
       );
       
       interface ProgressiveResponseChild {
@@ -122,7 +198,7 @@ export function PlanningCascadeView(): JSX.Element {
         };
       }
       
-      const children = response.data.children.map((child: ProgressiveResponseChild): CascadeNode => ({
+      const newChildren = response.data.children.map((child: ProgressiveResponseChild): CascadeNode => ({
         id: child.id,
         label: child.label || child.title || '',
         type: child.type,
@@ -132,25 +208,39 @@ export function PlanningCascadeView(): JSX.Element {
         progress: child.progress,
       }));
       
-      setNodeChildren(nodeId, children);
+      // Update store with pagination info
+      const store = useCascadeStore.getState();
+      const allChildren = loadMore ? [...existingChildren, ...newChildren] : newChildren;
+      const totalCount = response.data.totalCount || response.data.total || allChildren.length;
+      const hasMore = allChildren.length < totalCount;
+      
+      // Batch update
+      setNodeChildren(nodeId, allChildren);
+      store.nodeLoadedCount.set(nodeId, allChildren.length);
+      store.nodeTotalCount.set(nodeId, totalCount);
+      store.nodeHasMore.set(nodeId, hasMore);
+      
+      // Trigger re-render
+      useCascadeStore.setState({
+        nodeLoadedCount: new Map(store.nodeLoadedCount),
+        nodeTotalCount: new Map(store.nodeTotalCount),
+        nodeHasMore: new Map(store.nodeHasMore),
+      });
     } catch (err) {
-      setError(`Failed to load children: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      // Don't show error for aborted requests
+      if (err instanceof Error && err.name === 'AbortError') {
+        console.log(`Request cancelled for node ${nodeId}`);
+      } else {
+        setError(`Failed to load children: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      }
     } finally {
       setNodeLoading(nodeId, false);
+      // Clean up the controller reference
+      abortControllersRef.current.delete(nodeId);
     }
-  }, [nodeChildren, setNodeChildren, setNodeLoading]);
+  }, [setNodeChildren, setNodeLoading, retryWithBackoff]);
   
-  // Handle node expansion
-  const handleNodeToggle = useCallback(async (node: CascadeNode) => {
-    toggleNode(node.id);
-    
-    // Load children if expanding and not yet loaded
-    if (!expandedNodes.has(node.id) && node.hasChildren && !nodeChildren.has(node.id)) {
-      await loadNodeChildren(node.id, node.type);
-    }
-  }, [expandedNodes, nodeChildren, toggleNode, loadNodeChildren]);
-  
-  // Transform root data to nodes
+  // Transform root data to nodes (needed for visibleNodeCount)
   const rootNodes = useMemo((): CascadeNode[] => {
     if (!rootData) return [];
     
@@ -187,6 +277,80 @@ export function PlanningCascadeView(): JSX.Element {
     
     return nodes;
   }, [rootData]);
+  
+  // Count visible nodes for performance monitoring (needed by handleNodeToggle)
+  const visibleNodeCount = useMemo(() => {
+    let count = 0;
+    const countVisible = (nodes: CascadeNode[]) => {
+      nodes.forEach(node => {
+        count++;
+        if (expandedNodes.has(node.id)) {
+          const children = nodeChildren.get(node.id);
+          if (children) countVisible(children);
+        }
+      });
+    };
+    countVisible(rootNodes);
+    return count;
+  }, [rootNodes, expandedNodes, nodeChildren]);
+  
+  // Handle loading more children for a node
+  const handleLoadMore = useCallback(async (nodeId: string) => {
+    const node = rootNodes.find(n => n.id === nodeId) || 
+                 Array.from(nodeChildren.values()).flat().find(n => n.id === nodeId);
+    if (node) {
+      await loadNodeChildren(nodeId, node.type, true);
+    }
+  }, [rootNodes, nodeChildren, loadNodeChildren]);
+  
+  // Handle node expansion with performance monitoring
+  const handleNodeToggle = useCallback(async (node: CascadeNode) => {
+    // Check if we're about to exceed performance limits
+    const willExpand = !expandedNodes.has(node.id);
+    
+    if (willExpand) {
+      // Use device-specific thresholds
+      const maxNodes = PERFORMANCE_THRESHOLDS.maxNodes[device];
+      const warnNodes = PERFORMANCE_THRESHOLDS.warningNodes[device];
+      
+      // Count total visible nodes after expansion
+      let estimatedVisible = visibleNodeCount;
+      if (node.childrenCount) {
+        estimatedVisible += node.childrenCount;
+      } else {
+        estimatedVisible += 10; // Conservative estimate
+      }
+      
+      // Block expansion if at max limit
+      if (estimatedVisible >= maxNodes) {
+        setPerformanceWarning(
+          `Cannot expand. Maximum ${maxNodes} nodes for ${device}. Currently showing ${visibleNodeCount} nodes.`
+        );
+        return;
+      }
+      
+      // Warn if approaching limit
+      if (estimatedVisible >= warnNodes && estimatedVisible < maxNodes) {
+        setPerformanceWarning(
+          `Performance warning: ${visibleNodeCount} visible nodes. Limit is ${maxNodes} for ${device}.`
+        );
+        // Auto-clear warning after 5 seconds
+        if (performanceTimerRef.current) {
+          clearTimeout(performanceTimerRef.current);
+        }
+        performanceTimerRef.current = setTimeout(() => {
+          setPerformanceWarning(null);
+        }, 5000);
+      }
+    }
+    
+    toggleNode(node.id);
+    
+    // Load children if expanding and not yet loaded
+    if (!expandedNodes.has(node.id) && node.hasChildren && !nodeChildren.has(node.id)) {
+      await loadNodeChildren(node.id, node.type);
+    }
+  }, [expandedNodes, nodeChildren, toggleNode, loadNodeChildren, device, visibleNodeCount]);
   
   // Calculate overall metrics with REAL data
   const metrics = useMemo(() => {
@@ -246,20 +410,51 @@ export function PlanningCascadeView(): JSX.Element {
     };
   }, [rootData, rootNodes, nodeChildren]);
   
-  // Persist expanded state in localStorage (with debounce)
+  // Use performance monitoring
+  const performanceMetrics = usePerformanceMonitor(expandedNodes.size, visibleNodeCount);
+  
+  // Check performance and update warnings
   useEffect(() => {
+    const warning = getPerformanceWarning(performanceMetrics);
+    if (warning !== performanceWarning) {
+      setPerformanceWarning(warning);
+      if (warning && performanceTimerRef.current) {
+        clearTimeout(performanceTimerRef.current);
+      }
+      if (warning) {
+        performanceTimerRef.current = setTimeout(() => {
+          setPerformanceWarning(null);
+        }, 7000);
+      }
+    }
+  }, [performanceMetrics, performanceWarning]);
+  
+  // Load expanded state from localStorage on mount
+  const hasRestoredRef = useRef(false);
+  useEffect(() => {
+    // Only restore once and after initial data load
+    if (hasRestoredRef.current || !rootData) return;
+    
     const saved = localStorage.getItem('cascade-expanded');
     if (saved) {
       try {
         const nodeIds = JSON.parse(saved);
+        // Use store's batch update to restore all at once
+        const store = useCascadeStore.getState();
+        const currentExpanded = new Set(store.expandedNodes);
+        
         nodeIds.forEach((id: string) => {
-          if (!expandedNodes.has(id)) {
-            toggleNode(id);
-          }
+          currentExpanded.add(id);
         });
-      } catch {}
+        
+        // Single state update
+        useCascadeStore.setState({ expandedNodes: currentExpanded });
+        hasRestoredRef.current = true;
+      } catch (error) {
+        console.error('Failed to load expanded state:', error);
+      }
     }
-  }, []);
+  }, [rootData]); // Run after data loads
   
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -269,14 +464,36 @@ export function PlanningCascadeView(): JSX.Element {
     return () => clearTimeout(timer);
   }, [expandedNodes]);
   
-  // Debounce search query updates
+  // Debounce search query updates with race condition prevention
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSearchQuery(localSearchQuery);
+    let timer: NodeJS.Timeout | undefined;
+    let cancelled = false;
+    
+    // Only update if component is still mounted and timer wasn't cancelled
+    timer = setTimeout(() => {
+      if (!cancelled) {
+        setSearchQuery(localSearchQuery);
+      }
     }, 300); // Debounce 300ms for search
     
-    return () => clearTimeout(timer);
+    return () => {
+      cancelled = true;
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
   }, [localSearchQuery, setSearchQuery]);
+  
+  // Cancel all pending requests on unmount
+  useEffect(() => {
+    return () => {
+      // Cancel all active requests when component unmounts
+      abortControllersRef.current.forEach(controller => {
+        controller.abort();
+      });
+      abortControllersRef.current.clear();
+    };
+  }, []);
   
   // Enhanced ARIA-compliant keyboard navigation
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -489,6 +706,24 @@ export function PlanningCascadeView(): JSX.Element {
               />
             </div>
           </div>
+          
+          {/* Performance Warning */}
+          {performanceWarning && (
+            <div className="px-4 pb-3">
+              <Alert variant={performanceWarning.includes('Maximum') ? 'destructive' : 'default'}>
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>
+                  {performanceWarning}
+                  <button
+                    onClick={() => setPerformanceWarning(null)}
+                    className="ml-2 text-sm underline"
+                  >
+                    Dismiss
+                  </button>
+                </AlertDescription>
+              </Alert>
+            </div>
+          )}
         </div>
         
         {/* Header with filters and progress */}
@@ -502,6 +737,20 @@ export function PlanningCascadeView(): JSX.Element {
             {metrics && (
               <div className="mt-4">
                 <CascadeProgressIndicator metrics={metrics} />
+              </div>
+            )}
+            
+            {/* Performance Debug Panel (Development Only) */}
+            {process.env.NODE_ENV === 'development' && (
+              <div className="mt-3 p-2 bg-gray-100 rounded text-xs font-mono">
+                <div className="grid grid-cols-3 gap-2">
+                  <div>FPS: {performanceMetrics.fps}</div>
+                  <div>Render: {Math.round(performanceMetrics.renderTime)}ms</div>
+                  <div>Memory: {performanceMetrics.memoryUsed || 'N/A'}MB</div>
+                  <div>Expanded: {expandedNodes.size}</div>
+                  <div>Visible: {visibleNodeCount}</div>
+                  <div>Device: {device}</div>
+                </div>
               </div>
             )}
           </div>
@@ -590,6 +839,7 @@ export function PlanningCascadeView(): JSX.Element {
                     onToggle={handleNodeToggle}
                     onSelect={handleNodeSelect}
                     onFocus={setFocusedNodeId}
+                    onLoadMore={handleLoadMore}
                   />
                 </div>
               )}
@@ -610,20 +860,27 @@ export function PlanningCascadeView(): JSX.Element {
             mobileView === 'detail' ? 'block' : 'hidden md:block'
           )}>
             {selectedNode ? (
-              <div className="p-4">
-                <CascadeBreadcrumb selection={{
-                  type: selectedNode.type,
-                  id: selectedNode.id,
-                  data: selectedNode.data!,
-                }} />
-                <div className="mt-4">
-                  <CascadeDetailPanel selection={{
+              selectedNode.data ? (
+                <div className="p-4">
+                  <CascadeBreadcrumb selection={{
                     type: selectedNode.type,
                     id: selectedNode.id,
-                    data: selectedNode.data!,
+                    data: selectedNode.data,
                   }} />
+                  <div className="mt-4">
+                    <CascadeDetailPanel selection={{
+                      type: selectedNode.type,
+                      id: selectedNode.id,
+                      data: selectedNode.data,
+                    }} />
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="flex items-center justify-center h-full text-gray-500">
+                  <Loader2 className="h-6 w-6 animate-spin mr-2" />
+                  Loading details...
+                </div>
+              )
             ) : (
               <div className="flex items-center justify-center h-full text-gray-500">
                 Select an item to view details

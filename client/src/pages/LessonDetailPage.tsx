@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { 
   Calendar, Clock, BookOpen, Target, Users, Package, 
-  CheckCircle, AlertCircle, ChevronLeft, Edit, Trash2, Print,
+  CheckCircle, AlertCircle, ChevronLeft, Edit, Trash2, Printer,
   ClipboardCheck, BarChart3
 } from 'lucide-react';
 import { useETFOLessonPlan, useDeleteETFOLessonPlan } from '../hooks/useETFOPlanning';
@@ -109,12 +109,12 @@ export function LessonDetailPage(): React.ReactElement {
                 View Progress
               </Button>
               <Button variant="outline" onClick={handlePrint}>
-                <Print className="h-4 w-4" />
+                <Printer className="h-4 w-4" />
               </Button>
               <Button variant="outline" onClick={handleEdit}>
                 <Edit className="h-4 w-4" />
               </Button>
-              <Button variant="destructive" onClick={handleDelete}>
+              <Button variant="danger" onClick={handleDelete}>
                 <Trash2 className="h-4 w-4" />
               </Button>
             </div>
@@ -162,9 +162,9 @@ export function LessonDetailPage(): React.ReactElement {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {lesson.learningGoalsFr && lesson.learningGoalsFr.length > 0 ? (
+              {lesson.learningGoalsFr ? (
                 <ul className="space-y-2">
-                  {lesson.learningGoalsFr.map((goal, idx) => (
+                  {[lesson.learningGoalsFr].map((goal, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>{goal}</span>
@@ -185,9 +185,9 @@ export function LessonDetailPage(): React.ReactElement {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {lesson.learningGoals && lesson.learningGoals.length > 0 ? (
+              {lesson.learningGoals ? (
                 <ul className="space-y-2">
-                  {lesson.learningGoals.map((goal, idx) => (
+                  {[lesson.learningGoals].map((goal, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>{goal}</span>
@@ -207,7 +207,7 @@ export function LessonDetailPage(): React.ReactElement {
           <Card className="border-l-4 border-blue-500">
             <CardHeader>
               <CardTitle className="text-blue-700">Mise en train / Minds On</CardTitle>
-              <p className="text-sm text-gray-600">Engagement et activation ({lesson.mindsOnDuration || 10} minutes)</p>
+              <p className="text-sm text-gray-600">Engagement et activation (10 minutes)</p>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -227,7 +227,7 @@ export function LessonDetailPage(): React.ReactElement {
           <Card className="border-l-4 border-green-500">
             <CardHeader>
               <CardTitle className="text-green-700">Action / Working On It</CardTitle>
-              <p className="text-sm text-gray-600">Activité principale ({lesson.actionDuration || 25} minutes)</p>
+              <p className="text-sm text-gray-600">Activité principale (25 minutes)</p>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -247,7 +247,7 @@ export function LessonDetailPage(): React.ReactElement {
           <Card className="border-l-4 border-purple-500">
             <CardHeader>
               <CardTitle className="text-purple-700">Consolidation / Reflection</CardTitle>
-              <p className="text-sm text-gray-600">Synthèse et réflexion ({lesson.consolidationDuration || 10} minutes)</p>
+              <p className="text-sm text-gray-600">Synthèse et réflexion (10 minutes)</p>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -298,19 +298,19 @@ export function LessonDetailPage(): React.ReactElement {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {lesson.forStruggling && (
+                {lesson.differentiationStrategies?.forStruggling && (
                   <div>
                     <p className="font-semibold text-sm mb-1">Pour ceux qui ont des difficultés:</p>
-                    <p className="text-sm text-gray-700">{lesson.forStruggling}</p>
+                    <p className="text-sm text-gray-700">{lesson.differentiationStrategies?.forStruggling}</p>
                   </div>
                 )}
-                {lesson.forAdvanced && (
+                {lesson.differentiationStrategies?.forAdvanced && (
                   <div>
                     <p className="font-semibold text-sm mb-1">Pour ceux qui sont avancés:</p>
-                    <p className="text-sm text-gray-700">{lesson.forAdvanced}</p>
+                    <p className="text-sm text-gray-700">{lesson.differentiationStrategies?.forAdvanced}</p>
                   </div>
                 )}
-                {!lesson.forStruggling && !lesson.forAdvanced && (
+                {!lesson.differentiationStrategies?.forStruggling && !lesson.differentiationStrategies?.forAdvanced && (
                   <p className="text-gray-500">Aucune stratégie définie</p>
                 )}
               </div>
@@ -319,17 +319,17 @@ export function LessonDetailPage(): React.ReactElement {
         </div>
         
         {/* Assessment */}
-        {(lesson.assessmentStrategies || lesson.successCriteria) && (
+        {(lesson.assessmentNotes || lesson.successCriteria) && (
           <Card className="mb-6">
             <CardHeader>
               <CardTitle>Évaluation / Assessment</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {lesson.assessmentStrategies && (
+                {lesson.assessmentNotes && (
                   <div>
                     <h4 className="font-semibold mb-2">Stratégies d'évaluation:</h4>
-                    <p className="text-gray-700">{lesson.assessmentStrategies}</p>
+                    <p className="text-gray-700">{lesson.assessmentNotes}</p>
                   </div>
                 )}
                 {lesson.successCriteria && lesson.successCriteria.length > 0 && (
@@ -358,7 +358,7 @@ export function LessonDetailPage(): React.ReactElement {
                 <CardTitle>Attentes du curriculum / Curriculum Expectations</CardTitle>
                 <Button
                   size="sm"
-                  onClick={() => navigate(`/assessment?lessonId=${lessonId}&expectations=${lesson.expectations.map(e => e.id).join(',')}`)}
+                  onClick={() => navigate(`/assessment?lessonId=${lessonId}&expectations=${lesson.expectations?.map(e => e.expectation.id).join(',')}`)}
                   className="bg-green-600 hover:bg-green-700 text-white"
                 >
                   <ClipboardCheck className="h-4 w-4 mr-2" />
@@ -371,18 +371,18 @@ export function LessonDetailPage(): React.ReactElement {
                 {lesson.expectations.map((exp, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-2 bg-gray-50 rounded hover:bg-gray-100 transition-colors">
                     <Badge variant="outline" className="mt-0.5">
-                      {exp.code}
+                      {exp.expectation.code}
                     </Badge>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">{exp.descriptionFr || exp.description}</p>
-                      {exp.descriptionFr && exp.description !== exp.descriptionFr && (
-                        <p className="text-xs text-gray-600 mt-1">{exp.description}</p>
+                      <p className="text-sm font-medium">{exp.expectation.descriptionFr || exp.expectation.description}</p>
+                      {exp.expectation.descriptionFr && exp.expectation.description !== exp.expectation.descriptionFr && (
+                        <p className="text-xs text-gray-600 mt-1">{exp.expectation.description}</p>
                       )}
                     </div>
                     <Button
                       size="sm"
                       variant="ghost"
-                      onClick={() => navigate(`/assessment?expectationId=${exp.id}`)}
+                      onClick={() => navigate(`/assessment?expectationId=${exp.expectation.id}`)}
                       className="text-green-600 hover:text-green-700"
                     >
                       <ClipboardCheck className="h-3 w-3" />
@@ -395,11 +395,11 @@ export function LessonDetailPage(): React.ReactElement {
         )}
         
         {/* Notes */}
-        {lesson.notes && (
+        {lesson.subNotes && (
           <Alert className="mb-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-              <strong>Notes:</strong> {lesson.notes}
+              <strong>Notes:</strong> {lesson.subNotes}
             </AlertDescription>
           </Alert>
         )}

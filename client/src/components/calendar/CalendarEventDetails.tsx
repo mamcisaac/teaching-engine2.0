@@ -36,6 +36,7 @@ export function CalendarEventDetails({
       } else if (event.originalData?.id !== undefined && event.originalData.id !== '') {
         return apiClient.delete(`/api/calendar-events/${event.originalData.id}`);
       }
+      throw new Error('Cannot delete event: missing ID');
     },
     onSuccess: () => {
       toast.success('Event deleted successfully');
@@ -61,6 +62,7 @@ export function CalendarEventDetails({
           title: newTitle,
         });
       }
+      throw new Error('Cannot update event: missing ID');
     },
     onSuccess: () => {
       toast.success('Event updated successfully');

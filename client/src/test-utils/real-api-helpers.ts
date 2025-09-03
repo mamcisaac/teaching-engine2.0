@@ -51,7 +51,7 @@ export const testDataFactory = {
     duration: 60,
     groupingStrategies: 'Whole class',
     learningGoals: 'Students will understand basic concepts',
-    successCriteria: 'Students can explain the concept',
+    successCriteria: ['Students can explain the concept'],
     priorKnowledge: 'Basic math skills',
     introduction: 'Start with a warm-up activity',
     bodyOfLesson: 'Main teaching content',

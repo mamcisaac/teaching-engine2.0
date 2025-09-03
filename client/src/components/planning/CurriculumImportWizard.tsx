@@ -179,8 +179,8 @@ function CurriculumImportWizard({
 
   const handleConfirmImport = useCallback(async () => {
     if (importId === null || reviewedData === null) {
-return;
-}
+      return;
+    }
 
     setIsConfirming(true);
     const token = localStorage.getItem('token');
@@ -207,15 +207,10 @@ return;
         description: `Successfully imported ${result.expectationsCount} curriculum expectations`,
       });
 
-      const timeoutId = setTimeout(() => {
+      setTimeout(() => {
         handleClose();
         onSuccess();
       }, 2000);
-      
-      // Store timeout ID for cleanup
-      return (): void => {
- clearTimeout(timeoutId); 
-};
     } catch (_error) {
       logger.error('Confirm import error:', _error);
       toast({

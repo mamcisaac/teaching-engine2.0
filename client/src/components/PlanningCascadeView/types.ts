@@ -88,6 +88,20 @@ export interface CascadeSelection {
   type: CascadeItemType;
   id: string;
   data: CascadeData;
+  path?: string[];
+}
+
+export interface CascadeNode {
+  id: string;
+  label: string;
+  type: CascadeItemType;
+  hasChildren: boolean;
+  childrenCount?: number;
+  data?: CascadeData;
+  progress?: {
+    completed: number;
+    total: number;
+  };
 }
 
 export interface TreeNode {

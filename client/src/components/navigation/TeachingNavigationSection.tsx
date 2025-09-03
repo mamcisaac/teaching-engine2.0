@@ -12,7 +12,8 @@ import {
   CheckCircle,
   Camera,
   BarChart3,
-  FileBarChart
+  FileBarChart,
+  Network
 } from 'lucide-react';
 import { useNavigation } from './NavigationProvider';
 
@@ -50,6 +51,14 @@ export function TeachingNavigationSection(): React.ReactElement {
       path: '/planner/long-range',
       icon: <Calendar className="h-5 w-5" />,
       description: '8 subject plans',
+    },
+    {
+      id: 'cascade',
+      name: 'Planning Cascade',
+      path: '/planning-cascade',
+      icon: <Network className="h-5 w-5" />,
+      description: 'Full planning view',
+      badge: 'NEW'
     },
     {
       id: 'today',
@@ -166,6 +175,9 @@ export function TeachingNavigationSection(): React.ReactElement {
               {item.icon}
               {item.badge === 'PRIMARY' && (
                 <div className="absolute -top-1 -right-1 h-2 w-2 bg-green-400 rounded-full animate-pulse" />
+              )}
+              {item.badge === 'NEW' && (
+                <div className="absolute -top-1 -right-1 h-2 w-2 bg-yellow-400 rounded-full animate-pulse" />
               )}
             </span>
             {isSidebarOpen && (

@@ -343,6 +343,9 @@ export async function submitFormWithRealBackend(
 
     throw new Error(`Form submission did not complete within ${timeout}ms`);
   }
+  
+  // Return void if no mutation key was specified
+  return;
 }
 
 // Re-export everything from testing library

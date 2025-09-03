@@ -1217,10 +1217,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   assessmentOverview: optimizedDraft.assessmentOverview,
                   resourceNeeds: optimizedDraft.resourceNeeds,
                   professionalGoals: optimizedDraft.professionalGoals,
-                  // Include optimization metadata
-                  optimizationScore: optimizedDraft.optimizationScore,
-                  pedagogicalCertification: optimizedDraft.pedagogicalCertification,
-                  lastOptimized: new Date().toISOString()
+                  // Optimization metadata can be stored in description or notes if needed
                 });
                 
                 toast.success(`Perfect plan generated! Optimization Score: ${optimizedDraft.optimizationScore}% (${optimizedDraft.pedagogicalCertification})`);

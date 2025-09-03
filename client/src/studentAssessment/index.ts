@@ -18,49 +18,5 @@ export { studentAssessmentHooks } from '../hooks/useStudentAssessment';
 export * from '../constants/studentAssessment';
 export { ASSESSMENT_CONSTANTS } from '../constants/studentAssessment';
 
-// Re-export commonly used items for convenience
-export {
-  // Core types
-  type Student,
-  type StudentArtifact,
-  type StudentOutcomeProgress,
-  type MasteryLevel,
-  type EvidenceType,
-  type ArtifactType,
-  
-  // API functions
-  studentsAPI,
-  artifactsAPI,
-  masteryAPI,
-  analyticsAPI,
-  
-  // Hooks - Students
-  useStudents,
-  useStudent,
-  useCreateStudent,
-  useUpdateStudent,
-  
-  // Hooks - Artifacts
-  useArtifacts,
-  useUploadArtifact,
-  useCreateNote,
-  useTagArtifactWithOutcome,
-  
-  // Hooks - Mastery
-  useStudentMastery,
-  useUpdateMastery,
-  useOptimisticMasteryUpdate,
-  useMasteryAnalytics,
-  
-  // Constants
-  MASTERY_LEVELS,
-  EVIDENCE_TYPES,
-  ARTIFACT_TYPES,
-  
-  // Utilities
-  formatFileSize,
-  calculateMasteryPercentage,
-  formatStudentName,
-  getMasteryColor,
-  getMasteryLabel,
-} from '../constants/studentAssessment';
+// All items are already exported via the wildcard exports above
+// Users can import directly from the respective modules
