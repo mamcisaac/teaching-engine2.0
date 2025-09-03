@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import type { PlanTemplate, UnitPlanContent, LessonPlanContent } from '../../types/template';
 import { Button } from '../ui/Button';
 
-interface TemplatePreviewModalProps {
+export interface TemplatePreviewModalProps {
   template: PlanTemplate;
   onClose: () => void;
   onApply: (template: PlanTemplate) => void;

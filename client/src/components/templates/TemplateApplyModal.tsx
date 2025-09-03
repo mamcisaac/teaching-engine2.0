@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from '../ui/select';
 
-interface TemplateApplyModalProps {
+export interface TemplateApplyModalProps {
   template: PlanTemplate;
   isOpen: boolean;
   onClose: () => void;

@@ -64,7 +64,7 @@ interface CurriculumSetupData {
   exportFormat: 'json' | 'pdf' | 'both';
 }
 
-interface CurriculumSetupWizardProps {
+export interface CurriculumSetupWizardProps {
   onComplete: (data: CurriculumSetupData) => void;
   onCancel: () => void;
 }

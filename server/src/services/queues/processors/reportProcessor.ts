@@ -31,12 +31,12 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
   const { type, userId, studentId, options = {} } = job.data;
   
   try {
-    logger.info(`Starting report generation`, {
+    logger.info(`Starting report generation`, JSON.stringify({
       type,
       userId,
       studentId,
       options
-    });
+    }));
 
     job.progress(10);
 
@@ -66,15 +66,18 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
       // Generate student report
       const reportData = await generateStudentReport(
         studentId,
-        options.subject,
-        options.includeArtifacts || false,
-        options.includeProgressChart || false,
-        options.startDate ? new Date(options.startDate) : undefined,
-        options.endDate ? new Date(options.endDate) : undefined
+        userId,
+        {
+          subject: options.subject,
+          includeArtifacts: options.includeArtifacts || false,
+          includeProgressChart: options.includeProgressChart || false,
+          startDate: options.startDate ? new Date(options.startDate) : undefined,
+          endDate: options.endDate ? new Date(options.endDate) : undefined
+        }
       );
 
-      reportBuffer = reportData.buffer;
-      fileName = reportData.fileName;
+      reportBuffer = reportData;
+      fileName = `student-report-${studentId}.pdf`;
       reportMetadata = {
         studentId,
         studentName: `${student.firstName} ${student.lastName}`,
@@ -95,13 +98,15 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
       // Generate class report
       const reportData = await generateClassReport(
         userId,
-        options.subject,
-        options.startDate ? new Date(options.startDate) : undefined,
-        options.endDate ? new Date(options.endDate) : undefined
+        {
+          subject: options.subject,
+          startDate: options.startDate ? new Date(options.startDate) : undefined,
+          endDate: options.endDate ? new Date(options.endDate) : undefined
+        }
       );
 
-      reportBuffer = reportData.buffer;
-      fileName = reportData.fileName;
+      reportBuffer = reportData;
+      fileName = `class-report-${userId}.pdf`;
       reportMetadata = {
         type: 'class',
         subject: options.subject,
@@ -131,25 +136,25 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
 
     job.progress(100);
 
-    logger.info(`Report generation completed`, {
+    logger.info(`Report generation completed`, JSON.stringify({
       type,
       fileName,
       fileSize: reportBuffer.length,
       processingTime,
       studentId
-    });
+    }));
 
     return result;
 
-  } catch (error) {
-    logger.error(`Report generation failed`, {
+  } catch (error: unknown) {
+    logger.error(`Report generation failed`, JSON.stringify({
       error: error instanceof Error ? error.message : error,
       stack: error instanceof Error ? error.stack : undefined,
       type,
       userId,
       studentId,
       options
-    });
+    }));
 
     // Re-throw to mark job as failed
     throw error;

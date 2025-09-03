@@ -41,7 +41,7 @@ class UnifiedCache implements ICache {
     if (this.useRedis) {
       try {
         this.primaryCache = getRedisCache();
-      } catch (error) {
+      } catch (error: unknown) {
         structuredLogger.error('Failed to initialize Redis cache', error as Error);
         this.useRedis = false;
       }
@@ -57,7 +57,7 @@ class UnifiedCache implements ICache {
     if (this.primaryCache) {
       try {
         await this.primaryCache.connect();
-      } catch (error) {
+      } catch (error: unknown) {
         structuredLogger.error(
           'Redis connection failed, falling back to memory cache',
           error as Error,

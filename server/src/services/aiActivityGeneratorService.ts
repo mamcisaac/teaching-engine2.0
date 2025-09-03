@@ -249,7 +249,7 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
         safetyConsiderations: activity.safetyConsiderations ?? undefined,
         technologyRequirements: activity.technologyRequirements ?? undefined,
       };
-    } catch (error) {
+    } catch (error: unknown) {
       throw new Error('Failed to parse generated activity');
     }
   }

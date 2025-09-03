@@ -101,7 +101,7 @@ return;
 
     try {
       await this.client.connect();
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Failed to connect to Redis', error as Error);
       throw error;
     }
@@ -114,7 +114,7 @@ return;
 
     try {
       await this.client.quit();
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Failed to disconnect from Redis', error as Error);
       throw error;
     }
@@ -149,7 +149,7 @@ return;
       perfLogger.end({ hit: true, key, size: value.length });
 
       return parsed;
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Cache get error', error as Error, { key });
       this.stats.errors++;
       return null;
@@ -187,7 +187,7 @@ return;
       perfLogger.end({ key, ttl, size: serialized.length });
 
       return true;
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Cache set error', error as Error, { key });
       this.stats.errors++;
       return false;
@@ -210,7 +210,7 @@ return false;
 
       structuredLogger.debug('Cache key deleted', { key, deleted: result > 0 });
       return result > 0;
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Cache delete error', error as Error, { key });
       this.stats.errors++;
       return false;
@@ -238,7 +238,7 @@ return 0;
 
       structuredLogger.info('Cache keys deleted by pattern', { pattern, count: result });
       return result;
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Cache delete by pattern error', error as Error, { pattern });
       this.stats.errors++;
       return 0;
@@ -271,7 +271,7 @@ return 0;
 
       structuredLogger.info('Cache invalidated by tags', { tags, deleted: totalDeleted });
       return totalDeleted;
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Cache invalidate by tags error', error as Error, { tags });
       this.stats.errors++;
       return 0;
@@ -291,7 +291,7 @@ return;
       this.resetStats();
 
       structuredLogger.warn('Cache cleared');
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Cache clear error', error as Error);
       this.stats.errors++;
     }
@@ -335,7 +335,7 @@ return 0;
     try {
       const result = await this.client.incrBy(fullKey, amount);
       return result;
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Cache increment error', error as Error, { key });
       this.stats.errors++;
       return 0;
@@ -374,7 +374,7 @@ return false;
     try {
       await this.client.ping();
       return true;
-    } catch (error) {
+    } catch (error: unknown) {
       return false;
     }
   }
@@ -404,7 +404,7 @@ return false;
         throw new Error('Failed to parse JSON value');
       }
       return parsed as T;
-    } catch (error) {
+    } catch (error: unknown) {
       structuredLogger.error('Cache deserialization error', error as Error);
       throw error;
     }

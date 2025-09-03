@@ -174,8 +174,8 @@ export const exportStudentEvidence = async (
       includedItems
     };
 
-  } catch (error) {
-    logger.error('Failed to export student evidence:', error);
+  } catch (error: unknown) {
+    logger.error('Failed to export student evidence:', error instanceof Error ? error.message : String(error));
     return {
       success: false,
       message: `Export failed: ${(error as Error).message}`,
@@ -207,7 +207,7 @@ const generateStudentEvidencePDF = async (
   });
 
   const chunks: Buffer[] = [];
-  doc.on('data', chunk => chunks.push(chunk));
+  doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
   // Header
   doc.fontSize(20).text('Student Evidence Portfolio', { align: 'center' });
@@ -219,7 +219,7 @@ const generateStudentEvidencePDF = async (
   
   if (options.parentFriendly) {
     doc.moveDown();
-    doc.fontSize(10).text('This portfolio showcases your child\'s learning journey and progress in our Grade 1 French Immersion classroom.', { align: 'center', color: 'gray' });
+    doc.fontSize(10).fillColor('gray').text('This portfolio showcases your child\'s learning journey and progress in our Grade 1 French Immersion classroom.', { align: 'center' }).fillColor('black');
   }
   
   doc.moveDown(2);
@@ -396,8 +396,8 @@ Questions? Please feel free to contact me!
         const fileName = `${new Date(artifact.dateCollected).toISOString().split('T')[0]}_${artifact.fileName}`;
         
         archive.file(fullPath, { name: `${typeFolder}/${fileName}` });
-      } catch (error) {
-        logger.warn(`Could not add file to zip: ${artifact.filePath}`, error);
+      } catch (error: unknown) {
+        logger.warn(`Could not add file to zip: ${artifact.filePath}`, error instanceof Error ? error.message : String(error));
       }
     }
   }
@@ -472,8 +472,8 @@ export const exportClassSummary = async (
       }
     };
 
-  } catch (error) {
-    logger.error('Failed to export class summary:', error);
+  } catch (error: unknown) {
+    logger.error('Failed to export class summary:', error instanceof Error ? error.message : String(error));
     return {
       success: false,
       message: `Export failed: ${(error as Error).message}`,
@@ -493,9 +493,12 @@ const generateClassSummaryPDF = async (
   const fileName = `Class_Learning_Summary_${new Date().toISOString().split('T')[0]}.pdf`;
   const pdfPath = path.join(tempDir, fileName);
 
-  const doc = new PDFDocument({ size: 'LETTER', margins: 50 });
+  const doc = new PDFDocument({ 
+    size: 'LETTER', 
+    margins: { top: 50, bottom: 50, left: 50, right: 50 } 
+  });
   const chunks: Buffer[] = [];
-  doc.on('data', chunk => chunks.push(chunk));
+  doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
   // Header
   doc.fontSize(20).text('Grade 1 French Immersion - Class Learning Highlights', { align: 'center' });
@@ -516,15 +519,15 @@ const generateClassSummaryPDF = async (
   doc.moveDown(2);
 
   // Subject highlights
-  const subjectData: Record<string, { students: number; artifacts: number }> = {};
+  const subjectData: Record<string, { students: Set<string>; artifacts: number }> = {};
   
   for (const student of students) {
     for (const progress of student.outcomeProgress) {
       const subject = progress.outcome?.subject || 'Other';
       if (!subjectData[subject]) {
-        subjectData[subject] = { students: new Set().add(student.id), artifacts: 0 };
+        subjectData[subject] = { students: new Set<string>().add(student.id), artifacts: 0 };
       } else {
-        (subjectData[subject].students as Set<string>).add(student.id);
+        subjectData[subject].students.add(student.id);
       }
     }
     
@@ -541,7 +544,7 @@ const generateClassSummaryPDF = async (
   doc.fontSize(12);
 
   for (const [subject, data] of Object.entries(subjectData)) {
-    const studentCount = (data.students as Set<string>).size;
+    const studentCount = data.students.size;
     doc.text(`${subject}: ${studentCount} students actively assessed`);
   }
 

@@ -1,6 +1,16 @@
 import type { ComponentType } from 'react';
 import { lazy, Suspense } from 'react';
 
+// Import prop types
+import type { AILessonPlanPanelProps } from '../ai/AILessonPlanPanel';
+import type { AIUnitPlanPanelProps } from '../ai/AIUnitPlanPanel';
+import type { AIWeeklyPlanModalProps } from '../ai/AIWeeklyPlanModal';
+import type { GPTPlanningAgentProps } from '../ai/GPTPlanningAgent';
+import type { CurriculumSetupWizardProps } from '../forms/CurriculumSetupWizard';
+import type { PlanningWizardProps } from '../planning/PlanningWizard';
+import type { TemplatePreviewModalProps } from '../templates/TemplatePreviewModal';
+import type { TemplateApplyModalProps } from '../templates/TemplateApplyModal';
+
 // Lazy load heavy AI components
 const AILessonPlanPanel = lazy(() => import('../ai/AILessonPlanPanel').then(module => ({ default: module.AILessonPlanPanel })));
 const AIUnitPlanPanel = lazy(() => import('../ai/AIUnitPlanPanel').then(module => ({ default: module.AIUnitPlanPanel })));
@@ -89,19 +99,19 @@ function createLazyComponent<T extends object>(
   } as ComponentType<T>;
 }
 
-// Export lazy-wrapped components
-export const LazyAILessonPlanPanel = createLazyComponent(AILessonPlanPanel, AILoadingFallback);
-export const LazyAIUnitPlanPanel = createLazyComponent(AIUnitPlanPanel, AILoadingFallback);
-export const LazyAIWeeklyPlanModal = createLazyComponent(AIWeeklyPlanModal, ModalLoadingFallback);
-export const LazyGPTPlanningAgent = createLazyComponent(GPTPlanningAgent, AILoadingFallback);
+// Export lazy-wrapped components with proper types
+export const LazyAILessonPlanPanel = createLazyComponent<AILessonPlanPanelProps>(AILessonPlanPanel, AILoadingFallback);
+export const LazyAIUnitPlanPanel = createLazyComponent<AIUnitPlanPanelProps>(AIUnitPlanPanel, AILoadingFallback);
+export const LazyAIWeeklyPlanModal = createLazyComponent<AIWeeklyPlanModalProps>(AIWeeklyPlanModal, ModalLoadingFallback);
+export const LazyGPTPlanningAgent = createLazyComponent<GPTPlanningAgentProps>(GPTPlanningAgent, AILoadingFallback);
 
 export const LazyCurriculumExpectationCoverage = createLazyComponent(CurriculumExpectationCoverage, ChartLoadingFallback);
 
-export const LazyCurriculumSetupWizard = createLazyComponent(CurriculumSetupWizard, FormLoadingFallback);
-export const LazyPlanningWizard = createLazyComponent(PlanningWizard, FormLoadingFallback);
+export const LazyCurriculumSetupWizard = createLazyComponent<CurriculumSetupWizardProps>(CurriculumSetupWizard, FormLoadingFallback);
+export const LazyPlanningWizard = createLazyComponent<PlanningWizardProps>(PlanningWizard, FormLoadingFallback);
 
-export const LazyTemplatePreviewModal = createLazyComponent(TemplatePreviewModal, ModalLoadingFallback);
-export const LazyTemplateApplyModal = createLazyComponent(TemplateApplyModal, ModalLoadingFallback);
+export const LazyTemplatePreviewModal = createLazyComponent<TemplatePreviewModalProps>(TemplatePreviewModal, ModalLoadingFallback);
+export const LazyTemplateApplyModal = createLazyComponent<TemplateApplyModalProps>(TemplateApplyModal, ModalLoadingFallback);
 
 // Named export with all lazy components for convenience
 export const LazyComponents = {

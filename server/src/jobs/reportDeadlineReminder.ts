@@ -11,7 +11,7 @@ export function scheduleReportDeadlineReminders(): void {
   schedule('0 2 * * *', () => {
     try {
       sendReportDeadlineReminders();
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Failed to send report deadline reminders:', error instanceof Error ? error.message : String(error));
     }
   });

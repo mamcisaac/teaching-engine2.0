@@ -101,7 +101,7 @@ const WIZARD_STEPS: WizardStep[] = [
   }
 ];
 
-interface PlanningWizardProps {
+export interface PlanningWizardProps {
   currentLevel?: ETFOLevel;
   completedLevels?: ETFOLevel[];
   onClose?: () => void;

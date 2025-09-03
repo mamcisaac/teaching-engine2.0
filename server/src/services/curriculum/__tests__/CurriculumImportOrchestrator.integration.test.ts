@@ -345,7 +345,7 @@ ${'X'.repeat(100)}.1,Test,5,Mathematics,Code too long`;
 
       try {
         await orchestrator.importFromCSV(testUser.id, csvPath);
-      } catch (error) {
+      } catch (error: unknown) {
         // Expected to fail
       }
 

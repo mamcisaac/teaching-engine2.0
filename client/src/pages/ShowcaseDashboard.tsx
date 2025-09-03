@@ -366,7 +366,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                     >
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="font-semibold text-gray-900">
-                          {unit.titleFr || unit.title}
+                          {unit.title}
                         </h3>
                         <Badge variant="outline">
                           {unit.estimatedHours}h

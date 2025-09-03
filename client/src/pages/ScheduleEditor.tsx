@@ -13,9 +13,9 @@ import { Alert, AlertDescription } from '../components/ui/alert';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Input } from '../components/ui/input';
+import { Input } from '../components/ui/Input';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
-import api from '../utils/api';
+import { api } from '../lib/axios';
 
 interface Lesson {
   id: string;
@@ -222,42 +222,25 @@ export function ScheduleEditor(): React.ReactElement {
   const weekStart = startOfWeek(currentWeek, { weekStartsOn: 1 });
   const weekDays = Array.from({ length: 5 }, (_, i) => addDays(weekStart, i));
 
-  // Organize lessons by date and time slot
-  const lessonsByDateTime = new Map<string, Lesson[]>();
+  // Organize lessons by date and slot number
+  const lessonsByDateSlot = new Map<string, Lesson[]>();
   
   if (lessons) {
     lessons.forEach((lesson: any) => {
       // Apply pending changes
       const changeData = changes.get(lesson.id);
       const effectiveDate = changeData ? changeData.date : lesson.date;
+      const effectiveSlot = changeData ? changeData.slotNumber : (lesson.slotNumber || 1);
       const lessonDate = parseISO(effectiveDate);
       
-      // Determine time slot based on time
-      const hours = lessonDate.getHours();
-      const minutes = lessonDate.getMinutes();
-      const timeStr = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-      
-      let timeSlot = TIME_SLOTS.findIndex(slot => slot.time === timeStr);
-      if (timeSlot === -1) {
-        // Find closest time slot
-        timeSlot = 0;
-        for (let i = 0; i < TIME_SLOTS.length; i++) {
-          const [slotHours, slotMinutes] = TIME_SLOTS[i].time.split(':').map(Number);
-          if (hours < slotHours || (hours === slotHours && minutes <= slotMinutes)) {
-            timeSlot = i;
-            break;
-          }
-        }
-      }
-      
       const dateKey = format(lessonDate, 'yyyy-MM-dd');
-      const key = `${dateKey}-${timeSlot}`;
+      const key = `${dateKey}-${effectiveSlot}`;
       
-      if (!lessonsByDateTime.has(key)) {
-        lessonsByDateTime.set(key, []);
+      if (!lessonsByDateSlot.has(key)) {
+        lessonsByDateSlot.set(key, []);
       }
       
-      lessonsByDateTime.get(key)!.push({
+      lessonsByDateSlot.get(key)!.push({
         id: lesson.id,
         title: lesson.title,
         titleFr: lesson.titleFr,
@@ -355,13 +338,13 @@ export function ScheduleEditor(): React.ReactElement {
 
             {/* Filters */}
             <div className="flex gap-2 mb-4">
-              <div className="flex-1">
+              <div className="flex-1 relative">
+                <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <Input
                   placeholder="Search lessons..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full"
-                  icon={<Search className="h-4 w-4" />}
+                  className="w-full pl-9"
                 />
               </div>
               <select
@@ -389,7 +372,7 @@ export function ScheduleEditor(): React.ReactElement {
               <table className="w-full border-collapse">
                 <thead>
                   <tr>
-                    <th className="border p-2 bg-gray-50 w-24">Time</th>
+                    <th className="border p-2 bg-gray-50 w-24">Slot</th>
                     {weekDays.map(day => (
                       <th key={day.toISOString()} className="border p-2 bg-gray-50">
                         <div>{format(day, 'EEEE')}</div>
@@ -401,19 +384,16 @@ export function ScheduleEditor(): React.ReactElement {
                   </tr>
                 </thead>
                 <tbody>
-                  {TIME_SLOTS.map((slot, slotIndex) => (
-                    <tr key={slot.time}>
+                  {DAILY_SLOTS.map((slot) => (
+                    <tr key={slot.slotNumber}>
                       <td className="border p-2 bg-gray-50">
-                        <div className="font-medium">{slot.time}</div>
+                        <div className="font-medium">Slot {slot.slotNumber}</div>
                         <div className="text-xs text-gray-600">{slot.label}</div>
-                        <Badge variant="outline" className="text-xs mt-1">
-                          {slot.subject}
-                        </Badge>
                       </td>
                       {weekDays.map(day => {
                         const dateKey = format(day, 'yyyy-MM-dd');
-                        const key = `${dateKey}-${slotIndex}`;
-                        const slotLessons = lessonsByDateTime.get(key) || [];
+                        const key = `${dateKey}-${slot.slotNumber}`;
+                        const slotLessons = lessonsByDateSlot.get(key) || [];
                         
                         // Apply filters
                         const filteredLessons = slotLessons.filter(lesson => {
@@ -430,9 +410,9 @@ export function ScheduleEditor(): React.ReactElement {
                         
                         return (
                           <td key={day.toISOString()} className="border p-2">
-                            <TimeSlot
+                            <DailySlot
                               date={dateKey}
-                              timeSlot={slotIndex}
+                              slotNumber={slot.slotNumber}
                               lessons={filteredLessons}
                               onDrop={handleDrop}
                             />

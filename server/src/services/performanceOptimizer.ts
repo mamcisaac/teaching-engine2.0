@@ -57,10 +57,10 @@ export const cachedQuery = async <T>(
           try {
             const freshData = await queryFn();
             await redis.setex(fullKey, config.ttl, JSON.stringify(freshData));
-            await redis.setex(staleKey, config.ttl + config.staleWhileRevalidate, JSON.stringify(freshData));
+            await redis.setex(staleKey, config.ttl + (config.staleWhileRevalidate || 0), JSON.stringify(freshData));
             logger.debug(`Background revalidation completed for ${fullKey}`);
-          } catch (error) {
-            logger.warn(`Background revalidation failed for ${fullKey}:`, error);
+          } catch (error: unknown) {
+            logger.warn(`Background revalidation failed for ${fullKey}:`, error instanceof Error ? error.message : String(error));
           }
         });
         
@@ -80,7 +80,7 @@ export const cachedQuery = async <T>(
     
     return data;
   } catch (cacheError) {
-    logger.warn(`Cache error for ${fullKey}, falling back to direct query:`, cacheError);
+    logger.warn(`Cache error for ${fullKey}, falling back to direct query:`, cacheError instanceof Error ? cacheError.message : String(cacheError));
     return queryFn();
   }
 };
@@ -300,8 +300,8 @@ export const invalidateUserCache = async (userId: number) => {
         logger.debug(`Deleted ${keys.length} cache keys for pattern: ${pattern}`);
       }
     }
-  } catch (error) {
-    logger.warn('Cache invalidation failed:', error);
+  } catch (error: unknown) {
+    logger.warn('Cache invalidation failed:', error instanceof Error ? error.message : String(error));
   }
 };
 
@@ -323,8 +323,8 @@ export const invalidateStudentCache = async (studentId: string, userId: number) 
         await redis.del(...keys);
       }
     }
-  } catch (error) {
-    logger.warn('Student cache invalidation failed:', error);
+  } catch (error: unknown) {
+    logger.warn('Student cache invalidation failed:', error instanceof Error ? error.message : String(error));
   }
 };
 
@@ -352,8 +352,8 @@ export const analyzeQueryPerformance = async () => {
         plan,
         recommendation: analyzeExecutionPlan(plan as any[])
       });
-    } catch (error) {
-      logger.warn(`Failed to analyze query: ${query}`, error);
+    } catch (error: unknown) {
+      logger.warn(`Failed to analyze query: ${query}`, error instanceof Error ? error.message : String(error));
     }
   }
   
@@ -405,8 +405,8 @@ export const warmupCache = async (userId: number) => {
     await Promise.allSettled(warmupPromises);
     
     logger.info(`Cache warmup completed for user ${userId}`);
-  } catch (error) {
-    logger.warn('Cache warmup failed:', error);
+  } catch (error: unknown) {
+    logger.warn('Cache warmup failed:', error instanceof Error ? error.message : String(error));
   }
 };
 

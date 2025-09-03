@@ -6,7 +6,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
-import { isObject, isString, hasProperty } from '../../../../../shared/utils/typeGuards';
+import { isObject, isString, hasProperty } from '@shared/utils/typeGuards';
 
 import { logger } from '../../../logger';
 
@@ -18,9 +18,9 @@ export class LessonTemplateProvider extends TemplateProvider {
     super('LessonTemplateProvider');
     try {
       this.loadTemplates().catch(error => {
-        logger.error('Failed to load lesson templates:', error);
+        logger.error('Failed to load lesson templates:', error instanceof Error ? error.message : String(error));
       });
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Failed to initialize lesson templates:', error as string | undefined);
     }
   }

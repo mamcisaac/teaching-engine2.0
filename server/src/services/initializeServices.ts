@@ -7,7 +7,7 @@
 
 import { logger } from '../logger';
 import { initializeQueues } from './queues/init';
-import { initializeCronJobs } from './cron/cleanup';
+import { startCleanupJobs } from './cron/cleanup';
 
 /**
  * Initialize all background services
@@ -21,7 +21,7 @@ export const initializeServices = async (): Promise<void> => {
     logger.info('✅ Job queues initialized');
     
     // Start cleanup cron jobs
-    initializeCronJobs();
+    startCleanupJobs();
     logger.info('✅ Cleanup cron jobs scheduled');
     
     // Log successful initialization
@@ -30,8 +30,8 @@ export const initializeServices = async (): Promise<void> => {
     // Log service status
     logServiceStatus();
     
-  } catch (error) {
-    logger.error('Failed to initialize services:', error);
+  } catch (error: unknown) {
+    logger.error('Failed to initialize services:', error instanceof Error ? error.message : String(error));
     // Don't crash the server, but log the error prominently
     console.error('⚠️  WARNING: Some background services failed to initialize');
     console.error('The application will continue but some features may not work properly');
@@ -66,8 +66,8 @@ export const shutdownServices = async (): Promise<void> => {
     await shutdownQueues();
     
     logger.info('All services shut down gracefully');
-  } catch (error) {
-    logger.error('Error during service shutdown:', error);
+  } catch (error: unknown) {
+    logger.error('Error during service shutdown:', error instanceof Error ? error.message : String(error));
   }
 };
 

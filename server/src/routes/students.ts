@@ -9,9 +9,8 @@ import multer from 'multer';
 import { PrismaClient } from '@teaching-engine/database';
 import { importStudentsFromCSV, validateCSVFormat, generateCSVTemplate, exportStudentsToCSV } from '../services/csvImport';
 import { checkClassQuota, checkStudentQuota, formatBytes } from '../services/quotaManager';
-import { withDatabaseResilience } from '../services/errorHandling';
 import { bulkOperationRateLimit, artifactViewRateLimit } from '../middleware/rateLimit/artifactRateLimit';
-import { getStudentsOptimized, invalidateUserCache, invalidateStudentCache } from '../services/performanceOptimizer';
+import { getStudentsOptimized, invalidateUserCache } from '../services/performanceOptimizer';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -23,7 +22,7 @@ const csvUpload = multer({
     fileSize: 1024 * 1024, // 1MB max for CSV
     files: 1
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (_req, file, cb) => {
     if (file.mimetype === 'text/csv' || file.originalname.endsWith('.csv')) {
       cb(null, true);
     } else {
@@ -72,7 +71,7 @@ router.get('/',
         })),
         total: students.length
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to fetch students:', error);
       res.status(500).json({ error: 'Failed to fetch students' });
     }
@@ -86,7 +85,7 @@ router.get('/',
 router.post('/import/csv',
   requireAuth,
   bulkOperationRateLimit,
-  csvUpload.single('csvFile'),
+  csvUpload.single('csvFile') as any,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       if (!req.file) {
@@ -129,7 +128,7 @@ router.post('/import/csv',
           : `Imported ${result.imported} students with ${result.failed} errors`
       });
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('CSV import failed:', error);
       res.status(500).json({ error: 'CSV import failed' });
     }
@@ -142,14 +141,14 @@ router.post('/import/csv',
  */
 router.get('/template/csv',
   requireAuth,
-  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  async (_req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const template = generateCSVTemplate();
       
       res.setHeader('Content-Type', 'text/csv');
       res.setHeader('Content-Disposition', 'attachment; filename="student_import_template.csv"');
       res.send(template);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to generate template:', error);
       res.status(500).json({ error: 'Failed to generate template' });
     }
@@ -169,7 +168,7 @@ router.get('/export/csv',
       res.setHeader('Content-Type', 'text/csv');
       res.setHeader('Content-Disposition', `attachment; filename="students_${new Date().toISOString().split('T')[0]}.csv"`);
       res.send(csv);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to export students:', error);
       res.status(500).json({ error: 'Failed to export students' });
     }
@@ -201,7 +200,7 @@ router.get('/quota/report',
           quota: formatBytes(s.quotaBytes)
         }))
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to get quota report:', error);
       res.status(500).json({ error: 'Failed to get quota report' });
     }
@@ -234,7 +233,7 @@ router.get('/:id/quota',
           size: formatBytes(f.size)
         }))
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to get student quota:', error);
       if ((error as Error).message.includes('not found')) {
         res.status(404).json({ error: 'Student not found' });
@@ -267,8 +266,8 @@ router.post('/',
       return;
     }
 
-    const createStudent = withDatabaseResilience(async () => {
-      return await prisma.student.create({
+    try {
+      const student = await prisma.student.create({
         data: {
           userId: req.user!.id,
           firstName: req.body.firstName,
@@ -279,10 +278,6 @@ router.post('/',
           isActive: true
         }
       });
-    });
-
-    try {
-      const student = await createStudent();
       
       // Invalidate cache after creating student
       await invalidateUserCache(req.user!.id);
@@ -295,7 +290,7 @@ router.post('/',
         grade: student.grade,
         createdAt: student.createdAt
       });
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Failed to create student:', error);
       res.status(500).json({ error: 'Failed to create student' });
     }

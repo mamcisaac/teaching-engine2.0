@@ -45,7 +45,7 @@ export class ETFOLessonPlanRepository {
         where: { id },
       });
       return result;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error finding ETFO lesson plan by id:', error as string | undefined);
       throw error;
     }
@@ -111,7 +111,7 @@ export class ETFOLessonPlanRepository {
       });
 
       return plans;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error finding ETFO lesson plans by user:', error as string | undefined);
       throw error;
     }
@@ -163,7 +163,7 @@ export class ETFOLessonPlanRepository {
       });
 
       return plan;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error finding ETFO lesson plan with relations:', error as string | undefined);
       throw error;
     }
@@ -248,7 +248,7 @@ export class ETFOLessonPlanRepository {
       
       logger.info(`Created ETFO lesson plan with id: ${plan.id}`);
       return plan;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error creating ETFO lesson plan with expectations:', error as string | undefined);
       throw error;
     }
@@ -262,7 +262,7 @@ export class ETFOLessonPlanRepository {
       });
       logger.info(`Updated ETFO lesson plan with id: ${id}`);
       return result;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error updating ETFO lesson plan:', error as string | undefined);
       throw error;
     }
@@ -358,7 +358,7 @@ export class ETFOLessonPlanRepository {
       }
       
       return plan;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error updating ETFO lesson plan with expectations:', error as string | undefined);
       throw error;
     }
@@ -371,7 +371,7 @@ export class ETFOLessonPlanRepository {
       });
       logger.info(`Deleted ETFO lesson plan with id: ${id}`);
       return result;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error deleting ETFO lesson plan:', error as string | undefined);
       throw error;
     }
@@ -381,7 +381,7 @@ export class ETFOLessonPlanRepository {
     try {
       const result = await this.prisma.eTFOLessonPlan.count({ where });
       return result;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error counting ETFO lesson plans:', error as string | undefined);
       throw error;
     }
@@ -431,7 +431,7 @@ export class ETFOLessonPlanRepository {
       });
 
       return plans;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error searching ETFO lesson plans:', error as string | undefined);
       throw error;
     }

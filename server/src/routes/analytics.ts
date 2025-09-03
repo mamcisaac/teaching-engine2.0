@@ -7,7 +7,6 @@ import { Router, Request, Response } from 'express';
 import { query, body, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
 import { logger } from '../logger';
-import { getClassAnalyticsOptimized, cachedQuery, invalidateUserCache } from '../services/performanceOptimizer';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -151,8 +150,8 @@ router.get('/class-overview', requireAuth, async (req: AuthenticatedRequest, res
       studentMetrics: studentMetrics.sort((a, b) => b.lastActivity - a.lastActivity)
     });
 
-  } catch (error) {
-    logger.error('Failed to get class analytics overview', error);
+  } catch (error: unknown) {
+    logger.error('Failed to get class analytics overview', error instanceof Error ? error.message : String(error));
     res.status(500).json({ error: 'Failed to retrieve class analytics' });
   }
 });
@@ -305,8 +304,8 @@ router.get('/evidence-triangulation', requireAuth, async (req: AuthenticatedRequ
       }
     });
 
-  } catch (error) {
-    logger.error('Failed to get evidence triangulation analytics', error);
+  } catch (error: unknown) {
+    logger.error('Failed to get evidence triangulation analytics', error instanceof Error ? error.message : String(error));
     res.status(500).json({ error: 'Failed to retrieve triangulation analytics' });
   }
 });
@@ -443,8 +442,8 @@ router.get('/progress-trends',
         }))
       });
 
-    } catch (error) {
-      logger.error('Failed to get progress trends', error);
+    } catch (error: unknown) {
+      logger.error('Failed to get progress trends', error instanceof Error ? error.message : String(error));
       res.status(500).json({ error: 'Failed to retrieve progress trends' });
     }
   }
@@ -524,7 +523,7 @@ router.post('/export',
       const userId = req.user!.id;
       const { type, format, data } = req.body;
       
-      logger.info(`Exporting analytics data: ${type} as ${format}`, { userId, type, format });
+      logger.info(`Exporting analytics data: ${type} as ${format}`, JSON.stringify({ userId, type, format }));
 
       if (format === 'csv') {
         // Export as CSV
@@ -548,8 +547,8 @@ router.post('/export',
         res.status(400).json({ error: 'Unsupported export format' });
       }
       
-    } catch (error) {
-      logger.error('Failed to export analytics data', error);
+    } catch (error: unknown) {
+      logger.error('Failed to export analytics data', error instanceof Error ? error.message : String(error));
       res.status(500).json({ error: 'Failed to export analytics data' });
     }
   }
@@ -558,7 +557,7 @@ router.post('/export',
 /**
  * Helper function to generate CSV export
  */
-async function generateCSVExport(type: string, data: any, userId: number): Promise<string> {
+async function generateCSVExport(type: string, data: any, _userId: number): Promise<string> {
   let csvContent = '';
   
   if (type === 'class-overview') {

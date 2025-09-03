@@ -43,7 +43,7 @@ return;
 
     res.json({ data: result });
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     // Log error with full context
     structuredLogger.error('Failed to process example request', error as Error, {
       userId,
@@ -84,7 +84,7 @@ router.get('/api/example/performance', authenticate, async (_req: AuthenticatedR
 
     res.json({ data: processed });
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     perfLogger.end({ success: false, error: (error as Error).message });
 
     structuredLogger.error('Performance example failed', error as Error);
@@ -130,7 +130,7 @@ return;
       results.push(result);
 
       itemLogger.info('Item processed successfully');
-    } catch (error) {
+    } catch (error: unknown) {
       itemLogger.error('Failed to process item', error as Error);
       errors.push({ itemId: item.id, error: (error as Error).message });
     }
@@ -179,7 +179,7 @@ router.post(
           res.json({ workflowId, result });
           return;
         });
-      } catch (error) {
+      } catch (error: unknown) {
         structuredLogger.error('Workflow failed', error as Error, { workflowId });
         next(error);
       }

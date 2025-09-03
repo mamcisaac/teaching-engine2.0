@@ -6,7 +6,7 @@
 import React, { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
-import { render, RenderOptions } from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import {
@@ -77,6 +77,13 @@ interface RealRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   withBackendSetup?: boolean;
 }
 
+// Extended RenderResult type with additional properties
+export interface ExtendedRenderResult extends RenderResult {
+  cleanup: () => Promise<void>;
+  queryClient?: QueryClient;
+  authContext?: AuthTestContext;
+}
+
 export async function renderWithRealBackend(
   ui: React.ReactElement,
   {
@@ -87,7 +94,7 @@ export async function renderWithRealBackend(
     withBackendSetup = true,
     ...renderOptions
   }: RealRenderOptions = {},
-) {
+): Promise<ExtendedRenderResult> {
   // Setup backend if requested
   let backendCleanup: (() => Promise<void>) | undefined;
   let testQueryClient = queryClient;
@@ -131,7 +138,7 @@ export async function renderWithRealBackend(
         await backendCleanup();
       }
     },
-  };
+  } as ExtendedRenderResult;
 }
 
 // Helper to render authenticated components with real backend
@@ -141,7 +148,7 @@ export async function renderAuthenticatedWithRealBackend(
     createUser?: boolean;
     testUser?: TestUser;
   } = {},
-) {
+): Promise<ExtendedRenderResult> {
   const { createUser = true, testUser, ...renderOptions } = options;
   let authContext: AuthTestContext | undefined;
 
@@ -160,11 +167,21 @@ export async function renderAuthenticatedWithRealBackend(
   return {
     ...result,
     authContext,
-  };
+  } as ExtendedRenderResult;
+}
+
+interface RealTestUtils {
+  renderAuthenticated: (ui: React.ReactElement, options?: RealRenderOptions) => Promise<ExtendedRenderResult>;
+  renderWithRoute: (ui: React.ReactElement, route: string, options?: RealRenderOptions) => Promise<ExtendedRenderResult>;
+  renderAuthenticatedWithRoute: (ui: React.ReactElement, route: string, options?: RealRenderOptions) => Promise<ExtendedRenderResult>;
+  renderWithBackend: (ui: React.ReactElement, options?: RealRenderOptions) => Promise<ExtendedRenderResult>;
+  createQueryClient: () => QueryClient;
+  clearAuth: () => void;
+  setupBackend: () => Promise<{ queryClient: QueryClient; cleanup: () => Promise<void> }>;
 }
 
 // Test utilities for different scenarios
-export const realTestUtils = {
+export const realTestUtils: RealTestUtils = {
   // Render with real backend and authentication
   renderAuthenticated: async (ui: React.ReactElement, options?: RealRenderOptions) =>
     await renderAuthenticatedWithRealBackend(ui, options),
@@ -172,6 +189,10 @@ export const realTestUtils = {
   // Render with specific route and real backend
   renderWithRoute: async (ui: React.ReactElement, route: string, options?: RealRenderOptions) =>
     await renderWithRealBackend(ui, { ...options, initialRoute: route }),
+
+  // Render with authentication and specific route
+  renderAuthenticatedWithRoute: async (ui: React.ReactElement, route: string, options?: RealRenderOptions) =>
+    await renderAuthenticatedWithRealBackend(ui, { ...options, initialRoute: route }),
 
   // Render with real backend only (no auth)
   renderWithBackend: async (ui: React.ReactElement, options?: RealRenderOptions) =>
@@ -314,7 +335,7 @@ export async function submitFormWithRealBackend(
   form: HTMLFormElement,
   queryClient: QueryClient,
   expectedMutationKey?: string[],
-) {
+): Promise<unknown> {
   const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
   form.dispatchEvent(submitEvent);
 
@@ -343,6 +364,9 @@ export async function submitFormWithRealBackend(
 
     throw new Error(`Form submission did not complete within ${timeout}ms`);
   }
+  
+  // Return undefined when no mutation key is provided
+  return undefined;
 }
 
 // Re-export everything from testing library

@@ -36,7 +36,7 @@ interface UnitPlanSuggestion {
   rationale?: string;
 }
 
-interface AIUnitPlanPanelProps {
+export interface AIUnitPlanPanelProps {
   unitTitle?: string;
   subject?: string;
   grade?: number;

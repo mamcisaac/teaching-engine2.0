@@ -38,7 +38,7 @@ export interface ImageJobResult {
  */
 export const processImageJob = async (job: Job<ImageJobData>): Promise<ImageJobResult> => {
   const startTime = Date.now();
-  const { artifactId, buffer, originalName, mimeType } = job.data;
+  const { artifactId, buffer, originalName } = job.data;
   
   logger.info(`Processing image job ${job.id} for artifact ${artifactId}`);
   
@@ -132,8 +132,8 @@ export const processImageJob = async (job: Job<ImageJobData>): Promise<ImageJobR
       processingTime
     };
     
-  } catch (error) {
-    logger.error(`Image job ${job.id} failed`, error);
+  } catch (error: unknown) {
+    logger.error(`Image job ${job.id} failed`, error instanceof Error ? error.message : String(error));
     
     // Update artifact with error status
     await prisma.studentArtifact.update({
@@ -217,8 +217,8 @@ export const extractExifData = async (
     }
     
     return {};
-  } catch (error) {
-    logger.warn('Failed to extract EXIF data', error);
+  } catch (error: unknown) {
+    logger.warn('Failed to extract EXIF data', error instanceof Error ? error.message : String(error));
     return {};
   }
 };

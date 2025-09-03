@@ -25,8 +25,8 @@ export function SimpleUnitPlansPage(): React.ReactElement {
 
   // Connect to comprehensive database - this will show the correct units for each subject
   // Mathematics will show 8 math units, French will show 8 French units, etc.
-  const { data: longRangePlan } = useLongRangePlan(longRangePlanId);
-  const { data: units, isLoading, error } = useUnitPlans(longRangePlanId);
+  const { data: longRangePlan } = useLongRangePlan(longRangePlanId || '');
+  const { data: units, isLoading, error } = useUnitPlans({ longRangePlanId });
 
   // Mutations
   const createMutation = useCreateUnitPlan();

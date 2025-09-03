@@ -10,7 +10,7 @@
 import React, { ReactNode, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
-import { render, RenderOptions } from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { vi } from 'vitest';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
@@ -200,6 +200,13 @@ export function AllProviders({
   );
 }
 
+// Extended RenderResult type with additional properties
+export interface ExtendedRenderResult extends RenderResult {
+  waitForLoad?: () => Promise<void>;
+  authContext?: AuthTestContext;
+  cleanup?: () => Promise<void>;
+}
+
 // Enhanced render function with real implementation support
 export interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
   queryClient?: QueryClient;
@@ -231,7 +238,7 @@ export function renderWithProviders(
     waitForLoad = false,
     ...renderOptions
   }: CustomRenderOptions = {},
-) {
+): ExtendedRenderResult {
   const Wrapper = ({ children }: { children: React.ReactNode }) => {
     return (
       <AllProviders
@@ -256,10 +263,10 @@ export function renderWithProviders(
     return {
       ...result,
       waitForLoad: () => waitForLoadingToFinish(),
-    };
+    } as ExtendedRenderResult;
   }
 
-  return result;
+  return result as ExtendedRenderResult;
 }
 
 // Helper to render with real authentication
@@ -269,7 +276,7 @@ export async function renderWithRealAuth(
     createUser?: boolean;
     testUser?: TestUser;
   } = {},
-) {
+): Promise<ExtendedRenderResult> {
   const { createUser = true, testUser, ...renderOptions } = options;
   let authContext: AuthTestContext | undefined;
 
@@ -294,11 +301,32 @@ export async function renderWithRealAuth(
         await authContext.cleanup();
       }
     },
+  } as ExtendedRenderResult;
+}
+
+interface TestUtils {
+  renderAuthenticated: (ui: React.ReactElement, options?: CustomRenderOptions) => Promise<ExtendedRenderResult>;
+  renderWithRoute: (ui: React.ReactElement, route: string, options?: CustomRenderOptions) => ExtendedRenderResult;
+  renderAuthenticatedWithRoute: (ui: React.ReactElement, route: string, options?: CustomRenderOptions) => Promise<ExtendedRenderResult>;
+  createQueryClient: (config?: TestConfig) => QueryClient;
+  renderAndWaitForLoad: (ui: React.ReactElement, options?: CustomRenderOptions) => Promise<ExtendedRenderResult>;
+  measureRenderPerformance: (ui: React.ReactElement, options?: CustomRenderOptions) => Promise<ExtendedRenderResult & { renderTime: number; performance: any }>;
+  renderWithLargeDataset: (ui: React.ReactElement, dataSize: number, options?: CustomRenderOptions) => ExtendedRenderResult;
+  migration: {
+    renderWithMigration: (ui: React.ReactElement, useReal: boolean, options?: CustomRenderOptions) => ExtendedRenderResult;
+    testBothImplementations: (ui: React.ReactElement, options?: CustomRenderOptions) => Promise<{ mock: ExtendedRenderResult; real: ExtendedRenderResult }>;
+    compareResults: (mockResult: any, realResult: any) => { isEqual: boolean; differences?: any[] };
+  };
+  clearAuth: () => void;
+  setup: {
+    setupRealEnvironment: () => Promise<void>;
+    createTestData: (dataConfig: Record<string, unknown>) => Promise<Record<string, unknown>>;
+    cleanupTestEnvironment: () => void;
   };
 }
 
 // Enhanced test utilities for real implementation testing
-export const testUtils = {
+export const testUtils: TestUtils = {
   // Render with real authenticated user
   renderAuthenticated: async (ui: React.ReactElement, options?: CustomRenderOptions) =>
     await renderWithRealAuth(ui, options),
@@ -331,7 +359,7 @@ export const testUtils = {
   // Render with real providers and wait for loading
   renderAndWaitForLoad: async (ui: React.ReactElement, options?: CustomRenderOptions) => {
     const result = renderWithProviders(ui, { ...options, waitForLoad: true });
-    if ('waitForLoad' in result) {
+    if ('waitForLoad' in result && result.waitForLoad) {
       await result.waitForLoad();
     }
     return result;
@@ -386,7 +414,6 @@ export const testUtils = {
     // Test both mock and real implementations side by side
     testBothImplementations: async (
       ui: React.ReactElement,
-      testFn: (result: unknown) => void | Promise<void>,
       options?: CustomRenderOptions,
     ) => {
       // Test with mock providers
@@ -394,16 +421,21 @@ export const testUtils = {
         ...options,
         useMockProviders: true,
       });
-      await testFn(mockResult);
-      mockResult.unmount();
 
       // Test with real providers
       const realResult = renderWithProviders(ui, {
         ...options,
         useMockProviders: false,
       });
-      await testFn(realResult);
-      realResult.unmount();
+
+      return { mock: mockResult, real: realResult };
+    },
+
+    // Compare results between mock and real implementations
+    compareResults: (mockResult: any, realResult: any) => {
+      const isEqual = JSON.stringify(mockResult) === JSON.stringify(realResult);
+      const differences = isEqual ? undefined : [{ mock: mockResult, real: realResult }];
+      return { isEqual, differences };
     },
   },
 
@@ -425,7 +457,7 @@ export const testUtils = {
     },
 
     // Cleanup test environment
-    cleanup: async () => {
+    cleanupTestEnvironment: () => {
       clearAuthState();
       // Additional cleanup for real implementations
     },
@@ -588,8 +620,16 @@ export const realDataUtils = {
   },
 };
 
+interface PerformanceUtils {
+  measureRenderTime: (renderFn: () => void) => Promise<number>;
+  createLargeDataSet: (count: number, template: unknown) => any[];
+  measureApiResponseTime: (apiCall: () => Promise<unknown>) => Promise<{ time: number; success: boolean; error?: unknown }>;
+  runPerformanceTest: (testFn: () => Promise<void>, iterations?: number) => Promise<{ average: number; min: number; max: number; iterations: number }>;
+  testComponentPerformance: (component: React.ReactElement, dataSize: number, options?: CustomRenderOptions) => Promise<{ result: ExtendedRenderResult; renderTime: number; metrics: { renderTime: number; isAcceptable: boolean; dataSize: number; }; }>;
+}
+
 // Performance testing utilities for real implementations
-export const performanceUtils = {
+export const performanceUtils: PerformanceUtils = {
   // Measure component render time with real data
   measureRenderTime: async (renderFn: () => void) => {
     const start = performance.now();
@@ -611,10 +651,11 @@ export const performanceUtils = {
     const start = performance.now();
     try {
       await apiCall();
-      return performance.now() - start;
+      const time = performance.now() - start;
+      return { time, success: true };
     } catch (error) {
-      const responseTime = performance.now() - start;
-      return { error, responseTime };
+      const time = performance.now() - start;
+      return { time, success: false, error };
     }
   },
 
@@ -636,13 +677,39 @@ export const performanceUtils = {
     const totalTime = performance.now() - renderStart;
 
     return {
-      ...result,
-      performance: {
+      result,
+      renderTime,
+      metrics: {
         renderTime,
-        totalTime,
+        isAcceptable: totalTime < 1000, // Less than 1 second for any data size
         dataSize,
-        acceptable: totalTime < 1000, // Less than 1 second for any data size
       },
+    };
+  },
+
+  // Run performance test with multiple iterations
+  runPerformanceTest: async (
+    testFn: () => Promise<void>,
+    iterations: number = 3,
+  ) => {
+    const times: number[] = [];
+    
+    for (let i = 0; i < iterations; i++) {
+      const start = performance.now();
+      await testFn();
+      const time = performance.now() - start;
+      times.push(time);
+    }
+
+    const average = times.reduce((a, b) => a + b, 0) / times.length;
+    const min = Math.min(...times);
+    const max = Math.max(...times);
+
+    return {
+      average,
+      min,
+      max,
+      iterations,
     };
   },
 };

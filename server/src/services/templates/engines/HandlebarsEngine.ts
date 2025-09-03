@@ -61,7 +61,7 @@ export class HandlebarsEngine extends RenderEngine {
           warnings: warnings.length > 0 ? warnings : undefined,
         },
       };
-    } catch (error) {
+    } catch (error: unknown) {
       throw new Error(`Handlebars render error: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
@@ -84,7 +84,7 @@ export class HandlebarsEngine extends RenderEngine {
       }
       
       return true;
-    } catch (error) {
+    } catch (error: unknown) {
       // Compilation error
       return false;
     }
