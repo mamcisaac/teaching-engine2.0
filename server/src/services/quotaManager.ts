@@ -6,10 +6,8 @@
 
 import { PrismaClient } from '@teaching-engine/database';
 import { logger } from '../logger';
-import { getStorageService } from './storage';
 
 const prisma = new PrismaClient();
-const storageService = getStorageService();
 
 // 5GB limit per student
 export const QUOTA_BYTES = 5 * 1024 * 1024 * 1024;
@@ -191,8 +189,8 @@ export const checkQuotaBeforeUpload = async (
     
     return { allowed: true };
     
-  } catch (error) {
-    logger.error('Quota check failed:', error);
+  } catch (error: unknown) {
+    logger.error('Quota check failed:', error instanceof Error ? error.message : String(error));
     // Fail open - allow upload if quota check fails
     return { allowed: true };
   }
@@ -347,8 +345,8 @@ export const monitorQuotaUsage = async (userId: number): Promise<void> => {
       }
     }
     
-  } catch (error) {
-    logger.error('Quota monitoring failed:', error);
+  } catch (error: unknown) {
+    logger.error('Quota monitoring failed:', error instanceof Error ? error.message : String(error));
   }
 };
 

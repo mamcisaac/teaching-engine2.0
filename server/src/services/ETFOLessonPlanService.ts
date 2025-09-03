@@ -139,7 +139,7 @@ export class ETFOLessonPlanService extends BaseService {
           hasMore: skip + take < total,
         },
       };
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error finding ETFO lesson plans:', getErrorMessage(error));
       throw error;
     }
@@ -154,7 +154,7 @@ export class ETFOLessonPlanService extends BaseService {
       }
 
       return plan;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error finding ETFO lesson plan by id:', getErrorMessage(error));
       throw error;
     }
@@ -191,7 +191,7 @@ export class ETFOLessonPlanService extends BaseService {
       );
 
       return plan;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error creating ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
@@ -217,7 +217,7 @@ export class ETFOLessonPlanService extends BaseService {
       );
 
       return updatedPlan;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error updating ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
@@ -232,7 +232,7 @@ export class ETFOLessonPlanService extends BaseService {
       }
 
       await this.repository.delete(id);
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error deleting ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
@@ -275,7 +275,7 @@ export class ETFOLessonPlanService extends BaseService {
       };
 
       return await this.create(createData, userId);
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error duplicating ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
@@ -305,7 +305,7 @@ export class ETFOLessonPlanService extends BaseService {
           hasMore: skip + take < total,
         },
       };
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error searching ETFO lesson plans:', getErrorMessage(error));
       throw error;
     }
@@ -322,7 +322,7 @@ export class ETFOLessonPlanService extends BaseService {
           repositoryStatus: 'connected',
         },
       };
-    } catch (error) {
+    } catch (error: unknown) {
       return {
         healthy: false,
         details: {

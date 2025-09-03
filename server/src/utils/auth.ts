@@ -90,7 +90,7 @@ export function verifyAccessToken(token: string): JWTPayload {
 
   try {
     return verify(token, process.env.JWT_SECRET) as JWTPayload;
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error('Invalid or expired token');
   }
 }
@@ -105,7 +105,7 @@ export function verifyRefreshToken(token: string): JWTPayload {
 
   try {
     return verify(token, process.env.JWT_REFRESH_SECRET) as JWTPayload;
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error('Invalid or expired refresh token');
   }
 }

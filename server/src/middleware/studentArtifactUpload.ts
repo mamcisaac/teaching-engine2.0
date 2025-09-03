@@ -110,7 +110,8 @@ export const validateStudentAccess = async (req: Request, res: Response, next: N
     const userId = req.user?.id;
 
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
 
     // Import Prisma client
@@ -128,9 +129,10 @@ export const validateStudentAccess = async (req: Request, res: Response, next: N
       });
 
       if (!student) {
-        return res.status(404).json({ 
+        res.status(404).json({ 
           error: 'Student not found or access denied' 
         });
+        return;
       }
 
       // Attach student info to request for use in handlers
@@ -139,7 +141,7 @@ export const validateStudentAccess = async (req: Request, res: Response, next: N
     } finally {
       await prisma.$disconnect();
     }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Student access validation error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -180,10 +182,11 @@ export const validateOutcomeAccess = async (req: Request, res: Response, next: N
         const foundIds = existingOutcomes.map(o => o.id);
         const missingIds = outcomeIds.filter((id: string) => !foundIds.includes(id));
         
-        return res.status(400).json({
+        res.status(400).json({
           error: 'Invalid curriculum outcome IDs',
           missingOutcomes: missingIds
         });
+        return;
       }
 
       // Attach outcome info to request
@@ -192,7 +195,7 @@ export const validateOutcomeAccess = async (req: Request, res: Response, next: N
     } finally {
       await prisma.$disconnect();
     }
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Outcome access validation error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -203,10 +206,11 @@ export const handleValidationErrors = (req: Request, res: Response, next: NextFu
   const errors = validationResult(req);
   
   if (!errors.isEmpty()) {
-    return res.status(400).json({
+    res.status(400).json({
       error: 'Validation failed',
       details: errors.array()
     });
+    return;
   }
   
   next();

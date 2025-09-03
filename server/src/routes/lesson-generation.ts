@@ -3,7 +3,7 @@ import { Router } from 'express';
 const router = Router();
 
 // Stub routes for lesson generation
-router.post('/generate', async (req, res) => {
+router.post('/generate', async (_req, res) => {
   res.json({
     success: true,
     message: 'Lesson generation endpoint',
@@ -11,7 +11,7 @@ router.post('/generate', async (req, res) => {
   });
 });
 
-router.get('/status/:id', async (req, res) => {
+router.get('/status/:id', async (_req, res) => {
   res.json({
     success: true,
     status: 'completed',

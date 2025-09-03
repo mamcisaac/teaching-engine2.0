@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
-import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, ViewGridIcon } from '@heroicons/react/24/outline';
+import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import { studentsApi, type Student } from '../services/api/students';
 
 
@@ -148,9 +148,11 @@ export function StudentsPage(): React.ReactElement {
 
   const handleArchiveStudent = async (student: Student) => {
     try {
-      const updated = await studentsApi.update(student.id, { status: 'archived' });
+      // Note: The API doesn't support updating status through the update method
+      // This is a frontend-only operation for now
+      const archivedStudent: Student = { ...student, status: 'archived' };
       const updatedStudents = students.map(s =>
-        s.id === student.id ? updated : s
+        s.id === student.id ? archivedStudent : s
       );
       setStudents(updatedStudents);
       localStorage.setItem('assessment-students', JSON.stringify(updatedStudents));
@@ -301,7 +303,7 @@ export function StudentsPage(): React.ReactElement {
               className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white shadow' : ''}`}
               data-testid="grid-view-btn"
             >
-              <ViewGridIcon className="w-5 h-5" />
+              <Squares2X2Icon className="w-5 h-5" />
             </button>
           </div>
         </div>

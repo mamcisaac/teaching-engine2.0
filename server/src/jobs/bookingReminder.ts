@@ -18,7 +18,7 @@ export function scheduleEquipmentBookingReminders(): void {
   schedule('0 8 * * *', () => {
     try {
       sendEquipmentBookingReminders();
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Failed to send equipment booking reminders:', formatErrorForLogging(error));
     }
   });

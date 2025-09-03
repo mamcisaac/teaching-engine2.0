@@ -64,7 +64,7 @@ export const importStudentsFromCSV = async (
       columns: true,
       skip_empty_lines: true,
       trim: true,
-      cast: (value, context) => {
+      cast: (value, _context) => {
         // Clean up values
         if (value === '' || value === 'null' || value === 'NULL') {
           return null;
@@ -110,8 +110,9 @@ export const importStudentsFromCSV = async (
         };
 
         // Check for duplicates
+        let existing: any = null;
         if (!options.updateExisting) {
-          const existing = await prisma.student.findFirst({
+          existing = await prisma.student.findFirst({
             where: {
               userId,
               OR: [
@@ -175,8 +176,8 @@ export const importStudentsFromCSV = async (
 
         logger.info(`Imported student: ${student.firstName} ${student.lastName} (${student.studentNumber || 'no number'})`);
 
-      } catch (error) {
-        logger.error(`Failed to import row ${rowNumber}:`, error);
+      } catch (error: unknown) {
+        logger.error(`Failed to import row ${rowNumber}:`, error instanceof Error ? error.message : String(error));
         result.errors.push({
           row: rowNumber,
           error: (error as Error).message,
@@ -190,8 +191,8 @@ export const importStudentsFromCSV = async (
 
     logger.info(`CSV import completed: ${result.imported} imported, ${result.failed} failed`);
 
-  } catch (error) {
-    logger.error('CSV parsing failed:', error);
+  } catch (error: unknown) {
+    logger.error('CSV parsing failed:', error instanceof Error ? error.message : String(error));
     result.success = false;
     result.errors.push({
       row: 0,
@@ -228,7 +229,7 @@ export const validateCSVFormat = (csvBuffer: Buffer): {
       columns: true,
       skip_empty_lines: true,
       trim: true,
-      max_records: 1 // Just check the header
+      to: 1 // Just check the header
     });
 
     if (records.length === 0) {
@@ -257,7 +258,7 @@ export const validateCSVFormat = (csvBuffer: Buffer): {
       errors.push(`CSV contains ${rowCount} students. Maximum recommended is 35 for a single class.`);
     }
 
-  } catch (error) {
+  } catch (error: unknown) {
     errors.push(`Invalid CSV format: ${(error as Error).message}`);
   }
 

@@ -106,7 +106,7 @@ return;
 
     res.json(progressData);
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     logger.error('Error fetching ETFO progress:', message);
     res.status(500).json({ error: 'Failed to fetch ETFO progress' });

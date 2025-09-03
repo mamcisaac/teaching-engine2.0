@@ -46,7 +46,7 @@ export interface VideoJobResult {
  */
 export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobResult> => {
   const startTime = Date.now();
-  const { artifactId, buffer, originalName, mimeType } = job.data;
+  const { artifactId, buffer, originalName } = job.data;
   
   logger.info(`Processing video job ${job.id} for artifact ${artifactId}`);
   
@@ -96,8 +96,8 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
           folder: path.dirname(tempThumbPath),
           size: '320x?'  // Width 320px, maintain aspect ratio
         })
-        .on('end', resolve)
-        .on('error', reject);
+        .on('end', () => resolve())
+        .on('error', (err: Error) => reject(err));
     });
     
     await job.progress(70);
@@ -115,7 +115,7 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
         metadata: {
           artifactId,
           type: 'video-thumbnail',
-          extractedAt: thumbnailTime,
+          extractedAt: String(thumbnailTime),
           originalFile: originalName
         }
       }
@@ -169,8 +169,8 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
       processingTime
     };
     
-  } catch (error) {
-    logger.error(`Video job ${job.id} failed`, error);
+  } catch (error: unknown) {
+    logger.error(`Video job ${job.id} failed`, error instanceof Error ? error.message : String(error));
     
     // Cleanup temp files on error
     await fs.unlink(tempVideoPath).catch(() => {});
@@ -225,8 +225,8 @@ export const generatePreviewClip = async (
       .output(previewPath)
       .size('640x?') // Smaller size for preview
       .videoBitrate('1000k')
-      .on('end', resolve)
-      .on('error', reject)
+      .on('end', () => resolve())
+      .on('error', (err: Error) => reject(err))
       .run();
   });
   
@@ -241,7 +241,7 @@ export const generatePreviewClip = async (
       metadata: {
         artifactId,
         type: 'preview',
-        duration: 10
+        duration: '10'
       }
     }
   );
@@ -287,8 +287,8 @@ export const extractVideoFrames = async (
           folder: path.dirname(framePath),
           size: '320x?'
         })
-        .on('end', resolve)
-        .on('error', reject);
+        .on('end', () => resolve())
+        .on('error', (err: Error) => reject(err));
     });
     
     const frameBuffer = await fs.readFile(framePath);
@@ -300,8 +300,8 @@ export const extractVideoFrames = async (
         folder: 'frames',
         metadata: {
           artifactId,
-          frameNumber: i,
-          timestamp
+          frameNumber: String(i),
+          timestamp: String(timestamp)
         }
       }
     );

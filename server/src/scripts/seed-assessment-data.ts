@@ -81,6 +81,7 @@ async function seedAssessmentData() {
       create: {
         email: 'emily.mcisaac@edu.pe.ca',
         name: 'Emily McIsaac',
+        password: '$2a$10$K5X.m9VWznCpNG.H6cThj.wNxkUubvRhY3J./fGrDtZT9aOZQRAoS', // Default password: 'password123'
         role: 'TEACHER',
         grade: '1',
         program: 'French Immersion'
@@ -97,7 +98,7 @@ async function seedAssessmentData() {
           ...student,
           grade: 1,
           program: 'French Immersion',
-          teacherId: teacher.id,
+          userId: teacher.id,
           status: 'active'
         }
       });
@@ -211,7 +212,7 @@ async function seedAssessmentData() {
     console.log('');
     console.log('You can now run the E2E tests with: npm run test:e2e');
 
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('❌ Error seeding assessment data:', error);
     throw error;
   } finally {

@@ -125,7 +125,7 @@ A1.1,"Unclosed quote,overall,"Number Sense",1,Mathematics`;
       try {
         const result = await parser.parse(csvContent);
         expect(result).toBeDefined();
-      } catch (error) {
+      } catch (error: unknown) {
         expect((error as Error).message).toBeDefined();
       }
     });

@@ -8,13 +8,13 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/input';
+import { Input } from '../components/ui/Input';
 import { Badge } from '../components/ui/Badge';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 import { toast } from 'sonner';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '../utils/api';
+import { api } from '../lib/axios';
 
 interface Lesson {
   id: string;
@@ -356,13 +356,13 @@ export function ScheduleEditor(): React.ReactElement {
 
             {/* Filters */}
             <div className="flex gap-2 mb-4">
-              <div className="flex-1">
+              <div className="flex-1 relative">
+                <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <Input
                   placeholder="Search lessons..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full"
-                  icon={<Search className="h-4 w-4" />}
+                  className="w-full pl-9"
                 />
               </div>
               <select

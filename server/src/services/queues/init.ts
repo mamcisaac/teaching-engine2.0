@@ -80,8 +80,8 @@ export const initializeQueues = async (): Promise<void> => {
       }
       
       logger.info('Cleaned up old jobs from queues');
-    } catch (error) {
-      logger.error('Failed to clean up old jobs', error);
+    } catch (error: unknown) {
+      logger.error('Failed to clean up old jobs', error instanceof Error ? error.message : String(error));
     }
   }, 60 * 60 * 1000); // Run every hour
 };

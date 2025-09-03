@@ -6,14 +6,11 @@ import { logger } from '../logger';
 import { prisma } from '../prisma';
 import { generateLongRangePlanDraft, generatePlanSuggestions } from '../services/ai/aiDraftService';
 import { getUserId } from '../utils/authHelpers';
-import { LongRangePedagogicalPlanningService } from '../services/LongRangePedagogicalPlanningService';
+// REMOVED: LongRangePedagogicalPlanningService import - was a fake service returning mock data
 import { validate } from '../validation';
 
 import type { AuthenticatedRequest } from './base/middleware';
 const router = Router();
-
-// Initialize pedagogical optimization service
-const pedagogicalService = new LongRangePedagogicalPlanningService(prisma);
 
 // Validation schemas
 const longRangePlanCreateSchema = z.object({
@@ -38,24 +35,7 @@ const longRangePlanCreateSchema = z.object({
 
 const longRangePlanUpdateSchema = longRangePlanCreateSchema.partial();
 
-// Enhanced schemas for pedagogical optimization
-const optimizedDraftSchema = z.object({
-  subject: z.string().min(1),
-  grade: z.number().int().min(1).max(12),
-  academicYear: z.string().regex(/^\d{4}-\d{4}$/),
-  expectationIds: z.array(z.string()).min(1),
-  themes: z.array(z.string()).optional(),
-  teacherExperienceLevel: z.enum(['beginning', 'experienced', 'expert']).optional(),
-  frenchImmersionCertified: z.boolean().optional(),
-  studentProfile: z.object({
-    totalStudents: z.number().int().min(1).max(50).optional(),
-    englishLanguageLearners: z.number().int().min(0).optional(),
-    specialEducation: z.number().int().min(0).optional(),
-    giftedStudents: z.number().int().min(0).optional(),
-    culturalBackgrounds: z.array(z.string()).optional(),
-  }).optional(),
-  availableResources: z.array(z.string()).optional(),
-});
+// REMOVED: Unused optimizedDraftSchema for fake pedagogical optimization
 
 // Get all long-range plans for the authenticated user
 router.get('/', async (req: AuthenticatedRequest, res: Response) => {
@@ -104,7 +84,7 @@ router.get('/', async (req: AuthenticatedRequest, res: Response) => {
 
     res.json(plans);
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Error fetching long-range plans:', String(error));
     res.status(500).json({ error: 'Failed to fetch long-range plans' });
     return;
@@ -428,136 +408,7 @@ Expectations: ${plan.expectations.map((e: { expectation: { code: string; descrip
   }
 });
 
-// PEDAGOGICAL OPTIMIZATION ENDPOINTS
-
-// Generate pedagogically optimized AI draft
-router.post('/ai-optimized-draft', validate(optimizedDraftSchema), async (req: AuthenticatedRequest, res: Response) => {
-  try {
-    const userId = getUserId(req, res);
-    if (!userId) return;
-
-    const requestData = req.body;
-
-    // Use enhanced AI service with pedagogical optimization
-    const optimizedDraft = await generateLongRangePlanDraft({
-      ...requestData,
-      title: `${requestData.subject} - Grade ${requestData.grade} Optimized Plan`,
-      userId,
-      usePedagogicalOptimization: true
-    });
-
-    // Include optimization metadata in response
-    res.json({
-      ...optimizedDraft,
-      optimization_info: {
-        is_optimized: optimizedDraft.isOptimized,
-        frameworks_applied: [
-          'Understanding by Design (UbD)',
-          'ETFO Best Practices', 
-          'WHERETO Engagement Framework',
-          'Multi-Tiered Differentiation',
-          'Data-Driven Instruction',
-          'Cross-Curricular Integration',
-          'Cultural Responsiveness'
-        ]
-      }
-    });
-    return;
-  } catch (error) {
-    logger.error('Optimized AI draft generation error:', String(error));
-    res.status(500).json({ error: 'Failed to generate optimized AI draft' });
-    return;
-  }
-});
-
-// Optimize existing long range plan
-router.post('/:id/optimize', async (req: AuthenticatedRequest, res: Response) => {
-  try {
-    const userId = getUserId(req, res);
-    if (!userId) return;
-
-    const planId = req.params.id;
-
-    // Verify plan ownership
-    const existingPlan = await prisma.longRangePlan.findFirst({
-      where: { id: planId, userId }
-    });
-
-    if (!existingPlan) {
-      res.status(404).json({ error: 'Long-range plan not found' });
-      return;
-    }
-
-    // Generate optimized plan
-    const optimizedPlan = await pedagogicalService.optimizeExistingPlan(planId, userId);
-
-    // Update database with optimization data
-    const updatedPlan = await prisma.longRangePlan.update({
-      where: { id: planId },
-      data: {
-        // Store simplified optimization data
-        // Note: Complex JSON fields have been removed from schema for Grade 1 simplicity
-      }
-    });
-
-    res.json({
-      message: 'Plan successfully optimized',
-      optimization_results: {
-        score: optimizedPlan.plan_metadata.optimization_score,
-        certification: optimizedPlan.plan_metadata.pedagogical_certification,
-        improvement_areas: Object.keys(optimizedPlan.quality_verification.curriculum_compliance)
-      },
-      updated_plan: updatedPlan
-    });
-    return;
-  } catch (error) {
-    logger.error('Plan optimization error:', String(error));
-    res.status(500).json({ error: 'Failed to optimize plan' });
-    return;
-  }
-});
-
-// Assess pedagogical quality of existing plan
-router.get('/:id/quality-assessment', async (req: AuthenticatedRequest, res: Response) => {
-  try {
-    const userId = getUserId(req, res);
-    if (!userId) return;
-
-    const planId = req.params.id;
-
-    // Verify plan ownership
-    const plan = await prisma.longRangePlan.findFirst({
-      where: { id: planId, userId }
-    });
-
-    if (!plan) {
-      res.status(404).json({ error: 'Long-range plan not found' });
-      return;
-    }
-
-    // Run quality assessment
-    const qualityAssessment = await pedagogicalService.assessPlanQuality(planId, userId);
-
-    res.json({
-      plan_id: planId,
-      quality_assessment: qualityAssessment,
-      current_optimization_data: {
-        has_essential_questions: !!plan.yearlyEssentialQuestions,
-        has_differentiation: !!plan.differentationFramework
-      },
-      recommendations: {
-        should_optimize: qualityAssessment.current_score < 85,
-        potential_improvement: qualityAssessment.optimization_potential - qualityAssessment.current_score,
-        priority_areas: qualityAssessment.improvement_priorities
-      }
-    });
-    return;
-  } catch (error) {
-    logger.error('Quality assessment error:', String(error));
-    res.status(500).json({ error: 'Failed to assess plan quality' });
-    return;
-  }
-});
+// REMOVED: All fake pedagogical optimization endpoints that were using mock services
 
 // Get yearly predictions and insights
 router.get('/:id/yearly-predictions', async (req: AuthenticatedRequest, res: Response) => {
@@ -603,7 +454,7 @@ router.get('/:id/yearly-predictions', async (req: AuthenticatedRequest, res: Res
       }
     });
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Yearly predictions error:', String(error));
     res.status(500).json({ error: 'Failed to generate yearly predictions' });
     return;
@@ -635,9 +486,9 @@ router.get('/optimization-dashboard', async (req: AuthenticatedRequest, res: Res
     const dashboard = {
       summary: {
         total_plans: plans.length,
-        plans_with_descriptions: plans.filter(p => p.description).length,
-        plans_with_indigenous_perspectives: plans.filter(p => p.indigenousPerspectives).length,
-        needs_improvement: plans.filter(p => !p.description).length
+        plans_with_descriptions: plans.filter(p => (p as any).description).length,
+        plans_with_indigenous_perspectives: plans.filter(p => (p as any).indigenousPerspectives).length,
+        needs_improvement: plans.filter(p => !(p as any).description).length
       },
       plans: plans.map(plan => ({
         ...plan,
@@ -648,7 +499,7 @@ router.get('/optimization-dashboard', async (req: AuthenticatedRequest, res: Res
 
     res.json(dashboard);
     return;
-  } catch (error) {
+  } catch (error: unknown) {
     logger.error('Optimization dashboard error:', String(error));
     res.status(500).json({ error: 'Failed to load optimization dashboard' });
     return;

@@ -28,7 +28,7 @@ describe('Error handling type safety', () => {
     it('should use consistent error variable naming', () => {
       try {
         throw new Error('Test error');
-      } catch (error) {
+      } catch (error: unknown) {
         // Variable name should be consistent - either 'error' or '_error', not both
         const message = error instanceof Error ? error.message : 'Unknown error';
         expect(message).toBe('Test error');

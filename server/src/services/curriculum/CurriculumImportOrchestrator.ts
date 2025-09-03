@@ -223,7 +223,7 @@ export class CurriculumImportOrchestrator extends BaseService {
         result.subjectId = importResult.subjectId;
 
         return result;
-      } catch (error) {
+      } catch (error: unknown) {
         this.logger.error('Import failed');
         result.message = `Import failed: ${(error instanceof Error ? error.message : String(error))}`;
         result.stats.errors++;

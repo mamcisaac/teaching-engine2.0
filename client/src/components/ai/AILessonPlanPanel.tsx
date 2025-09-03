@@ -59,7 +59,7 @@ interface ThreePartStructure {
   };
 }
 
-interface AILessonPlanPanelProps {
+export interface AILessonPlanPanelProps {
   lessonTitle?: string;
   subject?: string;
   grade?: number;

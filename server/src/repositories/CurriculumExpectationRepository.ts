@@ -114,7 +114,7 @@ export class CurriculumExpectationRepository {
         take,
         hasMore: skip + take < total,
       };
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error searching curriculum expectations:', error as string | undefined);
       throw error;
     }
@@ -126,7 +126,7 @@ export class CurriculumExpectationRepository {
         where: { code },
       });
       return expectation;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error finding curriculum expectation by code:', error as string | undefined);
       throw error;
     }
@@ -142,7 +142,7 @@ export class CurriculumExpectationRepository {
         orderBy: [{ strand: 'asc' }, { substrand: 'asc' }, { code: 'asc' }],
       });
       return expectations;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error finding curriculum expectations by subject and grade:', error as string | undefined);
       throw error;
     }
@@ -184,7 +184,7 @@ export class CurriculumExpectationRepository {
         strands: strands.map((s) => s.strand),
         categories: categories.map((c) => c.category),
       };
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error({ error: error instanceof Error ? error.message : String(error) }, 'Error getting unique values');
       throw error;
     }
@@ -197,7 +197,7 @@ export class CurriculumExpectationRepository {
       });
       logger.info(`Bulk created ${result.count} curriculum expectations`);
       return result.count;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error bulk creating curriculum expectations:', error as string | undefined);
       throw error;
     }
@@ -213,7 +213,7 @@ export class CurriculumExpectationRepository {
       });
       logger.info(`Deleted ${result.count} expectations for ${subject} grade ${grade}`);
       return result.count;
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Error deleting curriculum expectations:', error as string | undefined);
       throw error;
     }

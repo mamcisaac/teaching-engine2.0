@@ -128,7 +128,7 @@ export class StorageServiceFactory {
       // Clean up test file
       await service.deleteFile(uploadResult.path);
       
-    } catch (error) {
+    } catch (error: unknown) {
       throw new Error(`Storage service validation failed: ${(error as Error).message}`);
     }
   }

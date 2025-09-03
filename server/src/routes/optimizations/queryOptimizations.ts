@@ -331,7 +331,7 @@ export const queryPerformance = {
       }
       
       return result;
-    } catch (error) {
+    } catch (error: unknown) {
       const duration = Date.now() - start;
       logger.error(`Query failed: ${queryName} failed after ${duration}ms:`, error as string | undefined);
       throw error;

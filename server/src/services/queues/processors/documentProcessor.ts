@@ -27,13 +27,13 @@ export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any
   const { artifactId, buffer, originalName, mimeType, userId, studentId } = job.data;
   
   try {
-    logger.info(`Starting document processing for artifact ${artifactId}`, {
+    logger.info(`Starting document processing for artifact ${artifactId}`, JSON.stringify({
       artifactId,
       originalName,
       mimeType,
       userId,
       studentId
-    });
+    }));
 
     // Update processing status
     await prisma.studentArtifact.update({
@@ -67,14 +67,14 @@ export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any
         const searchableText = pdfData.text.substring(0, 5000);
         metadata.searchableText = searchableText;
         
-        logger.info(`PDF analysis complete for ${artifactId}`, {
+        logger.info(`PDF analysis complete for ${artifactId}`, JSON.stringify({
           pageCount: metadata.pageCount,
           textLength: metadata.textLength,
           hasText: metadata.hasText
-        });
+        }));
         
       } catch (pdfError) {
-        logger.warn(`PDF parsing failed for ${artifactId}`, { error: pdfError });
+        logger.warn(`PDF parsing failed for ${artifactId}`, JSON.stringify({ error: pdfError }));
         metadata.processingError = 'PDF parsing failed';
         metadata.pageCount = 0;
         metadata.hasText = false;
@@ -117,23 +117,23 @@ export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any
       processingTime: metadata.processingTime
     };
 
-    logger.info(`Document processing completed for artifact ${artifactId}`, {
+    logger.info(`Document processing completed for artifact ${artifactId}`, JSON.stringify({
       artifactId,
       processingTime: metadata.processingTime,
       pageCount: metadata.pageCount,
       hasText: metadata.hasText
-    });
+    }));
 
     return result;
 
-  } catch (error) {
-    logger.error(`Document processing failed for artifact ${artifactId}`, {
+  } catch (error: unknown) {
+    logger.error(`Document processing failed for artifact ${artifactId}`, JSON.stringify({
       error: error instanceof Error ? error.message : error,
       stack: error instanceof Error ? error.stack : undefined,
       artifactId,
       userId,
       studentId
-    });
+    }));
 
     // Update processing status to failed
     try {
@@ -148,10 +148,10 @@ export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any
         }
       });
     } catch (updateError) {
-      logger.error(`Failed to update artifact status after processing failure`, {
+      logger.error(`Failed to update artifact status after processing failure`, JSON.stringify({
         artifactId,
         updateError
-      });
+      }));
     }
 
     // Re-throw to mark job as failed

@@ -14,7 +14,7 @@ export class NewsletterTemplateProvider extends TemplateProvider {
     super('NewsletterTemplateProvider');
     try {
       this.loadTemplates();
-    } catch (error) {
+    } catch (error: unknown) {
       logger.error('Failed to load newsletter templates:', error as string | undefined);
     }
   }

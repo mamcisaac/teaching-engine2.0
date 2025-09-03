@@ -43,16 +43,15 @@ export const unitPlanProtectionMiddleware: Prisma.Middleware = async (params, ne
       
       if (unitId) {
         // Check if unit is locked in database
-        const unit = await params.runInThisContext(() =>
-          next({
-            model: 'UnitPlan',
-            action: 'findUnique',
-            args: {
-              where: { id: unitId },
-              select: { isLocked: true, title: true }
-            }
-          })
-        );
+        const unit = await next({
+          ...params,
+          model: 'UnitPlan',
+          action: 'findUnique',
+          args: {
+            where: { id: unitId },
+            select: { isLocked: true, title: true }
+          }
+        });
 
         if (unit?.isLocked) {
           // Special case: Allow unlocking only with specific override
@@ -79,16 +78,15 @@ export const unitPlanProtectionMiddleware: Prisma.Middleware = async (params, ne
       const whereClause = args?.where || {};
       
       // Get potentially affected units
-      const affectedUnits = await params.runInThisContext(() =>
-        next({
-          model: 'UnitPlan',
-          action: 'findMany',
-          args: {
-            where: whereClause,
-            select: { id: true, isLocked: true, title: true }
-          }
-        })
-      );
+      const affectedUnits = await next({
+        ...params,
+        model: 'UnitPlan',
+        action: 'findMany',
+        args: {
+          where: whereClause,
+          select: { id: true, isLocked: true, title: true }
+        }
+      });
 
       const lockedUnits = affectedUnits.filter((unit: any) => unit.isLocked);
       
@@ -115,7 +113,7 @@ export const unitPlanProtectionMiddleware: Prisma.Middleware = async (params, ne
       action,
       model,
       args: JSON.stringify(args, null, 2),
-      error: error.message,
+      error: error instanceof Error ? error.message : String(error),
       timestamp: new Date().toISOString()
     });
 
@@ -194,7 +192,7 @@ export async function bulkLockUnitPlans(prisma: any, unitIds: string[], reason: 
 
   } catch (error) {
     console.error(`❌ Failed to bulk lock unit plans:`, error);
-    throw new Error(`Failed to lock unit plans: ${error.message}`);
+    throw new Error(`Failed to lock unit plans: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 

@@ -75,7 +75,7 @@ export const generateStudentReport = async (
   });
 
   const chunks: Buffer[] = [];
-  doc.on('data', chunk => chunks.push(chunk));
+  doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
   // Generate report content
   generateReportHeader(doc, student);
@@ -111,7 +111,7 @@ export const generateStudentReport = async (
  */
 export const generateClassReport = async (
   userId: number,
-  options: ReportOptions = {}
+  _options: ReportOptions = {}
 ): Promise<Buffer> => {
   logger.info(`Generating class overview report for teacher ${userId}`);
   
@@ -133,17 +133,17 @@ export const generateClassReport = async (
   // Create PDF document
   const doc = new PDFDocument({
     size: 'LETTER',
-    landscape: true,
+    layout: 'landscape' as any, // PDFKit types may not include this option
     margins: {
       top: 50,
       bottom: 50,
       left: 50,
       right: 50
     }
-  });
+  } as any);
 
   const chunks: Buffer[] = [];
-  doc.on('data', chunk => chunks.push(chunk));
+  doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
   // Generate class overview
   doc.fontSize(20).text('Class Progress Overview', { align: 'center' });
@@ -208,7 +208,7 @@ export const generateClassReport = async (
 
 // Helper functions for report generation
 
-function generateReportHeader(doc: PDFKit.PDFDocument, student: any) {
+function generateReportHeader(doc: any, student: any) {
   doc.fontSize(20).text('Student Progress Report', { align: 'center' });
   doc.moveDown();
   doc.fontSize(16).text(`${student.firstName} ${student.lastName}`, { align: 'center' });
@@ -218,7 +218,7 @@ function generateReportHeader(doc: PDFKit.PDFDocument, student: any) {
   doc.moveDown(2);
 }
 
-function generateProgressSummary(doc: PDFKit.PDFDocument, progress: any[]) {
+function generateProgressSummary(doc: any, progress: any[]) {
   doc.fontSize(14).text('Overall Progress', { underline: true });
   doc.moveDown();
   
@@ -231,7 +231,7 @@ function generateProgressSummary(doc: PDFKit.PDFDocument, progress: any[]) {
   doc.moveDown();
 }
 
-function generateProgressChart(doc: PDFKit.PDFDocument, progress: any[]) {
+function generateProgressChart(doc: any, progress: any[]) {
   doc.fontSize(14).text('Progress by Subject', { underline: true });
   doc.moveDown();
   
@@ -252,7 +252,7 @@ function generateProgressChart(doc: PDFKit.PDFDocument, progress: any[]) {
   doc.moveDown();
 }
 
-function generateStrengthsAndGrowth(doc: PDFKit.PDFDocument, progress: any[]) {
+function generateStrengthsAndGrowth(doc: any, progress: any[]) {
   doc.fontSize(14).text('Areas of Strength', { underline: true });
   doc.moveDown();
   doc.fontSize(11);
@@ -292,7 +292,7 @@ function generateStrengthsAndGrowth(doc: PDFKit.PDFDocument, progress: any[]) {
   doc.moveDown();
 }
 
-function generateRecentArtifacts(doc: PDFKit.PDFDocument, artifacts: any[]) {
+function generateRecentArtifacts(doc: any, artifacts: any[]) {
   doc.fontSize(14).text('Recent Work Samples', { underline: true });
   doc.moveDown();
   doc.fontSize(11);
@@ -307,7 +307,7 @@ function generateRecentArtifacts(doc: PDFKit.PDFDocument, artifacts: any[]) {
   doc.moveDown();
 }
 
-function generateTeacherComments(doc: PDFKit.PDFDocument, progress: any[]) {
+function generateTeacherComments(doc: any, progress: any[]) {
   doc.fontSize(14).text('Teacher Comments', { underline: true });
   doc.moveDown();
   doc.fontSize(11);
@@ -329,7 +329,7 @@ function generateTeacherComments(doc: PDFKit.PDFDocument, progress: any[]) {
   doc.moveDown();
 }
 
-function generateReportFooter(doc: PDFKit.PDFDocument) {
+function generateReportFooter(doc: any) {
   doc.fontSize(10)
      .text('This report reflects ongoing assessment based on classroom observations, conversations, and student products.', 
            { align: 'center' });
@@ -337,7 +337,7 @@ function generateReportFooter(doc: PDFKit.PDFDocument) {
   doc.text('For questions or to discuss this report, please contact the teacher.', { align: 'center' });
 }
 
-function generateClassStatistics(doc: PDFKit.PDFDocument, students: any[]) {
+function generateClassStatistics(doc: any, students: any[]) {
   doc.fontSize(16).text('Class Statistics', { align: 'center' });
   doc.moveDown(2);
   
