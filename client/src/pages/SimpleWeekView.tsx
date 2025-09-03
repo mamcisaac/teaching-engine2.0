@@ -350,7 +350,7 @@ export function SimpleWeekView(): React.ReactElement {
             fontSize: '14px',
             color: '#6b7280',
             textAlign: 'center'
-                        }}>
+          }}>
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -358,6 +358,7 @@ export function SimpleWeekView(): React.ReactElement {
             }}>
               <BookOpen style={{ width: '16px', height: '16px', color: '#9ca3af' }} />
               <span>5 lessons slots per day - drag and drop to organize</span>
+            </div>
           </div>
 
           {/* Weekly Summary - Only show during school year */}
