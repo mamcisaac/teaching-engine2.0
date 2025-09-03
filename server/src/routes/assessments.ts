@@ -330,7 +330,7 @@ router.post('/bulk',
       }
 
       // Verify all students belong to teacher
-      const studentIds = [...new Set(req.body.assessments.map((a: any) => a.studentId))];
+      const studentIds = [...new Set(req.body.assessments.map((a: any) => a.studentId))] as string[];
       const students = await prisma.student.findMany({
         where: {
           id: { in: studentIds },

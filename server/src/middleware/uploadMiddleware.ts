@@ -139,7 +139,7 @@ export const createUploadMiddleware = (options: {
       fieldSize: 1024 * 1024, // 1MB for form fields
       fields: 50 // Max number of form fields
     },
-    fileFilter: createFileFilter(allowedTypes)
+    fileFilter: createFileFilter(allowedTypes) as any
   });
 };
 

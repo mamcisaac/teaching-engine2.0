@@ -86,7 +86,7 @@ router.get('/',
 router.post('/import/csv',
   requireAuth,
   bulkOperationRateLimit,
-  csvUpload.single('csvFile'),
+  csvUpload.single('csvFile') as any,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       if (!req.file) {

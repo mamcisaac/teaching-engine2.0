@@ -147,7 +147,7 @@ const validateArtifactOwnership = async (req: AuthenticatedRequest, res: Respons
 router.post('/upload/photo',
   requireAuth,
   artifactUploadRateLimit, // Rate limiting applied
-  ...uploadStudentPhoto,
+  ...(uploadStudentPhoto as any[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -167,7 +167,7 @@ router.post('/upload/photo',
 router.post('/upload/video',
   requireAuth,
   artifactUploadRateLimit,
-  ...uploadStudentVideo,
+  ...(uploadStudentVideo as any[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -187,7 +187,7 @@ router.post('/upload/video',
 router.post('/upload/audio',
   requireAuth,
   artifactUploadRateLimit,
-  ...uploadStudentAudio,
+  ...(uploadStudentAudio as any[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -207,7 +207,7 @@ router.post('/upload/audio',
 router.post('/upload/document',
   requireAuth,
   artifactUploadRateLimit,
-  ...uploadStudentDocument,
+  ...(uploadStudentDocument as any[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -227,7 +227,7 @@ router.post('/upload/document',
 router.post('/upload/mobile',
   requireAuth,
   artifactUploadRateLimit,
-  ...mobileArtifactUpload,
+  ...(mobileArtifactUpload as any[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -255,7 +255,7 @@ router.post('/upload/mobile',
 router.post('/upload/batch',
   requireAuth,
   bulkOperationRateLimit,
-  ...uploadMultipleArtifacts,
+  ...(uploadMultipleArtifacts as any[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {

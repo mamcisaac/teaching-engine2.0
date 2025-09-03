@@ -700,7 +700,7 @@ export class DifferentiationAlgorithmService extends BaseService {
         success_criteria: ['Shows understanding through actions', 'Explains thinking when prompted']
       },
       {
-        assessment_type: 'conversation',
+        assessment_type: 'conference' as const,
         description: 'One-on-one or small group discussions about learning',
         accommodations: ['Native language support', 'Visual aids during discussion'],
         modifications: ['Simpler question structure', 'Multiple choice options provided'],

@@ -246,8 +246,8 @@ export class FileProcessingService {
             folder: path.dirname(thumbnailPath),
             size: '200x?'  // Width 200px, maintain aspect ratio
           })
-          .on('end', resolve)
-          .on('error', reject);
+          .on('end', () => resolve())
+          .on('error', (err: Error) => reject(err));
       });
 
       // Read and upload thumbnail

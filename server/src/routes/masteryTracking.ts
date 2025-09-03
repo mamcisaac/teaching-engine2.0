@@ -365,7 +365,7 @@ router.post('/batch-update',
               areasForGrowth,
               strengths,
               teacherNotes,
-              strongestEvidence: strongestEvidence ? JSON.stringify(strongestEvidence) : null
+              strongestEvidence: strongestEvidence ? JSON.stringify(strongestEvidence) : undefined
             },
             create: {
               studentId,
@@ -378,7 +378,7 @@ router.post('/batch-update',
               areasForGrowth,
               strengths,
               teacherNotes,
-              strongestEvidence: strongestEvidence ? JSON.stringify(strongestEvidence) : null
+              strongestEvidence: strongestEvidence ? JSON.stringify(strongestEvidence) : undefined
             }
           });
         });

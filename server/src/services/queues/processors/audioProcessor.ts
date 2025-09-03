@@ -93,8 +93,8 @@ export const processAudioJob = async (job: Job<AudioJobData>): Promise<AudioJobR
           ])
           .outputFormat('png')
           .output(tempWaveformPath)
-          .on('end', resolve)
-          .on('error', reject)
+          .on('end', () => resolve())
+          .on('error', (err: Error) => reject(err))
           .run();
       });
       

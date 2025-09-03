@@ -96,8 +96,8 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
           folder: path.dirname(tempThumbPath),
           size: '320x?'  // Width 320px, maintain aspect ratio
         })
-        .on('end', resolve)
-        .on('error', reject);
+        .on('end', () => resolve())
+        .on('error', (err: Error) => reject(err));
     });
     
     await job.progress(70);
@@ -225,8 +225,8 @@ export const generatePreviewClip = async (
       .output(previewPath)
       .size('640x?') // Smaller size for preview
       .videoBitrate('1000k')
-      .on('end', resolve)
-      .on('error', reject)
+      .on('end', () => resolve())
+      .on('error', (err: Error) => reject(err))
       .run();
   });
   
@@ -287,8 +287,8 @@ export const extractVideoFrames = async (
           folder: path.dirname(framePath),
           size: '320x?'
         })
-        .on('end', resolve)
-        .on('error', reject);
+        .on('end', () => resolve())
+        .on('error', (err: Error) => reject(err));
     });
     
     const frameBuffer = await fs.readFile(framePath);

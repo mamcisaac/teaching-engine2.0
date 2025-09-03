@@ -516,7 +516,7 @@ const generateClassSummaryPDF = async (
   doc.moveDown(2);
 
   // Subject highlights
-  const subjectData: Record<string, { students: number; artifacts: number }> = {};
+  const subjectData: Record<string, { students: Set<string>; artifacts: number }> = {};
   
   for (const student of students) {
     for (const progress of student.outcomeProgress) {
@@ -524,7 +524,7 @@ const generateClassSummaryPDF = async (
       if (!subjectData[subject]) {
         subjectData[subject] = { students: new Set().add(student.id), artifacts: 0 };
       } else {
-        (subjectData[subject].students as Set<string>).add(student.id);
+        subjectData[subject].students.add(student.id);
       }
     }
     
@@ -541,7 +541,7 @@ const generateClassSummaryPDF = async (
   doc.fontSize(12);
 
   for (const [subject, data] of Object.entries(subjectData)) {
-    const studentCount = (data.students as Set<string>).size;
+    const studentCount = data.students.size;
     doc.text(`${subject}: ${studentCount} students actively assessed`);
   }
 
