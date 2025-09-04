@@ -1,0 +1,19 @@
+{
+  "name": "true-tdd-tests",
+  "version": "1.0.0",
+  "description": "True Test-Driven Development examples",
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:step": "bash run-tests.sh",
+    "test:watch": "vitest --watch",
+    "test:lesson-completion": "vitest run 01-lesson-completion/",
+    "test:weekly-schedule": "vitest run 02-weekly-schedule/",
+    "test:quick-assessment": "vitest run 03-quick-assessment/"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
