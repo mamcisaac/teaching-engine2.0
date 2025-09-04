@@ -9,7 +9,8 @@ import type {
   ArtifactType,
   MasteryLevelInfo,
   EvidenceTypeInfo,
-  ArtifactTypeInfo
+  ArtifactTypeInfo,
+  AchievementLevel
 } from '../types/studentAssessment';
 
 // ETFO Mastery Levels Configuration
@@ -347,6 +348,49 @@ export const isNetworkError = (error: unknown): boolean => {
           error.message.includes('Failed to fetch'));
 };
 
+// Achievement Levels for Quick Assessment Grid (matches AchievementLevel enum)
+export const ACHIEVEMENT_LEVELS: Record<AchievementLevel, {
+  level: AchievementLevel;
+  label: string;
+  color: string;
+  bgColor: string;
+  icon: string;
+  description: string;
+}> = {
+  NOT_YET: {
+    level: 'NOT_YET',
+    label: 'Not Yet',
+    color: '#dc2626', // red-600
+    bgColor: '#fee2e2', // red-100
+    icon: '⭕',
+    description: 'Student has not yet demonstrated understanding'
+  },
+  APPROACHING: {
+    level: 'APPROACHING',
+    label: 'Approaching',
+    color: '#d97706', // amber-600
+    bgColor: '#fef3c7', // amber-100
+    icon: '🟡',
+    description: 'Student is beginning to show understanding with support'
+  },
+  MEETING: {
+    level: 'MEETING',
+    label: 'Meeting',
+    color: '#059669', // emerald-600
+    bgColor: '#d1fae5', // emerald-100
+    icon: '🟢',
+    description: 'Student consistently demonstrates understanding'
+  },
+  EXCEEDING: {
+    level: 'EXCEEDING',
+    label: 'Exceeding',
+    color: '#2563eb', // blue-600
+    bgColor: '#dbeafe', // blue-100
+    icon: '⭐',
+    description: 'Student demonstrates deep understanding and application'
+  }
+};
+
 // Export grouped constants for convenience
 export const ASSESSMENT_CONSTANTS = {
   MASTERY_LEVELS,
@@ -359,5 +403,6 @@ export const ASSESSMENT_CONSTANTS = {
   DEFAULT_PAGINATION,
   DATE_FORMATS,
   GRADE_OPTIONS,
-  SUBJECT_OPTIONS
+  SUBJECT_OPTIONS,
+  ACHIEVEMENT_LEVELS
 };

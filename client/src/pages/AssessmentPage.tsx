@@ -9,10 +9,12 @@ import {
   CheckCircleIcon,
   XCircleIcon,
   ExclamationTriangleIcon,
-  ArrowTrendingUpIcon
+  ArrowTrendingUpIcon,
+  Zap
 } from '@heroicons/react/24/outline';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
+import { QuickAssessmentGrid } from '../components/QuickAssessmentGrid';
 
 interface Assessment {
   id: string;
@@ -75,6 +77,7 @@ export function AssessmentPage(): React.ReactElement {
   const [selectedSubject, setSelectedSubject] = useState<string>('');
   const [showQuickAssessment, setShowQuickAssessment] = useState(false);
   const [showBulkAssessment, setShowBulkAssessment] = useState(false);
+  const [showQuickGrid, setShowQuickGrid] = useState(false);
   const [filterDate, setFilterDate] = useState(new Date().toISOString().split('T')[0]);
   
   const [formData, setFormData] = useState({
@@ -222,12 +225,21 @@ export function AssessmentPage(): React.ReactElement {
       {/* Quick Actions */}
       <div className="mb-6 flex flex-wrap gap-4">
         <button
+          onClick={() => setShowQuickGrid(!showQuickGrid)}
+          className={`px-4 py-2 ${showQuickGrid ? 'bg-indigo-600' : 'bg-indigo-500'} text-white rounded-lg hover:bg-indigo-700 flex items-center gap-2 transition-colors`}
+          data-testid="quick-grid-btn"
+        >
+          <Zap className="w-5 h-5" />
+          Quick Assessment Grid
+        </button>
+
+        <button
           onClick={() => setShowQuickAssessment(true)}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
           data-testid="quick-assess-btn"
         >
           <ClipboardDocumentCheckIcon className="w-5 h-5" />
-          Quick Assessment
+          Individual Assessment
         </button>
         
         <button
@@ -247,6 +259,17 @@ export function AssessmentPage(): React.ReactElement {
           Upload Artifact
         </button>
       </div>
+
+      {/* Quick Assessment Grid */}
+      {showQuickGrid && (
+        <div className="mb-6">
+          <QuickAssessmentGrid
+            students={students}
+            selectedSubject={selectedSubject}
+            selectedDate={filterDate}
+          />
+        </div>
+      )}
 
       {/* Evidence Triangulation Balance */}
       <div className="mb-6 bg-white rounded-lg shadow p-4">

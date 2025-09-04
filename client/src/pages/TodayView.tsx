@@ -22,14 +22,20 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Textarea } from '../components/ui/Textarea';
 import { useETFOLessonPlans, useDaybookEntries, useCreateDaybookEntry, type ETFOLessonPlan } from '../hooks/useETFOPlanning';
+import { useLessonCompletions } from '../hooks/useLessonCompletions';
+import { LessonCompletionCheckbox } from '../components/lesson-completion/LessonCompletionCheckbox';
+import { LessonCompletionErrorBoundary } from '../components/lesson-completion/LessonCompletionErrorBoundary';
 import { generateLessonPlanHTML, printHTML } from '../utils/printUtils';
 
 interface LessonCardProps {
   lesson: ETFOLessonPlan;
   onViewDetails: () => void;
+  isCompleted: boolean;
+  onToggleCompletion: (lessonId: string) => void;
+  isToggling: boolean;
 }
 
-function LessonCard({ lesson, onViewDetails }: LessonCardProps): React.ReactElement {
+function LessonCard({ lesson, onViewDetails, isCompleted, onToggleCompletion, isToggling }: LessonCardProps): React.ReactElement {
   const [expanded, setExpanded] = useState(false);
   
   const handlePrint = (): void => {
@@ -70,7 +76,16 @@ function LessonCard({ lesson, onViewDetails }: LessonCardProps): React.ReactElem
               )}
             </CardDescription>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
+            <LessonCompletionErrorBoundary>
+              <LessonCompletionCheckbox
+                lessonId={lesson.id}
+                isCompleted={isCompleted}
+                onToggle={onToggleCompletion}
+                isLoading={isToggling}
+                aria-label={`Mark ${lesson.title} as complete`}
+              />
+            </LessonCompletionErrorBoundary>
             <Button size="sm" variant="outline" onClick={handlePrint}>
               <Printer className="h-4 w-4" />
             </Button>
@@ -192,6 +207,15 @@ export function TodayView(): React.ReactElement {
   
   const todayEntry = daybookEntries.length > 0 ? daybookEntries[0] : null;
   const currentLesson = lessons[currentLessonIndex];
+  
+  // Lesson completion tracking
+  const lessonIds = lessons.map(l => l.id);
+  const {
+    isCompleted,
+    toggleCompletion,
+    isToggling,
+    progress
+  } = useLessonCompletions(lessonIds);
   
   // Create daybook entry mutation
   const createDaybookMutation = useCreateDaybookEntry();
@@ -334,7 +358,7 @@ export function TodayView(): React.ReactElement {
       </div>
       
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
         <Card>
           <CardHeader className="pb-3">
             <CardDescription>Lessons Today</CardDescription>
@@ -345,6 +369,17 @@ export function TodayView(): React.ReactElement {
           <CardHeader className="pb-3">
             <CardDescription>Teaching Time</CardDescription>
             <CardTitle className="text-2xl">{Math.round(totalTeachingTime / 60)} hrs</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card>
+          <CardHeader className="pb-3">
+            <CardDescription>Completed</CardDescription>
+            <CardTitle className="text-2xl">
+              {progress.completed}/{progress.total}
+              <span className="text-sm text-gray-500 ml-2">
+                ({progress.percentage}%)
+              </span>
+            </CardTitle>
           </CardHeader>
         </Card>
         <Card>
@@ -400,6 +435,9 @@ export function TodayView(): React.ReactElement {
                   key={lesson.id} 
                   lesson={lesson}
                   onViewDetails={() => handleViewLesson(lesson)}
+                  isCompleted={isCompleted(lesson.id)}
+                  onToggleCompletion={toggleCompletion}
+                  isToggling={isToggling}
                 />
               ))}
             </div>

@@ -123,6 +123,7 @@ const duplicateSchema = z.object({
 
 const rescheduleSchema = z.object({
   newDate: z.string().datetime(),
+  newSlotNumber: z.number().int().min(1).max(5).optional(),
   updateRelated: z.boolean().default(false),
 });
 

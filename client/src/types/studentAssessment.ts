@@ -395,3 +395,62 @@ export interface ArtifactTypeInfo {
   icon: string;
   acceptedFormats: string[];
 }
+
+// Quick Assessment Grid Types (AchievementLevel-based)
+export type AchievementLevel = 'NOT_YET' | 'APPROACHING' | 'MEETING' | 'EXCEEDING';
+
+export interface StudentAssessment {
+  id: string;
+  userId: number;
+  studentId: string;
+  lessonId?: string;
+  expectationId?: string;
+  subject: string;
+  title: string;
+  level: AchievementLevel;
+  notes?: string;
+  date: string;
+  createdAt: string;
+  updatedAt: string;
+  lesson?: {
+    id: string;
+    title: string;
+    titleFr?: string;
+    date: string;
+  };
+}
+
+export interface CreateStudentAssessmentRequest {
+  studentId: string;
+  lessonId?: string;
+  expectationId?: string;
+  subject: string;
+  title: string;
+  level: AchievementLevel;
+  notes?: string;
+  date?: string;
+}
+
+export interface UpdateStudentAssessmentRequest {
+  level?: AchievementLevel;
+  notes?: string;
+  title?: string;
+}
+
+export interface DifferentiationGroups {
+  reteaching: string[];    // NOT_YET students
+  support: string[];       // APPROACHING students  
+  independent: string[];   // MEETING students
+  extension: string[];     // EXCEEDING students
+}
+
+export interface DifferentiationGroupsRequest {
+  subject: string;
+  date?: string;
+}
+
+export interface StudentAssessmentFilters {
+  studentId?: string;
+  subject?: string;
+  date?: string;
+}

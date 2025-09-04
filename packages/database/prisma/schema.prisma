@@ -67,6 +67,7 @@ model User {
   unavailableBlocks        UnavailableBlock[]
   unitPlans                UnitPlan[]
   weeklyPlannerState       WeeklyPlannerState?
+  lessonCompletions        LessonCompletion[]
 }
 
 model Notification {
@@ -433,6 +434,7 @@ model ETFOLessonPlan {
   user                      User                        @relation(fields: [userId], references: [id])
   expectations              ETFOLessonPlanExpectation[]
   resources                 ETFOLessonPlanResource[]
+  lessonCompletions         LessonCompletion[]
 
   @@index([userId, date])
   @@index([unitPlanId])
@@ -1085,4 +1087,26 @@ model Artifact {
   @@index([uploadedBy])
   @@index([processingStatus])
   @@index([createdAt])
+}
+
+model LessonCompletion {
+  id             String         @id @default(cuid())
+  userId         Int
+  lessonId       String         
+  completedAt    DateTime       @default(now())
+  notes          String?
+  actualDuration Int?
+  wentWell       Boolean        @default(true)
+  needsFollowUp  Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson         ETFOLessonPlan @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@index([lessonId])
+  @@index([completedAt])
+  @@index([userId, completedAt])
 }

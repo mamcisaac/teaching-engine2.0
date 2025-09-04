@@ -12,6 +12,7 @@ export interface ETFOLessonPlanCreateData {
   titleFr?: string;
   unitPlanId: string;
   date: string;
+  slotNumber?: number;
   duration: number;
   mindsOn?: string;
   mindsOnFr?: string;
@@ -307,6 +308,55 @@ export class ETFOLessonPlanService extends BaseService {
       };
     } catch (error: unknown) {
       logger.error('Error searching ETFO lesson plans:', getErrorMessage(error));
+      throw error;
+    }
+  }
+
+  // Reschedule lesson to new date/time
+  async reschedule(
+    lessonId: string, 
+    rescheduleData: { newDate: string; newSlotNumber?: number }, 
+    userId: number
+  ): Promise<ETFOLessonPlanWithRelations> {
+    try {
+      // First verify the lesson exists and belongs to the user
+      const existingLesson = await this.repository.findById(lessonId);
+      if (!existingLesson) {
+        throw new Error('Lesson plan not found');
+      }
+      if (existingLesson.userId !== userId) {
+        throw new Error('Unauthorized to reschedule this lesson');
+      }
+
+      // Check for conflicts at the new time slot
+      const newDate = new Date(rescheduleData.newDate);
+      const conflictingLesson = await this.repository.findConflicting(
+        userId, 
+        newDate, 
+        rescheduleData.newSlotNumber || existingLesson.slotNumber || 1
+      );
+      
+      if (conflictingLesson && conflictingLesson.id !== lessonId) {
+        throw new Error('Time slot already occupied');
+      }
+
+      // Update the lesson with new date and optionally new slot
+      const updateData: Partial<ETFOLessonPlanCreateData> = {
+        date: rescheduleData.newDate,
+      };
+      
+      if (rescheduleData.newSlotNumber !== undefined) {
+        updateData.slotNumber = rescheduleData.newSlotNumber;
+      }
+
+      const rescheduledLesson = await this.repository.update(lessonId, updateData as any);
+      if (!rescheduledLesson) {
+        throw new Error('Failed to reschedule lesson');
+      }
+
+      return rescheduledLesson;
+    } catch (error: unknown) {
+      logger.error('Error rescheduling ETFO lesson plan:', getErrorMessage(error));
       throw error;
     }
   }

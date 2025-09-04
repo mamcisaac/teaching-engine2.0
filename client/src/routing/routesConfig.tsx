@@ -168,7 +168,11 @@ export const plannerRoutes: RouteConfig[] = [
 export const protectedRoutes: RouteConfig[] = [
   {
     path: '/',
-    element: <Navigate replace to="/dashboard" />,
+    element: <Navigate replace to="/week" />,
+  },
+  {
+    path: '/week',
+    element: WeekViewPage,
   },
   {
     path: '/dashboard',

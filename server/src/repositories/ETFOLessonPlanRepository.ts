@@ -436,4 +436,24 @@ export class ETFOLessonPlanRepository {
       throw error;
     }
   }
+
+  // Find conflicting lesson at the same date and slot
+  async findConflicting(userId: number, date: Date, slotNumber: number): Promise<ETFOLessonPlan | null> {
+    try {
+      const result = await this.prisma.eTFOLessonPlan.findFirst({
+        where: {
+          userId,
+          date: {
+            gte: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+            lt: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1),
+          },
+          slotNumber,
+        },
+      });
+      return result;
+    } catch (error: unknown) {
+      logger.error('Error finding conflicting ETFO lesson plan:', error as string | undefined);
+      throw error;
+    }
+  }
 }
