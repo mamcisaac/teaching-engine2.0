@@ -1,18 +1,27 @@
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import { Breadcrumbs } from '../components/Breadcrumbs';
-import { useCreateETFOLessonPlan, useUnitPlans } from '../hooks/useETFOPlanning';
+import { useCreateETFOLessonPlan, useUnitPlans, useCurriculumExpectations } from '../hooks/useETFOPlanning';
 
 export function QuickLessonPage(): React.ReactElement {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const expectationId = searchParams.get('expectationId');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   // Get user's unit plans to allow selection
   const { data: unitPlans = [] } = useUnitPlans({});
   const createMutation = useCreateETFOLessonPlan();
+  
+  // Get expectation details if expectationId is provided
+  const { data: expectations = [], isLoading: expectationsLoading, isError: expectationsError } = useCurriculumExpectations({ grade: 1 });
+  const linkedExpectation = expectationId ? expectations.find(exp => exp.id === expectationId) : null;
+  
+  // Check if expectationId was provided but not found (after loading completes)
+  const hasInvalidExpectationId = expectationId && !linkedExpectation && !expectationsLoading && !expectationsError && expectations.length > 0;
 
   const [formData, setFormData] = useState({
     title: '',
@@ -31,8 +40,29 @@ export function QuickLessonPage(): React.ReactElement {
       forAdvanced: '',
       forELL: '',
       forIEP: ''
-    }
+    },
+    expectationIds: expectationId ? [expectationId] : []
   });
+  
+  // Update learning goals when expectation is linked
+  useEffect(() => {
+    if (linkedExpectation && !formData.learningGoals) {
+      setFormData(prev => ({
+        ...prev,
+        learningGoals: `Students will ${linkedExpectation.description.toLowerCase()}`
+      }));
+    }
+  }, [linkedExpectation, formData.learningGoals]);
+  
+  // Clear expectationIds if the provided ID is invalid
+  useEffect(() => {
+    if (hasInvalidExpectationId) {
+      setFormData(prev => ({
+        ...prev,
+        expectationIds: []
+      }));
+    }
+  }, [hasInvalidExpectationId]);
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -62,11 +92,15 @@ export function QuickLessonPage(): React.ReactElement {
         materials: formData.materials.split('\n').filter(m => m.trim()),
         assessmentNotes: formData.assessmentNotes,
         isSubFriendly: formData.isSubFriendly,
-        differentiationStrategies: formData.differentiationStrategies
+        differentiationStrategies: formData.differentiationStrategies,
+        expectationIds: formData.expectationIds
       };
 
       await createMutation.mutateAsync(lessonData);
       toast.success('Quick lesson created successfully!');
+      
+      // Navigate back to curriculum page after success
+      navigate('/curriculum');
       
       // Reset form
       setFormData({
@@ -86,7 +120,8 @@ export function QuickLessonPage(): React.ReactElement {
           forAdvanced: '',
           forELL: '',
           forIEP: ''
-        }
+        },
+        expectationIds: []
       });
     } catch (error) {
       toast.error('Failed to create lesson. Please try again.');
@@ -154,6 +189,100 @@ export function QuickLessonPage(): React.ReactElement {
           borderRadius: '12px', 
           boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)' 
         }}>
+          {/* Linked Expectation Alert */}
+          {linkedExpectation && (
+            <div style={{
+              backgroundColor: '#f0f9ff',
+              border: '1px solid #3b82f6',
+              borderRadius: '8px',
+              padding: '16px',
+              marginBottom: '24px',
+              display: 'flex',
+              alignItems: 'start',
+              gap: '12px'
+            }}>
+              <span style={{ fontSize: '20px' }}>🎯</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: '600', color: '#1d4ed8', marginBottom: '4px' }}>
+                  Linked Curriculum Expectation
+                </div>
+                <div style={{ fontSize: '14px', color: '#1e40af', marginBottom: '4px' }}>
+                  <strong>{linkedExpectation.code}</strong> - {linkedExpectation.subject}
+                </div>
+                <div style={{ fontSize: '14px', color: '#3730a3' }}>
+                  {linkedExpectation.description}
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Invalid Expectation ID Warning */}
+          {hasInvalidExpectationId && (
+            <div style={{
+              backgroundColor: '#fef2f2',
+              border: '1px solid #ef4444',
+              borderRadius: '8px',
+              padding: '16px',
+              marginBottom: '24px',
+              display: 'flex',
+              alignItems: 'start',
+              gap: '12px'
+            }}>
+              <span style={{ fontSize: '20px' }}>⚠️</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: '600', color: '#dc2626', marginBottom: '4px' }}>
+                  Invalid Curriculum Expectation
+                </div>
+                <div style={{ fontSize: '14px', color: '#b91c1c' }}>
+                  The linked expectation ID could not be found. The lesson will be created without a curriculum link.
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Loading State for Expectations */}
+          {expectationId && expectationsLoading && (
+            <div style={{
+              backgroundColor: '#f3f4f6',
+              border: '1px solid #d1d5db',
+              borderRadius: '8px',
+              padding: '16px',
+              marginBottom: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px'
+            }}>
+              <span style={{ fontSize: '20px' }}>⏳</span>
+              <div style={{ fontSize: '14px', color: '#6b7280' }}>
+                Loading curriculum expectation details...
+              </div>
+            </div>
+          )}
+          
+          {/* Error Loading Expectations */}
+          {expectationId && expectationsError && (
+            <div style={{
+              backgroundColor: '#fef2f2',
+              border: '1px solid #ef4444',
+              borderRadius: '8px',
+              padding: '16px',
+              marginBottom: '24px',
+              display: 'flex',
+              alignItems: 'start',
+              gap: '12px'
+            }}>
+              <span style={{ fontSize: '20px' }}>❌</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: '600', color: '#dc2626', marginBottom: '4px' }}>
+                  Error Loading Expectation
+                </div>
+                <div style={{ fontSize: '14px', color: '#b91c1c' }}>
+                  Failed to load curriculum expectations. The lesson will be created without a curriculum link.
+                </div>
+              </div>
+            </div>
+          )}
+          
           {/* Basic Information */}
           <div style={{ marginBottom: '30px' }}>
             <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#374151', marginBottom: '20px' }}>

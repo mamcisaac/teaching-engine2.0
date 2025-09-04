@@ -168,11 +168,11 @@ export const plannerRoutes: RouteConfig[] = [
 export const protectedRoutes: RouteConfig[] = [
   {
     path: '/',
-    element: <Navigate replace to="/dashboard" />,
+    element: <Navigate replace to="/planner/week" />,
   },
   {
     path: '/dashboard',
-    element: ShowcaseDashboard,
+    element: <Navigate replace to="/planner/week" />,
   },
   {
     path: '/today',
