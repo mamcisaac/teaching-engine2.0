@@ -4,6 +4,7 @@ export const STORAGE_KEYS = {
   TEACHER_SUBJECTS: 'teacher-subjects',
   ONBOARDED: 'onboarded',
   IS_AUTHENTICATED: 'isAuthenticated',
+  TEACHER_GRADE: 'teacher-grade',
 } as const;
 
 export const CORE_SUBJECTS = [

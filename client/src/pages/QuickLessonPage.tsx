@@ -1,10 +1,11 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useCreateETFOLessonPlan, useUnitPlans, useCurriculumExpectations } from '../hooks/useETFOPlanning';
+import { STORAGE_KEYS } from '../constants/subjects';
 
 export function QuickLessonPage(): React.ReactElement {
   const navigate = useNavigate();
@@ -16,8 +17,14 @@ export function QuickLessonPage(): React.ReactElement {
   const { data: unitPlans = [] } = useUnitPlans({});
   const createMutation = useCreateETFOLessonPlan();
   
+  // Get teacher's grade from localStorage with fallback to Grade 1
+  const teacherGrade = useMemo(() => {
+    const storedGrade = localStorage.getItem(STORAGE_KEYS.TEACHER_GRADE);
+    return storedGrade ? parseInt(storedGrade, 10) : 1;
+  }, []);
+  
   // Get expectation details if expectationId is provided
-  const { data: expectations = [], isLoading: expectationsLoading, isError: expectationsError } = useCurriculumExpectations({ grade: 1 });
+  const { data: expectations = [], isLoading: expectationsLoading, isError: expectationsError } = useCurriculumExpectations({ grade: teacherGrade });
   const linkedExpectation = expectationId ? expectations.find(exp => exp.id === expectationId) : null;
   
   // Check if expectationId was provided but not found (after loading completes)
@@ -187,7 +194,10 @@ export function QuickLessonPage(): React.ReactElement {
           backgroundColor: 'white', 
           padding: '30px', 
           borderRadius: '12px', 
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)' 
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+          position: 'relative',
+          opacity: expectationsLoading ? 0.7 : 1,
+          pointerEvents: expectationsLoading ? 'none' : 'auto'
         }}>
           {/* Linked Expectation Alert */}
           {linkedExpectation && (
@@ -807,19 +817,19 @@ export function QuickLessonPage(): React.ReactElement {
             
             <button
               type="submit"
-              disabled={isSubmitting || !formData.title.trim() || !formData.unitPlanId}
+              disabled={isSubmitting || expectationsLoading || !formData.title.trim() || !formData.unitPlanId}
               style={{
                 padding: '10px 20px',
-                backgroundColor: isSubmitting ? '#9ca3af' : '#3b82f6',
+                backgroundColor: isSubmitting || expectationsLoading ? '#9ca3af' : '#3b82f6',
                 color: 'white',
                 border: 'none',
                 borderRadius: '6px',
                 fontSize: '14px',
                 fontWeight: '500',
-                cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                cursor: isSubmitting || expectationsLoading ? 'not-allowed' : 'pointer'
               }}
             >
-              {isSubmitting ? 'Creating...' : 'Create Quick Lesson'}
+              {isSubmitting ? 'Creating...' : expectationsLoading ? 'Loading...' : 'Create Quick Lesson'}
             </button>
           </div>
         </form>

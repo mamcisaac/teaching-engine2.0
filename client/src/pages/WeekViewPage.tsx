@@ -150,6 +150,21 @@ export function WeekViewPage(): React.ReactElement {
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
             <p className="mt-2 text-gray-600">Loading lessons...</p>
           </div>
+        ) : weekLessons.length === 0 ? (
+          <Card className="text-center py-12">
+            <CardContent>
+              <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No Lessons Planned</h3>
+              <p className="text-gray-600 mb-4">You don't have any lessons scheduled for this week yet.</p>
+              <Button 
+                onClick={() => navigate('/planner/quick-lesson')}
+                className="inline-flex items-center gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                Create Your First Lesson
+              </Button>
+            </CardContent>
+          </Card>
         ) : (
           <div className="bg-white rounded-lg shadow overflow-hidden">
             <div className="grid grid-cols-6 border-b">
