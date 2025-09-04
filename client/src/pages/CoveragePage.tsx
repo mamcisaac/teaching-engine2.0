@@ -210,9 +210,25 @@ export function CoveragePage(): React.ReactElement {
     setSelectedExpectation(null);
   };
 
-  const handleBulkPlan = (): void => {
-    // Show bulk planning wizard (would be implemented)
-    console.log('Bulk planning for:', Array.from(selectedForBulk));
+  const handleBulkPlan = async (): Promise<void> => {
+    if (selectedForBulk.size === 0) return;
+    
+    try {
+      const response = await apiClient.post('/curriculum-coverage/bulk-plan-lessons', {
+        expectationIds: Array.from(selectedForBulk),
+        baseTitle: 'Coverage Lesson',
+        duration: 45,
+      });
+      
+      // Clear selection and refresh data
+      setSelectedForBulk(new Set());
+      queryClient.invalidateQueries({ queryKey: ['curriculum-coverage'] });
+      
+      // Show success message (could add a toast notification here)
+      console.log(response.data.message);
+    } catch (error) {
+      console.error('Failed to create bulk lessons:', error);
+    }
   };
 
   if (isLoading) {

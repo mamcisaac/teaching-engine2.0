@@ -311,6 +311,17 @@ const planLessonSchema = z.object({
   duration: z.number().default(45),
 });
 
+/**
+ * POST /api/curriculum-coverage/bulk-plan-lessons
+ * Creates multiple lesson plans for selected expectations
+ */
+const bulkPlanLessonsSchema = z.object({
+  expectationIds: z.array(z.string()).min(1).max(20),
+  baseTitle: z.string().min(1),
+  startDate: z.string().optional(),
+  duration: z.number().default(45),
+});
+
 router.post('/plan-lesson', 
   validateRequest(planLessonSchema),
   async (req: AuthenticatedRequest, res: Response) => {
@@ -365,6 +376,81 @@ router.post('/plan-lesson',
     } catch (error) {
       logger.error('Error creating lesson for expectation:', error);
       res.status(500).json({ error: 'Failed to create lesson' });
+    }
+  }
+);
+
+/**
+ * POST /api/curriculum-coverage/bulk-plan-lessons
+ * Creates multiple lesson plans for selected expectations
+ */
+router.post('/bulk-plan-lessons',
+  validateRequest(bulkPlanLessonsSchema),
+  async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      if (!req.user?.id) {
+        res.status(401).json({ error: 'User not authenticated' });
+        return;
+      }
+      const userId = req.user.id;
+      const { expectationIds, baseTitle, startDate, duration } = req.body;
+
+      // Verify all expectations exist
+      const expectations = await prisma.curriculumExpectation.findMany({
+        where: {
+          id: { in: expectationIds },
+        },
+      });
+
+      if (expectations.length !== expectationIds.length) {
+        res.status(400).json({ error: 'Some expectations not found' });
+        return;
+      }
+
+      // Create lessons for each expectation
+      const baseDate = startDate ? new Date(startDate) : new Date();
+      const lessons = await Promise.all(
+        expectations.map(async (expectation, index) => {
+          const lessonDate = new Date(baseDate);
+          lessonDate.setDate(baseDate.getDate() + index);
+
+          return prisma.eTFOLessonPlan.create({
+            data: {
+              userId,
+              titleFr: `${baseTitle} - ${expectation.code}`,
+              titleEn: `${baseTitle} - ${expectation.code}`,
+              date: lessonDate,
+              duration,
+              slotNumber: 0,
+              descriptionFr: `Lesson covering ${expectation.code}: ${expectation.description}`,
+              learningGoals: expectation.description,
+              successCriteria: 'Students will demonstrate understanding of the expectation',
+              assessmentStrategies: 'Observation and formative assessment',
+              status: 'draft',
+              expectations: {
+                create: {
+                  expectationId: expectation.id,
+                },
+              },
+            },
+            include: {
+              expectations: {
+                include: {
+                  expectation: true,
+                },
+              },
+            },
+          });
+        })
+      );
+
+      res.json({ 
+        message: `Created ${lessons.length} lesson plans`,
+        lessons,
+      });
+    } catch (error) {
+      logger.error('Error creating bulk lessons:', error);
+      res.status(500).json({ error: 'Failed to create bulk lessons' });
     }
   }
 );
