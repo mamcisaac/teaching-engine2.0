@@ -18,6 +18,7 @@ import {
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { CoverageWidget } from '../components/CoverageWidget';
 import { SubjectDashboard } from '../components/SubjectDashboard';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { Badge } from '../components/ui/Badge';
@@ -290,6 +291,11 @@ export function TeachingDashboard(): React.ReactElement {
                 </CardContent>
               </Card>
             )}
+          </div>
+          
+          {/* Curriculum Coverage Widget - Third Column */}
+          <div>
+            <CoverageWidget />
           </div>
         </div>
         

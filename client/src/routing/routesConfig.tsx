@@ -43,6 +43,9 @@ const AnalyticsPage = lazy(() => import('../pages/AnalyticsPage').then(module =>
 const ReportsPage = lazy(() => import('../pages/ReportsPage').then(module => ({ 
   default: withMainLayout(module.ReportsPage) 
 })));
+const CoveragePage = lazy(() => import('../pages/CoveragePage').then(module => ({
+  default: withMainLayout(module.CoveragePage)
+})));
 
 export interface RouteConfig {
   path?: string;
@@ -213,12 +216,17 @@ export const protectedRoutes: RouteConfig[] = [
     element: <Navigate replace to="/curriculum" />,
   },
   {
-    path: '/coverage',
-    element: <Navigate replace to="/curriculum" />,
-  },
-  {
     path: '/curriculum-audit',
     element: <Navigate replace to="/curriculum/expectations" />,
+  },
+  // Coverage Dashboard Routes
+  {
+    path: '/coverage',
+    element: CoveragePage,
+  },
+  {
+    path: '/coverage/:subject',
+    element: CoveragePage,
   },
   // Legacy resources redirects
   {

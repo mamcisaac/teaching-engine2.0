@@ -39,6 +39,7 @@ import { router as authEndpoints } from './routes/authEndpoints';
 import { router as cacheRoutes } from './routes/cache';
 import { router as calendarEventRoutes } from './routes/calendar-events';
 import { router as curriculumExpectationRoutes } from './routes/curriculum-expectations';
+import curriculumCoverageRoutes from './routes/curriculum-coverage';
 import { router as curriculumImportRoutes } from './routes/curriculumImport';
 import { router as dashboardMetricsRoutes } from './routes/dashboard-metrics';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
@@ -272,6 +273,9 @@ app.use(
   curriculumCache, // Cache curriculum data for 30 minutes
   curriculumExpectationRoutes,
 );
+
+// Curriculum Coverage routes
+app.use('/api/curriculum-coverage', curriculumCoverageRoutes);
 app.use('/api/long-range-plans', asyncMiddleware(authenticate), rateLimiters.write, userCache, longRangePlanRoutes);
 app.use('/api/unit-plans', asyncMiddleware(authenticate), rateLimiters.write, userCache, unitPlanRoutes);
 app.use(
