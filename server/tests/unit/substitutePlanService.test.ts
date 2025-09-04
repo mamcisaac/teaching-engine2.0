@@ -7,7 +7,6 @@
 
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals';
 import { SubstitutePlanService } from '../../src/services/substitutePlanService';
-import type { SubstitutePlan } from '../../src/services/substitutePlanService';
 
 describe('SubstitutePlanService', () => {
   beforeEach(() => {

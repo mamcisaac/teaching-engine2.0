@@ -1,7 +1,8 @@
 import { format, parseISO, addDays, subDays, isValid } from 'date-fns';
-import { Calendar, ChevronLeft, ChevronRight, Clock, BookOpen, Plus } from 'lucide-react';
-import React, { useMemo } from 'react';
+import { Calendar, ChevronLeft, ChevronRight, Clock, BookOpen, Plus, FileText } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { SubPlanGenerator } from '../components/SubPlanGenerator';
 
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
@@ -19,6 +20,7 @@ const DAILY_SLOTS = [
 export function DayViewPage(): React.ReactElement {
   const { date: dateParam } = useParams();
   const navigate = useNavigate();
+  const [showSubPlanGenerator, setShowSubPlanGenerator] = useState(false);
   
   const currentDate = useMemo(() => {
     if (!dateParam) return new Date();
@@ -86,6 +88,14 @@ export function DayViewPage(): React.ReactElement {
             </div>
             
             <div className="flex items-center gap-2">
+              <Button 
+                variant="outline" 
+                onClick={() => setShowSubPlanGenerator(true)}
+                className="flex items-center gap-2 bg-red-50 hover:bg-red-100 border-red-300"
+              >
+                <FileText className="h-4 w-4" />
+                Generate Sub Plan
+              </Button>
               <Button variant="outline" onClick={handlePreviousDay}>
                 <ChevronLeft className="h-4 w-4" />
               </Button>
@@ -186,6 +196,14 @@ export function DayViewPage(): React.ReactElement {
               </Card>
             ))}
           </div>
+        )}
+        
+        {/* Substitute Plan Generator Modal */}
+        {showSubPlanGenerator && (
+          <SubPlanGenerator 
+            date={currentDate} 
+            onClose={() => setShowSubPlanGenerator(false)} 
+          />
         )}
       </div>
     </div>

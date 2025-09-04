@@ -1,66 +1,171 @@
-import { useState, useEffect } from 'react';
-
-import { substituteApi } from '../api/domains/substitute';
-
-import { Dialog } from './Dialog';
+import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { substituteApi, type SubstitutePlan } from '../api/domains/substitute';
+import { printHTML, downloadHTML } from '../utils/printUtils';
+import { useToast } from '../hooks/useToast';
+import { X, Download, Printer, FileText } from 'lucide-react';
 
 interface Props {
+  date?: Date;
   onClose: () => void;
 }
 
-export function SubPlanGenerator({ onClose }: Props): React.ReactElement {
-  const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
-  const [days, setDays] = useState(1);
-  const [url, setUrl] = useState<string>();
+export function SubPlanGenerator({ date: initialDate, onClose }: Props): React.ReactElement {
+  const { toast } = useToast();
+  const [selectedDate, setSelectedDate] = useState(() => 
+    (initialDate || new Date()).toISOString().slice(0, 10)
+  );
+  const [htmlContent, setHtmlContent] = useState<string | null>(null);
+  const [planData, setPlanData] = useState<SubstitutePlan | null>(null);
 
-  const generate = async (): Promise<void> => {
-    const blob = await substituteApi.generateSubPlanPDF(date, days);
+  const generateMutation = useMutation({
+    mutationFn: async () => {
+      const [plan, html] = await Promise.all([
+        substituteApi.generateSubPlan(selectedDate),
+        substituteApi.generateSubPlanPDF(selectedDate)
+      ]);
+      return { plan, html };
+    },
+    onSuccess: ({ plan, html }) => {
+      setPlanData(plan);
+      setHtmlContent(html);
+      toast({
+        title: 'Success',
+        description: 'Substitute plan generated successfully',
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: 'Error',
+        description: 'Failed to generate substitute plan',
+        variant: 'destructive',
+      });
+      console.error('Failed to generate substitute plan:', error);
+    },
+  });
 
-    // Clean up previous URL if it exists
-    if (url !== undefined && url !== '') {
-      URL.revokeObjectURL(url);
+  const handlePrint = () => {
+    if (htmlContent) {
+      printHTML(htmlContent);
     }
-
-    setUrl(URL.createObjectURL(blob));
   };
 
-  // Clean up URL when component unmounts
-  useEffect(() => () => {
-      if (url !== undefined && url !== '') {
-        URL.revokeObjectURL(url);
-      }
-    }, [url]);
+  const handleDownload = () => {
+    if (htmlContent) {
+      const filename = `substitute-plan-${selectedDate}`;
+      downloadHTML(htmlContent, filename);
+    }
+  };
 
   return (
-    <Dialog open onOpenChange={onClose}>
-      <div className="space-y-2 w-80">
-        <h2 className="text-lg">Generate Sub Plan</h2>
-        <input
-          className="border p-1 w-full"
-          type="date"
-          value={date}
-          onChange={(e) => {
- setDate(e.target.value); 
-}}
-        />
-        <select
-          className="border p-1 w-full"
-          value={days}
-          onChange={(e) => {
- setDays(Number(e.target.value)); 
-}}
-        >
-          <option value={1}>1 day</option>
-          <option value={2}>2 days</option>
-          <option value={3}>3 days</option>
-        </select>
-        <button className="px-2 py-1 bg-blue-500 text-white rounded" onClick={() => {
- void generate(); 
-}}>
-          Generate
-        </button>
-        {(url !== undefined && url !== '') && <iframe className="w-full h-64 border" src={url} title="Generated substitute plan PDF preview" />}
+    <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b">
+          <div className="flex items-center gap-2">
+            <FileText className="h-5 w-5 text-red-600" />
+            <h2 className="text-xl font-semibold">Generate Substitute Plan</h2>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-1 rounded hover:bg-gray-100"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-6">
+          <div className="space-y-4">
+            {/* Date Selection */}
+            <div>
+              <label className="block text-sm font-medium mb-2">Date for Substitute Plan</label>
+              <input
+                className="border rounded p-2 w-full"
+                type="date"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+              />
+            </div>
+
+            {/* Generate Button */}
+            {!htmlContent && (
+              <button
+                className="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
+                onClick={() => generateMutation.mutate()}
+                disabled={generateMutation.isPending}
+              >
+                {generateMutation.isPending ? 'Generating...' : 'Generate Plan'}
+              </button>
+            )}
+
+            {/* Preview Section */}
+            {htmlContent && (
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-medium">Plan Preview</h3>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handlePrint}
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                    >
+                      <Printer className="h-4 w-4" />
+                      Print
+                    </button>
+                    <button
+                      onClick={handleDownload}
+                      className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                    >
+                      <Download className="h-4 w-4" />
+                      Download
+                    </button>
+                  </div>
+                </div>
+
+                {/* Plan Summary */}
+                {planData && (
+                  <div className="bg-gray-50 rounded p-4 space-y-2">
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="font-medium">Date:</span> {new Date(planData.dateFor).toLocaleDateString()}
+                      </div>
+                      <div>
+                        <span className="font-medium">Grade:</span> {planData.grade}
+                      </div>
+                      <div>
+                        <span className="font-medium">Total Lessons:</span> {planData.lessons?.length || 0}
+                      </div>
+                      <div>
+                        <span className="font-medium">Subject:</span> {planData.subject}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* HTML Preview */}
+                <div className="border rounded overflow-hidden">
+                  <iframe 
+                    className="w-full h-96" 
+                    srcDoc={htmlContent}
+                    title="Substitute plan preview"
+                  />
+                </div>
+
+                {/* Regenerate Button */}
+                <button
+                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+                  onClick={() => {
+                    setHtmlContent(null);
+                    setPlanData(null);
+                  }}
+                >
+                  Generate New Plan
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-    </Dialog>
+    </div>
   );
 }

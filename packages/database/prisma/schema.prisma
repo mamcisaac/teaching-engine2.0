@@ -69,6 +69,7 @@ model User {
   weeklyPlannerState       WeeklyPlannerState?
   lessonCompletions        LessonCompletion[]
   studentAssessments       StudentAssessment[]
+  substituteInfo           SubstituteInfo?
 }
 
 model Notification {
@@ -804,6 +805,60 @@ model SubstitutePlan {
   @@index([dateFor, grade, subject])
   @@index([isActive, dateFor])
   @@index([userId, isActive, dateFor])
+}
+
+model SubstituteInfo {
+  id                    String    @id @default(cuid())
+  userId                Int       @unique
+  classroomNumber       String?
+  gradeLevel            String?
+  classSize             Int?
+  
+  // Emergency Information
+  officePhone           String?
+  principalName         String?
+  vicePrincipalName     String?
+  nearbyTeacher         String?
+  nearbyTeacherRoom     String?
+  emergencyProcedures   String?
+  fireExitRoute         String?
+  
+  // Student Information
+  allergies             String?
+  medicalNeeds          String?
+  behaviorNotes         String?
+  specialNeeds          String?
+  studentHelpers        String?
+  
+  // Classroom Management
+  classroomRules        String?
+  rewardSystem          String?
+  consequenceSystem     String?
+  attentionSignal       String?
+  
+  // Daily Routines
+  morningRoutine        String?
+  attendanceProcedure   String?
+  bathroomPolicy        String?
+  lunchProcedure        String?
+  dismissalProcedure    String?
+  
+  // Resources & Materials
+  materialsLocation     String?
+  technologyAccess      String?
+  copiesLocation        String?
+  extraActivities       String?
+  
+  // Additional Notes
+  specialSchedule       String?
+  importantInfo         String?
+  
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
 }
 
 model PerformanceTaskTemplate {
