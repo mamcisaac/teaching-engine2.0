@@ -68,6 +68,7 @@ model User {
   unitPlans                UnitPlan[]
   weeklyPlannerState       WeeklyPlannerState?
   lessonCompletions        LessonCompletion[]
+  studentAssessments       StudentAssessment[]
 }
 
 model Notification {
@@ -435,6 +436,7 @@ model ETFOLessonPlan {
   expectations              ETFOLessonPlanExpectation[]
   resources                 ETFOLessonPlanResource[]
   lessonCompletions         LessonCompletion[]
+  studentAssessments        StudentAssessment[]
 
   @@index([userId, date])
   @@index([unitPlanId])
@@ -1109,4 +1111,41 @@ model LessonCompletion {
   @@index([lessonId])
   @@index([completedAt])
   @@index([userId, completedAt])
+}
+
+enum AchievementLevel {
+  NOT_YET
+  APPROACHING
+  MEETING
+  EXCEEDING
+}
+
+model StudentAssessment {
+  id             String           @id @default(cuid())
+  userId         Int
+  studentId      String
+  lessonId       String?          // Optional lesson context
+  expectationId  String?          // Optional curriculum expectation context
+  subject        String           // Subject area (e.g., "Mathématiques", "Français")
+  title          String           // Assessment title/description
+  level          AchievementLevel // Achievement level
+  notes          String?          // Teacher notes
+  date           DateTime         @default(now())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson         ETFOLessonPlan?  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  // Prevent duplicate assessments for same student/subject/date
+  @@unique([userId, studentId, subject, date])
+  
+  @@index([userId])
+  @@index([studentId])
+  @@index([userId, studentId])
+  @@index([userId, date])
+  @@index([userId, subject])
+  @@index([userId, level])
+  @@index([userId, studentId, date])
+  @@index([studentId, subject, date])
 }
