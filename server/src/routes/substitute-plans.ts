@@ -7,7 +7,7 @@ import { Router, Request, Response } from 'express';
 import { PrismaClient } from '@teaching-engine/database';
 import { z } from 'zod';
 import { SubstitutePlanService } from '../services/substitutePlanService';
-import { logger } from '../utils/logger';
+import { logger } from '../logger';
 
 const router = Router();
 const prisma = new PrismaClient();

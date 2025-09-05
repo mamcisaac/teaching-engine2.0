@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
 import { AchievementLevel } from '@teaching-engine/database';
-import { requireAuth, AuthenticatedRequest } from '../middleware/auth';
+import { authenticate, AuthenticatedRequest } from '../middleware/auth';
 import { prisma } from '../prisma';
 
 const router = Router();
@@ -25,7 +25,7 @@ const updateAssessmentSchema = z.object({
 });
 
 // GET /api/student-assessments - Get assessments for a user with pagination
-router.get('/', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
+router.get('/', authenticate, async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -95,7 +95,7 @@ router.get('/', requireAuth, async (req: AuthenticatedRequest, res: Response) =>
 });
 
 // POST /api/student-assessments - Create new assessment
-router.post('/', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
+router.post('/', authenticate, async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -133,7 +133,7 @@ router.post('/', requireAuth, async (req: AuthenticatedRequest, res: Response) =
 });
 
 // PUT /api/student-assessments/:id - Update assessment
-router.put('/:id', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
+router.put('/:id', authenticate, async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -178,7 +178,7 @@ router.put('/:id', requireAuth, async (req: AuthenticatedRequest, res: Response)
 });
 
 // DELETE /api/student-assessments/:id - Delete assessment
-router.delete('/:id', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
+router.delete('/:id', authenticate, async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -208,7 +208,7 @@ router.delete('/:id', requireAuth, async (req: AuthenticatedRequest, res: Respon
 });
 
 // POST /api/student-assessments/differentiation-groups - Generate differentiation groups
-router.post('/differentiation-groups', requireAuth, async (req: AuthenticatedRequest, res: Response) => {
+router.post('/differentiation-groups', authenticate, async (req: AuthenticatedRequest, res: Response) => {
   try {
     const userId = req.user?.id;
     if (!userId) {

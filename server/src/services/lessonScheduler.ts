@@ -56,8 +56,8 @@ export class LessonSchedulerService {
         lessonPlans: {
           where: { userId },
           orderBy: [
-            { createdAt: 'asc' },  // Maintain lesson order within unit
-            { title: 'asc' }
+            { lessonNumber: 'asc' },  // Use explicit lesson numbering
+            { createdAt: 'asc' }      // Fallback to creation order
           ]
         }
       }
@@ -227,8 +227,6 @@ export class LessonSchedulerService {
    * Find the next unscheduled unit for a subject
    */
   private async findNextUnscheduledUnit(subject: string, userId: number) {
-    // This is a simplified version - in a real implementation, 
-    // you'd track which units have been "started" vs "completed"
     const units = await this.prisma.unitPlan.findMany({
       where: {
         userId,
@@ -242,14 +240,78 @@ export class LessonSchedulerService {
       ],
       include: {
         lessonPlans: {
-          where: { userId }
+          where: { 
+            userId,
+            lessonType: 'core' // Only check core lessons for completion
+          },
+          select: {
+            id: true,
+            date: true,
+            isScheduled: true,
+            lessonType: true
+          }
         }
       }
     });
 
-    // Return the first unit that has lessons but hasn't been properly scheduled
-    // (This is where you'd implement more sophisticated unit progression logic)
-    return units.find(unit => unit.lessonPlans.length > 0) || null;
+    // Find the first unit where not all core lessons are scheduled
+    for (const unit of units) {
+      if (unit.lessonPlans.length === 0) continue;
+      
+      // Check if any core lessons in this unit are unscheduled
+      const hasUnscheduledCoreLessons = unit.lessonPlans.some(lesson => {
+        return !lesson.isScheduled || 
+               (lesson.date && new Date(lesson.date).getFullYear() >= 2099);
+      });
+      
+      if (hasUnscheduledCoreLessons) {
+        return unit;
+      }
+    }
+    
+    return null;
+  }
+  
+  /**
+   * Get available extension lessons for a unit
+   */
+  async getAvailableExtensions(unitId: string, userId: number) {
+    return await this.prisma.eTFOLessonPlan.findMany({
+      where: {
+        unitPlanId: unitId,
+        userId,
+        lessonType: 'extension',
+        isScheduled: false
+      },
+      orderBy: {
+        lessonNumber: 'asc'
+      }
+    });
+  }
+  
+  /**
+   * Schedule an extension lesson to a specific date
+   */
+  async scheduleExtension(lessonId: string, date: Date, userId: number) {
+    const lesson = await this.prisma.eTFOLessonPlan.findFirst({
+      where: {
+        id: lessonId,
+        userId,
+        lessonType: 'extension'
+      }
+    });
+    
+    if (!lesson) {
+      throw new Error('Extension lesson not found');
+    }
+    
+    return await this.prisma.eTFOLessonPlan.update({
+      where: { id: lessonId },
+      data: {
+        date,
+        isScheduled: true
+      }
+    });
   }
 
   /**

@@ -416,4 +416,546 @@ router.get('/calendar-summary', authenticate, async (req, res) => {
   }
 });
 
+// FLEXIBLE SCHEDULING ENDPOINTS
+
+/**
+ * POST /api/schedule/shift-subject
+ * Shift all future lessons for a subject forward by N days
+ * Maintains core lesson sequence and respects school calendar
+ */
+router.post('/shift-subject', authenticate, async (req, res) => {
+  try {
+    const { subject, fromDate, shiftDays, shiftOnlyFrom } = z.object({
+      subject: z.string().min(1),
+      fromDate: z.string().datetime(),
+      shiftDays: z.number().int().min(1).max(30),
+      shiftOnlyFrom: z.boolean().optional() // If true, only shift from this date onward
+    }).parse(req.body);
+    
+    const userId = req.user!.id;
+    
+    console.log(`📅 Shifting ${subject} lessons by ${shiftDays} days from ${fromDate}`);
+    
+    // Determine which lessons to shift
+    const dateFilter = shiftOnlyFrom 
+      ? { gte: new Date(fromDate) }
+      : { gt: new Date(fromDate) };
+    
+    // CRITICAL FIX: Use transaction to prevent race conditions
+    const result = await prisma.$transaction(async (tx) => {
+      // Get lessons to shift with lock (both core and scheduled extensions)
+      const lessonsToShift = await tx.eTFOLessonPlan.findMany({
+        where: {
+          userId,
+          subject,
+          date: dateFilter,
+          isScheduled: true
+        },
+        include: {
+          unitPlan: {
+            include: {
+              longRangePlan: {
+                select: { subject: true }
+              }
+            }
+          }
+        },
+        orderBy: [
+          { date: 'asc' },
+          { lessonNumber: 'asc' }
+        ]
+      });
+      
+      if (lessonsToShift.length === 0) {
+        return {
+          success: true,
+          message: 'No future lessons to shift',
+          lessonsShifted: 0
+        };
+      }
+      
+      // Get the actual subject from LRP if not directly on lesson
+      const actualSubject = subject || lessonsToShift[0]?.unitPlan?.longRangePlan?.subject;
+      
+      // Use school calendar to find valid teaching days
+      const teachingDays = schoolCalendar.getTeachingDays();
+      const startDateObj = new Date(fromDate);
+      
+      // Check if this is an alternating subject
+      const isAlternating = ['Sciences humaines', 'Formation personnelle et sociale'].includes(actualSubject);
+      
+      // Calculate new dates and apply updates atomically
+      let lessonsShifted = 0;
+      
+      for (const lesson of lessonsToShift) {
+        const currentDate = new Date(lesson.date);
+        let targetDayIndex = teachingDays.findIndex(d => 
+          d.date === currentDate.toISOString().split('T')[0]
+        );
+        
+        if (targetDayIndex === -1) {
+          console.warn(`Current date ${currentDate} not found in teaching days, using closest`);
+          targetDayIndex = teachingDays.findIndex(d => d.dateObj >= currentDate);
+        }
+        
+        // Find the next valid teaching day
+        let newDayIndex = targetDayIndex + shiftDays;
+        
+        // For alternating subjects, ensure we maintain the pattern with loop protection
+        if (isAlternating) {
+          const shouldBeEven = actualSubject === 'Sciences humaines';
+          let attempts = 0;
+          const maxAttempts = Math.min(10, teachingDays.length - newDayIndex);
+          
+          while (newDayIndex < teachingDays.length && attempts < maxAttempts) {
+            const newIsEven = newDayIndex % 2 === 0;
+            if ((shouldBeEven && newIsEven) || (!shouldBeEven && !newIsEven)) {
+              break;
+            }
+            newDayIndex++;
+            attempts++;
+          }
+        }
+        
+        if (newDayIndex >= teachingDays.length) {
+          console.warn(`Cannot shift lesson ${lesson.id} - would exceed school year`);
+          continue;
+        }
+        
+        const newDate = new Date(teachingDays[newDayIndex].date + 'T09:00:00');
+        
+        // Update immediately within transaction
+        await tx.eTFOLessonPlan.update({
+          where: { id: lesson.id },
+          data: { 
+            date: newDate,
+            slotNumber: lesson.slotNumber
+          }
+        });
+        
+        lessonsShifted++;
+      }
+      
+      return {
+        success: lessonsShifted > 0,
+        message: lessonsShifted > 0
+          ? `Shifted ${lessonsShifted} ${actualSubject} lessons forward by ${shiftDays} day(s)`
+          : 'Could not shift any lessons - would exceed school year',
+        lessonsShifted,
+        isAlternating,
+        maintainedPattern: true
+      };
+    });
+    
+    console.log(`✅ Shift operation completed: ${result.lessonsShifted} lessons shifted`);
+    res.json(result);
+    
+  } catch (error) {
+    console.error('Error shifting subject:', error);
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ 
+        error: 'Invalid request data', 
+        details: error.errors 
+      });
+    }
+    res.status(500).json({ 
+      error: 'Failed to shift lessons' 
+    });
+  }
+});
+
+/**
+ * POST /api/schedule/activate-extension
+ * Schedule an extension lesson to a specific date
+ */
+router.post('/activate-extension', authenticate, async (req, res) => {
+  try {
+    const { lessonId, date, slotNumber } = z.object({
+      lessonId: z.string(),
+      date: z.string().datetime(),
+      slotNumber: z.number().int().min(1).max(5).optional()
+    }).parse(req.body);
+    
+    const userId = req.user!.id;
+    
+    // Verify the lesson is an extension and belongs to user
+    const lesson = await prisma.eTFOLessonPlan.findFirst({
+      where: {
+        id: lessonId,
+        userId,
+        lessonType: 'extension'
+      }
+    });
+    
+    if (!lesson) {
+      return res.status(404).json({
+        error: 'Extension lesson not found'
+      });
+    }
+    
+    // CRITICAL FIX: Prevent double-scheduling of extensions
+    if (lesson.isScheduled && lesson.date && 
+        new Date(lesson.date).getFullYear() < 2099) {
+      return res.status(400).json({
+        error: 'Extension lesson is already scheduled',
+        scheduledDate: lesson.date,
+        lessonTitle: lesson.titleFr || lesson.title
+      });
+    }
+    
+    // Update the lesson to be scheduled
+    const updated = await prisma.eTFOLessonPlan.update({
+      where: { id: lessonId },
+      data: {
+        date: new Date(date),
+        isScheduled: true,
+        slotNumber: slotNumber || lesson.slotNumber
+      }
+    });
+    
+    console.log(`✅ Activated extension lesson: ${updated.titleFr || updated.title}`);
+    
+    res.json({
+      success: true,
+      message: 'Extension lesson scheduled successfully',
+      lesson: updated
+    });
+    
+  } catch (error) {
+    console.error('Error activating extension:', error);
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ 
+        error: 'Invalid request data', 
+        details: error.errors 
+      });
+    }
+    res.status(500).json({ 
+      error: 'Failed to activate extension' 
+    });
+  }
+});
+
+/**
+ * POST /api/schedule/replace-with-extension
+ * Replace a scheduled core lesson with an extension
+ * The core lesson is properly rescheduled to the next available slot
+ */
+router.post('/replace-with-extension', authenticate, async (req, res) => {
+  try {
+    const { coreLessonId, extensionLessonId, rescheduleCore } = z.object({
+      coreLessonId: z.string(),
+      extensionLessonId: z.string(),
+      rescheduleCore: z.boolean().optional().default(true) // Whether to reschedule the core lesson
+    }).parse(req.body);
+    
+    const userId = req.user!.id;
+    
+    // Get both lessons with their units for subject info
+    const [coreLesson, extensionLesson] = await Promise.all([
+      prisma.eTFOLessonPlan.findFirst({
+        where: { id: coreLessonId, userId, lessonType: 'core' },
+        include: {
+          unitPlan: {
+            include: {
+              longRangePlan: { select: { subject: true } }
+            }
+          }
+        }
+      }),
+      prisma.eTFOLessonPlan.findFirst({
+        where: { id: extensionLessonId, userId, lessonType: 'extension' }
+      })
+    ]);
+    
+    if (!coreLesson || !extensionLesson) {
+      return res.status(404).json({
+        error: 'Core or extension lesson not found'
+      });
+    }
+    
+    // Validate they're from the same unit
+    if (coreLesson.unitPlanId !== extensionLesson.unitPlanId) {
+      return res.status(400).json({
+        error: 'Core and extension lessons must be from the same unit'
+      });
+    }
+    
+    const updates = [];
+    const coreLessonDate = new Date(coreLesson.date);
+    
+    if (rescheduleCore) {
+      // Find next available slot for the core lesson
+      const subject = coreLesson.subject || coreLesson.unitPlan.longRangePlan.subject;
+      const isAlternating = ['Sciences humaines', 'Formation personnelle et sociale'].includes(subject);
+      
+      // Get next teaching day after current date
+      const teachingDays = schoolCalendar.getTeachingDays();
+      const currentDayIndex = teachingDays.findIndex(d => 
+        d.date === coreLessonDate.toISOString().split('T')[0]
+      );
+      
+      let nextAvailableDate = null;
+      
+      // Find next available date for this subject
+      for (let i = currentDayIndex + 1; i < teachingDays.length; i++) {
+        const candidateDay = teachingDays[i];
+        
+        // For alternating subjects, check pattern
+        if (isAlternating) {
+          const shouldBeEven = subject === 'Sciences humaines';
+          const isEvenDay = i % 2 === 0;
+          if ((shouldBeEven && !isEvenDay) || (!shouldBeEven && isEvenDay)) {
+            continue;
+          }
+        }
+        
+        // Check if this date is already occupied by another lesson from this subject
+        const conflict = await prisma.eTFOLessonPlan.findFirst({
+          where: {
+            userId,
+            subject,
+            date: {
+              gte: new Date(candidateDay.date + 'T00:00:00'),
+              lt: new Date(candidateDay.date + 'T23:59:59')
+            },
+            id: { not: coreLessonId }
+          }
+        });
+        
+        if (!conflict) {
+          nextAvailableDate = new Date(candidateDay.date + 'T09:00:00');
+          break;
+        }
+      }
+      
+      if (!nextAvailableDate) {
+        return res.status(400).json({
+          error: 'No available date found to reschedule core lesson'
+        });
+      }
+      
+      // Reschedule core lesson to next available date
+      updates.push(
+        prisma.eTFOLessonPlan.update({
+          where: { id: coreLessonId },
+          data: { 
+            date: nextAvailableDate,
+            isScheduled: true
+          }
+        })
+      );
+    } else {
+      // Just unschedule the core lesson
+      updates.push(
+        prisma.eTFOLessonPlan.update({
+          where: { id: coreLessonId },
+          data: { 
+            date: new Date('2099-12-31'),
+            isScheduled: false
+          }
+        })
+      );
+    }
+    
+    // Schedule the extension in place of the core lesson
+    updates.push(
+      prisma.eTFOLessonPlan.update({
+        where: { id: extensionLessonId },
+        data: { 
+          date: coreLessonDate,
+          isScheduled: true,
+          slotNumber: coreLesson.slotNumber
+        }
+      })
+    );
+    
+    await prisma.$transaction(updates);
+    
+    console.log(`✅ Replaced core lesson with extension, core rescheduled: ${rescheduleCore}`);
+    
+    res.json({
+      success: true,
+      message: rescheduleCore 
+        ? 'Successfully replaced core lesson with extension and rescheduled core'
+        : 'Successfully replaced core lesson with extension',
+      coreRescheduled: rescheduleCore
+    });
+    
+  } catch (error) {
+    console.error('Error replacing with extension:', error);
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ 
+        error: 'Invalid request data', 
+        details: error.errors 
+      });
+    }
+    res.status(500).json({ 
+      error: 'Failed to replace with extension' 
+    });
+  }
+});
+
+/**
+ * POST /api/schedule/validate-shift
+ * Validate if shifting lessons would cause conflicts
+ */
+router.post('/validate-shift', authenticate, async (req, res) => {
+  try {
+    const { subject, fromDate, shiftDays } = z.object({
+      subject: z.string().min(1),
+      fromDate: z.string().datetime(),
+      shiftDays: z.number().int().min(-30).max(30)
+    }).parse(req.body);
+    
+    const userId = req.user!.id;
+    
+    // Get lessons that would be shifted
+    const lessonsToCheck = await prisma.eTFOLessonPlan.findMany({
+      where: {
+        userId,
+        subject,
+        date: { gte: new Date(fromDate) },
+        isScheduled: true
+      },
+      include: {
+        unitPlan: {
+          include: {
+            longRangePlan: { select: { subject: true } }
+          }
+        }
+      }
+    });
+    
+    const conflicts = [];
+    const warnings = [];
+    
+    for (const lesson of lessonsToCheck) {
+      const currentDate = new Date(lesson.date);
+      const newDate = new Date(currentDate);
+      newDate.setDate(newDate.getDate() + shiftDays);
+      
+      // Check if new date would be outside school year
+      const teachingDays = schoolCalendar.getTeachingDays();
+      const lastDay = teachingDays[teachingDays.length - 1].dateObj;
+      
+      if (newDate > lastDay) {
+        conflicts.push({
+          lessonId: lesson.id,
+          title: lesson.titleFr || lesson.title,
+          reason: 'Would exceed school year',
+          currentDate: currentDate.toISOString().split('T')[0],
+          proposedDate: newDate.toISOString().split('T')[0]
+        });
+      }
+      
+      // Check for conflicts with other subjects on the same day/slot
+      const conflictingLesson = await prisma.eTFOLessonPlan.findFirst({
+        where: {
+          userId,
+          date: {
+            gte: new Date(newDate.toISOString().split('T')[0] + 'T00:00:00'),
+            lt: new Date(newDate.toISOString().split('T')[0] + 'T23:59:59')
+          },
+          slotNumber: lesson.slotNumber,
+          id: { not: lesson.id }
+        }
+      });
+      
+      if (conflictingLesson) {
+        warnings.push({
+          lessonId: lesson.id,
+          title: lesson.titleFr || lesson.title,
+          reason: `Slot ${lesson.slotNumber} already occupied`,
+          conflictsWith: conflictingLesson.titleFr || conflictingLesson.title
+        });
+      }
+    }
+    
+    const isValid = conflicts.length === 0;
+    
+    res.json({
+      valid: isValid,
+      totalLessons: lessonsToCheck.length,
+      conflicts,
+      warnings,
+      canProceed: isValid && warnings.length === 0
+    });
+    
+  } catch (error) {
+    console.error('Error validating shift:', error);
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ 
+        error: 'Invalid request data', 
+        details: error.errors 
+      });
+    }
+    res.status(500).json({ 
+      error: 'Failed to validate shift' 
+    });
+  }
+});
+
+/**
+ * GET /api/schedule/available-extensions
+ * Get all unscheduled extension lessons for a subject or unit
+ */
+router.get('/available-extensions', authenticate, async (req, res) => {
+  try {
+    const { subject, unitId } = z.object({
+      subject: z.string().optional(),
+      unitId: z.string().optional()
+    }).parse(req.query);
+    
+    const userId = req.user!.id;
+    
+    const where: any = {
+      userId,
+      lessonType: 'extension',
+      isScheduled: false
+    };
+    
+    if (subject) {
+      where.subject = subject;
+    }
+    
+    if (unitId) {
+      where.unitPlanId = unitId;
+    }
+    
+    const extensions = await prisma.eTFOLessonPlan.findMany({
+      where,
+      include: {
+        unitPlan: {
+          select: {
+            title: true,
+            titleFr: true
+          }
+        }
+      },
+      orderBy: [
+        { unitPlanId: 'asc' },
+        { lessonNumber: 'asc' }
+      ]
+    });
+    
+    res.json({
+      success: true,
+      extensions,
+      count: extensions.length
+    });
+    
+  } catch (error) {
+    console.error('Error getting available extensions:', error);
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ 
+        error: 'Invalid query parameters', 
+        details: error.errors 
+      });
+    }
+    res.status(500).json({ 
+      error: 'Failed to get available extensions' 
+    });
+  }
+});
+
 export default router;

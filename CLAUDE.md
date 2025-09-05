@@ -24,6 +24,22 @@
 - Verified for Grade 1 appropriateness
 - Protected from any changes
 
+## 🔴 CRITICAL: LESSON ORDERING IS NOW EXPLICIT
+
+### ⚠️ All 970 Lessons Have Sequential Numbers
+**Status as of January 5, 2025:** Every lesson has an explicit `lessonNumber` field
+
+**Implementation Complete:**
+- Database field `lessonNumber` added to ETFOLessonPlan table
+- Unique constraint ensures no duplicates within units
+- API endpoints order by lessonNumber automatically
+- All 970 lessons numbered based on pedagogical sequence
+
+**Protection:**
+- See `LESSON_ORDERING_CANONICAL.md` for complete sequences
+- See `scripts/assign-lesson-numbers.py` for numbering logic
+- NEVER change lesson numbers without pedagogical review
+
 ## 🔴 CRITICAL PROTECTION NOTICE: UNIT PLANS ARE STRATEGICALLY PERFECT
 
 ### ⛔ DO NOT MODIFY UNIT PLANS

@@ -68,6 +68,7 @@ model User {
   unitPlans                UnitPlan[]
   weeklyPlannerState       WeeklyPlannerState?
   lessonCompletions        LessonCompletion[]
+  lessonReflections        LessonReflection[]
   studentAssessments       StudentAssessment[]
   substituteInfo           SubstituteInfo?
 }
@@ -398,6 +399,8 @@ model ETFOLessonPlan {
   date                      DateTime
   slotNumber                Int?                        @default(1)
   lessonNumber              Int?
+  lessonType                String?                     @default("core")
+  isScheduled               Boolean                     @default(true)
   duration                  Int
   mindsOn                   String?
   action                    String?
@@ -438,6 +441,7 @@ model ETFOLessonPlan {
   expectations              ETFOLessonPlanExpectation[]
   resources                 ETFOLessonPlanResource[]
   lessonCompletions         LessonCompletion[]
+  lessonReflections         LessonReflection[]
   studentAssessments        StudentAssessment[]
 
   @@unique([unitPlanId, lessonNumber])
@@ -456,6 +460,8 @@ model ETFOLessonPlan {
   @@index([date, duration])
   @@index([userId, assessmentType])
   @@index([userId, date, slotNumber])
+  @@index([lessonType, isScheduled])
+  @@index([unitPlanId, lessonType])
 }
 
 model ETFOLessonPlanExpectation {
@@ -1169,6 +1175,35 @@ model LessonCompletion {
   @@index([lessonId])
   @@index([completedAt])
   @@index([userId, completedAt])
+}
+
+enum ReflectionStatus {
+  SUCCESS    // 👍 - Lesson went well, students understood
+  MIXED      // 👌 - Mixed results, some got it, some didn't
+  RETEACH    // 👎 - Needs reteaching, students struggled
+}
+
+model LessonReflection {
+  id             String           @id @default(cuid())
+  userId         Int
+  lessonId       String
+  status         ReflectionStatus
+  note           String?          // Optional teacher notes/observations
+  date           DateTime         // Date of the lesson (for daily aggregation)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson         ETFOLessonPlan   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  // One reflection per lesson per user
+  @@unique([userId, lessonId])
+  
+  @@index([userId])
+  @@index([lessonId])
+  @@index([date])
+  @@index([userId, date])
+  @@index([status])
 }
 
 enum AchievementLevel {

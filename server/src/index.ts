@@ -46,6 +46,7 @@ import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as etfoProgressRoutes } from './routes/etfo-progress';
 import { router as lessonCompletionRoutes } from './routes/lesson-completions';
+import lessonReflectionRoutes from './routes/lesson-reflections';
 import { router as studentAssessmentRoutes } from './routes/student-assessments';
 import evidenceExportRoutes from './routes/evidenceExport';
 import lessonGenerationRoutes from './routes/lesson-generation';
@@ -288,6 +289,8 @@ app.use(
 app.use('/api/schedule', asyncMiddleware(authenticate), rateLimiters.write, userCache, scheduleManagementRoutes);
 app.use('/api/daybook-entries', asyncMiddleware(authenticate), rateLimiters.write, userCache, daybookEntryRoutes);
 app.use('/api/lesson-completions', asyncMiddleware(authenticate), rateLimiters.write, userCache, lessonCompletionRoutes);
+app.use('/api/lessons', asyncMiddleware(authenticate), rateLimiters.write, userCache, lessonReflectionRoutes);
+app.use('/api/reflections', asyncMiddleware(authenticate), rateLimiters.write, userCache, lessonReflectionRoutes);
 app.use('/api/lesson-generation', asyncMiddleware(authenticate), rateLimiters.write, lessonGenerationRoutes);
 app.use('/api/student-assessments', asyncMiddleware(authenticate), rateLimiters.write, userCache, studentAssessmentRoutes);
 app.use('/api/etfo', asyncMiddleware(authenticate), rateLimiters.read, etfoProgressRoutes);

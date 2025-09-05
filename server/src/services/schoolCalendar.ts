@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { format, parseISO } from 'date-fns';
@@ -40,7 +40,18 @@ export class SchoolCalendarService {
     try {
       // Load Emily's yearly schedule
       const schedulePath = join(process.cwd(), 'emily-yearly-schedule.json');
+      
+      // CRITICAL FIX: Add validation for file existence
+      if (!existsSync(schedulePath)) {
+        throw new Error(`School calendar file not found: ${schedulePath}`);
+      }
+      
       const scheduleData: ScheduleEntry[] = JSON.parse(readFileSync(schedulePath, 'utf-8'));
+      
+      // Validate that we have data
+      if (!Array.isArray(scheduleData) || scheduleData.length === 0) {
+        throw new Error('School calendar file is empty or invalid');
+      }
 
       // Extract unique teaching days and organize by subjects
       const dayMap = new Map<string, TeachingDay>();
@@ -66,12 +77,20 @@ export class SchoolCalendarService {
       this.teachingDays = Array.from(dayMap.values()).sort(
         (a, b) => a.dateObj.getTime() - b.dateObj.getTime()
       );
+      
+      // Validate we have a reasonable number of teaching days
+      if (this.teachingDays.length < 180 || this.teachingDays.length > 200) {
+        console.warn(`Unusual number of teaching days: ${this.teachingDays.length}`);
+      }
 
       this.initialized = true;
       console.log(`📅 School calendar initialized: ${this.teachingDays.length} teaching days`);
     } catch (error) {
-      console.error('Failed to initialize school calendar:', error);
-      throw error;
+      console.error('CRITICAL: Failed to initialize school calendar:', error);
+      // Set empty teaching days to prevent complete failure
+      this.teachingDays = [];
+      this.initialized = false;
+      throw new Error(`School calendar initialization failed: ${error.message}`);
     }
   }
 
