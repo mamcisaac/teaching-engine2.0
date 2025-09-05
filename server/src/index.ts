@@ -68,6 +68,7 @@ import { router as unitPlanRoutes } from './routes/unit-plans';
 import { userRoutes } from './routes/user';
 import scheduleManagementRoutes from './routes/schedule-management';
 import publicStatsRoutes from './routes/public-stats';
+import planningCascadeRoutes from './routes/planning-cascade';
 import { errorReportingService } from './services/monitoring/errorReportingService';
 import { initializeServices } from './services/initializeServices';
 import {
@@ -295,6 +296,9 @@ app.use('/api/reflections', asyncMiddleware(authenticate), rateLimiters.write, u
 app.use('/api/lesson-generation', asyncMiddleware(authenticate), rateLimiters.write, lessonGenerationRoutes);
 app.use('/api/student-assessments', asyncMiddleware(authenticate), rateLimiters.write, userCache, studentAssessmentRoutes);
 app.use('/api/etfo', asyncMiddleware(authenticate), rateLimiters.read, etfoProgressRoutes);
+
+// Planning Cascade Routes
+app.use('/api/planning-cascade', asyncMiddleware(authenticate), rateLimiters.read, userCache, planningCascadeRoutes);
 
 // State Management Routes
 app.use('/api/planner', asyncMiddleware(authenticate), rateLimiters.api, plannerStateRoutes);

@@ -7,6 +7,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
+import './testHelpers'; // Load test helper functions
 
 describe('🔴 RED: Principal walks in asking about my butterfly lesson', () => {
   it('should find ANY lesson by vague memory in under 5 seconds', () => {

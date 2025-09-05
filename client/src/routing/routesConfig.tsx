@@ -46,6 +46,9 @@ const ReportsPage = lazy(() => import('../pages/ReportsPage').then(module => ({
 const CoveragePage = lazy(() => import('../pages/CoveragePage').then(module => ({
   default: withMainLayout(module.CoveragePage)
 })));
+const PlanningOverviewPage = lazy(() => import('../pages/PlanningOverviewPage').then(module => ({
+  default: withMainLayout(module.PlanningOverviewPage)
+})));
 
 export interface RouteConfig {
   path?: string;
@@ -227,6 +230,11 @@ export const protectedRoutes: RouteConfig[] = [
   {
     path: '/coverage/:subject',
     element: CoveragePage,
+  },
+  // Planning Cascade Routes
+  {
+    path: '/planning-overview',
+    element: PlanningOverviewPage,
   },
   // Legacy resources redirects
   {

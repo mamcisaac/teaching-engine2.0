@@ -155,7 +155,7 @@ export function PlanningWizard({
           
           <CardTitle className="text-2xl">Planning Wizard</CardTitle>
           <CardDescription>
-            Let's walk through the ETFO planning process step by step
+            Let&apos;s walk through the ETFO planning process step by step
           </CardDescription>
           
           {/* Progress indicators */}
@@ -230,7 +230,7 @@ export function PlanningWizard({
                   <div className="mt-4 p-3 bg-green-50 rounded-lg flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
                     <p className="text-sm text-green-800">
-                      You've completed this step! Feel free to revisit it anytime.
+                      You&apos;ve completed this step! Feel free to revisit it anytime.
                     </p>
                   </div>
                 )}
