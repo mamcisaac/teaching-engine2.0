@@ -302,11 +302,12 @@ export function CoveragePage(): React.ReactElement {
               {/* Toggle uncovered only */}
               <div className="flex items-center gap-2">
                 <label className="text-sm font-medium">Show uncovered only</label>
-                <Switch
-                  data-testid="show-uncovered-toggle"
-                  checked={showUncoveredOnly}
-                  onCheckedChange={setShowUncoveredOnly}
-                />
+                <div data-testid="show-uncovered-toggle">
+                  <Switch
+                    checked={showUncoveredOnly}
+                    onChange={setShowUncoveredOnly}
+                  />
+                </div>
               </div>
 
               {/* Show all button */}
@@ -511,7 +512,7 @@ export function CoveragePage(): React.ReactElement {
               {uncoveredCount} expectations still need to be covered this year. 
               <Button
                 data-testid="plan-uncovered-button"
-                variant="link"
+                variant="outline"
                 className="p-0 ml-2"
                 onClick={() => setShowUncoveredOnly(true)}
               >

@@ -1,6 +1,6 @@
 import { apiClient as api } from '../../core/client';
 
-interface StartNextUnitResponse {
+export interface StartNextUnitResponse {
   success: boolean;
   message: string;
   data: {
@@ -21,7 +21,7 @@ interface StartNextUnitResponse {
 }
 
 
-interface ScheduleAllLessonsResponse {
+export interface ScheduleAllLessonsResponse {
   success: boolean;
   message: string;
   data: {
@@ -45,7 +45,7 @@ interface ScheduleAllLessonsResponse {
   };
 }
 
-interface SchedulingStats {
+export interface SchedulingStats {
   total: number;
   scheduled: number;
   unscheduled: number;
@@ -94,7 +94,7 @@ export async function getSchedulingStats(): Promise<{ success: boolean; data: Sc
   return response.data;
 }
 
-interface CalendarSummaryData {
+export interface CalendarSummaryData {
   totalDays: number;
   schoolDays: number;
   holidays: number;

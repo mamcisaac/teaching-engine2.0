@@ -46,6 +46,7 @@ export const LessonReflectionNote: React.FC<LessonReflectionNoteProps> = ({
       }, 2000);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [isSaving, lastSaved, isError]);
 
   // Update last saved time when saving completes

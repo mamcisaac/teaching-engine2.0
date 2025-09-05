@@ -133,8 +133,7 @@ export function CoverageWidget(): React.ReactElement {
             </div>
             <Progress 
               value={metric.percentage} 
-              className="h-2"
-              indicatorClassName={getCoverageColor(metric.percentage)}
+              className={`h-2 ${getCoverageColor(metric.percentage)}`}
             />
           </div>
         ))}

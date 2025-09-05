@@ -1,6 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { startNextUnit, scheduleUnit, scheduleAllLessons, getSchedulingStats, getCalendarSummary } from './api';
+import { 
+  startNextUnit, 
+  scheduleUnit, 
+  scheduleAllLessons, 
+  getSchedulingStats, 
+  getCalendarSummary,
+  type StartNextUnitResponse,
+  type ScheduleAllLessonsResponse,
+  type SchedulingStats,
+  type CalendarSummaryData
+} from './api';
 
 /**
  * Hook to start scheduling the next unit for a subject

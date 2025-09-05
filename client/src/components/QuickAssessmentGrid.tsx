@@ -302,17 +302,21 @@ export function QuickAssessmentGrid({
               <span className="text-gray-600">
                 Coverage: <span className="font-medium">{stats.assessed}/{stats.total}</span> ({stats.coverage}%)
               </span>
-              {Object.entries(stats.levelCounts).map(([level, count]) => (
-                <Badge
-                  key={level}
-                  style={{
-                    backgroundColor: ACHIEVEMENT_LEVELS[level as AchievementLevel].bgColor,
-                    color: ACHIEVEMENT_LEVELS[level as AchievementLevel].color
-                  }}
-                >
-                  {ACHIEVEMENT_LEVELS[level as AchievementLevel].icon} {count}
-                </Badge>
-              ))}
+              {Object.entries(stats.levelCounts).map(([level, count]) => {
+                const levelData = ACHIEVEMENT_LEVELS[level as AchievementLevel];
+                return (
+                  <Badge
+                    key={level}
+                    className="inline-flex items-center gap-1"
+                    variant="outline"
+                  >
+                    <span style={{ color: levelData.color }}>
+                      {levelData.icon}
+                    </span>
+                    {count}
+                  </Badge>
+                );
+              })}
             </div>
           </div>
         </CardContent>
@@ -435,7 +439,7 @@ export function QuickAssessmentGrid({
                     </div>
                     
                     <div className="space-y-1">
-                      {studentIds.map(studentId => {
+                      {studentIds.map((studentId: string) => {
                         const student = students.find(s => s.id === studentId);
                         return student ? (
                           <div key={studentId} className="text-xs text-gray-600">

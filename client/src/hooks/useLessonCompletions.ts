@@ -58,7 +58,7 @@ export function useLessonCompletions(lessonIds?: string[]) {
       }
       
       const response = await apiClient.get<{ completions: LessonCompletion[] }>(url);
-      return response.completions;
+      return response.data.completions;
     },
     staleTime: 30000, // Consider data stale after 30 seconds
     gcTime: 300000, // Keep cache for 5 minutes (formerly cacheTime)
@@ -66,7 +66,7 @@ export function useLessonCompletions(lessonIds?: string[]) {
 
   // Create a Map for O(1) lookup of completion status
   const completionMap = new Map(
-    completions.map(c => [c.lessonId, c])
+    (completions || []).map((c: LessonCompletion) => [c.lessonId, c])
   );
 
   // Toggle completion mutation
@@ -171,7 +171,7 @@ export function useLessonCompletions(lessonIds?: string[]) {
     const response = await apiClient.get<CompletionProgress>(
       `/api/lesson-completions/progress${params.toString() ? `?${params.toString()}` : ''}`
     );
-    return response;
+    return response.data;
   };
 
   // Helper functions
@@ -180,7 +180,7 @@ export function useLessonCompletions(lessonIds?: string[]) {
   };
 
   const getCompletion = (lessonId: string): LessonCompletion | undefined => {
-    return completionMap.get(lessonId);
+    return completionMap.get(lessonId) as LessonCompletion | undefined;
   };
 
   const toggleCompletion = (lessonId: string, _currentState?: boolean) => {

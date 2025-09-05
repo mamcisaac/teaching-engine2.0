@@ -11,7 +11,7 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
-import { apiClient } from '../api/client';
+import { apiClient } from '../api/core/client';
 
 interface DaySchedule {
   date: Date;
@@ -176,7 +176,7 @@ export function WeekViewPage(): React.ReactElement {
       setOriginalPosition({
         lessonId,
         date: new Date(lesson.date),
-        slot: lesson.slotNumber
+        slot: lesson.slotNumber ?? 1
       });
     }
   }, []);

@@ -10,7 +10,7 @@ import {
   XCircleIcon,
   ExclamationTriangleIcon,
   ArrowTrendingUpIcon,
-  Zap
+  BoltIcon
 } from '@heroicons/react/24/outline';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
@@ -229,7 +229,7 @@ export function AssessmentPage(): React.ReactElement {
           className={`px-4 py-2 ${showQuickGrid ? 'bg-indigo-600' : 'bg-indigo-500'} text-white rounded-lg hover:bg-indigo-700 flex items-center gap-2 transition-colors`}
           data-testid="quick-grid-btn"
         >
-          <Zap className="w-5 h-5" />
+          <BoltIcon className="w-5 h-5" />
           Quick Assessment Grid
         </button>
 
