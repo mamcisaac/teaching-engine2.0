@@ -3,8 +3,8 @@
  * Graceful error handling with fallback UI
  */
 
-import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import React, { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -54,7 +54,7 @@ export class PlanningErrorBoundary extends Component<Props, State> {
             
             <div className="mb-4">
               <p className="text-gray-700 mb-2">
-                Something went wrong with the planning cascade view. This shouldn't happen during your teaching day!
+                Something went wrong with the planning cascade view. This shouldn&apos;t happen during your teaching day!
               </p>
               
               <div className="bg-gray-50 p-3 rounded text-sm">

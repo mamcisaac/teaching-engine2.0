@@ -167,7 +167,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                   onClick={() => navigate('/planner/today')}
                   className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
                 >
-                  🕐 Today's Teaching
+                  🕐 Today&apos;s Teaching
                 </button>
                 <button
                   onClick={() => navigate('/planner/week')}
@@ -333,7 +333,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                     })
                   ) : (
                     <div className="col-span-full text-center text-gray-500">
-                      <p>No subjects selected. Click "Modify&quot; to select your teaching subjects.</p>
+                      <p>No subjects selected. Click &quot;Modify&quot; to select your teaching subjects.</p>
                     </div>
                   )}
                 </div>
@@ -424,7 +424,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                   onClick={() => navigate('/planner/today')}
                 >
                   <Clock className="h-5 w-5 mr-3" />
-                  Today's Teaching
+                  Today&apos;s Teaching
                 </Button>
                 <Button 
                   className="w-full justify-start bg-green-50 hover:bg-green-100 text-green-700 border-green-200"

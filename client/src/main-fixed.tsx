@@ -1,10 +1,12 @@
 // Fixed main.tsx using dynamic imports
-console.log('[main-fixed.tsx] Starting Teaching Engine 2.0...');
+import { logger } from './utils/logger';
+
+logger.info('Starting Teaching Engine 2.0...');
 
 // Dynamic imports to avoid static import issues
 async function initializeApp() {
   try {
-    console.log('[main-fixed.tsx] Loading React modules...');
+    logger.info('Loading React modules...');
     
     // Load React modules dynamically
     const [
@@ -27,7 +29,7 @@ async function initializeApp() {
       import('./utils/logger')
     ]);
 
-    console.log('[main-fixed.tsx] All modules loaded successfully');
+    logger.info('All modules loaded successfully');
 
     // Import CSS
     await import('./index.css');
@@ -58,10 +60,10 @@ async function initializeApp() {
     });
 
     const rootElement = document.getElementById('root');
-    console.log('[main-fixed.tsx] Root element found:', !!rootElement);
+    logger.info('Root element found', { hasRootElement: !!rootElement });
 
     if (rootElement) {
-      console.log('[main-fixed.tsx] Creating React root and rendering app...');
+      logger.info('Creating React root and rendering app...');
       const root = createRoot(rootElement);
       
       root.render(
@@ -75,13 +77,13 @@ async function initializeApp() {
         )
       );
       
-      console.log('[main-fixed.tsx] App rendered successfully');
+      logger.info('App rendered successfully');
     } else {
-      console.error('[main-fixed.tsx] Root element not found!');
+      logger.error('Root element not found!');
     }
 
   } catch (error) {
-    console.error('[main-fixed.tsx] Failed to initialize app:', error);
+    logger.error('Failed to initialize app', error);
     const rootElement = document.getElementById('root');
     if (rootElement) {
       rootElement.innerHTML = `<div style="color: red; padding: 20px;">Error initializing app: ${error}</div>`;

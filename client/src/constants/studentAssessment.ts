@@ -312,7 +312,7 @@ export const debounce = <T extends (...args: any[]) => void>(
 };
 
 // Date utilities
-export const formatDate = (date: string | Date, format = DATE_FORMATS.DISPLAY): string => {
+export const formatDate = (date: string | Date, _format = DATE_FORMATS.DISPLAY): string => {
   // This would typically use a library like date-fns
   // For now, return a basic format
   const d = new Date(date);

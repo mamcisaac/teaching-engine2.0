@@ -161,7 +161,7 @@ export function ScheduleEditor(): React.ReactElement {
   const handleDrop = useCallback((item: DragItem, targetDate: string, targetSlot: number) => {
     const { lesson, fromDate, fromSlotNumber } = item;
     
-    // Don't do anything if dropping in same spot
+    // Don&apos;t do anything if dropping in same spot
     if (fromDate === targetDate && fromSlotNumber === targetSlot) {
       return;
     }
@@ -361,7 +361,7 @@ export function ScheduleEditor(): React.ReactElement {
             {changes.size > 0 && (
               <Alert className="mb-4">
                 <AlertDescription>
-                  You have {changes.size} unsaved changes. Click "Save Changes" to apply them.
+                  You have {changes.size} unsaved changes. Click &quot;Save Changes&quot; to apply them.
                 </AlertDescription>
               </Alert>
             )}
@@ -432,7 +432,7 @@ export function ScheduleEditor(): React.ReactElement {
                 <li>• Use the search box to find specific lessons</li>
                 <li>• Filter by subject to see only certain types of lessons</li>
                 <li>• Changes are highlighted and tracked - use Undo/Redo as needed</li>
-                <li>• Click "Save Changes&quot; when you're happy with your adjustments</li>
+                <li>• Click &quot;Save Changes&quot; when you&apos;re happy with your adjustments</li>
                 <li>• Navigate between weeks using the Previous/Next buttons</li>
               </ul>
             </div>

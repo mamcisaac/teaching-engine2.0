@@ -16,7 +16,7 @@ export function PlanningDashboard(): React.ReactElement {
   // Get curriculum data to show coverage
   const { data: expectations = [] } = useCurriculumExpectations({ grade: 1 });
   
-  // Get teacher's selected subjects
+  // Get teacher&apos;s selected subjects
   const teacherSubjects = useMemo(() => {
     const stored = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
     return safeJsonParse<string[]>(stored, []);
@@ -46,7 +46,7 @@ export function PlanningDashboard(): React.ReactElement {
     navigate('/planner/long-range');
   };
 
-  const handleNavigateToCalendar = (): void => {
+  const _handleNavigateToCalendar = (): void => {
     // console.log('[PlanningDashboard] Navigating to calendar view');
     navigate('/planner/calendar');
   };
@@ -96,7 +96,7 @@ export function PlanningDashboard(): React.ReactElement {
     transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
   };
 
-  const hoverStyle = {
+  const _hoverStyle = {
     ':hover': {
       transform: 'translateY(-2px)',
       boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
@@ -201,7 +201,7 @@ export function PlanningDashboard(): React.ReactElement {
           </div>
         )}
 
-        {/* Today's Teaching - PRIMARY FOCUS */}
+        {/* Today&apos;s Teaching - PRIMARY FOCUS */}
         <div style={{ 
           backgroundColor: '#eff6ff', 
           padding: '30px', 
@@ -239,7 +239,7 @@ export function PlanningDashboard(): React.ReactElement {
                 e.currentTarget.style.boxShadow = '0 2px 4px rgba(59, 130, 246, 0.3)';
               }}
             >
-              View Today's Lessons →
+              View Today&apos;s Lessons →
             </button>
           </div>
           <p style={{ fontSize: '16px', color: '#3b82f6', marginBottom: '20px' }}>
@@ -264,7 +264,7 @@ export function PlanningDashboard(): React.ReactElement {
                 e.currentTarget.style.backgroundColor = 'white';
               }}
             >
-              🎯 Today's Plan
+              🎯 Today&apos;s Plan
             </button>
             <button
               onClick={handleNavigateToWeek}
@@ -364,7 +364,7 @@ export function PlanningDashboard(): React.ReactElement {
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
             >
-              ✨ Create Today's Lesson
+              ✨ Create Today&apos;s Lesson
             </button>
             
             <button

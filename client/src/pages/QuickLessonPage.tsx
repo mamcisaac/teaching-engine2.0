@@ -10,7 +10,7 @@ export function QuickLessonPage(): React.ReactElement {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // Get user's unit plans to allow selection
+  // Get user&apos;s unit plans to allow selection
   const { data: unitPlans = [] } = useUnitPlans({});
   const createMutation = useCreateETFOLessonPlan();
 
@@ -284,7 +284,7 @@ export function QuickLessonPage(): React.ReactElement {
               }}
             />
             <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-              Example: "Students will identify and count numbers 1-10 in French using manipulatives"
+              Example: &quot;Students will identify and count numbers 1-10 in French using manipulatives&quot;
             </span>
           </div>
 
@@ -358,7 +358,7 @@ export function QuickLessonPage(): React.ReactElement {
                   }}
                 />
                 <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block', fontStyle: 'italic' }}>
-                  Example: "Show mystery bag with counting bears. Ask: 'Combien d'ours pensez-vous qu'il y a?' Have students predict and share."
+                  Example: &quot;Show mystery bag with counting bears. Ask: &apos;Combien d&apos;ours pensez-vous qu&apos;il y a?&apos; Have students predict and share.&quot;
                 </span>
               </div>
               
@@ -393,7 +393,7 @@ export function QuickLessonPage(): React.ReactElement {
                   }}
                 />
                 <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block', fontStyle: 'italic' }}>
-                  Example: "1) Counting station rotations with manipulatives 2) Partner counting games 3) Number writing practice on whiteboards"
+                  Example: &quot;1) Counting station rotations with manipulatives 2) Partner counting games 3) Number writing practice on whiteboards&quot;
                 </span>
               </div>
               
@@ -428,7 +428,7 @@ export function QuickLessonPage(): React.ReactElement {
                   }}
                 />
                 <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block', fontStyle: 'italic' }}>
-                  Example: "Gallery walk to share counting collections. Exit ticket: Draw and label 5 objects in French."
+                  Example: &quot;Gallery walk to share counting collections. Exit ticket: Draw and label 5 objects in French.&quot;
                 </span>
               </div>
             </div>

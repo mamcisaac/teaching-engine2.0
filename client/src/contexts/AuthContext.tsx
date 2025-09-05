@@ -35,7 +35,7 @@ const AuthContext = createContext<AuthContextValue>({
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }): React.ReactElement {
-  console.log('[AuthProvider] Rendering with children:', children);
+  logger.debug('AuthProvider rendering', { hasChildren: !!children });
   
   // Initialize state synchronously from localStorage to prevent race conditions
   const initializeFromStorage = (): { user: User | null; isAuthenticated: boolean } => {
@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       const storedUser = authService.getUser();
       const hasToken = authService.isAuthenticated();
       
-      console.log('[AuthProvider] Initializing from storage:', { storedUser, hasToken });
+      logger.debug('AuthProvider initializing from storage', { hasUser: !!storedUser, hasToken });
       
       if (storedUser && hasToken) {
         return { user: storedUser, isAuthenticated: true };
@@ -186,7 +186,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     let isMounted = true;
     
     const performInitialAuthCheck = async (): Promise<void> => {
-      console.log('[AuthContext] Starting simplified auth check');
+      logger.debug('AuthContext starting simplified auth check');
       logger.debug('[AuthContext] Starting simplified auth check');
       
       try {
@@ -194,7 +194,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         const isDevelopmentBypass = import.meta.env.DEV && (!import.meta.env.VITE_JWT_SECRET || import.meta.env.VITE_BYPASS_AUTH === 'true');
         
         if (isDevelopmentBypass) {
-          console.log('[AuthContext] Development bypass active - auto-authenticating as Emily McIsaac');
+          logger.info('Development bypass active - auto-authenticating as Emily McIsaac');
           const emilyUser = {
             id: 23,  // Correct userId from database for emmcisaac@gmail.com
             email: 'emmcisaac@gmail.com',  // Correct email from database
@@ -211,11 +211,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
           // Store in localStorage
           authService.setUser(emilyUser);
           
-          console.log('[AuthContext] Development bypass - user set and authenticated');
+          logger.info('Development bypass - user set and authenticated');
         } else {
           // State is already initialized from localStorage, just verify with server if we have a user
           if (user && authService.isAuthenticated()) {
-            console.log('[AuthContext] User already authenticated, verifying with server in background');
+            logger.debug('User already authenticated, verifying with server in background');
             // Verify with server in background (non-blocking) 
             checkAuth().catch((_error) => {
               logger.warn('Background auth verification failed, but keeping cached user');
@@ -229,7 +229,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         if (isMounted) {
           setIsLoading(false);
           setIsInitialized(true);
-          console.log('[AuthContext] Auth initialized - isAuthenticated:', isAuthenticated);
+          logger.debug('Auth initialized', { isAuthenticated });
           logger.debug('[AuthContext] Auth initialized successfully');
         }
       }
@@ -239,11 +239,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
     // Backup timeout to ensure initialization completes
     const forceInitTimeout = setTimeout(() => {
-      console.warn('[AuthContext] Force initializing due to timeout');
+      logger.warn('Force initializing due to timeout');
       if (isMounted && !isInitialized) {
         setIsLoading(false);
         setIsInitialized(true);
-        console.log('[AuthContext] Force initialized - isAuthenticated:', isAuthenticated);
+        logger.debug('Force initialized', { isAuthenticated });
       }
     }, 1000); // Reduced timeout since we're doing less work
 

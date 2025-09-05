@@ -69,7 +69,7 @@ export function WelcomeModal(): React.ReactElement | null {
             transition={{ delay: 0.3 }}
           >
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Bonjour! Let's get you started
+              Bonjour! Let&apos;s get you started
             </h2>
             <p className="text-gray-600">
               Teaching Engine adapts to your Grade 1 French Immersion classroom, saving you hours
@@ -115,7 +115,7 @@ export function WelcomeModal(): React.ReactElement | null {
               <ChevronRight className="h-4 w-4" />
             </Button>
             <Button aria-label="Click button" onClick={skipOnboarding}>
-              I'll explore on my own
+              I&apos;ll explore on my own
             </Button>
           </motion.div>
 

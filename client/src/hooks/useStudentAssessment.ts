@@ -208,7 +208,7 @@ export const useCreateNote = () => {
   
   return useMutation({
     mutationFn: (data: CreateArtifactRequest) => artifactsAPI.createNote(data),
-    onSuccess: (result, data) => {
+    onSuccess: (_result, _data) => {
       void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
       if (data.studentId) {
         void queryClient.invalidateQueries({ 
@@ -299,7 +299,7 @@ export const useUpdateMastery = () => {
   
   return useMutation({
     mutationFn: (data: UpdateMasteryRequest) => masteryAPI.updateProgress(data),
-    onSuccess: (result, data) => {
+    onSuccess: (_result, _data) => {
       // Invalidate all mastery-related queries for this student and outcome
       void queryClient.invalidateQueries({ 
         queryKey: QUERY_KEYS.mastery.student(data.studentId) 
@@ -323,7 +323,7 @@ export const useBatchUpdateMastery = () => {
   
   return useMutation({
     mutationFn: (data: BatchMasteryUpdateRequest) => masteryAPI.batchUpdateProgress(data),
-    onSuccess: (result, data) => {
+    onSuccess: (_result, _data) => {
       // Invalidate all mastery queries as batch update can affect multiple students/outcomes
       void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
       void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.all });

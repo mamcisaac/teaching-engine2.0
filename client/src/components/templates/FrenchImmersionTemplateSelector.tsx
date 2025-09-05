@@ -396,7 +396,7 @@ return true;
             <h4 className="font-medium mb-1">For Marie-Claire Types:</h4>
             <p className="text-gray-700">
               Start with one lesson at a time. Each template has clear steps and example phrases.
-              You've got this!
+              You&apos;ve got this!
             </p>
           </div>
         </div>

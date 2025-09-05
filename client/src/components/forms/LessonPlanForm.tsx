@@ -686,7 +686,7 @@ export function LessonPlanForm({
           <div>
             <div className="flex items-center">
               <Label htmlFor="input">Success Criteria & Assessment Strategies</Label>
-              <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with 'I can...'" />
+              <InfoTooltip content="Clear, specific statements that describe what success looks like. Written in student-friendly language starting with &apos;I can...&apos;" />
             </div>
             <BilingualTextInput
               multiline
@@ -721,7 +721,7 @@ Stratégies d'évaluation:
 }}
             />
             <p className="mt-1 text-xs text-gray-500">
-              Include both success criteria and the specific assessment strategies you'll use
+              Include both success criteria and the specific assessment strategies you&apos;ll use
               to gather evidence of learning.
             </p>
           </div>

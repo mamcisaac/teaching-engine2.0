@@ -35,13 +35,13 @@ export function TeachingDashboard(): React.ReactElement {
   const today = new Date();
   const tomorrow = addDays(today, 1);
   
-  // Get today's lessons
+  // Get today&apos;s lessons
   const { data: todayLessons = [] } = useETFOLessonPlans({
     startDate: startOfDay(today).toISOString(),
     endDate: endOfDay(today).toISOString(),
   });
   
-  // Get tomorrow's lessons for preview
+  // Get tomorrow&apos;s lessons for preview
   const { data: tomorrowLessons = [] } = useETFOLessonPlans({
     startDate: startOfDay(tomorrow).toISOString(),
     endDate: endOfDay(tomorrow).toISOString(),
@@ -63,7 +63,7 @@ export function TeachingDashboard(): React.ReactElement {
     });
   }, [allUnits]);
   
-  // Get teacher's selected subjects
+  // Get teacher&apos;s selected subjects
   const _teacherSubjects = useMemo(() => {
     const stored = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
     return safeJsonParse<string[]>(stored, []);
@@ -193,7 +193,7 @@ export function TeachingDashboard(): React.ReactElement {
                 </CardHeader>
                 <CardContent>
                   <p className="text-lg text-gray-700 mb-4">
-                    Great work! You've completed all your lessons for today.
+                    Great work! You&apos;ve completed all your lessons for today.
                   </p>
                   <Alert className="bg-blue-50 border-blue-200">
                     <AlertCircle className="h-4 w-4 text-blue-600" />
@@ -207,7 +207,7 @@ export function TeachingDashboard(): React.ReactElement {
                     variant="outline"
                     onClick={() => navigate(`/planner/day/${format(tomorrow, 'yyyy-MM-dd')}`)}
                   >
-                    Preview Tomorrow's Lessons
+                    Preview Tomorrow&apos;s Lessons
                   </Button>
                 </CardContent>
               </Card>
@@ -219,7 +219,7 @@ export function TeachingDashboard(): React.ReactElement {
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg flex items-center justify-between">
-                  Today's Progress
+                  Today&apos;s Progress
                   <Badge variant={completedToday === totalToday ? "default" : "secondary"}>
                     {completedToday}/{totalToday}
                   </Badge>
@@ -353,7 +353,7 @@ export function TeachingDashboard(): React.ReactElement {
             onClick={handleViewToday}
           >
             <Calendar className="h-8 w-8 mb-2 text-blue-600" />
-            <span className="text-sm font-medium">Today's Teaching</span>
+            <span className="text-sm font-medium">Today&apos;s Teaching</span>
           </Button>
           
           <Button 

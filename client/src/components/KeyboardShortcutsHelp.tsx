@@ -208,7 +208,7 @@ return null;
             <strong>Tip:</strong> Keyboard shortcuts work throughout the app except when typing in
             text fields. Press <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">
               Esc
-            </kbd> to close dialogs or <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded&quot;>?</kbd> to show this help.
+            </kbd> to close dialogs or <kbd className="px-1 py-0.5 text-xs bg-gray-100 border border-gray-300 rounded">?</kbd> to show this help.
           </p>
         </div>
       </div>

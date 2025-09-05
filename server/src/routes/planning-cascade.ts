@@ -28,7 +28,23 @@ router.get('/year-plan/:year/:grade', async (req: Request, res: Response) => {
       return res.status(400).json({ error: 'Invalid grade. Must be between 1-12' });
     }
 
-    // Fetch all lesson plans for the year
+    // Get pagination params
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 50; // Default 50 lessons per page
+    const skip = (page - 1) * limit;
+
+    // Count total lessons for pagination
+    const totalCount = await prisma.eTFOLessonPlan.count({
+      where: {
+        grade: gradeNum,
+        createdAt: {
+          gte: new Date(`${yearNum}-09-01`),
+          lt: new Date(`${yearNum + 1}-07-01`)
+        }
+      }
+    });
+
+    // Fetch paginated lesson plans
     const lessons = await prisma.eTFOLessonPlan.findMany({
       where: {
         grade: gradeNum,
@@ -40,18 +56,13 @@ router.get('/year-plan/:year/:grade', async (req: Request, res: Response) => {
         }
       },
       include: {
-        unit: {
-          include: {
-            longRangePlan: true
-          }
-        }
+        unit: true // Simplified - remove nested includes for performance
       },
       orderBy: [
-        { unit: { subject: 'asc' } },
-        { unit: { termNumber: 'asc' } },
-        { unit: { unitNumber: 'asc' } },
         { lessonNumber: 'asc' }
-      ]
+      ],
+      skip,
+      take: limit
     });
 
     // Fetch curriculum expectations

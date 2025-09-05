@@ -9,7 +9,7 @@ vi.mock('../../api/domains/resource', () => ({
 }));
 
 vi.mock('../Dialog', () => ({
-  default: ({ children, open }: any) => open ? <div data-testid="dialog&quot;>{children}</div> : null,
+  default: ({ children, open }: any) => open ? <div data-testid="dialog">{children}</div> : null,
 }));
 
 import { useMediaResources } from '../../api/domains/resource';

@@ -286,7 +286,7 @@ class ETFOLessonPlanService extends BaseService {
     return {
       title: data.title,
       titleFr: data.titleFr,
-      unitPlanId: data.unitPlanId,
+      unitPlan: { connect: { id: data.unitPlanId } },
       date: new Date(data.date),
       duration: data.duration ?? 60, // Default 60 minutes
       mindsOn: data.mindsOn,
@@ -306,7 +306,7 @@ class ETFOLessonPlanService extends BaseService {
       assessmentNotes: data.assessmentNotes,
       isSubFriendly: data.isSubFriendly ?? true,
       subNotes: data.subNotes,
-      userId,
+      user: { connect: { id: userId } },
     };
   }
 
@@ -757,7 +757,7 @@ class ETFOLessonPlanService extends BaseService {
     lessonPlanId: string,
     unitPlanId: string,
     userId: number
-  ): Promise<{ sourceLessonPlan: ETFOLessonPlan | null; targetUnitPlan: unknown }> {
+  ): Promise<{ sourceLessonPlan: (ETFOLessonPlan & { expectations: unknown[]; resources: unknown[]; }) | null; targetUnitPlan: unknown }> {
     const [sourceLessonPlan, targetUnitPlan] = await Promise.all([
       prisma.eTFOLessonPlan.findFirst({
         where: { id: lessonPlanId, userId },
@@ -792,8 +792,8 @@ class ETFOLessonPlanService extends BaseService {
     return {
       title: title ?? `${sourceLessonPlan.title} (Copy)`,
       titleFr: sourceLessonPlan.titleFr,
-      unitPlanId,
-      userId,
+      unitPlan: { connect: { id: unitPlanId } },
+      user: { connect: { id: userId } },
       date: date !== undefined && date !== null ? new Date(date) : sourceLessonPlan.date,
       duration: sourceLessonPlan.duration,
       mindsOn: sourceLessonPlan.mindsOn,
@@ -814,15 +814,15 @@ class ETFOLessonPlanService extends BaseService {
       isSubFriendly: sourceLessonPlan.isSubFriendly,
       subNotes: sourceLessonPlan.subNotes,
       expectations: {
-        create: sourceLessonPlan.expectations.map((exp: { expectationId: string }) => ({
+        create: (sourceLessonPlan.expectations as { expectationId: string }[]).map((exp: { expectationId: string }) => ({
           expectationId: exp.expectationId,
         })) ?? [],
       },
       resources: {
-        create: sourceLessonPlan.resources.map((resource: { title: string; url?: string; type?: string; content?: string }) => ({
+        create: (sourceLessonPlan.resources as { title: string; url?: string; type?: string; content?: string }[]).map((resource: { title: string; url?: string; type?: string; content?: string }) => ({
           title: resource.title,
           url: resource.url,
-          type: resource.type,
+          type: resource.type || 'DOCUMENT',
           content: resource.content,
         })),
       },
@@ -848,7 +848,7 @@ class ETFOLessonPlanService extends BaseService {
     );
 
     // Build create data
-    const createData = this.buildDuplicateCreateData(sourceLessonPlan, unitPlanId, userId, {
+    const createData = this.buildDuplicateCreateData(sourceLessonPlan!, unitPlanId, userId, {
       date,
       title,
     });

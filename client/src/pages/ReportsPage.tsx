@@ -167,9 +167,9 @@ export function ReportsPage(): React.ReactElement {
     toast.success('Report finalized');
   };
 
-  const handleDeleteReport = (report: Report) => {
-    if (confirm(`Delete ${report.title}?`)) {
-      saveReports(reports.filter(r => r.id !== report.id));
+  const _handleDeleteReport = (_report: Report) => {
+    if (confirm(`Delete ${_report.title}?`)) {
+      saveReports(reports.filter(r => r.id !== _report.id));
       toast.success('Report deleted');
     }
   };

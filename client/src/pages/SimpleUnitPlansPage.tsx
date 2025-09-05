@@ -334,7 +334,7 @@ export function SimpleUnitPlansPage(): React.ReactElement {
             No unit plans yet
           </h2>
           <p style={{ fontSize: '16px', marginBottom: '24px' }}>
-            Unit plans for this subject will appear here as they're created.
+            Unit plans for this subject will appear here as they&apos;re created.
           </p>
         </div>
       )}

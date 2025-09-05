@@ -333,7 +333,7 @@ return;
       content: (
         <div className="space-y-6">
           <p className="text-gray-600 mb-6">
-            Teaching Engine 2.0 follows the Elementary Teachers' Federation of Ontario (ETFO)
+            Teaching Engine 2.0 follows the Elementary Teachers&apos; Federation of Ontario (ETFO)
             planning methodology, ensuring your lesson plans are comprehensive and effective.
           </p>
 
@@ -544,7 +544,7 @@ return;
             </div>
             <h3 className="text-xl font-semibold mb-2">Your Teaching Subjects</h3>
             <p className="text-gray-600">
-              Select all the subjects you teach. Don't worry, you can change this later in settings.
+              Select all the subjects you teach. Don&apos;t worry, you can change this later in settings.
             </p>
           </div>
 
@@ -664,7 +664,7 @@ return;
               <div>
                 <h4 className="font-medium text-blue-800">Why this matters</h4>
                 <p className="text-sm text-blue-700 mt-1">
-                  We'll only show curriculum expectations and track progress for the subjects you teach. 
+                  We&apos;ll only show curriculum expectations and track progress for the subjects you teach. 
                   This keeps your planning focused and relevant to your actual teaching responsibilities.
                 </p>
               </div>
@@ -685,7 +685,7 @@ return;
           
           if (!hasRequiredSubjects) {
             const proceed = window.confirm(
-              'You haven\'t selected all core subjects (Français and Mathématiques). ' +
+              'You haven&apos;t selected all core subjects (Français and Mathématiques). ' +
               'These are typically required for Grade 1. Do you want to continue anyway?'
             );
             if (!proceed) return;
@@ -816,7 +816,7 @@ return;
           <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
             <h4 className="font-medium text-indigo-900 mb-3">Ready to Start Teaching Smarter?</h4>
             <p className="text-sm text-indigo-700 mb-4">
-              You're all set! Teaching Engine 2.0 is designed to grow with you. Start by creating
+              You&apos;re all set! Teaching Engine 2.0 is designed to grow with you. Start by creating
               your own comprehensive teaching plans and explore all the powerful features.
             </p>
             <div className="flex items-center space-x-2 text-sm text-indigo-600">

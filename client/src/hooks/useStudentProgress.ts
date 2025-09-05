@@ -149,7 +149,7 @@ export function useStudentProgress(studentId: string, options: ProgressReportOpt
       ]);
       
       const student = studentData.data;
-      const progress = progressData.data;
+      const _progress = progressData.data;
       const assessments = assessmentData.data.filter((a: any) => !a.isAnecdotal);
       
       // Process strengths and growth areas

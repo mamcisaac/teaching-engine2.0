@@ -188,7 +188,7 @@ export function SimpleCalendarPage(): React.ReactElement {
                 cursor: 'pointer'
               }}
             >
-              Today's View
+              Today&apos;s View
             </button>
             <button
               onClick={() => navigate('/planner/week')}
@@ -551,10 +551,11 @@ export function SimpleCalendarPage(): React.ReactElement {
               
               <div style={{ display: 'grid', gap: '12px' }}>
                 <div>
-                  <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
+                  <label htmlFor="morning-recess-time" style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
                     Morning Recess Time:
                   </label>
                   <input
+                    id="morning-recess-time"
                     type="time"
                     defaultValue="10:00"
                     style={{
@@ -568,10 +569,11 @@ export function SimpleCalendarPage(): React.ReactElement {
                 </div>
                 
                 <div>
-                  <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
+                  <label htmlFor="lunch-time" style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
                     Lunch Time:
                   </label>
                   <input
+                    id="lunch-time"
                     type="time"
                     defaultValue="11:30"
                     style={{
@@ -585,10 +587,11 @@ export function SimpleCalendarPage(): React.ReactElement {
                 </div>
                 
                 <div>
-                  <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
+                  <label htmlFor="specialist-time" style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
                     Specialist Time (PE/Music/Art):
                   </label>
                   <input
+                    id="specialist-time"
                     type="time"
                     defaultValue="13:15"
                     style={{
@@ -602,10 +605,11 @@ export function SimpleCalendarPage(): React.ReactElement {
                 </div>
                 
                 <div>
-                  <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
+                  <label htmlFor="planning-period" style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
                     Planning Period:
                   </label>
                   <select
+                    id="planning-period"
                     style={{
                       width: '100%',
                       padding: '8px',
@@ -621,9 +625,9 @@ export function SimpleCalendarPage(): React.ReactElement {
                 </div>
                 
                 <div>
-                  <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
+                  <div style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
                     Preferred Subject Order:
-                  </label>
+                  </div>
                   <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', marginBottom: '8px' }}>
                     Drag to reorder your teaching subjects
                   </div>

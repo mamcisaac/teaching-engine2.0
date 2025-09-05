@@ -3,7 +3,6 @@
  * Main component for hierarchical curriculum planning
  */
 
-import React, { useState, useCallback, useMemo } from 'react';
 import { 
   TreePine, 
   BarChart3, 
@@ -12,40 +11,42 @@ import {
   Filter, 
   RefreshCw, 
   Download, 
-  Upload,
   AlertCircle,
   Search,
   Settings
 } from 'lucide-react';
-import { CascadeTree } from './CascadeTree';
-import { YearAtGlanceView } from './YearAtGlanceView';
+import React, { useState, useCallback, useMemo } from 'react';
+
 import { usePlanningCascade } from '../../hooks/usePlanningCascade';
-import { 
-  buildCascadeTree, 
-  filterCascade,
-  findLessonPanicking,
-  getUpcomingLessons
-} from '../../utils/planningCascade';
 import type { 
   CascadeNode, 
   CascadeFilter, 
   CascadeViewOptions,
   LessonPlan 
 } from '../../types/planningCascade';
+import { 
+  buildCascadeTree, 
+  filterCascade,
+  findLessonPanicking
+} from '../../utils/planningCascade';
+
+import { CascadeTree } from './CascadeTree';
+import { EmergencyDashboard } from './EmergencyDashboard';
+import { YearAtGlanceView } from './YearAtGlanceView';
 
 interface PlanningCascadeViewProps {
   year?: string;
   grade?: number;
-  defaultView?: 'tree' | 'glance' | 'calendar' | 'list';
+  defaultView?: 'emergency' | 'tree' | 'glance' | 'calendar' | 'list';
 }
 
 export const PlanningCascadeView: React.FC<PlanningCascadeViewProps> = ({
   year = new Date().getFullYear().toString(),
   grade = 1,
-  defaultView = 'glance'
+  defaultView = 'emergency'
 }) => {
   // State
-  const [currentView, setCurrentView] = useState<'tree' | 'glance' | 'calendar' | 'list'>(defaultView);
+  const [currentView, setCurrentView] = useState<'emergency' | 'tree' | 'glance' | 'calendar' | 'list'>(defaultView);
   const [selectedNode, setSelectedNode] = useState<CascadeNode | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
@@ -62,12 +63,12 @@ export const PlanningCascadeView: React.FC<PlanningCascadeViewProps> = ({
   const {
     yearPlan,
     statistics,
-    upcomingLessons,
+    upcomingLessons: _upcomingLessons,
     isLoading,
     error,
     validateCurriculum,
     updateLessonStatus,
-    rescheduleLesson,
+    rescheduleLesson: _rescheduleLesson,
     refetchYearPlan,
     refetchStatistics
   } = usePlanningCascade(year, grade, {
@@ -212,6 +213,15 @@ export const PlanningCascadeView: React.FC<PlanningCascadeViewProps> = ({
           {/* View Switcher */}
           <div className="flex items-center gap-2">
             <button
+              onClick={() => setCurrentView('emergency')}
+              className={`px-3 py-2 rounded flex items-center gap-2 ${
+                currentView === 'emergency' ? 'bg-red-500 text-white' : 'bg-red-100 hover:bg-red-200'
+              }`}
+            >
+              <AlertCircle className="w-4 h-4" />
+              Emergency
+            </button>
+            <button
               onClick={() => setCurrentView('glance')}
               className={`px-3 py-2 rounded flex items-center gap-2 ${
                 currentView === 'glance' ? 'bg-blue-500 text-white' : 'bg-gray-100 hover:bg-gray-200'
@@ -318,9 +328,9 @@ export const PlanningCascadeView: React.FC<PlanningCascadeViewProps> = ({
         {showFilters && (
           <div className="mt-4 p-4 bg-gray-50 rounded-lg">
             <div className="mb-3">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="block text-sm font-medium text-gray-700 mb-2">
                 Filter by Subject
-              </label>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {availableSubjects.map(subject => (
                   <button
@@ -379,6 +389,24 @@ export const PlanningCascadeView: React.FC<PlanningCascadeViewProps> = ({
 
       {/* Content Area */}
       <div className="p-6">
+        {currentView === 'emergency' && (
+          <EmergencyDashboard
+            lessons={yearPlan?.subjects.flatMap(s => 
+              s.terms.flatMap(t => 
+                t.units.flatMap(u => 
+                  u.weeks.flatMap(w => w.lessons)
+                )
+              )
+            ) || []}
+            onLessonStatusChange={async (lessonId, status) => {
+              await updateLessonStatus.mutateAsync({
+                lessonId,
+                status
+              });
+            }}
+          />
+        )}
+
         {currentView === 'glance' && statistics && (
           <YearAtGlanceView
             statistics={statistics}

@@ -174,7 +174,7 @@ export function TemplatePreviewModal({
                     <div>
                       {assessmentType !== undefined && assessmentType !== '' && (
                         <div className="mb-2">
-                          <span className="font-medium">Type:</span> <span className="capitalize&quot;>{assessmentType}</span>
+                          <span className="font-medium">Type:</span> <span className="capitalize">{assessmentType}</span>
                         </div>
                       )}
                       <p className="text-gray-700">{typeof content === 'string' ? content : JSON.stringify(content)}</p>

@@ -310,7 +310,7 @@ export function SimpleTodayView(): React.ReactElement {
         }}>
           <Star style={{ width: '48px', height: '48px', color: '#f59e0b', margin: '0 auto 16px' }} />
           <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#92400e', marginBottom: '8px' }}>
-            It's the Weekend!
+            It&apos;s the Weekend!
           </h2>
           <p style={{ fontSize: '16px', color: '#78350f' }}>
             No lessons scheduled for today. Enjoy your time off!
@@ -334,7 +334,7 @@ export function SimpleTodayView(): React.ReactElement {
         </div>
       )}
 
-      {/* Today's Lessons */}
+      {/* Today&apos;s Lessons */}
       {!isWeekend && !isSummerVacation && !isChristmasBreak && !isMarchBreak && !isPDDay && todayLessons.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {todayLessons.map((lesson) => (

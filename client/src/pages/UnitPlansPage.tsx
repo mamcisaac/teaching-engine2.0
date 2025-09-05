@@ -928,7 +928,7 @@ function UnitPlansPage(): React.ReactElement {
                     <CardHeader>
                       <CardTitle className="text-base">Differentiation Strategies</CardTitle>
                       <CardDescription>
-                        Plan how you'll support diverse learners in this unit
+                        Plan how you&apos;ll support diverse learners in this unit
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">

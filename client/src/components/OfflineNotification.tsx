@@ -61,10 +61,10 @@ export function OfflineNotification(): React.ReactElement | null {
           </div>
           <div className="ml-3 flex-1">
             <h3 className="text-sm font-medium text-yellow-800">
-              You're offline
+              You&apos;re offline
             </h3>
             <div className="mt-1 text-sm text-yellow-700">
-              <p>You can continue working. Your changes will sync when you're back online.</p>
+              <p>You can continue working. Your changes will sync when you&apos;re back online.</p>
             </div>
             <div className="mt-3 flex items-center gap-2">
               <Button

@@ -272,7 +272,7 @@ return;
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
             <strong>No subjects selected!</strong> Please use the Getting Started Guide on the dashboard to select which subjects you teach.
-            Without subject selection, you won't be able to plan your curriculum effectively.
+            Without subject selection, you won&apos;t be able to plan your curriculum effectively.
           </AlertDescription>
         </Alert>
       ) : (

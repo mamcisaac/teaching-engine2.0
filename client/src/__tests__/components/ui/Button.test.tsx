@@ -136,7 +136,7 @@ describe('Button', () => {
   });
 
   it('renders with icon', () => {
-    const IconComponent = () => <span data-testid="icon&quot;>Icon</span>;
+    const IconComponent = () => <span data-testid="icon">Icon</span>;
     renderWithProviders(
       <Button>
         <IconComponent />

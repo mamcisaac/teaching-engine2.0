@@ -111,7 +111,7 @@ export function StudentProgressDashboard({
       {/* Header with Privacy Toggle */}
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">{studentName}'s Progress</h2>
+          <h2 className="text-2xl font-bold text-gray-900">{studentName}&apos;s Progress</h2>
           {quickProgress && (
             <p className="mt-1 text-sm text-gray-500">
               Load time: {quickProgress.loadTimeMs}ms

@@ -63,7 +63,7 @@ export function LessonDetailPage(): React.ReactElement {
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-center mb-2">Lesson Not Found</h2>
             <p className="text-gray-600 text-center mb-4">
-              The lesson you're looking for doesn't exist or has been removed.
+              The lesson you&apos;re looking for doesn&apos;t exist or has been removed.
             </p>
             <Button onClick={() => navigate(-1)} className="w-full">
               Go Back
@@ -160,7 +160,7 @@ export function LessonDetailPage(): React.ReactElement {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5" />
-                Objectifs d'apprentissage (Français)
+                Objectifs d&apos;apprentissage (Français)
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -320,13 +320,13 @@ export function LessonDetailPage(): React.ReactElement {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {lesson.assessmentType && (
                   <div>
-                    <h4 className="font-semibold mb-2">Type d'évaluation:</h4>
+                    <h4 className="font-semibold mb-2">Type d&apos;évaluation:</h4>
                     <p className="text-gray-700">{lesson.assessmentType}</p>
                   </div>
                 )}
                 {lesson.assessmentNotes && (
                   <div>
-                    <h4 className="font-semibold mb-2">Notes d'évaluation:</h4>
+                    <h4 className="font-semibold mb-2">Notes d&apos;évaluation:</h4>
                     <p className="text-gray-700">{lesson.assessmentNotes}</p>
                   </div>
                 )}

@@ -3,8 +3,9 @@
  * Visual overview of the entire school year's planning
  */
 
-import React from 'react';
 import { Calendar, TrendingUp, AlertTriangle, CheckCircle2, BookOpen, Users } from 'lucide-react';
+import React from 'react';
+
 import type { CascadeStatistics, PlanningPanic } from '../../types/planningCascade';
 import { generateRecommendations } from '../../utils/planningCascade';
 

@@ -187,7 +187,7 @@ function DayEntry({ date, entry, lessons, onSave, isToday: _isDayToday }: DayEnt
               />
             </div>
 
-            {/* What Didn't Work */}
+            {/* What Didn&apos;t Work */}
             <div className="space-y-2">
               <Label htmlFor="input">What Could Be Improved?</Label>
               <Textarea
@@ -735,7 +735,7 @@ export function DaybookPage(): React.ReactElement {
           <DialogHeader>
             <DialogTitle>Print Daybook</DialogTitle>
             <DialogDescription>
-              Choose what you'd like to print from your daybook
+              Choose what you&apos;d like to print from your daybook
             </DialogDescription>
           </DialogHeader>
 
@@ -755,7 +755,7 @@ export function DaybookPage(): React.ReactElement {
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  Print today's daybook entry with lessons and reflections
+                  Print today&apos;s daybook entry with lessons and reflections
                 </AlertDescription>
               </Alert>
             </TabsContent>
@@ -763,7 +763,7 @@ export function DaybookPage(): React.ReactElement {
             <TabsContent className="space-y-4" value="week">
               <Alert>
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>Print the entire week's daybook entries</AlertDescription>
+                <AlertDescription>Print the entire week&apos;s daybook entries</AlertDescription>
               </Alert>
             </TabsContent>
 

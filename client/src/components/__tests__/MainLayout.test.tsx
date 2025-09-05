@@ -114,19 +114,19 @@ vi.mock('../../hooks/useKeyboardShortcut', () => ({
 
 // Mock child components
 vi.mock('../NotificationBell', () => ({
-  default: () => <div data-testid="notification-bell&quot;>NotificationBell</div>,
+  default: () => <div data-testid="notification-bell">NotificationBell</div>,
 }));
 
 vi.mock('../LanguageSwitcher', () => ({
-  default: () => <div data-testid="language-switcher&quot;>LanguageSwitcher</div>,
+  default: () => <div data-testid="language-switcher">LanguageSwitcher</div>,
 }));
 
 vi.mock('../TeacherOnboardingFlow', () => ({
-  default: () => <div data-testid="teacher-onboarding-flow&quot;>TeacherOnboardingFlow</div>,
+  default: () => <div data-testid="teacher-onboarding-flow">TeacherOnboardingFlow</div>,
 }));
 
 vi.mock('../help/TutorialManager', () => ({
-  TutorialManager: ({ children }: any) => <div data-testid="tutorial-manager&quot;>{children}</div>,
+  TutorialManager: ({ children }: any) => <div data-testid="tutorial-manager">{children}</div>,
 }));
 
 // Mock window resize events

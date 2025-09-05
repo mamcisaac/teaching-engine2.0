@@ -1,37 +1,39 @@
 // Test React imports step by step
-console.log('[main-react-test.tsx] Starting...');
+import { logger } from './utils/logger';
+
+logger.info('Starting React test...');
 
 try {
-  console.log('[main-react-test.tsx] Importing React...');
+  logger.info('Importing React...');
   import('react').then((React) => {
-    console.log('[main-react-test.tsx] React imported successfully:', React);
+    logger.info('React imported successfully', { hasReact: !!React });
     
     import('react-dom/client').then((ReactDOM) => {
-      console.log('[main-react-test.tsx] ReactDOM imported successfully:', ReactDOM);
+      logger.info('ReactDOM imported successfully', { hasReactDOM: !!ReactDOM });
       
       const rootElement = document.getElementById('root');
       if (rootElement && ReactDOM.createRoot) {
-        console.log('[main-react-test.tsx] Creating React root...');
+        logger.info('Creating React root...');
         const root = ReactDOM.createRoot(rootElement);
         
-        console.log('[main-react-test.tsx] Rendering simple React element...');
+        logger.info('Rendering simple React element...');
         root.render(React.createElement('div', { 
           style: { color: 'green', padding: '20px' } 
         }, React.createElement('h1', null, 'React Works!'), 
            React.createElement('p', null, 'React and ReactDOM loaded successfully')));
         
-        console.log('[main-react-test.tsx] React element rendered');
+        logger.info('React element rendered');
       } else {
-        console.error('[main-react-test.tsx] Root element or createRoot not found');
+        logger.error('Root element or createRoot not found');
       }
     }).catch(error => {
-      console.error('[main-react-test.tsx] ReactDOM import failed:', error);
+      logger.error('ReactDOM import failed', error);
     });
   }).catch(error => {
-    console.error('[main-react-test.tsx] React import failed:', error);
+    logger.error('React import failed', error);
   });
 } catch (error) {
-  console.error('[main-react-test.tsx] Import error:', error);
+  logger.error('Import error', error);
 }
 
 export {};

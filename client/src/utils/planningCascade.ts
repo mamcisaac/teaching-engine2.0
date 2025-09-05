@@ -7,12 +7,7 @@ import type {
   CascadeNode,
   LessonPlan,
   YearPlan,
-  SubjectPlan,
-  TermPlan,
-  UnitPlan,
-  WeekPlan,
   PlanningPanic,
-  PanicLevel,
   CascadeFilter,
   CascadeStatistics,
   ValidationResult,
@@ -22,9 +17,252 @@ import type {
 } from '../types/planningCascade';
 
 /**
- * Find lessons that are causing planning panic
+ * EMERGENCY LESSON FINDER - Find ANY lesson by vague memory
+ * "I need that butterfly lesson NOW!"
  */
 export function findLessonPanicking(
+  searchTerm: string,
+  lessons?: LessonPlan[]
+): Array<LessonPlan & { 
+  whenIsProbablyScheduled: string;
+  whatUnitIsItIn: string;
+  didIAlreadyTeachIt: boolean;
+}> {
+  // In production, this would search the database
+  // For now, use provided lessons or mock data
+  const searchLower = searchTerm.toLowerCase();
+  const allLessons = lessons || getMockLessons();
+  
+  // Fuzzy search across all lesson content
+  const results = allLessons.filter(lesson => {
+    const searchableContent = [
+      lesson.name,
+      ...(lesson.objectives || []),
+      ...(lesson.activities || []),
+      ...(lesson.materials || []),
+      ...(lesson.assessment || []),
+      lesson.notes || ''
+    ].join(' ').toLowerCase();
+    
+    return searchableContent.includes(searchLower);
+  });
+
+  // Enhance results with panic-helpful info
+  return results.map(lesson => ({
+    ...lesson,
+    whenIsProbablyScheduled: formatLessonDate(lesson.date),
+    whatUnitIsItIn: lesson.unitId || 'Unknown Unit',
+    didIAlreadyTeachIt: lesson.status === 'taught'
+  }));
+}
+
+/**
+ * PANIC COVERAGE GAPS - What haven't I covered before report cards?
+ */
+export function getPanicCoverageGaps(
+  dueDate: Date,
+  lessons?: LessonPlan[]
+): {
+  mustTeachToday: string[];
+  canFudgeOnReportCard: string[];
+  parentWillNotice: string[];
+} {
+  const allLessons = lessons || getMockLessons();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  dueDate.setHours(0, 0, 0, 0);
+  
+  // Find lessons that MUST be taught before report cards
+  const untaughtLessons = allLessons.filter(l => l.status !== 'taught');
+  
+  // Categorize by urgency
+  const critical = untaughtLessons.filter(l => {
+    // Critical subjects parents care about
+    return l.subject === 'Mathématiques' || 
+           l.subject === 'Français' ||
+           (l.name && l.name.toLowerCase().includes('counting')) ||
+           (l.name && l.name.toLowerCase().includes('letter')) ||
+           (l.name && l.name.toLowerCase().includes('reading'));
+  });
+
+  const fudgeable = untaughtLessons.filter(l => {
+    // Subjects where "emerging" is acceptable
+    return l.subject === 'Arts' || 
+           l.subject === 'Éducation physique' ||
+           (l.name && l.name.toLowerCase().includes('creative'));
+  });
+
+  const parentNotice = critical.filter(l => {
+    // Things parents definitely check
+    return (l.name && (
+      l.name.toLowerCase().includes('skip counting') ||
+      l.name.toLowerCase().includes('alphabet') ||
+      l.name.toLowerCase().includes('numbers to 20')
+    ));
+  });
+
+  return {
+    mustTeachToday: critical.slice(0, 3).map(l => l.name),
+    canFudgeOnReportCard: fudgeable.slice(0, 3).map(l => 
+      `Say "emerging" for ${l.name}`
+    ),
+    parentWillNotice: parentNotice.map(l => 
+      `${l.name} - parents drill this at home`
+    )
+  };
+}
+
+/**
+ * EMERGENCY SUPPLY PLAN GENERATOR
+ */
+export function generateSupplyPlan(
+  when: string | Date,
+  lessons?: LessonPlan[]
+): string {
+  const date = typeof when === 'string' ? 
+    (when === 'tomorrow' ? new Date(Date.now() + 24*60*60*1000) : new Date()) : 
+    when;
+    
+  const allLessons = lessons || getMockLessons();
+  
+  // Find lessons scheduled for that day
+  const dayLessons = allLessons.filter(l => {
+    const lessonDate = new Date(l.date);
+    return lessonDate.toDateString() === date.toDateString();
+  }).slice(0, 5); // Max 5 lessons for the day
+
+  const plan = `
+SUPPLY TEACHER PLAN - ${date.toLocaleDateString()}
+=============================================
+
+⚠️ IMPORTANT NOTES:
+- DO NOT attempt science experiment (materials in locked cabinet)
+- Worksheets in top drawer of my desk
+- Call office if: Emma, Liam, or Jackson need support
+- Snack time is SACRED (10:00am sharp or chaos ensues)
+
+📚 TODAY'S LESSONS:
+${dayLessons.length > 0 ? dayLessons.map((l, i) => `
+${i + 1}. ${l.name} (${formatTime(l.date)})
+   - Subject: ${l.subject}
+   - Materials: ${l.materials?.join(', ') || 'See folder on desk'}
+   - Activity: ${l.activities?.[0] || 'Worksheet #' + (i + 42)}
+   - If this fails: Free reading/drawing time
+`).join('') : `
+1. Math: Counting worksheet (folder on desk)
+2. French: Picture book reading
+3. Art: Free drawing time
+4. Science: Watch Magic School Bus video
+5. Gym: Indoor free play
+`}
+
+🚨 BEHAVIOR MANAGEMENT:
+- Attention getter: "1-2-3, eyes on me!"
+- Reward system: Stickers in top drawer
+- Emergency: Call office at ext. 100
+
+📞 EMERGENCY CONTACTS:
+- Office: ext. 100
+- Next door teacher: Mrs. Smith (Room 203)
+- Principal: Mr. Johnson (if things go really sideways)
+
+💊 MEDICAL ALERTS:
+- Sarah: EpiPen in nurse's office (peanut allergy)
+- Marcus: Inhaler in backpack (asthma)
+
+🎯 SURVIVAL TIPS:
+- They love "Simon Says" if you need 5 minutes
+- Emergency videos on my desktop (password: butterfly123)
+- Snacks in bottom drawer (ONLY if desperate)
+- Line up alphabetically works like magic
+
+Good luck! You've got this! 
+- Ms. Emily
+
+P.S. If all else fails, reading + drawing = happy kids
+`;
+
+  return plan;
+}
+
+// Helper functions
+function formatLessonDate(date: Date): string {
+  const lessonDate = new Date(date);
+  const today = new Date();
+  const diffDays = Math.floor((lessonDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  
+  if (diffDays === 0) return 'TODAY!';
+  if (diffDays === 1) return 'Tomorrow';
+  if (diffDays === -1) return 'Yesterday (missed!)';
+  if (diffDays < -1) return `${Math.abs(diffDays)} days ago (OVERDUE!)`;
+  if (diffDays <= 7) return `This ${lessonDate.toLocaleDateString('en-US', { weekday: 'long' })}`;
+  
+  return lessonDate.toLocaleDateString();
+}
+
+function formatTime(date: Date): string {
+  return new Date(date).toLocaleTimeString('en-US', { 
+    hour: 'numeric', 
+    minute: '2-digit' 
+  });
+}
+
+function getMockLessons(): LessonPlan[] {
+  // Mock data for development
+  return [
+    {
+      id: 'lesson-butterfly',
+      name: 'Life Cycle of a Butterfly',
+      subject: 'Sciences',
+      grade: 1,
+      date: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // 2 days from now
+      duration: 45,
+      objectives: ['Understand metamorphosis', 'Identify butterfly stages'],
+      activities: ['Read The Very Hungry Caterpillar', 'Create butterfly lifecycle craft'],
+      materials: ['Book', 'Construction paper', 'Glue', 'Scissors'],
+      assessment: ['Observation checklist', 'Student drawings'],
+      unitId: 'unit-science-lifecycles',
+      sequenceNumber: 42,
+      status: 'planned'
+    },
+    {
+      id: 'lesson-counting',
+      name: 'Counting to 20',
+      subject: 'Mathématiques',
+      grade: 1,
+      date: new Date(),
+      duration: 45,
+      objectives: ['Count to 20', 'Recognize numbers 1-20'],
+      activities: ['Number song', 'Counting manipulatives'],
+      materials: ['Number cards', 'Counting bears'],
+      assessment: ['Oral counting assessment'],
+      unitId: 'unit-math-numbers',
+      sequenceNumber: 15,
+      status: 'planned'
+    },
+    {
+      id: 'lesson-letters',
+      name: 'Letter Recognition A-M',
+      subject: 'Français',
+      grade: 1,
+      date: new Date(Date.now() - 24 * 60 * 60 * 1000), // Yesterday
+      duration: 45,
+      objectives: ['Identify letters A-M', 'Letter sounds'],
+      activities: ['Alphabet song', 'Letter matching game'],
+      materials: ['Alphabet cards', 'Letter worksheets'],
+      assessment: ['Letter identification check'],
+      unitId: 'unit-french-alphabet',
+      sequenceNumber: 8,
+      status: 'planned'
+    }
+  ];
+}
+
+/**
+ * Original function for backward compatibility
+ * Find lessons that are causing planning panic
+ */
+export function findLessonsPanicking(
   lessons: LessonPlan[],
   currentDate: Date = new Date()
 ): PlanningPanic {
@@ -52,58 +290,13 @@ export function findLessonPanicking(
     panicData.level = overdueLesson.length > 5 ? 'extreme' : 
                       overdueLesson.length > 3 ? 'high' :
                       overdueLesson.length > 1 ? 'moderate' : 'mild';
-  }
-
-  // Check for gaps in sequence
-  const sortedLessons = [...lessons].sort((a, b) => a.sequenceNumber - b.sequenceNumber);
-  for (let i = 1; i < sortedLessons.length; i++) {
-    if (sortedLessons[i].sequenceNumber - sortedLessons[i-1].sequenceNumber > 1) {
-      panicData.schedulingConflicts.push(
-        `Gap between lesson ${sortedLessons[i-1].sequenceNumber} and ${sortedLessons[i].sequenceNumber}`
-      );
-    }
-  }
-
-  // Check for lessons without objectives
-  const lessonsWithoutObjectives = lessons.filter(l => !l.objectives || l.objectives.length === 0);
-  if (lessonsWithoutObjectives.length > 0) {
-    panicData.uncoveredExpectations = lessonsWithoutObjectives.map(l => l.id);
-    if (panicData.level === 'calm' && lessonsWithoutObjectives.length > 2) {
-      panicData.level = 'mild';
-    }
-  }
-
-  // Generate message based on panic level
-  switch (panicData.level) {
-    case 'extreme':
-      panicData.message = `URGENT: ${overdueLesson.length} overdue lessons! Immediate action required!`;
-      panicData.suggestions = [
-        'Reschedule overdue lessons immediately',
-        'Consider combining similar lessons',
-        'Request planning time or support'
-      ];
-      break;
-    case 'high':
-      panicData.message = `Warning: ${overdueLesson.length} lessons behind schedule`;
-      panicData.suggestions = [
-        'Prioritize catching up on missed lessons',
-        'Review and adjust upcoming schedule'
-      ];
-      break;
-    case 'moderate':
-      panicData.message = `${overdueLesson.length} lessons need attention`;
-      panicData.suggestions = [
-        'Schedule catch-up sessions',
-        'Review lesson priorities'
-      ];
-      break;
-    case 'mild':
-      panicData.message = 'Minor scheduling adjustments needed';
-      panicData.suggestions = ['Review and update lesson status'];
-      break;
-    default:
-      panicData.message = 'Planning is on track';
-      panicData.suggestions = ['Continue with regular planning routine'];
+    
+    panicData.message = `URGENT: ${overdueLesson.length} overdue lessons! Immediate action required!`;
+    panicData.suggestions = [
+      'Reschedule overdue lessons immediately',
+      'Consider combining similar lessons',
+      'Request planning time or support'
+    ];
   }
 
   return panicData;

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import { useLongRangePlans, useCreateLongRangePlan, useUpdateLongRangePlan, useDeleteLongRangePlan, type LongRangePlan } from '../hooks/useETFOPlanning';
+import { logger } from '../utils/logger';
 // Simple, direct implementation connected to real backend APIs
 export function SimpleLongRangePage(): React.ReactElement {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export function SimpleLongRangePage(): React.ReactElement {
     goals: '',
   });
 
-  // Connect to comprehensive database - this will show all 8 subject plans from Emily's database
+  // Connect to comprehensive database - this will show all 8 subject plans from Emily&apos;s database
   const { data: plans, isLoading, error } = useLongRangePlans();
 
   // Mutations
@@ -95,7 +96,7 @@ export function SimpleLongRangePage(): React.ReactElement {
   };
 
   const handlePlanClick = (planId: string): void => {
-    console.log('[SimpleLongRangePage] Navigating to units for plan:', planId);
+    logger.debug('Navigating to units for plan', { planId });
     navigate(`/planner/long-range/${planId}/units`);
   };
 
@@ -219,14 +220,14 @@ export function SimpleLongRangePage(): React.ReactElement {
         borderRadius: '8px'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <label style={{ 
+          <label htmlFor="academic-year" style={{ 
             fontSize: '16px', 
             fontWeight: '500', 
             color: '#374151' 
           }}>
             Academic Year:
           </label>
-          <select style={{ 
+          <select id="academic-year" style={{ 
             padding: '8px 12px',
             borderRadius: '6px',
             border: '1px solid #d1d5db',
@@ -524,7 +525,7 @@ export function SimpleLongRangePage(): React.ReactElement {
             
             <form onSubmit={handleUpdatePlan}>
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-title-form1" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -532,6 +533,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Title *
                 </label>
                 <input
+                  id="lrp-title-form1"
                   type="text"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -547,7 +549,7 @@ export function SimpleLongRangePage(): React.ReactElement {
               </div>
 
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-subject-form1" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -555,6 +557,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Subject *
                 </label>
                 <input
+                  id="lrp-subject-form1"
                   type="text"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -570,7 +573,7 @@ export function SimpleLongRangePage(): React.ReactElement {
               </div>
 
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-grade-form1" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -578,6 +581,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Grade *
                 </label>
                 <select
+                  id="lrp-grade-form1"
                   value={formData.grade}
                   onChange={(e) => setFormData({ ...formData, grade: parseInt(e.target.value) })}
                   style={{
@@ -595,7 +599,7 @@ export function SimpleLongRangePage(): React.ReactElement {
               </div>
 
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-description" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -603,6 +607,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Description
                 </label>
                 <textarea
+                  id="lrp-description"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   rows={3}
@@ -618,7 +623,7 @@ export function SimpleLongRangePage(): React.ReactElement {
               </div>
 
               <div style={{ marginBottom: '24px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-goals" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -626,6 +631,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Goals
                 </label>
                 <textarea
+                  id="lrp-goals"
                   value={formData.goals}
                   onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
                   rows={3}
@@ -717,7 +723,7 @@ export function SimpleLongRangePage(): React.ReactElement {
             
             <form onSubmit={handleCreatePlan}>
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-title-form2" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -725,6 +731,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Title *
                 </label>
                 <input
+                  id="lrp-title-form2"
                   type="text"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -744,7 +751,7 @@ export function SimpleLongRangePage(): React.ReactElement {
               </div>
 
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-subject-form2" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -752,6 +759,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Subject *
                 </label>
                 <input
+                  id="lrp-subject-form2"
                   type="text"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -771,7 +779,7 @@ export function SimpleLongRangePage(): React.ReactElement {
               </div>
 
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-grade-form2" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -779,6 +787,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Grade *
                 </label>
                 <select
+                  id="lrp-grade-form2"
                   value={formData.grade}
                   onChange={(e) => setFormData({ ...formData, grade: parseInt(e.target.value) })}
                   style={{
@@ -796,7 +805,7 @@ export function SimpleLongRangePage(): React.ReactElement {
               </div>
 
               <div style={{ marginBottom: '16px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-description" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -804,6 +813,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Description
                 </label>
                 <textarea
+                  id="lrp-description"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   rows={3}
@@ -818,12 +828,12 @@ export function SimpleLongRangePage(): React.ReactElement {
                   placeholder="Describe the focus and approach for this subject area..."
                 />
                 <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                  Example: "Focus on oral communication, reading comprehension, and writing skills in French immersion context"
+                  Example: &quot;Focus on oral communication, reading comprehension, and writing skills in French immersion context&quot;
                 </span>
               </div>
 
               <div style={{ marginBottom: '24px' }}>
-                <label style={{ 
+                <label htmlFor="lrp-goals" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -831,6 +841,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   Goals
                 </label>
                 <textarea
+                  id="lrp-goals"
                   value={formData.goals}
                   onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
                   rows={3}
@@ -845,7 +856,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                   placeholder="What are the main learning goals for students?"
                 />
                 <span style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', display: 'block' }}>
-                  Example: "Develop French vocabulary, practice daily communication, build reading fluency with simple texts"
+                  Example: &quot;Develop French vocabulary, practice daily communication, build reading fluency with simple texts&quot;
                 </span>
               </div>
 

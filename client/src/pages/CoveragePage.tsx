@@ -23,6 +23,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Input } from '../components/ui/Input';
 import { Progress } from '../components/ui/Progress';
 import { Switch } from '../components/ui/Switch';
+import { logger } from '../utils/logger';
 // Tabs components imported but not used in current implementation
 
 interface CurriculumExpectation {
@@ -222,9 +223,9 @@ export function CoveragePage(): React.ReactElement {
       void queryClient.invalidateQueries({ queryKey: ['curriculum-coverage'] });
       
       // Show success message (could add a toast notification here)
-      console.log(response.data.message);
+      logger.info('Bulk lessons created successfully', { message: response.data.message });
     } catch (error) {
-      console.error('Failed to create bulk lessons:', error);
+      logger.error('Failed to create bulk lessons', error);
     }
   };
 
@@ -301,7 +302,6 @@ export function CoveragePage(): React.ReactElement {
                 <label htmlFor="show-uncovered-toggle" className="text-sm font-medium">Show uncovered only</label>
                 <div data-testid="show-uncovered-toggle">
                   <Switch
-                    id="show-uncovered-toggle"
                     checked={showUncoveredOnly}
                     onChange={setShowUncoveredOnly}
                   />

@@ -30,7 +30,7 @@ vi.mock('react-router-dom', async () => {
 });
 
 describe('ProtectedRoute', () => {
-  const TestComponent = () => <div data-testid="protected-content&quot;>Protected Content</div>;
+  const TestComponent = () => <div data-testid="protected-content">Protected Content</div>;
   const mockUseAuth = vi.mocked(useAuth);
 
   beforeEach(() => {

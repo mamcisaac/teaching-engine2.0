@@ -3,8 +3,9 @@
  * Interactive tree visualization of planning hierarchy
  */
 
-import React, { useState, useCallback, useMemo } from 'react';
 import { ChevronRight, ChevronDown, AlertCircle, CheckCircle, Clock, XCircle } from 'lucide-react';
+import React, { useState, useCallback, useMemo } from 'react';
+
 import type { CascadeNode, CascadeViewOptions, PanicLevel } from '../../types/planningCascade';
 import { calculateNodeStatistics } from '../../utils/planningCascade';
 

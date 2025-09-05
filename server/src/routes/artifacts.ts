@@ -703,12 +703,12 @@ router.get('/:id',
       // Get file URL for access
       let fileUrl = null;
       if (artifact.filePath) {
-        fileUrl = await storageService.getFileUrl(artifact.filePath);
+        fileUrl = await storageService.getFileUrl(artifact.filePath as string);
       }
 
       // Get artifact with all related data
       const fullArtifact = await prisma.studentArtifact.findUnique({
-        where: { id: artifact.id },
+        where: { id: artifact.id as string },
         include: {
           student: {
             select: {
@@ -757,7 +757,7 @@ router.get('/:id',
         updatedAt: fullArtifact!.updatedAt,
         fileUrl,
         student: fullArtifact!.student,
-        outcomes: fullArtifact!.outcomes.map(ao => ({
+        outcomes: fullArtifact!.outcomes.map((ao: any) => ({
           outcomeId: ao.outcomeId,
           evidenceType: ao.evidenceType,
           teacherNote: ao.teacherNote,
@@ -829,7 +829,7 @@ router.put('/:id',
       const updateData = req.body;
 
       const updatedArtifact = await prisma.studentArtifact.update({
-        where: { id: artifact.id },
+        where: { id: artifact.id as string },
         data: {
           ...(updateData.title && { title: updateData.title }),
           ...(updateData.description && { description: updateData.description }),
@@ -877,7 +877,7 @@ router.delete('/:id',
       // Delete associated files from storage
       if (artifact.filePath) {
         try {
-          await storageService.deleteFile(artifact.filePath);
+          await storageService.deleteFile(artifact.filePath as string);
         } catch (error: unknown) {
           logger.warn({ error }, 'Failed to delete file from storage:');
           // Continue with database deletion even if file deletion fails
@@ -886,7 +886,7 @@ router.delete('/:id',
 
       // Delete from database (cascade will handle related records)
       await prisma.studentArtifact.delete({
-        where: { id: artifact.id }
+        where: { id: artifact.id as string }
       });
 
       res.status(204).send();
@@ -928,8 +928,8 @@ router.post('/:id/outcomes',
       const existing = await prisma.studentArtifactOutcome.findUnique({
         where: {
           artifactId_outcomeId: {
-            artifactId: artifact.id,
-            outcomeId: outcomeId
+            artifactId: artifact.id as string,
+            outcomeId: outcomeId as string
           }
         }
       });
@@ -942,8 +942,8 @@ router.post('/:id/outcomes',
       // Create outcome tagging
       const outcomeTag = await prisma.studentArtifactOutcome.create({
         data: {
-          artifactId: artifact.id,
-          outcomeId: outcomeId,
+          artifactId: artifact.id as string,
+          outcomeId: outcomeId as string,
           evidenceType: evidenceType,
           teacherNote: teacherNote,
           confidenceLevel: confidenceLevel || 'MEDIUM',
@@ -1015,8 +1015,8 @@ router.put('/:id/outcomes/:outcomeId',
       const updatedTag = await prisma.studentArtifactOutcome.update({
         where: {
           artifactId_outcomeId: {
-            artifactId: artifact.id,
-            outcomeId: outcomeId
+            artifactId: artifact.id as string,
+            outcomeId: outcomeId as string
           }
         },
         data: {
@@ -1081,8 +1081,8 @@ router.delete('/:id/outcomes/:outcomeId',
       await prisma.studentArtifactOutcome.delete({
         where: {
           artifactId_outcomeId: {
-            artifactId: artifact.id,
-            outcomeId: outcomeId
+            artifactId: artifact.id as string,
+            outcomeId: outcomeId as string
           }
         }
       });

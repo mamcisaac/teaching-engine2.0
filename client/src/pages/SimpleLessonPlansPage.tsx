@@ -936,7 +936,7 @@ function LessonFormModal({
           <div style={{ display: 'grid', gap: '16px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '16px' }}>
               <div>
-                <label style={{ 
+                <label htmlFor="lesson-title" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -944,6 +944,7 @@ function LessonFormModal({
                   Title *
                 </label>
                 <input
+                  id="lesson-title"
                   type="text"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -960,7 +961,7 @@ function LessonFormModal({
               </div>
 
               <div>
-                <label style={{ 
+                <label htmlFor="lesson-date" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -968,6 +969,7 @@ function LessonFormModal({
                   Date *
                 </label>
                 <input
+                  id="lesson-date"
                   type="date"
                   value={formData.date}
                   onChange={(e) => setFormData({ ...formData, date: e.target.value })}
@@ -983,7 +985,7 @@ function LessonFormModal({
               </div>
 
               <div>
-                <label style={{ 
+                <label htmlFor="lesson-duration" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -991,6 +993,7 @@ function LessonFormModal({
                   Duration (min) *
                 </label>
                 <input
+                  id="lesson-duration"
                   type="number"
                   value={formData.duration}
                   onChange={(e) => setFormData({ ...formData, duration: parseInt(e.target.value) || 60 })}
@@ -1009,7 +1012,7 @@ function LessonFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="lesson-learning-goals" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -1017,6 +1020,7 @@ function LessonFormModal({
                 Learning Goals
               </label>
               <textarea
+                id="lesson-learning-goals"
                 value={formData.learningGoals}
                 onChange={(e) => setFormData({ ...formData, learningGoals: e.target.value })}
                 rows={2}
@@ -1033,7 +1037,7 @@ function LessonFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="lesson-minds-on" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -1041,6 +1045,7 @@ function LessonFormModal({
                 Minds On (Hook/Introduction)
               </label>
               <textarea
+                id="lesson-minds-on"
                 value={formData.mindsOn}
                 onChange={(e) => setFormData({ ...formData, mindsOn: e.target.value })}
                 rows={3}
@@ -1057,7 +1062,7 @@ function LessonFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="lesson-action" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -1065,6 +1070,7 @@ function LessonFormModal({
                 Action (Main Activity)
               </label>
               <textarea
+                id="lesson-action"
                 value={formData.action}
                 onChange={(e) => setFormData({ ...formData, action: e.target.value })}
                 rows={4}
@@ -1081,7 +1087,7 @@ function LessonFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="lesson-consolidation" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -1089,6 +1095,7 @@ function LessonFormModal({
                 Consolidation (Wrap-up)
               </label>
               <textarea
+                id="lesson-consolidation"
                 value={formData.consolidation}
                 onChange={(e) => setFormData({ ...formData, consolidation: e.target.value })}
                 rows={3}
@@ -1105,7 +1112,7 @@ function LessonFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="lesson-materials" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -1113,6 +1120,7 @@ function LessonFormModal({
                 Materials (one per line)
               </label>
               <textarea
+                id="lesson-materials"
                 value={formData.materials.join('\n')}
                 onChange={(e) => setFormData({ ...formData, materials: e.target.value.split('\n').filter(m => m.trim()) })}
                 rows={3}
@@ -1131,7 +1139,7 @@ Student notebooks"
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="lesson-assessment-notes" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -1139,6 +1147,7 @@ Student notebooks"
                 Assessment Notes
               </label>
               <textarea
+                id="lesson-assessment-notes"
                 value={formData.assessmentNotes}
                 onChange={(e) => setFormData({ ...formData, assessmentNotes: e.target.value })}
                 rows={2}
@@ -1169,7 +1178,7 @@ Student notebooks"
 
             {formData.isSubFriendly && (
               <div>
-                <label style={{ 
+                <label htmlFor="lesson-sub-notes" style={{ 
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: '500' 
@@ -1177,6 +1186,7 @@ Student notebooks"
                   Notes for Supply Teacher
                 </label>
                 <textarea
+                  id="lesson-sub-notes"
                   value={formData.subNotes}
                   onChange={(e) => setFormData({ ...formData, subNotes: e.target.value })}
                   rows={2}

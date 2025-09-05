@@ -203,13 +203,13 @@ export function TodayView(): React.ReactElement {
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [teachingMode, setTeachingMode] = useState(false);
   
-  // Fetch today's lessons
+  // Fetch today&apos;s lessons
   const { data: lessons = [], isLoading: lessonsLoading } = useETFOLessonPlans({
     startDate: startOfDay(today).toISOString(),
     endDate: endOfDay(today).toISOString(),
   });
   
-  // Fetch today's daybook entry
+  // Fetch today&apos;s daybook entry
   const { data: daybookEntries = [] } = useDaybookEntries({
     startDate: startOfDay(today).toISOString(),
     endDate: endOfDay(today).toISOString(),
@@ -349,7 +349,7 @@ export function TodayView(): React.ReactElement {
         <div className="flex items-center justify-between mb-2">
           <h1 className="text-3xl font-bold flex items-center gap-3">
             <Calendar className="h-8 w-8 text-blue-600" />
-            Today's Teaching Plan
+            Today&apos;s Teaching Plan
           </h1>
           <div className="flex items-center gap-3">
             <Button
@@ -442,7 +442,7 @@ export function TodayView(): React.ReactElement {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Lessons Column */}
         <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-xl font-semibold mb-3">Today's Lessons</h2>
+          <h2 className="text-xl font-semibold mb-3">Today&apos;s Lessons</h2>
           
           {lessons.length === 0 ? (
             <Alert>
@@ -562,11 +562,11 @@ export function TodayView(): React.ReactElement {
           {/* Tomorrow Preview */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Tomorrow's Preview</CardTitle>
+              <CardTitle className="text-lg">Tomorrow&apos;s Preview</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600 mb-3">
-                Prepare for tomorrow's lessons
+                Prepare for tomorrow&apos;s lessons
               </p>
               <Button 
                 variant="outline" 

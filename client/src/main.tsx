@@ -1,6 +1,3 @@
-console.log('🎉 Teaching Engine 2.0 - Direct Restoration')
-
-// Reset to the original working approach - JSX with static imports
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
@@ -10,10 +7,13 @@ import { Toaster } from 'sonner'
 import { AuthProvider } from './contexts/AuthContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 import { AppRouter } from './routing/AppRouter'
-import './index.css'
 import { errorReportingService } from './services/errorReportingService'
+import { logger } from './utils/logger';
+import './index.css'
 
-console.log('Starting Teaching Engine 2.0...')
+logger.info('Teaching Engine 2.0 - Direct Restoration')
+
+logger.info('Starting Teaching Engine 2.0...')
 
 // Initialize error reporting
 errorReportingService.init()
@@ -41,10 +41,10 @@ const queryClient = new QueryClient({
 })
 
 const rootElement = document.getElementById('root')
-console.log('Root element found:', !!rootElement)
+logger.info('Root element found', { hasRootElement: !!rootElement })
 
 if (rootElement) {
-  console.log('Creating React root and rendering Teaching Engine app...')
+  logger.info('Creating React root and rendering Teaching Engine app...')
   try {
     const root = createRoot(rootElement)
     root.render(
@@ -61,13 +61,13 @@ if (rootElement) {
         </QueryClientProvider>
       </StrictMode>
     )
-    console.log('🎉 Teaching Engine 2.0 rendered successfully!')
+    logger.info('Teaching Engine 2.0 rendered successfully!')
   } catch (error) {
-    console.error('Failed to render Teaching Engine:', error)
+    logger.error('Failed to render Teaching Engine', error)
     rootElement.innerHTML = `<div style="color: red; padding: 20px;">Render Error: ${error}</div>`
   }
 } else {
-  console.error('Root element not found!')
+  logger.error('Root element not found!')
 }
 
 // Register service worker - TEMPORARILY DISABLED FOR DEBUGGING
@@ -106,7 +106,7 @@ if ('serviceWorker' in navigator) {
         await registration.unregister();
       }
     } catch (error) {
-      console.warn('Failed to unregister service workers', error);
+      logger.warn('Failed to unregister service workers', { error });
     }
   })();
 }

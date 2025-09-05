@@ -13,7 +13,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
   const [showUncoveredOnly, setShowUncoveredOnly] = useState(false);
   const itemsPerPage = 15; // Show 15 expectations per page
   
-  // Get teacher's selected subjects from localStorage
+  // Get teacher&apos;s selected subjects from localStorage
   const teacherSubjects = useMemo(() => {
     const storedSubjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
     return storedSubjects ? safeJsonParse<string[]>(storedSubjects, []) : null;
@@ -44,7 +44,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
     return ids;
   }, [lessonPlans, unitPlans]);
   
-  // Filter expectations based on teacher's selected subjects
+  // Filter expectations based on teacher&apos;s selected subjects
   const teacherFilteredExpectations = useMemo(() => {
     if (!teacherSubjects || teacherSubjects.length === 0) {
       return allExpectations; // Show all if no subjects selected
@@ -84,7 +84,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
     setCurrentPage(1);
   }, [selectedSubject, searchQuery]);
   
-  // Get unique subjects for filtering (only show teacher's selected subjects)
+  // Get unique subjects for filtering (only show teacher&apos;s selected subjects)
   const subjects = useMemo(() => {
     const allSubjects = Array.from(new Set(teacherFilteredExpectations.map(exp => exp.subject))).sort();
     return allSubjects;
@@ -170,7 +170,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
           </div>
           
           <div style={{ backgroundColor: '#fff7ed', padding: '12px', borderRadius: '6px', marginTop: '16px' }}>
-            <strong>💡 Quick Planning Tip:</strong> While we fix the curriculum loading, you can start with basic Grade 1 French themes like "Tout sur moi" (All About Me), "Les couleurs" (Colors), "Ma famille" (My Family), and "Les saisons" (Seasons). These cover core vocabulary and cultural connections appropriate for 6-year-olds.
+            <strong>💡 Quick Planning Tip:</strong> While we fix the curriculum loading, you can start with basic Grade 1 French themes like &quot;Tout sur moi&quot; (All About Me), &quot;Les couleurs&quot; (Colors), &quot;Ma famille&quot; (My Family), and &quot;Les saisons&quot; (Seasons). These cover core vocabulary and cultural connections appropriate for 6-year-olds.
           </div>
           
           <div style={{ marginTop: '16px', textAlign: 'center' }}>
@@ -288,7 +288,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
             margin: '0 0 12px 0'
           }}>
             Please use the Getting Started Guide on the dashboard to select which subjects you teach.
-            Without subject selection, you won't be able to plan your curriculum effectively.
+            Without subject selection, you won&apos;t be able to plan your curriculum effectively.
           </p>
           <Link to="/planner/dashboard" style={{
             display: 'inline-block',
@@ -349,7 +349,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
         }}>
           {/* Subject Filter */}
           <div>
-            <label style={{ 
+            <label htmlFor="subject-filter" style={{ 
               display: 'block', 
               fontSize: '16px', 
               fontWeight: '500', 
@@ -359,6 +359,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
               Filter by Subject:
             </label>
             <select 
+              id="subject-filter"
               value={selectedSubject} 
               onChange={(e) => setSelectedSubject(e.target.value)}
               style={{ 
@@ -384,7 +385,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
           
           {/* Search Box */}
           <div>
-            <label style={{ 
+            <label htmlFor="search-expectations" style={{ 
               display: 'block', 
               fontSize: '16px', 
               fontWeight: '500', 
@@ -394,6 +395,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
               🔍 Search Expectations:
             </label>
             <input
+              id="search-expectations"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -677,7 +679,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
           fontSize: '16px', 
           marginBottom: '16px' 
         }}>
-          Now that you've reviewed the curriculum expectations, create your long-range plans to organize your teaching year.
+          Now that you&apos;ve reviewed the curriculum expectations, create your long-range plans to organize your teaching year.
         </p>
         <Link to="/planner/long-range">
           <button style={{
@@ -700,7 +702,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
 }
 
 // Reusable form modal component
-function ExpectationFormModal({ 
+function _ExpectationFormModal({ 
   title, 
   formData, 
   setFormData, 
@@ -748,7 +750,7 @@ function ExpectationFormModal({
         <form onSubmit={onSubmit}>
           <div style={{ display: 'grid', gap: '16px' }}>
             <div>
-              <label style={{ 
+              <label htmlFor="expectation-code" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -756,6 +758,7 @@ function ExpectationFormModal({
                 Code *
               </label>
               <input
+                id="expectation-code"
                 type="text"
                 value={formData.code}
                 onChange={(e) => setFormData({ ...formData, code: e.target.value })}
@@ -772,7 +775,7 @@ function ExpectationFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="expectation-subject" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -780,6 +783,7 @@ function ExpectationFormModal({
                 Subject *
               </label>
               <select
+                id="expectation-subject"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 required
@@ -804,7 +808,7 @@ function ExpectationFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="expectation-strand" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -812,6 +816,7 @@ function ExpectationFormModal({
                 Strand *
               </label>
               <input
+                id="expectation-strand"
                 type="text"
                 value={formData.strand}
                 onChange={(e) => setFormData({ ...formData, strand: e.target.value })}
@@ -828,7 +833,7 @@ function ExpectationFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="expectation-grade" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -836,6 +841,7 @@ function ExpectationFormModal({
                 Grade *
               </label>
               <select
+                id="expectation-grade"
                 value={formData.grade}
                 onChange={(e) => setFormData({ ...formData, grade: parseInt(e.target.value) })}
                 style={{
@@ -853,7 +859,7 @@ function ExpectationFormModal({
             </div>
 
             <div>
-              <label style={{ 
+              <label htmlFor="expectation-description" style={{ 
                 display: 'block', 
                 marginBottom: '8px', 
                 fontWeight: '500' 
@@ -861,6 +867,7 @@ function ExpectationFormModal({
                 Description *
               </label>
               <textarea
+                id="expectation-description"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 required

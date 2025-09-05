@@ -62,8 +62,7 @@ export function AppRouter(): JSX.Element {
   const { isLoading, isInitialized, error } = useAuth();
 
   // Add debug logging
-  console.log('[AppRouter] Rendering, auth state:', { isLoading, isInitialized, error });
-  logger.debug('[AppRouter] Auth state:', { isLoading, isInitialized, error });
+  logger.debug('AppRouter rendering', { isLoading, isInitialized, error });
 
   // Show loading spinner only during initial auth check
   // But add a timeout to prevent infinite loading

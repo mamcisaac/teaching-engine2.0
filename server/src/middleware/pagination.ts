@@ -147,7 +147,7 @@ export function paginatedRouter(): Router {
   const originalGet = router.get.bind(router);
 
   // Override get method to add pagination middleware
-  (router as Router & { get: (path: string, ...handlers: RequestHandler[]) => Router }).get = function (path: string, ...handlers: RequestHandler[]): Router {
+  (router as any).get = function (path: string, ...handlers: RequestHandler[]): Router {
     // Only add pagination to list endpoints (root or ending with 's')
     if (path === '/' || path.match(/s$/)) {
       return originalGet(path, parsePagination, ...handlers);

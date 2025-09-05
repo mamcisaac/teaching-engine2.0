@@ -4,9 +4,11 @@
  */
 
 import { 
-  findLessonPanicking as findLessonPanickingImpl,
+  findLessonPanicking,
+  getPanicCoverageGaps,
+  generateSupplyPlan,
   getYearAtGlance,
-  validateCurriculumSequence as validateSequence
+  validateCurriculumSequence
 } from '../../client/src/utils/planningCascade';
 
 // Mock data for testing
@@ -53,22 +55,10 @@ const mockYearPlan = {
   ]
 };
 
-// Global functions for tests
-(global as any).findLessonPanicking = function(searchTerm: string) {
-  // Search for lessons matching the term
-  const results = mockLessons.filter(lesson => 
-    lesson.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    lesson.activities.some(a => a.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-  
-  return results.map(lesson => ({
-    ...lesson,
-    whenIsProbablyScheduled: lesson.whenIsProbablyScheduled,
-    whatUnitIsItIn: lesson.whatUnitIsItIn,
-    didIAlreadyTeachIt: lesson.didIAlreadyTeachIt
-  }));
-};
+// Global functions for tests - using actual implementations
+(global as any).findLessonPanicking = findLessonPanicking;
 
+// Mock getYearAtGlance since it needs a full year plan
 (global as any).getYearAtGlance = function() {
   return {
     totalLessons: 975,
@@ -91,61 +81,16 @@ const mockYearPlan = {
   };
 };
 
-(global as any).validateCurriculumSequence = function() {
-  return {
-    isValid: false,
-    prerequisiteViolations: ['Teaching multiplication before addition basics'],
-    example: 'Teaching multiplication before addition in Unit 3',
-    suggestion: 'Reorder units 3 and 4 to teach addition first',
-    errors: [],
-    warnings: []
-  };
-};
-
-(global as any).getPanicCoverageGaps = function(dueDate: Date) {
-  return {
-    mustTeachToday: ['Counting to 20', 'Letter recognition A-M', 'Basic shapes'],
-    canFudgeOnReportCard: ['Say "emerging" for writing skills'],
-    parentWillNotice: ['Skip counting - parents drill this at home'],
-    dueDate: dueDate
-  };
-};
-
-(global as any).generateSupplyPlan = function(when: string) {
-  const plan = `
-SUPPLY TEACHER PLAN - ${when.toUpperCase()}
-
-IMPORTANT NOTES:
-- DO NOT attempt science experiment (materials in locked cabinet)
-- Worksheets in top drawer of my desk
-- Call office if: Emma, Liam, or Jackson need support
-
-SCHEDULE:
-9:00 - Morning circle (usual routine)
-9:15 - Math: Worksheet #42 (counting practice)
-10:00 - Recess
-10:15 - Language Arts: Silent reading then worksheet #18
-11:00 - Art: Free drawing time
-11:45 - Lunch
-
-AFTERNOON:
-1:00 - Story time (books on front table)
-1:30 - Math games (bins labeled on shelf)
-2:15 - Recess
-2:30 - Clean up and dismissal prep
-
-EMERGENCY CONTACTS:
-- Office: ext. 100
-- Next door teacher: Mrs. Smith
-- My cell: [hidden for privacy]
-`;
-  
-  return plan;
-};
+// Use actual implementations
+(global as any).validateCurriculumSequence = validateCurriculumSequence;
+(global as any).getPanicCoverageGaps = getPanicCoverageGaps;
+(global as any).generateSupplyPlan = generateSupplyPlan;
 
 // Re-export for use in implementation
 export {
-  findLessonPanickingImpl,
+  findLessonPanicking,
+  getPanicCoverageGaps,
+  generateSupplyPlan,
   getYearAtGlance,
-  validateSequence
+  validateCurriculumSequence
 };

@@ -109,7 +109,7 @@ export function SimpleWeekView(): React.ReactElement {
                 cursor: 'pointer'
               }}
             >
-              Today's View
+              Today&apos;s View
             </button>
             <button
               onClick={() => navigate('/planner/calendar')}

@@ -159,7 +159,7 @@ export function useAnecdotalNotes({
   });
 
   // Track pending save state
-  const [pendingSave, setPendingSave] = useState(false);
+  const [_pendingSave, setPendingSave] = useState(false);
   
   // Debounced auto-save with proper cleanup
   const debouncedSaveRef = useRef<ReturnType<typeof debounce>>();
