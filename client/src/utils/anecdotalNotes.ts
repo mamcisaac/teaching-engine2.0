@@ -165,6 +165,27 @@ export function validateNoteText(text: string): { valid: boolean; error?: string
 }
 
 /**
+ * Check if an assessment is actually an anecdotal note
+ * Used to separate anecdotal notes from real curriculum assessments
+ */
+export function isAnecdotalNote(assessment: { subject: string; notes?: string }): boolean {
+  return assessment.subject.startsWith('ANECDOTAL_') && !!assessment.notes;
+}
+
+/**
+ * Extract clean subject from anecdotal note subject field
+ * Converts "ANECDOTAL_12345_Math" to "Math"
+ */
+export function extractSubjectFromAnecdotal(subject: string): string {
+  if (!subject.startsWith('ANECDOTAL_')) return subject;
+  
+  const parts = subject.split('_');
+  // Format: ANECDOTAL_timestamp_subject
+  // Return everything after the timestamp
+  return parts.slice(2).join('_') || 'General';
+}
+
+/**
  * Default note history instance for the app
  */
 export const noteHistory = new StudentNoteHistory();

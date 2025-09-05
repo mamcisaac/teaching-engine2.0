@@ -12,7 +12,7 @@ import { toast } from 'sonner';
 
 import { apiClient } from '../api/core/client';
 import type { AnecdotalNote, NoteContext } from '../utils/anecdotalNotes';
-import { validateNoteText } from '../utils/anecdotalNotes';
+import { validateNoteText, isAnecdotalNote, extractSubjectFromAnecdotal } from '../utils/anecdotalNotes';
 
 export interface StudentAssessment {
   id: string;
@@ -59,27 +59,27 @@ export function useAnecdotalNotes({
       
       // Convert only anecdotal note assessments to AnecdotalNote format
       return assessments
-        .filter(assessment => 
-          assessment.notes && 
-          assessment.notes.trim().length > 0 && 
-          assessment.subject.startsWith('ANECDOTAL_NOTE_') // Only get anecdotal notes
-        )
-        .map(assessment => ({
-          id: assessment.id,
-          studentId: assessment.studentId,
-          text: assessment.notes!,
-          timestamp: new Date(assessment.date),
-          lessonId: assessment.lessonId,
-          subject: assessment.subject.replace('ANECDOTAL_NOTE_', ''), // Remove prefix for display
-          lessonContext: assessment.title.replace('Quick Note - ', '') // Clean up title for display
-        }))
+        .filter(assessment => isAnecdotalNote(assessment))
+        .map(assessment => {
+          const actualSubject = extractSubjectFromAnecdotal(assessment.subject);
+          
+          return {
+            id: assessment.id,
+            studentId: assessment.studentId,
+            text: assessment.notes!,
+            timestamp: new Date(assessment.date),
+            lessonId: assessment.lessonId,
+            subject: actualSubject, // Clean subject for display
+            lessonContext: assessment.title.replace('Note: ', '').split(' - ')[1] || assessment.title
+          };
+        })
         .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
     },
     enabled: !!studentId,
     staleTime: 30000, // 30 seconds
   });
 
-  // Create/save anecdotal note mutation
+  // Create/save anecdotal note mutation with retry logic
   const saveMutation = useMutation({
     mutationFn: async ({ 
       studentId, 
@@ -91,20 +91,24 @@ export function useAnecdotalNotes({
       context?: NoteContext;
     }) => {
       // Create a special assessment record for anecdotal notes
-      // Use special subject pattern to distinguish from real assessments
+      // Use unique timestamp in subject to avoid database constraint violations
       const noteTimestamp = context?.date || new Date();
+      const uniqueId = Date.now(); // Millisecond precision for uniqueness
       const response = await apiClient.post('/student-assessments', {
         studentId,
         lessonId: context?.lessonId,
-        subject: `ANECDOTAL_NOTE_${context?.subject || 'General'}`, // Special prefix to distinguish
-        title: `Quick Note - ${noteTimestamp.toLocaleString()}`, // Clear indication this is a note
-        level: 'MEETING', // Use neutral level that won't affect analytics
+        // Add timestamp to subject to ensure uniqueness per day
+        subject: `ANECDOTAL_${uniqueId}_${context?.subject || 'General'}`,
+        title: `Note: ${noteTimestamp.toLocaleTimeString()} - ${context?.lessonTitle || 'Quick observation'}`,
+        level: 'MEETING', // Neutral level - these aren't real assessments
         notes: text,
         date: noteTimestamp.toISOString()
       });
       
       return response.data as StudentAssessment;
     },
+    retry: 3, // Retry up to 3 times
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000), // Exponential backoff: 2s, 4s, 8s
     onMutate: async (variables) => {
       // Cancel outgoing refetches
       await queryClient.cancelQueries({ queryKey: ['anecdotal-notes', variables.studentId] });
@@ -135,7 +139,15 @@ export function useAnecdotalNotes({
       if (context?.previousNotes !== undefined) {
         queryClient.setQueryData(['anecdotal-notes', variables.studentId], context.previousNotes);
       }
-      toast.error('Failed to save anecdotal note');
+      // Show more informative error with retry status
+      const error = err as any;
+      if (error?.response?.status === 409) {
+        toast.error('Note conflict - please refresh and try again');
+      } else if (error?.response?.status >= 500) {
+        toast.error('Server error - retrying automatically...');
+      } else {
+        toast.error('Failed to save note - will retry');
+      }
     },
     onSuccess: (data, variables) => {
       // Update cache with server response
@@ -145,6 +157,9 @@ export function useAnecdotalNotes({
     }
   });
 
+  // Track pending save state
+  const [pendingSave, setPendingSave] = useState(false);
+  
   // Debounced auto-save with proper cleanup
   const debouncedSaveRef = useRef<ReturnType<typeof debounce>>();
   
@@ -155,12 +170,16 @@ export function useAnecdotalNotes({
         const validation = validateNoteText(text.trim());
         if (!validation.valid) {
           toast.error(validation.error || 'Invalid note content');
-          setIsSaving(false);
+          setPendingSave(false);
           return;
         }
         
+        // Only set saving when actually starting the save
         setIsSaving(true);
+        setPendingSave(false);
         saveMutation.mutate({ studentId, text: text.trim(), context });
+      } else {
+        setPendingSave(false);
       }
     }, autoSaveDelay);
     
@@ -175,7 +194,10 @@ export function useAnecdotalNotes({
     if (studentId && autoSave && debouncedSaveRef.current) {
       // Cancel any pending save first
       debouncedSaveRef.current.cancel();
-      // Only set saving state when save actually starts (inside debounced function)
+      // Mark that a save is pending (will happen after debounce)
+      if (text.trim().length > 0) {
+        setPendingSave(true);
+      }
       debouncedSaveRef.current(studentId, text, context);
     }
   }, [studentId, autoSave]);
