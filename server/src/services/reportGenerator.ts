@@ -253,7 +253,8 @@ function generateProgressChart(doc: any, progress: any[]) {
 }
 
 function generateStrengthsAndGrowth(doc: any, progress: any[]) {
-  doc.fontSize(14).text('Areas of Strength', { underline: true });
+  // Use parent-friendly language
+  doc.fontSize(14).text('What Your Child Does Well', { underline: true });
   doc.moveDown();
   doc.fontSize(11);
   
@@ -263,14 +264,17 @@ function generateStrengthsAndGrowth(doc: any, progress: any[]) {
   
   if (strengths.length > 0) {
     for (const s of strengths) {
-      doc.text(`• ${s.outcome.description} (${s.currentLevel})`);
+      const levelText = s.currentLevel === 'EXCEEDING' 
+        ? ' (Excelling)' 
+        : ' (Strong understanding)';
+      doc.text(`• ${s.outcome.description}${levelText}`);
     }
   } else {
-    doc.text('Continuing to develop foundational skills');
+    doc.text('Your child is developing important foundational skills.');
   }
   
   doc.moveDown();
-  doc.fontSize(14).text('Areas for Growth', { underline: true });
+  doc.fontSize(14).text('Skills We\'re Working On Together', { underline: true });
   doc.moveDown();
   doc.fontSize(11);
   
@@ -280,14 +284,17 @@ function generateStrengthsAndGrowth(doc: any, progress: any[]) {
   
   if (growth.length > 0) {
     for (const g of growth) {
-      doc.text(`• ${g.outcome.description}`);
+      const progressText = g.currentLevel === 'APPROACHING' 
+        ? ' (Making good progress)' 
+        : ' (Just beginning)';
+      doc.text(`• ${g.outcome.description}${progressText}`);
       if (g.areasForGrowth) {
-        doc.fontSize(10).text(`  ${g.areasForGrowth}`, { indent: 20 });
+        doc.fontSize(10).text(`  How you can help: ${g.areasForGrowth}`, { indent: 20 });
         doc.fontSize(11);
       }
     }
   } else {
-    doc.text('Student is meeting expectations across all assessed areas');
+    doc.text('Your child is successfully meeting all learning expectations we\'ve assessed so far!');
   }
   doc.moveDown();
 }

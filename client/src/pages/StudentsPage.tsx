@@ -1,8 +1,9 @@
-import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
+import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, Squares2X2Icon, ChartBarIcon } from '@heroicons/react/24/outline';
 import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
 
 import { QuickNoteButton } from '../components/anecdotal-notes/QuickNoteButton';
+import { StudentProgressDashboard } from '../components/student/StudentProgressDashboard';
 import { studentsApi, type Student } from '../services/api/students';
 
 
@@ -16,6 +17,8 @@ export function StudentsPage(): React.ReactElement {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showProgressDashboard, setShowProgressDashboard] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [editingStudent, setEditingStudent] = useState<Student | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
@@ -368,6 +371,16 @@ export function StudentsPage(): React.ReactElement {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          setSelectedStudent(student);
+                          setShowProgressDashboard(true);
+                        }}
+                        className="text-blue-600 hover:text-blue-800 p-1"
+                        title="View Progress"
+                      >
+                        <ChartBarIcon className="h-4 w-4" />
+                      </button>
                       <QuickNoteButton
                         studentId={student.id}
                         studentName={`${student.firstName} ${student.lastName}`}
@@ -424,6 +437,16 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div className="mt-4 flex gap-2 flex-wrap">
+                <button
+                  onClick={() => {
+                    setSelectedStudent(student);
+                    setShowProgressDashboard(true);
+                  }}
+                  className="px-3 py-1 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 text-sm flex items-center"
+                >
+                  <ChartBarIcon className="h-4 w-4 mr-1" />
+                  Progress
+                </button>
                 <QuickNoteButton
                   studentId={student.id}
                   studentName={`${student.firstName} ${student.lastName}`}
@@ -708,6 +731,21 @@ export function StudentsPage(): React.ReactElement {
                 Cancel
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Student Progress Dashboard Modal */}
+      {showProgressDashboard && selectedStudent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <StudentProgressDashboard
+              student={selectedStudent}
+              onClose={() => {
+                setShowProgressDashboard(false);
+                setSelectedStudent(null);
+              }}
+            />
           </div>
         </div>
       )}

@@ -60,6 +60,7 @@ import { router as plannerStateRoutes } from './routes/planner-state';
 import { router as recentPlansRoutes } from './routes/recent-plans';
 import reportsRoutes from './routes/reports';
 import studentsRoutes from './routes/students';
+import studentProgressRoutes from './routes/student-progress';
 import assessmentsRoutes from './routes/assessments';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
@@ -245,6 +246,7 @@ log('Mounting ETFO-aligned API routes...');
 if (process.env.FEATURE_STUDENT_ASSESSMENT === 'true') {
   log('Mounting student assessment routes...');
   app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentsRoutes);
+  app.use('/api/students', asyncMiddleware(authenticate), rateLimiters.api, userCache, studentProgressRoutes); // Student progress endpoints
   app.use('/api/assessments', asyncMiddleware(authenticate), rateLimiters.api, userCache, assessmentsRoutes);
   app.use('/api/mastery', asyncMiddleware(authenticate), rateLimiters.api, userCache, masteryTrackingRoutes);
   app.use('/api/evidence-export', asyncMiddleware(authenticate), rateLimiters.api, userCache, evidenceExportRoutes);
