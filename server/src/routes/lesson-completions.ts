@@ -104,7 +104,14 @@ router.get('/by-date/:date',
     }
 
     try {
-      const date = new Date(req.params.date);
+      const dateParam = req.params.date;
+      
+      if (!dateParam) {
+        res.status(400).json({ error: 'Date parameter is required' });
+        return;
+      }
+      
+      const date = new Date(dateParam);
       const startOfDay = new Date(date.setHours(0, 0, 0, 0));
       const endOfDay = new Date(date.setHours(23, 59, 59, 999));
 
@@ -188,7 +195,7 @@ router.post('/',
     }
 
     try {
-      const { lessonId, notes, actualDuration, wentWell, needsFollowUp } = req.body;
+      const { lessonId, notes, actualDuration } = req.body;
 
       // Verify the lesson exists and belongs to the user
       const lesson = await prisma.eTFOLessonPlan.findFirst({
@@ -267,6 +274,11 @@ router.put('/:lessonId',
       const { lessonId } = req.params;
       const { notes, actualDuration, wentWell, needsFollowUp } = req.body;
 
+      if (!lessonId) {
+        res.status(400).json({ error: 'Lesson ID is required' });
+        return;
+      }
+
       // Check if completion exists
       const existingCompletion = await prisma.lessonCompletion.findUnique({
         where: {
@@ -325,6 +337,11 @@ router.delete('/:lessonId',
 
     try {
       const { lessonId } = req.params;
+
+      if (!lessonId) {
+        res.status(400).json({ error: 'Lesson ID is required' });
+        return;
+      }
 
       // Check if completion exists
       const existingCompletion = await prisma.lessonCompletion.findUnique({

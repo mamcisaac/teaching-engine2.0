@@ -1061,6 +1061,12 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
         return;
       }
       const { id: lessonPlanId } = req.params;
+      
+      if (!lessonPlanId) {
+        res.status(400).json({ error: 'Lesson plan ID is required' });
+        return;
+      }
+      
       const resourceData = resourceSchema.parse(req.body);
 
       const resource = await this.lessonPlanService.addResource(lessonPlanId, resourceData, userId);
@@ -1083,6 +1089,11 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
         return;
       }
       const { id: lessonPlanId, resourceId } = req.params;
+      
+      if (!lessonPlanId || !resourceId) {
+        res.status(400).json({ error: 'Lesson plan ID and resource ID are required' });
+        return;
+      }
 
       const success = await this.lessonPlanService.removeResource(lessonPlanId, resourceId, userId);
 
@@ -1110,6 +1121,11 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
         return;
       }
       const { id: lessonPlanId } = req.params;
+      
+      if (!lessonPlanId) {
+        res.status(400).json({ error: 'Lesson plan ID is required' });
+        return;
+      }
 
       const subVersion = await this.lessonPlanService.createSubVersion(lessonPlanId, userId);
       res.status(201).json(subVersion);
@@ -1131,6 +1147,12 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
         return;
       }
       const { id: lessonPlanId } = req.params;
+      
+      if (!lessonPlanId) {
+        res.status(400).json({ error: 'Lesson plan ID is required' });
+        return;
+      }
+      
       const rescheduleData = rescheduleSchema.parse(req.body);
 
       const rescheduledLesson = await this.lessonPlanService.reschedule(

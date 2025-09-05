@@ -18,16 +18,9 @@ export interface TypedRequest<
 }
 
 /**
- * Authenticated request with required user
+ * Note: AuthenticatedRequest is now handled via global Express namespace extension
+ * See: types/express.d.ts
  */
-export interface AuthenticatedRequest<
-  TBody = unknown,
-  TQuery = Query,
-  TParams = ParamsDictionary
-> extends TypedRequest<TBody, TQuery, TParams> {
-  user: AuthUser;
-  userId: string; // Convenience property
-}
 
 /**
  * Validated request with validated data

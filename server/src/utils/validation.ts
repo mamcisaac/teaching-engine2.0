@@ -210,6 +210,9 @@ export const isValidAcademicYear = (year: string): boolean => {
   }
   
   const [start, end] = year.split('-').map(Number);
+  if (start === undefined || end === undefined) {
+    return false;
+  }
   return end === start + 1;
 };
 

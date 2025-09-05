@@ -354,8 +354,8 @@ return;
     const draft = await generateLongRangePlanDraft({
       title: '',
       expectationIds: expectations.map((exp: { id: string }) => exp.id),
-      subject: subject || expectations[0].subject,
-      grade: grade || expectations[0].grade,
+      subject: subject || expectations[0]?.subject || '',
+      grade: grade || expectations[0]?.grade || '',
       academicYear: academicYear || '2024-2025',
     });
 

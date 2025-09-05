@@ -31,7 +31,7 @@ export const compose = (...middlewares: Middleware[]): RequestHandler => async (
 
       try {
         // Check if it's an _error-handling middleware (4 parameters)
-        if (middleware.length === 4) {
+        if (middleware?.length === 4) {
           // Skip _error handlers in normal flow
           return dispatch();
         }

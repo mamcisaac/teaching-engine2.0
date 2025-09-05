@@ -222,6 +222,13 @@ router.delete('/user/:userId', async (req: AuthenticatedRequest, res: Response) 
 
     try {
     const { userId } = req.params;
+    if (!userId) {
+      res.status(400).json({
+        success: false,
+        message: 'User ID parameter is required'
+      });
+      return;
+    }
     const userIdNumber = parseInt(userId, 10);
 
     if (isNaN(userIdNumber)) {

@@ -12,14 +12,6 @@ import { logger } from '../logger';
 const router = Router();
 const prisma = new PrismaClient();
 
-interface AuthenticatedRequest extends Request {
-  user?: {
-    id: number;
-    email: string;
-    role: string;
-  };
-}
-
 // Validation schemas
 const substituteInfoSchema = z.object({
   classroomNumber: z.string().optional().nullable(),
@@ -58,9 +50,12 @@ const substituteInfoSchema = z.object({
  * GET /api/substitute/info
  * Get substitute information for the current user
  */
-router.get('/info', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/info', async (req: Request, res: Response): Promise<any> => {
   try {
-    const userId = req.user!.id; // Auth middleware ensures user exists
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'User not authenticated' });
+    }
 
     const info = await prisma.substituteInfo.findUnique({
       where: { userId },
@@ -73,7 +68,7 @@ router.get('/info', async (req: AuthenticatedRequest, res: Response) => {
 
     res.json(info);
   } catch (error) {
-    logger.error('Failed to fetch substitute info:', error);
+    logger.error('Failed to fetch substitute info:', String(error));
     res.status(500).json({ error: 'Failed to fetch substitute information' });
   }
 });
@@ -82,9 +77,12 @@ router.get('/info', async (req: AuthenticatedRequest, res: Response) => {
  * POST /api/substitute/info
  * Create or update substitute information
  */
-router.post('/info', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/info', async (req: Request, res: Response): Promise<any> => {
   try {
-    const userId = req.user!.id; // Auth middleware ensures user exists
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'User not authenticated' });
+    }
     
     // Validate and sanitize input
     const validation = substituteInfoSchema.safeParse(req.body);
@@ -111,7 +109,7 @@ router.post('/info', async (req: AuthenticatedRequest, res: Response) => {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid input', details: error.errors });
     }
-    logger.error('Failed to save substitute info:', error);
+    logger.error('Failed to save substitute info:', String(error));
     res.status(500).json({ error: 'Failed to save substitute information' });
   }
 });
@@ -120,13 +118,17 @@ router.post('/info', async (req: AuthenticatedRequest, res: Response) => {
  * GET /api/substitute/plan/:date
  * Generate substitute plan for a specific date
  */
-router.get('/plan/:date', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/plan/:date', async (req: Request, res: Response): Promise<any> => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
     }
 
-    const date = new Date(req.params.date);
+    const dateParam = req.params.date;
+    if (!dateParam) {
+      return res.status(400).json({ error: 'Date parameter is required' });
+    }
+    const date = new Date(dateParam);
     if (isNaN(date.getTime())) {
       return res.status(400).json({ error: 'Invalid date format' });
     }
@@ -180,7 +182,7 @@ router.get('/plan/:date', async (req: AuthenticatedRequest, res: Response) => {
 
     res.json(plan);
   } catch (error) {
-    logger.error('Failed to generate substitute plan:', error);
+    logger.error('Failed to generate substitute plan:', String(error));
     res.status(500).json({ error: 'Failed to generate substitute plan' });
   }
 });
@@ -189,13 +191,17 @@ router.get('/plan/:date', async (req: AuthenticatedRequest, res: Response) => {
  * GET /api/substitute/plan/:date/pdf
  * Generate PDF version of substitute plan
  */
-router.get('/plan/:date/pdf', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/plan/:date/pdf', async (req: Request, res: Response): Promise<any> => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
     }
 
-    const date = new Date(req.params.date);
+    const dateParam = req.params.date;
+    if (!dateParam) {
+      return res.status(400).json({ error: 'Date parameter is required' });
+    }
+    const date = new Date(dateParam);
     if (isNaN(date.getTime())) {
       return res.status(400).json({ error: 'Invalid date format' });
     }
@@ -255,7 +261,7 @@ router.get('/plan/:date/pdf', async (req: AuthenticatedRequest, res: Response) =
     res.setHeader('Content-Disposition', `inline; filename="substitute-plan-${date.toISOString().split('T')[0]}.html"`);
     res.send(html);
   } catch (error) {
-    logger.error('Failed to generate substitute plan PDF:', error);
+    logger.error('Failed to generate substitute plan PDF:', String(error));
     res.status(500).json({ error: 'Failed to generate substitute plan PDF' });
   }
 });
@@ -264,13 +270,13 @@ router.get('/plan/:date/pdf', async (req: AuthenticatedRequest, res: Response) =
  * POST /api/substitute/emergency-plans
  * Create emergency substitute plan (for testing)
  */
-router.post('/emergency-plans', async (req: AuthenticatedRequest, res: Response) => {
+router.post('/emergency-plans', async (req: Request, res: Response): Promise<any> => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
     }
 
-    const { title, subject, grade, duration, activities, specialInstructions, emergencyContacts } = req.body;
+    const { title, subject, grade, activities, specialInstructions, emergencyContacts } = req.body;
 
     // Create substitute plan record
     const plan = await prisma.substitutePlan.create({
@@ -292,7 +298,7 @@ router.post('/emergency-plans', async (req: AuthenticatedRequest, res: Response)
 
     res.status(201).json(plan);
   } catch (error) {
-    logger.error('Failed to create emergency plan:', error);
+    logger.error('Failed to create emergency plan:', String(error));
     res.status(500).json({ error: 'Failed to create emergency plan' });
   }
 });
@@ -301,7 +307,7 @@ router.post('/emergency-plans', async (req: AuthenticatedRequest, res: Response)
  * GET /api/substitute/emergency-plans
  * Get all emergency plans for testing
  */
-router.get('/emergency-plans', async (req: AuthenticatedRequest, res: Response) => {
+router.get('/emergency-plans', async (req: Request, res: Response): Promise<any> => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
@@ -318,7 +324,7 @@ router.get('/emergency-plans', async (req: AuthenticatedRequest, res: Response) 
 
     res.json(plans);
   } catch (error) {
-    logger.error('Failed to fetch emergency plans:', error);
+    logger.error('Failed to fetch emergency plans:', String(error));
     res.status(500).json({ error: 'Failed to fetch emergency plans' });
   }
 });

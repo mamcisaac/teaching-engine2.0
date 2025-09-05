@@ -504,6 +504,7 @@ export class PartialManager extends BaseService {
     let match;
 
     while ((match = variableRegex.exec(content)) !== null) {
+      if (!match[1]) continue;
       const variable = match[1].trim();
 
       // Skip helpers and special syntax

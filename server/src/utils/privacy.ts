@@ -26,7 +26,9 @@ export function maskUserData(user: Record<string, unknown>, options: PrivacyOpti
   // Mask email if not owner
   if (!showFullData && !isOwner && typeof user.email === 'string') {
     const [localPart, domain] = user.email.split('@');
-    masked.email = `${localPart.slice(0, 2)}***@${domain}`;
+    if (localPart && domain) {
+      masked.email = `${localPart.slice(0, 2)}***@${domain}`;
+    }
   }
 
   // Always remove sensitive fields
@@ -55,6 +57,10 @@ export function getUserIdentifier(user: Record<string, unknown>): string {
   const email = typeof user.email === 'string' ? user.email : 'unknown@example.com';
   const [localPart] = email.split('@');
   const idSuffix = user.id !== null && user.id !== undefined ? String(user.id).slice(-4) : '0000';
+  
+  if (!localPart) {
+    return `unk-${idSuffix}`;
+  }
   
   return `${localPart.slice(0, 3)}-${idSuffix}`;
 }

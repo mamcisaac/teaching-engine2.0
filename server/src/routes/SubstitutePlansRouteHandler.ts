@@ -470,6 +470,10 @@ export class SubstitutePlansRouteHandler extends BaseRouteHandler {
         return;
       }
       const { id: planId } = req.params;
+      if (!planId) {
+        res.status(400).json({ error: 'Plan ID is required' });
+        return;
+      }
 
       const deactivatedPlan = await this.substitutePlanService.deactivatePlan(planId, userId!);
       res.json(deactivatedPlan);

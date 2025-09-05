@@ -122,8 +122,8 @@ const getActiveAlerts = (): DashboardMetrics['alerts'] => {
   const metrics = getMetrics();
 
   // Check error rate
-  const errorRate = metrics.counters.http_errors_total;
-  const totalRequests = metrics.counters.http_requests_total || 1;
+  const errorRate = metrics.counters.http_errors_total ?? 0;
+  const totalRequests = metrics.counters.http_requests_total ?? 1;
   const errorPercentage = (errorRate / totalRequests) * 100;
 
   if (errorPercentage > 10) {
@@ -164,7 +164,7 @@ const getActiveAlerts = (): DashboardMetrics['alerts'] => {
   }
 
   // Check slow queries
-  const slowQueries = metrics.counters.database_slow_queries_total;
+  const slowQueries = metrics.counters.database_slow_queries_total ?? 0;
   if (slowQueries > 100) {
     alerts.push({
       level: 'warning',
@@ -175,8 +175,8 @@ const getActiveAlerts = (): DashboardMetrics['alerts'] => {
   }
 
   // Check cache hit rate
-  const cacheHits = metrics.counters.cache_hits_total;
-  const cacheMisses = metrics.counters.cache_misses_total;
+  const cacheHits = metrics.counters.cache_hits_total ?? 0;
+  const cacheMisses = metrics.counters.cache_misses_total ?? 0;
   const cacheTotal = cacheHits + cacheMisses;
   const cacheHitRate = cacheTotal > 0 ? (cacheHits / cacheTotal) * 100 : 0;
 
@@ -247,8 +247,8 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
       const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
       // Calculate request metrics
-      const totalRequests = metrics.counters.http_requests_total;
-      const totalErrors = metrics.counters.http_errors_total;
+      const totalRequests = metrics.counters.http_requests_total ?? 0;
+      const totalErrors = metrics.counters.http_errors_total ?? 0;
       const successRate =
         totalRequests > 0 ? ((totalRequests - totalErrors) / totalRequests) * 100 : 100;
 
@@ -256,7 +256,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
       const httpDuration = metrics.histograms.http_request_duration_ms;
       // Calculate percentiles from histogram data
       const percentiles = { p50: 0, p90: 0, p95: 0, p99: 0 };
-      if (httpDuration !== null && httpDuration.count > 0) {
+      if (httpDuration && httpDuration.count > 0) {
         const p50Target = (httpDuration.count * 50) / 100;
         const p90Target = (httpDuration.count * 90) / 100;
         const p95Target = (httpDuration.count * 95) / 100;
@@ -373,7 +373,7 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
             percentage: ((os.totalmem() - os.freemem()) / os.totalmem()) * 100,
           },
           cpu: {
-            model: os.cpus()[0].model,
+            model: os.cpus()[0]?.model ?? 'Unknown',
             cores: os.cpus().length,
             usage: getCpuUsage(),
           },
@@ -381,8 +381,8 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
         },
         application: {
           requests: {
-            total: totalRequests,
-            per_minute: totalRequests / (process.uptime() / 60),
+            total: totalRequests ?? 0,
+            per_minute: (totalRequests ?? 0) / (process.uptime() / 60),
             success_rate: successRate,
             error_rate: 100 - successRate,
           },
@@ -392,27 +392,27 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
             p95: percentiles.p95,
             p99: percentiles.p99,
             mean:
-              httpDuration !== null && httpDuration !== undefined && httpDuration.count > 0 ? httpDuration.sum / httpDuration.count : 0,
+              httpDuration && httpDuration.count > 0 ? httpDuration.sum / httpDuration.count : 0,
           },
           active_users: activeUsersToday,
           database: {
             connections: 1, // Would need actual pool stats
             queries_per_minute:
-              (metrics.counters.database_queries_total) / (process.uptime() / 60),
-            slow_queries: metrics.counters.database_slow_queries_total,
+              (metrics.counters.database_queries_total ?? 0) / (process.uptime() / 60),
+            slow_queries: metrics.counters.database_slow_queries_total ?? 0,
             error_rate:
-              ((metrics.counters.database_errors_total) /
+              ((metrics.counters.database_errors_total ?? 0) /
                 (metrics.counters.database_queries_total || 1)) *
               100,
           },
           cache: {
             hit_rate:
-              ((metrics.counters.cache_hits_total) /
-                ((metrics.counters.cache_hits_total) +
+              ((metrics.counters.cache_hits_total ?? 0) /
+                ((metrics.counters.cache_hits_total ?? 0) +
                   (metrics.counters.cache_misses_total || 1))) *
               100,
-            size: metrics.gauges.cache_size_bytes,
-            evictions: metrics.counters.cache_evictions_total,
+            size: metrics.gauges.cache_size_bytes ?? 0,
+            evictions: metrics.counters.cache_evictions_total ?? 0,
           },
         },
         business: {
@@ -441,9 +441,9 @@ export const getDashboardMetrics = async (_req: Request, res: Response): Promise
             })),
           },
           ai_usage: {
-            total_operations: metrics.counters.ai_operations_total,
+            total_operations: metrics.counters.ai_operations_total ?? 0,
             operations_today: 0, // Would need time-based tracking
-            average_duration: metrics.histograms.ai_operation_duration_ms !== null
+            average_duration: metrics.histograms.ai_operation_duration_ms
               ? metrics.histograms.ai_operation_duration_ms.sum /
                 metrics.histograms.ai_operation_duration_ms.count
               : 0,

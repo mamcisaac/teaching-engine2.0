@@ -257,7 +257,7 @@ router.get('/evidence-triangulation', requireAuth, async (req: AuthenticatedRequ
         if (recommendations.length > 1) {
           balance = 'Needs multiple types';
         } else {
-          balance = 'Needs more ' + recommendations[0].split(' ')[2];
+          balance = 'Needs more ' + (recommendations[0]?.split(' ')[2] ?? 'balance');
         }
       }
 
@@ -381,10 +381,12 @@ router.get('/progress-trends',
       // Group by time periods
       const timeGroups = progressData.reduce((acc, progress) => {
         const date = progress.lastAssessmentDate;
+        if (!date) return acc; // Skip entries without assessment dates
+        
         let timeKey: string;
 
         if (timeframe === 'week') {
-          timeKey = date.toISOString().split('T')[0]; // Daily
+          timeKey = date.toISOString().split('T')[0] ?? date.toISOString(); // Daily
         } else {
           timeKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`; // Monthly
         }

@@ -149,15 +149,19 @@ export function aggregateAssessmentsByStrand(
       };
     }
 
-    aggregated[strand].assessments.push(assessment);
+    if (aggregated[strand]) {
+      aggregated[strand].assessments.push(assessment);
+    }
   }
 
   // Calculate averages for each strand
   for (const strand in aggregated) {
     const strandData = aggregated[strand];
-    const ratings = strandData.assessments.map(a => a.rating);
-    strandData.averageRating = calculateAverageRating(ratings);
-    strandData.assessmentCount = strandData.assessments.length;
+    if (strandData) {
+      const ratings = strandData.assessments.map(a => a.rating);
+      strandData.averageRating = calculateAverageRating(ratings);
+      strandData.assessmentCount = strandData.assessments.length;
+    }
   }
 
   return aggregated;
@@ -178,11 +182,21 @@ export function calculateTrendAnalysis(assessments: AssessmentData[]): TrendAnal
   }
 
   if (assessments.length === 1) {
+    const firstAssessment = assessments[0];
+    if (!firstAssessment) {
+      return {
+        direction: 'stable',
+        strength: 0,
+        startRating: 0,
+        endRating: 0,
+        assessmentCount: 0
+      };
+    }
     return {
       direction: 'stable',
       strength: 0,
-      startRating: assessments[0].rating,
-      endRating: assessments[0].rating,
+      startRating: firstAssessment.rating,
+      endRating: firstAssessment.rating,
       assessmentCount: 1
     };
   }
@@ -192,8 +206,21 @@ export function calculateTrendAnalysis(assessments: AssessmentData[]): TrendAnal
     a.date.getTime() - b.date.getTime()
   );
 
-  const startRating = sorted[0].rating;
-  const endRating = sorted[sorted.length - 1].rating;
+  const firstAssessment = sorted[0];
+  const lastAssessment = sorted[sorted.length - 1];
+  
+  if (!firstAssessment || !lastAssessment) {
+    return {
+      direction: 'stable',
+      strength: 0,
+      startRating: 0,
+      endRating: 0,
+      assessmentCount: assessments.length
+    };
+  }
+
+  const startRating = firstAssessment.rating;
+  const endRating = lastAssessment.rating;
   const difference = endRating - startRating;
 
   // Calculate trend direction

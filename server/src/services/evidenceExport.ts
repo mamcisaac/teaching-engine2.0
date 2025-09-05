@@ -534,7 +534,10 @@ const generateClassSummaryPDF = async (
     for (const artifact of student.artifacts) {
       // Could connect to subject via outcomes, but for now count all
       Object.keys(subjectData).forEach(subject => {
-        subjectData[subject].artifacts += artifact.outcomes?.some((o: any) => o.outcome.subject === subject) ? 1 : 0;
+        const subjectInfo = subjectData[subject];
+        if (subjectInfo) {
+          subjectInfo.artifacts += artifact.outcomes?.some((o: any) => o.outcome?.subject === subject) ? 1 : 0;
+        }
       });
     }
   }

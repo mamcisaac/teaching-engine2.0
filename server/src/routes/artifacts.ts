@@ -871,6 +871,7 @@ router.delete('/:id',
       });
 
       res.status(204).send();
+      return;
     } catch (error: unknown) {
       console.error('Artifact deletion error:', error);
       res.status(500).json({ error: 'Failed to delete artifact' });
@@ -985,6 +986,10 @@ router.put('/:id/outcomes/:outcomeId',
     try {
       const artifact = req.artifact!; // Non-null assertion safe after validateArtifactOwnership
       const outcomeId = req.params.outcomeId;
+      if (!outcomeId) {
+        res.status(400).json({ error: 'Outcome ID is required' });
+        return;
+      }
       const updateData = req.body;
 
       // Update outcome tagging
@@ -1021,8 +1026,9 @@ router.put('/:id/outcomes/:outcomeId',
         confidenceLevel: updatedTag.confidenceLevel,
         contextualFactors: updatedTag.contextualFactors,
         dateAssessed: updatedTag.dateAssessed,
-        outcome: updatedTag.outcome
+        outcome: (updatedTag as any).outcome
       });
+      return;
     } catch (error: unknown) {
       if (error instanceof Error && 'code' in error && error.code === 'P2025') {
         res.status(404).json({ error: 'Outcome tagging not found' });
@@ -1048,6 +1054,10 @@ router.delete('/:id/outcomes/:outcomeId',
     try {
       const artifact = req.artifact!; // Non-null assertion safe after validateArtifactOwnership
       const outcomeId = req.params.outcomeId;
+      if (!outcomeId) {
+        res.status(400).json({ error: 'Outcome ID is required' });
+        return;
+      }
 
       await prisma.studentArtifactOutcome.delete({
         where: {
@@ -1059,6 +1069,7 @@ router.delete('/:id/outcomes/:outcomeId',
       });
 
       res.status(204).send();
+      return;
     } catch (error: unknown) {
       if (error instanceof Error && 'code' in error && error.code === 'P2025') {
         res.status(404).json({ error: 'Outcome tagging not found' });

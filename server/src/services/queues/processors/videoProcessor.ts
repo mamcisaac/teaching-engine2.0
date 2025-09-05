@@ -198,7 +198,7 @@ function parseFrameRate(frameRateStr?: string): number | undefined {
   // Handle fraction format (e.g., "30/1" or "30000/1001")
   if (frameRateStr.includes('/')) {
     const [num, den] = frameRateStr.split('/').map(Number);
-    return den > 0 ? num / den : undefined;
+    return (den && den > 0 && num !== undefined) ? num / den : undefined;
   }
   
   // Handle simple number format

@@ -123,6 +123,10 @@ return;
 router.patch('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+    if (!id) {
+      res.status(400).json({ error: 'ID parameter is required' });
+      return;
+    }
     const userId = getUserId(req, res);
     if (!userId) {
 return;
@@ -168,6 +172,10 @@ return;
 router.delete('/:id', asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+    if (!id) {
+      res.status(400).json({ error: 'ID parameter is required' });
+      return;
+    }
     const userId = getUserId(req, res);
     if (!userId) {
 return;

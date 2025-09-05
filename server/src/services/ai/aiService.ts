@@ -451,7 +451,7 @@ export class AIService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content;
-      if (content === null || content === '') {
+      if (!content || content === '') {
         return this.createFallbackEnhancedLesson(input.lesson as unknown as JSONValue, input.enhancementType);
       }
 
@@ -502,7 +502,7 @@ export class AIService extends BaseService {
       });
 
       const content = response.choices[0]?.message?.content;
-      if (content === null || content === '') {
+      if (!content || content === '') {
         return this.createFallbackQuestions(input);
       }
 

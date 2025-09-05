@@ -72,7 +72,12 @@ router.patch('/:id/read', (req: AuthenticatedRequest, res: Response): void => {
 return;
 }
 
-    const notificationId = parseInt(req.params.id);
+    const idParam = req.params.id;
+    if (!idParam) {
+      res.status(400).json({ error: 'Notification ID is required' });
+      return;
+    }
+    const notificationId = parseInt(idParam);
     if (isNaN(notificationId)) {
       res.status(400).json({ error: 'Invalid notification ID' });
       return;
@@ -135,7 +140,12 @@ router.delete('/:id', (req: AuthenticatedRequest, res: Response): void => {
 return;
 }
 
-    const notificationId = parseInt(req.params.id);
+    const idParam = req.params.id;
+    if (!idParam) {
+      res.status(400).json({ error: 'Notification ID is required' });
+      return;
+    }
+    const notificationId = parseInt(idParam);
     if (isNaN(notificationId)) {
       res.status(400).json({ error: 'Invalid notification ID' });
       return;

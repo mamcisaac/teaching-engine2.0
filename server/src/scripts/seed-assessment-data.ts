@@ -118,8 +118,20 @@ async function seedAssessmentData() {
       
       for (let i = 0; i < assessmentCount; i++) {
         const randomExpectation = expectations[Math.floor(Math.random() * expectations.length)];
+        if (!randomExpectation) {
+          console.warn('No expectations found, skipping assessment creation');
+          continue;
+        }
         const randomLevel = levels[Math.floor(Math.random() * levels.length)];
+        if (!randomLevel) {
+          console.warn('No levels found, skipping assessment creation');
+          continue;
+        }
         const randomEvidenceType = evidenceTypes[Math.floor(Math.random() * evidenceTypes.length)];
+        if (!randomEvidenceType) {
+          console.warn('No evidence types found, skipping assessment creation');
+          continue;
+        }
         
         // Random date within the past 30 days
         const randomDate = new Date(
@@ -152,6 +164,10 @@ async function seedAssessmentData() {
     const artifacts = [];
     for (let i = 0; i < 20; i++) {
       const randomStudent = createdStudents[Math.floor(Math.random() * createdStudents.length)];
+      if (!randomStudent) {
+        console.warn('No students found, skipping artifact creation');
+        continue;
+      }
       const randomAssessment = assessments.find(a => a.studentId === randomStudent.id);
       
       const artifact = await prisma.artifact.create({
@@ -179,11 +195,20 @@ async function seedAssessmentData() {
     const reports = [];
     for (let i = 0; i < 5; i++) {
       const randomStudent = createdStudents[Math.floor(Math.random() * createdStudents.length)];
+      if (!randomStudent) {
+        console.warn('No students found, skipping report creation');
+        continue;
+      }
+      
+      const reportTypes = ['progress', 'summary', 'parent', 'term', 'individual'];
+      const reportTypeLabels = ['Progress', 'Summary', 'Parent', 'Term', 'Individual'];
+      const reportType = reportTypes[i % 5] || 'progress';
+      const reportLabel = reportTypeLabels[i % 5] || 'Progress';
       
       const report = await prisma.report.create({
         data: {
-          type: ['progress', 'summary', 'parent', 'term', 'individual'][i % 5],
-          title: `${['Progress', 'Summary', 'Parent', 'Term', 'Individual'][i % 5]} Report - ${randomStudent.firstName} ${randomStudent.lastName}`,
+          type: reportType,
+          title: `${reportLabel} Report - ${randomStudent.firstName} ${randomStudent.lastName}`,
           studentId: randomStudent.id,
           teacherId: teacher.id,
           dateRangeStart: thirtyDaysAgo,

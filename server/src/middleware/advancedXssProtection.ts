@@ -529,8 +529,8 @@ return '';
     let [, localPart, domainPart] = emailParts;
 
     // Remove any HTML tags from each part separately
-    localPart = sanitizeHtmlAdvanced(localPart, 'text');
-    domainPart = sanitizeHtmlAdvanced(domainPart, 'text');
+    localPart = sanitizeHtmlAdvanced(localPart ?? '', 'text');
+    domainPart = sanitizeHtmlAdvanced(domainPart ?? '', 'text');
 
     // Remove dangerous characters but preserve valid email chars
     localPart = localPart.replace(/[<>'"]/g, '');

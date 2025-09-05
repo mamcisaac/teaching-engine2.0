@@ -202,7 +202,7 @@ export function createCursorPaginatedResponse<T>(
     pagination: {
       limit,
       hasMore,
-      nextCursor: hasMore && items.length > 0 ? getCursor(items[items.length - 1]) : undefined,
+      nextCursor: hasMore && items.length > 0 ? getCursor(items[items.length - 1]!) : undefined,
     },
   };
 }

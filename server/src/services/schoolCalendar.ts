@@ -1,6 +1,5 @@
 import { readFileSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { format, parseISO } from 'date-fns';
 
 interface ScheduleEntry {
@@ -18,13 +17,7 @@ interface TeachingDay {
   subjects: string[];
 }
 
-interface SubjectRotation {
-  slot1: string; // French
-  slot2: string; // Math  
-  slot3: string; // Science
-  slot4: string; // Arts
-  slot5: string; // Alternating Social Studies/Health
-}
+// Unused interface - removed to fix TypeScript warnings
 
 export class SchoolCalendarService {
   private teachingDays: TeachingDay[] = [];
@@ -90,7 +83,7 @@ export class SchoolCalendarService {
       // Set empty teaching days to prevent complete failure
       this.teachingDays = [];
       this.initialized = false;
-      throw new Error(`School calendar initialization failed: ${error.message}`);
+      throw new Error(`School calendar initialization failed: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -182,7 +175,7 @@ export class SchoolCalendarService {
     } else {
       // For alternating subjects, use every other day
       for (let i = 0; i < this.teachingDays.length && dates.length < lessonCount; i += 2) {
-        dates.push(this.teachingDays[i].date);
+        dates.push(this.teachingDays[i]?.date || '');
       }
     }
     
@@ -211,7 +204,7 @@ export class SchoolCalendarService {
 
     for (let i = 0; i < unitLessonCount && i * spacing < availableDays.length; i++) {
       const dayIndex = i * spacing;
-      dates.push(availableDays[dayIndex].date);
+      dates.push(availableDays[dayIndex]?.date || '');
     }
     
     return dates;
@@ -223,6 +216,19 @@ export class SchoolCalendarService {
   getSchoolYearSummary() {
     const startDay = this.teachingDays[0];
     const endDay = this.teachingDays[this.teachingDays.length - 1];
+    
+    if (!startDay || !endDay) {
+      return {
+        startDate: '',
+        endDate: '',
+        totalTeachingDays: 0,
+        dateRange: 'No teaching days available',
+        lessonsPerSubject: {
+          daily: 0,
+          alternating: 0
+        }
+      };
+    }
     
     return {
       startDate: startDay.date,

@@ -300,7 +300,8 @@ export class LLMService extends BaseService {
       general: basePrompt,
     };
 
-    return typePrompts[type] ?? typePrompts.general;
+    const prompt = typePrompts[type || 'general'];
+    return prompt || basePrompt;
   }
 
   /**

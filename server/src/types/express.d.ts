@@ -12,6 +12,8 @@ declare global {
         organizationId?: number;
         permissions?: string[];
       };
+      // Add userId as a convenience property - must match user.id type
+      userId?: number;
       // Rate limiting properties
       rateLimit?: {
         resetTime?: Date;

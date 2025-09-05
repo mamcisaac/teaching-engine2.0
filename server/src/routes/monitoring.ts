@@ -43,6 +43,11 @@ router.post('/alerts/:alertId/trigger', authenticate, async (req: Request, res: 
       const { alertId } = req.params;
       const { context } = req.body;
 
+      if (!alertId) {
+        res.status(400).json({ error: 'Alert ID is required' });
+        return;
+      }
+
       span.setAttributes({
         'alert.id': alertId,
         'alert.manual': true,

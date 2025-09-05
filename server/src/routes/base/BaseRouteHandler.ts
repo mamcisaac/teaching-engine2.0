@@ -163,6 +163,10 @@ export abstract class BaseRouteHandler<T = unknown> {
         return;
       }
       const { id } = req.params;
+      if (!id) {
+        res.status(400).json({ error: 'ID parameter is required' });
+        return;
+      }
       const crudOps = this.getCrudOperations();
 
       const item = await crudOps.findById(id, userId);
@@ -215,6 +219,10 @@ export abstract class BaseRouteHandler<T = unknown> {
         return;
       }
       const { id } = req.params;
+      if (!id) {
+        res.status(400).json({ error: 'ID parameter is required' });
+        return;
+      }
       const schemas = this.getValidationSchemas();
       const data = schemas.update.parse(req.body) as Record<string, unknown>;
       const crudOps = this.getCrudOperations();
@@ -240,6 +248,10 @@ export abstract class BaseRouteHandler<T = unknown> {
         return;
       }
       const { id } = req.params;
+      if (!id) {
+        res.status(400).json({ error: 'ID parameter is required' });
+        return;
+      }
       const crudOps = this.getCrudOperations();
 
       const success = await crudOps.delete(id, userId);

@@ -62,6 +62,11 @@ router.get('/student/:id',
       const studentId = req.params.id;
       const userId = req.user!.id;
 
+      if (!studentId) {
+        res.status(400).json({ error: 'Student ID is required' });
+        return;
+      }
+
       // Verify student belongs to teacher
       const student = await prisma.student.findUnique({
         where: { id: studentId }

@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import { authenticate } from '../middleware/auth';
 import { LessonSchedulerService } from '../services/lessonScheduler';
+import { schoolCalendar } from '../services/schoolCalendar';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -182,7 +183,11 @@ router.post('/move-unit', authenticate, async (req, res) => {
     }
 
     // Calculate new dates maintaining relative spacing
-    const firstLessonDate = new Date(lessons[0].date);
+    const firstLesson = lessons[0];
+    if (!firstLesson) {
+      return res.status(404).json({ error: 'No lessons found' });
+    }
+    const firstLessonDate = new Date(firstLesson.date);
     const newStartDate = new Date(startDate);
     const daysDiff = Math.floor((newStartDate.getTime() - firstLessonDate.getTime()) / (1000 * 60 * 60 * 24));
 
@@ -226,15 +231,16 @@ const scheduleUnitSchema = z.object({
   userId: z.number().int().positive('Valid user ID required')
 });
 
-const scheduleAllLessonsSchema = z.object({
-  userId: z.number().int().positive('Valid user ID required')
-});
+// Unused schema - commenting out to avoid unused variable warning
+// const scheduleAllLessonsSchema = z.object({
+//   userId: z.number().int().positive('Valid user ID required')
+// });
 
 /**
  * POST /api/schedule/start-next-unit
  * Schedules the next unscheduled unit for a specific subject
  */
-router.post('/start-next-unit', authenticate, async (req, res) => {
+router.post('/start-next-unit', authenticate, async (req, res): Promise<any> => {
   try {
     console.log('🚀 API: Starting next unit for subject:', req.body);
 
@@ -266,7 +272,7 @@ router.post('/start-next-unit', authenticate, async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error instanceof Error ? error.message : 'Failed to start next unit'
     });
@@ -277,7 +283,7 @@ router.post('/start-next-unit', authenticate, async (req, res) => {
  * POST /api/schedule/schedule-unit
  * Schedules a specific unit by ID
  */
-router.post('/schedule-unit', authenticate, async (req, res) => {
+router.post('/schedule-unit', authenticate, async (req, res): Promise<any> => {
   try {
     console.log('🎯 API: Scheduling specific unit:', req.body);
 
@@ -320,7 +326,7 @@ router.post('/schedule-unit', authenticate, async (req, res) => {
  * POST /api/schedule/schedule-all-lessons  
  * Schedules all lessons across all subjects with optimal distribution
  */
-router.post('/schedule-all-lessons', authenticate, async (req, res) => {
+router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<any> => {
   try {
     console.log('🌟 API: Starting comprehensive lesson scheduling:', req.body);
 
@@ -391,12 +397,10 @@ router.get('/stats', authenticate, async (req, res) => {
  * GET /api/schedule/calendar-summary
  * Get school calendar summary information
  */
-router.get('/calendar-summary', authenticate, async (req, res) => {
+router.get('/calendar-summary', authenticate, async (_req, res) => {
   try {
     console.log('📅 API: Getting school calendar summary');
 
-    // Import here to avoid circular dependencies
-    const { schoolCalendar } = await import('../services/schoolCalendar');
     const summary = schoolCalendar.getSchoolYearSummary();
 
     console.log('✅ Retrieved calendar summary:', summary);
@@ -423,7 +427,7 @@ router.get('/calendar-summary', authenticate, async (req, res) => {
  * Shift all future lessons for a subject forward by N days
  * Maintains core lesson sequence and respects school calendar
  */
-router.post('/shift-subject', authenticate, async (req, res) => {
+router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
   try {
     const { subject, fromDate, shiftDays, shiftOnlyFrom } = z.object({
       subject: z.string().min(1),
@@ -479,23 +483,23 @@ router.post('/shift-subject', authenticate, async (req, res) => {
       
       // Use school calendar to find valid teaching days
       const teachingDays = schoolCalendar.getTeachingDays();
-      const startDateObj = new Date(fromDate);
+      // const startDateObj = new Date(fromDate); // Unused variable - commenting out
       
       // Check if this is an alternating subject
-      const isAlternating = ['Sciences humaines', 'Formation personnelle et sociale'].includes(actualSubject);
+      const isAlternating = actualSubject ? ['Sciences humaines', 'Formation personnelle et sociale'].includes(actualSubject) : false;
       
       // Calculate new dates and apply updates atomically
       let lessonsShifted = 0;
       
       for (const lesson of lessonsToShift) {
         const currentDate = new Date(lesson.date);
-        let targetDayIndex = teachingDays.findIndex(d => 
+        let targetDayIndex = teachingDays.findIndex((d: any) => 
           d.date === currentDate.toISOString().split('T')[0]
         );
         
         if (targetDayIndex === -1) {
           console.warn(`Current date ${currentDate} not found in teaching days, using closest`);
-          targetDayIndex = teachingDays.findIndex(d => d.dateObj >= currentDate);
+          targetDayIndex = teachingDays.findIndex((d: any) => d.dateObj >= currentDate);
         }
         
         // Find the next valid teaching day
@@ -522,7 +526,12 @@ router.post('/shift-subject', authenticate, async (req, res) => {
           continue;
         }
         
-        const newDate = new Date(teachingDays[newDayIndex].date + 'T09:00:00');
+        const teachingDay = teachingDays[newDayIndex];
+        if (!teachingDay) {
+          console.warn(`Cannot shift lesson ${lesson.id} - teaching day not found`);
+          continue;
+        }
+        const newDate = new Date(teachingDay.date + 'T09:00:00');
         
         // Update immediately within transaction
         await tx.eTFOLessonPlan.update({
@@ -568,7 +577,7 @@ router.post('/shift-subject', authenticate, async (req, res) => {
  * POST /api/schedule/activate-extension
  * Schedule an extension lesson to a specific date
  */
-router.post('/activate-extension', authenticate, async (req, res) => {
+router.post('/activate-extension', authenticate, async (req, res): Promise<any> => {
   try {
     const { lessonId, date, slotNumber } = z.object({
       lessonId: z.string(),
@@ -640,7 +649,7 @@ router.post('/activate-extension', authenticate, async (req, res) => {
  * Replace a scheduled core lesson with an extension
  * The core lesson is properly rescheduled to the next available slot
  */
-router.post('/replace-with-extension', authenticate, async (req, res) => {
+router.post('/replace-with-extension', authenticate, async (req, res): Promise<any> => {
   try {
     const { coreLessonId, extensionLessonId, rescheduleCore } = z.object({
       coreLessonId: z.string(),
@@ -690,7 +699,7 @@ router.post('/replace-with-extension', authenticate, async (req, res) => {
       
       // Get next teaching day after current date
       const teachingDays = schoolCalendar.getTeachingDays();
-      const currentDayIndex = teachingDays.findIndex(d => 
+      const currentDayIndex = teachingDays.findIndex((d: any) => 
         d.date === coreLessonDate.toISOString().split('T')[0]
       );
       
@@ -715,15 +724,15 @@ router.post('/replace-with-extension', authenticate, async (req, res) => {
             userId,
             subject,
             date: {
-              gte: new Date(candidateDay.date + 'T00:00:00'),
-              lt: new Date(candidateDay.date + 'T23:59:59')
+              gte: new Date((candidateDay?.date || '') + 'T00:00:00'),
+              lt: new Date((candidateDay?.date || '') + 'T23:59:59')
             },
             id: { not: coreLessonId }
           }
         });
         
         if (!conflict) {
-          nextAvailableDate = new Date(candidateDay.date + 'T09:00:00');
+          nextAvailableDate = new Date((candidateDay?.date || '') + 'T09:00:00');
           break;
         }
       }
@@ -799,7 +808,7 @@ router.post('/replace-with-extension', authenticate, async (req, res) => {
  * POST /api/schedule/validate-shift
  * Validate if shifting lessons would cause conflicts
  */
-router.post('/validate-shift', authenticate, async (req, res) => {
+router.post('/validate-shift', authenticate, async (req, res): Promise<any> => {
   try {
     const { subject, fromDate, shiftDays } = z.object({
       subject: z.string().min(1),
@@ -836,9 +845,9 @@ router.post('/validate-shift', authenticate, async (req, res) => {
       
       // Check if new date would be outside school year
       const teachingDays = schoolCalendar.getTeachingDays();
-      const lastDay = teachingDays[teachingDays.length - 1].dateObj;
+      const lastDay = teachingDays[teachingDays.length - 1]?.dateObj;
       
-      if (newDate > lastDay) {
+      if (lastDay && newDate > lastDay) {
         conflicts.push({
           lessonId: lesson.id,
           title: lesson.titleFr || lesson.title,
@@ -899,7 +908,7 @@ router.post('/validate-shift', authenticate, async (req, res) => {
  * GET /api/schedule/available-extensions
  * Get all unscheduled extension lessons for a subject or unit
  */
-router.get('/available-extensions', authenticate, async (req, res) => {
+router.get('/available-extensions', authenticate, async (req, res): Promise<any> => {
   try {
     const { subject, unitId } = z.object({
       subject: z.string().optional(),

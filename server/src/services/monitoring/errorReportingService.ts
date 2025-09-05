@@ -474,9 +474,9 @@ return '[INVALID_EMAIL]';
 }
 
     const [local, domain] = parts;
-    const maskedLocal = local.length > 3 ? `${local.substring(0, 3)  }***` : '***';
+    const maskedLocal = (local && local.length > 3) ? `${local.substring(0, 3)}***` : '***';
 
-    return `${maskedLocal}@${domain}`;
+    return `${maskedLocal}@${domain || ''}`;
   }
 
   private maskIP(ip: string): string {

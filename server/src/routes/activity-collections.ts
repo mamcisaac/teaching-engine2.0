@@ -1,6 +1,6 @@
 import { isErrorLike } from '@shared/utils/typeGuards';
 import { prisma } from '@teaching-engine/database';
-import type { Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
@@ -8,7 +8,7 @@ import { logger } from '../logger';
 import { authMiddleware } from '../middleware/auth';
 import { getUserId } from '../utils/authHelpers';
 
-import type { AuthenticatedRequest } from './base/middleware';
+// Using Express Request with global type extension
 const router = Router();
 
 // Helper function to safely get boolean values
@@ -35,13 +35,13 @@ return value;
 }
 
 // Async middleware wrapper to handle promises properly
-const asyncMiddleware = (fn: (req: AuthenticatedRequest, res: Response, next: NextFunction) => Promise<void>) => 
-  (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) => Promise<void>) => 
+  (req: Request, res: Response, next: NextFunction): void => {
     void Promise.resolve(fn(req, res, next)).catch(next);
   };
 
 // Get user's collections
-router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: AuthenticatedRequest, res: Response, _next: NextFunction) => {
+router.get('/', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response, _next: NextFunction) => {
   try {
     const userId = getUserId(req, res);
     if (!userId) {
@@ -87,7 +87,7 @@ return;
 }));
 
 // Get collection details with activities
-router.get('/:collectionId', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
+router.get('/:collectionId', asyncMiddleware(authMiddleware), asyncMiddleware(async (req: Request, res: Response) => {
 
     try {
     const userId = getUserId(req, res);
@@ -150,7 +150,7 @@ const createCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.post('/', authMiddleware, asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
+router.post('/', authMiddleware, asyncMiddleware(async (req: Request, res: Response) => {
 
     try {
     const userId = getUserId(req, res);
@@ -193,7 +193,7 @@ const updateCollectionSchema = z.object({
   // isPublic field removed - single-teacher use only
 });
 
-router.put('/:collectionId', authMiddleware, asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
+router.put('/:collectionId', authMiddleware, asyncMiddleware(async (req: Request, res: Response) => {
 
     try {
     const userId = getUserId(req, res);
@@ -246,7 +246,7 @@ return;
 router.delete(
   '/:collectionId',
   authMiddleware,
-  asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
+  asyncMiddleware(async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -303,7 +303,7 @@ const addActivitySchema = z.object({
 router.post(
   '/:collectionId/activities',
   authMiddleware,
-  asyncMiddleware(async (req: AuthenticatedRequest, res: Response) => {
+  asyncMiddleware(async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -314,6 +314,11 @@ router.post(
       
       const { collectionId } = req.params;
       const { activityId } = addActivitySchema.parse(req.body);
+
+      if (!collectionId) {
+        res.status(400).json({ success: false, error: 'Collection ID is required' });
+        return;
+      }
 
       // Check collection ownership
       const collection = await prisma.activityCollection.findFirst({
@@ -386,7 +391,7 @@ router.post(
 router.delete(
   '/:collectionId/activities/:activityId',
   authMiddleware,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {
@@ -396,6 +401,11 @@ router.delete(
       const userId = req.user.id;
       
       const { collectionId, activityId } = req.params;
+
+      if (!collectionId || !activityId) {
+        res.status(400).json({ success: false, error: 'Collection ID and Activity ID are required' });
+        return;
+      }
 
       // Check collection ownership
       const collection = await prisma.activityCollection.findFirst({
@@ -444,7 +454,7 @@ router.delete(
 router.get(
   '/trending/public',
   authMiddleware,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: Request, res: Response) => {
 
       try {
       if (req.user?.id === null || req.user?.id === undefined) {

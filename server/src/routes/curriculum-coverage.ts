@@ -3,15 +3,16 @@
  * Tracks which curriculum expectations are covered by lesson plans
  */
 
-import type { Request, Response } from 'express';
+import type { Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
 import { logger } from '../logger';
 import { authenticate } from '../middleware/auth';
-import type { AuthenticatedRequest } from '../middleware/auth';
+import type { AuthenticatedRequest } from './base/middleware';
 import { prisma } from '../prisma';
 import { validateRequest } from '../middleware/validation';
+import { getErrorMessage } from '../utils/type-guards';
 
 const router = Router();
 
@@ -55,9 +56,9 @@ router.get('/metrics', async (req: AuthenticatedRequest, res: Response) => {
       select: {
         id: true,
         subject: true,
-        lessonExpectations: {
+        lessonPlans: {
           select: {
-            lesson: {
+            lessonPlan: {
               select: {
                 userId: true,
               },
@@ -80,8 +81,8 @@ router.get('/metrics', async (req: AuthenticatedRequest, res: Response) => {
       coverageBySubject[subject].total++;
       
       // Check if this expectation is covered by any of the user's lessons
-      const isCovered = expectation.lessonExpectations.some(
-        le => le.lesson.userId === userId
+      const isCovered = expectation.lessonPlans.some(
+        le => le.lessonPlan.userId === userId
       );
       
       if (isCovered) {
@@ -105,8 +106,8 @@ router.get('/metrics', async (req: AuthenticatedRequest, res: Response) => {
     metrics.sort((a, b) => a.subject.localeCompare(b.subject));
 
     res.json({ metrics });
-  } catch (error) {
-    logger.error('Error fetching coverage metrics:', error);
+  } catch (error: unknown) {
+    logger.error('Error fetching coverage metrics:', getErrorMessage(error));
     res.status(500).json({ error: 'Failed to fetch coverage metrics' });
   }
 });
@@ -151,9 +152,9 @@ router.get('/uncovered', async (req: AuthenticatedRequest, res: Response) => {
     const expectations = await prisma.curriculumExpectation.findMany({
       where,
       include: {
-        lessonExpectations: {
+        lessonPlans: {
           select: {
-            lesson: {
+            lessonPlan: {
               select: {
                 userId: true,
               },
@@ -170,8 +171,8 @@ router.get('/uncovered', async (req: AuthenticatedRequest, res: Response) => {
 
     // Map to include coverage status
     const expectationsWithCoverage: UncoveredExpectation[] = expectations.map(exp => {
-      const isCovered = exp.lessonExpectations.some(
-        le => le.lesson.userId === userId
+      const isCovered = exp.lessonPlans.some(
+        le => le.lessonPlan.userId === userId
       );
       
       return {
@@ -193,8 +194,8 @@ router.get('/uncovered', async (req: AuthenticatedRequest, res: Response) => {
       : expectationsWithCoverage.filter(exp => !exp.isCovered);
 
     res.json({ expectations: results });
-  } catch (error) {
-    logger.error('Error fetching uncovered expectations:', error);
+  } catch (error: unknown) {
+    logger.error('Error fetching uncovered expectations:', getErrorMessage(error));
     res.status(500).json({ error: 'Failed to fetch uncovered expectations' });
   }
 });
@@ -219,9 +220,9 @@ router.get('/by-subject/:subject', async (req: AuthenticatedRequest, res: Respon
         subject,
       },
       include: {
-        lessonExpectations: {
+        lessonPlans: {
           select: {
-            lesson: {
+            lessonPlan: {
               select: {
                 id: true,
                 titleFr: true,
@@ -256,8 +257,8 @@ router.get('/by-subject/:subject', async (req: AuthenticatedRequest, res: Respon
         };
       }
       
-      const isCovered = exp.lessonExpectations.some(
-        le => le.lesson.userId === userId
+      const isCovered = exp.lessonPlans.some(
+        le => le.lessonPlan.userId === userId
       );
       
       byStrand[strand].total++;
@@ -281,7 +282,7 @@ router.get('/by-subject/:subject', async (req: AuthenticatedRequest, res: Respon
     // Calculate overall stats
     const totalExpectations = expectations.length;
     const coveredExpectations = expectations.filter(exp =>
-      exp.lessonExpectations.some(le => le.lesson.userId === userId)
+      exp.lessonPlans.some(le => le.lessonPlan.userId === userId)
     ).length;
     const percentage = totalExpectations > 0
       ? Math.round((coveredExpectations / totalExpectations) * 100)
@@ -294,8 +295,8 @@ router.get('/by-subject/:subject', async (req: AuthenticatedRequest, res: Respon
       percentage,
       byStrand,
     });
-  } catch (error) {
-    logger.error('Error fetching subject coverage:', error);
+  } catch (error: unknown) {
+    logger.error('Error fetching subject coverage:', getErrorMessage(error));
     res.status(500).json({ error: 'Failed to fetch subject coverage' });
   }
 });
@@ -348,15 +349,14 @@ router.post('/plan-lesson',
         data: {
           userId,
           titleFr: title,
-          titleEn: title,
+          title: title,
+          unitPlanId: 'temp', // Temporary unit plan ID - will be updated later
           date: date ? new Date(date) : new Date(),
           duration,
           slotNumber: 0,
-          descriptionFr: `Lesson covering ${expectation.code}: ${expectation.description}`,
+          mindsOn: `Lesson covering ${expectation.code}: ${expectation.description}`,
           learningGoals: expectation.description,
-          successCriteria: 'Students will demonstrate understanding of the expectation',
-          assessmentStrategies: 'Observation and formative assessment',
-          status: 'draft',
+          assessmentNotes: 'Observation and formative assessment',
           expectations: {
             create: {
               expectationId,
@@ -373,8 +373,8 @@ router.post('/plan-lesson',
       });
 
       res.json({ lesson });
-    } catch (error) {
-      logger.error('Error creating lesson for expectation:', error);
+    } catch (error: unknown) {
+      logger.error('Error creating lesson for expectation:', getErrorMessage(error));
       res.status(500).json({ error: 'Failed to create lesson' });
     }
   }
@@ -418,15 +418,14 @@ router.post('/bulk-plan-lessons',
             data: {
               userId,
               titleFr: `${baseTitle} - ${expectation.code}`,
-              titleEn: `${baseTitle} - ${expectation.code}`,
+              title: `${baseTitle} - ${expectation.code}`,
+              unitPlanId: 'temp', // Temporary unit plan ID - will be updated later
               date: lessonDate,
               duration,
               slotNumber: 0,
-              descriptionFr: `Lesson covering ${expectation.code}: ${expectation.description}`,
+              mindsOn: `Lesson covering ${expectation.code}: ${expectation.description}`,
               learningGoals: expectation.description,
-              successCriteria: 'Students will demonstrate understanding of the expectation',
-              assessmentStrategies: 'Observation and formative assessment',
-              status: 'draft',
+              assessmentNotes: 'Observation and formative assessment',
               expectations: {
                 create: {
                   expectationId: expectation.id,
@@ -448,8 +447,8 @@ router.post('/bulk-plan-lessons',
         message: `Created ${lessons.length} lesson plans`,
         lessons,
       });
-    } catch (error) {
-      logger.error('Error creating bulk lessons:', error);
+    } catch (error: unknown) {
+      logger.error('Error creating bulk lessons:', getErrorMessage(error));
       res.status(500).json({ error: 'Failed to create bulk lessons' });
     }
   }

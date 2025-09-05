@@ -297,7 +297,7 @@ return 'specific';
    */
   private extractStrandFromCode(code: string): string {
     const parts = code.split('.');
-    if (parts.length >= 2) {
+    if (parts.length >= 2 && parts[1]) {
       return parts[1];
     }
     return 'General';

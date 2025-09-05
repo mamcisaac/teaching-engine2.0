@@ -261,8 +261,10 @@ export class CurriculumStatsService extends BaseService {
             coverageByGradeAndStrand[exp.grade] = {};
           }
           if (exp.strand) {
-            coverageByGradeAndStrand[exp.grade][exp.strand] = 
-              (coverageByGradeAndStrand[exp.grade][exp.strand] || 0) + 1;
+            const gradeStrand = coverageByGradeAndStrand[exp.grade];
+            if (gradeStrand) {
+              gradeStrand[exp.strand] = (gradeStrand[exp.strand] || 0) + 1;
+            }
           }
 
           // By subject and grade

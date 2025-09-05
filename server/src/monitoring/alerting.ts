@@ -104,7 +104,7 @@ const alerts: Alert[] = [
     name: 'High Error Rate',
     condition: (): boolean => {
       const metrics = getMetrics();
-      const errors = metrics.counters.http_errors_total;
+      const errors = metrics.counters.http_errors_total ?? 0;
       const total = metrics.counters.http_requests_total || 1;
       const errorRate = (errors / total) * 100;
       return errorRate > 10;
@@ -179,8 +179,8 @@ return false;
     name: 'Low Cache Hit Rate',
     condition: (): boolean => {
       const metrics = getMetrics();
-      const hits = metrics.counters.cache_hits_total;
-      const misses = metrics.counters.cache_misses_total;
+      const hits = metrics.counters.cache_hits_total ?? 0;
+      const misses = metrics.counters.cache_misses_total ?? 0;
       const total = hits + misses;
       if (total < 100) {
 return false;
@@ -198,7 +198,7 @@ return false;
     name: 'High AI Operation Failures',
     condition: (): boolean => {
       const metrics = getMetrics();
-      const errors = metrics.counters.ai_operation_errors_total;
+      const errors = metrics.counters.ai_operation_errors_total ?? 0;
       const total = metrics.counters.ai_operations_total || 1;
       const errorRate = (errors / total) * 100;
       return errorRate > 20;
@@ -402,7 +402,7 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
 
   switch (alert.id) {
     case 'high_error_rate': {
-      const errors = metrics.counters.http_errors_total;
+      const errors = metrics.counters.http_errors_total ?? 0;
       const total = metrics.counters.http_requests_total || 1;
       context.errorRate = (errors / total) * 100;
       context.errorCount = errors;
@@ -450,8 +450,8 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
     }
 
     case 'low_cache_hit_rate': {
-      const hits = metrics.counters.cache_hits_total;
-      const misses = metrics.counters.cache_misses_total;
+      const hits = metrics.counters.cache_hits_total ?? 0;
+      const misses = metrics.counters.cache_misses_total ?? 0;
       const totalCache = hits + misses;
       context.hitRate = totalCache > 0 ? (hits / totalCache) * 100 : 0;
       context.hits = hits;
@@ -460,7 +460,7 @@ const gatherAlertContext = async (alert: Alert): Promise<AlertContext> => {
     }
 
     case 'high_ai_operation_failures': {
-      const aiErrors = metrics.counters.ai_operation_errors_total;
+      const aiErrors = metrics.counters.ai_operation_errors_total ?? 0;
       const aiTotal = metrics.counters.ai_operations_total || 1;
       context.errorRate = (aiErrors / aiTotal) * 100;
       context.errorCount = aiErrors;

@@ -69,7 +69,7 @@ export const arrayUtils = {
       return [];
     }
     if (arrays.length === 1) {
-      return arrays[0];
+      return arrays[0] ?? [];
     }
     
     return arrays.reduce((result, array) => result.filter(item => array.includes(item)));

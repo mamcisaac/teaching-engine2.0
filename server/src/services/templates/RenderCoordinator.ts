@@ -421,6 +421,7 @@ export class RenderCoordinator extends BaseService {
     let match;
     
     while ((match = variableRegex.exec(content)) !== null) {
+      if (!match[1]) continue;
       const variable = match[1].trim();
       if (!variable.startsWith('#') && !variable.startsWith('/') && 
           !variable.startsWith('else') && !variable.startsWith('this.')) {

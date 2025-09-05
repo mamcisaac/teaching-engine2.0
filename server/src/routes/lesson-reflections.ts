@@ -64,6 +64,11 @@ router.post('/:id/reflection',
       const lessonId = req.params.id;
       const userId = req.user!.id;
       const { note } = req.body;
+
+      if (!lessonId) {
+        res.status(400).json({ error: 'Lesson ID is required' });
+        return;
+      }
       
       // Handle both emoji and enum status values
       let status: ReflectionStatus;
@@ -128,11 +133,18 @@ router.get('/:id/reflection',
     }
 
     try {
+      const lessonId = req.params.id;
+      
+      if (!lessonId) {
+        res.status(400).json({ error: 'Lesson ID is required' });
+        return;
+      }
+      
       const reflection = await prisma.lessonReflection.findUnique({
         where: {
           userId_lessonId: {
             userId: req.user!.id,
-            lessonId: req.params.id
+            lessonId
           }
         }
       });
@@ -170,7 +182,14 @@ router.get('/daily/:date',
     }
 
     try {
-      const date = parseISO(req.params.date);
+      const dateParam = req.params.date;
+      
+      if (!dateParam) {
+        res.status(400).json({ error: 'Date parameter is required' });
+        return;
+      }
+      
+      const date = parseISO(dateParam);
       const dayStart = startOfDay(date);
       const dayEnd = endOfDay(date);
 
@@ -235,7 +254,14 @@ router.get('/summary/:date',
     }
 
     try {
-      const date = parseISO(req.params.date);
+      const dateParam = req.params.date;
+      
+      if (!dateParam) {
+        res.status(400).json({ error: 'Date parameter is required' });
+        return;
+      }
+      
+      const date = parseISO(dateParam);
       const dayStart = startOfDay(date);
       const dayEnd = endOfDay(date);
 
@@ -297,11 +323,18 @@ router.delete('/:id/reflection',
     }
 
     try {
+      const lessonId = req.params.id;
+      
+      if (!lessonId) {
+        res.status(400).json({ error: 'Lesson ID is required' });
+        return;
+      }
+      
       await prisma.lessonReflection.delete({
         where: {
           userId_lessonId: {
             userId: req.user!.id,
-            lessonId: req.params.id
+            lessonId
           }
         }
       });

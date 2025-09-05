@@ -208,7 +208,7 @@ export const importStudentsFromCSV = async (
  * Generate a student ID from name and index
  */
 function generateStudentId(firstName: string, lastName: string, index: number): string {
-  const initials = (firstName[0] + lastName[0]).toUpperCase();
+  const initials = ((firstName[0] || 'A') + (lastName[0] || 'A')).toUpperCase();
   const timestamp = Date.now().toString().slice(-4);
   return `${initials}${timestamp}${index.toString().padStart(2, '0')}`;
 }

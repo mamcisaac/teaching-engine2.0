@@ -112,7 +112,7 @@ export const getStudentsOptimized = async (userId: number, includeInactive = fal
         { firstName: 'asc' }
       ]
     }),
-    CACHE_CONFIGS.students
+    CACHE_CONFIGS.students || { keyPrefix: 'students', ttl: 300 }
   );
 };
 
@@ -163,7 +163,7 @@ export const getStudentArtifactsOptimized = async (
       orderBy: { dateCollected: 'desc' },
       ...(options.limit ? { take: options.limit } : {})
     }),
-    CACHE_CONFIGS.artifacts
+    CACHE_CONFIGS.artifacts || { keyPrefix: 'artifacts', ttl: 180 }
   );
 };
 
@@ -199,7 +199,7 @@ export const getStudentProgressOptimized = async (
       },
       orderBy: { lastAssessmentDate: 'desc' }
     }),
-    CACHE_CONFIGS.progress
+    CACHE_CONFIGS.progress || { keyPrefix: 'progress', ttl: 60 }
   );
 };
 
@@ -275,7 +275,7 @@ export const getClassAnalyticsOptimized = async (userId: number) => {
         lastUpdated: new Date().toISOString()
       };
     },
-    CACHE_CONFIGS.analytics
+    CACHE_CONFIGS.analytics || { keyPrefix: 'analytics', ttl: 600 }
   );
 };
 

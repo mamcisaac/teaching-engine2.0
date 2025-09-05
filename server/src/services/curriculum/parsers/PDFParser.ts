@@ -94,7 +94,7 @@ export class PDFParser extends CurriculumParser {
 
     // Look for grade
     const gradeMatch = text.match(/Grade\s*(\d+)/i);
-    if (gradeMatch) {
+    if (gradeMatch && gradeMatch[1]) {
       metadata.grade = parseInt(gradeMatch[1]);
     }
 
@@ -139,12 +139,14 @@ export class PDFParser extends CurriculumParser {
     let pageNumber = 1;
 
     for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
+      const currentLine = lines[i];
+      if (!currentLine) continue;
+      const line = currentLine.trim();
 
       // Check for page break
       if (line.includes('Page') && line.match(/\d+/)) {
         const match = line.match(/Page\s*(\d+)/i);
-        if (match) {
+        if (match && match[1]) {
           pageNumber = parseInt(match[1]);
         }
       }
@@ -237,12 +239,12 @@ export class PDFParser extends CurriculumParser {
 
         if (match.length >= 3) {
           // Pattern with code and description
-          code = match[1];
-          description = match[2];
+          code = match[1] || '';
+          description = match[2] || '';
         } else if (match.length >= 2) {
           // Pattern with just description
           code = `${strand}.${expectations.length + 1}`;
-          description = match[1];
+          description = match[1] || '';
         } else {
           continue;
         }
@@ -285,13 +287,13 @@ export class PDFParser extends CurriculumParser {
     // Pattern: Strand A: Number Sense
     const strandMatch = title.match(/Strand\s*([A-Z]):\s*(.+)/i);
     if (strandMatch) {
-      return strandMatch[2].trim();
+      return strandMatch[2]?.trim() || '';
     }
 
     // Pattern: A. Number Sense
     const letterMatch = title.match(/^([A-Z])\.\s*(.+)/);
     if (letterMatch) {
-      return letterMatch[2].trim();
+      return letterMatch[2]?.trim() || '';
     }
 
     // Check for known strand names

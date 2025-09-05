@@ -64,12 +64,12 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
     const [, areaCode, exchange, number] = naMatch;
 
     // Validate area code (cannot start with 0 or 1 in real North American system)
-    if (areaCode.startsWith('0') || areaCode.startsWith('1')) {
+    if (areaCode?.startsWith('0') || areaCode?.startsWith('1')) {
       errors.push('Invalid area code');
     }
 
     // Validate exchange (cannot start with 0 or 1 in real North American system)
-    if (exchange.startsWith('0') || exchange.startsWith('1')) {
+    if (exchange?.startsWith('0') || exchange?.startsWith('1')) {
       errors.push('Invalid exchange code');
     }
 
@@ -94,7 +94,7 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
   const intMatch = phoneWithoutExt.match(/^\+(\d{1,3})[-.\s]?(.+)/);
   if (intMatch) {
     const [, countryCode, restOfNumber] = intMatch;
-    const digits = restOfNumber.replace(/[^\d]/g, '');
+    const digits = (restOfNumber ?? '').replace(/[^\d]/g, '');
 
     if (digits.length >= 7 && digits.length <= 15) {
       return {
@@ -279,12 +279,12 @@ export function parseContactString(contactString: string): ContactValidationResu
   let phone: string | undefined;
   let email: string | undefined;
 
-  if (phoneMatch !== null) {
+  if (phoneMatch !== null && phoneMatch[1]) {
     phone = phoneMatch[1].trim();
     name = name.replace(phoneMatch[0], '').trim();
   }
 
-  if (emailMatch !== null) {
+  if (emailMatch !== null && emailMatch[1]) {
     email = emailMatch[1].trim();
     name = name.replace(emailMatch[0], '').trim();
   }
@@ -330,10 +330,10 @@ function formatBasicNumber(digits: string): string {
 export function extractExtension(phone: string): { phone: string; extension?: string } {
   const extMatch = phone.match(/(.+?)(?:\s*(?:ext\.?|extension|x)\s*(\d+))/i);
 
-  if (extMatch !== null) {
+  if (extMatch !== null && extMatch[1]) {
     return {
       phone: extMatch[1].trim(),
-      extension: extMatch[2],
+      extension: extMatch[2] || undefined,
     };
   }
 

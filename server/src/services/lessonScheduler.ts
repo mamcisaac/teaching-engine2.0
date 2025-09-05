@@ -88,8 +88,15 @@ export class LessonSchedulerService {
     
     for (let i = 0; i < unit.lessonPlans.length; i++) {
       const lesson = unit.lessonPlans[i];
+      if (!lesson) continue; // Skip if lesson is undefined
+      
       const dateIndex = i % distributionDates.length; // Cycle through dates if needed
       const scheduledDate = distributionDates[dateIndex];
+      
+      if (!scheduledDate) {
+        console.warn(`No date available for lesson ${lesson.id}`);
+        continue;
+      }
       
       updates.push({
         lessonId: lesson.id,
@@ -108,8 +115,8 @@ export class LessonSchedulerService {
       lessonsScheduled: updates.length,
       updates,
       dateRange: {
-        start: distributionDates[0],
-        end: distributionDates[distributionDates.length - 1]
+        start: distributionDates[0] || '',
+        end: distributionDates[distributionDates.length - 1] || ''
       }
     };
   }
@@ -333,7 +340,7 @@ export class LessonSchedulerService {
       where: {
         userId,
         date: {
-          not: null
+          not: null as any
         }
       }
     });

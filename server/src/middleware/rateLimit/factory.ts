@@ -149,7 +149,7 @@ export function createDynamicRateLimiter(
   customOptions?: Partial<Options>,
 ): RateLimitRequestHandler {
   return rateLimit({
-    windowMs: rateLimitConfigs[configName].windowMs,
+    windowMs: rateLimitConfigs[configName]?.windowMs ?? 60000,
     standardHeaders: true,
     legacyHeaders: false,
 
@@ -175,7 +175,7 @@ export function createDynamicRateLimiter(
     // Key generator
     keyGenerator: (req) => {
       const config = rateLimitConfigs[configName];
-      if (config.keyGenerator === 'user' && req.user?.id) {
+      if (config?.keyGenerator === 'user' && req.user?.id) {
         return `user:${req.user.id}`;
       }
       return req.ip ?? 'unknown';

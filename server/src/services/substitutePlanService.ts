@@ -13,14 +13,7 @@ function escapeHtml(text: string | null | undefined): string {
     '"': '&quot;',
     "'": '&#039;'
   };
-  return text.replace(/[&<>"']/g, (m) => map[m]);
-}
-
-interface LessonPlanDetails {
-  learningGoals?: string;
-  mindsOnActivities?: string;
-  actionActivities?: string;
-  consolidationActivities?: string;
+  return text.replace(/[&<>"']/g, (m) => map[m as keyof typeof map] || m);
 }
 
 export interface ScheduleItem {
@@ -324,9 +317,9 @@ export class SubstitutePlanService {
   static _getTimeSlot(index: number): string {
     const slots = ['9:15 AM', '10:45 AM', '1:00 PM'];
     if (index < 0 || index >= slots.length) {
-      return slots[0];
+      return slots[0] || '9:15 AM';
     }
-    return slots[index];
+    return slots[index] || '9:15 AM';
   }
 
   static _formatLessonInstructions(lessonPlan: any): string {

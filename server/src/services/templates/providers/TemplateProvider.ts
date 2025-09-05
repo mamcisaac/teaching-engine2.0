@@ -121,6 +121,7 @@ export abstract class TemplateProvider {
     let match;
 
     while ((match = regex.exec(content)) !== null) {
+      if (!match[1]) continue;
       const variable = match[1].trim();
       if (!variables.includes(variable)) {
         variables.push(variable);

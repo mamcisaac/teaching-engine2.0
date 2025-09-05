@@ -296,7 +296,12 @@ router.get('/week/:weekStart/state', async (req: AuthenticatedRequest, res: Resp
     if (!userId) {
 return;
 }
-    const weekStart = new Date(req.params.weekStart);
+    const weekStartParam = req.params.weekStart;
+    if (!weekStartParam) {
+      res.status(400).json({ error: 'Week start date is required' });
+      return;
+    }
+    const weekStart = new Date(weekStartParam);
 
     if (isNaN(weekStart.getTime())) {
       res.status(400).json({ error: 'Invalid week start date' });

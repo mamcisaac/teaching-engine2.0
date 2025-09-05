@@ -658,6 +658,10 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
         return;
       }
       const { id: unitPlanId } = req.params;
+      if (!unitPlanId) {
+        res.status(400).json({ error: 'Unit plan ID is required' });
+        return;
+      }
       const parsedData = resourceSchema.parse(req.body);
       const resourceData: ResourceData = {
         title: parsedData.name,
@@ -686,6 +690,10 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
         return;
       }
       const { id: unitPlanId, resourceId } = req.params;
+      if (!unitPlanId || !resourceId) {
+        res.status(400).json({ error: 'Unit plan ID and resource ID are required' });
+        return;
+      }
 
       const success = await this.unitPlanService.removeResource(unitPlanId, resourceId, userId);
 

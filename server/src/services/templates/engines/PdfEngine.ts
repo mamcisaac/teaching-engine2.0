@@ -209,6 +209,9 @@ export class PdfEngine extends RenderEngine {
   mergePdfs(pdfBuffers: Buffer[]): Buffer {
     // This would require a PDF manipulation library like pdf-lib
     // For now, return the first buffer
-    return pdfBuffers[0];
+    if (pdfBuffers.length === 0) {
+      throw new Error('No PDF buffers provided for merging');
+    }
+    return pdfBuffers[0] || Buffer.alloc(0);
   }
 }

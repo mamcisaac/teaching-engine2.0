@@ -76,6 +76,9 @@ export class CSVParser extends CurriculumParser {
 
     // Extract metadata from first row or headers
     const [firstRow] = records;
+    if (!firstRow) {
+      throw new Error('CSV file appears to be empty or malformed');
+    }
     const grade = this.extractGrade(firstRow);
     const subject = this.extractSubject(firstRow);
 
@@ -314,7 +317,7 @@ return String(row['Subject Area']);
    */
   private extractStrandFromCode(code: string): string {
     const parts = code.split('.');
-    if (parts.length >= 2) {
+    if (parts.length >= 2 && parts[1]) {
       return parts[1];
     }
     return 'General';

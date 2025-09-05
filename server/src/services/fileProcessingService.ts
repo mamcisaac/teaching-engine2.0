@@ -202,8 +202,8 @@ export class FileProcessingService {
               if (videoStream.r_frame_rate) {
                 const parts = videoStream.r_frame_rate.split('/');
                 if (parts.length === 2) {
-                  const numerator = parseInt(parts[0], 10);
-                  const denominator = parseInt(parts[1], 10);
+                  const numerator = parseInt(parts[0] || '0', 10);
+                  const denominator = parseInt(parts[1] || '1', 10);
                   metadata.frameRate = denominator > 0 ? numerator / denominator : undefined;
                 } else {
                   metadata.frameRate = parseFloat(videoStream.r_frame_rate);

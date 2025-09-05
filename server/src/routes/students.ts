@@ -222,7 +222,12 @@ router.get('/:id/quota',
     }
 
     try {
-      const quota = await checkStudentQuota(req.params.id, req.user!.id);
+      const studentId = req.params.id;
+      if (!studentId) {
+        res.status(400).json({ error: 'Student ID is required' });
+        return;
+      }
+      const quota = await checkStudentQuota(studentId, req.user!.id);
       
       res.json({
         ...quota,

@@ -173,7 +173,7 @@ router.post('/update',
       const { studentId, outcomeId, currentLevel, areasForGrowth, strengths, teacherNotes, strongestEvidence } = req.body as MasteryUpdateRequest;
 
       // Validate student access
-      if (!(await validateStudentAccess(studentId, userId))) {
+      if (!studentId || !(await validateStudentAccess(studentId, userId))) {
         res.status(404).json({ error: 'Student not found or access denied' });
         return;
       }
@@ -420,7 +420,7 @@ router.get('/student/:studentId',
       const { subject, includeArchived = 'false' } = req.query;
 
       // Validate student access
-      if (!(await validateStudentAccess(studentId, userId))) {
+      if (!studentId || !(await validateStudentAccess(studentId, userId))) {
         res.status(404).json({ error: 'Student not found or access denied' });
         return;
       }
@@ -534,7 +534,7 @@ router.get('/student/:studentId',
           masteryStats,
           subjectCount: Object.keys(progressBySubject).length,
           lastUpdated: progressRecords.length > 0 
-            ? progressRecords.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())[0].updatedAt
+            ? progressRecords.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())[0]?.updatedAt || null
             : null
         },
         progressBySubject: Object.values(progressBySubject)
@@ -562,7 +562,7 @@ router.get('/overview/:studentId',
       const { subject, includeArchived = 'false' } = req.query;
 
       // Validate student access
-      if (!(await validateStudentAccess(studentId, userId))) {
+      if (!studentId || !(await validateStudentAccess(studentId, userId))) {
         res.status(404).json({ error: 'Student not found or access denied' });
         return;
       }
@@ -676,7 +676,7 @@ router.get('/overview/:studentId',
           masteryStats,
           subjectCount: Object.keys(progressBySubject).length,
           lastUpdated: progressRecords.length > 0 
-            ? progressRecords.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())[0].updatedAt
+            ? progressRecords.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())[0]?.updatedAt || null
             : null
         },
         progressBySubject: Object.values(progressBySubject)

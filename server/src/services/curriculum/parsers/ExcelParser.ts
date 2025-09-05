@@ -27,6 +27,10 @@ export class ExcelParser extends CurriculumParser {
       ? 'Expectations'
       : workbook.SheetNames[0];
 
+    if (!sheetName) {
+      throw new Error('No valid sheet found in workbook');
+    }
+
     const worksheet = workbook.Sheets[sheetName];
 
     if (!worksheet) {
@@ -112,7 +116,7 @@ export class ExcelParser extends CurriculumParser {
     if (!metadata.grade || !metadata.subject) {
       for (const sheetName of workbook.SheetNames) {
         const gradeMatch = sheetName.match(/Grade\s*(\d+)/i);
-        if (gradeMatch) {
+        if (gradeMatch && gradeMatch[1]) {
           metadata.grade = parseInt(gradeMatch[1]);
         }
 
@@ -248,13 +252,13 @@ export class ExcelParser extends CurriculumParser {
    */
   private extractStrandFromCode(code: string): string {
     const parts = code.split('.');
-    if (parts.length >= 2) {
+    if (parts.length >= 2 && parts[1]) {
       return parts[1];
     }
 
     // Try to extract from code pattern
     const match = code.match(/^[A-Z0-9]+\.([A-Z]+)/);
-    if (match) {
+    if (match && match[1]) {
       return match[1];
     }
 

@@ -81,7 +81,7 @@ export function extractTokenFromHeader(authHeader?: string): string | null {
     return null;
   }
 
-  return parts[1];
+  return parts[1] ?? null;
 }
 
 /**

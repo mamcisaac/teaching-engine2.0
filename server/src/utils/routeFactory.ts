@@ -112,7 +112,12 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   // GET - Get single by ID
   router.get('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id, 10);
+      const idParam = req.params.id;
+      if (!idParam) {
+        res.status(400).json({ message: 'ID parameter is required' });
+        return;
+      }
+      const id = parseInt(idParam, 10);
       if (isNaN(id)) {
         res.status(400).json({ message: 'Invalid ID format' });
         return;
@@ -174,7 +179,12 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   // PUT - Update by ID
   router.put('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id, 10);
+      const idParam = req.params.id;
+      if (!idParam) {
+        res.status(400).json({ message: 'ID parameter is required' });
+        return;
+      }
+      const id = parseInt(idParam, 10);
       if (isNaN(id)) {
         res.status(400).json({ message: 'Invalid ID format' });
         return;
@@ -224,7 +234,12 @@ export function createCrudRoutes<T extends BaseModel = BaseModel>(
   // DELETE - Delete by ID
   router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
     try {
-      const id = parseInt(req.params.id, 10);
+      const idParam = req.params.id;
+      if (!idParam) {
+        res.status(400).json({ message: 'ID parameter is required' });
+        return;
+      }
+      const id = parseInt(idParam, 10);
       if (isNaN(id)) {
         res.status(400).json({ message: 'Invalid ID format' });
         return;

@@ -214,6 +214,10 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response) =
 router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
+    if (!importId) {
+      res.status(400).json({ error: 'Import ID is required' });
+      return;
+    }
 
     if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({
@@ -246,6 +250,10 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
 router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => {
   try {
     const importId = req.params.id;
+    if (!importId) {
+      res.status(400).json({ error: 'Import ID is required' });
+      return;
+    }
 
     if (req.user?.id === null || req.user?.id === undefined || req.user.id === 0) {
       res.status(401).json({
@@ -321,6 +329,11 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
 
+    if (!importId) {
+      res.status(400).json({ error: 'Import ID is required' });
+      return;
+    }
+
     if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
@@ -381,6 +394,12 @@ router.post('/start', async (req: Request, res: Response): Promise<void> => {
 router.get('/:importId/progress', async (req: Request, res: Response): Promise<void> => {
   try {
     const { importId } = req.params;
+    
+    if (!importId) {
+      res.status(400).json({ error: 'Import ID is required' });
+      return;
+    }
+    
     const progress = await curriculumImportService.getImportProgress(importId);
 
     if (progress === null || progress === undefined) {
@@ -400,6 +419,12 @@ router.get('/:importId/progress', async (req: Request, res: Response): Promise<v
 router.post('/:importId/cancel', async (req: Request, res: Response): Promise<void> => {
   try {
     const { importId } = req.params;
+    
+    if (!importId) {
+      res.status(400).json({ error: 'Import ID is required' });
+      return;
+    }
+    
     const success = await curriculumImportService.cancelImport(importId);
 
     if (!success.success) {
@@ -419,6 +444,11 @@ router.post('/:importId/cancel', async (req: Request, res: Response): Promise<vo
 router.post('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const importId = req.params.id;
+
+    if (!importId) {
+      res.status(400).json({ error: 'Import ID is required' });
+      return;
+    }
 
     if (req.user?.id === null || req.user?.id === undefined) {
       res.status(401).json({

@@ -2,6 +2,7 @@ import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, Vi
 import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
 
+import { QuickNoteButton } from '../components/anecdotal-notes/QuickNoteButton';
 import { studentsApi, type Student } from '../services/api/students';
 
 
@@ -367,6 +368,16 @@ export function StudentsPage(): React.ReactElement {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
+                      <QuickNoteButton
+                        studentId={student.id}
+                        studentName={`${student.firstName} ${student.lastName}`}
+                        variant="icon"
+                        onNoteSaved={() => {
+                          toast.success(`Note saved for ${student.firstName}`);
+                          // Refresh students list to get updated assessment count
+                          loadStudents();
+                        }}
+                      />
                       <button
                         onClick={() => openEditModal(student)}
                         className="p-1 text-blue-600 hover:bg-blue-50 rounded"
@@ -412,16 +423,26 @@ export function StudentsPage(): React.ReactElement {
                 {student.notes && <p className="italic">{student.notes}</p>}
               </div>
               
-              <div className="mt-4 flex gap-2">
+              <div className="mt-4 flex gap-2 flex-wrap">
+                <QuickNoteButton
+                  studentId={student.id}
+                  studentName={`${student.firstName} ${student.lastName}`}
+                  variant="compact"
+                  onNoteSaved={() => {
+                    toast.success(`Note saved for ${student.firstName}`);
+                    // Refresh students list to get updated assessment count
+                    loadStudents();
+                  }}
+                />
                 <button
                   onClick={() => openEditModal(student)}
-                  className="flex-1 px-3 py-1 text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
+                  className="flex-1 px-3 py-1 text-blue-600 border border-blue-600 rounded hover:bg-blue-50 min-w-[60px]"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleArchiveStudent(student)}
-                  className="flex-1 px-3 py-1 text-gray-600 border border-gray-600 rounded hover:bg-gray-50"
+                  className="flex-1 px-3 py-1 text-gray-600 border border-gray-600 rounded hover:bg-gray-50 min-w-[70px]"
                 >
                   Archive
                 </button>
