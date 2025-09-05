@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { logger } from '../logger';
 
 const prisma = new PrismaClient();
 
@@ -66,7 +67,7 @@ const levels = ['NOT_YET', 'APPROACHING', 'MEETING', 'EXCEEDING'];
 const evidenceTypes = ['OBSERVATION', 'CONVERSATION', 'PRODUCT'];
 
 async function seedAssessmentData() {
-  console.log('🌱 Seeding assessment data for Grade 1 French Immersion...');
+  logger.info('🌱 Seeding assessment data for Grade 1 French Immersion...');
 
   try {
     // Clear existing data
@@ -88,7 +89,7 @@ async function seedAssessmentData() {
       }
     });
 
-    console.log('✅ Created teacher: Emily McIsaac');
+    logger.info('✅ Created teacher: Emily McIsaac');
 
     // Create students
     const createdStudents = [];
@@ -105,7 +106,7 @@ async function seedAssessmentData() {
       createdStudents.push(created);
     }
 
-    console.log(`✅ Created ${createdStudents.length} students`);
+    logger.info(`✅ Created ${createdStudents.length} students`);
 
     // Generate assessments for each student
     const assessments = [];
@@ -119,17 +120,17 @@ async function seedAssessmentData() {
       for (let i = 0; i < assessmentCount; i++) {
         const randomExpectation = expectations[Math.floor(Math.random() * expectations.length)];
         if (!randomExpectation) {
-          console.warn('No expectations found, skipping assessment creation');
+          logger.warn('No expectations found, skipping assessment creation');
           continue;
         }
         const randomLevel = levels[Math.floor(Math.random() * levels.length)];
         if (!randomLevel) {
-          console.warn('No levels found, skipping assessment creation');
+          logger.warn('No levels found, skipping assessment creation');
           continue;
         }
         const randomEvidenceType = evidenceTypes[Math.floor(Math.random() * evidenceTypes.length)];
         if (!randomEvidenceType) {
-          console.warn('No evidence types found, skipping assessment creation');
+          logger.warn('No evidence types found, skipping assessment creation');
           continue;
         }
         
@@ -158,14 +159,14 @@ async function seedAssessmentData() {
       }
     }
 
-    console.log(`✅ Created ${assessments.length} assessments`);
+    logger.info(`✅ Created ${assessments.length} assessments`);
 
     // Create some sample artifacts
     const artifacts = [];
     for (let i = 0; i < 20; i++) {
       const randomStudent = createdStudents[Math.floor(Math.random() * createdStudents.length)];
       if (!randomStudent) {
-        console.warn('No students found, skipping artifact creation');
+        logger.warn('No students found, skipping artifact creation');
         continue;
       }
       const randomAssessment = assessments.find(a => a.studentId === randomStudent.id);
@@ -189,14 +190,14 @@ async function seedAssessmentData() {
       artifacts.push(artifact);
     }
 
-    console.log(`✅ Created ${artifacts.length} artifacts`);
+    logger.info(`✅ Created ${artifacts.length} artifacts`);
 
     // Create some reports
     const reports = [];
     for (let i = 0; i < 5; i++) {
       const randomStudent = createdStudents[Math.floor(Math.random() * createdStudents.length)];
       if (!randomStudent) {
-        console.warn('No students found, skipping report creation');
+        logger.warn('No students found, skipping report creation');
         continue;
       }
       
@@ -223,22 +224,22 @@ async function seedAssessmentData() {
       reports.push(report);
     }
 
-    console.log(`✅ Created ${reports.length} reports`);
+    logger.info(`✅ Created ${reports.length} reports`);
 
-    console.log('');
-    console.log('🎉 Assessment data seeding complete!');
-    console.log('');
-    console.log('Summary:');
-    console.log(`  👩‍🏫 Teacher: Emily McIsaac`);
-    console.log(`  👥 Students: ${createdStudents.length}`);
-    console.log(`  📊 Assessments: ${assessments.length}`);
-    console.log(`  📁 Artifacts: ${artifacts.length}`);
-    console.log(`  📄 Reports: ${reports.length}`);
-    console.log('');
-    console.log('You can now run the E2E tests with: npm run test:e2e');
+    logger.info('');
+    logger.info('🎉 Assessment data seeding complete!');
+    logger.info('');
+    logger.info('Summary:');
+    logger.info(`  👩‍🏫 Teacher: Emily McIsaac`);
+    logger.info(`  👥 Students: ${createdStudents.length}`);
+    logger.info(`  📊 Assessments: ${assessments.length}`);
+    logger.info(`  📁 Artifacts: ${artifacts.length}`);
+    logger.info(`  📄 Reports: ${reports.length}`);
+    logger.info('');
+    logger.info('You can now run the E2E tests with: npm run test:e2e');
 
   } catch (error: unknown) {
-    console.error('❌ Error seeding assessment data:', error);
+    logger.error({ error }, '❌ Error seeding assessment data:');
     throw error;
   } finally {
     await prisma.$disconnect();
@@ -248,6 +249,6 @@ async function seedAssessmentData() {
 // Run the seed function
 seedAssessmentData()
   .catch((error) => {
-    console.error('Failed to seed assessment data:', error);
+    logger.error({ error }, 'Failed to seed assessment data:');
     process.exit(1);
   });

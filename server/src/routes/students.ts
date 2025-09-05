@@ -1,16 +1,19 @@
+import { logger } from '../logger';
 /**
  * Student Management API Routes
  * Includes CSV bulk import for classroom setup
  */
 
-import { Router, Request, Response } from 'express';
+import { PrismaClient } from '@teaching-engine/database';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
 import { body, param, validationResult } from 'express-validator';
 import multer from 'multer';
-import { PrismaClient } from '@teaching-engine/database';
-import { importStudentsFromCSV, validateCSVFormat, generateCSVTemplate, exportStudentsToCSV } from '../services/csvImport';
-import { checkClassQuota, checkStudentQuota, formatBytes } from '../services/quotaManager';
+
 import { bulkOperationRateLimit, artifactViewRateLimit } from '../middleware/rateLimit/artifactRateLimit';
+import { importStudentsFromCSV, validateCSVFormat, generateCSVTemplate, exportStudentsToCSV } from '../services/csvImport';
 import { getStudentsOptimized, invalidateUserCache } from '../services/performanceOptimizer';
+import { checkClassQuota, checkStudentQuota, formatBytes } from '../services/quotaManager';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -77,7 +80,7 @@ router.get('/',
         total: students.length
       });
     } catch (error: unknown) {
-      console.error('Failed to fetch students:', error);
+      logger.error({ error }, 'Failed to fetch students:');
       res.status(500).json({ error: 'Failed to fetch students' });
     }
   }
@@ -138,7 +141,7 @@ router.post('/import/csv',
       });
 
     } catch (error: unknown) {
-      console.error('CSV import failed:', error);
+      logger.error({ error }, 'CSV import failed:');
       res.status(500).json({ error: 'CSV import failed' });
     }
   }
@@ -158,7 +161,7 @@ router.get('/template/csv',
       res.setHeader('Content-Disposition', 'attachment; filename="student_import_template.csv"');
       res.send(template);
     } catch (error: unknown) {
-      console.error('Failed to generate template:', error);
+      logger.error({ error }, 'Failed to generate template:');
       res.status(500).json({ error: 'Failed to generate template' });
     }
   }
@@ -183,7 +186,7 @@ router.get('/export/csv',
       res.setHeader('Content-Disposition', `attachment; filename="students_${new Date().toISOString().split('T')[0]}.csv"`);
       res.send(csv);
     } catch (error: unknown) {
-      console.error('Failed to export students:', error);
+      logger.error({ error }, 'Failed to export students:');
       res.status(500).json({ error: 'Failed to export students' });
     }
   }
@@ -220,7 +223,7 @@ router.get('/quota/report',
         }))
       });
     } catch (error: unknown) {
-      console.error('Failed to get quota report:', error);
+      logger.error({ error }, 'Failed to get quota report:');
       res.status(500).json({ error: 'Failed to get quota report' });
     }
   }
@@ -263,7 +266,7 @@ router.get('/:id/quota',
         }))
       });
     } catch (error: unknown) {
-      console.error('Failed to get student quota:', error);
+      logger.error({ error }, 'Failed to get student quota:');
       if ((error as Error).message.includes('not found')) {
         res.status(404).json({ error: 'Student not found' });
       } else {
@@ -325,7 +328,7 @@ router.post('/',
         createdAt: student.createdAt
       });
     } catch (error: unknown) {
-      console.error('Failed to create student:', error);
+      logger.error({ error }, 'Failed to create student:');
       res.status(500).json({ error: 'Failed to create student' });
     }
   }

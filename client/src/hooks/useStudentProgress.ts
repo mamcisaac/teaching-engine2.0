@@ -4,6 +4,7 @@
  */
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { apiClient } from '../api/core/client';
 import type {
   QuickProgressData,
@@ -185,12 +186,12 @@ export function useStudentProgress(studentId: string, options: ProgressReportOpt
       let summary = `${studentName} `;
       
       if (strengths.length > 0) {
-        summary += `shows strength in ${strengths.slice(0, 2).map(s => s.expectation).join(' and ')}`;
+        summary += `shows strength in ${strengths.slice(0, 2).map((s: { expectation: string }) => s.expectation).join(' and ')}`;
       }
       
       if (growthAreas.length > 0) {
         summary += strengths.length > 0 ? ', and is ' : 'is ';
-        summary += `working on ${growthAreas.slice(0, 2).map(g => g.expectation).join(' and ')}`;
+        summary += `working on ${growthAreas.slice(0, 2).map((g: { expectation: string }) => g.expectation).join(' and ')}`;
       }
       
       summary += '.';

@@ -1,11 +1,14 @@
+import { logger } from '../logger';
 /**
  * Lesson Completion API Routes
  * Tracks teacher lesson completion status for progress monitoring
  */
 
-import { Router, Request, Response } from 'express';
-import { body, param, query, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { body, param, query, validationResult } from 'express-validator';
+
 import { LessonCompletionTracker } from '../services/lessonCompletionTracker';
 
 const router = Router();
@@ -88,7 +91,7 @@ router.get('/',
         total: completions.length
       });
     } catch (error: unknown) {
-      console.error('Failed to fetch lesson completions:', error);
+      logger.error({ error }, 'Failed to fetch lesson completions:');
       res.status(500).json({ error: 'Failed to fetch lesson completions' });
     }
   }
@@ -146,7 +149,7 @@ router.get('/by-date/:date',
         date: req.params.date
       });
     } catch (error: unknown) {
-      console.error('Failed to fetch lesson completions by date:', error);
+      logger.error({ error }, 'Failed to fetch lesson completions by date:');
       res.status(500).json({ error: 'Failed to fetch lesson completions' });
     }
   }
@@ -184,7 +187,7 @@ router.get('/progress',
 
       res.json(progress);
     } catch (error: unknown) {
-      console.error('Failed to fetch lesson progress:', error);
+      logger.error({ error }, 'Failed to fetch lesson progress:');
       res.status(500).json({ error: 'Failed to fetch lesson progress' });
     }
   }
@@ -266,7 +269,7 @@ router.post('/',
 
       res.status(201).json(completion);
     } catch (error: unknown) {
-      console.error('Failed to create lesson completion:', error);
+      logger.error({ error }, 'Failed to create lesson completion:');
       res.status(500).json({ error: 'Failed to mark lesson as completed' });
     }
   }
@@ -343,7 +346,7 @@ router.put('/:lessonId',
 
       res.json(updatedCompletion);
     } catch (error: unknown) {
-      console.error('Failed to update lesson completion:', error);
+      logger.error({ error }, 'Failed to update lesson completion:');
       res.status(500).json({ error: 'Failed to update lesson completion' });
     }
   }
@@ -398,7 +401,7 @@ router.delete('/:lessonId',
 
       res.status(204).send();
     } catch (error: unknown) {
-      console.error('Failed to delete lesson completion:', error);
+      logger.error({ error }, 'Failed to delete lesson completion:');
       res.status(500).json({ error: 'Failed to mark lesson as incomplete' });
     }
   }

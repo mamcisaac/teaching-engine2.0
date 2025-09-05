@@ -1,4 +1,6 @@
-import express, { type Request, Response, NextFunction } from 'express';
+import type { Response, NextFunction, Request } from 'express';
+import type express from 'express';
+
 import { logger } from '../logger';
 
 /**

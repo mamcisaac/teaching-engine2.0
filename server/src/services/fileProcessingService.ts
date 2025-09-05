@@ -6,13 +6,16 @@
  * Not a placeholder that returns fake data
  */
 
-import path from 'path';
-import sharp from 'sharp';
-import ffmpeg from 'fluent-ffmpeg';
+import crypto from 'crypto';
 import { promises as fs } from 'fs';
 import os from 'os';
-import crypto from 'crypto';
+import path from 'path';
+
 import { fileTypeFromBuffer } from 'file-type';
+import ffmpeg from 'fluent-ffmpeg';
+import sharp from 'sharp';
+
+import { logger } from '../logger';
 import { getStorageService } from './storage';
 
 export interface FileMetadata {
@@ -56,7 +59,7 @@ export class FileProcessingService {
     try {
       await fs.mkdir(this.tempDir, { recursive: true });
     } catch (error: unknown) {
-      console.error('Failed to create temp directory:', error);
+      logger.error({ error }, 'Failed to create temp directory:');
     }
   }
 
@@ -97,7 +100,7 @@ export class FileProcessingService {
 
     } catch (error: unknown) {
       metadata.processingError = (error as Error).message;
-      console.error('File processing error:', error);
+      logger.error({ error }, 'File processing error:');
     }
 
     return metadata;
@@ -166,7 +169,7 @@ export class FileProcessingService {
       };
       
     } catch (error: unknown) {
-      console.error('Image processing failed:', error);
+      logger.error({ error }, 'Image processing failed:');
       throw error;
     }
   }
@@ -274,7 +277,7 @@ export class FileProcessingService {
       };
       
     } catch (error: unknown) {
-      console.error('Video processing failed:', error);
+      logger.error({ error }, 'Video processing failed:');
       throw error;
     } finally {
       // Cleanup temp files
@@ -282,7 +285,7 @@ export class FileProcessingService {
         await fs.unlink(tempFilePath);
         await fs.unlink(thumbnailPath).catch(() => {}); // Ignore if doesn't exist
       } catch (err) {
-        console.warn('Failed to clean up temp files:', err);
+        logger.warn({ error: err }, 'Failed to clean up temp files:');
       }
     }
   }
@@ -329,14 +332,14 @@ export class FileProcessingService {
       });
       
     } catch (error: unknown) {
-      console.error('Audio processing failed:', error);
+      logger.error({ error }, 'Audio processing failed:');
       throw error;
     } finally {
       // Cleanup temp file
       try {
         await fs.unlink(tempFilePath);
       } catch (err) {
-        console.warn('Failed to clean up temp file:', err);
+        logger.warn({ error: err }, 'Failed to clean up temp file:');
       }
     }
   }
@@ -361,7 +364,7 @@ export class FileProcessingService {
       }
       // Other document types can be handled here
     } catch (error: unknown) {
-      console.warn('Document processing failed:', error);
+      logger.warn({ error }, 'Document processing failed:');
       // Non-critical error, continue without document metadata
     }
   }
@@ -469,7 +472,7 @@ export class FileProcessingService {
         });
         
         if (existing) {
-          console.log(`Duplicate file detected for student ${studentId}: ${existing.fileName}`);
+          logger.info(`Duplicate file detected for student ${studentId}: ${existing.fileName}`);
           return {
             isDuplicate: true,
             existingArtifact: {
@@ -485,7 +488,7 @@ export class FileProcessingService {
         await prisma.$disconnect();
       }
     } catch (error: unknown) {
-      console.error('Duplicate check failed:', error);
+      logger.error({ error }, 'Duplicate check failed:');
       // On error, allow upload (fail open) but log the issue
       return { isDuplicate: false };
     }
@@ -609,7 +612,7 @@ export class FileProcessingService {
         }))
       };
     } catch (error: unknown) {
-      console.error('Failed to get processing stats:', error);
+      logger.error({ error }, 'Failed to get processing stats:');
       // Return zeros on error rather than crashing
       return {
         totalFilesProcessed: 0,
@@ -646,7 +649,7 @@ export class FileProcessingService {
 
       return deletedCount;
     } catch (error: unknown) {
-      console.error('Temp file cleanup failed:', error);
+      logger.error({ error }, 'Temp file cleanup failed:');
       return 0;
     }
   }

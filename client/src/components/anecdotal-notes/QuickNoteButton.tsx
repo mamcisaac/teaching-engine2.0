@@ -12,9 +12,10 @@
 import { StickyNote, X, Plus } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 
-import { QuickNoteEntry } from './QuickNoteEntry';
 import type { NoteContext } from '../../utils/anecdotalNotes';
 import { cn } from '../../utils/cn';
+
+import { QuickNoteEntry } from './QuickNoteEntry';
 
 interface QuickNoteButtonProps {
   studentId: string;
@@ -155,6 +156,15 @@ export const QuickNoteButton: React.FC<QuickNoteButtonProps> = ({
           <div
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={handleModalClose}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleModalClose();
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label="Close modal"
           />
 
           {/* Modal Content - Mobile optimized */}
@@ -222,7 +232,6 @@ export const QuickNoteButton: React.FC<QuickNoteButtonProps> = ({
                 context={context}
                 placeholder={`What did you observe about ${studentName}?`}
                 rows={4}
-                autoFocus={true}
                 onSave={handleNoteSaved}
               />
               

@@ -341,6 +341,13 @@ export function SimpleCalendarPage(): React.ReactElement {
                     navigate(`/planner/today?date=${dateParam}`);
                   }
                 }}
+                onKeyDown={(e) => {
+                  if (dayType === 'school' && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    const dateParam = format(day, 'yyyy-MM-dd');
+                    navigate(`/planner/today?date=${dateParam}`);
+                  }
+                }}
                 onMouseOver={(e) => {
                   if (dayType === 'school') {
                     e.currentTarget.style.transform = 'scale(1.02)';
@@ -351,6 +358,19 @@ export function SimpleCalendarPage(): React.ReactElement {
                     e.currentTarget.style.transform = 'scale(1)';
                   }
                 }}
+                onFocus={(e) => {
+                  if (dayType === 'school') {
+                    e.currentTarget.style.transform = 'scale(1.02)';
+                  }
+                }}
+                onBlur={(e) => {
+                  if (dayType === 'school') {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }
+                }}
+                role={dayType === 'school' ? 'button' : undefined}
+                tabIndex={dayType === 'school' ? 0 : undefined}
+                aria-label={dayType === 'school' ? `View day plan for ${format(day, 'MMMM d, yyyy')}` : undefined}
               >
                 <div style={{
                   fontSize: '16px',

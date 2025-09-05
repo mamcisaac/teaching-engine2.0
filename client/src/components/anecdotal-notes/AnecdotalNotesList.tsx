@@ -10,7 +10,7 @@
  * - Virtual scrolling for performance
  */
 
-import { Search, Calendar, BookOpen, Filter, StickyNote, Clock } from 'lucide-react';
+import { Search, BookOpen, StickyNote, Clock } from 'lucide-react';
 import React, { useState, useMemo } from 'react';
 
 import { useAnecdotalNotes } from '../../hooks/useAnecdotalNotes';

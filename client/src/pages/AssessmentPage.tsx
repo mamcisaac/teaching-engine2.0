@@ -4,7 +4,6 @@ import {
   DocumentTextIcon,
   CameraIcon,
   ClipboardDocumentCheckIcon,
-  ChartBarIcon,
   PlusIcon,
   CheckCircleIcon,
   XCircleIcon,
@@ -69,7 +68,7 @@ export function AssessmentPage(): React.ReactElement {
     return saved ? JSON.parse(saved) : [];
   });
   
-  const [students, setStudents] = useState<Student[]>(() => {
+  const [students, _setStudents] = useState<Student[]>(() => {
     const saved = localStorage.getItem('assessment-students');
     return saved ? JSON.parse(saved) : [];
   });

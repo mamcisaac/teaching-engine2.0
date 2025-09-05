@@ -119,7 +119,7 @@ export function verifyToken(token: string): TokenPayload | { error: string } | n
         {
           tokenStart: `${token.substring(0, 20)}...`,
           jwtSecret: JWT_SECRET && JWT_SECRET !== '' ? 'present' : 'missing',
-          jwtSecretLength: JWT_SECRET?.length ?? 0,
+          jwtSecretLength: JWT_SECRET.length ?? 0,
         },
         'Verifying token',
       );

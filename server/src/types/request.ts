@@ -8,14 +8,14 @@ import type { ParsedQs } from 'qs';
 /**
  * Generic typed request interface with body type
  */
-export interface TypedRequest<T = Record<string, unknown>> extends Request<ParamsDictionary, any, T> {
+export interface TypedRequest<T = Record<string, unknown>> extends Request<ParamsDictionary, unknown, T> {
   body: T;
 }
 
 /**
  * Request with typed query parameters
  */
-export interface TypedQueryRequest<T extends ParsedQs = ParsedQs> extends Request<ParamsDictionary, any, any, T> {
+export interface TypedQueryRequest<T extends ParsedQs = ParsedQs> extends Request<ParamsDictionary, unknown, unknown, T> {
   query: T;
 }
 
@@ -33,7 +33,7 @@ export interface FullyTypedRequest<
   Body = Record<string, unknown>,
   Query extends ParsedQs = ParsedQs,
   Params extends ParamsDictionary = ParamsDictionary
-> extends Request<Params, any, Body, Query> {
+> extends Request<Params, unknown, Body, Query> {
   body: Body;
   query: Query;
   params: Params;

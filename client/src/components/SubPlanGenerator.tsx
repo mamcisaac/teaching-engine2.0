@@ -80,8 +80,9 @@ export function SubPlanGenerator({ date: initialDate, onClose }: Props): React.R
           <div className="space-y-4">
             {/* Date Selection */}
             <div>
-              <label className="block text-sm font-medium mb-2">Date for Substitute Plan</label>
+              <label htmlFor="substitute-date" className="block text-sm font-medium mb-2">Date for Substitute Plan</label>
               <input
+                id="substitute-date"
                 className="border rounded p-2 w-full"
                 type="date"
                 value={selectedDate}

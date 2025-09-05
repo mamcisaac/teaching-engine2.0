@@ -9,10 +9,10 @@ import {
   getCalendarSummary
 } from './api';
 import type {
-  StartNextUnitResponse,
-  ScheduleAllLessonsResponse,
-  SchedulingStats,
-  CalendarSummaryData
+  StartNextUnitResponse as _StartNextUnitResponse,
+  ScheduleAllLessonsResponse as _ScheduleAllLessonsResponse,
+  SchedulingStats as _SchedulingStats,
+  CalendarSummaryData as _CalendarSummaryData
 } from './api';
 
 /**

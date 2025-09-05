@@ -2,7 +2,7 @@ import { BookOpen, Calculator, Microscope, Globe, Palette, Heart } from 'lucide-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardHeader } from './ui/card';
 
 interface SubjectInfo {
   name: string;

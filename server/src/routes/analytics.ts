@@ -3,7 +3,7 @@
  * Provides class-wide insights and progress summaries for Emily's classroom
  */
 
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { query, body, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
 import { logger } from '../logger';
@@ -19,7 +19,7 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
+const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   if (!req.user?.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;

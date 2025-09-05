@@ -10,6 +10,7 @@ import type {
   StudentAssessment 
 } from '../types/studentAssessment';
 import { RequestManager } from '../utils/debounce';
+import { logger } from '../utils/logger';
 
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
@@ -107,7 +108,7 @@ export function QuickAssessmentGrid({
 
     // Prevent multiple concurrent requests for the same student
     if (processingStudents.has(studentId)) {
-      console.warn(`Request already in progress for student ${studentId}`);
+      logger.warn(`Request already in progress for student ${studentId}`);
       return;
     }
 
@@ -144,13 +145,13 @@ export function QuickAssessmentGrid({
 
       // Check if this request is still the current one
       if (!requestManagerRef.current.isCurrentRequest(requestId)) {
-        console.warn('Assessment request superseded by newer request');
+        logger.warn('Assessment request superseded by newer request');
         return;
       }
     } catch (error) {
       // Check if this request is still the current one before showing error
       if (requestManagerRef.current.isCurrentRequest(requestId)) {
-        console.error('Failed to save assessment:', error);
+        logger.error('Failed to save assessment', { error });
         setValidationError({
           message: 'Failed to save assessment. Please try again.',
           show: true
@@ -237,8 +238,9 @@ export function QuickAssessmentGrid({
           {/* Form Controls */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Subject</label>
+              <label htmlFor="subject-select" className="block text-sm font-medium mb-1">Subject</label>
               <select
+                id="subject-select"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -255,10 +257,11 @@ export function QuickAssessmentGrid({
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-1">Date</label>
+              <label htmlFor="date-input" className="block text-sm font-medium mb-1">Date</label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
+                  id="date-input"
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
@@ -270,8 +273,9 @@ export function QuickAssessmentGrid({
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-1">Assessment Title</label>
+              <label htmlFor="title-input" className="block text-sm font-medium mb-1">Assessment Title</label>
               <input
+                id="title-input"
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -286,8 +290,9 @@ export function QuickAssessmentGrid({
 
           {/* Notes */}
           <div>
-            <label className="block text-sm font-medium mb-1">Notes (optional)</label>
+            <label htmlFor="notes-textarea" className="block text-sm font-medium mb-1">Notes (optional)</label>
             <textarea
+              id="notes-textarea"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Additional context or observations"
@@ -365,7 +370,7 @@ export function QuickAssessmentGrid({
                         return (
                           <button
                             key={level.level}
-                            onClick={() => handleLevelSelect(student.id, level.level)}
+                            onClick={() => void handleLevelSelect(student.id, level.level)}
                             disabled={isLoading}
                             className={`
                               w-12 h-8 rounded text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
@@ -381,13 +386,13 @@ export function QuickAssessmentGrid({
                             }}
                             title={`${level.label}: ${level.description}`}
                             aria-label={`Assess ${student.firstName} ${student.lastName} as ${level.label}`}
-                            aria-pressed={isSelected}
+                            aria-checked={isSelected}
                             role="radio"
                             tabIndex={0}
                             onKeyDown={(e) => {
                               if (e.key === 'Enter' || e.key === ' ') {
                                 e.preventDefault();
-                                handleLevelSelect(student.id, level.level);
+                                void handleLevelSelect(student.id, level.level);
                               }
                             }}
                           >

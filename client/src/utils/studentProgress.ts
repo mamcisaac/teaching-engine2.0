@@ -3,7 +3,6 @@
  * Core functions for managing student progress data and reports
  */
 
-import type { Student } from '../services/api/students';
 
 export type AchievementLevel = 'NOT_YET' | 'APPROACHING' | 'MEETING' | 'EXCEEDING';
 
@@ -68,21 +67,21 @@ export interface ComparativeProgress {
 }
 
 // Cache for quick access
-const progressCache = new Map<string, { data: any; timestamp: number }>();
+const progressCache = new Map<string, { data: QuickProgressData; timestamp: number }>();
 const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes
 
 /**
  * Get quick progress summary for a student
  * Must return in under 2 seconds
  */
-export async function getQuickProgress(studentName: string): Promise<QuickProgressData> {
+export function getQuickProgress(studentName: string): Promise<QuickProgressData> {
   const startTime = Date.now();
   
   // Check cache first
   const cacheKey = `quick-${studentName}`;
   const cached = progressCache.get(cacheKey);
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-    return { ...cached.data, loadTimeMs: Date.now() - startTime };
+    return Promise.resolve({ ...cached.data, loadTimeMs: Date.now() - startTime });
   }
 
   // Simulate fetching from API (in real implementation, would use actual API)
@@ -102,7 +101,7 @@ export async function getQuickProgress(studentName: string): Promise<QuickProgre
   // Cache the result
   progressCache.set(cacheKey, { data, timestamp: Date.now() });
   
-  return data;
+  return Promise.resolve(data);
 }
 
 /**
@@ -130,7 +129,7 @@ export function getProgressWithPrivacy(
 /**
  * Get parent communication history
  */
-export function getParentCommunicationHistory(studentName: string): ParentCommunicationHistory {
+export function getParentCommunicationHistory(_studentName: string): ParentCommunicationHistory {
   // In real implementation, would fetch from database
   return {
     previousReports: [
@@ -190,7 +189,7 @@ export function getImprovementEvidence(studentName: string, subject: string): Im
 /**
  * Get comparative progress without revealing other students' data
  */
-export function getComparativeProgress(studentName: string): ComparativeProgress {
+export function getComparativeProgress(_studentName: string): ComparativeProgress {
   return {
     response: 'This level of progress is typical for this age group. Many students are working on similar skills at this time of year.'
   };
@@ -204,10 +203,10 @@ export function categorizeAssessments(assessments: Assessment[]): {
   growthAreas: Assessment[];
 } {
   const strengths = assessments.filter(a => 
-    !a.isAnecdotal && (a.level === 'MEETING' || a.level === 'EXCEEDING')
+    a.isAnecdotal !== true && (a.level === 'MEETING' || a.level === 'EXCEEDING')
   );
   const growthAreas = assessments.filter(a => 
-    !a.isAnecdotal && (a.level === 'NOT_YET' || a.level === 'APPROACHING')
+    a.isAnecdotal !== true && (a.level === 'NOT_YET' || a.level === 'APPROACHING')
   );
 
   return { strengths, growthAreas };

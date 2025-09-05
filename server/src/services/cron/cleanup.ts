@@ -1,8 +1,10 @@
+import { logger } from '../../logger';
+
 // Cleanup cron job stub
 export function startCleanupJobs() {
-  console.log('Cleanup jobs initialized (stub)');
+  logger.info('Cleanup jobs initialized (stub)');
 }
 
 export function stopCleanupJobs() {
-  console.log('Cleanup jobs stopped (stub)');
+  logger.info('Cleanup jobs stopped (stub)');
 }

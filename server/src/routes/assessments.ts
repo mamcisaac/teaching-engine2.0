@@ -1,11 +1,13 @@
+import { logger } from '../logger';
 /**
  * Assessment API Routes
  * ETFO 4-level mastery tracking for Grade 1 French Immersion
  */
 
-import { Router, Request, Response } from 'express';
-import { body, param, query, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { body, param, query, validationResult } from 'express-validator';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -19,7 +21,7 @@ interface AuthenticatedRequest extends Request {
 }
 
 // Validation middleware
-const validateRequest = (req: Request, res: Response, next: any): void => {
+const validateRequest = (req: Request, res: Response, next: NextFunction): void => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     res.status(400).json({ errors: errors.array() });
@@ -101,7 +103,7 @@ router.get('/',
         offset
       });
     } catch (error: unknown) {
-      console.error('Error fetching assessments:', error);
+      logger.error({ error }, 'Error fetching assessments:');
       res.status(500).json({ error: 'Failed to fetch assessments' });
     }
   }
@@ -136,7 +138,7 @@ router.get('/:id',
 
       res.json(assessment);
     } catch (error: unknown) {
-      console.error('Error fetching assessment:', error);
+      logger.error({ error }, 'Error fetching assessment:');
       res.status(500).json({ error: 'Failed to fetch assessment' });
     }
   }
@@ -206,7 +208,7 @@ router.post('/',
 
       res.status(201).json(assessment);
     } catch (error: unknown) {
-      console.error('Error creating assessment:', error);
+      logger.error({ error }, 'Error creating assessment:');
       res.status(500).json({ error: 'Failed to create assessment' });
     }
   }
@@ -266,7 +268,7 @@ router.put('/:id',
 
       res.json(assessment);
     } catch (error: unknown) {
-      console.error('Error updating assessment:', error);
+      logger.error({ error }, 'Error updating assessment:');
       res.status(500).json({ error: 'Failed to update assessment' });
     }
   }
@@ -303,7 +305,7 @@ router.delete('/:id',
 
       res.json({ success: true });
     } catch (error: unknown) {
-      console.error('Error deleting assessment:', error);
+      logger.error({ error }, 'Error deleting assessment:');
       res.status(500).json({ error: 'Failed to delete assessment' });
     }
   }
@@ -357,7 +359,7 @@ router.post('/bulk',
         success: true
       });
     } catch (error: unknown) {
-      console.error('Error creating bulk assessments:', error);
+      logger.error({ error }, 'Error creating bulk assessments:');
       res.status(500).json({ error: 'Failed to create assessments' });
     }
   }
@@ -425,7 +427,7 @@ router.get('/stats/evidence-balance',
         recommendations: getBalanceRecommendations(percentages)
       });
     } catch (error: unknown) {
-      console.error('Error fetching evidence balance:', error);
+      logger.error({ error }, 'Error fetching evidence balance:');
       res.status(500).json({ error: 'Failed to fetch evidence balance' });
     }
   }

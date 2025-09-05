@@ -3,8 +3,11 @@
  * Specialized upload handling for ETFO student assessment artifacts
  */
 
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { body, validationResult } from 'express-validator';
+
+import { logger } from '../logger';
+
 import { 
   uploadSingle, 
   uploadMultiple, 
@@ -142,7 +145,7 @@ export const validateStudentAccess = async (req: Request, res: Response, next: N
       await prisma.$disconnect();
     }
   } catch (error: unknown) {
-    console.error('Student access validation error:', error);
+    logger.error({ error }, 'Student access validation error:');
     res.status(500).json({ error: 'Internal server error' });
   }
 };
@@ -161,7 +164,7 @@ export const validateOutcomeAccess = async (req: Request, res: Response, next: N
     const prisma = new PrismaClient();
 
     try {
-      const outcomeIds = outcomes.map((o: any) => o.outcomeId);
+      const outcomeIds = outcomes.map((o: { outcomeId: string }) => o.outcomeId);
       
       // Verify all outcome IDs exist
       const existingOutcomes = await prisma.curriculumExpectation.findMany({
@@ -196,7 +199,7 @@ export const validateOutcomeAccess = async (req: Request, res: Response, next: N
       await prisma.$disconnect();
     }
   } catch (error: unknown) {
-    console.error('Outcome access validation error:', error);
+    logger.error({ error }, 'Outcome access validation error:');
     res.status(500).json({ error: 'Internal server error' });
   }
 };

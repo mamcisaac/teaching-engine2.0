@@ -114,6 +114,15 @@ export function CoverageWidget(): React.ReactElement {
             data-testid={`coverage-bar-${metric.subject}`}
             className={`${getCoverageClass(metric.percentage)} cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors`}
             onClick={() => handleSubjectClick(metric.subject)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleSubjectClick(metric.subject);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label={`View details for ${metric.subject} coverage`}
           >
             <div className="flex justify-between items-center mb-2">
               <span className="font-medium text-sm">{metric.subject}</span>

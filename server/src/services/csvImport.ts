@@ -7,8 +7,9 @@
  * John,Smith,JS001,1,john.smith@school.ca,parent.smith@email.ca,Allergies: peanuts
  */
 
-import { parse } from 'csv-parse/sync';
 import { PrismaClient } from '@teaching-engine/database';
+import { parse } from 'csv-parse/sync';
+
 import { logger } from '../logger';
 
 const prisma = new PrismaClient();

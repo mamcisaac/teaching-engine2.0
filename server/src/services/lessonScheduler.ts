@@ -1,6 +1,8 @@
-import { PrismaClient } from '@prisma/client';
-import { schoolCalendar } from './schoolCalendar';
+import type { PrismaClient } from '@prisma/client';
 import { parseISO } from 'date-fns';
+
+import { logger } from '../logger';
+import { schoolCalendar } from './schoolCalendar';
 
 interface ScheduleUpdate {
   lessonId: string;
@@ -80,7 +82,7 @@ export class LessonSchedulerService {
     );
 
     if (distributionDates.length < unit.lessonPlans.length) {
-      console.warn(`Not enough teaching days for unit ${unit.title}. Need ${unit.lessonPlans.length}, have ${distributionDates.length}`);
+      logger.warn(`Not enough teaching days for unit ${unit.title}. Need ${unit.lessonPlans.length}, have ${distributionDates.length}`);
     }
 
     // Create schedule updates
@@ -94,7 +96,7 @@ export class LessonSchedulerService {
       const scheduledDate = distributionDates[dateIndex];
       
       if (!scheduledDate) {
-        console.warn(`No date available for lesson ${lesson.id}`);
+        logger.warn(`No date available for lesson ${lesson.id}`);
         continue;
       }
       
@@ -143,7 +145,7 @@ export class LessonSchedulerService {
     unitResults: UnitSchedulingResult[];
     summary: any;
   }> {
-    console.log('🎯 Starting intelligent lesson scheduling for all subjects...');
+    logger.info('🎯 Starting intelligent lesson scheduling for all subjects...');
     
     const unitResults: UnitSchedulingResult[] = [];
     let totalLessonsScheduled = 0;
@@ -159,7 +161,7 @@ export class LessonSchedulerService {
     ];
 
     for (const subject of subjects) {
-      console.log(`📚 Scheduling units for ${subject}...`);
+      logger.info(`📚 Scheduling units for ${subject}...`);
       
       // Get all units for this subject ordered by start date
       const units = await this.prisma.unitPlan.findMany({
@@ -190,9 +192,9 @@ export class LessonSchedulerService {
             const result = await this.scheduleUnit(unit.id, userId);
             unitResults.push(result);
             totalLessonsScheduled += result.lessonsScheduled;
-            console.log(`  ✅ Scheduled ${result.lessonsScheduled} lessons for "${result.unitTitle}"`);
+            logger.info(`  ✅ Scheduled ${result.lessonsScheduled} lessons for "${result.unitTitle}"`);
           } catch (error) {
-            console.error(`  ❌ Failed to schedule unit "${unit.title}":`, error);
+            logger.error({ error }, `  ❌ Failed to schedule unit "${unit.title}":`);
           }
         }
       }
@@ -200,7 +202,7 @@ export class LessonSchedulerService {
 
     const summary = schoolCalendar.getSchoolYearSummary();
     
-    console.log(`🎯 Scheduling complete! ${totalLessonsScheduled} lessons scheduled across ${unitResults.length} units`);
+    logger.info(`🎯 Scheduling complete! ${totalLessonsScheduled} lessons scheduled across ${unitResults.length} units`);
 
     return {
       totalLessonsScheduled,

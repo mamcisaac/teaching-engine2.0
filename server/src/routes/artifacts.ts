@@ -1,11 +1,18 @@
+import { logger } from '../logger';
 /**
  * Student Artifacts API Routes
  * Handles artifact upload, management, and curriculum outcome tagging
  */
 
-import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
-import { body, param, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
+import type { Request, Response, NextFunction, RequestHandler } from 'express';
+import { Router } from 'express';
+import { body, param, validationResult } from 'express-validator';
+
+import { 
+  artifactUploadRateLimit,
+  bulkOperationRateLimit 
+} from '../middleware/rateLimit/artifactRateLimit';
 import { 
   uploadStudentPhoto,
   uploadStudentVideo, 
@@ -17,12 +24,8 @@ import {
   validateQuickNote,
   handleUploadErrors
 } from '../middleware/upload';
-import { getStorageService } from '../services/storage';
 import { getFileProcessingService } from '../services/fileProcessingService';
-import { 
-  artifactUploadRateLimit,
-  bulkOperationRateLimit 
-} from '../middleware/rateLimit/artifactRateLimit';
+import { getStorageService } from '../services/storage';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -34,7 +37,7 @@ interface AuthenticatedRequest extends Request {
     email: string;
     role: string;
   };
-  artifact?: any; // Artifact data attached by middleware
+  artifact?: Record<string, unknown>; // Artifact data attached by middleware
 }
 
 // Validation middleware
@@ -132,7 +135,7 @@ const validateArtifactOwnership = async (req: AuthenticatedRequest, res: Respons
     req.artifact = artifact;
     next();
   } catch (error: unknown) {
-    console.error('Artifact ownership validation error:', error);
+    logger.error({ error }, 'Artifact ownership validation error:');
     res.status(500).json({ error: 'Internal server error' });
   }
 };
@@ -151,7 +154,7 @@ router.post('/upload/photo',
     try {
       await handleArtifactUpload(req, res, 'PHOTO');
     } catch (error: unknown) {
-      console.error('Photo upload error:', error);
+      logger.error({ error }, 'Photo upload error:');
       res.status(500).json({ error: 'Failed to upload photo' });
     }
   }
@@ -171,7 +174,7 @@ router.post('/upload/video',
     try {
       await handleArtifactUpload(req, res, 'VIDEO');
     } catch (error: unknown) {
-      console.error('Video upload error:', error);
+      logger.error({ error }, 'Video upload error:');
       res.status(500).json({ error: 'Failed to upload video' });
     }
   }
@@ -191,7 +194,7 @@ router.post('/upload/audio',
     try {
       await handleArtifactUpload(req, res, 'AUDIO');
     } catch (error: unknown) {
-      console.error('Audio upload error:', error);
+      logger.error({ error }, 'Audio upload error:');
       res.status(500).json({ error: 'Failed to upload audio' });
     }
   }
@@ -211,7 +214,7 @@ router.post('/upload/document',
     try {
       await handleArtifactUpload(req, res, 'DOCUMENT');
     } catch (error: unknown) {
-      console.error('Document upload error:', error);
+      logger.error({ error }, 'Document upload error:');
       res.status(500).json({ error: 'Failed to upload document' });
     }
   }
@@ -239,7 +242,7 @@ router.post('/upload/mobile',
       const artifactType = uploadResult.mimeType.startsWith('image/') ? 'PHOTO' : 'VIDEO';
       await handleArtifactUpload(req, res, artifactType);
     } catch (error: unknown) {
-      console.error('Mobile upload error:', error);
+      logger.error({ error }, 'Mobile upload error:');
       res.status(500).json({ error: 'Failed to upload from mobile' });
     }
   }
@@ -314,7 +317,7 @@ router.post('/upload/batch',
         }))
       });
     } catch (error: unknown) {
-      console.error('Batch upload error:', error);
+      logger.error({ error }, 'Batch upload error:');
       res.status(500).json({ error: 'Failed to upload artifacts' });
     }
   }
@@ -359,7 +362,7 @@ router.post('/note',
         createdAt: artifact.createdAt
       });
     } catch (error: unknown) {
-      console.error('Note creation error:', error);
+      logger.error({ error }, 'Note creation error:');
       res.status(500).json({ error: 'Failed to create note' });
     }
   }
@@ -506,7 +509,7 @@ router.get('/',
         }
       });
     } catch (error: unknown) {
-      console.error('Artifacts listing error:', error);
+      logger.error({ error }, 'Artifacts listing error:');
       res.status(500).json({ error: 'Failed to retrieve artifacts' });
     }
   }
@@ -665,9 +668,9 @@ async function handleArtifactUpload(req: AuthenticatedRequest, res: Response, ar
       req.body.studentId
     );
     
-    console.log(`Queued processing job ${jobId} for artifact ${artifact.id}`);
+    logger.info(`Queued processing job ${jobId} for artifact ${artifact.id}`);
   } catch (error: unknown) {
-    console.error('Failed to queue processing job:', error);
+    logger.error({ error }, 'Failed to queue processing job:');
     // Don't fail the upload if queuing fails - file is saved, just not processed
   }
 
@@ -765,7 +768,7 @@ router.get('/:id',
         }))
       });
     } catch (error: unknown) {
-      console.error('Artifact retrieval error:', error);
+      logger.error({ error }, 'Artifact retrieval error:');
       res.status(500).json({ error: 'Failed to retrieve artifact' });
     }
   }
@@ -851,7 +854,7 @@ router.put('/:id',
         updatedAt: updatedArtifact.updatedAt
       });
     } catch (error: unknown) {
-      console.error('Artifact update error:', error);
+      logger.error({ error }, 'Artifact update error:');
       res.status(500).json({ error: 'Failed to update artifact' });
     }
   }
@@ -876,7 +879,7 @@ router.delete('/:id',
         try {
           await storageService.deleteFile(artifact.filePath);
         } catch (error: unknown) {
-          console.warn('Failed to delete file from storage:', error);
+          logger.warn({ error }, 'Failed to delete file from storage:');
           // Continue with database deletion even if file deletion fails
         }
       }
@@ -889,7 +892,7 @@ router.delete('/:id',
       res.status(204).send();
       return;
     } catch (error: unknown) {
-      console.error('Artifact deletion error:', error);
+      logger.error({ error }, 'Artifact deletion error:');
       res.status(500).json({ error: 'Failed to delete artifact' });
     }
   }
@@ -959,7 +962,7 @@ router.post('/:id/outcomes',
         outcome: outcome
       });
     } catch (error: unknown) {
-      console.error('Outcome tagging error:', error);
+      logger.error({ error }, 'Outcome tagging error:');
       res.status(500).json({ error: 'Failed to tag outcome' });
     }
   }
@@ -1049,7 +1052,7 @@ router.put('/:id/outcomes/:outcomeId',
       if (error instanceof Error && 'code' in error && error.code === 'P2025') {
         res.status(404).json({ error: 'Outcome tagging not found' });
       } else {
-        console.error('Outcome tag update error:', error);
+        logger.error({ error }, 'Outcome tag update error:');
         res.status(500).json({ error: 'Failed to update outcome tag' });
       }
     }
@@ -1090,7 +1093,7 @@ router.delete('/:id/outcomes/:outcomeId',
       if (error instanceof Error && 'code' in error && error.code === 'P2025') {
         res.status(404).json({ error: 'Outcome tagging not found' });
       } else {
-        console.error('Outcome tag deletion error:', error);
+        logger.error({ error }, 'Outcome tag deletion error:');
         res.status(500).json({ error: 'Failed to remove outcome tag' });
       }
     }

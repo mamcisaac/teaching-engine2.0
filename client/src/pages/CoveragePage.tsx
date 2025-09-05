@@ -5,15 +5,11 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { 
-  Target, 
   AlertCircle, 
   CheckCircle2, 
   Search,
-  ChevronRight,
   BookOpen,
-  TrendingUp,
   Calendar,
-  Eye,
   Flag
 } from 'lucide-react';
 import React, { useState, useMemo } from 'react';
@@ -27,7 +23,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Input } from '../components/ui/Input';
 import { Progress } from '../components/ui/Progress';
 import { Switch } from '../components/ui/Switch';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+// Tabs components imported but not used in current implementation
 
 interface CurriculumExpectation {
   id: string;

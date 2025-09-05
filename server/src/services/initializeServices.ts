@@ -6,8 +6,9 @@
  */
 
 import { logger } from '../logger';
-import { initializeQueues } from './queues/init';
+
 import { startCleanupJobs } from './cron/cleanup';
+import { initializeQueues } from './queues/init';
 
 /**
  * Initialize all background services
@@ -33,8 +34,8 @@ export const initializeServices = async (): Promise<void> => {
   } catch (error: unknown) {
     logger.error('Failed to initialize services:', error instanceof Error ? error.message : String(error));
     // Don't crash the server, but log the error prominently
-    console.error('⚠️  WARNING: Some background services failed to initialize');
-    console.error('The application will continue but some features may not work properly');
+    logger.error('⚠️  WARNING: Some background services failed to initialize');
+    logger.error('The application will continue but some features may not work properly');
   }
 };
 

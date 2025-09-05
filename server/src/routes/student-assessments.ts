@@ -1,6 +1,9 @@
-import { Router, Request, Response } from 'express';
-import { z } from 'zod';
+import { logger } from '../logger';
 import { AchievementLevel } from '@teaching-engine/database';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
+
 import { authenticate } from '../middleware/auth';
 import { prisma } from '../prisma';
 
@@ -94,7 +97,7 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
       }
     });
   } catch (error) {
-    console.error('Error fetching student assessments:', error);
+    logger.error({ error }, 'Error fetching student assessments:');
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -110,7 +113,7 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<Resp
     const validatedData = createAssessmentSchema.parse(req.body);
 
     // Detect anecdotal notes and flag them appropriately
-    const isAnecdotal = validatedData.subject?.startsWith('ANECDOTAL_') || false;
+    const isAnecdotal = validatedData.subject.startsWith('ANECDOTAL_') || false;
 
     const assessment = await prisma.studentAssessment.create({
       data: {
@@ -136,7 +139,7 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<Resp
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Validation error', details: error.errors });
     }
-    console.error('Error creating student assessment:', error);
+    logger.error({ error }, 'Error creating student assessment:');
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -181,7 +184,7 @@ router.put('/:id', authenticate, async (req: Request, res: Response): Promise<Re
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Validation error', details: error.errors });
     }
-    console.error('Error updating student assessment:', error);
+    logger.error({ error }, 'Error updating student assessment:');
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -211,7 +214,7 @@ router.delete('/:id', authenticate, async (req: Request, res: Response): Promise
 
     return res.status(204).send();
   } catch (error) {
-    console.error('Error deleting student assessment:', error);
+    logger.error({ error }, 'Error deleting student assessment:');
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -277,7 +280,7 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
 
     return res.json(groups);
   } catch (error) {
-    console.error('Error generating differentiation groups:', error);
+    logger.error({ error }, 'Error generating differentiation groups:');
     return res.status(500).json({ error: 'Internal server error' });
   }
 });

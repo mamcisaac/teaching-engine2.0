@@ -1,13 +1,16 @@
+import { logger } from '../logger';
 /**
  * Reports API Routes
  * PDF report generation for student progress
  */
 
-import { Router, Request, Response } from 'express';
-import { param, query, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
-import { generateStudentReport, generateClassReport } from '../services/reportGenerator';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { param, query, validationResult } from 'express-validator';
+
 import { reportGenerationRateLimit } from '../middleware/rateLimit/artifactRateLimit';
+import { generateStudentReport, generateClassReport } from '../services/reportGenerator';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -95,7 +98,7 @@ router.get('/student/:id',
       res.send(reportBuffer);
 
     } catch (error: unknown) {
-      console.error('Student report generation failed:', error);
+      logger.error({ error }, 'Student report generation failed:');
       res.status(500).json({ error: 'Failed to generate student report' });
     }
   }
@@ -147,7 +150,7 @@ router.get('/class',
       res.send(reportBuffer);
 
     } catch (error: unknown) {
-      console.error('Class report generation failed:', error);
+      logger.error({ error }, 'Class report generation failed:');
       res.status(500).json({ error: 'Failed to generate class report' });
     }
   }
@@ -212,7 +215,7 @@ router.get('/available',
         }
       });
     } catch (error: unknown) {
-      console.error('Failed to get available reports:', error);
+      logger.error({ error }, 'Failed to get available reports:');
       res.status(500).json({ error: 'Failed to get available reports' });
     }
   }

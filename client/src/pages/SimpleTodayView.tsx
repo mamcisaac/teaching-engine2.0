@@ -576,6 +576,8 @@ export function SimpleTodayView(): React.ReactElement {
             }}
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+            onFocus={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
+            onBlur={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
           >
             <Calendar style={{ width: '20px', height: '20px', color: '#4f46e5', marginBottom: '4px' }} />
             <div style={{ fontSize: '14px', fontWeight: '500', color: '#1f2937' }}>View Week</div>
@@ -594,6 +596,8 @@ export function SimpleTodayView(): React.ReactElement {
             }}
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+            onFocus={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
+            onBlur={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
           >
             <BookOpen style={{ width: '20px', height: '20px', color: '#4f46e5', marginBottom: '4px' }} />
             <div style={{ fontSize: '14px', fontWeight: '500', color: '#1f2937' }}>Unit Plans</div>
@@ -612,6 +616,8 @@ export function SimpleTodayView(): React.ReactElement {
             }}
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+            onFocus={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
+            onBlur={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
           >
             <Calendar style={{ width: '20px', height: '20px', color: '#4f46e5', marginBottom: '4px' }} />
             <div style={{ fontSize: '14px', fontWeight: '500', color: '#1f2937' }}>Monthly Calendar</div>

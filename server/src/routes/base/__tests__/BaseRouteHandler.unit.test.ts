@@ -325,7 +325,7 @@ describe('BaseRouteHandler', () => {
     it('should log errors with context', async () => {
       // Skip this test if logger is not properly mocked
       if (!handler['logger']) {
-        console.warn('Logger not available in test environment, skipping logger test');
+        logger.warn('Logger not available in test environment, skipping logger test');
         return;
       }
 

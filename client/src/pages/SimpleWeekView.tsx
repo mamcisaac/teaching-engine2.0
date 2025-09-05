@@ -1,5 +1,5 @@
 import { format, startOfWeek, addDays } from 'date-fns';
-import { Calendar, Clock, BookOpen, ChevronRight } from 'lucide-react';
+import { Calendar, BookOpen } from 'lucide-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -272,10 +272,10 @@ export function SimpleWeekView(): React.ReactElement {
                   // Placeholder for dynamic lesson data
                   const colorClass = 'bg-gray-100 text-gray-800 border-gray-300';
                   const colors = colorClass.split(' ');
-                  const bgColor = colors[0].replace('bg-', '').replace('-100', '');
+                  const _bgColor = colors[0].replace('bg-', '').replace('-100', '');
                   
                   // Convert Tailwind-like colors to actual colors
-                  const colorMap: Record<string, string> = {
+                  const _colorMap: Record<string, string> = {
                     'blue': '#dbeafe',
                     'green': '#d1fae5',
                     'purple': '#e9d5ff',
@@ -289,7 +289,7 @@ export function SimpleWeekView(): React.ReactElement {
                     'gray': '#f3f4f6'
                   };
                   
-                  const textColorMap: Record<string, string> = {
+                  const _textColorMap: Record<string, string> = {
                     'blue': '#1e40af',
                     'green': '#166534',
                     'purple': '#6b21a8',

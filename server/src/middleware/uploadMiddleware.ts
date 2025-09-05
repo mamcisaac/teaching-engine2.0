@@ -3,10 +3,14 @@
  * Handles file uploads with validation, security, and storage integration
  */
 
-import multer, { FileFilterCallback } from 'multer';
-import path from 'path';
+
 import crypto from 'crypto';
-import { Request, Response, NextFunction } from 'express';
+import path from 'path';
+
+import type { Request, Response, NextFunction } from 'express';
+import multer from 'multer';
+import type { FileFilterCallback } from 'multer';
+
 import { getStorageService } from '../services/storage';
 
 // File type validation configuration
@@ -138,7 +142,7 @@ export const createUploadMiddleware = (options: {
       fieldSize: 1024 * 1024, // 1MB for form fields
       fields: 50 // Max number of form fields
     },
-    fileFilter: createFileFilter(allowedTypes) as any
+    fileFilter: createFileFilter(allowedTypes)
   });
 };
 
@@ -206,7 +210,7 @@ export const processUpload = async (req: Request, _res: Response, next: NextFunc
           filename: `${category}s/${safeFilename}`,
           metadata: {
             originalName: file.originalname,
-            uploadedBy: req.user?.id?.toString() || 'unknown',
+            uploadedBy: req.user?.id.toString() || 'unknown',
             uploadedAt: new Date().toISOString(),
             category,
             size: file.size.toString()

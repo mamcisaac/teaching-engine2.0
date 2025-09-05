@@ -53,8 +53,7 @@ export class LessonCompletionTracker {
         }
       });
     } catch (error) {
-      // If completion doesn't exist, that's fine
-      console.log(`No completion found for lesson ${lessonId}`);
+      // If completion doesn't exist, that's fine - this is expected behavior
     }
   }
 

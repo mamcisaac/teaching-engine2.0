@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { substituteApi, type SubstituteInfo } from '../../api/domains/substitute';
 import { useToast } from '../../hooks/useToast';
+import { logger } from '../../utils/logger';
 
 export function SubstituteInfoForm(): React.ReactElement {
   const { toast } = useToast();
@@ -28,7 +29,7 @@ export function SubstituteInfoForm(): React.ReactElement {
         description: 'Failed to save substitute information',
         variant: 'destructive',
       });
-      console.error('Failed to save substitute info:', error);
+      logger.error('Failed to save substitute info', { error });
     },
   });
 
@@ -94,8 +95,9 @@ export function SubstituteInfoForm(): React.ReactElement {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Basic Information</h3>
           <div>
-            <label className="block text-sm font-medium mb-1">Classroom Number</label>
+            <label htmlFor="classroomNumber" className="block text-sm font-medium mb-1">Classroom Number</label>
             <input
+              id="classroomNumber"
               type="text"
               className="border rounded p-2 w-full"
               value={formData.classroomNumber || ''}
@@ -103,8 +105,9 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Grade Level</label>
+            <label htmlFor="gradeLevel" className="block text-sm font-medium mb-1">Grade Level</label>
             <input
+              id="gradeLevel"
               type="text"
               className="border rounded p-2 w-full"
               value={formData.gradeLevel || ''}
@@ -112,8 +115,9 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Class Size</label>
+            <label htmlFor="classSize" className="block text-sm font-medium mb-1">Class Size</label>
             <input
+              id="classSize"
               type="number"
               className="border rounded p-2 w-full"
               value={formData.classSize || ''}
@@ -126,8 +130,9 @@ export function SubstituteInfoForm(): React.ReactElement {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Emergency Information</h3>
           <div>
-            <label className="block text-sm font-medium mb-1">Office Phone</label>
+            <label htmlFor="officePhone" className="block text-sm font-medium mb-1">Office Phone</label>
             <input
+              id="officePhone"
               type="text"
               className="border rounded p-2 w-full"
               value={formData.officePhone || ''}
@@ -135,16 +140,18 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Emergency Procedures</label>
+            <label htmlFor="emergencyProcedures" className="block text-sm font-medium mb-1">Emergency Procedures</label>
             <textarea
+              id="emergencyProcedures"
               className="border rounded p-2 w-full h-24"
               value={formData.emergencyProcedures || ''}
               onChange={handleChange('emergencyProcedures')}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Fire Exit Route</label>
+            <label htmlFor="fireExitRoute" className="block text-sm font-medium mb-1">Fire Exit Route</label>
             <input
+              id="fireExitRoute"
               type="text"
               className="border rounded p-2 w-full"
               value={formData.fireExitRoute || ''}
@@ -157,8 +164,9 @@ export function SubstituteInfoForm(): React.ReactElement {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Student Information</h3>
           <div>
-            <label className="block text-sm font-medium mb-1">Allergies (Critical)</label>
+            <label htmlFor="allergies" className="block text-sm font-medium mb-1">Allergies (Critical)</label>
             <textarea
+              id="allergies"
               className="border rounded p-2 w-full h-24 border-red-300"
               value={formData.allergies || ''}
               onChange={handleChange('allergies')}
@@ -166,8 +174,9 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Medical Needs</label>
+            <label htmlFor="medicalNeeds" className="block text-sm font-medium mb-1">Medical Needs</label>
             <textarea
+              id="medicalNeeds"
               className="border rounded p-2 w-full h-24"
               value={formData.medicalNeeds || ''}
               onChange={handleChange('medicalNeeds')}
@@ -175,8 +184,9 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Student Helpers</label>
+            <label htmlFor="studentHelpers" className="block text-sm font-medium mb-1">Student Helpers</label>
             <textarea
+              id="studentHelpers"
               className="border rounded p-2 w-full"
               value={formData.studentHelpers || ''}
               onChange={handleChange('studentHelpers')}
@@ -189,16 +199,18 @@ export function SubstituteInfoForm(): React.ReactElement {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Daily Routines</h3>
           <div>
-            <label className="block text-sm font-medium mb-1">Morning Routine</label>
+            <label htmlFor="morningRoutine" className="block text-sm font-medium mb-1">Morning Routine</label>
             <textarea
+              id="morningRoutine"
               className="border rounded p-2 w-full"
               value={formData.morningRoutine || ''}
               onChange={handleChange('morningRoutine')}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Attendance Procedure</label>
+            <label htmlFor="attendanceProcedure" className="block text-sm font-medium mb-1">Attendance Procedure</label>
             <input
+              id="attendanceProcedure"
               type="text"
               className="border rounded p-2 w-full"
               value={formData.attendanceProcedure || ''}
@@ -206,8 +218,9 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Bathroom Policy</label>
+            <label htmlFor="bathroomPolicy" className="block text-sm font-medium mb-1">Bathroom Policy</label>
             <input
+              id="bathroomPolicy"
               type="text"
               className="border rounded p-2 w-full"
               value={formData.bathroomPolicy || ''}
@@ -215,8 +228,9 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Dismissal Procedure</label>
+            <label htmlFor="dismissalProcedure" className="block text-sm font-medium mb-1">Dismissal Procedure</label>
             <textarea
+              id="dismissalProcedure"
               className="border rounded p-2 w-full"
               value={formData.dismissalProcedure || ''}
               onChange={handleChange('dismissalProcedure')}
@@ -228,8 +242,9 @@ export function SubstituteInfoForm(): React.ReactElement {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Classroom Management</h3>
           <div>
-            <label className="block text-sm font-medium mb-1">Attention Signal</label>
+            <label htmlFor="attentionSignal" className="block text-sm font-medium mb-1">Attention Signal</label>
             <input
+              id="attentionSignal"
               type="text"
               className="border rounded p-2 w-full"
               value={formData.attentionSignal || ''}
@@ -238,16 +253,18 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Reward System</label>
+            <label htmlFor="rewardSystem" className="block text-sm font-medium mb-1">Reward System</label>
             <textarea
+              id="rewardSystem"
               className="border rounded p-2 w-full"
               value={formData.rewardSystem || ''}
               onChange={handleChange('rewardSystem')}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Behavior Notes</label>
+            <label htmlFor="behaviorNotes" className="block text-sm font-medium mb-1">Behavior Notes</label>
             <textarea
+              id="behaviorNotes"
               className="border rounded p-2 w-full h-24"
               value={formData.behaviorNotes || ''}
               onChange={handleChange('behaviorNotes')}
@@ -260,8 +277,9 @@ export function SubstituteInfoForm(): React.ReactElement {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Resources & Materials</h3>
           <div>
-            <label className="block text-sm font-medium mb-1">Materials Location</label>
+            <label htmlFor="materialsLocation" className="block text-sm font-medium mb-1">Materials Location</label>
             <input
+              id="materialsLocation"
               type="text"
               className="border rounded p-2 w-full"
               value={formData.materialsLocation || ''}
@@ -269,8 +287,9 @@ export function SubstituteInfoForm(): React.ReactElement {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Extra Activities</label>
+            <label htmlFor="extraActivities" className="block text-sm font-medium mb-1">Extra Activities</label>
             <textarea
+              id="extraActivities"
               className="border rounded p-2 w-full"
               value={formData.extraActivities || ''}
               onChange={handleChange('extraActivities')}
@@ -283,8 +302,9 @@ export function SubstituteInfoForm(): React.ReactElement {
         <div className="space-y-4 md:col-span-2">
           <h3 className="text-lg font-semibold">Additional Information</h3>
           <div>
-            <label className="block text-sm font-medium mb-1">Important Information</label>
+            <label htmlFor="importantInfo" className="block text-sm font-medium mb-1">Important Information</label>
             <textarea
+              id="importantInfo"
               className="border rounded p-2 w-full h-32"
               value={formData.importantInfo || ''}
               onChange={handleChange('importantInfo')}

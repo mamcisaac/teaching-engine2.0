@@ -1,6 +1,8 @@
-import { Router } from 'express';
+import { logger } from '../logger';
 import { PrismaClient } from '@prisma/client';
+import { Router } from 'express';
 import { z } from 'zod';
+
 import { authenticate } from '../middleware/auth';
 import { LessonSchedulerService } from '../services/lessonScheduler';
 import { schoolCalendar } from '../services/schoolCalendar';
@@ -54,7 +56,7 @@ router.patch('/batch-update', authenticate, async (req, res) => {
       message: `Updated ${updates.length} lessons` 
     });
   } catch (error: unknown) {
-    console.error('Batch update error:', error);
+    logger.error({ error }, 'Batch update error:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
     }
@@ -105,7 +107,7 @@ router.post('/swap', authenticate, async (req, res) => {
       message: 'Lessons swapped successfully' 
     });
   } catch (error: unknown) {
-    console.error('Swap error:', error);
+    logger.error({ error }, 'Swap error:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
     }
@@ -149,7 +151,7 @@ router.get('/range', authenticate, async (req, res) => {
 
     return res.json(lessons);
   } catch (error: unknown) {
-    console.error('Get range error:', error);
+    logger.error({ error }, 'Get range error:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid query parameters', details: error.errors });
     }
@@ -210,7 +212,7 @@ router.post('/move-unit', authenticate, async (req, res) => {
       message: `Moved ${lessons.length} lessons in unit` 
     });
   } catch (error: unknown) {
-    console.error('Move unit error:', error);
+    logger.error({ error }, 'Move unit error:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid request data', details: error.errors });
     }
@@ -242,18 +244,18 @@ const scheduleUnitSchema = z.object({
  */
 router.post('/start-next-unit', authenticate, async (req, res): Promise<any> => {
   try {
-    console.log('🚀 API: Starting next unit for subject:', req.body);
+    logger.info({ body: req.body }, '🚀 API: Starting next unit for subject:');
 
     const { subject } = startNextUnitSchema.parse(req.body);
     const userId = req.user!.id;
 
     const result = await schedulerService.scheduleNextUnit(subject, userId);
 
-    console.log(`✅ Successfully scheduled next unit for ${subject}:`, {
+    logger.info({
       unitTitle: result.unitTitle,
       lessonsScheduled: result.lessonsScheduled,
       dateRange: result.dateRange
-    });
+    }, `✅ Successfully scheduled next unit for ${subject}:`);
 
     res.json({
       success: true,
@@ -262,7 +264,7 @@ router.post('/start-next-unit', authenticate, async (req, res): Promise<any> => 
     });
 
   } catch (error) {
-    console.error('❌ Error starting next unit:', error);
+    logger.error({ error }, '❌ Error starting next unit:');
     
     if (error instanceof z.ZodError) {
       return res.status(400).json({
@@ -285,18 +287,18 @@ router.post('/start-next-unit', authenticate, async (req, res): Promise<any> => 
  */
 router.post('/schedule-unit', authenticate, async (req, res): Promise<any> => {
   try {
-    console.log('🎯 API: Scheduling specific unit:', req.body);
+    logger.info('🎯 API: Scheduling specific unit:', req.body);
 
     const { unitId } = scheduleUnitSchema.parse(req.body);
     const userId = req.user!.id;
 
     const result = await schedulerService.scheduleUnit(unitId, userId);
 
-    console.log(`✅ Successfully scheduled unit ${unitId}:`, {
+    logger.info({
       unitTitle: result.unitTitle,
       lessonsScheduled: result.lessonsScheduled,
       dateRange: result.dateRange
-    });
+    }, `✅ Successfully scheduled unit ${unitId}:`);
 
     res.json({
       success: true,
@@ -305,7 +307,7 @@ router.post('/schedule-unit', authenticate, async (req, res): Promise<any> => {
     });
 
   } catch (error) {
-    console.error('❌ Error scheduling unit:', error);
+    logger.error({ error }, '❌ Error scheduling unit:');
     
     if (error instanceof z.ZodError) {
       return res.status(400).json({
@@ -328,17 +330,17 @@ router.post('/schedule-unit', authenticate, async (req, res): Promise<any> => {
  */
 router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<any> => {
   try {
-    console.log('🌟 API: Starting comprehensive lesson scheduling:', req.body);
+    logger.info('🌟 API: Starting comprehensive lesson scheduling:', req.body);
 
     const userId = req.user!.id;
 
     const result = await schedulerService.scheduleAllLessons(userId);
 
-    console.log(`✅ Comprehensive scheduling complete:`, {
+    logger.info({
       totalLessonsScheduled: result.totalLessonsScheduled,
       unitsProcessed: result.unitResults.length,
       summary: result.summary
-    });
+    }, `✅ Comprehensive scheduling complete:`);
 
     res.json({
       success: true,
@@ -347,7 +349,7 @@ router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<any
     });
 
   } catch (error) {
-    console.error('❌ Error scheduling all lessons:', error);
+    logger.error({ error }, '❌ Error scheduling all lessons:');
     
     if (error instanceof z.ZodError) {
       return res.status(400).json({
@@ -375,11 +377,11 @@ router.get('/stats', authenticate, async (req, res) => {
       return res.status(401).json({ error: 'Authentication required' });
     }
 
-    console.log(`📊 API: Getting scheduling stats for user ${userId}`);
+    logger.info(`📊 API: Getting scheduling stats for user ${userId}`);
 
     const stats = await schedulerService.getSchedulingStats(userId);
 
-    console.log(`✅ Retrieved scheduling stats:`, stats);
+    logger.info({ stats }, `✅ Retrieved scheduling stats:`);
 
     return res.json({
       success: true,
@@ -387,7 +389,7 @@ router.get('/stats', authenticate, async (req, res) => {
     });
 
   } catch (error) {
-    console.error('❌ Error getting scheduling stats:', error);
+    logger.error({ error }, '❌ Error getting scheduling stats:');
 
     return res.status(500).json({
       success: false,
@@ -402,11 +404,11 @@ router.get('/stats', authenticate, async (req, res) => {
  */
 router.get('/calendar-summary', authenticate, async (_req, res) => {
   try {
-    console.log('📅 API: Getting school calendar summary');
+    logger.info('📅 API: Getting school calendar summary');
 
     const summary = schoolCalendar.getSchoolYearSummary();
 
-    console.log('✅ Retrieved calendar summary:', summary);
+    logger.info({ summary }, '✅ Retrieved calendar summary:');
 
     res.json({
       success: true,
@@ -414,7 +416,7 @@ router.get('/calendar-summary', authenticate, async (_req, res) => {
     });
 
   } catch (error) {
-    console.error('❌ Error getting calendar summary:', error);
+    logger.error({ error }, '❌ Error getting calendar summary:');
 
     res.status(500).json({
       success: false,
@@ -444,7 +446,7 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
       return res.status(401).json({ error: 'Authentication required' });
     }
     
-    console.log(`📅 Shifting ${subject} lessons by ${shiftDays} days from ${fromDate}`);
+    logger.info(`📅 Shifting ${subject} lessons by ${shiftDays} days from ${fromDate}`);
     
     // Determine which lessons to shift
     const dateFilter = shiftOnlyFrom 
@@ -504,7 +506,7 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
         );
         
         if (targetDayIndex === -1) {
-          console.warn(`Current date ${currentDate} not found in teaching days, using closest`);
+          logger.warn(`Current date ${currentDate} not found in teaching days, using closest`);
           targetDayIndex = teachingDays.findIndex((d: any) => d.dateObj >= currentDate);
         }
         
@@ -528,13 +530,13 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
         }
         
         if (newDayIndex >= teachingDays.length) {
-          console.warn(`Cannot shift lesson ${lesson.id} - would exceed school year`);
+          logger.warn(`Cannot shift lesson ${lesson.id} - would exceed school year`);
           continue;
         }
         
         const teachingDay = teachingDays[newDayIndex];
         if (!teachingDay) {
-          console.warn(`Cannot shift lesson ${lesson.id} - teaching day not found`);
+          logger.warn(`Cannot shift lesson ${lesson.id} - teaching day not found`);
           continue;
         }
         const newDate = new Date(teachingDay.date + 'T09:00:00');
@@ -562,11 +564,11 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
       };
     });
     
-    console.log(`✅ Shift operation completed: ${result.lessonsShifted} lessons shifted`);
+    logger.info(`✅ Shift operation completed: ${result.lessonsShifted} lessons shifted`);
     res.json(result);
     
   } catch (error) {
-    console.error('Error shifting subject:', error);
+    logger.error({ error }, 'Error shifting subject:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ 
         error: 'Invalid request data', 
@@ -631,7 +633,7 @@ router.post('/activate-extension', authenticate, async (req, res): Promise<any> 
       }
     });
     
-    console.log(`✅ Activated extension lesson: ${updated.titleFr || updated.title}`);
+    logger.info(`✅ Activated extension lesson: ${updated.titleFr || updated.title}`);
     
     res.json({
       success: true,
@@ -640,7 +642,7 @@ router.post('/activate-extension', authenticate, async (req, res): Promise<any> 
     });
     
   } catch (error) {
-    console.error('Error activating extension:', error);
+    logger.error({ error }, 'Error activating extension:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ 
         error: 'Invalid request data', 
@@ -792,7 +794,7 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
     
     await prisma.$transaction(updates);
     
-    console.log(`✅ Replaced core lesson with extension, core rescheduled: ${rescheduleCore}`);
+    logger.info(`✅ Replaced core lesson with extension, core rescheduled: ${rescheduleCore}`);
     
     res.json({
       success: true,
@@ -803,7 +805,7 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
     });
     
   } catch (error) {
-    console.error('Error replacing with extension:', error);
+    logger.error({ error }, 'Error replacing with extension:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ 
         error: 'Invalid request data', 
@@ -906,7 +908,7 @@ router.post('/validate-shift', authenticate, async (req, res): Promise<any> => {
     });
     
   } catch (error) {
-    console.error('Error validating shift:', error);
+    logger.error({ error }, 'Error validating shift:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ 
         error: 'Invalid request data', 
@@ -972,7 +974,7 @@ router.get('/available-extensions', authenticate, async (req, res): Promise<any>
     });
     
   } catch (error) {
-    console.error('Error getting available extensions:', error);
+    logger.error({ error }, 'Error getting available extensions:');
     if (error instanceof z.ZodError) {
       return res.status(400).json({ 
         error: 'Invalid query parameters', 

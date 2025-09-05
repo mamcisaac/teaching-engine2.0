@@ -3,9 +3,11 @@
  * Quick access endpoints for student progress summaries
  */
 
-import { Router, Request, Response } from 'express';
-import { param, query, body, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { param, query, body, validationResult } from 'express-validator';
+
 import { logger } from '../logger';
 
 const router = Router();
@@ -98,7 +100,8 @@ router.get('/:id/progress-summary',
           include: {
             outcome: {
               select: {
-                expectation: true,
+                title: true,
+                description: true,
                 subject: true
               }
             }
@@ -132,13 +135,16 @@ router.get('/:id/progress-summary',
 
       // Process outcome progress
       outcomeProgress.forEach(progress => {
-        if (progress.currentLevel === 'MEETING' || progress.currentLevel === 'EXCEEDING') {
-          if (!strengths.includes(progress.outcome.expectation)) {
-            strengths.push(progress.outcome.expectation);
-          }
-        } else if (progress.currentLevel === 'NOT_YET' || progress.currentLevel === 'APPROACHING') {
-          if (!growthAreas.includes(progress.outcome.expectation)) {
-            growthAreas.push(progress.outcome.expectation);
+        const expectationText = progress.outcome.title || progress.outcome.description;
+        if (expectationText) {
+          if (progress.currentLevel === 'MEETING' || progress.currentLevel === 'EXCEEDING') {
+            if (!strengths.includes(expectationText)) {
+              strengths.push(expectationText);
+            }
+          } else if (progress.currentLevel === 'NOT_YET' || progress.currentLevel === 'APPROACHING') {
+            if (!growthAreas.includes(expectationText)) {
+              growthAreas.push(expectationText);
+            }
           }
         }
       });
@@ -204,7 +210,7 @@ router.get('/:id/progress-summary',
       res.json(summary);
 
     } catch (error: unknown) {
-      logger.error('Failed to generate progress summary:', error);
+      logger.error('Failed to generate progress summary:', error instanceof Error ? error.message : String(error));
       res.status(500).json({ error: 'Failed to generate progress summary' });
     }
   }
@@ -290,8 +296,13 @@ router.get('/:id/evidence',
         'EXCEEDING': 4
       };
       
-      const firstValue = levelValues[firstAssessment.level];
-      const latestValue = levelValues[latestAssessment.level];
+      if (!firstAssessment || !latestAssessment) {
+        res.status(404).json({ error: 'Insufficient assessment data' });
+        return;
+      }
+
+      const firstValue = levelValues[firstAssessment.level as keyof typeof levelValues];
+      const latestValue = levelValues[latestAssessment.level as keyof typeof levelValues];
       
       if (latestValue > firstValue) trajectory = 'improving';
       else if (latestValue < firstValue) trajectory = 'declining';
@@ -305,7 +316,7 @@ router.get('/:id/evidence',
       });
 
     } catch (error: unknown) {
-      logger.error('Failed to get improvement evidence:', error);
+      logger.error('Failed to get improvement evidence:', error instanceof Error ? error.message : String(error));
       res.status(500).json({ error: 'Failed to get improvement evidence' });
     }
   }
@@ -360,7 +371,7 @@ router.get('/:id/communications',
       });
 
     } catch (error: unknown) {
-      logger.error('Failed to get communication history:', error);
+      logger.error('Failed to get communication history:', error instanceof Error ? error.message : String(error));
       res.status(500).json({ error: 'Failed to get communication history' });
     }
   }
@@ -409,10 +420,10 @@ router.post('/:id/communications',
       // For now, we'll store it as a special type of assessment note
       const communication = await prisma.studentAssessment.create({
         data: {
-          userId,
-          studentId,
+          userId: userId!,
+          studentId: studentId!,
           subject: 'PARENT_COMMUNICATION',
-          title: `Communication with ${sharedWith}`,
+          title: `Communication with ${sharedWith || 'parent'}`,
           level: 'MEETING', // Default level for communications
           notes: `${type.toUpperCase()}: ${summary}`,
           isAnecdotal: true, // Use anecdotal flag to separate from assessments
@@ -430,7 +441,7 @@ router.post('/:id/communications',
       });
 
     } catch (error: unknown) {
-      logger.error('Failed to save communication:', error);
+      logger.error('Failed to save communication:', error instanceof Error ? error.message : String(error));
       res.status(500).json({ error: 'Failed to save communication' });
     }
   }

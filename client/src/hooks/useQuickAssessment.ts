@@ -5,7 +5,6 @@ import type {
   StudentAssessment,
   CreateStudentAssessmentRequest,
   UpdateStudentAssessmentRequest,
-  DifferentiationGroups,
   DifferentiationGroupsRequest,
   StudentAssessmentFilters
 } from '../types/studentAssessment';

@@ -1,5 +1,5 @@
 import { format, parseISO, addDays, subDays, isValid } from 'date-fns';
-import { Calendar, ChevronLeft, ChevronRight, Clock, BookOpen, Plus, FileText } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Clock, Plus, FileText } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 

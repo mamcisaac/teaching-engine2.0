@@ -19,7 +19,9 @@ const storageService = getStorageService();
 const tempDir = path.join(os.tmpdir(), 'teaching-engine-audio');
 
 // Ensure temp directory exists
-fs.mkdir(tempDir, { recursive: true }).catch(console.error);
+fs.mkdir(tempDir, { recursive: true }).catch((error) => {
+  logger.error('Failed to create temp directory:', error instanceof Error ? error.message : String(error));
+});
 
 export interface AudioJobData {
   artifactId: string;

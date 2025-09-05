@@ -11,7 +11,7 @@
  */
 
 import { Loader2, Check, AlertCircle, StickyNote } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { useAnecdotalNotes } from '../../hooks/useAnecdotalNotes';
 import type { NoteContext } from '../../utils/anecdotalNotes';
@@ -53,6 +53,7 @@ export const QuickNoteEntry: React.FC<QuickNoteEntryProps> = ({
   
   const [showSuccess, setShowSuccess] = useState(false);
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Show success indicator briefly after save
   useEffect(() => {
@@ -72,6 +73,13 @@ export const QuickNoteEntry: React.FC<QuickNoteEntryProps> = ({
       setLastSaved(new Date());
     }
   }, [isSaving, isError]);
+
+  // Handle autoFocus accessibility
+  useEffect(() => {
+    if (autoFocus && textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, [autoFocus]);
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const newText = e.target.value;
@@ -133,6 +141,7 @@ export const QuickNoteEntry: React.FC<QuickNoteEntryProps> = ({
         
         <div className="relative">
           <textarea
+            ref={textareaRef}
             id={`note-input-${studentId}`}
             value={localNote}
             onChange={handleTextChange}
@@ -140,7 +149,6 @@ export const QuickNoteEntry: React.FC<QuickNoteEntryProps> = ({
             placeholder={placeholder}
             maxLength={maxLength}
             rows={compact ? Math.max(2, rows - 1) : rows}
-            autoFocus={autoFocus}
             inputMode="text"
             enterKeyHint="done"
             className={cn(

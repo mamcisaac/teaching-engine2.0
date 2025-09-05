@@ -138,12 +138,12 @@ return;
   };
 
   // Override res.end to match all Express Response.end() signatures
-  res.end = function (this: Response, chunk?: any, encoding?: any, cb?: any): Response {
+  res.end = function (this: Response, chunk?: unknown, encoding?: unknown, cb?: unknown): Response {
     logResponse();
     
     // Use type assertion to bypass strict typing and call original method with arguments
     // This handles all Express Response.end overloads correctly at runtime
-    const originalMethod = originalEnd as any;
+    const originalMethod = originalEnd as (chunk?: unknown, encoding?: unknown, cb?: unknown) => Response;
     
     if (arguments.length === 0) {
       return originalMethod.call(this);

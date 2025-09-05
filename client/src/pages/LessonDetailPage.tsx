@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { 
   Calendar, Clock, BookOpen, Target, Users, Package, 
-  CheckCircle, AlertCircle, ChevronLeft, Edit, Trash2, Printer,
+  AlertCircle, ChevronLeft, Edit, Trash2, Printer,
   ClipboardCheck, BarChart3
 } from 'lucide-react';
 import React from 'react';

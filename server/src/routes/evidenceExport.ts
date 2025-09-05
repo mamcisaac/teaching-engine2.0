@@ -1,16 +1,22 @@
+import { logger } from '../logger';
 /**
  * Evidence Export API Routes
  * Provides endpoints for Emily to export student evidence packages
  * for sharing with parents through her usual communication methods
  */
 
-import { Router, Request, Response } from 'express';
-import { param, query, validationResult } from 'express-validator';
-import { PrismaClient } from '@teaching-engine/database';
-import { exportStudentEvidence, exportClassSummary, ExportOptions } from '../services/evidenceExport';
-import { reportGenerationRateLimit } from '../middleware/rateLimit/artifactRateLimit';
-import path from 'path';
 import { promises as fs } from 'fs';
+import path from 'path';
+
+import { PrismaClient } from '@teaching-engine/database';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { param, query, validationResult } from 'express-validator';
+
+import { reportGenerationRateLimit } from '../middleware/rateLimit/artifactRateLimit';
+import type { ExportOptions } from '../services/evidenceExport';
+import { exportStudentEvidence, exportClassSummary } from '../services/evidenceExport';
+
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -130,12 +136,12 @@ router.get('/student/:id',
             // Directory might not be empty, that's okay
           }
         } catch (error: unknown) {
-          console.warn('Failed to clean up temp export file:', error);
+          logger.warn({ error }, 'Failed to clean up temp export file:');
         }
       }, 5000); // Clean up after 5 seconds
 
     } catch (error: unknown) {
-      console.error('Student evidence export failed:', error);
+      logger.error({ error }, 'Student evidence export failed:');
       res.status(500).json({ error: 'Failed to export student evidence' });
     }
   }
@@ -208,12 +214,12 @@ router.get('/class-summary',
             // Directory might not be empty, that's okay
           }
         } catch (error: unknown) {
-          console.warn('Failed to clean up temp export file:', error);
+          logger.warn({ error }, 'Failed to clean up temp export file:');
         }
       }, 5000);
 
     } catch (error: unknown) {
-      console.error('Class summary export failed:', error);
+      logger.error({ error }, 'Class summary export failed:');
       res.status(500).json({ error: 'Failed to export class summary' });
     }
   }
@@ -296,7 +302,7 @@ router.get('/options',
         }
       });
     } catch (error: unknown) {
-      console.error('Failed to get export options:', error);
+      logger.error({ error }, 'Failed to get export options:');
       res.status(500).json({ error: 'Failed to get export options' });
     }
   }
@@ -421,12 +427,12 @@ ${results.map(r =>
           await fs.unlink(zipPath);
           await fs.rmdir(tempDir);
         } catch (error: unknown) {
-          console.warn('Failed to clean up bulk export files:', error);
+          logger.warn({ error }, 'Failed to clean up bulk export files:');
         }
       }, 5000);
 
     } catch (error: unknown) {
-      console.error('Bulk export failed:', error);
+      logger.error({ error }, 'Bulk export failed:');
       res.status(500).json({ error: 'Failed to export evidence for multiple students' });
     }
   }

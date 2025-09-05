@@ -4,12 +4,14 @@
  * through her usual communication methods (email, newsletters, etc.)
  */
 
-import PDFDocument from 'pdfkit';
-import archiver from 'archiver';
 import { promises as fs } from 'fs';
-import path from 'path';
 import os from 'os';
+import path from 'path';
+
 import { PrismaClient } from '@teaching-engine/database';
+import archiver from 'archiver';
+import PDFDocument from 'pdfkit';
+
 import { logger } from '../logger';
 
 const prisma = new PrismaClient();

@@ -5,10 +5,10 @@ import { toast } from 'sonner';
 import { useUnitPlans, useCreateUnitPlan, useUpdateUnitPlan, useDeleteUnitPlan, useLongRangePlan, type UnitPlan } from '../hooks/useETFOPlanning';
 
 export function SimpleUnitPlansPage(): React.ReactElement {
-  const { longRangePlanId, unitId } = useParams<{ longRangePlanId?: string; unitId?: string }>();
+  const { longRangePlanId, unitId: _unitId } = useParams<{ longRangePlanId?: string; unitId?: string }>();
   const navigate = useNavigate();
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [_showCreateModal, _setShowCreateModal] = useState(false);
+  const [_showEditModal, _setShowEditModal] = useState(false);
   const [editingUnit, setEditingUnit] = useState<UnitPlan | null>(null);
   const [formData, setFormData] = useState({
     title: '',
@@ -33,7 +33,7 @@ export function SimpleUnitPlansPage(): React.ReactElement {
   const updateMutation = useUpdateUnitPlan();
   const deleteMutation = useDeleteUnitPlan();
 
-  const handleCreateUnit = async (e: React.FormEvent): Promise<void> => {
+  const _handleCreateUnit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     
     try {
@@ -42,14 +42,14 @@ export function SimpleUnitPlansPage(): React.ReactElement {
         longRangePlanId: longRangePlanId || 'default',
       });
       toast.success('Unit plan created successfully!');
-      setShowCreateModal(false);
+      _setShowCreateModal(false);
       resetForm();
     } catch (error) {
       toast.error('Failed to create unit plan');
     }
   };
 
-  const handleEditUnit = (unit: UnitPlan): void => {
+  const _handleEditUnit = (unit: UnitPlan): void => {
     setEditingUnit(unit);
     setFormData({
       title: unit.title,
@@ -63,10 +63,10 @@ export function SimpleUnitPlansPage(): React.ReactElement {
       indigenousPerspectives: unit.indigenousPerspectives || '',
       technologyIntegration: unit.technologyIntegration || '',
     });
-    setShowEditModal(true);
+    _setShowEditModal(true);
   };
 
-  const handleUpdateUnit = async (e: React.FormEvent): Promise<void> => {
+  const _handleUpdateUnit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     if (!editingUnit) return;
     
@@ -76,7 +76,7 @@ export function SimpleUnitPlansPage(): React.ReactElement {
         ...formData,
       });
       toast.success('Unit plan updated successfully!');
-      setShowEditModal(false);
+      _setShowEditModal(false);
       setEditingUnit(null);
       resetForm();
     } catch (error) {
@@ -84,7 +84,7 @@ export function SimpleUnitPlansPage(): React.ReactElement {
     }
   };
 
-  const handleDeleteUnit = async (unitId: string): Promise<void> => {
+  const _handleDeleteUnit = async (unitId: string): Promise<void> => {
     if (window.confirm('Are you sure you want to delete this unit plan? This will also delete all associated lesson plans.')) {
       try {
         await deleteMutation.mutateAsync(unitId);
@@ -222,6 +222,12 @@ export function SimpleUnitPlansPage(): React.ReactElement {
                 border: '1px solid #e5e7eb'
               }}
               onClick={() => handleUnitClick(unit.id)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleUnitClick(unit.id);
+                }
+              }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
                 e.currentTarget.style.boxShadow = '0 8px 15px -3px rgba(0, 0, 0, 0.1)';
@@ -230,6 +236,17 @@ export function SimpleUnitPlansPage(): React.ReactElement {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
               }}
+              onFocus={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 8px 15px -3px rgba(0, 0, 0, 0.1)';
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`View unit: ${unit.title}`}
             >
               <h3 style={{ 
                 fontSize: '20px', 

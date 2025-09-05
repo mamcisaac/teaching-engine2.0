@@ -3,9 +3,11 @@
  * Handles student progress tracking using 4-level Growing Success framework
  */
 
-import { Router, Request, Response, NextFunction } from 'express';
-import { body, param, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
+import { logger } from '../logger';
+import type { Request, Response, NextFunction } from 'express';
+import { Router } from 'express';
+import { body, param, validationResult } from 'express-validator';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -277,7 +279,7 @@ router.post('/update',
         isLevelChange
       });
     } catch (error: unknown) {
-      console.error('Mastery update error:', error);
+      logger.error({ error }, 'Mastery update error:');
       res.status(500).json({ error: 'Failed to update mastery progress' });
     }
   }
@@ -367,7 +369,7 @@ router.post('/batch-update',
             },
             update: {
               currentLevel,
-              previousLevel: isLevelChange ? previousLevel : existing?.previousLevel,
+              previousLevel: isLevelChange ? previousLevel : existing.previousLevel,
               lastAssessmentDate: new Date(),
               totalEvidencePieces,
               areasForGrowth,
@@ -407,7 +409,7 @@ router.post('/batch-update',
         }))
       });
     } catch (error: unknown) {
-      console.error('Batch mastery update error:', error);
+      logger.error({ error }, 'Batch mastery update error:');
       res.status(500).json({ error: 'Failed to update mastery records' });
     }
   }
@@ -552,7 +554,7 @@ router.get('/student/:studentId',
         progressBySubject: Object.values(progressBySubject)
       });
     } catch (error: unknown) {
-      console.error('Student mastery retrieval error:', error);
+      logger.error({ error }, 'Student mastery retrieval error:');
       res.status(500).json({ error: 'Failed to retrieve student mastery data' });
     }
   }
@@ -698,7 +700,7 @@ router.get('/overview/:studentId',
         progressBySubject: Object.values(progressBySubject)
       });
     } catch (error: unknown) {
-      console.error('Student mastery retrieval error:', error);
+      logger.error({ error }, 'Student mastery retrieval error:');
       res.status(500).json({ error: 'Failed to retrieve student mastery data' });
     }
   }
@@ -841,7 +843,7 @@ router.get('/outcome/:outcomeId',
         studentProgress
       });
     } catch (error: unknown) {
-      console.error('Outcome mastery retrieval error:', error);
+      logger.error({ error }, 'Outcome mastery retrieval error:');
       res.status(500).json({ error: 'Failed to retrieve outcome mastery data' });
     }
   }
@@ -984,11 +986,11 @@ router.get('/analytics',
           const breakdown: Record<string, any> = {};
           
           records.forEach(record => {
-            const key = `${record.outcome?.subject || 'Unknown'}-${record.outcome?.strand || 'Unknown'}`;
+            const key = `${record.outcome.subject || 'Unknown'}-${record.outcome.strand || 'Unknown'}`;
             if (!breakdown[key]) {
               breakdown[key] = {
-                subject: record.outcome?.subject || 'Unknown',
-                strand: record.outcome?.strand || 'Unknown',
+                subject: record.outcome.subject || 'Unknown',
+                strand: record.outcome.strand || 'Unknown',
                 total_assessments: 0,
                 exceeding: 0,
                 meeting: 0,
@@ -1078,7 +1080,7 @@ router.get('/analytics',
         timeframe: parseInt(timeframe as string)
       });
     } catch (error: unknown) {
-      console.error('Mastery analytics error:', error);
+      logger.error({ error }, 'Mastery analytics error:');
       res.status(500).json({ error: 'Failed to retrieve mastery analytics' });
     }
   }
@@ -1132,7 +1134,7 @@ router.post('/share-with-parents',
         totalRequested: progressIds.length
       });
     } catch (error: unknown) {
-      console.error('Parent sharing error:', error);
+      logger.error({ error }, 'Parent sharing error:');
       res.status(500).json({ error: 'Failed to mark progress as shared' });
     }
   }
@@ -1174,7 +1176,7 @@ router.delete('/:progressId',
 
       res.status(204).send();
     } catch (error: unknown) {
-      console.error('Progress archiving error:', error);
+      logger.error({ error }, 'Progress archiving error:');
       res.status(500).json({ error: 'Failed to archive progress record' });
     }
   }

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars */
 import { describe, it, expect } from '@jest/globals';
 
+import { logger } from '../../logger';
+
 // Placeholder test file - Pact testing infrastructure not yet implemented
 describe('ETFO Lesson Plans Pact Verification Tests', () => {
   it('should be implemented when Pact testing infrastructure is ready', () => {
@@ -27,7 +29,7 @@ describe('ETFO Lesson Plans Provider Contract Tests', () => {
     // Start the server
     await new Promise<void>((resolve) => {
       httpServer = server.listen(3000, () => {
-        console.log('Test server started on port 3000');
+        logger.info('Test server started on port 3000');
         resolve();
       });
     });
@@ -48,7 +50,7 @@ describe('ETFO Lesson Plans Provider Contract Tests', () => {
     // Close server
     await new Promise<void>((resolve) => {
       httpServer.close(() => {
-        console.log('Test server closed');
+        logger.info('Test server closed');
         resolve();
       });
     });
@@ -171,9 +173,9 @@ describe('ETFO Lesson Plans Provider Contract Tests', () => {
 
     try {
       await verifier.verifyProvider();
-      console.log('Pact verification complete!');
+      logger.info('Pact verification complete!');
     } catch (_error) {
-      console.error('Pact verification failed:', error);
+      logger.error('Pact verification failed:', error);
       throw _error;
     }
   }, 60000); // 60 second timeout for provider tests

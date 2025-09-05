@@ -3,7 +3,6 @@
  * Text-based progress summary for parent communication
  */
 
-import React, { useEffect, useState } from 'react';
 import {
   AcademicCapIcon,
   ArrowTrendingUpIcon,
@@ -15,6 +14,7 @@ import {
   LockClosedIcon,
   LockOpenIcon
 } from '@heroicons/react/24/outline';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import {
@@ -25,8 +25,8 @@ import {
   useGenerateParentReport,
   useSaveParentCommunication
 } from '../../hooks/useStudentProgress';
-import { generateParentSummary, formatDateForParents } from '../../utils/studentProgress';
 import type { Student } from '../../services/api/students';
+import { formatDateForParents } from '../../utils/studentProgress';
 
 interface StudentProgressDashboardProps {
   student: Student;
@@ -43,10 +43,10 @@ export function StudentProgressDashboard({
   
   // Fetch progress data
   const { data: quickProgress, isLoading: quickLoading } = useQuickProgress(student.id);
-  const { data: fullProgress, isLoading: fullLoading } = useStudentProgress(student.id, {
+  const { data: fullProgress, isLoading: _fullLoading } = useStudentProgress(student.id, {
     includePrivate: privacyMode === 'private'
   });
-  const { data: assessments } = useStudentAssessments(student.id);
+  const { data: _assessments } = useStudentAssessments(student.id);
   const { data: communications } = useParentCommunications(student.id);
   
   // Mutations
@@ -115,7 +115,7 @@ export function StudentProgressDashboard({
           {quickProgress && (
             <p className="mt-1 text-sm text-gray-500">
               Load time: {quickProgress.loadTimeMs}ms
-              {quickProgress.loadTimeMs < 2000 && (
+              {(quickProgress.loadTimeMs ?? 0) < 2000 && (
                 <span className="ml-2 text-green-600">✓ Fast</span>
               )}
             </p>

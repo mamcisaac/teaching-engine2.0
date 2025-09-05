@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { apiClient } from '../api/core/client';
+import { apiClient as _apiClient } from '../api/core/client';
 import { STORAGE_KEYS, CORE_SUBJECTS } from '../constants/subjects';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -31,7 +31,7 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
   const { t } = useLanguage();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth();
-  const { state, isOnboardingActive } = useOnboarding();
+  const { state, isOnboardingActive: _isOnboardingActive } = useOnboarding();
 
   // Focus on subject selection - show if user is authenticated AND no subjects are selected or onboarding was reset
   const [visible, setVisible] = useState(() => {
@@ -50,8 +50,8 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
       // Show if no subjects selected AND user hasn't completed or skipped onboarding
       return parsedSubjects.length === 0 && firstTimeUser !== 'false' && !onboardingData.skippedOnboarding;
     } catch (error) {
-      console.log('[TeacherOnboardingFlow] Error in visibility check:', error);
-      return false; // Default to not showing instead of always showing
+      // Error in visibility check - default to not showing
+      return false;
     }
   });
 
@@ -106,8 +106,8 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
         const shouldShow = parsedSubjects.length === 0 && firstTimeUser !== 'false' && !onboardingData.skippedOnboarding;
         setVisible(shouldShow);
       } catch (error) {
-        console.log('[TeacherOnboardingFlow] Error in checkVisibility:', error);
-        setVisible(false); // Default to not showing instead of always showing
+        // Error in checkVisibility - default to not showing
+        setVisible(false);
       }
     };
 

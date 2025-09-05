@@ -4,8 +4,9 @@
  * Using PDFKit for generation
  */
 
-import PDFDocument from 'pdfkit';
 import { PrismaClient } from '@teaching-engine/database';
+import PDFDocument from 'pdfkit';
+
 import { logger } from '../logger';
 
 const prisma = new PrismaClient();

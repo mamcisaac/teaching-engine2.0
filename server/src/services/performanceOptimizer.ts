@@ -5,6 +5,7 @@
 
 import { PrismaClient } from '@teaching-engine/database';
 import Redis from 'ioredis';
+
 import { logger } from '../logger';
 
 const prisma = new PrismaClient();

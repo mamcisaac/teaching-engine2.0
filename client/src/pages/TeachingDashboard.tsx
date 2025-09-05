@@ -51,7 +51,7 @@ export function TeachingDashboard(): React.ReactElement {
   const { data: allUnits = [] } = useUnitPlans({});
   
   // Get long range plans for overview
-  const { data: longRangePlans = [] } = useLongRangePlans();
+  const { data: _longRangePlans = [] } = useLongRangePlans();
   
   // Filter for currently active units
   const activeUnits = useMemo(() => {
@@ -64,7 +64,7 @@ export function TeachingDashboard(): React.ReactElement {
   }, [allUnits]);
   
   // Get teacher's selected subjects
-  const teacherSubjects = useMemo(() => {
+  const _teacherSubjects = useMemo(() => {
     const stored = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
     return safeJsonParse<string[]>(stored, []);
   }, []);

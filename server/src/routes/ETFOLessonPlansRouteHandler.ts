@@ -282,7 +282,7 @@ class ETFOLessonPlanService extends BaseService {
     }
   }
 
-  private buildCreateBaseData(data: ETFOLessonPlanCreateData, userId: number): any {
+  private buildCreateBaseData(data: ETFOLessonPlanCreateData, userId: number): Prisma.ETFOLessonPlanCreateInput {
     return {
       title: data.title,
       titleFr: data.titleFr,
@@ -757,7 +757,7 @@ class ETFOLessonPlanService extends BaseService {
     lessonPlanId: string,
     unitPlanId: string,
     userId: number
-  ): Promise<{ sourceLessonPlan: any; targetUnitPlan: any }> {
+  ): Promise<{ sourceLessonPlan: ETFOLessonPlan | null; targetUnitPlan: unknown }> {
     const [sourceLessonPlan, targetUnitPlan] = await Promise.all([
       prisma.eTFOLessonPlan.findFirst({
         where: { id: lessonPlanId, userId },
@@ -782,11 +782,11 @@ class ETFOLessonPlanService extends BaseService {
   }
 
   private buildDuplicateCreateData(
-    sourceLessonPlan: any,
+    sourceLessonPlan: ETFOLessonPlan & { expectations: unknown[]; resources: unknown[] },
     unitPlanId: string,
     userId: number,
     options: { date?: string | Date; title?: string }
-  ): any {
+  ): Prisma.ETFOLessonPlanCreateInput {
     const { date, title } = options;
 
     return {
@@ -814,12 +814,12 @@ class ETFOLessonPlanService extends BaseService {
       isSubFriendly: sourceLessonPlan.isSubFriendly,
       subNotes: sourceLessonPlan.subNotes,
       expectations: {
-        create: sourceLessonPlan.expectations.map((exp: any) => ({
+        create: sourceLessonPlan.expectations.map((exp: { expectationId: string }) => ({
           expectationId: exp.expectationId,
         })) ?? [],
       },
       resources: {
-        create: sourceLessonPlan.resources.map((resource: any) => ({
+        create: sourceLessonPlan.resources.map((resource: { title: string; url?: string; type?: string; content?: string }) => ({
           title: resource.title,
           url: resource.url,
           type: resource.type,

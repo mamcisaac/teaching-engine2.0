@@ -38,17 +38,12 @@ const {JWT_SECRET} = process.env;
 
 // Check if we're in development or if JWT_SECRET is not set
 if (!JWT_SECRET) {
-  console.warn('JWT_SECRET not found in environment, using development fallback');
+  logger.warn('JWT_SECRET not found in environment, using development fallback');
   jwtSecret = 'development-secret-key-for-testing-only';
 } else {
   jwtSecret = JWT_SECRET;
 }
 
-console.log('JWT authentication configured:', { 
-  hasSecret: !!jwtSecret, 
-  env: process.env.NODE_ENV,
-  bypassAuth: process.env.BYPASS_AUTH 
-});
 
 // Password requirements
 const PASSWORD_MIN_LENGTH = 8;

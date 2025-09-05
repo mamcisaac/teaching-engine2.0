@@ -9,10 +9,11 @@ import { z } from 'zod';
 
 import { logger } from '../logger';
 import { authenticate } from '../middleware/auth';
-import type { AuthenticatedRequest } from './base/middleware';
-import { prisma } from '../prisma';
 import { validateRequest } from '../middleware/validation';
+import { prisma } from '../prisma';
 import { getErrorMessage } from '../utils/type-guards';
+
+import type { AuthenticatedRequest } from './base/middleware';
 
 const router = Router();
 

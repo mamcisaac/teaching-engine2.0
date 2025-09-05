@@ -8,18 +8,20 @@
 import { Job } from 'bull';
 import ffmpeg from 'fluent-ffmpeg';
 import { promises as fs } from 'fs';
+import { logger } from '../../../logger';
 import path from 'path';
 import os from 'os';
 import { PrismaClient } from '@teaching-engine/database';
 import { getStorageService } from '../../storage';
-import { logger } from '../../../logger';
 
 const prisma = new PrismaClient();
 const storageService = getStorageService();
 const tempDir = path.join(os.tmpdir(), 'teaching-engine-video');
 
 // Ensure temp directory exists
-fs.mkdir(tempDir, { recursive: true }).catch(console.error);
+fs.mkdir(tempDir, { recursive: true }).catch((error) => {
+  logger.error('Failed to create temp directory:', error instanceof Error ? error.message : String(error));
+});
 
 export interface VideoJobData {
   artifactId: string;

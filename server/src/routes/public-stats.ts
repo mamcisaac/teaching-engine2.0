@@ -1,5 +1,6 @@
-import { Router } from 'express';
+import { logger } from '../logger';
 import { PrismaClient } from '@prisma/client';
+import { Router } from 'express';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -47,7 +48,7 @@ router.get('/stats', async (_req, res) => {
     
     // Get subject distribution for dashboard
     const subjectStats = allUnits.reduce((acc, unit) => {
-      const subject = unit.longRangePlan?.subject || 'Unknown';
+      const subject = unit.longRangePlan.subject || 'Unknown';
       if (!acc[subject]) {
         acc[subject] = { count: 0, units: [] };
       }
@@ -75,7 +76,7 @@ router.get('/stats', async (_req, res) => {
     });
     
   } catch (error: unknown) {
-    console.error('Error fetching public stats:', error);
+    logger.error({ error }, 'Error fetching public stats:');
     res.status(500).json({ 
       error: 'Failed to fetch stats',
       stats: {

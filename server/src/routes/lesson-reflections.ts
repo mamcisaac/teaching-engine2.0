@@ -1,13 +1,15 @@
+import { logger } from '../logger';
 /**
  * Lesson Reflection API Routes
  * Quick teacher reflections with status (👍/👌/👎) and notes
  * Issue #308: Per-Lesson Quick Reflections & Informal Assessment
  */
 
-import { Router, Request, Response } from 'express';
-import { body, param, query, validationResult } from 'express-validator';
 import { PrismaClient, ReflectionStatus } from '@teaching-engine/database';
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { body, param, query, validationResult } from 'express-validator';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -114,7 +116,7 @@ router.post('/:id/reflection',
         statusEmoji: emojiMap[reflection.status]
       });
     } catch (error) {
-      console.error('Error saving reflection:', error);
+      logger.error({ error }, 'Error saving reflection:');
       res.status(500).json({ error: 'Failed to save reflection' });
     }
   }
@@ -169,7 +171,7 @@ router.get('/:id/reflection',
         statusEmoji: emojiMap[reflection.status]
       });
     } catch (error) {
-      console.error('Error fetching reflection:', error);
+      logger.error({ error }, 'Error fetching reflection:');
       res.status(500).json({ error: 'Failed to fetch reflection' });
     }
   }
@@ -247,7 +249,7 @@ router.get('/daily/:date',
 
       res.json(reflectionsWithEmoji);
     } catch (error) {
-      console.error('Error fetching daily reflections:', error);
+      logger.error({ error }, 'Error fetching daily reflections:');
       res.status(500).json({ error: 'Failed to fetch daily reflections' });
     }
   }
@@ -322,7 +324,7 @@ router.get('/summary/:date',
 
       res.json(summary);
     } catch (error) {
-      console.error('Error fetching summary:', error);
+      logger.error({ error }, 'Error fetching summary:');
       res.status(500).json({ error: 'Failed to fetch summary' });
     }
   }
@@ -369,7 +371,7 @@ router.delete('/:id/reflection',
 
       res.json({ success: true });
     } catch (error) {
-      console.error('Error deleting reflection:', error);
+      logger.error({ error }, 'Error deleting reflection:');
       res.status(500).json({ error: 'Failed to delete reflection' });
     }
   }
@@ -427,7 +429,7 @@ router.get('/',
 
       res.json(reflectionsWithEmoji);
     } catch (error) {
-      console.error('Error fetching reflections:', error);
+      logger.error({ error }, 'Error fetching reflections:');
       res.status(500).json({ error: 'Failed to fetch reflections' });
     }
   }

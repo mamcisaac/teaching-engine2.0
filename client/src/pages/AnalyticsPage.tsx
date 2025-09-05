@@ -3,7 +3,6 @@ import {
   AcademicCapIcon,
   ArrowTrendingUpIcon,
   UserGroupIcon,
-  CalendarIcon,
   CheckCircleIcon,
   ExclamationTriangleIcon,
   XCircleIcon,

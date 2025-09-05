@@ -1,6 +1,9 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
+
 import { format, parseISO } from 'date-fns';
+
+import { logger } from '../logger';
 
 interface ScheduleEntry {
   date: string;
@@ -73,13 +76,13 @@ export class SchoolCalendarService {
       
       // Validate we have a reasonable number of teaching days
       if (this.teachingDays.length < 180 || this.teachingDays.length > 200) {
-        console.warn(`Unusual number of teaching days: ${this.teachingDays.length}`);
+        logger.warn(`Unusual number of teaching days: ${this.teachingDays.length}`);
       }
 
       this.initialized = true;
-      console.log(`📅 School calendar initialized: ${this.teachingDays.length} teaching days`);
+      logger.info(`📅 School calendar initialized: ${this.teachingDays.length} teaching days`);
     } catch (error) {
-      console.error('CRITICAL: Failed to initialize school calendar:', error);
+      logger.error('CRITICAL: Failed to initialize school calendar:', error instanceof Error ? error.message : String(error));
       // Set empty teaching days to prevent complete failure
       this.teachingDays = [];
       this.initialized = false;

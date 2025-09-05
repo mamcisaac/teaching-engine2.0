@@ -5,13 +5,9 @@ import {
   MusicalNoteIcon,
   CloudArrowUpIcon,
   MagnifyingGlassIcon,
-  FunnelIcon,
   TrashIcon,
   EyeIcon,
-  ArrowDownTrayIcon,
-  TagIcon,
-  CalendarIcon,
-  UserIcon
+  ArrowDownTrayIcon
 } from '@heroicons/react/24/outline';
 import React, { useState, useRef } from 'react';
 import { toast } from 'sonner';
