@@ -3,7 +3,7 @@
  * Handles all API calls related to substitute teacher information and plan generation
  */
 
-import { apiClient } from '../apiClient';
+import { apiClient } from '../core/client';
 
 export interface ScheduleItem {
   time: string;

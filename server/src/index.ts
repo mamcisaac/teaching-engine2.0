@@ -289,7 +289,6 @@ app.use(
 app.use('/api/schedule', asyncMiddleware(authenticate), rateLimiters.write, userCache, scheduleManagementRoutes);
 app.use('/api/daybook-entries', asyncMiddleware(authenticate), rateLimiters.write, userCache, daybookEntryRoutes);
 app.use('/api/lesson-completions', asyncMiddleware(authenticate), rateLimiters.write, userCache, lessonCompletionRoutes);
-app.use('/api/lessons', asyncMiddleware(authenticate), rateLimiters.write, userCache, lessonReflectionRoutes);
 app.use('/api/reflections', asyncMiddleware(authenticate), rateLimiters.write, userCache, lessonReflectionRoutes);
 app.use('/api/lesson-generation', asyncMiddleware(authenticate), rateLimiters.write, lessonGenerationRoutes);
 app.use('/api/student-assessments', asyncMiddleware(authenticate), rateLimiters.write, userCache, studentAssessmentRoutes);

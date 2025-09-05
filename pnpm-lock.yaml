@@ -83,6 +83,9 @@ importers:
       '@types/dompurify':
         specifier: ^3.2.0
         version: 3.2.0
+      '@types/lodash':
+        specifier: ^4.17.20
+        version: 4.17.20
       '@types/react-big-calendar':
         specifier: ^1.16.2
         version: 1.16.2
@@ -116,6 +119,9 @@ importers:
       jspdf:
         specifier: ^3.0.1
         version: 3.0.1
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       lucide-react:
         specifier: ^0.517.0
         version: 0.517.0(react@18.3.1)
@@ -537,7 +543,7 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@types/express':
-        specifier: ^4.17.21
+        specifier: ^4.17.23
         version: 4.17.23
       '@types/express-serve-static-core':
         specifier: ^4.19.6
@@ -575,6 +581,9 @@ importers:
       '@types/papaparse':
         specifier: ^5.3.16
         version: 5.3.16
+      '@types/pdfkit':
+        specifier: ^0.17.2
+        version: 0.17.3
       '@types/qs':
         specifier: ^6.14.0
         version: 6.14.0
@@ -3812,6 +3821,9 @@ packages:
   '@types/koa__router@12.0.3':
     resolution: {integrity: sha512-5YUJVv6NwM1z7m6FuYpKfNLTZ932Z6EF6xy2BbtpJSyn13DKNQEkXVffFVSnJHxvwwWh2SAeumpjAYUELqgjyw==}
 
+  '@types/lodash@4.17.20':
+    resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
+
   '@types/memcached@2.2.10':
     resolution: {integrity: sha512-AM9smvZN55Gzs2wRrqeMHVP7KE8KWgCJO/XL5yCly2xF6EKa4YlbpK+cLSAH4NG/Ah64HrlegmGqW8kYws7Vxg==}
 
@@ -3877,6 +3889,9 @@ packages:
 
   '@types/pdf-parse@1.1.5':
     resolution: {integrity: sha512-kBfrSXsloMnUJOKi25s3+hRmkycHfLK6A09eRGqF/N8BkQoPUmaCr+q8Cli5FnfohEz/rsv82zAiPz/LXtOGhA==}
+
+  '@types/pdfkit@0.17.3':
+    resolution: {integrity: sha512-E4tp2qFaghqfS4K5TR4Gn1uTIkg0UAkhUgvVIszr5cS6ZmbioPWEkvhNDy3GtR9qdKC8DLQAnaaMlTcf346VsA==}
 
   '@types/pg-pool@2.0.4':
     resolution: {integrity: sha512-qZAvkv1K3QbmHHFYSNRYPkRjOWRLBYrL4B9c+wG0GSVGBw0NtJwPcgx/DSddeDJvRGMHCEQ4VMEVfuJ/0gZ3XQ==}
@@ -13387,6 +13402,8 @@ snapshots:
     dependencies:
       '@types/koa': 2.13.9
 
+  '@types/lodash@4.17.20': {}
+
   '@types/memcached@2.2.10':
     dependencies:
       '@types/node': 20.19.9
@@ -13453,6 +13470,10 @@ snapshots:
       '@types/node': 20.19.9
 
   '@types/pdf-parse@1.1.5':
+    dependencies:
+      '@types/node': 20.19.9
+
+  '@types/pdfkit@0.17.3':
     dependencies:
       '@types/node': 20.19.9
 

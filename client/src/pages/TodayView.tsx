@@ -26,6 +26,7 @@ import { useETFOLessonPlans, useDaybookEntries, useCreateDaybookEntry, type ETFO
 import { useLessonCompletions } from '../hooks/useLessonCompletions';
 import { LessonCompletionCheckbox } from '../components/lesson-completion/LessonCompletionCheckbox';
 import { LessonCompletionErrorBoundary } from '../components/lesson-completion/LessonCompletionErrorBoundary';
+import { QuickReflectionPanel } from '../components/lesson-reflection/QuickReflectionPanel';
 import { generateLessonPlanHTML, printHTML } from '../utils/printUtils';
 
 interface LessonCardProps {
@@ -173,6 +174,14 @@ function LessonCard({ lesson, onViewDetails, isCompleted, onToggleCompletion, is
               <p className="text-sm text-gray-700">{lesson.subNotes}</p>
             </div>
           )}
+          
+          {/* Quick Reflection Panel */}
+          <QuickReflectionPanel
+            lessonId={lesson.id}
+            lessonTitle={lesson.title}
+            compact={false}
+            className="mt-2"
+          />
           
           <Button 
             className="w-full" 

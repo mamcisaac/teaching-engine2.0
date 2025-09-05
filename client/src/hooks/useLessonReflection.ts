@@ -4,10 +4,11 @@
  */
 
 import { useState, useCallback, useRef, useEffect } from 'react';
+import { debounce } from 'lodash';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { apiClient } from '../api/apiClient';
-import { debounce } from 'lodash';
+
+import { apiClient } from '../api/core/client';
 
 export type ReflectionStatus = '👍' | '👌' | '👎';
 
@@ -176,14 +177,14 @@ export function useLessonReflection({
         saveMutation.mutate({ lessonId, note });
       }
     }, autoSaveDelay),
-    [autoSave, autoSaveDelay]
+    [autoSave, autoSaveDelay, saveMutation]
   );
 
   // Set reflection status
   const setStatus = useCallback((status: ReflectionStatus) => {
     if (!lessonId) return;
     saveMutation.mutate({ lessonId, status });
-  }, [lessonId]);
+  }, [lessonId, saveMutation]);
 
   // Set reflection note with autosave
   const setNote = useCallback((note: string) => {
@@ -204,14 +205,14 @@ export function useLessonReflection({
       status: reflection?.status,
       note: localNote 
     });
-  }, [lessonId, localNote, reflection?.status]);
+  }, [lessonId, localNote, reflection?.status, saveMutation]);
 
   // Clear reflection
   const clear = useCallback(() => {
     if (!lessonId) return;
     deleteMutation.mutate(lessonId);
     setLocalNote('');
-  }, [lessonId]);
+  }, [lessonId, deleteMutation]);
 
   return {
     // Data
