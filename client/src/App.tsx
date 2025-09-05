@@ -6,8 +6,6 @@ import { OnboardingProvider } from './contexts/OnboardingContext';
 import { AppRouter } from './routing/AppRouter';
 
 export function App(): ReactElement {
-  console.log('[App] Rendering App component with all providers');
-  
   return (
     <AuthProvider>
       <HelpProvider>

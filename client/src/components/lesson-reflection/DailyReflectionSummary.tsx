@@ -3,10 +3,11 @@
  * Shows counts and percentages of successful/mixed/reteach lessons
  */
 
-import React from 'react';
-import { cn } from '../../utils/cn';
-import { useLessonReflection } from '../../hooks/useLessonReflection';
 import { TrendingUp, TrendingDown, Activity, MessageSquare } from 'lucide-react';
+import React from 'react';
+
+import { useLessonReflection } from '../../hooks/useLessonReflection';
+import { cn } from '../../utils/cn';
 
 interface DailyReflectionSummaryProps {
   date: string;

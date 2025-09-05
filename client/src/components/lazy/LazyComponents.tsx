@@ -8,8 +8,8 @@ import type { AIWeeklyPlanModalProps } from '../ai/AIWeeklyPlanModal';
 import type { GPTPlanningAgentProps } from '../ai/GPTPlanningAgent';
 import type { CurriculumSetupWizardProps } from '../forms/CurriculumSetupWizard';
 import type { PlanningWizardProps } from '../planning/PlanningWizard';
-import type { TemplatePreviewModalProps } from '../templates/TemplatePreviewModal';
 import type { TemplateApplyModalProps } from '../templates/TemplateApplyModal';
+import type { TemplatePreviewModalProps } from '../templates/TemplatePreviewModal';
 
 // Lazy load heavy AI components
 const AILessonPlanPanel = lazy(() => import('../ai/AILessonPlanPanel').then(module => ({ default: module.AILessonPlanPanel })));

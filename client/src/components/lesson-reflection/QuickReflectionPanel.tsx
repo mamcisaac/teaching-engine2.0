@@ -3,12 +3,15 @@
  * Status selector + note field with autosave
  */
 
-import React from 'react';
-import { cn } from '../../utils/cn';
-import { LessonReflectionStatus } from './LessonReflectionStatus';
-import { LessonReflectionNote } from './LessonReflectionNote';
-import { useLessonReflection, ReflectionStatus } from '../../hooks/useLessonReflection';
 import { MessageSquare } from 'lucide-react';
+import React from 'react';
+
+import type { ReflectionStatus } from '../../hooks/useLessonReflection';
+import { useLessonReflection } from '../../hooks/useLessonReflection';
+import { cn } from '../../utils/cn';
+
+import { LessonReflectionNote } from './LessonReflectionNote';
+import { LessonReflectionStatus } from './LessonReflectionStatus';
 
 interface QuickReflectionPanelProps {
   lessonId: string;

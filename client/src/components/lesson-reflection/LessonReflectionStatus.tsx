@@ -4,8 +4,9 @@
  */
 
 import React from 'react';
+
+import type { ReflectionStatus } from '../../hooks/useLessonReflection';
 import { cn } from '../../utils/cn';
-import { ReflectionStatus } from '../../hooks/useLessonReflection';
 
 interface LessonReflectionStatusProps {
   value?: ReflectionStatus;

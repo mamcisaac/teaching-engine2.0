@@ -2,8 +2,8 @@ import { format, parseISO, addDays, subDays, isValid } from 'date-fns';
 import { Calendar, ChevronLeft, ChevronRight, Clock, BookOpen, Plus, FileText } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { SubPlanGenerator } from '../components/SubPlanGenerator';
 
+import { SubPlanGenerator } from '../components/SubPlanGenerator';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';

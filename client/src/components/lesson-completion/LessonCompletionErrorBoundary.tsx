@@ -3,8 +3,8 @@
  * Prevents completion checkbox errors from crashing the entire page
  */
 
-import React from 'react';
 import { AlertTriangle } from 'lucide-react';
+import React from 'react';
 
 interface Props {
   children: React.ReactNode;

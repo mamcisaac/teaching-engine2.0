@@ -4,8 +4,9 @@
  * All state is managed by the parent component via props
  */
 
-import React from 'react';
 import { CheckCircle2, Circle } from 'lucide-react';
+import React from 'react';
+
 import { cn } from '../../utils/cn';
 
 export interface LessonCompletionCheckboxProps {

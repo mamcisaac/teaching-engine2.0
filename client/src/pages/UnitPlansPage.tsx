@@ -15,6 +15,7 @@ import React, { useState, lazy, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import { useCurriculumExpectations } from '../api/domains/curriculum';
+import { useStartNextUnit, useSchedulingStats } from '../api/domains/schedule';
 import { Dialog } from '../components/Dialog';
 import { PlanningErrorBoundary } from '../components/ErrorBoundaries';
 import { EmptyState } from '../components/LoadingStates';
@@ -43,7 +44,6 @@ import { isUnitPlanTemplate } from '../types/template';
 import { logger } from '../utils/logger';
 import { generateUnitPlanHTML, printHTML, downloadHTML } from '../utils/printUtils';
 import { SafeHtmlRenderer } from '../utils/sanitization';
-import { useStartNextUnit, useSchedulingStats } from '../api/domains/schedule';
 
 // Lazy load AI components for better performance
 const AIUnitPlanPanel = lazy(() =>

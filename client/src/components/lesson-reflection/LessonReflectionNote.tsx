@@ -3,9 +3,10 @@
  * Debounced autosave with visual feedback
  */
 
-import React, { useState, useEffect } from 'react';
-import { cn } from '../../utils/cn';
 import { Loader2, Check, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+
+import { cn } from '../../utils/cn';
 
 interface LessonReflectionNoteProps {
   value: string;

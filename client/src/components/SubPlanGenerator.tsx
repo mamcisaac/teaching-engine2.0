@@ -1,9 +1,10 @@
-import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { substituteApi, type SubstitutePlan } from '../api/domains/substitute';
-import { printHTML, downloadHTML } from '../utils/printUtils';
-import { useToast } from '../hooks/useToast';
 import { X, Download, Printer, FileText } from 'lucide-react';
+import { useState } from 'react';
+
+import { substituteApi, type SubstitutePlan } from '../api/domains/substitute';
+import { useToast } from '../hooks/useToast';
+import { printHTML, downloadHTML } from '../utils/printUtils';
 
 interface Props {
   date?: Date;
@@ -133,7 +134,7 @@ export function SubPlanGenerator({ date: initialDate, onClose }: Props): React.R
                         <span className="font-medium">Grade:</span> {planData.grade}
                       </div>
                       <div>
-                        <span className="font-medium">Total Lessons:</span> {planData.lessons?.length || 0}
+                        <span className="font-medium">Total Lessons:</span> {planData.lessons.length || 0}
                       </div>
                       <div>
                         <span className="font-medium">Subject:</span> {planData.subject}

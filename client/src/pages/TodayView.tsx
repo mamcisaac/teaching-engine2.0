@@ -16,6 +16,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
+import { LessonCompletionCheckbox } from '../components/lesson-completion/LessonCompletionCheckbox';
+import { LessonCompletionErrorBoundary } from '../components/lesson-completion/LessonCompletionErrorBoundary';
+import { QuickReflectionPanel } from '../components/lesson-reflection/QuickReflectionPanel';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
@@ -24,9 +27,6 @@ import { Progress } from '../components/ui/Progress';
 import { Textarea } from '../components/ui/Textarea';
 import { useETFOLessonPlans, useDaybookEntries, useCreateDaybookEntry, type ETFOLessonPlan } from '../hooks/useETFOPlanning';
 import { useLessonCompletions } from '../hooks/useLessonCompletions';
-import { LessonCompletionCheckbox } from '../components/lesson-completion/LessonCompletionCheckbox';
-import { LessonCompletionErrorBoundary } from '../components/lesson-completion/LessonCompletionErrorBoundary';
-import { QuickReflectionPanel } from '../components/lesson-reflection/QuickReflectionPanel';
 import { generateLessonPlanHTML, printHTML } from '../utils/printUtils';
 
 interface LessonCardProps {

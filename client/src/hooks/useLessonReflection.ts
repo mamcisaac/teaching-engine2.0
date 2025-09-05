@@ -3,9 +3,9 @@
  * Issue #308: Per-Lesson Quick Reflections
  */
 
-import { useState, useCallback, useRef, useEffect } from 'react';
-import { debounce } from 'lodash';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { debounce } from 'lodash';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
 
 import { apiClient } from '../api/core/client';

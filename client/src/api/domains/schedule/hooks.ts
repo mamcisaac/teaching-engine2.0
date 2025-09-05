@@ -1,15 +1,18 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
+
 import { 
   startNextUnit, 
   scheduleUnit, 
   scheduleAllLessons, 
   getSchedulingStats, 
-  getCalendarSummary,
-  type StartNextUnitResponse,
-  type ScheduleAllLessonsResponse,
-  type SchedulingStats,
-  type CalendarSummaryData
+  getCalendarSummary
+} from './api';
+import type {
+  StartNextUnitResponse,
+  ScheduleAllLessonsResponse,
+  SchedulingStats,
+  CalendarSummaryData
 } from './api';
 
 /**
@@ -24,9 +27,9 @@ export function useStartNextUnit() {
       toast.success(data.message || `Successfully scheduled ${data.data.unitTitle}`);
       
       // Invalidate relevant queries to refresh the UI
-      queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['lesson-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['scheduling-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['lesson-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['scheduling-stats'] });
     },
     onError: (error: unknown) => {
       const errorMessage = error && typeof error === 'object' && 'response' in error 
@@ -53,9 +56,9 @@ export function useScheduleUnit() {
       toast.success(data.message || `Successfully scheduled unit`);
       
       // Invalidate relevant queries
-      queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['lesson-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['scheduling-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['lesson-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['scheduling-stats'] });
     },
     onError: (error: unknown) => {
       const errorMessage = error && typeof error === 'object' && 'response' in error 
@@ -82,10 +85,10 @@ export function useScheduleAllLessons() {
       toast.success(data.message || 'Successfully scheduled all lessons');
       
       // Invalidate all planning-related queries
-      queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['lesson-plans'] });
-      queryClient.invalidateQueries({ queryKey: ['scheduling-stats'] });
-      queryClient.invalidateQueries({ queryKey: ['calendar'] });
+      void queryClient.invalidateQueries({ queryKey: ['unit-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['lesson-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['scheduling-stats'] });
+      void queryClient.invalidateQueries({ queryKey: ['calendar'] });
     },
     onError: (error: unknown) => {
       const errorMessage = error && typeof error === 'object' && 'response' in error 
