@@ -169,7 +169,11 @@ router.post('/update',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const { studentId, outcomeId, currentLevel, areasForGrowth, strengths, teacherNotes, strongestEvidence } = req.body as MasteryUpdateRequest;
 
       // Validate student access
@@ -289,7 +293,11 @@ router.post('/batch-update',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const { updates } = req.body as { updates: MasteryUpdateRequest[] };
 
       if (updates.length > 20) {
@@ -415,7 +423,11 @@ router.get('/student/:studentId',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const studentId = req.params.studentId;
       const { subject, includeArchived = 'false' } = req.query;
 
@@ -557,7 +569,11 @@ router.get('/overview/:studentId',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const studentId = req.params.studentId;
       const { subject, includeArchived = 'false' } = req.query;
 
@@ -698,7 +714,11 @@ router.get('/outcome/:outcomeId',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const outcomeId = req.params.outcomeId;
       const { includeArchived = 'false' } = req.query;
 
@@ -835,7 +855,11 @@ router.get('/analytics',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const { 
         grade, 
         subject, 
@@ -1078,7 +1102,11 @@ router.post('/share-with-parents',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const { progressIds } = req.body;
 
       if (progressIds.length > 50) {
@@ -1120,7 +1148,11 @@ router.delete('/:progressId',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const progressId = req.params.progressId;
 
       // Verify ownership and update

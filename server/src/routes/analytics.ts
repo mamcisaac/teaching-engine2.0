@@ -33,7 +33,11 @@ const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
  */
 router.get('/class-overview', requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
+    }
 
     // Get all students for this teacher
     const students = await prisma.student.findMany({
@@ -162,7 +166,11 @@ router.get('/class-overview', requireAuth, async (req: AuthenticatedRequest, res
  */
 router.get('/evidence-triangulation', requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
+    }
 
     // Get all evidence collections for this teacher's students
     const evidence = await prisma.studentArtifactOutcome.findMany({
@@ -328,7 +336,11 @@ router.get('/progress-trends',
     }
 
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const timeframe = req.query.timeframe as string || 'month';
       const subject = req.query.subject as string;
 
@@ -522,7 +534,11 @@ router.post('/export',
     }
 
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const { type, format, data } = req.body;
       
       logger.info(`Exporting analytics data: ${type} as ${format}`, JSON.stringify({ userId, type, format }));

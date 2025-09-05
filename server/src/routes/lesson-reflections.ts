@@ -62,7 +62,11 @@ router.post('/:id/reflection',
 
     try {
       const lessonId = req.params.id;
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const { note } = req.body;
 
       if (!lessonId) {
@@ -140,10 +144,16 @@ router.get('/:id/reflection',
         return;
       }
       
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       const reflection = await prisma.lessonReflection.findUnique({
         where: {
           userId_lessonId: {
-            userId: req.user!.id,
+            userId: userId,
             lessonId
           }
         }
@@ -189,13 +199,19 @@ router.get('/daily/:date',
         return;
       }
       
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       const date = parseISO(dateParam);
       const dayStart = startOfDay(date);
       const dayEnd = endOfDay(date);
 
       const reflections = await prisma.lessonReflection.findMany({
         where: {
-          userId: req.user!.id,
+          userId: userId,
           date: {
             gte: dayStart,
             lte: dayEnd
@@ -261,13 +277,19 @@ router.get('/summary/:date',
         return;
       }
       
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       const date = parseISO(dateParam);
       const dayStart = startOfDay(date);
       const dayEnd = endOfDay(date);
 
       const reflections = await prisma.lessonReflection.findMany({
         where: {
-          userId: req.user!.id,
+          userId: userId,
           date: {
             gte: dayStart,
             lte: dayEnd
@@ -330,10 +352,16 @@ router.delete('/:id/reflection',
         return;
       }
       
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       await prisma.lessonReflection.delete({
         where: {
           userId_lessonId: {
-            userId: req.user!.id,
+            userId: userId,
             lessonId
           }
         }
@@ -367,8 +395,14 @@ router.get('/',
     try {
       const lessonIds = req.query.lessonIds as string[] | undefined;
       
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       const where = {
-        userId: req.user!.id,
+        userId: userId,
         ...(lessonIds && { lessonId: { in: lessonIds } })
       };
 

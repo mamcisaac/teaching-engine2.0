@@ -56,8 +56,13 @@ router.get('/',
   artifactViewRateLimit,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       // Use optimized cached query
-      const students = await getStudentsOptimized(req.user!.id, false);
+      const students = await getStudentsOptimized(userId, false);
       
       res.json({
         students: students.map(student => ({
@@ -93,7 +98,11 @@ router.post('/import/csv',
         return;
       }
 
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const options = {
         skipDuplicates: req.body.skipDuplicates === 'true',
         updateExisting: req.body.updateExisting === 'true'
@@ -163,7 +172,12 @@ router.get('/export/csv',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const csv = await exportStudentsToCSV(req.user!.id);
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      const csv = await exportStudentsToCSV(userId);
       
       res.setHeader('Content-Type', 'text/csv');
       res.setHeader('Content-Disposition', `attachment; filename="students_${new Date().toISOString().split('T')[0]}.csv"`);
@@ -183,7 +197,12 @@ router.get('/quota/report',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const report = await checkClassQuota(req.user!.id);
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      const report = await checkClassQuota(userId);
       
       res.json({
         summary: {
@@ -227,7 +246,12 @@ router.get('/:id/quota',
         res.status(400).json({ error: 'Student ID is required' });
         return;
       }
-      const quota = await checkStudentQuota(studentId, req.user!.id);
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      const quota = await checkStudentQuota(studentId, userId);
       
       res.json({
         ...quota,
@@ -272,9 +296,14 @@ router.post('/',
     }
 
     try {
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const student = await prisma.student.create({
         data: {
-          userId: req.user!.id,
+          userId: userId,
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           studentNumber: req.body.studentId || `${req.body.firstName[0]}${req.body.lastName[0]}${Date.now()}`,
@@ -285,7 +314,7 @@ router.post('/',
       });
       
       // Invalidate cache after creating student
-      await invalidateUserCache(req.user!.id);
+      await invalidateUserCache(userId);
       
       res.status(201).json({
         id: student.id,

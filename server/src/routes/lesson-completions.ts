@@ -45,7 +45,12 @@ router.get('/',
     }
 
     try {
-      const tracker = new LessonCompletionTracker(req.user!.id);
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      const tracker = new LessonCompletionTracker(userId);
       const lessonIds = req.query.lessonIds as string[] | undefined;
 
       let completions;
@@ -53,7 +58,7 @@ router.get('/',
         // Filter by specific lesson IDs
         completions = await prisma.lessonCompletion.findMany({
           where: {
-            userId: req.user!.id,
+            userId: userId,
             lessonId: {
               in: lessonIds
             }
@@ -115,9 +120,15 @@ router.get('/by-date/:date',
       const startOfDay = new Date(date.setHours(0, 0, 0, 0));
       const endOfDay = new Date(date.setHours(23, 59, 59, 999));
 
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       const completions = await prisma.lessonCompletion.findMany({
         where: {
-          userId: req.user!.id,
+          userId: userId,
           lesson: {
             date: {
               gte: startOfDay,
@@ -149,7 +160,12 @@ router.get('/progress',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const tracker = new LessonCompletionTracker(req.user!.id);
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      const tracker = new LessonCompletionTracker(userId);
       const startDate = req.query.startDate ? new Date(req.query.startDate as string) : undefined;
       const endDate = req.query.endDate ? new Date(req.query.endDate as string) : undefined;
 
@@ -159,7 +175,7 @@ router.get('/progress',
       } else {
         // Get all lessons for overall progress
         const lessons = await prisma.eTFOLessonPlan.findMany({
-          where: { userId: req.user!.id },
+          where: { userId: userId },
           select: { id: true }
         });
         const lessonIds = lessons.map(l => l.id);
@@ -197,11 +213,17 @@ router.post('/',
     try {
       const { lessonId, notes, actualDuration } = req.body;
 
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       // Verify the lesson exists and belongs to the user
       const lesson = await prisma.eTFOLessonPlan.findFirst({
         where: {
           id: lessonId,
-          userId: req.user!.id
+          userId: userId
         }
       });
 
@@ -214,7 +236,7 @@ router.post('/',
       const existingCompletion = await prisma.lessonCompletion.findUnique({
         where: {
           userId_lessonId: {
-            userId: req.user!.id,
+            userId: userId,
             lessonId
           }
         }
@@ -226,14 +248,14 @@ router.post('/',
       }
 
       // Create the completion using the service
-      const tracker = new LessonCompletionTracker(req.user!.id);
+      const tracker = new LessonCompletionTracker(userId);
       await tracker.markComplete(lessonId, notes, actualDuration);
       
       // Fetch the created completion with lesson data
       const completion = await prisma.lessonCompletion.findUnique({
         where: {
           userId_lessonId: {
-            userId: req.user!.id,
+            userId: userId,
             lessonId
           }
         },
@@ -279,11 +301,17 @@ router.put('/:lessonId',
         return;
       }
 
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       // Check if completion exists
       const existingCompletion = await prisma.lessonCompletion.findUnique({
         where: {
           userId_lessonId: {
-            userId: req.user!.id,
+            userId: userId,
             lessonId
           }
         }
@@ -298,7 +326,7 @@ router.put('/:lessonId',
       const updatedCompletion = await prisma.lessonCompletion.update({
         where: {
           userId_lessonId: {
-            userId: req.user!.id,
+            userId: userId,
             lessonId
           }
         },
@@ -343,11 +371,17 @@ router.delete('/:lessonId',
         return;
       }
 
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      
       // Check if completion exists
       const existingCompletion = await prisma.lessonCompletion.findUnique({
         where: {
           userId_lessonId: {
-            userId: req.user!.id,
+            userId: userId,
             lessonId
           }
         }
@@ -359,7 +393,7 @@ router.delete('/:lessonId',
       }
 
       // Delete the completion using the service
-      const tracker = new LessonCompletionTracker(req.user!.id);
+      const tracker = new LessonCompletionTracker(userId);
       await tracker.markIncomplete(lessonId);
 
       res.status(204).send();

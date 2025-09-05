@@ -23,6 +23,26 @@ import {
   StorageConfig 
 } from './IStorageService';
 
+// Type guard for AWS SDK errors
+interface AwsError {
+  name?: string;
+  $metadata?: {
+    httpStatusCode?: number;
+  };
+}
+
+function isAwsNotFoundError(error: unknown): error is AwsError {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    (
+      (error as AwsError).name === 'NotFound' ||
+      (error as AwsError).name === 'NoSuchKey' ||
+      (error as AwsError).$metadata?.httpStatusCode === 404
+    )
+  );
+}
+
 export class S3StorageService implements IStorageService {
   private s3Client: S3Client;
   private bucket: string;
@@ -139,7 +159,7 @@ export class S3StorageService implements IStorageService {
         metadata: response.Metadata
       };
     } catch (error: unknown) {
-      if ((error as any).name === 'NotFound' || (error as any).$metadata?.httpStatusCode === 404) {
+      if (isAwsNotFoundError(error)) {
         return null;
       }
       throw error;
@@ -174,7 +194,7 @@ export class S3StorageService implements IStorageService {
       await this.s3Client.send(deleteCommand);
       return true;
     } catch (error: unknown) {
-      if ((error as any).name === 'NotFound' || (error as any).$metadata?.httpStatusCode === 404) {
+      if (isAwsNotFoundError(error)) {
         return false; // File doesn't exist
       }
       throw error;
@@ -191,7 +211,7 @@ export class S3StorageService implements IStorageService {
       await this.s3Client.send(headCommand);
       return true;
     } catch (error: unknown) {
-      if ((error as any).name === 'NotFound' || (error as any).$metadata?.httpStatusCode === 404) {
+      if (isAwsNotFoundError(error)) {
         return false;
       }
       throw error;

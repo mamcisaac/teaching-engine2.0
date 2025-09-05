@@ -52,7 +52,11 @@ router.get('/student/:id',
 
     try {
       const studentId = req.params.id;
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
 
       if (!studentId) {
         res.status(400).json({ error: 'Student ID is required' });
@@ -117,7 +121,11 @@ router.get('/class',
     }
 
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
 
       // Generate report options
       const options = {
@@ -153,7 +161,11 @@ router.get('/available',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
 
       // Get student count and subjects for report options
       const [studentCount, subjects] = await Promise.all([

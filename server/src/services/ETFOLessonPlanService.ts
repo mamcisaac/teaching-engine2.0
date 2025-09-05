@@ -341,7 +341,10 @@ export class ETFOLessonPlanService extends BaseService {
       }
 
       // Update the lesson with new date and optionally new slot
-      const updateData: Partial<ETFOLessonPlanCreateData> = {
+      const updateData: {
+        date: string;
+        slotNumber?: number;
+      } = {
         date: rescheduleData.newDate,
       };
       
@@ -349,7 +352,7 @@ export class ETFOLessonPlanService extends BaseService {
         updateData.slotNumber = rescheduleData.newSlotNumber;
       }
 
-      const rescheduledLesson = await this.repository.update(lessonId, updateData as any);
+      const rescheduledLesson = await this.repository.update(lessonId, updateData);
       if (!rescheduledLesson) {
         throw new Error('Failed to reschedule lesson');
       }

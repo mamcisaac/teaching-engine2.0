@@ -3,7 +3,7 @@
  * Handles artifact upload, management, and curriculum outcome tagging
  */
 
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
 import { body, param, validationResult } from 'express-validator';
 import { PrismaClient } from '@teaching-engine/database';
 import { 
@@ -145,7 +145,7 @@ const validateArtifactOwnership = async (req: AuthenticatedRequest, res: Respons
 router.post('/upload/photo',
   requireAuth,
   artifactUploadRateLimit, // Rate limiting applied
-  ...(uploadStudentPhoto as any[]),
+  ...(uploadStudentPhoto as RequestHandler[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -165,7 +165,7 @@ router.post('/upload/photo',
 router.post('/upload/video',
   requireAuth,
   artifactUploadRateLimit,
-  ...(uploadStudentVideo as any[]),
+  ...(uploadStudentVideo as RequestHandler[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -185,7 +185,7 @@ router.post('/upload/video',
 router.post('/upload/audio',
   requireAuth,
   artifactUploadRateLimit,
-  ...(uploadStudentAudio as any[]),
+  ...(uploadStudentAudio as RequestHandler[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -205,7 +205,7 @@ router.post('/upload/audio',
 router.post('/upload/document',
   requireAuth,
   artifactUploadRateLimit,
-  ...(uploadStudentDocument as any[]),
+  ...(uploadStudentDocument as RequestHandler[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -225,7 +225,7 @@ router.post('/upload/document',
 router.post('/upload/mobile',
   requireAuth,
   artifactUploadRateLimit,
-  ...(mobileArtifactUpload as any[]),
+  ...(mobileArtifactUpload as RequestHandler[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -253,7 +253,7 @@ router.post('/upload/mobile',
 router.post('/upload/batch',
   requireAuth,
   bulkOperationRateLimit,
-  ...(uploadMultipleArtifacts as any[]),
+  ...(uploadMultipleArtifacts as RequestHandler[]),
   validateArtifactUpload,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -264,7 +264,11 @@ router.post('/upload/batch',
       }
 
       const artifacts = [];
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const fileProcessingService = getFileProcessingService();
 
       for (const uploadResult of uploadResults) {
@@ -325,7 +329,11 @@ router.post('/note',
   validateQuickNote,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       
       const artifact = await prisma.studentArtifact.create({
         data: {
@@ -365,7 +373,11 @@ router.get('/',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
       const {
         studentId,
         artifactType,
@@ -510,7 +522,11 @@ async function handleArtifactUpload(req: AuthenticatedRequest, res: Response, ar
     return;
   }
 
-  const userId = req.user!.id;
+  const userId = req.user?.id;
+  if (!userId) {
+    res.status(401).json({ error: 'Authentication required' });
+    return;
+  }
   const fileProcessingService = getFileProcessingService();
   
   // Check storage quota BEFORE processing
@@ -1026,7 +1042,7 @@ router.put('/:id/outcomes/:outcomeId',
         confidenceLevel: updatedTag.confidenceLevel,
         contextualFactors: updatedTag.contextualFactors,
         dateAssessed: updatedTag.dateAssessed,
-        outcome: (updatedTag as any).outcome
+        outcome: 'outcome' in updatedTag ? updatedTag.outcome : null
       });
       return;
     } catch (error: unknown) {

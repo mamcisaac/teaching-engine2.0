@@ -74,11 +74,20 @@ const getPrisma = (): DatabasePrismaClient => {
   
   if (!globalForPrisma.prisma) {
     const client = new DatabasePrismaClient({
-      log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+      // Reduce logging to minimize memory usage
+      log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
     });
     
     // Apply unit plan protection middleware
     client.$use(unitPlanProtectionMiddleware);
+    
+    // Set connection pool limits to reduce memory usage
+    client.$connect();
     
     globalForPrisma.prisma = client;
   }

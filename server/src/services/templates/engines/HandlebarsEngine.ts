@@ -194,10 +194,30 @@ return '0%';
     // Conditional helpers
     this.handlebars.registerHelper('eq', (a: unknown, b: unknown) => a === b);
     this.handlebars.registerHelper('ne', (a: unknown, b: unknown) => a !== b);
-    this.handlebars.registerHelper('lt', (a: unknown, b: unknown) => (a as any) < (b as any));
-    this.handlebars.registerHelper('gt', (a: unknown, b: unknown) => (a as any) > (b as any));
-    this.handlebars.registerHelper('lte', (a: unknown, b: unknown) => (a as any) <= (b as any));
-    this.handlebars.registerHelper('gte', (a: unknown, b: unknown) => (a as any) >= (b as any));
+    this.handlebars.registerHelper('lt', (a: unknown, b: unknown) => {
+      if (typeof a === 'number' && typeof b === 'number') return a < b;
+      if (typeof a === 'string' && typeof b === 'string') return a < b;
+      if (a instanceof Date && b instanceof Date) return a.getTime() < b.getTime();
+      return false;
+    });
+    this.handlebars.registerHelper('gt', (a: unknown, b: unknown) => {
+      if (typeof a === 'number' && typeof b === 'number') return a > b;
+      if (typeof a === 'string' && typeof b === 'string') return a > b;
+      if (a instanceof Date && b instanceof Date) return a.getTime() > b.getTime();
+      return false;
+    });
+    this.handlebars.registerHelper('lte', (a: unknown, b: unknown) => {
+      if (typeof a === 'number' && typeof b === 'number') return a <= b;
+      if (typeof a === 'string' && typeof b === 'string') return a <= b;
+      if (a instanceof Date && b instanceof Date) return a.getTime() <= b.getTime();
+      return false;
+    });
+    this.handlebars.registerHelper('gte', (a: unknown, b: unknown) => {
+      if (typeof a === 'number' && typeof b === 'number') return a >= b;
+      if (typeof a === 'string' && typeof b === 'string') return a >= b;
+      if (a instanceof Date && b instanceof Date) return a.getTime() >= b.getTime();
+      return false;
+    });
 
     // Array helpers
     this.handlebars.registerHelper('length', (arr: unknown[]) => Array.isArray(arr) ? arr.length : 0);
@@ -256,7 +276,8 @@ return str;
    * Register custom helper
    */
   registerHelper(name: string, helper: (...args: unknown[]) => unknown): void {
-    this.handlebars.registerHelper(name, helper as any);
+    // Type-safe helper registration with proper Handlebars helper type
+    this.handlebars.registerHelper(name, helper as Handlebars.HelperDelegate);
   }
 
   /**

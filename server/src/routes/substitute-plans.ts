@@ -50,7 +50,7 @@ const substituteInfoSchema = z.object({
  * GET /api/substitute/info
  * Get substitute information for the current user
  */
-router.get('/info', async (req: Request, res: Response): Promise<any> => {
+router.get('/info', async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -66,10 +66,10 @@ router.get('/info', async (req: Request, res: Response): Promise<any> => {
       return res.json({});
     }
 
-    res.json(info);
+    return res.json(info);
   } catch (error) {
     logger.error('Failed to fetch substitute info:', String(error));
-    res.status(500).json({ error: 'Failed to fetch substitute information' });
+    return res.status(500).json({ error: 'Failed to fetch substitute information' });
   }
 });
 
@@ -77,7 +77,7 @@ router.get('/info', async (req: Request, res: Response): Promise<any> => {
  * POST /api/substitute/info
  * Create or update substitute information
  */
-router.post('/info', async (req: Request, res: Response): Promise<any> => {
+router.post('/info', async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -104,13 +104,13 @@ router.post('/info', async (req: Request, res: Response): Promise<any> => {
       },
     });
 
-    res.status(200).json(info);
+    return res.status(200).json(info);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Invalid input', details: error.errors });
     }
     logger.error('Failed to save substitute info:', String(error));
-    res.status(500).json({ error: 'Failed to save substitute information' });
+    return res.status(500).json({ error: 'Failed to save substitute information' });
   }
 });
 
@@ -118,7 +118,7 @@ router.post('/info', async (req: Request, res: Response): Promise<any> => {
  * GET /api/substitute/plan/:date
  * Generate substitute plan for a specific date
  */
-router.get('/plan/:date', async (req: Request, res: Response): Promise<any> => {
+router.get('/plan/:date', async (req: Request, res: Response): Promise<Response> => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
@@ -180,10 +180,10 @@ router.get('/plan/:date', async (req: Request, res: Response): Promise<any> => {
       grade: user?.grade || '',
     });
 
-    res.json(plan);
+    return res.json(plan);
   } catch (error) {
     logger.error('Failed to generate substitute plan:', String(error));
-    res.status(500).json({ error: 'Failed to generate substitute plan' });
+    return res.status(500).json({ error: 'Failed to generate substitute plan' });
   }
 });
 
@@ -191,7 +191,7 @@ router.get('/plan/:date', async (req: Request, res: Response): Promise<any> => {
  * GET /api/substitute/plan/:date/pdf
  * Generate PDF version of substitute plan
  */
-router.get('/plan/:date/pdf', async (req: Request, res: Response): Promise<any> => {
+router.get('/plan/:date/pdf', async (req: Request, res: Response): Promise<Response> => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
@@ -259,10 +259,10 @@ router.get('/plan/:date/pdf', async (req: Request, res: Response): Promise<any> 
     // Set headers for HTML response (client will handle PDF conversion)
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Content-Disposition', `inline; filename="substitute-plan-${date.toISOString().split('T')[0]}.html"`);
-    res.send(html);
+    return res.send(html);
   } catch (error) {
     logger.error('Failed to generate substitute plan PDF:', String(error));
-    res.status(500).json({ error: 'Failed to generate substitute plan PDF' });
+    return res.status(500).json({ error: 'Failed to generate substitute plan PDF' });
   }
 });
 
@@ -270,7 +270,7 @@ router.get('/plan/:date/pdf', async (req: Request, res: Response): Promise<any> 
  * POST /api/substitute/emergency-plans
  * Create emergency substitute plan (for testing)
  */
-router.post('/emergency-plans', async (req: Request, res: Response): Promise<any> => {
+router.post('/emergency-plans', async (req: Request, res: Response): Promise<Response> => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
@@ -296,10 +296,10 @@ router.post('/emergency-plans', async (req: Request, res: Response): Promise<any
       },
     });
 
-    res.status(201).json(plan);
+    return res.status(201).json(plan);
   } catch (error) {
     logger.error('Failed to create emergency plan:', String(error));
-    res.status(500).json({ error: 'Failed to create emergency plan' });
+    return res.status(500).json({ error: 'Failed to create emergency plan' });
   }
 });
 
@@ -307,7 +307,7 @@ router.post('/emergency-plans', async (req: Request, res: Response): Promise<any
  * GET /api/substitute/emergency-plans
  * Get all emergency plans for testing
  */
-router.get('/emergency-plans', async (req: Request, res: Response): Promise<any> => {
+router.get('/emergency-plans', async (req: Request, res: Response): Promise<Response> => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ error: 'Authentication required' });
@@ -322,10 +322,10 @@ router.get('/emergency-plans', async (req: Request, res: Response): Promise<any>
       },
     });
 
-    res.json(plans);
+    return res.json(plans);
   } catch (error) {
     logger.error('Failed to fetch emergency plans:', String(error));
-    res.status(500).json({ error: 'Failed to fetch emergency plans' });
+    return res.status(500).json({ error: 'Failed to fetch emergency plans' });
   }
 });
 

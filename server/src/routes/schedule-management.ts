@@ -370,7 +370,10 @@ router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<any
  */
 router.get('/stats', authenticate, async (req, res) => {
   try {
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
 
     console.log(`📊 API: Getting scheduling stats for user ${userId}`);
 
@@ -378,7 +381,7 @@ router.get('/stats', authenticate, async (req, res) => {
 
     console.log(`✅ Retrieved scheduling stats:`, stats);
 
-    res.json({
+    return res.json({
       success: true,
       data: stats
     });
@@ -386,7 +389,7 @@ router.get('/stats', authenticate, async (req, res) => {
   } catch (error) {
     console.error('❌ Error getting scheduling stats:', error);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: error instanceof Error ? error.message : 'Failed to get scheduling statistics'
     });
@@ -436,7 +439,10 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
       shiftOnlyFrom: z.boolean().optional() // If true, only shift from this date onward
     }).parse(req.body);
     
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
     
     console.log(`📅 Shifting ${subject} lessons by ${shiftDays} days from ${fromDate}`);
     
@@ -585,7 +591,10 @@ router.post('/activate-extension', authenticate, async (req, res): Promise<any> 
       slotNumber: z.number().int().min(1).max(5).optional()
     }).parse(req.body);
     
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
     
     // Verify the lesson is an extension and belongs to user
     const lesson = await prisma.eTFOLessonPlan.findFirst({
@@ -657,7 +666,10 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
       rescheduleCore: z.boolean().optional().default(true) // Whether to reschedule the core lesson
     }).parse(req.body);
     
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
     
     // Get both lessons with their units for subject info
     const [coreLesson, extensionLesson] = await Promise.all([
@@ -816,7 +828,10 @@ router.post('/validate-shift', authenticate, async (req, res): Promise<any> => {
       shiftDays: z.number().int().min(-30).max(30)
     }).parse(req.body);
     
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
     
     // Get lessons that would be shifted
     const lessonsToCheck = await prisma.eTFOLessonPlan.findMany({
@@ -915,7 +930,10 @@ router.get('/available-extensions', authenticate, async (req, res): Promise<any>
       unitId: z.string().optional()
     }).parse(req.query);
     
-    const userId = req.user!.id;
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'Authentication required' });
+    }
     
     const where: any = {
       userId,

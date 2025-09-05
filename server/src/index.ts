@@ -348,13 +348,8 @@ app.use('/api/ai-activities', asyncMiddleware(authenticate), rateLimiters.ai, ai
 
 log('All API routes mounted successfully.');
 
-// Start system metrics collection
-log('Starting system metrics collection...');
-startSystemMetricsCollection(30000); // Collect every 30 seconds
-
-// Start alert monitoring
-log('Starting alert monitoring...');
-startAlertMonitoring();
+// System metrics and alerting are started in initializeApp()
+// Don't start them here to avoid duplicates
 
 // 404 handler for API routes - must handle all unmatched API routes
 app.all('/api/*', notFoundHandler);

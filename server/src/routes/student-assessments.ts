@@ -25,7 +25,7 @@ const updateAssessmentSchema = z.object({
 });
 
 // GET /api/student-assessments - Get assessments for a user with pagination
-router.get('/', authenticate, async (req: Request, res: Response): Promise<any> => {
+router.get('/', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -79,7 +79,7 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<any> 
       take: limitNum,
     });
 
-    res.json({
+    return res.json({
       data: assessments,
       pagination: {
         page: pageNum,
@@ -90,12 +90,12 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<any> 
     });
   } catch (error) {
     console.error('Error fetching student assessments:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 // POST /api/student-assessments - Create new assessment
-router.post('/', authenticate, async (req: Request, res: Response): Promise<any> => {
+router.post('/', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -122,18 +122,18 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<any>
       }
     });
 
-    res.status(201).json(assessment);
+    return res.status(201).json(assessment);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Validation error', details: error.errors });
     }
     console.error('Error creating student assessment:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 // PUT /api/student-assessments/:id - Update assessment
-router.put('/:id', authenticate, async (req: Request, res: Response): Promise<any> => {
+router.put('/:id', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -167,18 +167,18 @@ router.put('/:id', authenticate, async (req: Request, res: Response): Promise<an
       }
     });
 
-    res.json(assessment);
+    return res.json(assessment);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: 'Validation error', details: error.errors });
     }
     console.error('Error updating student assessment:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 // DELETE /api/student-assessments/:id - Delete assessment
-router.delete('/:id', authenticate, async (req: Request, res: Response): Promise<any> => {
+router.delete('/:id', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -200,15 +200,15 @@ router.delete('/:id', authenticate, async (req: Request, res: Response): Promise
       where: { id }
     });
 
-    res.status(204).send();
+    return res.status(204).send();
   } catch (error) {
     console.error('Error deleting student assessment:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 // POST /api/student-assessments/differentiation-groups - Generate differentiation groups
-router.post('/differentiation-groups', authenticate, async (req: Request, res: Response): Promise<any> => {
+router.post('/differentiation-groups', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
@@ -262,10 +262,10 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
       }
     });
 
-    res.json(groups);
+    return res.json(groups);
   } catch (error) {
     console.error('Error generating differentiation groups:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 

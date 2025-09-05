@@ -60,7 +60,11 @@ router.get('/student/:id',
 
     try {
       const studentId = req.params.id;
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
 
       if (!studentId) {
         res.status(400).json({ error: 'Student ID is required' });
@@ -157,7 +161,11 @@ router.get('/class-summary',
     }
 
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
 
       // Parse export options
       const options: ExportOptions = {
@@ -219,7 +227,11 @@ router.get('/options',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
 
       // Get students and their artifact counts
       const students = await prisma.student.findMany({
@@ -303,7 +315,11 @@ router.post('/bulk',
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const { studentIds, options } = req.body;
-      const userId = req.user!.id;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
 
       if (!Array.isArray(studentIds) || studentIds.length === 0) {
         res.status(400).json({ error: 'Student IDs array is required' });

@@ -389,7 +389,7 @@ const checkAlerts = async (): Promise<void> => {
           });
         }
       } catch (_error: unknown) {
-        logger.error(`Failed to check alert ${alert.name}`, _error as string | undefined);
+        logger.error({ error: _error instanceof Error ? _error.message : String(_error) }, `Failed to check alert ${alert.name}`);
       }
     }
   });
@@ -511,13 +511,13 @@ export const startAlertMonitoring = (): void => {
 
   // Initial check
   checkAlerts().catch((error: unknown) => {
-    logger.error('Initial alert check failed', error as string | undefined);
+    logger.error({ error: error instanceof Error ? error.message : String(error) }, 'Initial alert check failed');
   });
 
   // Set up recurring checks
   alertInterval = setInterval(() => {
     checkAlerts().catch((error: unknown) => {
-      logger.error('Alert check failed', error as string | undefined);
+      logger.error({ error: error instanceof Error ? error.message : String(error) }, 'Alert check failed');
     });
   }, ALERT_CHECK_INTERVAL);
 };
