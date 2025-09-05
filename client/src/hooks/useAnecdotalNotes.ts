@@ -51,7 +51,8 @@ export function useAnecdotalNotes({
       const response = await apiClient.get('/student-assessments', {
         params: {
           studentId,
-          limit: 100 // Get recent notes
+          limit: 100, // Get recent notes
+          includeAnecdotal: 'true' // Explicitly request anecdotal notes
         }
       });
 

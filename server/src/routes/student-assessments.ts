@@ -37,7 +37,8 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
       subject, 
       date,
       page = '1',
-      limit = '20'
+      limit = '20',
+      includeAnecdotal = 'false' // New parameter to optionally include anecdotal notes
     } = req.query;
 
     // Parse pagination params
@@ -45,7 +46,11 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
     const limitNum = Math.min(parseInt(limit as string, 10), 100); // Max 100 items
     const skip = (pageNum - 1) * limitNum;
 
-    const where: any = { userId };
+    const where: any = { 
+      userId,
+      // Exclude anecdotal notes by default unless explicitly requested
+      isAnecdotal: includeAnecdotal === 'true' ? undefined : false
+    };
     
     if (studentId) where.studentId = studentId;
     if (subject) where.subject = subject;
@@ -104,11 +109,15 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<Resp
 
     const validatedData = createAssessmentSchema.parse(req.body);
 
+    // Detect anecdotal notes and flag them appropriately
+    const isAnecdotal = validatedData.subject?.startsWith('ANECDOTAL_') || false;
+
     const assessment = await prisma.studentAssessment.create({
       data: {
         ...validatedData,
         userId,
         date: validatedData.date ? new Date(validatedData.date) : new Date(),
+        isAnecdotal // Automatically flag anecdotal notes
       },
       include: {
         lesson: {
@@ -220,7 +229,11 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
       return res.status(400).json({ error: 'Subject is required' });
     }
 
-    const where: any = { userId, subject };
+    const where: any = { 
+      userId, 
+      subject,
+      isAnecdotal: false // Exclude anecdotal notes from differentiation groups
+    };
     if (date) {
       const targetDate = new Date(date);
       where.date = {

@@ -1223,6 +1223,7 @@ model StudentAssessment {
   title          String           // Assessment title/description
   level          AchievementLevel // Achievement level
   notes          String?          // Teacher notes
+  isAnecdotal    Boolean          @default(false) // Flag to separate anecdotal notes from real assessments
   date           DateTime         @default(now())
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
