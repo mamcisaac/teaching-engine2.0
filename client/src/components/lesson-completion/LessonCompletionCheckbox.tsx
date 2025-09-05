@@ -53,6 +53,7 @@ export const LessonCompletionCheckbox: React.FC<LessonCompletionCheckboxProps> =
       <button
         type="button"
         role="checkbox"
+        data-testid="completion-checkbox"
         aria-checked={isCompleted}
         aria-label={ariaLabel}
         aria-busy={isLoading}
@@ -106,10 +107,25 @@ export const LessonCompletionCheckbox: React.FC<LessonCompletionCheckboxProps> =
         )}
       </button>
 
+      {/* Saving indicator */}
+      {isLoading && (
+        <div 
+          data-testid="saving-indicator"
+          className="ml-2 text-xs text-blue-600 flex items-center"
+        >
+          <div className="w-3 h-3 border border-blue-500 border-t-transparent rounded-full animate-spin mr-1" />
+          Saving...
+        </div>
+      )}
+
       {/* Error message */}
       {error && (
-        <div role="alert" className="ml-2 text-sm text-red-600">
-          {error}
+        <div 
+          role="alert" 
+          data-testid="error-message"
+          className="ml-2 text-sm text-red-600"
+        >
+          Failed to save: {error}
         </div>
       )}
 

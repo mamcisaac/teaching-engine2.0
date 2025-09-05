@@ -20,6 +20,7 @@ import { Alert, AlertDescription } from '../components/ui/alert';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Progress } from '../components/ui/Progress';
 import { Textarea } from '../components/ui/Textarea';
 import { useETFOLessonPlans, useDaybookEntries, useCreateDaybookEntry, type ETFOLessonPlan } from '../hooks/useETFOPlanning';
 import { useLessonCompletions } from '../hooks/useLessonCompletions';
@@ -62,7 +63,7 @@ function LessonCard({ lesson, onViewDetails, isCompleted, onToggleCompletion, is
   };
 
   return (
-    <Card className="hover:shadow-lg transition-shadow">
+    <Card className="hover:shadow-lg transition-shadow" data-testid="lesson-card">
       <CardHeader>
         <div className="flex justify-between items-start">
           <div className="flex-1">
@@ -374,13 +375,33 @@ export function TodayView(): React.ReactElement {
         <Card>
           <CardHeader className="pb-3">
             <CardDescription>Completed</CardDescription>
-            <CardTitle className="text-2xl">
-              {progress.completed}/{progress.total}
-              <span className="text-sm text-gray-500 ml-2">
-                ({progress.percentage}%)
-              </span>
+            <CardTitle 
+              className="text-2xl" 
+              data-testid="progress-indicator"
+            >
+              {progress.completed} of {progress.total} lessons complete
             </CardTitle>
           </CardHeader>
+          <CardContent>
+            <Progress 
+              value={progress.percentage} 
+              data-testid="progress-bar"
+              aria-valuenow={progress.percentage}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`Lesson completion progress: ${progress.completed} of ${progress.total} lessons complete`}
+              className="w-full"
+            />
+            {progress.completed === progress.total && progress.total > 0 && (
+              <div 
+                data-testid="all-complete-message" 
+                className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg text-center"
+              >
+                <CheckCircle2 className="h-5 w-5 text-green-600 mx-auto mb-1" />
+                <p className="text-green-800 font-medium">Great job! All lessons complete!</p>
+              </div>
+            )}
+          </CardContent>
         </Card>
         <Card>
           <CardHeader className="pb-3">

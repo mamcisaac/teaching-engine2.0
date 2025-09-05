@@ -107,7 +107,11 @@ export class ETFOLessonPlanRepository {
           : undefined,
         skip,
         take,
-        orderBy: { createdAt: 'desc' },
+        orderBy: [
+          { unitPlanId: 'asc' },
+          { lessonNumber: 'asc' },
+          { createdAt: 'desc' }
+        ],
       });
 
       return plans;
@@ -427,7 +431,11 @@ export class ETFOLessonPlanRepository {
         },
         skip,
         take,
-        orderBy: { createdAt: 'desc' },
+        orderBy: [
+          { unitPlanId: 'asc' },
+          { lessonNumber: 'asc' },
+          { createdAt: 'desc' }
+        ],
       });
 
       return plans;

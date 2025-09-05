@@ -183,7 +183,7 @@ export function useLessonCompletions(lessonIds?: string[]) {
     return completionMap.get(lessonId);
   };
 
-  const toggleCompletion = (lessonId: string) => {
+  const toggleCompletion = (lessonId: string, _currentState?: boolean) => {
     const isCurrentlyCompleted = isCompleted(lessonId);
     toggleCompletionMutation.mutate({ lessonId, isCompleted: isCurrentlyCompleted });
   };
