@@ -5,7 +5,7 @@ import { logger } from '../logger';
  */
 
 import { PrismaClient } from '@teaching-engine/database';
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { body, param, query, validationResult } from 'express-validator';
 
