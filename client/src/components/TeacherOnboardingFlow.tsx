@@ -333,7 +333,7 @@ return;
       content: (
         <div className="space-y-6">
           <p className="text-gray-600 mb-6">
-            Teaching Engine 2.0 follows the Elementary Teachers&apos; Federation of Ontario (ETFO)
+            Teaching Engine 2.0 follows the Elementary Teachers' Federation of Ontario (ETFO)
             planning methodology, ensuring your lesson plans are comprehensive and effective.
           </p>
 
@@ -816,7 +816,7 @@ return;
           <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
             <h4 className="font-medium text-indigo-900 mb-3">Ready to Start Teaching Smarter?</h4>
             <p className="text-sm text-indigo-700 mb-4">
-              You&apos;re all set! Teaching Engine 2.0 is designed to grow with you. Start by creating
+              You're all set! Teaching Engine 2.0 is designed to grow with you. Start by creating
               your own comprehensive teaching plans and explore all the powerful features.
             </p>
             <div className="flex items-center space-x-2 text-sm text-indigo-600">

@@ -1,4 +1,4 @@
-import { PlusIcon, UserGroupIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, Squares2X2Icon, ChartBarIcon } from '@heroicons/react/24/outline';
+import { PlusIcon, DocumentArrowUpIcon, PencilIcon, TrashIcon, ViewColumnsIcon, Squares2X2Icon, ChartBarIcon } from '@heroicons/react/24/outline';
 import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
 
@@ -46,7 +46,7 @@ export function StudentsPage(): React.ReactElement {
 
   // Load students on component mount
   useEffect(() => {
-    loadStudents();
+    void loadStudents();
   }, []);
 
   const loadStudents = async () => {
@@ -191,7 +191,7 @@ export function StudentsPage(): React.ReactElement {
       reader.onload = (e) => {
         const text = e.target?.result as string;
         const lines = text.split('\n');
-        const headers = lines[0].split(',').map(h => h.trim());
+        const _headers = lines[0].split(',').map(h => h.trim());
         
         const newStudents: Student[] = [];
         for (let i = 1; i < lines.length; i++) {
@@ -388,7 +388,7 @@ export function StudentsPage(): React.ReactElement {
                         onNoteSaved={() => {
                           toast.success(`Note saved for ${student.firstName}`);
                           // Refresh students list to get updated assessment count
-                          loadStudents();
+                          void loadStudents();
                         }}
                       />
                       <button
@@ -454,7 +454,7 @@ export function StudentsPage(): React.ReactElement {
                   onNoteSaved={() => {
                     toast.success(`Note saved for ${student.firstName}`);
                     // Refresh students list to get updated assessment count
-                    loadStudents();
+                    void loadStudents();
                   }}
                 />
                 <button
@@ -483,8 +483,9 @@ export function StudentsPage(): React.ReactElement {
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">First Name</label>
+                <label htmlFor="add-student-firstname" className="block text-sm font-medium mb-1">First Name</label>
                 <input
+                  id="add-student-firstname"
                   type="text"
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
@@ -494,8 +495,9 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-1">Last Name</label>
+                <label htmlFor="add-student-lastname" className="block text-sm font-medium mb-1">Last Name</label>
                 <input
+                  id="add-student-lastname"
                   type="text"
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
@@ -505,8 +507,9 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-1">Student ID</label>
+                <label htmlFor="add-student-id" className="block text-sm font-medium mb-1">Student ID</label>
                 <input
+                  id="add-student-id"
                   type="text"
                   value={formData.studentId}
                   onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
@@ -516,8 +519,9 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-1">Date of Birth</label>
+                <label htmlFor="add-student-dob" className="block text-sm font-medium mb-1">Date of Birth</label>
                 <input
+                  id="add-student-dob"
                   type="date"
                   value={formData.dateOfBirth}
                   onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
@@ -527,8 +531,9 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="flex items-center gap-2">
+                <label htmlFor="add-student-has-iep" className="flex items-center gap-2">
                   <input
+                    id="add-student-has-iep"
                     type="checkbox"
                     checked={formData.hasIEP}
                     onChange={(e) => setFormData({ ...formData, hasIEP: e.target.checked })}
@@ -540,8 +545,9 @@ export function StudentsPage(): React.ReactElement {
               
               {formData.hasIEP && (
                 <div>
-                  <label className="block text-sm font-medium mb-1">IEP Goals</label>
+                  <label htmlFor="add-student-iep-goals" className="block text-sm font-medium mb-1">IEP Goals</label>
                   <textarea
+                    id="add-student-iep-goals"
                     value={formData.iepGoals.join('\n')}
                     onChange={(e) => setFormData({ ...formData, iepGoals: e.target.value.split('\n').filter(g => g) })}
                     className="w-full px-3 py-2 border rounded-lg"
@@ -553,8 +559,9 @@ export function StudentsPage(): React.ReactElement {
               )}
               
               <div>
-                <label className="block text-sm font-medium mb-1">Notes</label>
+                <label htmlFor="add-student-notes" className="block text-sm font-medium mb-1">Notes</label>
                 <textarea
+                  id="add-student-notes"
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg"
@@ -594,8 +601,9 @@ export function StudentsPage(): React.ReactElement {
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">First Name</label>
+                <label htmlFor="edit-student-firstname" className="block text-sm font-medium mb-1">First Name</label>
                 <input
+                  id="edit-student-firstname"
                   type="text"
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
@@ -604,8 +612,9 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-1">Last Name</label>
+                <label htmlFor="edit-student-lastname" className="block text-sm font-medium mb-1">Last Name</label>
                 <input
+                  id="edit-student-lastname"
                   type="text"
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
@@ -614,8 +623,9 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-1">Student ID</label>
+                <label htmlFor="edit-student-id" className="block text-sm font-medium mb-1">Student ID</label>
                 <input
+                  id="edit-student-id"
                   type="text"
                   value={formData.studentId}
                   onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
@@ -624,8 +634,9 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-1">Date of Birth</label>
+                <label htmlFor="edit-student-dob" className="block text-sm font-medium mb-1">Date of Birth</label>
                 <input
+                  id="edit-student-dob"
                   type="date"
                   value={formData.dateOfBirth}
                   onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
@@ -634,8 +645,9 @@ export function StudentsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="flex items-center gap-2">
+                <label htmlFor="edit-student-has-iep" className="flex items-center gap-2">
                   <input
+                    id="edit-student-has-iep"
                     type="checkbox"
                     checked={formData.hasIEP}
                     onChange={(e) => setFormData({ ...formData, hasIEP: e.target.checked })}
@@ -647,8 +659,9 @@ export function StudentsPage(): React.ReactElement {
               {formData.hasIEP && (
                 <>
                   <div>
-                    <label className="block text-sm font-medium mb-1">IEP Goals</label>
+                    <label htmlFor="edit-student-iep-goals" className="block text-sm font-medium mb-1">IEP Goals</label>
                     <textarea
+                      id="edit-student-iep-goals"
                       value={formData.iepGoals.join('\n')}
                       onChange={(e) => setFormData({ ...formData, iepGoals: e.target.value.split('\n').filter(g => g) })}
                       className="w-full px-3 py-2 border rounded-lg"
@@ -658,8 +671,9 @@ export function StudentsPage(): React.ReactElement {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-1">Accommodations</label>
+                    <label htmlFor="edit-student-accommodations" className="block text-sm font-medium mb-1">Accommodations</label>
                     <textarea
+                      id="edit-student-accommodations"
                       value={formData.accommodations.join('\n')}
                       onChange={(e) => setFormData({ ...formData, accommodations: e.target.value.split('\n').filter(a => a) })}
                       className="w-full px-3 py-2 border rounded-lg"
@@ -671,8 +685,9 @@ export function StudentsPage(): React.ReactElement {
               )}
               
               <div>
-                <label className="block text-sm font-medium mb-1">Notes</label>
+                <label htmlFor="edit-student-notes" className="block text-sm font-medium mb-1">Notes</label>
                 <textarea
+                  id="edit-student-notes"
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg"

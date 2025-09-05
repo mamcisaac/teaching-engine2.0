@@ -176,7 +176,7 @@ export function ReportsPage(): React.ReactElement {
 
   const handleShareReport = (report: Report) => {
     // In a real app, this would handle sharing via email or link
-    navigator.clipboard.writeText(`Report: ${report.title}`);
+    void navigator.clipboard.writeText(`Report: ${report.title}`);
     toast.success('Report link copied to clipboard');
   };
 
@@ -396,7 +396,7 @@ export function ReportsPage(): React.ReactElement {
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Report Type</label>
+                <div className="block text-sm font-medium mb-2">Report Type</div>
                 <div className="grid grid-cols-2 gap-2">
                   {REPORT_TYPES.map(type => {
                     const Icon = type.icon;
@@ -425,8 +425,9 @@ export function ReportsPage(): React.ReactElement {
               
               {(formData.type === 'progress' || formData.type === 'individual' || formData.type === 'parent') && (
                 <div>
-                  <label className="block text-sm font-medium mb-1">Student</label>
+                  <label htmlFor="report-student-select" className="block text-sm font-medium mb-1">Student</label>
                   <select
+                    id="report-student-select"
                     value={formData.studentId}
                     onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
                     className="w-full px-3 py-2 border rounded-lg"
@@ -444,8 +445,9 @@ export function ReportsPage(): React.ReactElement {
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1">Start Date</label>
+                  <label htmlFor="report-start-date" className="block text-sm font-medium mb-1">Start Date</label>
                   <input
+                    id="report-start-date"
                     type="date"
                     value={formData.dateRange.start}
                     onChange={(e) => setFormData({
@@ -458,8 +460,9 @@ export function ReportsPage(): React.ReactElement {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium mb-1">End Date</label>
+                  <label htmlFor="report-end-date" className="block text-sm font-medium mb-1">End Date</label>
                   <input
+                    id="report-end-date"
                     type="date"
                     value={formData.dateRange.end}
                     onChange={(e) => setFormData({
@@ -473,10 +476,11 @@ export function ReportsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2">Subjects</label>
+                <div className="block text-sm font-medium mb-2">Subjects</div>
                 <div className="space-y-2 max-h-32 overflow-y-auto border rounded-lg p-2">
-                  <label className="flex items-center gap-2">
+                  <label htmlFor="report-all-subjects" className="flex items-center gap-2">
                     <input
+                      id="report-all-subjects"
                       type="checkbox"
                       checked={formData.subjects.length === 0}
                       onChange={(e) => {
@@ -488,8 +492,9 @@ export function ReportsPage(): React.ReactElement {
                     <span>All Subjects</span>
                   </label>
                   {availableSubjects.map(subject => (
-                    <label key={subject} className="flex items-center gap-2">
+                    <label key={subject} htmlFor={`report-subject-${subject.replace(/\s+/g, '-').toLowerCase()}`} className="flex items-center gap-2">
                       <input
+                        id={`report-subject-${subject.replace(/\s+/g, '-').toLowerCase()}`}
                         type="checkbox"
                         checked={formData.subjects.includes(subject)}
                         onChange={(e) => {
@@ -513,7 +518,7 @@ export function ReportsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2">Format</label>
+                <div className="block text-sm font-medium mb-2">Format</div>
                 <div className="grid grid-cols-3 gap-2">
                   {(['pdf', 'csv', 'html'] as const).map(format => (
                     <button

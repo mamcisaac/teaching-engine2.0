@@ -1,6 +1,6 @@
 
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import React, { useState, useEffect } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { apiClient } from '../api/core/client';
@@ -45,10 +45,6 @@ interface CreateLongRangePlanResponse {
 }
 
 // Type guards
-function isLongRangePlansArray(data: unknown): data is LongRangePlan[] {
-  return Array.isArray(data) && (data.length === 0 || (typeof data[0] === 'object' && data[0] !== null && 'id' in data[0]));
-}
-
 function isCreateLongRangePlanResponse(data: unknown): data is CreateLongRangePlanResponse {
   return typeof data === 'object' && data !== null && 'id' in data && 'title' in data;
 }

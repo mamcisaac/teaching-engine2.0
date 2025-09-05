@@ -318,7 +318,7 @@ export function CurriculumSetupWizard({
           <div className="space-y-6">
             <div>
               <Label htmlFor="input">Priority Curriculum Strands</Label>
-              <p className="text-sm text-gray-600 mb-2">Add the main curriculum strands you&apos;ll focus on</p>
+              <p className="text-sm text-gray-600 mb-2">Add the main curriculum strands you'll focus on</p>
               <div className="flex gap-2 mb-2">
                 <Input
                   placeholder="e.g., Number Sense, Algebra, Data Management"

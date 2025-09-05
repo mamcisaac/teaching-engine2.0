@@ -57,7 +57,7 @@ vi.mock('./AILoadingIndicator', () => ({
 
 // Mock the AIErrorBoundary
 vi.mock('./AIErrorBoundary', () => ({
-  WithAIErrorBoundary: ({ children }: { children: React.ReactNode }) => <div data-testid="ai-error-boundary">{children}</div>,
+  WithAIErrorBoundary: ({ children }: { children: React.ReactNode }) => <div data-testid="ai-error-boundary&quot;>{children}</div>,
 }));
 
 describe('AILessonPlanPanel', () => {

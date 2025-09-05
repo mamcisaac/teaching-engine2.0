@@ -324,7 +324,15 @@ export function SimpleWeekView(): React.ReactElement {
                           alignItems: 'center',
                           justifyContent: 'center'
                         }}
+                        role="button"
+                        tabIndex={0}
                         onClick={() => navigate(`/planner/day/${format(addDays(weekStart, dayIndex), 'yyyy-MM-dd')}`)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            navigate(`/planner/day/${format(addDays(weekStart, dayIndex), 'yyyy-MM-dd')}`);
+                          }
+                        }}
                       >
                         <div style={{
                           fontSize: '12px',

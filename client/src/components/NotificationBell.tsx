@@ -32,7 +32,7 @@ export function NotificationBell(): React.ReactElement | null {
   return (
     <div className="absolute top-2 right-2">
       <Link className="text-red-600 underline" to="/newsletters/new">
-        It&apos;s time to send a newsletter!
+        It's time to send a newsletter!
       </Link>
     </div>
   );

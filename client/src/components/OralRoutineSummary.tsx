@@ -79,7 +79,7 @@ return '👍';
           <span className="text-2xl">📢</span>
           <div>
             <h3 className="text-sm font-medium text-gray-900">Oral Routines</h3>
-            <p className="text-xs text-gray-600">This week&apos;s progress</p>
+            <p className="text-xs text-gray-600">This week's progress</p>
           </div>
         </div>
         <div className="text-right">

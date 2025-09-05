@@ -379,7 +379,7 @@ export function SimpleLongRangePage(): React.ReactElement {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleDeletePlan(plan.id);
+                    void handleDeletePlan(plan.id);
                   }}
                   style={{
                     backgroundColor: '#fee2e2',

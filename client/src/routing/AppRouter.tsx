@@ -2,7 +2,7 @@
 import React, { Suspense, isValidElement } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 
-import { MainLayout } from '../components/MainLayout';
+// import { MainLayout } from '../components/MainLayout';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { WorkflowGate } from '../components/WorkflowGate';
 import { useAuth } from '../contexts/AuthContext';

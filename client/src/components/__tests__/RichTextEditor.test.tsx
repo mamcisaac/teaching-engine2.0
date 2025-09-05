@@ -42,9 +42,9 @@ describe('RichTextEditor', () => {
     render(<RichTextEditor value="" onChange={mockOnChange} />);
     
     const editor = screen.getByRole('textbox');
-    fireEvent.input(editor, { target: { innerHTML: '<script>alert("XSS")</script><p>Content</p>' } });
+    fireEvent.input(editor, { target: { innerHTML: '<script>alert("XSS&quot;)</script><p>Content</p>' } });
     
-    expect(mockSanitizeHtml).toHaveBeenCalledWith('<script>alert("XSS")</script><p>Content</p>');
+    expect(mockSanitizeHtml).toHaveBeenCalledWith('<script>alert("XSS&quot;)</script><p>Content</p>');
     expect(mockOnChange).toHaveBeenCalledWith('<p>Sanitized content</p>');
   });
 

@@ -255,7 +255,7 @@ export const generateUnitPlanHTML = (unitPlan: UnitPlan, longRangePlan?: { title
         <div class="section no-break">
           <div class="section-title">Key Vocabulary</div>
           <div class="vocab-grid">
-            ${unitPlan.keyVocabulary.map(term => `<div class="vocab-item">${escapeHtml(term)}</div>`).join('')}
+            ${unitPlan.keyVocabulary.map(term => `<div class="vocab-item&quot;>${escapeHtml(term)}</div>`).join('')}
           </div>
         </div>
       ` : ''}
@@ -1588,28 +1588,28 @@ export const generateDaybookBlankTemplate = (_schoolInfo: ETFOSchoolInfo = {}): 
         <div class="week-header">Weekly Schedule</div>
         <div class="week-grid">
           <div class="time-column">Time</div>
-          ${weekDays.map(day => `<div class="day-header">${day}</div>`).join('')}
+          ${weekDays.map(day => `<div class="day-header&quot;>${day}</div>`).join('')}
           
           <div class="time-column">9:00-10:00</div>
-          ${weekDays.map(() => '<div class="lesson-cell"></div>').join('')}
+          ${weekDays.map(() => '<div class="lesson-cell&quot;></div>').join('')}
           
           <div class="time-column">10:00-11:00</div>
-          ${weekDays.map(() => '<div class="lesson-cell"></div>').join('')}
+          ${weekDays.map(() => '<div class="lesson-cell&quot;></div>').join('')}
           
           <div class="time-column">11:00-12:00</div>
-          ${weekDays.map(() => '<div class="lesson-cell"></div>').join('')}
+          ${weekDays.map(() => '<div class="lesson-cell&quot;></div>').join('')}
           
           <div class="time-column">12:00-1:00</div>
-          ${weekDays.map(() => '<div class="lesson-cell" style="background: #f3f4f6;">LUNCH</div>').join('')}
+          ${weekDays.map(() => '<div class="lesson-cell" style="background: #f3f4f6;&quot;>LUNCH</div>').join('')}
           
           <div class="time-column">1:00-2:00</div>
-          ${weekDays.map(() => '<div class="lesson-cell"></div>').join('')}
+          ${weekDays.map(() => '<div class="lesson-cell&quot;></div>').join('')}
           
           <div class="time-column">2:00-3:00</div>
-          ${weekDays.map(() => '<div class="lesson-cell"></div>').join('')}
+          ${weekDays.map(() => '<div class="lesson-cell&quot;></div>').join('')}
           
           <div class="time-column">3:00-3:30</div>
-          ${weekDays.map(() => '<div class="lesson-cell"></div>').join('')}
+          ${weekDays.map(() => '<div class="lesson-cell&quot;></div>').join('')}
         </div>
       </div>
 

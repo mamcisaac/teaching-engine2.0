@@ -17,7 +17,7 @@ export function SubstituteInfoForm(): React.ReactElement {
   const saveMutation = useMutation({
     mutationFn: (info: SubstituteInfo) => substituteApi.saveSubstituteInfo(info),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['substituteInfo'] });
+      void queryClient.invalidateQueries({ queryKey: ['substituteInfo'] });
       toast({
         title: 'Success',
         description: 'Substitute information saved successfully',

@@ -181,10 +181,10 @@ export const TutorialManager: React.FC<TutorialManagerProps> = ({ children }): R
                 Completed Tutorials ({completedTutorials.length})
               </h3>
               <div className="text-sm text-gray-600">
-                <p>Great job! You&apos;ve completed {completedTutorials.length} tutorial(s).</p>
+                <p>Great job! You've completed {completedTutorials.length} tutorial(s).</p>
                 {completedTutorials.length >= availableTutorials.length && (
                   <p className="mt-2 text-green-600 font-medium">
-                    🎉 You&apos;ve completed all available tutorials! You&apos;re a Teaching Engine
+                    🎉 You've completed all available tutorials! You're a Teaching Engine
                     2.0 expert.
                   </p>
                 )}

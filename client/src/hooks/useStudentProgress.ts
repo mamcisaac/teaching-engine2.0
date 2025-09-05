@@ -308,7 +308,7 @@ export function useSaveParentCommunication() {
     },
     onSuccess: (_, variables) => {
       // Invalidate communications cache
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: PROGRESS_QUERY_KEYS.communications(variables.studentId)
       });
     }

@@ -35,7 +35,7 @@ export function SimpleCalendarPage(): React.ReactElement {
   const navigate = useNavigate();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [showScheduleModal, setShowScheduleModal] = useState(false);
-  const [customSchedule, setCustomSchedule] = useState<Schedule>(() => {
+  const [customSchedule, _setCustomSchedule] = useState<Schedule>(() => {
     const saved = localStorage.getItem('teacher-schedule');
     return saved ? JSON.parse(saved) as Schedule : defaultSchedule;
   });

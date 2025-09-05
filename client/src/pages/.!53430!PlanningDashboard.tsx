@@ -109,7 +109,7 @@ export default function PlanningDashboard(): React.ReactElement {
         </div>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Your planning assistant for Grade 1 French Immersion • Votre assistant de planification
-          pour la 1ère année d&apos;immersion française
+          pour la 1ère année d'immersion française
         </p>
       </div>
 

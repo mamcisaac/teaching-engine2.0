@@ -405,8 +405,9 @@ export function AssessmentPage(): React.ReactElement {
             
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Student</label>
+                <label htmlFor="assessment-student-select" className="block text-sm font-medium mb-1">Student</label>
                 <select
+                  id="assessment-student-select"
                   value={formData.studentId}
                   onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg"
@@ -422,8 +423,9 @@ export function AssessmentPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-1">Subject</label>
+                <label htmlFor="assessment-subject-select" className="block text-sm font-medium mb-1">Subject</label>
                 <select
+                  id="assessment-subject-select"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg"
@@ -438,8 +440,9 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Learning Expectation</label>
+              <label htmlFor="assessment-expectation-input" className="block text-sm font-medium mb-1">Learning Expectation</label>
               <input
+                id="assessment-expectation-input"
                 type="text"
                 value={formData.expectation}
                 onChange={(e) => setFormData({ ...formData, expectation: e.target.value })}
@@ -450,7 +453,7 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Mastery Level</label>
+              <div className="block text-sm font-medium mb-2">Mastery Level</div>
               <div className="grid grid-cols-4 gap-2">
                 {MASTERY_LEVELS.map(level => {
                   const Icon = level.icon;
@@ -479,7 +482,7 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Evidence Type</label>
+              <div className="block text-sm font-medium mb-2">Evidence Type</div>
               <div className="grid grid-cols-3 gap-2">
                 {EVIDENCE_TYPES.map(type => {
                   const Icon = type.icon;
@@ -504,8 +507,9 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Description</label>
+              <label htmlFor="assessment-description-textarea" className="block text-sm font-medium mb-1">Description</label>
               <textarea
+                id="assessment-description-textarea"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg"
@@ -516,8 +520,9 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Professional Judgment Notes</label>
+              <label htmlFor="assessment-notes-textarea" className="block text-sm font-medium mb-1">Professional Judgment Notes</label>
               <textarea
+                id="assessment-notes-textarea"
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg"
@@ -556,24 +561,27 @@ export function AssessmentPage(): React.ReactElement {
             <h2 className="text-xl font-bold mb-4">Bulk Assessment</h2>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Select Students</label>
-              <div className="border rounded-lg p-2 max-h-48 overflow-y-auto">
-                {students.map(student => (
-                  <label key={student.id} className="flex items-center gap-2 p-2 hover:bg-gray-50">
-                    <input
-                      type="checkbox"
-                      checked={bulkStudents.includes(student.id)}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setBulkStudents([...bulkStudents, student.id]);
-                        } else {
-                          setBulkStudents(bulkStudents.filter(id => id !== student.id));
-                        }
-                      }}
-                    />
-                    <span>{student.firstName} {student.lastName}</span>
-                  </label>
-                ))}
+              <div>
+                <div className="block text-sm font-medium mb-2">Select Students</div>
+                <div className="border rounded-lg p-2 max-h-48 overflow-y-auto">
+                  {students.map(student => (
+                    <label key={student.id} htmlFor={`bulk-student-${student.id}`} className="flex items-center gap-2 p-2 hover:bg-gray-50">
+                      <input
+                        id={`bulk-student-${student.id}`}
+                        type="checkbox"
+                        checked={bulkStudents.includes(student.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setBulkStudents([...bulkStudents, student.id]);
+                          } else {
+                            setBulkStudents(bulkStudents.filter(id => id !== student.id));
+                          }
+                        }}
+                      />
+                      <span>{student.firstName} {student.lastName}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
               <div className="text-sm text-gray-600 mt-1">
                 {bulkStudents.length} students selected
@@ -581,8 +589,9 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Subject</label>
+              <label htmlFor="bulk-assessment-subject" className="block text-sm font-medium mb-1">Subject</label>
               <select
+                id="bulk-assessment-subject"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg"
@@ -595,8 +604,9 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Learning Expectation</label>
+              <label htmlFor="bulk-assessment-expectation" className="block text-sm font-medium mb-1">Learning Expectation</label>
               <input
+                id="bulk-assessment-expectation"
                 type="text"
                 value={formData.expectation}
                 onChange={(e) => setFormData({ ...formData, expectation: e.target.value })}
@@ -606,7 +616,7 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Default Level</label>
+              <div className="block text-sm font-medium mb-2">Default Level</div>
               <div className="grid grid-cols-4 gap-2">
                 {MASTERY_LEVELS.map(level => {
                   const Icon = level.icon;
@@ -634,7 +644,7 @@ export function AssessmentPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2">Evidence Type</label>
+              <div className="block text-sm font-medium mb-2">Evidence Type</div>
               <div className="grid grid-cols-3 gap-2">
                 {EVIDENCE_TYPES.map(type => {
                   const Icon = type.icon;

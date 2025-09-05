@@ -33,7 +33,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { Textarea } from '../components/ui/Textarea';
 import { UnitPlanOverviewTab } from '../components/unitPlans/UnitPlanOverviewTab';
 import { UnitPlanPlanningTab } from '../components/unitPlans/UnitPlanPlanningTab';
-import { useLongRangePlan, useLongRangePlans, useUnitPlans, useUnitPlan, useCreateUnitPlan, useUpdateUnitPlan } from '../hooks/useETFOPlanning';
+import { useLongRangePlan, useLongRangePlans, useUnitPlans } from '../hooks/useETFOPlanning';
 import type { UnitPlan, CurriculumExpectation } from '../hooks/useETFOPlanning';
 import { useTemplates, useApplyTemplate } from '../hooks/useTemplates';
 import { useUnitPlanForm } from '../hooks/useUnitPlanForm';
@@ -53,7 +53,7 @@ const WithAIErrorBoundary = lazy(() =>
   import('../components/ai/AIErrorBoundary').then((m) => ({ default: m.WithAIErrorBoundary })),
 );
 // Extended UnitPlan type with all ETFO fields
-interface ExtendedUnitPlan extends UnitPlan {
+interface _ExtendedUnitPlan extends UnitPlan {
   crossCurricularConnections?: string;
   learningSkills?: string[];
   culminatingTask?: string;
@@ -928,7 +928,7 @@ function UnitPlansPage(): React.ReactElement {
                     <CardHeader>
                       <CardTitle className="text-base">Differentiation Strategies</CardTitle>
                       <CardDescription>
-                        Plan how you&apos;ll support diverse learners in this unit
+                        Plan how you'll support diverse learners in this unit
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -1414,7 +1414,7 @@ function UnitPlansPage(): React.ReactElement {
               disabled={startNextUnit.isPending}
               onClick={() => {
                 if (longRangePlan?.subject) {
-                  handleStartNextUnit(longRangePlan.subject);
+                  void handleStartNextUnit(longRangePlan.subject);
                 }
               }}
             >

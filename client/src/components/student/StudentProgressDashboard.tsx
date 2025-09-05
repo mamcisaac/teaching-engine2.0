@@ -232,9 +232,9 @@ export function StudentProgressDashboard({
           <ul className="space-y-2">
             {fullProgress.recentNotes.map((note, index) => (
               <li key={index} className="text-gray-700">
-                <span className="font-medium">"</span>
+                <span className="font-medium">&quot;</span>
                 {note.note}
-                <span className="font-medium">"</span>
+                <span className="font-medium">&quot;</span>
                 <span className="text-sm text-gray-500 ml-2">
                   ({formatDateForParents(note.date)})
                 </span>

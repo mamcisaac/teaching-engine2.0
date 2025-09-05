@@ -152,7 +152,7 @@ export function useAnecdotalNotes({
     },
     onSuccess: (data, variables) => {
       // Update cache with server response
-      queryClient.invalidateQueries({ queryKey: ['anecdotal-notes', variables.studentId] });
+      void queryClient.invalidateQueries({ queryKey: ['anecdotal-notes', variables.studentId] });
       setIsSaving(false);
       toast.success('Note saved');
     }

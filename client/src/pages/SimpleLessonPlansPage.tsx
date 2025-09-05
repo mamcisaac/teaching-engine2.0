@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
-import { useETFOLessonPlans, useCreateETFOLessonPlan, useUpdateETFOLessonPlan, useDeleteETFOLessonPlan, useUnitPlan, type ETFOLessonPlan } from '../hooks/useETFOPlanning';
+import { useCreateETFOLessonPlan, useUpdateETFOLessonPlan, useDeleteETFOLessonPlan, type ETFOLessonPlan } from '../hooks/useETFOPlanning';
 
 // Simple lesson plans page connected to backend APIs
 export function SimpleLessonPlansPage(): React.ReactElement {

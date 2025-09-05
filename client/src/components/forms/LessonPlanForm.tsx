@@ -721,7 +721,7 @@ Stratégies d'évaluation:
 }}
             />
             <p className="mt-1 text-xs text-gray-500">
-              Include both success criteria and the specific assessment strategies you&apos;ll use
+              Include both success criteria and the specific assessment strategies you'll use
               to gather evidence of learning.
             </p>
           </div>

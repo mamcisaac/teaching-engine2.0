@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { format, addDays, startOfWeek, parseISO } from 'date-fns';
 import { 
   Calendar, GripVertical, Save, Undo, Redo, 
-  ChevronLeft, ChevronRight, Filter, Search 
+  ChevronLeft, ChevronRight, Search 
 } from 'lucide-react';
 import React, { useState, useCallback } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
@@ -10,7 +10,6 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { toast } from 'sonner';
 
 import { Alert, AlertDescription } from '../components/ui/alert';
-import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Input } from '../components/ui/Input';
@@ -148,7 +147,7 @@ export function ScheduleEditor(): React.ReactElement {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
+      void queryClient.invalidateQueries({ queryKey: ['etfo-lesson-plans'] });
       toast.success('Schedule updated successfully!');
       setChanges(new Map());
       setHistory([]);
@@ -433,7 +432,7 @@ export function ScheduleEditor(): React.ReactElement {
                 <li>• Use the search box to find specific lessons</li>
                 <li>• Filter by subject to see only certain types of lessons</li>
                 <li>• Changes are highlighted and tracked - use Undo/Redo as needed</li>
-                <li>• Click "Save Changes" when you're happy with your adjustments</li>
+                <li>• Click "Save Changes&quot; when you're happy with your adjustments</li>
                 <li>• Navigate between weeks using the Previous/Next buttons</li>
               </ul>
             </div>

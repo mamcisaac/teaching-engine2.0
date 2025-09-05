@@ -93,17 +93,17 @@ vi.mock('../../hooks/useAIPlanningAssistant', () => ({
 // Mock components that might fail
 vi.mock('../../components/NewsletterEditor', () => ({
   __esModule: true,
-  default: () => <div data-testid="newsletter-editor">Newsletter Editor</div>,
+  default: () => <div data-testid="newsletter-editor&quot;>Newsletter Editor</div>,
 }));
 
 vi.mock('../../components/calendar/CalendarEventModal', () => ({
   __esModule: true,
-  default: () => <div data-testid="calendar-event-modal">Calendar Event Modal</div>,
+  default: () => <div data-testid="calendar-event-modal&quot;>Calendar Event Modal</div>,
 }));
 
 // Mock third-party libraries
 vi.mock('react-big-calendar', () => ({
-  Calendar: () => <div data-testid="calendar">Calendar</div>,
+  Calendar: () => <div data-testid="calendar&quot;>Calendar</div>,
   momentLocalizer: vi.fn(() => ({})),
 }));
 

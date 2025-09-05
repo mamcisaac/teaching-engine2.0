@@ -354,11 +354,23 @@ export function ArtifactsPage(): React.ReactElement {
                 className={`bg-white rounded-lg shadow overflow-hidden cursor-pointer transition-all ${
                   isSelected ? 'ring-2 ring-blue-500' : ''
                 }`}
+                role="button"
+                tabIndex={0}
                 onClick={() => {
                   if (selectedArtifacts.includes(artifact.id)) {
                     setSelectedArtifacts(selectedArtifacts.filter(id => id !== artifact.id));
                   } else {
                     setSelectedArtifacts([...selectedArtifacts, artifact.id]);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (selectedArtifacts.includes(artifact.id)) {
+                      setSelectedArtifacts(selectedArtifacts.filter(id => id !== artifact.id));
+                    } else {
+                      setSelectedArtifacts([...selectedArtifacts, artifact.id]);
+                    }
                   }
                 }}
               >
@@ -555,8 +567,9 @@ export function ArtifactsPage(): React.ReactElement {
             
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Student (Optional)</label>
+                <label htmlFor="student-select" className="block text-sm font-medium mb-1">Student (Optional)</label>
                 <select
+                  id="student-select"
                   value={uploadForm.studentId}
                   onChange={(e) => setUploadForm({ ...uploadForm, studentId: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg"
@@ -571,8 +584,9 @@ export function ArtifactsPage(): React.ReactElement {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-1">Subject (Optional)</label>
+                <label htmlFor="subject-select" className="block text-sm font-medium mb-1">Subject (Optional)</label>
                 <select
+                  id="subject-select"
                   value={uploadForm.subject}
                   onChange={(e) => setUploadForm({ ...uploadForm, subject: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg"
@@ -587,8 +601,9 @@ export function ArtifactsPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Tags (Optional)</label>
+              <label htmlFor="tags-input" className="block text-sm font-medium mb-1">Tags (Optional)</label>
               <input
+                id="tags-input"
                 type="text"
                 placeholder="Enter tags separated by commas"
                 value={uploadForm.tags.join(', ')}
@@ -601,8 +616,9 @@ export function ArtifactsPage(): React.ReactElement {
             </div>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Description (Optional)</label>
+              <label htmlFor="description-textarea" className="block text-sm font-medium mb-1">Description (Optional)</label>
               <textarea
+                id="description-textarea"
                 value={uploadForm.description}
                 onChange={(e) => setUploadForm({ ...uploadForm, description: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg"

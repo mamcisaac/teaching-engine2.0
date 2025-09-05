@@ -150,8 +150,8 @@ export function useLessonReflection({
       queryClient.setQueryData(['reflection', data.lessonId], data);
       // Invalidate daily queries if date matches
       if (date && data.date.startsWith(date)) {
-        queryClient.invalidateQueries({ queryKey: ['reflections', 'daily', date] });
-        queryClient.invalidateQueries({ queryKey: ['reflections', 'summary', date] });
+        void queryClient.invalidateQueries({ queryKey: ['reflections', 'daily', date] });
+        void queryClient.invalidateQueries({ queryKey: ['reflections', 'summary', date] });
       }
       setIsSaving(false);
     }
@@ -164,7 +164,7 @@ export function useLessonReflection({
     },
     onSuccess: (_, lessonId) => {
       queryClient.setQueryData(['reflection', lessonId], null);
-      queryClient.invalidateQueries({ queryKey: ['reflections'] });
+      void queryClient.invalidateQueries({ queryKey: ['reflections'] });
       toast.success('Reflection removed');
     }
   });

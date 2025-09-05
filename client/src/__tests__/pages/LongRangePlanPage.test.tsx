@@ -60,7 +60,7 @@ vi.mock('../../components/Dialog', () => {
       open: boolean;
       onOpenChange: (open: boolean) => void;
       children: React.ReactNode;
-    }) => (open ? <div data-testid="dialog">{children}</div> : null),
+    }) => (open ? <div data-testid="dialog&quot;>{children}</div> : null),
   };
 });
 

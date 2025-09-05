@@ -1,11 +1,10 @@
-import { format, isToday } from 'date-fns';
+import { format } from 'date-fns';
 import { 
   Calendar, 
   Clock, 
   BookOpen, 
   ChevronRight,
   Star,
-  Users,
   Target,
   Package
 } from 'lucide-react';
@@ -33,7 +32,7 @@ export function SimpleTodayView(): React.ReactElement {
   // School year dates
   const schoolStartDate = new Date('2025-09-04');
   const schoolEndDate = new Date('2026-06-26');
-  const isSchoolYear = today >= schoolStartDate && today <= schoolEndDate;
+  const _isSchoolYear = today >= schoolStartDate && today <= schoolEndDate;
   
   // Check for specific breaks
   const isChristmasBreak = (today >= new Date('2025-12-22') && today <= new Date('2026-01-04'));
@@ -49,7 +48,7 @@ export function SimpleTodayView(): React.ReactElement {
   const isPDDay = pdDays.includes(dateStr);
   
   // Fetch lessons from database for the selected date
-  const { data: lessonData, isLoading: lessonsLoading } = useETFOLessonPlans({
+  const { data: lessonData, isLoading: _lessonsLoading } = useETFOLessonPlans({
     startDate: format(today, 'yyyy-MM-dd'),
     endDate: format(today, 'yyyy-MM-dd')
   });
@@ -355,7 +354,15 @@ export function SimpleTodayView(): React.ReactElement {
                   borderBottom: expandedLesson === lesson.id ? '1px solid #e5e7eb' : 'none',
                   cursor: 'pointer'
                 }}
+                role="button"
+                tabIndex={0}
                 onClick={() => setExpandedLesson(expandedLesson === lesson.id ? null : lesson.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setExpandedLesson(expandedLesson === lesson.id ? null : lesson.id);
+                  }
+                }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
                   <div style={{ flex: 1 }}>

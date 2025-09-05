@@ -1,9 +1,9 @@
 import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core';
-import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay } from '@dnd-kit/core';
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy , useSortable } from '@dnd-kit/sortable';
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy , useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { format, startOfWeek, addDays, isSameDay, addWeeks, subWeeks } from 'date-fns';
-import { Calendar, ChevronLeft, ChevronRight, Clock, BookOpen, Plus } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, BookOpen, Plus } from 'lucide-react';
 import React, { useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,7 +61,7 @@ function DraggableLesson({ lesson, subject }: { lesson: any; subject: string }) 
       {...listeners}
       className={`p-2 rounded cursor-grab active:cursor-grabbing focus:outline-none focus:ring-2 focus:ring-indigo-500 ${subject ? SUBJECT_COLORS[subject] : 'bg-gray-100'} ${isDragging ? 'z-50' : ''}`}
       data-testid={`lesson-${lesson.id}`}
-      role="listitem"
+      role="button"
       aria-label={`${lesson.titleFr || lesson.title} - ${subject} - ${lesson.duration} minutes. Press space to start dragging.`}
       tabIndex={0}
     >
@@ -119,12 +119,12 @@ function DroppableSlot({
 export function WeekViewPage(): React.ReactElement {
   const navigate = useNavigate();
   const [currentWeek, setCurrentWeek] = useState(new Date());
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const [dragOverSlot, setDragOverSlot] = useState<{ day: string; slot: number } | null>(null);
+  const [_activeId, setActiveId] = useState<string | null>(null);
+  const [_dragOverSlot, setDragOverSlot] = useState<{ day: string; slot: number } | null>(null);
   const [dragError, setDragError] = useState<string | null>(null);
   const [isRescheduling, setIsRescheduling] = useState(false);
   const [optimisticLessons, setOptimisticLessons] = useState<any[]>([]);
-  const [originalPosition, setOriginalPosition] = useState<{ lessonId: string; date: Date; slot: number } | null>(null);
+  const [_originalPosition, setOriginalPosition] = useState<{ lessonId: string; date: Date; slot: number } | null>(null);
   const [pendingRequestId, setPendingRequestId] = useState<string | null>(null);
 
   const sensors = useSensors(
@@ -238,7 +238,7 @@ export function WeekViewPage(): React.ReactElement {
     
     try {
       // Call the reschedule API
-      const response = await apiClient.put(`/api/etfo-lesson-plans/${active.id}/reschedule`, {
+      const _response = await apiClient.put(`/api/etfo-lesson-plans/${active.id}/reschedule`, {
         newDate: newDate.toISOString(),
         newSlotNumber: newSlotNumber
       });
@@ -299,7 +299,7 @@ export function WeekViewPage(): React.ReactElement {
     navigate(`/planner/day/${format(date, 'yyyy-MM-dd')}`);
   };
   
-  const handleLessonClick = (lessonId: string) => {
+  const _handleLessonClick = (lessonId: string) => {
     navigate(`/planner/lessons/${lessonId}`);
   };
   

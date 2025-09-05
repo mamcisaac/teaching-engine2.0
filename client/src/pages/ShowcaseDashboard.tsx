@@ -1,4 +1,4 @@
-import { format, addDays, differenceInDays } from 'date-fns';
+import { format, differenceInDays } from 'date-fns';
 import { 
   Calendar, 
   BookOpen, 
@@ -54,10 +54,10 @@ const subjectIcons: Record<string, JSX.Element> = {
 
 export function ShowcaseDashboard(): React.ReactElement {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user: _user } = useAuth();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [isSubjectModalOpen, setIsSubjectModalOpen] = useState(false);
-  const [teacherSubjects, setTeacherSubjects] = useState<string[]>([]);
+  const [_teacherSubjects, setTeacherSubjects] = useState<string[]>([]);
   
   // Load saved subjects on component mount
   useEffect(() => {
@@ -102,7 +102,7 @@ export function ShowcaseDashboard(): React.ReactElement {
   };
   
   // Fetch public stats from database (no auth required)
-  const { data: publicData, isLoading, error } = usePublicStats();
+  const { data: publicData, isLoading: _isLoading, error: _error } = usePublicStats();
   
   // Use fetched data with proper fallbacks
   const stats = publicData?.stats || { unitCount: 0, lessonCount: 0, lrpCount: 0, totalHours: 0 };
@@ -125,9 +125,9 @@ export function ShowcaseDashboard(): React.ReactElement {
   }).slice(0, 5); // Show first 5 for preview
   
   // Use dynamic stats from API
-  const totalHours = stats.totalHours;
-  const totalLessons = stats.lessonCount;
-  const totalUnits = stats.unitCount;
+  const _totalHours = stats.totalHours;
+  const _totalLessons = stats.lessonCount;
+  const _totalUnits = stats.unitCount;
   const septemberLessonCount = septemberLessons.length;
   
   // Group units by subject using sample units for preview display
@@ -255,7 +255,15 @@ export function ShowcaseDashboard(): React.ReactElement {
                     <div 
                       key={idx}
                       className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors cursor-pointer"
+                      role="button"
+                      tabIndex={0}
                       onClick={() => navigate('/planner/units')}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          navigate('/planner/units');
+                        }
+                      }}
                     >
                       <div className="flex items-center gap-4">
                         <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
@@ -325,7 +333,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                     })
                   ) : (
                     <div className="col-span-full text-center text-gray-500">
-                      <p>No subjects selected. Click "Modify" to select your teaching subjects.</p>
+                      <p>No subjects selected. Click "Modify&quot; to select your teaching subjects.</p>
                     </div>
                   )}
                 </div>
@@ -362,7 +370,15 @@ export function ShowcaseDashboard(): React.ReactElement {
                     <div 
                       key={unit.id}
                       className="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                      role="button"
+                      tabIndex={0}
                       onClick={() => navigate(`/planner/units/${unit.id}/lessons`)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          navigate(`/planner/units/${unit.id}/lessons`);
+                        }
+                      }}
                     >
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="font-semibold text-gray-900">

@@ -72,9 +72,9 @@ export const QuickReflectionPanel: React.FC<QuickReflectionPanelProps> = ({
 
       {/* Status selector */}
       <div className={cn('flex items-center gap-3', compact ? 'mb-2' : 'mb-3')}>
-        <label className="text-sm text-gray-600">
+        <div className="text-sm text-gray-600">
           How did it go?
-        </label>
+        </div>
         <LessonReflectionStatus
           value={reflection?.status as ReflectionStatus}
           onChange={setStatus}

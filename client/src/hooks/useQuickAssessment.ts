@@ -32,7 +32,7 @@ export function useCreateAssessment() {
       quickAssessmentAPI.createAssessment(assessment),
     onSuccess: (newAssessment) => {
       // Invalidate and refetch assessment lists
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUICK_ASSESSMENT_QUERY_KEYS.lists() 
       });
       
@@ -62,7 +62,7 @@ export function useUpdateAssessment() {
       );
       
       // Invalidate lists to be safe
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUICK_ASSESSMENT_QUERY_KEYS.lists() 
       });
     },
@@ -82,7 +82,7 @@ export function useDeleteAssessment() {
       );
       
       // Invalidate lists to be safe
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUICK_ASSESSMENT_QUERY_KEYS.lists() 
       });
     },
@@ -106,7 +106,7 @@ export function useBatchCreateAssessments() {
       quickAssessmentAPI.createMultipleAssessments(assessments),
     onSuccess: () => {
       // Invalidate all assessment lists
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUICK_ASSESSMENT_QUERY_KEYS.lists() 
       });
     },
@@ -121,7 +121,7 @@ export function useBatchUpdateAssessments() {
       quickAssessmentAPI.updateMultipleAssessments(updates),
     onSuccess: () => {
       // Invalidate all assessment lists
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUICK_ASSESSMENT_QUERY_KEYS.lists() 
       });
     },

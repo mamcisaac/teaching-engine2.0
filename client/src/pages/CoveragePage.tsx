@@ -83,8 +83,9 @@ function LessonModal({ expectation, onClose, onSave }: LessonModalProps): React.
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-2">Lesson Title</label>
+          <label htmlFor="lesson-title-input" className="block text-sm font-medium mb-2">Lesson Title</label>
           <input
+            id="lesson-title-input"
             data-testid="lesson-title-input"
             type="text"
             value={title}
@@ -154,7 +155,7 @@ export function CoveragePage(): React.ReactElement {
     },
     onSuccess: () => {
       // Invalidate queries to refresh data
-      queryClient.invalidateQueries({ queryKey: ['curriculum-coverage'] });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-coverage'] });
     },
   });
 
@@ -218,7 +219,7 @@ export function CoveragePage(): React.ReactElement {
       
       // Clear selection and refresh data
       setSelectedForBulk(new Set());
-      queryClient.invalidateQueries({ queryKey: ['curriculum-coverage'] });
+      void queryClient.invalidateQueries({ queryKey: ['curriculum-coverage'] });
       
       // Show success message (could add a toast notification here)
       console.log(response.data.message);
@@ -297,9 +298,10 @@ export function CoveragePage(): React.ReactElement {
 
               {/* Toggle uncovered only */}
               <div className="flex items-center gap-2">
-                <label className="text-sm font-medium">Show uncovered only</label>
+                <label htmlFor="show-uncovered-toggle" className="text-sm font-medium">Show uncovered only</label>
                 <div data-testid="show-uncovered-toggle">
                   <Switch
+                    id="show-uncovered-toggle"
                     checked={showUncoveredOnly}
                     onChange={setShowUncoveredOnly}
                   />

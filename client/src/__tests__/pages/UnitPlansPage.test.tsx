@@ -47,7 +47,7 @@ vi.mock('react-router-dom', async () => {
 
 // Mock lazy-loaded components
 vi.mock('../../components/ai/AIUnitPlanPanel', () => ({
-  AIUnitPlanPanel: () => <div data-testid="ai-unit-plan-panel">AI Unit Panel</div>,
+  AIUnitPlanPanel: () => <div data-testid="ai-unit-plan-panel&quot;>AI Unit Panel</div>,
 }));
 
 vi.mock('../../components/ai/AIErrorBoundary', () => ({

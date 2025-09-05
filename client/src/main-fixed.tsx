@@ -90,6 +90,6 @@ async function initializeApp() {
 }
 
 // Start the app
-initializeApp();
+void initializeApp();
 
 export {};

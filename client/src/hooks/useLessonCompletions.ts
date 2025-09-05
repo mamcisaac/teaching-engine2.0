@@ -134,7 +134,7 @@ export function useLessonCompletions(lessonIds?: string[]) {
     },
     onSettled: () => {
       // Always refetch after error or success
-      queryClient.invalidateQueries({ queryKey: ['lessonCompletions'] });
+      void queryClient.invalidateQueries({ queryKey: ['lessonCompletions'] });
     }
   });
 
@@ -155,7 +155,7 @@ export function useLessonCompletions(lessonIds?: string[]) {
     },
     onSuccess: () => {
       toast.success('Completion details updated');
-      queryClient.invalidateQueries({ queryKey: ['lessonCompletions'] });
+      void queryClient.invalidateQueries({ queryKey: ['lessonCompletions'] });
     },
     onError: (err) => {
       const errorMessage = handleApiError(err);

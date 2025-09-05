@@ -91,7 +91,7 @@ Assessment Strategies:
         />
         <p className="mt-1 text-xs text-gray-500">
           Include both success criteria and the specific assessment strategies
-          you&apos;ll use to gather evidence of learning.
+          you'll use to gather evidence of learning.
         </p>
       </div>
     </div>

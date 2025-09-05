@@ -89,7 +89,7 @@ export const useCreateStudent = () => {
     mutationFn: (data: CreateStudentRequest) => studentsAPI.createStudent(data),
     onSuccess: () => {
       // Invalidate and refetch students lists
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.lists() });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.lists() });
     },
   });
 };
@@ -107,7 +107,7 @@ export const useUpdateStudent = () => {
         updatedStudent
       );
       // Invalidate students lists to reflect changes
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.lists() });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.lists() });
     },
   });
 };
@@ -120,7 +120,7 @@ export const useDeactivateStudent = () => {
     onSuccess: (_, id) => {
       // Remove from cache and invalidate related queries
       queryClient.removeQueries({ queryKey: QUERY_KEYS.students.detail(id) });
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.lists() });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.lists() });
     },
   });
 };
@@ -190,12 +190,12 @@ export const useUploadArtifact = () => {
     },
     onSuccess: (result, { data }) => {
       // Invalidate related queries
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
       if (data.studentId) {
-        queryClient.invalidateQueries({ 
+        void queryClient.invalidateQueries({ 
           queryKey: QUERY_KEYS.students.artifacts(data.studentId) 
         });
-        queryClient.invalidateQueries({ 
+        void queryClient.invalidateQueries({ 
           queryKey: QUERY_KEYS.students.summary(data.studentId) 
         });
       }
@@ -209,9 +209,9 @@ export const useCreateNote = () => {
   return useMutation({
     mutationFn: (data: CreateArtifactRequest) => artifactsAPI.createNote(data),
     onSuccess: (result, data) => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
       if (data.studentId) {
-        queryClient.invalidateQueries({ 
+        void queryClient.invalidateQueries({ 
           queryKey: QUERY_KEYS.students.artifacts(data.studentId) 
         });
       }
@@ -232,7 +232,7 @@ export const useUpdateArtifact = () => {
         updatedArtifact
       );
       // Invalidate lists
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
     },
   });
 };
@@ -244,8 +244,8 @@ export const useDeleteArtifact = () => {
     mutationFn: (id: string) => artifactsAPI.deleteArtifact(id),
     onSuccess: (_, id) => {
       queryClient.removeQueries({ queryKey: QUERY_KEYS.artifacts.detail(id) });
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.all });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.all });
     },
   });
 };
@@ -258,11 +258,11 @@ export const useTagArtifactWithOutcome = () => {
       artifactsAPI.tagWithOutcome(artifactId, data),
     onSuccess: (_, { artifactId }) => {
       // Refresh artifact details to show new tagging
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUERY_KEYS.artifacts.detail(artifactId) 
       });
       // Refresh mastery data as this affects progress
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
     },
   });
 };
@@ -301,17 +301,17 @@ export const useUpdateMastery = () => {
     mutationFn: (data: UpdateMasteryRequest) => masteryAPI.updateProgress(data),
     onSuccess: (result, data) => {
       // Invalidate all mastery-related queries for this student and outcome
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUERY_KEYS.mastery.student(data.studentId) 
       });
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUERY_KEYS.mastery.outcome(data.outcomeId) 
       });
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUERY_KEYS.mastery.analytics() 
       });
       // Update student summary
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUERY_KEYS.students.summary(data.studentId) 
       });
     },
@@ -325,8 +325,8 @@ export const useBatchUpdateMastery = () => {
     mutationFn: (data: BatchMasteryUpdateRequest) => masteryAPI.batchUpdateProgress(data),
     onSuccess: (result, data) => {
       // Invalidate all mastery queries as batch update can affect multiple students/outcomes
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.all });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.students.all });
     },
   });
 };
@@ -338,7 +338,7 @@ export const useShareWithParents = () => {
     mutationFn: (progressIds: string[]) => masteryAPI.shareWithParents(progressIds),
     onSuccess: () => {
       // Refresh mastery data to show updated sharing status
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
     },
   });
 };
@@ -349,7 +349,7 @@ export const useArchiveMastery = () => {
   return useMutation({
     mutationFn: (progressId: string) => masteryAPI.archiveProgress(progressId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.mastery.all });
     },
   });
 };
@@ -415,7 +415,7 @@ export const useOptimisticMasteryUpdate = () => {
     },
     onSettled: (result, error, data) => {
       // Refresh data regardless of success/failure
-      queryClient.invalidateQueries({ 
+      void queryClient.invalidateQueries({ 
         queryKey: QUERY_KEYS.mastery.student(data.studentId) 
       });
     },

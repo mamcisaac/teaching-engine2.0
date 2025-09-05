@@ -162,10 +162,11 @@ export function QuickLessonPage(): React.ReactElement {
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 150px 100px', gap: '15px', marginBottom: '15px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
+                <label htmlFor="lesson-title" style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
                   Lesson Title *
                 </label>
                 <input
+                  id="lesson-title"
                   type="text"
                   value={formData.title}
                   onChange={(e) => handleInputChange('title', e.target.value)}
@@ -186,10 +187,11 @@ export function QuickLessonPage(): React.ReactElement {
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
+                <label htmlFor="lesson-date" style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
                   Date
                 </label>
                 <input
+                  id="lesson-date"
                   type="date"
                   value={formData.date}
                   onChange={(e) => handleInputChange('date', e.target.value)}
@@ -205,10 +207,11 @@ export function QuickLessonPage(): React.ReactElement {
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
+                <label htmlFor="lesson-duration" style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
                   Duration (min)
                 </label>
                 <input
+                  id="lesson-duration"
                   type="number"
                   value={formData.duration}
                   onChange={(e) => handleInputChange('duration', parseInt(e.target.value))}
@@ -227,10 +230,11 @@ export function QuickLessonPage(): React.ReactElement {
             </div>
 
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
+              <label htmlFor="unit-plan-select" style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
                 Unit Plan *
               </label>
               <select
+                id="unit-plan-select"
                 value={formData.unitPlanId}
                 onChange={(e) => handleInputChange('unitPlanId', e.target.value)}
                 style={{
@@ -260,10 +264,11 @@ export function QuickLessonPage(): React.ReactElement {
 
           {/* Learning Goals */}
           <div style={{ marginBottom: '20px' }}>
-            <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
+            <label htmlFor="learning-goals" style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
               Learning Goals
             </label>
             <textarea
+              id="learning-goals"
               value={formData.learningGoals}
               onChange={(e) => handleInputChange('learningGoals', e.target.value)}
               placeholder="What will students learn in this lesson?"
@@ -323,7 +328,7 @@ export function QuickLessonPage(): React.ReactElement {
             
             <div style={{ display: 'grid', gap: '20px' }}>
               <div>
-                <label style={{ 
+                <label htmlFor="minds-on" style={{ 
                   display: 'block', 
                   fontSize: '14px', 
                   fontWeight: '600', 
@@ -337,6 +342,7 @@ export function QuickLessonPage(): React.ReactElement {
                   1️⃣ Minds-On (Hook/Introduction) • ~10-15% of lesson time
                 </label>
                 <textarea
+                  id="minds-on"
                   value={formData.mindsOn}
                   onChange={(e) => handleInputChange('mindsOn', e.target.value)}
                   placeholder="How will you capture students' attention and activate prior knowledge?"
@@ -357,7 +363,7 @@ export function QuickLessonPage(): React.ReactElement {
               </div>
               
               <div>
-                <label style={{ 
+                <label htmlFor="action" style={{ 
                   display: 'block', 
                   fontSize: '14px', 
                   fontWeight: '600', 
@@ -371,6 +377,7 @@ export function QuickLessonPage(): React.ReactElement {
                   2️⃣ Action (Main Learning Activities) • ~60-70% of lesson time
                 </label>
                 <textarea
+                  id="action"
                   value={formData.action}
                   onChange={(e) => handleInputChange('action', e.target.value)}
                   placeholder="What activities will students do to learn the new content?"
@@ -391,7 +398,7 @@ export function QuickLessonPage(): React.ReactElement {
               </div>
               
               <div>
-                <label style={{ 
+                <label htmlFor="consolidation" style={{ 
                   display: 'block', 
                   fontSize: '14px', 
                   fontWeight: '600', 
@@ -405,6 +412,7 @@ export function QuickLessonPage(): React.ReactElement {
                   3️⃣ Consolidation (Wrap-up/Assessment) • ~15-20% of lesson time
                 </label>
                 <textarea
+                  id="consolidation"
                   value={formData.consolidation}
                   onChange={(e) => handleInputChange('consolidation', e.target.value)}
                   placeholder="How will you summarize learning and check for understanding?"
@@ -429,10 +437,11 @@ export function QuickLessonPage(): React.ReactElement {
           {/* Materials and Assessment */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
+              <label htmlFor="materials" style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
                 Materials Needed
               </label>
               <textarea
+                id="materials"
                 value={formData.materials}
                 onChange={(e) => handleInputChange('materials', e.target.value)}
                 placeholder="List materials, one per line"
@@ -450,10 +459,11 @@ export function QuickLessonPage(): React.ReactElement {
             </div>
             
             <div>
-              <label style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
+              <label htmlFor="assessment-notes" style={{ display: 'block', fontSize: '14px', fontWeight: '500', color: '#374151', marginBottom: '5px' }}>
                 Assessment Notes
               </label>
               <textarea
+                id="assessment-notes"
                 value={formData.assessmentNotes}
                 onChange={(e) => handleInputChange('assessmentNotes', e.target.value)}
                 placeholder="How will you assess student learning?"
@@ -511,7 +521,7 @@ export function QuickLessonPage(): React.ReactElement {
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <div>
-                <label style={{ 
+                <label htmlFor="struggling-learners" style={{ 
                   display: 'block', 
                   fontSize: '14px', 
                   fontWeight: '500', 
@@ -521,6 +531,7 @@ export function QuickLessonPage(): React.ReactElement {
                   For Struggling Learners
                 </label>
                 <textarea
+                  id="struggling-learners"
                   value={formData.differentiationStrategies.forStruggling}
                   onChange={(e) => setFormData(prev => ({
                     ...prev,
@@ -544,7 +555,7 @@ export function QuickLessonPage(): React.ReactElement {
               </div>
               
               <div>
-                <label style={{ 
+                <label htmlFor="advanced-learners" style={{ 
                   display: 'block', 
                   fontSize: '14px', 
                   fontWeight: '500', 
@@ -554,6 +565,7 @@ export function QuickLessonPage(): React.ReactElement {
                   For Advanced Learners
                 </label>
                 <textarea
+                  id="advanced-learners"
                   value={formData.differentiationStrategies.forAdvanced}
                   onChange={(e) => setFormData(prev => ({
                     ...prev,
@@ -577,7 +589,7 @@ export function QuickLessonPage(): React.ReactElement {
               </div>
               
               <div>
-                <label style={{ 
+                <label htmlFor="ell-students" style={{ 
                   display: 'block', 
                   fontSize: '14px', 
                   fontWeight: '500', 
@@ -587,6 +599,7 @@ export function QuickLessonPage(): React.ReactElement {
                   For ELL Students
                 </label>
                 <textarea
+                  id="ell-students"
                   value={formData.differentiationStrategies.forELL}
                   onChange={(e) => setFormData(prev => ({
                     ...prev,
@@ -610,7 +623,7 @@ export function QuickLessonPage(): React.ReactElement {
               </div>
               
               <div>
-                <label style={{ 
+                <label htmlFor="iep-accommodations" style={{ 
                   display: 'block', 
                   fontSize: '14px', 
                   fontWeight: '500', 
@@ -620,6 +633,7 @@ export function QuickLessonPage(): React.ReactElement {
                   IEP Accommodations
                 </label>
                 <textarea
+                  id="iep-accommodations"
                   value={formData.differentiationStrategies.forIEP}
                   onChange={(e) => setFormData(prev => ({
                     ...prev,
