@@ -1,6 +1,7 @@
-import { logger } from '../logger';
 import { PrismaClient } from '@prisma/client';
 import { Router } from 'express';
+
+import { logger } from '../logger';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -53,9 +54,13 @@ router.get('/stats', async (_req, res) => {
         acc[subject] = { count: 0, units: [] };
       }
       acc[subject].count += 1;
-      acc[subject].units.push(unit);
+      acc[subject].units.push({
+        id: unit.id,
+        title: unit.title,
+        hours: unit.estimatedHours || 0
+      });
       return acc;
-    }, {} as Record<string, { count: number; units: any[] }>);
+    }, {} as Record<string, { count: number; units: Array<{ id: string; title: string; hours: number }> }>);
     
     // For sample units, get first unit from each subject for display
     const sampleUnits = Object.values(subjectStats).map(subjectData => subjectData.units[0]);
@@ -93,4 +98,4 @@ router.get('/stats', async (_req, res) => {
   }
 });
 
-export default router;
+export { router };

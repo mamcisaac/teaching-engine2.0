@@ -284,7 +284,7 @@ export const filterUniqueValues = <T>(array: T[]): T[] => {
   return Array.from(new Set(array));
 };
 
-export const groupBy = <T, K extends keyof any>(
+export const groupBy = <T, K extends PropertyKey>(
   array: T[],
   key: (item: T) => K
 ): Record<K, T[]> => {
@@ -299,7 +299,7 @@ export const groupBy = <T, K extends keyof any>(
 };
 
 // Debounce utility for search
-export const debounce = <T extends (...args: any[]) => void>(
+export const debounce = <T extends (...args: unknown[]) => void>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) => {

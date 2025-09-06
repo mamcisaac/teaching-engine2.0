@@ -4,7 +4,8 @@
  */
 
 import path from 'path';
-import { IStorageService, StorageConfig, StorageDriver } from './IStorageService';
+
+import type { IStorageService, StorageConfig, StorageDriver } from './IStorageService';
 import { LocalStorageService } from './LocalStorageService';
 import { S3StorageService } from './S3StorageService';
 

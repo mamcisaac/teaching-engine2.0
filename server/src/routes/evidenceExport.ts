@@ -1,18 +1,20 @@
-import { logger } from '../logger';
 /**
  * Evidence Export API Routes
  * Provides endpoints for Emily to export student evidence packages
  * for sharing with parents through her usual communication methods
  */
 
-import { promises as fs } from 'fs';
+import { promises as fs, createWriteStream } from 'fs';
+import { tmpdir } from 'os';
 import path from 'path';
 
 import { PrismaClient } from '@teaching-engine/database';
-import type { Request, Response } from 'express';
+import archiver from 'archiver';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { param, query, validationResult } from 'express-validator';
 
+import { logger } from '../logger';
 import { reportGenerationRateLimit } from '../middleware/rateLimit/artifactRateLimit';
 import type { ExportOptions } from '../services/evidenceExport';
 import { exportStudentEvidence, exportClassSummary } from '../services/evidenceExport';
@@ -29,7 +31,7 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
+const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   if (!req.user?.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
@@ -352,12 +354,11 @@ router.post('/bulk',
       }
 
       // For bulk export, we'll create a ZIP with individual student packages
-      const tempDir = path.join(require('os').tmpdir(), `bulk-export-${Date.now()}`);
+      const tempDir = path.join(tmpdir(), `bulk-export-${Date.now()}`);
       await fs.mkdir(tempDir, { recursive: true });
 
-      const archiver = require('archiver');
-      const output = require('fs').createWriteStream(path.join(tempDir, 'bulk_evidence_export.zip'));
       const archive = archiver('zip', { zlib: { level: 9 } });
+      const output = createWriteStream(path.join(tempDir, 'bulk_evidence_export.zip'));
 
       archive.pipe(output);
 
@@ -403,11 +404,11 @@ ${results.map(r =>
       `;
       
       archive.append(summaryContent, { name: 'Export_Summary.txt' });
-      archive.finalize();
+      void archive.finalize();
 
       // Wait for archive to finish
-      await new Promise((resolve, reject) => {
-        output.on('close', resolve);
+      await new Promise<void>((resolve, reject) => {
+        output.on('close', () => resolve());
         archive.on('error', reject);
       });
 
@@ -438,4 +439,4 @@ ${results.map(r =>
   }
 );
 
-export default router;
+export { router };

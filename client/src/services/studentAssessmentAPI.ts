@@ -28,6 +28,48 @@ import type {
   APIError
 } from '../types/studentAssessment';
 
+// Additional analytics response types
+export interface ClassOverviewAnalytics {
+  totalStudents: number;
+  activeAssessments: number;
+  subjectOverview: Record<string, {
+    totalOutcomes: number;
+    assessedOutcomes: number;
+    averageMastery: number;
+  }>;
+  recentActivity: {
+    artifactsAdded: number;
+    assessmentsCompleted: number;
+    studentsAssessed: number;
+  };
+}
+
+export interface EvidenceTriangulationAnalytics {
+  observationEvidence: number;
+  conversationEvidence: number;
+  productEvidence: number;
+  totalEvidence: number;
+  triangulationScore: number;
+  recommendations: string[];
+}
+
+export interface ProgressTrendsAnalytics {
+  trends: Array<{
+    date: string;
+    averageMastery: number;
+    assessmentCount: number;
+  }>;
+  subjectTrends: Record<string, Array<{
+    date: string;
+    mastery: number;
+  }>>;
+  insights: {
+    overallTrend: 'improving' | 'stable' | 'declining';
+    bestPerformingSubject: string;
+    areasForImprovement: string[];
+  };
+}
+
 // API Configuration
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
@@ -146,8 +188,8 @@ export const studentsAPI = {
   },
 
   // Get student summary
-  async getStudentSummary(studentId: string): Promise<any> {
-    return apiRequest<any>(`/students/${studentId}/summary`);
+  async getStudentSummary(studentId: string): Promise<StudentSummary> {
+    return apiRequest<StudentSummary>(`/students/${studentId}/summary`);
   }
 };
 
@@ -256,8 +298,8 @@ export const artifactsAPI = {
   async tagWithOutcome(
     artifactId: string, 
     data: TagOutcomeRequest
-  ): Promise<any> {
-    return apiRequest<any>(`/artifacts/${artifactId}/outcomes`, {
+  ): Promise<{ success: boolean; message?: string }> {
+    return apiRequest<{ success: boolean; message?: string }>(`/artifacts/${artifactId}/outcomes`, {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -268,8 +310,8 @@ export const artifactsAPI = {
     artifactId: string,
     outcomeId: string,
     data: Partial<TagOutcomeRequest>
-  ): Promise<any> {
-    return apiRequest<any>(`/artifacts/${artifactId}/outcomes/${outcomeId}`, {
+  ): Promise<{ success: boolean; message?: string }> {
+    return apiRequest<{ success: boolean; message?: string }>(`/artifacts/${artifactId}/outcomes/${outcomeId}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
@@ -376,20 +418,20 @@ export const masteryAPI = {
 // Analytics API
 export const analyticsAPI = {
   // Get class overview analytics
-  async getClassOverview(): Promise<any> {
-    return apiRequest<any>('/analytics/class-overview');
+  async getClassOverview(): Promise<ClassOverviewAnalytics> {
+    return apiRequest<ClassOverviewAnalytics>('/analytics/class-overview');
   },
 
   // Get evidence triangulation analysis
-  async getEvidenceTriangulation(): Promise<any> {
-    return apiRequest<any>('/analytics/evidence-triangulation');
+  async getEvidenceTriangulation(): Promise<EvidenceTriangulationAnalytics> {
+    return apiRequest<EvidenceTriangulationAnalytics>('/analytics/evidence-triangulation');
   },
 
   // Get progress trends
   async getProgressTrends(filters: {
     timeframe?: 'week' | 'month' | 'term' | 'year';
     subject?: string;
-  } = {}): Promise<any> {
+  } = {}): Promise<ProgressTrendsAnalytics> {
     const params = new URLSearchParams();
     
     Object.entries(filters).forEach(([key, value]) => {
@@ -399,7 +441,7 @@ export const analyticsAPI = {
     });
 
     const queryString = params.toString();
-    return apiRequest<any>(`/analytics/progress-trends${queryString ? `?${queryString}` : ''}`);
+    return apiRequest<ProgressTrendsAnalytics>(`/analytics/progress-trends${queryString ? `?${queryString}` : ''}`);
   }
 };
 

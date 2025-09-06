@@ -3,7 +3,23 @@ import { Link } from 'react-router-dom';
 
 import { STORAGE_KEYS } from '../constants/subjects';
 import { useCurriculumExpectations, useETFOLessonPlans, useUnitPlans } from '../hooks/useETFOPlanning';
+import type { ETFOLessonPlan, UnitPlan } from '../types/curriculum';
 import { safeJsonParse } from '../utils/typeGuards';
+
+// Type definitions for lesson/unit expectations
+interface _ExpectationItem {
+  expectation?: { id: string };
+  expectationId?: string;
+}
+
+// Form data interface
+interface FormData {
+  code: string;
+  subject: string;
+  strand: string;
+  grade: number;
+  description: string;
+}
 
 // Grade 1 French Immersion curriculum expectations for PEI
 export function SimpleCurriculumPage(): React.ReactElement {
@@ -31,14 +47,20 @@ export function SimpleCurriculumPage(): React.ReactElement {
   // Calculate which expectations are covered
   const coveredIds = useMemo(() => {
     const ids = new Set<string>();
-    lessonPlans.forEach((lesson: any) => {
-      lesson.expectations?.forEach((exp: any) => {
-        ids.add(exp.expectation?.id || exp.expectationId);
+    lessonPlans.forEach((lesson: ETFOLessonPlan) => {
+      lesson.expectations?.forEach((exp) => {
+        const id = exp.expectation?.id;
+        if (id) {
+          ids.add(id);
+        }
       });
     });
-    unitPlans.forEach((unit: any) => {
-      unit.expectations?.forEach((exp: any) => {
-        ids.add(exp.expectation?.id || exp.expectationId);
+    unitPlans.forEach((unit: UnitPlan) => {
+      unit.expectations?.forEach((exp) => {
+        const id = exp.expectation?.id;
+        if (id) {
+          ids.add(id);
+        }
       });
     });
     return ids;
@@ -711,8 +733,8 @@ function _ExpectationFormModal({
   isSubmitting 
 }: {
   title: string;
-  formData: any;
-  setFormData: (data: any) => void;
+  formData: FormData;
+  setFormData: (data: FormData) => void;
   onSubmit: (e: React.FormEvent) => void;
   onCancel: () => void;
   isSubmitting: boolean;

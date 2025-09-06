@@ -8,6 +8,14 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
+import type { ETFOLessonPlan } from '../types/curriculum';
+
+interface DailySlot {
+  slotNumber: number;
+  duration: number;
+  label: string;
+  lesson?: ETFOLessonPlan;
+}
 
 const DAILY_SLOTS = [
   { slotNumber: 1, duration: 45, label: 'Slot 1' },
@@ -39,7 +47,7 @@ export function DayViewPage(): React.ReactElement {
   });
   
   const lessonsBySlot = useMemo(() => {
-    const organized: Record<number, any> = {};
+    const organized: Record<number, DailySlot> = {};
     
     DAILY_SLOTS.forEach(slot => {
       const lesson = dayLessons.find(l => l.slotNumber === slot.slotNumber);
@@ -149,7 +157,7 @@ export function DayViewPage(): React.ReactElement {
           </div>
         ) : (
           <div className="space-y-4">
-            {Object.values(lessonsBySlot).map((slot: any) => (
+            {Object.values(lessonsBySlot).map((slot: DailySlot) => (
               <Card 
                 key={slot.slotNumber}
                 className={`border-2 ${slot.lesson ? 'border-blue-200' : 'border-gray-200'}`}

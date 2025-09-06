@@ -51,8 +51,49 @@ export type SubstitutePlan = {
 export class SubstitutePlanService {
   static async generateFromLessons(params: {
     date: Date;
-    lessons: any[];
-    substituteInfo: any;
+    lessons: Array<{
+      id: string;
+      titleFr?: string;
+      title?: string;
+      subject?: string;
+      duration?: number;
+      slotNumber?: number;
+      unitPlan?: {
+        longRangePlan?: {
+          subject?: string;
+        };
+      };
+      resources?: Array<{
+        title?: string;
+        url?: string;
+      }>;
+      learningGoals?: string;
+      mindsOnActivities?: string;
+      actionActivities?: string;
+      consolidationActivities?: string;
+    }>;
+    substituteInfo: {
+      officePhone?: string;
+      emergencyProcedures?: string;
+      gradeLevel?: string;
+      classroomNumber?: string;
+      classSize?: number;
+      nearbyTeacher?: string;
+      nearbyTeacherRoom?: string;
+      attentionSignal?: string;
+      allergies?: string;
+      medicalNeeds?: string;
+      morningRoutine?: string;
+      attendanceProcedure?: string;
+      bathroomPolicy?: string;
+      dismissalProcedure?: string;
+      behaviorNotes?: string;
+      rewardSystem?: string;
+      studentHelpers?: string;
+      materialsLocation?: string;
+      extraActivities?: string;
+      importantInfo?: string;
+    };
     teacherName: string;
     grade: string;
   }): Promise<SubstitutePlan> {
@@ -69,13 +110,13 @@ export class SubstitutePlanService {
       time: this._getTimeSlot(lesson.slotNumber || 0),
       duration: lesson.duration || 45,
       instructions: this._formatLessonInstructions(lesson),
-      materials: lesson.resources?.map((r: any) => r.title || r.url) || [],
+      materials: lesson.resources?.map((r) => r.title || r.url).filter((material): material is string => material !== undefined) || [],
     }));
     
     // Create emergency info from substitute info
     const emergencyInfo: EmergencyInfo = {
-      officePhone: substituteInfo?.officePhone || 'See main office',
-      procedures: substituteInfo?.emergencyProcedures || 'Follow posted emergency procedures',
+      officePhone: substituteInfo.officePhone || 'See main office',
+      procedures: substituteInfo.emergencyProcedures || 'Follow posted emergency procedures',
     };
     
     // Generate general notes from substitute info
@@ -84,7 +125,7 @@ export class SubstitutePlanService {
     return {
       title: `Substitute Plan - ${date.toLocaleDateString()}`,
       dateFor: date,
-      grade: escapeHtml(grade || substituteInfo?.gradeLevel || 'Not specified'),
+      grade: escapeHtml(grade || substituteInfo.gradeLevel || 'Not specified'),
       subject: 'All subjects',
       schedule,
       lessons: formattedLessons,
@@ -93,7 +134,17 @@ export class SubstitutePlanService {
     };
   }
   
-  static createScheduleFromLessons(lessons: any[]): ScheduleItem[] {
+  static createScheduleFromLessons(lessons: Array<{
+    titleFr?: string;
+    title?: string;
+    slotNumber?: number;
+    duration?: number;
+    unitPlan?: {
+      longRangePlan?: {
+        subject?: string;
+      };
+    };
+  }>): ScheduleItem[] {
     const baseSchedule = this.createBasicSchedule();
     
     // Replace lesson blocks with actual lessons
@@ -113,7 +164,25 @@ export class SubstitutePlanService {
     return baseSchedule;
   }
   
-  static createGeneralNotesFromInfo(teacherName: string, info: any): string {
+  static createGeneralNotesFromInfo(teacherName: string, info?: {
+    classroomNumber?: string;
+    classSize?: number;
+    nearbyTeacher?: string;
+    nearbyTeacherRoom?: string;
+    attentionSignal?: string;
+    allergies?: string;
+    medicalNeeds?: string;
+    morningRoutine?: string;
+    attendanceProcedure?: string;
+    bathroomPolicy?: string;
+    dismissalProcedure?: string;
+    behaviorNotes?: string;
+    rewardSystem?: string;
+    studentHelpers?: string;
+    materialsLocation?: string;
+    extraActivities?: string;
+    importantInfo?: string;
+  }): string {
     let notes = `Welcome! Thank you for substituting today.\n\n`;
     notes += `Key Information:\n`;
     notes += `- Teacher: ${escapeHtml(teacherName)}\n`;
@@ -322,7 +391,12 @@ export class SubstitutePlanService {
     return slots[index] || '9:15 AM';
   }
 
-  static _formatLessonInstructions(lessonPlan: any): string {
+  static _formatLessonInstructions(lessonPlan?: {
+    learningGoals?: string;
+    mindsOnActivities?: string;
+    actionActivities?: string;
+    consolidationActivities?: string;
+  }): string {
     if (!lessonPlan || typeof lessonPlan !== 'object') {
       return 'Follow the activities as outlined in the lesson plan binder.';
     }

@@ -175,7 +175,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     );
 
     const result = await queryPerformance.monitorQuery('unitPlan.findMany', () =>
-      optimizedQueries.paginatedQuery(prisma.unitPlan as any, where, {
+      optimizedQueries.paginatedQuery(prisma.unitPlan, where, {
         limit: Number(limit ?? 20),
         offset: Number(offset ?? 0),
         orderBy,

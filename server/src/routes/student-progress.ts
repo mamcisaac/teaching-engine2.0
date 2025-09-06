@@ -21,7 +21,7 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
+const requireAuth = (req: AuthenticatedRequest, res: Response, next: () => void) => {
   if (!req.user?.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
@@ -30,7 +30,7 @@ const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
 };
 
 // Simple in-memory cache for quick summaries
-const summaryCache = new Map<string, { data: any; timestamp: number }>();
+const summaryCache = new Map<string, { data: unknown; timestamp: number }>();
 const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes
 
 /**
@@ -64,7 +64,7 @@ router.get('/:id/progress-summary',
       const cached = summaryCache.get(cacheKey);
       if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
         res.json({
-          ...cached.data,
+          ...(cached.data && typeof cached.data === 'object' ? cached.data : {}),
           fromCache: true,
           loadTimeMs: Date.now() - startTime
         });
@@ -359,14 +359,14 @@ router.get('/:id/communications',
 
       // Get parent communications (would be from a separate table in real implementation)
       // For now, return mock data structure
-      const previousReports: any[] = [];
+      const previousReports: Array<{ id: string; summary: string; date: Date }> = [];
       
       // Check for contradictions between what was said before and current state
       const contradictions: string[] = [];
 
       res.json({
         previousReports,
-        lastToldThem: previousReports.length > 0 ? previousReports[0].summary : '',
+        lastToldThem: previousReports.length > 0 ? (previousReports[0]?.summary || '') : '',
         contradictions
       });
 
@@ -447,4 +447,4 @@ router.post('/:id/communications',
   }
 );
 
-export default router;
+export { router };

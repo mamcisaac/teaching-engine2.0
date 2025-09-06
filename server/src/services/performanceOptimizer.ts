@@ -351,7 +351,7 @@ export const analyzeQueryPerformance = async () => {
       results.push({
         query,
         plan,
-        recommendation: analyzeExecutionPlan(plan as any[])
+        recommendation: analyzeExecutionPlan(plan as Array<Record<string, unknown>>)
       });
     } catch (error: unknown) {
       logger.warn(`Failed to analyze query: ${query}`, error instanceof Error ? error.message : String(error));
@@ -364,7 +364,7 @@ export const analyzeQueryPerformance = async () => {
 /**
  * Analyze execution plan and provide recommendations
  */
-const analyzeExecutionPlan = (plan: any[]): string => {
+const analyzeExecutionPlan = (plan: Array<Record<string, unknown>>): string => {
   const planText = JSON.stringify(plan);
   
   if (planText.includes('SCAN TABLE')) {
@@ -421,7 +421,7 @@ export const getPerformanceMetrics = async () => {
     memoryUsage
   ] = await Promise.all([
     redis.info('memory'),
-    prisma.$queryRaw`SELECT name FROM sqlite_master WHERE type='table'` as Promise<any[]>,
+    prisma.$queryRaw`SELECT name FROM sqlite_master WHERE type='table'` as Promise<Array<{ name: string }>>,
     process.memoryUsage()
   ]);
   
@@ -442,15 +442,4 @@ export const getPerformanceMetrics = async () => {
   };
 };
 
-export default {
-  cachedQuery,
-  getStudentsOptimized,
-  getStudentArtifactsOptimized,
-  getStudentProgressOptimized,
-  getClassAnalyticsOptimized,
-  invalidateUserCache,
-  invalidateStudentCache,
-  analyzeQueryPerformance,
-  warmupCache,
-  getPerformanceMetrics
-};
+// Functions already exported above as named exports

@@ -140,11 +140,11 @@ export function useAnecdotalNotes({
       if (context?.previousNotes !== undefined) {
         queryClient.setQueryData(['anecdotal-notes', variables.studentId], context.previousNotes);
       }
-      // Show more informative error with retry status
-      const error = err as any;
+      // Show more informative error with retry status  
+      const error = err as Error & { response?: { status?: number } };
       if (error?.response?.status === 409) {
         toast.error('Note conflict - please refresh and try again');
-      } else if (error?.response?.status >= 500) {
+      } else if (error?.response?.status && error.response.status >= 500) {
         toast.error('Server error - retrying automatically...');
       } else {
         toast.error('Failed to save note - will retry');

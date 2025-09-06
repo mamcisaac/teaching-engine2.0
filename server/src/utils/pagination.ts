@@ -222,7 +222,11 @@ export function validatePagination(req: Request, res: Response, next: NextFuncti
   }
 
   // Attach validated params to request
-  (req as Request & { pagination: PaginationQuery }).pagination = result.data;
+  (req as Request & { pagination: PaginationQuery }).pagination = {
+    ...result.data,
+    page: result.data.page || 1,
+    limit: result.data.limit || 50
+  };
   next();
 }
 

@@ -145,8 +145,8 @@ return;
       this.stats.hits++;
       this.updateHitRate();
 
-      const parsed = this.deserializeValue<T>(value);
-      perfLogger.end({ hit: true, key, size: value.length });
+      const parsed = this.deserializeValue<T>(value as string);
+      perfLogger.end({ hit: true, key, size: typeof value === 'string' ? value.length : 0 });
 
       return parsed;
     } catch (error: unknown) {

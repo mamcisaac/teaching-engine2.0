@@ -1,5 +1,6 @@
 // Import from the database package
 import { PrismaClient as DatabasePrismaClient } from '@teaching-engine/database';
+
 import { unitPlanProtectionMiddleware } from '../../packages/database/prisma/middleware/unit-plan-protection';
 
 // Re-export everything from database package except PrismaClient and prisma

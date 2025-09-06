@@ -1,9 +1,9 @@
-import { logger } from '../logger';
 import { AchievementLevel } from '@teaching-engine/database';
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
+import { logger } from '../logger';
 import { authenticate } from '../middleware/auth';
 import { prisma } from '../prisma';
 
@@ -49,14 +49,23 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
     const limitNum = Math.min(parseInt(limit as string, 10), 100); // Max 100 items
     const skip = (pageNum - 1) * limitNum;
 
-    const where: any = { 
-      userId,
+    const where: {
+      userId: string;
+      isAnecdotal?: boolean;
+      studentId?: string;
+      subject?: string;
+      date?: {
+        gte: Date;
+        lt: Date;
+      };
+    } = { 
+      userId: parseInt(userId as unknown as string, 10) as unknown as any,
       // Exclude anecdotal notes by default unless explicitly requested
       isAnecdotal: includeAnecdotal === 'true' ? undefined : false
     };
     
-    if (studentId) where.studentId = studentId;
-    if (subject) where.subject = subject;
+    if (studentId) where.studentId = studentId as string;
+    if (subject) where.subject = subject as string;
     
     // Fixed date filtering for daily assessments
     if (date) {
@@ -68,10 +77,10 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
     }
 
     // Get total count for pagination
-    const totalCount = await prisma.studentAssessment.count({ where });
+    const totalCount = await prisma.studentAssessment.count({ where: where as any });
 
     const assessments = await prisma.studentAssessment.findMany({
-      where,
+      where: where as any,
       include: {
         lesson: {
           select: {
@@ -118,10 +127,10 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<Resp
     const assessment = await prisma.studentAssessment.create({
       data: {
         ...validatedData,
-        userId,
+        userId: parseInt(userId as unknown as string, 10) as unknown as any,
         date: validatedData.date ? new Date(validatedData.date) : new Date(),
         isAnecdotal // Automatically flag anecdotal notes
-      },
+      } as any,
       include: {
         lesson: {
           select: {
@@ -232,8 +241,16 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
       return res.status(400).json({ error: 'Subject is required' });
     }
 
-    const where: any = { 
-      userId, 
+    const where: {
+      userId: number;
+      subject: string;
+      isAnecdotal: boolean;
+      date?: {
+        gte: Date;
+        lt: Date;
+      };
+    } = { 
+      userId: parseInt(userId as unknown as string, 10) as unknown as any, 
       subject,
       isAnecdotal: false // Exclude anecdotal notes from differentiation groups
     };
@@ -246,7 +263,7 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
     }
 
     const assessments = await prisma.studentAssessment.findMany({
-      where,
+      where: where as any,
       select: {
         studentId: true,
         level: true,

@@ -259,4 +259,3 @@ export const QuickNoteButton: React.FC<QuickNoteButtonProps> = ({
   );
 };
 
-export default QuickNoteButton;

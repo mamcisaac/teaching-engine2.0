@@ -165,6 +165,14 @@ export const CascadeTree: React.FC<CascadeTreeProps> = ({
         <div
           className="flex-1 flex items-center justify-between"
           onClick={() => onNodeClick?.(node)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onNodeClick?.(node);
+            }
+          }}
+          role="button"
+          tabIndex={0}
         >
           <div className="flex items-center">
             <span className="font-medium">{node.name}</span>

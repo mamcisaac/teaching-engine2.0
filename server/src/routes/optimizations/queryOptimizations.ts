@@ -9,8 +9,8 @@ import { logger } from '../../logger';
 
 // Type definitions for query optimization
 interface PrismaModel {
-  findMany(args?: any): Promise<any[]>;
-  count(args?: any): Promise<number>;
+  findMany(args?: Record<string, unknown>): Promise<unknown[]>;
+  count(args?: Record<string, unknown>): Promise<number>;
 }
 
 interface PaginationOptions {
@@ -247,7 +247,7 @@ export const optimizedQueries = {
       model.count({ where }),
     ]);
 
-    return { items, total };
+    return { items: items as T[], total };
   },
 
   /**

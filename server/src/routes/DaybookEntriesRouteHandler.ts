@@ -44,7 +44,6 @@ interface DaybookEntryWithRelations {
     } | null;
   } | null;
   expectations?: {
-    id: string;
     expectationId: string;
     coverage: string;
   }[];
@@ -348,13 +347,9 @@ orderBy.createdAt = order;
           },
         },
         expectations: {
-          include: {
-            expectation: {
-              select: {
-                code: true,
-                description: true,
-              },
-            },
+          select: {
+            expectationId: true,
+            coverage: true,
           },
         },
       },

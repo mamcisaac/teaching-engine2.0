@@ -3,9 +3,14 @@
  * Automatically adds pagination support to routes
  */
 
-import type { Request, Response, NextFunction, RequestHandler, Router } from 'express';
+import type { Request, Response, NextFunction, Router, RequestHandler } from 'express';
 
 import { logger } from '../logger';
+
+// Interface for router with overridable get method
+interface ExtendableRouter {
+  get: (path: any, ...handlers: any[]) => any;
+}
 import type {
   PaginationOptions,
   PaginatedResponse} from '../utils/pagination';
@@ -147,7 +152,7 @@ export function paginatedRouter(): Router {
   const originalGet = router.get.bind(router);
 
   // Override get method to add pagination middleware
-  (router as any).get = function (path: string, ...handlers: RequestHandler[]): Router {
+  (router as ExtendableRouter).get = function (path: string, ...handlers: RequestHandler[]) {
     // Only add pagination to list endpoints (root or ending with 's')
     if (path === '/' || path.match(/s$/)) {
       return originalGet(path, parsePagination, ...handlers);

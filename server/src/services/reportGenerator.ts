@@ -7,6 +7,37 @@
 import { PrismaClient } from '@teaching-engine/database';
 import PDFDocument from 'pdfkit';
 
+// PDFKit types don't always match the runtime API
+type PDFKitDocument = typeof PDFDocument;
+
+// Types for progress tracking data
+interface ProgressItem {
+  currentLevel: string;
+  outcome: {
+    description: string;
+    subject: string;
+  };
+  areasForGrowth?: string;
+  teacherNotes?: string;
+  updatedAt?: Date | string;
+}
+
+interface ArtifactItem {
+  title: string;
+  artifactType: string;
+  dateCollected: Date;
+  description?: string;
+}
+
+interface LevelCounts {
+  EXCEEDING: number;
+  MEETING: number;
+  APPROACHING: number;
+  BEGINNING: number;
+  NOT_YET: number;
+  total: number;
+}
+
 import { logger } from '../logger';
 
 const prisma = new PrismaClient();
@@ -80,19 +111,23 @@ export const generateStudentReport = async (
 
   // Generate report content
   generateReportHeader(doc, student);
-  generateProgressSummary(doc, progress);
+  generateProgressSummary(doc, progress as ProgressItem[]);
   
   if (options.includeProgressChart) {
-    generateProgressChart(doc, progress);
+    generateProgressChart(doc, progress as ProgressItem[]);
   }
   
-  generateStrengthsAndGrowth(doc, progress);
+  generateStrengthsAndGrowth(doc, progress as ProgressItem[]);
   
   if (options.includeArtifacts && student.artifacts.length > 0) {
-    generateRecentArtifacts(doc, student.artifacts);
+    generateRecentArtifacts(doc, student.artifacts as ArtifactItem[]);
   }
   
-  generateTeacherComments(doc, progress);
+  generateTeacherComments(doc, (progress as any).filter((p: any) => p.teacherNotes).map((p: any) => ({
+    currentLevel: p.currentLevel || 'Not assessed',
+    outcome: p.outcome || { description: '', subject: '' },
+    teacherNotes: p.teacherNotes
+  })) as ProgressItem[]);
   generateReportFooter(doc);
 
   // Finalize PDF
@@ -134,14 +169,14 @@ export const generateClassReport = async (
   // Create PDF document
   const doc = new PDFDocument({
     size: 'LETTER',
-    layout: 'landscape' as any, // PDFKit types may not include this option
+    layout: 'landscape' as const, // PDFKit layout option
     margins: {
       top: 50,
       bottom: 50,
       left: 50,
       right: 50
     }
-  } as any);
+  });
 
   const chunks: Buffer[] = [];
   doc.on('data', (chunk: Buffer) => chunks.push(chunk));
@@ -174,7 +209,7 @@ export const generateClassReport = async (
 
   // Add student rows
   for (const student of students) {
-    const levels = countLevels(student.outcomeProgress);
+    const levels = countLevels(student.outcomeProgress as ProgressItem[]);
     
     doc.text(`${student.firstName} ${student.lastName}`, 50, yPosition, { width: 150 });
     doc.text(levels.EXCEEDING.toString(), 200, yPosition, { width: 80, align: 'center' });
@@ -193,7 +228,7 @@ export const generateClassReport = async (
 
   // Add class statistics
   doc.addPage();
-  generateClassStatistics(doc, students);
+  generateClassStatistics(doc, students as Array<{outcomeProgress: ProgressItem[]}>);
 
   // Finalize PDF
   doc.end();
@@ -209,7 +244,7 @@ export const generateClassReport = async (
 
 // Helper functions for report generation
 
-function generateReportHeader(doc: any, student: any) {
+function generateReportHeader(doc: PDFKitDocument, student: { firstName: string; lastName: string; grade: number; studentNumber?: string | null }) {
   doc.fontSize(20).text('Student Progress Report', { align: 'center' });
   doc.moveDown();
   doc.fontSize(16).text(`${student.firstName} ${student.lastName}`, { align: 'center' });
@@ -219,7 +254,7 @@ function generateReportHeader(doc: any, student: any) {
   doc.moveDown(2);
 }
 
-function generateProgressSummary(doc: any, progress: any[]) {
+function generateProgressSummary(doc: PDFKitDocument, progress: Array<{currentLevel: string}>) {
   doc.fontSize(14).text('Overall Progress', { underline: true });
   doc.moveDown();
   
@@ -232,28 +267,28 @@ function generateProgressSummary(doc: any, progress: any[]) {
   doc.moveDown();
 }
 
-function generateProgressChart(doc: any, progress: any[]) {
+function generateProgressChart(doc: PDFKitDocument, progress: Array<{outcome: {subject: string}}>) {
   doc.fontSize(14).text('Progress by Subject', { underline: true });
   doc.moveDown();
   
   // Group by subject
-  const bySubject: Record<string, any[]> = {};
+  const bySubject: Record<string, Array<{outcome: {subject: string}}>> = {};
   for (const p of progress) {
-    const subject = p.outcome.subject;
+    const subject = p.outcome.subject || 'Unknown';
     if (!bySubject[subject]) bySubject[subject] = [];
     bySubject[subject].push(p);
   }
   
   doc.fontSize(11);
   for (const [subject, items] of Object.entries(bySubject)) {
-    const levels = countLevels(items);
+    const levels = countLevels(items.filter((item: any) => item.currentLevel).map((item: any) => ({ currentLevel: item.currentLevel || 'Not assessed' })));
     const percent = Math.round((levels.MEETING + levels.EXCEEDING) / levels.total * 100) || 0;
     doc.text(`${subject}: ${percent}% meeting or exceeding expectations`);
   }
   doc.moveDown();
 }
 
-function generateStrengthsAndGrowth(doc: any, progress: any[]) {
+function generateStrengthsAndGrowth(doc: PDFKitDocument, progress: Array<{currentLevel: string; outcome: {description: string}; areasForGrowth?: string}>) {
   // Use parent-friendly language
   doc.fontSize(14).text('What Your Child Does Well', { underline: true });
   doc.moveDown();
@@ -300,7 +335,7 @@ function generateStrengthsAndGrowth(doc: any, progress: any[]) {
   doc.moveDown();
 }
 
-function generateRecentArtifacts(doc: any, artifacts: any[]) {
+function generateRecentArtifacts(doc: PDFKitDocument, artifacts: Array<{title: string; artifactType: string; dateCollected: Date; description?: string}>) {
   doc.fontSize(14).text('Recent Work Samples', { underline: true });
   doc.moveDown();
   doc.fontSize(11);
@@ -315,15 +350,15 @@ function generateRecentArtifacts(doc: any, artifacts: any[]) {
   doc.moveDown();
 }
 
-function generateTeacherComments(doc: any, progress: any[]) {
+function generateTeacherComments(doc: PDFKitDocument, progress: ProgressItem[]) {
   doc.fontSize(14).text('Teacher Comments', { underline: true });
   doc.moveDown();
   doc.fontSize(11);
   
   // Find recent comments
   const withComments = progress
-    .filter(p => p.teacherNotes)
-    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+    .filter((p: ProgressItem) => p.teacherNotes)
+    .sort((a: ProgressItem, b: ProgressItem) => new Date(b.updatedAt || 0).getTime() - new Date(a.updatedAt || 0).getTime())
     .slice(0, 3);
   
   if (withComments.length > 0) {
@@ -337,7 +372,7 @@ function generateTeacherComments(doc: any, progress: any[]) {
   doc.moveDown();
 }
 
-function generateReportFooter(doc: any) {
+function generateReportFooter(doc: PDFKitDocument) {
   doc.fontSize(10)
      .text('This report reflects ongoing assessment based on classroom observations, conversations, and student products.', 
            { align: 'center' });
@@ -345,7 +380,7 @@ function generateReportFooter(doc: any) {
   doc.text('For questions or to discuss this report, please contact the teacher.', { align: 'center' });
 }
 
-function generateClassStatistics(doc: any, students: any[]) {
+function generateClassStatistics(doc: PDFKitDocument, students: Array<{outcomeProgress: Array<{currentLevel: string}>}>) {
   doc.fontSize(16).text('Class Statistics', { align: 'center' });
   doc.moveDown(2);
   
@@ -355,7 +390,7 @@ function generateClassStatistics(doc: any, students: any[]) {
   let totalNotYet = 0;
   
   for (const student of students) {
-    const levels = countLevels(student.outcomeProgress);
+    const levels = countLevels(student.outcomeProgress as ProgressItem[]);
     totalExceeding += levels.EXCEEDING;
     totalMeeting += levels.MEETING;
     totalApproaching += levels.APPROACHING;
@@ -373,17 +408,21 @@ function generateClassStatistics(doc: any, students: any[]) {
   doc.text(`• Not Yet: ${Math.round(totalNotYet / total * 100)}%`);
 }
 
-function countLevels(progress: any[]) {
+function countLevels(progress: Array<{currentLevel: string}>): LevelCounts {
   const counts = {
     EXCEEDING: 0,
     MEETING: 0,
     APPROACHING: 0,
+    BEGINNING: 0,
     NOT_YET: 0,
     total: 0
   };
   
   for (const p of progress) {
-    counts[p.currentLevel as keyof typeof counts]++;
+    const level = p.currentLevel as keyof typeof counts;
+    if (level in counts) {
+      counts[level]++;
+    }
     counts.total++;
   }
   

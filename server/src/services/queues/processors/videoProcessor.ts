@@ -5,13 +5,15 @@
  * REAL IMPLEMENTATION - Actually processes videos with FFmpeg
  */
 
-import { Job } from 'bull';
-import ffmpeg from 'fluent-ffmpeg';
 import { promises as fs } from 'fs';
-import { logger } from '../../../logger';
-import path from 'path';
 import os from 'os';
+import path from 'path';
+
 import { PrismaClient } from '@teaching-engine/database';
+import type { Job } from 'bull';
+import ffmpeg from 'fluent-ffmpeg';
+
+import { logger } from '../../../logger';
 import { getStorageService } from '../../storage';
 
 const prisma = new PrismaClient();

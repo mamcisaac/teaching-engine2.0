@@ -3,10 +3,12 @@
  * Handles PDF text extraction, page counting, and document analysis
  */
 
-import { Job } from 'bull';
 import { PrismaClient } from '@teaching-engine/database';
-import { logger } from '../../../logger';
+import type { Job } from 'bull';
 import pdfParse from 'pdf-parse';
+
+import { logger } from '../../../logger';
+
 
 const prisma = new PrismaClient();
 

@@ -351,13 +351,4 @@ export const monitorQuotaUsage = async (userId: number): Promise<void> => {
   }
 };
 
-export default {
-  QUOTA_BYTES,
-  checkStudentQuota,
-  checkClassQuota,
-  checkQuotaBeforeUpload,
-  getCleanupSuggestions,
-  autoArchiveOldArtifacts,
-  formatBytes,
-  monitorQuotaUsage
-};
+// Functions and constants already exported above as named exports

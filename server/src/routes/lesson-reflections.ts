@@ -1,4 +1,3 @@
-import { logger } from '../logger';
 /**
  * Lesson Reflection API Routes
  * Quick teacher reflections with status (👍/👌/👎) and notes
@@ -7,9 +6,11 @@ import { logger } from '../logger';
 
 import { PrismaClient, ReflectionStatus } from '@teaching-engine/database';
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { body, param, query, validationResult } from 'express-validator';
+
+import { logger } from '../logger';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -22,7 +23,7 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
+const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   if (!req.user?.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
@@ -435,5 +436,4 @@ router.get('/',
   }
 );
 
-export default router;
 export { router };

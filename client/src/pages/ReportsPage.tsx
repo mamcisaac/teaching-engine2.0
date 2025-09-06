@@ -180,7 +180,7 @@ export function ReportsPage(): React.ReactElement {
     toast.success('Report link copied to clipboard');
   };
 
-  const handlePrintReport = (report: Report) => {
+  const handlePrintReport = (_report: Report) => {
     window.print();
     toast.success('Print dialog opened');
   };

@@ -5,11 +5,12 @@
  * REAL IMPLEMENTATION - Actually processes images with Sharp
  */
 
-import { Job } from 'bull';
-import sharp from 'sharp';
 import { PrismaClient } from '@teaching-engine/database';
-import { getStorageService } from '../../storage';
+import type { Job } from 'bull';
+import sharp from 'sharp';
+
 import { logger } from '../../../logger';
+import { getStorageService } from '../../storage';
 
 const prisma = new PrismaClient();
 const storageService = getStorageService();

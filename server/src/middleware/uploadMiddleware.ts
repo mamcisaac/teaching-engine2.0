@@ -397,20 +397,4 @@ export const validateUploadRequirementsMiddleware = (_req: Request, _res: Respon
   next();
 };
 
-// Type declarations for Request object extensions
-declare global {
-  namespace Express {
-    interface Request {
-      uploadResults?: Array<{
-        originalName: string;
-        filename: string;
-        path: string;
-        url: string;
-        size: number;
-        mimeType: string;
-        category: string;
-        buffer: Buffer; // File buffer for processing
-      }>;
-    }
-  }
-}
+// Type declarations moved to /src/types/express.d.ts

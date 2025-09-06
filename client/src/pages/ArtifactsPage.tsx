@@ -61,7 +61,7 @@ export function ArtifactsPage(): React.ReactElement {
     return saved ? JSON.parse(saved) : [];
   });
   
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [_viewMode, _setViewMode] = useState<'grid' | 'list'>('grid');
   const [filterType, setFilterType] = useState<string>('');
   const [filterStudent, setFilterStudent] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -341,7 +341,7 @@ export function ArtifactsPage(): React.ReactElement {
       </div>
 
       {/* Artifacts Grid/List */}
-      {viewMode === 'grid' ? (
+      {_viewMode === 'grid' ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredArtifacts.map(artifact => {
             const Icon = getFileIcon(artifact);

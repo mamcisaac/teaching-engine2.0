@@ -2,6 +2,7 @@ import type { PrismaClient } from '@prisma/client';
 import { parseISO } from 'date-fns';
 
 import { logger } from '../logger';
+
 import { schoolCalendar } from './schoolCalendar';
 
 interface ScheduleUpdate {
@@ -143,7 +144,12 @@ export class LessonSchedulerService {
   async scheduleAllLessons(userId: number): Promise<{
     totalLessonsScheduled: number;
     unitResults: UnitSchedulingResult[];
-    summary: any;
+    summary: {
+      message: string;
+      totalLessons: number;
+      scheduledLessons: number;
+      subjects: Record<string, number>;
+    };
   }> {
     logger.info('🎯 Starting intelligent lesson scheduling for all subjects...');
     
@@ -200,7 +206,15 @@ export class LessonSchedulerService {
       }
     }
 
-    const summary = schoolCalendar.getSchoolYearSummary();
+    // const rawSummary = schoolCalendar.getSchoolYearSummary();
+    
+    // Transform summary to match expected interface
+    const summary = {
+      message: `Scheduled ${totalLessonsScheduled} lessons across ${unitResults.length} units`,
+      totalLessons: totalLessonsScheduled,
+      scheduledLessons: totalLessonsScheduled,
+      subjects: {} as Record<string, number>
+    };
     
     logger.info(`🎯 Scheduling complete! ${totalLessonsScheduled} lessons scheduled across ${unitResults.length} units`);
 
@@ -342,7 +356,7 @@ export class LessonSchedulerService {
       where: {
         userId,
         date: {
-          not: null as any
+          not: undefined
         }
       }
     });

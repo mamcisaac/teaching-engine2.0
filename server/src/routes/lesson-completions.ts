@@ -1,14 +1,14 @@
-import { logger } from '../logger';
 /**
  * Lesson Completion API Routes
  * Tracks teacher lesson completion status for progress monitoring
  */
 
 import { PrismaClient } from '@teaching-engine/database';
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { body, param, query, validationResult } from 'express-validator';
 
+import { logger } from '../logger';
 import { LessonCompletionTracker } from '../services/lessonCompletionTracker';
 
 const router = Router();
@@ -22,7 +22,7 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
+const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   if (!req.user?.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;

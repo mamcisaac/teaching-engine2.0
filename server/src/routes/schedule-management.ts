@@ -1,8 +1,8 @@
-import { logger } from '../logger';
 import { PrismaClient } from '@prisma/client';
 import { Router } from 'express';
 import { z } from 'zod';
 
+import { logger } from '../logger';
 import { authenticate } from '../middleware/auth';
 import { LessonSchedulerService } from '../services/lessonScheduler';
 import { schoolCalendar } from '../services/schoolCalendar';
@@ -20,7 +20,7 @@ const batchUpdateSchema = z.object({
 });
 
 // Batch update lesson schedules
-router.patch('/batch-update', authenticate, async (req, res) => {
+router.patch('/batch-update', authenticate, async (req, res): Promise<void> => {
   try {
     const { updates } = batchUpdateSchema.parse(req.body);
     const userId = req.user!.id;
@@ -36,9 +36,10 @@ router.patch('/batch-update', authenticate, async (req, res) => {
     });
 
     if (lessons.length !== lessonIds.length) {
-      return res.status(403).json({ 
+      res.status(403).json({ 
         error: 'Some lessons do not belong to you or do not exist' 
       });
+      return;
     }
 
     // Perform batch update
@@ -51,21 +52,24 @@ router.patch('/batch-update', authenticate, async (req, res) => {
 
     await prisma.$transaction(updatePromises);
 
-    return res.json({ 
+    res.json({ 
       success: true, 
       message: `Updated ${updates.length} lessons` 
     });
+    return;
   } catch (error: unknown) {
     logger.error({ error }, 'Batch update error:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: 'Invalid request data', details: error.errors });
+      res.status(400).json({ error: 'Invalid request data', details: error.errors });
+      return;
     }
-    return res.status(500).json({ error: 'Failed to update schedule' });
+    res.status(500).json({ error: 'Failed to update schedule' });
+    return;
   }
 });
 
 // Swap two lessons
-router.post('/swap', authenticate, async (req, res) => {
+router.post('/swap', authenticate, async (req, res): Promise<void> => {
   try {
     const { lessonId1, lessonId2 } = z.object({
       lessonId1: z.string(),
@@ -87,7 +91,8 @@ router.post('/swap', authenticate, async (req, res) => {
     ]);
 
     if (!lesson1 || !lesson2) {
-      return res.status(404).json({ error: 'One or both lessons not found' });
+      res.status(404).json({ error: 'One or both lessons not found' });
+      return;
     }
 
     // Swap the dates
@@ -102,21 +107,24 @@ router.post('/swap', authenticate, async (req, res) => {
       })
     ]);
 
-    return res.json({ 
+    res.json({ 
       success: true, 
       message: 'Lessons swapped successfully' 
     });
+    return;
   } catch (error: unknown) {
     logger.error({ error }, 'Swap error:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: 'Invalid request data', details: error.errors });
+      res.status(400).json({ error: 'Invalid request data', details: error.errors });
+      return;
     }
-    return res.status(500).json({ error: 'Failed to swap lessons' });
+    res.status(500).json({ error: 'Failed to swap lessons' });
+    return;
   }
 });
 
 // Get schedule for date range
-router.get('/range', authenticate, async (req, res) => {
+router.get('/range', authenticate, async (req, res): Promise<void> => {
   try {
     const { startDate, endDate } = z.object({
       startDate: z.string().datetime(),
@@ -149,18 +157,21 @@ router.get('/range', authenticate, async (req, res) => {
       }
     });
 
-    return res.json(lessons);
+    res.json(lessons);
+    return;
   } catch (error: unknown) {
     logger.error({ error }, 'Get range error:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: 'Invalid query parameters', details: error.errors });
+      res.status(400).json({ error: 'Invalid query parameters', details: error.errors });
+      return;
     }
-    return res.status(500).json({ error: 'Failed to get schedule' });
+    res.status(500).json({ error: 'Failed to get schedule' });
+    return;
   }
 });
 
 // Move all lessons in a unit
-router.post('/move-unit', authenticate, async (req, res) => {
+router.post('/move-unit', authenticate, async (req, res): Promise<void> => {
   try {
     const { unitId, startDate } = z.object({
       unitId: z.string(),
@@ -181,13 +192,15 @@ router.post('/move-unit', authenticate, async (req, res) => {
     });
 
     if (lessons.length === 0) {
-      return res.status(404).json({ error: 'No lessons found in this unit' });
+      res.status(404).json({ error: 'No lessons found in this unit' });
+      return;
     }
 
     // Calculate new dates maintaining relative spacing
     const firstLesson = lessons[0];
     if (!firstLesson) {
-      return res.status(404).json({ error: 'No lessons found' });
+      res.status(404).json({ error: 'No lessons found' });
+      return;
     }
     const firstLessonDate = new Date(firstLesson.date);
     const newStartDate = new Date(startDate);
@@ -207,16 +220,19 @@ router.post('/move-unit', authenticate, async (req, res) => {
 
     await prisma.$transaction(updatePromises);
 
-    return res.json({ 
+    res.json({ 
       success: true, 
       message: `Moved ${lessons.length} lessons in unit` 
     });
+    return;
   } catch (error: unknown) {
     logger.error({ error }, 'Move unit error:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ error: 'Invalid request data', details: error.errors });
+      res.status(400).json({ error: 'Invalid request data', details: error.errors });
+      return;
     }
-    return res.status(500).json({ error: 'Failed to move unit' });
+    res.status(500).json({ error: 'Failed to move unit' });
+    return;
   }
 });
 
@@ -242,7 +258,7 @@ const scheduleUnitSchema = z.object({
  * POST /api/schedule/start-next-unit
  * Schedules the next unscheduled unit for a specific subject
  */
-router.post('/start-next-unit', authenticate, async (req, res): Promise<any> => {
+router.post('/start-next-unit', authenticate, async (req, res): Promise<void> => {
   try {
     logger.info({ body: req.body }, '🚀 API: Starting next unit for subject:');
 
@@ -267,17 +283,19 @@ router.post('/start-next-unit', authenticate, async (req, res): Promise<any> => 
     logger.error({ error }, '❌ Error starting next unit:');
     
     if (error instanceof z.ZodError) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Invalid input data',
         errors: error.errors
       });
+      return;
     }
 
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: error instanceof Error ? error.message : 'Failed to start next unit'
     });
+    return;
   }
 });
 
@@ -285,7 +303,7 @@ router.post('/start-next-unit', authenticate, async (req, res): Promise<any> => 
  * POST /api/schedule/schedule-unit
  * Schedules a specific unit by ID
  */
-router.post('/schedule-unit', authenticate, async (req, res): Promise<any> => {
+router.post('/schedule-unit', authenticate, async (req, res): Promise<void> => {
   try {
     logger.info('🎯 API: Scheduling specific unit:', req.body);
 
@@ -310,11 +328,12 @@ router.post('/schedule-unit', authenticate, async (req, res): Promise<any> => {
     logger.error({ error }, '❌ Error scheduling unit:');
     
     if (error instanceof z.ZodError) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Invalid input data',
         errors: error.errors
       });
+      return;
     }
 
     res.status(500).json({
@@ -328,7 +347,7 @@ router.post('/schedule-unit', authenticate, async (req, res): Promise<any> => {
  * POST /api/schedule/schedule-all-lessons  
  * Schedules all lessons across all subjects with optimal distribution
  */
-router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<any> => {
+router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<void> => {
   try {
     logger.info('🌟 API: Starting comprehensive lesson scheduling:', req.body);
 
@@ -352,11 +371,12 @@ router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<any
     logger.error({ error }, '❌ Error scheduling all lessons:');
     
     if (error instanceof z.ZodError) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: 'Invalid input data',
         errors: error.errors
       });
+      return;
     }
 
     res.status(500).json({
@@ -370,11 +390,12 @@ router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<any
  * GET /api/schedule/stats
  * Get current scheduling statistics for the authenticated user
  */
-router.get('/stats', authenticate, async (req, res) => {
+router.get('/stats', authenticate, async (req, res): Promise<void> => {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
 
     logger.info(`📊 API: Getting scheduling stats for user ${userId}`);
@@ -383,18 +404,20 @@ router.get('/stats', authenticate, async (req, res) => {
 
     logger.info({ stats }, `✅ Retrieved scheduling stats:`);
 
-    return res.json({
+    res.json({
       success: true,
       data: stats
     });
+    return;
 
   } catch (error) {
     logger.error({ error }, '❌ Error getting scheduling stats:');
 
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: error instanceof Error ? error.message : 'Failed to get scheduling statistics'
     });
+    return;
   }
 });
 
@@ -402,7 +425,7 @@ router.get('/stats', authenticate, async (req, res) => {
  * GET /api/schedule/calendar-summary
  * Get school calendar summary information
  */
-router.get('/calendar-summary', authenticate, async (_req, res) => {
+router.get('/calendar-summary', authenticate, async (_req, res): Promise<void> => {
   try {
     logger.info('📅 API: Getting school calendar summary');
 
@@ -432,7 +455,7 @@ router.get('/calendar-summary', authenticate, async (_req, res) => {
  * Shift all future lessons for a subject forward by N days
  * Maintains core lesson sequence and respects school calendar
  */
-router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
+router.post('/shift-subject', authenticate, async (req, res): Promise<void> => {
   try {
     const { subject, fromDate, shiftDays, shiftOnlyFrom } = z.object({
       subject: z.string().min(1),
@@ -443,7 +466,8 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
     
     const userId = req.user?.id;
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
     
     logger.info(`📅 Shifting ${subject} lessons by ${shiftDays} days from ${fromDate}`);
@@ -501,13 +525,13 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
       
       for (const lesson of lessonsToShift) {
         const currentDate = new Date(lesson.date);
-        let targetDayIndex = teachingDays.findIndex((d: any) => 
-          d.date === currentDate.toISOString().split('T')[0]
+        let targetDayIndex = teachingDays.findIndex((d: { dateObj: Date }) => 
+          d.dateObj.toISOString().split('T')[0] === currentDate.toISOString().split('T')[0]
         );
         
         if (targetDayIndex === -1) {
           logger.warn(`Current date ${currentDate} not found in teaching days, using closest`);
-          targetDayIndex = teachingDays.findIndex((d: any) => d.dateObj >= currentDate);
+          targetDayIndex = teachingDays.findIndex((d: { dateObj: Date }) => d.dateObj >= currentDate);
         }
         
         // Find the next valid teaching day
@@ -539,7 +563,7 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
           logger.warn(`Cannot shift lesson ${lesson.id} - teaching day not found`);
           continue;
         }
-        const newDate = new Date(teachingDay.date + 'T09:00:00');
+        const newDate = new Date(teachingDay.dateObj.toISOString().split('T')[0] + 'T09:00:00');
         
         // Update immediately within transaction
         await tx.eTFOLessonPlan.update({
@@ -570,10 +594,11 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
   } catch (error) {
     logger.error({ error }, 'Error shifting subject:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ 
+      res.status(400).json({ 
         error: 'Invalid request data', 
         details: error.errors 
       });
+      return;
     }
     res.status(500).json({ 
       error: 'Failed to shift lessons' 
@@ -585,7 +610,7 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<any> => {
  * POST /api/schedule/activate-extension
  * Schedule an extension lesson to a specific date
  */
-router.post('/activate-extension', authenticate, async (req, res): Promise<any> => {
+router.post('/activate-extension', authenticate, async (req, res): Promise<void> => {
   try {
     const { lessonId, date, slotNumber } = z.object({
       lessonId: z.string(),
@@ -595,7 +620,8 @@ router.post('/activate-extension', authenticate, async (req, res): Promise<any> 
     
     const userId = req.user?.id;
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
     
     // Verify the lesson is an extension and belongs to user
@@ -608,19 +634,21 @@ router.post('/activate-extension', authenticate, async (req, res): Promise<any> 
     });
     
     if (!lesson) {
-      return res.status(404).json({
+      res.status(404).json({
         error: 'Extension lesson not found'
       });
+      return;
     }
     
     // CRITICAL FIX: Prevent double-scheduling of extensions
     if (lesson.isScheduled && lesson.date && 
         new Date(lesson.date).getFullYear() < 2099) {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Extension lesson is already scheduled',
         scheduledDate: lesson.date,
         lessonTitle: lesson.titleFr || lesson.title
       });
+      return;
     }
     
     // Update the lesson to be scheduled
@@ -644,10 +672,11 @@ router.post('/activate-extension', authenticate, async (req, res): Promise<any> 
   } catch (error) {
     logger.error({ error }, 'Error activating extension:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ 
+      res.status(400).json({ 
         error: 'Invalid request data', 
         details: error.errors 
       });
+      return;
     }
     res.status(500).json({ 
       error: 'Failed to activate extension' 
@@ -660,7 +689,7 @@ router.post('/activate-extension', authenticate, async (req, res): Promise<any> 
  * Replace a scheduled core lesson with an extension
  * The core lesson is properly rescheduled to the next available slot
  */
-router.post('/replace-with-extension', authenticate, async (req, res): Promise<any> => {
+router.post('/replace-with-extension', authenticate, async (req, res): Promise<void> => {
   try {
     const { coreLessonId, extensionLessonId, rescheduleCore } = z.object({
       coreLessonId: z.string(),
@@ -670,7 +699,8 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
     
     const userId = req.user?.id;
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
     
     // Get both lessons with their units for subject info
@@ -691,16 +721,18 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
     ]);
     
     if (!coreLesson || !extensionLesson) {
-      return res.status(404).json({
+      res.status(404).json({
         error: 'Core or extension lesson not found'
       });
+      return;
     }
     
     // Validate they're from the same unit
     if (coreLesson.unitPlanId !== extensionLesson.unitPlanId) {
-      return res.status(400).json({
+      res.status(400).json({
         error: 'Core and extension lessons must be from the same unit'
       });
+      return;
     }
     
     const updates = [];
@@ -713,8 +745,8 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
       
       // Get next teaching day after current date
       const teachingDays = schoolCalendar.getTeachingDays();
-      const currentDayIndex = teachingDays.findIndex((d: any) => 
-        d.date === coreLessonDate.toISOString().split('T')[0]
+      const currentDayIndex = teachingDays.findIndex((d: { dateObj: Date }) => 
+        d.dateObj.toISOString().split('T')[0] === coreLessonDate.toISOString().split('T')[0]
       );
       
       let nextAvailableDate = null;
@@ -738,23 +770,24 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
             userId,
             subject,
             date: {
-              gte: new Date((candidateDay?.date || '') + 'T00:00:00'),
-              lt: new Date((candidateDay?.date || '') + 'T23:59:59')
+              gte: new Date((candidateDay?.dateObj.toISOString().split('T')[0] || '') + 'T00:00:00'),
+              lt: new Date((candidateDay?.dateObj.toISOString().split('T')[0] || '') + 'T23:59:59')
             },
             id: { not: coreLessonId }
           }
         });
         
         if (!conflict) {
-          nextAvailableDate = new Date((candidateDay?.date || '') + 'T09:00:00');
+          nextAvailableDate = new Date((candidateDay?.dateObj.toISOString().split('T')[0] || '') + 'T09:00:00');
           break;
         }
       }
       
       if (!nextAvailableDate) {
-        return res.status(400).json({
+        res.status(400).json({
           error: 'No available date found to reschedule core lesson'
         });
+        return;
       }
       
       // Reschedule core lesson to next available date
@@ -807,10 +840,11 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
   } catch (error) {
     logger.error({ error }, 'Error replacing with extension:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ 
+      res.status(400).json({ 
         error: 'Invalid request data', 
         details: error.errors 
       });
+      return;
     }
     res.status(500).json({ 
       error: 'Failed to replace with extension' 
@@ -822,7 +856,7 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<a
  * POST /api/schedule/validate-shift
  * Validate if shifting lessons would cause conflicts
  */
-router.post('/validate-shift', authenticate, async (req, res): Promise<any> => {
+router.post('/validate-shift', authenticate, async (req, res): Promise<void> => {
   try {
     const { subject, fromDate, shiftDays } = z.object({
       subject: z.string().min(1),
@@ -832,7 +866,8 @@ router.post('/validate-shift', authenticate, async (req, res): Promise<any> => {
     
     const userId = req.user?.id;
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
     
     // Get lessons that would be shifted
@@ -910,10 +945,11 @@ router.post('/validate-shift', authenticate, async (req, res): Promise<any> => {
   } catch (error) {
     logger.error({ error }, 'Error validating shift:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ 
+      res.status(400).json({ 
         error: 'Invalid request data', 
         details: error.errors 
       });
+      return;
     }
     res.status(500).json({ 
       error: 'Failed to validate shift' 
@@ -925,7 +961,7 @@ router.post('/validate-shift', authenticate, async (req, res): Promise<any> => {
  * GET /api/schedule/available-extensions
  * Get all unscheduled extension lessons for a subject or unit
  */
-router.get('/available-extensions', authenticate, async (req, res): Promise<any> => {
+router.get('/available-extensions', authenticate, async (req, res): Promise<void> => {
   try {
     const { subject, unitId } = z.object({
       subject: z.string().optional(),
@@ -934,10 +970,11 @@ router.get('/available-extensions', authenticate, async (req, res): Promise<any>
     
     const userId = req.user?.id;
     if (!userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
     
-    const where: any = {
+    const where: { userId: number; subject?: string; unitPlanId?: string; lessonType?: string; isScheduled?: boolean } = {
       userId,
       lessonType: 'extension',
       isScheduled: false
@@ -976,10 +1013,11 @@ router.get('/available-extensions', authenticate, async (req, res): Promise<any>
   } catch (error) {
     logger.error({ error }, 'Error getting available extensions:');
     if (error instanceof z.ZodError) {
-      return res.status(400).json({ 
+      res.status(400).json({ 
         error: 'Invalid query parameters', 
         details: error.errors 
       });
+      return;
     }
     res.status(500).json({ 
       error: 'Failed to get available extensions' 
@@ -987,4 +1025,4 @@ router.get('/available-extensions', authenticate, async (req, res): Promise<any>
   }
 });
 
-export default router;
+export { router };

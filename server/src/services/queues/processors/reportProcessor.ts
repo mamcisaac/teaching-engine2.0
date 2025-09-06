@@ -3,8 +3,9 @@
  * Handles PDF report creation for student progress
  */
 
-import { Job } from 'bull';
 import { PrismaClient } from '@teaching-engine/database';
+import type { Job } from 'bull';
+
 import { logger } from '../../../logger';
 import { generateStudentReport, generateClassReport } from '../../reportGenerator';
 

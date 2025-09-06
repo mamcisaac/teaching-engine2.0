@@ -13,7 +13,7 @@ export interface ClassPerformance {
   lastUpdated: string;
 }
 
-export interface StudentProgress {
+export interface StudentAnalyticsProgress {
   studentId: string;
   studentName: string;
   overallProgress: number;
@@ -35,7 +35,7 @@ export interface TrendData {
 
 export interface AnalyticsDashboard {
   classPerformance: ClassPerformance[];
-  studentProgress: StudentProgress[];
+  studentProgress: StudentAnalyticsProgress[];
   evidenceBalance: {
     observation: number;
     conversation: number;
@@ -47,6 +47,16 @@ export interface AnalyticsDashboard {
     artifacts: number;
     reports: number;
   };
+}
+
+export interface ExpectationCoverage {
+  expectationId: string;
+  expectationCode: string;
+  description: string;
+  coverageCount: number;
+  totalStudents: number;
+  coveragePercentage: number;
+  avgMasteryLevel: number;
 }
 
 export interface AnalyticsParams {
@@ -81,8 +91,8 @@ export const analyticsApi = {
     return response.data;
   },
 
-  async getStudentProgress(studentId: string): Promise<StudentProgress> {
-    const response = await apiClient.get<StudentProgress>(`/api/analytics/student-progress/${studentId}`);
+  async getStudentProgress(studentId: string): Promise<StudentAnalyticsProgress> {
+    const response = await apiClient.get<StudentAnalyticsProgress>(`/api/analytics/student-progress/${studentId}`);
     return response.data;
   },
 
@@ -101,8 +111,8 @@ export const analyticsApi = {
     return response.data;
   },
 
-  async getExpectationCoverage(subject: string): Promise<any> {
-    const response = await apiClient.get(`/api/analytics/expectation-coverage/${subject}`);
+  async getExpectationCoverage(subject: string): Promise<ExpectationCoverage[]> {
+    const response = await apiClient.get<ExpectationCoverage[]>(`/api/analytics/expectation-coverage/${subject}`);
     return response.data;
   },
 

@@ -1,525 +1,595 @@
 /**
- * Planning Cascade API Routes
- * Endpoints for hierarchical curriculum planning
+ * Planning Cascade API Routes  
+ * Hierarchical planning view showing Year → Subject → Unit → Week → Lesson structure
  */
 
-import { Router, Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { z } from 'zod';
+
+interface AuthenticatedRequest extends Request {
+  user?: {
+    id: number;
+    email: string;
+    role: string;
+  };
+}
 
 const router = Router();
 const prisma = new PrismaClient();
 
+// Types for cascade structure
+interface LessonNode {
+  id: string;
+  type: 'lesson';
+  title: string;
+  date: Date;
+  duration: number;
+  status: string;
+  isOverdue: boolean;
+  isTaught: boolean;
+  subject?: string;
+  expectations: number;
+}
+
+interface WeekNode {
+  id: string;
+  type: 'week';
+  weekNumber: number;
+  startDate: Date;
+  endDate: Date;
+  lessons: LessonNode[];
+  progress: {
+    total: number;
+    taught: number;
+    overdue: number;
+  };
+}
+
+interface UnitNode {
+  id: string;
+  type: 'unit';
+  title: string;
+  titleFr?: string;
+  startDate: Date;
+  endDate: Date;
+  weeks: WeekNode[];
+  progress: {
+    total: number;
+    taught: number;
+    overdue: number;
+  };
+}
+
+interface SubjectNode {
+  id: string;
+  type: 'subject';
+  subject: string;
+  grade: number;
+  units: UnitNode[];
+  progress: {
+    total: number;
+    taught: number;
+    overdue: number;
+  };
+}
+
+interface TermNode {
+  id: string;
+  type: 'term';
+  term: string;
+  termNumber: number;
+  startDate: Date;
+  endDate: Date;
+  subjects: SubjectNode[];
+  progress: {
+    total: number;
+    taught: number;
+    overdue: number;
+  };
+}
+
+interface YearNode {
+  id: string;
+  type: 'year';
+  academicYear: string;
+  terms: TermNode[];
+  progress: {
+    total: number;
+    taught: number;
+    overdue: number;
+  };
+}
+
+// Validation schemas
+const getCascadeSchema = z.object({
+  year: z.string().optional(),
+  includeEmptyWeeks: z.coerce.boolean().optional().default(false),
+});
+
+const updateLessonScheduleSchema = z.object({
+  scheduledDate: z.string().datetime(),
+  scheduledTime: z.string().optional(),
+});
+
+const moveLessonSchema = z.object({
+  fromLessonId: z.string(),
+  toWeekStartDate: z.string().datetime(),
+  toUnitId: z.string().optional(),
+});
+
 /**
- * Get year plan with full cascade data
+ * Get the full planning cascade hierarchy
+ * Returns: Year → Term → Subject → Unit → Week → Lesson tree structure
  */
-router.get('/year-plan/:year/:grade', async (req: Request, res: Response) => {
+router.get('/cascade', async (req: Request, res: Response): Promise<void> => {
   try {
-    const { year, grade } = req.params;
+    const params = getCascadeSchema.parse(req.query);
+    const userId = (req as AuthenticatedRequest).user?.id;
     
-    // Input validation
-    const yearNum = parseInt(year);
-    const gradeNum = parseInt(grade);
-    
-    if (!year || isNaN(yearNum) || yearNum < 2020 || yearNum > 2030) {
-      return res.status(400).json({ error: 'Invalid year. Must be between 2020-2030' });
-    }
-    
-    if (!grade || isNaN(gradeNum) || gradeNum < 1 || gradeNum > 12) {
-      return res.status(400).json({ error: 'Invalid grade. Must be between 1-12' });
+    if (!userId) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
     }
 
-    // Get pagination params
-    const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 50; // Default 50 lessons per page
-    const skip = (page - 1) * limit;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-    // Count total lessons for pagination
-    const totalCount = await prisma.eTFOLessonPlan.count({
+    // Fetch all data with proper relations
+    const longRangePlans = await prisma.longRangePlan.findMany({
       where: {
-        grade: gradeNum,
-        createdAt: {
-          gte: new Date(`${yearNum}-09-01`),
-          lt: new Date(`${yearNum + 1}-07-01`)
-        }
-      }
-    });
-
-    // Fetch paginated lesson plans
-    const lessons = await prisma.eTFOLessonPlan.findMany({
-      where: {
-        grade: gradeNum,
-        // Note: Using createdAt as proxy for lesson date since actual lesson date isn't stored
-        // TODO: Add proper lesson scheduling date field
-        createdAt: {
-          gte: new Date(`${yearNum}-09-01`),
-          lt: new Date(`${yearNum + 1}-07-01`)
-        }
+        userId,
+        ...(params.year && { academicYear: params.year })
       },
       include: {
-        unit: true // Simplified - remove nested includes for performance
+        unitPlans: {
+          include: {
+            lessonPlans: {
+              include: {
+                expectations: true
+              },
+              orderBy: [
+                { scheduledDate: 'asc' },
+                { date: 'asc' }
+              ]
+            }
+          },
+          orderBy: { startDate: 'asc' }
+        }
       },
       orderBy: [
-        { lessonNumber: 'asc' }
-      ],
-      skip,
-      take: limit
+        { academicYear: 'desc' },
+        { subject: 'asc' }
+      ]
     });
 
-    // Fetch curriculum expectations
-    const expectations = await prisma.curriculumExpectation.findMany({
-      where: {
-        grade: `Grade ${gradeNum}`
-      }
-    });
+    // Build cascade structure
+    const cascadeByYear: Map<string, YearNode> = new Map();
 
-    // Group lessons by subject, term, unit, and week
-    const subjectMap = new Map<string, any>();
-    
-    for (const lesson of lessons) {
-      const subject = lesson.unit.subject;
-      
-      if (!subjectMap.has(subject)) {
-        subjectMap.set(subject, {
-          id: `subject-${subject}`,
-          subject,
-          totalHours: 0,
-          terms: new Map(),
-          curriculum: expectations.filter(e => e.subject === subject).map(e => ({
-            id: e.id,
-            code: e.code,
-            description: e.description,
-            subject: e.subject,
-            grade: gradeNum,
-            strand: e.strand || undefined,
-            subcategory: e.subcategory || undefined,
-            covered: false, // Would need to track this properly
-            lessonIds: []
-          })),
-          yearlyObjectives: []
-        });
+    for (const lrp of longRangePlans) {
+      // Get or create year node
+      let yearNode = cascadeByYear.get(lrp.academicYear);
+      if (!yearNode) {
+        yearNode = {
+          id: `year-${lrp.academicYear}`,
+          type: 'year',
+          academicYear: lrp.academicYear,
+          terms: [],
+          progress: { total: 0, taught: 0, overdue: 0 }
+        };
+        cascadeByYear.set(lrp.academicYear, yearNode);
       }
-      
-      const subjectData = subjectMap.get(subject);
-      const termNum = lesson.unit.termNumber;
-      
-      if (!subjectData.terms.has(termNum)) {
-        subjectData.terms.set(termNum, {
-          id: `term-${subject}-${termNum}`,
-          termNumber: termNum,
-          name: `Term ${termNum}`,
-          startDate: getTermStartDate(parseInt(year), termNum),
-          endDate: getTermEndDate(parseInt(year), termNum),
-          units: new Map(),
-          assessments: []
-        });
-      }
-      
-      const termData = subjectData.terms.get(termNum);
-      const unitId = lesson.unit.id;
-      
-      if (!termData.units.has(unitId)) {
-        termData.units.set(unitId, {
-          id: unitId,
-          name: lesson.unit.title,
-          description: lesson.unit.description || '',
-          duration: lesson.unit.hours,
-          weeks: new Map(),
-          objectives: lesson.unit.objectives ? lesson.unit.objectives.split('\n') : [],
-          keyQuestions: lesson.unit.bigIdeas ? lesson.unit.bigIdeas.split('\n') : [],
-          culminatingTask: lesson.unit.culminatingTask || undefined,
-          resources: lesson.unit.resources ? lesson.unit.resources.split('\n') : [],
-          crossCurricular: lesson.unit.crossCurricular ? [lesson.unit.crossCurricular] : []
-        });
-      }
-      
-      const unitData = termData.units.get(unitId);
-      
-      // Calculate week number based on lesson date
-      const lessonDate = new Date(lesson.createdAt);
-      const weekNum = getWeekNumber(lessonDate);
-      
-      if (!unitData.weeks.has(weekNum)) {
-        const weekStart = getWeekStartDate(lessonDate);
-        const weekEnd = getWeekEndDate(lessonDate);
+
+      // Create subject node
+      const subjectNode: SubjectNode = {
+        id: lrp.id,
+        type: 'subject',
+        subject: lrp.subject,
+        grade: lrp.grade,
+        units: [],
+        progress: { total: 0, taught: 0, overdue: 0 }
+      };
+
+      // Process units
+      for (const unit of lrp.unitPlans) {
+        const unitNode: UnitNode = {
+          id: unit.id,
+          type: 'unit',
+          title: unit.title,
+          titleFr: unit.titleFr || undefined,
+          startDate: unit.startDate,
+          endDate: unit.endDate,
+          weeks: [],
+          progress: { total: 0, taught: 0, overdue: 0 }
+        };
+
+        // Group lessons by week
+        const lessonsByWeek = new Map<number, LessonNode[]>();
         
-        unitData.weeks.set(weekNum, {
-          id: `week-${unitId}-${weekNum}`,
-          weekNumber: weekNum,
-          startDate: weekStart,
-          endDate: weekEnd,
-          lessons: [],
-          theme: undefined,
-          notes: undefined
-        });
+        for (const lesson of unit.lessonPlans) {
+          const lessonDate = lesson.scheduledDate || lesson.date;
+          const weekNumber = getWeekNumber(lessonDate, unit.startDate);
+          
+          const lessonNode: LessonNode = {
+            id: lesson.id,
+            type: 'lesson',
+            title: lesson.titleFr || lesson.title,
+            date: lessonDate,
+            duration: lesson.duration,
+            status: lesson.status,
+            isOverdue: lesson.status === 'PLANNED' && lessonDate < today,
+            isTaught: lesson.status === 'TAUGHT',
+            subject: lrp.subject,
+            expectations: lesson.expectations.length
+          };
+
+          // Update progress counters
+          unitNode.progress.total++;
+          subjectNode.progress.total++;
+          yearNode.progress.total++;
+          
+          if (lessonNode.isTaught) {
+            unitNode.progress.taught++;
+            subjectNode.progress.taught++;
+            yearNode.progress.taught++;
+          }
+          
+          if (lessonNode.isOverdue) {
+            unitNode.progress.overdue++;
+            subjectNode.progress.overdue++;
+            yearNode.progress.overdue++;
+          }
+
+          // Add to week group
+          if (!lessonsByWeek.has(weekNumber)) {
+            lessonsByWeek.set(weekNumber, []);
+          }
+          lessonsByWeek.get(weekNumber)!.push(lessonNode);
+        }
+
+        // Create week nodes
+        const weekCount = Math.ceil(
+          (unit.endDate.getTime() - unit.startDate.getTime()) / (7 * 24 * 60 * 60 * 1000)
+        );
+
+        for (let weekNum = 1; weekNum <= weekCount; weekNum++) {
+          const weekStart = new Date(unit.startDate);
+          weekStart.setDate(weekStart.getDate() + (weekNum - 1) * 7);
+          
+          const weekEnd = new Date(weekStart);
+          weekEnd.setDate(weekEnd.getDate() + 6);
+          
+          const weekLessons = lessonsByWeek.get(weekNum) || [];
+          
+          if (weekLessons.length > 0 || params.includeEmptyWeeks) {
+            const weekNode: WeekNode = {
+              id: `${unit.id}-week-${weekNum}`,
+              type: 'week',
+              weekNumber: weekNum,
+              startDate: weekStart,
+              endDate: weekEnd,
+              lessons: weekLessons,
+              progress: {
+                total: weekLessons.length,
+                taught: weekLessons.filter(l => l.isTaught).length,
+                overdue: weekLessons.filter(l => l.isOverdue).length
+              }
+            };
+            
+            unitNode.weeks.push(weekNode);
+          }
+        }
+
+        subjectNode.units.push(unitNode);
       }
+
+      // Determine term from dates
+      const termNumber = getTermFromDates(lrp.unitPlans);
+      let termNode = yearNode.terms.find(t => t.termNumber === termNumber);
       
-      const weekData = unitData.weeks.get(weekNum);
-      
-      // Add lesson to week
-      weekData.lessons.push({
-        id: lesson.id,
-        name: lesson.title,
-        subject: lesson.unit.subject,
-        grade: gradeNum,
-        date: lesson.createdAt,
-        duration: 45, // Default 45 minutes
-        objectives: lesson.expectations ? lesson.expectations.split('\n') : [],
-        activities: lesson.lessonSteps ? lesson.lessonSteps.split('\n') : [],
-        materials: lesson.materials ? lesson.materials.split(', ') : [],
-        assessment: lesson.assessment ? lesson.assessment.split('\n') : [],
-        differentiation: lesson.differentiation ? lesson.differentiation.split('\n') : [],
-        homework: lesson.homework || undefined,
-        notes: lesson.reflection || undefined,
-        unitId: lesson.unit.id,
-        weekId: `week-${unitId}-${weekNum}`,
-        sequenceNumber: lesson.lessonNumber,
-        status: 'planned', // Would need to track actual status
-        panicLevel: undefined
-      });
-      
-      // Update total hours
-      subjectData.totalHours += 0.75; // 45 minutes = 0.75 hours
+      if (!termNode) {
+        const termDates = getTermDates(lrp.academicYear, termNumber);
+        termNode = {
+          id: `${lrp.academicYear}-term-${termNumber}`,
+          type: 'term',
+          term: getTermName(termNumber),
+          termNumber,
+          startDate: termDates.start,
+          endDate: termDates.end,
+          subjects: [],
+          progress: { total: 0, taught: 0, overdue: 0 }
+        };
+        yearNode.terms.push(termNode);
+        yearNode.terms.sort((a, b) => a.termNumber - b.termNumber);
+      }
+
+      termNode.subjects.push(subjectNode);
+      termNode.progress.total += subjectNode.progress.total;
+      termNode.progress.taught += subjectNode.progress.taught;
+      termNode.progress.overdue += subjectNode.progress.overdue;
     }
 
-    // Convert maps to arrays
-    const subjects = Array.from(subjectMap.values()).map(subject => ({
-      ...subject,
-      terms: Array.from(subject.terms.values()).map(term => ({
-        ...term,
-        units: Array.from(term.units.values()).map(unit => ({
-          ...unit,
-          weeks: Array.from(unit.weeks.values()).sort((a, b) => a.weekNumber - b.weekNumber)
-        })).sort((a, b) => {
-          // Sort units by their first lesson's sequence number
-          const aFirst = a.weeks[0]?.lessons[0]?.sequenceNumber || 0;
-          const bFirst = b.weeks[0]?.lessons[0]?.sequenceNumber || 0;
-          return aFirst - bFirst;
-        })
-      })).sort((a, b) => a.termNumber - b.termNumber)
-    }));
+    // Convert map to array and get most recent year
+    const years = Array.from(cascadeByYear.values());
+    const cascade = years.length === 1 ? years[0] : { years };
 
-    const yearPlan = {
-      id: `year-${year}-grade-${grade}`,
-      year,
-      grade: gradeNum,
-      subjects,
-      totalWeeks: 40, // School year is typically 40 weeks
-      startDate: new Date(`${year}-09-01`),
-      endDate: new Date(`${parseInt(year) + 1}-06-30`),
-      holidays: getSchoolHolidays(parseInt(year)),
-      pdDays: getPDDays(parseInt(year))
+    const progress = cascade && 'progress' in cascade ? cascade.progress : { total: 0, taught: 0, overdue: 0 };
+    
+    res.json({
+      cascade,
+      summary: {
+        totalLessons: progress.total || 0,
+        taughtLessons: progress.taught || 0,
+        overdueLessons: progress.overdue || 0,
+        completionRate: progress.total 
+          ? Math.round((progress.taught / progress.total) * 100) 
+          : 0
+      }
+    });
+  } catch (error) {
+    console.error('Cascade generation failed:', error);
+    res.status(500).json({ 
+      error: 'Failed to generate planning cascade',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+/**
+ * Update lesson scheduling
+ */
+router.patch('/lesson/:lessonId/schedule', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { lessonId } = req.params;
+    const userId = (req as AuthenticatedRequest).user?.id;
+    
+    if (!userId) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
+    }
+
+    const updates = updateLessonScheduleSchema.parse(req.body);
+    
+    // Verify lesson belongs to user
+    const lesson = await prisma.eTFOLessonPlan.findFirst({
+      where: {
+        id: lessonId,
+        userId
+      }
+    });
+
+    if (!lesson) {
+      res.status(404).json({ error: 'Lesson not found' });
+      return;
+    }
+
+    // Update scheduling
+    const updatedLesson = await prisma.eTFOLessonPlan.update({
+      where: { id: lessonId },
+      data: {
+        scheduledDate: new Date(updates.scheduledDate),
+        scheduledTime: updates.scheduledTime
+      }
+    });
+
+    res.json({
+      success: true,
+      lesson: updatedLesson
+    });
+  } catch (error) {
+    console.error('Schedule update failed:', error);
+    res.status(500).json({ 
+      error: 'Failed to update lesson schedule',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+/**
+ * Move lesson between weeks/units (drag and drop support)
+ */
+router.post('/lesson/move', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userId = (req as AuthenticatedRequest).user?.id;
+    
+    if (!userId) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
+    }
+
+    const move = moveLessonSchema.parse(req.body);
+    
+    // Verify lesson belongs to user
+    const lesson = await prisma.eTFOLessonPlan.findFirst({
+      where: {
+        id: move.fromLessonId,
+        userId
+      }
+    });
+
+    if (!lesson) {
+      res.status(404).json({ error: 'Lesson not found' });
+      return;
+    }
+
+    // Update lesson with new schedule and optionally new unit
+    const updateData: { scheduledDate: Date; unitPlanId?: string } = {
+      scheduledDate: new Date(move.toWeekStartDate)
     };
 
-    res.json(yearPlan);
-  } catch (error) {
-    console.error('Error fetching year plan:', error);
-    res.status(500).json({ 
-      error: 'Failed to fetch year plan',
-      details: error instanceof Error ? error.message : 'Unknown error'
-    });
-  }
-});
-
-/**
- * Get cascade statistics
- */
-router.get('/statistics/:year/:grade', async (req: Request, res: Response) => {
-  try {
-    const { year, grade } = req.params;
-    
-    // Input validation
-    const yearNum = parseInt(year);
-    const gradeNum = parseInt(grade);
-    
-    if (!year || isNaN(yearNum) || yearNum < 2020 || yearNum > 2030) {
-      return res.status(400).json({ error: 'Invalid year. Must be between 2020-2030' });
-    }
-    
-    if (!grade || isNaN(gradeNum) || gradeNum < 1 || gradeNum > 12) {
-      return res.status(400).json({ error: 'Invalid grade. Must be between 1-12' });
-    }
-
-    const totalLessons = await prisma.eTFOLessonPlan.count({
-      where: {
-        grade: gradeNum,
-        createdAt: {
-          gte: new Date(`${yearNum}-09-01`),
-          lt: new Date(`${yearNum + 1}-07-01`)
+    if (move.toUnitId) {
+      // Verify target unit belongs to user
+      const targetUnit = await prisma.unitPlan.findFirst({
+        where: {
+          id: move.toUnitId,
+          userId
         }
-      }
-    });
-
-    // In a real implementation, we'd track completion status
-    // For now, simulate some data
-    const completedLessons = Math.floor(totalLessons * 0.3);
-    const upcomingLessons = Math.floor(totalLessons * 0.6);
-    const overdueItems = Math.floor(totalLessons * 0.1);
-
-    // Get subject breakdown
-    const subjectStats = await prisma.eTFOLessonPlan.groupBy({
-      by: ['unit'],
-      where: {
-        grade: gradeNum,
-        createdAt: {
-          gte: new Date(`${yearNum}-09-01`),
-          lt: new Date(`${yearNum + 1}-07-01`)
-        }
-      },
-      _count: {
-        id: true
-      }
-    });
-
-    const bySubject: Record<string, any> = {};
-    
-    // Would need to join with units to get subject names
-    // For now, returning mock data structure
-    const subjects = ['Français', 'Mathématiques', 'Sciences', 'Études sociales', 'Arts', 'Santé'];
-    for (const subject of subjects) {
-      bySubject[subject] = {
-        planned: Math.floor(totalLessons / subjects.length),
-        completed: Math.floor(completedLessons / subjects.length),
-        coverage: Math.floor(Math.random() * 40) + 60 // 60-100%
-      };
-    }
-
-    res.json({
-      totalLessons,
-      completedLessons,
-      upcomingLessons,
-      overdueItems,
-      coveragePercentage: totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0,
-      bySubject,
-      panicAreas: []
-    });
-  } catch (error) {
-    console.error('Error fetching statistics:', error);
-    res.status(500).json({ 
-      error: 'Failed to fetch statistics',
-      details: error instanceof Error ? error.message : 'Unknown error'
-    });
-  }
-});
-
-/**
- * Validate curriculum coverage
- */
-router.post('/validate', async (req: Request, res: Response) => {
-  try {
-    const { grade, year } = req.body;
-    
-    // Input validation
-    const yearNum = parseInt(year);
-    const gradeNum = parseInt(grade);
-    
-    if (!year || isNaN(yearNum) || yearNum < 2020 || yearNum > 2030) {
-      return res.status(400).json({ error: 'Invalid year. Must be between 2020-2030' });
-    }
-    
-    if (!grade || isNaN(gradeNum) || gradeNum < 1 || gradeNum > 12) {
-      return res.status(400).json({ error: 'Invalid grade. Must be between 1-12' });
-    }
-
-    const lessons = await prisma.eTFOLessonPlan.findMany({
-      where: {
-        grade: gradeNum,
-        createdAt: {
-          gte: new Date(`${yearNum}-09-01`),
-          lt: new Date(`${yearNum + 1}-07-01`)
-        }
-      },
-      orderBy: {
-        lessonNumber: 'asc'
-      }
-    });
-
-    const expectations = await prisma.curriculumExpectation.findMany({
-      where: {
-        grade: `Grade ${grade}`
-      }
-    });
-
-    const errors = [];
-    const warnings = [];
-
-    // Check for sequence gaps
-    const sequenceNumbers = lessons.map(l => l.lessonNumber);
-    const maxSequence = Math.max(...sequenceNumbers, 0);
-    
-    for (let i = 1; i <= maxSequence; i++) {
-      if (!sequenceNumbers.includes(i)) {
-        errors.push({
-          type: 'sequence_gap',
-          message: `Missing lesson at sequence position ${i}`,
-          affectedItems: [`sequence_${i}`],
-          severity: 'error'
-        });
-      }
-    }
-
-    // Check for duplicate sequence numbers
-    const sequenceCount: Record<number, string[]> = {};
-    for (const lesson of lessons) {
-      if (!sequenceCount[lesson.lessonNumber]) {
-        sequenceCount[lesson.lessonNumber] = [];
-      }
-      sequenceCount[lesson.lessonNumber].push(lesson.id);
-    }
-
-    for (const [seq, ids] of Object.entries(sequenceCount)) {
-      if (ids.length > 1) {
-        errors.push({
-          type: 'duplicate_lesson',
-          message: `Multiple lessons with sequence number ${seq}`,
-          affectedItems: ids,
-          severity: 'error'
-        });
-      }
-    }
-
-    // Check for assessment balance
-    const assessmentLessons = lessons.filter(l => l.assessment && l.assessment.length > 0);
-    if (assessmentLessons.length < lessons.length * 0.1) {
-      warnings.push({
-        type: 'sparse_assessment',
-        message: 'Insufficient assessment activities',
-        affectedItems: [],
-        suggestion: 'Add more formative assessment opportunities'
       });
+
+      if (!targetUnit) {
+        res.status(404).json({ error: 'Target unit not found' });
+        return;
+      }
+
+      updateData.unitPlanId = move.toUnitId;
     }
 
+    const updatedLesson = await prisma.eTFOLessonPlan.update({
+      where: { id: move.fromLessonId },
+      data: updateData
+    });
+
     res.json({
-      isValid: errors.length === 0,
-      errors,
-      warnings
+      success: true,
+      lesson: updatedLesson
     });
   } catch (error) {
-    console.error('Error validating curriculum:', error);
+    console.error('Lesson move failed:', error);
     res.status(500).json({ 
-      error: 'Failed to validate curriculum',
+      error: 'Failed to move lesson',
       details: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 });
 
 /**
- * Get upcoming lessons
+ * Get workload balance across terms
  */
-router.get('/upcoming/:days', async (req: Request, res: Response) => {
+router.get('/workload-balance', async (req: Request, res: Response): Promise<void> => {
   try {
-    const daysAhead = parseInt(req.params.days) || 7;
-    const today = new Date();
-    const futureDate = new Date(today.getTime() + daysAhead * 24 * 60 * 60 * 1000);
+    const userId = (req as AuthenticatedRequest).user?.id;
+    
+    if (!userId) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
+    }
 
-    const lessons = await prisma.eTFOLessonPlan.findMany({
-      where: {
-        createdAt: {
-          gte: today,
-          lte: futureDate
-        }
-      },
+    const unitsByTerm = await prisma.unitPlan.findMany({
+      where: { userId },
       include: {
-        unit: true
-      },
-      orderBy: {
-        createdAt: 'asc'
-      },
-      take: 50 // Limit to 50 upcoming lessons
+        lessonPlans: {
+          select: {
+            id: true,
+            duration: true,
+            scheduledDate: true,
+            date: true
+          }
+        }
+      }
     });
 
-    const upcomingLessons = lessons.map(lesson => ({
-      id: lesson.id,
-      name: lesson.title,
-      subject: lesson.unit.subject,
-      grade: lesson.grade,
-      date: lesson.createdAt,
-      duration: 45,
-      objectives: lesson.expectations ? lesson.expectations.split('\n') : [],
-      activities: lesson.lessonSteps ? lesson.lessonSteps.split('\n') : [],
-      materials: lesson.materials ? lesson.materials.split(', ') : [],
-      assessment: lesson.assessment ? lesson.assessment.split('\n') : [],
-      unitId: lesson.unit.id,
-      sequenceNumber: lesson.lessonNumber,
-      status: 'planned'
+    // Group by term based on dates
+    const termData: Record<string, { lessons: number; minutes: number; units: number }> = {
+      Fall: { lessons: 0, minutes: 0, units: 0 },
+      Winter: { lessons: 0, minutes: 0, units: 0 },
+      Spring: { lessons: 0, minutes: 0, units: 0 }
+    };
+
+    unitsByTerm.forEach(unit => {
+      const month = unit.startDate.getMonth() + 1;
+      let term = 'Fall';
+      if (month >= 1 && month <= 3) term = 'Winter';
+      else if (month >= 4 && month <= 6) term = 'Spring';
+      
+      const currentTermData = termData[term];
+      if (currentTermData) {
+        currentTermData.units++;
+        currentTermData.lessons += unit.lessonPlans.length;
+        currentTermData.minutes += unit.lessonPlans.reduce((sum, l) => sum + l.duration, 0);
+      }
+    });
+
+    const balance = Object.entries(termData).map(([term, data]) => ({
+      term,
+      lesson_count: data.lessons,
+      total_minutes: data.minutes,
+      unit_count: data.units
     }));
 
-    res.json(upcomingLessons);
+    res.json({
+      balance,
+      recommendation: analyzeWorkloadBalance(balance)
+    });
   } catch (error) {
-    console.error('Error fetching upcoming lessons:', error);
+    console.error('Workload balance failed:', error);
     res.status(500).json({ 
-      error: 'Failed to fetch upcoming lessons',
+      error: 'Failed to calculate workload balance',
       details: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 });
 
 // Helper functions
-function getTermStartDate(year: number, term: number): Date {
-  switch (term) {
-    case 1: return new Date(`${year}-09-01`);
-    case 2: return new Date(`${year + 1}-01-01`);
-    case 3: return new Date(`${year + 1}-04-01`);
-    default: return new Date(`${year}-09-01`);
+function getWeekNumber(date: Date, unitStartDate: Date): number {
+  const diffTime = date.getTime() - unitStartDate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  return Math.floor(diffDays / 7) + 1;
+}
+
+function getTermFromDates(units: Array<{ startDate: string | Date }>): number {
+  if (units.length === 0) return 1;
+  
+  const avgMonth = units.reduce((sum, unit) => {
+    const month = new Date(unit.startDate).getMonth() + 1;
+    return sum + month;
+  }, 0) / units.length;
+
+  if (avgMonth >= 9 || avgMonth <= 1) return 1; // Fall
+  if (avgMonth >= 2 && avgMonth <= 4) return 2; // Winter
+  return 3; // Spring
+}
+
+function getTermName(termNumber: number): string {
+  switch (termNumber) {
+    case 1: return 'Fall Term';
+    case 2: return 'Winter Term';
+    case 3: return 'Spring Term';
+    default: return `Term ${termNumber}`;
   }
 }
 
-function getTermEndDate(year: number, term: number): Date {
-  switch (term) {
-    case 1: return new Date(`${year}-12-31`);
-    case 2: return new Date(`${year + 1}-03-31`);
-    case 3: return new Date(`${year + 1}-06-30`);
-    default: return new Date(`${year + 1}-06-30`);
+function getTermDates(academicYear: string, termNumber: number): { start: Date; end: Date } {
+  const year = parseInt(academicYear.split('-')[0] || '2024');
+  
+  switch (termNumber) {
+    case 1: // Fall: Sep-Dec
+      return {
+        start: new Date(year, 8, 1), // September 1
+        end: new Date(year, 11, 31)  // December 31
+      };
+    case 2: // Winter: Jan-Mar
+      return {
+        start: new Date(year + 1, 0, 1), // January 1
+        end: new Date(year + 1, 2, 31)   // March 31
+      };
+    case 3: // Spring: Apr-Jun
+      return {
+        start: new Date(year + 1, 3, 1), // April 1
+        end: new Date(year + 1, 5, 30)   // June 30
+      };
+    default:
+      return {
+        start: new Date(year, 8, 1),
+        end: new Date(year + 1, 5, 30)
+      };
   }
 }
 
-function getWeekNumber(date: Date): number {
-  const startOfYear = new Date(date.getFullYear(), 8, 1); // September 1
-  const diff = date.getTime() - startOfYear.getTime();
-  return Math.floor(diff / (7 * 24 * 60 * 60 * 1000)) + 1;
+// Helper functions for workload analysis
+
+function analyzeWorkloadBalance(termData: Array<{ lesson_count: number }>): string {
+  if (termData.length === 0) return 'No scheduled lessons found';
+  
+  const lessonCounts = termData.map(t => t.lesson_count);
+  const avg = lessonCounts.reduce((a, b) => a + b, 0) / lessonCounts.length;
+  const maxDeviation = Math.max(...lessonCounts.map(c => Math.abs(c - avg)));
+  
+  if (maxDeviation > avg * 0.3) {
+    return 'Workload is unbalanced. Consider redistributing lessons across terms.';
+  }
+  
+  return 'Workload is well balanced across terms.';
 }
 
-function getWeekStartDate(date: Date): Date {
-  const day = date.getDay();
-  const diff = date.getDate() - day + (day === 0 ? -6 : 1); // Monday
-  return new Date(date.setDate(diff));
-}
-
-function getWeekEndDate(date: Date): Date {
-  const start = getWeekStartDate(new Date(date));
-  return new Date(start.getTime() + 4 * 24 * 60 * 60 * 1000); // Friday
-}
-
-function getSchoolHolidays(year: number) {
-  return [
-    {
-      name: 'Thanksgiving',
-      startDate: new Date(`${year}-10-10`),
-      endDate: new Date(`${year}-10-10`),
-      type: 'holiday' as const
-    },
-    {
-      name: 'Winter Break',
-      startDate: new Date(`${year}-12-23`),
-      endDate: new Date(`${year + 1}-01-03`),
-      type: 'break' as const
-    },
-    {
-      name: 'March Break',
-      startDate: new Date(`${year + 1}-03-13`),
-      endDate: new Date(`${year + 1}-03-17`),
-      type: 'break' as const
-    }
-  ];
-}
-
-function getPDDays(year: number): Date[] {
-  return [
-    new Date(`${year}-09-02`),
-    new Date(`${year}-10-20`),
-    new Date(`${year + 1}-02-10`),
-    new Date(`${year + 1}-04-14`),
-    new Date(`${year + 1}-06-02`)
-  ];
-}
-
-export default router;
+export { router };

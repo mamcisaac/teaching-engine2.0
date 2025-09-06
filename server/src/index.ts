@@ -15,6 +15,7 @@ import express, { json, urlencoded, static as expressStatic } from 'express';
 import { logger } from './logger';
 import { authenticate } from './middleware/authenticate';
 import { curriculumCache, staticCache, userCache } from './middleware/cache';
+import { applyContentTypeValidation } from './middleware/contentTypeValidation';
 import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 import { httpMetricsMiddleware, startSystemMetricsCollection } from './middleware/metrics';
@@ -26,7 +27,6 @@ import {
   authRateLimitMiddleware,
   validateFileUpload,
 } from './middleware/security';
-import { applyContentTypeValidation } from './middleware/contentTypeValidation';
 import { standardErrorHandler } from './middleware/standardErrorHandler';
 import { initTelemetry, startAlertMonitoring } from './monitoring';
 import { prisma } from './prisma';
@@ -35,42 +35,42 @@ import { router as aiActivityGenerationRoutes } from './routes/ai-activity-gener
 import { router as aiPlanningRoutes } from './routes/ai-planning';
 import { router as analyticsRoutes } from './routes/analytics';
 import { router as artifactsRoutes } from './routes/artifacts';
+import { router as assessmentsRoutes } from './routes/assessments';
 import { router as authEndpoints } from './routes/authEndpoints';
 import { router as cacheRoutes } from './routes/cache';
 import { router as calendarEventRoutes } from './routes/calendar-events';
+import { router as curriculumCoverageRoutes } from './routes/curriculum-coverage';
 import { router as curriculumExpectationRoutes } from './routes/curriculum-expectations';
-import curriculumCoverageRoutes from './routes/curriculum-coverage';
 import { router as curriculumImportRoutes } from './routes/curriculumImport';
 import { router as dashboardMetricsRoutes } from './routes/dashboard-metrics';
 import { router as daybookEntryRoutes } from './routes/daybook-entries';
 import { router as etfoLessonPlanRoutes } from './routes/etfo-lesson-plans';
 import { router as etfoProgressRoutes } from './routes/etfo-progress';
+import { router as evidenceExportRoutes } from './routes/evidenceExport';
 import { router as lessonCompletionRoutes } from './routes/lesson-completions';
-import lessonReflectionRoutes from './routes/lesson-reflections';
-import { router as studentAssessmentRoutes } from './routes/student-assessments';
-import evidenceExportRoutes from './routes/evidenceExport';
-import lessonGenerationRoutes from './routes/lesson-generation';
-import { router as masteryTrackingRoutes } from './routes/masteryTracking';
+import { router as lessonGenerationRoutes } from './routes/lesson-generation';
+import { router as lessonReflectionRoutes } from './routes/lesson-reflections';
 import { router as longRangePlanRoutes } from './routes/long-range-plans';
+import { router as masteryTrackingRoutes } from './routes/masteryTracking';
 import { router as metricsRoutes } from './routes/metrics';
 import { router as monitoringRoutes } from './routes/monitoring';
 import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
+import { router as scheduleManagementRoutes } from './routes/schedule-management';
+import { router as publicStatsRoutes } from './routes/public-stats';
+import { router as planningCascadeRoutes } from './routes/planning-cascade';
 import { router as recentPlansRoutes } from './routes/recent-plans';
-import reportsRoutes from './routes/reports';
-import studentsRoutes from './routes/students';
-import studentProgressRoutes from './routes/student-progress';
-import assessmentsRoutes from './routes/assessments';
+import { router as reportsRoutes } from './routes/reports';
+import { router as studentAssessmentRoutes } from './routes/student-assessments';
+import { router as studentProgressRoutes } from './routes/student-progress';
+import { router as studentsRoutes } from './routes/students';
 import { router as substitutePlanRoutes } from './routes/substitute-plans';
 import { router as templateRoutes } from './routes/templates';
 import { router as unitPlanRoutes } from './routes/unit-plans';
 import { userRoutes } from './routes/user';
-import scheduleManagementRoutes from './routes/schedule-management';
-import publicStatsRoutes from './routes/public-stats';
-import planningCascadeRoutes from './routes/planning-cascade';
-import { errorReportingService } from './services/monitoring/errorReportingService';
 import { initializeServices } from './services/initializeServices';
+import { errorReportingService } from './services/monitoring/errorReportingService';
 import {
   structuredLogger,
   correlationMiddleware,

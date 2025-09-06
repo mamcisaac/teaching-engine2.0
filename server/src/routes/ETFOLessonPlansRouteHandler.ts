@@ -239,8 +239,9 @@ class ETFOLessonPlanService extends BaseService {
     
     // Remove any null/undefined values from where clause
     Object.keys(where).forEach(key => {
-      if ((where as any)[key] === null || (where as any)[key] === undefined) {
-        delete (where as any)[key];
+      const whereClause = where as Record<string, unknown>;
+      if (whereClause[key] === null || whereClause[key] === undefined) {
+        delete whereClause[key];
       }
     });
 
@@ -644,7 +645,7 @@ class ETFOLessonPlanService extends BaseService {
     return true;
   }
 
-  private async validateOriginalLessonPlan(lessonPlanId: string, userId: number): Promise<any> {
+  private async validateOriginalLessonPlan(lessonPlanId: string, userId: number): Promise<ETFOLessonPlanWithRelations> {
     const originalLesson = await prisma.eTFOLessonPlan.findFirst({
       where: { id: lessonPlanId, userId },
       include: {
@@ -657,7 +658,7 @@ class ETFOLessonPlanService extends BaseService {
       throw new Error('Lesson plan not found or access denied');
     }
 
-    return originalLesson;
+    return originalLesson as ETFOLessonPlanWithRelations;
   }
 
   private buildSubFriendlyData(
@@ -679,11 +680,11 @@ class ETFOLessonPlanService extends BaseService {
       consolidationFr: originalLesson.consolidationFr,
       learningGoals: originalLesson.learningGoals,
       learningGoalsFr: originalLesson.learningGoalsFr,
-      materials: originalLesson.materials ?? undefined,
+      materials: originalLesson.materials ? originalLesson.materials as any : undefined,
       grouping: originalLesson.grouping,
-      accommodations: originalLesson.accommodations ?? undefined,
-      modifications: originalLesson.modifications ?? undefined,
-      extensions: originalLesson.extensions ?? undefined,
+      accommodations: originalLesson.accommodations ? originalLesson.accommodations as any : undefined,
+      modifications: originalLesson.modifications ? originalLesson.modifications as any : undefined,
+      extensions: originalLesson.extensions ? originalLesson.extensions as any : undefined,
       assessmentType: originalLesson.assessmentType,
       assessmentNotes: originalLesson.assessmentNotes,
       isSubFriendly: true,
@@ -804,11 +805,11 @@ class ETFOLessonPlanService extends BaseService {
       consolidationFr: sourceLessonPlan.consolidationFr,
       learningGoals: sourceLessonPlan.learningGoals,
       learningGoalsFr: sourceLessonPlan.learningGoalsFr,
-      materials: sourceLessonPlan.materials ?? undefined,
+      materials: sourceLessonPlan.materials ? sourceLessonPlan.materials as any : undefined,
       grouping: sourceLessonPlan.grouping,
-      accommodations: sourceLessonPlan.accommodations ?? undefined,
-      modifications: sourceLessonPlan.modifications ?? undefined,
-      extensions: sourceLessonPlan.extensions ?? undefined,
+      accommodations: sourceLessonPlan.accommodations ? sourceLessonPlan.accommodations as any : undefined,
+      modifications: sourceLessonPlan.modifications ? sourceLessonPlan.modifications as any : undefined,
+      extensions: sourceLessonPlan.extensions ? sourceLessonPlan.extensions as any : undefined,
       assessmentType: sourceLessonPlan.assessmentType,
       assessmentNotes: sourceLessonPlan.assessmentNotes,
       isSubFriendly: sourceLessonPlan.isSubFriendly,
@@ -939,9 +940,11 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     // Map 'sort' and 'order' to 'sortBy' and 'sortOrder'
     return {
       ...parsed,
-      sortBy: parsed.sort,
-      sortOrder: parsed.order,
-    } as any;
+      limit: parsed.limit || 50,
+      offset: parsed.offset || 0,
+      sortBy: parsed.sort as 'date' | 'title' | 'createdAt' | 'duration',
+      sortOrder: parsed.order as 'asc' | 'desc',
+    };
   }
 
   private convertFiltersForService(filters: {
@@ -1069,7 +1072,11 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       
       const resourceData = resourceSchema.parse(req.body);
 
-      const resource = await this.lessonPlanService.addResource(lessonPlanId, resourceData, userId);
+      const resource = await this.lessonPlanService.addResource(lessonPlanId, {
+        ...resourceData,
+        title: resourceData.title || 'Untitled Resource',
+        type: resourceData.type || 'other'
+      } as any, userId);
       res.status(201).json(resource);
     } catch (_error) {
       this.logger.error('Error adding resource:', _error as string | undefined);
@@ -1157,7 +1164,11 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
 
       const rescheduledLesson = await this.lessonPlanService.reschedule(
         lessonPlanId,
-        rescheduleData,
+        {
+          ...rescheduleData,
+          newDate: rescheduleData.newDate || new Date().toISOString(),
+          updateRelated: rescheduleData.updateRelated || false
+        } as any,
         userId,
       );
       res.json(rescheduledLesson);
@@ -1181,7 +1192,11 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
       }
       const duplicateData = duplicateSchema.parse(req.body);
 
-      const duplicatedLesson = await this.lessonPlanService.duplicate(duplicateData, userId);
+      const duplicatedLesson = await this.lessonPlanService.duplicate({
+        ...duplicateData,
+        lessonPlanId: duplicateData.lessonPlanId || '',
+        unitPlanId: duplicateData.unitPlanId || ''
+      } as any, userId);
       res.status(201).json(duplicatedLesson);
     } catch (_error) {
       this.logger.error('Error duplicating lesson plan:', _error as string | undefined);

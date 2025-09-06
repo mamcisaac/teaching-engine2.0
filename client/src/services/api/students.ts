@@ -32,6 +32,24 @@ export interface CreateStudentDto {
   notes?: string;
 }
 
+export interface StudentProgress {
+  studentId: string;
+  overallProgress: number;
+  subjects: Record<string, {
+    currentLevel: string;
+    trend: 'improving' | 'stable' | 'declining';
+    assessmentCount: number;
+    lastAssessment?: string;
+  }>;
+  recentAssessments: {
+    id: string;
+    date: string;
+    subject: string;
+    outcome: string;
+    level: string;
+  }[];
+}
+
 export const studentsApi = {
   async getAll(): Promise<Student[]> {
     const response = await apiClient.get<Student[]>('/api/students');
@@ -68,8 +86,8 @@ export const studentsApi = {
     return response.data;
   },
 
-  async getProgress(id: string): Promise<any> {
-    const response = await apiClient.get(`/api/students/${id}/progress`);
+  async getProgress(id: string): Promise<StudentProgress> {
+    const response = await apiClient.get<StudentProgress>(`/api/students/${id}/progress`);
     return response.data;
   },
 };

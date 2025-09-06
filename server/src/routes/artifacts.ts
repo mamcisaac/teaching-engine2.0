@@ -1,14 +1,17 @@
-import { logger } from '../logger';
 /**
  * Student Artifacts API Routes
  * Handles artifact upload, management, and curriculum outcome tagging
  */
 
+import { createHash } from 'crypto';
+
+import type { Prisma } from '@teaching-engine/database';
 import { PrismaClient } from '@teaching-engine/database';
 import type { Request, Response, NextFunction, RequestHandler } from 'express';
 import { Router } from 'express';
 import { body, param, validationResult } from 'express-validator';
 
+import { logger } from '../logger';
 import { 
   artifactUploadRateLimit,
   bulkOperationRateLimit 
@@ -38,6 +41,14 @@ interface AuthenticatedRequest extends Request {
     role: string;
   };
   artifact?: Record<string, unknown>; // Artifact data attached by middleware
+}
+
+interface ArtifactOutcome {
+  outcomeId: string;
+  evidenceType: string;
+  teacherNote?: string;
+  confidenceLevel?: string;
+  contextualFactors?: string;
 }
 
 // Validation middleware
@@ -394,7 +405,7 @@ router.get('/',
       } = req.query;
 
       // Build where clause
-      const where: any = {
+      const where: Prisma.StudentArtifactWhereInput = {
         userId: userId
       };
 
@@ -579,7 +590,7 @@ async function handleArtifactUpload(req: AuthenticatedRequest, res: Response, ar
     originalName: uploadResult.originalName,
     size: uploadResult.buffer.length,
     mimeType: uploadResult.mimeType,
-    checksum: require('crypto').createHash('sha256').update(uploadResult.buffer).digest('hex'),
+    checksum: createHash('sha256').update(uploadResult.buffer).digest('hex'),
     isProcessed: false
   };
 
@@ -612,7 +623,7 @@ async function handleArtifactUpload(req: AuthenticatedRequest, res: Response, ar
     if (req.body.outcomes && Array.isArray(req.body.outcomes)) {
       // Create all outcomes in the same transaction
       await tx.studentArtifactOutcome.createMany({
-        data: req.body.outcomes.map((outcome: any) => ({
+        data: req.body.outcomes.map((outcome: ArtifactOutcome) => ({
           artifactId: newArtifact.id,
           outcomeId: outcome.outcomeId,
           evidenceType: outcome.evidenceType,
@@ -757,7 +768,7 @@ router.get('/:id',
         updatedAt: fullArtifact!.updatedAt,
         fileUrl,
         student: fullArtifact!.student,
-        outcomes: fullArtifact!.outcomes.map((ao: any) => ({
+        outcomes: fullArtifact!.outcomes.map((ao) => ({
           outcomeId: ao.outcomeId,
           evidenceType: ao.evidenceType,
           teacherNote: ao.teacherNote,

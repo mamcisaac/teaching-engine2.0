@@ -5,14 +5,18 @@
  * IMPORTANT: This must be called on server startup
  */
 
-import { imageQueue, videoQueue, documentQueue, audioQueue, reportQueue, bulkQueue } from './index';
-import { processImageJob } from './processors/imageProcessor';
-import { processVideoJob } from './processors/videoProcessor';
-import { processDocumentJob } from './processors/documentProcessor';
-import { processAudioJob } from './processors/audioProcessor';
-import { processReportJob } from './processors/reportProcessor';
-import { processBulkJob } from './processors/bulkProcessor';
 import { logger } from '../../logger';
+
+import { processAudioJob } from './processors/audioProcessor';
+import { processBulkJob } from './processors/bulkProcessor';
+import { processDocumentJob } from './processors/documentProcessor';
+import { processImageJob } from './processors/imageProcessor';
+import { processReportJob } from './processors/reportProcessor';
+import { processVideoJob } from './processors/videoProcessor';
+
+import { imageQueue, videoQueue, documentQueue, audioQueue, reportQueue, bulkQueue } from './index';
+
+
 
 /**
  * Initialize all queue processors

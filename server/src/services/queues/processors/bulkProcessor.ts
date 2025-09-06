@@ -3,8 +3,9 @@
  * Handles CSV imports, batch processing, and data migrations
  */
 
-import { Job } from 'bull';
 import { PrismaClient } from '@teaching-engine/database';
+import type { Job } from 'bull';
+
 import { logger } from '../../../logger';
 import { importStudentsFromCSV } from '../../csvImport';
 
@@ -124,7 +125,7 @@ async function processCsvImport(
     success: importResult.success,
     type: 'csv-import',
     processed: importResult.imported || 0,
-    failed: importResult.errors?.length || 0,
+    failed: importResult.errors.length || 0,
     skipped: 0, // ImportResult doesn't have skipped field
     errors: importResult.errors || [],
     summary: 'CSV import completed' // ImportResult doesn't have summary field

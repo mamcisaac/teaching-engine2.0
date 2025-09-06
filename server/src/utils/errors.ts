@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { logger } from '../logger';
 import { ZodError } from 'zod';
 import { errorCounter } from '../monitoring/telemetry';
@@ -121,7 +121,7 @@ export const asyncHandler = <T extends (...args: unknown[]) => Promise<unknown>>
     try {
       await fn(...args);
     } catch (_error) {
-      const [req, res, next] = args as unknown as [any, Response, any];
+      const [req, res, next] = args as unknown as [Request, Response, NextFunction];
 
       // Log the error
       logger.error(
@@ -153,7 +153,7 @@ export const asyncHandler = <T extends (...args: unknown[]) => Promise<unknown>>
         next(_error);
       } else {
         // Handle error directly
-        handleErrorResponse(res, _error as Error, req?.id);
+        handleErrorResponse(res, _error as Error, (req as Request & { id?: string })?.id);
       }
     }
   };

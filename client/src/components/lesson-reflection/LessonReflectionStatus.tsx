@@ -117,4 +117,3 @@ export const LessonReflectionStatus: React.FC<LessonReflectionStatusProps> = ({
   );
 };
 
-export default LessonReflectionStatus;

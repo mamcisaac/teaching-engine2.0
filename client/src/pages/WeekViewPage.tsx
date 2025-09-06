@@ -12,11 +12,22 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
+import type { ETFOLessonPlan } from '../types/curriculum';
+
+// Type definitions
+interface DailySlot {
+  slotNumber: number;
+  label: string;
+}
+
+interface LessonData extends ETFOLessonPlan {
+  // ETFOLessonPlan already has id, date, and slotNumber
+}
 
 interface DaySchedule {
   date: Date;
   dateStr: string;
-  lessons: any[];
+  lessons: LessonData[];
 }
 
 const DAILY_SLOTS = [
@@ -37,7 +48,7 @@ const SUBJECT_COLORS: Record<string, string> = {
 };
 
 // Draggable lesson component
-function DraggableLesson({ lesson, subject }: { lesson: any; subject: string }) {
+function DraggableLesson({ lesson, subject }: { lesson: LessonData; subject: string }) {
   const {
     attributes,
     listeners,
@@ -83,11 +94,11 @@ function DroppableSlot({
   subject, 
   onQuickAdd 
 }: { 
-  day: any; 
-  slot: any; 
-  lesson?: any; 
+  day: DaySchedule; 
+  slot: DailySlot; 
+  lesson?: LessonData; 
   subject?: string;
-  onQuickAdd: (date: Date, slot: any) => void;
+  onQuickAdd: (date: Date, slot: DailySlot) => void;
 }) {
   const slotId = `slot-${day.dateStr.split('-')[2]}-${slot.slotNumber}`;
   const dayName = format(day.date, 'EEEE');
@@ -123,7 +134,7 @@ export function WeekViewPage(): React.ReactElement {
   const [_dragOverSlot, setDragOverSlot] = useState<{ day: string; slot: number } | null>(null);
   const [dragError, setDragError] = useState<string | null>(null);
   const [isRescheduling, setIsRescheduling] = useState(false);
-  const [optimisticLessons, setOptimisticLessons] = useState<any[]>([]);
+  const [optimisticLessons, setOptimisticLessons] = useState<LessonData[]>([]);
   const [_originalPosition, setOriginalPosition] = useState<{ lessonId: string; date: Date; slot: number } | null>(null);
   const [pendingRequestId, setPendingRequestId] = useState<string | null>(null);
 
@@ -252,7 +263,7 @@ export function WeekViewPage(): React.ReactElement {
       // Success - keep optimistic update
       setOriginalPosition(null);
       // The useETFOLessonPlans hook will refetch and sync the real data
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Check if this request is still the current one
       if (requestId !== pendingRequestId) {
         console.warn('Request superseded by newer request, ignoring error');
@@ -260,7 +271,7 @@ export function WeekViewPage(): React.ReactElement {
       }
       
       console.error('Failed to reschedule lesson:', error);
-      const errorMessage = error?.response?.data?.error || 'Failed to reschedule lesson. Please try again.';
+      const errorMessage = (error as { response?: { data?: { error?: string } } })?.response?.data?.error || 'Failed to reschedule lesson. Please try again.';
       setDragError(errorMessage);
       
       // Revert optimistic update on error
@@ -303,7 +314,7 @@ export function WeekViewPage(): React.ReactElement {
     navigate(`/planner/lessons/${lessonId}`);
   };
   
-  const handleCreateLesson = (date: Date, slot: any) => {
+  const handleCreateLesson = (date: Date, slot: DailySlot) => {
     // Navigate to lesson creation with pre-filled date and slot
     navigate(`/planner/quick-lesson?date=${format(date, 'yyyy-MM-dd')}&slot=${slot.slotNumber}`);
   };

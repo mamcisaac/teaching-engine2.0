@@ -135,7 +135,15 @@ router.get('/uncovered', async (req: AuthenticatedRequest, res: Response) => {
     const { subject, search, showAll } = uncoveredQuerySchema.parse(req.query);
 
     // Build where clause
-    const where: any = { grade: 1 };
+    const where: { 
+      grade: number; 
+      subject?: string; 
+      OR?: Array<{
+        code?: { contains: string; mode: 'insensitive' };
+        description?: { contains: string; mode: 'insensitive' };
+        descriptionFr?: { contains: string; mode: 'insensitive' };
+      }>;
+    } = { grade: 1 };
     
     if (subject) {
       where.subject = subject;
@@ -455,4 +463,4 @@ router.post('/bulk-plan-lessons',
   }
 );
 
-export default router;
+export { router };

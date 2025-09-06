@@ -15,16 +15,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Input } from '../components/ui/Input';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 import { api } from '../lib/axios';
+import type { ETFOLessonPlan } from '../types/curriculum';
 
-interface Lesson {
-  id: string;
-  title: string;
-  titleFr: string;
-  date: string;
-  unitPlanId: string;
+type Lesson = ETFOLessonPlan & {
   unitTitle?: string;
   subject?: string;
-}
+};
 
 interface DragItem {
   lesson: Lesson;
@@ -225,7 +221,7 @@ export function ScheduleEditor(): React.ReactElement {
   const lessonsByDateSlot = new Map<string, Lesson[]>();
   
   if (lessons) {
-    lessons.forEach((lesson: any) => {
+    lessons.forEach((lesson: ETFOLessonPlan) => {
       // Apply pending changes
       const changeData = changes.get(lesson.id);
       const effectiveDate = changeData ? changeData.date : lesson.date;
@@ -240,14 +236,10 @@ export function ScheduleEditor(): React.ReactElement {
       }
       
       lessonsByDateSlot.get(key)!.push({
-        id: lesson.id,
-        title: lesson.title,
-        titleFr: lesson.titleFr,
-        date: lesson.date,
-        unitPlanId: lesson.unitPlanId,
+        ...lesson,
         unitTitle: lesson.unitPlan?.title,
         subject: lesson.unitPlan?.longRangePlan?.subject
-      });
+      } as Lesson);
     });
   }
 
@@ -398,7 +390,7 @@ export function ScheduleEditor(): React.ReactElement {
                         const filteredLessons = slotLessons.filter(lesson => {
                           if (searchTerm && 
                               !lesson.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-                              !lesson.titleFr.toLowerCase().includes(searchTerm.toLowerCase())) {
+                              !lesson.titleFr?.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return false;
                           }
                           if (filterSubject && lesson.subject !== filterSubject) {

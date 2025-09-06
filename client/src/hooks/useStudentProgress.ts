@@ -13,6 +13,18 @@ import type {
   ImprovementEvidence
 } from '../utils/studentProgress';
 
+// Raw API response interfaces
+interface RawAssessmentResponse {
+  id: string;
+  studentId: string;
+  title: string;
+  subject: string;
+  level: 'NOT_YET' | 'APPROACHING' | 'MEETING' | 'EXCEEDING';
+  notes?: string;
+  date: string;
+  isAnecdotal: boolean;
+}
+
 // Query Keys
 export const PROGRESS_QUERY_KEYS = {
   all: ['studentProgress'] as const,
@@ -90,7 +102,7 @@ export function useQuickProgress(studentId: string) {
         const growthAreas: string[] = [];
         const recentNotes: string[] = [];
         
-        assessments.data.forEach((assessment: any) => {
+        assessments.data.forEach((assessment: RawAssessmentResponse) => {
           if (!assessment.isAnecdotal) {
             if (assessment.level === 'MEETING' || assessment.level === 'EXCEEDING') {
               strengths.push(assessment.title);
@@ -150,12 +162,12 @@ export function useStudentProgress(studentId: string, options: ProgressReportOpt
       
       const student = studentData.data;
       const _progress = progressData.data;
-      const assessments = assessmentData.data.filter((a: any) => !a.isAnecdotal);
+      const assessments = assessmentData.data.filter((a: RawAssessmentResponse) => !a.isAnecdotal);
       
       // Process strengths and growth areas
       const strengths = assessments
-        .filter((a: any) => a.level === 'MEETING' || a.level === 'EXCEEDING')
-        .map((a: any) => ({
+        .filter((a: RawAssessmentResponse) => a.level === 'MEETING' || a.level === 'EXCEEDING')
+        .map((a: RawAssessmentResponse) => ({
           expectation: a.title,
           subject: a.subject,
           level: a.level,
@@ -163,8 +175,8 @@ export function useStudentProgress(studentId: string, options: ProgressReportOpt
         }));
       
       const growthAreas = assessments
-        .filter((a: any) => a.level === 'NOT_YET' || a.level === 'APPROACHING')
-        .map((a: any) => ({
+        .filter((a: RawAssessmentResponse) => a.level === 'NOT_YET' || a.level === 'APPROACHING')
+        .map((a: RawAssessmentResponse) => ({
           expectation: a.title,
           subject: a.subject,
           level: a.level,
@@ -173,9 +185,9 @@ export function useStudentProgress(studentId: string, options: ProgressReportOpt
       
       // Get recent notes
       const recentNotes = assessments
-        .filter((a: any) => a.notes)
+        .filter((a: RawAssessmentResponse) => a.notes)
         .slice(0, 5)
-        .map((a: any) => ({
+        .map((a: RawAssessmentResponse) => ({
           note: a.notes,
           date: new Date(a.date),
           subject: a.subject
@@ -223,7 +235,7 @@ export function useStudentAssessments(studentId: string, limit = 20) {
         `/student-assessments?studentId=${studentId}&limit=${limit}&excludeAnecdotal=true`
       );
       
-      return response.data.map((a: any) => ({
+      return response.data.map((a: RawAssessmentResponse) => ({
         id: a.id,
         studentId: a.studentId,
         expectation: a.title,

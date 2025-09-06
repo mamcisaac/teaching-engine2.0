@@ -83,7 +83,4 @@ process.on('SIGINT', async () => {
   process.exit(0);
 });
 
-export default {
-  initializeServices,
-  shutdownServices
-};
+// Functions already exported above as named exports

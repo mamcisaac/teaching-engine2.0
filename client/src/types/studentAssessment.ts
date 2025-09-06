@@ -61,7 +61,7 @@ export interface StudentArtifact {
   fileSize?: number;
   mimeType?: string;
   textContent?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   collectionContext?: string;
   dateCollected: string;
   isPrivate: boolean;
@@ -350,7 +350,7 @@ export interface BatchUploadResult {
 // Error types
 export interface APIError {
   error: string;
-  details?: any;
+  details?: unknown;
 }
 
 export interface ValidationError {

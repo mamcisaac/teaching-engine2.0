@@ -1,4 +1,3 @@
-import { logger } from '../logger';
 /**
  * Student Management API Routes
  * Includes CSV bulk import for classroom setup
@@ -10,6 +9,7 @@ import { Router } from 'express';
 import { body, param, validationResult } from 'express-validator';
 import multer from 'multer';
 
+import { logger } from '../logger';
 import { bulkOperationRateLimit, artifactViewRateLimit } from '../middleware/rateLimit/artifactRateLimit';
 import { importStudentsFromCSV, validateCSVFormat, generateCSVTemplate, exportStudentsToCSV } from '../services/csvImport';
 import { getStudentsOptimized, invalidateUserCache } from '../services/performanceOptimizer';
@@ -42,7 +42,7 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
+const requireAuth = (req: AuthenticatedRequest, res: Response, next: () => void) => {
   if (!req.user?.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
@@ -93,7 +93,7 @@ router.get('/',
 router.post('/import/csv',
   requireAuth,
   bulkOperationRateLimit,
-  csvUpload.single('csvFile') as any,
+  csvUpload.single('csvFile'),
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       if (!req.file) {
@@ -334,4 +334,4 @@ router.post('/',
   }
 );
 
-export default router;
+export { router };

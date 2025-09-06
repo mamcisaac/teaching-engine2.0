@@ -19,7 +19,7 @@ export interface CascadeNode {
   completionPercentage: number;
   children?: CascadeNode[];
   parentId?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface LessonPlan {

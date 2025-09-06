@@ -108,8 +108,8 @@ function UnitPlansPage(): React.ReactElement {
   const isLoading = longRangePlanLoading || allPlansLoading || unitPlansLoading || expectationsLoading;
 
   // Mutations (simplified)
-  const createUnit = { mutateAsync: async (_data: any) => {}, isPending: false };
-  const updateUnit = { mutateAsync: async (_data: any) => {}, isPending: false };
+  const createUnit = { mutateAsync: async (_data: unknown) => {}, isPending: false };
+  const updateUnit = { mutateAsync: async (_data: unknown) => {}, isPending: false };
 
   // Template-related hooks
   const { data: unitTemplatesResult } = useTemplates({

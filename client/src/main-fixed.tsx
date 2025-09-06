@@ -16,8 +16,7 @@ async function initializeApp() {
       { BrowserRouter },
       { Toaster },
       { App },
-      { errorReportingService },
-      { logger }
+      { errorReportingService }
     ] = await Promise.all([
       import('@tanstack/react-query'),
       import('react'),

@@ -1,13 +1,15 @@
-import { logger } from '../logger';
 /**
  * Assessment API Routes
  * ETFO 4-level mastery tracking for Grade 1 French Immersion
  */
 
+import type { Prisma } from '@teaching-engine/database';
 import { PrismaClient } from '@teaching-engine/database';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { body, param, query, validationResult } from 'express-validator';
+
+import { logger } from '../logger';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -62,12 +64,12 @@ router.get('/',
         offset = 0
       } = req.query;
 
-      const where: any = { teacherId: userId };
+      const where: Prisma.AssessmentWhereInput = { teacherId: userId };
 
-      if (studentId) where.studentId = studentId;
-      if (subject) where.subject = subject;
-      if (level) where.level = level;
-      if (evidenceType) where.evidenceType = evidenceType;
+      if (studentId) where.studentId = studentId as string;
+      if (subject) where.subject = subject as string;
+      if (level) where.level = level as string;
+      if (evidenceType) where.evidenceType = evidenceType as string;
       
       if (startDate || endDate) {
         where.date = {};
@@ -331,7 +333,7 @@ router.post('/bulk',
       }
 
       // Verify all students belong to teacher
-      const studentIds = [...new Set(req.body.assessments.map((a: any) => a.studentId))] as string[];
+      const studentIds = [...new Set(req.body.assessments.map((a: { studentId: string }) => a.studentId))] as string[];
       const students = await prisma.student.findMany({
         where: {
           id: { in: studentIds },
@@ -346,7 +348,7 @@ router.post('/bulk',
       }
 
       const assessments = await prisma.assessment.createMany({
-        data: req.body.assessments.map((a: any) => ({
+        data: req.body.assessments.map((a: Prisma.AssessmentCreateManyInput) => ({
           ...a,
           teacherId: userId,
           date: a.date ? new Date(a.date) : new Date(),
@@ -382,10 +384,10 @@ router.get('/stats/evidence-balance',
         return;
       }
 
-      const where: any = { teacherId: userId };
+      const where: Prisma.AssessmentWhereInput = { teacherId: userId };
 
-      if (req.query.studentId) where.studentId = req.query.studentId;
-      if (req.query.subject) where.subject = req.query.subject;
+      if (req.query.studentId) where.studentId = req.query.studentId as string;
+      if (req.query.subject) where.subject = req.query.subject as string;
       
       if (req.query.startDate || req.query.endDate) {
         where.date = {};
@@ -434,20 +436,20 @@ router.get('/stats/evidence-balance',
 );
 
 // Helper function for balance recommendations
-function getBalanceRecommendations(percentages: any) {
+function getBalanceRecommendations(percentages: Record<string, number>) {
   const recommendations = [];
   
-  if (percentages.observation < 25) {
+  if (percentages.observation && percentages.observation < 25) {
     recommendations.push('Increase classroom observations');
   }
-  if (percentages.conversation < 25) {
+  if (percentages.conversation && percentages.conversation < 25) {
     recommendations.push('Conduct more student conferences');
   }
-  if (percentages.product < 25) {
+  if (percentages.product && percentages.product < 25) {
     recommendations.push('Collect more student work samples');
   }
   
   return recommendations;
 }
 
-export default router;
+export { router };

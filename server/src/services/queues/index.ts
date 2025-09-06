@@ -7,6 +7,7 @@
  */
 
 import Bull from 'bull';
+
 import { logger } from '../../logger';
 
 // Redis configuration - use environment variables in production

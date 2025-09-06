@@ -13,9 +13,11 @@ import path from 'path';
 
 import { fileTypeFromBuffer } from 'file-type';
 import ffmpeg from 'fluent-ffmpeg';
+import pdfParse from 'pdf-parse';
 import sharp from 'sharp';
 
 import { logger } from '../logger';
+
 import { getStorageService } from './storage';
 
 export interface FileMetadata {
@@ -32,7 +34,7 @@ export interface FileMetadata {
     path: string;
     url: string;
   };
-  exif?: Record<string, any>;
+  exif?: Record<string, unknown>;
   createdAt?: Date;
   checksum?: string;
   isProcessed: boolean;
@@ -52,7 +54,7 @@ export class FileProcessingService {
 
   constructor() {
     // Ensure temp directory exists
-    this.ensureTempDir();
+    void this.ensureTempDir();
   }
 
   private async ensureTempDir(): Promise<void> {
@@ -352,7 +354,6 @@ export class FileProcessingService {
       if (metadata.mimeType === 'application/pdf') {
         // For PDFs, we could use pdf-parse to extract page count and text
         // This requires the pdf-parse package which is already in package.json
-        const pdfParse = require('pdf-parse');
         const data = await pdfParse(buffer);
         
         metadata.pages = data.numpages;
@@ -372,7 +373,7 @@ export class FileProcessingService {
   /**
    * Parse EXIF data from Sharp metadata
    */
-  private parseExifData(exifBuffer: Buffer): Record<string, any> {
+  private parseExifData(exifBuffer: Buffer): Record<string, unknown> {
     try {
       // Sharp provides EXIF data as a buffer
       // You could use exif-parser or similar to parse it properly

@@ -402,6 +402,20 @@ model ETFOLessonPlan {
   lessonType                String?                     @default("core")
   isScheduled               Boolean                     @default(true)
   duration                  Int
+  
+  // NEW: Actual scheduling and status tracking
+  scheduledDate             DateTime?
+  scheduledTime             String?                     // "9:00 AM", "1:30 PM"
+  status                    LessonStatus                @default(PLANNED)
+  taughtDate                DateTime?
+  skippedReason             String?
+  
+  // NEW: Search optimization
+  searchContent             String?
+  
+  // NEW: Emergency supply teacher info
+  substituteNotes           String?
+  behaviorAlerts            String?
   mindsOn                   String?
   action                    String?
   consolidation             String?
@@ -1211,6 +1225,13 @@ enum AchievementLevel {
   APPROACHING
   MEETING
   EXCEEDING
+}
+
+enum LessonStatus {
+  PLANNED
+  TAUGHT
+  SKIPPED
+  RESCHEDULED
 }
 
 model StudentAssessment {

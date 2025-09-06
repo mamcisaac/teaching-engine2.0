@@ -64,7 +64,7 @@ router.get('/', async (req: Request, res: Response) => {
     const { grade, subject, strand, search } = req.query as Record<string, string>;
     
     // Build where clause based on query parameters
-    const where: any = {};
+    const where: Record<string, unknown> = {};
     
     // Filter by grade if provided
     if (grade != undefined && grade !== '') {

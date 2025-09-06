@@ -282,4 +282,3 @@ export const AnecdotalNotesList: React.FC<AnecdotalNotesListProps> = ({
   );
 };
 
-export default AnecdotalNotesList;

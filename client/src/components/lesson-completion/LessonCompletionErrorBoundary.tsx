@@ -51,4 +51,3 @@ export class LessonCompletionErrorBoundary extends React.Component<Props, State>
   }
 }
 
-export default LessonCompletionErrorBoundary;

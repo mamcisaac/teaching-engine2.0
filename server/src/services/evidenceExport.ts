@@ -4,7 +4,7 @@
  * through her usual communication methods (email, newsletters, etc.)
  */
 
-import { promises as fs } from 'fs';
+import { promises as fs, createWriteStream } from 'fs';
 import os from 'os';
 import path from 'path';
 
@@ -13,6 +13,44 @@ import archiver from 'archiver';
 import PDFDocument from 'pdfkit';
 
 import { logger } from '../logger';
+
+// Type definitions for outcome progress and artifact outcomes
+interface OutcomeProgress {
+  currentLevel: string;
+  outcome?: {
+    description: string;
+    subject?: string;
+  };
+}
+
+interface ArtifactOutcome {
+  outcome?: {
+    subject: string;
+  };
+}
+
+// Types for student and artifact data
+interface StudentData {
+  firstName: string;
+  lastName: string;
+  studentNumber?: string | null;
+  id: string;
+  grade?: number;
+  outcomeProgress?: OutcomeProgress[];
+  artifacts?: ArtifactData[];
+}
+
+interface ArtifactData {
+  id: string;
+  title: string;
+  description?: string;
+  artifactType: string;
+  fileUrl: string;
+  dateCollected: Date;
+  outcomes?: ArtifactOutcome[];
+  filePath?: string;
+  fileName?: string;
+}
 
 const prisma = new PrismaClient();
 
@@ -153,14 +191,28 @@ export const exportStudentEvidence = async (
 
     if (format === 'pdf' || format === 'both') {
       // Generate PDF report
-      const pdfPath = await generateStudentEvidencePDF(student, filteredArtifacts, tempDir, options);
+      const pdfPath = await generateStudentEvidencePDF(student as any, filteredArtifacts.map(a => ({
+        ...a,
+        fileUrl: (a as any).filePath || (a as any).fileUrl || '',
+        id: a.id || '',
+        title: a.title || 'Untitled',
+        artifactType: a.artifactType || 'unknown',
+        dateCollected: a.dateCollected || new Date()
+      } as ArtifactData)), tempDir, options);
       resultPath = pdfPath;
       fileName = path.basename(pdfPath);
     }
 
     if (format === 'zip' || format === 'both') {
       // Create ZIP package with all files
-      const zipPath = await createEvidenceZip(student, filteredArtifacts, tempDir, options);
+      const zipPath = await createEvidenceZip(student as any, filteredArtifacts.map(a => ({
+        ...a,
+        fileUrl: (a as any).filePath || (a as any).fileUrl || '',
+        id: a.id || '',
+        title: a.title || 'Untitled',
+        artifactType: a.artifactType || 'unknown',
+        dateCollected: a.dateCollected || new Date()
+      } as ArtifactData)), tempDir, options);
       resultPath = zipPath;
       fileName = path.basename(zipPath);
     }
@@ -190,8 +242,8 @@ export const exportStudentEvidence = async (
  * Generate PDF report with embedded evidence
  */
 const generateStudentEvidencePDF = async (
-  student: any,
-  artifacts: any[],
+  student: StudentData,
+  artifacts: ArtifactData[],
   tempDir: string,
   options: ExportOptions
 ): Promise<string> => {
@@ -245,11 +297,13 @@ const generateStudentEvidencePDF = async (
     doc.fontSize(14).text('Current Progress Overview', { underline: true });
     doc.moveDown();
 
-    const progressBySubject: Record<string, any[]> = {};
+    const progressBySubject: Record<string, Array<{ currentLevel: string; outcome: { description: string } }>> = {};
     for (const progress of student.outcomeProgress) {
       const subject = progress.outcome?.subject || 'Other';
       if (!progressBySubject[subject]) progressBySubject[subject] = [];
-      progressBySubject[subject].push(progress);
+      if (progress.outcome) {
+        progressBySubject[subject].push(progress as { currentLevel: string; outcome: { description: string } });
+      }
     }
 
     for (const [subject, progressItems] of Object.entries(progressBySubject)) {
@@ -296,7 +350,9 @@ const generateStudentEvidencePDF = async (
       doc.moveDown(0.3);
       doc.text('Connected to:', { underline: true });
       for (const outcome of artifact.outcomes) {
-        doc.text(`• ${outcome.outcome.subject}: ${outcome.outcome.description}`);
+        if (outcome.outcome) {
+          doc.text(`• ${outcome.outcome.subject}: ${(outcome.outcome as any).description || 'No description'}`);
+        }
       }
     }
 
@@ -344,15 +400,15 @@ const generateStudentEvidencePDF = async (
  * Create ZIP package with all files
  */
 const createEvidenceZip = async (
-  student: any,
-  artifacts: any[],
+  student: StudentData,
+  artifacts: ArtifactData[],
   tempDir: string,
   options: ExportOptions
 ): Promise<string> => {
   const fileName = `${student.firstName}_${student.lastName}_Evidence_Package_${new Date().toISOString().split('T')[0]}.zip`;
   const zipPath = path.join(tempDir, fileName);
 
-  const output = require('fs').createWriteStream(zipPath);
+  const output = createWriteStream(zipPath);
   const archive = archiver('zip', { zlib: { level: 9 } });
 
   archive.pipe(output);
@@ -404,7 +460,7 @@ Questions? Please feel free to contact me!
     }
   }
 
-  archive.finalize();
+  void archive.finalize();
 
   return new Promise((resolve, reject) => {
     output.on('close', () => resolve(zipPath));
@@ -453,7 +509,23 @@ export const exportClassSummary = async (
     const tempDir = path.join(os.tmpdir(), `class-summary-${Date.now()}`);
     await fs.mkdir(tempDir, { recursive: true });
 
-    const pdfPath = await generateClassSummaryPDF(students, tempDir, options);
+    // Transform student data to match interface
+    const transformedStudents: StudentData[] = (students as any).map((student: any) => ({
+      ...student,
+      artifacts: (student.artifacts || []).map((a: any) => ({
+        ...a,
+        fileUrl: a.filePath || a.fileUrl || ''
+      })),
+      outcomeProgress: (student.outcomeProgress || []).map((op: any) => ({
+        currentLevel: op.currentLevel,
+        outcome: op.outcome ? {
+          description: op.outcome.description || '',
+          subject: op.outcome.subject
+        } : undefined
+      }))
+    }));
+    
+    const pdfPath = await generateClassSummaryPDF(transformedStudents, tempDir, options);
     const stats = await fs.stat(pdfPath);
 
     const totalArtifacts = students.reduce((sum, s) => sum + s.artifacts.length, 0);
@@ -488,7 +560,7 @@ export const exportClassSummary = async (
  * Generate class summary PDF for newsletters
  */
 const generateClassSummaryPDF = async (
-  students: any[],
+  students: StudentData[],
   tempDir: string,
   options: ExportOptions
 ): Promise<string> => {
@@ -509,8 +581,8 @@ const generateClassSummaryPDF = async (
   doc.moveDown(2);
 
   // Summary stats
-  const totalArtifacts = students.reduce((sum, s) => sum + s.artifacts.length, 0);
-  const totalProgress = students.reduce((sum, s) => sum + s.outcomeProgress.length, 0);
+  const totalArtifacts = students.reduce((sum, s) => sum + (s.artifacts?.length || 0), 0);
+  const totalProgress = students.reduce((sum, s) => sum + (s.outcomeProgress?.length || 0), 0);
 
   doc.fontSize(14).text('Class Overview', { underline: true });
   doc.moveDown();
@@ -524,7 +596,7 @@ const generateClassSummaryPDF = async (
   const subjectData: Record<string, { students: Set<string>; artifacts: number }> = {};
   
   for (const student of students) {
-    for (const progress of student.outcomeProgress) {
+    for (const progress of student.outcomeProgress || []) {
       const subject = progress.outcome?.subject || 'Other';
       if (!subjectData[subject]) {
         subjectData[subject] = { students: new Set<string>().add(student.id), artifacts: 0 };
@@ -533,12 +605,12 @@ const generateClassSummaryPDF = async (
       }
     }
     
-    for (const artifact of student.artifacts) {
+    for (const artifact of student.artifacts || []) {
       // Could connect to subject via outcomes, but for now count all
       Object.keys(subjectData).forEach(subject => {
         const subjectInfo = subjectData[subject];
         if (subjectInfo) {
-          subjectInfo.artifacts += artifact.outcomes?.some((o: any) => o.outcome?.subject === subject) ? 1 : 0;
+          subjectInfo.artifacts += artifact.outcomes?.some((o: { outcome?: { subject: string } }) => o.outcome?.subject === subject) ? 1 : 0;
         }
       });
     }
@@ -578,7 +650,4 @@ const generateClassSummaryPDF = async (
   });
 };
 
-export default {
-  exportStudentEvidence,
-  exportClassSummary
-};
+// Functions already exported above as named exports

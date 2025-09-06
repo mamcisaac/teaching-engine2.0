@@ -148,6 +148,14 @@ export const YearAtGlanceView: React.FC<YearAtGlanceViewProps> = ({
               key={subject}
               className="cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
               onClick={() => onSubjectClick?.(subject)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSubjectClick?.(subject);
+                }
+              }}
+              role="button"
+              tabIndex={0}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="font-medium text-gray-900">{subject}</span>

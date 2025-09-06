@@ -311,24 +311,4 @@ export const validateQuickNote = [
   validateStudentAccess
 ];
 
-// Type declarations for Request object extensions
-declare global {
-  namespace Express {
-    interface Request {
-      student?: {
-        id: string;
-        userId: number;
-        firstName: string;
-        lastName: string;
-        grade: number;
-        isActive: boolean;
-      };
-      outcomes?: Array<{
-        id: string;
-        code: string;
-        subject: string;
-        grade: number;
-      }>;
-    }
-  }
-}
+// Type declarations moved to /src/types/express.d.ts

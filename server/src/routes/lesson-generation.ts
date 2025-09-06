@@ -19,4 +19,4 @@ router.get('/status/:id', async (_req, res) => {
   });
 });
 
-export default router;
+export { router };

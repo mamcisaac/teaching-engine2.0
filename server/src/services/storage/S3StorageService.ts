@@ -3,6 +3,9 @@
  * Handles file storage operations with AWS S3 or S3-compatible services
  */
 
+import crypto from 'crypto';
+import path from 'path';
+
 import { 
   S3Client, 
   PutObjectCommand, 
@@ -13,9 +16,8 @@ import {
   ListObjectsV2Command,
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import crypto from 'crypto';
-import path from 'path';
-import { 
+
+import type { 
   IStorageService, 
   StorageResult, 
   FileInfo, 

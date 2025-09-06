@@ -4,10 +4,11 @@
  */
 
 import { PrismaClient } from '@teaching-engine/database';
-import { logger } from '../logger';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { body, param, validationResult } from 'express-validator';
+
+import { logger } from '../logger';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -27,6 +28,43 @@ interface MasteryUpdateRequest {
   currentLevel: 'NOT_YET' | 'APPROACHING' | 'MEETING' | 'EXCEEDING';
   areasForGrowth?: string;
   strengths?: string;
+  teacherNotes?: string;
+  strongestEvidence?: {
+    artifactId: string;
+    evidenceType: string;
+    description: string;
+  };
+}
+
+interface ProgressBySubject {
+  subject: string;
+  totalOutcomes: number;
+  mastery: {
+    NOT_YET: number;
+    APPROACHING: number;
+    MEETING: number;
+    EXCEEDING: number;
+  };
+  masteryPercentage?: number;
+  records?: any[];
+}
+
+interface ProgressRecord {
+  outcome: {
+    subject: string;
+  };
+  currentLevel: string;
+  totalEvidencePieces?: number;
+}
+
+interface BreakdownItem {
+  total_assessments: number;
+  evidenceSum?: number;
+  [key: string]: number | string | undefined | {
+    artifactId: string;
+    evidenceType: string;
+    description: string;
+  };
   teacherNotes?: string;
   strongestEvidence?: {
     artifactId: string;
@@ -274,8 +312,8 @@ router.post('/update',
         strongestEvidence: progress.strongestEvidence ? JSON.parse(progress.strongestEvidence as string) : null,
         parentShared: progress.parentShared,
         updatedAt: progress.updatedAt,
-        student: (progress as any).student,
-        outcome: (progress as any).outcome,
+        student: (progress as { student: unknown }).student,
+        outcome: (progress as { outcome: unknown }).outcome,
         isLevelChange
       });
     } catch (error: unknown) {
@@ -452,7 +490,7 @@ router.get('/student/:studentId',
       });
 
       // Build where clause for progress records
-      const where: any = {
+      const where: Record<string, unknown> = {
         studentId,
         isArchived: includeArchived === 'true' ? undefined : false
       };
@@ -504,7 +542,7 @@ router.get('/student/:studentId',
         : 0;
 
       // Group by subject
-      const progressBySubject = progressRecords.reduce((acc, record) => {
+      const progressBySubject = progressRecords.reduce((acc: Record<string, ProgressBySubject>, record: ProgressRecord) => {
         const subject = record.outcome.subject;
         if (!acc[subject]) {
           acc[subject] = {
@@ -521,24 +559,24 @@ router.get('/student/:studentId',
         }
 
         acc[subject].totalOutcomes++;
-        acc[subject].mastery[record.currentLevel as keyof typeof acc[typeof subject]['mastery']]++;
-        acc[subject].records.push({
-          id: record.id,
-          outcomeId: record.outcomeId,
+        acc[subject].mastery[record.currentLevel as keyof typeof acc[string]['mastery']]++;
+        acc[subject].records?.push({
+          id: (record as any).id,
+          outcomeId: (record as any).outcomeId || (record as any).outcome?.id,
           currentLevel: record.currentLevel,
-          previousLevel: record.previousLevel,
-          lastAssessmentDate: record.lastAssessmentDate,
+          previousLevel: (record as any).previousLevel,
+          lastAssessmentDate: (record as any).lastAssessmentDate,
           totalEvidencePieces: record.totalEvidencePieces,
-          areasForGrowth: record.areasForGrowth,
-          strengths: record.strengths,
-          teacherNotes: record.teacherNotes,
-          strongestEvidence: record.strongestEvidence ? JSON.parse(record.strongestEvidence as string) : null,
-          parentShared: record.parentShared,
+          areasForGrowth: (record as any).areasForGrowth,
+          strengths: (record as any).strengths,
+          teacherNotes: (record as any).teacherNotes,
+          strongestEvidence: (record as any).strongestEvidence ? JSON.parse((record as any).strongestEvidence) : null,
+          parentShared: (record as any).parentShared,
           outcome: record.outcome
         });
 
         return acc;
-      }, {} as Record<string, any>);
+      }, {} as Record<string, ProgressBySubject>);
 
       res.json({
         student,
@@ -598,7 +636,7 @@ router.get('/overview/:studentId',
       });
 
       // Build where clause for progress records
-      const where: any = {
+      const where: Record<string, unknown> = {
         studentId,
         isArchived: includeArchived === 'true' ? undefined : false
       };
@@ -650,7 +688,7 @@ router.get('/overview/:studentId',
         : 0;
 
       // Group by subject
-      const progressBySubject = progressRecords.reduce((acc, record) => {
+      const progressBySubject = progressRecords.reduce((acc: Record<string, ProgressBySubject>, record: ProgressRecord) => {
         const subject = record.outcome.subject;
         if (!acc[subject]) {
           acc[subject] = {
@@ -667,24 +705,24 @@ router.get('/overview/:studentId',
         }
 
         acc[subject].totalOutcomes++;
-        acc[subject].mastery[record.currentLevel as keyof typeof acc[typeof subject]['mastery']]++;
-        acc[subject].records.push({
-          id: record.id,
-          outcomeId: record.outcomeId,
+        acc[subject].mastery[record.currentLevel as keyof typeof acc[string]['mastery']]++;
+        acc[subject].records?.push({
+          id: (record as any).id,
+          outcomeId: (record as any).outcomeId || (record as any).outcome?.id,
           currentLevel: record.currentLevel,
-          previousLevel: record.previousLevel,
-          lastAssessmentDate: record.lastAssessmentDate,
+          previousLevel: (record as any).previousLevel,
+          lastAssessmentDate: (record as any).lastAssessmentDate,
           totalEvidencePieces: record.totalEvidencePieces,
-          areasForGrowth: record.areasForGrowth,
-          strengths: record.strengths,
-          teacherNotes: record.teacherNotes,
-          strongestEvidence: record.strongestEvidence ? JSON.parse(record.strongestEvidence as string) : null,
-          parentShared: record.parentShared,
+          areasForGrowth: (record as any).areasForGrowth,
+          strengths: (record as any).strengths,
+          teacherNotes: (record as any).teacherNotes,
+          strongestEvidence: (record as any).strongestEvidence ? JSON.parse((record as any).strongestEvidence) : null,
+          parentShared: (record as any).parentShared,
           outcome: record.outcome
         });
 
         return acc;
-      }, {} as Record<string, any>);
+      }, {} as Record<string, ProgressBySubject>);
 
       res.json({
         student,
@@ -874,7 +912,7 @@ router.get('/analytics',
       dateFilter.setDate(dateFilter.getDate() - parseInt(timeframe as string));
 
       // Build where clauses
-      const studentWhere: any = {
+      const studentWhere: Record<string, unknown> = {
         userId: userId,
         isActive: true
       };
@@ -883,7 +921,7 @@ router.get('/analytics',
         studentWhere.grade = parseInt(grade as string);
       }
 
-      const progressWhere: any = {
+      const progressWhere: Record<string, unknown> = {
         userId: userId,
         isArchived: includeArchived === 'true' ? undefined : false
       };
@@ -983,7 +1021,19 @@ router.get('/analytics',
             }
           }
         }).then(records => {
-          const breakdown: Record<string, any> = {};
+          const breakdown: Record<string, { 
+            subject: string; 
+            strand?: string;
+            meeting: number; 
+            total: number; 
+            percentage: number;
+            total_assessments?: number;
+            exceeding?: number;
+            approaching?: number;
+            not_yet?: number;
+            avg_evidence?: number;
+            evidenceSum?: number;
+          }> = {};
           
           records.forEach(record => {
             const key = `${record.outcome.subject || 'Unknown'}-${record.outcome.strand || 'Unknown'}`;
@@ -991,9 +1041,11 @@ router.get('/analytics',
               breakdown[key] = {
                 subject: record.outcome.subject || 'Unknown',
                 strand: record.outcome.strand || 'Unknown',
+                meeting: 0,
+                total: 0,
+                percentage: 0,
                 total_assessments: 0,
                 exceeding: 0,
-                meeting: 0,
                 approaching: 0,
                 not_yet: 0,
                 avg_evidence: 0,
@@ -1001,9 +1053,12 @@ router.get('/analytics',
               };
             }
             
-            breakdown[key].total_assessments++;
-            breakdown[key][record.currentLevel.toLowerCase()]++;
-            breakdown[key].evidenceSum += record.totalEvidencePieces || 0;
+            breakdown[key].total_assessments!++;
+            const level = record.currentLevel.toLowerCase();
+            if (level in breakdown[key]) {
+              (breakdown[key] as any)[level] = (((breakdown[key] as any)[level] as number) || 0) + 1;
+            }
+            breakdown[key].evidenceSum! += record.totalEvidencePieces || 0;
           });
           
           // Calculate averages
@@ -1064,7 +1119,7 @@ router.get('/analytics',
           recentUpdatesCount: recentUpdates.length
         },
         masteryStats,
-        subjectBreakdown: subjectBreakdown as any[],
+        subjectBreakdown: subjectBreakdown as any,
         recentUpdates: recentUpdates.map(update => ({
           id: update.id,
           studentName: `${update.student.firstName} ${update.student.lastName}`,

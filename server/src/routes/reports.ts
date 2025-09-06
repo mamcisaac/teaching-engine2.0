@@ -1,14 +1,14 @@
-import { logger } from '../logger';
 /**
  * Reports API Routes
  * PDF report generation for student progress
  */
 
 import { PrismaClient } from '@teaching-engine/database';
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import { param, query, validationResult } from 'express-validator';
 
+import { logger } from '../logger';
 import { reportGenerationRateLimit } from '../middleware/rateLimit/artifactRateLimit';
 import { generateStudentReport, generateClassReport } from '../services/reportGenerator';
 
@@ -23,7 +23,7 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
+const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   if (!req.user?.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
@@ -221,4 +221,4 @@ router.get('/available',
   }
 );
 
-export default router;
+export { router };

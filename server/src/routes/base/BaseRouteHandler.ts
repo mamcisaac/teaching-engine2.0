@@ -296,7 +296,7 @@ export abstract class BaseRouteHandler<T = unknown> {
   ): Promise<boolean> {
     try {
       // Type-safe access to prisma models
-      const model = (prisma as any)[tableName];
+      const model = (prisma as unknown as Record<string, { findFirst?: (args: { where: Record<string, unknown> }) => Promise<unknown> }>)[tableName];
       if (!model || typeof model.findFirst !== 'function') {
         this.logger.error(`Invalid table name: ${tableName}`);
         return false;

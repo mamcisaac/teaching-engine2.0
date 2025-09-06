@@ -31,7 +31,7 @@ export interface ImportResult {
   errors: Array<{
     row: number;
     error: string;
-    data: any;
+    data: unknown;
   }>;
   students: Array<{
     id: string;
@@ -111,8 +111,24 @@ export const importStudentsFromCSV = async (
         };
 
         // Check for duplicates
-        let existing: any = null;
-        if (!options.updateExisting) {
+        let existing: { id: string } | null = null;
+        if (options.updateExisting) {
+          existing = await prisma.student.findFirst({
+            where: {
+              userId,
+              OR: [
+                { studentNumber: studentData.studentNumber },
+                {
+                  AND: [
+                    { firstName: studentData.firstName },
+                    { lastName: studentData.lastName }
+                  ]
+                }
+              ]
+            },
+            select: { id: true }
+          });
+        } else {
           existing = await prisma.student.findFirst({
             where: {
               userId,
@@ -149,7 +165,7 @@ export const importStudentsFromCSV = async (
         if (options.updateExisting && existing) {
           // Update existing student
           student = await prisma.student.update({
-            where: { id: existing.id },
+            where: { id: (existing as { id: string }).id },
             data: {
               firstName: studentData.firstName,
               lastName: studentData.lastName,
@@ -310,8 +326,8 @@ export const exportStudentsToCSV = async (userId: number): Promise<string> => {
       student.lastName,
       student.studentNumber || '',
       student.grade.toString(),
-      (student.parentContact as any)?.studentEmail || '',
-      (student.parentContact as any)?.parentEmail || '',
+      (student.parentContact as { studentEmail?: string }).studentEmail || '',
+      (student.parentContact as { parentEmail?: string }).parentEmail || '',
       student.notes || ''
     ].map(field => {
       // Escape fields containing commas or quotes

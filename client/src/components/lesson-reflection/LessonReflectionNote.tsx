@@ -140,4 +140,3 @@ export const LessonReflectionNote: React.FC<LessonReflectionNoteProps> = ({
   );
 };
 
-export default LessonReflectionNote;

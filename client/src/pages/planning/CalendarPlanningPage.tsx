@@ -21,6 +21,14 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../styles/calendar.css';
 import type { CalendarEvent, ETFOLessonPlan, UnitPlan } from '../../types';
 
+// Pagination interface
+interface Pagination {
+  page: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
+}
+
 // We'll initialize this asynchronously
 let localizer: DateLocalizer | null = null;
 
@@ -161,7 +169,7 @@ export function CalendarPlanningPage(): JSX.Element {
   const { data: units = [] } = useQuery<UnitPlan[]>({
     queryKey: ['unit-plans'],
     queryFn: async (): Promise<UnitPlan[]> => {
-      const response = await apiClient.get<{unitPlans: UnitPlan[]; pagination: any}>('/api/unit-plans');
+      const response = await apiClient.get<{unitPlans: UnitPlan[]; pagination: Pagination}>('/api/unit-plans');
       return response.data.unitPlans || [];
     },
   });

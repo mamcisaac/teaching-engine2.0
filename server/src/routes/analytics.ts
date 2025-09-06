@@ -19,6 +19,57 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
+interface StudentEvidenceData {
+  studentId: string;
+  name: string;
+  OBSERVATION: number;
+  CONVERSATION: number;
+  PRODUCT: number;
+  total: number;
+}
+
+interface TriangulationAnalysis {
+  studentId: string;
+  name: string;
+  OBSERVATION: number;
+  CONVERSATION: number;
+  PRODUCT: number;
+  total: number;
+  balance: string;
+  needsAttention: boolean;
+  recommendations: string[];
+  percentages?: {
+    observation: number;
+    conversation: number;
+    product: number;
+  };
+}
+
+interface StudentMetric {
+  name: string;
+  artifactCount: number;
+  progressCount: number;
+  masteryAverage: number;
+  lastActivity?: string | Date;
+}
+
+interface TrendData {
+  date: string;
+  NOT_YET?: number;
+  APPROACHING?: number;
+  MEETING?: number;
+  EXCEEDING?: number;
+  total?: number;
+}
+
+interface AnalyticsData {
+  studentMetrics?: StudentMetric[];
+  triangulationAnalysis?: TriangulationAnalysis[];
+  trends?: {
+    byTime?: TrendData[];
+  };
+}
+
 const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   if (!req.user?.id) {
     res.status(401).json({ error: 'Authentication required' });
@@ -214,6 +265,7 @@ router.get('/evidence-triangulation', requireAuth, async (req: AuthenticatedRequ
       
       if (!acc[studentId]) {
         acc[studentId] = {
+          studentId,
           name: studentName,
           OBSERVATION: 0,
           CONVERSATION: 0,
@@ -222,13 +274,16 @@ router.get('/evidence-triangulation', requireAuth, async (req: AuthenticatedRequ
         };
       }
       
-      acc[studentId][item.evidenceType as keyof typeof acc[string]]++;
-      acc[studentId].total++;
+      const student = acc[studentId];
+      if (student) {
+        student[item.evidenceType as keyof Pick<StudentEvidenceData, 'OBSERVATION' | 'CONVERSATION' | 'PRODUCT'>]++;
+        student.total++;
+      }
       return acc;
-    }, {} as Record<string, any>);
+    }, {} as Record<string, StudentEvidenceData>);
 
     // Calculate triangulation balance for each student
-    const triangulationAnalysis = Object.values(studentEvidence).map((student: any) => {
+    const triangulationAnalysis = Object.values(studentEvidence).map((student: StudentEvidenceData): TriangulationAnalysis => {
       const total = student.total;
       if (total === 0) {
         return {
@@ -466,7 +521,7 @@ router.get('/progress-trends',
 /**
  * Helper function to generate class-level recommendations
  */
-function generateClassRecommendations(triangulationAnalysis: any[]): string[] {
+function generateClassRecommendations(triangulationAnalysis: TriangulationAnalysis[]): string[] {
   const recommendations = [];
   const totalStudents = triangulationAnalysis.length;
   const needingAttention = triangulationAnalysis.filter(s => s.needsAttention).length;
@@ -575,7 +630,7 @@ router.post('/export',
 /**
  * Helper function to generate CSV export
  */
-async function generateCSVExport(type: string, data: any, _userId: number): Promise<string> {
+async function generateCSVExport(type: string, data: AnalyticsData, _userId: number): Promise<string> {
   let csvContent = '';
   
   if (type === 'class-overview') {
@@ -583,7 +638,7 @@ async function generateCSVExport(type: string, data: any, _userId: number): Prom
     csvContent = 'Student,Artifacts,Assessments,Mastery Average,Last Activity\n';
     
     if (data.studentMetrics) {
-      data.studentMetrics.forEach((student: any) => {
+      data.studentMetrics.forEach((student: StudentMetric) => {
         const lastActivity = student.lastActivity ? new Date(student.lastActivity).toLocaleDateString() : 'N/A';
         csvContent += `"${student.name}",${student.artifactCount},${student.progressCount},${student.masteryAverage.toFixed(2)},"${lastActivity}"\n`;
       });
@@ -594,7 +649,7 @@ async function generateCSVExport(type: string, data: any, _userId: number): Prom
     csvContent = 'Student,Total Evidence,Observation %,Conversation %,Product %,Balance Status,Needs Attention\n';
     
     if (data.triangulationAnalysis) {
-      data.triangulationAnalysis.forEach((analysis: any) => {
+      data.triangulationAnalysis.forEach((analysis: TriangulationAnalysis) => {
         const obs = analysis.percentages?.observation || 0;
         const conv = analysis.percentages?.conversation || 0;
         const prod = analysis.percentages?.product || 0;
@@ -607,7 +662,7 @@ async function generateCSVExport(type: string, data: any, _userId: number): Prom
     csvContent = 'Date,Not Yet,Approaching,Meeting,Exceeding,Total\n';
     
     if (data.trends?.byTime) {
-      data.trends.byTime.forEach((trend: any) => {
+      data.trends.byTime.forEach((trend: TrendData) => {
         csvContent += `"${trend.date}",${trend.NOT_YET || 0},${trend.APPROACHING || 0},${trend.MEETING || 0},${trend.EXCEEDING || 0},${trend.total || 0}\n`;
       });
     }
@@ -626,7 +681,7 @@ async function generateCSVExport(type: string, data: any, _userId: number): Prom
 /**
  * Helper function to generate PDF export (basic implementation)
  */
-async function generatePDFExport(type: string, data: any, userId: number): Promise<Buffer> {
+async function generatePDFExport(type: string, data: AnalyticsData, userId: number): Promise<Buffer> {
   // This is a basic text-based PDF. In a real implementation, you'd use
   // a proper PDF library like PDFKit or similar for better formatting
   const pdfContent = `

@@ -257,4 +257,3 @@ export const QuickNoteEntry: React.FC<QuickNoteEntryProps> = ({
   );
 };
 
-export default QuickNoteEntry;

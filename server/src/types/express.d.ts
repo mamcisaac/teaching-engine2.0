@@ -29,6 +29,32 @@ declare global {
       code?: string;
       // Cache control
       cacheEnabled?: boolean;
+      // Student artifact upload properties
+      student?: {
+        id: string;
+        userId: number;
+        firstName: string;
+        lastName: string;
+        grade: number;
+        isActive: boolean;
+      };
+      outcomes?: Array<{
+        id: string;
+        code: string;
+        subject: string;
+        grade: number;
+      }>;
+      // File upload properties
+      uploadResults?: Array<{
+        originalName: string;
+        filename: string;
+        path: string;
+        url: string;
+        size: number;
+        mimeType: string;
+        category: string;
+        buffer: Buffer; // File buffer for processing
+      }>;
     }
     
     interface Response {

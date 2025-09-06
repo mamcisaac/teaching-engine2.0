@@ -198,4 +198,3 @@ export const DailyReflectionSummary: React.FC<DailyReflectionSummaryProps> = ({
   );
 };
 
-export default DailyReflectionSummary;

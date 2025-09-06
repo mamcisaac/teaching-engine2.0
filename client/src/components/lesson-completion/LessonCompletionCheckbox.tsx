@@ -139,4 +139,4 @@ export const LessonCompletionCheckbox: React.FC<LessonCompletionCheckboxProps> =
 };
 
 // Export a memoized version for performance
-export default React.memo(LessonCompletionCheckbox);
+export const MemoizedLessonCompletionCheckbox = React.memo(LessonCompletionCheckbox);

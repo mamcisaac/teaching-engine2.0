@@ -1,11 +1,15 @@
 import { apiClient } from '../../api/core/client';
 
+export interface ReportContent {
+  [key: string]: unknown;
+}
+
 export interface Report {
   id: string;
   title: string;
   type: 'PROGRESS' | 'PARENT' | 'TERM' | 'YEAR_END' | 'IEP' | 'ASSESSMENT_SUMMARY';
   studentId?: string;
-  content: any;
+  content: ReportContent;
   format: 'PDF' | 'HTML' | 'CSV';
   generatedBy: number;
   createdAt: string;
@@ -23,12 +27,16 @@ export interface GenerateReportDto {
   format: 'PDF' | 'HTML' | 'CSV';
 }
 
+export interface TemplateField {
+  [key: string]: unknown;
+}
+
 export interface ReportTemplate {
   id: string;
   name: string;
   type: string;
   description: string;
-  fields: any;
+  fields: TemplateField;
 }
 
 export const reportsApi = {

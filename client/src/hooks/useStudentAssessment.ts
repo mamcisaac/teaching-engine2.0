@@ -21,7 +21,9 @@ import type {
   CreateArtifactRequest,
   UpdateMasteryRequest,
   BatchMasteryUpdateRequest,
-  TagOutcomeRequest
+  TagOutcomeRequest,
+  StudentMasteryResponse,
+  SubjectProgress
 } from '../types/studentAssessment';
 
 // Query Keys
@@ -210,9 +212,9 @@ export const useCreateNote = () => {
     mutationFn: (data: CreateArtifactRequest) => artifactsAPI.createNote(data),
     onSuccess: (_result, _data) => {
       void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.artifacts.lists() });
-      if (data.studentId) {
+      if (_data.studentId) {
         void queryClient.invalidateQueries({ 
-          queryKey: QUERY_KEYS.students.artifacts(data.studentId) 
+          queryKey: QUERY_KEYS.students.artifacts(_data.studentId) 
         });
       }
     },
@@ -302,17 +304,17 @@ export const useUpdateMastery = () => {
     onSuccess: (_result, _data) => {
       // Invalidate all mastery-related queries for this student and outcome
       void queryClient.invalidateQueries({ 
-        queryKey: QUERY_KEYS.mastery.student(data.studentId) 
+        queryKey: QUERY_KEYS.mastery.student(_data.studentId) 
       });
       void queryClient.invalidateQueries({ 
-        queryKey: QUERY_KEYS.mastery.outcome(data.outcomeId) 
+        queryKey: QUERY_KEYS.mastery.outcome(_data.outcomeId) 
       });
       void queryClient.invalidateQueries({ 
         queryKey: QUERY_KEYS.mastery.analytics() 
       });
       // Update student summary
       void queryClient.invalidateQueries({ 
-        queryKey: QUERY_KEYS.students.summary(data.studentId) 
+        queryKey: QUERY_KEYS.students.summary(_data.studentId) 
       });
     },
   });
@@ -374,13 +376,13 @@ export const useOptimisticMasteryUpdate = () => {
       // Optimistically update
       queryClient.setQueryData(
         QUERY_KEYS.mastery.student(data.studentId),
-        (old: any) => {
+        (old: StudentMasteryResponse | undefined) => {
           if (!old) return old;
           
           // Update the specific progress record
-          const updatedProgressBySubject = old.progressBySubject.map((subject: any) => ({
+          const updatedProgressBySubject = old.progressBySubject.map((subject: SubjectProgress) => ({
             ...subject,
-            records: subject.records.map((record: any) => 
+            records: subject.records.map((record) => 
               record.outcomeId === data.outcomeId
                 ? {
                     ...record,

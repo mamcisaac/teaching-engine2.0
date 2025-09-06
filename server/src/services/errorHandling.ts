@@ -38,7 +38,7 @@ export class ConflictError extends Error {
   }
 }
 
-export function handleError(error: any) {
+export function handleError(error: Error & { statusCode?: number }) {
   if (error.statusCode) {
     return {
       status: error.statusCode,

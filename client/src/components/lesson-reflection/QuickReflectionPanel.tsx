@@ -109,4 +109,3 @@ export const QuickReflectionPanel: React.FC<QuickReflectionPanelProps> = ({
   );
 };
 
-export default QuickReflectionPanel;

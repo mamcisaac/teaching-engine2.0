@@ -4,6 +4,46 @@ import { toast } from 'sonner';
 
 import { useCreateETFOLessonPlan, useUpdateETFOLessonPlan, useDeleteETFOLessonPlan, type ETFOLessonPlan } from '../hooks/useETFOPlanning';
 
+// Type definitions
+interface UnitPlan {
+  id: string;
+  title: string;
+  longRangePlan: {
+    subject: string;
+    grade: number;
+  };
+}
+
+interface LessonPlan {
+  id: string;
+  title: string;
+  date: string;
+  duration: number;
+  learningGoals: string;
+  mindsOn: string;
+  action: string;
+  consolidation: string;
+  materials: string[];
+  isSubFriendly: boolean;
+  unitPlanId: string;
+  [key: string]: unknown;
+}
+
+interface FormData {
+  title: string;
+  date: string;
+  duration: number;
+  learningGoals: string;
+  mindsOn: string;
+  action: string;
+  consolidation: string;
+  materials: string[];
+  assessmentNotes: string;
+  accommodations: string[];
+  isSubFriendly: boolean;
+  subNotes: string;
+}
+
 // Simple lesson plans page connected to backend APIs
 export function SimpleLessonPlansPage(): React.ReactElement {
   const { unitId } = useParams<{ unitId: string }>();
@@ -27,7 +67,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
   });
 
   // Use hardcoded data for Emily's Grade 1 French Immersion
-  const unitPlans: Record<string, any> = {
+  const unitPlans: Record<string, UnitPlan> = {
     'unit-1': {
       id: 'unit-1',
       title: 'Bienvenue à l\'école!',
@@ -89,7 +129,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
   const unitPlan = unitPlans[unitId || 'unit-1'] || unitPlans['unit-1'];
 
   // Hardcoded lesson plans data
-  const lessonsByUnit: Record<string, any[]> = {
+  const lessonsByUnit: Record<string, LessonPlan[]> = {
     'unit-1': [
       {
         id: 'lesson-1-1',
@@ -102,6 +142,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Share portraits, goodbye song, celebrate first day (10 min)',
         materials: ['Name tags', 'Crayons', 'Paper', 'Bonjour song'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Focus on making students comfortable with French sounds'
       },
       {
@@ -115,6 +156,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Classroom jobs assignment, celebration dance (10 min)',
         materials: ['Poster board', 'Markers', 'Job chart', 'Music'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Maintain consistent French exposure, use gestures'
       },
       {
@@ -128,6 +170,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'French word scavenger hunt (10 min)',
         materials: ['Labels', 'Word cards', 'Tape', 'Markers'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Emphasize visual learning and repetition'
       },
       {
@@ -141,6 +184,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Calendar helper assignment (10 min)',
         materials: ['Calendar template', 'Day cards', 'Songs', 'Stickers'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Use songs and movement to reinforce learning'
       },
       {
@@ -154,6 +198,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Gallery walk and introductions (10 min)',
         materials: ['Art supplies', 'Name templates', 'French stickers'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Celebrate each child\'s identity in French'
       }
     ],
@@ -169,6 +214,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Present family members in French (10 min)',
         materials: ['Family photos', 'Tree template', 'Vocabulary cards'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Be sensitive to diverse family structures'
       },
       {
@@ -182,6 +228,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Feelings check-in routine established (10 min)',
         materials: ['Emotion cards', 'Mirror', 'Wheel template'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Use facial expressions and gestures'
       },
       {
@@ -195,6 +242,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Portrait gallery presentation (10 min)',
         materials: ['Mirrors', 'Art supplies', 'Body part labels'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Focus on positive self-image'
       }
     ],
@@ -210,6 +258,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Share autumn discoveries (10 min)',
         materials: ['Leaves', 'Glue', 'Construction paper', 'Labels'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Connect to local environment'
       },
       {
@@ -223,6 +272,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Card exchange activity (10 min)',
         materials: ['Card stock', 'Decorations', 'French phrases'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Include diverse cultural celebrations'
       }
     ],
@@ -238,6 +288,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Pet show and tell (10 min)',
         materials: ['Animal pictures', 'Care charts', 'Stuffed animals'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Include pets and animals from home'
       },
       {
@@ -251,6 +302,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Habitat presentations (10 min)',
         materials: ['Boxes', 'Natural materials', 'Animal figures'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Focus on Canadian animals'
       }
     ],
@@ -266,6 +318,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Virtual tour recording (10 min)',
         materials: ['Map template', 'Photos', 'Labels'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Include all school community members'
       },
       {
@@ -279,6 +332,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Thank you cards creation (10 min)',
         materials: ['Costume pieces', 'Interview cards', 'Art supplies'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Prepare questions in advance'
       }
     ],
@@ -294,6 +348,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Plant care schedule creation (10 min)',
         materials: ['Seeds', 'Pots', 'Soil', 'Charts'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Set up daily watering routine'
       },
       {
@@ -307,6 +362,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Garden journal setup (10 min)',
         materials: ['Graph paper', 'Vegetable cards', 'Samples'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Connect to healthy eating'
       }
     ],
@@ -322,6 +378,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Summer songs celebration (10 min)',
         materials: ['Poster board', 'Magazines', 'Markers'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Celebrate year-long French journey'
       },
       {
@@ -335,6 +392,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         consolidation: 'Celebration and certificates (10 min)',
         materials: ['Photos', 'Memory book', 'Certificates'],
         isSubFriendly: true,
+        unitPlanId: 'unit-1',
         subNotes: 'Celebrate every student\'s growth'
       }
     ]
@@ -342,7 +400,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
 
   const lessons = lessonsByUnit[unitId || 'unit-1'] || lessonsByUnit['unit-1'];
   const isLoading = false;
-  const error: Error | null = null;
+  const _error: Error | null = null;
 
   // Mutations
   const createMutation = useCreateETFOLessonPlan();
@@ -392,7 +450,10 @@ export function SimpleLessonPlansPage(): React.ReactElement {
     try {
       await updateMutation.mutateAsync({
         id: editingLesson.id,
-        data: formData,
+        data: {
+          ...formData,
+          unitPlanId: editingLesson.unitPlanId,
+        },
       });
       toast.success('Lesson plan updated successfully!');
       setShowEditModal(false);
@@ -577,47 +638,8 @@ export function SimpleLessonPlansPage(): React.ReactElement {
         </button>
       </div>
 
-      {/* Always show lessons, no empty state */}
-      {false ? (
-        <div style={{
-          textAlign: 'center',
-          padding: '64px',
-          backgroundColor: '#f9fafb',
-          borderRadius: '12px',
-          border: '2px dashed #e5e7eb'
-        }}>
-          <h3 style={{ 
-            fontSize: '24px', 
-            color: '#6b7280', 
-            marginBottom: '16px' 
-          }}>
-            No lesson plans yet
-          </h3>
-          <p style={{ 
-            fontSize: '16px', 
-            color: '#9ca3af', 
-            marginBottom: '24px' 
-          }}>
-            Create your first lesson plan to start organizing your daily teaching
-          </p>
-          <button
-            onClick={() => setShowCreateModal(true)}
-            style={{
-              backgroundColor: '#4f46e5',
-              color: 'white',
-              padding: '12px 24px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '16px',
-              fontWeight: '500',
-              cursor: 'pointer'
-            }}
-          >
-            Create Your First Lesson
-          </button>
-        </div>
-      ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      {/* Lessons list */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           {lessons.map((lesson) => {
             const lessonDate = new Date(lesson.date);
             const weekday = lessonDate.toLocaleDateString('en-US', { weekday: 'long' });
@@ -847,8 +869,7 @@ export function SimpleLessonPlansPage(): React.ReactElement {
               </div>
             );
           })}
-        </div>
-      )}
+      </div>
 
       {/* Create Lesson Modal */}
       {showCreateModal && (
@@ -894,8 +915,8 @@ function LessonFormModal({
   isSubmitting 
 }: {
   title: string;
-  formData: any;
-  setFormData: (data: any) => void;
+  formData: FormData;
+  setFormData: (data: FormData) => void;
   onSubmit: (e: React.FormEvent) => void;
   onCancel: () => void;
   isSubmitting: boolean;

@@ -131,7 +131,7 @@ export function CoveragePage(): React.ReactElement {
   const [selectedForBulk, setSelectedForBulk] = useState<Set<string>>(new Set());
 
   // Fetch expectations
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error: _error } = useQuery({
     queryKey: ['curriculum-coverage', 'uncovered', subject, showUncoveredOnly],
     queryFn: async () => {
       const params = new URLSearchParams();
