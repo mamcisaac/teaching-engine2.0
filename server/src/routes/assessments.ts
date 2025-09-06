@@ -47,7 +47,7 @@ router.get('/',
   validateRequest,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -117,7 +117,7 @@ router.get('/:id',
   validateRequest,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -163,7 +163,7 @@ router.post('/',
   validateRequest,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -231,7 +231,7 @@ router.put('/:id',
   validateRequest,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -282,7 +282,7 @@ router.delete('/:id',
   validateRequest,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -326,7 +326,7 @@ router.post('/bulk',
   validateRequest,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -378,7 +378,7 @@ router.get('/stats/evidence-balance',
   validateRequest,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;

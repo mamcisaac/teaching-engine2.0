@@ -245,7 +245,7 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   }
 
   const token = req.headers['x-csrf-token'] ?? (req.body as Record<string, unknown>)._csrf as string;
-  const sessionToken = (req as { session?: { csrfToken?: string } }).session?.csrfToken;
+  const sessionToken = (req as { session?: { csrfToken?: string } }).session.csrfToken;
 
   if (token === null || token === '' || sessionToken === null || sessionToken === '' || token !== sessionToken) {
     return res.status(403).json({

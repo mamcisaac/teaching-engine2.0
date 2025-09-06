@@ -52,7 +52,7 @@ export function generateToken(user: {
     userId: user.id.toString(),
     email: user.email,
     role: user.role,
-    organizationId: user.organizationId?.toString(),
+    organizationId: user.organizationId.toString(),
     permissions: user.permissions ?? [],
   };
 
@@ -238,7 +238,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
           path: req.path,
           hasToken: token,
           authHeader: req.headers.authorization,
-          tokenLength: token?.length,
+          tokenLength: token.length,
         },
         'Authenticate middleware called',
       );

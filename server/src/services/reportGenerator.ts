@@ -123,7 +123,7 @@ export const generateStudentReport = async (
     generateRecentArtifacts(doc, student.artifacts as ArtifactItem[]);
   }
   
-  generateTeacherComments(doc, (progress as any).filter((p: any) => p.teacherNotes).map((p: any) => ({
+  generateTeacherComments(doc, (progress as Array<Record<string, unknown>>).filter((p: Record<string, unknown>) => p.teacherNotes).map((p: Record<string, unknown>) => ({
     currentLevel: p.currentLevel || 'Not assessed',
     outcome: p.outcome || { description: '', subject: '' },
     teacherNotes: p.teacherNotes
@@ -281,7 +281,7 @@ function generateProgressChart(doc: PDFKitDocument, progress: Array<{outcome: {s
   
   doc.fontSize(11);
   for (const [subject, items] of Object.entries(bySubject)) {
-    const levels = countLevels(items.filter((item: any) => item.currentLevel).map((item: any) => ({ currentLevel: item.currentLevel || 'Not assessed' })));
+    const levels = countLevels(items.filter((item: Record<string, unknown>) => item.currentLevel).map((item: Record<string, unknown>) => ({ currentLevel: String(item.currentLevel) || 'Not assessed' })));
     const percent = Math.round((levels.MEETING + levels.EXCEEDING) / levels.total * 100) || 0;
     doc.text(`${subject}: ${percent}% meeting or exceeding expectations`);
   }

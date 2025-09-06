@@ -38,7 +38,7 @@ export class LocalStorageService implements IStorageService {
     this.baseUrl = config.local.baseUrl;
 
     // Ensure base directory exists
-    this.ensureDirectoryExists(this.basePath);
+    void this.ensureDirectoryExists(this.basePath);
   }
 
   private async ensureDirectoryExists(dirPath: string): Promise<void> {
@@ -77,7 +77,7 @@ export class LocalStorageService implements IStorageService {
     _mimeType: string,
     options?: UploadOptions
   ): Promise<StorageResult> {
-    const filename = options?.filename || this.generateSafeFilename(originalName, options?.folder);
+    const filename = options.filename || this.generateSafeFilename(originalName, options.folder);
     const absolutePath = this.getAbsolutePath(filename);
     
     // Ensure directory exists
@@ -93,7 +93,7 @@ export class LocalStorageService implements IStorageService {
       path: filename,
       url: this.getPublicUrl(filename),
       size: stats.size,
-      metadata: options?.metadata
+      metadata: options.metadata
     };
   }
 

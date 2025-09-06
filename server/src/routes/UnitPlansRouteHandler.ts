@@ -324,7 +324,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     if (unitPlan.isLocked) {
       throw new Error(
         `🔒 PROTECTED: Unit plan "${unitPlan.title}" is locked and cannot be modified. ` +
-        `Locked on: ${unitPlan.lockedAt?.toISOString()} ` +
+        `Locked on: ${unitPlan.lockedAt.toISOString()} ` +
         `Reason: ${unitPlan.lockedReason || 'Certified as perfect'} ` +
         `See UNIT_PLANS_PROTECTION_PROTOCOL.md for override procedures.`
       );
@@ -395,7 +395,7 @@ where.endDate = { lte: new Date(String(endDate)) };
     if (unitPlan.isLocked) {
       throw new Error(
         `🔒 PROTECTED: Unit plan "${unitPlan.title}" is locked and cannot be deleted. ` +
-        `Locked on: ${unitPlan.lockedAt?.toISOString()} ` +
+        `Locked on: ${unitPlan.lockedAt.toISOString()} ` +
         `Reason: ${unitPlan.lockedReason || 'Certified as perfect'} ` +
         `See UNIT_PLANS_PROTECTION_PROTOCOL.md for override procedures.`
       );

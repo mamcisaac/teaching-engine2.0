@@ -110,7 +110,7 @@ export const outcomeTaggingValidation = [
 export const validateStudentAccess = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { studentId } = req.body;
-    const userId = req.user?.id;
+    const userId = req.user.id;
 
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });

@@ -243,8 +243,8 @@ prompt += `Curriculum Expectations: ${reqs.curriculumExpectations.join(', ')}\n`
         learningGoals: activity.learningGoals ?? [],
         assessmentSuggestions: activity.assessmentSuggestions ?? [],
         differentiation: {
-          support: activity.differentiation?.support ?? [],
-          extension: activity.differentiation?.extension ?? [],
+          support: activity.differentiation.support ?? [],
+          extension: activity.differentiation.extension ?? [],
         },
         safetyConsiderations: activity.safetyConsiderations ?? undefined,
         technologyRequirements: activity.technologyRequirements ?? undefined,

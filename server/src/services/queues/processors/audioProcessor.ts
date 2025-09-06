@@ -37,7 +37,7 @@ export interface AudioJobData {
 export interface AudioJobResult {
   waveformUrl?: string;
   duration?: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   processingTime: number;
 }
 
@@ -65,7 +65,7 @@ export const processAudioJob = async (job: Job<AudioJobData>): Promise<AudioJobR
     await job.progress(10);
     
     // Get audio metadata
-    const metadata = await new Promise<any>((resolve, reject) => {
+    const metadata = await new Promise<unknown>((resolve, reject) => {
       ffmpeg(tempAudioPath)
         .ffprobe((err, data) => {
           if (err) reject(err);
@@ -76,13 +76,13 @@ export const processAudioJob = async (job: Job<AudioJobData>): Promise<AudioJobR
     await job.progress(30);
     
     // Extract audio information
-    const audioStream = metadata.streams.find((s: any) => s.codec_type === 'audio');
+    const audioStream = (metadata as { streams: Array<{ codec_type: string; sample_rate?: string; channels?: string; codec_name?: string }> }).streams.find((s: { codec_type: string }) => s.codec_type === 'audio');
     
-    const duration = parseFloat(metadata.format.duration || '0');
-    const bitrate = parseInt(metadata.format.bit_rate || '0');
-    const sampleRate = parseInt(audioStream?.sample_rate || '0');
-    const channels = parseInt(audioStream?.channels || '0');
-    const codecName = audioStream?.codec_name;
+    const duration = parseFloat((metadata as any).format.duration || '0');
+    const bitrate = parseInt((metadata as any).format.bit_rate || '0');
+    const sampleRate = parseInt((audioStream as any).sample_rate || '0');
+    const channels = parseInt((audioStream as any).channels || '0');
+    const codecName = (audioStream as any).codec_name;
     
     await job.progress(50);
     
@@ -140,7 +140,7 @@ export const processAudioJob = async (job: Job<AudioJobData>): Promise<AudioJobR
       sampleRate,
       channels,
       codec: codecName,
-      format: metadata.format.format_name,
+      format: (metadata as any).format.format_name,
       hasWaveform: !!waveformUrl,
       fileSize: audioBuffer.length,
       processedAt: new Date().toISOString()
@@ -223,4 +223,4 @@ function getFileExtension(mimeType: string): string {
   return extensions[mimeType] || 'audio';
 }
 
-export default processAudioJob;
+// Function already exported above

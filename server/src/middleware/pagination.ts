@@ -6,19 +6,20 @@
 import type { Request, Response, NextFunction, Router, RequestHandler } from 'express';
 
 import { logger } from '../logger';
-
-// Interface for router with overridable get method
-interface ExtendableRouter {
-  get: (path: any, ...handlers: any[]) => any;
-}
 import type {
   PaginationOptions,
-  PaginatedResponse} from '../utils/pagination';
+  PaginatedResponse
+} from '../utils/pagination';
 import {
   getPaginationParams,
   createPaginatedResponse,
   setPaginationHeaders,
 } from '../utils/pagination';
+
+// Interface for router with overridable get method
+interface ExtendableRouter {
+  get: (path: string, ...handlers: RequestHandler[]) => Router;
+}
 
 // Extend Express Request type to include pagination
 declare global {
@@ -113,10 +114,10 @@ export function withPagination<T extends { id: number }>(
       const pagination = req.pagination || getPaginationParams(req);
 
       return repository.findMany({
-        where: options?.where,
-        include: options?.include,
+        where: options.where,
+        include: options.include,
         pagination,
-        searchFields: options?.searchFields ?? defaultSearchFields,
+        searchFields: options.searchFields ?? defaultSearchFields,
       });
     },
 
@@ -130,8 +131,8 @@ export function withPagination<T extends { id: number }>(
       const { cursor, limit = '20' } = req.query as { cursor?: string; limit?: string };
 
       return repository.findManyCursor({
-        where: options?.where,
-        include: options?.include,
+        where: options.where,
+        include: options.include,
         cursor: cursor !== null && cursor !== undefined && cursor !== '' ? parseInt(cursor) : undefined,
         limit: parseInt(limit || '20'),
       });

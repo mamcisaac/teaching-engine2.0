@@ -7,20 +7,20 @@
 // Comprehensive type fixes to resolve all TypeScript compilation errors
 
 // Export type utilities
-export type SafeAny = any;
-export type ProgressRecord = any;  
-export type StudentData = any;
-export type ArtifactData = any;
-export type ProgressItem = any;
-export type LongRangePlan = any;
+export type SafeAny = unknown;
+export type ProgressRecord = unknown;  
+export type StudentData = unknown;
+export type ArtifactData = unknown;
+export type ProgressItem = unknown;
+export type LongRangePlan = unknown;
 
 // Helper for comprehensive type casting
-export function fixTypes<T>(obj: any): T {
+export function fixTypes<T>(obj: unknown): T {
   return obj as T;
 }
 
 // Safe type assertion for Prisma results
-export function safeCast<T>(obj: any): T {
+export function safeCast<T>(obj: unknown): T {
   return obj as T;
 }
 

@@ -38,7 +38,7 @@ export interface VideoJobResult {
   thumbnailUrl?: string;
   duration?: number;
   dimensions?: { width: number; height: number };
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   processingTime: number;
 }
 
@@ -66,7 +66,7 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
     await job.progress(10);
     
     // Get video metadata
-    const metadata = await new Promise<any>((resolve, reject) => {
+    const metadata = await new Promise<unknown>((resolve, reject) => {
       ffmpeg(tempVideoPath)
         .ffprobe((err, data) => {
           if (err) reject(err);
@@ -77,14 +77,14 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
     await job.progress(30);
     
     // Extract video information
-    const videoStream = metadata.streams.find((s: any) => s.codec_type === 'video');
-    const audioStream = metadata.streams.find((s: any) => s.codec_type === 'audio');
+    const videoStream = (metadata as { streams: Array<{ codec_type: string }> }).streams.find((s: { codec_type: string }) => s.codec_type === 'video');
+    const audioStream = (metadata as { streams: Array<{ codec_type: string }> }).streams.find((s: { codec_type: string }) => s.codec_type === 'audio');
     
-    const duration = parseFloat(metadata.format.duration || '0');
-    const width = videoStream?.width || 0;
-    const height = videoStream?.height || 0;
-    const frameRate = parseFrameRate(videoStream?.r_frame_rate);
-    const bitrate = parseInt(metadata.format.bit_rate || '0');
+    const duration = parseFloat((metadata as any).format.duration || '0');
+    const width = (videoStream as any).width || 0;
+    const height = (videoStream as any).height || 0;
+    const frameRate = parseFrameRate((videoStream as any).r_frame_rate);
+    const bitrate = parseInt((metadata as any).format.bit_rate || '0');
     
     // Determine thumbnail extraction time (10% of video or 1 second)
     const thumbnailTime = duration > 10 ? Math.min(duration * 0.1, 10) : 1;
@@ -139,9 +139,9 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
           frameRate,
           bitrate,
           hasAudio: !!audioStream,
-          audioCodec: audioStream?.codec_name,
-          videoCodec: videoStream?.codec_name,
-          format: metadata.format.format_name,
+          audioCodec: (audioStream as any).codec_name,
+          videoCodec: (videoStream as any).codec_name,
+          format: (metadata as any).format.format_name,
           processedAt: new Date().toISOString()
         }),
         processingStatus: 'COMPLETED',
@@ -168,7 +168,7 @@ export const processVideoJob = async (job: Job<VideoJobData>): Promise<VideoJobR
       metadata: {
         frameRate,
         bitrate,
-        format: metadata.format.format_name
+        format: (metadata as any).format.format_name
       },
       processingTime
     };
@@ -267,7 +267,7 @@ export const extractVideoFrames = async (
   const frames: string[] = [];
   
   // Get video duration
-  const metadata = await new Promise<any>((resolve, reject) => {
+  const metadata = await new Promise<unknown>((resolve, reject) => {
     ffmpeg(videoPath)
       .ffprobe((err, data) => {
         if (err) reject(err);
@@ -275,7 +275,7 @@ export const extractVideoFrames = async (
       });
   });
   
-  const duration = parseFloat(metadata.format.duration || '0');
+  const duration = parseFloat((metadata as any).format.duration || '0');
   const interval = duration / (count + 1);
   
   // Extract frames at regular intervals

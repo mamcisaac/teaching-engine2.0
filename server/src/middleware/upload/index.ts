@@ -3,12 +3,6 @@
  * Exports all upload-related middleware and utilities
  */
 
-// Core upload middleware
-export * from '../uploadMiddleware';
-
-// Student artifact specific middleware
-export * from '../studentArtifactUpload';
-
 // Re-export file processing service
 export { getFileProcessingService, FileProcessingService } from '../../services/fileProcessingService';
 export type { FileMetadata } from '../../services/fileProcessingService';

@@ -32,7 +32,7 @@ interface AuthenticatedRequest extends Request {
 }
 
 const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  if (!req.user?.id) {
+  if (!req.user.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
   }
@@ -68,7 +68,7 @@ router.get('/student/:id',
 
     try {
       const studentId = req.params.id;
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -169,7 +169,7 @@ router.get('/class-summary',
     }
 
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -235,7 +235,7 @@ router.get('/options',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -323,7 +323,7 @@ router.post('/bulk',
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const { studentIds, options } = req.body;
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -399,7 +399,7 @@ Students Exported: ${successCount}/${students.length}
 
 Export Results:
 ${results.map(r => 
-  `• ${students.find(s => s.id === r.studentId)?.firstName} ${students.find(s => s.id === r.studentId)?.lastName}: ${r.success ? 'SUCCESS' : 'FAILED - ' + r.error}`
+  `• ${students.find(s => s.id === r.studentId).firstName} ${students.find(s => s.id === r.studentId).lastName}: ${r.success ? 'SUCCESS' : 'FAILED - ' + r.error}`
 ).join('\n')}
       `;
       

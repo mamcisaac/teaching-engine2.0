@@ -24,7 +24,7 @@ interface AuthenticatedRequest extends Request {
 }
 
 const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  if (!req.user?.id) {
+  if (!req.user.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
   }
@@ -55,7 +55,7 @@ router.get('/student/:id',
 
     try {
       const studentId = req.params.id;
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -124,7 +124,7 @@ router.get('/class',
     }
 
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -164,7 +164,7 @@ router.get('/available',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;

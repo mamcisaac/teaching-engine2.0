@@ -92,7 +92,7 @@ describe('AIService Integration Tests', () => {
       expect(result.duration).toBe(45);
 
       // Each activity should have proper structure
-      result.activities.forEach((activity: any) => {
+      result.activities.forEach(.*: unknown) => {
         expect(activity).toMatchObject({
           name: expect.any(String),
           duration: expect.any(Number),
@@ -185,7 +185,7 @@ describe('AIService Integration Tests', () => {
       const failed = results.filter(r => r.status === 'rejected');
       if (failed.length > 0) {
         // Verify it's a rate limit error
-        const rateLimitErrors = failed.filter((r: any) => 
+        const rateLimitErrors = failed.filter(.*: unknown) => 
           r.reason?.message?.includes('rate') || 
           r.reason?.message?.includes('limit')
         );
@@ -283,7 +283,7 @@ describe('AIService Integration Tests', () => {
         expect(contentText).toContain('equal parts');
 
         // Activities should address the standards
-        expect(result.activities.some((a: any) => 
+        expect(.*: unknown) => 
           a.description.toLowerCase().includes('fraction') || 
           a.description.toLowerCase().includes('part')
         )).toBe(true);

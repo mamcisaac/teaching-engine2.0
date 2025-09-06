@@ -110,7 +110,7 @@ export class WebFetch {
     
     if (selector !== undefined && selector !== '') {
       const element = document.querySelector(selector);
-      return element?.textContent?.trim() ?? '';
+      return element.textContent.trim() ?? '';
     }
     
     // Remove script and style elements
@@ -119,7 +119,7 @@ export class WebFetch {
  el.remove(); 
 });
     
-    return document.body.textContent?.trim() ?? '';
+    return document.body.textContent.trim() ?? '';
   }
   
   // Utility method to extract meta information

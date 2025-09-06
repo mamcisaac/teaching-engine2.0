@@ -71,7 +71,7 @@ export const requestLoggingMiddleware = (
     query: sanitizeData(req.query),
     ip: req.ip,
     userAgent: req.get('user-agent'),
-    userId: req.user?.id,
+    userId: req.user.id,
   };
 
   // Don't log body for GET requests or file uploads
@@ -97,7 +97,7 @@ export const requestLoggingMiddleware = (
       path: req.path,
       statusCode: res.statusCode,
       duration,
-      userId: req.user?.id,
+      userId: req.user.id,
     };
 
     // Add response size if available
@@ -149,8 +149,8 @@ export const auditLog = (req: LoggedRequest, event: AuditEvent): void => {
     timestamp: new Date().toISOString(),
     requestId: req.id,
     eventType: event.eventType,
-    userId: event.userId ?? req.user?.id,
-    userEmail: event.userEmail ?? req.user?.email,
+    userId: event.userId ?? req.user.id,
+    userEmail: event.userEmail ?? req.user.email,
     targetResource: event.targetResource,
     targetId: event.targetId,
     metadata: sanitizeData(event.metadata),

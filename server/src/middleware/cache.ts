@@ -63,7 +63,7 @@ const stats = {
  * Generate cache key from request
  */
 function generateCacheKey(req: Request, prefix = ''): string {
-  const userId = req.user?.id ?? 'anonymous';
+  const userId = req.user.id ?? 'anonymous';
   const {method} = req;
   const {path} = req;
   const query = JSON.stringify(req.query);

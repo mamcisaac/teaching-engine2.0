@@ -27,7 +27,7 @@ export interface ImageJobData {
 export interface ImageJobResult {
   thumbnailUrl?: string;
   dimensions?: { width: number; height: number };
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   processingTime: number;
 }
 
@@ -200,7 +200,7 @@ export const generateResponsiveThumbnails = async (
  */
 export const extractExifData = async (
   imageBuffer: Buffer
-): Promise<Record<string, any>> => {
+): Promise<Record<string, unknown>> => {
   try {
     const metadata = await sharp(imageBuffer).metadata();
     

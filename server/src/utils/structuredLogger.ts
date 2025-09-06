@@ -50,10 +50,10 @@ const logFormat = format.combine(
       timestamp: info.timestamp,
       level: info.level,
       message: info.message,
-      correlationId: context?.correlationId ?? 'no-correlation-id',
-      ...(context?.userId !== undefined ? { userId: context.userId } : {}),
-      ...(context?.requestId !== undefined && context.requestId !== '' ? { requestId: context.requestId } : {}),
-      ...(context?.sessionId !== undefined && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
+      correlationId: context.correlationId ?? 'no-correlation-id',
+      ...(context.userId !== undefined ? { userId: context.userId } : {}),
+      ...(context.requestId !== undefined && context.requestId !== '' ? { requestId: context.requestId } : {}),
+      ...(context.sessionId !== undefined && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
       ...(info.duration !== undefined ? { duration: info.duration } : {}),
       ...(info.meta !== undefined ? { meta: info.meta } : {}),
       ...(info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
@@ -66,7 +66,7 @@ const logFormat = format.combine(
     };
 
     // Add trace context if available
-    if (context?.traceId !== undefined && context.traceId !== '') {
+    if (context.traceId !== undefined && context.traceId !== '') {
       (log as Record<string, unknown>).trace = {
         traceId: context.traceId,
         spanId: context.spanId,
@@ -128,14 +128,14 @@ export class StructuredLogger {
    */
   log(level: LogLevel, message: string, meta?: LogMeta): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime !== undefined
+    const duration = context.startTime !== undefined
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
     logger.log(level, message, {
       meta,
       duration,
-      ...(meta?.error !== undefined ? { error: meta.error } : {}),
+      ...(meta.error !== undefined ? { error: meta.error } : {}),
     });
   }
 
@@ -210,7 +210,7 @@ export class StructuredLogger {
    */
   endSpan(spanId: string, name: string): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context?.startTime !== undefined
+    const duration = context.startTime !== undefined
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
@@ -244,8 +244,8 @@ export function correlationMiddleware(req: Request, res: Response, next: NextFun
     spanId: spanId !== undefined ? spanId : uuidv4(),
     parentSpanId,
     startTime: performance.now(),
-    userId: (req as Request & { user?: { id: number } }).user?.id,
-    sessionId: (req as Request & { session?: { id: string } }).session?.id,
+    userId: (req as Request & { user?: { id: number } }).user.id,
+    sessionId: (req as Request & { session?: { id: string } }).session.id,
     method: req.method,
     path: req.path,
     ip: req.ip,

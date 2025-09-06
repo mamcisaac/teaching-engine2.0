@@ -24,7 +24,7 @@ interface AuthenticatedRequest extends Request {
 }
 
 const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  if (!req.user?.id) {
+  if (!req.user.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
   }
@@ -65,7 +65,7 @@ router.post('/:id/reflection',
 
     try {
       const lessonId = req.params.id;
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -147,7 +147,7 @@ router.get('/:id/reflection',
         return;
       }
       
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -202,7 +202,7 @@ router.get('/daily/:date',
         return;
       }
       
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -280,7 +280,7 @@ router.get('/summary/:date',
         return;
       }
       
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -355,7 +355,7 @@ router.delete('/:id/reflection',
         return;
       }
       
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -398,7 +398,7 @@ router.get('/',
     try {
       const lessonIds = req.query.lessonIds as string[] | undefined;
       
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;

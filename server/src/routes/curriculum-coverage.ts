@@ -45,7 +45,7 @@ interface UncoveredExpectation {
  */
 router.get('/metrics', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    if (!req.user?.id) {
+    if (!req.user.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -127,7 +127,7 @@ const uncoveredQuerySchema = z.object({
 
 router.get('/uncovered', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    if (!req.user?.id) {
+    if (!req.user.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -215,7 +215,7 @@ router.get('/uncovered', async (req: AuthenticatedRequest, res: Response) => {
  */
 router.get('/by-subject/:subject', async (req: AuthenticatedRequest, res: Response) => {
   try {
-    if (!req.user?.id) {
+    if (!req.user.id) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -336,7 +336,7 @@ router.post('/plan-lesson',
   validateRequest(planLessonSchema),
   async (req: AuthenticatedRequest, res: Response) => {
     try {
-      if (!req.user?.id) {
+      if (!req.user.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -397,7 +397,7 @@ router.post('/bulk-plan-lessons',
   validateRequest(bulkPlanLessonsSchema),
   async (req: AuthenticatedRequest, res: Response) => {
     try {
-      if (!req.user?.id) {
+      if (!req.user.id) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

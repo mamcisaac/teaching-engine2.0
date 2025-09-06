@@ -33,12 +33,12 @@ const pinoConfig: pino.LoggerOptions = {
         method: request.method,
         url: request.url,
         headers: {
-          'user-agent': request.headers?.['user-agent'],
-          'content-type': request.headers?.['content-type'],
-          authorization: request.headers?.authorization !== null ? '[REDACTED]' : undefined,
+          'user-agent': request.headers['user-agent'],
+          'content-type': request.headers['content-type'],
+          authorization: request.headers.authorization !== null ? '[REDACTED]' : undefined,
         },
-        remoteAddress: request.remoteAddress ?? request.connection?.remoteAddress,
-        remotePort: typeof request.remotePort === 'number' ? request.remotePort : request.connection?.remotePort,
+        remoteAddress: request.remoteAddress ?? request.connection.remoteAddress,
+        remotePort: typeof request.remotePort === 'number' ? request.remotePort : request.connection.remotePort,
       };
     },
 

@@ -83,7 +83,7 @@ export class PDFParser extends CurriculumParser {
     // Try to extract from PDF metadata
     if (pdfData !== null && typeof pdfData === 'object' && 'info' in pdfData) {
       const {info} = (pdfData as { info?: { Title?: string; Subject?: string } });
-      metadata.version = info?.Title ?? info?.Subject;
+      metadata.version = info.Title ?? info.Subject;
     }
 
     // Extract from text content
@@ -287,13 +287,13 @@ export class PDFParser extends CurriculumParser {
     // Pattern: Strand A: Number Sense
     const strandMatch = title.match(/Strand\s*([A-Z]):\s*(.+)/i);
     if (strandMatch) {
-      return strandMatch[2]?.trim() || '';
+      return strandMatch[2].trim() || '';
     }
 
     // Pattern: A. Number Sense
     const letterMatch = title.match(/^([A-Z])\.\s*(.+)/);
     if (letterMatch) {
-      return letterMatch[2]?.trim() || '';
+      return letterMatch[2].trim() || '';
     }
 
     // Check for known strand names

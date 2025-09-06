@@ -35,7 +35,7 @@ interface DraftResult {
   // Enhanced optimization data
   optimizationScore?: number;
   pedagogicalCertification?: string;
-  pedagogicalData?: any; // Full optimization data for saving to database
+  pedagogicalData?: unknown; // Full optimization data for saving to database
   isOptimized?: boolean;
 }
 
@@ -152,7 +152,7 @@ export class AIDraftService extends BaseService {
       'Students will develop confidence as learners and communicators',
     ];
 
-    if (request.themes?.length !== undefined && request.themes.length > 0) {
+    if (request.themes.length !== undefined && request.themes.length > 0) {
       baseGoals.push(`Students will explore key themes including: ${request.themes.join(', ')}`);
     }
 

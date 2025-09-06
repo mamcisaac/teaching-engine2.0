@@ -167,7 +167,7 @@ export const uploadMultiple = (fieldName = 'artifacts', options?: {
   return createUploadMiddleware({
     ...options,
     fieldName
-  }).array(fieldName, options?.maxFiles || 10);
+  }).array(fieldName, options.maxFiles || 10);
 };
 
 // Upload processing middleware - integrates with storage service
@@ -210,7 +210,7 @@ export const processUpload = async (req: Request, _res: Response, next: NextFunc
           filename: `${category}s/${safeFilename}`,
           metadata: {
             originalName: file.originalname,
-            uploadedBy: req.user?.id.toString() || 'unknown',
+            uploadedBy: req.user.id.toString() || 'unknown',
             uploadedAt: new Date().toISOString(),
             category,
             size: file.size.toString()

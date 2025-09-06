@@ -106,11 +106,11 @@ export class SubstitutePlanService {
     const formattedLessons = lessons.map((lesson) => ({
       id: lesson.id,
       title: escapeHtml(lesson.titleFr || lesson.title || 'Lesson'),
-      subject: escapeHtml(lesson.unitPlan?.longRangePlan?.subject || lesson.subject || 'General'),
+      subject: escapeHtml(lesson.unitPlan.longRangePlan.subject || lesson.subject || 'General'),
       time: this._getTimeSlot(lesson.slotNumber || 0),
       duration: lesson.duration || 45,
       instructions: this._formatLessonInstructions(lesson),
-      materials: lesson.resources?.map((r) => r.title || r.url).filter((material): material is string => material !== undefined) || [],
+      materials: lesson.resources.map((r) => r.title || r.url).filter((material): material is string => material !== undefined) || [],
     }));
     
     // Create emergency info from substitute info
@@ -156,7 +156,7 @@ export class SubstitutePlanService {
         baseSchedule[scheduleIndex] = {
           time: slotTime,
           activity: escapeHtml(lesson.titleFr || lesson.title || `Lesson ${index + 1}`),
-          notes: `${escapeHtml(lesson.unitPlan?.longRangePlan?.subject || '')} - ${lesson.duration || 45} minutes`,
+          notes: `${escapeHtml(lesson.unitPlan.longRangePlan.subject || '')} - ${lesson.duration || 45} minutes`,
         };
       }
     });

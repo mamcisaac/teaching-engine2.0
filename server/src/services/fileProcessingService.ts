@@ -71,7 +71,7 @@ export class FileProcessingService {
   async processFile(buffer: Buffer, originalName: string, mimeType: string): Promise<FileMetadata> {
     // Validate MIME type matches actual file content
     const detectedType = await fileTypeFromBuffer(buffer);
-    const verifiedMimeType = detectedType?.mime || mimeType;
+    const verifiedMimeType = detectedType.mime || mimeType;
 
     const metadata: FileMetadata = {
       originalName,
@@ -79,7 +79,7 @@ export class FileProcessingService {
       mimeType: verifiedMimeType,
       category: this.getFileCategory(verifiedMimeType),
       isProcessed: false,
-      format: detectedType?.ext
+      format: detectedType.ext
     };
 
     try {

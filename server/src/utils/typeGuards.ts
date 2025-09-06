@@ -128,7 +128,7 @@ export function getProperty<T, K extends keyof T>(
   obj: T | null | undefined,
   key: K
 ): T[K] | undefined {
-  return obj?.[key];
+  return obj[key];
 }
 
 /**
@@ -139,7 +139,7 @@ export function getPropertyOrDefault<T, K extends keyof T>(
   key: K,
   defaultValue: T[K]
 ): T[K] {
-  return obj?.[key] ?? defaultValue;
+  return obj[key] ?? defaultValue;
 }
 
 /**

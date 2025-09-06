@@ -46,7 +46,7 @@ interface ProgressBySubject {
     EXCEEDING: number;
   };
   masteryPercentage?: number;
-  records?: any[];
+  records?: unknown[];
 }
 
 interface ProgressRecord {
@@ -57,7 +57,7 @@ interface ProgressRecord {
   totalEvidencePieces?: number;
 }
 
-interface BreakdownItem {
+interface _BreakdownItem {
   total_assessments: number;
   evidenceSum?: number;
   [key: string]: number | string | undefined | {
@@ -164,7 +164,7 @@ const handleValidationErrors = (req: Request, res: Response, next: NextFunction)
 
 // Authentication middleware
 const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
-  if (!req.user?.id) {
+  if (!req.user.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
   }
@@ -209,7 +209,7 @@ router.post('/update',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -239,7 +239,7 @@ router.post('/update',
       });
 
       // Determine if this is a level change
-      const previousLevel = existing?.currentLevel;
+      const previousLevel = existing.currentLevel;
       const isLevelChange = !existing || previousLevel !== currentLevel;
 
       // Count total evidence pieces for this outcome
@@ -333,7 +333,7 @@ router.post('/batch-update',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -389,7 +389,7 @@ router.post('/batch-update',
             }
           });
 
-          const previousLevel = existing?.currentLevel;
+          const previousLevel = existing.currentLevel;
           const isLevelChange = !existing || previousLevel !== currentLevel;
 
           // Count evidence pieces
@@ -463,7 +463,7 @@ router.get('/student/:studentId',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -560,7 +560,7 @@ router.get('/student/:studentId',
 
         acc[subject].totalOutcomes++;
         acc[subject].mastery[record.currentLevel as keyof typeof acc[string]['mastery']]++;
-        acc[subject].records?.push({
+        acc[subject].records.push({
           id: (record as any).id,
           outcomeId: (record as any).outcomeId || (record as any).outcome?.id,
           currentLevel: record.currentLevel,
@@ -609,7 +609,7 @@ router.get('/overview/:studentId',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -706,7 +706,7 @@ router.get('/overview/:studentId',
 
         acc[subject].totalOutcomes++;
         acc[subject].mastery[record.currentLevel as keyof typeof acc[string]['mastery']]++;
-        acc[subject].records?.push({
+        acc[subject].records.push({
           id: (record as any).id,
           outcomeId: (record as any).outcomeId || (record as any).outcome?.id,
           currentLevel: record.currentLevel,
@@ -754,7 +754,7 @@ router.get('/outcome/:outcomeId',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -837,17 +837,17 @@ router.get('/outcome/:outcomeId',
             grade: student.grade,
             homeroom: student.homeroom
           },
-          currentLevel: progress?.currentLevel || 'NOT_YET',
-          previousLevel: progress?.previousLevel,
-          lastAssessmentDate: progress?.lastAssessmentDate,
-          totalEvidencePieces: progress?.totalEvidencePieces || 0,
-          areasForGrowth: progress?.areasForGrowth,
-          strengths: progress?.strengths,
-          teacherNotes: progress?.teacherNotes,
-          strongestEvidence: progress?.strongestEvidence ? JSON.parse(progress.strongestEvidence as string) : null,
-          parentShared: progress?.parentShared || false,
+          currentLevel: progress.currentLevel || 'NOT_YET',
+          previousLevel: progress.previousLevel,
+          lastAssessmentDate: progress.lastAssessmentDate,
+          totalEvidencePieces: progress.totalEvidencePieces || 0,
+          areasForGrowth: progress.areasForGrowth,
+          strengths: progress.strengths,
+          teacherNotes: progress.teacherNotes,
+          strongestEvidence: progress.strongestEvidence ? JSON.parse(progress.strongestEvidence as string) : null,
+          parentShared: progress.parentShared || false,
           hasProgress: !!progress,
-          updatedAt: progress?.updatedAt
+          updatedAt: progress.updatedAt
         };
       });
 
@@ -895,7 +895,7 @@ router.get('/analytics',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -1056,16 +1056,16 @@ router.get('/analytics',
             breakdown[key].total_assessments!++;
             const level = record.currentLevel.toLowerCase();
             if (level in breakdown[key]) {
-              (breakdown[key] as any)[level] = (((breakdown[key] as any)[level] as number) || 0) + 1;
+              (breakdown[key] as unknown)[level] = (((breakdown[key] as unknown)[level] as number) || 0) + 1;
             }
             breakdown[key].evidenceSum! += record.totalEvidencePieces || 0;
           });
           
           // Calculate averages
-          return Object.values(breakdown).map((item: any) => ({
-            ...item,
-            avg_evidence: item.total_assessments > 0 ? 
-              Math.round((item.evidenceSum / item.total_assessments) * 100) / 100 : 0
+          return Object.values(breakdown).map((item: unknown) => ({
+            ...(item as any),
+            avg_evidence: (item as any).total_assessments > 0 ? 
+              Math.round(((item as any).evidenceSum / (item as any).total_assessments) * 100) / 100 : 0
           }));
         }),
         
@@ -1119,7 +1119,7 @@ router.get('/analytics',
           recentUpdatesCount: recentUpdates.length
         },
         masteryStats,
-        subjectBreakdown: subjectBreakdown as any,
+        subjectBreakdown: subjectBreakdown as unknown,
         recentUpdates: recentUpdates.map(update => ({
           id: update.id,
           studentName: `${update.student.firstName} ${update.student.lastName}`,
@@ -1159,7 +1159,7 @@ router.post('/share-with-parents',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -1205,7 +1205,7 @@ router.delete('/:progressId',
   handleValidationErrors,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;

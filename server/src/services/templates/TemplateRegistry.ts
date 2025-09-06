@@ -176,7 +176,7 @@ export class TemplateRegistry extends BaseService {
    */
   public getProvider(name: string): TemplateProvider | null {
     const info = this.providers.get(name);
-    return info?.isActive ? info.provider : null;
+    return info.isActive ? info.provider : null;
   }
 
   /**
@@ -184,7 +184,7 @@ export class TemplateRegistry extends BaseService {
    */
   public getEngine(name: string): RenderEngine | null {
     const info = this.engines.get(name);
-    return info?.isActive ? info.engine : null;
+    return info.isActive ? info.engine : null;
   }
 
   /**
@@ -283,7 +283,7 @@ export class TemplateRegistry extends BaseService {
       }
 
       if (criteria.tags && criteria.tags.length > 0) {
-        const templateTags = template.metadata?.tags ?? [];
+        const templateTags = template.metadata.tags ?? [];
         if (!criteria.tags.some((tag) => templateTags.includes(tag))) {
           return false;
         }
@@ -482,9 +482,9 @@ export class TemplateRegistry extends BaseService {
    */
   private inferProviderType(name: string, provider: TemplateProvider): string {
     // Try to get type from provider metadata
-    const metadata = provider.getMetadata?.();
-    if (metadata?.type !== null) {
-      const type = metadata?.type;
+    const metadata = provider.getMetadata();
+    if (metadata.type !== null) {
+      const type = metadata.type;
       return typeof type === 'string' ? type : 'generic';
     }
 

@@ -97,7 +97,7 @@ export function findNodeByPath(root: TreeNode, path: string[]): TreeNode | null 
     if (current.id === id) {
       continue;
     }
-    current = current.children?.find(child => child.id === id);
+    current = current.children.find(child => child.id === id);
     if (!current) {
       return null;
     }
@@ -126,7 +126,7 @@ export function getSchedulingSummary(node: TreeNode): {
         scheduled++;
       }
     }
-    n.children?.forEach(traverse);
+    n.children.forEach(traverse);
   }
 
   traverse(node);
@@ -186,7 +186,7 @@ export function searchTree(node: TreeNode, searchText: string): TreeNode[] {
     if (n.title.toLowerCase().includes(lowerSearch)) {
       results.push(n);
     }
-    n.children?.forEach(traverse);
+    n.children.forEach(traverse);
   }
 
   traverse(node);
@@ -355,7 +355,7 @@ export function generateLargeTree(units: number, lessonsPerUnit: number): TreeNo
 
 export function countNodes(node: TreeNode): number {
   let count = 1;
-  node.children?.forEach(child => {
+  node.children.forEach(child => {
     count += countNodes(child);
   });
   return count;

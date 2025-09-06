@@ -302,7 +302,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
             name: errorObj.name,
             stack: errorObj.stack,
             meta: errorObj.meta,
-            toString: errorObj.toString?.(),
+            toString: errorObj.toString(),
           },
           email: email.toLowerCase(),
           errorType: typeof error,

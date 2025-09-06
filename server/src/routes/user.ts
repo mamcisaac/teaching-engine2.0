@@ -90,7 +90,7 @@ return;
   router.post(
     '/create',
     asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-      const userRole = req.user?.role;
+      const userRole = req.user.role;
 
       if (userRole !== 'ADMIN') {
         res.status(403).json({ error: 'Forbidden' });

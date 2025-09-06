@@ -520,12 +520,12 @@ router.get('/optimization-dashboard', async (req: AuthenticatedRequest, res: Res
       plans: plans.map(plan => ({
         ...plan,
         optimization_status: getOptimizationStatus({
-          description: (plan as any).description ?? undefined,
-          goals: (plan as any).goals ?? undefined,
-          assessmentOverview: (plan as any).assessmentOverview ?? undefined
+          description: (plan as unknown as { description?: string }).description ?? undefined,
+          goals: (plan as unknown as { goals?: string }).goals ?? undefined,
+          assessmentOverview: (plan as unknown as { assessmentOverview?: string }).assessmentOverview ?? undefined
         } as LongRangePlan),
         recommendations: getQuickRecommendations({
-          description: (plan as any).description ?? undefined
+          description: (plan as unknown as { description?: string }).description ?? undefined
         } as LongRangePlan)
       }))
     };

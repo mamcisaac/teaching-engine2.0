@@ -42,9 +42,9 @@ export class TemplateOrchestrator extends BaseService {
     
     // Initialize all specialized services
     this.registry = TemplateRegistry.getInstance();
-    this.cache = TemplateCache.getInstance(options?.cacheOptions as Parameters<typeof TemplateCache.getInstance>[0]);
+    this.cache = TemplateCache.getInstance(options.cacheOptions as Parameters<typeof TemplateCache.getInstance>[0]);
     this.helpers = TemplateHelpers.getInstance();
-    this.partialManager = PartialManager.getInstance(options?.partialsDirectory);
+    this.partialManager = PartialManager.getInstance(options.partialsDirectory);
     this.renderCoordinator = RenderCoordinator.getInstance();
   }
 
@@ -114,7 +114,7 @@ export class TemplateOrchestrator extends BaseService {
             cacheHit: response.cacheHit,
             templateResolutionTime: response.templateResolutionTime,
             dataFetchTime: response.dataFetchTime,
-            engine: response.metadata?.engine || 'unknown',
+            engine: response.metadata.engine || 'unknown',
           },
         };
       },
@@ -143,7 +143,7 @@ export class TemplateOrchestrator extends BaseService {
             ...response.metadata,
             renderTime: response.renderTime,
             cacheHit: response.cacheHit,
-            engine: response.metadata?.engine || 'unknown',
+            engine: response.metadata.engine || 'unknown',
           },
         }));
       },

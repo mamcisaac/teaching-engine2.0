@@ -43,7 +43,7 @@ interface AuthenticatedRequest extends Request {
 }
 
 const requireAuth = (req: AuthenticatedRequest, res: Response, next: () => void) => {
-  if (!req.user?.id) {
+  if (!req.user.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
   }
@@ -59,7 +59,7 @@ router.get('/',
   artifactViewRateLimit,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -101,7 +101,7 @@ router.post('/import/csv',
         return;
       }
 
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -175,7 +175,7 @@ router.get('/export/csv',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -200,7 +200,7 @@ router.get('/quota/report',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -249,7 +249,7 @@ router.get('/:id/quota',
         res.status(400).json({ error: 'Student ID is required' });
         return;
       }
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -299,7 +299,7 @@ router.post('/',
     }
 
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;

@@ -125,7 +125,7 @@ return undefined;
 return val;
 }
       // Split comma-separated string into array
-      return val?.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+      return val.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
     })
   }),
 

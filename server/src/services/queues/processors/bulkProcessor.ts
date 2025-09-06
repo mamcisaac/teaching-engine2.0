@@ -14,7 +14,7 @@ const prisma = new PrismaClient();
 interface BulkJobData {
   type: 'csv-import' | 'batch-process' | 'data-migration';
   userId: number;
-  data?: any;
+  data?: unknown;
   options?: {
     skipDuplicates?: boolean;
     updateExisting?: boolean;
@@ -26,7 +26,7 @@ interface BulkJobData {
  * Process bulk operation job
  * Handles large-scale data operations
  */
-export const processBulkJob = async (job: Job<BulkJobData>): Promise<any> => {
+export const processBulkJob = async (job: Job<BulkJobData>): Promise<unknown> => {
   const { type, userId, data, options = {} } = job.data;
   
   try {
@@ -37,17 +37,17 @@ export const processBulkJob = async (job: Job<BulkJobData>): Promise<any> => {
       dataSize: data ? JSON.stringify(data).length : 0
     }));
 
-    job.progress(5);
+    await job.progress(5);
 
-    let result: any = {};
+    let result: unknown = {};
 
     switch (type) {
       case 'csv-import':
-        result = await processCsvImport(job, userId, data, options);
+        result = await processCsvImport(job, userId, String(data), options);
         break;
         
       case 'batch-process':
-        result = await processBatchOperation(job, userId, data, options);
+        result = await processBatchOperation(job, userId, Array.isArray(data) ? data : [], options);
         break;
         
       case 'data-migration':
@@ -58,15 +58,15 @@ export const processBulkJob = async (job: Job<BulkJobData>): Promise<any> => {
         throw new Error(`Unknown bulk operation type: ${type}`);
     }
 
-    job.progress(100);
+    await job.progress(100);
 
     logger.info(`Bulk operation completed`, JSON.stringify({
       type,
       userId,
       result: {
-        success: result.success,
-        processed: result.processed || 0,
-        failed: result.failed || 0
+        success: (result as any).success,
+        processed: (result as any).processed || 0,
+        failed: (result as any).failed || 0
       }
     }));
 
@@ -92,9 +92,9 @@ async function processCsvImport(
   job: Job<BulkJobData>,
   userId: number,
   csvData: string,
-  options: any
-): Promise<any> {
-  job.progress(10);
+  options: unknown
+): Promise<unknown> {
+  await job.progress(10);
   
   if (!csvData) {
     throw new Error('CSV data is required for import');
@@ -106,20 +106,20 @@ async function processCsvImport(
     options
   }));
 
-  job.progress(30);
+  await job.progress(30);
 
   // Use the CSV import service
   const importResult = await importStudentsFromCSV(
     Buffer.from(csvData, 'utf-8'),
     userId,
     {
-      skipDuplicates: options.skipDuplicates || false,
-      updateExisting: options.updateExisting || false
+      skipDuplicates: (options as any).skipDuplicates || false,
+      updateExisting: (options as any).updateExisting || false
       // Note: dryRun option not supported by importStudentsFromCSV
     }
   );
 
-  job.progress(80);
+  await job.progress(80);
 
   const result = {
     success: importResult.success,
@@ -140,10 +140,10 @@ async function processCsvImport(
 async function processBatchOperation(
   job: Job<BulkJobData>,
   userId: number,
-  batchData: any[],
-  options: any
-): Promise<any> {
-  job.progress(10);
+  batchData: unknown[],
+  options: unknown
+): Promise<unknown> {
+  await job.progress(10);
   
   if (!Array.isArray(batchData)) {
     throw new Error('Batch data must be an array');
@@ -170,7 +170,7 @@ async function processBatchOperation(
     
     try {
       // Process individual item based on type
-      await processBatchItem(item, userId, options);
+      await processBatchItem(item, userId, (options as any));
       results.processed++;
       
     } catch (error: unknown) {
@@ -184,7 +184,7 @@ async function processBatchOperation(
     }
     
     // Update progress
-    job.progress(20 + Math.floor((i + 1) * progressIncrement));
+    await job.progress(20 + Math.floor((i + 1) * progressIncrement));
   }
 
   // Mark as failed if more than 50% failed
@@ -198,24 +198,24 @@ async function processBatchOperation(
 /**
  * Process individual batch item
  */
-async function processBatchItem(item: any, userId: number, _options: any): Promise<void> {
+async function processBatchItem(item: unknown, userId: number, options: any): Promise<void> {
   // Implementation depends on the specific batch operation type
   // This is a placeholder that can be extended based on requirements
   
-  if (item.type === 'student') {
+  if ((item as any).type === 'student') {
     // Process student data
     await prisma.student.upsert({
       where: { 
-        id: item.id || ''
+        id: (item as any).id || ''
       },
-      update: item,
+      update: item as any,
       create: {
-        ...item,
+        ...(item as any),
         teacherId: userId
       }
     });
   } else {
-    logger.warn('Unknown batch item type', JSON.stringify({ type: item.type, userId }));
+    logger.warn('Unknown batch item type', JSON.stringify({ type: (item as any).type, userId }));
   }
 }
 
@@ -225,14 +225,14 @@ async function processBatchItem(item: any, userId: number, _options: any): Promi
 async function processDataMigration(
   job: Job<BulkJobData>,
   userId: number,
-  migrationData: any,
-  options: any
-): Promise<any> {
-  job.progress(10);
+  migrationData: unknown,
+  options: unknown
+): Promise<unknown> {
+  await job.progress(10);
   
   logger.info('Processing data migration', JSON.stringify({
     userId,
-    migrationData: migrationData?.type || 'unknown',
+    migrationData: (migrationData as any)?.type || 'unknown',
     options
   }));
 
@@ -247,9 +247,9 @@ async function processDataMigration(
     summary: 'Data migration not yet implemented'
   };
 
-  job.progress(80);
+  await job.progress(80);
 
   return result;
 }
 
-export default processBulkJob;
+// Function already exported above

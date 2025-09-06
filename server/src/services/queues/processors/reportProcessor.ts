@@ -28,7 +28,7 @@ interface StudentReportJobData {
  * Process report generation job
  * Generates PDF reports for students or entire class
  */
-export const processReportJob = async (job: Job<StudentReportJobData>): Promise<any> => {
+export const processReportJob = async (job: Job<StudentReportJobData>): Promise<unknown> => {
   const { type, userId, studentId, options = {} } = job.data;
   
   try {
@@ -39,11 +39,11 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
       options
     }));
 
-    job.progress(10);
+    await job.progress(10);
 
     let reportBuffer: Buffer;
     let fileName: string;
-    let reportMetadata: any = {};
+    let reportMetadata: Record<string, unknown> = {};
 
     if (type === 'student') {
       if (!studentId) {
@@ -62,7 +62,7 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
 
       logger.info(`Generating individual report for ${student.firstName} ${student.lastName}`);
       
-      job.progress(30);
+      await job.progress(30);
 
       // Generate student report
       const reportData = await generateStudentReport(
@@ -94,7 +94,7 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
     } else if (type === 'class') {
       logger.info('Generating class overview report');
       
-      job.progress(30);
+      await job.progress(30);
 
       // Generate class report
       const reportData = await generateClassReport(
@@ -121,7 +121,7 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
       throw new Error(`Unknown report type: ${type}`);
     }
 
-    job.progress(80);
+    await job.progress(80);
 
     // Calculate processing metrics
     const processingTime = Date.now() - (job.processedOn || Date.now());
@@ -135,7 +135,7 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
       metadata: reportMetadata
     };
 
-    job.progress(100);
+    await job.progress(100);
 
     logger.info(`Report generation completed`, JSON.stringify({
       type,
@@ -162,4 +162,4 @@ export const processReportJob = async (job: Job<StudentReportJobData>): Promise<
   }
 };
 
-export default processReportJob;
+// Function already exported above

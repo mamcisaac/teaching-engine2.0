@@ -178,7 +178,7 @@ export class ErrorReportingService {
     }
 
     if (this.mockMode) {
-      logger.info(`[MOCK] Would set user context for user: ${user?.id ?? 'unknown'}`);
+      logger.info(`[MOCK] Would set user context for user: ${user.id ?? 'unknown'}`);
       return;
     }
 
@@ -372,7 +372,7 @@ export class ErrorReportingService {
     }
 
     // Sanitize user data
-    if (sanitized.user?.email !== null && sanitized.user?.email !== undefined && typeof sanitized.user.email === 'string' && sanitized.user.email !== '') {
+    if (sanitized.user.email !== null && sanitized.user.email !== undefined && typeof sanitized.user.email === 'string' && sanitized.user.email !== '') {
       sanitized.user.email = this.maskEmail(sanitized.user.email);
     }
 

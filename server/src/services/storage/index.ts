@@ -6,7 +6,6 @@
 export * from './IStorageService';
 export * from './LocalStorageService';
 export * from './S3StorageService';
-export * from './StorageServiceFactory';
 
 // Re-export convenience functions
 export { 

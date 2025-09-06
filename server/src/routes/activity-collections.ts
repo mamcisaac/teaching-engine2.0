@@ -249,7 +249,7 @@ router.delete(
   asyncMiddleware(async (req: Request, res: Response) => {
 
       try {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user.id === null || req.user.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -306,7 +306,7 @@ router.post(
   asyncMiddleware(async (req: Request, res: Response) => {
 
       try {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user.id === null || req.user.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -394,7 +394,7 @@ router.delete(
   async (req: Request, res: Response) => {
 
       try {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user.id === null || req.user.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }
@@ -457,7 +457,7 @@ router.get(
   async (req: Request, res: Response) => {
 
       try {
-      if (req.user?.id === null || req.user?.id === undefined) {
+      if (req.user.id === null || req.user.id === undefined) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
       }

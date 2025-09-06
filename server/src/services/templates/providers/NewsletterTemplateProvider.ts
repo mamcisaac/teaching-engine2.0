@@ -23,8 +23,8 @@ export class NewsletterTemplateProvider extends TemplateProvider {
    * Get template based on context
    */
   async getTemplate(context: TemplateContext): Promise<Template> {
-    const frequency = context.parameters?.frequency !== null && context.parameters?.frequency !== undefined ? context.parameters.frequency : 'weekly';
-    const style = context.parameters?.style !== null && context.parameters?.style !== undefined ? context.parameters.style : 'standard';
+    const frequency = context.parameters.frequency !== null && context.parameters.frequency !== undefined ? context.parameters.frequency : 'weekly';
+    const style = context.parameters.style !== null && context.parameters.style !== undefined ? context.parameters.style : 'standard';
     
     const templateId = `newsletter-${frequency}-${style}`;
     let template = await this.getTemplateById(templateId);

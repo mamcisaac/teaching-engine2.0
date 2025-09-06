@@ -22,7 +22,7 @@ interface AuthenticatedRequest extends Request {
 }
 
 const requireAuth = (req: AuthenticatedRequest, res: Response, next: () => void) => {
-  if (!req.user?.id) {
+  if (!req.user.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
   }
@@ -51,7 +51,7 @@ router.get('/:id/progress-summary',
 
     const startTime = Date.now();
     const studentId = req.params.id;
-    const userId = req.user?.id;
+    const userId = req.user.id;
     
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -235,7 +235,7 @@ router.get('/:id/evidence',
 
     const studentId = req.params.id;
     const subject = req.query.subject as string;
-    const userId = req.user?.id;
+    const userId = req.user.id;
     
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -339,7 +339,7 @@ router.get('/:id/communications',
     }
 
     const studentId = req.params.id;
-    const userId = req.user?.id;
+    const userId = req.user.id;
     
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -398,7 +398,7 @@ router.post('/:id/communications',
 
     const studentId = req.params.id;
     const { summary, type, sharedWith } = req.body;
-    const userId = req.user?.id;
+    const userId = req.user.id;
     
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });

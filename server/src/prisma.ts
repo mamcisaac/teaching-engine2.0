@@ -88,7 +88,7 @@ const getPrisma = (): DatabasePrismaClient => {
     client.$use(unitPlanProtectionMiddleware);
     
     // Set connection pool limits to reduce memory usage
-    client.$connect();
+    void client.$connect();
     
     globalForPrisma.prisma = client;
   }

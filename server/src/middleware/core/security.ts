@@ -20,7 +20,7 @@ import { AppError } from '../../utils/errors';
 // CORS configuration
 const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') ?? [
+    const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',') ?? [
       'http://localhost:5173',
       'http://localhost:3000',
     ];
@@ -200,7 +200,7 @@ return;
             value,
             ip: req.ip,
             path: req.path,
-            userId: (req as Request & { user?: { id: number } }).user?.id,
+            userId: (req as Request & { user?: { id: number } }).user.id,
           },
           'Potential SQL injection attempt detected',
         );
@@ -256,7 +256,7 @@ export const fileUploadSecurityMiddleware = (
       }
 
       // Check file extension
-      const ext = uploadedFile.originalname.split('.').pop()?.toLowerCase();
+      const ext = uploadedFile.originalname.split('.').pop().toLowerCase();
       const allowedExtensions = allowedTypes.map((type) => {
         const parts = type.split('/');
         return parts[1] ?? parts[0];

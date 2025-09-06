@@ -64,12 +64,12 @@ export function validatePhoneNumber(phone: string): PhoneValidationResult {
     const [, areaCode, exchange, number] = naMatch;
 
     // Validate area code (cannot start with 0 or 1 in real North American system)
-    if (areaCode?.startsWith('0') || areaCode?.startsWith('1')) {
+    if (areaCode.startsWith('0') || areaCode.startsWith('1')) {
       errors.push('Invalid area code');
     }
 
     // Validate exchange (cannot start with 0 or 1 in real North American system)
-    if (exchange?.startsWith('0') || exchange?.startsWith('1')) {
+    if (exchange.startsWith('0') || exchange.startsWith('1')) {
       errors.push('Invalid exchange code');
     }
 

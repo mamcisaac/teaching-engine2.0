@@ -392,7 +392,7 @@ router.post('/schedule-all-lessons', authenticate, async (req, res): Promise<voi
  */
 router.get('/stats', authenticate, async (req, res): Promise<void> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
       return;
@@ -464,7 +464,7 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<void> => {
       shiftOnlyFrom: z.boolean().optional() // If true, only shift from this date onward
     }).parse(req.body);
     
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
       return;
@@ -618,7 +618,7 @@ router.post('/activate-extension', authenticate, async (req, res): Promise<void>
       slotNumber: z.number().int().min(1).max(5).optional()
     }).parse(req.body);
     
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
       return;
@@ -697,7 +697,7 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<v
       rescheduleCore: z.boolean().optional().default(true) // Whether to reschedule the core lesson
     }).parse(req.body);
     
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
       return;
@@ -770,15 +770,15 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<v
             userId,
             subject,
             date: {
-              gte: new Date((candidateDay?.dateObj.toISOString().split('T')[0] || '') + 'T00:00:00'),
-              lt: new Date((candidateDay?.dateObj.toISOString().split('T')[0] || '') + 'T23:59:59')
+              gte: new Date((candidateDay.dateObj.toISOString().split('T')[0] || '') + 'T00:00:00'),
+              lt: new Date((candidateDay.dateObj.toISOString().split('T')[0] || '') + 'T23:59:59')
             },
             id: { not: coreLessonId }
           }
         });
         
         if (!conflict) {
-          nextAvailableDate = new Date((candidateDay?.dateObj.toISOString().split('T')[0] || '') + 'T09:00:00');
+          nextAvailableDate = new Date((candidateDay.dateObj.toISOString().split('T')[0] || '') + 'T09:00:00');
           break;
         }
       }
@@ -864,7 +864,7 @@ router.post('/validate-shift', authenticate, async (req, res): Promise<void> => 
       shiftDays: z.number().int().min(-30).max(30)
     }).parse(req.body);
     
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
       return;
@@ -968,7 +968,7 @@ router.get('/available-extensions', authenticate, async (req, res): Promise<void
       unitId: z.string().optional()
     }).parse(req.query);
     
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
       return;

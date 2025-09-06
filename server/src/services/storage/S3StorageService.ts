@@ -40,7 +40,7 @@ function isAwsNotFoundError(error: unknown): error is AwsError {
     (
       (error as AwsError).name === 'NotFound' ||
       (error as AwsError).name === 'NoSuchKey' ||
-      (error as AwsError).$metadata?.httpStatusCode === 404
+      (error as AwsError).$metadata.httpStatusCode === 404
     )
   );
 }
@@ -94,15 +94,15 @@ export class S3StorageService implements IStorageService {
     mimeType: string,
     options?: UploadOptions
   ): Promise<StorageResult> {
-    const key = options?.filename || this.generateSafeFilename(originalName, options?.folder);
+    const key = options.filename || this.generateSafeFilename(originalName, options.folder);
     
     const putCommand = new PutObjectCommand({
       Bucket: this.bucket,
       Key: key,
       Body: buffer,
       ContentType: mimeType,
-      Metadata: options?.metadata,
-      ...(options?.isPublic && { ACL: 'public-read' })
+      Metadata: options.metadata,
+      ...(options.isPublic && { ACL: 'public-read' })
     });
 
     await this.s3Client.send(putCommand);
@@ -111,7 +111,7 @@ export class S3StorageService implements IStorageService {
       path: key,
       url: this.getPublicUrl(key),
       size: buffer.length,
-      metadata: options?.metadata
+      metadata: options.metadata
     };
   }
 

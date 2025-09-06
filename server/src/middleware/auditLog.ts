@@ -87,7 +87,7 @@ class AuditLogger {
         const duration = Date.now() - start;
 
         const entry: AuditLogEntry = {
-          userId: req.user?.id.toString() ?? 'anonymous',
+          userId: req.user.id.toString() ?? 'anonymous',
           action,
           resource,
           resourceId: req.params.id || (req.body as Record<string, unknown>).id as string,
@@ -137,13 +137,13 @@ class AuditLogger {
       userId,
       action,
       resource,
-      resourceId: options?.resourceId,
-      metadata: options?.metadata,
-      ip: options?.req?.ip ?? options?.req?.socket.remoteAddress,
-      userAgent: options?.req?.headers['user-agent'],
+      resourceId: options.resourceId,
+      metadata: options.metadata,
+      ip: options.req.ip ?? options.req.socket.remoteAddress,
+      userAgent: options.req.headers['user-agent'],
       timestamp: new Date(),
-      success: options?.success ?? true,
-      errorMessage: options?.errorMessage,
+      success: options.success ?? true,
+      errorMessage: options.errorMessage,
     };
 
     this.log(entry);

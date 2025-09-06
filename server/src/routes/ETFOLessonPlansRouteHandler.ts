@@ -1076,7 +1076,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
         ...resourceData,
         title: resourceData.title || 'Untitled Resource',
         type: resourceData.type || 'other'
-      } as any, userId);
+      }, userId);
       res.status(201).json(resource);
     } catch (_error) {
       this.logger.error('Error adding resource:', _error as string | undefined);
@@ -1168,7 +1168,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
           ...rescheduleData,
           newDate: rescheduleData.newDate || new Date().toISOString(),
           updateRelated: rescheduleData.updateRelated || false
-        } as any,
+        },
         userId,
       );
       res.json(rescheduledLesson);
@@ -1196,7 +1196,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
         ...duplicateData,
         lessonPlanId: duplicateData.lessonPlanId || '',
         unitPlanId: duplicateData.unitPlanId || ''
-      } as any, userId);
+      }, userId);
       res.status(201).json(duplicatedLesson);
     } catch (_error) {
       this.logger.error('Error duplicating lesson plan:', _error as string | undefined);

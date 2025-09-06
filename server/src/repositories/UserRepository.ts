@@ -120,8 +120,8 @@ export class UserRepository extends BaseRepository<
           role: true,
           preferredLanguage: true,
         },
-        skip: pagination?.skip,
-        take: pagination?.take,
+        skip: pagination.skip,
+        take: pagination.take,
         orderBy: { id: 'desc' },
       });
       return users;

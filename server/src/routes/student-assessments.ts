@@ -30,7 +30,7 @@ const updateAssessmentSchema = z.object({
 // GET /api/student-assessments - Get assessments for a user with pagination
 router.get('/', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
@@ -59,7 +59,7 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
         lt: Date;
       };
     } = { 
-      userId: parseInt(userId as unknown as string, 10) as unknown as any,
+      userId: String(userId),
       // Exclude anecdotal notes by default unless explicitly requested
       isAnecdotal: includeAnecdotal === 'true' ? undefined : false
     };
@@ -77,10 +77,10 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
     }
 
     // Get total count for pagination
-    const totalCount = await prisma.studentAssessment.count({ where: where as any });
+    const totalCount = await prisma.studentAssessment.count({ where: where as unknown });
 
     const assessments = await prisma.studentAssessment.findMany({
-      where: where as any,
+      where: where as unknown,
       include: {
         lesson: {
           select: {
@@ -114,7 +114,7 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
 // POST /api/student-assessments - Create new assessment
 router.post('/', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
@@ -127,7 +127,7 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<Resp
     const assessment = await prisma.studentAssessment.create({
       data: {
         ...validatedData,
-        userId: parseInt(userId as unknown as string, 10) as unknown as any,
+        userId: parseInt(String(userId), 10),
         date: validatedData.date ? new Date(validatedData.date) : new Date(),
         isAnecdotal // Automatically flag anecdotal notes
       } as any,
@@ -156,7 +156,7 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<Resp
 // PUT /api/student-assessments/:id - Update assessment
 router.put('/:id', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
@@ -201,7 +201,7 @@ router.put('/:id', authenticate, async (req: Request, res: Response): Promise<Re
 // DELETE /api/student-assessments/:id - Delete assessment
 router.delete('/:id', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
@@ -231,7 +231,7 @@ router.delete('/:id', authenticate, async (req: Request, res: Response): Promise
 // POST /api/student-assessments/differentiation-groups - Generate differentiation groups
 router.post('/differentiation-groups', authenticate, async (req: Request, res: Response): Promise<Response> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
@@ -250,7 +250,7 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
         lt: Date;
       };
     } = { 
-      userId: parseInt(userId as unknown as string, 10) as unknown as any, 
+      userId: parseInt(String(userId), 10), 
       subject,
       isAnecdotal: false // Exclude anecdotal notes from differentiation groups
     };
@@ -263,7 +263,7 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
     }
 
     const assessments = await prisma.studentAssessment.findMany({
-      where: where as any,
+      where: where as unknown,
       select: {
         studentId: true,
         level: true,

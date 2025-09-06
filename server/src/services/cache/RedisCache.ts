@@ -464,7 +464,7 @@ export function cacheMiddleware(keyPattern: string, options: CacheOptions = {}):
   return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const key = keyPattern
       .replace(':id', req.params.id ?? '')
-      .replace(':userId', (req as Request & { user?: { id: string } }).user?.id ?? 'anonymous');
+      .replace(':userId', (req as Request & { user?: { id: string } }).user.id ?? 'anonymous');
 
     // Try to get from cache
     const cached = await cache.get(key);

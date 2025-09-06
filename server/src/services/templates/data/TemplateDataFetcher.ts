@@ -140,11 +140,11 @@ export class TemplateDataFetcher {
       active: true,
     };
 
-    if (filters?.studentId !== undefined) {
+    if (filters.studentId !== undefined) {
       where.id = filters.studentId;
     }
 
-    if (filters?.grade !== undefined) {
+    if (filters.grade !== undefined) {
       where.grade = filters.grade;
     }
 
@@ -181,14 +181,14 @@ export class TemplateDataFetcher {
       userId: context.userId,
     };
 
-    if (filters?.startDate !== undefined && filters.endDate !== undefined) {
+    if (filters.startDate !== undefined && filters.endDate !== undefined) {
       where.date = {
         gte: new Date(filters.startDate),
         lte: new Date(filters.endDate),
       };
     }
 
-    if (filters?.subject !== undefined) {
+    if (filters.subject !== undefined) {
       where.subject = filters.subject;
     }
 
@@ -200,14 +200,14 @@ export class TemplateDataFetcher {
             longRangePlan: true,
           },
         },
-        expectations: context.options?.includeRelations === true ? {
+        expectations: context.options.includeRelations === true ? {
           include: {
             expectation: true,
           },
         } : false,
       },
-      orderBy: context.options?.orderBy ?? { date: 'desc' },
-      take: context.options?.limit,
+      orderBy: context.options.orderBy ?? { date: 'desc' },
+      take: context.options.limit,
     });
 
     // Transform to template-friendly format
@@ -273,15 +273,15 @@ export class TemplateDataFetcher {
       isActive: true,
     };
 
-    if (filters?.subjectId !== undefined) {
+    if (filters.subjectId !== undefined) {
       where.subjectId = String(filters.subjectId);
     }
 
-    if (filters?.grade !== undefined) {
+    if (filters.grade !== undefined) {
       where.grade = Number(filters.grade);
     }
 
-    if (filters?.strand !== undefined) {
+    if (filters.strand !== undefined) {
       where.strand = filters.strand;
     }
 
@@ -332,10 +332,10 @@ export class TemplateDataFetcher {
       case 'reportPeriod': {
         const filters = context.filters as CustomDataFilters | undefined;
         const reportData: ReportPeriodData = {
-          name: filters?.periodName ?? 'Progress Report',
-          startDate: filters?.startDate !== undefined && filters.startDate !== null ? new Date(filters.startDate) : new Date(),
-          endDate: filters?.endDate !== undefined && filters.endDate !== null ? new Date(filters.endDate) : new Date(),
-          totalDays: filters?.totalDays ?? 0,
+          name: filters.periodName ?? 'Progress Report',
+          startDate: filters.startDate !== undefined && filters.startDate !== null ? new Date(filters.startDate) : new Date(),
+          endDate: filters.endDate !== undefined && filters.endDate !== null ? new Date(filters.endDate) : new Date(),
+          totalDays: filters.totalDays ?? 0,
         };
         return reportData;
       }

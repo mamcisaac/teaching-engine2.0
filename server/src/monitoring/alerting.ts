@@ -109,7 +109,7 @@ const alerts: Alert[] = [
       const errorRate = (errors / total) * 100;
       return errorRate > 10;
     },
-    message: (context): string => `Error rate is ${context.errorRate?.toFixed(2)}% (threshold: 10%)`,
+    message: (context): string => `Error rate is ${context.errorRate.toFixed(2)}% (threshold: 10%)`,
     severity: 'critical',
     cooldown: 15,
     channels: ['log', 'email', 'webhook'],
@@ -123,7 +123,7 @@ const alerts: Alert[] = [
       const percentage = (used / total) * 100;
       return percentage > 90;
     },
-    message: (context): string => `Memory usage is ${context.percentage?.toFixed(2)}% (threshold: 90%)`,
+    message: (context): string => `Memory usage is ${context.percentage.toFixed(2)}% (threshold: 90%)`,
     severity: 'critical',
     cooldown: 10,
     channels: ['log', 'email'],
@@ -188,7 +188,7 @@ return false;
       const hitRate = (hits / total) * 100;
       return hitRate < 50;
     },
-    message: (context): string => `Cache hit rate is ${context.hitRate?.toFixed(2)}% (threshold: 50%)`,
+    message: (context): string => `Cache hit rate is ${context.hitRate.toFixed(2)}% (threshold: 50%)`,
     severity: 'info',
     cooldown: 60,
     channels: ['log'],
@@ -204,7 +204,7 @@ return false;
       return errorRate > 20;
     },
     message: (context): string =>
-      `AI operation error rate is ${context.errorRate?.toFixed(2)}% (threshold: 20%)`,
+      `AI operation error rate is ${context.errorRate.toFixed(2)}% (threshold: 20%)`,
     severity: 'warning',
     cooldown: 30,
     channels: ['log', 'email'],
@@ -217,7 +217,7 @@ return false;
       // For now, return false
        false
     ,
-    message: (context): string => `Disk space is ${context.percentage?.toFixed(2)}% full (threshold: 90%)`,
+    message: (context): string => `Disk space is ${context.percentage.toFixed(2)}% full (threshold: 90%)`,
     severity: 'warning',
     cooldown: 60,
     channels: ['log', 'email'],

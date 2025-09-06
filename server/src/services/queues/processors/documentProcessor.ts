@@ -25,7 +25,7 @@ interface DocumentJobData {
  * Process document job
  * Extracts text and metadata from PDF documents
  */
-export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any> => {
+export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<unknown> => {
   const { artifactId, buffer, originalName, mimeType, userId, studentId } = job.data;
   
   try {
@@ -43,17 +43,17 @@ export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any
       data: { processingStatus: 'PROCESSING' }
     });
 
-    job.progress(20);
+    await job.progress(20);
 
     // Convert base64 back to buffer
     const fileBuffer = Buffer.from(buffer, 'base64');
-    const metadata: any = {
+    const metadata: Record<string, unknown> = {
       fileSize: fileBuffer.length,
       originalName,
       mimeType
     };
 
-    job.progress(40);
+    await job.progress(40);
 
     // Process based on file type
     if (mimeType === 'application/pdf') {
@@ -94,7 +94,7 @@ export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any
       metadata.processingError = 'Unsupported document type';
     }
 
-    job.progress(80);
+    await job.progress(80);
 
     // Record processing time
     const processingStartTime = Date.now() - (job.processedOn || Date.now());
@@ -110,7 +110,7 @@ export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any
       }
     });
 
-    job.progress(100);
+    await job.progress(100);
 
     const result = {
       success: true,
@@ -161,4 +161,4 @@ export const processDocumentJob = async (job: Job<DocumentJobData>): Promise<any
   }
 };
 
-export default processDocumentJob;
+// Function already exported above

@@ -102,7 +102,7 @@ const handleValidationErrors = (req: Request, res: Response, next: NextFunction)
 
 // Authentication middleware
 const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
-  if (!req.user?.id) {
+  if (!req.user.id) {
     res.status(401).json({ error: 'Authentication required' });
     return;
   }
@@ -113,7 +113,7 @@ const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunctio
 const validateArtifactOwnership = async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const artifactId = req.params.id;
-    const userId = req.user?.id;
+    const userId = req.user.id;
 
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -244,7 +244,7 @@ router.post('/upload/mobile',
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       // Determine artifact type based on uploaded file
-      const uploadResult = req.uploadResults?.[0];
+      const uploadResult = req.uploadResults[0];
       if (!uploadResult) {
         res.status(400).json({ error: 'No file uploaded' });
         return;
@@ -278,7 +278,7 @@ router.post('/upload/batch',
       }
 
       const artifacts = [];
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -343,7 +343,7 @@ router.post('/note',
   validateQuickNote,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -387,7 +387,7 @@ router.get('/',
   requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
       if (!userId) {
         res.status(401).json({ error: 'Authentication required' });
         return;
@@ -530,13 +530,13 @@ router.get('/',
  * Helper function to handle file upload and artifact creation
  */
 async function handleArtifactUpload(req: AuthenticatedRequest, res: Response, artifactType: string): Promise<void> {
-  const uploadResult = req.uploadResults?.[0];
+  const uploadResult = req.uploadResults[0];
   if (!uploadResult) {
     res.status(400).json({ error: 'No file uploaded' });
     return;
   }
 
-  const userId = req.user?.id;
+  const userId = req.user.id;
   if (!userId) {
     res.status(401).json({ error: 'Authentication required' });
     return;

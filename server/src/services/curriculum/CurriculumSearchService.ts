@@ -139,11 +139,11 @@ export class CurriculumSearchService extends BaseService {
         }
 
         // Apply filters
-        if (filters?.grade !== undefined && isValidNumber(filters.grade)) {
+        if (filters.grade !== undefined && isValidNumber(filters.grade)) {
           where.grade = filters.grade;
         }
         
-        if (filters?.strand !== undefined && isValidString(filters.strand)) {
+        if (filters.strand !== undefined && isValidString(filters.strand)) {
           where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
         
@@ -180,11 +180,11 @@ export class CurriculumSearchService extends BaseService {
         };
 
         // Apply filters
-        if (filters?.grade !== undefined && isValidNumber(filters.grade)) {
+        if (filters.grade !== undefined && isValidNumber(filters.grade)) {
           where.grade = filters.grade;
         }
         
-        if (filters?.strand !== undefined && isValidString(filters.strand)) {
+        if (filters.strand !== undefined && isValidString(filters.strand)) {
           where.strand = { contains: filters.strand, mode: 'insensitive' };
         }
         

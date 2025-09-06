@@ -211,8 +211,8 @@ process.on('SIGINT', async () => {
 /**
  * Get queue statistics for dashboard
  */
-export const getQueueStats = async (): Promise<Record<string, any>> => {
-  const stats: Record<string, any> = {};
+export const getQueueStats = async (): Promise<Record<string, unknown>> => {
+  const stats: Record<string, unknown> = {};
   
   const queues = {
     image: imageQueue,

@@ -276,7 +276,7 @@ export function standardErrorHandler(
         request: {
           method: req.method,
           url: req.url,
-          userId: (req as { user?: { id?: unknown } }).user?.id,
+          userId: (req as { user?: { id?: unknown } }).user.id,
           ip: req.ip,
         },
         statusCode,
@@ -295,7 +295,7 @@ export function standardErrorHandler(
         request: {
           method: req.method,
           url: req.url,
-          userId: (req as { user?: { id?: unknown } }).user?.id,
+          userId: (req as { user?: { id?: unknown } }).user.id,
           ip: req.ip,
         },
         statusCode,

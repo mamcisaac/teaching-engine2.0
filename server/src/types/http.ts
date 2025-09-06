@@ -171,5 +171,5 @@ export function getSafeProperty<T, K extends keyof T>(
   key: K,
   defaultValue: T[K]
 ): T[K] {
-  return obj?.[key] ?? defaultValue;
+  return obj[key] ?? defaultValue;
 }

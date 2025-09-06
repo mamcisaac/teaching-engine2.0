@@ -18,7 +18,7 @@ const prisma = new PrismaClient({
 describe('MonitoringService Integration Tests', () => {
   let monitoringService: MonitoringService;
   let app: express.Application;
-  let server: any;
+  let server: unknown;
 
   beforeAll(async () => {
     await prisma.$connect();

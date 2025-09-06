@@ -248,7 +248,7 @@ export class ETFOLessonPlanService extends BaseService {
       }
 
       // Extract expectation IDs if they exist
-      const expectationIds = originalPlan.expectations?.map((exp) => exp.expectationId) ?? [];
+      const expectationIds = originalPlan.expectations.map((exp) => exp.expectationId) ?? [];
 
       // Create minimal duplicate data with only the essential fields
       const createData = {

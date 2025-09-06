@@ -299,7 +299,7 @@ const generateStudentEvidencePDF = async (
 
     const progressBySubject: Record<string, Array<{ currentLevel: string; outcome: { description: string } }>> = {};
     for (const progress of student.outcomeProgress) {
-      const subject = progress.outcome?.subject || 'Other';
+      const subject = progress.outcome.subject || 'Other';
       if (!progressBySubject[subject]) progressBySubject[subject] = [];
       if (progress.outcome) {
         progressBySubject[subject].push(progress as { currentLevel: string; outcome: { description: string } });
@@ -510,17 +510,24 @@ export const exportClassSummary = async (
     await fs.mkdir(tempDir, { recursive: true });
 
     // Transform student data to match interface
-    const transformedStudents: StudentData[] = (students as any).map((student: any) => ({
+    const transformedStudents: StudentData[] = (students as Array<Record<string, unknown>>).map((student: Record<string, unknown>) => ({
+      id: String(student.id || ''),
+      firstName: String(student.firstName || ''),
+      lastName: String(student.lastName || ''),
       ...student,
-      artifacts: (student.artifacts || []).map((a: any) => ({
+      artifacts: ((student.artifacts as Array<Record<string, unknown>>) || []).map((a: Record<string, unknown>) => ({
+        id: String(a.id || ''),
+        title: String(a.title || 'Untitled'),
+        artifactType: String(a.artifactType || 'unknown'),
+        dateCollected: a.dateCollected as Date || new Date(),
         ...a,
-        fileUrl: a.filePath || a.fileUrl || ''
+        fileUrl: String(a.filePath || a.fileUrl || '')
       })),
-      outcomeProgress: (student.outcomeProgress || []).map((op: any) => ({
-        currentLevel: op.currentLevel,
-        outcome: op.outcome ? {
-          description: op.outcome.description || '',
-          subject: op.outcome.subject
+      outcomeProgress: ((student.outcomeProgress as Array<Record<string, unknown>>) || []).map((op: Record<string, unknown>) => ({
+        currentLevel: String(op.currentLevel || ''),
+        outcome: (op.outcome as any) ? {
+          description: (op.outcome as any).description || '',
+          subject: (op.outcome as any).subject
         } : undefined
       }))
     }));
@@ -577,12 +584,12 @@ const generateClassSummaryPDF = async (
   // Header
   doc.fontSize(20).text('Grade 1 French Immersion - Class Learning Highlights', { align: 'center' });
   doc.moveDown();
-  doc.fontSize(12).text(`Period: ${options.startDate?.toLocaleDateString('en-CA') || 'Last 30 days'} - ${(options.endDate || new Date()).toLocaleDateString('en-CA')}`, { align: 'center' });
+  doc.fontSize(12).text(`Period: ${options.startDate.toLocaleDateString('en-CA') || 'Last 30 days'} - ${(options.endDate || new Date()).toLocaleDateString('en-CA')}`, { align: 'center' });
   doc.moveDown(2);
 
   // Summary stats
-  const totalArtifacts = students.reduce((sum, s) => sum + (s.artifacts?.length || 0), 0);
-  const totalProgress = students.reduce((sum, s) => sum + (s.outcomeProgress?.length || 0), 0);
+  const totalArtifacts = students.reduce((sum, s) => sum + (s.artifacts.length || 0), 0);
+  const totalProgress = students.reduce((sum, s) => sum + (s.outcomeProgress.length || 0), 0);
 
   doc.fontSize(14).text('Class Overview', { underline: true });
   doc.moveDown();
@@ -597,7 +604,7 @@ const generateClassSummaryPDF = async (
   
   for (const student of students) {
     for (const progress of student.outcomeProgress || []) {
-      const subject = progress.outcome?.subject || 'Other';
+      const subject = progress.outcome.subject || 'Other';
       if (!subjectData[subject]) {
         subjectData[subject] = { students: new Set<string>().add(student.id), artifacts: 0 };
       } else {
@@ -610,7 +617,7 @@ const generateClassSummaryPDF = async (
       Object.keys(subjectData).forEach(subject => {
         const subjectInfo = subjectData[subject];
         if (subjectInfo) {
-          subjectInfo.artifacts += artifact.outcomes?.some((o: { outcome?: { subject: string } }) => o.outcome?.subject === subject) ? 1 : 0;
+          subjectInfo.artifacts += artifact.outcomes.some((o: { outcome?: { subject: string } }) => o.outcome.subject === subject) ? 1 : 0;
         }
       });
     }

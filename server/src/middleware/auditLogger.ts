@@ -84,8 +84,8 @@ class AuditLogger {
       action: event.action,
       details: this.sanitizeDetails(event.details),
       ipAddress: this.maskIP(event.ipAddress),
-      userAgent: event.userAgent?.substring(0, 100),
-      sessionId: event.sessionId?.substring(0, 8), // Only log first 8 chars
+      userAgent: event.userAgent.substring(0, 100),
+      sessionId: event.sessionId.substring(0, 8), // Only log first 8 chars
       timestamp: event.timestamp,
       success: event.success,
       errorMessage: event.errorMessage,
@@ -119,9 +119,9 @@ class AuditLogger {
   ): AuditEvent {
     return {
       eventType,
-      userId: req.user?.id,
-      userEmail: req.user?.email,
-      userRole: req.user?.role,
+      userId: req.user.id,
+      userEmail: req.user.email,
+      userRole: req.user.role,
       action,
       details,
       ipAddress: req.ip || req.connection.remoteAddress,

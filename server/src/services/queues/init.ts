@@ -25,32 +25,32 @@ export const initializeQueues = async (): Promise<void> => {
   logger.info('Initializing job queues...');
   
   // Image processing queue
-  imageQueue.process('process-image', 5, async (job) => {
+  void imageQueue.process('process-image', 5, async (job) => {
     return await processImageJob(job);
   });
   
   // Video processing queue (limited concurrency due to resource usage)
-  videoQueue.process('process-video', 2, async (job) => {
+  void videoQueue.process('process-video', 2, async (job) => {
     return await processVideoJob(job);
   });
   
   // Document processing queue
-  documentQueue.process('process-document', 3, async (job) => {
+  void documentQueue.process('process-document', 3, async (job) => {
     return await processDocumentJob(job);
   });
   
   // Audio processing queue (limited concurrency due to FFmpeg usage)
-  audioQueue.process('process-audio', 2, async (job) => {
+  void audioQueue.process('process-audio', 2, async (job) => {
     return await processAudioJob(job);
   });
   
   // Report generation queue
-  reportQueue.process('generate-report', 2, async (job) => {
+  void reportQueue.process('generate-report', 2, async (job) => {
     return await processReportJob(job);
   });
   
   // Bulk operations queue
-  bulkQueue.process('bulk-import', 1, async (job) => {
+  void bulkQueue.process('bulk-import', 1, async (job) => {
     return await processBulkJob(job);
   });
   
@@ -153,7 +153,7 @@ export const getJobStatus = async (
 ): Promise<{
   status: string;
   progress: number;
-  result?: any;
+  result?: unknown;
   error?: string;
 }> => {
   let queue;
@@ -215,8 +215,4 @@ export const getJobStatus = async (
   };
 };
 
-export default {
-  initializeQueues,
-  queueArtifactProcessing,
-  getJobStatus
-};
+// Functions already exported above - no need for duplicate exports

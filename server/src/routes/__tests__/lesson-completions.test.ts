@@ -544,7 +544,7 @@ describe('Lesson Completion Tracking API - TDD RED Phase', () => {
 
       expect(response.status).toBe(200);
       const userCompletions = response.body.completions.filter(
-        (c: any) => c.notes === 'Private notes'
+        (.*: unknown) => c.notes === 'Private notes'
       );
       expect(userCompletions).toHaveLength(0);
     });
@@ -588,8 +588,8 @@ describe('Lesson Completion Tracking API - TDD RED Phase', () => {
       expect(completions).toHaveLength(2);
       
       // Each completion should be independent
-      const lesson1Completion = completions.find((c: any) => c.lessonId === lessonId);
-      const lesson2Completion = completions.find((c: any) => c.lessonId === lesson2Id);
+      const lesson1Completion = completions.find(.*: unknown) => c.lessonId === lessonId);
+      const lesson2Completion = completions.find(.*: unknown) => c.lessonId === lesson2Id);
       
       expect(lesson1Completion).toBeDefined();
       expect(lesson2Completion).toBeDefined();

@@ -465,7 +465,7 @@ orderBy.createdAt = order;
 
     const subjectBreakdown = recentEntries.reduce<Record<string, number>>(
       (acc: Record<string, number>, entry) => {
-        const subject = entry.lessonPlan?.unitPlan.longRangePlan.subject ?? 'Unknown';
+        const subject = entry.lessonPlan.unitPlan.longRangePlan.subject ?? 'Unknown';
         acc[subject] = (acc[subject] ?? 0) + 1;
         return acc;
       },
@@ -475,7 +475,7 @@ orderBy.createdAt = order;
     // Transform subject breakdown into subjectInsights
     const subjectInsights = Object.entries(subjectBreakdown).map(([subject, count]) => {
       const subjectEntries = recentEntries.filter(
-        entry => (entry.lessonPlan?.unitPlan.longRangePlan.subject ?? 'Unknown') === subject
+        entry => (entry.lessonPlan.unitPlan.longRangePlan.subject ?? 'Unknown') === subject
       );
       const subjectAvgRating = subjectEntries.length > 0
         ? subjectEntries.reduce((sum, entry) => sum + (entry.overallRating ?? 0), 0) / subjectEntries.length

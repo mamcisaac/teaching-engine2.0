@@ -33,7 +33,7 @@ export const errorLoggingMiddleware = (
     path: req.path,
     query: req.query,
     body: req.body as unknown,
-    userId: req.user?.id,
+    userId: req.user.id,
     requestId: req.id,
     ip: req.ip,
     userAgent: req.get('user-agent'),

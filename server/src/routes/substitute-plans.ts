@@ -54,7 +54,7 @@ const substituteInfoSchema = z.object({
  */
 router.get('/info', async (req: Request, res: Response): Promise<Response> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
@@ -81,7 +81,7 @@ router.get('/info', async (req: Request, res: Response): Promise<Response> => {
  */
 router.post('/info', async (req: Request, res: Response): Promise<Response> => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user.id;
     if (!userId) {
       return res.status(401).json({ error: 'User not authenticated' });
     }
@@ -122,7 +122,7 @@ router.post('/info', async (req: Request, res: Response): Promise<Response> => {
  */
 router.get('/plan/:date', async (req: Request, res: Response): Promise<Response> => {
   try {
-    if (!req.user?.id) {
+    if (!req.user.id) {
       return res.status(401).json({ error: 'Authentication required' });
     }
 
@@ -178,8 +178,8 @@ router.get('/plan/:date', async (req: Request, res: Response): Promise<Response>
       date,
       lessons,
       substituteInfo,
-      teacherName: user?.name || 'Teacher',
-      grade: user?.grade || '',
+      teacherName: user.name || 'Teacher',
+      grade: user.grade || '',
     });
 
     return res.json(plan);
@@ -195,7 +195,7 @@ router.get('/plan/:date', async (req: Request, res: Response): Promise<Response>
  */
 router.get('/plan/:date/pdf', async (req: Request, res: Response): Promise<Response> => {
   try {
-    if (!req.user?.id) {
+    if (!req.user.id) {
       return res.status(401).json({ error: 'Authentication required' });
     }
 
@@ -251,8 +251,8 @@ router.get('/plan/:date/pdf', async (req: Request, res: Response): Promise<Respo
       date,
       lessons,
       substituteInfo,
-      teacherName: user?.name || 'Teacher',
-      grade: user?.grade || '',
+      teacherName: user.name || 'Teacher',
+      grade: user.grade || '',
     });
 
     // Generate HTML
@@ -274,7 +274,7 @@ router.get('/plan/:date/pdf', async (req: Request, res: Response): Promise<Respo
  */
 router.post('/emergency-plans', async (req: Request, res: Response): Promise<Response> => {
   try {
-    if (!req.user?.id) {
+    if (!req.user.id) {
       return res.status(401).json({ error: 'Authentication required' });
     }
 
@@ -311,7 +311,7 @@ router.post('/emergency-plans', async (req: Request, res: Response): Promise<Res
  */
 router.get('/emergency-plans', async (req: Request, res: Response): Promise<Response> => {
   try {
-    if (!req.user?.id) {
+    if (!req.user.id) {
       return res.status(401).json({ error: 'Authentication required' });
     }
 

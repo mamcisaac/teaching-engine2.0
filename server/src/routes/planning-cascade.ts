@@ -126,7 +126,7 @@ const moveLessonSchema = z.object({
 router.get('/cascade', async (req: Request, res: Response): Promise<void> => {
   try {
     const params = getCascadeSchema.parse(req.query);
-    const userId = (req as AuthenticatedRequest).user?.id;
+    const userId = (req as AuthenticatedRequest).user.id;
     
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -342,7 +342,7 @@ router.get('/cascade', async (req: Request, res: Response): Promise<void> => {
 router.patch('/lesson/:lessonId/schedule', async (req: Request, res: Response): Promise<void> => {
   try {
     const { lessonId } = req.params;
-    const userId = (req as AuthenticatedRequest).user?.id;
+    const userId = (req as AuthenticatedRequest).user.id;
     
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -391,7 +391,7 @@ router.patch('/lesson/:lessonId/schedule', async (req: Request, res: Response): 
  */
 router.post('/lesson/move', async (req: Request, res: Response): Promise<void> => {
   try {
-    const userId = (req as AuthenticatedRequest).user?.id;
+    const userId = (req as AuthenticatedRequest).user.id;
     
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });
@@ -458,7 +458,7 @@ router.post('/lesson/move', async (req: Request, res: Response): Promise<void> =
  */
 router.get('/workload-balance', async (req: Request, res: Response): Promise<void> => {
   try {
-    const userId = (req as AuthenticatedRequest).user?.id;
+    const userId = (req as AuthenticatedRequest).user.id;
     
     if (!userId) {
       res.status(401).json({ error: 'Authentication required' });

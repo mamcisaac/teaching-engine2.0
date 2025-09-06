@@ -104,7 +104,7 @@ export abstract class TemplateProvider {
    */
   async getDataRequirements(templateId: string): Promise<DataRequirement[]> {
     const template = await this.getTemplateById(templateId);
-    return template?.dataRequirements ?? [];
+    return template.dataRequirements ?? [];
   }
 
   /**

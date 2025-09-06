@@ -228,7 +228,7 @@ export function httpMetricsMiddleware(req: Request, res: Response, next: NextFun
   metricsStore.incrementCounter('http_requests_total', {
     method: req.method,
     path: req.path,
-    user_agent: req.get('User-Agent')?.substring(0, 50) ?? 'unknown',
+    user_agent: req.get('User-Agent').substring(0, 50) ?? 'unknown',
   });
 
   // Override end method to capture response metrics

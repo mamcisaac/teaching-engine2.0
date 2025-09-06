@@ -85,7 +85,7 @@ const router = Router();
 router.get('/status', (req: Request, res: Response): void => {
   void (async (): Promise<void> => {
     try {
-      const userId = req.user?.id;
+      const userId = req.user.id;
 
     // Check OpenAI API key availability
     const hasApiKey = process.env.OPENAI_API_KEY !== undefined && process.env.OPENAI_API_KEY !== '';

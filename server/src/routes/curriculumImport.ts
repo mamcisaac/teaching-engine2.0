@@ -66,7 +66,7 @@ router.post(
         return;
       }
 
-      if (!req.user?.id) {
+      if (!req.user.id) {
         res.status(401).json({
           error: 'User not authenticated',
         });
@@ -144,7 +144,7 @@ router.post('/parse', asyncHandler(async (req: AuthenticatedRequest, res: Respon
       return;
     }
 
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user.id === null || req.user.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -185,7 +185,7 @@ router.post('/import-preset', asyncHandler(async (req: Request, res: Response) =
       return;
     }
 
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user.id === null || req.user.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -219,7 +219,7 @@ router.get('/:id/status', asyncHandler(async (req: Request, res: Response) => {
       return;
     }
 
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user.id === null || req.user.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -255,7 +255,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
       return;
     }
 
-    if (req.user?.id === null || req.user?.id === undefined || req.user.id === 0) {
+    if (req.user.id === null || req.user.id === undefined || req.user.id === 0) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -300,7 +300,7 @@ router.post('/:id/confirm', asyncHandler(async (req: Request, res: Response) => 
 // GET /api/curriculum/import/history - Get user's import history
 router.get('/history', async (req: Request, res: Response): Promise<void> => {
   try {
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user.id === null || req.user.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -334,7 +334,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user.id === null || req.user.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });
@@ -370,7 +370,7 @@ router.post('/start', async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user.id === null || req.user.id === undefined) {
       res.status(401).json({ error: 'User not authenticated' });
       return;
     }
@@ -450,7 +450,7 @@ router.post('/:id', async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    if (req.user?.id === null || req.user?.id === undefined) {
+    if (req.user.id === null || req.user.id === undefined) {
       res.status(401).json({
         error: 'User not authenticated',
       });

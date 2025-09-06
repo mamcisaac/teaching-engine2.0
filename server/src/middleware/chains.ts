@@ -88,7 +88,7 @@ export const authEndpointMiddleware = compose(
 export const adminOperationMiddleware = compose(
   authenticatedApiMiddleware,
   (req: Request, res: Response, next: NextFunction): void => {
-    if (req.user?.role !== 'admin') {
+    if (req.user.role !== 'admin') {
       res.status(403).json({ error: 'Admin access required' });
       return;
     }

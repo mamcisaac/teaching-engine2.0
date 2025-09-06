@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 // Load environment variables FIRST before any other imports
-import { config } from 'dotenv';
-config();
 
 // External imports (npm packages)
 import type { Server } from 'http';
@@ -9,6 +7,8 @@ import path from 'path';
 
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
+import { config } from 'dotenv';
+config();
 import type { Request, Response, NextFunction } from 'express';
 import express, { json, urlencoded, static as expressStatic } from 'express';
 
@@ -57,11 +57,11 @@ import { router as monitoringRoutes } from './routes/monitoring';
 import { router as newsletterRoutes } from './routes/newsletters';
 import { router as notificationRoutes } from './routes/notifications';
 import { router as plannerStateRoutes } from './routes/planner-state';
-import { router as scheduleManagementRoutes } from './routes/schedule-management';
-import { router as publicStatsRoutes } from './routes/public-stats';
 import { router as planningCascadeRoutes } from './routes/planning-cascade';
+import { router as publicStatsRoutes } from './routes/public-stats';
 import { router as recentPlansRoutes } from './routes/recent-plans';
 import { router as reportsRoutes } from './routes/reports';
+import { router as scheduleManagementRoutes } from './routes/schedule-management';
 import { router as studentAssessmentRoutes } from './routes/student-assessments';
 import { router as studentProgressRoutes } from './routes/student-progress';
 import { router as studentsRoutes } from './routes/students';
@@ -192,7 +192,7 @@ app.post('/api/register', authRateLimitMiddleware, (req: Request, _res: Response
 // Auth check endpoint is handled by authEndpoints router at /api/auth/me
 
 app.get('/api/auth/check', asyncMiddleware(authenticate), (req: Request, res: Response): void => {
-  res.json({ userId: req.user?.id });
+  res.json({ userId: req.user.id });
 });
 
 // Legacy logout endpoint for backward compatibility
