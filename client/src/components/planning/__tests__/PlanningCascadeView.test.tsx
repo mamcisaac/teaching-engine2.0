@@ -351,19 +351,34 @@ describe('Planning Cascade View - Real Integration Tests', () => {
         </TestWrapper>
       );
 
+      // Wait for data to load
       await waitFor(() => {
-        const unitNode = screen.getByText('Patterns and Numbers').closest('div');
-        const expandButton = unitNode?.querySelector('button[aria-label*="Expand"]');
-        
-        // Initially expanded (shows lessons)
+        expect(screen.getByText('Patterns and Numbers')).toBeInTheDocument();
+      });
+
+      // Wait for initial expansion (lessons should be visible)
+      await waitFor(() => {
         expect(screen.getByText('AB Pattern Recognition')).toBeVisible();
-        
-        // Click to collapse
-        fireEvent.click(expandButton!);
-        expect(screen.queryByText('AB Pattern Recognition')).not.toBeVisible();
-        
-        // Click to expand again
-        fireEvent.click(expandButton!);
+      });
+
+      // Find the expand/collapse button for the unit
+      const unitNode = screen.getByText('Patterns and Numbers').closest('div');
+      const expandButton = unitNode?.querySelector('button[aria-label*="Expand"]');
+      expect(expandButton).toBeInTheDocument();
+
+      // Click to collapse
+      fireEvent.click(expandButton!);
+      
+      // Wait for collapse (lesson should not be in document)
+      await waitFor(() => {
+        expect(screen.queryByText('AB Pattern Recognition')).not.toBeInTheDocument();
+      });
+
+      // Click to expand again
+      fireEvent.click(expandButton!);
+      
+      // Wait for expansion (lesson should be visible again)
+      await waitFor(() => {
         expect(screen.getByText('AB Pattern Recognition')).toBeVisible();
       });
     });
@@ -377,17 +392,26 @@ describe('Planning Cascade View - Real Integration Tests', () => {
         </TestWrapper>
       );
 
+      // Wait for data to load and initial expansion
       await waitFor(() => {
-        const collapseAllBtn = screen.getByText('Collapse All');
-        fireEvent.click(collapseAllBtn);
-        
-        // All lessons should be hidden
-        expect(screen.queryByText('AB Pattern Recognition')).not.toBeVisible();
-        
-        const expandAllBtn = screen.getByText('Expand All');
-        fireEvent.click(expandAllBtn);
-        
-        // All lessons should be visible
+        expect(screen.getByText('AB Pattern Recognition')).toBeVisible();
+      });
+
+      // Click Collapse All
+      const collapseAllBtn = screen.getByText('Collapse All');
+      fireEvent.click(collapseAllBtn);
+      
+      // Wait for collapse (lesson should not be in document)
+      await waitFor(() => {
+        expect(screen.queryByText('AB Pattern Recognition')).not.toBeInTheDocument();
+      });
+
+      // Click Expand All
+      const expandAllBtn = screen.getByText('Expand All');
+      fireEvent.click(expandAllBtn);
+      
+      // Wait for expansion (lesson should be visible again)
+      await waitFor(() => {
         expect(screen.getByText('AB Pattern Recognition')).toBeVisible();
       });
     });
@@ -403,25 +427,34 @@ describe('Planning Cascade View - Real Integration Tests', () => {
         </TestWrapper>
       );
 
+      // Wait for tree to render with items
       await waitFor(() => {
-        const tree = screen.getByRole('tree');
-        
-        // Focus the tree
-        tree.focus();
-        
-        // Press down arrow
-        fireEvent.keyDown(tree, { key: 'ArrowDown' });
-        
-        // Check focus moved
-        const firstItem = screen.getAllByRole('treeitem')[0];
-        expect(firstItem).toHaveAttribute('aria-selected', 'true');
-        
-        // Press Enter to expand/collapse
-        fireEvent.keyDown(tree, { key: 'Enter' });
-        
-        // Press Tab to move focus
-        fireEvent.keyDown(tree, { key: 'Tab' });
+        expect(screen.getAllByRole('treeitem').length).toBeGreaterThan(0);
       });
+
+      const tree = screen.getByRole('tree');
+      
+      // Focus the tree
+      tree.focus();
+      
+      // First item should be selected by default (selectedIndex starts at 0)
+      const firstItem = screen.getAllByRole('treeitem')[0];
+      expect(firstItem).toHaveAttribute('aria-selected', 'true');
+      
+      // Press down arrow to move to second item
+      fireEvent.keyDown(tree, { key: 'ArrowDown' });
+      
+      // Check selection moved to second item
+      const items = screen.getAllByRole('treeitem');
+      expect(items[1]).toHaveAttribute('aria-selected', 'true');
+      expect(items[0]).toHaveAttribute('aria-selected', 'false');
+      
+      // Press Enter to expand/collapse
+      fireEvent.keyDown(tree, { key: 'Enter' });
+      
+      // Press up arrow to go back
+      fireEvent.keyDown(tree, { key: 'ArrowUp' });
+      expect(items[0]).toHaveAttribute('aria-selected', 'true');
     });
 
     it('should jump to first/last with Home/End keys', async () => {
