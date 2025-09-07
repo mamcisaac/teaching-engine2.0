@@ -123,26 +123,35 @@ export const PlanningCascadeView: React.FC = () => {
   const { data: rawData, isLoading, error } = usePlanningCascade();
   const data = rawData as CascadeData | undefined;
   
-  // State for tree expansion - start with everything expanded
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => {
-    const initial = new Set<string>();
+  // Compute all node IDs from the data to expand everything by default
+  const allNodeIds = useMemo(() => {
+    const ids = new Set<string>();
     if (data?.cascade) {
-      // Expand everything to show lessons for testing
       data.cascade.terms.forEach(term => {
-        initial.add(term.id);
+        ids.add(term.id);
         term.subjects?.forEach(subject => {
-          initial.add(subject.id);
+          ids.add(subject.id);
           subject.units?.forEach(unit => {
-            initial.add(unit.id);
+            ids.add(unit.id);
             unit.weeks?.forEach(week => {
-              initial.add(week.id);
+              ids.add(week.id);
             });
           });
         });
       });
     }
-    return initial;
-  });
+    return ids;
+  }, [data]);
+  
+  // State for tree expansion - start with everything expanded by default
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => new Set(allNodeIds));
+  
+  // Update expandedNodes when data loads for the first time
+  useEffect(() => {
+    if (expandedNodes.size === 0 && allNodeIds.size > 0) {
+      setExpandedNodes(new Set(allNodeIds));
+    }
+  }, [allNodeIds, expandedNodes.size]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showUnscheduledOnly, setShowUnscheduledOnly] = useState(false);
   const [highlightExpectation, setHighlightExpectation] = useState('');
@@ -155,27 +164,6 @@ export const PlanningCascadeView: React.FC = () => {
   
   // Debounce search term for performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
-  
-  // Initialize expanded nodes when data loads
-  useEffect(() => {
-    if (data?.cascade && expandedNodes.size === 0) {
-      const initial = new Set<string>();
-      // Expand everything to show lessons for testing
-      data.cascade.terms.forEach(term => {
-        initial.add(term.id);
-        term.subjects?.forEach(subject => {
-          initial.add(subject.id);
-          subject.units?.forEach(unit => {
-            initial.add(unit.id);
-            unit.weeks?.forEach(week => {
-              initial.add(week.id);
-            });
-          });
-        });
-      });
-      setExpandedNodes(initial);
-    }
-  }, [data, expandedNodes.size]);
   
   // Check if mobile
   useEffect(() => {
@@ -299,6 +287,11 @@ export const PlanningCascadeView: React.FC = () => {
     if (!filteredData) return [];
     const items: FlattenedItem[] = [];
     
+    // Check if node is expanded
+    const isExpanded = (nodeId: string) => {
+      return expandedNodes.has(nodeId);
+    };
+    
     filteredData.terms.forEach(term => {
       items.push({
         id: term.id,
@@ -307,10 +300,10 @@ export const PlanningCascadeView: React.FC = () => {
         level: 0,
         data: term,
         hasChildren: term.subjects.length > 0,
-        isExpanded: expandedNodes.has(term.id)
+        isExpanded: isExpanded(term.id)
       });
       
-      if (expandedNodes.has(term.id)) {
+      if (isExpanded(term.id)) {
         term.subjects.forEach(subject => {
           items.push({
             id: subject.id,
@@ -319,10 +312,10 @@ export const PlanningCascadeView: React.FC = () => {
             level: 1,
             data: subject,
             hasChildren: subject.units.length > 0,
-            isExpanded: expandedNodes.has(subject.id)
+            isExpanded: isExpanded(subject.id)
           });
           
-          if (expandedNodes.has(subject.id)) {
+          if (isExpanded(subject.id)) {
             subject.units.forEach(unit => {
               items.push({
                 id: unit.id,
@@ -331,10 +324,10 @@ export const PlanningCascadeView: React.FC = () => {
                 level: 2,
                 data: unit,
                 hasChildren: unit.weeks.length > 0,
-                isExpanded: expandedNodes.has(unit.id)
+                isExpanded: isExpanded(unit.id)
               });
               
-              if (expandedNodes.has(unit.id)) {
+              if (isExpanded(unit.id)) {
                 unit.weeks.forEach(week => {
                   items.push({
                     id: week.id,
@@ -343,10 +336,10 @@ export const PlanningCascadeView: React.FC = () => {
                     level: 3,
                     data: week,
                     hasChildren: week.lessons.length > 0,
-                    isExpanded: expandedNodes.has(week.id)
+                    isExpanded: isExpanded(week.id)
                   });
                   
-                  if (expandedNodes.has(week.id)) {
+                  if (isExpanded(week.id)) {
                     week.lessons.forEach(lesson => {
                       items.push({
                         id: lesson.id,
@@ -491,12 +484,13 @@ export const PlanningCascadeView: React.FC = () => {
         role="treeitem"
         aria-expanded={item.hasChildren ? Boolean(item.isExpanded) : undefined}
         aria-level={item.level + 1}
-        aria-selected={isSelected}
+        aria-selected={isSelected ? 'true' : 'false'}
         tabIndex={-1}
       >
         {item.hasChildren && (
           <button
             aria-label={`Expand/Collapse ${item.title}`}
+            aria-expanded={item.isExpanded}
             data-testid={item.type === 'unit' ? `expand-collapse-${item.title.replace(/\s+/g, '-').toLowerCase()}` : undefined}
             style={{ 
               background: 'none', 
