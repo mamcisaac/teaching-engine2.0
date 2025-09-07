@@ -46,6 +46,23 @@ export const planningCascadeAPI = {
    */
   async getCascade(): Promise<unknown> {
     const response = await apiClient.get('/api/planning-cascade/cascade');
+    
+    // Transform API response to match frontend expectations
+    const data = response.data;
+    if (data && typeof data === 'object' && 'summary' in data) {
+      const summary = (data as any).summary;
+      return {
+        ...data,
+        statistics: {
+          totalLessons: summary.totalLessons || 0,
+          taughtLessons: summary.taughtLessons || 0,
+          plannedLessons: (summary.totalLessons || 0) - (summary.taughtLessons || 0),
+          overdueCount: summary.overdueLessons || 0,
+          completionPercentage: summary.completionRate || 0
+        }
+      };
+    }
+    
     return response.data;
   },
 
