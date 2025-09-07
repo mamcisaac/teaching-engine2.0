@@ -4,9 +4,8 @@
  * Shows scheduled dates and expectation tags with highlighting
  */
 
-import React, { useState, useMemo, useCallback, useEffect, useRef, Suspense, lazy } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { FixedSizeList } from 'react-window';
 
 import { useDebounce } from '../../hooks/useDebounce';
 import { usePlanningCascade } from '../../hooks/usePlanningCascade';
@@ -124,9 +123,26 @@ export const PlanningCascadeView: React.FC = () => {
   const { data: rawData, isLoading, error } = usePlanningCascade();
   const data = rawData as CascadeData | undefined;
   
-  // State for tree expansion - initialize with flag to track if already initialized
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
-  const [hasInitialized, setHasInitialized] = useState(false);
+  // State for tree expansion - start with everything expanded
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => {
+    const initial = new Set<string>();
+    if (data?.cascade) {
+      // Expand everything to show lessons for testing
+      data.cascade.terms.forEach(term => {
+        initial.add(term.id);
+        term.subjects?.forEach(subject => {
+          initial.add(subject.id);
+          subject.units?.forEach(unit => {
+            initial.add(unit.id);
+            unit.weeks?.forEach(week => {
+              initial.add(week.id);
+            });
+          });
+        });
+      });
+    }
+    return initial;
+  });
   const [searchTerm, setSearchTerm] = useState('');
   const [showUnscheduledOnly, setShowUnscheduledOnly] = useState(false);
   const [highlightExpectation, setHighlightExpectation] = useState('');
@@ -135,38 +151,31 @@ export const PlanningCascadeView: React.FC = () => {
   
   // Tree ref for keyboard navigation
   const treeRef = useRef<HTMLDivElement>(null);
-  const listRef = useRef<FixedSizeList<unknown> | null>(null);
+  const listRef = useRef<any>(null);
   
   // Debounce search term for performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
   
-  // Lazy load the FixedSizeList component for virtualization
-  const LazyFixedSizeList = useMemo(
-    () => lazy(() => import('react-window').then(m => ({ default: m.FixedSizeList }))),
-    []
-  );
-  
-  // Initialize expansion state when data loads - expand all the way to show lessons
+  // Initialize expanded nodes when data loads
   useEffect(() => {
-    if (data?.cascade && !hasInitialized) {
+    if (data?.cascade && expandedNodes.size === 0) {
       const initial = new Set<string>();
       // Expand everything to show lessons for testing
       data.cascade.terms.forEach(term => {
         initial.add(term.id);
-        term.subjects.forEach(subject => {
+        term.subjects?.forEach(subject => {
           initial.add(subject.id);
-          subject.units.forEach(unit => {
+          subject.units?.forEach(unit => {
             initial.add(unit.id);
-            unit.weeks.forEach(week => {
+            unit.weeks?.forEach(week => {
               initial.add(week.id);
             });
           });
         });
       });
       setExpandedNodes(initial);
-      setHasInitialized(true);
     }
-  }, [data, hasInitialized]);
+  }, [data, expandedNodes.size]);
   
   // Check if mobile
   useEffect(() => {
@@ -723,18 +732,13 @@ export const PlanningCascadeView: React.FC = () => {
           style={{ outline: 'none', height: useVirtualization ? '600px' : 'auto', overflow: 'auto' }}
         >
           {useVirtualization && flattenedItems.length > 0 && typeof window !== 'undefined' ? (
-          <Suspense fallback={<div>Loading...</div>}>
-            <LazyFixedSizeList
-              ref={listRef}
-              height={600}
-              itemCount={flattenedItems.length}
-              itemSize={40}
-              width="100%"
-              className="virtual-list"
-            >
-              {Row}
-            </LazyFixedSizeList>
-          </Suspense>
+          <div style={{ height: 600, overflow: 'auto' }}>
+            {flattenedItems.map((item, index) => (
+              <div key={item.id}>
+                {Row({ index, style: { height: 40 } })}
+              </div>
+            ))}
+          </div>
         ) : (
           // Non-virtualized rendering for smaller datasets
           flattenedItems.map((item, index) => (
