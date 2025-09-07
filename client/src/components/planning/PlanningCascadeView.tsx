@@ -143,15 +143,17 @@ export const PlanningCascadeView: React.FC = () => {
     return ids;
   }, [data]);
   
-  // State for tree expansion - start with everything expanded by default
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => new Set(allNodeIds));
+  // State for tree expansion - track if we've initialized
+  const [hasInitialized, setHasInitialized] = useState(false);
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
   
-  // Update expandedNodes when data loads for the first time
+  // Initialize expandedNodes when data loads
   useEffect(() => {
-    if (expandedNodes.size === 0 && allNodeIds.size > 0) {
+    if (!hasInitialized && allNodeIds.size > 0) {
       setExpandedNodes(new Set(allNodeIds));
+      setHasInitialized(true);
     }
-  }, [allNodeIds, expandedNodes.size]);
+  }, [allNodeIds, hasInitialized]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showUnscheduledOnly, setShowUnscheduledOnly] = useState(false);
   const [highlightExpectation, setHighlightExpectation] = useState('');
@@ -287,8 +289,10 @@ export const PlanningCascadeView: React.FC = () => {
     if (!filteredData) return [];
     const items: FlattenedItem[] = [];
     
-    // Check if node is expanded
+    // Check if node is expanded - default to expanded before initialization
     const isExpanded = (nodeId: string) => {
+      // Before data loads, default to expanded
+      if (!hasInitialized && allNodeIds.size === 0) return true;
       return expandedNodes.has(nodeId);
     };
     
@@ -360,7 +364,7 @@ export const PlanningCascadeView: React.FC = () => {
     });
     
     return items;
-  }, [filteredData, expandedNodes]);
+  }, [filteredData, expandedNodes, hasInitialized]);
   
   // Count unscheduled lessons - MUST be before conditional returns
   const unscheduledCount = useMemo(() => {
@@ -546,7 +550,12 @@ export const PlanningCascadeView: React.FC = () => {
         ) : item.type === 'subject' ? (
           <h3 style={{ margin: 0, fontSize: '1.1rem' }}>{item.title}</h3>
         ) : (
-          <span style={{ flex: 1 }}>{item.title}</span>
+          <span 
+            style={{ flex: 1 }}
+            data-testid={item.type === 'lesson' ? `lesson-${item.title.toLowerCase().replace(/\s+/g, '-')}` : undefined}
+          >
+            {item.title}
+          </span>
         )}
         
         {/* Date/status for lessons */}
