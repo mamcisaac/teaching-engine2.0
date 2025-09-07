@@ -143,9 +143,9 @@ export const PlanningCascadeView: React.FC = () => {
     return ids;
   }, [data]);
   
-  // State for tree expansion - track if we've initialized
+  // State for tree expansion - start with all nodes when data loads
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(() => new Set(allNodeIds));
   const [hasInitialized, setHasInitialized] = useState(false);
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
   
   // Initialize expandedNodes when data loads
   useEffect(() => {
@@ -190,22 +190,8 @@ export const PlanningCascadeView: React.FC = () => {
   
   // Expand all nodes
   const expandAll = useCallback(() => {
-    if (!data?.cascade) return;
-    const all = new Set<string>();
-    data.cascade.terms.forEach(term => {
-      all.add(term.id);
-      term.subjects.forEach(subject => {
-        all.add(subject.id);
-        subject.units.forEach(unit => {
-          all.add(unit.id);
-          unit.weeks.forEach(week => {
-            all.add(week.id);
-          });
-        });
-      });
-    });
-    setExpandedNodes(all);
-  }, [data]);
+    setExpandedNodes(new Set(allNodeIds));
+  }, [allNodeIds]);
   
   // Collapse all nodes
   const collapseAll = useCallback(() => {
@@ -289,12 +275,11 @@ export const PlanningCascadeView: React.FC = () => {
     if (!filteredData) return [];
     const items: FlattenedItem[] = [];
     
-    // Check if node is expanded - default to expanded before initialization
+    // Check if node is expanded
     const isExpanded = (nodeId: string) => {
-      // Before data loads, default to expanded
-      if (!hasInitialized && allNodeIds.size === 0) return true;
       return expandedNodes.has(nodeId);
     };
+    
     
     filteredData.terms.forEach(term => {
       items.push({
@@ -364,7 +349,7 @@ export const PlanningCascadeView: React.FC = () => {
     });
     
     return items;
-  }, [filteredData, expandedNodes, hasInitialized]);
+  }, [filteredData, expandedNodes]);
   
   // Count unscheduled lessons - MUST be before conditional returns
   const unscheduledCount = useMemo(() => {
