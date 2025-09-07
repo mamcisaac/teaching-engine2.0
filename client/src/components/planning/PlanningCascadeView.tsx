@@ -23,6 +23,7 @@ interface Lesson {
   isTaught: boolean;
   subject?: string;
   expectations: number;
+  expectationIds?: string[];
 }
 
 interface Week {
@@ -247,12 +248,19 @@ export const PlanningCascadeView: React.FC = () => {
     });
   }, []);
   
+  // Simple search function for filtering lessons
+  const searchMatch = useCallback((searchTerm: string, lesson: Lesson): boolean => {
+    const term = searchTerm.toLowerCase();
+    return lesson.title.toLowerCase().includes(term) || 
+           (lesson.subject?.toLowerCase().includes(term) ?? false);
+  }, []);
+  
   // Filter data based on search and filters using debounced term
   const filteredData = useMemo(() => {
     if (!data?.cascade) return null;
     if (!debouncedSearchTerm && !showUnscheduledOnly) return data.cascade;
     
-    // Filter cascade data
+    // Filter cascade data with fuzzy search
     const filteredTerms = data.cascade.terms
       .map(term => ({
         ...term,
@@ -267,7 +275,7 @@ export const PlanningCascadeView: React.FC = () => {
                     ...week,
                     lessons: week.lessons.filter(lesson => {
                       const matchesSearch = !debouncedSearchTerm || 
-                        lesson.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
+                        searchMatch(debouncedSearchTerm, lesson);
                       const matchesUnscheduled = !showUnscheduledOnly || !lesson.date;
                       return matchesSearch && matchesUnscheduled;
                     })
@@ -284,7 +292,7 @@ export const PlanningCascadeView: React.FC = () => {
       ...data.cascade,
       terms: filteredTerms
     };
-  }, [data, debouncedSearchTerm, showUnscheduledOnly]);
+  }, [data, debouncedSearchTerm, showUnscheduledOnly, searchMatch]);
   
   // Flatten tree for virtualization
   const flattenedItems = useMemo(() => {
@@ -438,7 +446,7 @@ export const PlanningCascadeView: React.FC = () => {
     const isSelected = selectedIndex === index;
     const isHighlighted = highlightExpectation && 
       item.type === 'lesson' && 
-      (item.data as Lesson).expectations > 0;
+      (item.data as Lesson).expectationIds?.includes(highlightExpectation);
     
     // Calculate padding based on level for CSS indentation test
     const paddingLeft = `${item.level * 16}px`;
@@ -615,8 +623,8 @@ export const PlanningCascadeView: React.FC = () => {
   const taughtLessons = data.statistics?.taughtLessons || 0;
   const plannedLessons = data.statistics?.plannedLessons || 0;
   
-  // Use virtualization for large datasets
-  const useVirtualization = totalLessons > 100;
+  // Use virtualization for large datasets (500+ lessons for better performance)
+  const useVirtualization = totalLessons > 500;
   
   return (
     <div className={`planning-cascade-view ${isMobile ? 'flex-col' : ''}`} style={{ padding: '1rem' }}>
@@ -653,7 +661,7 @@ export const PlanningCascadeView: React.FC = () => {
           </span>
         )}
         
-        {data.expectations && (
+        {data?.expectations && data.expectations.length > 0 && (
           <select
             value={highlightExpectation}
             onChange={(e) => setHighlightExpectation(e.target.value)}
@@ -663,7 +671,7 @@ export const PlanningCascadeView: React.FC = () => {
             <option value="">Highlight expectation...</option>
             {data.expectations.map(exp => (
               <option key={exp.id} value={exp.id}>
-                {exp.code} - {exp.description}
+                {exp.code} - {exp.description.slice(0, 50)}...
               </option>
             ))}
           </select>
@@ -692,17 +700,17 @@ export const PlanningCascadeView: React.FC = () => {
         <span style={{ color: 'red' }}> {unscheduledCount} unscheduled</span>
       </div>
       
-      {/* Tree view - virtualized for large datasets */}
+      {/* Tree view - hierarchical planning cascade */}
       <div 
-        ref={treeRef}
-        className="cascade-tree"
-        role="tree"
-        aria-label="Planning cascade tree"
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-        style={{ outline: 'none', height: useVirtualization ? '600px' : 'auto', overflow: 'auto' }}
-      >
-        {useVirtualization && flattenedItems.length > 0 ? (
+          ref={treeRef}
+          className="cascade-tree"
+          role="tree"
+          aria-label="Planning cascade tree"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
+          style={{ outline: 'none', height: useVirtualization ? '600px' : 'auto', overflow: 'auto' }}
+        >
+          {useVirtualization && flattenedItems.length > 0 ? (
           <FixedSizeList
             ref={listRef}
             height={600}
