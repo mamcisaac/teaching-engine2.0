@@ -113,37 +113,18 @@ router.post('/login', async (req: Request, res: Response, next: NextFunction): P
     await ensureDbReady(1200);
 
     const email = (req.body?.email as string) ?? 'test.teacher@teaching-engine.test';
-    const id = (req.body?.id as string) ?? 'test-teacher';
     const name = (req.body?.name as string) ?? 'Test Teacher';
 
     // Upsert user (idempotent operation)
     const testTeacher = await prisma.user.upsert({
       where: { email },
       update: { 
-        firstName: name.split(' ')[0] || 'Test',
-        lastName: name.split(' ')[1] || 'Teacher'
+        name
       },
       create: { 
-        id,
         email,
-        password: await bcrypt.hash('test-password', 10),
-        firstName: name.split(' ')[0] || 'Test',
-        lastName: name.split(' ')[1] || 'Teacher',
-        teacherProfile: {
-          create: {
-            yearsOfExperience: 5,
-            grades: ['1'],
-            subjects: ['Français (Immersion)', 'Mathématiques', 'Sciences de la nature'],
-            preferences: {
-              language: 'en',
-              theme: 'light',
-              notifications: true
-            }
-          }
-        }
-      },
-      include: {
-        teacherProfile: true
+        name,
+        password: await bcrypt.hash('test-password', 10)
       }
     });
 
