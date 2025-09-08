@@ -57,16 +57,16 @@ router.post('/seed/:tier', async (req: Request, res: Response): Promise<void> =>
 
     // Clear existing test data
     await prisma.$transaction([
-      prisma.eTFOLessonPlan.deleteMany({ where: { teacherId: testTeacher.id }}),
-      prisma.eTFOUnitPlan.deleteMany({ where: { teacherId: testTeacher.id }}),
-      prisma.eTFOLongRangePlan.deleteMany({ where: { teacherId: testTeacher.id }})
+      prisma.eTFOLessonPlan.deleteMany({}),
+      prisma.unitPlan.deleteMany({}),
+      prisma.longRangePlan.deleteMany({})
     ]);
 
     // Seed based on tier
     if (tier === 'smoke') {
-      await seedSmokeData(testTeacher.id);
+      await seedSmokeData(String(testTeacher.id));
     } else {
-      await seedFullData(testTeacher.id);
+      await seedFullData(String(testTeacher.id));
     }
 
     res.json({ 
@@ -89,9 +89,9 @@ router.post('/reset', async (_req: Request, res: Response): Promise<void> => {
     const testTeacherId = 'test-teacher';
     
     await prisma.$transaction([
-      prisma.eTFOLessonPlan.deleteMany({ where: { teacherId: testTeacherId }}),
-      prisma.eTFOUnitPlan.deleteMany({ where: { teacherId: testTeacherId }}),
-      prisma.eTFOLongRangePlan.deleteMany({ where: { teacherId: testTeacherId }})
+      prisma.eTFOLessonPlan.deleteMany({}),
+      prisma.unitPlan.deleteMany({}),
+      prisma.longRangePlan.deleteMany({})
     ]);
 
     res.json({ reset: true });
@@ -151,9 +151,9 @@ router.post('/login', async (_req: Request, res: Response): Promise<void> => {
  */
 async function seedSmokeData(teacherId: string): Promise<void> {
   // Create 1 long range plan
-  const lrp = await prisma.eTFOLongRangePlan.create({
+  const lrp = await prisma.longRangePlan.create({
     data: {
-      teacherId,
+      // teacherId,
       subject: 'Français (Immersion)',
       grade: '1',
       schoolYear: '2025-2026',
@@ -163,7 +163,7 @@ async function seedSmokeData(teacherId: string): Promise<void> {
 
   // Create 3 unit plans
   const units = await Promise.all([
-    prisma.eTFOUnitPlan.create({
+    prisma.unitPlan.create({
       data: {
         teacherId,
         longRangePlanId: lrp.id,
@@ -175,7 +175,7 @@ async function seedSmokeData(teacherId: string): Promise<void> {
         sequence: 1
       }
     }),
-    prisma.eTFOUnitPlan.create({
+    prisma.unitPlan.create({
       data: {
         teacherId,
         longRangePlanId: lrp.id,
@@ -187,7 +187,7 @@ async function seedSmokeData(teacherId: string): Promise<void> {
         sequence: 2
       }
     }),
-    prisma.eTFOUnitPlan.create({
+    prisma.unitPlan.create({
       data: {
         teacherId,
         longRangePlanId: lrp.id,
@@ -250,9 +250,9 @@ async function seedFullData(teacherId: string): Promise<void> {
 
   const lrps = await Promise.all(
     subjects.map(subject =>
-      prisma.eTFOLongRangePlan.create({
+      prisma.longRangePlan.create({
         data: {
-          teacherId,
+          // teacherId,
           subject,
           grade: '1',
           schoolYear: '2025-2026',
@@ -277,9 +277,9 @@ async function seedFullData(teacherId: string): Promise<void> {
       const endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() + 20);
       
-      const unit = await prisma.eTFOUnitPlan.create({
+      const unit = await prisma.unitPlan.create({
         data: {
-          teacherId,
+          // teacherId,
           longRangePlanId: lrp.id,
           title: `Unit ${unitNum} - ${lrp.subject}`,
           titleEn: `Unit ${unitNum} - ${lrp.subject}`,
@@ -313,7 +313,7 @@ async function seedFullData(teacherId: string): Promise<void> {
       
       await prisma.eTFOLessonPlan.create({
         data: {
-          teacherId,
+          // teacherId,
           unitPlanId: unit.id,
           title: `Lesson ${globalLessonNumber}`,
           titleFr: `Leçon ${globalLessonNumber}`,
