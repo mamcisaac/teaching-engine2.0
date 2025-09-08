@@ -13,7 +13,6 @@ import { reportGenerationRateLimit } from '../middleware/rateLimit/artifactRateL
 import { generateStudentReport, generateClassReport } from '../services/reportGenerator';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 interface AuthenticatedRequest extends Request {
   user?: {

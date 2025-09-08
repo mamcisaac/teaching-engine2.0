@@ -444,12 +444,8 @@ export function getCache(): RedisCache {
       enableCompression: true,
     });
 
-    // Auto-connect in non-test environments
-    if (process.env.NODE_ENV !== 'test') {
-      cacheInstance.connect().catch((error) => {
-        structuredLogger.error('Failed to connect to Redis on startup', error as Error);
-      });
-    }
+    // NEVER auto-connect at module import time - causes blocking
+    // Connection should be established explicitly by the app after setup
   }
 
   return cacheInstance;

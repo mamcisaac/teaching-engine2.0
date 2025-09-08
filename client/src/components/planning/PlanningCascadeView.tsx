@@ -162,7 +162,7 @@ export const PlanningCascadeView: React.FC = () => {
   
   // Tree ref for keyboard navigation
   const treeRef = useRef<HTMLDivElement>(null);
-  const listRef = useRef<any>(null);
+  const listRef = useRef<FixedSizeList>(null);
   
   // Debounce search term for performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
@@ -715,6 +715,7 @@ export const PlanningCascadeView: React.FC = () => {
           className="cascade-tree"
           role="tree"
           aria-label="Planning cascade tree"
+          data-testid="planning-cascade-tree"
           tabIndex={0}
           onKeyDown={handleKeyDown}
           style={{ outline: 'none', height: useVirtualization ? '600px' : 'auto', overflow: 'auto' }}

@@ -97,6 +97,64 @@ const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) =
 log('Initializing Express application...');
 const app = express();
 
+// CRITICAL: Add /healthz endpoint BEFORE ALL middleware (must never depend on auth or DB)
+app.get('/healthz', (_req, res): void => {
+  res.status(200).json({ ok: true, ts: Date.now() });
+});
+
+// Add /readyz endpoint for readiness check (checks dependencies)
+app.get('/readyz', async (_req, res): Promise<void> => {
+  try {
+    // Check database connectivity
+    const dbOk = await prisma.$queryRaw`SELECT 1`
+      .then(() => true)
+      .catch(() => false);
+    
+    // Check Redis connectivity
+    let cacheOk = false;
+    try {
+      const { getCache } = await import('./services/cache/RedisCache');
+      const cache = getCache();
+      cacheOk = await cache.isHealthy();
+    } catch {
+      cacheOk = false;
+    }
+    
+    // Check event loop health
+    let eventLoopOk = true;
+    let eventLoopMetrics: Record<string, unknown> = {};
+    try {
+      const { isEventLoopHealthy, getEventLoopMetrics } = await import('./monitor/eventloop');
+      eventLoopOk = isEventLoopHealthy();
+      eventLoopMetrics = getEventLoopMetrics();
+    } catch {
+      // Event loop monitoring might not be started yet
+      eventLoopOk = true;
+    }
+    
+    const ok = dbOk && cacheOk && eventLoopOk;
+    
+    res.status(ok ? 200 : 503).json({
+      status: ok ? 'ok' : 'degraded',
+      db: dbOk ? 'connected' : 'down',
+      cache: cacheOk ? 'connected' : 'down',
+      eventLoop: eventLoopOk ? 'healthy' : 'degraded',
+      metrics: {
+        eventLoop: eventLoopMetrics
+      },
+      ts: Date.now()
+    });
+  } catch (error) {
+    res.status(503).json({
+      status: 'error',
+      db: 'unknown',
+      cache: 'unknown',
+      eventLoop: 'unknown',
+      ts: Date.now()
+    });
+  }
+});
+
 // Apply JSON and cookie parsing middleware FIRST
 log('Applying body parsing middleware...');
 app.use(json({ limit: '10mb' })); // Set reasonable payload limit
@@ -206,10 +264,15 @@ app.post('/api/logout', (req: Request, _res: Response, next: NextFunction): void
 
 // Removed duplicate health endpoint - using the one with performance monitoring above
 
-// Mount test routes (only available in test environment)
+// Mount test routes (only available in test/development environment)
 log(`NODE_ENV is: ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
-  log('Skipping test routes - disabled in ETFO-aligned implementation');
+  log('Mounting test routes for E2E testing...');
+  import('./routes/test').then(m => {
+    app.use('/__test__', m.router);
+  }).catch(err => {
+    log('Failed to load test routes:', err);
+  });
 } else {
   log('Skipping test routes - not in test or development mode');
 }
@@ -394,19 +457,18 @@ async function initializeApp(): Promise<express.Application> {
   log('Initializing error reporting service...');
   errorReportingService.init();
 
-  // Initialize background services (queues, cleanup, etc.)
-  log('Initializing background services...');
-  await initializeServices();
+  // Initialize services (temporarily disabled for debugging)
+  // await initializeServices();
+  // logger.info('✅ Background services initialized');
 
-  // Initialize OpenTelemetry before anything else
-  log('Initializing OpenTelemetry...');
-  await initTelemetry();
+  // Initialize telemetry (temporarily disabled for debugging)
+  // await initTelemetry();
+  // logger.info('✅ Telemetry initialized');
 
-  // Start alert monitoring
-  startAlertMonitoring();
-
-  // Start system metrics collection
-  startSystemMetricsCollection();
+  // Start monitoring services (temporarily disabled for debugging)
+  // startAlertMonitoring();
+  // startSystemMetricsCollection();
+  // logger.info('✅ Monitoring services started');
 
   return app;
 }
@@ -448,10 +510,15 @@ if (isDirectRun || isE2ETest || isDevelopment) {
   log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
 
   // Initialize app asynchronously then start server
+  console.log('About to initialize app...');
   initializeApp()
     .then(() => {
+      console.log('App initialized, starting server...');
+      console.log('PORT is:', PORT);
+      console.log('app is:', typeof app);
       // Start server directly - service initialization removed for simplicity
       const server = app.listen(PORT, '0.0.0.0', () => {
+        console.log(`Server is running on port ${PORT}`);
         log(`Server is running on port ${PORT}`);
         log('Server address:', server.address());
         log('Server started successfully');
@@ -489,7 +556,8 @@ if (isDirectRun || isE2ETest || isDevelopment) {
       return server;
     })
     .catch((err) => {
-      error('Failed to initialize app:', err);
+      console.error('Failed to initialize app:', err);
+      logger.error({ error: err }, 'App initialization failed');
       process.exit(1);
     });
 }

@@ -9,7 +9,6 @@ import type { Job } from 'bull';
 import { logger } from '../../../logger';
 import { importStudentsFromCSV } from '../../csvImport';
 
-const prisma = new PrismaClient();
 
 interface BulkJobData {
   type: 'csv-import' | 'batch-process' | 'data-migration';

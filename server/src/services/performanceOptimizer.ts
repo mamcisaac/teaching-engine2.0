@@ -4,11 +4,11 @@
  */
 
 import { PrismaClient } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import Redis from 'ioredis';
 
 import { logger } from '../logger';
 
-const prisma = new PrismaClient();
 const redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
 
 export interface CacheConfig {

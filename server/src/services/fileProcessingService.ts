@@ -454,7 +454,6 @@ export class FileProcessingService {
       
       // Import Prisma client for database check
       const { PrismaClient } = await import('@teaching-engine/database');
-      const prisma = new PrismaClient();
       
       try {
         // Check for existing artifact with same checksum for this student
@@ -508,7 +507,6 @@ export class FileProcessingService {
     recentErrors: Array<{ date: Date; error: string }>;
   }> {
     const { PrismaClient } = await import('@teaching-engine/database');
-    const prisma = new PrismaClient();
     
     try {
       // Get total artifacts and their stats

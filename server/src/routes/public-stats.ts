@@ -1,10 +1,9 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../prisma';
 import { Router } from 'express';
 
 import { logger } from '../logger';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Public stats endpoint - no auth required for basic dashboard stats
 router.get('/stats', async (_req, res) => {

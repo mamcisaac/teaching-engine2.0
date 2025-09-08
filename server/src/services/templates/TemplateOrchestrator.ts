@@ -42,9 +42,9 @@ export class TemplateOrchestrator extends BaseService {
     
     // Initialize all specialized services
     this.registry = TemplateRegistry.getInstance();
-    this.cache = TemplateCache.getInstance(options.cacheOptions as Parameters<typeof TemplateCache.getInstance>[0]);
+    this.cache = TemplateCache.getInstance(options?.cacheOptions as Parameters<typeof TemplateCache.getInstance>[0]);
     this.helpers = TemplateHelpers.getInstance();
-    this.partialManager = PartialManager.getInstance(options.partialsDirectory);
+    this.partialManager = PartialManager.getInstance(options?.partialsDirectory);
     this.renderCoordinator = RenderCoordinator.getInstance();
   }
 

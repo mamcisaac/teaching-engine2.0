@@ -481,11 +481,13 @@ export class TemplateRegistry extends BaseService {
    * Infer provider type from name or provider
    */
   private inferProviderType(name: string, provider: TemplateProvider): string {
-    // Try to get type from provider metadata
-    const metadata = provider.getMetadata();
-    if (metadata.type !== null) {
-      const type = metadata.type;
-      return typeof type === 'string' ? type : 'generic';
+    // Try to get type from provider metadata if method exists
+    if (typeof provider.getMetadata === 'function') {
+      const metadata = provider.getMetadata();
+      if (metadata && metadata.type !== null && metadata.type !== undefined) {
+        const type = metadata.type;
+        return typeof type === 'string' ? type : 'generic';
+      }
     }
 
     // Fallback to name-based inference

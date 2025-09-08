@@ -119,7 +119,6 @@ export const validateStudentAccess = async (req: Request, res: Response, next: N
 
     // Import Prisma client
     const { PrismaClient } = await import('@teaching-engine/database');
-    const prisma = new PrismaClient();
 
     try {
       // Verify student exists and belongs to the authenticated teacher
@@ -161,7 +160,6 @@ export const validateOutcomeAccess = async (req: Request, res: Response, next: N
 
     // Import Prisma client
     const { PrismaClient } = await import('@teaching-engine/database');
-    const prisma = new PrismaClient();
 
     try {
       const outcomeIds = outcomes.map((o: { outcomeId: string }) => o.outcomeId);

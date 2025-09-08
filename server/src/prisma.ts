@@ -108,9 +108,7 @@ export const prisma = new Proxy({} as InstanceType<typeof DatabasePrismaClient>,
   },
 });
 
-if (process.env.NODE_ENV !== 'production' && !isTestEnvironment) {
-  globalForPrisma.prisma = getPrisma();
-}
+// Removed eager initialization - getPrisma() is called lazily via the proxy
 
 // Export PrismaClient with our own name to avoid conflicts
 export { DatabasePrismaClient as PrismaClient };

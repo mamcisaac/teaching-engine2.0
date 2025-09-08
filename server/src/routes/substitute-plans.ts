@@ -12,7 +12,6 @@ import { logger } from '../logger';
 import { SubstitutePlanService } from '../services/substitutePlanService';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Validation schemas
 const substituteInfoSchema = z.object({

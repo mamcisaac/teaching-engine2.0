@@ -11,16 +11,16 @@ export const subjectSchema = z.object({
 // Helper function to create bilingual fields
 const bilingualString = (fieldName: string, required = false, options?: { max?: number }): Record<string, z.ZodString | z.ZodOptional<z.ZodString>> => {
   const baseSchema = required ? z.string().min(1) : z.string();
-  const schema = options.max !== undefined && options.max > 0 ? baseSchema.max(options.max) : baseSchema;
+  const schema = options?.max !== undefined && options.max > 0 ? baseSchema.max(options.max) : baseSchema;
   return {
     [fieldName]: required ? schema : schema.optional(),
     [`${fieldName}En`]: z
       .string()
-      .max(options.max ?? Infinity)
+      .max(options?.max ?? Infinity)
       .optional(),
     [`${fieldName}Fr`]: z
       .string()
-      .max(options.max ?? Infinity)
+      .max(options?.max ?? Infinity)
       .optional(),
   };
 };

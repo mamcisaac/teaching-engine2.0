@@ -3,7 +3,7 @@
  * Hierarchical planning view showing Year → Subject → Unit → Week → Lesson structure
  */
 
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../prisma';
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
@@ -17,7 +17,6 @@ interface AuthenticatedRequest extends Request {
 }
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Types for cascade structure
 interface LessonNode {

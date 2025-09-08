@@ -3,7 +3,7 @@ import { parseISO } from 'date-fns';
 
 import { logger } from '../logger';
 
-import { schoolCalendar } from './schoolCalendar';
+import { getSchoolCalendar } from './schoolCalendar';
 
 interface ScheduleUpdate {
   lessonId: string;
@@ -77,7 +77,7 @@ export class LessonSchedulerService {
     const subjectType = this.isAlternatingSubject(subject) ? 'alternating' : 'daily';
     
     // Get optimal distribution dates for this unit
-    const distributionDates = schoolCalendar.getUnitDistributionDates(
+    const distributionDates = await getSchoolCalendar().getUnitDistributionDates(
       unit.lessonPlans.length, 
       subjectType
     );

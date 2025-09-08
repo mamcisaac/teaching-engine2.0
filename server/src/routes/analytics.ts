@@ -9,7 +9,6 @@ import { PrismaClient } from '@teaching-engine/database';
 import { logger } from '../logger';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 interface AuthenticatedRequest extends Request {
   user?: {

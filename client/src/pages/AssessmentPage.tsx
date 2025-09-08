@@ -216,7 +216,7 @@ export function AssessmentPage(): React.ReactElement {
   const balance = getEvidenceBalance();
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 max-w-7xl mx-auto" data-testid="assessment-page">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Assessment</h1>
         <p className="text-gray-600">ETFO 4-Level Mastery Tracking</p>

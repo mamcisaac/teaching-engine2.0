@@ -12,7 +12,6 @@ import sharp from 'sharp';
 import { logger } from '../../../logger';
 import { getStorageService } from '../../storage';
 
-const prisma = new PrismaClient();
 const storageService = getStorageService();
 
 export interface ImageJobData {

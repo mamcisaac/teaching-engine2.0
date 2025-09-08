@@ -8,11 +8,11 @@
  */
 
 import { PrismaClient } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import { parse } from 'csv-parse/sync';
 
 import { logger } from '../logger';
 
-const prisma = new PrismaClient();
 
 export interface StudentImportRow {
   firstName: string;

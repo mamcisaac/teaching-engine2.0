@@ -12,7 +12,6 @@ import { logger } from '../logger';
 import { LessonCompletionTracker } from '../services/lessonCompletionTracker';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 interface AuthenticatedRequest extends Request {
   user?: {

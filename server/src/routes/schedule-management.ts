@@ -1,14 +1,13 @@
-import { PrismaClient } from '@prisma/client';
 import { Router } from 'express';
 import { z } from 'zod';
 
 import { logger } from '../logger';
 import { authenticate } from '../middleware/auth';
+import { prisma } from '../prisma';
 import { LessonSchedulerService } from '../services/lessonScheduler';
-import { schoolCalendar } from '../services/schoolCalendar';
+import { getSchoolCalendar } from '../services/schoolCalendar';
 
 const router = Router();
-const prisma = new PrismaClient();
 const schedulerService = new LessonSchedulerService(prisma);
 
 // Validation schema for batch updates
@@ -429,7 +428,7 @@ router.get('/calendar-summary', authenticate, async (_req, res): Promise<void> =
   try {
     logger.info('📅 API: Getting school calendar summary');
 
-    const summary = schoolCalendar.getSchoolYearSummary();
+    const summary = await getSchoolCalendar().getSchoolYearSummary();
 
     logger.info({ summary }, '✅ Retrieved calendar summary:');
 
@@ -514,7 +513,7 @@ router.post('/shift-subject', authenticate, async (req, res): Promise<void> => {
       const actualSubject = subject || lessonsToShift[0]?.unitPlan?.longRangePlan?.subject;
       
       // Use school calendar to find valid teaching days
-      const teachingDays = schoolCalendar.getTeachingDays();
+      const teachingDays = await getSchoolCalendar().getTeachingDays();
       // const startDateObj = new Date(fromDate); // Unused variable - commenting out
       
       // Check if this is an alternating subject
@@ -744,7 +743,7 @@ router.post('/replace-with-extension', authenticate, async (req, res): Promise<v
       const isAlternating = ['Sciences humaines', 'Formation personnelle et sociale'].includes(subject);
       
       // Get next teaching day after current date
-      const teachingDays = schoolCalendar.getTeachingDays();
+      const teachingDays = await getSchoolCalendar().getTeachingDays();
       const currentDayIndex = teachingDays.findIndex((d: { dateObj: Date }) => 
         d.dateObj.toISOString().split('T')[0] === coreLessonDate.toISOString().split('T')[0]
       );
@@ -896,7 +895,7 @@ router.post('/validate-shift', authenticate, async (req, res): Promise<void> => 
       newDate.setDate(newDate.getDate() + shiftDays);
       
       // Check if new date would be outside school year
-      const teachingDays = schoolCalendar.getTeachingDays();
+      const teachingDays = await getSchoolCalendar().getTeachingDays();
       const lastDay = teachingDays[teachingDays.length - 1]?.dateObj;
       
       if (lastDay && newDate > lastDay) {

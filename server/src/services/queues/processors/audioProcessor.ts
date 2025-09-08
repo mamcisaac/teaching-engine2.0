@@ -16,7 +16,6 @@ import ffmpeg from 'fluent-ffmpeg';
 import { logger } from '../../../logger';
 import { getStorageService } from '../../storage';
 
-const prisma = new PrismaClient();
 const storageService = getStorageService();
 const tempDir = path.join(os.tmpdir(), 'teaching-engine-audio');
 

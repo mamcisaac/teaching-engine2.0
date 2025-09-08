@@ -259,7 +259,7 @@ export function StudentsPage(): React.ReactElement {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 max-w-7xl mx-auto" data-testid="students-page">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Students</h1>
         <p className="text-gray-600">Manage your Grade 1 French Immersion class</p>

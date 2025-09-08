@@ -10,7 +10,6 @@ import pdfParse from 'pdf-parse';
 import { logger } from '../../../logger';
 
 
-const prisma = new PrismaClient();
 
 interface DocumentJobData {
   artifactId: string;

@@ -4,8 +4,8 @@
  */
 
 import { PrismaClient } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 
-const prisma = new PrismaClient();
 
 export class LessonCompletionTracker {
   private userId: number;

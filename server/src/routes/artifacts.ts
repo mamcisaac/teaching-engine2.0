@@ -31,7 +31,6 @@ import { getFileProcessingService } from '../services/fileProcessingService';
 import { getStorageService } from '../services/storage';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Types
 interface AuthenticatedRequest extends Request {

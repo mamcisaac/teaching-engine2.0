@@ -21,7 +21,6 @@ import { exportStudentEvidence, exportClassSummary } from '../services/evidenceE
 
 
 const router = Router();
-const prisma = new PrismaClient();
 
 interface AuthenticatedRequest extends Request {
   user?: {

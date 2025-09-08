@@ -5,6 +5,7 @@
  */
 
 import { promises as fs, createWriteStream } from 'fs';
+import { prisma } from '../prisma';
 import os from 'os';
 import path from 'path';
 
@@ -52,7 +53,6 @@ interface ArtifactData {
   fileName?: string;
 }
 
-const prisma = new PrismaClient();
 
 export interface ExportOptions {
   studentId?: string;

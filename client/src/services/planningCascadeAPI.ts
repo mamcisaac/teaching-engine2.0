@@ -50,7 +50,7 @@ export const planningCascadeAPI = {
     // Transform API response to match frontend expectations
     const data = response.data;
     if (data && typeof data === 'object' && 'summary' in data) {
-      const summary = (data as any).summary;
+      const summary = (data as { summary: { totalLessons?: number; taughtLessons?: number; overdueLessons?: number; completionRate?: number } }).summary;
       return {
         ...data,
         statistics: {

@@ -11,7 +11,6 @@ import { param, query, body, validationResult } from 'express-validator';
 import { logger } from '../logger';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 interface AuthenticatedRequest extends Request {
   user?: {

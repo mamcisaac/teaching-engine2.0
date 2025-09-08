@@ -1,0 +1,114 @@
+{
+  "summary": {
+    "totalTests": 11,
+    "passed": 5,
+    "failed": 6,
+    "passRate": "45.45%",
+    "duration": 88744,
+    "timestamp": "2025-09-08T12:46:18.584Z"
+  },
+  "environment": {
+    "clientURL": "http://localhost:5173",
+    "serverURL": "http://localhost:3000",
+    "headless": true,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.0.0 Safari/537.36"
+  },
+  "tests": [
+    {
+      "name": "Authentication state",
+      "passed": false,
+      "error": "Unknown page state",
+      "timestamp": 1757335506549
+    },
+    {
+      "name": "Onboarding already completed",
+      "passed": true,
+      "error": null,
+      "timestamp": 1757335511552
+    },
+    {
+      "name": "Navigation bar present",
+      "passed": false,
+      "error": null,
+      "timestamp": 1757335517354
+    },
+    {
+      "name": "Dashboard link present",
+      "passed": false,
+      "error": null,
+      "timestamp": 1757335522357
+    },
+    {
+      "name": "Curriculum link present",
+      "passed": false,
+      "error": null,
+      "timestamp": 1757335527359
+    },
+    {
+      "name": "Planning link present",
+      "passed": false,
+      "error": null,
+      "timestamp": 1757335532362
+    },
+    {
+      "name": "Calendar link present",
+      "passed": false,
+      "error": null,
+      "timestamp": 1757335537365
+    },
+    {
+      "name": "Dashboard navigation elements",
+      "passed": true,
+      "error": null,
+      "timestamp": 1757335552535
+    },
+    {
+      "name": "Data persistence configured",
+      "passed": true,
+      "error": null,
+      "timestamp": 1757335577752
+    },
+    {
+      "name": "Page loads within 3 seconds",
+      "passed": true,
+      "error": null,
+      "timestamp": 1757335578371
+    },
+    {
+      "name": "Memory usage reasonable",
+      "passed": true,
+      "error": null,
+      "timestamp": 1757335578424
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "01-landing-page",
+      "filepath": "screenshots/comprehensive-ui/1757335491372-01-landing-page.png",
+      "timestamp": 1757335491540
+    },
+    {
+      "name": "09-dashboard-main",
+      "filepath": "screenshots/comprehensive-ui/1757335512189-09-dashboard-main.png",
+      "timestamp": 1757335512353
+    },
+    {
+      "name": "10-dashboard-features",
+      "filepath": "screenshots/comprehensive-ui/1757335552372-10-dashboard-features.png",
+      "timestamp": 1757335552535
+    },
+    {
+      "name": "23-data-persistence",
+      "filepath": "screenshots/comprehensive-ui/1757335577602-23-data-persistence.png",
+      "timestamp": 1757335577751
+    },
+    {
+      "name": "24-performance-test",
+      "filepath": "screenshots/comprehensive-ui/1757335578424-24-performance-test.png",
+      "timestamp": 1757335578584
+    }
+  ],
+  "recommendations": [
+    "Review failed tests and fix identified issues"
+  ]
+}

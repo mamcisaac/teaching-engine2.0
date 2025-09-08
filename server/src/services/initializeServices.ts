@@ -17,6 +17,17 @@ export const initializeServices = async (): Promise<void> => {
   logger.info('Initializing background services...');
   
   try {
+    // Start event loop monitoring
+    const { startEventLoopMonitoring } = await import('../monitor/eventloop');
+    startEventLoopMonitoring();
+    logger.info('✅ Event loop monitoring started');
+    
+    // Initialize Redis cache connection (was blocking at module import)
+    const { getCache } = await import('./cache/RedisCache');
+    const cache = getCache();
+    await cache.connect();
+    logger.info('✅ Redis cache connected');
+    
     // Start job queue processors
     await initializeQueues();
     logger.info('✅ Job queues initialized');
@@ -44,6 +55,7 @@ export const initializeServices = async (): Promise<void> => {
  */
 const logServiceStatus = (): void => {
   logger.info('=== Service Status ===');
+  logger.info('✅ Event Loop Monitoring: ACTIVE');
   logger.info('✅ Transaction Safety: ENABLED');
   logger.info('✅ Security: eval() vulnerability FIXED');
   logger.info('✅ Duplicate Detection: ACTIVE');

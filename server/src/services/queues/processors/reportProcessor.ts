@@ -9,7 +9,6 @@ import type { Job } from 'bull';
 import { logger } from '../../../logger';
 import { generateStudentReport, generateClassReport } from '../../reportGenerator';
 
-const prisma = new PrismaClient();
 
 interface StudentReportJobData {
   type: 'student' | 'class';

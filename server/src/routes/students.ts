@@ -16,7 +16,6 @@ import { getStudentsOptimized, invalidateUserCache } from '../services/performan
 import { checkClassQuota, checkStudentQuota, formatBytes } from '../services/quotaManager';
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Configure multer for CSV uploads
 const csvUpload = multer({

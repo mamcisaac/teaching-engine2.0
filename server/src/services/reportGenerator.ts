@@ -5,6 +5,7 @@
  */
 
 import { PrismaClient } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import PDFDocument from 'pdfkit';
 
 // PDFKit types don't always match the runtime API
@@ -40,7 +41,6 @@ interface LevelCounts {
 
 import { logger } from '../logger';
 
-const prisma = new PrismaClient();
 
 export interface ReportOptions {
   studentId?: string;

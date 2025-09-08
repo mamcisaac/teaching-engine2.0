@@ -1,5 +1,6 @@
-import { readFileSync, existsSync } from 'fs';
+import { readFile } from 'fs/promises';
 import { join } from 'path';
+import { access } from 'fs/promises';
 
 import { format, parseISO } from 'date-fns';
 
@@ -25,24 +26,29 @@ interface TeachingDay {
 export class SchoolCalendarService {
   private teachingDays: TeachingDay[] = [];
   private initialized = false;
+  private initPromise: Promise<void> | null = null;
 
   constructor() {
-    this.initialize();
+    // No initialization at construction time
   }
 
-  private initialize() {
+  private async initialize() {
     if (this.initialized) return;
 
     try {
       // Load Emily's yearly schedule
       const schedulePath = join(process.cwd(), 'emily-yearly-schedule.json');
       
-      // CRITICAL FIX: Add validation for file existence
-      if (!existsSync(schedulePath)) {
+      // Check file existence with async method
+      try {
+        await access(schedulePath);
+      } catch {
         throw new Error(`School calendar file not found: ${schedulePath}`);
       }
       
-      const scheduleData: ScheduleEntry[] = JSON.parse(readFileSync(schedulePath, 'utf-8'));
+      // Use async file reading
+      const fileContent = await readFile(schedulePath, 'utf-8');
+      const scheduleData: ScheduleEntry[] = JSON.parse(fileContent);
       
       // Validate that we have data
       if (!Array.isArray(scheduleData) || scheduleData.length === 0) {
@@ -91,16 +97,31 @@ export class SchoolCalendarService {
   }
 
   /**
+   * Ensure service is initialized before use with proper locking
+   */
+  private async ensureInitialized() {
+    if (this.initialized) return;
+    
+    if (!this.initPromise) {
+      this.initPromise = this.initialize();
+    }
+    
+    await this.initPromise;
+  }
+
+  /**
    * Get all teaching days for the school year
    */
-  getTeachingDays(): TeachingDay[] {
+  async getTeachingDays(): Promise<TeachingDay[]> {
+    await this.ensureInitialized();
     return [...this.teachingDays];
   }
 
   /**
    * Get teaching days within a date range
    */
-  getTeachingDaysInRange(startDate: Date, endDate: Date): TeachingDay[] {
+  async getTeachingDaysInRange(startDate: Date, endDate: Date): Promise<TeachingDay[]> {
+    await this.ensureInitialized();
     return this.teachingDays.filter(day => 
       day.dateObj >= startDate && day.dateObj <= endDate
     );
@@ -109,7 +130,8 @@ export class SchoolCalendarService {
   /**
    * Get the next N teaching days starting from a specific date
    */
-  getNextTeachingDays(startDate: Date, count: number): TeachingDay[] {
+  async getNextTeachingDays(startDate: Date, count: number): Promise<TeachingDay[]> {
+    await this.ensureInitialized();
     const startIndex = this.teachingDays.findIndex(day => 
       day.dateObj >= startDate
     );
@@ -122,21 +144,24 @@ export class SchoolCalendarService {
   /**
    * Get teaching day by date string (YYYY-MM-DD)
    */
-  getTeachingDay(dateString: string): TeachingDay | undefined {
+  async getTeachingDay(dateString: string): Promise<TeachingDay | undefined> {
+    await this.ensureInitialized();
     return this.teachingDays.find(day => day.date === dateString);
   }
 
   /**
    * Check if a date is a valid teaching day
    */
-  isTeachingDay(dateString: string): boolean {
-    return this.getTeachingDay(dateString) !== undefined;
+  async isTeachingDay(dateString: string): Promise<boolean> {
+    const day = await this.getTeachingDay(dateString);
+    return day !== undefined;
   }
 
   /**
    * Get the total number of teaching days
    */
-  getTotalTeachingDays(): number {
+  async getTotalTeachingDays(): Promise<number> {
+    await this.ensureInitialized();
     return this.teachingDays.length;
   }
 
@@ -144,11 +169,12 @@ export class SchoolCalendarService {
    * Get teaching days for a specific subject's optimal scheduling
    * Based on Emily's daily pattern: 5 lessons per day with alternating subjects
    */
-  getSchedulingPattern(): {
+  async getSchedulingPattern(): Promise<{
     dailySubjects: string[];
     alternatingSubjects: string[];
     totalDays: number;
-  } {
+  }> {
+    await this.ensureInitialized();
     return {
       dailySubjects: [
         'Français (Immersion)',     // Slot 1: Daily (188 lessons)
@@ -168,7 +194,8 @@ export class SchoolCalendarService {
    * Get dates for scheduling a specific number of lessons for a subject
    * with proper distribution across the school year
    */
-  getSchedulingDates(subjectType: 'daily' | 'alternating', lessonCount: number): string[] {
+  async getSchedulingDates(subjectType: 'daily' | 'alternating', lessonCount: number): Promise<string[]> {
+    await this.ensureInitialized();
     const dates: string[] = [];
     
     if (subjectType === 'daily') {
@@ -189,7 +216,8 @@ export class SchoolCalendarService {
    * Get optimal distribution dates for a unit's lessons
    * Spreads lessons evenly across available teaching days
    */
-  getUnitDistributionDates(unitLessonCount: number, subjectType: 'daily' | 'alternating'): string[] {
+  async getUnitDistributionDates(unitLessonCount: number, subjectType: 'daily' | 'alternating'): Promise<string[]> {
+    await this.ensureInitialized();
     const totalDays = subjectType === 'daily' ? this.teachingDays.length : Math.floor(this.teachingDays.length / 2);
     
     if (unitLessonCount >= totalDays) {
@@ -216,7 +244,8 @@ export class SchoolCalendarService {
   /**
    * Get school year summary
    */
-  getSchoolYearSummary() {
+  async getSchoolYearSummary() {
+    await this.ensureInitialized();
     const startDay = this.teachingDays[0];
     const endDay = this.teachingDays[this.teachingDays.length - 1];
     
@@ -246,5 +275,15 @@ export class SchoolCalendarService {
   }
 }
 
-// Export singleton instance
-export const schoolCalendar = new SchoolCalendarService();
+// Lazy singleton pattern - no work at import time
+let schoolCalendarInstance: SchoolCalendarService | null = null;
+
+export function getSchoolCalendar(): SchoolCalendarService {
+  if (!schoolCalendarInstance) {
+    schoolCalendarInstance = new SchoolCalendarService();
+  }
+  return schoolCalendarInstance;
+}
+
+// Export named for cleaner imports
+export const schoolCalendar = getSchoolCalendar;

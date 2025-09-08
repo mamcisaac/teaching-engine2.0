@@ -4,9 +4,8 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
-import { AuthProvider } from './contexts/AuthContext'
 import { LanguageProvider } from './contexts/LanguageContext'
-import { AppRouter } from './routing/AppRouter'
+import { App } from './App'
 import { errorReportingService } from './services/errorReportingService'
 import { logger } from './utils/logger';
 import './index.css'
@@ -51,11 +50,9 @@ if (rootElement) {
       <StrictMode>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
-            <AuthProvider>
-              <LanguageProvider>
-                <AppRouter />
-              </LanguageProvider>
-            </AuthProvider>
+            <LanguageProvider>
+              <App />
+            </LanguageProvider>
             <Toaster closeButton richColors position="top-right" />
           </BrowserRouter>
         </QueryClientProvider>
