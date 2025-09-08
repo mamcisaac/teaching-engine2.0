@@ -8,17 +8,17 @@ const TEST_SECRET = process.env.TEST_SECRET || 'test-secret-token';
 
 export const test = base.extend<{
   tier?: 'smoke' | 'full';
+  seedData: any;
 }>({
   tier: ['smoke', { option: true }], // Default to smoke for faster tests
   
   // Seed data once per worker
-  // @ts-ignore - Playwright worker fixture
-  seedData: [async ({ playwright, tier }, use) => {
+  seedData: [async ({ playwright, tier }: any, use: any) => {
     const seedTier = tier || 'smoke';
     
     // Seed the data
     const seedResponse = await playwright.request.newContext()
-      .then(ctx => ctx.post(`http://localhost:3000/__test__/seed/${seedTier}`, {
+      .then((ctx: any) => ctx.post(`http://localhost:3000/__test__/seed/${seedTier}`, {
         headers: { 'X-Test-Token': TEST_SECRET }
       }));
     
@@ -29,11 +29,12 @@ export const test = base.extend<{
     const seedResult = await seedResponse.json();
     console.log(`✅ Seeded ${seedResult.lessons} lessons for ${seedTier} tier`);
     
-    await use();
+    // Pass the seed result to tests
+    await use(seedResult);
     
     // Reset after all tests in this worker
     const resetResponse = await playwright.request.newContext()
-      .then(ctx => ctx.post('http://localhost:3000/__test__/reset', {
+      .then((ctx: any) => ctx.post('http://localhost:3000/__test__/reset', {
         headers: { 'X-Test-Token': TEST_SECRET }
       }));
     

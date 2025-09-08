@@ -13,6 +13,7 @@ export const test = base.extend({
       // @ts-ignore
       globalThis.Date = class extends _Date {
         constructor(...args: any[]) { 
+          // @ts-ignore
           super(...(args.length ? args : [fixed])); 
         }
         static now() { return fixed; }

@@ -6,6 +6,7 @@
 
 import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { FixedSizeList } from 'react-window'; // TODO: Add when implementing virtual scrolling
 
 import { useDebounce } from '../../hooks/useDebounce';
 import { usePlanningCascade } from '../../hooks/usePlanningCascade';
@@ -162,7 +163,7 @@ export const PlanningCascadeView: React.FC = () => {
   
   // Tree ref for keyboard navigation
   const treeRef = useRef<HTMLDivElement>(null);
-  const listRef = useRef<FixedSizeList>(null);
+  const listRef = useRef<any>(null); // TODO: Type as FixedSizeList when implementing virtual scrolling
   
   // Debounce search term for performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
