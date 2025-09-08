@@ -186,6 +186,10 @@ function sendErrorProd(err: ErrorLike, req: Request, res: Response): void {
  * Handle specific error types
  */
 function handleSpecificErrors(err: ErrorLike): AppError {
+  // Handle undefined or null errors
+  if (!err) {
+    return new AppError('Unknown error occurred', 500, 'UNKNOWN_ERROR');
+  }
   // JSON parsing errors (malformed JSON)
   if (err instanceof SyntaxError && err.message.includes('JSON')) {
     // Extract position information from the error message if available

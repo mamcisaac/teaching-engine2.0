@@ -1,12 +1,11 @@
 /**
  * Global setup for Playwright tests
- * Waits for backend to be ready before running tests
+ * Waits for backend to be ready and creates authenticated state
  */
 
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { chromium, FullConfig } from '@playwright/test';
 
-const execAsync = promisify(exec);
+const TEST_SECRET = process.env.TEST_SECRET || 'test-secret-token';
 
 async function waitForBackend(): Promise<void> {
   console.log('⏳ Waiting for backend to be ready...');
@@ -38,7 +37,46 @@ async function waitForBackend(): Promise<void> {
   throw new Error('❌ Backend failed to become ready after 30 seconds');
 }
 
-async function globalSetup() {
+async function createAuthState(): Promise<void> {
+  console.log('🔐 Creating authenticated state...');
+  
+  const browser = await chromium.launch();
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  
+  try {
+    // Use test login endpoint to get auth cookie
+    const response = await page.request.post('http://localhost:3000/__test__/login', {
+      headers: { 
+        'X-Test-Token': TEST_SECRET 
+      }
+    });
+    
+    if (!response.ok()) {
+      throw new Error(`Failed to login: ${response.status()} ${response.statusText()}`);
+    }
+    
+    // Navigate to verify auth works
+    await page.goto('http://localhost:3000/dashboard');
+    await page.waitForLoadState('networkidle', { timeout: 10000 });
+    
+    // Verify we're not on login page
+    const currentUrl = page.url();
+    if (currentUrl.includes('/login')) {
+      throw new Error('Authentication failed - redirected to login page');
+    }
+    
+    // Save the storage state for authenticated tests
+    await context.storageState({ path: 'tests/e2e/auth.json' });
+    console.log('✅ Auth state saved to tests/e2e/auth.json');
+    
+  } finally {
+    await context.close();
+    await browser.close();
+  }
+}
+
+async function globalSetup(config: FullConfig) {
   console.log('🚀 Starting Playwright global setup...');
   
   // Set environment variables
@@ -47,6 +85,9 @@ async function globalSetup() {
   
   // Wait for backend to be ready
   await waitForBackend();
+  
+  // Create authenticated state for tests
+  await createAuthState();
   
   console.log('✅ Global setup complete');
 }

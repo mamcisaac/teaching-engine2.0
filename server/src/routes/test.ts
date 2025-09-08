@@ -108,13 +108,20 @@ router.post('/reset', async (_req: Request, res: Response): Promise<void> => {
  */
 router.post('/login', async (_req: Request, res: Response): Promise<void> => {
   try {
-    const testTeacher = await prisma.user.findUnique({
+    // Find or create test teacher
+    let testTeacher = await prisma.user.findUnique({
       where: { email: 'test.teacher@teaching-engine.test' }
     });
 
     if (!testTeacher) {
-      res.status(404).json({ error: 'Test teacher not found. Run seed first.' });
-      return;
+      // Create test teacher if it doesn't exist
+      testTeacher = await prisma.user.create({
+        data: {
+          email: 'test.teacher@teaching-engine.test',
+          name: 'Test Teacher',
+          role: 'TEACHER'
+        }
+      });
     }
 
     // Generate JWT token
@@ -142,7 +149,11 @@ router.post('/login', async (_req: Request, res: Response): Promise<void> => {
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ error: 'Failed to login' });
+    res.status(500).json({ 
+      error: 'Failed to login',
+      details: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined
+    });
   }
 });
 

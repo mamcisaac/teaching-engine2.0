@@ -140,19 +140,29 @@ jobs:
           nohup pnpm --filter client preview --port 5173 > client.log 2>&1 &
           echo $! > client.pid
 
+      - name: Install Playwright browsers
+        run: |
+          cd client && npx playwright install --with-deps chromium
+
       - name: Wait for services
         run: |
-          npx wait-on http://localhost:3000/health -t 60000
-          npx wait-on http://localhost:5173 -t 60000
+          timeout 90 bash -c 'until curl -f http://localhost:3000/readyz; do sleep 2; done'
+          timeout 60 bash -c 'until curl -f http://localhost:5173; do sleep 2; done'
           echo "Services are ready"
 
-      - name: Run E2E smoke tests
+      - name: Run E2E smoke tests (PR)
+        if: github.event_name == 'pull_request'
         run: |
-          pnpm test:e2e:smoke || true
+          cd client && npm run test:e2e:smoke
+        env:
+          TEST_SECRET: github-actions-test-secret-${{ github.run_id }}
 
-      - name: Run full E2E test suite
+      - name: Run full E2E test suite (main branch)
+        if: github.ref == 'refs/heads/main'
         run: |
-          pnpm test:e2e:all
+          cd client && npm run test:e2e:full
+        env:
+          TEST_SECRET: github-actions-test-secret-${{ github.run_id }}
 
       - name: Generate test report
         if: always()
@@ -162,6 +172,14 @@ jobs:
           echo "- Commit: ${{ github.sha }}" >> test-results/summary.md
           echo "- Branch: ${{ github.ref }}" >> test-results/summary.md
 
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: client/playwright-report/
+          retention-days: 7
+          
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -172,6 +190,7 @@ jobs:
             screenshots/
             server.log
             client.log
+            client/test-results/
 
       - name: Upload coverage
         if: success()
