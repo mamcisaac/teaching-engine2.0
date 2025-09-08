@@ -23,7 +23,7 @@ async function cleanupTestData(): Promise<void> {
     if (response.ok) {
       console.log('✅ Test data cleaned up');
     } else {
-      console.warn(`⚠️  Test data cleanup failed: ${response.status} ${response.statusText()}`);
+      console.warn(`⚠️  Test data cleanup failed: ${response.status} ${response.statusText}`);
     }
   } catch (error) {
     console.warn('⚠️  Test data cleanup failed:', (error as Error).message);

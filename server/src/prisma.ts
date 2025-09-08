@@ -65,7 +65,8 @@ const getPrisma = (): DatabasePrismaClient => {
   }
   
   // For unit tests without proper database setup, throw a helpful error
-  if (isTestEnvironment && !globalForPrisma.testPrismaClient) {
+  // But allow E2E/integration tests with DATABASE_URL to proceed
+  if (isTestEnvironment && !globalForPrisma.testPrismaClient && !process.env.DATABASE_URL) {
     throw new Error(
       'Database client not initialized for tests. ' +
       'Unit tests should mock the database. ' +

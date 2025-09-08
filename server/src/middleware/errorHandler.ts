@@ -306,7 +306,33 @@ function handleSpecificErrors(err: ErrorLike): AppError {
 /**
  * Global error handling middleware
  */
-export function errorHandler(err: Error, req: Request, res: Response, _next: NextFunction): void {
+export function errorHandler(err: Error | unknown, req: Request, res: Response, _next: NextFunction): void {
+  // Cast to any for easier property access
+  const errorAsAny = err as any;
+  const status = Number.isInteger(errorAsAny?.status) ? errorAsAny.status : 
+                  Number.isInteger(errorAsAny?.statusCode) ? errorAsAny.statusCode : 500;
+
+  const base = {
+    requestId: (req as any).requestId ?? null,
+    method: req.method,
+    path: req.originalUrl,
+    userId: (req as any).user?.id ?? null,
+    status,
+  };
+
+  // Prisma-specific details (safe to serialize)
+  let prismaInfo: any = undefined;
+  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    prismaInfo = { code: err.code, meta: err.meta };
+  } else if (err instanceof Prisma.PrismaClientInitializationError) {
+    prismaInfo = { code: 'INIT', message: err.message };
+  } else if (err instanceof Prisma.PrismaClientValidationError) {
+    prismaInfo = { code: 'VALIDATION', message: err.message };
+  }
+
+  // Log compactly
+  console.error('request failed', { ...base, prisma: prismaInfo, msg: errorAsAny?.message });
+
   // Special handling for auth endpoints to match test expectations
   if (
     req.path === '/api/login' ||
@@ -317,9 +343,9 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     // Handle AuthenticationError
     if (
       err instanceof AuthenticationError ||
-      (isNonEmptyString(err.message) &&
-        (err.message.includes('Invalid email or password') ||
-          err.message.includes('Invalid credentials')))
+      (isNonEmptyString(errorAsAny?.message) &&
+        (errorAsAny.message.includes('Invalid email or password') ||
+          errorAsAny.message.includes('Invalid credentials')))
     ) {
       res.status(401).json({ error: 'Invalid credentials' });
       return;
@@ -328,7 +354,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     // Handle ConflictError for duplicate email
     if (
       err instanceof ConflictError ||
-      (isNonEmptyString(err.message) && err.message.toLowerCase().includes('email already'))
+      (isNonEmptyString(errorAsAny?.message) && errorAsAny.message.toLowerCase().includes('email already'))
     ) {
       res.status(409).json({ error: 'Email already exists' });
       return;
@@ -336,29 +362,20 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
 
     // Handle specific ValidationErrors
     if (err instanceof ValidationError) {
-      if (err.message === 'Email and password are required') {
+      if (errorAsAny.message === 'Email and password are required') {
         res.status(400).json({ error: 'Email and password are required' });
         return;
       }
-      if (err.message === 'Invalid email format') {
+      if (errorAsAny.message === 'Invalid email format') {
         res.status(400).json({ error: 'Invalid email format' });
         return;
       }
     }
   }
 
-  // Handle specific error types
-  const error = handleSpecificErrors(err);
-
-  // Set default values if not set
-  error.statusCode = error.statusCode || 500;
-
-  // Send appropriate error response
-  if (process.env.NODE_ENV === 'development') {
-    sendErrorDev(error, req, res);
-  } else {
-    sendErrorProd(error, req, res);
-  }
+  // Don't leak internals on 5xx
+  const message = status >= 500 ? 'Internal Server Error' : (errorAsAny?.message ?? 'Error');
+  res.status(status).json({ error: message, requestId: base.requestId });
 }
 
 /**

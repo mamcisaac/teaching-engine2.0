@@ -4,8 +4,8 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
-import { LanguageProvider } from './contexts/LanguageContext'
 import { App } from './App'
+import { LanguageProvider } from './contexts/LanguageContext'
 import { errorReportingService } from './services/errorReportingService'
 import { logger } from './utils/logger';
 import './index.css'

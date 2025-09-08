@@ -3,13 +3,14 @@
  * These endpoints are only available in test/development environments
  */
 
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import { prisma } from '../prisma';
 import { testGuard } from '../middleware/testGuard';
+import { ensureDbReady } from '../utils/dbReady';
 
 const router = Router();
 
@@ -106,54 +107,82 @@ router.post('/reset', async (_req: Request, res: Response): Promise<void> => {
  * POST /__test__/login
  * Returns auth token/cookie
  */
-router.post('/login', async (_req: Request, res: Response): Promise<void> => {
+router.post('/login', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    // Find or create test teacher
-    let testTeacher = await prisma.user.findUnique({
-      where: { email: 'test.teacher@teaching-engine.test' }
+    // Ensure DB is ready with timeout
+    await ensureDbReady(1200);
+
+    const email = (req.body?.email as string) ?? 'test.teacher@teaching-engine.test';
+    const id = (req.body?.id as string) ?? 'test-teacher';
+    const name = (req.body?.name as string) ?? 'Test Teacher';
+
+    // Upsert user (idempotent operation)
+    const testTeacher = await prisma.user.upsert({
+      where: { email },
+      update: { 
+        firstName: name.split(' ')[0] || 'Test',
+        lastName: name.split(' ')[1] || 'Teacher'
+      },
+      create: { 
+        id,
+        email,
+        password: await bcrypt.hash('test-password', 10),
+        firstName: name.split(' ')[0] || 'Test',
+        lastName: name.split(' ')[1] || 'Teacher',
+        teacherProfile: {
+          create: {
+            yearsOfExperience: 5,
+            grades: ['1'],
+            subjects: ['Français (Immersion)', 'Mathématiques', 'Sciences de la nature'],
+            preferences: {
+              language: 'en',
+              theme: 'light',
+              notifications: true
+            }
+          }
+        }
+      },
+      include: {
+        teacherProfile: true
+      }
     });
 
-    if (!testTeacher) {
-      // Create test teacher if it doesn't exist
-      testTeacher = await prisma.user.create({
-        data: {
-          email: 'test.teacher@teaching-engine.test',
-          name: 'Test Teacher',
-          role: 'TEACHER'
-        }
-      });
-    }
-
-    // Generate JWT token
+    // Generate JWT token that your app actually accepts
     const token = jwt.sign(
       { 
         id: testTeacher.id, 
         email: testTeacher.email 
       },
       process.env.JWT_SECRET || 'test-jwt-secret',
-      { expiresIn: '24h' }
+      { expiresIn: '7d' }
     );
 
-    // Set cookie
+    // Set cookie if the app uses cookies
     res.cookie('auth-token', token, {
       httpOnly: true,
       secure: false, // Allow in non-HTTPS for testing
       sameSite: 'lax',
-      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
-    res.json({ 
+    // Also set session cookie if your app uses sessions
+    res.cookie('session', token, {
+      httpOnly: true,
+      sameSite: 'lax'
+    });
+
+    res.status(200).json({ 
       token, 
-      userId: testTeacher.id,
-      email: testTeacher.email 
+      user: {
+        id: testTeacher.id,
+        email: testTeacher.email,
+        name: `${testTeacher.firstName} ${testTeacher.lastName}`
+      }
     });
-  } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ 
-      error: 'Failed to login',
-      details: error instanceof Error ? error.message : String(error),
-      stack: error instanceof Error ? error.stack : undefined
-    });
+  } catch (error: any) {
+    // Surface 503 on DB trouble so global-setup can fail fast
+    error.status = 503;
+    next(error);
   }
 });
 
