@@ -236,9 +236,9 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
       logger.debug(
         {
           path: req.path,
-          hasToken: token,
-          authHeader: req.headers.authorization,
-          tokenLength: token.length,
+          hasToken: Boolean(token),
+          authHeader: req.headers.authorization ? '[PRESENT]' : '[MISSING]',
+          tokenLength: token?.length ?? 0,
         },
         'Authenticate middleware called',
       );

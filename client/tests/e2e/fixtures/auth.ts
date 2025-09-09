@@ -1,42 +1,34 @@
 /**
- * Auth fixture using storageState from test login endpoint
+ * Auth fixture using storageState from global setup
  */
 
 import { test as base } from './base';
 import type { BrowserContext } from '@playwright/test';
-
-const TEST_SECRET = process.env.TEST_SECRET || 'test-secret-token';
+import * as path from 'path';
 
 export const test = base.extend<{
   authenticatedContext: BrowserContext;
 }>({
   authenticatedContext: async ({ browser }, use) => {
-    // Create a new context for authentication
-    const context = await browser.newContext();
-    const page = await context.newPage();
+    // Use storageState from global setup (Emily's authentication)
+    const storageStatePath = path.join(__dirname, '..', 'auth.json');
     
-    // Use test login endpoint to get auth cookie
-    const response = await page.request.post('http://localhost:3000/__test__/login', {
-      headers: { 
-        'X-Test-Token': TEST_SECRET 
-      }
-    });
-    
-    if (!response.ok()) {
-      throw new Error(`Failed to login: ${response.status()} ${response.statusText()}`);
+    try {
+      // Create authenticated context using storageState from global setup
+      const authenticatedContext = await browser.newContext({ 
+        storageState: storageStatePath 
+      });
+      
+      await use(authenticatedContext);
+      await authenticatedContext.close();
+    } catch (error) {
+      // Fallback: if auth.json doesn't exist, global setup failed
+      throw new Error(
+        `Authentication failed: storageState file not found at ${storageStatePath}. ` +
+        'This indicates global setup did not complete successfully. ' +
+        'Ensure the backend is running and global setup can authenticate.'
+      );
     }
-    
-    // The cookie is automatically set by the response
-    // Save the storage state
-    const storageState = await context.storageState();
-    
-    // Create a new context with the auth state
-    const authenticatedContext = await browser.newContext({ storageState });
-    
-    await use(authenticatedContext);
-    
-    await authenticatedContext.close();
-    await context.close();
   },
   
   page: async ({ authenticatedContext }, use) => {

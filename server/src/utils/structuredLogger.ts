@@ -50,10 +50,10 @@ const logFormat = format.combine(
       timestamp: info.timestamp,
       level: info.level,
       message: info.message,
-      correlationId: context.correlationId ?? 'no-correlation-id',
-      ...(context.userId !== undefined ? { userId: context.userId } : {}),
-      ...(context.requestId !== undefined && context.requestId !== '' ? { requestId: context.requestId } : {}),
-      ...(context.sessionId !== undefined && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
+      correlationId: context?.correlationId ?? 'no-correlation-id',
+      ...(context?.userId !== undefined ? { userId: context.userId } : {}),
+      ...(context?.requestId !== undefined && context.requestId !== '' ? { requestId: context.requestId } : {}),
+      ...(context?.sessionId !== undefined && context.sessionId !== '' ? { sessionId: context.sessionId } : {}),
       ...(info.duration !== undefined ? { duration: info.duration } : {}),
       ...(info.meta !== undefined ? { meta: info.meta } : {}),
       ...(info.error !== null && typeof info.error === 'object' && 'message' in info.error ? {
@@ -66,7 +66,7 @@ const logFormat = format.combine(
     };
 
     // Add trace context if available
-    if (context.traceId !== undefined && context.traceId !== '') {
+    if (context?.traceId !== undefined && context.traceId !== '') {
       (log as Record<string, unknown>).trace = {
         traceId: context.traceId,
         spanId: context.spanId,
@@ -128,7 +128,7 @@ export class StructuredLogger {
    */
   log(level: LogLevel, message: string, meta?: LogMeta): void {
     const context = asyncLocalStorage.getStore();
-    const duration = context.startTime !== undefined
+    const duration = context && context.startTime !== undefined
       ? Math.round(performance.now() - context.startTime)
       : undefined;
 
@@ -366,5 +366,27 @@ export function errorLoggingMiddleware(
   next(err);
 }
 
-// Export singleton instance
-export const structuredLogger = StructuredLogger.getInstance();
+// Export singleton instance with production fallback
+export function createStructuredLogger() {
+  try {
+    return StructuredLogger.getInstance();
+  } catch (err: any) {
+    console.warn('[logger] StructuredLogger failed, falling back to console:', err?.message);
+    const pass = (method: 'info' | 'warn' | 'error' | 'debug') =>
+      (...args: any[]) => console[method](...args);
+    return {
+      info: pass('info'),
+      warn: pass('warn'),
+      error: pass('error'),
+      debug: process.env.DEBUG ? pass('debug') : () => {},
+      http: pass('info'),
+      trace: pass('debug'),
+      child: () => createStructuredLogger(),
+      log: (level: any, message: string, meta?: any) => console.log(`[${level}] ${message}`, meta),
+      startSpan: () => 'fallback-span',
+      endSpan: () => {},
+    };
+  }
+}
+
+export const structuredLogger = createStructuredLogger();

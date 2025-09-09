@@ -1,0 +1,22 @@
+{
+  "name": "ui-e2e-puppeteer",
+  "private": true,
+  "version": "1.0.0",
+  "description": "UI-first validation test suite for Teaching Engine 2.0",
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:ui": "jest --runInBand",
+    "test:ui:headed": "PUPPETEER_HEADLESS=false jest --runInBand",
+    "test:ui:smoke": "JEST_SUITE=smoke jest --runInBand smoke/*.spec.js",
+    "test:ui:full": "JEST_SUITE=full jest --runInBand",
+    "test:ui:debug": "PUPPETEER_HEADLESS=false node --inspect-brk ./node_modules/.bin/jest --runInBand"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "expect": "^29.7.0",
+    "puppeteer": "^22.13.1",
+    "axe-core": "^4.9.1",
+    "jest-environment-node": "^29.7.0",
+    "node-fetch": "^3.3.2"
+  }
+}

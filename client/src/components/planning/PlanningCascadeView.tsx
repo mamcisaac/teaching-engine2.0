@@ -124,18 +124,18 @@ export const PlanningCascadeView: React.FC = () => {
   const { data: rawData, isLoading, error } = usePlanningCascade();
   const data = rawData as CascadeData | undefined;
   
-  // Compute all node IDs from the data to expand everything by default
+  // Compute all node IDs from the data to expand everything by default - null-tolerant
   const allNodeIds = useMemo(() => {
     const ids = new Set<string>();
-    if (data?.cascade) {
-      data.cascade.terms.forEach(term => {
-        ids.add(term.id);
-        term.subjects?.forEach(subject => {
-          ids.add(subject.id);
-          subject.units?.forEach(unit => {
-            ids.add(unit.id);
-            unit.weeks?.forEach(week => {
-              ids.add(week.id);
+    if (data?.cascade?.terms) {
+      (data.cascade.terms || []).forEach(term => {
+        if (term?.id) ids.add(term.id);
+        (term?.subjects || []).forEach(subject => {
+          if (subject?.id) ids.add(subject.id);
+          (subject?.units || []).forEach(unit => {
+            if (unit?.id) ids.add(unit.id);
+            (unit?.weeks || []).forEach(week => {
+              if (week?.id) ids.add(week.id);
             });
           });
         });
@@ -237,33 +237,34 @@ export const PlanningCascadeView: React.FC = () => {
     if (!data?.cascade) return null;
     if (!debouncedSearchTerm && !showUnscheduledOnly) return data.cascade;
     
-    // Filter cascade data with fuzzy search
-    const filteredTerms = data.cascade.terms
+    // Filter cascade data with fuzzy search - null-tolerant
+    const filteredTerms = (data.cascade.terms || [])
       .map(term => ({
         ...term,
-        subjects: term.subjects
+        subjects: (term.subjects || [])
           .map(subject => ({
             ...subject,
-            units: subject.units
+            units: (subject.units || [])
               .map(unit => ({
                 ...unit,
-                weeks: unit.weeks
+                weeks: (unit.weeks || [])
                   .map(week => ({
                     ...week,
-                    lessons: week.lessons.filter(lesson => {
+                    lessons: (week.lessons || []).filter(lesson => {
+                      if (!lesson) return false;
                       const matchesSearch = !debouncedSearchTerm || 
                         searchMatch(debouncedSearchTerm, lesson);
                       const matchesUnscheduled = !showUnscheduledOnly || !lesson.date;
                       return matchesSearch && matchesUnscheduled;
                     })
                   }))
-                  .filter(week => week.lessons.length > 0)
+                  .filter(week => (week.lessons || []).length > 0)
               }))
-              .filter(unit => unit.weeks.length > 0)
+              .filter(unit => (unit.weeks || []).length > 0)
           }))
-          .filter(subject => subject.units.length > 0)
+          .filter(subject => (subject.units || []).length > 0)
       }))
-      .filter(term => term.subjects.length > 0);
+      .filter(term => (term.subjects || []).length > 0);
     
     return {
       ...data.cascade,
@@ -282,59 +283,70 @@ export const PlanningCascadeView: React.FC = () => {
     };
     
     
-    filteredData.terms.forEach(term => {
+    // Tree flattening with null-tolerant patterns
+    (filteredData.terms || []).forEach(term => {
+      if (!term?.id) return;
+      
       items.push({
         id: term.id,
         type: 'term',
-        title: term.term,
+        title: term.term || 'Untitled Term',
         level: 0,
         data: term,
-        hasChildren: term.subjects.length > 0,
+        hasChildren: (term.subjects || []).length > 0,
         isExpanded: isExpanded(term.id)
       });
       
       if (isExpanded(term.id)) {
-        term.subjects.forEach(subject => {
+        (term.subjects || []).forEach(subject => {
+          if (!subject?.id) return;
+          
           items.push({
             id: subject.id,
             type: 'subject',
-            title: subject.subject,
+            title: subject.subject || 'Untitled Subject',
             level: 1,
             data: subject,
-            hasChildren: subject.units.length > 0,
+            hasChildren: (subject.units || []).length > 0,
             isExpanded: isExpanded(subject.id)
           });
           
           if (isExpanded(subject.id)) {
-            subject.units.forEach(unit => {
+            (subject.units || []).forEach(unit => {
+              if (!unit?.id) return;
+              
               items.push({
                 id: unit.id,
                 type: 'unit',
-                title: unit.title,
+                title: unit.title || unit.titleFr || 'Untitled Unit',
                 level: 2,
                 data: unit,
-                hasChildren: unit.weeks.length > 0,
+                hasChildren: (unit.weeks || []).length > 0,
                 isExpanded: isExpanded(unit.id)
               });
               
               if (isExpanded(unit.id)) {
-                unit.weeks.forEach(week => {
+                (unit.weeks || []).forEach(week => {
+                  if (!week?.id) return;
+                  
                   items.push({
                     id: week.id,
                     type: 'week',
-                    title: `Week ${week.weekNumber}`,
+                    title: `Week ${week.weekNumber || 'Unknown'}`,
                     level: 3,
                     data: week,
-                    hasChildren: week.lessons.length > 0,
+                    hasChildren: (week.lessons || []).length > 0,
                     isExpanded: isExpanded(week.id)
                   });
                   
                   if (isExpanded(week.id)) {
-                    week.lessons.forEach(lesson => {
+                    (week.lessons || []).forEach(lesson => {
+                      if (!lesson?.id) return;
+                      
                       items.push({
                         id: lesson.id,
                         type: 'lesson',
-                        title: lesson.title,
+                        title: lesson.title || 'Untitled Lesson',
                         level: 4,
                         data: lesson,
                         hasChildren: false
@@ -352,16 +364,16 @@ export const PlanningCascadeView: React.FC = () => {
     return items;
   }, [filteredData, expandedNodes]);
   
-  // Count unscheduled lessons - MUST be before conditional returns
+  // Count unscheduled lessons - null-tolerant
   const unscheduledCount = useMemo(() => {
-    if (!data?.cascade) return 0;
+    if (!data?.cascade?.terms) return 0;
     let count = 0;
-    data.cascade.terms.forEach(term => {
-      term.subjects.forEach(subject => {
-        subject.units.forEach(unit => {
-          unit.weeks.forEach(week => {
-            week.lessons.forEach(lesson => {
-              if (!lesson.date) count++;
+    (data.cascade.terms || []).forEach(term => {
+      (term?.subjects || []).forEach(subject => {
+        (subject?.units || []).forEach(unit => {
+          (unit?.weeks || []).forEach(week => {
+            (week?.lessons || []).forEach(lesson => {
+              if (lesson && !lesson.date) count++;
             });
           });
         });

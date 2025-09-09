@@ -4,7 +4,7 @@
  * Issue #308: Per-Lesson Quick Reflections & Informal Assessment
  */
 
-import { PrismaClient, ReflectionStatus } from '@teaching-engine/database';
+import { PrismaClient } from '@teaching-engine/database';
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
@@ -30,17 +30,20 @@ const requireAuth = (req: AuthenticatedRequest, res: Response, next: NextFunctio
   next();
 };
 
-// Map emoji to enum values
-const statusMap = {
-  '👍': ReflectionStatus.SUCCESS,
-  '👌': ReflectionStatus.MIXED,
-  '👎': ReflectionStatus.RETEACH
+// Define reflection status types
+type ReflectionStatusType = 'SUCCESS' | 'MIXED' | 'RETEACH';
+
+// Map emoji to status values
+const statusMap: Record<string, ReflectionStatusType> = {
+  '👍': 'SUCCESS',
+  '👌': 'MIXED',
+  '👎': 'RETEACH'
 };
 
-const emojiMap = {
-  [ReflectionStatus.SUCCESS]: '👍',
-  [ReflectionStatus.MIXED]: '👌',
-  [ReflectionStatus.RETEACH]: '👎'
+const emojiMap: Record<ReflectionStatusType, string> = {
+  'SUCCESS': '👍',
+  'MIXED': '👌',
+  'RETEACH': '👎'
 };
 
 /**

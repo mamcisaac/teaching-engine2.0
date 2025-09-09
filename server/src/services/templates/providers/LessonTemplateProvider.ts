@@ -6,7 +6,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
-import { isObject, isString, hasProperty } from '@shared/utils/typeGuards';
+import { isObject, isString, hasProperty } from '../../../utils/typeGuards';
 
 import { logger } from '../../../logger';
 

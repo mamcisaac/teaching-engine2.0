@@ -7,14 +7,11 @@ import { test as base } from './auth';
 const TEST_SECRET = process.env.TEST_SECRET || 'test-secret-token';
 
 export const test = base.extend<{
-  tier?: 'smoke' | 'full';
   seedData: any;
 }>({
-  tier: ['smoke', { option: true }], // Default to smoke for faster tests
-  
-  // Seed data once per worker
-  seedData: [async ({ playwright, tier }: any, use: any) => {
-    const seedTier = tier || 'smoke';
+  // Seed data once per worker - always use smoke tier for now
+  seedData: [async ({ playwright }: any, use: any) => {
+    const seedTier = 'smoke'; // Fixed to smoke tier for E2E tests
     
     // Seed the data
     const seedResponse = await playwright.request.newContext()

@@ -4,6 +4,7 @@
 // External imports (npm packages)
 import type { Server } from 'http';
 import path from 'path';
+import fs from 'fs';
 
 import cookieParser from 'cookie-parser';
 import debug from 'debug';
@@ -14,6 +15,8 @@ import express, { json, urlencoded, static as expressStatic } from 'express';
 
 import { logger } from './logger';
 import { authenticate } from './middleware/authenticate';
+import { reqId } from './middleware/reqId';
+import { log as logLib } from './lib/log';
 import { curriculumCache, staticCache, userCache } from './middleware/cache';
 import { applyContentTypeValidation } from './middleware/contentTypeValidation';
 import { errorContextMiddleware, authErrorMiddleware } from './middleware/errorContext';
@@ -93,9 +96,12 @@ const asyncMiddleware = (fn: (req: Request, res: Response, next: NextFunction) =
 // Create backward-compatible logger for gradual migration
 // Logger is now imported from structuredLogger
 
-// Initialize Express app
+// Initialize Express app with instance tracking
+let APP_SEQ = 0;
 log('Initializing Express application...');
 const app = express();
+(app as any).__id = ++APP_SEQ;
+console.info(`[app] created app id=${(app as any).__id}`);
 
 // CRITICAL: Add /healthz endpoint BEFORE ALL middleware (must never depend on auth or DB)
 app.get('/healthz', (_req, res): void => {
@@ -131,6 +137,10 @@ applyInputSanitization(app);
 // Apply Content-Type validation for JSON endpoints
 log('Applying Content-Type validation for auth endpoints...');
 applyContentTypeValidation(app);
+
+// Apply request ID middleware for tracing
+log('Applying request ID middleware...');
+app.use(reqId);
 
 // Apply correlation ID middleware first
 log('Applying correlation ID middleware...');
@@ -223,18 +233,7 @@ app.post('/api/logout', (req: Request, _res: Response, next: NextFunction): void
 
 // Removed duplicate health endpoint - using the one with performance monitoring above
 
-// Mount test routes (only available in test/development environment)
-log(`NODE_ENV is: ${process.env.NODE_ENV}`);
-if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
-  log('Mounting test routes for E2E testing...');
-  import('./routes/test').then(m => {
-    app.use('/__test__', m.router);
-  }).catch(err => {
-    log('Failed to load test routes:', err);
-  });
-} else {
-  log('Skipping test routes - not in test or development mode');
-}
+// Test routes will be mounted in initializeApp() to ensure they're ready before server starts
 
 // Mount auth routes (no authentication required, but rate limited)
 log('Mounting auth routes...');
@@ -412,9 +411,173 @@ export { app };
 
 // Initialize app asynchronously
 async function initializeApp(): Promise<express.Application> {
+  // PRODUCTION HARDENING: Start micro-patches
+  log('Applying production hardening checks...');
+  
+  // Patch 1: Fail-fast on test routes in production
+  if (process.env.NODE_ENV === 'production') {
+    log('Production mode detected - verifying no test routes exposed...');
+    
+    // Check all registered routes for test route patterns
+    const routeStack = (app as any)._router?.stack || [];
+    const testRoutes = routeStack.filter((layer: any) => 
+      layer.route?.path?.startsWith('/__test__') || 
+      layer.regexp?.source?.includes('__test__')
+    );
+    
+    if (testRoutes.length > 0) {
+      const testPaths = testRoutes.map((layer: any) => layer.route?.path || 'unknown').join(', ');
+      const errorMsg = `PRODUCTION SECURITY VIOLATION: Test routes detected in production mode: ${testPaths}. Server startup aborted.`;
+      structuredLogger.error(errorMsg, { testPaths, nodeEnv: process.env.NODE_ENV });
+      throw new Error(errorMsg);
+    }
+    log('✅ No test routes detected in production mode');
+  }
+  
+  // Patch 2: Pin and log cookie contract
+  log('Verifying cookie contract settings...');
+  const cookieSettings = {
+    name: 'token',
+    httpOnly: true,
+    sameSite: 'Lax' as const,
+    path: '/',
+    secure: process.env.NODE_ENV === 'production'
+  };
+  structuredLogger.info('Cookie contract verified', cookieSettings);
+  log('✅ Cookie contract: name=token, HttpOnly, SameSite=Lax, Path=/');
+  
+  // Patch 3: Timezone parity verification
+  log('Verifying timezone configuration...');
+  const serverTZ = process.env.TZ || Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if (serverTZ !== 'America/Halifax') {
+    structuredLogger.warn('Timezone mismatch detected', { 
+      serverTZ, 
+      expected: 'America/Halifax',
+      recommendation: 'Set TZ=America/Halifax environment variable'
+    });
+  } else {
+    log('✅ Timezone configured correctly: America/Halifax');
+  }
+  
+  // Patch 4: Absolute DB path assertion
+  log('Verifying database configuration...');
+  const dbUrl = process.env.DATABASE_URL;
+  if (!dbUrl) {
+    throw new Error('DATABASE_URL environment variable is required');
+  }
+  
+  if (dbUrl.startsWith('file:')) {
+    const dbPath = dbUrl.replace('file:', '');
+    const dbExists = fs.existsSync(dbPath);
+    structuredLogger.info('Database path verified', { 
+      path: dbPath, 
+      exists: dbExists,
+      absolute: path.isAbsolute(dbPath)
+    });
+    
+    if (!dbExists) {
+      throw new Error(`Database file does not exist: ${dbPath}`);
+    }
+    log(`✅ Database verified: ${dbPath} (exists: ${dbExists})`);
+  } else {
+    log('✅ Database URL verified (non-file connection)');
+  }
+  
+  // Patch 5: One server instance guard
+  const lockFilePath = path.join(__dirname, '../.server-lock');
+  const currentPID = process.pid;
+  const currentPort = PORT;
+  
+  if (fs.existsSync(lockFilePath)) {
+    try {
+      const lockData = JSON.parse(fs.readFileSync(lockFilePath, 'utf8'));
+      const { pid, port } = lockData;
+      
+      // Check if the process is still running
+      try {
+        process.kill(pid, 0); // Signal 0 checks if process exists
+        if (port === currentPort) {
+          throw new Error(`Server already running on port ${port} with PID ${pid}. Use 'kill ${pid}' to stop it.`);
+        } else {
+          log(`Different server running on port ${port}, proceeding with port ${currentPort}`);
+        }
+      } catch (killError) {
+        // Process doesn't exist, remove stale lock file
+        fs.unlinkSync(lockFilePath);
+        log('Removed stale lock file');
+      }
+    } catch (err) {
+      // Corrupt lock file, remove it
+      fs.unlinkSync(lockFilePath);
+      log('Removed corrupt lock file');
+    }
+  }
+  
+  // Create new lock file
+  fs.writeFileSync(lockFilePath, JSON.stringify({ pid: currentPID, port: currentPort, timestamp: Date.now() }));
+  log(`✅ Server lock acquired: PID=${currentPID}, PORT=${currentPort}`);
+  
+  // Clean up lock file on exit
+  const cleanupLock = () => {
+    try {
+      if (fs.existsSync(lockFilePath)) {
+        const lockData = JSON.parse(fs.readFileSync(lockFilePath, 'utf8'));
+        if (lockData.pid === currentPID) {
+          fs.unlinkSync(lockFilePath);
+          log('Server lock released');
+        }
+      }
+    } catch (err) {
+      // Ignore cleanup errors
+    }
+  };
+  
+  process.on('exit', cleanupLock);
+  process.on('SIGTERM', cleanupLock);
+  process.on('SIGINT', cleanupLock);
+
   // Initialize error reporting service first
   log('Initializing error reporting service...');
   errorReportingService.init();
+
+  // Mount test routes (only available in test/development environment)
+  log(`NODE_ENV is: ${process.env.NODE_ENV}`);
+  if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
+    log('Mounting test routes for E2E testing...');
+    try {
+      console.time('[test] import+mount');
+      const mod: any = await import('./routes/test');
+      const candidate =
+        mod?.testLoginRouter ?? mod?.router ?? mod?.default?.router ?? mod?.default;
+
+      const isRouter =
+        candidate && typeof candidate === 'function' && 'use' in candidate && 'stack' in candidate;
+
+      if (!isRouter) {
+        console.error('[test] module did not export an Express Router; exports:', Object.keys(mod || {}));
+        throw new Error('Test route module is not an Express Router');
+      }
+
+      // Import testGuard and mount with proper prefix
+      const { testGuard } = await import('./middleware/testGuard');
+      app.use('/__test__', testGuard, candidate);
+      console.timeEnd('[test] import+mount');
+      log('Test routes mounted at /__test__');
+
+      // Add route dump endpoint for debugging
+      const { dumpRoutes } = await import('./debug/routeDump');
+      app.get('/__test__/routes', testGuard, (_req, res) => res.json(dumpRoutes(app)));
+      log('Route dump endpoint mounted at /__test__/routes');
+    } catch (err) {
+      log('Failed to load test routes:', err);
+      throw err; // Re-throw to make failures visible
+    }
+  } else {
+    log('Skipping test routes - not in test or development mode');
+    if (process.env.ENABLE_TEST_ROUTES === 'true') {
+      throw new Error('Refusing to start: test routes enabled in production');
+    }
+  }
 
   // Initialize services (temporarily disabled for debugging)
   // await initializeServices();
@@ -469,18 +632,45 @@ if (isDirectRun || isE2ETest || isDevelopment) {
   log('Starting server because:', { isDirectRun, isE2ETest, isDevelopment });
 
   // Initialize app asynchronously then start server
-  console.log('About to initialize app...');
+  console.info(`[boot] about to initialize app id=${(app as any).__id}`);
   initializeApp()
     .then(() => {
-      console.log('App initialized, starting server...');
+      console.info(`[boot] initialized app id=${(app as any).__id}`);
       console.log('PORT is:', PORT);
       console.log('app is:', typeof app);
       // Start server directly - service initialization removed for simplicity
-      const server = app.listen(PORT, '0.0.0.0', () => {
-        console.log(`Server is running on port ${PORT}`);
+      const server = app.listen(PORT, '0.0.0.0', async () => {
+        console.info(`[boot] listening on :${PORT} with app id=${(app as any).__id}`);
         log(`Server is running on port ${PORT}`);
         log('Server address:', server.address());
         log('Server started successfully');
+
+        // Patch 6: Production auth sanity check
+        if (process.env.NODE_ENV === 'production') {
+          log('Running production auth sanity check...');
+          try {
+            const response = await fetch(`http://localhost:${PORT}/api/auth/me`, {
+              method: 'GET',
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+            
+            if (response.status >= 500) {
+              throw new Error(`Auth endpoint returned 5xx: ${response.status} ${response.statusText}`);
+            }
+            
+            // Should return 401 for unauthenticated request
+            if (response.status === 401) {
+              log('✅ Auth endpoint working correctly (401 for unauthenticated)');
+            } else {
+              log(`⚠️  Auth endpoint returned unexpected status: ${response.status}`);
+            }
+          } catch (err) {
+            structuredLogger.error('Production auth sanity check failed', err as Error);
+            throw new Error(`Auth endpoint sanity check failed: ${err}`);
+          }
+        }
 
         // Background jobs disabled - ETFO approach uses manual workflow
       });

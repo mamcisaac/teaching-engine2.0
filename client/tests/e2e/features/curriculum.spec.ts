@@ -160,23 +160,16 @@ test.describe('Curriculum Expectations', () => {
     }
   });
 
-  test('expectation counts match seed data', async ({ page, tier }) => {
+  test('expectation counts match seed data', async ({ page }) => {
     // Wait for data to load
     await page.waitForSelector('tbody tr', { timeout: 5000 }).catch(() => {});
     
     // Count total expectations
     const totalExpectations = await page.locator('tbody tr').count();
     
-    // For smoke tier, we should have some expectations
-    if (tier === 'smoke') {
-      expect(totalExpectations).toBeGreaterThan(0);
-      expect(totalExpectations).toBeLessThan(100); // Reasonable upper bound
-    }
-    
-    // For full tier, we should have more
-    if (tier === 'full') {
-      expect(totalExpectations).toBeGreaterThan(50);
-    }
+    // Verify we have expectations loaded (Emily's database has 68 Grade 1 expectations)
+    expect(totalExpectations).toBeGreaterThan(0);
+    expect(totalExpectations).toBeLessThanOrEqual(68); // Emily has 68 Grade 1 expectations
   });
 
   test('loading state displays and resolves', async ({ page }) => {

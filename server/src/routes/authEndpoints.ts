@@ -4,7 +4,7 @@
  * Exposes authentication middleware functions as API endpoints
  */
 
-import { isNonEmptyString } from '@shared/utils/typeGuards';
+import { isNonEmptyString } from '../utils/typeGuards';
 import { prisma as defaultPrisma } from '@teaching-engine/database';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';

@@ -5,7 +5,7 @@
 
 import { chromium, FullConfig } from '@playwright/test';
 
-const TEST_SECRET = process.env.TEST_SECRET || 'test-secret-token';
+const TEST_SECRET = process.env.TEST_SECRET || 'secret';
 
 async function waitForBackend(): Promise<void> {
   console.log('⏳ Waiting for backend to be ready...');
@@ -46,9 +46,14 @@ async function createAuthState(): Promise<void> {
   
   try {
     // Use test login endpoint to get auth cookie
+    // Login as Emily (userId: 23) for read-only tests
     const response = await page.request.post('http://localhost:3000/__test__/login', {
       headers: { 
-        'X-Test-Token': TEST_SECRET 
+        'X-Test-Token': TEST_SECRET,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        userId: 23  // Emily's userId for read-only tests
       }
     });
     
@@ -81,7 +86,7 @@ async function globalSetup(config: FullConfig) {
   
   // Set environment variables
   process.env.NODE_ENV = 'test';
-  process.env.TEST_SECRET = process.env.TEST_SECRET || 'test-secret-token';
+  process.env.TEST_SECRET = process.env.TEST_SECRET || 'secret';
   
   // Wait for backend to be ready
   await waitForBackend();

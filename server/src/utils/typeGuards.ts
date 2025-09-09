@@ -169,3 +169,31 @@ export function isValidStringProperty(value: unknown): value is string {
 export function isOfType<T>(value: unknown, type: string): value is T {
   return value !== null && value !== undefined && typeof value === type;
 }
+
+/**
+ * Check if a value is a string
+ */
+export function isString(value: unknown): value is string {
+  return typeof value === 'string';
+}
+
+/**
+ * Check if a value is an Error instance
+ */
+export function isError(value: unknown): value is Error {
+  return value instanceof Error;
+}
+
+/**
+ * Check if a value is error-like (has a message property)
+ */
+export function isErrorLike(value: unknown): value is { message: string } {
+  return hasErrorMessage(value);
+}
+
+/**
+ * Check if a value is a valid number (number and not NaN)
+ */
+export function isValidNumber(value: unknown): value is number {
+  return isNumber(value);
+}

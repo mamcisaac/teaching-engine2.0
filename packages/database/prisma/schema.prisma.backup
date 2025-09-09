@@ -38,10 +38,14 @@ model User {
   password                 String
   name                     String
   role                     String                    @default("teacher")
+  grade                    String?
+  program                  String?
   preferredLanguage        String                    @default("en")
   activityCollections      ActivityCollection[]
   activityImports          ActivityImport[]
   activityRatings          ActivityRating[]
+  uploadedArtifacts        Artifact[]
+  assessments              Assessment[]
   events                   CalendarEvent[]
   classRoutines            ClassRoutine[]
   classroomAnnouncements   ClassroomAnnouncement[]
@@ -54,11 +58,19 @@ model User {
   performanceTaskTemplates PerformanceTaskTemplate[]
   createdTemplates         PlanTemplate[]
   recentPlanAccess         RecentPlanAccess[]
+  reports                  Report[]
+  students                 Student[]
+  studentArtifacts         StudentArtifact[]
+  studentOutcomeProgress   StudentOutcomeProgress[]
   subjects                 Subject[]
   substitutePlans          SubstitutePlan[]
   unavailableBlocks        UnavailableBlock[]
   unitPlans                UnitPlan[]
   weeklyPlannerState       WeeklyPlannerState?
+  lessonCompletions        LessonCompletion[]
+  lessonReflections        LessonReflection[]
+  studentAssessments       StudentAssessment[]
+  substituteInfo           SubstituteInfo?
 }
 
 model Notification {
@@ -176,27 +188,29 @@ model ClassRoutine {
 }
 
 model CurriculumExpectation {
-  id             String                          @id @default(cuid())
-  code           String                          @unique
-  description    String
-  strand         String
-  substrand      String?
-  grade          Int
-  subject        String
-  descriptionFr  String?
-  strandFr       String?
-  substrandFr    String?
-  importId       String?
-  createdAt      DateTime                        @default(now())
-  updatedAt      DateTime                        @updatedAt
-  title          String?
-  titleFr        String?
-  import         CurriculumImport?               @relation("CurriculumExpectationImport", fields: [importId], references: [id])
-  embedding      CurriculumExpectationEmbedding?
-  daybookEntries DaybookEntryExpectation[]
-  lessonPlans    ETFOLessonPlanExpectation[]
-  longRangePlans LongRangePlanExpectation[]
-  unitPlans      UnitPlanExpectation[]
+  id               String                          @id @default(cuid())
+  code             String                          @unique
+  description      String
+  strand           String
+  substrand        String?
+  grade            Int
+  subject          String
+  descriptionFr    String?
+  strandFr         String?
+  substrandFr      String?
+  importId         String?
+  createdAt        DateTime                        @default(now())
+  updatedAt        DateTime                        @updatedAt
+  title            String?
+  titleFr          String?
+  import           CurriculumImport?               @relation("CurriculumExpectationImport", fields: [importId], references: [id])
+  embedding        CurriculumExpectationEmbedding?
+  daybookEntries   DaybookEntryExpectation[]
+  lessonPlans      ETFOLessonPlanExpectation[]
+  longRangePlans   LongRangePlanExpectation[]
+  artifactOutcomes StudentArtifactOutcome[]        @relation("StudentArtifactOutcome")
+  studentProgress  StudentOutcomeProgress[]        @relation("StudentOutcomeProgress")
+  unitPlans        UnitPlanExpectation[]
 
   @@index([subject, grade])
   @@index([code])
@@ -235,8 +249,6 @@ model LongRangePlan {
   titleFr                        String?
   descriptionFr                  String?
   goalsFr                        String?
-  startDate                      DateTime?
-  endDate                        DateTime?
   createdAt                      DateTime                   @default(now())
   updatedAt                      DateTime                   @updatedAt
   crossCurricularConnections     Json?
@@ -286,20 +298,20 @@ model LongRangePlan {
   @@index([userId, subject, grade])
   @@index([academicYear, grade, subject])
   @@index([userId, updatedAt])
-  @@index([userId, academicYear, subject])
-  @@index([academicYear, subject, grade])
-  @@index([userId, optimizationScore])
-  @@index([pedagogicalCertification])
-  @@index([lastOptimized])
   @@index([optimizationScore, pedagogicalCertification])
+  @@index([lastOptimized])
+  @@index([pedagogicalCertification])
+  @@index([userId, optimizationScore])
+  @@index([academicYear, subject, grade])
+  @@index([userId, academicYear, subject])
 }
 
 model LongRangePlanExpectation {
   longRangePlanId String
   expectationId   String
   plannedTerm     String?
-  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   longRangePlan   LongRangePlan         @relation(fields: [longRangePlanId], references: [id], onDelete: Cascade)
+  expectation     CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
 
   @@id([longRangePlanId, expectationId])
 }
@@ -341,6 +353,9 @@ model UnitPlan {
   performanceIndicators      Json?
   performanceTask            Json?
   transferableSkills         Json?
+  isLocked                   Boolean                 @default(false)
+  lockedAt                   DateTime?
+  lockedReason               String?
   lessonPlans                ETFOLessonPlan[]
   longRangePlan              LongRangePlan           @relation(fields: [longRangePlanId], references: [id])
   user                       User                    @relation(fields: [userId], references: [id])
@@ -352,15 +367,15 @@ model UnitPlan {
   @@index([longRangePlanId])
   @@index([userId, updatedAt])
   @@index([startDate, endDate])
-  @@index([userId, startDate, endDate])
   @@index([longRangePlanId, startDate])
+  @@index([userId, startDate, endDate])
 }
 
 model UnitPlanExpectation {
   unitPlanId    String
   expectationId String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   unitPlan      UnitPlan              @relation(fields: [unitPlanId], references: [id], onDelete: Cascade)
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
 
   @@id([unitPlanId, expectationId])
 }
@@ -382,7 +397,25 @@ model ETFOLessonPlan {
   title                     String
   unitPlanId                String
   date                      DateTime
+  slotNumber                Int?                        @default(1)
+  lessonNumber              Int?
+  lessonType                String?                     @default("core")
+  isScheduled               Boolean                     @default(true)
   duration                  Int
+  
+  // NEW: Actual scheduling and status tracking
+  scheduledDate             DateTime?
+  scheduledTime             String?                     // "9:00 AM", "1:30 PM"
+  status                    LessonStatus                @default(PLANNED)
+  taughtDate                DateTime?
+  skippedReason             String?
+  
+  // NEW: Search optimization
+  searchContent             String?
+  
+  // NEW: Emergency supply teacher info
+  substituteNotes           String?
+  behaviorAlerts            String?
   mindsOn                   String?
   action                    String?
   consolidation             String?
@@ -421,27 +454,35 @@ model ETFOLessonPlan {
   user                      User                        @relation(fields: [userId], references: [id])
   expectations              ETFOLessonPlanExpectation[]
   resources                 ETFOLessonPlanResource[]
+  lessonCompletions         LessonCompletion[]
+  lessonReflections         LessonReflection[]
+  studentAssessments        StudentAssessment[]
 
+  @@unique([unitPlanId, lessonNumber])
   @@index([userId, date])
   @@index([unitPlanId])
+  @@index([unitPlanId, lessonNumber])
   @@index([grade, subject])
   @@index([language])
   @@index([userId, isSubFriendly])
-  @@index([userId, assessmentType])
   @@index([userId, updatedAt])
-  @@index([date, duration])
-  @@index([userId, date, grade])
-  @@index([userId, date, subject])
-  @@index([grade, subject, date])
-  @@index([userId, grade, subject])
   @@index([isSubFriendly, grade, subject])
+  @@index([userId, grade, subject])
+  @@index([grade, subject, date])
+  @@index([userId, date, subject])
+  @@index([userId, date, grade])
+  @@index([date, duration])
+  @@index([userId, assessmentType])
+  @@index([userId, date, slotNumber])
+  @@index([lessonType, isScheduled])
+  @@index([unitPlanId, lessonType])
 }
 
 model ETFOLessonPlanExpectation {
   lessonPlanId  String
   expectationId String
-  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   lessonPlan    ETFOLessonPlan        @relation(fields: [lessonPlanId], references: [id], onDelete: Cascade)
+  expectation   CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
 
   @@id([lessonPlanId, expectationId])
 }
@@ -478,8 +519,8 @@ model DaybookEntry {
   wouldReuseLesson    Boolean?
   createdAt           DateTime                  @default(now())
   updatedAt           DateTime                  @updatedAt
-  lessonPlan          ETFOLessonPlan?           @relation(fields: [lessonPlanId], references: [id])
   user                User                      @relation(fields: [userId], references: [id])
+  lessonPlan          ETFOLessonPlan?           @relation(fields: [lessonPlanId], references: [id])
   expectations        DaybookEntryExpectation[]
 
   @@index([userId, date])
@@ -495,8 +536,8 @@ model DaybookEntryExpectation {
   daybookEntryId String
   expectationId  String
   coverage       String?
-  expectation    CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
   daybookEntry   DaybookEntry          @relation(fields: [daybookEntryId], references: [id], onDelete: Cascade)
+  expectation    CurriculumExpectation @relation(fields: [expectationId], references: [id], onDelete: Cascade)
 
   @@id([daybookEntryId, expectationId])
 }
@@ -557,9 +598,9 @@ model ActivityImport {
   lastUsed       DateTime         @default(now())
   effectiveness  Int?
   createdAt      DateTime         @default(now())
-  lessonPlan     ETFOLessonPlan?  @relation(fields: [lessonPlanId], references: [id])
-  activity       ExternalActivity @relation(fields: [activityId], references: [id])
   user           User             @relation(fields: [userId], references: [id])
+  activity       ExternalActivity @relation(fields: [activityId], references: [id])
+  lessonPlan     ETFOLessonPlan?  @relation(fields: [lessonPlanId], references: [id])
 
   @@index([userId, activityId])
   @@index([lessonPlanId])
@@ -577,8 +618,8 @@ model ActivityRating {
   workedWell     String?
   challenges     String?
   createdAt      DateTime         @default(now())
-  activity       ExternalActivity @relation(fields: [activityId], references: [id])
   user           User             @relation(fields: [userId], references: [id])
+  activity       ExternalActivity @relation(fields: [activityId], references: [id])
 
   @@unique([userId, activityId])
   @@index([activityId, rating])
@@ -601,8 +642,8 @@ model ActivityCollectionItem {
   collectionId String
   activityId   String
   addedAt      DateTime           @default(now())
-  activity     ExternalActivity   @relation(fields: [activityId], references: [id], onDelete: Cascade)
   collection   ActivityCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  activity     ExternalActivity   @relation(fields: [activityId], references: [id], onDelete: Cascade)
 
   @@id([collectionId, activityId])
 }
@@ -789,6 +830,60 @@ model SubstitutePlan {
   @@index([userId, isActive, dateFor])
 }
 
+model SubstituteInfo {
+  id                    String    @id @default(cuid())
+  userId                Int       @unique
+  classroomNumber       String?
+  gradeLevel            String?
+  classSize             Int?
+  
+  // Emergency Information
+  officePhone           String?
+  principalName         String?
+  vicePrincipalName     String?
+  nearbyTeacher         String?
+  nearbyTeacherRoom     String?
+  emergencyProcedures   String?
+  fireExitRoute         String?
+  
+  // Student Information
+  allergies             String?
+  medicalNeeds          String?
+  behaviorNotes         String?
+  specialNeeds          String?
+  studentHelpers        String?
+  
+  // Classroom Management
+  classroomRules        String?
+  rewardSystem          String?
+  consequenceSystem     String?
+  attentionSignal       String?
+  
+  // Daily Routines
+  morningRoutine        String?
+  attendanceProcedure   String?
+  bathroomPolicy        String?
+  lunchProcedure        String?
+  dismissalProcedure    String?
+  
+  // Resources & Materials
+  materialsLocation     String?
+  technologyAccess      String?
+  copiesLocation        String?
+  extraActivities       String?
+  
+  // Additional Notes
+  specialSchedule       String?
+  importantInfo         String?
+  
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+}
+
 model PerformanceTaskTemplate {
   id             String   @id @default(cuid())
   userId         Int
@@ -857,4 +952,315 @@ model UnitPlanTransferSkill {
   transferSkill   TransferSkillTemplate @relation(fields: [transferSkillId], references: [id], onDelete: Cascade)
 
   @@id([unitPlanId, transferSkillId])
+}
+
+model Student {
+  id                String                   @id @default(cuid())
+  userId            Int
+  firstName         String
+  lastName          String
+  studentId         String?                  @unique
+  studentNumber     String?
+  dateOfBirth       DateTime?
+  grade             Int
+  program           String?
+  homeroom          String?
+  hasIEP            Boolean                  @default(false)
+  iepGoals          Json?
+  accommodations    Json?
+  specialNeeds      String?
+  parentContact     Json?
+  enrollmentDate    DateTime                 @default(now())
+  withdrawalDate    DateTime?
+  isActive          Boolean                  @default(true)
+  status            String                   @default("active")
+  notes             String?
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+  uploadedArtifacts Artifact[]
+  assessments       Assessment[]
+  reports           Report[]
+  user              User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  artifacts         StudentArtifact[]
+  outcomeProgress   StudentOutcomeProgress[]
+
+  @@index([userId])
+  @@index([userId, isActive])
+  @@index([userId, grade])
+  @@index([grade, isActive])
+  @@index([studentNumber])
+  @@index([studentId])
+  @@index([status])
+}
+
+model StudentArtifact {
+  id                    String                   @id @default(cuid())
+  studentId             String
+  userId                Int
+  artifactType          String
+  title                 String
+  description           String?
+  filePath              String?
+  fileName              String?
+  fileSize              Int?
+  mimeType              String?
+  textContent           String?
+  metadata              Json?
+  checksum              String?
+  thumbnailPath         String?
+  thumbnailUrl          String?
+  collectionContext     String?
+  dateCollected         DateTime                 @default(now())
+  isPrivate             Boolean                  @default(false)
+  isArchived            Boolean                  @default(false)
+  tags                  Json?
+  processingStatus      String                   @default("PENDING")
+  processingError       String?
+  processingCompletedAt DateTime?
+  lastAssessedDate      DateTime?
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
+  user                  User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  student               Student                  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  outcomes              StudentArtifactOutcome[]
+
+  @@index([studentId])
+  @@index([userId])
+  @@index([studentId, dateCollected])
+  @@index([artifactType])
+  @@index([userId, dateCollected])
+  @@index([processingStatus])
+  @@index([studentId, artifactType])
+  @@index([checksum])
+  @@index([isArchived])
+  @@index([studentId, userId, checksum])
+}
+
+model StudentArtifactOutcome {
+  artifactId        String
+  outcomeId         String
+  evidenceType      String
+  teacherNote       String?
+  confidenceLevel   String                @default("MEDIUM")
+  contextualFactors String?
+  dateAssessed      DateTime              @default(now())
+  outcome           CurriculumExpectation @relation("StudentArtifactOutcome", fields: [outcomeId], references: [id], onDelete: Cascade)
+  artifact          StudentArtifact       @relation(fields: [artifactId], references: [id], onDelete: Cascade)
+
+  @@id([artifactId, outcomeId])
+  @@index([outcomeId])
+  @@index([evidenceType])
+  @@index([dateAssessed])
+  @@index([confidenceLevel])
+}
+
+model StudentOutcomeProgress {
+  id                  String                @id @default(cuid())
+  studentId           String
+  outcomeId           String
+  userId              Int
+  currentLevel        String                @default("NOT_YET")
+  previousLevel       String?
+  lastAssessmentDate  DateTime              @default(now())
+  lastAssessedDate    DateTime?
+  totalEvidencePieces Int                   @default(0)
+  strongestEvidence   Json?
+  areasForGrowth      String?
+  strengths           String?
+  teacherNotes        String?
+  parentShared        Boolean               @default(false)
+  parentShareDate     DateTime?
+  isArchived          Boolean               @default(false)
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  user                User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  outcome             CurriculumExpectation @relation("StudentOutcomeProgress", fields: [outcomeId], references: [id], onDelete: Cascade)
+  student             Student               @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, outcomeId])
+  @@index([studentId])
+  @@index([outcomeId])
+  @@index([userId])
+  @@index([currentLevel])
+  @@index([lastAssessmentDate])
+  @@index([studentId, currentLevel])
+  @@index([outcomeId, currentLevel])
+  @@index([userId, lastAssessmentDate])
+  @@index([parentShared])
+}
+
+model Assessment {
+  id              String   @id @default(cuid())
+  studentId       String
+  teacherId       Int
+  subject         String
+  expectation     String
+  expectationCode String?
+  level           String
+  evidenceType    String
+  description     String?
+  notes           String?
+  artifacts       Json?
+  date            DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  teacher         User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  student         Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([teacherId])
+  @@index([subject])
+  @@index([level])
+  @@index([evidenceType])
+  @@index([date])
+  @@index([studentId, subject])
+  @@index([studentId, date])
+}
+
+model Report {
+  id             String   @id @default(cuid())
+  type           String
+  title          String
+  studentId      String?
+  teacherId      Int
+  dateRangeStart DateTime
+  dateRangeEnd   DateTime
+  subjects       Json?
+  format         String
+  status         String   @default("draft")
+  url            String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  teacher        User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  student        Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([teacherId])
+  @@index([studentId])
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Artifact {
+  id               String   @id @default(cuid())
+  filename         String
+  originalName     String
+  mimeType         String
+  size             Int
+  url              String
+  thumbnailUrl     String?
+  studentId        String?
+  assessmentId     String?
+  uploadedBy       Int
+  processingStatus String   @default("pending")
+  tags             Json?
+  description      String?
+  metadata         Json?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  uploader         User     @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
+  student          Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([assessmentId])
+  @@index([uploadedBy])
+  @@index([processingStatus])
+  @@index([createdAt])
+}
+
+model LessonCompletion {
+  id             String         @id @default(cuid())
+  userId         Int
+  lessonId       String         
+  completedAt    DateTime       @default(now())
+  notes          String?
+  actualDuration Int?
+  wentWell       Boolean        @default(true)
+  needsFollowUp  Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson         ETFOLessonPlan @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@index([lessonId])
+  @@index([completedAt])
+  @@index([userId, completedAt])
+}
+
+enum ReflectionStatus {
+  SUCCESS    // 👍 - Lesson went well, students understood
+  MIXED      // 👌 - Mixed results, some got it, some didn't
+  RETEACH    // 👎 - Needs reteaching, students struggled
+}
+
+model LessonReflection {
+  id             String           @id @default(cuid())
+  userId         Int
+  lessonId       String
+  status         ReflectionStatus
+  note           String?          // Optional teacher notes/observations
+  date           DateTime         // Date of the lesson (for daily aggregation)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson         ETFOLessonPlan   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  // One reflection per lesson per user
+  @@unique([userId, lessonId])
+  
+  @@index([userId])
+  @@index([lessonId])
+  @@index([date])
+  @@index([userId, date])
+  @@index([status])
+}
+
+enum AchievementLevel {
+  NOT_YET
+  APPROACHING
+  MEETING
+  EXCEEDING
+}
+
+enum LessonStatus {
+  PLANNED
+  TAUGHT
+  SKIPPED
+  RESCHEDULED
+}
+
+model StudentAssessment {
+  id             String           @id @default(cuid())
+  userId         Int
+  studentId      String
+  lessonId       String?          // Optional lesson context
+  expectationId  String?          // Optional curriculum expectation context
+  subject        String           // Subject area (e.g., "Mathématiques", "Français")
+  title          String           // Assessment title/description
+  level          AchievementLevel // Achievement level
+  notes          String?          // Teacher notes
+  isAnecdotal    Boolean          @default(false) // Flag to separate anecdotal notes from real assessments
+  date           DateTime         @default(now())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson         ETFOLessonPlan?  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  // Prevent duplicate assessments for same student/subject/date
+  @@unique([userId, studentId, subject, date])
+  
+  @@index([userId])
+  @@index([studentId])
+  @@index([userId, studentId])
+  @@index([userId, date])
+  @@index([userId, subject])
+  @@index([userId, level])
+  @@index([userId, studentId, date])
+  @@index([studentId, subject, date])
 }

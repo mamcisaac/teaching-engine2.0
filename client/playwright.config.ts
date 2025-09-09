@@ -48,6 +48,15 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         tier: 'full' 
       }
+    },
+    { 
+      name: 'prod',
+      testMatch: '**/prod/*.spec.ts',
+      use: { 
+        ...devices['Desktop Chrome'],
+        tier: 'prod',
+        timezoneId: 'America/Halifax'
+      }
     }
   ],
   

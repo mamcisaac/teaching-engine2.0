@@ -3,13 +3,14 @@
  * Extends BaseRouteHandler with ETFO lesson plan-specific business logic
  */
 
-import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '@shared/utils/typeGuards';
+import { isNonEmptyArray, isObject, isString, isArray, hasProperty } from '../utils/typeGuards';
 import type { Prisma } from '@teaching-engine/database';
 import type { Response, NextFunction } from 'express';
 import { z } from 'zod';
 
 import { prisma } from '../prisma';
 import { BaseService } from '../services/base/BaseService';
+import { toLessonView } from '../services/lessons/view';
 import type { ETFOLessonPlan } from '../types/prisma-types';
 import type { ETFOLessonPlanCreateData, ETFOLessonPlanUpdateData } from '../types/routes';
 
@@ -196,7 +197,10 @@ class ETFOLessonPlanService extends BaseService {
     }
     
     const typedResult = result as unknown as LessonPlanQueryResult;
-    const validatedLessonPlans = isArray(typedResult.items) ? typedResult.items : [];
+    // Apply view adapter to each lesson to add computed fields
+    const validatedLessonPlans = isArray(typedResult.items) 
+      ? typedResult.items.map(item => toLessonView(item) as unknown as ETFOLessonPlanWithRelations)
+      : [];
     const validatedTotal = typeof typedResult.total === 'number' ? typedResult.total : 0;
     
     return {
@@ -262,12 +266,15 @@ class ETFOLessonPlanService extends BaseService {
   }
 
   async findById(id: string, userId: number): Promise<Record<string, unknown> | null> {
-    return queryPerformance.monitorQuery('etfoLessonPlan.findById', () =>
+    const lesson = await queryPerformance.monitorQuery('etfoLessonPlan.findById', () =>
       prisma.eTFOLessonPlan.findFirst({
         where: { id, userId },
         include: optimizedIncludes.etfoLessonPlan,
       }),
     );
+    
+    // Apply view adapter if lesson exists
+    return lesson ? toLessonView(lesson) : null;
   }
 
   private async validateUnitPlanOwnership(unitPlanId: string, userId: number): Promise<void> {

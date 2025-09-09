@@ -1,6 +1,7 @@
 /**
  * Planning Cascade API Routes  
  * Hierarchical planning view showing Year → Subject → Unit → Week → Lesson structure
+ * Schema-safe queries - adapted for Emily's canonical database structure
  */
 
 import { prisma } from '../prisma';
@@ -149,7 +150,6 @@ router.get('/cascade', async (req: Request, res: Response): Promise<void> => {
                 expectations: true
               },
               orderBy: [
-                { scheduledDate: 'asc' },
                 { date: 'asc' }
               ]
             }
@@ -207,8 +207,11 @@ router.get('/cascade', async (req: Request, res: Response): Promise<void> => {
         const lessonsByWeek = new Map<number, LessonNode[]>();
         
         for (const lesson of unit.lessonPlans) {
-          const lessonDate = lesson.scheduledDate || lesson.date;
+          const lessonDate = lesson.date;
           const weekNumber = getWeekNumber(lessonDate, unit.startDate);
+          
+          // Compute status from application logic (no status field in DB)
+          const computedStatus = lessonDate < today ? 'TAUGHT' : 'PLANNED';
           
           const lessonNode: LessonNode = {
             id: lesson.id,
@@ -216,9 +219,9 @@ router.get('/cascade', async (req: Request, res: Response): Promise<void> => {
             title: lesson.titleFr || lesson.title,
             date: lessonDate,
             duration: lesson.duration,
-            status: lesson.status,
-            isOverdue: lesson.status === 'PLANNED' && lessonDate < today,
-            isTaught: lesson.status === 'TAUGHT',
+            status: computedStatus,
+            isOverdue: computedStatus === 'PLANNED' && lessonDate < today,
+            isTaught: computedStatus === 'TAUGHT',
             subject: lrp.subject,
             expectations: lesson.expectations.length
           };
@@ -363,12 +366,11 @@ router.patch('/lesson/:lessonId/schedule', async (req: Request, res: Response): 
       return;
     }
 
-    // Update scheduling
+    // Update lesson date (no scheduledDate field in DB)
     const updatedLesson = await prisma.eTFOLessonPlan.update({
       where: { id: lessonId },
       data: {
-        scheduledDate: new Date(updates.scheduledDate),
-        scheduledTime: updates.scheduledTime
+        date: new Date(updates.scheduledDate)
       }
     });
 
@@ -413,8 +415,8 @@ router.post('/lesson/move', async (req: Request, res: Response): Promise<void> =
     }
 
     // Update lesson with new schedule and optionally new unit
-    const updateData: { scheduledDate: Date; unitPlanId?: string } = {
-      scheduledDate: new Date(move.toWeekStartDate)
+    const updateData: { date: Date; unitPlanId?: string } = {
+      date: new Date(move.toWeekStartDate)
     };
 
     if (move.toUnitId) {
@@ -471,7 +473,6 @@ router.get('/workload-balance', async (req: Request, res: Response): Promise<voi
           select: {
             id: true,
             duration: true,
-            scheduledDate: true,
             date: true
           }
         }

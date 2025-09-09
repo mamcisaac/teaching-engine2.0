@@ -1,4 +1,4 @@
-import { isErrorLike } from '@shared/utils/typeGuards';
+import { isErrorLike } from '../utils/typeGuards';
 import { prisma } from '@teaching-engine/database';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
