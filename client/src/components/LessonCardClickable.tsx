@@ -76,6 +76,7 @@ export function LessonCardClickable({
         disabled={disabled || isDragging}
         className="flex-1 text-left p-2 rounded-r focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer disabled:cursor-default"
         aria-label={`Ouvrir ${displayTitle}`}
+        data-testid="lesson-link"
       >
         <div className="font-medium text-xs mb-1">
           {displayTitle}

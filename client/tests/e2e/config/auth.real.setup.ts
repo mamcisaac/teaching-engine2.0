@@ -1,6 +1,6 @@
 /**
- * Global setup for Playwright tests
- * Uses real UI login instead of test endpoints
+ * Real UI-driven authentication setup for E2E tests
+ * Uses actual login form instead of test endpoints
  */
 
 import { chromium, FullConfig } from '@playwright/test';

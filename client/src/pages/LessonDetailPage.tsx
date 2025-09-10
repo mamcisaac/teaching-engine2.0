@@ -279,7 +279,7 @@ export function LessonDetailPage(): React.ReactElement {
                 <ChevronLeft className="h-4 w-4" />
                 Retour
               </Button>
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-3xl font-bold text-gray-900" data-testid="lesson-title">
                 {lesson.title}
               </h1>
             </div>
@@ -289,6 +289,7 @@ export function LessonDetailPage(): React.ReactElement {
                 variant="outline" 
                 onClick={handleAssess}
                 className="bg-green-50 hover:bg-green-100 border-green-300"
+                data-testid="assess-button"
               >
                 <ClipboardCheck className="h-4 w-4 mr-2" />
                 Évaluer la classe
@@ -363,7 +364,7 @@ export function LessonDetailPage(): React.ReactElement {
                 <p className="text-sm text-gray-600">Engagement et activation (10 minutes)</p>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 whitespace-pre-wrap">{lesson.mindsOn}</p>
+                <p className="text-gray-700 whitespace-pre-wrap" data-testid="part-mindsOn">{lesson.mindsOn}</p>
               </CardContent>
             </Card>
           )}
@@ -376,7 +377,7 @@ export function LessonDetailPage(): React.ReactElement {
                 <p className="text-sm text-gray-600">Activité principale (25 minutes)</p>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 whitespace-pre-wrap">{lesson.action}</p>
+                <p className="text-gray-700 whitespace-pre-wrap" data-testid="part-action">{lesson.action}</p>
               </CardContent>
             </Card>
           )}
@@ -389,7 +390,7 @@ export function LessonDetailPage(): React.ReactElement {
                 <p className="text-sm text-gray-600">Synthèse et réflexion (10 minutes)</p>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 whitespace-pre-wrap">{lesson.consolidation}</p>
+                <p className="text-gray-700 whitespace-pre-wrap" data-testid="part-consolidation">{lesson.consolidation}</p>
               </CardContent>
             </Card>
           )}
@@ -405,7 +406,7 @@ export function LessonDetailPage(): React.ReactElement {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2">
+              <ul className="space-y-2" data-testid="diff-list">
                 {lesson.differentiation.map((strategy, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     <div className="h-2 w-2 bg-indigo-400 rounded-full mt-1.5 flex-shrink-0" />
