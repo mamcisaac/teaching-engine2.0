@@ -13,6 +13,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+import { apiClient } from '../api/core/client';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
@@ -127,11 +128,11 @@ export function LessonDetailPage(): React.ReactElement {
   const { data: lesson, isLoading, error } = useQuery<LessonView>({
     queryKey: ['lesson', lessonId],
     queryFn: async () => {
-      const res = await fetch(`/api/lessons/${lessonId}`, {
-        credentials: 'include'
-      });
-      if (!res.ok) throw new Error(`Failed to fetch lesson: ${res.status}`);
-      return res.json();
+      console.log('Fetching lesson with ID:', lessonId);
+      const response = await apiClient.get(`/api/lessons/${lessonId}`);
+      console.log('Response status:', response.status);
+      console.log('Received lesson:', response.data.id, response.data.title);
+      return response.data;
     },
     enabled: !!lessonId
   });
@@ -140,11 +141,13 @@ export function LessonDetailPage(): React.ReactElement {
   const { data: context } = useQuery<AssessmentContext>({
     queryKey: ['lesson-assessment', lessonId],
     queryFn: async () => {
-      const res = await fetch(`/api/lessons/${lessonId}/assessment-context`, {
-        credentials: 'include'
-      });
-      if (!res.ok) return { lesson: null, expectations: [] };
-      return res.json();
+      try {
+        const response = await apiClient.get(`/api/lessons/${lessonId}/assessment-context`);
+        return response.data;
+      } catch (err) {
+        console.log('Failed to fetch assessment context:', err);
+        return { lesson: null, expectations: [] };
+      }
     },
     enabled: !!lessonId
   });

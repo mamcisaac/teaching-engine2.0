@@ -11,6 +11,7 @@ import { apiClient } from '../api/core/client';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import LessonCardClickable from '../components/LessonCardClickable';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 import type { ETFOLessonPlan } from '../types/curriculum';
 
@@ -47,13 +48,13 @@ const SUBJECT_COLORS: Record<string, string> = {
   'Formation personnelle et sociale': 'bg-pink-100 text-pink-800 border-pink-300'
 };
 
-// Draggable lesson component with click navigation
+// Draggable lesson wrapper using two-zone card
 function DraggableLesson({ lesson, subject }: { lesson: LessonData; subject: string }) {
-  const navigate = useNavigate();
   const {
     attributes,
     listeners,
     setNodeRef,
+    setActivatorNodeRef,
     transform,
     transition,
     isDragging,
@@ -62,81 +63,22 @@ function DraggableLesson({ lesson, subject }: { lesson: LessonData; subject: str
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.5 : 1,
-  };
-
-  // Track drag vs click
-  const startPos = useRef<{ x: number; y: number } | null>(null);
-  const hasMoved = useRef(false);
-
-  const handlePointerDown = (e: React.PointerEvent) => {
-    startPos.current = { x: e.clientX, y: e.clientY };
-    hasMoved.current = false;
-    // Call original listener if it exists
-    if (listeners?.onPointerDown) {
-      listeners.onPointerDown(e as any);
-    }
-  };
-
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (startPos.current) {
-      const dx = Math.abs(e.clientX - startPos.current.x);
-      const dy = Math.abs(e.clientY - startPos.current.y);
-      if (dx > 5 || dy > 5) {
-        hasMoved.current = true;
-      }
-    }
-    // Call original listener if it exists
-    if (listeners?.onPointerMove) {
-      listeners.onPointerMove(e as any);
-    }
-  };
-
-  const handlePointerUp = (e: React.PointerEvent) => {
-    // If it wasn't dragged, navigate
-    if (!hasMoved.current && !isDragging) {
-      navigate(`/planner/lessons/${lesson.id}`);
-    }
-    startPos.current = null;
-    // Call original listener if it exists
-    if (listeners?.onPointerUp) {
-      listeners.onPointerUp(e as any);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey && !e.ctrlKey) {
-      e.preventDefault();
-      navigate(`/planner/lessons/${lesson.id}`);
-    }
-    // Call original listener if it exists
-    if (listeners?.onKeyDown) {
-      listeners.onKeyDown(e as any);
-    }
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onKeyDown={handleKeyDown}
-      className={`p-2 rounded cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-indigo-500 ${subject ? SUBJECT_COLORS[subject] : 'bg-gray-100'} ${isDragging ? 'z-50 cursor-grabbing' : ''}`}
-      data-testid={`lesson-${lesson.id}`}
-      role="button"
-      aria-label={`${lesson.titleFr || lesson.title} - ${subject} - ${lesson.duration} minutes. Click to view details, or drag to reschedule.`}
-      tabIndex={0}
-    >
-      <div className="font-medium text-xs mb-1">
-        {lesson.titleFr || lesson.title}
-      </div>
-      <div className="text-xs opacity-75">
-        {subject} - {lesson.duration} min
-      </div>
+    <div ref={setNodeRef} style={style} {...attributes}>
+      <LessonCardClickable
+        id={lesson.id}
+        title={lesson.title}
+        titleFr={lesson.titleFr}
+        subject={subject}
+        duration={lesson.duration}
+        isSubFriendly={lesson.isSubFriendly}
+        dragHandleRef={setActivatorNodeRef}
+        dragHandleProps={listeners}
+        isDragging={isDragging}
+        colorClass={subject ? SUBJECT_COLORS[subject] : 'bg-gray-100'}
+      />
     </div>
   );
 }

@@ -3,12 +3,12 @@
  * Handles substitute teacher information and plan generation
  */
 
-import { PrismaClient } from '@teaching-engine/database';
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
 
 import { logger } from '../logger';
+import { prisma } from '../prisma';
 import { SubstitutePlanService } from '../services/substitutePlanService';
 
 const router = Router();

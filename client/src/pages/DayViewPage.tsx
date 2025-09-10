@@ -1,8 +1,9 @@
 import { format, parseISO, addDays, subDays, isValid } from 'date-fns';
 import { ChevronLeft, ChevronRight, Clock, Plus, FileText } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
+import LessonCardClickable from '../components/LessonCardClickable';
 import { SubPlanGenerator } from '../components/SubPlanGenerator';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
@@ -189,24 +190,17 @@ export function DayViewPage(): React.ReactElement {
                 
                 {slot.lesson && (
                   <CardContent>
-                    <Link 
-                      to={`/planner/lessons/${slot.lesson.id}`}
-                      className="block cursor-pointer hover:opacity-80"
-                    >
-                      <h3 className="font-semibold text-lg mb-1">
-                        {slot.lesson.titleFr || slot.lesson.title || 'Sans titre'}
-                      </h3>
-                      <div className="flex flex-wrap gap-2 mt-3">
-                        <Badge variant="secondary" className="text-xs">
-                          {slot.lesson.duration || 45} min
-                        </Badge>
-                        {slot.lesson.isSubFriendly && (
-                          <Badge variant="outline" className="text-xs">
-                            Sub
-                          </Badge>
-                        )}
-                      </div>
-                    </Link>
+                    <LessonCardClickable
+                      id={slot.lesson.id}
+                      title={slot.lesson.title}
+                      titleFr={slot.lesson.titleFr}
+                      subject={slot.lesson.unitPlan?.longRangePlan?.subject}
+                      duration={slot.lesson.duration}
+                      isSubFriendly={slot.lesson.isSubFriendly}
+                      date={slot.lesson.date}
+                      slotNumber={slot.lesson.slotNumber}
+                      colorClass="bg-white"
+                    />
                   </CardContent>
                 )}
               </Card>
