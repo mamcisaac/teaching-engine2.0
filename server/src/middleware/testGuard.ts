@@ -19,7 +19,8 @@ export function testGuard(req: Request, res: Response, next: NextFunction): void
       path: req.path,
       method: req.method 
     });
-    return res.status(404).end(); // keep invisibility but log denial
+    res.status(404).end(); // keep invisibility but log denial
+    return;
   }
   
   next();

@@ -1,4 +1,12 @@
-import { AchievementLevel } from '@teaching-engine/database';
+// Define AchievementLevel locally since it's not exported from the database package
+const AchievementLevel = {
+  EXCEEDING: 'EXCEEDING',
+  MEETING: 'MEETING',
+  APPROACHING: 'APPROACHING',
+  BEGINNING: 'BEGINNING',
+  NOT_YET: 'NOT_YET'
+} as const;
+type AchievementLevel = typeof AchievementLevel[keyof typeof AchievementLevel];
 import type { Request, Response } from 'express';
 import { Router } from 'express';
 import { z } from 'zod';
@@ -122,7 +130,7 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<Resp
     const validatedData = createAssessmentSchema.parse(req.body);
 
     // Detect anecdotal notes and flag them appropriately
-    const isAnecdotal = validatedData.subject.startsWith('ANECDOTAL_') || false;
+    const isAnecdotal = typeof validatedData.subject === 'string' && validatedData.subject.startsWith('ANECDOTAL_') || false;
 
     const assessment = await prisma.studentAssessment.create({
       data: {
@@ -280,7 +288,7 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
 
     assessments.forEach(assessment => {
       switch (assessment.level) {
-        case AchievementLevel.NOT_YET:
+        case 'NOT_YET':
           groups.reteaching.push(assessment.studentId);
           break;
         case AchievementLevel.APPROACHING:

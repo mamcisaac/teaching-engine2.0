@@ -430,7 +430,7 @@ async function initializeApp(): Promise<express.Application> {
     if (testRoutes.length > 0) {
       const testPaths = testRoutes.map((layer: any) => layer.route?.path || 'unknown').join(', ');
       const errorMsg = `PRODUCTION SECURITY VIOLATION: Test routes detected in production mode: ${testPaths}. Server startup aborted.`;
-      structuredLogger.error(errorMsg, { testPaths, nodeEnv: process.env.NODE_ENV });
+      structuredLogger.error(errorMsg, new Error(errorMsg), { testPaths, nodeEnv: process.env.NODE_ENV });
       throw new Error(errorMsg);
     }
     log('✅ No test routes detected in production mode');

@@ -4,6 +4,7 @@
  */
 
 import type { Prisma } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import { PrismaClient } from '@teaching-engine/database';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';

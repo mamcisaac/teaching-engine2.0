@@ -6,6 +6,7 @@
  */
 
 import { PrismaClient } from '@teaching-engine/database';
+import { prisma } from '../../../prisma';
 import type { Job } from 'bull';
 import sharp from 'sharp';
 

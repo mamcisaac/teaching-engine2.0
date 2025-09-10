@@ -36,12 +36,12 @@ router.post('/seed/:tier', async (req: Request, res: Response): Promise<void> =>
       where: { id: 23 },
       include: {
         _count: {
-          select: { ETFOLessonPlan: true }
+          select: { etfoLessonPlans: true }
         }
       }
     });
 
-    if (emilyCheck && emilyCheck._count.ETFOLessonPlan >= 900) {
+    if (emilyCheck && (emilyCheck._count as any).etfoLessonPlans >= 900) {
       // This is Emily's canonical DB - return success without modifying
       console.log('[PROTECTED] Emily\'s canonical database detected - returning read-only success');
       res.json({ 
@@ -101,12 +101,12 @@ router.post('/reset', async (_req: Request, res: Response): Promise<void> => {
       where: { id: 23 },
       include: {
         _count: {
-          select: { ETFOLessonPlan: true }
+          select: { etfoLessonPlans: true }
         }
       }
     });
 
-    if (emilyCheck && emilyCheck._count.ETFOLessonPlan >= 900) {
+    if (emilyCheck && (emilyCheck._count as any).etfoLessonPlans >= 900) {
       // This is Emily's canonical DB - return success without modifying
       console.log('[PROTECTED] Emily\'s canonical database detected - no reset performed');
       res.status(204).end();

@@ -7,6 +7,7 @@
  */
 
 import crypto from 'crypto';
+import { prisma } from '../prisma';
 import { promises as fs } from 'fs';
 import os from 'os';
 import path from 'path';

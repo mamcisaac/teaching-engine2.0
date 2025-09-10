@@ -5,6 +5,7 @@
  */
 
 import { promises as fs, createWriteStream } from 'fs';
+import { prisma } from '../prisma';
 import { tmpdir } from 'os';
 import path from 'path';
 

@@ -4,6 +4,7 @@
  */
 
 import { createHash } from 'crypto';
+import { prisma } from '../prisma';
 
 import type { Prisma } from '@teaching-engine/database';
 import { PrismaClient } from '@teaching-engine/database';

@@ -4,6 +4,7 @@
  */
 
 import type { Request, Response, NextFunction } from 'express';
+import { prisma } from '../prisma';
 import { body, validationResult } from 'express-validator';
 
 import { logger } from '../logger';

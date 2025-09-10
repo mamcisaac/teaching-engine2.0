@@ -73,15 +73,15 @@ lessonsRouter.get('/:id/assessment-context', async (req: AuthenticatedRequest, r
         where: { lessonPlanId: String(id) },
         include: {
           expectation: {
-            select: { id: true, code: true, text: true }
+            select: { id: true, code: true, description: true }
           }
         }
       });
       
       expectations = linkedExpectations.map(link => ({
-        id: String(link.expectation.id),
-        code: link.expectation.code,
-        text: link.expectation.text
+        id: String(link.expectationId),
+        code: link.expectation?.code || '',
+        text: link.expectation?.description || ''
       }));
     } catch {
       // Join table might not exist, keep expectations empty

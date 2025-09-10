@@ -203,7 +203,7 @@ class ETFOLessonPlanService extends BaseService {
     // Apply view adapter to each lesson to add computed fields, but preserve relationships
     const validatedLessonPlans = isArray(typedResult.items) 
       ? typedResult.items.map(item => {
-          const viewModel = toLessonView(item) as any;
+          const viewModel = toLessonView(item as any) as any;
           // Preserve the expectations field from the original item
           if (item.expectations) {
             viewModel.expectations = item.expectations;

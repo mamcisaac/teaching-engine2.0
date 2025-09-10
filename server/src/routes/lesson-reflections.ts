@@ -5,6 +5,7 @@
  */
 
 import { PrismaClient } from '@teaching-engine/database';
+import { prisma } from '../prisma';
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
 import type { Request, Response, NextFunction } from 'express';
 import { Router } from 'express';
@@ -80,11 +81,11 @@ router.post('/:id/reflection',
       }
       
       // Handle both emoji and enum status values
-      let status: ReflectionStatus;
+      let status: ReflectionStatusType;
       if (req.body.status in statusMap) {
         status = statusMap[req.body.status as keyof typeof statusMap];
       } else {
-        status = req.body.status as ReflectionStatus;
+        status = req.body.status as ReflectionStatusType;
       }
 
       // Get lesson date or use provided date
@@ -309,9 +310,9 @@ router.get('/summary/:date',
       const summary = {
         date: req.params.date,
         total: reflections.length,
-        successful: reflections.filter(r => r.status === ReflectionStatus.SUCCESS).length,
-        mixed: reflections.filter(r => r.status === ReflectionStatus.MIXED).length,
-        needsReteaching: reflections.filter(r => r.status === ReflectionStatus.RETEACH).length,
+        successful: reflections.filter(r => r.status === 'SUCCESS').length,
+        mixed: reflections.filter(r => r.status === 'MIXED').length,
+        needsReteaching: reflections.filter(r => r.status === 'RETEACH').length,
         withNotes: reflections.filter(r => r.note && r.note.trim().length > 0).length,
         percentSuccess: 0,
         percentMixed: 0,

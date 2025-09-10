@@ -41,12 +41,12 @@ export function startEventLoopMonitoring(): void {
 
     // Log warning if p95 is high
     if (p95 > 100) {
-      logger.warn('[eventloop-monitor] High event loop lag detected', {
+      logger.warn('[eventloop-monitor] High event loop lag detected', JSON.stringify({
         p50: `${p50.toFixed(1)}ms`,
         p95: `${p95.toFixed(1)}ms`,
         p99: `${p99.toFixed(1)}ms`,
         max: `${max.toFixed(1)}ms`
-      });
+      }));
     }
 
     // Reset histogram for next period

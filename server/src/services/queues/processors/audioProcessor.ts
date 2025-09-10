@@ -6,6 +6,7 @@
  */
 
 import { promises as fs } from 'fs';
+import { prisma } from '../../../prisma';
 import os from 'os';
 import path from 'path';
 
