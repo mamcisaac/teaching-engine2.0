@@ -9,8 +9,8 @@ test.describe('Curriculum expectations & coverage', () => {
     await page.goto('/curriculum');
     await page.waitForSelector(S.curriculum.page);
 
-    await page.selectOption(S.curriculum.filterGrade, { label: /1|Grade 1/i });
-    await page.selectOption(S.curriculum.filterSubject, { label: /French|Français|Immersion/i });
+    await page.selectOption(S.curriculum.filterGrade, { value: '1' });
+    await page.selectOption(S.curriculum.filterSubject, { value: 'french' });
 
     await page.waitForSelector(S.curriculum.listRows);
     const count = await page.locator(S.curriculum.listRows).count();

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { GripVertical } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 type LessonCardProps = {
   id: string;                         // REAL ETFOLessonPlan.id (CUID)
@@ -26,7 +26,8 @@ export function LessonCardClickable({
   titleFr, 
   subject,
   duration,
-  isSubFriendly, 
+  isSubFriendly,
+  date, 
   dragHandleRef,
   dragHandleProps, 
   isDragging,

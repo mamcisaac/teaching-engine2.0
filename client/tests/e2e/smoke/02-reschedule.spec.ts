@@ -18,7 +18,8 @@ test.describe('Reschedule (drag or keyboard fallback)', () => {
     await page.waitForTimeout(300); // allow network
 
     const moved = page.locator(S.week.lessonCard(lessonId!));
-    await expect(moved).toHaveAttribute('data-day', (val) => val !== originalDay);
+    const newDay = await moved.getAttribute('data-day');
+    expect(newDay).not.toBe(originalDay);
 
     // Sanity: open detail to prove the date actually changed
     await moved.click();
