@@ -17,6 +17,7 @@ const CurriculumImportPage = lazy(() => import('../pages/CurriculumImportPage').
 const DaybookPage = lazy(() => import('../pages/DaybookPage').then(module => ({ default: module.DaybookPage }))); // named export
 const _TeachingDashboard = lazy(() => import('../pages/TeachingDashboard').then(module => ({ default: module.TeachingDashboard }))); // named export
 const ShowcaseDashboard = lazy(() => import('../pages/ShowcaseDashboard').then(module => ({ default: module.ShowcaseDashboard }))); // named export
+const EnhancedDashboard = lazy(() => import('../pages/EnhancedDashboard').then(module => ({ default: module.EnhancedDashboard }))); // named export
 const ParentNewsletterPage = lazy(() => import('../pages/ParentNewsletterPage').then(module => ({ default: module.ParentNewsletterPage }))); // named export
 const HelpPage = lazy(() => import('../pages/HelpPage').then(module => ({ default: module.HelpPage }))); // named export
 const TemplatesPage = lazy(() => import('../pages/TemplatesPage').then(module => ({ default: module.TemplatesPage }))); // named export
@@ -26,6 +27,7 @@ const WeekViewPage = lazy(() => import('../pages/WeekViewPage').then(module => (
 const DayViewPage = lazy(() => import('../pages/DayViewPage').then(module => ({ default: module.DayViewPage }))); // named export
 const LessonDetailPage = lazy(() => import('../pages/LessonDetailPage').then(module => ({ default: module.LessonDetailPage }))); // named export
 const ScheduleEditor = lazy(() => import('../pages/ScheduleEditor').then(module => ({ default: module.ScheduleEditor }))); // named export
+const HierarchicalViewPage = lazy(() => import('../pages/HierarchicalViewPage').then(module => ({ default: module.HierarchicalViewPage }))); // named export
 
 // Assessment System Pages - wrapped with MainLayout
 const StudentsPage = lazy(() => import('../pages/StudentsPage').then(module => ({ 
@@ -145,6 +147,10 @@ export const plannerRoutes: RouteConfig[] = [
     element: SimpleCalendarPage,
   },
   {
+    path: 'hierarchy',
+    element: HierarchicalViewPage,
+  },
+  {
     path: 'schedule-editor',
     element: ScheduleEditor,
   },
@@ -182,7 +188,7 @@ export const protectedRoutes: RouteConfig[] = [
   },
   {
     path: '/dashboard',
-    element: ShowcaseDashboard,
+    element: EnhancedDashboard,
   },
   {
     path: '/today',

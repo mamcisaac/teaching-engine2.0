@@ -200,9 +200,24 @@ class ETFOLessonPlanService extends BaseService {
     }
     
     const typedResult = result as unknown as LessonPlanQueryResult;
-    // Apply view adapter to each lesson to add computed fields
+    // Apply view adapter to each lesson to add computed fields, but preserve relationships
     const validatedLessonPlans = isArray(typedResult.items) 
-      ? typedResult.items.map(item => toLessonView(item) as unknown as ETFOLessonPlanWithRelations)
+      ? typedResult.items.map(item => {
+          const viewModel = toLessonView(item) as any;
+          // Preserve the expectations field from the original item
+          if (item.expectations) {
+            viewModel.expectations = item.expectations;
+          }
+          // CRITICAL: Preserve the unitPlan relationship for subject/color coding
+          if ((item as any).unitPlan) {
+            viewModel.unitPlan = (item as any).unitPlan;
+          }
+          // Preserve resources if included
+          if ((item as any).resources) {
+            viewModel.resources = (item as any).resources;
+          }
+          return viewModel as ETFOLessonPlanWithRelations;
+        })
       : [];
     const validatedTotal = typeof typedResult.total === 'number' ? typedResult.total : 0;
     
@@ -298,8 +313,24 @@ class ETFOLessonPlanService extends BaseService {
       }),
     );
     
-    // Apply view adapter if lesson exists
-    return lesson ? toLessonView(lesson) : null;
+    // Apply view adapter if lesson exists, but preserve relationships
+    if (lesson) {
+      const viewModel = toLessonView(lesson) as any;
+      // Preserve the expectations field from the original lesson
+      if ((lesson as any).expectations) {
+        viewModel.expectations = (lesson as any).expectations;
+      }
+      // CRITICAL: Preserve the unitPlan relationship for subject/color coding
+      if ((lesson as any).unitPlan) {
+        viewModel.unitPlan = (lesson as any).unitPlan;
+      }
+      // Preserve resources if included
+      if ((lesson as any).resources) {
+        viewModel.resources = (lesson as any).resources;
+      }
+      return viewModel;
+    }
+    return null;
   }
 
   private async validateUnitPlanOwnership(unitPlanId: string, userId: number): Promise<void> {

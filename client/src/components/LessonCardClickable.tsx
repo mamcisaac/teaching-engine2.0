@@ -11,6 +11,16 @@ type LessonCardProps = {
   isSubFriendly?: boolean | number | null;
   date?: string | null;
   slotNumber?: number | null;
+  // Enhanced data for comprehensive view
+  description?: string | null;
+  descriptionFr?: string | null;
+  unitTitle?: string | null;
+  unitTitleFr?: string | null;
+  lessonNumber?: number | null;
+  expectations?: Array<{
+    code: string;
+    description?: string;
+  }> | null;
   // DnD bindings (optional) - only for the drag handle
   dragHandleRef?: (element: HTMLElement | null) => void;
   dragHandleProps?: React.HTMLAttributes<HTMLButtonElement>;
@@ -27,7 +37,13 @@ export function LessonCardClickable({
   subject,
   duration,
   isSubFriendly,
-  date, 
+  date,
+  description,
+  descriptionFr,
+  unitTitle,
+  unitTitleFr,
+  lessonNumber,
+  expectations,
   dragHandleRef,
   dragHandleProps, 
   isDragging,
@@ -43,12 +59,21 @@ export function LessonCardClickable({
   };
 
   const displayTitle = titleFr || title || "Sans titre";
+  const displayDescription = descriptionFr || description;
+  const displayUnitTitle = unitTitleFr || unitTitle;
+  
+  // Truncate description if too long
+  const truncatedDescription = displayDescription 
+    ? displayDescription.length > 100 
+      ? displayDescription.substring(0, 97) + '...'
+      : displayDescription
+    : null;
 
   return (
     <div
       data-testid="lesson-card"
       data-lesson-id={id}
-      data-day={date?.split('T')[0]}
+      data-day={date ? date.split('T')[0] : ''}
       className={`flex items-stretch gap-0 rounded border transition-all ${
         isDragging ? 'opacity-50 z-50' : 'hover:shadow-md'
       } ${colorClass}`}
@@ -78,15 +103,49 @@ export function LessonCardClickable({
         aria-label={`Ouvrir ${displayTitle}`}
         data-testid="lesson-link"
       >
-        <div className="font-medium text-xs mb-1">
-          {displayTitle}
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-xs opacity-75">
-            {subject} {duration && `- ${duration} min`}
-          </span>
-          {isSubFriendly && (
-            <span className="text-xs px-1.5 py-0.5 rounded bg-amber-200">Sub</span>
+        <div className="space-y-1">
+          {/* Title and lesson number */}
+          <div className="font-medium text-sm">
+            {displayTitle}
+            {lessonNumber && (
+              <span className="ml-2 text-xs text-gray-500">
+                #{lessonNumber}
+              </span>
+            )}
+          </div>
+          
+          {/* Subject and unit */}
+          <div className="text-xs text-gray-600">
+            {subject && <div className="font-semibold">📚 {subject}</div>}
+            {!subject && <div className="text-red-500">⚠️ No subject</div>}
+            {displayUnitTitle && (
+              <div className="text-gray-500 italic">{displayUnitTitle}</div>
+            )}
+          </div>
+          
+          {/* Description */}
+          {truncatedDescription && (
+            <div className="text-xs text-gray-700 line-clamp-2">
+              {truncatedDescription}
+            </div>
+          )}
+          
+          {/* Curriculum expectations */}
+          {expectations && expectations.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-1">
+              {expectations.slice(0, 3).map((exp, index) => (
+                <span 
+                  key={index}
+                  className="text-xs px-1.5 py-0.5 rounded bg-gray-100 text-gray-600"
+                  title={exp.description}
+                >
+                  {exp.code}
+                </span>
+              ))}
+              {expectations.length > 3 && (
+                <span className="text-xs text-gray-500">+{expectations.length - 3}</span>
+              )}
+            </div>
           )}
         </div>
       </button>

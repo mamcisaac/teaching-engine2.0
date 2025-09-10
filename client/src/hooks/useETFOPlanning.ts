@@ -121,6 +121,7 @@ export interface ETFOLessonPlan {
   date: string;
   slotNumber?: number;
   duration: number;
+  lessonNumber?: number;
   mindsOn?: string;
   mindsOnFr?: string;
   action?: string;
@@ -486,6 +487,13 @@ export function useETFOLessonPlans(filters?: {
       params.append('limit', (filters?.limit ?? 100).toString());
 
       const response = await apiClient.get(`/api/etfo-lesson-plans?${params.toString()}`);
+      console.log('useETFOLessonPlans: Raw API response:', response.data);
+      console.log('useETFOLessonPlans: Response structure:', {
+        isArray: Array.isArray(response.data),
+        hasLessonPlans: !!response.data?.lessonPlans,
+        lessonPlansIsArray: Array.isArray(response.data?.lessonPlans),
+        firstLessonPlan: response.data?.lessonPlans?.[0] || response.data?.[0]
+      });
       // Handle both array and object with lessonPlans property
       if (Array.isArray(response.data)) {
         return response.data as ETFOLessonPlan[];

@@ -63,6 +63,9 @@ export type LessonView = {
   // Legacy computed fields
   computedStatus?: LessonStatus;
   scheduledDate?: string | null;
+
+  // Curriculum expectations (preserved from database relations)
+  expectations?: any;
 };
 
 // Helper to parse arrays from various formats
@@ -183,7 +186,10 @@ export function toLessonView(lesson: ETFOLessonPlan): LessonView {
 
     // Legacy computed fields
     scheduledDate,
-    computedStatus
+    computedStatus,
+
+    // Preserve expectations if they exist (from Prisma include)
+    ...(row.expectations && { expectations: row.expectations })
   };
 }
 

@@ -285,15 +285,16 @@ export function LessonDetailPage(): React.ReactElement {
             </div>
             
             <div className="flex items-center gap-2">
-              <Button 
-                variant="outline" 
-                onClick={handleAssess}
-                className="bg-green-50 hover:bg-green-100 border-green-300"
+              <Link 
+                to={context?.expectations?.length 
+                  ? `/assessment?lessonId=${lessonId}&exp=${context.expectations.map(e => e.id).join(',')}`
+                  : `/assessment?lessonId=${lessonId}`}
+                className="inline-flex items-center px-4 py-2 border border-green-300 rounded-md text-sm font-medium bg-green-50 hover:bg-green-100"
                 data-testid="assess-button"
               >
                 <ClipboardCheck className="h-4 w-4 mr-2" />
                 Évaluer la classe
-              </Button>
+              </Link>
               <Button variant="outline" onClick={handlePrint}>
                 <Printer className="h-4 w-4" />
               </Button>

@@ -26,7 +26,7 @@ import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { STORAGE_KEYS } from '../constants/subjects';
 import { useAuth } from '../contexts/AuthContext';
-import { useETFOLessonPlans, useUnitPlans, useLongRangePlans } from '../hooks/useETFOPlanning';
+import { useETFOLessonPlans, useUnitPlans, useLongRangePlans, useCurriculumExpectations } from '../hooks/useETFOPlanning';
 import { safeJsonParse } from '../utils/typeGuards';
 
 export function TeachingDashboard(): React.ReactElement {
@@ -53,6 +53,12 @@ export function TeachingDashboard(): React.ReactElement {
   // Get long range plans for overview
   const { data: _longRangePlans = [] } = useLongRangePlans();
   
+  // Get all lesson plans and curriculum expectations to calculate coverage
+  const { data: allLessonPlans = [] } = useETFOLessonPlans();
+  const { data: allExpectations = [] } = useCurriculumExpectations({
+    grade: 1
+  });
+  
   // Filter for currently active units
   const activeUnits = useMemo(() => {
     const now = new Date();
@@ -78,6 +84,39 @@ export function TeachingDashboard(): React.ReactElement {
   
   const completedToday = 2; // This would come from completion tracking
   const totalToday = todayLessons.length;
+  
+  // Calculate curriculum coverage
+  const { coveredCount, totalCount, percentage } = useMemo(() => {
+    // Filter expectations based on teacher's selected subjects
+    const teacherFilteredExpectations = _teacherSubjects.length > 0 
+      ? allExpectations.filter(exp => _teacherSubjects.includes(exp.subject))
+      : allExpectations;
+    
+    // Calculate which expectations are covered
+    const coveredIds = new Set<string>();
+    allLessonPlans.forEach((lesson: any) => {
+      lesson.expectations?.forEach((exp: any) => {
+        const id = exp.expectation?.id;
+        if (id) {
+          coveredIds.add(id);
+        }
+      });
+    });
+    allUnits.forEach((unit: any) => {
+      unit.expectations?.forEach((exp: any) => {
+        const id = exp.expectation?.id;
+        if (id) {
+          coveredIds.add(id);
+        }
+      });
+    });
+    
+    const covered = teacherFilteredExpectations.filter(exp => coveredIds.has(exp.id)).length;
+    const total = teacherFilteredExpectations.length;
+    const pct = total > 0 ? Math.round((covered / total) * 100) : 0;
+    
+    return { coveredCount: covered, totalCount: total, percentage: pct };
+  }, [allExpectations, allLessonPlans, allUnits, _teacherSubjects]);
   
   // Navigate functions
   const handleViewToday = (): void => {
@@ -422,7 +461,7 @@ export function TeachingDashboard(): React.ReactElement {
                 <p className="text-sm text-gray-600">Teaching Hours</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-orange-600">100%</p>
+                <p className="text-3xl font-bold text-orange-600">{percentage}%</p>
                 <p className="text-sm text-gray-600">Curriculum Coverage</p>
               </div>
             </div>

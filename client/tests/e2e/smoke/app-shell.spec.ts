@@ -3,10 +3,10 @@
  * Verifies the basic structure loads correctly
  */
 
-import { test, expect } from '../fixtures/seed';
+import { test, expect } from '../fixtures/auth';
 
 test.describe('App Shell', () => {
-  test('app loads without crashes', async ({ page, seedData }) => {
+  test('app loads without crashes', async ({ page }) => {
     // Navigate to dashboard
     await page.goto('/dashboard');
     
@@ -30,7 +30,7 @@ test.describe('App Shell', () => {
     await expect(page.getByTestId('week-view-grid')).toBeVisible({ timeout: 10000 });
   });
   
-  test('sidebar navigation renders all sections', async ({ page, seedData }) => {
+  test('sidebar navigation renders all sections', async ({ page }) => {
     await page.goto('/dashboard');
     
     // Teaching section links
@@ -50,7 +50,7 @@ test.describe('App Shell', () => {
     await expect(page.getByTestId('nav-assessment')).toBeVisible();
   });
   
-  test('no console errors on load', async ({ page, seedData }) => {
+  test('no console errors on load', async ({ page }) => {
     const errors: string[] = [];
     page.on('console', msg => {
       if (msg.type() === 'error' && !msg.text().includes('Failed to load resource')) {

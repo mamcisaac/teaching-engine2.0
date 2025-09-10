@@ -14,8 +14,8 @@ import { ensureDbReady } from '../utils/dbReady';
 
 const router = Router();
 
-// All test routes require test guard
-router.use(testGuard);
+// Test guard is applied at mount time in index.ts
+// router.use(testGuard); // Removed - applied at mount
 
 /**
  * Seed test data

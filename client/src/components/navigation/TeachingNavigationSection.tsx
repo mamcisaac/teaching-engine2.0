@@ -10,7 +10,8 @@ import {
   CheckCircle,
   Camera,
   BarChart3,
-  FileBarChart
+  FileBarChart,
+  GitBranch
 } from 'lucide-react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -46,7 +47,7 @@ export function TeachingNavigationSection(): React.ReactElement {
       description: 'Complete unit plans',
     },
     {
-      id: 'longrange',
+      id: 'long-range',
       name: 'Long Range Plans',
       path: '/planner/long-range',
       icon: <Calendar className="h-5 w-5" />,
@@ -72,6 +73,13 @@ export function TeachingNavigationSection(): React.ReactElement {
       path: '/planner/daybook',
       icon: <FileText className="h-5 w-5" />,
       description: 'Daily notes',
+    },
+    {
+      id: 'hierarchy',
+      name: 'Planning Hierarchy',
+      path: '/planner/hierarchy',
+      icon: <GitBranch className="h-5 w-5" />,
+      description: 'LRP → Units → Lessons'
     },
   ];
 
@@ -148,7 +156,7 @@ export function TeachingNavigationSection(): React.ReactElement {
           <NavLink
             key={item.id}
             to={item.path}
-            data-testid={item.id === 'showcase' ? 'nav-dashboard' : `nav-${item.id}`}
+            data-testid={item.id === 'showcase' ? 'nav-dashboard' : item.id === 'long-range' ? 'nav-longrange' : `nav-${item.id}`}
             className={({ isActive }): string => {
               const baseClasses = `flex items-center py-3 px-4 ${!isSidebarOpen && 'justify-center'}`;
               

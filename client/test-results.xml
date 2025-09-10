@@ -1,2 +1,98 @@
-<testsuites id="" name="" tests="0" failures="0" skipped="0" errors="0" time="0.6773399999999999">
+<testsuites id="" name="" tests="3" failures="3" skipped="0" errors="0" time="20.724327999999996">
+<testsuite name="smoke/week-view.spec.ts" timestamp="2025-09-10T14:31:11.302Z" hostname="smoke" tests="3" failures="3" skipped="0" time="17.037" errors="0">
+<testcase name="Week View › week view loads and displays structure" classname="smoke/week-view.spec.ts" time="8.333">
+<failure message="week-view.spec.ts:9:7 week view loads and displays structure" type="FAILURE">
+<![CDATA[  [smoke] › smoke/week-view.spec.ts:9:7 › Week View › week view loads and displays structure ───────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByRole('button', { name: 'Today' })
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  8000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 8000ms
+      - waiting for getByRole('button', { name: 'Today' })
+
+
+      28 |     // Week navigation buttons should be present
+      29 |     await expect(page.getByRole('button', { name: 'Previous Week' })).toBeVisible();
+    > 30 |     await expect(page.getByRole('button', { name: 'Today' })).toBeVisible();
+         |                                                               ^
+      31 |     await expect(page.getByRole('button', { name: 'Next Week' })).toBeVisible();
+      32 |     
+      33 |     // Subject legend should be shown
+        at /Users/michaelmcisaac/Github/teaching-engine2.0/client/tests/e2e/smoke/week-view.spec.ts:30:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/smoke-week-view-Week-View--5af62-oads-and-displays-structure-smoke/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/smoke-week-view-Week-View--5af62-oads-and-displays-structure-smoke/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Week View › week navigation works" classname="smoke/week-view.spec.ts" time="8.383">
+<failure message="week-view.spec.ts:37:7 week navigation works" type="FAILURE">
+<![CDATA[  [smoke] › smoke/week-view.spec.ts:37:7 › Week View › week navigation works ───────────────────────
+
+    TimeoutError: locator.click: Timeout 8000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Today' })
+
+
+      59 |     
+      60 |     // Navigate back using Today button
+    > 61 |     await page.getByRole('button', { name: 'Today' }).click();
+         |                                                       ^
+      62 |     await page.waitForResponse(response => 
+      63 |       response.url().includes('/api/etfo-lesson-plans') && response.ok()
+      64 |     );
+        at /Users/michaelmcisaac/Github/teaching-engine2.0/client/tests/e2e/smoke/week-view.spec.ts:61:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/smoke-week-view-Week-View-week-navigation-works-smoke/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/smoke-week-view-Week-View-week-navigation-works-smoke/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Week View › quick add buttons are present" classname="smoke/week-view.spec.ts" time="0.321">
+<failure message="week-view.spec.ts:71:7 quick add buttons are present" type="FAILURE">
+<![CDATA[  [smoke] › smoke/week-view.spec.ts:71:7 › Week View › quick add buttons are present ───────────────
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      84 |     // Total slots should be 25 (5 days × 5 slots)
+      85 |     // All slots should have either a lesson or a quick-add button
+    > 86 |     expect(quickAddCount + lessonCount).toBeGreaterThan(0);
+         |                                         ^
+      87 |     expect(quickAddCount + lessonCount).toBeLessThanOrEqual(25);
+      88 |   });
+      89 | });
+        at /Users/michaelmcisaac/Github/teaching-engine2.0/client/tests/e2e/smoke/week-view.spec.ts:86:41
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../../test-results/smoke-week-view-Week-View-quick-add-buttons-are-present-smoke/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/smoke-week-view-Week-View-quick-add-buttons-are-present-smoke/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
 </testsuites>

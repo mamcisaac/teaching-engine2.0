@@ -218,12 +218,14 @@ export function SimpleCurriculumPage(): React.ReactElement {
   }
 
   return (
-    <div style={{ 
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      maxWidth: '1200px', 
-      margin: '0 auto', 
-      padding: '32px' 
-    }}>
+    <div 
+      data-testid="curriculum-page"
+      style={{ 
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        padding: '32px' 
+      }}>
       {/* Breadcrumb */}
       <div style={{ 
         display: 'flex', 
@@ -284,11 +286,11 @@ export function SimpleCurriculumPage(): React.ReactElement {
         </button>
       </div>
 
-      {/* Subject Selection Alert */}
+      {/* Optional Subject Selection Info */}
       {teacherSubjects === null || teacherSubjects.length === 0 ? (
         <div style={{
-          backgroundColor: '#fef2f2',
-          border: '1px solid #fca5a5',
+          backgroundColor: '#f0f9ff',
+          border: '1px solid #93c5fd',
           borderRadius: '8px',
           padding: '16px',
           marginBottom: '24px'
@@ -297,33 +299,20 @@ export function SimpleCurriculumPage(): React.ReactElement {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            color: '#dc2626',
-            fontSize: '16px',
-            fontWeight: '600',
-            marginBottom: '8px'
+            color: '#2563eb',
+            fontSize: '14px',
+            fontWeight: '500',
+            marginBottom: '0'
           }}>
-            ⚠️ No subjects selected!
+            ℹ️ Showing all curriculum expectations
           </div>
           <p style={{
-            color: '#dc2626',
+            color: '#2563eb',
             fontSize: '14px',
-            margin: '0 0 12px 0'
+            margin: '0'
           }}>
-            Please use the Getting Started Guide on the dashboard to select which subjects you teach.
-            Without subject selection, you won&apos;t be able to plan your curriculum effectively.
+            To filter by your subjects, <Link to="/planner/dashboard" style={{ color: '#2563eb', fontWeight: '600' }}>select subjects in Settings</Link>.
           </p>
-          <Link to="/planner/dashboard" style={{
-            display: 'inline-block',
-            backgroundColor: '#dc2626',
-            color: 'white',
-            padding: '8px 16px',
-            borderRadius: '6px',
-            textDecoration: 'none',
-            fontSize: '14px',
-            fontWeight: '500'
-          }}>
-            Go to Dashboard
-          </Link>
         </div>
       ) : teacherSubjects && teacherSubjects.length > 0 ? (
         <div style={{
@@ -382,6 +371,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
             </label>
             <select 
               id="subject-filter"
+              data-testid="filter-subject"
               value={selectedSubject} 
               onChange={(e) => setSelectedSubject(e.target.value)}
               style={{ 
@@ -448,6 +438,7 @@ export function SimpleCurriculumPage(): React.ReactElement {
           <input
             type="checkbox"
             id="uncovered-filter"
+            data-testid="toggle-show-covered"
             checked={showUncoveredOnly}
             onChange={(e) => setShowUncoveredOnly(e.target.checked)}
             style={{
@@ -500,7 +491,9 @@ export function SimpleCurriculumPage(): React.ReactElement {
           
           <div style={{ display: 'grid', gap: '16px' }}>
             {expectations.map((expectation) => (
-              <div key={expectation.id} style={{
+              <div key={expectation.id} 
+                data-testid="expectation-row"
+                style={{
                 backgroundColor: 'white',
                 padding: '20px',
                 borderRadius: '8px',
@@ -537,7 +530,9 @@ export function SimpleCurriculumPage(): React.ReactElement {
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     {coveredIds.has(expectation.id) ? (
-                      <span style={{
+                      <span 
+                        data-testid="coverage-badge"
+                        style={{
                         backgroundColor: '#10b981',
                         color: 'white',
                         padding: '4px 12px',

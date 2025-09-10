@@ -462,6 +462,7 @@ export const PlanningCascadeView: React.FC = () => {
           backgroundColor: isSelected ? '#e3f2fd' : (isHighlighted ? '#fff3cd' : 'transparent')
         }}
         className={isHighlighted ? 'bg-yellow-100' : ''}
+        data-testid="cascade-node"
         onClick={() => {
           if (item.type === 'lesson') {
             handleLessonClick(item.id);
@@ -649,7 +650,7 @@ export const PlanningCascadeView: React.FC = () => {
   const useVirtualization = totalLessons > 500;
   
   return (
-    <div className={`planning-cascade-view ${isMobile ? 'flex-col' : ''}`} style={{ padding: '1rem' }}>
+    <div data-testid="planning-cascade" className={`planning-cascade-view ${isMobile ? 'flex-col' : ''}`} style={{ padding: '1rem' }}>
       <h1>Planning Overview</h1>
       
       {/* Search and filter controls */}

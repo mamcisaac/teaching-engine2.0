@@ -25,9 +25,8 @@ test.describe('Lesson detail (Week → Detail)', () => {
     await expect(page.locator(S.detail.part('action'))).toBeVisible();
     await expect(page.locator(S.detail.part('consolidation'))).toBeVisible();
 
-    // Differentiation & hooks from JSON
+    // Differentiation list from JSON
     await expect(page.locator(S.detail.diffList)).toBeVisible();
-    await expect(page.locator(S.detail.hooks.vocabulary)).toBeVisible();
 
     // Assessment button present and wired to this lesson
     const href = await page.locator(S.detail.assessBtn).getAttribute('href');

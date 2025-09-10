@@ -42,6 +42,11 @@ export type {
   UnitPlanResource
 } from '../hooks/useETFOPlanning';
 
+// Re-export types with relations from individual hooks
+export type { LongRangePlanWithRelations } from '../hooks/useLongRangePlans';
+export type { UnitPlanWithRelations } from '../hooks/useUnitPlans';
+export type { ETFOLessonPlanWithRelations } from '../hooks/useLessonPlans';
+
 // Re-export newsletter types
 export type { ParentSummary, NewsletterDraft, NewsletterGenerationParams, GeneratedNewsletter, NewsletterInput, NewsletterGenerateInput } from './newsletter';
 import type { ParentSummary } from './newsletter';

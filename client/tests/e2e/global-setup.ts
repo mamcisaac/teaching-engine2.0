@@ -49,7 +49,7 @@ async function realUILogin(): Promise<void> {
   
   const page = await context.newPage();
   
-  // Add 5xx fail-fast
+  // Add 5xx fail-fast to catch server errors early
   page.on('response', async (res) => {
     const url = res.url();
     const status = res.status();
@@ -63,13 +63,13 @@ async function realUILogin(): Promise<void> {
     await page.goto('http://localhost:5173/login');
     await page.waitForLoadState('networkidle');
     
-    // Fill in Emily's real credentials
-    const emailInput = page.getByLabel(/email/i);
-    const passwordInput = page.getByLabel(/password|mot de passe/i);
-    const loginButton = page.getByRole('button', { name: /sign in|se connecter|login/i });
+    // Fill in Emily's real credentials using multiple selector strategies
+    const emailInput = page.locator('input[type="email"], input[name="email"], input#email, [data-testid="email-input"]').first();
+    const passwordInput = page.locator('input[type="password"], input[name="password"], input#password, [data-testid="password-input"]').first();
+    const loginButton = page.locator('button[type="submit"], [data-testid="login-submit"]').first();
     
-    await emailInput.fill('emily@etfo.ca');
-    await passwordInput.fill('etfo2024!Demo');
+    await emailInput.fill('emmcisaac@gmail.com');
+    await passwordInput.fill('myhusbandisthebest');
     
     // Click login and wait for navigation
     await Promise.all([

@@ -55,6 +55,7 @@ export const optimizedSelects = {
   unitPlanWithPlan: {
     id: true,
     title: true,
+    titleFr: true,
     longRangePlan: {
       select: {
         id: true,

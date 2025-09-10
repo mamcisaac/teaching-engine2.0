@@ -70,7 +70,7 @@ lessonsRouter.get('/:id/assessment-context', async (req: AuthenticatedRequest, r
     try {
       // Check if ETFOLessonPlanExpectation table exists
       const linkedExpectations = await prisma.eTFOLessonPlanExpectation.findMany({
-        where: { lessonId: String(id) },
+        where: { lessonPlanId: String(id) },
         include: {
           expectation: {
             select: { id: true, code: true, text: true }

@@ -65,6 +65,17 @@ function DraggableLesson({ lesson, subject }: { lesson: LessonData; subject: str
     transition,
   };
 
+  // Debug logging for color coding
+  const colorClass = subject && SUBJECT_COLORS[subject] ? SUBJECT_COLORS[subject] : 'bg-gray-100 border-gray-300';
+  if (!subject) {
+    console.log('⚠️ No subject for lesson:', lesson.title, 'Unit plan:', lesson.unitPlan);
+  } else if (!SUBJECT_COLORS[subject]) {
+    console.log('⚠️ Unknown subject:', subject, 'for lesson:', lesson.title);
+    console.log('   Available subjects in SUBJECT_COLORS:', Object.keys(SUBJECT_COLORS));
+  } else {
+    console.log('✅ Color applied:', subject, '→', SUBJECT_COLORS[subject]);
+  }
+
   return (
     <div ref={setNodeRef} style={style} {...attributes}>
       <LessonCardClickable
@@ -72,12 +83,20 @@ function DraggableLesson({ lesson, subject }: { lesson: LessonData; subject: str
         title={lesson.title}
         titleFr={lesson.titleFr}
         subject={subject}
-        duration={lesson.duration}
         isSubFriendly={lesson.isSubFriendly}
+        description={lesson.mindsOn}
+        descriptionFr={lesson.mindsOnFr}
+        unitTitle={lesson.unitPlan?.title}
+        unitTitleFr={lesson.unitPlan?.titleFr}
+        lessonNumber={lesson.lessonNumber}
+        expectations={lesson.expectations?.map(e => ({
+          code: e.expectation.code,
+          description: e.expectation.descriptionFr || e.expectation.description
+        }))}
         dragHandleRef={setActivatorNodeRef}
         dragHandleProps={listeners}
         isDragging={isDragging}
-        colorClass={subject ? SUBJECT_COLORS[subject] : 'bg-gray-100'}
+        colorClass={colorClass}
       />
     </div>
   );
@@ -158,15 +177,29 @@ export function WeekViewPage(): React.ReactElement {
   // Debug API response
   console.log('🔍 API Response - Total lessons:', weekLessons.length);
   if (weekLessons.length > 0) {
-    const fridayLessons = weekLessons.filter(lesson => {
-      const lessonDate = new Date(lesson.date);
-      const dateStr = format(lessonDate, 'yyyy-MM-dd');
-      return dateStr === '2025-09-12';
-    });
-    console.log('🔍 API Response - Friday lessons in raw data:', fridayLessons.length);
-    if (fridayLessons.length > 0) {
-      console.log('🔍 Friday lesson example:', fridayLessons[0]);
+    // Check the structure of the first lesson
+    const firstLesson = weekLessons[0];
+    console.log('📊 First lesson full structure:', firstLesson);
+    console.log('📊 First lesson unitPlan:', firstLesson.unitPlan);
+    if (firstLesson.unitPlan) {
+      console.log('📊 First lesson longRangePlan:', firstLesson.unitPlan.longRangePlan);
+      if (firstLesson.unitPlan.longRangePlan) {
+        console.log('📊 First lesson subject:', firstLesson.unitPlan.longRangePlan.subject);
+      }
     }
+    
+    // Check how many lessons have subjects
+    const lessonsWithSubjects = weekLessons.filter(lesson => 
+      lesson?.unitPlan?.longRangePlan?.subject
+    );
+    console.log(`📊 Lessons with subjects: ${lessonsWithSubjects.length}/${weekLessons.length}`);
+    
+    // List unique subjects found
+    const uniqueSubjects = [...new Set(weekLessons
+      .map(lesson => lesson?.unitPlan?.longRangePlan?.subject)
+      .filter(Boolean)
+    )];
+    console.log('📊 Unique subjects found:', uniqueSubjects);
   }
   
   // Use optimistic lessons if available, otherwise use real data
@@ -387,6 +420,7 @@ export function WeekViewPage(): React.ReactElement {
                 aria-label="Go to previous week"
               >
                 <ChevronLeft className="h-4 w-4" />
+                <span className="ml-1">Previous Week</span>
               </Button>
               <Button 
                 variant="outline" 
@@ -400,6 +434,7 @@ export function WeekViewPage(): React.ReactElement {
                 onClick={handleNextWeek}
                 aria-label="Go to next week"
               >
+                <span className="mr-1">Next Week</span>
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </div>
@@ -448,10 +483,7 @@ export function WeekViewPage(): React.ReactElement {
         ) : (
           <SortableContext items={allLessonIds} strategy={verticalListSortingStrategy}>
             <div className="bg-white rounded-lg shadow overflow-hidden" data-testid="week-view-grid" role="grid" aria-label="Weekly lesson schedule">
-            <div className="grid grid-cols-6 border-b">
-              <div className="p-3 bg-gray-50 font-semibold text-gray-700 border-r">
-                Lesson Slots
-              </div>
+            <div className="grid grid-cols-5 border-b">
               {weekSchedule.map((day) => (
                 <div 
                   key={day.dateStr}
@@ -482,18 +514,21 @@ export function WeekViewPage(): React.ReactElement {
             
             {/* Daily Slots */}
             {DAILY_SLOTS.map((slot) => (
-              <div key={slot.slotNumber} className="grid grid-cols-6 border-b last:border-b-0">
-                <div className="p-3 bg-gray-50 font-medium text-sm text-gray-700 border-r">
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="h-4 w-4" />
-                    {slot.label}
-                  </div>
-                </div>
+              <div key={slot.slotNumber} className="grid grid-cols-5 border-b last:border-b-0">
                 
                 {weekSchedule.map((day) => {
                   // Find lesson for this slot
                   const lesson = day.lessons.find(l => l.slotNumber === slot.slotNumber);
                   const subject = lesson?.unitPlan?.longRangePlan?.subject;
+                  
+                  // Debug logging
+                  if (lesson && !subject) {
+                    console.log('🔍 Lesson missing subject:', {
+                      title: lesson.title,
+                      unitPlan: lesson.unitPlan,
+                      path: 'lesson?.unitPlan?.longRangePlan?.subject'
+                    });
+                  }
                   
                   return (
                     <DroppableSlot
