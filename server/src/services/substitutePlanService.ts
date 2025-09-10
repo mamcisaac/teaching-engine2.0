@@ -106,11 +106,11 @@ export class SubstitutePlanService {
     const formattedLessons = lessons.map((lesson) => ({
       id: lesson.id,
       title: escapeHtml(lesson.titleFr || lesson.title || 'Lesson'),
-      subject: escapeHtml(lesson.unitPlan.longRangePlan.subject || lesson.subject || 'General'),
+      subject: escapeHtml(lesson.unitPlan?.longRangePlan?.subject || lesson.subject || 'General'),
       time: this._getTimeSlot(lesson.slotNumber || 0),
       duration: lesson.duration || 45,
       instructions: this._formatLessonInstructions(lesson),
-      materials: lesson.resources.map((r) => r.title || r.url).filter((material): material is string => material !== undefined) || [],
+      materials: (lesson.resources || []).map((r) => r.title || r.url).filter((material): material is string => material !== undefined) || [],
     }));
     
     // Create emergency info from substitute info
@@ -156,7 +156,7 @@ export class SubstitutePlanService {
         baseSchedule[scheduleIndex] = {
           time: slotTime,
           activity: escapeHtml(lesson.titleFr || lesson.title || `Lesson ${index + 1}`),
-          notes: `${escapeHtml(lesson.unitPlan.longRangePlan.subject || '')} - ${lesson.duration || 45} minutes`,
+          notes: `${escapeHtml(lesson.unitPlan?.longRangePlan?.subject || '')} - ${lesson.duration || 45} minutes`,
         };
       }
     });
@@ -197,17 +197,17 @@ export class SubstitutePlanService {
       if (info.allergies) notes += `\n⚠️ ALLERGIES:\n${escapeHtml(info.allergies)}\n`;
       if (info.medicalNeeds) notes += `\n⚠️ MEDICAL NEEDS:\n${escapeHtml(info.medicalNeeds)}\n`;
       
-      if (info.morningRoutine) notes += `\nMorning Routine:\n${info.morningRoutine}\n`;
-      if (info.attendanceProcedure) notes += `\nAttendance: ${info.attendanceProcedure}\n`;
-      if (info.bathroomPolicy) notes += `\nBathroom Policy: ${info.bathroomPolicy}\n`;
-      if (info.dismissalProcedure) notes += `\nDismissal: ${info.dismissalProcedure}\n`;
+      if (info.morningRoutine) notes += `\nMorning Routine:\n${escapeHtml(info.morningRoutine)}\n`;
+      if (info.attendanceProcedure) notes += `\nAttendance: ${escapeHtml(info.attendanceProcedure)}\n`;
+      if (info.bathroomPolicy) notes += `\nBathroom Policy: ${escapeHtml(info.bathroomPolicy)}\n`;
+      if (info.dismissalProcedure) notes += `\nDismissal: ${escapeHtml(info.dismissalProcedure)}\n`;
       
-      if (info.behaviorNotes) notes += `\nBehavior Management:\n${info.behaviorNotes}\n`;
-      if (info.rewardSystem) notes += `\nReward System: ${info.rewardSystem}\n`;
+      if (info.behaviorNotes) notes += `\nBehavior Management:\n${escapeHtml(info.behaviorNotes)}\n`;
+      if (info.rewardSystem) notes += `\nReward System: ${escapeHtml(info.rewardSystem)}\n`;
       
-      if (info.studentHelpers) notes += `\nStudent Helpers:\n${info.studentHelpers}\n`;
-      if (info.materialsLocation) notes += `\nMaterials Location: ${info.materialsLocation}\n`;
-      if (info.extraActivities) notes += `\nExtra Activities: ${info.extraActivities}\n`;
+      if (info.studentHelpers) notes += `\nStudent Helpers:\n${escapeHtml(info.studentHelpers)}\n`;
+      if (info.materialsLocation) notes += `\nMaterials Location: ${escapeHtml(info.materialsLocation)}\n`;
+      if (info.extraActivities) notes += `\nExtra Activities: ${escapeHtml(info.extraActivities)}\n`;
       
       if (info.importantInfo) notes += `\n⚠️ IMPORTANT:\n${info.importantInfo}\n`;
     } else {

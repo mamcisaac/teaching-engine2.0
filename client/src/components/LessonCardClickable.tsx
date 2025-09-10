@@ -20,7 +20,7 @@ type LessonCardProps = {
   colorClass?: string;
 };
 
-export default function LessonCardClickable({
+export function LessonCardClickable({
   id, 
   title, 
   titleFr, 
@@ -34,10 +34,9 @@ export default function LessonCardClickable({
   colorClass = 'bg-white'
 }: LessonCardProps) {
   const navigate = useNavigate();
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent): void => {
     e.stopPropagation();
     if (!disabled && !isDragging && id) {
-      console.log('NAV -> lesson.id:', id);
       navigate(`/planner/lessons/${id}`);
     }
   };
@@ -46,7 +45,9 @@ export default function LessonCardClickable({
 
   return (
     <div
-      data-testid={`lesson-card-${id}`}
+      data-testid="lesson-card"
+      data-lesson-id={id}
+      data-day={date?.split('T')[0]}
       className={`flex items-stretch gap-0 rounded border transition-all ${
         isDragging ? 'opacity-50 z-50' : 'hover:shadow-md'
       } ${colorClass}`}

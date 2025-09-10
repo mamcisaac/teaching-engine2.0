@@ -11,7 +11,7 @@ import { apiClient } from '../api/core/client';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import LessonCardClickable from '../components/LessonCardClickable';
+import { LessonCardClickable } from '../components/LessonCardClickable';
 import { useETFOLessonPlans } from '../hooks/useETFOPlanning';
 import type { ETFOLessonPlan } from '../types/curriculum';
 

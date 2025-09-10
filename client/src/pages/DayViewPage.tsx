@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, Clock, Plus, FileText } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import LessonCardClickable from '../components/LessonCardClickable';
+import { LessonCardClickable } from '../components/LessonCardClickable';
 import { SubPlanGenerator } from '../components/SubPlanGenerator';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';

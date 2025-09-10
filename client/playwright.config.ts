@@ -10,6 +10,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: 1, // Single worker to avoid DB conflicts
+  globalSetup: './tests/e2e/config/auth.global.setup.ts',
   reporter: [
     ['html'],
     ['junit', { outputFile: 'test-results.xml' }],
@@ -17,9 +18,10 @@ export default defineConfig({
   ],
   
   use: {
-    baseURL: process.env.CI 
+    baseURL: process.env.UI_BASE_URL ?? (process.env.CI 
       ? 'http://localhost:3001' // Prod build port
-      : 'http://localhost:5173', // Dev server
+      : 'http://localhost:5173'), // Dev server
+    storageState: 'tests/e2e/auth.json',
     trace: 'on-first-retry',
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',

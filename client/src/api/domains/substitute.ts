@@ -76,7 +76,7 @@ class SubstituteApi {
    * Get substitute information for the current user
    */
   async getSubstituteInfo(): Promise<SubstituteInfo> {
-    const response = await apiClient.get<SubstituteInfo>('/substitute-plans/info');
+    const response = await apiClient.get<SubstituteInfo>('/api/substitute-plans/info');
     return response.data;
   }
 
@@ -84,7 +84,7 @@ class SubstituteApi {
    * Save or update substitute information
    */
   async saveSubstituteInfo(info: SubstituteInfo): Promise<SubstituteInfo> {
-    const response = await apiClient.post<SubstituteInfo>('/substitute-plans/info', info);
+    const response = await apiClient.post<SubstituteInfo>('/api/substitute-plans/info', info);
     return response.data;
   }
 
@@ -93,7 +93,7 @@ class SubstituteApi {
    */
   async generateSubPlan(date: Date | string): Promise<SubstitutePlan> {
     const dateStr = typeof date === 'string' ? date : date.toISOString().split('T')[0];
-    const response = await apiClient.get<SubstitutePlan>(`/substitute-plans/plan/${dateStr}`);
+    const response = await apiClient.get<SubstitutePlan>(`/api/substitute-plans/plan/${dateStr}`);
     return response.data;
   }
 
@@ -102,7 +102,7 @@ class SubstituteApi {
    */
   async generateSubPlanPDF(date: Date | string): Promise<string> {
     const dateStr = typeof date === 'string' ? date : date.toISOString().split('T')[0];
-    const response = await apiClient.get<string>(`/substitute-plans/plan/${dateStr}/pdf`, {
+    const response = await apiClient.get<string>(`/api/substitute-plans/plan/${dateStr}/pdf`, {
       responseType: 'text'
     });
     return response.data;
