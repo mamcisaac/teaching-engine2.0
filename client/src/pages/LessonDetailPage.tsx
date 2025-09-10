@@ -1,26 +1,153 @@
-import { format } from 'date-fns';
+/**
+ * Lesson Detail Page - Displays full lesson with French content and JSON pedagogy
+ * Uses the new /api/lessons endpoints to fetch and display Emily's lesson data
+ */
+
 import { 
   Calendar, Clock, BookOpen, Target, Users, Package, 
   AlertCircle, ChevronLeft, Edit, Trash2, Printer,
-  ClipboardCheck, BarChart3
+  ClipboardCheck, BarChart3, Globe, Heart, Eye, Brain, Copy, Check
 } from 'lucide-react';
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { useETFOLessonPlan, useDeleteETFOLessonPlan } from '../hooks/useETFOPlanning';
+import { formatDate, formatOr } from '../utils/safeDate';
+import { useDeleteETFOLessonPlan } from '../hooks/useETFOPlanning';
 
+// Type for the lesson view from server
+interface LessonView {
+  id: string;
+  userId: number;
+  unitPlanId?: string | null;
+  
+  // Labels
+  title: string;
+  subject?: string | null;
+  grade?: number | null;
+  language?: string | null;
+  
+  // Dates & scheduling
+  date?: string | null;
+  duration?: number | null;
+  lessonNumber?: number | null;
+  slotNumber?: number | null;
+  lessonType?: string | null;
+  isScheduled?: number | boolean | null;
+  
+  // Three-part lesson
+  learningGoals?: string;
+  mindsOn?: string;
+  action?: string;
+  consolidation?: string;
+  
+  // Logistics
+  materials?: string | null;
+  grouping?: string | null;
+  
+  // Assessment
+  assessmentType?: string | null;
+  assessmentNotes?: string | null;
+  
+  // JSON pedagogy
+  differentiation: string[];
+  hooks: {
+    vocabulary: string[];
+    visualSupports: string[];
+    movementBreaks: string[];
+    other: string[];
+  };
+  reflectionActivities: string[];
+  indigenousPerspectives: string[];
+  
+  // Supply
+  isSubFriendly?: number | boolean | null;
+  subNotes?: string | null;
+}
+
+interface AssessmentContext {
+  lesson: {
+    id: string;
+    title: string;
+    date?: string | null;
+    subject?: string | null;
+  };
+  expectations: Array<{
+    id: string;
+    code: string;
+    text: string;
+  }>;
+}
 
 export function LessonDetailPage(): React.ReactElement {
   const { lessonId } = useParams();
   const navigate = useNavigate();
   const deleteLesson = useDeleteETFOLessonPlan();
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   
-  const { data: lesson, isLoading, error } = useETFOLessonPlan(lessonId || '');
+  // Fetch lesson data from new endpoint
+  // Copy to clipboard helper
+  const copyToClipboard = async (text: string, fieldName: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedField(fieldName);
+      setTimeout(() => setCopiedField(null), 2000);
+      toast.success('Copié!');
+    } catch (err) {
+      toast.error('Erreur de copie');
+    }
+  };
+
+  // Keyboard navigation ([ and ] for prev/next lesson)
+  useEffect(() => {
+    const handleKeyboard = (e: KeyboardEvent) => {
+      if (e.target !== document.body) return; // Ignore if typing in input
+      
+      if (e.key === '[') {
+        // Navigate to previous lesson (implementation would need lesson order)
+        toast.info('Navigation précédente à implémenter');
+      } else if (e.key === ']') {
+        // Navigate to next lesson (implementation would need lesson order)
+        toast.info('Navigation suivante à implémenter');
+      } else if (e.key === 'p' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        handlePrint();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyboard);
+    return () => window.removeEventListener('keydown', handleKeyboard);
+  }, []);
+
+  const { data: lesson, isLoading, error } = useQuery<LessonView>({
+    queryKey: ['lesson', lessonId],
+    queryFn: async () => {
+      const res = await fetch(`/api/lessons/${lessonId}`, {
+        credentials: 'include'
+      });
+      if (!res.ok) throw new Error(`Failed to fetch lesson: ${res.status}`);
+      return res.json();
+    },
+    enabled: !!lessonId
+  });
+  
+  // Fetch assessment context in parallel
+  const { data: context } = useQuery<AssessmentContext>({
+    queryKey: ['lesson-assessment', lessonId],
+    queryFn: async () => {
+      const res = await fetch(`/api/lessons/${lessonId}/assessment-context`, {
+        credentials: 'include'
+      });
+      if (!res.ok) return { lesson: null, expectations: [] };
+      return res.json();
+    },
+    enabled: !!lessonId
+  });
   
   const handleEdit = () => {
     navigate(`/planner/lessons/${lessonId}/edit`);
@@ -44,12 +171,21 @@ export function LessonDetailPage(): React.ReactElement {
     window.print();
   };
   
+  const handleAssess = () => {
+    // Navigate to assessment with lesson context
+    const expIds = context?.expectations?.map(e => e.id).join(',');
+    const url = expIds 
+      ? `/assessment?lessonId=${lessonId}&exp=${expIds}`
+      : `/assessment?lessonId=${lessonId}`;
+    navigate(url);
+  };
+  
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-          <p className="mt-2 text-gray-600">Loading lesson...</p>
+          <p className="mt-2 text-gray-600">Chargement de la leçon...</p>
         </div>
       </div>
     );
@@ -61,12 +197,12 @@ export function LessonDetailPage(): React.ReactElement {
         <Card className="max-w-md">
           <CardContent className="pt-6">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-center mb-2">Lesson Not Found</h2>
+            <h2 className="text-xl font-semibold text-center mb-2">Leçon introuvable</h2>
             <p className="text-gray-600 text-center mb-4">
-              The lesson you&apos;re looking for doesn&apos;t exist or has been removed.
+              La leçon que vous recherchez n&apos;existe pas ou a été supprimée.
             </p>
             <Button onClick={() => navigate(-1)} className="w-full">
-              Go Back
+              Retour
             </Button>
           </CardContent>
         </Card>
@@ -74,9 +210,60 @@ export function LessonDetailPage(): React.ReactElement {
     );
   }
   
+  // Parse materials if it's a string
+  const materialsList = typeof lesson.materials === 'string' 
+    ? lesson.materials.split(/[,;\n]/).map(m => m.trim()).filter(Boolean)
+    : [];
+  
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gray-50" data-testid="lesson-detail">
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-10 bg-white border-b shadow-sm print:hidden">
+        <div className="max-w-5xl mx-auto px-6 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Button
+                variant="ghost"
+                onClick={() => navigate(-1)}
+                className="flex items-center gap-2"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Retour
+              </Button>
+              <div className="h-8 w-px bg-gray-300" />
+              <h1 className="text-lg font-semibold truncate max-w-md">
+                {lesson.title}
+              </h1>
+              {lesson.date && (
+                <Badge variant="outline">
+                  {formatDate(lesson.date)}
+                </Badge>
+              )}
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handlePrint}
+                className="flex items-center gap-2"
+              >
+                <Printer className="h-4 w-4" />
+                <span className="hidden md:inline">Imprimer</span>
+              </Button>
+              <Button
+                onClick={handleAssess}
+                className="flex items-center gap-2"
+              >
+                <ClipboardCheck className="h-4 w-4" />
+                Évaluer la classe
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="p-6">
+        <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-lg shadow mb-6 p-6">
           <div className="flex items-center justify-between mb-4">
@@ -87,28 +274,21 @@ export function LessonDetailPage(): React.ReactElement {
                 className="flex items-center gap-2"
               >
                 <ChevronLeft className="h-4 w-4" />
-                Back
+                Retour
               </Button>
               <h1 className="text-3xl font-bold text-gray-900">
-                {lesson.titleFr || lesson.title}
+                {lesson.title}
               </h1>
             </div>
             
             <div className="flex items-center gap-2">
               <Button 
                 variant="outline" 
-                onClick={() => navigate(`/assessment?lessonId=${lessonId}`)}
+                onClick={handleAssess}
                 className="bg-green-50 hover:bg-green-100 border-green-300"
               >
                 <ClipboardCheck className="h-4 w-4 mr-2" />
-                Assess Students
-              </Button>
-              <Button 
-                variant="outline" 
-                onClick={() => navigate(`/analytics?lessonId=${lessonId}`)}
-              >
-                <BarChart3 className="h-4 w-4 mr-2" />
-                View Progress
+                Évaluer la classe
               </Button>
               <Button variant="outline" onClick={handlePrint}>
                 <Printer className="h-4 w-4" />
@@ -122,272 +302,326 @@ export function LessonDetailPage(): React.ReactElement {
             </div>
           </div>
           
-          {lesson.title !== lesson.titleFr && (
-            <p className="text-lg text-gray-600 mb-4">{lesson.title}</p>
-          )}
-          
           <div className="flex flex-wrap gap-3">
             <Badge variant="secondary" className="flex items-center gap-1">
               <Calendar className="h-3 w-3" />
-              {format(new Date(lesson.date), 'EEEE, MMMM d, yyyy')}
+              {formatDate(lesson.date)}
             </Badge>
             <Badge variant="secondary" className="flex items-center gap-1">
               <Clock className="h-3 w-3" />
               {lesson.duration || 45} minutes
             </Badge>
-            {lesson.unitPlan && (
+            {lesson.subject && (
               <Badge variant="secondary" className="flex items-center gap-1">
                 <BookOpen className="h-3 w-3" />
-                {lesson.unitPlan.title}
+                {lesson.subject}
               </Badge>
             )}
-            {lesson.unitPlan?.longRangePlan && (
+            {lesson.grade && (
               <Badge variant="secondary">
-                {lesson.unitPlan.longRangePlan.subject}
+                {lesson.language === 'fr' ? `${lesson.grade}e année` : `Grade ${lesson.grade}`}
               </Badge>
             )}
-            {lesson.assessmentType && (
+            {lesson.slotNumber && (
               <Badge variant="outline">
-                {lesson.assessmentType}
+                Slot {lesson.slotNumber}
+              </Badge>
+            )}
+            {lesson.lessonType && (
+              <Badge variant="outline">
+                {lesson.lessonType}
               </Badge>
             )}
           </div>
         </div>
         
         {/* Learning Goals */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <Card>
+        {lesson.learningGoals && (
+          <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target className="h-5 w-5" />
-                Objectifs d&apos;apprentissage (Français)
+                Objectifs d&apos;apprentissage
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {lesson.learningGoalsFr && lesson.learningGoalsFr.length > 0 ? (
-                <div className="space-y-2">
-                  <p>{lesson.learningGoalsFr}</p>
-                </div>
-              ) : (
-                <p className="text-gray-500">Aucun objectif défini</p>
-              )}
+              <p className="whitespace-pre-wrap">{lesson.learningGoals}</p>
             </CardContent>
           </Card>
-          
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Target className="h-5 w-5" />
-                Learning Goals (English)
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {lesson.learningGoals && lesson.learningGoals.length > 0 ? (
-                <div className="space-y-2">
-                  <p>{lesson.learningGoals}</p>
-                </div>
-              ) : (
-                <p className="text-gray-500">No goals defined</p>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+        )}
         
         {/* Three-Part Lesson Structure */}
         <div className="space-y-6 mb-6">
           {/* Minds On */}
-          <Card className="border-l-4 border-blue-500">
-            <CardHeader>
-              <CardTitle className="text-blue-700">Mise en train / Minds On</CardTitle>
-              <p className="text-sm text-gray-600">Engagement et activation (10 minutes)</p>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Français</h4>
-                  <p className="text-gray-700">{lesson.mindsOnFr || 'Non défini'}</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">English</h4>
-                  <p className="text-gray-700">{lesson.mindsOn || 'Not defined'}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {lesson.mindsOn && (
+            <Card className="border-l-4 border-blue-500">
+              <CardHeader>
+                <CardTitle className="text-blue-700">Mise en train</CardTitle>
+                <p className="text-sm text-gray-600">Engagement et activation (10 minutes)</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 whitespace-pre-wrap">{lesson.mindsOn}</p>
+              </CardContent>
+            </Card>
+          )}
           
           {/* Action */}
-          <Card className="border-l-4 border-green-500">
-            <CardHeader>
-              <CardTitle className="text-green-700">Action / Working On It</CardTitle>
-              <p className="text-sm text-gray-600">Activité principale (25 minutes)</p>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Français</h4>
-                  <p className="text-gray-700">{lesson.actionFr || 'Non défini'}</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">English</h4>
-                  <p className="text-gray-700">{lesson.action || 'Not defined'}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {lesson.action && (
+            <Card className="border-l-4 border-green-500">
+              <CardHeader>
+                <CardTitle className="text-green-700">Action</CardTitle>
+                <p className="text-sm text-gray-600">Activité principale (25 minutes)</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 whitespace-pre-wrap">{lesson.action}</p>
+              </CardContent>
+            </Card>
+          )}
           
           {/* Consolidation */}
-          <Card className="border-l-4 border-purple-500">
-            <CardHeader>
-              <CardTitle className="text-purple-700">Consolidation / Reflection</CardTitle>
-              <p className="text-sm text-gray-600">Synthèse et réflexion (10 minutes)</p>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold mb-2">Français</h4>
-                  <p className="text-gray-700">{lesson.consolidationFr || 'Non défini'}</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">English</h4>
-                  <p className="text-gray-700">{lesson.consolidation || 'Not defined'}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {lesson.consolidation && (
+            <Card className="border-l-4 border-purple-500">
+              <CardHeader>
+                <CardTitle className="text-purple-700">Consolidation</CardTitle>
+                <p className="text-sm text-gray-600">Synthèse et réflexion (10 minutes)</p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 whitespace-pre-wrap">{lesson.consolidation}</p>
+              </CardContent>
+            </Card>
+          )}
         </div>
         
-        {/* Materials and Differentiation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <Card>
+        {/* Differentiation from JSON */}
+        {lesson.differentiation && lesson.differentiation.length > 0 && (
+          <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Package className="h-5 w-5" />
-                Matériaux / Materials
+                <Users className="h-5 w-5" />
+                Différenciation
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {lesson.materials && lesson.materials.length > 0 ? (
+              <ul className="space-y-2">
+                {lesson.differentiation.map((strategy, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <div className="h-2 w-2 bg-indigo-400 rounded-full mt-1.5 flex-shrink-0" />
+                    <span>{strategy}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+        
+        {/* Engagement Hooks from JSON */}
+        {(lesson.hooks.vocabulary.length > 0 || 
+          lesson.hooks.visualSupports.length > 0 || 
+          lesson.hooks.movementBreaks.length > 0) && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Heart className="h-5 w-5" />
+                Accroches et soutiens
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {lesson.hooks.vocabulary.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center justify-between">
+                      <span className="flex items-center gap-1">
+                        <Globe className="h-4 w-4" />
+                        Vocabulaire
+                      </span>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => copyToClipboard(lesson.hooks.vocabulary.join('\n'), 'vocabulary')}
+                        className="h-6 px-2"
+                      >
+                        {copiedField === 'vocabulary' ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                      </Button>
+                    </h4>
+                    <ul className="space-y-1">
+                      {lesson.hooks.vocabulary.map((word, idx) => (
+                        <li key={idx} className="text-sm">{word}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {lesson.hooks.visualSupports.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-1">
+                      <Eye className="h-4 w-4" />
+                      Soutiens visuels
+                    </h4>
+                    <ul className="space-y-1">
+                      {lesson.hooks.visualSupports.map((support, idx) => (
+                        <li key={idx} className="text-sm">{support}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {lesson.hooks.movementBreaks.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold mb-2 flex items-center gap-1">
+                      <Brain className="h-4 w-4" />
+                      Mises en mouvement
+                    </h4>
+                    <ul className="space-y-1">
+                      {lesson.hooks.movementBreaks.map((movement, idx) => (
+                        <li key={idx} className="text-sm">{movement}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+        
+        {/* Materials and Grouping */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          {materialsList.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Package className="h-5 w-5" />
+                  Matériel
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 <ul className="space-y-1">
-                  {lesson.materials.map((material, idx) => (
+                  {materialsList.map((material, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <div className="h-2 w-2 bg-gray-400 rounded-full mt-1.5 flex-shrink-0" />
                       <span>{material}</span>
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <p className="text-gray-500">Aucun matériel spécifié</p>
-              )}
-            </CardContent>
-          </Card>
+                {lesson.grouping && (
+                  <p className="mt-4 text-sm">
+                    <span className="font-semibold">Regroupement:</span> {lesson.grouping}
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+          )}
           
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Users className="h-5 w-5" />
-                Différenciation / Differentiation
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {lesson.differentiationStrategies?.forStruggling && (
-                  <div>
-                    <p className="font-semibold text-sm mb-1">Pour ceux qui ont des difficultés:</p>
-                    <p className="text-sm text-gray-700">{lesson.differentiationStrategies.forStruggling}</p>
-                  </div>
-                )}
-                {lesson.differentiationStrategies?.forAdvanced && (
-                  <div>
-                    <p className="font-semibold text-sm mb-1">Pour ceux qui sont avancés:</p>
-                    <p className="text-sm text-gray-700">{lesson.differentiationStrategies.forAdvanced}</p>
-                  </div>
-                )}
-                {!lesson.differentiationStrategies?.forStruggling && !lesson.differentiationStrategies?.forAdvanced && (
-                  <p className="text-gray-500">Aucune stratégie définie</p>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-        
-        {/* Assessment */}
-        {(lesson.assessmentType || lesson.assessmentNotes) && (
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Évaluation / Assessment</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Assessment */}
+          {(lesson.assessmentType || lesson.assessmentNotes) && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <ClipboardCheck className="h-5 w-5" />
+                  Évaluation
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
                 {lesson.assessmentType && (
-                  <div>
-                    <h4 className="font-semibold mb-2">Type d&apos;évaluation:</h4>
-                    <p className="text-gray-700">{lesson.assessmentType}</p>
-                  </div>
+                  <p className="mb-2">
+                    <span className="font-semibold">Type:</span> {lesson.assessmentType}
+                  </p>
                 )}
                 {lesson.assessmentNotes && (
-                  <div>
-                    <h4 className="font-semibold mb-2">Notes d&apos;évaluation:</h4>
-                    <p className="text-gray-700">{lesson.assessmentNotes}</p>
-                  </div>
+                  <p className="whitespace-pre-wrap">{lesson.assessmentNotes}</p>
                 )}
-              </div>
-            </CardContent>
-          </Card>
-        )}
+              </CardContent>
+            </Card>
+          )}
+        </div>
         
-        {/* Curriculum Expectations */}
-        {lesson.expectations && lesson.expectations.length > 0 && (
+        {/* Reflection Activities */}
+        {lesson.reflectionActivities && lesson.reflectionActivities.length > 0 && (
           <Card className="mb-6">
             <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle>Attentes du curriculum / Curriculum Expectations</CardTitle>
-                <Button
-                  size="sm"
-                  onClick={() => navigate(`/assessment?lessonId=${lessonId}&expectations=${lesson.expectations?.map(e => e.expectation.id).join(',')}`)}
-                  className="bg-green-600 hover:bg-green-700 text-white"
-                >
-                  <ClipboardCheck className="h-4 w-4 mr-2" />
-                  Assess These Expectations
-                </Button>
-              </div>
+              <CardTitle>Activités de réflexion</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-2">
-                {lesson.expectations.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-2 bg-gray-50 rounded hover:bg-gray-100 transition-colors">
-                    <Badge variant="outline" className="mt-0.5">
-                      {item.expectation.code}
-                    </Badge>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">{item.expectation.descriptionFr || item.expectation.description}</p>
-                      {item.expectation.descriptionFr && item.expectation.description !== item.expectation.descriptionFr && (
-                        <p className="text-xs text-gray-600 mt-1">{item.expectation.description}</p>
-                      )}
-                    </div>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => navigate(`/assessment?expectationId=${item.expectation.id}`)}
-                      className="text-green-600 hover:text-green-700"
-                    >
-                      <ClipboardCheck className="h-3 w-3" />
-                    </Button>
-                  </div>
+              <ul className="space-y-2">
+                {lesson.reflectionActivities.map((activity, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <div className="h-2 w-2 bg-purple-400 rounded-full mt-1.5 flex-shrink-0" />
+                    <span>{activity}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </CardContent>
           </Card>
         )}
         
-        {/* Notes */}
-        {lesson.subNotes && (
+        {/* Indigenous Perspectives */}
+        {lesson.indigenousPerspectives && lesson.indigenousPerspectives.length > 0 && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>Perspectives autochtones</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                {lesson.indigenousPerspectives.map((perspective, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <div className="h-2 w-2 bg-orange-400 rounded-full mt-1.5 flex-shrink-0" />
+                    <span>{perspective}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+        
+        {/* Sub-friendly Notes */}
+        {lesson.isSubFriendly && (
           <Alert className="mb-6">
-            <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-              <strong>Substitute Notes:</strong> {lesson.subNotes}
+              <Badge className="mb-2">Cours remplaçant friendly</Badge>
+              {lesson.subNotes && (
+                <p className="mt-2">{lesson.subNotes}</p>
+              )}
             </AlertDescription>
           </Alert>
         )}
+        
+        {/* Linked Expectations */}
+        {context?.expectations && context.expectations.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Attentes du curriculum liées</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                {context.expectations.map((exp) => (
+                  <li key={exp.id} className="flex items-start gap-2">
+                    <Badge variant="outline" className="flex-shrink-0">{exp.code}</Badge>
+                    <span className="text-sm">{exp.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+        
+        {/* Action Buttons */}
+        <div className="flex gap-4 mt-6">
+          <Button 
+            onClick={handleAssess}
+            className="bg-green-600 hover:bg-green-700 text-white"
+          >
+            <ClipboardCheck className="h-4 w-4 mr-2" />
+            Évaluer la classe
+          </Button>
+          {lesson.date && (
+            <Link 
+              to={`/planner/day?d=${encodeURIComponent(lesson.date)}`}
+              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+            >
+              Ouvrir la journée
+            </Link>
+          )}
+        </div>
+        </div>
       </div>
     </div>
   );

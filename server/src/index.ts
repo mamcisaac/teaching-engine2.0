@@ -53,6 +53,7 @@ import { router as evidenceExportRoutes } from './routes/evidenceExport';
 import { router as lessonCompletionRoutes } from './routes/lesson-completions';
 import { router as lessonGenerationRoutes } from './routes/lesson-generation';
 import { router as lessonReflectionRoutes } from './routes/lesson-reflections';
+import { lessonsRouter } from './routes/lessons';
 import { router as longRangePlanRoutes } from './routes/long-range-plans';
 import { router as masteryTrackingRoutes } from './routes/masteryTracking';
 import { router as metricsRoutes } from './routes/metrics';
@@ -311,6 +312,7 @@ app.use(
   etfoLessonPlanRoutes,
 );
 app.use('/api/schedule', asyncMiddleware(authenticate), rateLimiters.write, userCache, scheduleManagementRoutes);
+app.use('/api/lessons', asyncMiddleware(authenticate), rateLimiters.read, userCache, lessonsRouter);
 app.use('/api/daybook-entries', asyncMiddleware(authenticate), rateLimiters.write, userCache, daybookEntryRoutes);
 app.use('/api/lesson-completions', asyncMiddleware(authenticate), rateLimiters.write, userCache, lessonCompletionRoutes);
 app.use('/api/reflections', asyncMiddleware(authenticate), rateLimiters.write, userCache, lessonReflectionRoutes);

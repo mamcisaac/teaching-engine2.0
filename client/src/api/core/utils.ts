@@ -7,7 +7,7 @@ export const getWeekStartISO = (date: Date): string => {
   const day = d.getDay();
   const diff = d.getDate() - day + (day === 0 ? -6 : 1);
   d.setDate(diff);
-  d.setHours(0, 0, 0, 0);
+  d.setHours(12, 0, 0, 0); // Set to noon instead of midnight to avoid timezone issues
   return d.toISOString();
 };
 

@@ -52,7 +52,7 @@ export function generateToken(user: {
     userId: user.id.toString(),
     email: user.email,
     role: user.role,
-    organizationId: user.organizationId.toString(),
+    organizationId: user.organizationId?.toString(),
     permissions: user.permissions ?? [],
   };
 

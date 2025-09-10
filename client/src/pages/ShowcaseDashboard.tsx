@@ -105,8 +105,9 @@ export function ShowcaseDashboard(): React.ReactElement {
   const { data: publicData, isLoading: _isLoading, error: _error } = usePublicStats();
   
   // Use fetched data with proper fallbacks
-  const stats = publicData?.stats || { unitCount: 0, lessonCount: 0, lrpCount: 0, totalHours: 0 };
+  const stats = publicData?.stats || { unitCount: 0, lessonCount: 0, lrpCount: 0, totalHours: 0, septemberLessonCount: 0 };
   const sampleUnits = publicData?.sampleUnits || [];
+  const septemberLessons = publicData?.septemberLessons || [];
   const subjectDistribution = publicData?.subjectDistribution || {};
   const academicYear = publicData?.academicYear || `${new Date().getFullYear()}-${new Date().getFullYear() + 1}`;
   
@@ -118,17 +119,11 @@ export function ShowcaseDashboard(): React.ReactElement {
   const today = new Date();
   const daysUntilSchool = differenceInDays(schoolStartDate, today);
   
-  // Get September lessons from sample units (first month of school)
-  const septemberLessons = sampleUnits.filter(unit => {
-    const unitDate = new Date(unit.startDate);
-    return unitDate.getMonth() === 8 && unitDate.getFullYear() === currentYear; // September = month 8
-  }).slice(0, 5); // Show first 5 for preview
-  
   // Use dynamic stats from API
   const _totalHours = stats.totalHours;
   const _totalLessons = stats.lessonCount;
   const _totalUnits = stats.unitCount;
-  const septemberLessonCount = septemberLessons.length;
+  const septemberLessonCount = stats.septemberLessonCount || 0;
   
   // Group units by subject using sample units for preview display
   const unitsBySubject = sampleUnits.reduce((acc, unit) => {
@@ -241,7 +236,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                       September {currentYear} - Ready to Start!
                     </CardTitle>
                     <CardDescription className="text-base mt-2">
-                      Your first units have {septemberLessonCount} detailed lesson plans
+                      {septemberLessonCount} detailed lesson plans ready for September
                     </CardDescription>
                   </div>
                   <Badge className="bg-green-600 text-white px-3 py-1 text-lg">
@@ -257,21 +252,21 @@ export function ShowcaseDashboard(): React.ReactElement {
                       className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors cursor-pointer"
                       role="button"
                       tabIndex={0}
-                      onClick={() => navigate('/planner/units')}
+                      onClick={() => navigate(`/planner/lessons/${lesson.id}`)}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
-                          navigate('/planner/units');
+                          navigate(`/planner/lessons/${lesson.id}`);
                         }
                       }}
                     >
                       <div className="flex items-center gap-4">
                         <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
-                          {format(new Date(lesson.startDate), 'MMM d')}
+                          {format(new Date(lesson.date), 'MMM d')}
                         </div>
                         <div>
-                          <p className="font-semibold text-gray-900">{lesson.title}</p>
-                          <p className="text-sm text-gray-600">{lesson.longRangePlan?.subject || 'Subject'}</p>
+                          <p className="font-semibold text-gray-900">{lesson.titleFr || lesson.title}</p>
+                          <p className="text-sm text-gray-600">{lesson.unitPlan?.longRangePlan?.subject || lesson.unitPlan?.title || 'Lesson'}</p>
                         </div>
                       </div>
                       <ChevronRight className="h-5 w-5 text-gray-400" />
@@ -280,7 +275,7 @@ export function ShowcaseDashboard(): React.ReactElement {
                 </div>
                 <Button 
                   className="w-full mt-4 bg-blue-600 hover:bg-blue-700"
-                  onClick={() => navigate('/planner/units')}
+                  onClick={() => navigate('/planner/week')}
                 >
                   <Eye className="h-5 w-5 mr-2" />
                   View All {septemberLessonCount} September Lessons

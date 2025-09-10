@@ -24,7 +24,7 @@ export function getYearAtGlance(yearPlan: YearPlan): CascadeStatistics {
   let upcomingLessons = 0;
   const bySubject: CascadeStatistics['bySubject'] = {};
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  today.setHours(12, 0, 0, 0) // Set to noon to avoid timezone issues;
 
   // Process each subject
   for (const subject of yearPlan.subjects) {
@@ -67,7 +67,7 @@ export function getYearAtGlance(yearPlan: YearPlan): CascadeStatistics {
         for (const week of unit.weeks) {
           for (const lesson of week.lessons) {
             const lessonDate = new Date(lesson.date);
-            lessonDate.setHours(0, 0, 0, 0);
+            lessonDate.setHours(12, 0, 0, 0) // Set to noon to avoid timezone issues;
             if (lessonDate < today && lesson.status === 'planned') {
               overdueItems++;
             }
@@ -506,7 +506,7 @@ export function getUpcomingLessons(
 ): LessonPlan[] {
   const upcoming: LessonPlan[] = [];
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  today.setHours(12, 0, 0, 0) // Set to noon to avoid timezone issues;
   const futureDate = new Date(today.getTime() + daysAhead * 24 * 60 * 60 * 1000);
 
   for (const subject of yearPlan.subjects) {
@@ -515,7 +515,7 @@ export function getUpcomingLessons(
         for (const week of unit.weeks) {
           for (const lesson of week.lessons) {
             const lessonDate = new Date(lesson.date);
-            lessonDate.setHours(0, 0, 0, 0);
+            lessonDate.setHours(12, 0, 0, 0) // Set to noon to avoid timezone issues;
             
             if (lessonDate >= today && lessonDate <= futureDate && lesson.status === 'planned') {
               upcoming.push(lesson);

@@ -11,7 +11,7 @@ import {
   Plus
 } from 'lucide-react';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { Badge } from '../components/ui/Badge';
@@ -60,13 +60,17 @@ function DayColumn({ date, lessons, onViewLesson, onAddLesson }: DayColumnProps)
           </p>
         ) : (
           lessons.map((lesson) => (
-            <Card 
-              key={lesson.id} 
-              className="cursor-pointer hover:shadow-md transition-shadow"
-              onClick={() => onViewLesson(lesson)}
+            <Link 
+              key={lesson.id}
+              to={`/planner/lessons/${lesson.id}`}
+              data-testid="lesson-card"
+              className="block"
             >
-              <CardContent className="p-3">
-                <p className="font-medium text-sm line-clamp-2">{lesson.title}</p>
+              <Card className="cursor-pointer hover:shadow-md transition-shadow">
+                <CardContent className="p-3">
+                  <p className="font-medium text-sm line-clamp-2">
+                    {lesson.titleFr || lesson.title || 'Sans titre'}
+                  </p>
                 {lesson.unitPlan && (
                   <p className="text-xs text-gray-500 mt-1">
                     {lesson.unitPlan.title}
@@ -85,6 +89,7 @@ function DayColumn({ date, lessons, onViewLesson, onAddLesson }: DayColumnProps)
                 </div>
               </CardContent>
             </Card>
+          </Link>
           ))
         )}
       </div>
@@ -105,8 +110,9 @@ export function WeekView(): React.ReactElement {
     endDate: weekEnd.toISOString(),
   });
   
-  // Group lessons by date
+  // Group lessons by date (using local date to match weekday display)
   const lessonsByDate = lessons.reduce((acc, lesson) => {
+    // Since lessons are at noon/3PM, they'll always be on the correct day regardless of timezone
     const dateKey = format(new Date(lesson.date), 'yyyy-MM-dd');
     if (!acc[dateKey]) {
       acc[dateKey] = [];
@@ -115,10 +121,20 @@ export function WeekView(): React.ReactElement {
     return acc;
   }, {} as Record<string, ETFOLessonPlan[]>);
   
+  // Debug logging
+  console.log('🔍 DEBUG: Total lessons fetched:', lessons.length);
+  console.log('🔍 DEBUG: Lessons by date:', lessonsByDate);
+  console.log('🔍 DEBUG: Week start:', weekStart);
+  console.log('🔍 DEBUG: Friday date key should be:', format(addDays(weekStart, 4), 'yyyy-MM-dd'));
+  
+  // Log each lesson's date
+  lessons.forEach(lesson => {
+    const lessonDate = new Date(lesson.date);
+    console.log(`🔍 Lesson "${lesson.title}" - Date: ${lessonDate.toISOString()} - Key: ${format(lessonDate, 'yyyy-MM-dd')}`);
+  });
+  
   const handleViewLesson = (lesson: ETFOLessonPlan): void => {
-    if (lesson.unitPlanId) {
-      navigate(`/planner/units/${lesson.unitPlanId}/lessons?lessonId=${lesson.id}`);
-    }
+    navigate(`/planner/lessons/${lesson.id}`);
   };
   
   const handleAddLesson = (date: Date): void => {

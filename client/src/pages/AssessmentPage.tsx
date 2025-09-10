@@ -12,6 +12,8 @@ import {
   BoltIcon
 } from '@heroicons/react/24/outline';
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { QuickAssessmentGrid } from '../components/QuickAssessmentGrid';
@@ -63,6 +65,23 @@ const SUBJECTS = [
 ];
 
 export function AssessmentPage(): React.ReactElement {
+  const [searchParams] = useSearchParams();
+  const lessonId = searchParams.get('lessonId');
+  const expectationIds = searchParams.get('exp')?.split(',').filter(Boolean);
+  
+  // Fetch lesson context if lessonId is provided
+  const { data: lessonContext } = useQuery({
+    queryKey: ['lesson-assessment', lessonId],
+    queryFn: async () => {
+      const res = await fetch(`/api/lessons/${lessonId}/assessment-context`, {
+        credentials: 'include'
+      });
+      if (!res.ok) return null;
+      return res.json();
+    },
+    enabled: !!lessonId
+  });
+  
   const [assessments, setAssessments] = useState<Assessment[]>(() => {
     const saved = localStorage.getItem('assessment-records');
     return saved ? JSON.parse(saved) : [];
@@ -77,7 +96,7 @@ export function AssessmentPage(): React.ReactElement {
   const [selectedSubject, setSelectedSubject] = useState<string>('');
   const [showQuickAssessment, setShowQuickAssessment] = useState(false);
   const [showBulkAssessment, setShowBulkAssessment] = useState(false);
-  const [showQuickGrid, setShowQuickGrid] = useState(false);
+  const [showQuickGrid, setShowQuickGrid] = useState(true); // Default to grid view when lessonId present
   const [filterDate, setFilterDate] = useState(new Date().toISOString().split('T')[0]);
   
   const [formData, setFormData] = useState({
@@ -263,10 +282,24 @@ export function AssessmentPage(): React.ReactElement {
       {/* Quick Assessment Grid */}
       {showQuickGrid && (
         <div className="mb-6">
+          {lessonContext && (
+            <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <h3 className="font-semibold text-blue-900">
+                Évaluation — {lessonContext.lesson?.title}
+              </h3>
+              {lessonContext.lesson?.subject && (
+                <p className="text-sm text-blue-700 mt-1">
+                  {lessonContext.lesson.subject} • {lessonContext.lesson.date ? new Date(lessonContext.lesson.date).toLocaleDateString() : 'Non planifiée'}
+                </p>
+              )}
+            </div>
+          )}
           <QuickAssessmentGrid
             students={students}
-            selectedSubject={selectedSubject}
-            selectedDate={filterDate}
+            selectedSubject={lessonContext?.lesson?.subject || selectedSubject}
+            selectedDate={lessonContext?.lesson?.date ? lessonContext.lesson.date.split('T')[0] : filterDate}
+            lessonId={lessonId || undefined}
+            expectationId={expectationIds?.[0]}
           />
         </div>
       )}

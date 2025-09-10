@@ -7,6 +7,7 @@ export interface PublicStats {
   lessonCount: number;
   lrpCount: number;
   totalHours: number;
+  septemberLessonCount: number;
 }
 
 export interface SampleUnit {
@@ -21,9 +22,24 @@ export interface SampleUnit {
   } | null;
 }
 
+export interface SeptemberLesson {
+  id: string;
+  title: string;
+  titleFr: string | null;
+  date: string;
+  duration: number | null;
+  unitPlan: {
+    title: string;
+    longRangePlan: {
+      subject: string;
+    } | null;
+  } | null;
+}
+
 export interface PublicStatsResponse {
   stats: PublicStats;
   sampleUnits: SampleUnit[];
+  septemberLessons: SeptemberLesson[];
   subjectDistribution: Record<string, number>;
   academicYear: string;
   currentDate: string;

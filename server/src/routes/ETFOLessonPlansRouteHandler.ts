@@ -159,7 +159,10 @@ class ETFOLessonPlanService extends BaseService {
     startDate?: Date,
     endDate?: Date
   ): void {
+    console.log('🔍🔍🔍 Server: Date filter - Start:', startDate?.toISOString());
+    console.log('🔍🔍🔍 Server: Date filter - End:', endDate?.toISOString());
     const dateWhere = optimizedQueries.createDateRangeWhere('date', startDate, endDate);
+    console.log('🔍🔍🔍 Server: Date where clause:', JSON.stringify(dateWhere));
     if (Object.keys(dateWhere).length > 0) {
       Object.assign(where, dateWhere);
     }
@@ -262,7 +265,29 @@ class ETFOLessonPlanService extends BaseService {
       }),
     );
 
-    return this.formatFindManyResult(result, limit, offset);
+    console.log('🔍🔍🔍 DB Result - Total items:', result.items.length); 
+    console.log('🔍🔍🔍 DB Result - Total count:', result.total);
+    
+    // Check for Friday lessons in raw DB result
+    const fridayLessons = result.items.filter((item: any) => {
+      const date = new Date(item.date);
+      const dateStr = date.toISOString().split('T')[0];
+      return dateStr === '2025-09-12';
+    });
+    console.log('🔍🔍🔍 DB Result - Friday lessons:', fridayLessons.length);
+    
+    const formatted = this.formatFindManyResult(result, limit, offset);
+    console.log('🔍🔍🔍 Formatted Result - Total lessons:', formatted.lessonPlans.length);
+    
+    // Check Friday lessons after formatting
+    const fridayAfterFormat = formatted.lessonPlans.filter(lesson => {
+      const date = new Date(lesson.date);
+      const dateStr = date.toISOString().split('T')[0];
+      return dateStr === '2025-09-12';
+    });
+    console.log('🔍🔍🔍 Formatted Result - Friday lessons:', fridayAfterFormat.length);
+    
+    return formatted;
   }
 
   async findById(id: string, userId: number): Promise<Record<string, unknown> | null> {

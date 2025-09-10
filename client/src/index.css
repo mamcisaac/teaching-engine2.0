@@ -16,3 +16,45 @@
     animation: fadeIn 0.3s ease-in-out;
   }
 }
+
+/* Print-friendly styles for lesson detail page */
+@media print {
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  /* Ensure proper page breaks */
+  .print\:break-before-page {
+    page-break-before: always;
+  }
+  
+  .print\:break-inside-avoid {
+    page-break-inside: avoid;
+  }
+  
+  /* Better print formatting */
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+    margin-top: 1em;
+  }
+  
+  /* Keep sections together */
+  .card, section {
+    page-break-inside: avoid;
+  }
+  
+  /* Clean borders for print */
+  * {
+    box-shadow: none !important;
+  }
+  
+  /* Ensure full width */
+  .max-w-5xl {
+    max-width: 100% !important;
+  }
+}

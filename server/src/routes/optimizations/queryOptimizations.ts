@@ -284,7 +284,7 @@ return {};
         (where[dateField] as Record<string, unknown>).gte = startDate instanceof Date ? startDate : new Date(startDate);
       }
       if (endDate !== undefined) {
-        (where[dateField] as Record<string, unknown>).lte = endDate instanceof Date ? endDate : new Date(endDate);
+        (where[dateField] as Record<string, unknown>).lt = endDate instanceof Date ? endDate : new Date(endDate);
       }
     }
 

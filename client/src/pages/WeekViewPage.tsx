@@ -4,7 +4,7 @@ import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrate
 import { CSS } from '@dnd-kit/utilities';
 import { format, startOfWeek, addDays, isSameDay, addWeeks, subWeeks } from 'date-fns';
 import { Calendar, ChevronLeft, ChevronRight, BookOpen, Plus } from 'lucide-react';
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { apiClient } from '../api/core/client';
@@ -47,8 +47,9 @@ const SUBJECT_COLORS: Record<string, string> = {
   'Formation personnelle et sociale': 'bg-pink-100 text-pink-800 border-pink-300'
 };
 
-// Draggable lesson component
+// Draggable lesson component with click navigation
 function DraggableLesson({ lesson, subject }: { lesson: LessonData; subject: string }) {
+  const navigate = useNavigate();
   const {
     attributes,
     listeners,
@@ -64,16 +65,70 @@ function DraggableLesson({ lesson, subject }: { lesson: LessonData; subject: str
     opacity: isDragging ? 0.5 : 1,
   };
 
+  // Track drag vs click
+  const startPos = useRef<{ x: number; y: number } | null>(null);
+  const hasMoved = useRef(false);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    startPos.current = { x: e.clientX, y: e.clientY };
+    hasMoved.current = false;
+    // Call original listener if it exists
+    if (listeners?.onPointerDown) {
+      listeners.onPointerDown(e as any);
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (startPos.current) {
+      const dx = Math.abs(e.clientX - startPos.current.x);
+      const dy = Math.abs(e.clientY - startPos.current.y);
+      if (dx > 5 || dy > 5) {
+        hasMoved.current = true;
+      }
+    }
+    // Call original listener if it exists
+    if (listeners?.onPointerMove) {
+      listeners.onPointerMove(e as any);
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    // If it wasn't dragged, navigate
+    if (!hasMoved.current && !isDragging) {
+      navigate(`/planner/lessons/${lesson.id}`);
+    }
+    startPos.current = null;
+    // Call original listener if it exists
+    if (listeners?.onPointerUp) {
+      listeners.onPointerUp(e as any);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey && !e.ctrlKey) {
+      e.preventDefault();
+      navigate(`/planner/lessons/${lesson.id}`);
+    }
+    // Call original listener if it exists
+    if (listeners?.onKeyDown) {
+      listeners.onKeyDown(e as any);
+    }
+  };
+
   return (
     <div
       ref={setNodeRef}
       style={style}
       {...attributes}
       {...listeners}
-      className={`p-2 rounded cursor-grab active:cursor-grabbing focus:outline-none focus:ring-2 focus:ring-indigo-500 ${subject ? SUBJECT_COLORS[subject] : 'bg-gray-100'} ${isDragging ? 'z-50' : ''}`}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onKeyDown={handleKeyDown}
+      className={`p-2 rounded cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-indigo-500 ${subject ? SUBJECT_COLORS[subject] : 'bg-gray-100'} ${isDragging ? 'z-50 cursor-grabbing' : ''}`}
       data-testid={`lesson-${lesson.id}`}
       role="button"
-      aria-label={`${lesson.titleFr || lesson.title} - ${subject} - ${lesson.duration} minutes. Press space to start dragging.`}
+      aria-label={`${lesson.titleFr || lesson.title} - ${subject} - ${lesson.duration} minutes. Click to view details, or drag to reschedule.`}
       tabIndex={0}
     >
       <div className="font-medium text-xs mb-1">
@@ -146,13 +201,31 @@ export function WeekViewPage(): React.ReactElement {
   );
   
   const weekStart = startOfWeek(currentWeek, { weekStartsOn: 1 }); // Monday
-  const weekEnd = addDays(weekStart, 4); // Friday
+  const weekEnd = new Date(addDays(weekStart, 6)); // Sunday
+  weekEnd.setHours(23, 59, 59, 999); // End of Sunday to include all week's lessons
+  
+  console.log('🔍 API Query - Start:', weekStart.toISOString());
+  console.log('🔍 API Query - End:', weekEnd.toISOString());
   
   // Fetch lessons for the entire week
   const { data: weekLessons = [], isLoading } = useETFOLessonPlans({
     startDate: weekStart.toISOString(),
     endDate: weekEnd.toISOString()
   });
+  
+  // Debug API response
+  console.log('🔍 API Response - Total lessons:', weekLessons.length);
+  if (weekLessons.length > 0) {
+    const fridayLessons = weekLessons.filter(lesson => {
+      const lessonDate = new Date(lesson.date);
+      const dateStr = format(lessonDate, 'yyyy-MM-dd');
+      return dateStr === '2025-09-12';
+    });
+    console.log('🔍 API Response - Friday lessons in raw data:', fridayLessons.length);
+    if (fridayLessons.length > 0) {
+      console.log('🔍 Friday lesson example:', fridayLessons[0]);
+    }
+  }
   
   // Use optimistic lessons if available, otherwise use real data
   const displayLessons = optimisticLessons.length > 0 ? optimisticLessons : weekLessons;
@@ -161,12 +234,27 @@ export function WeekViewPage(): React.ReactElement {
   const weekSchedule = useMemo(() => {
     const schedule: DaySchedule[] = [];
     
+    // Debug logging
+    console.log('🔍 DEBUG: Total lessons:', displayLessons.length);
+    console.log('🔍 DEBUG: Week start:', weekStart);
+    
     for (let i = 0; i < 5; i++) {
       const date = addDays(weekStart, i);
       const dateStr = format(date, 'yyyy-MM-dd');
-      const dayLessons = displayLessons.filter(lesson => 
-        isSameDay(new Date(lesson.date), date)
-      );
+      
+      // Use date string comparison instead of isSameDay to avoid timezone issues
+      const dayLessons = displayLessons.filter(lesson => {
+        const lessonDateStr = format(new Date(lesson.date), 'yyyy-MM-dd');
+        const matches = lessonDateStr === dateStr;
+        
+        if (i === 4) { // Friday debug
+          console.log(`🔍 Friday check - Lesson date: ${lessonDateStr}, Target: ${dateStr}, Matches: ${matches}`);
+        }
+        
+        return matches;
+      });
+      
+      console.log(`🔍 Day ${i} (${dateStr}): ${dayLessons.length} lessons`);
       
       schedule.push({
         date,

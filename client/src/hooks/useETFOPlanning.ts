@@ -464,6 +464,7 @@ export function useETFOLessonPlans(filters?: {
   startDate?: string;
   endDate?: string;
   isSubFriendly?: boolean;
+  limit?: number;
 }): ReturnType<typeof useQuery<ETFOLessonPlan[], Error>> {
   return useQuery({
     queryKey: ['etfo-lesson-plans', filters],
@@ -481,6 +482,8 @@ export function useETFOLessonPlans(filters?: {
       if (filters?.isSubFriendly != undefined) {
         params.append('isSubFriendly', filters.isSubFriendly.toString());
       }
+      // Add limit parameter - default to 100 to ensure we get all lessons for a week
+      params.append('limit', (filters?.limit ?? 100).toString());
 
       const response = await apiClient.get(`/api/etfo-lesson-plans?${params.toString()}`);
       // Handle both array and object with lessonPlans property
