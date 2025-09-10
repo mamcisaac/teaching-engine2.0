@@ -615,7 +615,7 @@ export class UnitPlansRouteHandler extends BaseRouteHandler {
       const filters = schemas.query.parse(req.query);
 
       const result = await this.unitPlanService.findMany(filters, userId);
-      res.json(result);
+      res.json({ items: result });
       return;
     } catch (_error) {
       this.logger.error(`Error in ${this.routeName} list:`, String(_error));

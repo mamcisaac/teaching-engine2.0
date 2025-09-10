@@ -100,7 +100,7 @@ router.get('/', async (req: AuthenticatedRequest, res: Response) => {
       },
     });
 
-    res.json(plans);
+    res.json({ items: plans });
     return;
   } catch (error: unknown) {
     logger.error('Error fetching long-range plans:', String(error));

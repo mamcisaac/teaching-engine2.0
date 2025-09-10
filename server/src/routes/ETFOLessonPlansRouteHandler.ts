@@ -1070,7 +1070,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
 
       // Execute query and return result
       const result = await this.lessonPlanService.findMany(convertedFilters, userId);
-      res.json(result);
+      res.json({ items: result });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Unknown error';
       this.logger.error(`Error in ${this.routeName} list:`, message);
