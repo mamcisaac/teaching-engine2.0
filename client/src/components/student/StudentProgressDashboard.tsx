@@ -247,7 +247,7 @@ export function StudentProgressDashboard({
       </div>
       
       {/* Previous Communications (Private Mode Only) */}
-      {privacyMode === 'private' && communications && communications.previousReports.length > 0 && (
+      {privacyMode === 'private' && communications?.previousReports && communications.previousReports.length > 0 && (
         <div className="mb-6 p-4 bg-gray-50 rounded-lg">
           <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
             <AcademicCapIcon className="h-5 w-5 mr-2" />
@@ -263,7 +263,7 @@ export function StudentProgressDashboard({
               </div>
             ))}
           </div>
-          {communications.contradictions.length > 0 && (
+          {communications.contradictions && communications.contradictions.length > 0 && (
             <div className="mt-3 p-2 bg-yellow-100 rounded">
               <p className="text-sm text-yellow-800 font-medium">
                 ⚠️ Note: Current assessment differs from previous report

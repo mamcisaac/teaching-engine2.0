@@ -52,8 +52,8 @@ export interface StudentProgress {
 
 export const studentsApi = {
   async getAll(): Promise<Student[]> {
-    const response = await apiClient.get<Student[]>('/api/students');
-    return response.data;
+    const response = await apiClient.get<{ students: Student[], total: number } | Student[]>('/api/students');
+    return Array.isArray(response.data) ? response.data : response.data.students || [];
   },
 
   async getById(id: string): Promise<Student> {

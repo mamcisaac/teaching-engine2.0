@@ -249,17 +249,9 @@ router.get('/differentiation-groups', authenticate, async (req: Request, res: Re
       return res.status(400).json({ error: 'Subject is required' });
     }
 
-    const where: {
-      userId: number;
-      subject: string;
-      isAnecdotal: boolean;
-      date?: {
-        gte: Date;
-        lt: Date;
-      };
-    } = {
+    const where: any = {
       userId: parseInt(String(userId), 10),
-      subject,
+      subject: subject,
       isAnecdotal: false,
     };
 
@@ -278,9 +270,6 @@ router.get('/differentiation-groups', authenticate, async (req: Request, res: Re
     // Get recent assessments
     const assessments = await prisma.studentAssessment.findMany({
       where,
-      include: {
-        student: true,
-      },
       orderBy: {
         date: 'desc'
       },
@@ -342,17 +331,9 @@ router.post('/differentiation-groups', authenticate, async (req: Request, res: R
       return res.status(400).json({ error: 'Subject is required' });
     }
 
-    const where: {
-      userId: number;
-      subject: string;
-      isAnecdotal: boolean;
-      date?: {
-        gte: Date;
-        lt: Date;
-      };
-    } = { 
+    const where: any = { 
       userId: parseInt(String(userId), 10), 
-      subject,
+      subject: subject,
       isAnecdotal: false // Exclude anecdotal notes from differentiation groups
     };
     if (date) {

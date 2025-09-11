@@ -39,6 +39,8 @@ export {
   type TemplateRating,
   type TemplateVariation,
   type RecentPlanAccess,
+  type Student,
+  type StudentAssessment,
   // The following types are not exported from the database package
   // TODO: Add these to Prisma schema or remove usage
   // type CalendarEventType,

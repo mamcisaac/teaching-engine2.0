@@ -1,7 +1,8 @@
 import { format } from 'date-fns';
-import { Users, BookOpen, Calendar, Target, TrendingUp } from 'lucide-react';
+import { Users, BookOpen, Calendar, Target, TrendingUp, Camera, Paperclip, Upload, CheckCircle, AlertCircle } from 'lucide-react';
 import React, { useState, useMemo, useCallback, useRef } from 'react';
 
+import { artifactsApi } from '../api/domains/artifacts/api';
 import { ACHIEVEMENT_LEVELS, SUBJECT_OPTIONS } from '../constants/studentAssessment';
 import { useQuickAssessmentManager, useDifferentiationGroups } from '../hooks/useQuickAssessment';
 import type { 
@@ -65,6 +66,9 @@ export function QuickAssessmentGrid({
     show: false
   });
   const [processingStudents, setProcessingStudents] = useState<Set<string>>(new Set());
+  const [uploadingArtifacts, setUploadingArtifacts] = useState<Set<string>>(new Set());
+  const [uploadSuccess, setUploadSuccess] = useState<Map<string, string>>(new Map());
+  const [uploadError, setUploadError] = useState<Map<string, string>>(new Map());
   const requestManagerRef = useRef(new RequestManager());
 
   // Fetch existing assessments
@@ -178,6 +182,98 @@ export function QuickAssessmentGrid({
       requestManagerRef.current.clearRequest(requestId);
     }
   }, [subject, title, notes, date, lessonId, expectationId, assessmentGrid, assessmentManager, setValidationError, processingStudents]);
+
+  // Handle artifact upload
+  const handleArtifactUpload = useCallback((studentId: number | string) => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*,audio/*,video/*,application/pdf';
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+      
+      const studentIdStr = String(studentId);
+      
+      // Set uploading state
+      setUploadingArtifacts(prev => new Set(prev).add(studentIdStr));
+      setUploadSuccess(prev => {
+        const next = new Map(prev);
+        next.delete(studentIdStr);
+        return next;
+      });
+      setUploadError(prev => {
+        const next = new Map(prev);
+        next.delete(studentIdStr);
+        return next;
+      });
+      
+      logger.info(`Uploading ${file.name} for student ${studentIdStr}`);
+      
+      try {
+        // Upload the artifact using the API
+        const response = await artifactsApi.uploadArtifact({
+          studentId: studentIdStr,
+          file,
+          title: title ? `Assessment artifact - ${title}` : `Assessment artifact`,
+          description: `Uploaded during ${subject || 'assessment'} on ${date}`,
+          collectionContext: assessmentTitle || 'Quick Assessment',
+          dateCollected: date,
+          lessonId,
+          expectationId
+        });
+        
+        logger.info('Artifact uploaded successfully', {
+          artifactId: response.id,
+          fileName: file.name,
+          studentId: studentIdStr
+        });
+        
+        // Set success state
+        setUploadSuccess(prev => {
+          const next = new Map(prev);
+          next.set(studentIdStr, `Uploaded ${file.name} successfully`);
+          return next;
+        });
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setUploadSuccess(prev => {
+            const next = new Map(prev);
+            next.delete(studentIdStr);
+            return next;
+          });
+        }, 5000);
+        
+      } catch (error) {
+        logger.error('Failed to upload artifact', { error, studentId: studentIdStr });
+        
+        // Set error state
+        const errorMessage = error instanceof Error ? error.message : 'Failed to upload artifact';
+        setUploadError(prev => {
+          const next = new Map(prev);
+          next.set(studentIdStr, errorMessage);
+          return next;
+        });
+        
+        // Clear error message after 5 seconds
+        setTimeout(() => {
+          setUploadError(prev => {
+            const next = new Map(prev);
+            next.delete(studentIdStr);
+            return next;
+          });
+        }, 5000);
+      } finally {
+        // Clear uploading state
+        setUploadingArtifacts(prev => {
+          const next = new Set(prev);
+          next.delete(studentIdStr);
+          return next;
+        });
+      }
+    };
+    input.click();
+  }, [title, subject, date, lessonId, expectationId, assessmentTitle]);
 
   // Calculate statistics
   const stats = useMemo(() => {
@@ -409,6 +505,50 @@ export function QuickAssessmentGrid({
                           </button>
                         );
                       })}
+                    </div>
+                    
+                    {/* Artifact upload button with status indicators */}
+                    <div className="ml-2 relative">
+                      <button
+                        onClick={() => handleArtifactUpload(student.id)}
+                        disabled={uploadingArtifacts.has(String(student.id))}
+                        className={`p-1.5 rounded focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 ${
+                          uploadingArtifacts.has(String(student.id))
+                            ? 'bg-blue-100 cursor-not-allowed'
+                            : uploadSuccess.has(String(student.id))
+                            ? 'bg-green-100 hover:bg-green-200'
+                            : uploadError.has(String(student.id))
+                            ? 'bg-red-100 hover:bg-red-200'
+                            : 'hover:bg-gray-100'
+                        }`}
+                        title={
+                          uploadingArtifacts.has(String(student.id))
+                            ? 'Uploading...'
+                            : uploadSuccess.has(String(student.id))
+                            ? uploadSuccess.get(String(student.id))
+                            : uploadError.has(String(student.id))
+                            ? uploadError.get(String(student.id))
+                            : 'Upload artifact (photo/recording)'
+                        }
+                        aria-label={`Upload artifact for ${student.firstName} ${student.lastName}`}
+                      >
+                        {uploadingArtifacts.has(String(student.id)) ? (
+                          <Upload className="h-4 w-4 text-blue-600 animate-pulse" />
+                        ) : uploadSuccess.has(String(student.id)) ? (
+                          <CheckCircle className="h-4 w-4 text-green-600" />
+                        ) : uploadError.has(String(student.id)) ? (
+                          <AlertCircle className="h-4 w-4 text-red-600" />
+                        ) : (
+                          <Camera className="h-4 w-4 text-gray-600" />
+                        )}
+                      </button>
+                      
+                      {/* Status message tooltip */}
+                      {(uploadSuccess.has(String(student.id)) || uploadError.has(String(student.id))) && (
+                        <div className="absolute left-0 bottom-full mb-2 p-2 bg-gray-900 text-white text-xs rounded shadow-lg whitespace-nowrap z-10">
+                          {uploadSuccess.get(String(student.id)) || uploadError.get(String(student.id))}
+                        </div>
+                      )}
                     </div>
                     
                     {cell?.assessment && (
