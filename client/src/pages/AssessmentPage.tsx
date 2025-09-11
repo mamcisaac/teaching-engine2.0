@@ -19,10 +19,12 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { QuickAssessmentGrid } from '../components/QuickAssessmentGrid';
+import { useStudents } from '../api/domains/student/hooks';
+import type { Student } from '../types';
 
 interface Assessment {
   id: string;
-  studentId: string;
+  studentId: string;  // Keep as string for compatibility with studentAssessment API
   studentName: string;
   date: string;
   subject: string;
@@ -35,13 +37,6 @@ interface Assessment {
   artifacts?: string[];
   createdAt: string;
   updatedAt: string;
-}
-
-interface Student {
-  id: string;
-  firstName: string;
-  lastName: string;
-  studentId: string;
 }
 
 const MASTERY_LEVELS = [
@@ -75,8 +70,19 @@ export function AssessmentPage(): React.ReactElement {
   const { data: lessonContext } = useQuery({
     queryKey: ['lesson-assessment', lessonId],
     queryFn: async () => {
+      // Get auth token from localStorage
+      const token = localStorage.getItem('token');
+      const headers: HeadersInit = {
+        'Content-Type': 'application/json',
+      };
+      
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      
       const res = await fetch(`/api/lessons/${lessonId}/assessment-context`, {
-        credentials: 'include'
+        credentials: 'include',
+        headers
       });
       if (!res.ok) return null;
       const data = await res.json();
@@ -91,12 +97,11 @@ export function AssessmentPage(): React.ReactElement {
     return saved ? JSON.parse(saved) : [];
   });
   
-  const [students, _setStudents] = useState<Student[]>(() => {
-    const saved = localStorage.getItem('assessment-students');
-    return saved ? JSON.parse(saved) : [];
-  });
+  // Fetch students from database using the hook
+  const { data: studentsData, isLoading: studentsLoading } = useStudents();
+  const students = studentsData || [];
   
-  const [selectedStudent, setSelectedStudent] = useState<string>('');
+  const [selectedStudent, setSelectedStudent] = useState<number | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<string>('');
   const [showQuickAssessment, setShowQuickAssessment] = useState(false);
   const [showBulkAssessment, setShowBulkAssessment] = useState(false);
@@ -104,7 +109,7 @@ export function AssessmentPage(): React.ReactElement {
   const [filterDate, setFilterDate] = useState(new Date().toISOString().split('T')[0]);
   
   const [formData, setFormData] = useState({
-    studentId: '',
+    studentId: 0,
     subject: '',
     expectation: '',
     expectationCode: '',
@@ -114,7 +119,7 @@ export function AssessmentPage(): React.ReactElement {
     notes: ''
   });
 
-  const [bulkStudents, setBulkStudents] = useState<string[]>([]);
+  const [bulkStudents, setBulkStudents] = useState<number[]>([]);
 
   // Sync state with lesson context when it loads
   useEffect(() => {
@@ -153,7 +158,7 @@ export function AssessmentPage(): React.ReactElement {
       ...s,
       assessmentCount: counts[s.id] || 0,
       lastAssessment: assessments
-        .filter(a => a.studentId === s.id)
+        .filter(a => a.studentId === String(s.id))
         .sort((a, b) => b.date.localeCompare(a.date))[0]?.date
     }));
     
@@ -176,7 +181,7 @@ export function AssessmentPage(): React.ReactElement {
 
     const newAssessment: Assessment = {
       id: `assessment-${Date.now()}`,
-      studentId: formData.studentId,
+      studentId: String(formData.studentId),
       studentName: `${student.firstName} ${student.lastName}`,
       date: new Date().toISOString(),
       subject: formData.subject,
@@ -206,7 +211,7 @@ export function AssessmentPage(): React.ReactElement {
       const student = students.find(s => s.id === studentId);
       return {
         id: `assessment-${Date.now()}-${studentId}`,
-        studentId,
+        studentId: String(studentId),
         studentName: student ? `${student.firstName} ${student.lastName}` : 'Unknown',
         date: new Date().toISOString(),
         subject: formData.subject,
@@ -230,7 +235,7 @@ export function AssessmentPage(): React.ReactElement {
 
   const resetForm = () => {
     setFormData({
-      studentId: '',
+      studentId: 0,
       subject: '',
       expectation: '',
       expectationCode: '',
@@ -243,7 +248,7 @@ export function AssessmentPage(): React.ReactElement {
 
   const filteredAssessments = assessments.filter(a => {
     let matches = true;
-    if (selectedStudent) matches = matches && a.studentId === selectedStudent;
+    if (selectedStudent) matches = matches && a.studentId === String(selectedStudent);
     if (selectedSubject) matches = matches && a.subject === selectedSubject;
     if (filterDate) matches = matches && a.date.startsWith(filterDate);
     return matches;
@@ -263,6 +268,21 @@ export function AssessmentPage(): React.ReactElement {
   };
 
   const balance = getEvidenceBalance();
+
+  // Show loading state while students are being fetched
+  if (studentsLoading) {
+    return (
+      <div className="p-6 max-w-7xl mx-auto" data-testid="assessment-page">
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Assessment</h1>
+          <p className="text-gray-600">ETFO 4-Level Mastery Tracking</p>
+        </div>
+        <div className="flex items-center justify-center py-12">
+          <div className="text-gray-500">Loading students...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 max-w-7xl mx-auto" data-testid="assessment-page">
@@ -325,6 +345,47 @@ export function AssessmentPage(): React.ReactElement {
                   </p>
                 )}
               </div>
+              
+              {/* Assessment Criteria Display */}
+              {lessonContext.assessmentCriteria && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  {/* Observable Behaviors */}
+                  {lessonContext.assessmentCriteria.observables && lessonContext.assessmentCriteria.observables.length > 0 && (
+                    <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+                      <h4 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
+                        <EyeIcon className="w-5 h-5" />
+                        Comportements observables
+                      </h4>
+                      <ul className="space-y-1">
+                        {lessonContext.assessmentCriteria.observables.map((observable: string, index: number) => (
+                          <li key={index} className="text-sm text-green-700 flex items-start gap-2">
+                            <CheckCircleIcon className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                            <span>{observable}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {/* Checkpoints */}
+                  {lessonContext.assessmentCriteria.checkpoints && lessonContext.assessmentCriteria.checkpoints.length > 0 && (
+                    <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                      <h4 className="font-semibold text-purple-900 mb-2 flex items-center gap-2">
+                        <FlagIcon className="w-5 h-5" />
+                        Points de contrôle
+                      </h4>
+                      <ul className="space-y-1">
+                        {lessonContext.assessmentCriteria.checkpoints.map((checkpoint: string, index: number) => (
+                          <li key={index} className="text-sm text-purple-700 flex items-start gap-2">
+                            <CheckCircleIcon className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0" />
+                            <span>{checkpoint}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
           <QuickAssessmentGrid
@@ -371,8 +432,8 @@ export function AssessmentPage(): React.ReactElement {
       {/* Filters */}
       <div className="mb-6 flex flex-wrap gap-4">
         <select
-          value={selectedStudent}
-          onChange={(e) => setSelectedStudent(e.target.value)}
+          value={selectedStudent || ''}
+          onChange={(e) => setSelectedStudent(e.target.value ? Number(e.target.value) : null)}
           className="px-4 py-2 border rounded-lg"
           data-testid="filter-student"
         >
@@ -476,8 +537,8 @@ export function AssessmentPage(): React.ReactElement {
                 <label htmlFor="assessment-student-select" className="block text-sm font-medium mb-1">Student</label>
                 <select
                   id="assessment-student-select"
-                  value={formData.studentId}
-                  onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
+                  value={formData.studentId || ''}
+                  onChange={(e) => setFormData({ ...formData, studentId: Number(e.target.value) || 0 })}
                   className="w-full px-3 py-2 border rounded-lg"
                   data-testid="assessment-student"
                 >

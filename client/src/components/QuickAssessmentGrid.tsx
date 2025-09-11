@@ -15,10 +15,9 @@ import { logger } from '../utils/logger';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { ETFOAssessmentCriteria } from './ETFOAssessmentCriteria';
 
 interface Student {
-  id: string;
+  id: string | number;
   firstName: string;
   lastName: string;
 }
@@ -83,14 +82,15 @@ export function QuickAssessmentGrid({
   // Create assessment grid data
   const assessmentGrid = useMemo(() => {
     const grid: AssessmentCell[] = students.map(student => {
+      const studentIdStr = String(student.id);
       const existingAssessment = assessmentManager.assessments.find(
-        a => a.studentId === student.id && 
+        a => a.studentId === studentIdStr && 
              a.subject === subject &&
              a.date.startsWith(date)
       );
 
       return {
-        studentId: student.id,
+        studentId: studentIdStr,
         level: existingAssessment?.level,
         assessment: existingAssessment
       };
@@ -138,7 +138,7 @@ export function QuickAssessmentGrid({
       } else {
         // Create new assessment
         const newAssessment: CreateStudentAssessmentRequest = {
-          studentId,
+          studentId: String(studentId),
           lessonId,
           expectationId,
           subject,
@@ -336,29 +336,6 @@ export function QuickAssessmentGrid({
         </CardContent>
       </Card>
 
-      {/* Assessment Criteria Display */}
-      {assessmentCriteria && (
-        (assessmentCriteria.observables && assessmentCriteria.observables.length > 0) || 
-        (assessmentCriteria.checkpoints && assessmentCriteria.checkpoints.length > 0)
-      ) && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Target className="h-5 w-5" />
-              Critères d'évaluation
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ETFOAssessmentCriteria 
-              criteria={assessmentCriteria}
-              onCriteriaSelect={(type, value, checked) => {
-                logger.info('Assessment criteria selected', { type, value, checked });
-              }}
-            />
-          </CardContent>
-        </Card>
-      )}
-
       {/* Assessment Grid */}
       {subject && title && (
         <Card>
@@ -396,12 +373,13 @@ export function QuickAssessmentGrid({
                     <div className="flex gap-1 flex-1">
                       {Object.values(ACHIEVEMENT_LEVELS).map(level => {
                         const isSelected = currentLevel === level.level;
-                        const isLoading = processingStudents.has(student.id) || assessmentManager.isCreating || assessmentManager.isUpdating;
+                        const studentIdStr = String(student.id);
+                        const isLoading = processingStudents.has(studentIdStr) || assessmentManager.isCreating || assessmentManager.isUpdating;
                         
                         return (
                           <button
                             key={level.level}
-                            onClick={() => void handleLevelSelect(student.id, level.level)}
+                            onClick={() => void handleLevelSelect(String(student.id), level.level)}
                             disabled={isLoading}
                             className={`
                               w-12 h-8 rounded text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
@@ -423,7 +401,7 @@ export function QuickAssessmentGrid({
                             onKeyDown={(e) => {
                               if (e.key === 'Enter' || e.key === ' ') {
                                 e.preventDefault();
-                                void handleLevelSelect(student.id, level.level);
+                                void handleLevelSelect(String(student.id), level.level);
                               }
                             }}
                           >
@@ -477,7 +455,7 @@ export function QuickAssessmentGrid({
                     
                     <div className="space-y-1">
                       {studentIds.map((studentId: string) => {
-                        const student = students.find(s => s.id === studentId);
+                        const student = students.find(s => String(s.id) === studentId);
                         return student ? (
                           <div key={studentId} className="text-xs text-gray-600">
                             {student.firstName} {student.lastName}

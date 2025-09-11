@@ -16,8 +16,8 @@ import { apiClient } from '../../core/client';
 export const studentApi = {
   // Students
   getStudents: async (): Promise<Student[]> => {
-    const { data } = await apiClient.get<Student[]>('/api/students');
-    return data;
+    const { data } = await apiClient.get<{ students: Student[], total: number }>('/api/students');
+    return data.students;
   },
 
   getStudent: async (id: number): Promise<Student> => {
