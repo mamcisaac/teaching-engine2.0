@@ -15,6 +15,7 @@ import { logger } from '../utils/logger';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { ETFOAssessmentCriteria } from './ETFOAssessmentCriteria';
 
 interface Student {
   id: string;
@@ -28,6 +29,11 @@ interface QuickAssessmentGridProps {
   selectedDate?: string;
   lessonId?: string;
   expectationId?: string;
+  assessmentTitle?: string;
+  assessmentCriteria?: {
+    observables?: string[];
+    checkpoints?: string[];
+  };
 }
 
 interface ValidationError {
@@ -46,11 +52,13 @@ export function QuickAssessmentGrid({
   selectedSubject = '',
   selectedDate = format(new Date(), 'yyyy-MM-dd'),
   lessonId,
-  expectationId
+  expectationId,
+  assessmentTitle = '',
+  assessmentCriteria
 }: QuickAssessmentGridProps): React.ReactElement {
   const [subject, setSubject] = useState(selectedSubject);
   const [date, setDate] = useState(selectedDate);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(assessmentTitle);
   const [notes, setNotes] = useState('');
   const [showDifferentiation, setShowDifferentiation] = useState(false);
   const [validationError, setValidationError] = useState<ValidationError>({
@@ -327,6 +335,29 @@ export function QuickAssessmentGrid({
           </div>
         </CardContent>
       </Card>
+
+      {/* Assessment Criteria Display */}
+      {assessmentCriteria && (
+        (assessmentCriteria.observables && assessmentCriteria.observables.length > 0) || 
+        (assessmentCriteria.checkpoints && assessmentCriteria.checkpoints.length > 0)
+      ) && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Target className="h-5 w-5" />
+              Critères d'évaluation
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ETFOAssessmentCriteria 
+              criteria={assessmentCriteria}
+              onCriteriaSelect={(type, value, checked) => {
+                logger.info('Assessment criteria selected', { type, value, checked });
+              }}
+            />
+          </CardContent>
+        </Card>
+      )}
 
       {/* Assessment Grid */}
       {subject && title && (

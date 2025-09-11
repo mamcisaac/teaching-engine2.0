@@ -9,12 +9,13 @@ import type { Response, NextFunction } from 'express';
 import { prisma } from '../prisma';
 import { toLessonView } from '../services/lessons/view';
 import type { AuthenticatedRequest } from './base/BaseRouteHandler';
+import { authenticate } from '../middleware/auth';
 
 export const lessonsRouter = Router();
 
 // GET /api/lessons/fallback - Find lesson by date + slot if ID fails
 // NOTE: This must come before /:id route to avoid being caught by the param pattern
-lessonsRouter.get('/fallback', async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+lessonsRouter.get('/fallback', authenticate, async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const { date, slot } = req.query as { date?: string; slot?: string };
     
@@ -46,7 +47,7 @@ lessonsRouter.get('/fallback', async (req: AuthenticatedRequest, res: Response, 
 });
 
 // GET /api/lessons/:id/assessment-context - Return lesson + expectations for assessment
-lessonsRouter.get('/:id/assessment-context', async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+lessonsRouter.get('/:id/assessment-context', authenticate, async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     
@@ -87,14 +88,30 @@ lessonsRouter.get('/:id/assessment-context', async (req: AuthenticatedRequest, r
       // Join table might not exist, keep expectations empty
     }
     
+    // Parse assessment criteria if available
+    let assessmentCriteria = { observables: [], checkpoints: [] };
+    if (lesson.assessmentNotes) {
+      try {
+        const assessmentData = JSON.parse(lesson.assessmentNotes as string);
+        assessmentCriteria = {
+          observables: assessmentData.observable || [],
+          checkpoints: assessmentData.checkpoints || []
+        };
+      } catch {
+        // Not JSON or parsing failed, leave empty
+      }
+    }
+    
     return res.json({
       lesson: { 
         id: view.id, 
         title: view.title, 
         date: view.date, 
-        subject: view.subject 
+        subject: view.subject,
+        assessmentType: lesson.assessmentType || 'formative'
       },
-      expectations
+      expectations,
+      assessmentCriteria
     });
   } catch (error) {
     next(error);
@@ -103,7 +120,7 @@ lessonsRouter.get('/:id/assessment-context', async (req: AuthenticatedRequest, r
 
 // GET /api/lessons/:id - Get full lesson detail view
 // NOTE: This comes after fallback and specific routes to avoid pattern conflicts
-lessonsRouter.get('/:id', async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+lessonsRouter.get('/:id', authenticate, async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     console.log('FETCH lesson id:', typeof id, id);

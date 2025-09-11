@@ -20,10 +20,18 @@ export function useUnitPlans() {
     queryKey: ['unitPlans'],
     queryFn: async () => {
       try {
-        const response = await apiClient.get<{ items: UnitPlanWithRelations[] }>(
-          '/api/unit-plans'
+        const response = await apiClient.get<{ items: { unitPlans: UnitPlanWithRelations[]; pagination: any } | UnitPlanWithRelations[] }>(
+          '/api/unit-plans?limit=100'
         );
-        return response.data.items;
+        // Handle nested structure
+        if (response.data.items && typeof response.data.items === 'object' && 'unitPlans' in response.data.items) {
+          return response.data.items.unitPlans;
+        }
+        // Handle direct array
+        if (Array.isArray(response.data.items)) {
+          return response.data.items;
+        }
+        return [];
       } catch (error) {
         handleApiError(error, 'Failed to fetch unit plans');
         throw error;

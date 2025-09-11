@@ -494,9 +494,11 @@ export function useETFOLessonPlans(filters?: {
         lessonPlansIsArray: Array.isArray(response.data?.lessonPlans),
         firstLessonPlan: response.data?.lessonPlans?.[0] || response.data?.[0]
       });
-      // Handle both array and object with lessonPlans property
+      // Handle both array and object with items.lessonPlans property
       if (Array.isArray(response.data)) {
         return response.data as ETFOLessonPlan[];
+      } else if (response.data?.items?.lessonPlans && Array.isArray(response.data.items.lessonPlans)) {
+        return response.data.items.lessonPlans as ETFOLessonPlan[];
       } else if (response.data?.lessonPlans && Array.isArray(response.data.lessonPlans)) {
         return response.data.lessonPlans as ETFOLessonPlan[];
       }

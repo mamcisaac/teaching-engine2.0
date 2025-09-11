@@ -58,7 +58,7 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
     const skip = (pageNum - 1) * limitNum;
 
     const where: {
-      userId: string;
+      userId: number;
       isAnecdotal?: boolean;
       studentId?: string;
       subject?: string;
@@ -67,7 +67,7 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
         lt: Date;
       };
     } = { 
-      userId: String(userId),
+      userId: parseInt(String(userId), 10),
       // Exclude anecdotal notes by default unless explicitly requested
       isAnecdotal: includeAnecdotal === 'true' ? undefined : false
     };
@@ -174,7 +174,7 @@ router.put('/:id', authenticate, async (req: Request, res: Response): Promise<Re
 
     // Check if assessment exists and belongs to user
     const existingAssessment = await prisma.studentAssessment.findFirst({
-      where: { id, userId }
+      where: { id, userId: parseInt(String(userId), 10) }
     });
 
     if (!existingAssessment) {
@@ -218,7 +218,7 @@ router.delete('/:id', authenticate, async (req: Request, res: Response): Promise
 
     // Check if assessment exists and belongs to user
     const existingAssessment = await prisma.studentAssessment.findFirst({
-      where: { id, userId }
+      where: { id, userId: parseInt(String(userId), 10) }
     });
 
     if (!existingAssessment) {
@@ -232,6 +232,99 @@ router.delete('/:id', authenticate, async (req: Request, res: Response): Promise
     return res.status(204).send();
   } catch (error) {
     logger.error({ error }, 'Error deleting student assessment:');
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// GET /api/student-assessments/differentiation-groups - Get differentiation groups
+router.get('/differentiation-groups', authenticate, async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const userId = req.user.id;
+    if (!userId) {
+      return res.status(401).json({ error: 'User not authenticated' });
+    }
+
+    const { subject, date } = req.query as { subject?: string; date?: string };
+    if (!subject) {
+      return res.status(400).json({ error: 'Subject is required' });
+    }
+
+    const where: {
+      userId: number;
+      subject: string;
+      isAnecdotal: boolean;
+      date?: {
+        gte: Date;
+        lt: Date;
+      };
+    } = {
+      userId: parseInt(String(userId), 10),
+      subject,
+      isAnecdotal: false,
+    };
+
+    if (date) {
+      const startDate = new Date(date);
+      startDate.setHours(0, 0, 0, 0);
+      const endDate = new Date(date);
+      endDate.setHours(23, 59, 59, 999);
+      
+      where.date = {
+        gte: startDate,
+        lt: endDate
+      };
+    }
+
+    // Get recent assessments
+    const assessments = await prisma.studentAssessment.findMany({
+      where,
+      include: {
+        student: true,
+      },
+      orderBy: {
+        date: 'desc'
+      },
+      take: 100 // Limit to recent assessments
+    });
+
+    // Group students by achievement level
+    const groups: Record<string, string[]> = {
+      extension: [],
+      independent: [],
+      support: [],
+      reteaching: []
+    };
+
+    // Get latest assessment for each student
+    const studentLatestAssessment = new Map<string, string>();
+    assessments.forEach(assessment => {
+      if (!studentLatestAssessment.has(assessment.studentId)) {
+        studentLatestAssessment.set(assessment.studentId, assessment.level);
+      }
+    });
+
+    // Categorize students
+    studentLatestAssessment.forEach((level, studentId) => {
+      switch (level) {
+        case 'EXCEEDING':
+          groups.extension.push(studentId);
+          break;
+        case 'MEETING':
+          groups.independent.push(studentId);
+          break;
+        case 'APPROACHING':
+          groups.support.push(studentId);
+          break;
+        case 'NOT_YET':
+        case 'BEGINNING':
+          groups.reteaching.push(studentId);
+          break;
+      }
+    });
+
+    return res.json(groups);
+  } catch (error) {
+    logger.error({ error }, 'Error generating differentiation groups:');
     return res.status(500).json({ error: 'Internal server error' });
   }
 });

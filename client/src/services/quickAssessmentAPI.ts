@@ -73,7 +73,15 @@ export const quickAssessmentAPI = {
 
   // Generate differentiation groups
   async getDifferentiationGroups(request: DifferentiationGroupsRequest): Promise<DifferentiationGroups> {
-    const response = await apiClient.post(`${STUDENT_ASSESSMENTS_BASE_URL}/differentiation-groups`, request);
+    const params = new URLSearchParams();
+    if (request.subject) {
+      params.append('subject', request.subject);
+    }
+    if (request.date) {
+      params.append('date', request.date);
+    }
+    const url = `${STUDENT_ASSESSMENTS_BASE_URL}/differentiation-groups?${params.toString()}`;
+    const response = await apiClient.get(url);
     return response.data;
   },
 

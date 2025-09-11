@@ -9,7 +9,9 @@ import {
   XCircleIcon,
   ExclamationTriangleIcon,
   ArrowTrendingUpIcon,
-  BoltIcon
+  BoltIcon,
+  EyeIcon,
+  FlagIcon
 } from '@heroicons/react/24/outline';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
@@ -77,7 +79,9 @@ export function AssessmentPage(): React.ReactElement {
         credentials: 'include'
       });
       if (!res.ok) return null;
-      return res.json();
+      const data = await res.json();
+      console.log('Assessment context received:', data);
+      return data;
     },
     enabled: !!lessonId
   });
@@ -111,6 +115,32 @@ export function AssessmentPage(): React.ReactElement {
   });
 
   const [bulkStudents, setBulkStudents] = useState<string[]>([]);
+
+  // Sync state with lesson context when it loads
+  useEffect(() => {
+    if (lessonContext?.lesson) {
+      // Update subject filter if lesson has subject
+      if (lessonContext.lesson.subject) {
+        setSelectedSubject(lessonContext.lesson.subject);
+      }
+      
+      // Update date filter if lesson has date
+      if (lessonContext.lesson.date) {
+        setFilterDate(lessonContext.lesson.date.split('T')[0]);
+      }
+      
+      // Update form data for quick assessment
+      if (lessonContext.lesson.subject || lessonContext.expectations?.length > 0) {
+        setFormData(prev => ({
+          ...prev,
+          subject: lessonContext.lesson.subject || prev.subject,
+          // Include first expectation if available
+          expectation: lessonContext.expectations?.[0]?.text || prev.expectation,
+          expectationCode: lessonContext.expectations?.[0]?.code || prev.expectationCode
+        }));
+      }
+    }
+  }, [lessonContext]);
 
   useEffect(() => {
     // Update student assessment counts
@@ -283,15 +313,18 @@ export function AssessmentPage(): React.ReactElement {
       {showQuickGrid && (
         <div className="mb-6">
           {lessonContext && (
-            <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <h3 className="font-semibold text-blue-900">
-                Évaluation — {lessonContext.lesson?.title}
-              </h3>
-              {lessonContext.lesson?.subject && (
-                <p className="text-sm text-blue-700 mt-1">
-                  {lessonContext.lesson.subject} • {lessonContext.lesson.date ? new Date(lessonContext.lesson.date).toLocaleDateString() : 'Non planifiée'}
-                </p>
-              )}
+            <div className="mb-4">
+              {/* Lesson Context Header */}
+              <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 className="font-semibold text-blue-900">
+                  Évaluation — {lessonContext.lesson?.title}
+                </h3>
+                {lessonContext.lesson?.subject && (
+                  <p className="text-sm text-blue-700 mt-1">
+                    {lessonContext.lesson.subject} • {lessonContext.lesson.date ? new Date(lessonContext.lesson.date).toLocaleDateString() : 'Non planifiée'}
+                  </p>
+                )}
+              </div>
             </div>
           )}
           <QuickAssessmentGrid
@@ -300,6 +333,8 @@ export function AssessmentPage(): React.ReactElement {
             selectedDate={lessonContext?.lesson?.date ? lessonContext.lesson.date.split('T')[0] : filterDate}
             lessonId={lessonId || undefined}
             expectationId={expectationIds?.[0]}
+            assessmentTitle={lessonContext?.lesson?.title}
+            assessmentCriteria={lessonContext?.assessmentCriteria}
           />
         </div>
       )}

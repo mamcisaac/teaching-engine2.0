@@ -527,13 +527,59 @@ export function LessonDetailPage(): React.ReactElement {
               </CardHeader>
               <CardContent>
                 {lesson.assessmentType && (
-                  <p className="mb-2">
+                  <p className="mb-4">
                     <span className="font-semibold">Type:</span> {lesson.assessmentType}
                   </p>
                 )}
-                {lesson.assessmentNotes && (
-                  <p className="whitespace-pre-wrap">{lesson.assessmentNotes}</p>
-                )}
+                {lesson.assessmentNotes && (() => {
+                  try {
+                    // Try to parse as JSON first
+                    const assessmentData = typeof lesson.assessmentNotes === 'string' 
+                      ? JSON.parse(lesson.assessmentNotes) 
+                      : lesson.assessmentNotes;
+                    
+                    return (
+                      <div className="space-y-4">
+                        {assessmentData.observable && assessmentData.observable.length > 0 && (
+                          <div>
+                            <h4 className="font-semibold mb-2 flex items-center gap-1">
+                              <Eye className="h-4 w-4" />
+                              Comportements observables
+                            </h4>
+                            <ul className="space-y-1">
+                              {assessmentData.observable.map((item: string, idx: number) => (
+                                <li key={idx} className="flex items-start gap-2">
+                                  <div className="h-2 w-2 bg-green-500 rounded-full mt-1.5 flex-shrink-0" />
+                                  <span className="text-sm">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {assessmentData.checkpoints && assessmentData.checkpoints.length > 0 && (
+                          <div>
+                            <h4 className="font-semibold mb-2 flex items-center gap-1">
+                              <Target className="h-4 w-4" />
+                              Points de contrôle
+                            </h4>
+                            <ul className="space-y-1">
+                              {assessmentData.checkpoints.map((item: string, idx: number) => (
+                                <li key={idx} className="flex items-start gap-2">
+                                  <div className="h-2 w-2 bg-blue-500 rounded-full mt-1.5 flex-shrink-0" />
+                                  <span className="text-sm">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  } catch {
+                    // If not JSON, display as plain text
+                    return <p className="whitespace-pre-wrap">{lesson.assessmentNotes}</p>;
+                  }
+                })()}
               </CardContent>
             </Card>
           )}

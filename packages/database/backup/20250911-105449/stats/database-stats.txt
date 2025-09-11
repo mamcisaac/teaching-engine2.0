@@ -1,0 +1,24 @@
+Category  Total
+--------  -----
+Table     Count
+'LongRangePlans'  COUNT(*)
+----------------  --------
+LongRangePlans    6       
+'UnitPlans'  COUNT(*)
+-----------  --------
+UnitPlans    50      
+'ETFOLessonPlans'  COUNT(*)
+-----------------  --------
+ETFOLessonPlans    970     
+'CurriculumExpectations'  COUNT(*)
+------------------------  --------
+CurriculumExpectations    60      
+'UnitPlanExpectations'  COUNT(*)
+----------------------  --------
+UnitPlanExpectations    145     
+'ETFOLessonPlanExpectations'  COUNT(*)
+----------------------------  --------
+ETFOLessonPlanExpectations    1808    
+'Lessons with assessments'  COUNT(*)
+--------------------------  --------
+Lessons with assessments    918     

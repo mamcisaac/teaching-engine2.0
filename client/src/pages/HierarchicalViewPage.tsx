@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ChevronDown, BookOpen, Layers, Target, CheckCircle, AlertCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ChevronRight, ChevronDown, BookOpen, Layers, Target, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react';
+import { format } from 'date-fns';
 import { useLongRangePlans } from '../hooks/useLongRangePlans';
 import { useUnitPlans } from '../hooks/useUnitPlans';
-import { useLessonPlans } from '../hooks/useLessonPlans';
+import { useAllLessonPlans } from '../hooks/useAllLessonPlans';
 import { useCurriculumExpectations } from '../hooks/useCurriculumExpectations';
+import { useCoverageCalculation } from '../hooks/useCoverageCalculation';
 import type { LongRangePlan, UnitPlan, CurriculumExpectation } from '../types';
 import type { LongRangePlanWithRelations } from '../hooks/useLongRangePlans';
 import type { UnitPlanWithRelations } from '../hooks/useUnitPlans';
@@ -45,25 +48,23 @@ const SUBJECT_BADGE_COLORS: Record<string, string> = {
 };
 
 export function HierarchicalViewPage() {
+  const navigate = useNavigate();
   const { longRangePlans, loading: lrpLoading } = useLongRangePlans();
   const { unitPlans, loading: unitLoading } = useUnitPlans();
-  const { lessonPlans, loading: lessonLoading } = useLessonPlans();
+  const { lessonPlans, loading: lessonLoading } = useAllLessonPlans(); // Use ALL lessons for hierarchy
   const { expectations, loading: expectationsLoading } = useCurriculumExpectations();
   
   const [hierarchyTree, setHierarchyTree] = useState<HierarchyNode[]>([]);
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
   const [selectedNode, setSelectedNode] = useState<HierarchyNode | null>(null);
-  const [coverageStats, setCoverageStats] = useState({
-    totalExpectations: 0,
-    coveredExpectations: 0,
-    coveragePercentage: 0
-  });
+  
+  // Use shared coverage calculation
+  const coverage = useCoverageCalculation(longRangePlans, expectations, lessonPlans);
 
   // Build the hierarchical tree structure
   useEffect(() => {
     if (!lrpLoading && !unitLoading && !lessonLoading && !expectationsLoading) {
       buildHierarchy();
-      calculateGlobalCoverage();
     }
   }, [longRangePlans, unitPlans, lessonPlans, expectations, lrpLoading, unitLoading, lessonLoading, expectationsLoading]);
 
@@ -83,9 +84,15 @@ export function HierarchicalViewPage() {
         data: lrp
       };
       
-      // Add units for this LRP
+      // Add units for this LRP - sort by startDate and add numbering
       const lrpUnits = unitPlans?.filter((unit: UnitPlanWithRelations) => unit.longRangePlanId === lrp.id) || [];
-      lrpNode.children = lrpUnits.map((unit: UnitPlanWithRelations) => {
+      const sortedUnits = [...lrpUnits].sort((a, b) => {
+        const dateA = a.startDate ? new Date(a.startDate).getTime() : 0;
+        const dateB = b.startDate ? new Date(b.startDate).getTime() : 0;
+        return dateA - dateB;
+      });
+      
+      lrpNode.children = sortedUnits.map((unit: UnitPlanWithRelations, index: number) => {
         const unitNode: HierarchyNode = {
           id: `unit-${unit.id}`,
           type: 'unit',
@@ -93,19 +100,40 @@ export function HierarchicalViewPage() {
           titleFr: unit.titleFr,
           isExpanded: false,
           children: [],
-          data: unit
-        };
+          data: unit,
+          unitNumber: index + 1 // Add unit number for display
+        } as HierarchyNode & { unitNumber: number };
         
-        // Add lessons for this unit
+        // Add lessons for this unit (now we have ALL lessons loaded)
         const unitLessons = lessonPlans?.filter((lesson: ETFOLessonPlanWithRelations) => lesson.unitPlanId === unit.id) || [];
-        unitNode.children = unitLessons.map((lesson: ETFOLessonPlanWithRelations) => ({
+        // Sort lessons by lessonNumber
+        const sortedLessons = [...unitLessons].sort((a, b) => {
+          const numA = a.lessonNumber || 999;
+          const numB = b.lessonNumber || 999;
+          return numA - numB;
+        });
+        
+        // Store unit expectations for lesson coloring
+        const unitExpectationCodes = new Set<string>();
+        if (unit.expectations) {
+          unit.expectations.forEach((exp: any) => {
+            const code = exp.expectation?.code || exp.code;
+            if (code) unitExpectationCodes.add(code);
+          });
+        }
+        
+        unitNode.children = sortedLessons.map((lesson: ETFOLessonPlanWithRelations) => ({
           id: `lesson-${lesson.id}`,
           type: 'lesson',
           title: lesson.title || 'Untitled Lesson',
           titleFr: lesson.titleFr,
           isExpanded: false,
-          data: lesson
-        }));
+          data: lesson,
+          unitExpectations: unitExpectationCodes // Pass unit expectations to lesson for coloring
+        } as HierarchyNode & { unitExpectations: Set<string> }));
+        
+        // Use actual loaded lesson count (should match _count now that we load all)
+        (unitNode as any).totalLessonCount = unitLessons.length;
         
         // Calculate unit coverage
         unitNode.coverage = calculateUnitCoverage(unit, unitLessons);
@@ -123,34 +151,33 @@ export function HierarchicalViewPage() {
   };
 
   const calculateUnitCoverage = (unit: UnitPlanWithRelations, lessons: ETFOLessonPlanWithRelations[]) => {
-    const unitExpectations = new Set<string>();
-    const coveredExpectations = new Set<string>();
+    // Get unit's directly linked expectations
+    const unitDirectExpectations = new Set<string>();
+    if (unit.expectations) {
+      unit.expectations.forEach((exp: any) => {
+        const code = exp.expectation?.code || exp.code;
+        if (code) unitDirectExpectations.add(code);
+      });
+    }
     
-    // Get all expectations for this unit's subject
+    // Get all expectations for this unit's subject (for total count)
+    const subjectExpectations = new Set<string>();
     const subject = (unit as any).longRangePlan?.subject;
     if (subject) {
       expectations?.forEach((exp: CurriculumExpectation) => {
         if (exp.subject === subject) {
-          unitExpectations.add(exp.code);
+          subjectExpectations.add(exp.code);
         }
       });
     }
     
-    // Check which expectations are covered by lessons
-    lessons.forEach((lesson: ETFOLessonPlanWithRelations) => {
-      lesson.expectations?.forEach((exp: any) => {
-        if (unitExpectations.has(exp.code)) {
-          coveredExpectations.add(exp.code);
-        }
-      });
-    });
-    
     return {
-      total: unitExpectations.size,
-      covered: coveredExpectations.size,
-      percentage: unitExpectations.size > 0 
-        ? Math.round((coveredExpectations.size / unitExpectations.size) * 100)
-        : 0
+      covered: unitDirectExpectations.size,  // Unit's directly linked expectations
+      total: subjectExpectations.size,       // Total subject expectations
+      percentage: subjectExpectations.size > 0 
+        ? Math.round((unitDirectExpectations.size / subjectExpectations.size) * 100)
+        : 0,
+      unitExpectations: unitDirectExpectations // Store for lesson coloring
     };
   };
 
@@ -165,51 +192,37 @@ export function HierarchicalViewPage() {
       }
     });
     
-    // Aggregate coverage from all units
+    // Get all lessons from all units in this LRP
+    const lrpLessons: ETFOLessonPlanWithRelations[] = [];
     units.forEach(unit => {
-      if (unit.coverage) {
-        // This is simplified - in reality we'd track specific expectations
-        const unitCoveredCount = unit.coverage.covered;
-        // Add to covered set (simplified for demo)
-        for (let i = 0; i < unitCoveredCount; i++) {
-          coveredExpectations.add(`${unit.id}-${i}`);
-        }
+      if (unit.children) {
+        unit.children.forEach(child => {
+          if (child.type === 'lesson' && child.data) {
+            lrpLessons.push(child.data);
+          }
+        });
       }
     });
     
-    return {
-      total: lrpExpectations.size,
-      covered: Math.min(coveredExpectations.size, lrpExpectations.size),
-      percentage: lrpExpectations.size > 0 
-        ? Math.round((Math.min(coveredExpectations.size, lrpExpectations.size) / lrpExpectations.size) * 100)
-        : 0
-    };
-  };
-
-  const calculateGlobalCoverage = () => {
-    const allExpectations = new Set<string>();
-    const coveredExpectations = new Set<string>();
-    
-    expectations?.forEach(exp => {
-      allExpectations.add(exp.code);
-    });
-    
-    lessonPlans?.forEach((lesson: ETFOLessonPlanWithRelations) => {
+    // Check which expectations are actually covered by lessons
+    lrpLessons.forEach(lesson => {
       lesson.expectations?.forEach((exp: any) => {
-        if (allExpectations.has(exp.code)) {
-          coveredExpectations.add(exp.code);
+        const code = exp.expectation?.code || exp.code;
+        if (code && lrpExpectations.has(code)) {
+          coveredExpectations.add(code);
         }
       });
     });
     
-    setCoverageStats({
-      totalExpectations: allExpectations.size,
-      coveredExpectations: coveredExpectations.size,
-      coveragePercentage: allExpectations.size > 0 
-        ? Math.round((coveredExpectations.size / allExpectations.size) * 100)
+    return {
+      total: lrpExpectations.size,
+      covered: coveredExpectations.size,
+      percentage: lrpExpectations.size > 0 
+        ? Math.round((coveredExpectations.size / lrpExpectations.size) * 100)
         : 0
-    });
+    };
   };
+
 
   const toggleNode = (nodeId: string) => {
     setExpandedNodes(prev => {
@@ -228,9 +241,15 @@ export function HierarchicalViewPage() {
     const hasChildren = node.children && node.children.length > 0;
     const isSelected = selectedNode?.id === node.id;
     
-    const bgColor = node.type === 'lrp' && node.subject 
-      ? SUBJECT_COLORS[node.subject] || 'bg-gray-50'
-      : 'bg-white';
+    // Determine background color based on node type
+    let bgColor = 'bg-white';
+    if (node.type === 'lrp' && node.subject) {
+      bgColor = SUBJECT_COLORS[node.subject] || 'bg-gray-50';
+    } else if (node.type === 'lesson' && node.data) {
+      // Color-code lessons by type
+      const lessonType = node.data.lessonType || 'core';
+      bgColor = lessonType === 'core' ? 'bg-green-50' : 'bg-blue-50';
+    }
     
     const badgeColor = node.type === 'lrp' && node.subject
       ? SUBJECT_BADGE_COLORS[node.subject] || 'bg-gray-100 text-gray-800'
@@ -247,6 +266,10 @@ export function HierarchicalViewPage() {
           onClick={() => {
             if (hasChildren) toggleNode(node.id);
             setSelectedNode(node);
+            // Navigate to lesson detail page when clicking on a lesson
+            if (node.type === 'lesson' && node.data?.id) {
+              navigate(`/planner/lessons/${node.data.id}`);
+            }
           }}
         >
           {/* Expand/Collapse Icon */}
@@ -263,12 +286,98 @@ export function HierarchicalViewPage() {
           {/* Node Icon */}
           {node.type === 'lrp' && <BookOpen className="w-5 h-5 text-blue-600" />}
           {node.type === 'unit' && <Layers className="w-5 h-5 text-green-600" />}
-          {node.type === 'lesson' && <Target className="w-5 h-5 text-purple-600" />}
+          {node.type === 'lesson' && (
+            <Target className={`w-5 h-5 ${
+              node.data?.lessonType === 'extension' ? 'text-blue-600' : 'text-green-600'
+            }`} />
+          )}
           
-          {/* Title */}
+          {/* Title with numbering */}
           <div className="flex-1">
-            <div className="font-semibold">
-              {node.titleFr || node.title}
+            <div className="font-semibold flex items-center gap-2">
+              {node.type === 'unit' && (node as any).unitNumber && (
+                <span>Unit {(node as any).unitNumber}:</span>
+              )}
+              {node.type === 'lesson' && node.data?.lessonNumber && (
+                <span>Lesson {node.data.lessonNumber}:</span>
+              )}
+              <span>{node.titleFr || node.title}</span>
+              
+              {/* Date display */}
+              {node.type === 'lesson' && node.data?.date && (
+                <span className="text-sm font-normal text-gray-600">
+                  | {(() => {
+                    const date = new Date(node.data.date);
+                    return date.getFullYear() > 2026 
+                      ? <span className="text-orange-600">Not scheduled</span>
+                      : format(date, 'MMM d');
+                  })()}
+                </span>
+              )}
+              
+              {/* Unit date range */}
+              {node.type === 'unit' && node.data && (
+                <span className="text-sm font-normal text-gray-600">
+                  | {node.data.startDate && node.data.endDate 
+                    ? `${format(new Date(node.data.startDate), 'MMM d')} - ${format(new Date(node.data.endDate), 'MMM d')}`
+                    : 'Dates TBD'}
+                </span>
+              )}
+              
+              {/* Expectation badges for lessons - colored by primary/secondary */}
+              {node.type === 'lesson' && node.data?.expectations && node.data.expectations.length > 0 && (
+                <span className="flex gap-1">
+                  | {node.data.expectations.map((exp: any, idx: number) => {
+                    const code = exp.expectation?.code || exp.code;
+                    if (!code) return null;
+                    
+                    // Check if this expectation is primary (linked to unit) or secondary
+                    const unitExpectations = (node as any).unitExpectations as Set<string> | undefined;
+                    const isPrimary = unitExpectations?.has(code);
+                    
+                    return (
+                      <span 
+                        key={idx} 
+                        className={`px-1.5 py-0.5 text-xs rounded ${
+                          isPrimary 
+                            ? 'bg-purple-100 text-purple-700' // Primary expectations in purple
+                            : 'bg-gray-100 text-gray-600'      // Secondary expectations in gray
+                        }`}
+                        title={isPrimary ? 'Primary unit expectation' : 'Secondary expectation'}
+                      >
+                        {code}
+                      </span>
+                    );
+                  })}
+                </span>
+              )}
+              
+              {/* Expectation badges for units */}
+              {node.type === 'unit' && node.data?.expectations && node.data.expectations.length > 0 && (
+                <span className="flex gap-1">
+                  | {(() => {
+                    const uniqueCodes = new Set<string>();
+                    node.data.expectations.forEach((exp: any) => {
+                      const code = exp.expectation?.code || exp.code;
+                      if (code) uniqueCodes.add(code);
+                    });
+                    const codesArray = Array.from(uniqueCodes);
+                    const displayLimit = 3; // Show only 3 expectations to keep it concise
+                    return (
+                      <>
+                        {codesArray.slice(0, displayLimit).map((code, idx) => (
+                          <span key={idx} className="px-1.5 py-0.5 text-xs bg-green-100 text-green-700 rounded">
+                            {code}
+                          </span>
+                        ))}
+                        {codesArray.length > displayLimit && (
+                          <span className="text-xs text-gray-500">+{codesArray.length - displayLimit}</span>
+                        )}
+                      </>
+                    );
+                  })()}
+                </span>
+              )}
             </div>
             {node.titleFr && node.title !== node.titleFr && (
               <div className="text-sm text-gray-600">{node.title}</div>
@@ -282,8 +391,15 @@ export function HierarchicalViewPage() {
             </span>
           )}
           
-          {/* Coverage Indicator */}
-          {node.coverage && (
+          {/* Coverage Indicator - only show fraction for units */}
+          {node.type === 'unit' && node.coverage && (
+            <div className="text-sm text-gray-600">
+              {node.coverage.covered}/{node.coverage.total}
+            </div>
+          )}
+          
+          {/* LRP still shows percentage and bar */}
+          {node.type === 'lrp' && node.coverage && (
             <div className="flex items-center gap-2">
               <div className="text-sm font-medium">
                 {node.coverage.percentage}%
@@ -305,9 +421,9 @@ export function HierarchicalViewPage() {
           )}
           
           {/* Lesson Count for Units */}
-          {node.type === 'unit' && node.children && (
+          {node.type === 'unit' && (
             <span className="text-sm text-gray-600">
-              {node.children.length} lessons
+              {(node as any).totalLessonCount || node.children?.length || 0} lessons
             </span>
           )}
         </div>
@@ -326,6 +442,15 @@ export function HierarchicalViewPage() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+      {/* Back to Dashboard Button */}
+      <button
+        onClick={() => navigate('/dashboard')}
+        className="mb-4 flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Back to Dashboard
+      </button>
+
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -342,15 +467,15 @@ export function HierarchicalViewPage() {
           <div>
             <h2 className="text-xl font-semibold mb-2">Overall Curriculum Coverage</h2>
             <p className="text-gray-600">
-              Tracking {coverageStats.totalExpectations} curriculum expectations across all subjects
+              Tracking {coverage.totalExpectations} curriculum expectations across all subjects
             </p>
           </div>
           <div className="text-right">
             <div className="text-3xl font-bold text-blue-600">
-              {coverageStats.coveragePercentage}%
+              {coverage.coveragePercentage}%
             </div>
             <div className="text-sm text-gray-600">
-              {coverageStats.coveredExpectations} of {coverageStats.totalExpectations} covered
+              {coverage.coveredExpectations} of {coverage.totalExpectations} covered
             </div>
           </div>
         </div>
@@ -358,11 +483,11 @@ export function HierarchicalViewPage() {
           <div className="w-full h-4 bg-gray-200 rounded-full overflow-hidden">
             <div 
               className={`h-full transition-all ${
-                coverageStats.coveragePercentage >= 80 ? 'bg-green-500' :
-                coverageStats.coveragePercentage >= 60 ? 'bg-yellow-500' :
+                coverage.coveragePercentage >= 80 ? 'bg-green-500' :
+                coverage.coveragePercentage >= 60 ? 'bg-yellow-500' :
                 'bg-red-500'
               }`}
-              style={{ width: `${coverageStats.coveragePercentage}%` }}
+              style={{ width: `${coverage.coveragePercentage}%` }}
             />
           </div>
         </div>
@@ -456,26 +581,37 @@ export function HierarchicalViewPage() {
             {selectedNode.data?.overarchingQuestions && (
               <div>
                 <span className="font-medium">Overarching Questions:</span>
-                <p className="mt-1 text-gray-600">{selectedNode.data.overarchingQuestions}</p>
+                <p className="mt-1 text-gray-600">
+                  {typeof selectedNode.data.overarchingQuestions === 'string' 
+                    ? selectedNode.data.overarchingQuestions 
+                    : JSON.stringify(selectedNode.data.overarchingQuestions, null, 2)}
+                </p>
               </div>
             )}
             
             {selectedNode.data?.themes && (
               <div>
                 <span className="font-medium">Themes:</span>
-                <p className="mt-1 text-gray-600">{selectedNode.data.themes}</p>
+                <p className="mt-1 text-gray-600">
+                  {typeof selectedNode.data.themes === 'string' 
+                    ? selectedNode.data.themes 
+                    : JSON.stringify(selectedNode.data.themes, null, 2)}
+                </p>
               </div>
             )}
             
-            {selectedNode.type === 'lesson' && selectedNode.data?.expectations && (
+            {selectedNode.type === 'lesson' && selectedNode.data?.expectations && selectedNode.data.expectations.length > 0 && (
               <div>
                 <span className="font-medium">Curriculum Expectations:</span>
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {selectedNode.data.expectations.map((exp: any) => (
-                    <span key={exp.code} className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-sm">
-                      {exp.code}
-                    </span>
-                  ))}
+                  {selectedNode.data.expectations.map((exp: any, index: number) => {
+                    const code = exp.expectation?.code || exp.code;
+                    return code ? (
+                      <span key={code || index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-sm">
+                        {code}
+                      </span>
+                    ) : null;
+                  })}
                 </div>
               </div>
             )}

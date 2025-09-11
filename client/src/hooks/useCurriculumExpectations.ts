@@ -8,10 +8,11 @@ export function useCurriculumExpectations() {
     queryKey: ['curriculumExpectations'],
     queryFn: async () => {
       try {
-        const response = await apiClient.get<{ items: CurriculumExpectation[] }>(
+        const response = await apiClient.get<{ data?: CurriculumExpectation[], items?: CurriculumExpectation[] }>(
           '/api/curriculum-expectations'
         );
-        return response.data.items;
+        // Handle both possible response formats
+        return response.data.data || response.data.items || [];
       } catch (error) {
         handleApiError(error, 'Failed to fetch curriculum expectations');
         throw error;

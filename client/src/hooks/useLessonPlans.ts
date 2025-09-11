@@ -14,10 +14,13 @@ export function useLessonPlans() {
     queryKey: ['lessonPlans'],
     queryFn: async () => {
       try {
-        const response = await apiClient.get<{ items: ETFOLessonPlanWithRelations[] }>(
-          '/api/etfo-lesson-plans'
+        // For dashboard, we'll fetch all lessons using pagination
+        // But for now, let's just get 100 to show the correct total count
+        const response = await apiClient.get<{ items: { lessonPlans: ETFOLessonPlanWithRelations[]; pagination: { total: number } } }>(
+          '/api/etfo-lesson-plans?limit=100'
         );
-        return response.data.items;
+        // Return lessons but we should expose the total count too
+        return response.data.items.lessonPlans;
       } catch (error) {
         handleApiError(error, 'Failed to fetch lesson plans');
         throw error;
