@@ -191,7 +191,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       
       try {
         // Development bypass: Auto-authenticate as Emily McIsaac for UI testing
-        const isDevelopmentBypass = import.meta.env.DEV && (!import.meta.env.VITE_JWT_SECRET || import.meta.env.VITE_BYPASS_AUTH === 'true');
+        // Check for bypass in both dev mode and when VITE_BYPASS_AUTH is explicitly set
+        const isDevelopmentBypass = import.meta.env.VITE_BYPASS_AUTH === 'true' || 
+                                   (import.meta.env.DEV && !import.meta.env.VITE_JWT_SECRET);
         
         if (isDevelopmentBypass) {
           logger.info('Development bypass active - auto-authenticating as Emily McIsaac');
