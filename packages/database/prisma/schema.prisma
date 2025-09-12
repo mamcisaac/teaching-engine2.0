@@ -210,6 +210,7 @@ model CurriculumExpectation {
   longRangePlans   LongRangePlanExpectation[]
   artifactOutcomes StudentArtifactOutcome[]        @relation("StudentArtifactOutcome")
   studentProgress  StudentOutcomeProgress[]        @relation("StudentOutcomeProgress")
+  studentExpectationProgress StudentOutcomeProgress[] @relation("StudentExpectationProgress")
   unitPlans        UnitPlanExpectation[]
 
   @@index([subject, grade])
@@ -1029,13 +1030,16 @@ model StudentArtifactOutcome {
 model StudentOutcomeProgress {
   id                  String                @id @default(cuid())
   studentId           String
-  outcomeId           String
+  outcomeId           String?
+  expectationId       String?
   userId              Int
   currentLevel        String                @default("NOT_YET")
   previousLevel       String?
   lastAssessmentDate  DateTime              @default(now())
+  assessmentCount     Int                   @default(0)
   totalEvidencePieces Int                   @default(0)
   strongestEvidence   Json?
+  evidenceBalance     Json?                 // ETFO triangulation data
   areasForGrowth      String?
   strengths           String?
   teacherNotes        String?
@@ -1046,10 +1050,11 @@ model StudentOutcomeProgress {
   updatedAt           DateTime              @updatedAt
   lastAssessedDate    DateTime?
   user                User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  outcome             CurriculumExpectation @relation("StudentOutcomeProgress", fields: [outcomeId], references: [id], onDelete: Cascade)
+  outcome             CurriculumExpectation? @relation("StudentOutcomeProgress", fields: [outcomeId], references: [id], onDelete: Cascade)
+  expectation         CurriculumExpectation? @relation("StudentExpectationProgress", fields: [expectationId], references: [id], onDelete: Cascade)
   student             Student               @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
-  @@unique([studentId, outcomeId])
+  @@unique([studentId, expectationId, userId])
   @@index([studentId])
   @@index([outcomeId])
   @@index([userId])
@@ -1192,6 +1197,7 @@ model StudentAssessment {
   title         String
   level         String
   notes         String?
+  evidenceType  String?         // 'observation' | 'conversation' | 'product'
   isAnecdotal   Boolean         @default(false)
   date          DateTime        @default(now())
   createdAt     DateTime        @default(now())

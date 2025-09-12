@@ -15,6 +15,7 @@ import { bulkOperationRateLimit, artifactViewRateLimit } from '../middleware/rat
 import { importStudentsFromCSV, validateCSVFormat, generateCSVTemplate, exportStudentsToCSV } from '../services/csvImport';
 import { getStudentsOptimized, invalidateUserCache } from '../services/performanceOptimizer';
 import { checkClassQuota, checkStudentQuota, formatBytes } from '../services/quotaManager';
+import { AssessmentAggregationService } from '../services/assessmentAggregation';
 
 const router = Router();
 
