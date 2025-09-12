@@ -213,7 +213,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     if (shouldBypass) {
       // Only in development with explicit bypass flag
       req.user = {
-        id: 2,
+        id: 23,
         email: 'emmcisaac@gmail.com',
         role: 'teacher',
         name: 'Emily McIsaac',
