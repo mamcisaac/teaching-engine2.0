@@ -38,11 +38,20 @@ cd server && npm run dev
 cd client && npm run dev
 ```
 
+#### Need a public URL (ngrok)
+
+Use ngrok to expose the client dev server publicly and handle restarts if the tunnel crashes:
+
+- Guide: [docs/system/NGROK.md](docs/system/NGROK.md)
+- Dashboard: http://127.0.0.1:4040
+
 **Wait for these confirmation messages:**
 - ✅ Server ready at: `http://localhost:3000`
 - ✅ Client ready at: `http://localhost:5173`
 
 **Open your browser to:** `http://localhost:5173`
+
+If you need a public URL for testing on mobile or sharing with others, see: [ngrok Tunnel Guide](docs/system/NGROK.md) (reserved domain: https://emily-app.ngrok.app)
 
 ## 👩‍🏫 For Teachers: Getting Started
 

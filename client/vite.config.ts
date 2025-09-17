@@ -178,7 +178,7 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       strictPort: true,
       host: true, // Enable network access
-      allowedHosts: ['c5d5653b4afb.ngrok-free.app'], // Allow ngrok tunnel
+      allowedHosts: ['emily-app.ngrok.app'], // Reserved ngrok domain for public access
       proxy: {
         '/api': {
           target: 'http://localhost:3000',
