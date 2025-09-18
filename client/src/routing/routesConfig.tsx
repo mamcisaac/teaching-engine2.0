@@ -183,11 +183,11 @@ export const protectedRoutes: RouteConfig[] = [
   },
   {
     path: '/week',
-    element: withMainLayout(WeekViewPage),
+    element: <WeekViewPage />,
   },
   {
     path: '/dashboard',
-    element: withMainLayout(EnhancedDashboard),
+    element: <EnhancedDashboard />,
   },
   {
     path: '/planner',
@@ -257,11 +257,11 @@ export const protectedRoutes: RouteConfig[] = [
   // Parent Newsletters
   {
     path: '/newsletters',
-    element: withMainLayout(ParentNewsletterPage),
+    element: <ParentNewsletterPage />,
   },
   {
     path: '/newsletters/:id',
-    element: withMainLayout(ParentNewsletterPage),
+    element: <ParentNewsletterPage />,
   },
   {
     path: '/newsletters/new',

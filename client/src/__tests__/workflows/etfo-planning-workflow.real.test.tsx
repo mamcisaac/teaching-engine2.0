@@ -13,7 +13,7 @@ import {
   realApiAssertions,
 } from '../../test-utils/real-api-helpers';
 import { createAuthenticatedTestUser, type AuthTestContext } from '../../test-utils/auth-test-utils';
-import { PlanningDashboard } from '../../pages/PlanningDashboard';
+import { PlanningDashboard } from '../../archived-components/PlanningDashboard';
 import { ETFOLessonPlanPage } from '../../pages/ETFOLessonPlanPage';
 import { UnitPlansPage } from '../../pages/UnitPlansPage';
 
