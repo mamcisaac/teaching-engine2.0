@@ -22,7 +22,6 @@ const ParentNewsletterPage = lazy(() => import('../pages/ParentNewsletterPage').
 const HelpPage = lazy(() => import('../pages/HelpPage').then(module => ({ default: module.HelpPage }))); // named export
 const TemplatesPage = lazy(() => import('../pages/TemplatesPage').then(module => ({ default: module.TemplatesPage }))); // named export
 const SimpleCalendarPage = lazy(() => import('../pages/SimpleCalendarPage').then(module => ({ default: module.SimpleCalendarPage }))); // named export
-const SimpleTodayView = lazy(() => import('../pages/SimpleTodayView').then(module => ({ default: module.SimpleTodayView }))); // named export
 const WeekViewPage = lazy(() => import('../pages/WeekViewPage').then(module => ({ default: module.WeekViewPage }))); // named export
 const DayViewPage = lazy(() => import('../pages/DayViewPage').then(module => ({ default: module.DayViewPage }))); // named export
 const LessonDetailPage = lazy(() => import('../pages/LessonDetailPage').then(module => ({ default: module.LessonDetailPage }))); // named export
@@ -71,7 +70,7 @@ export const plannerRoutes: RouteConfig[] = [
   {
     path: '',
     index: true,
-    element: <Navigate replace to="/planner/today" />,
+    element: <Navigate replace to="/week" />,
   },
   {
     path: 'today',
@@ -184,15 +183,11 @@ export const protectedRoutes: RouteConfig[] = [
   },
   {
     path: '/week',
-    element: WeekViewPage,
+    element: withMainLayout(WeekViewPage),
   },
   {
     path: '/dashboard',
-    element: EnhancedDashboard,
-  },
-  {
-    path: '/today',
-    element: SimpleTodayView,
+    element: withMainLayout(EnhancedDashboard),
   },
   {
     path: '/planner',
@@ -262,11 +257,11 @@ export const protectedRoutes: RouteConfig[] = [
   // Parent Newsletters
   {
     path: '/newsletters',
-    element: ParentNewsletterPage,
+    element: withMainLayout(ParentNewsletterPage),
   },
   {
     path: '/newsletters/:id',
-    element: ParentNewsletterPage,
+    element: withMainLayout(ParentNewsletterPage),
   },
   {
     path: '/newsletters/new',

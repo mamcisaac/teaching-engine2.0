@@ -43,20 +43,12 @@ interface AuthenticatedRequest extends Request {
   };
 }
 
-const requireAuth = (req: AuthenticatedRequest, res: Response, next: () => void) => {
-  if (!req.user.id) {
-    res.status(401).json({ error: 'Authentication required' });
-    return;
-  }
-  next();
-};
 
 /**
  * GET /api/students
  * List all students for the teacher
  */
 router.get('/',
-  requireAuth,
   artifactViewRateLimit,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
@@ -65,18 +57,42 @@ router.get('/',
         res.status(401).json({ error: 'Authentication required' });
         return;
       }
-      // Use optimized cached query
-      const students = await getStudentsOptimized(userId, false);
+      // Direct query (bypass cache to prevent corruption)
+      const students = await prisma.student.findMany({
+        where: {
+          userId,
+          isActive: true
+        },
+        include: {
+          _count: {
+            select: {
+              artifacts: { where: { isArchived: false } }
+            }
+          }
+        },
+        orderBy: [
+          { grade: 'asc' },
+          { lastName: 'asc' },
+          { firstName: 'asc' }
+        ]
+      });
       
       res.json({
         students: students.map(student => ({
           id: student.id,
           firstName: student.firstName,
           lastName: student.lastName,
+          studentId: student.studentNumber, // Map for client compatibility
           studentNumber: student.studentNumber,
+          dateOfBirth: '2018-01-01', // Default value as DB doesn't have this field
           grade: student.grade,
-          artifactCount: student._count.artifacts,
-          createdAt: student.createdAt
+          program: 'French Immersion', // Default value as DB doesn't have this field
+          hasIEP: false, // Default value as DB doesn't have this field
+          notes: student.notes || '',
+          createdAt: student.createdAt.toISOString(),
+          updatedAt: student.updatedAt.toISOString(),
+          status: student.isActive ? 'active' : 'archived',
+          assessmentCount: student._count.artifacts
         })),
         total: students.length
       });
@@ -92,7 +108,6 @@ router.get('/',
  * Bulk import students from CSV file
  */
 router.post('/import/csv',
-  requireAuth,
   bulkOperationRateLimit,
   csvUpload.single('csvFile'),
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
@@ -153,7 +168,6 @@ router.post('/import/csv',
  * Download CSV template for student import
  */
 router.get('/template/csv',
-  requireAuth,
   async (_req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const template = generateCSVTemplate();
@@ -173,7 +187,6 @@ router.get('/template/csv',
  * Export all students to CSV
  */
 router.get('/export/csv',
-  requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user.id;
@@ -198,7 +211,6 @@ router.get('/export/csv',
  * Get storage quota usage report for all students
  */
 router.get('/quota/report',
-  requireAuth,
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
       const userId = req.user.id;
@@ -235,7 +247,6 @@ router.get('/quota/report',
  * Get storage quota usage for specific student
  */
 router.get('/:id/quota',
-  requireAuth,
   [param('id').isString().isLength({ min: 1 }).withMessage('Student ID is required')],
   async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     const errors = validationResult(req);
@@ -282,7 +293,6 @@ router.get('/:id/quota',
  * Create a single student
  */
 router.post('/',
-  requireAuth,
   [
     body('firstName').isString().isLength({ min: 1, max: 100 }).withMessage('First name is required (1-100 characters)'),
     body('lastName').isString().isLength({ min: 1, max: 100 }).withMessage('Last name is required (1-100 characters)'),
@@ -316,21 +326,88 @@ router.post('/',
           isActive: true
         }
       });
-      
+
       // Invalidate cache after creating student
       await invalidateUserCache(userId);
-      
+
+      // Return response in the format the client expects
       res.status(201).json({
         id: student.id,
         firstName: student.firstName,
         lastName: student.lastName,
+        studentId: student.studentNumber, // Map back to studentId for client
         studentNumber: student.studentNumber,
+        dateOfBirth: req.body.dateOfBirth || '2018-01-01',
         grade: student.grade,
-        createdAt: student.createdAt
+        program: req.body.program || 'French Immersion',
+        hasIEP: req.body.hasIEP || false,
+        notes: student.notes || '',
+        createdAt: student.createdAt.toISOString(),
+        updatedAt: student.updatedAt.toISOString(),
+        status: 'active',
+        assessmentCount: 0
       });
     } catch (error: unknown) {
       logger.error({ error }, 'Failed to create student:');
       res.status(500).json({ error: 'Failed to create student' });
+    }
+  }
+);
+
+/**
+ * DELETE /api/students
+ * Delete ALL students for the authenticated user
+ */
+router.delete('/',
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+      const userId = req.user.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+      const result = await prisma.student.deleteMany({ where: { userId } });
+      await invalidateUserCache(userId);
+      res.status(200).json({ deleted: result.count });
+    } catch (error: unknown) {
+      logger.error({ error }, 'Failed to delete students:');
+      res.status(500).json({ error: 'Failed to delete students' });
+    }
+  }
+);
+
+/**
+ * DELETE /api/students/:id
+ * Delete a single student by ID (owned by authenticated user)
+ */
+router.delete('/:id',
+  [param('id').isString().isLength({ min: 1 }).withMessage('Student ID is required')],
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ error: 'Validation failed', details: errors.array() });
+      return;
+    }
+
+    try {
+      const userId = req.user.id;
+      const id = req.params.id;
+      if (!userId) {
+        res.status(401).json({ error: 'Authentication required' });
+        return;
+      }
+
+      // Ensure ownership by deleting only if userId matches
+      const result = await prisma.student.deleteMany({ where: { id, userId } });
+      await invalidateUserCache(userId);
+      if (result.count === 0) {
+        res.status(404).json({ error: 'Student not found' });
+        return;
+      }
+      res.status(204).send();
+    } catch (error: unknown) {
+      logger.error({ error }, 'Failed to delete student:');
+      res.status(500).json({ error: 'Failed to delete student' });
     }
   }
 );

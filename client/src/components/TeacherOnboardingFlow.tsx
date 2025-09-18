@@ -43,12 +43,16 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
     try {
       const subjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
       const parsedSubjects = safeJsonParse<string[]>(subjects, []);
+      const onboardingCompleted = localStorage.getItem('onboarding_completed') === 'true';
       const firstTimeUser = localStorage.getItem('teachingEngine_firstTimeUser');
       const onboardingState = localStorage.getItem('teachingEngine_onboarding');
       const onboardingData = onboardingState ? safeJsonParse<{skippedOnboarding?: boolean}>(onboardingState, {}) : {};
-      
-      // Show if no subjects selected AND user hasn't completed or skipped onboarding
-      return parsedSubjects.length === 0 && firstTimeUser !== 'false' && !onboardingData.skippedOnboarding;
+
+      // Show ONLY if:
+      // - No subjects selected AND
+      // - Onboarding not explicitly completed AND
+      // - User hasn't completed or skipped onboarding
+      return parsedSubjects.length === 0 && !onboardingCompleted && firstTimeUser !== 'false' && !onboardingData.skippedOnboarding;
     } catch (error) {
       // Error in visibility check - default to not showing
       return false;
@@ -82,6 +86,7 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
   const completeOnboarding = useCallback((): void => {
     contextCompleteOnboarding(); // Use the context's complete function
     localStorage.setItem('teachingEngine_firstTimeUser', 'false'); // Ensure this is set
+    localStorage.setItem('onboarding_completed', 'true'); // Mark onboarding as completed
     setVisible(false);
     onComplete?.();
   }, [contextCompleteOnboarding, onComplete]);
@@ -98,12 +103,13 @@ export function TeacherOnboardingFlow({ onComplete }: TeacherOnboardingFlowProps
       try {
         const subjects = localStorage.getItem(STORAGE_KEYS.TEACHER_SUBJECTS);
         const parsedSubjects = safeJsonParse<string[]>(subjects, []);
+        const onboardingCompleted = localStorage.getItem('onboarding_completed') === 'true';
         const firstTimeUser = localStorage.getItem('teachingEngine_firstTimeUser');
         const onboardingState = localStorage.getItem('teachingEngine_onboarding');
         const onboardingData = onboardingState ? safeJsonParse<{skippedOnboarding?: boolean}>(onboardingState, {}) : {};
-        
-        // Show if no subjects selected AND user hasn't completed or skipped onboarding  
-        const shouldShow = parsedSubjects.length === 0 && firstTimeUser !== 'false' && !onboardingData.skippedOnboarding;
+
+        // Show if no subjects selected AND onboarding not explicitly completed AND user hasn't completed or skipped onboarding
+        const shouldShow = parsedSubjects.length === 0 && !onboardingCompleted && firstTimeUser !== 'false' && !onboardingData.skippedOnboarding;
         setVisible(shouldShow);
       } catch (error) {
         // Error in checkVisibility - default to not showing

@@ -86,6 +86,11 @@ export function PlanningDashboard(): React.ReactElement {
     navigate('/templates');
   };
 
+  const handleNavigateToStudents = (): void => {
+    // console.log('[PlanningDashboard] Navigating to students');
+    navigate('/students');
+  };
+
   const handleRestartOnboarding = (): void => {
     // console.log('[PlanningDashboard] Restarting onboarding tour');
     resetOnboarding(); // This properly resets onboarding and starts it automatically
@@ -432,7 +437,29 @@ export function PlanningDashboard(): React.ReactElement {
             >
               📋 Use Templates
             </button>
-            
+
+            <button
+              onClick={handleNavigateToStudents}
+              style={{
+                padding: '12px 16px',
+                backgroundColor: '#ef4444',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'background-color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#dc2626'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ef4444'}
+            >
+              👥 Students & Assessment
+            </button>
+
             <button
               onClick={handleRestartOnboarding}
               style={{

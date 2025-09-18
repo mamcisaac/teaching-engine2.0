@@ -1,8 +1,8 @@
-import { 
-  Calendar, 
-  BookOpen, 
-  FileText, 
-  Users, 
+import {
+  Calendar,
+  BookOpen,
+  FileText,
+  Users,
   Package,
   Eye,
   Target,
@@ -11,7 +11,8 @@ import {
   Camera,
   BarChart3,
   FileBarChart,
-  GitBranch
+  GitBranch,
+  FileDown
 } from 'lucide-react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -32,40 +33,40 @@ export function TeachingNavigationSection(): React.ReactElement {
 
   const teachingItems: TeachingNavItem[] = [
     {
-      id: 'showcase',
-      name: "Year Overview",
+      id: 'dashboard',
+      name: "Dashboard",
       path: '/dashboard',
       icon: <Target className="h-5 w-5" />,
-      description: 'Complete year view',
+      description: 'Main overview',
       badge: 'PRIMARY'
     },
     {
-      id: 'units',
-      name: 'Unit Plans',
-      path: '/planner/units',
-      icon: <BookOpen className="h-5 w-5" />,
-      description: 'Complete unit plans',
+      id: 'curriculum',
+      name: 'Curriculum',
+      path: '/curriculum',
+      icon: <Package className="h-5 w-5" />,
+      description: 'PEI expectations',
     },
     {
-      id: 'long-range',
-      name: 'Long Range Plans',
-      path: '/planner/long-range',
-      icon: <Calendar className="h-5 w-5" />,
-      description: '8 subject plans',
-    },
-    {
-      id: 'today',
-      name: "Today's Teaching",
-      path: '/today',
-      icon: <Clock className="h-5 w-5" />,
-      description: 'Daily lesson view',
+      id: 'hierarchy',
+      name: 'Planning Hierarchy',
+      path: '/planner/hierarchy',
+      icon: <GitBranch className="h-5 w-5" />,
+      description: 'LRP → Units → Lessons'
     },
     {
       id: 'week',
       name: 'Week View',
-      path: '/planner/week',
+      path: '/week',
       icon: <Eye className="h-5 w-5" />,
       description: 'Weekly schedule',
+    },
+    {
+      id: 'calendar',
+      name: 'Calendar',
+      path: '/planner/calendar',
+      icon: <Calendar className="h-5 w-5" />,
+      description: 'Calendar view',
     },
     {
       id: 'daybook',
@@ -75,35 +76,28 @@ export function TeachingNavigationSection(): React.ReactElement {
       description: 'Daily notes',
     },
     {
-      id: 'hierarchy',
-      name: 'Planning Hierarchy',
-      path: '/planner/hierarchy',
-      icon: <GitBranch className="h-5 w-5" />,
-      description: 'LRP → Units → Lessons'
+      id: 'newsletters',
+      name: 'Newsletters',
+      path: '/newsletters',
+      icon: <Users className="h-5 w-5" />,
+      description: 'Parent communication',
+    },
+    {
+      id: 'subplans',
+      name: 'Sub Plans Generator',
+      path: '/sub-plans',
+      icon: <FileDown className="h-5 w-5" />,
+      description: 'Generate substitute plans',
     },
   ];
 
   const resourceItems: TeachingNavItem[] = [
-    {
-      id: 'curriculum',
-      name: 'Curriculum',
-      path: '/curriculum',
-      icon: <Package className="h-5 w-5" />,
-      description: 'PEI expectations',
-    },
     {
       id: 'templates',
       name: 'Templates',
       path: '/templates',
       icon: <FileText className="h-5 w-5" />,
       description: 'Lesson templates',
-    },
-    {
-      id: 'parents',
-      name: 'Parent Communication',
-      path: '/newsletters',
-      icon: <Users className="h-5 w-5" />,
-      description: 'Newsletters & updates',
     },
   ];
 
@@ -156,7 +150,7 @@ export function TeachingNavigationSection(): React.ReactElement {
           <NavLink
             key={item.id}
             to={item.path}
-            data-testid={item.id === 'showcase' ? 'nav-dashboard' : item.id === 'long-range' ? 'nav-longrange' : `nav-${item.id}`}
+            data-testid={`nav-${item.id}`}
             className={({ isActive }): string => {
               const baseClasses = `flex items-center py-3 px-4 ${!isSidebarOpen && 'justify-center'}`;
               

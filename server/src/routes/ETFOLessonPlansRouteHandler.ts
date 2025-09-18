@@ -256,8 +256,14 @@ class ETFOLessonPlanService extends BaseService {
 
     // Build where clause
     const where = this.buildBasicFilters(filters, userId);
+    console.log('🔍 DEBUG: Initial where clause:', JSON.stringify(where));
     this.addDateRangeFilter(where, startDate, endDate);
     this.addExpectationsFilter(where, hasExpectations);
+    console.log('🔍 DEBUG: Final where clause:', JSON.stringify(where));
+
+    // DEBUG: Direct database test
+    const testCount = await prisma.ETFOLessonPlan.count({ where: { userId: 23 } });
+    console.log('🔍 DEBUG: Direct DB test - lessons for userId 23:', testCount);
     
     // Remove any null/undefined values from where clause
     Object.keys(where).forEach(key => {
@@ -272,7 +278,7 @@ class ETFOLessonPlanService extends BaseService {
 
     // Execute query
     const result = await queryPerformance.monitorQuery('etfoLessonPlan.findMany', () =>
-      optimizedQueries.paginatedQuery(prisma.eTFOLessonPlan, where, {
+      optimizedQueries.paginatedQuery(prisma.ETFOLessonPlan, where, {
         limit,
         offset,
         orderBy,
@@ -977,7 +983,9 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
   }
 
   private validateAuthenticationForList(req: AuthenticatedRequest, res: Response): number | null {
-    const { userId } = req;
+    // Fix: Check both req.userId and req.user.id for compatibility
+    const userId = req.userId || req.user?.id;
+    console.log('🔍 DEBUG: req.userId =', req.userId, 'req.user?.id =', req.user?.id, 'final userId =', userId);
     if (!userId) {
       res.status(401).json({ error: 'User not authenticated' });
       return null;
@@ -1121,7 +1129,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const {userId} = req;
+      const userId = req.userId || req.user?.id;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -1153,7 +1161,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const {userId} = req;
+      const userId = req.userId || req.user?.id;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -1185,7 +1193,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const {userId} = req;
+      const userId = req.userId || req.user?.id;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -1211,7 +1219,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const {userId} = req;
+      const userId = req.userId || req.user?.id;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;
@@ -1248,7 +1256,7 @@ export class ETFOLessonPlansRouteHandler extends BaseRouteHandler {
     next: NextFunction,
   ): Promise<void> {
     try {
-      const {userId} = req;
+      const userId = req.userId || req.user?.id;
       if (!userId) {
         res.status(401).json({ error: 'User not authenticated' });
         return;

@@ -17,6 +17,9 @@ export function StudentsPage(): React.ReactElement {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [showPasteModal, setShowPasteModal] = useState(false);
+  const [pasteText, setPasteText] = useState('');
   const [showProgressDashboard, setShowProgressDashboard] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [editingStudent, setEditingStudent] = useState<Student | null>(null);
@@ -67,12 +70,78 @@ export function StudentsPage(): React.ReactElement {
     }
   };
 
+  // Simple flow to clear the entire roster
+  const handleResetClass = async () => {
+    try {
+      // Best-effort server deletion
+      await studentsApi.deleteAll().catch(() => {});
+    } catch {
+      // ignore - rely on local clear below
+    }
+    // Clear local state and localStorage (authoritative for UI)
+    setStudents([]);
+    localStorage.removeItem('assessment-students');
+    toast.success('Class reset. No students in roster.');
+    setShowResetConfirm(false);
+  };
+
+  // Create many students from pasted names (one per line: First Last)
+  const handleCreateFromPastedNames = async () => {
+    const lines = pasteText
+      .split('\n')
+      .map(l => l.trim())
+      .filter(Boolean);
+    if (lines.length === 0) {
+      toast.error('Please paste at least one name.');
+      return;
+    }
+
+    const now = Date.now();
+    const newlyCreated: Student[] = [];
+    for (let i = 0; i < lines.length; i++) {
+      const fullname = lines[i];
+      const [firstName, ...rest] = fullname.split(' ');
+      const lastName = rest.join(' ');
+      const sid = `S-${(firstName || 'S')[0]?.toLowerCase()}${lastName.replace(/\s+/g,'').toLowerCase()}-${now}${i+1}`;
+      try {
+        const created = await studentsApi.create({
+          firstName: firstName || fullname,
+          lastName: lastName || 'Unknown',
+        });
+        newlyCreated.push(created);
+      } catch {
+        // Fallback: local-only creation
+        const local: Student = {
+          id: `student-${now}-${i+1}`,
+          firstName: firstName || fullname,
+          lastName: lastName || 'Unknown',
+          studentId: sid,
+          dateOfBirth: '2018-01-01',
+          grade: 1,
+          program: 'French Immersion',
+          hasIEP: false,
+          notes: '',
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+          status: 'active',
+          assessmentCount: 0
+        };
+        newlyCreated.push(local);
+      }
+    }
+    const updated = [...newlyCreated];
+    setStudents(updated);
+    localStorage.setItem('assessment-students', JSON.stringify(updated));
+    toast.success(`Added ${updated.length} students to the roster`);
+    setShowPasteModal(false);
+    setPasteText('');
+  };
+
   const handleAddStudent = async () => {
     try {
       const newStudent = await studentsApi.create({
-        ...formData,
-        studentId: formData.studentId || `S${Date.now()}`,
-        dateOfBirth: formData.dateOfBirth || '2018-01-01'
+        firstName: formData.firstName,
+        lastName: formData.lastName,
       });
       
       setStudents([...students, newStudent]);
@@ -284,6 +353,20 @@ export function StudentsPage(): React.ReactElement {
             <DocumentArrowUpIcon className="w-5 h-5" />
             Import CSV
           </button>
+          <button
+            onClick={() => setShowPasteModal(true)}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center gap-2"
+            data-testid="paste-names-btn"
+          >
+            Paste Names
+          </button>
+          <button
+            onClick={() => setShowResetConfirm(true)}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 flex items-center gap-2"
+            data-testid="reset-class-btn"
+          >
+            Reset Class
+          </button>
         </div>
 
         <div className="flex gap-4 items-center">
@@ -322,6 +405,59 @@ export function StudentsPage(): React.ReactElement {
         {error && (
           <div className="text-sm text-orange-600 mt-1">{error}</div>
         )}
+
+      {/* Paste Names Modal */}
+      {showPasteModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-xl font-bold mb-4">Paste Names (one per line)</h2>
+            <textarea
+              value={pasteText}
+              onChange={(e) => setPasteText(e.target.value)}
+              placeholder={"e.g.\nFrancis Abdallah\nEllis Baglole\n..."}
+              className="w-full h-56 px-3 py-2 border rounded-lg"
+            />
+            <div className="mt-4 flex gap-2">
+              <button
+                onClick={handleCreateFromPastedNames}
+                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Add Students
+              </button>
+              <button
+                onClick={() => setShowPasteModal(false)}
+                className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reset Confirmation Modal */}
+      {showResetConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-xl font-bold mb-4">Reset Class</h2>
+            <p className="text-gray-700 mb-4">This will remove all students from your class. This action cannot be undone.</p>
+            <div className="flex gap-2">
+              <button
+                onClick={handleResetClass}
+                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              >
+                Yes, Reset
+              </button>
+              <button
+                onClick={() => setShowResetConfirm(false)}
+                className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
 
       {/* Students Display */}

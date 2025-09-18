@@ -443,14 +443,6 @@ export function WeekViewPage(): React.ReactElement {
           <div className="flex gap-4">
             <Button 
               variant="outline"
-              onClick={() => navigate('/planner/today')}
-              className="flex items-center gap-2"
-            >
-              <Calendar className="h-4 w-4" />
-              Day View
-            </Button>
-            <Button 
-              variant="outline"
               onClick={() => navigate('/planner/calendar')}
               className="flex items-center gap-2"
             >

@@ -12,6 +12,7 @@ import { config } from 'dotenv';
 config();
 import type { Request, Response, NextFunction } from 'express';
 import express, { json, urlencoded, static as expressStatic } from 'express';
+import cors from 'cors';
 
 import { logger } from './logger';
 import { authenticate } from './middleware/authenticate';
@@ -126,6 +127,28 @@ log('Applying body parsing middleware...');
 app.use(json({ limit: '10mb' })); // Set reasonable payload limit
 app.use(urlencoded({ extended: true })); // Add URL-encoded parsing
 app.use(cookieParser());
+
+// CORS: allow local dev and ngrok domain to access API
+log('Applying CORS middleware...');
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://emily-app.ngrok.app',
+];
+const corsOptions: cors.CorsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS blocked from origin: ${origin}`));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+};
+app.use(cors(corsOptions));
+// Handle preflight across routes
+app.options('*', cors(corsOptions));
 
 // Apply security middleware AFTER JSON parsing (excluding input sanitization)
 log('Applying comprehensive security middleware...');

@@ -170,6 +170,66 @@ cd client && npm run dev
 - `cd client && npm run typecheck`: Run client TypeScript checking
 - `cd server && npm run typecheck`: Run server TypeScript checking
 
+## Database Restoration & Path Configuration
+
+### 🔴 CRITICAL: Database Path Mismatch Issue
+
+**Problem**: After database backup restoration, Prisma client returns empty results (0 lessons, 0 users) despite database containing all 970 lessons and user data.
+
+**Root Cause**: Relative DATABASE_URL paths in .env files don't resolve correctly from different execution contexts, causing Prisma to connect to empty database files instead of the restored data.
+
+**Symptoms**:
+- `prisma.ETFOLessonPlan.count()` returns 0
+- `prisma.user.count()` returns 0
+- SQLite direct queries show all data exists
+- Database files exist at expected paths with correct sizes
+
+### Solution: Use Absolute Database Paths
+
+**Fix both .env files after any database restoration:**
+
+1. **Server .env file** (`/server/.env`):
+```bash
+# WRONG (relative path - causes connection failures)
+DATABASE_URL="file:./prisma/prisma/dev.db"
+
+# CORRECT (absolute path - works reliably)
+DATABASE_URL="file:/Users/michaelmcisaac/Github/teaching-engine2.0/server/prisma/prisma/dev.db"
+```
+
+2. **Database package .env file** (`/packages/database/.env`):
+```bash
+# WRONG (relative path - causes connection failures)
+DATABASE_URL="file:./prisma/prisma/dev.db"
+
+# CORRECT (absolute path - works reliably)
+DATABASE_URL="file:/Users/michaelmcisaac/Github/teaching-engine2.0/packages/database/prisma/prisma/dev.db"
+```
+
+### Restoration Checklist
+
+After restoring any database backup:
+
+1. **Update both .env files** with absolute paths (see above)
+2. **Regenerate Prisma clients**:
+   ```bash
+   cd packages/database && npx prisma generate && npm run build
+   ```
+3. **Test connection**:
+   ```bash
+   cd server
+   node -e "const {PrismaClient} = require('@teaching-engine/database'); const p = new PrismaClient(); p.ETFOLessonPlan.count().then(c => console.log('Lessons:', c)).finally(() => p.\$disconnect())"
+   ```
+   Should output: `Lessons: 970`
+
+4. **Verify all data accessible**:
+   - Emily McIsaac (userId: 23) exists
+   - 970 lessons accessible
+   - 50 unit plans accessible
+   - 6 long range plans accessible
+
+**This database path mismatch occurs EVERY TIME a database backup is restored** due to workspace path resolution differences.
+
 ## Known Issues & Solutions
 
 ### Module Resolution Error: '@shared/utils/typeGuards'

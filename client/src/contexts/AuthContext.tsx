@@ -190,13 +190,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       logger.debug('[AuthContext] Starting simplified auth check');
       
       try {
-        // Development bypass: Auto-authenticate as Emily McIsaac for UI testing
-        // Check for bypass in both dev mode and when VITE_BYPASS_AUTH is explicitly set
-        const isDevelopmentBypass = import.meta.env.VITE_BYPASS_AUTH === 'true' || 
-                                   (import.meta.env.DEV && !import.meta.env.VITE_JWT_SECRET);
+        // Development bypass: Auto-authenticate only when explicitly enabled
+        // IMPORTANT: Do NOT infer bypass based on DEV or missing secrets.
+        const isDevelopmentBypass = import.meta.env.VITE_BYPASS_AUTH === 'true';
         
         if (isDevelopmentBypass) {
-          logger.info('Development bypass active - auto-authenticating as Emily McIsaac');
+          logger.info('Development bypass active (explicit) - auto-authenticating as Emily McIsaac');
           const emilyUser = {
             id: 23,  // Correct userId from database for emmcisaac@gmail.com
             email: 'emmcisaac@gmail.com',  // Correct email from database

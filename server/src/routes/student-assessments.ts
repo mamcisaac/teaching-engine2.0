@@ -12,7 +12,6 @@ import { Router } from 'express';
 import { z } from 'zod';
 
 import { logger } from '../logger';
-import { authenticate } from '../middleware/auth';
 import { prisma } from '../prisma';
 
 const router = Router();
@@ -36,7 +35,7 @@ const updateAssessmentSchema = z.object({
 });
 
 // GET /api/student-assessments - Get assessments for a user with pagination
-router.get('/', authenticate, async (req: Request, res: Response): Promise<Response> => {
+router.get('/', async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -120,7 +119,7 @@ router.get('/', authenticate, async (req: Request, res: Response): Promise<Respo
 });
 
 // POST /api/student-assessments - Create new assessment
-router.post('/', authenticate, async (req: Request, res: Response): Promise<Response> => {
+router.post('/', async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -162,7 +161,7 @@ router.post('/', authenticate, async (req: Request, res: Response): Promise<Resp
 });
 
 // PUT /api/student-assessments/:id - Update assessment
-router.put('/:id', authenticate, async (req: Request, res: Response): Promise<Response> => {
+router.put('/:id', async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -207,7 +206,7 @@ router.put('/:id', authenticate, async (req: Request, res: Response): Promise<Re
 });
 
 // DELETE /api/student-assessments/:id - Delete assessment
-router.delete('/:id', authenticate, async (req: Request, res: Response): Promise<Response> => {
+router.delete('/:id', async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -237,7 +236,7 @@ router.delete('/:id', authenticate, async (req: Request, res: Response): Promise
 });
 
 // GET /api/student-assessments/differentiation-groups - Get differentiation groups
-router.get('/differentiation-groups', authenticate, async (req: Request, res: Response): Promise<Response> => {
+router.get('/differentiation-groups', async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user.id;
     if (!userId) {
@@ -319,7 +318,7 @@ router.get('/differentiation-groups', authenticate, async (req: Request, res: Re
 });
 
 // POST /api/student-assessments/differentiation-groups - Generate differentiation groups
-router.post('/differentiation-groups', authenticate, async (req: Request, res: Response): Promise<Response> => {
+router.post('/differentiation-groups', async (req: Request, res: Response): Promise<Response> => {
   try {
     const userId = req.user.id;
     if (!userId) {

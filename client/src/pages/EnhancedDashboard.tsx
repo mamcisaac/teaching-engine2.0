@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Calendar, BookOpen, Layers, Target, ChevronRight, 
-  GitBranch, Clock, Eye, ArrowRight, Package 
+import {
+  Calendar, BookOpen, Target, ChevronRight,
+  ArrowRight, Package, Layers, GitBranch
 } from 'lucide-react';
 import { format, startOfWeek, addDays, isToday } from 'date-fns';
 import { useLongRangePlans } from '../hooks/useLongRangePlans';
@@ -334,40 +334,6 @@ export function EnhancedDashboard() {
         </Card>
       )}
 
-      {/* Quick Actions */}
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <button
-          onClick={() => navigate('/planner/today')}
-          className="p-4 bg-white border rounded-lg hover:bg-gray-50 transition-colors flex flex-col items-center gap-2"
-        >
-          <Clock className="h-6 w-6 text-blue-500" />
-          <span className="text-sm font-medium">Today's Teaching</span>
-        </button>
-        
-        <button
-          onClick={() => navigate('/planner/week')}
-          className="p-4 bg-white border rounded-lg hover:bg-gray-50 transition-colors flex flex-col items-center gap-2"
-        >
-          <Eye className="h-6 w-6 text-green-500" />
-          <span className="text-sm font-medium">Week View</span>
-        </button>
-        
-        <button
-          onClick={() => navigate('/planner/hierarchy')}
-          className="p-4 bg-white border rounded-lg hover:bg-gray-50 transition-colors flex flex-col items-center gap-2"
-        >
-          <GitBranch className="h-6 w-6 text-purple-500" />
-          <span className="text-sm font-medium">Full Hierarchy</span>
-        </button>
-        
-        <button
-          onClick={() => navigate('/planner/units')}
-          className="p-4 bg-white border rounded-lg hover:bg-gray-50 transition-colors flex flex-col items-center gap-2"
-        >
-          <Layers className="h-6 w-6 text-orange-500" />
-          <span className="text-sm font-medium">Unit Plans</span>
-        </button>
-      </div>
     </div>
   );
 }

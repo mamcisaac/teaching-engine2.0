@@ -189,7 +189,9 @@ export default defineConfig(({ mode }) => {
       // Optimize HMR performance
       hmr: {
         overlay: false,
-        clientPort: 5173,
+        protocol: 'wss',
+        host: 'emily-app.ngrok.app',
+        clientPort: 443,
       },
       // Warming up frequently used files
       warmup: {

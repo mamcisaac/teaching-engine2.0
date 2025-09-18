@@ -22,11 +22,11 @@ export interface Student {
 export interface CreateStudentDto {
   firstName: string;
   lastName: string;
-  studentId: string;
-  dateOfBirth: string;
-  grade: number;
-  program: string;
-  hasIEP: boolean;
+  studentId?: string;
+  dateOfBirth?: string;
+  grade?: number | string;
+  program?: string;
+  hasIEP?: boolean;
   iepGoals?: string[];
   accommodations?: string[];
   notes?: string;
@@ -73,6 +73,11 @@ export const studentsApi = {
 
   async delete(id: string): Promise<void> {
     await apiClient.delete(`/api/students/${id}`);
+  },
+
+  async deleteAll(): Promise<{ deleted: number } | void> {
+    const response = await apiClient.delete<{ deleted: number }>(`/api/students`);
+    return response.data;
   },
 
   async importFromCSV(file: File): Promise<Student[]> {

@@ -21,14 +21,28 @@ __exportStar(require("@prisma/client"), exports);
 const client_1 = require("@prisma/client");
 // Create singleton instance for development
 const globalForPrisma = globalThis;
-// In test environment, use test client if available
-exports.prisma = process.env.NODE_ENV === 'test' && globalForPrisma.testPrismaClient !== undefined ?
-    globalForPrisma.testPrismaClient :
-    (globalForPrisma.prisma ??
-        new client_1.PrismaClient({
+// Create a getter for lazy initialization
+const getPrisma = () => {
+    // In test environment, use test client if available
+    if (process.env.NODE_ENV === 'test' && globalForPrisma.testPrismaClient !== undefined) {
+        return globalForPrisma.testPrismaClient;
+    }
+    if (!globalForPrisma.prisma) {
+        globalForPrisma.prisma = new client_1.PrismaClient({
             log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-        }));
-if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-    globalForPrisma.prisma = exports.prisma;
-}
+        });
+    }
+    return globalForPrisma.prisma;
+};
+// Export a proxy that lazily initializes on first use
+exports.prisma = new Proxy({}, {
+    get(_target, prop) {
+        const client = getPrisma();
+        return client[prop];
+    },
+    has(_target, prop) {
+        const client = getPrisma();
+        return prop in client;
+    },
+});
 //# sourceMappingURL=index.js.map
